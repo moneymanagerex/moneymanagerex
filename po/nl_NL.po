@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 17:15\n"
+"PO-Revision-Date: 2021-10-13 18:26\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4901,7 +4901,7 @@ msgstr "MMEX Opties zijn bijgewerkt."
 
 #: mmframe.cpp:2541
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Sommige instellingen worden pas van kracht nadat de applicatie opnieuw is opgestart."
 
 #: mmframe.cpp:2542 optiondialog.cpp:215 optiondialog.h:49
 msgid "MMEX Options"
@@ -5562,7 +5562,7 @@ msgstr "Selecteer of u de originele transactiedatum of de huidige datum wilt geb
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Originele datum gebruiken bij het dupliceren van transacties"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
@@ -5647,7 +5647,7 @@ msgstr "Standaard status:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Bulk transacties:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
@@ -5743,7 +5743,7 @@ msgstr "Controleer op laatste nieuws bij opstarten"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Inschakelen om nieuws te controleren bij het starten van de applicatie"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5779,7 +5779,7 @@ msgstr "Niet stabiel"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
-msgstr ""
+msgstr "Update bronnen"
 
 #: optionsettingsview.cpp:81
 msgid "Specify which accounts are visible"
@@ -5787,7 +5787,7 @@ msgstr "Specificeer welke rekeningen zichtbaar zijn"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Categorie scheidingsteken"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5795,7 +5795,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Budgetten als financiële jaren bekijken"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
@@ -5871,7 +5871,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normaal (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
@@ -6035,7 +6035,7 @@ msgstr "Bevestiging overzetten begunstigden"
 #: reports/budget.cpp:88
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Financieel jaar: %s - %i"
 
 #: reports/budget.cpp:98
 #, c-format
