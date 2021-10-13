@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 16:27\n"
+"PO-Revision-Date: 2021-10-13 17:07\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4433,7 +4433,7 @@ msgstr "Vernieuw WebApp"
 
 #: mmframe.cpp:1575
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Opties... Ctrl-,"
 
 #: mmframe.cpp:1575 mmframe.cpp:1734
 msgid "Show the Options Dialog"
@@ -4445,15 +4445,15 @@ msgstr "Converteer Versleuteld &DB"
 
 #: mmframe.cpp:1583
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Versleutelde DB omzetten naar niet-versleutelde DB"
 
 #: mmframe.cpp:1585
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Versleutelde &wachtwoord wijzigen"
 
 #: mmframe.cpp:1586
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Wijzig het wachtwoord van een versleutelde database"
 
 #: mmframe.cpp:1588
 msgid "&Optimize Database"
@@ -4581,7 +4581,7 @@ msgstr "&RSS feed"
 
 #: mmframe.cpp:1636
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "Verbind RSS web feed met nieuws aggregator"
 
 #: mmframe.cpp:1638
 msgid "&Donate via PayPal"
@@ -4589,7 +4589,7 @@ msgstr "Doneer via PayPal"
 
 #: mmframe.cpp:1639
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Doneer het team om infrastructuur etc te ondersteunen"
 
 #: mmframe.cpp:1641
 msgid "&Buy us a Coffee"
@@ -4751,7 +4751,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "De database die u probeert te openen is gemarkeerd als geopend door een andere instantie van MMEX.\n"
+"Om gegevensverlies of conflict te voorkomen, is het sterk aangeraden om alle andere applicaties die de database gebruiken te sluiten.\n\n"
+"Als niets anders draait, is het mogelijk dat de database open is gelaten als gevolg van een crash tijdens vorig gebruik van MMEX.\n\n"
+"Wilt u doorgaan met het openen van deze database?"
 
 #: mmframe.cpp:1975
 msgid "MMEX Instance Check"
@@ -4767,11 +4770,11 @@ msgstr "Kies een databestand om te openen"
 
 #: mmframe.cpp:2035
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Kies een versleuteld databasebestand om te openen"
 
 #: mmframe.cpp:2045
 msgid "Enter password for database"
-msgstr ""
+msgstr "Voer het wachtwoord in voor de database"
 
 #: mmframe.cpp:2050
 msgid "Choose database file to Save As"
@@ -4787,7 +4790,7 @@ msgstr "MMEX bericht"
 
 #: mmframe.cpp:2078
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: wachtwoord versleuteling wijzigen"
 
 #: mmframe.cpp:2079
 #, c-format
@@ -4910,11 +4913,11 @@ msgstr "Kies een HTML bestandsnaam om naar te exporteren"
 
 #: mmframe.cpp:3036 mmframe.cpp:3043
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Aandelen koersen van Yahoo downloaden"
 
 #: mmframe.cpp:3037
 msgid "Please wait..."
-msgstr ""
+msgstr "Even wachten alstublieft..."
 
 #: mmframe.cpp:3086 stockspanel.cpp:473
 #, c-format
@@ -4972,7 +4975,7 @@ msgstr "Bestand %s niet gevonden"
 
 #: mmframe.cpp:3374 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "De taal voor deze applicatie is gewijzigd. De wijziging zal van kracht worden bij de volgende start van de applicatie."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
@@ -5013,7 +5016,7 @@ msgstr "Inkomsten t.o.v uitgaven"
 
 #: mmframereport.cpp:164
 msgid "My Usage"
-msgstr ""
+msgstr "Mijn gebruik"
 
 #: mmframereport.cpp:169 reports/payee.cpp:114
 msgid "Payees"
@@ -5025,11 +5028,11 @@ msgstr "Samenvatting van rekeningen"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
-msgstr ""
+msgstr "Begrotingsresultaat"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Begroting categorie samenvatting"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
@@ -5070,7 +5073,7 @@ msgstr "Grootste uitgaven: %s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
-msgstr ""
+msgstr "Rekening / begunstigde"
 
 #: mmhomepage.cpp:439
 #, c-format
@@ -5111,7 +5114,7 @@ msgstr "Eindtotaal:"
 
 #: mmhomepage.cpp:646
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Beleggingsrekeningen"
 
 #: mmhomepage.cpp:647 reports/summary.cpp:289 reports/summary.cpp:325
 msgid "Asset Accounts"
