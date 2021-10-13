@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 15:44\n"
+"PO-Revision-Date: 2021-10-13 15:55\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4133,11 +4133,11 @@ msgstr "&QIF-bestand..."
 
 #: mmframe.cpp:1308 mmframe.cpp:1382
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV bestanden..."
 
 #: mmframe.cpp:1311 mmframe.cpp:1385
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON bestanden..."
 
 #: mmframe.cpp:1322 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4145,7 +4145,7 @@ msgstr "Zichtbare rekeningen"
 
 #: mmframe.cpp:1359
 msgid "&New Database"
-msgstr ""
+msgstr "&Nieuwe Database"
 
 #: mmframe.cpp:1359 mmframe.cpp:1718 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4257,7 +4257,7 @@ msgstr "Toon/Verberg aandelenrekeningen in de navigatieboom"
 
 #: mmframe.cpp:1411
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Budgetten: Als &Financiële Jaren"
 
 #: mmframe.cpp:1411
 msgid "Display Budgets in Financial Year Format"
@@ -4297,7 +4297,7 @@ msgstr "Toon Geld Tips"
 
 #: mmframe.cpp:1441
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Wissel &Fullscreen Shift+F11"
 
 #: mmframe.cpp:1442 mmframe.cpp:1752
 msgid "Toggle Fullscreen"
@@ -4425,7 +4425,7 @@ msgstr ""
 
 #: mmframe.cpp:1570
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "Vernieuwen &WebApp"
 
 #: mmframe.cpp:1570 mmframe.cpp:2502 mmframe.cpp:2505
 msgid "Refresh WebApp"
@@ -4441,7 +4441,7 @@ msgstr "Toon het opties venster"
 
 #: mmframe.cpp:1582
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Converteer Versleuteld &DB"
 
 #: mmframe.cpp:1583
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4465,7 +4465,7 @@ msgstr "Optimaliseer database en prestaties"
 
 #: mmframe.cpp:1591
 msgid "Database De&bug"
-msgstr ""
+msgstr "Database De&bug"
 
 #: mmframe.cpp:1592
 msgid "Generate database report or fix errors"
@@ -4509,7 +4509,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1615
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "We gebruiken Crowdin om MMEX te vertalen"
 
 #: mmframe.cpp:1617
 msgid "&Twitter"
@@ -4533,7 +4533,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1621
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Communiceren online met het MMEX-team vanaf uw computer of mobiele apparaat"
 
 #: mmframe.cpp:1623
 msgid "&GitHub"
@@ -4549,7 +4549,7 @@ msgstr "W&iki pagina's"
 
 #: mmframe.cpp:1625
 msgid "Read and update wiki pages"
-msgstr ""
+msgstr "Lees en update wiki-pagina's"
 
 #: mmframe.cpp:1627
 msgid "F&orum"
@@ -4557,7 +4557,7 @@ msgstr "F&orum"
 
 #: mmframe.cpp:1628
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr ""
+msgstr "Bezoek het MMEX-forum om bestaande gebruikersopmerkingen te zien of nieuwe problemen met de software te melden"
 
 #: mmframe.cpp:1630
 msgid "Money Manager Ex for &Android"
@@ -4569,7 +4569,7 @@ msgstr ""
 
 #: mmframe.cpp:1633
 msgid "&Newsletter"
-msgstr ""
+msgstr "&Nieuwsbrief"
 
 #: mmframe.cpp:1634
 msgid "Subscribe to e-mail newsletter or view existing announcements"
