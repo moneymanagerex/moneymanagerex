@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-12 19:57\n"
+"PO-Revision-Date: 2021-10-13 05:29\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1964,7 +1964,9 @@ msgstr "Bevestig het wissen van het eigen veld"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Deze functie zal massaal zoeken & vervangen voor \"%s\" aangepaste veld waarden\n"
+"Het zal alleen de volledige overeenkomende veldwaarde vervangen en geen vervanging zijn voor gedeeltelijke of middelbare waarde vervanging\n"
+"Houd er rekening mee dat er geen validatie is!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2000,8 +2002,8 @@ msgstr "Wilt u de inhoud leeg maken?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu overeenkomst gevonden en vervangen!"
+msgstr[1] "%zu overeenkomsten gevonden en vervangen!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Massive content update "
@@ -2315,7 +2317,7 @@ msgstr "Openen MMEX databestand - Fout"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnostische gegevens"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -3675,7 +3677,7 @@ msgstr "Beheren categorieën dialoog tip: Indrukken van een twee letter combinat
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tip om uit de schulden te komen: Betaal eerst 10% aan jezelf. Zet dit op een speciale bankrekening, zodanig dat u het niet zo maar opneemt. Dan heeft u altijd een basis voor aflossing."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -3780,11 +3782,11 @@ msgstr "Verwijder alle transacties in de huidige lijst"
 
 #: mmchecking_list.cpp:404
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Verwijder bekeken 'te controleren' transacties"
 
 #: mmchecking_list.cpp:405
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Verwijder bekeken \"openstaande\" transacties"
 
 #: mmchecking_list.cpp:411
 msgid "as Reconciled"
@@ -3854,8 +3856,8 @@ msgstr "MMEX transactie controle"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "U staat op het punt een transactie te wijzigen van een dat account gesloten is."
+msgstr[1] "Deze wijziging heeft invloed op %i transacties van een gesloten account."
 
 #: mmchecking_list.cpp:951
 msgid "\n\n"
