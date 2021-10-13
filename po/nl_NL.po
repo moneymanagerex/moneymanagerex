@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 18:26\n"
+"PO-Revision-Date: 2021-10-13 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5823,7 +5823,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Negeer toekomstige transacties"
 
 #: optionsettingsview.cpp:164
 msgid "Transaction Colors"
@@ -5855,11 +5855,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Thema modus"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "HTML schaalfactor"
 
 #: optionsettingsview.cpp:248
 msgid "Specify which scale factor is used for the report pages"
@@ -5867,7 +5867,7 @@ msgstr "Specificeer schalingsfactor voor de rapportbladzijden"
 
 #: optionsettingsview.cpp:253
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Klein (16 px)"
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
@@ -5875,27 +5875,27 @@ msgstr "Normaal (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Groot (32 px)"
 
 #: optionsettingsview.cpp:256
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Werkbalk icoon grootte"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Navigatie icoongrootte"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Andere pictogramgrootte"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Laatst gebruikte categorie"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5939,11 +5939,11 @@ msgstr "Beheren begunstigden: Fout bij verwijderen"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Categorie definiëren"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Verwijder categorie"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
@@ -5959,7 +5959,7 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr ""
+msgstr "Bron categorie selecteren"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
@@ -6095,7 +6095,7 @@ msgstr "Werk."
 
 #: reports/budgetingperf.cpp:231
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:284
 msgid "Monthly Total"
@@ -6103,7 +6103,7 @@ msgstr "Maandelijks totaal"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr ""
+msgstr "Foutrapportage"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
