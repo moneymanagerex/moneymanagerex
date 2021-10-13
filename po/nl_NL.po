@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 16:21\n"
+"PO-Revision-Date: 2021-10-13 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5392,17 +5392,17 @@ msgstr ""
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> gebruikersprofielmap"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> map van .MMB database bestand"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> MMEX Applicatie Gegevensmap"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5410,19 +5410,19 @@ msgstr "Overige OS mappen"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Nog niet ingesteld"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Windows map -> "
 
 #: optionsettingsattachment.cpp:130
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Mac map -> "
 
 #: optionsettingsattachment.cpp:137
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Unix map -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
@@ -5450,11 +5450,11 @@ msgstr "Kies een map voor het bijlagen archief"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Bijlagenmap is niet schrijfbaar!"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
-msgstr ""
+msgstr "Bijlagen map"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
@@ -5490,7 +5490,7 @@ msgstr "De gebruikersnaam word gebruikt als titel voor het databestand."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5498,7 +5498,7 @@ msgstr "Specificeer datumnotatie"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Voorbeeld datumformaat:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5523,11 +5523,11 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
-msgstr ""
+msgstr "Gebruik valuta geschiedenis"
 
 #: optionsettingsgeneral.cpp:170
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Selecteer om de valutahistorie te gebruiken (een tarief per dag), deselecteer om een vaste koers te gebruiken"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Financial Year"
