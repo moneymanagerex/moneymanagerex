@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 17:07\n"
+"PO-Revision-Date: 2021-10-13 17:15\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5118,11 +5118,11 @@ msgstr "Beleggingsrekeningen"
 
 #: mmhomepage.cpp:647 reports/summary.cpp:289 reports/summary.cpp:325
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Activarekeningen"
 
 #: mmhomepage.cpp:795
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Valuta-wisselkoersen"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5146,7 +5146,7 @@ msgstr "Kolomgrootte herstellen"
 
 #: mmreportspanel.cpp:141
 msgid "Report"
-msgstr ""
+msgstr "Rapport"
 
 #: mmreportspanel.cpp:198
 msgid "Period:"
@@ -5154,7 +5154,7 @@ msgstr "Periode:"
 
 #: mmreportspanel.cpp:293
 msgid "Year:"
-msgstr ""
+msgstr "Jaar:"
 
 #: mmreportspanel.cpp:317
 msgid "Budget:"
@@ -5162,7 +5162,7 @@ msgstr "Budget:"
 
 #: mmreportspanel.cpp:343
 msgid "Accounts:"
-msgstr ""
+msgstr "Rekeningen:"
 
 #: mmreportspanel.cpp:348 reports/reportbase.cpp:185
 #: reports/transactions.cpp:50
@@ -5175,11 +5175,11 @@ msgstr "Specifieke rekeningen"
 
 #: mmreportspanel.cpp:365
 msgid "Chart:"
-msgstr ""
+msgstr "Grafiek:"
 
 #: mmreportspanel.cpp:370
 msgid "Show"
-msgstr ""
+msgstr "Tonen"
 
 #: mmreportspanel.cpp:371
 msgid "Hide"
@@ -5252,19 +5252,19 @@ msgstr "Overig"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Transactie"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Aandelen"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Bankrekening"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Periodieke transactie"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5278,7 +5278,7 @@ msgstr "MMEX herhalende transactie controle"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Tekst"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
@@ -5290,7 +5290,7 @@ msgstr "Decimaal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Boolean"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:145
 msgid "Time"
@@ -5310,23 +5310,23 @@ msgstr "Fout in begunstigde"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Begin datum: "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Datum: "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Eind datum: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Jaar: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "Sjabloon is leeg"
 
 #: model/Model_Report.cpp:247
 #, c-format
@@ -5373,7 +5373,7 @@ msgstr "Bijlagen archiveringmap alleen voor %s:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Elk besturingssysteem (Win,Mac,Unix) heeft een eigen bijlagenmap"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -5385,12 +5385,12 @@ msgstr "Werkelijk pad:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legende (kan gebruikt worden als variabelen aan het begin van pad hierboven)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Gebruikersdocumentenmap"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
