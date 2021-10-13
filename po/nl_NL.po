@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 05:29\n"
+"PO-Revision-Date: 2021-10-13 05:40\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3917,7 +3917,7 @@ msgstr "Kopieer de geselecteerde transacties"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Geef de zoektekst in die u in de transactienotities wilt opzoeken"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -3961,7 +3961,7 @@ msgstr "Geselecteerde transacties balans: %s"
 #: mmcheckingpanel.cpp:507
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Dagen tussen geselecteerde transacties: %d"
 
 #: mmcustomdata.cpp:61
 msgid "Custom fields"
@@ -3979,16 +3979,17 @@ msgstr "Meerdere keuzes"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Kan aangepast veld niet opslaan \"%s\":\n"
+"waarde \"%s\" komt niet overeen met RegEx validatie \"%s\""
 
 #: mmcustomdata.cpp:640
 msgid "CustomField validation error"
-msgstr ""
+msgstr "CustomField validatie fout"
 
 #: mmex.cpp:122
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Kan een vertaling van de standaardtaal van uw systeem niet laden (%s)."
 
 #: mmex.cpp:129
 #, c-format
