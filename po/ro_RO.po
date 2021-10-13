@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 13:39\n"
+"PO-Revision-Date: 2021-10-13 13:59\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -450,7 +450,7 @@ msgstr "Contul de Active nu a fost găsit.\n\n"
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
 #: reports/transactions.cpp:103 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "Document de identitate"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:134
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:294
@@ -466,11 +466,11 @@ msgstr "Tip"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
-msgstr ""
+msgstr "Valoare iniţială"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "Valoare Curentă"
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
@@ -478,11 +478,11 @@ msgstr "Bun &Nou"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "Activ duplicat"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Adăugați o tranzacție de active"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -737,11 +737,11 @@ msgstr ""
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
-msgstr ""
+msgstr "Ataşamentul nu a fost găsit:"
 
 #: attachmentdialog.cpp:472
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "Vrei să continui și să ștergi atașamentul din baza de date?"
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
