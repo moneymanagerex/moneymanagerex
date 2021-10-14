@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 18:34\n"
+"PO-Revision-Date: 2021-10-14 16:16\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4796,7 +4796,8 @@ msgstr "MMEX: wachtwoord versleuteling wijzigen"
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nieuw wachtwoord voor database\n\n"
+"%s"
 
 #: mmframe.cpp:2084
 msgid "New password must not be empty."
@@ -5763,7 +5764,7 @@ msgstr "Updates"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Controleren op updates bij het opstarten"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5815,7 +5816,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Begindag van de maand voor de rapportage:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
@@ -5963,7 +5964,7 @@ msgstr "Bron categorie selecteren"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr ""
+msgstr "Selecteer een doel categorie"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
@@ -6021,7 +6022,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Verwijder de bronbegunstigde na verplaatsing"
 
 #: relocatepayeedialog.cpp:152
 #, c-format
@@ -6040,7 +6041,7 @@ msgstr "Financieel jaar: %s - %i"
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Jaar: %i maand: %s"
 
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
@@ -6111,7 +6112,7 @@ msgstr ""
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Gelieve geen informatie te verwijderen die onder deze tekst is gekoppeld."
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
@@ -6186,7 +6187,7 @@ msgstr "Totaal inkomsten:"
 
 #: reports/categexp.cpp:254
 msgid "Categories Summary"
-msgstr ""
+msgstr "Categorie samenvatting"
 
 #: reports/categexp.cpp:263
 msgid "Category Income/Expenses"
@@ -6216,7 +6217,7 @@ msgstr "Van %s tot %s"
 
 #: reports/htmlbuilder.cpp:174
 msgid "Future"
-msgstr ""
+msgstr "Toekomst"
 
 #: reports/htmlbuilder.cpp:178 reports/mmDateRange.cpp:239
 msgid "Over Time"
