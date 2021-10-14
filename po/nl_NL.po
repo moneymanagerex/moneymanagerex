@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-14 17:09\n"
+"PO-Revision-Date: 2021-10-14 17:24\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4209,7 +4209,7 @@ msgstr "Exporteren als JSON"
 
 #: mmframe.cpp:1386
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML bestanden..."
 
 #: mmframe.cpp:1386
 msgid "Export to HTML"
@@ -5820,7 +5820,7 @@ msgstr "Begindag van de maand voor de rapportage:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "De 'eerste dag' in de maand is aan te passen voor rapportagedoeleinden"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -5832,7 +5832,7 @@ msgstr "Transactie kleuren"
 
 #: optionsettingsview.cpp:203
 msgid "UI Appearance"
-msgstr ""
+msgstr "UI uiterlijk"
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
@@ -5852,7 +5852,7 @@ msgstr "Donker"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Geef de gewenste themavariant op die u wilt gebruiken indien ondersteund"
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
@@ -5956,7 +5956,7 @@ msgstr "Overzetten categorieënvenster"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "Broncategorie overzetten naar bestemmingscategorie"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
@@ -6018,7 +6018,7 @@ msgstr "Overzetten begunstigdenvenster"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "Zet alle bronnen van de begunstigde over naar de doel begunstigde"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
@@ -6108,7 +6108,7 @@ msgstr "Foutrapportage"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Vervang deze tekst (gemarkeerd met >) door een gedetailleerde beschrijving van je probleem."
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
@@ -6116,12 +6116,12 @@ msgstr "Gelieve geen informatie te verwijderen die onder deze tekst is gekoppeld
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Gebruik Help->Controleer op Updates in MMEX om de nieuwste versie te krijgen, waar je probleem misschien al opgelost is."
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Zoek <a href='%s'>een lijst met bekende problemen</a> voor een vergelijkbaar probleem. Zo ja, pas het bestaande probleem melding aan in plaats van een nieuwe aan te maken."
 
 #: reports/bugreport.h:77
 #, c-format
