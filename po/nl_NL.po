@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-14 16:16\n"
+"PO-Revision-Date: 2021-10-14 17:09\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -6539,7 +6539,7 @@ msgstr "Importeer prijshistorie (CSV formaat)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Verwijder de geselecteerde aandelenprijs"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
@@ -6571,12 +6571,12 @@ msgstr "Noteringen geïmporteerd van CSV: "
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Totaal aantal regels : %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Totaal geïmporteerd: %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
@@ -6584,39 +6584,39 @@ msgstr "Importeren CSV"
 
 #: stockdialog.cpp:713 stockdialog.cpp:743
 msgid "5 Days"
-msgstr ""
+msgstr "5 dagen"
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
 msgid "1 Month"
-msgstr ""
+msgstr "1 Maand"
 
 #: stockdialog.cpp:715 stockdialog.cpp:746
 msgid "3 Months"
-msgstr ""
+msgstr "3 maanden"
 
 #: stockdialog.cpp:716
 msgid "6 Months"
-msgstr ""
+msgstr "6 maanden"
 
 #: stockdialog.cpp:717
 msgid "1 Year"
-msgstr ""
+msgstr "1 jaar"
 
 #: stockdialog.cpp:718
 msgid "2 Years"
-msgstr ""
+msgstr "2 jaar"
 
 #: stockdialog.cpp:719
 msgid "5 Years"
-msgstr ""
+msgstr "5 jaar"
 
 #: stockdialog.cpp:720
 msgid "10 Years"
-msgstr ""
+msgstr "10 jaar"
 
 #: stockdialog.cpp:722
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
@@ -6628,11 +6628,11 @@ msgstr "Aandelengeschiedenis bijwerken"
 
 #: stockdialog.cpp:742
 msgid "1 Day"
-msgstr ""
+msgstr "1 dag"
 
 #: stockdialog.cpp:744
 msgid "1 Week"
-msgstr ""
+msgstr "1 Week"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
@@ -6783,19 +6783,19 @@ msgstr "Verwijderen"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr ""
+msgstr "Gebruik"
 
 #: themes.cpp:233
 msgid "No description available"
-msgstr ""
+msgstr "Geen beschrijving beschikbaar"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Selecteer een thema bestand om te importeren"
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Het thema bestaat al, wil je het bestaande thema nog steeds importeren en overschrijven?"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
@@ -6819,7 +6819,7 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
-msgstr ""
+msgstr "Toevoegen"
 
 #: transactionsupdatedialog.cpp:325 transdialog.cpp:666
 #, c-format
@@ -6829,7 +6829,7 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:667
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Naam begunstigde bevestigen"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
@@ -6927,51 +6927,51 @@ msgstr "Rekening selectie"
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: util.cpp:293
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: util.cpp:294 util.h:156
 msgid "May"
-msgstr ""
+msgstr "Mei"
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: util.cpp:295
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: util.cpp:295
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: util.cpp:296
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: util.cpp:296
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:296
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: util.cpp:301
 msgid "Sunday"
@@ -7003,19 +7003,19 @@ msgstr "zaterdag"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "Zon"
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "Ma"
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "Di"
 
 #: util.cpp:309
 msgid "Wed"
-msgstr ""
+msgstr "Wo"
 
 #: util.cpp:309
 msgid "Thu"
