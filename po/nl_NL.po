@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-14 17:24\n"
+"PO-Revision-Date: 2021-10-14 17:59\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -6131,7 +6131,7 @@ msgstr ""
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Word lid van onze community in <a href='%s'>Slack</a>. Hier kan je ook je vraag stellen en nieuwste nieuws leren."
 
 #: reports/bugreport.h:79
 #, c-format
@@ -6140,11 +6140,11 @@ msgstr ""
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Kom op met een beschrijvende naam voor je probleem."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Voeg stappen toe om je probleem te reproduceren, voeg desgewenst screenshots toe."
 
 #: reports/bugreport.h:82
 #, c-format
@@ -6154,11 +6154,11 @@ msgstr ""
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Meld ten slotte een bug via het GitHub <a href='%s'>online formulier</a> geopend in uw webbrowser."
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Volg deze instructies voordat u een nieuw bugrapport indient:"
 
 #: reports/cashflow.cpp:211
 #, c-format
@@ -6229,7 +6229,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Samenvatting van inkomsten vs uitgaven"
 
 #: reports/incexpenses.cpp:119
 msgid "Income:"
