@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-15 08:20\n"
+"PO-Revision-Date: 2021-10-15 08:48\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -587,153 +587,154 @@ msgstr "Utilizați semnul de întrebare (?) pentru a găsi un singur caracter - 
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Folosiți asteriscul (*) pentru a găsi orice număr de caractere - de exemplu, s*d găsește 'sad' și 'started'."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Utilizaţi asteriscul (*) la începutul cuvantului pentru a găsi un şir de caractere la mijlocul propozitiei."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Total: %s"
 
 #: assetspanel.cpp:661
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Modificare în valoare: %s %s"
 
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Acest activ nu are propriul său cont\n\n"
+"Nu sunt recomandate tranzacții multiple pentru acest activ."
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
-msgstr ""
+msgstr "Gestionare active"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Cont     Data    Valoare\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
-msgstr ""
+msgstr "Descriere"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "Fișier"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Dosarul atasat nu este definit."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Vă rugăm să-l setați în Unelte -> Opțiuni -> Atașamente"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Dosarul atasat nu este definit"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Nu s-a putut găsi dosarul atașamentelor:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Vă rugăm să verificaţi dacă calea de mai sus este corectă"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Ataşamentul nu a fost găsit"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Organizează atașamentele | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Organizeaza Atasamente | Nou %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:120
 msgid "Other tools"
-msgstr ""
+msgstr "Alte Unelte"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Importă atașamentul:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Introduceți o descriere pentru noul atașament:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Organizează atașamente: Adaugă atașament"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Introduceți o descriere noua pentru atașament:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Organizarea atașamentelor: Editare atașament"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Sunteţi sigur că doriţi să ştergeţi acest ataşament?"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Confirmați ștergerea atașamentului"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:396 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Adaugă "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "&Deschide "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:399 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Elimina "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Att."
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Acest director şi fişierele sale sunt gestionate automat de Money Manager EX."
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Vă rugăm să nu eliminați, redenumiți sau modificați manual directoarele și fișierele."
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "Fișierul există deja:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "Fişierul nu a fost găsit în ataşamente. Vă rugăm să-l ştergeţi sau redenumiţi."
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
-msgstr ""
+msgstr "Fișierul există deja"
 
 #: attachmentdialog.cpp:426
 msgid "File already found in attachments"
-msgstr ""
+msgstr "Fişier deja găsit în ataşamente"
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
@@ -1146,28 +1147,28 @@ msgstr "Categorii"
 
 #: billsdepositsdialog.cpp:1465 transdialog.cpp:1342
 msgid "Clear color"
-msgstr ""
+msgstr "Sterge culoarea"
 
 #: billsdepositsdialog.cpp:1470 filtertransdialog.cpp:1600 transdialog.cpp:1347
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Culoare #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Tranzacție Recurentă Nouă"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Specifică unde este trimisă tranzacția"
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1300
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Specifică de unde provine tranzacția"
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Specifică la ce cont va fi trimis transferul"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1295 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
@@ -1175,27 +1176,27 @@ msgstr "Specifică suma pentru această tranzacție"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Specificați suma care urmează să fie transferată"
 
 #: billsdepositspanel.cpp:60
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "În %s zile"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "În %s luni"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "La fiecare %s Zile"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "În fiecare %s Luni"
 
 #: billsdepositspanel.cpp:136 budgetingpanel.cpp:300
 #: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
@@ -1204,28 +1205,28 @@ msgstr "Frecvență"
 
 #: billsdepositspanel.cpp:137
 msgid "Repetitions"
-msgstr ""
+msgstr "Repetiţie"
 
 #: billsdepositspanel.cpp:138
 msgid "Autorepeat"
-msgstr ""
+msgstr "Repetare automata"
 
 #: billsdepositspanel.cpp:139 mmhomepage.cpp:360
 msgid "Payment"
-msgstr ""
+msgstr "Plată"
 
 #: billsdepositspanel.cpp:192
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "MMEX permite efectuarea de plăți obișnuite ca tranzacții. Aceste tranzacții pot fi de asemenea depozite obișnuite sau transferuri care vor avea loc în viitor. Aceste tranzacții acționează ca un memento al faptului că un eveniment este pe cale să aibă loc, și apare pe pagina de pornire cu 14 zile înainte de efectuarea tranzacției. "
 
 #: billsdepositspanel.cpp:195
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Sfat: Aceste tranzacții pot fi setate pentru a fi activate - permițând utilizatorului să ajusteze orice valori la data scadentă."
 
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:940 mmframe.cpp:748
 #: mmframe.cpp:2803 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Tranzacții recurente"
 
 #: billsdepositspanel.cpp:250 filtertransdialog.h:111
 msgid "Transaction Filter"
@@ -1233,77 +1234,77 @@ msgstr "Filtru de Tranzacții"
 
 #: billsdepositspanel.cpp:294
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Șterge tranzacția recurentă"
 
 #: billsdepositspanel.cpp:298
 msgid "Ente&r"
-msgstr ""
+msgstr "Intr&a"
 
 #: billsdepositspanel.cpp:299
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Introdu următoarea tranzacție recurentă"
 
 #: billsdepositspanel.cpp:303
 msgid "&Skip"
-msgstr ""
+msgstr "Omite"
 
 #: billsdepositspanel.cpp:304
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Omite următoarea tranzacție recurentă"
 
 #: billsdepositspanel.cpp:413
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Introdu următoarea apariție..."
 
 #: billsdepositspanel.cpp:415
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "Omite următoarea apariție"
 
 #: billsdepositspanel.cpp:417
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Tranzacție Recurentă Nouă..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "Editează Tranzacție Recurentă..."
 
 #: billsdepositspanel.cpp:419
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Șterge tranzacția recurentă..."
 
 #: billsdepositspanel.cpp:466
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: billsdepositspanel.cpp:470
 msgid "Suggested"
-msgstr ""
+msgstr "Sugerat"
 
 #: billsdepositspanel.cpp:474
 msgid "Automated"
-msgstr ""
+msgstr "Automatizat"
 
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:587 mmhomepage.cpp:316
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d de zile rămase"
+msgstr[1] "%d zi rămasa"
+msgstr[2] "zile rămase"
 
 #: billsdepositspanel.cpp:525 billsdepositspanel.cpp:532
 #: billsdepositspanel.cpp:539 billsdepositspanel.cpp:592
 #: billsdepositspanel.cpp:599 billsdepositspanel.cpp:603
 msgid "Inactive"
-msgstr ""
+msgstr "Inactiv"
 
 #: billsdepositspanel.cpp:530 mmhomepage.cpp:317
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "%d zile de întârziere!"
+msgstr[2] "Nici o zil de întârziere!"
 
 #: billsdepositspanel.cpp:537 billsdepositspanel.cpp:597 mmhomepage.cpp:319
 #, c-format
