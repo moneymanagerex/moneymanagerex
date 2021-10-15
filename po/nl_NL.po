@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-14 18:39\n"
+"PO-Revision-Date: 2021-10-15 15:41\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4894,7 +4894,7 @@ msgstr "Accounts, begunstigden en categorieën bijgewerkt"
 
 #: mmframe.cpp:2504
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Probleem bij het bijwerken van WebApp, controleer Web server en WebApp instellingen"
 
 #: mmframe.cpp:2540
 msgid "MMEX Options have been updated."
@@ -6225,7 +6225,7 @@ msgstr "Over datum"
 
 #: reports/htmlbuilder.cpp:206
 msgid "User specified start day"
-msgstr ""
+msgstr "Gebruiker opgegeven begindag"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
@@ -6241,11 +6241,11 @@ msgstr "Uitgaven:"
 
 #: reports/incexpenses.cpp:137
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Samenvatting van inkomsten vs uitgaven per maand"
 
 #: reports/incexpenses.cpp:215 reports/incexpenses.cpp:256
 msgid "Cumulative"
-msgstr ""
+msgstr "Cumulatief"
 
 #: reports/mmDateRange.cpp:85
 msgid "Current Month"
@@ -6636,7 +6636,7 @@ msgstr "1 Week"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "Specificeer interval van aandelen geschiedenis"
 
 #: stockdialog.cpp:767 stockdialog.cpp:771
 msgid "Stock history not found!"
@@ -6705,7 +6705,7 @@ msgstr ""
 
 #: stockspanel.cpp:149
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Verwijder Belegging"
 
 #: stockspanel.cpp:153
 msgid "&Move"
@@ -6815,7 +6815,7 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Meerdere transacties bijwerken"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
@@ -7019,15 +7019,15 @@ msgstr "Wo"
 
 #: util.cpp:309
 msgid "Thu"
-msgstr ""
+msgstr "Do"
 
 #: util.cpp:309
 msgid "Fri"
-msgstr ""
+msgstr "Vr"
 
 #: util.cpp:310
 msgid "Sat"
-msgstr ""
+msgstr "Za"
 
 #: util.cpp:676
 msgid "Currency rates have been updated"
@@ -7035,7 +7035,7 @@ msgstr "Valutakoersen zijn bijgewerkt"
 
 #: util.cpp:767 util.cpp:873 util.cpp:932
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "JSON parse fout"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
@@ -7084,7 +7084,7 @@ msgstr ""
 
 #: util.cpp:1224
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX gebruikt de volgende ondersteuningsproducten:"
 
 #: util.cpp:1242
 msgid "Build using:"
@@ -7092,7 +7092,7 @@ msgstr ""
 
 #: util.cpp:1263
 msgid "Running on:"
-msgstr ""
+msgstr "Draait op:"
 
 #: util.h:155
 msgid "January"
@@ -7108,7 +7108,7 @@ msgstr "Maart"
 
 #: util.h:156
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: util.h:156
 msgid "June"
@@ -7124,7 +7124,7 @@ msgstr "Augustus"
 
 #: util.h:157
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: util.h:158
 msgid "October"
@@ -7132,11 +7132,11 @@ msgstr "Oktober"
 
 #: util.h:158
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: util.h:158
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
@@ -7404,7 +7404,7 @@ msgstr ""
 
 #: wizard_update.cpp:145
 msgid "Version"
-msgstr ""
+msgstr "Versie"
 
 #: wizard_update.cpp:153
 msgid "You already have the latest version"
@@ -7425,7 +7425,7 @@ msgstr "Controleren naar nieuwe versie is mislukt"
 
 #: wizard_update.cpp:303 wizard_update.cpp:318
 msgid "Error: "
-msgstr ""
+msgstr "Fout: "
 
 #: wizard_update.cpp:304 wizard_update.cpp:320
 msgid "MMEX Update Check"
