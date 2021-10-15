@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-15 16:12\n"
+"PO-Revision-Date: 2021-10-15 16:23\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -6316,7 +6316,7 @@ msgstr "Laatste 365 dagen"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "Frequentie MMEX gebruik"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
@@ -6345,7 +6345,7 @@ msgstr "Samenvatting van effectenfondsen "
 
 #: reports/summarystocks.cpp:108
 msgid "Purchase Date"
-msgstr ""
+msgstr "Aankoopdatum"
 
 #: reports/summarystocks.cpp:109
 msgid "Quantity"
@@ -6366,11 +6366,11 @@ msgstr "Aandelenprestatiegrafiek"
 
 #: reports/transactions.cpp:220
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Alle transacties: opnames, stortingen en overdrachten"
 
 #: reports/transactions.cpp:254
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Alle transacties, exclusief overboekingen"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
@@ -6479,7 +6479,8 @@ msgstr "*Datum"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Specificeer de initiële datum van de aandeleninvestering\n"
+"Wordt gebruikt bij het maken van de initiële aandelentransactie."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -6488,7 +6489,8 @@ msgstr "*Fondsnummer"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Voer het aantal aandelen in.\n"
+"Gebruikt bij het maken van de eerste aandelen transactie."
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
@@ -6497,7 +6499,8 @@ msgstr "*Aankoopbedrag"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Voer de initiële prijs per aandeel in.\n"
+"Wordt gebruikt bij het maken van de eerste aandelen transactie."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -6506,7 +6509,8 @@ msgstr "*Commissie"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Voer de betaalde commissie in.\n"
+"Wordt gebruikt bij het maken van de eerste aandelen transactie."
 
 #: stockdialog.cpp:250 stocks_list.cpp:96
 msgid "Curr. Share Price"
@@ -6514,7 +6518,7 @@ msgstr "Huidige aandelenprijs"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Voer de huidige voorraad/aandeel prijs in."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -7054,20 +7058,20 @@ msgstr ""
 
 #: util.cpp:953
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:956
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Kon valuta niet vinden 'USD', nodig om historische prijzen om te zetten"
 
 #: util.cpp:977
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Kon prijs niet ontleden in activiteitengeschiedenis"
 
 #: util.cpp:1207
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Versie: %s"
 
 #: util.cpp:1208
 msgid "Build on"
@@ -7079,11 +7083,11 @@ msgstr ""
 
 #: util.cpp:1216
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: util.cpp:1220
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: util.cpp:1224
 msgid "MMEX is using the following support products:"
