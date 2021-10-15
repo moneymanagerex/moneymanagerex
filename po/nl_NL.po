@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-15 16:23\n"
+"PO-Revision-Date: 2021-10-15 17:38\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -6708,7 +6708,7 @@ msgstr ""
 
 #: stockspanel.cpp:139
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Aandelentransacties bekijken"
 
 #: stockspanel.cpp:149
 msgid "Delete Stock Investment"
@@ -6720,7 +6720,7 @@ msgstr "Ver&plaats"
 
 #: stockspanel.cpp:154
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Verplaats geselecteerde transactie naar een andere account"
 
 #: stockspanel.cpp:167
 msgid "Refresh"
@@ -6818,7 +6818,7 @@ msgstr "Er ging iets mis bij het verwijderen van het thema"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Weet je zeker dat je dit thema wilt gebruiken? Houd er rekening mee dat dit alleen effect zal hebben als MMEX opnieuw is gestart."
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
