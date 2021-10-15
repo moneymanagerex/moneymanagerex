@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 13:59\n"
+"PO-Revision-Date: 2021-10-15 08:20\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -486,11 +486,11 @@ msgstr "&Adăugați o tranzacție de active"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Vezi Tranzacțiile Activelor"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "&Deschide contul de active"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
@@ -503,7 +503,7 @@ msgstr "Șter&ge Bunul"
 #: assetspanel.cpp:108 billsdepositspanel.cpp:421 mmchecking_list.cpp:390
 #: mmframe.cpp:1259 payeedialog.cpp:403 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "&Organizare atașamente"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
@@ -515,7 +515,7 @@ msgstr "Confirmarea Ștergerii Bunului"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX vă permite să urmăriți active fixe precum mașini, case, terenuri și altele. Fiecare activ poate avea valoarea sa apreciată cu o anumită rată pe an, poate să se deprecieze cu o anumită rată pe an sau să nu varieze valoarea. Activele totale sunt adăugate la valoarea financiară totală."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:478 mmframe.cpp:744
@@ -533,32 +533,32 @@ msgstr "Toate"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:284 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "&Nou "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Adaugă Tranzactie "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "&Vezi Tranzactie "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Vezi Tranzacțiile Activelor"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:288
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "&Editare "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr ""
+msgstr "Șterge "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
@@ -567,23 +567,23 @@ msgstr "Șterge Bunul"
 #: assetspanel.cpp:493 billsdepositspanel.cpp:311 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Deschide atașamentele"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
-msgstr ""
+msgstr "Căutare"
 
 #: assetspanel.cpp:504
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Introduceți orice șir pentru a găsi active conexe"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Pont: Puteţi folosi caractere speciale - semne de întrebare (?), asterisc (*) - în criteriile de căutare."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Utilizați semnul de întrebare (?) pentru a găsi un singur caracter - de exemplu, s?t găsește 'sat' și 'setează'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
