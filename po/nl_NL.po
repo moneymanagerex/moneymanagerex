@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-15 15:41\n"
+"PO-Revision-Date: 2021-10-15 16:12\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3995,7 +3995,8 @@ msgstr "Kan een vertaling van de standaardtaal van uw systeem niet laden (%s)."
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Gebruik de Wissel Applicatie Taal optie in het menu Weergeven om een van de volgende beschikbare talen te selecteren:\n\n"
+"%s"
 
 #: mmex.cpp:134 mmframe.cpp:3376 optionsettingsgeneral.cpp:341
 msgid "Language change"
@@ -4004,7 +4005,8 @@ msgstr "Taal wijzigen"
 #: mmex.cpp:174
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Ernstige fout opgetreden. \n"
+"Het programma zal worden afgesloten."
 
 #: mmframe.cpp:270
 msgid "Navigation"
@@ -4309,7 +4311,7 @@ msgstr "Verander applicatie &taal"
 
 #: mmframe.cpp:1449 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Wijzig taal gebruikt voor MMEX GUI"
 
 #: mmframe.cpp:1454 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:349
 msgid "system default"
@@ -4417,11 +4419,11 @@ msgstr "Algemene Rapport &Beheerder..."
 
 #: mmframe.cpp:1564
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Wijzig eigen veld..."
 
 #: mmframe.cpp:1564
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Aangepaste Velden Manager"
 
 #: mmframe.cpp:1570
 msgid "Refresh &WebApp"
@@ -5523,7 +5525,8 @@ msgstr "Rechtsklikken en selecteer 'Standaardvaluta instellen' in het 'Valutaven
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Formaat afgeleid van locale.\n"
+"Laat leeg voor het handmatig instellen van formaat via 'Valutadialoog | Edit'"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
@@ -5567,7 +5570,7 @@ msgstr "Originele datum gebruiken bij het dupliceren van transacties"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Selecteer of de originele transactiedatum of de huidige datum gebruikt wordt bij het kopiëren/plakken van transacties"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -5579,7 +5582,7 @@ msgstr "Selecteren om geluiden af te spelen bij invoeren van transacties"
 
 #: optionsettingsgeneral.cpp:309
 msgid "bad locale name"
-msgstr ""
+msgstr "slechte locale naam"
 
 #: optionsettingsgeneral.cpp:325
 #, c-format
@@ -5792,7 +5795,7 @@ msgstr "Categorie scheidingsteken"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Transactie/Budget Opties"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
@@ -5800,15 +5803,15 @@ msgstr "Budgetten als financiële jaren bekijken"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Bekijk budgetten met 'overdracht' transacties"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Bekijk Budget Categorie Rapport met Samenvattingen"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Budget offset (dagen):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
@@ -6126,7 +6129,7 @@ msgstr "Zoek <a href='%s'>een lijst met bekende problemen</a> voor een vergelijk
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Zoals u weet is <a href='%s'>een forum</a> voor gebruikers beschikbaar waar u problemen kunt bespreken en oplossingen kunt vinden."
 
 #: reports/bugreport.h:78
 #, c-format
@@ -6136,7 +6139,7 @@ msgstr "Word lid van onze community in <a href='%s'>Slack</a>. Hier kan je ook j
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Lees <a href='%s'>Hoe je Effectief bugs rapporteert</a> voor nuttige tips."
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
@@ -6149,7 +6152,7 @@ msgstr "Voeg stappen toe om je probleem te reproduceren, voeg desgewenst screens
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Voordat u op de volgende link klikt, moet u er zeker van zijn dat u al bent aangemeld bij de <a href='%s'>GitHub</a>."
 
 #: reports/bugreport.h:84
 #, c-format
@@ -6164,8 +6167,8 @@ msgstr "Volg deze instructies voordat u een nieuw bugrapport indient:"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cash Flow prognose voor %i jaar vooruit"
+msgstr[1] "Prognose van geldstromen voor %i jaren vooruit"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:383
 #: reports/incexpenses.cpp:216 reports/incexpenses.cpp:255
@@ -6208,7 +6211,7 @@ msgstr "Prognose"
 #: reports/htmlbuilder.cpp:112
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "Rapport gegenereerd %s %s"
 
 #: reports/htmlbuilder.cpp:172
 #, c-format
