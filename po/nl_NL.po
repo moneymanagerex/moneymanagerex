@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-16 07:06\n"
+"PO-Revision-Date: 2021-10-16 07:16\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1911,7 +1911,7 @@ msgstr "Voer de toegestane decimale schaal in"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
-msgstr ""
+msgstr "Kolom van het paneel"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
@@ -5815,7 +5815,7 @@ msgstr "Budget offset (dagen):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Vervroeg de startdatum of zet deze naar achter vanaf de 1e van de maand of jaar met het aantal dagen"
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
@@ -6534,7 +6534,7 @@ msgstr "Prijsdatum"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Geef de aandeel prijs op."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6550,7 +6550,7 @@ msgstr "Verwijder de geselecteerde aandelenprijs"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Voeg aandelenprijs aan geschiedenis toe"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6559,13 +6559,16 @@ msgstr "Financiële instelling"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Aandelenrekening niet gevonden.\n\n"
+"Wilt u er een aanmaken?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "De bedrijfsnaam heeft geen gekoppeld aandelenaccount.\n\n"
+"U kunt de bedrijfsnaam aanpassen naar een bestaand aandelenaccount met dezelfde naam. Als dit een bestaand aandeel is zonder een deelaccount, is het aanbevolen dat een deelrekening wordt aangemaakt.\n\n"
+"Wilt u een nieuw aandelenaccount aanmaken?\n"
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
@@ -6704,7 +6707,7 @@ msgstr "Verplaats transacties van %s naar..."
 
 #: stockspanel.cpp:134
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Effectentransactie toevoegen"
 
 #: stockspanel.cpp:139
 msgid "View Stock Transactions"
@@ -6832,7 +6835,8 @@ msgstr "Toevoegen"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Je hebt nog niet eerder deze naam van de begunstigde gebruikt. Is de naam juist?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:667
 msgid "Confirm payee name"
@@ -6894,7 +6898,7 @@ msgstr "Specificeer transactie datum"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Specificeer de bijbehorende rekening die deze transactie zal bevatten"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -7046,15 +7050,15 @@ msgstr "JSON parse fout"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Verwachte reactie om een gegevens- of fouttekenreeks te bevatten"
 
 #: util.cpp:912
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Kan de basiseenheid niet vinden voor symbool"
 
 #: util.cpp:947
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Kan basisvaluta niet krijgen!"
 
 #: util.cpp:953
 msgid "USD"
