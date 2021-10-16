@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-16 07:16\n"
+"PO-Revision-Date: 2021-10-16 07:26\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2583,7 +2583,7 @@ msgstr "Sjabloon maken"
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "%zu rij weergegeven, tijdsduur: %lld ms"
-msgstr[1] ""
+msgstr[1] "%zu rijen weergegeven, tijdsduur: %lld ms"
 
 #: general_report_manager.cpp:566
 msgid "SQL Syntax Error"
@@ -7079,11 +7079,11 @@ msgstr "Versie: %s"
 
 #: util.cpp:1208
 msgid "Build on"
-msgstr ""
+msgstr "Bouwen op"
 
 #: util.cpp:1209
 msgid "Database version: "
-msgstr ""
+msgstr "Database versie: "
 
 #: util.cpp:1216
 msgid "Git commit: "
@@ -7099,7 +7099,7 @@ msgstr "MMEX gebruikt de volgende ondersteuningsproducten:"
 
 #: util.cpp:1242
 msgid "Build using:"
-msgstr ""
+msgstr "Gebouwd met gebruik van:"
 
 #: util.cpp:1263
 msgid "Running on:"
@@ -7229,7 +7229,7 @@ msgstr "Bijlagenmap niet gevonden"
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transactie niet gedownload: Probeer de transacties opnieuw te downloaden"
 
 #: webapp.cpp:597 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -7241,11 +7241,11 @@ msgstr "Importeer WebApp transacties"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Netwerkstatus (klik om te vernieuwen)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Aan het controleren voor nieuwe transacties..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -7257,11 +7257,11 @@ msgstr "Importeer en open alles"
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Kan de transacties van de webapp niet downloaden."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Fout bij downloaden transacties"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
@@ -7277,7 +7277,7 @@ msgstr "Open bijlagen"
 
 #: webappdialog.cpp:418
 msgid "Import and open"
-msgstr ""
+msgstr "Importeren en openen"
 
 #: wizard_newaccount.cpp:30
 msgid "Add Account Wizard"
@@ -7329,7 +7329,8 @@ msgstr "Geef aan welk type rekening u wilt aanmaken:"
 #: wizard_newaccount.cpp:136
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Algemene bankrekeningen dekken een breed scala aan rekeningen\n"
+"types zoals betaal-, spaargeld- en creditcard-type."
 
 #: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
@@ -7411,7 +7412,7 @@ msgstr "Update wizard"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Historische releases:"
 
 #: wizard_update.cpp:145
 msgid "Version"
@@ -7419,7 +7420,7 @@ msgstr "Versie"
 
 #: wizard_update.cpp:153
 msgid "You already have the latest version"
-msgstr ""
+msgstr "U beschikt al over de nieuwste versie"
 
 #: wizard_update.cpp:153
 msgid "A new version of MMEX is available!"
