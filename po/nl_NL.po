@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-15 17:38\n"
+"PO-Revision-Date: 2021-10-16 07:06\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1841,7 +1841,7 @@ msgstr "%.2f Weergegeven als: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Lokaal gebruiken)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
