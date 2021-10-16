@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-16 07:26\n"
+"PO-Revision-Date: 2021-10-16 07:41\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -211,7 +211,7 @@ msgstr "In- of Uitschakelen van transactieblokkering"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr "Startdatum:"
+msgstr "Afgestemde datum:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
