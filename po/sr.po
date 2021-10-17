@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 15:20\n"
+"PO-Revision-Date: 2021-10-10 17:06\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Минимална уплата:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr "Организуј прилоге овог рачуна"
+msgstr "Уредите прилоге овог рачуна"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
@@ -287,7 +287,7 @@ msgstr "Нови рачун"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr "Отвори последњу отворену базу података"
+msgstr "Отвори последњу отбарану базу података"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
@@ -478,7 +478,7 @@ msgstr "Нова имовина"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "Умножи имовину"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
@@ -503,7 +503,7 @@ msgstr "Обриши имовину"
 #: assetspanel.cpp:108 billsdepositspanel.cpp:421 mmchecking_list.cpp:390
 #: mmframe.cpp:1259 payeedialog.cpp:403 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr "Организуј прилоге"
+msgstr "&Уреди прилоге"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
@@ -579,19 +579,19 @@ msgstr "Унесите било који слог да пронађете пов
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Савет: Можете користити заменске знакове као критеријуме претраге - упитник (?), звездицу (*)."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Користите упитник (?) да пронађете појединачне карактере - на пример \"с?т\" проналази \"сат\" и \"сет\"."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Користите звездицу (*) да пронађете било који број карактера - на пример \"с*д\" проналази \"сад\" и \"стратед\"."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Користите звездицу (*) на почетку да пронађете било који низ у средини реченице."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -606,19 +606,20 @@ msgstr "Промена вредности: %s %s"
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Ова имовина нема свој рачун.\n"
+"Вишеструке трансакције за ову имовину нису препоручљиве."
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
-msgstr ""
+msgstr "Управљање имовином"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Рачун Датум Вредност\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
@@ -627,113 +628,113 @@ msgstr "Датотека"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Директоријум за прилоге није дефинисан."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Молимо Вас подесите у Алатке -> Опције -> Прилози"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Директоријум за прилоге није дефинисан"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Немогуће пронаћи директоријум за прилоге:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Молимо Вас проверите да ли је путања исправна"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Директоријум за прилоге није пронађен"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Уреди прилоге | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Уреди прилоге | New %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:120
 msgid "Other tools"
-msgstr ""
+msgstr "Остали алати"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Увези прилог:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Унесите опис за нови прилог:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Уредите прилоге: Додај прилог"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Унесите нови опис за прилог:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Уредите прилоге: Измени прилог"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Да ли сте сигурни да желите да обришете прилог?"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Потврди брисање прилога"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:396 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Додај "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "&Отвори "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:399 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Уклони "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Прилог"
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Money Manager Ex софтвер управља овим директоријумом и његовим датотекама."
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Молимо Вас, немојте обрисати, преименовати или мењати ручно директоријум и датотеке."
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "Датотека на одредишту већ постоји:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "Датотека није пронађена у прилозима. Молимо Вас обришите или преименујте је."
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
-msgstr ""
+msgstr "Датотека на одредишту већ постоји"
 
 #: attachmentdialog.cpp:426
 msgid "File already found in attachments"
-msgstr ""
+msgstr "Датотека већ пронађена у прилозима"
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
@@ -741,23 +742,23 @@ msgstr "Прилог није пронађен:"
 
 #: attachmentdialog.cpp:472
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "Да ли желите да наставите и обришете прилог у бази података?"
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "Брисање прилога није успело"
 
 #: attachmentdialog.cpp:486
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Не може се отворити датотека:"
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Молимо Вас да утврдите да датотека постоји и да корисник има права да је чита."
 
 #: attachmentdialog.cpp:490
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Отварање прилога није успело"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:49
 #: filtertransdialog.cpp:44 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -765,7 +766,7 @@ msgstr ""
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Стабилно"
+msgstr "Нема"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:50
 #: model/Model_Budget.cpp:56
@@ -775,7 +776,7 @@ msgstr "Недељно"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr ""
+msgstr "Двонедељно"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:52 mmframereport.cpp:129
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
@@ -786,7 +787,7 @@ msgstr "Месечно"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Двомесечно"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:60
@@ -805,11 +806,11 @@ msgstr "Годишње"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:57
 msgid "Four Months"
-msgstr "Четири месеца"
+msgstr "Четворомесечно"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:58
 msgid "Four Weeks"
-msgstr "Четири недеља"
+msgstr "Четворонедељно"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:59 mmframereport.cpp:126
 #: model/Model_Budget.cpp:63
@@ -818,51 +819,51 @@ msgstr "Свакодневно"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "За (x) дана"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "За (x) месеци"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Сваких (x) дана"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Сваких (x) месеци"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:64
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Месечно (последњи дан)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:65
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Месечно (последњи радни дан)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:289
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Уреди понављајућу трансакцију"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Унеси понављајућу трансакцију"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Детаљи понављајуће трансакције"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Наведите датум кад овај рачун или уплата доспева"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Померите датум следећег доспевања напред или уназад"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:129
 msgid "Date Due"
-msgstr ""
+msgstr "Датум доспевања"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1275
 msgid "Repeats"
@@ -870,31 +871,31 @@ msgstr "Понавља се"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Врати се на последњи датум са наведеним вредностима"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Напред на следећи датум са наведеним вредностима"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1317
 msgid "Payments Left"
-msgstr ""
+msgstr "Преостало плаћања"
 
 #: billsdepositsdialog.cpp:473
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Захтевај од корисника да унесе уплату"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Захтевано од корисника да унесе ову трансакцију на датум плаћања"
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Дозволи аутоматско извршавање"
 
 #: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Захтевано плаћање ће се извршити без интеракције корисника"
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:437
 msgid "Transaction Details"
@@ -902,15 +903,15 @@ msgstr "Детаљи трансакције"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Наведите датум када се захтева од корисника да унесе ову трансакцију"
 
 #: billsdepositsdialog.cpp:521
 msgid "Advance or retard the user request date of this transaction"
-msgstr ""
+msgstr "Померите датум захтева корисника ове трансакције напред или уназад"
 
 #: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:128
 msgid "Date Paid"
-msgstr ""
+msgstr "Датум плаћања"
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:291 transdialog.cpp:1305
 msgid "Specify the status for the transaction"
@@ -933,11 +934,11 @@ msgstr "Одреди тип трансакције која треба да се
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:496
 msgid "&Advanced"
-msgstr ""
+msgstr "&Напредно"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1310
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
+msgstr "Дозвољава унос различитих износа у дуговном и потражном рачуну."
 
 #: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:135
 #: budgetingpanel.cpp:301 filtertransdialog.cpp:535 filtertransdialog.cpp:546
@@ -953,7 +954,7 @@ msgstr "Износ"
 
 #: billsdepositsdialog.cpp:571 transdialog.cpp:1291
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Наведите износ за пренос у потражни рачун"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:844
 #: billsdepositsdialog.cpp:858 billsdepositspanel.cpp:130
@@ -974,7 +975,7 @@ msgstr "Одабир рачуна"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Наведите рачун у који ће се понављати трансакција"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:845
 #: billsdepositspanel.cpp:131 filtertransdialog.cpp:248
@@ -991,7 +992,7 @@ msgstr "Прималац"
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:882
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr "Одабери примлац"
+msgstr "Одабери примаоца"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:542
 msgid "Split"
@@ -999,7 +1000,7 @@ msgstr "Раздвоји"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1307
 msgid "Use split Categories"
-msgstr ""
+msgstr "Користи раздвојене категорије"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:133
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:259 filtertransdialog.cpp:1110
@@ -1035,15 +1036,15 @@ msgstr "Број"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Уреди прилоге ове понављајуће трансакције"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
-msgstr ""
+msgstr "Користи боје"
 
 #: billsdepositsdialog.cpp:638 transdialog.cpp:582 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "Изабери једну од често коришћених белешки"
 
 #: billsdepositsdialog.cpp:650 transdialog.cpp:1309
 #: usertransactionpanel.cpp:226
@@ -1052,11 +1053,11 @@ msgstr "Одреди белешке које желите да додате ов
 
 #: billsdepositsdialog.cpp:679
 msgid "Choose Bank Account or Term Account"
-msgstr ""
+msgstr "Одаберите текући рачун или привремени рачун"
 
 #: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:762
 msgid "Account name"
-msgstr ""
+msgstr "Назив рачуна"
 
 #: billsdepositsdialog.cpp:819 billsdepositsdialog.cpp:859
 #: filtertransdialog.cpp:1095 transdialog.cpp:299 transdialog.cpp:380
@@ -1065,67 +1066,72 @@ msgstr "Од"
 
 #: billsdepositsdialog.cpp:831 transdialog.cpp:293
 msgid "To"
-msgstr "Рачун"
+msgstr "До"
 
 #: billsdepositsdialog.cpp:832
 msgid "Select To Account"
-msgstr "Одабери рачун"
+msgstr "Одабери потражни рачун"
 
 #: billsdepositsdialog.cpp:934
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Датум плаћања је након доспећа, да ли сте то намеравали?"
 
 #: billsdepositsdialog.cpp:935
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Изгледа као плаћање ван валуте"
 
 #: billsdepositsdialog.cpp:1234
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "Наведите износ за пренос у дуговном рачуну"
 
 #: billsdepositsdialog.cpp:1276
 msgid "Activates"
-msgstr ""
+msgstr "Активира"
 
 #: billsdepositsdialog.cpp:1278
 msgid "Period: Days"
-msgstr ""
+msgstr "Период: Дани"
 
 #: billsdepositsdialog.cpp:1279
 msgid "Period: Months"
-msgstr ""
+msgstr "Период: Месеци"
 
 #: billsdepositsdialog.cpp:1286
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Наведи период у данима да се активира.\n"
+"Постаје празно ако није активно."
 
 #: billsdepositsdialog.cpp:1294
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Наведи период у месецима да се активира.\n"
+"Постаје празно ако није активно."
 
 #: billsdepositsdialog.cpp:1302
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Наведи период у данима да се активира.\n"
+"Остави празно ако није активно."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Наведи период у месецима да се активира.\n"
+"Остави празно ако није активно."
 
 #: billsdepositsdialog.cpp:1318
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Наведи број плаћања који треба да се изврше.\n"
+"Оставити празно ако плаћања требају да трају заувек."
 
 #: billsdepositsdialog.cpp:1343 filtertransdialog.cpp:520
 #: filtertransdialog.cpp:535 filtertransdialog.cpp:546
 #: filtertransdialog.cpp:562 filtertransdialog.cpp:599
 #: optionsettingsgeneral.cpp:286 util.cpp:691
 msgid "Invalid value"
-msgstr ""
+msgstr "Неважећа вредност"
 
 #: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1135
 #: maincurrencydialog.cpp:469 mmframe.cpp:3339 optionsettingsgeneral.cpp:286
@@ -1146,28 +1152,28 @@ msgstr "Категорије"
 
 #: billsdepositsdialog.cpp:1465 transdialog.cpp:1342
 msgid "Clear color"
-msgstr ""
+msgstr "Обриши боју"
 
 #: billsdepositsdialog.cpp:1470 filtertransdialog.cpp:1600 transdialog.cpp:1347
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Боја #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Нова понављајућа трансакција"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Одреди где ће трансакција ићи"
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1300
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Одреди одакле трансакција потиче"
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Одреди који рачун ће потраживати пренос"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1295 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
@@ -1175,27 +1181,27 @@ msgstr "Одреди износ трансакције"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Одреди износ за пренос"
 
 #: billsdepositspanel.cpp:60
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "За %s дана"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "За %s месеци"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "Сваких %s дана"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "Сваких %s месеци"
 
 #: billsdepositspanel.cpp:136 budgetingpanel.cpp:300
 #: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
@@ -1204,84 +1210,84 @@ msgstr "Учесталост"
 
 #: billsdepositspanel.cpp:137
 msgid "Repetitions"
-msgstr ""
+msgstr "Понављања"
 
 #: billsdepositspanel.cpp:138
 msgid "Autorepeat"
-msgstr ""
+msgstr "Аутоматско понављање"
 
 #: billsdepositspanel.cpp:139 mmhomepage.cpp:360
 msgid "Payment"
-msgstr ""
+msgstr "Плаћања"
 
 #: billsdepositspanel.cpp:192
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "MMEX омогућава редновна плаћања да се подесе као трансакције. Ове трансакције могу бити и приливи или трансфери који ће се десити у будућности. Ове трансакције служе и као подсетник да ће се десити неки догађај и појављују се на Главној страници 14 дана пре него што трансакција доспева. "
 
 #: billsdepositspanel.cpp:195
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Савет: Ове трансакције могу да се подесе да се активирају, тако да омогућавају кориснику да унесу било коју вредност на дан доспевања."
 
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:940 mmframe.cpp:748
 #: mmframe.cpp:2803 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Понављајуће трансакције"
 
 #: billsdepositspanel.cpp:250 filtertransdialog.h:111
 msgid "Transaction Filter"
-msgstr "Филтер трансакције"
+msgstr "Филтер трансакција"
 
 #: billsdepositspanel.cpp:294
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Обриши понављајућу трансакцију"
 
 #: billsdepositspanel.cpp:298
 msgid "Ente&r"
-msgstr ""
+msgstr "Унеси"
 
 #: billsdepositspanel.cpp:299
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Унеси следећу ставку понављајуће трансакције"
 
 #: billsdepositspanel.cpp:303
 msgid "&Skip"
-msgstr ""
+msgstr "Прескочи"
 
 #: billsdepositspanel.cpp:304
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Прескочи следећу ставку понављајуће трансакције"
 
 #: billsdepositspanel.cpp:413
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Унеси следећу ставку..."
 
 #: billsdepositspanel.cpp:415
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "Прескочи следећу ставку"
 
 #: billsdepositspanel.cpp:417
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Нова понављајућа трансакција..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Уреди понављајућу трансакцију..."
 
 #: billsdepositspanel.cpp:419
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Обриши понављајућу трансакцију..."
 
 #: billsdepositspanel.cpp:466
 msgid "Manual"
-msgstr ""
+msgstr "Ручно"
 
 #: billsdepositspanel.cpp:470
 msgid "Suggested"
-msgstr ""
+msgstr "Предложено"
 
 #: billsdepositspanel.cpp:474
 msgid "Automated"
-msgstr ""
+msgstr "Аутоматски"
 
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:587 mmhomepage.cpp:316
 #, c-format
@@ -1289,19 +1295,19 @@ msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дана преостаје"
 
 #: billsdepositspanel.cpp:525 billsdepositspanel.cpp:532
 #: billsdepositspanel.cpp:539 billsdepositspanel.cpp:592
 #: billsdepositspanel.cpp:599 billsdepositspanel.cpp:603
 msgid "Inactive"
-msgstr ""
+msgstr "Неактивно"
 
 #: billsdepositspanel.cpp:530 mmhomepage.cpp:317
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "%d дан кашњења!"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -1311,35 +1317,35 @@ msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дана ван валуте!"
 
 #: billsdepositspanel.cpp:649
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Да ли заиста желите да обришете понављајућу трансакцију?"
 
 #: billsdepositspanel.cpp:650
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Потврдите брисање"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
-msgstr "Унос годишњег дуџета"
+msgstr "Унос годишњег буџета"
 
 #: budgetentrydialog.cpp:108
 msgid "Category: "
-msgstr ""
+msgstr "Категорија: "
 
 #: budgetentrydialog.cpp:113
 msgid "Sub Category: "
-msgstr ""
+msgstr "Поткатегорија: "
 
 #: budgetentrydialog.cpp:120
 msgid "Estimated:"
-msgstr ""
+msgstr "Процењено:"
 
 #: budgetentrydialog.cpp:122
 msgid "Actual:"
-msgstr ""
+msgstr "Стварно:"
 
 #: budgetentrydialog.cpp:125
 msgid "Type:"
@@ -1347,7 +1353,7 @@ msgstr "Тип:"
 
 #: budgetentrydialog.cpp:128
 msgid "Expense"
-msgstr "Трошак"
+msgstr "Расход"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:445
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:385
@@ -1378,76 +1384,76 @@ msgstr "Унеси предвиђен буџет за ову категориј�
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "Прикажи све категорије буџета"
+msgstr "Прикажи све буџетске категорије"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr "Прикажи све категорије буџета не празне"
+msgstr "Прикажи све буџетске категорије које нису нула"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "Прикажи све планиране буџетске категорије"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "Приказ приходовне буџетне категорије"
+msgstr "Прикажи приходне, буџетске категорије"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "Приказ трошковние буџетне категорије"
+msgstr "Прикажи расходне, буџетске категорије"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "Прикажи збир буџетске категорије"
 
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Финансијска година: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Година: %s"
 
 #: budgetingpanel.cpp:181
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Месец: %s"
 
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s  Почетни датум од: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "Направи буџет за %s"
 
 #: budgetingpanel.cpp:246
 msgid "Income: "
-msgstr ""
+msgstr "Приход: "
 
 #: budgetingpanel.cpp:247 budgetingpanel.cpp:255
 msgid "Estimated: "
-msgstr ""
+msgstr "Планирано: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Actual: "
-msgstr ""
+msgstr "Остварено: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Difference: "
-msgstr ""
+msgstr "Разлика: "
 
 #: budgetingpanel.cpp:254
 msgid "Expenses: "
-msgstr ""
+msgstr "Расходи: "
 
 #: budgetingpanel.cpp:297
 msgid "Icon"
-msgstr ""
+msgstr "Иконица"
 
 #: budgetingpanel.cpp:299
 msgid "Sub Category"
@@ -1465,35 +1471,35 @@ msgstr "Стварно"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Уређење буџета"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Додај годину"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr "Унеси нову буџетску годину"
+msgstr "Додај нову буџетску годину"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Додај месец"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "Додај нови буџетски месец"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "Обриши постојећи буџет"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "Детаљи буџетских ставки"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "Унос месечног буџета"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
@@ -1502,48 +1508,50 @@ msgstr "Буџетска година:"
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "Одредите захтевану годину.\n"
+"Користите тастере да повећате или смањите годину."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
-msgstr ""
+msgstr "Месечни буџет:"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "Одредите захтеван месец.\n"
+"Користите тастера да повећате или смањите месец."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
-msgstr "Буџет базиран на:"
+msgstr "Буџет заснован на основу:"
 
 #: budgetyearentrydialog.cpp:112
 msgid "Specify year to base budget on."
-msgstr "Одреди годину на коју да се базира буџет."
+msgstr "Одреди годину на којој да се заснива буџет."
 
 #: budgetyearentrydialog.cpp:151
 msgid "Budget Year already exists"
-msgstr "Ова година буџета већ постоји"
+msgstr "Ова буџетска година већ постоји"
 
 #: categdialog.cpp:91 mmframe.cpp:1505 mmframe.cpp:1726
 msgid "Organize Categories"
-msgstr "Организуј категорије"
+msgstr "Уреди категорије"
 
 #: categdialog.cpp:190 mmframe.cpp:1518
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "Прерасподели све из категорије другој категорији"
 
 #: categdialog.cpp:192
 msgid "Expand"
-msgstr ""
+msgstr "Прошири"
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:175
 msgid "Show All"
-msgstr "Prikažite sve"
+msgstr "Прикажи све"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Прикажи све скривене категорије"
 
 #: categdialog.cpp:231
 msgid "Add a new category"
@@ -1555,7 +1563,7 @@ msgstr "Промени име постојеће категорије"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Обриши постојећу категорију. Категорију не смеју да користе постојеће трансакције."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1563,32 +1571,33 @@ msgstr "Одабери"
 
 #: categdialog.cpp:246
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "Одабрати актуелни одабрани категорију као категорију трансакције"
+msgstr "Одабери сада изабрану категорију као категорију трансакције"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Унесите назив нове категорије:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "Савет: Ако сада додате категорију, проверите листу испод."
 
 #: categdialog.cpp:261
 msgid "Add Category"
-msgstr ""
+msgstr "Додај категорију"
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "Име те категорије већ постоји"
+msgstr "Назив те категорије већ постоји"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "Савет: Ако додате категорију, проверите листу испод.\n"
+"Категорија ће бити пресложена када следећи пут покренете прозор"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "Уреди категорије: Грешка у додавању"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
@@ -1596,87 +1605,87 @@ msgstr "Поткатегорија са тим именом већ постој�
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "Погрешна надкатегорија.  Одаберите Корен или главну категорију."
+msgstr "Непостојећа матична категорија. Одаберите основу или главну категорију."
 
 #: categdialog.cpp:321
 msgid "Category in use."
-msgstr ""
+msgstr "Категорија у употреби."
 
 #: categdialog.cpp:321
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "Поткатегорија у употреби."
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "Савет: Преместите све трансакције које користе ову категорију у другу категорију користећи команду за премештање:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "Савет: Преместите све трансакције које користе ову поткатегорију у другу поткатегорију користећи команду за премештање:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr ""
+msgstr "Алати -> Премештање -> Категорије"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "Уреди категорије: Грешка у брисању"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Одаберите неискоришћену категорију за брисање."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Ова категорија не може бити обрисана јер је употребљавају постојеће трансакције."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Обришите постојећу категорију."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Морате претходно обрисати поткатегорију."
 
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Унесите нови назив за \"%s\""
 
 #: categdialog.cpp:489
 msgid "Edit Category"
-msgstr ""
+msgstr "Уреди категорију"
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "Уреди категорије: Грешка у изменама"
 
 #: categdialog.cpp:600 mmframe.cpp:3270
 msgid "Category Relocation Completed."
-msgstr ""
+msgstr "Премештање категорије завршено."
 
 #: categdialog.cpp:601 mmframe.cpp:3271 mmframe.cpp:3286 payeedialog.cpp:351
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "Записи у бази податка су ажурирани: %i"
 
 #: categdialog.cpp:603 mmframe.cpp:3273
 msgid "Category Relocation Result"
-msgstr ""
+msgstr "Резултат премештања категорије"
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "Сакриј изабрану категорију"
 
 #: categdialog.cpp:669
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "Откриј изабрану категорију"
 
 #: categdialog.cpp:671 import_export/univcsvdialog.cpp:443
 msgid "Clear Settings"
-msgstr ""
+msgstr "Обриши подешавања"
 
 #: constants.cpp:71
 msgid "Cancel"
@@ -1684,15 +1693,15 @@ msgstr "Поништи"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: constants.cpp:79
 msgid "&Close "
-msgstr ""
+msgstr "&Затвори "
 
 #: constants.cpp:178
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Напредни филтер"
 
 #: constants.cpp:179
 msgid "View All Transactions"
@@ -1700,55 +1709,55 @@ msgstr "Прикажи све трансакције"
 
 #: constants.cpp:180
 msgid "View Today"
-msgstr "Види данас"
+msgstr "Прикажи данашњи дан"
 
 #: constants.cpp:181
 msgid "View Current Month"
-msgstr "Види актуелни месец"
+msgstr "Прикажи текући месец"
 
 #: constants.cpp:182
 msgid "View Last 30 days"
-msgstr ""
+msgstr "Прикажи претходних 30 дана"
 
 #: constants.cpp:183
 msgid "View Last 90 days"
-msgstr ""
+msgstr "Прикажи претходних 90 дана"
 
 #: constants.cpp:184
 msgid "View Last Month"
-msgstr "Види прошли месец"
+msgstr "Прикажи претходни месец"
 
 #: constants.cpp:185
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "Прикажи претходна 3 месеца"
 
 #: constants.cpp:186
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Прикажи претходних 12 месеци"
 
 #: constants.cpp:187
 msgid "View Current Year"
-msgstr ""
+msgstr "Прикажи текућу годину"
 
 #: constants.cpp:188
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Прикажи текућу финансијску годину"
 
 #: constants.cpp:189
 msgid "View Last Year"
-msgstr ""
+msgstr "Прикажи претходну годину"
 
 #: constants.cpp:190
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Прикажи претходну финансијску годину"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Прикажи од почетног датума"
 
 #: constants.cpp:193
 msgid "ALL"
-msgstr ""
+msgstr "СВЕ"
 
 #: constants.cpp:194 mmframe.cpp:1319 mmframe.cpp:1719
 #: model/Model_Account.cpp:26
@@ -1765,11 +1774,11 @@ msgstr "Омиљени"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Назив валуте"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
-msgstr "Име валуте"
+msgstr "Назив валуте"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
@@ -1786,11 +1795,11 @@ msgstr "Суфикс валуте"
 #: currencydialog.cpp:198 currencydialog.cpp:268 currencydialog.cpp:297
 #: import_export/qif_import_gui.cpp:296 import_export/univcsvdialog.cpp:356
 msgid "Decimal Char"
-msgstr "Ознака децимала"
+msgstr "Симбол децимала"
 
 #: currencydialog.cpp:205 currencydialog.cpp:272 currencydialog.cpp:301
 msgid "Grouping Char"
-msgstr "Ознака груписања"
+msgstr "Симбол за груписање"
 
 #: currencydialog.cpp:213
 msgid "Scale"
@@ -1798,27 +1807,27 @@ msgstr "Скала"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Конверзија у основни курс"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Конверзија у основни курс ће се користити уколико се за дату валуту не пронађе курсна листа"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Фиксни курс"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Пример форматирања валуте:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
-msgstr ""
+msgstr "Сними све измене"
 
 #: currencydialog.cpp:248
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "Измене ће бити обрисане без ажурирања"
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
 #: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:612
@@ -1829,11 +1838,11 @@ msgstr "Погрешан унос"
 #: currencydialog.cpp:318
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f се приказује као: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Користећи локална подешавања)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
@@ -4049,7 +4058,7 @@ msgstr ""
 
 #: mmframe.cpp:752 mmframe.cpp:1534
 msgid "Budget Setup"
-msgstr "Подешавање буџета"
+msgstr "Буџетирање"
 
 #: mmframe.cpp:809 mmframe.cpp:2550 mmhelppanel.cpp:69
 msgid "Help"
@@ -4333,7 +4342,7 @@ msgstr ""
 
 #: mmframe.cpp:1509 mmframe.cpp:1727 payeedialog.cpp:77
 msgid "Organize Payees"
-msgstr "Организуј прималце"
+msgstr "Уредите примаоце"
 
 #: mmframe.cpp:1513
 msgid "Organize Curre&ncy..."
@@ -4341,7 +4350,7 @@ msgstr ""
 
 #: mmframe.cpp:1513 mmframe.cpp:1728
 msgid "Organize Currency"
-msgstr "Организуј валуту"
+msgstr "Уредите валуту"
 
 #: mmframe.cpp:1517
 msgid "&Categories..."
@@ -4365,7 +4374,7 @@ msgstr ""
 
 #: mmframe.cpp:1534
 msgid "&Budget Setup"
-msgstr "Подешавање буџета"
+msgstr "&Буџетирање"
 
 #: mmframe.cpp:1538
 msgid "&Recurring Transactions"
