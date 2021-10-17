@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 15:20\n"
+"PO-Revision-Date: 2021-10-17 10:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -334,7 +334,7 @@ msgstr "&Salir "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr "Abrir base de datos abierta previamente: %s"
+msgstr "Abrir la base de datos previamente abierta: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -579,19 +579,19 @@ msgstr "Escriba cualquier cadena para buscar valores relacionados"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Consejo: Puedes usar caracteres comodín como signo de interrogación (?) o asterisco (*) en tus criterios de búsqueda."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Usa el signo de interrogación (?) para encontrar cualquier carácter - por ejemplo, s?t encuentra 'sat' y 'set'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Utilice el asterisco (*) para encontrar cualquier número de caracteres - por ejemplo, s*d encuentra 'sad' y 'started'."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Use el asterisco (*) al principio para encontrar cualquier cadena en el centro de la oración."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -871,7 +871,7 @@ msgstr "Repeticiones"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Volver a la última fecha con los valores especificados"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1074,11 +1074,11 @@ msgstr "Seleccionar Cuenta de abono"
 
 #: billsdepositsdialog.cpp:934
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "La fecha de pago es posterior a la fecha de vencimiento, ¿es esto lo que usted pretendía?"
 
 #: billsdepositsdialog.cpp:935
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Parece un retraso en el pago"
 
 #: billsdepositsdialog.cpp:1234
 msgid "Specify the transfer amount in the From Account"
@@ -1636,7 +1636,7 @@ msgstr "Seleccione una categoría no utilizada para eliminar."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr "Esta categoría no puede ser eliminada porque es usada por transacciones."
+msgstr "Esta categoría no se puede eliminar porque está siendo utilizada por algunas transacciones."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
