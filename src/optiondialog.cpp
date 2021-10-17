@@ -34,7 +34,7 @@
 #include "optionsettingsmisc.h"
 
 static const char * const s_pagetitle[] = {
-    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Others"), wxTRANSLATE("Home Page"),
+    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Home"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Others")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
@@ -143,10 +143,10 @@ void mmOptionsDialog::CreateControls()
     **********************************************************************************************/
     m_notebook->InsertPage(0, general_panel, wxGetTranslation(s_pagetitle[0]), true, 2);
     m_notebook->InsertPage(1, views_panel, wxGetTranslation(s_pagetitle[1]), false, 0);
-    m_notebook->InsertPage(2, home_panel, wxGetTranslation(s_pagetitle[5]), false, 5);
-    m_notebook->InsertPage(3, attachment_panel, wxGetTranslation(s_pagetitle[2]), false, 1);
-    m_notebook->InsertPage(4, network_panel, wxGetTranslation(s_pagetitle[3]), false, 4);
-    m_notebook->InsertPage(5, others_panel, wxGetTranslation(s_pagetitle[4]), false, 3);
+    m_notebook->InsertPage(2, home_panel, wxGetTranslation(s_pagetitle[2]), false, 5);
+    m_notebook->InsertPage(3, attachment_panel, wxGetTranslation(s_pagetitle[3]), false, 1);
+    m_notebook->InsertPage(4, network_panel, wxGetTranslation(s_pagetitle[4]), false, 4);
+    m_notebook->InsertPage(5, others_panel, wxGetTranslation(s_pagetitle[5]), false, 3);
 
     mainDialogPanelSizer->Add(m_notebook, g_flagsExpand);
     mainDialogPanelSizer->Layout();
