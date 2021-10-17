@@ -382,17 +382,15 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
     OptionSettingsHome home_options;
     int i = Option::instance().getHomePageIncExpRange();
-    const mmDateRange* date_range = static_cast<mmDateRange*>(home_options.m_all_date_ranges[i]);
-    
-    wxLogDebug("%s - %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
+    wxSharedPtr<mmDateRange> date_range(home_options.get_inc_vs_exp_date_range());
 
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range.get()->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
     );
@@ -425,7 +423,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("0");
-    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range->local_title()).utf8_str());
+    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range.get()->local_title()).utf8_str());
     json_writer.Key("1");
     json_writer.String(_("Type").utf8_str());
     json_writer.Key("2");

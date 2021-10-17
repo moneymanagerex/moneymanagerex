@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,21 +29,25 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 OptionSettingsHome::OptionSettingsHome()
 {
-    m_all_date_ranges.push_back(new mmCurrentMonth());
-    m_all_date_ranges.push_back(new mmCurrentMonthToDate());
-    m_all_date_ranges.push_back(new mmLastMonth());
-    m_all_date_ranges.push_back(new mmLast30Days());
-    m_all_date_ranges.push_back(new mmLast90Days());
-    m_all_date_ranges.push_back(new mmLast3Months());
-    m_all_date_ranges.push_back(new mmLast12Months());
-    m_all_date_ranges.push_back(new mmCurrentYear());
-    m_all_date_ranges.push_back(new mmCurrentYearToDate());
-    m_all_date_ranges.push_back(new mmLastYear());
-    m_all_date_ranges.push_back(new mmCurrentFinancialYear());
-    m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate());
-    m_all_date_ranges.push_back(new mmLastFinancialYear());
-    m_all_date_ranges.push_back(new mmAllTime());
-    m_all_date_ranges.push_back(new mmLast365Days());
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
+
+    int sel_id = Option::instance().getHomePageIncExpRange();
+    m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
+
 }
 
 OptionSettingsHome::OptionSettingsHome(wxWindow *parent
@@ -70,21 +75,31 @@ void OptionSettingsHome::Create()
     wxStaticBoxSizer* totalsStaticBoxSizer = new wxStaticBoxSizer(totalsStaticBox, wxVERTICAL);
     homePanelSizer->Add(totalsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     m_incExpChoice = new wxChoice(this, wxID_ANY);
+
     for (const auto & date_range : m_all_date_ranges) {
-        m_incExpChoice->Append(date_range->local_title());
+        m_incExpChoice->Append(date_range.get()->local_title());
     }
+
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size())
         sel_id = 0;
     m_incExpChoice->SetSelection(sel_id);
     totalsStaticBoxSizer->Add(m_incExpChoice, g_flagsV);
+
+    m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
+
 }
 
 
 bool OptionSettingsHome::SaveSettings()
 {
-    int test = m_incExpChoice->GetSelection();
+    //int test = m_incExpChoice->GetSelection();
     Option::instance().setHomePageIncExpRange(m_incExpChoice->GetSelection());
 
     return true;
+}
+
+const wxSharedPtr<mmDateRange> OptionSettingsHome::get_inc_vs_exp_date_range() const
+{
+    return m_inc_vs_exp_date_range;
 }
