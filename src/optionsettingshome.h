@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,12 +40,14 @@ public:
 
 public:
     virtual bool SaveSettings();
-    std::vector<mmDateRange*> m_all_date_ranges;
+    const wxSharedPtr<mmDateRange> get_inc_vs_exp_date_range() const;
 
 private:
     void Create();
+    wxSharedPtr<mmDateRange> m_inc_vs_exp_date_range;
+    std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
 
 private:
-    wxChoice*   m_incExpChoice;
+    wxChoice* m_incExpChoice;
 
 };
