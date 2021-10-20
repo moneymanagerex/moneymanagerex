@@ -161,6 +161,7 @@ void OptionSettingsGeneral::Create()
 
         m_itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
             , wxCommandEventHandler(OptionSettingsGeneral::OnLocaleChanged), nullptr, this);
+        m_itemListOfLocales->SetMinSize(wxSize(100, -1));
     }
 
     m_currencyStaticBoxSizer->AddSpacer(15);
@@ -306,7 +307,6 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
         return true;
     }
 
-    result = wxTRANSLATE("bad locale name");
     double value = 1234567.8910;
 
     try {
@@ -326,6 +326,7 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
     }
     catch (std::exception & ex) {
         result = wxString(ex.what());
+        result.Replace("std::locale::facet::_S_create_c_locale name not valid", wxTRANSLATE("bad locale name"));
         return false;
     }
 
