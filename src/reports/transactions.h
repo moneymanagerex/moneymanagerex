@@ -38,6 +38,10 @@ private:
     Model_Checking::Full_Data_Set trans_;
     mmFilterTransactionsDialog* m_transDialog;
     bool showColumnById(int num);
+    void displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols);
+
+    mmHTMLBuilder hb;
+    int m_noOfCols;
 };
 
 #endif // MM_EX_REPORTTRANSACT_H_

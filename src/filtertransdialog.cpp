@@ -50,6 +50,12 @@ static const wxString TRANSACTION_STATUSES[] =
     wxTRANSLATE("All Except Reconciled")
 };
 
+static const wxString GROUPBY_OPTIONS[] =
+{
+    wxTRANSLATE("Account"),
+    wxTRANSLATE("Payee"),
+};
+
 enum fromdates {
     FROM_FIN_YEAR,
     FROM_CAL_YEAR,
@@ -382,13 +388,29 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnShowColumnsButton), nullptr, this);
     itemPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
+    //Group By
+    groupByCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Group By")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(groupByCheckBox_, g_flagsH);
+
+    bGroupBy_ = new wxChoice(itemPanel, wxID_ANY);
+    for (const auto& i : GROUPBY_OPTIONS)
+        bGroupBy_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    itemPanelSizer->Add(bGroupBy_, g_flagsExpand);
+    mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
+
+    //Disable items that are only applicable to report mode
     if (!isReportMode_)
     {
         showColumnsCheckBox_->Disable();
         bHideColumns_->SetLabelText("");
         bHideColumns_->Disable();
-    }
+        groupByCheckBox_->Disable();
+        bGroupBy_->SetLabelText("");
+        bGroupBy_->Disable();
 
+
+    }
 
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -489,6 +511,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         colourButton_->Enable(colourCheckBox_->IsChecked());
         bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
+        bGroupBy_->Enable(groupByCheckBox_->IsChecked());
     }
 
     if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
@@ -598,6 +621,14 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         int id = choiceStatus_->GetId();
         mmErrorDialogs::ToolTip4Object(FindWindow(id)
             , _("Invalid value"), _("Status"));
+        return false;
+    }
+
+    if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() < 0)
+    {
+        int id = bGroupBy_->GetId();
+        mmErrorDialogs::ToolTip4Object(FindWindow(id)
+            , _("Invalid value"), _("Group By"));
         return false;
     }
 
@@ -1499,6 +1530,14 @@ bool mmFilterTransactionsDialog::getNotesCheckBox()
 bool mmFilterTransactionsDialog::getColourCheckBox()
 {
     return colourCheckBox_->IsChecked();
+}
+
+int mmFilterTransactionsDialog::getGroupBy()
+{
+    int by = -1;
+    if (groupByCheckBox_->IsChecked())
+        by = bGroupBy_->GetSelection();
+    return by;
 }
 
 void mmFilterTransactionsDialog::ResetFilterStatus()
