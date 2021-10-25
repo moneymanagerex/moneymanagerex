@@ -54,6 +54,7 @@ static const wxString GROUPBY_OPTIONS[] =
 {
     wxTRANSLATE("Account"),
     wxTRANSLATE("Payee"),
+    wxTRANSLATE("Category")
 };
 
 enum fromdates {
@@ -187,15 +188,15 @@ void mmFilterTransactionsDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
-    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
-    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
-    itemBoxSizer3->Add(itemStaticBoxSizer4, 1, wxGROW | wxALL, 10);
-
     this->SetSizer(itemBoxSizer2);
 
     /******************************************************************************
      Items Panel
     *******************************************************************************/
+    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
+    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
+    itemBoxSizer3->Add(itemStaticBoxSizer4, 1, wxGROW | wxALL, 10);
+
     wxPanel* itemPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemStaticBoxSizer4->Add(itemPanel, g_flagsExpand);
 
@@ -377,26 +378,43 @@ void mmFilterTransactionsDialog::CreateControls()
     colourValue_ = 0;
     itemPanelSizer->Add(colourButton_, g_flagsExpand);
 
-    //Hide columns
-    showColumnsCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Hide Columns")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
+    /******************************************************************************
+     Presentation Panel
+    *******************************************************************************/
+    wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
+    wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
+    itemBoxSizer3->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    bHideColumns_ = new wxButton(itemPanel, ID_DIALOG_COLUMNS, "");
+    wxPanel* presPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
+
+    wxBoxSizer* presBoxSizer = new wxBoxSizer(wxVERTICAL);
+    wxFlexGridSizer* presPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    presPanelSizer->AddGrowableCol(1, 1);
+
+    presPanel->SetSizer(presBoxSizer);
+    presBoxSizer->Add(presPanelSizer, g_flagsExpand);
+
+    //Hide columns
+    showColumnsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Hide Columns")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    presPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
+
+    bHideColumns_ = new wxButton(presPanel, ID_DIALOG_COLUMNS, "");
     bHideColumns_->SetMinSize(wxSize(180, -1));
     bHideColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnShowColumnsButton), nullptr, this);
-    itemPanelSizer->Add(bHideColumns_, g_flagsExpand);
+    presPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
     //Group By
-    groupByCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Group By")
+    groupByCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Group By")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(groupByCheckBox_, g_flagsH);
+    presPanelSizer->Add(groupByCheckBox_, g_flagsH);
 
-    bGroupBy_ = new wxChoice(itemPanel, wxID_ANY);
+    bGroupBy_ = new wxChoice(presPanel, wxID_ANY);
     for (const auto& i : GROUPBY_OPTIONS)
         bGroupBy_->Append(wxGetTranslation(i), new wxStringClientData(i));
-    itemPanelSizer->Add(bGroupBy_, g_flagsExpand);
+    presPanelSizer->Add(bGroupBy_, g_flagsExpand);
     mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
 
     //Disable items that are only applicable to report mode
@@ -408,8 +426,6 @@ void mmFilterTransactionsDialog::CreateControls()
         groupByCheckBox_->Disable();
         bGroupBy_->SetLabelText("");
         bGroupBy_->Disable();
-
-
     }
 
     // Settings

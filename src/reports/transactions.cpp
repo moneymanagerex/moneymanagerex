@@ -128,6 +128,8 @@ table {
             sortLabel = transaction.ACCOUNTNAME;
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_PAYEE)
             sortLabel = transaction.PAYEENAME;
+        else if (groupBy == mmFilterTransactionsDialog::GROUPBY_CATEGORY)
+            sortLabel = transaction.CATEGNAME;
 
         if (sortLabel != lastSortLabel)
         {
@@ -169,9 +171,8 @@ table {
     
         // If a transfer between two accounts in the list of accounts being reported then we
         // should report both the transfer in and transfer out, i.e. two transactions
-        // Only applies to ungrouped reports
         int noOfTrans = 1; 
-        if ((groupBy == -1) && (Model_Checking::type(transaction) == Model_Checking::TRANSFER) &&
+        if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER) &&
             (allAccounts ||
             ((selectedAccounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
             && (selectedAccounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
@@ -323,25 +324,21 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
-        if (m_transDialog->getCategoryCheckBox() && full_tran.has_split()) 
+        if (full_tran.has_split()) 
         {
-            full_tran.CATEGNAME.clear();
-            full_tran.TRANSAMOUNT = 0;
             for (const auto& split : full_tran.m_splits)
             {
-                const wxString split_info = wxString::Format("%s = %s | "
-                    , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
-                    , wxString::Format("%.2f", split.SPLITTRANSAMOUNT));
-                full_tran.CATEGNAME.Append(split_info);
-                if (split.CATEGID != m_transDialog->getCategId() ) continue;
-                if (split.SUBCATEGID != m_transDialog->getSubCategId() 
-                    && !m_transDialog->getSimilarStatus()) continue;
-
-                full_tran.TRANSAMOUNT += split.SPLITTRANSAMOUNT;
+                if (m_transDialog->getCategoryCheckBox())
+                {
+                    if (split.CATEGID != m_transDialog->getCategId() ) continue;
+                    if (split.SUBCATEGID != m_transDialog->getSubCategId() 
+                        && !m_transDialog->getSimilarStatus()) continue;
+                }
+                full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
+                full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+                trans_.push_back(full_tran);
             }
-            full_tran.CATEGNAME.RemoveLast(2);
-        }
-
+        } else
             trans_.push_back(full_tran);
     }
     
@@ -353,6 +350,9 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
             break;
         case mmFilterTransactionsDialog::GROUPBY_PAYEE:
             std::stable_sort(trans_.begin(), trans_.end(), SorterByPAYEENAME());
+            break;   
+        case mmFilterTransactionsDialog::GROUPBY_CATEGORY:
+            std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
             break;   
     }
 }
