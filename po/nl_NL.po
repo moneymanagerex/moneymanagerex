@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-26 15:39\n"
+"PO-Revision-Date: 2021-10-26 15:55\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2470,11 +2470,11 @@ msgstr "Alle velden wissen voor huidige voorkeursinstelling selectie"
 
 #: filtertransdialog.cpp:664
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Wil je ze opslaan voordat je verder gaat?"
 
 #: filtertransdialog.cpp:665
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Filterinstellingen zijn gewijzigd"
 
 #: filtertransdialog.cpp:717
 msgid "Hide Report Columns"
