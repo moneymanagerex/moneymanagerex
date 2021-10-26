@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-15 08:48\n"
+"PO-Revision-Date: 2021-10-25 07:06\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -746,19 +746,19 @@ msgstr "Vrei să continui și să ștergi atașamentul din baza de date?"
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "Ștergerea atașamentului a eșuat"
 
 #: attachmentdialog.cpp:486
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Nu se poate deschide fișierul:"
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Vă rugăm să verificaţi dacă fişierul există şi utilizatorul are drepturile de a-l citi."
 
 #: attachmentdialog.cpp:490
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Deschiderea atașamentului a eșuat"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:49
 #: filtertransdialog.cpp:44 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -787,7 +787,7 @@ msgstr "Lunară"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "La fiecare 2 luni"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:60
@@ -819,43 +819,43 @@ msgstr "Zilnic"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "În (x) Zile"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "În (x) Luni"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "La fiecare (x) Zile"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "La fiecare (x) Luni"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:64
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Lunar (ultima zi)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:65
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Lunar (ultima zi lucrătoare)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:289
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Editează Tranzacție Recurentă"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Introduceți Tranzacția Recurentă"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Detalii Tranzacție recurentă"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Specifică data la care această factură sau acest depozit este scadent"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
