@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-26 11:30\n"
+"PO-Revision-Date: 2021-10-26 12:54\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2435,7 +2435,7 @@ msgstr "Seleziona il Colore"
 
 #: filtertransdialog.cpp:384
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opzioni di Presentazione"
 
 #: filtertransdialog.cpp:399
 msgid "Hide Columns"
@@ -2443,11 +2443,11 @@ msgstr "Nascondi Colonne"
 
 #: filtertransdialog.cpp:410 filtertransdialog.cpp:647
 msgid "Group By"
-msgstr ""
+msgstr "Raggruppa per"
 
 #: filtertransdialog.cpp:418
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Specifica come raggruppare la relazione"
 
 #: filtertransdialog.cpp:437
 msgid "Settings"
@@ -2470,11 +2470,11 @@ msgstr "Cancella tutti i campi della selezione Preset corrente"
 
 #: filtertransdialog.cpp:664
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Vuoi salvare prima di continuare?"
 
 #: filtertransdialog.cpp:665
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Le impostazioni dei filtri sono cambiate"
 
 #: filtertransdialog.cpp:717
 msgid "Hide Report Columns"
