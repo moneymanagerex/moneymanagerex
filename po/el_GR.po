@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-26 11:31\n"
+"PO-Revision-Date: 2021-10-26 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2435,7 +2435,7 @@ msgstr "Επιλέξτε χρώμα"
 
 #: filtertransdialog.cpp:384
 msgid "Presentation Options"
-msgstr ""
+msgstr "Επιλογές παρουσίασης"
 
 #: filtertransdialog.cpp:399
 msgid "Hide Columns"
@@ -2443,11 +2443,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:410 filtertransdialog.cpp:647
 msgid "Group By"
-msgstr ""
+msgstr "Ομαδοποίηση κατά"
 
 #: filtertransdialog.cpp:418
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Καθορίστε τον τρόπο ομαδοποίησης της έκθεσης"
 
 #: filtertransdialog.cpp:437
 msgid "Settings"
@@ -2470,11 +2470,11 @@ msgstr "Εκκαθάριση όλων των πεδίων για την τρέχ
 
 #: filtertransdialog.cpp:664
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Θέλετε να τα αποθηκεύσετε πριν συνεχίσετε;"
 
 #: filtertransdialog.cpp:665
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Οι ρυθμίσεις φίλτρου έχουν αλλάξει"
 
 #: filtertransdialog.cpp:717
 msgid "Hide Report Columns"
