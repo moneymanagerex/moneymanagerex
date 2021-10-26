@@ -1445,8 +1445,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, currency);
     case TransactionListCtrl::COL_CREDIT:
-        Model_Account::Data* account = Model_Account::instance().get(m_cp->m_AccountID);
-        return Model_Currency::toString(account->CREDITLIMIT + tran.BALANCE, currency);
+        Model_Account::Data* acc = Model_Account::instance().get(m_cp->m_AccountID);
+        return Model_Currency::toString(acc->CREDITLIMIT + tran.BALANCE, currency);
     }
 
     return value;
