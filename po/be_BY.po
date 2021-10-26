@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-26 11:31\n"
+"PO-Revision-Date: 2021-10-26 11:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2442,7 +2442,7 @@ msgstr "Абраць колер"
 
 #: filtertransdialog.cpp:384
 msgid "Presentation Options"
-msgstr ""
+msgstr "Параметры адлюстравання"
 
 #: filtertransdialog.cpp:399
 msgid "Hide Columns"
@@ -2450,11 +2450,11 @@ msgstr "Схаваць слупкі"
 
 #: filtertransdialog.cpp:410 filtertransdialog.cpp:647
 msgid "Group By"
-msgstr ""
+msgstr "Групаваць па"
 
 #: filtertransdialog.cpp:418
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Абраць, як групаваць справаздачу"
 
 #: filtertransdialog.cpp:437
 msgid "Settings"
@@ -2477,11 +2477,11 @@ msgstr "Ачысціць усе палі бягучага шаблона"
 
 #: filtertransdialog.cpp:664
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Жадаеце захаваць іх перад тым, як выйсці?"
 
 #: filtertransdialog.cpp:665
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Змяніліся налады фильтра"
 
 #: filtertransdialog.cpp:717
 msgid "Hide Report Columns"
