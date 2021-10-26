@@ -63,7 +63,8 @@ public:
 
     enum groupBy {
         GROUPBY_ACCOUNT,
-        GROUPBY_PAYEE
+        GROUPBY_PAYEE,
+        GROUPBY_CATEGORY
     };
     int getGroupBy();
 
