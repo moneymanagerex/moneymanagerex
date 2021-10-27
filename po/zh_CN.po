@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-27 00:29\n"
+"PO-Revision-Date: 2021-10-27 00:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2443,7 +2443,7 @@ msgstr "分组方式"
 
 #: filtertransdialog.cpp:418
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "指定报告的分组方式"
 
 #: filtertransdialog.cpp:437
 msgid "Settings"
@@ -2466,11 +2466,11 @@ msgstr "清除当前预设选择的所有字段"
 
 #: filtertransdialog.cpp:664
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "在继续之前要保存它们吗?"
 
 #: filtertransdialog.cpp:665
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "过滤器设置已更改"
 
 #: filtertransdialog.cpp:717
 msgid "Hide Report Columns"
