@@ -666,7 +666,11 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
     int id = m_bdp->bills_[m_selected_row].BDID;
     mmBDDialog dlg(this, id, false, true);
     if ( dlg.ShowModal() == wxID_OK )
+    {
+        if (++m_selected_row < m_bdp->bills_.size())
+            id = m_bdp->bills_[m_selected_row].BDID;
         refreshVisualList(m_bdp->initVirtualListControl(id));
+    }
 }
 
 void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
@@ -675,6 +679,8 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 
     int id = m_bdp->bills_[m_selected_row].BDID;
     Model_Billsdeposits::instance().completeBDInSeries(id);
+    if (++m_selected_row < m_bdp->bills_.size())
+        id = m_bdp->bills_[m_selected_row].BDID;
     refreshVisualList(m_bdp->initVirtualListControl(id));
 }
 
