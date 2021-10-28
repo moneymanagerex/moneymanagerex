@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -65,8 +66,7 @@ mmReportsPanel::~mmReportsPanel()
     if (cleanup_ && rb_) {
         delete rb_;
     }
-    if (!m_all_date_ranges.empty())
-        std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
+
     m_all_date_ranges.clear();
     clearVFprintedFiles("rep");
 }
@@ -202,29 +202,25 @@ void mmReportsPanel::CreateControls()
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
             m_date_ranges->SetName("DateRanges");
 
-            m_all_date_ranges.push_back(new mmCurrentMonth());
-            m_all_date_ranges.push_back(new mmCurrentMonthToDate());
-            m_all_date_ranges.push_back(new mmLastMonth());
-            m_all_date_ranges.push_back(new mmLast30Days());
-            m_all_date_ranges.push_back(new mmLast90Days());
-            m_all_date_ranges.push_back(new mmLast3Months());
-            m_all_date_ranges.push_back(new mmLast12Months());
-            m_all_date_ranges.push_back(new mmCurrentYear());
-            m_all_date_ranges.push_back(new mmCurrentYearToDate());
-            m_all_date_ranges.push_back(new mmLastYear());
-
-            int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-            int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-
-            m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
-            m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
-            m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
-            m_all_date_ranges.push_back(new mmAllTime());
-            m_all_date_ranges.push_back(new mmLast365Days());
-            m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYear()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today())));
 
             for (const auto & date_range : m_all_date_ranges) {
-                m_date_ranges->Append(date_range->local_title(), date_range);
+                m_date_ranges->Append(date_range.get()->local_title(), date_range.get());
             }
 
             int sel_id = rb_->getDateSelection();
@@ -235,16 +231,16 @@ void mmReportsPanel::CreateControls()
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            const mmDateRange* date_range = m_all_date_ranges.at(sel_id);
+            wxSharedPtr<mmDateRange> date_range = m_all_date_ranges.at(sel_id);
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
             m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
-            m_start_date->SetValue(date_range->start_date());
+            m_start_date->SetValue(date_range.get()->start_date());
             m_start_date->Enable(false);
 
             m_end_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
-            m_end_date->SetValue(date_range->end_date());
+            m_end_date->SetValue(date_range.get()->end_date());
             m_end_date->Enable(false);
 
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL| wxALIGN_CENTER_VERTICAL, 1);

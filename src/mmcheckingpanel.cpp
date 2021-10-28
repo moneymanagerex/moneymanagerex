@@ -609,15 +609,13 @@ void mmCheckingPanel::initFilterSettings()
         date_range = new mmCurrentYear;
         break;
     case  MENU_VIEW_CURRENTFINANCIALYEAR:
-        date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        date_range = new mmCurrentFinancialYear();
         break;
     case  MENU_VIEW_LASTYEAR:
         date_range = new mmLastYear;
         break;
     case  MENU_VIEW_LASTFINANCIALYEAR:
-        date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        date_range = new mmLastFinancialYear();
         break;
     case  MENU_VIEW_STATEMENTDATE:
         if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))

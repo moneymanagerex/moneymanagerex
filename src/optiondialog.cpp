@@ -1,6 +1,7 @@
 /*************************************************************************
  Copyright (C) 2006 Madhan Kanagavel
  copyright (C) 2011, 2012 Nikolay & Stefano Giorgio.
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,12 +28,13 @@
 
 #include "optionsettingsgeneral.h"
 #include "optionsettingsview.h"
+#include "optionsettingshome.h"
 #include "optionsettingsattachment.h"
 #include "optionsettingsnet.h"
 #include "optionsettingsmisc.h"
 
 static const char * const s_pagetitle[] = {
-    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Others")
+    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Home"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Others")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
@@ -85,6 +87,7 @@ void mmOptionsDialog::CreateControls()
     m_imageList->Add(mmBitmap(png::GENERAL));
     m_imageList->Add(mmBitmap(png::OTHERS));
     m_imageList->Add(mmBitmap(png::NETWORK));
+    m_imageList->Add(mmBitmap(png::HOME));
     Option::instance().setIconSize(all_icons_size);
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
@@ -112,6 +115,12 @@ void mmOptionsDialog::CreateControls()
     m_panel_list.push_back(views_panel);
 
     /*********************************************************************************************
+     Home Panel
+    **********************************************************************************************/
+    OptionSettingsHome* home_panel = new OptionSettingsHome(m_notebook);
+    m_panel_list.push_back(home_panel);
+
+    /*********************************************************************************************
      Attachments Panel
     **********************************************************************************************/
     OptionSettingsAttachment* attachment_panel = new OptionSettingsAttachment(m_notebook);
@@ -134,9 +143,10 @@ void mmOptionsDialog::CreateControls()
     **********************************************************************************************/
     m_notebook->InsertPage(0, general_panel, wxGetTranslation(s_pagetitle[0]), true, 2);
     m_notebook->InsertPage(1, views_panel, wxGetTranslation(s_pagetitle[1]), false, 0);
-    m_notebook->InsertPage(2, attachment_panel, wxGetTranslation(s_pagetitle[2]), false, 1);
-    m_notebook->InsertPage(3, network_panel, wxGetTranslation(s_pagetitle[3]), false, 4);
-    m_notebook->InsertPage(4, others_panel, wxGetTranslation(s_pagetitle[4]), false, 3);
+    m_notebook->InsertPage(2, home_panel, wxGetTranslation(s_pagetitle[2]), false, 5);
+    m_notebook->InsertPage(3, attachment_panel, wxGetTranslation(s_pagetitle[3]), false, 1);
+    m_notebook->InsertPage(4, network_panel, wxGetTranslation(s_pagetitle[4]), false, 4);
+    m_notebook->InsertPage(5, others_panel, wxGetTranslation(s_pagetitle[5]), false, 3);
 
     mainDialogPanelSizer->Add(m_notebook, g_flagsExpand);
     mainDialogPanelSizer->Layout();

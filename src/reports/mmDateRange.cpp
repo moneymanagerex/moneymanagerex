@@ -188,9 +188,12 @@ mmLastYear::mmLastYear()
     this->title_ = wxTRANSLATE("Last Year");
 }
 
-mmCurrentFinancialYear::mmCurrentFinancialYear(int day, int month)
+mmCurrentFinancialYear::mmCurrentFinancialYear()
 : mmDateRange()
 {
+    int day = wxAtoi(Option::instance().FinancialYearStartDay());
+    int month = wxAtoi(Option::instance().FinancialYearStartMonth());
+
     int this_month = this->start_date_.GetMonth() + 1;
     auto finDate = this->start_date_;
     finDate.SetDay(1).SetMonth(wxDateTime::Month(month - 1));
@@ -210,20 +213,20 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(int day, int month)
     this->title_ = wxTRANSLATE("Current Financial Year");
 }
 
-mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(int day, int month)
+mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate()
 : mmDateRange()
 {
-    mmCurrentFinancialYear current_financial_year(day, month);
+    mmCurrentFinancialYear current_financial_year;
     this->start_date_ = current_financial_year.start_date();
     // no change to end_date_
 
     this->title_ = wxTRANSLATE("Current Financial Year to Date");
 }
 
-mmLastFinancialYear::mmLastFinancialYear(int day, int month)
+mmLastFinancialYear::mmLastFinancialYear()
 : mmDateRange()
 {
-    mmCurrentFinancialYear current_financial_year(day, month);
+    mmCurrentFinancialYear current_financial_year;
     this->start_date_ = current_financial_year.start_date().Subtract(wxDateSpan::Year());
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());

@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006-2012     Lisheng Guan (guanlisheng@gmail.com)
 Copyright (C) 2021          Mark Whalley (mark@ipx.co.uk)
+
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -121,19 +122,19 @@ public:
 class mmCurrentFinancialYear: public mmDateRange
 {
 public:
-    mmCurrentFinancialYear(int day, int month);
+    mmCurrentFinancialYear();
 };
 
 class mmCurrentFinancialYearToDate : public mmDateRange
 {
 public:
-    mmCurrentFinancialYearToDate(int day, int month);
+    mmCurrentFinancialYearToDate();
 };
 
 class mmLastFinancialYear : public mmDateRange
 {
 public:
-    mmLastFinancialYear(int day, int month);
+    mmLastFinancialYear();
 };
 
 class mmAllTime: public mmDateRange

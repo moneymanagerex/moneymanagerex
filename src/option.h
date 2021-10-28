@@ -145,6 +145,10 @@ public:
     void CurrencyHistoryEnabled(bool value);
     bool getCurrencyHistoryEnabled() const;
 
+    // Homepage income vs expenses graph range
+    void setHomePageIncExpRange(int value);
+    int getHomePageIncExpRange() const;
+
 private:
     wxString m_dateFormat;
     wxLanguage m_language;
@@ -180,6 +184,8 @@ private:
 
     int m_budget_days_offset;
     int m_reporting_firstday;
+
+    int m_homepage_incexp_range;
 };
 
 inline int Option::getIconSize() { return m_ico_size; }
@@ -233,4 +239,9 @@ inline int Option::getBudgetDaysOffset() const
 inline int Option::getReportingFirstDay() const
 {
     return m_reporting_firstday;
+}
+
+inline int Option::getHomePageIncExpRange() const
+{
+    return m_homepage_incexp_range;
 }

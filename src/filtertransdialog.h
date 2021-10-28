@@ -60,6 +60,14 @@ public:
     bool getStartDateCheckBox();
     bool getHideColumnsCheckBox();
 
+
+    enum groupBy {
+        GROUPBY_ACCOUNT,
+        GROUPBY_PAYEE,
+        GROUPBY_CATEGORY
+    };
+    int getGroupBy();
+
     int getCategId();
     int getSubCategId();
     const wxArrayInt getAccountsID() const;
@@ -180,6 +188,9 @@ private:
 
     wxCheckBox* showColumnsCheckBox_;
     wxButton* bHideColumns_;
+
+    wxCheckBox* groupByCheckBox_;
+    wxChoice* bGroupBy_;
 
     int categID_;
     int subcategID_;

@@ -50,6 +50,13 @@ static const wxString TRANSACTION_STATUSES[] =
     wxTRANSLATE("All Except Reconciled")
 };
 
+static const wxString GROUPBY_OPTIONS[] =
+{
+    wxTRANSLATE("Account"),
+    wxTRANSLATE("Payee"),
+    wxTRANSLATE("Category")
+};
+
 enum fromdates {
     FROM_FIN_YEAR,
     FROM_CAL_YEAR,
@@ -141,6 +148,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 int mmFilterTransactionsDialog::ShowModal()
 {
     BuildPayeeList();
+    SetStoredSettings(-1);
 
     return wxDialog::ShowModal();
 }
@@ -172,6 +180,7 @@ void mmFilterTransactionsDialog::dataToControls()
     BuildPayeeList();
     from_json(settings_string_);
 }
+
 void mmFilterTransactionsDialog::CreateControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -179,15 +188,15 @@ void mmFilterTransactionsDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
-    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
-    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
-    itemBoxSizer3->Add(itemStaticBoxSizer4, 1, wxGROW | wxALL, 10);
-
     this->SetSizer(itemBoxSizer2);
 
     /******************************************************************************
      Items Panel
     *******************************************************************************/
+    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
+    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
+    itemBoxSizer3->Add(itemStaticBoxSizer4, 1, wxGROW | wxALL, 10);
+
     wxPanel* itemPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemStaticBoxSizer4->Add(itemPanel, g_flagsExpand);
 
@@ -369,24 +378,55 @@ void mmFilterTransactionsDialog::CreateControls()
     colourValue_ = 0;
     itemPanelSizer->Add(colourButton_, g_flagsExpand);
 
-    //Hide columns
-    showColumnsCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Hide Columns")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
+    /******************************************************************************
+     Presentation Panel
+    *******************************************************************************/
+    wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
+    wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
+    itemBoxSizer3->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    bHideColumns_ = new wxButton(itemPanel, ID_DIALOG_COLUMNS, "");
+    wxPanel* presPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
+
+    wxBoxSizer* presBoxSizer = new wxBoxSizer(wxVERTICAL);
+    wxFlexGridSizer* presPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    presPanelSizer->AddGrowableCol(1, 1);
+
+    presPanel->SetSizer(presBoxSizer);
+    presBoxSizer->Add(presPanelSizer, g_flagsExpand);
+
+    //Hide columns
+    showColumnsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Hide Columns")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    presPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
+
+    bHideColumns_ = new wxButton(presPanel, ID_DIALOG_COLUMNS, "");
     bHideColumns_->SetMinSize(wxSize(180, -1));
     bHideColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnShowColumnsButton), nullptr, this);
-    itemPanelSizer->Add(bHideColumns_, g_flagsExpand);
+    presPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
+    //Group By
+    groupByCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Group By")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    presPanelSizer->Add(groupByCheckBox_, g_flagsH);
+
+    bGroupBy_ = new wxChoice(presPanel, wxID_ANY);
+    for (const auto& i : GROUPBY_OPTIONS)
+        bGroupBy_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    presPanelSizer->Add(bGroupBy_, g_flagsExpand);
+    mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
+
+    //Disable items that are only applicable to report mode
     if (!isReportMode_)
     {
         showColumnsCheckBox_->Disable();
         bHideColumns_->SetLabelText("");
         bHideColumns_->Disable();
+        groupByCheckBox_->Disable();
+        bGroupBy_->SetLabelText("");
+        bGroupBy_->Disable();
     }
-
 
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -487,6 +527,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         colourButton_->Enable(colourCheckBox_->IsChecked());
         bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
+        bGroupBy_->Enable(groupByCheckBox_->IsChecked());
     }
 
     if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
@@ -570,8 +611,7 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         switch (startDateDropDown_->GetSelection())
         {
             case FROM_FIN_YEAR:
-                date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-                                        , wxAtoi(Option::instance().FinancialYearStartMonth()));
+                date_range = new mmCurrentFinancialYear();
                 break;
             case FROM_CAL_YEAR:
                 date_range = new mmCurrentYear;
@@ -600,17 +640,37 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         return false;
     }
 
+    if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() < 0)
+    {
+        int id = bGroupBy_->GetId();
+        mmErrorDialogs::ToolTip4Object(FindWindow(id)
+            , _("Invalid value"), _("Group By"));
+        return false;
+    }
+
     return true;
 }
 
 void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 {
     if (isValuesCorrect()) {
-        settings_string_ = to_json();
-        int id = m_setting_name->GetSelection(); //Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
+        int id = m_setting_name->GetSelection();
         Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
-        Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", id), settings_string_);
-        wxLogDebug("Settings Saved to registry %i\n %s", id, settings_string_);
+        const wxString new_settings_string = to_json();
+        if (settings_string_ != new_settings_string) 
+        {
+            // settings have been changed to ask if we want to save
+            wxMessageDialog msgDlg(this
+                , _("Do you want to save them before continuing?")
+                , _("Filter settings have changed")
+                , wxYES_NO | wxYES_DEFAULT | wxICON_INFORMATION);
+            if (msgDlg.ShowModal() == wxID_YES)
+            {
+                settings_string_ = to_json();
+                Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", id), settings_string_);
+                wxLogDebug("Settings Saved to registry %i\n %s", id, settings_string_);
+            }
+        }
         EndModal(wxID_OK);
     }
 }
@@ -890,13 +950,11 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
     else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
         date_range = new mmCurrentYear;
     else if (view == VIEW_TRANS_CRRNT_FIN_YEAR_STR)
-        date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        date_range = new mmCurrentFinancialYear();
     else if (view == VIEW_TRANS_LAST_YEAR_STR)
         date_range = new mmLastYear;
     else if (view == VIEW_TRANS_LAST_FIN_YEAR_STR)
-        date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        date_range = new mmLastFinancialYear();
     if (date_range == NULL)
         date_range = new mmCurrentMonth;
 
@@ -1490,6 +1548,14 @@ bool mmFilterTransactionsDialog::getColourCheckBox()
     return colourCheckBox_->IsChecked();
 }
 
+int mmFilterTransactionsDialog::getGroupBy()
+{
+    int by = -1;
+    if (groupByCheckBox_->IsChecked())
+        by = bGroupBy_->GetSelection();
+    return by;
+}
+
 void mmFilterTransactionsDialog::ResetFilterStatus()
 {
     //m_custom_fields->ResetWidgetsChanged();
@@ -1507,7 +1573,6 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     int i = event.GetSelection();
     SetStoredSettings(i);
-    dataToControls();
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))

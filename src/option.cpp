@@ -77,6 +77,7 @@ void Option::LoadOptions(bool include_infotable)
         m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
         m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
+        m_homepage_incexp_range = Model_Infotable::instance().GetIntInfo("HOMEPAGE_INCEXP_RANGE", 0);
         // Ensure that base currency is set for the database.
         while (m_baseCurrency < 1)
         {
@@ -377,6 +378,12 @@ void Option::setReportingFirstDay(int value)
 {
     Model_Infotable::instance().Set("REPORTING_FIRSTDAY", value);
     m_reporting_firstday = value;
+}
+
+void Option::setHomePageIncExpRange(int value)
+{
+    Model_Infotable::instance().Set("HOMEPAGE_INCEXP_RANGE", value);
+    m_homepage_incexp_range = value;
 }
 
 int Option::AccountImageId(int account_id, bool def)

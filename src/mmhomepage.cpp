@@ -20,6 +20,8 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "mmhomepage.h"
 #include "html_template.h"
 #include "billsdepositspanel.h"
+#include "option.h"
+#include "optionsettingshome.h"
 #include "constants.h"
 #include <algorithm>
 #include <cmath>
@@ -378,23 +380,17 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 //* Income vs Expenses *//
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
-    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
-    wxSharedPtr<mmDateRange> date_range;
-    if (ignoreFuture)
-        date_range = new mmCurrentMonthToDate;
-    else
-        date_range = new mmCurrentMonth;
-
-    wxLogDebug("%s - %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
+    OptionSettingsHome home_options;
+    int i = Option::instance().getHomePageIncExpRange();
+    wxSharedPtr<mmDateRange> date_range(home_options.get_inc_vs_exp_date_range());
 
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
 
-
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range.get()->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
     );
@@ -421,16 +417,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
     }
-    // Compute chart spacing and interval (chart forced to start at zero)
-    double steps = 10.0;
-    double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
-    if (scaleStepWidth <= 1.0)
-        scaleStepWidth = 1.0;
-    else {
-        double s = pow10(ceil(log10(scaleStepWidth)) - 1.0);
-        if (s > 0)
-            scaleStepWidth = ceil(scaleStepWidth / s)*s;
-    }
+
 
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -459,10 +446,6 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     json_writer.String(wxString::FromCDouble(tIncome, 2).utf8_str());
     json_writer.Key("11");
     json_writer.String(wxString::FromCDouble(tExpenses, 2).utf8_str());
-    json_writer.Key("12");
-    json_writer.Int(steps);
-    json_writer.Key("13");
-    json_writer.Int(scaleStepWidth);
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getIncomeVsExpensesJSON =======");
