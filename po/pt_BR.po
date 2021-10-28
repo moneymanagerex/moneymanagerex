@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-28 13:09\n"
+"PO-Revision-Date: 2021-10-28 13:23\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -587,7 +587,7 @@ msgstr "Use a interrogação (?) para localizar um único caractere - por exempl
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:368 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Use o asterisco (*) para localizar qualquer número de caracteres - por exemplo, c*o localiza 'crédito', e 'crediário' e 'cartão', etc."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:369 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
