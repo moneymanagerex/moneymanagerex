@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-26 11:30\n"
+"PO-Revision-Date: 2021-10-28 13:09\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -579,11 +579,11 @@ msgstr "Insira qualquer sequência de caractere para encontrar ativos relacionad
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:366 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Dica: Você pode usar caracteres coringa - Interrogação (?), asterisco (*) - em seus critérios de pesquisa."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:367 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Use a interrogação (?) para localizar um único caractere - por exemplo, banc? localiza 'banco' e 'banca'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:368 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
