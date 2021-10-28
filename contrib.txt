@@ -136,20 +136,24 @@ William R Detamore
 Alexander Habegger
 David Coons
 David Morrison
+John David Bowman
 Kenneth Wiggers
 Lucas Lopez Azcona
 Officer Young
 Raleigh Meade
+Stelios Stylianou
 Thierry PAPINOT
 Jiří Vyskočil
 Roger Spindler
 Edgar Lloren
 Xiaoyun Wang
 Jean-michel LOUISET
+Werner Ammann
 Antonio Navarro Sánchez
-Tim Carden
 Brian Crow
+Tim Carden
 Jérémy DUFRAISSE
+Jean-michel BAUD
 Antonio Adam
 EMMANOUIL MASTROPETROS
 Frédéric Vandendris
@@ -160,6 +164,7 @@ Massimo casaccia
 Nicolas Arzamendia
 Sean Vinaja
 Timothy Pope
+Peter Pfister
 David Lehmann
 Fr. Cycus Chungu
 Roger Gimbrere
@@ -168,9 +173,11 @@ Neil Cottis
 Glenn Fowler
 Luisa Guglielmetti
 Rafael Moreira
+Samuel Sagon
 Francisco Fos Ros
 Marco Giuseppe Stimolo
 Doru Stoica
+Aaron Lim
 Ian Rowe
 Jonathan Thomas
 RICARDO ITURRIAGA
