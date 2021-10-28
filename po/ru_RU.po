@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-26 14:24+0300\n"
-"PO-Revision-Date: 2021-10-26 12:03\n"
+"PO-Revision-Date: 2021-10-28 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2477,7 +2477,7 @@ msgstr "Очистить все поля для текущего пресета"
 
 #: filtertransdialog.cpp:664
 msgid "Do you want to save them before continuing?"
-msgstr "Желаете сохранить их перед выходом?"
+msgstr "Сохранить изменения?"
 
 #: filtertransdialog.cpp:665
 msgid "Filter settings have changed"
