@@ -185,7 +185,7 @@ const wxString mmex::getPathResource(EResFile f)
     std::vector<std::pair<int, wxString> > files = {
         {TRANS_SOUND, "kaching.wav"},
         {HOME_PAGE_TEMPLATE, "home_page.htt"},
-        {THEMESDIR, ""}
+        {THEMESDIR, "themes"}
     };
 
     for (const auto& item : files)

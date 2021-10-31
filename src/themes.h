@@ -60,8 +60,8 @@ private:
     void CreateControls();
     void ReadThemes();
     void RefreshView();
-    void addThemes(wxString themeDir, bool isSystem);
-    ThemeEntry getThemeEntry(wxString name);
+    void addThemes(const wxString& themeDir, bool isSystem);
+    ThemeEntry getThemeEntry(const wxString& name);
  
     void OnOk(wxCommandEvent& event);
     void OnImport(wxCommandEvent& event);
