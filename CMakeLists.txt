@@ -587,14 +587,8 @@ install(FILES
     resources/mmex.png
     DESTINATION "${MMEX_RES_DIR}")
 
-    install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
-    "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
-    "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
-    "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
-    "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
-    DESTINATION "${MMEX_RES_DIR}/themes")
-
+    file(GLOB MMEX_THEMES "${CMAKE_CURRENT_BINARY_DIR}/*.mmextheme")
+    install(FILES ${MMEX_THEMES} DESTINATION "${MMEX_RES_DIR}/themes")
 
 if(LINUX)
     # .desktop File
