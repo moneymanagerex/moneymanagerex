@@ -49,7 +49,7 @@ const char HTMLPANEL[] = R"(
 
 bool mmThemesDialog::vfsThemeImageLoaded = false;
 
-mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(wxString name)
+mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(const wxString& name)
 {
     ThemeEntry thisTheme;
     for (const auto theme : m_themes)
@@ -63,7 +63,7 @@ mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(wxString name)
     return thisTheme;
 }
 
-void mmThemesDialog::addThemes(wxString themeDir, bool isSystem)
+void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
 {
     wxString chosenTheme = Model_Setting::instance().Theme();
     wxDir directory(themeDir);
