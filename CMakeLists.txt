@@ -423,7 +423,7 @@ add_subdirectory(3rd)
 add_subdirectory(po)
 add_subdirectory(src)
 
-# Build the themes.zip file, only one theme at present
+
 function(create_zip output_file input_files working_dir)
     add_custom_command(
         COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files} 
@@ -434,6 +434,7 @@ function(create_zip output_file input_files working_dir)
     )
 endfunction()
 
+# Build themes zip files
 file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/default/*")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/default/")
 file(GLOB THEME_COLORFUL_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/colorful/*")
@@ -445,11 +446,19 @@ create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBL
 file(GLOB THEME_DARKMODE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/*")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme" "${THEME_DARKMODE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/")
 
-add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
+# Build reports zip files
+file(GLOB GRM_ACC_AccBal "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_ACC_AccBal}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
+
+
+add_custom_target(generate_res_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme")
+                                                     "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
+                                                     "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
+                                                     )
+
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${MMEX_EXE})
@@ -587,8 +596,13 @@ install(FILES
     resources/mmex.png
     DESTINATION "${MMEX_RES_DIR}")
 
-    file(GLOB MMEX_THEMES "${CMAKE_CURRENT_BINARY_DIR}/*.mmextheme")
-    install(FILES ${MMEX_THEMES} DESTINATION "${MMEX_RES_DIR}/themes")
+#Themes
+file(GLOB MMEX_THEMES "${CMAKE_CURRENT_BINARY_DIR}/*.mmextheme")
+install(FILES ${MMEX_THEMES} DESTINATION "${MMEX_RES_DIR}/themes")
+
+#Custom Reports
+file(GLOB GRM_REPORTS "${CMAKE_CURRENT_BINARY_DIR}/*.grm")
+install(FILES ${GRM_REPORTS} DESTINATION "${MMEX_RES_DIR}/reports")
 
 if(LINUX)
     # .desktop File
