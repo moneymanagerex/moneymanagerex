@@ -447,7 +447,11 @@ file(GLOB THEME_DARKMODE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme" "${THEME_DARKMODE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/")
 
 # Build reports zip files
-file(GLOB GRM_ACC_AccBal "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/*")
+set(GRM_ACC_AccBal "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/description.txt"
+                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/luacontent.lua"
+                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/sqlcontent.sql"
+                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/template.htt"
+)
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_ACC_AccBal}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
 
 
