@@ -446,17 +446,11 @@ create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBL
 file(GLOB THEME_DARKMODE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/*")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme" "${THEME_DARKMODE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/")
 
-# Build reports zip files
-file(GLOB GRM_ACC_AccBal "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_ACC_AccBal}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
-
-
 add_custom_target(generate_res_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
                                                      )
 
 ## Tuning for VisualStudio IDE ##
