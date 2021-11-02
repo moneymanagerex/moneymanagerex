@@ -189,7 +189,7 @@ bool darkFound, darkMode;
 static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
 Document metaData_doc;
 
-static wxArrayString* filesInVFS;
+static wxSharedPtr<wxArrayString> filesInVFS;
 
 static const std::map<int, wxBitmap> navtree_images()
 {
@@ -513,13 +513,11 @@ void LoadTheme()
             reverttoDefaultTheme();
         }
     
-    if (!checkThemeContents(filesInVFS))
+    if (!checkThemeContents(filesInVFS.get()))
     {
         wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
         reverttoDefaultTheme();
     } 
-    
-    delete filesInVFS; 
 }
 
 const wxString mmThemeMetaString(int ref)

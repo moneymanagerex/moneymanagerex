@@ -446,12 +446,24 @@ create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBL
 file(GLOB THEME_DARKMODE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/*")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme" "${THEME_DARKMODE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/")
 
-add_custom_target(generate_res_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
+add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
-                                                     )
+)
+
+# Build reports zip files
+set(GRM_ACC_AccBal "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/description.txt"
+                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/luacontent.lua"
+                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/sqlcontent.sql"
+                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/template.htt"
+)
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_ACC_AccBal}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
+
+add_custom_target(generate_reports ALL DEPENDS  "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
+)
+
 
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)

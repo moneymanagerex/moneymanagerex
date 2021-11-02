@@ -663,7 +663,7 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
             wxMessageDialog msgDlg(this
                 , _("Do you want to save them before continuing?")
                 , _("Filter settings have changed")
-                , wxYES_NO | wxYES_DEFAULT | wxICON_INFORMATION);
+                , wxYES_NO | wxYES_DEFAULT);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 settings_string_ = to_json();
