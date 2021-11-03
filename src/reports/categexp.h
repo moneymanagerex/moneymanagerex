@@ -1,7 +1,8 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2017 James Higley
-
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -39,7 +40,7 @@ protected:
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; double amount; int categs; };
+    struct data_holder { int catID; int subCatID; wxString name; double amount; int categs; };
     std::vector<data_holder> data_;
 };
 

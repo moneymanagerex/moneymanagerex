@@ -62,6 +62,7 @@ void  mmReportPayeeExpenses::RefreshData()
         Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
 
         line.name = payee ? payee->PAYEENAME : "";
+        line.payee = payee ? payee->PAYEEID : -1;
         line.incomes = entry.second.first;
         line.expenses = entry.second.second;
         data_.push_back(line);
@@ -98,6 +99,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.init();
     hb.addReportHeader(getReportTitle(), m_date_range->startDay());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    // Prime the filter
+    m_filter.clear();
+    m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());
 
     // Add the chart
     if (!valueList_.empty() && (getChartSelection() == 0))
@@ -146,7 +150,8 @@ wxString mmReportPayeeExpenses::getHTMLText()
                 {
                     hb.startTableRow();
                     {
-                        hb.addTableCell(entry.name);
+                        hb.addTableCellLink(wxString::Format("viewtrans:-1:-1:%d", entry.payee)
+                            , entry.name);
                         hb.addMoneyCell(entry.incomes);
                         hb.addMoneyCell(entry.expenses);
                         hb.addMoneyCell(entry.incomes + entry.expenses);

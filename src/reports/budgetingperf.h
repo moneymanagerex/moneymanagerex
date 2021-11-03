@@ -33,6 +33,8 @@ public:
 
 private:
     void DisplayRow(const wxString& catName
+        , int catID
+        , int subCatID
         , double estimated
         , double actual
         , int month
