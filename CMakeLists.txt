@@ -600,15 +600,14 @@ install(FILES
     resources/home_page.htt
     resources/kaching.wav
     resources/mmex.png
+    "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
     DESTINATION "${MMEX_RES_DIR}")
-
-#Themes
-file(GLOB MMEX_THEMES "${CMAKE_CURRENT_BINARY_DIR}/*.mmextheme")
-install(FILES ${MMEX_THEMES} DESTINATION "${MMEX_RES_DIR}")
-
-#Custom Reports
-file(GLOB GRM_REPORTS "${CMAKE_CURRENT_BINARY_DIR}/*.grm")
-install(FILES ${GRM_REPORTS} DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)
     # .desktop File
