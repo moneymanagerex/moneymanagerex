@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2006-2012
+ Copyright (C) 2006-2021
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ protected:
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; double incomes; double expenses; };
+    struct data_holder { wxString name; int payee; double incomes; double expenses; };
     std::vector<data_holder> data_;
     std::vector<ValuePair> valueList_;
     double positiveTotal_;
