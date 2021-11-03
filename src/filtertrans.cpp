@@ -63,7 +63,7 @@ void mmFilterTransactions::setPayeeList(const wxArrayInt payeeList)
     _payeeList = payeeList;
 }
 
-void mmFilterTransactions::setCategoryList(const std::vector<std::pair<int, int>> categoryList)
+void mmFilterTransactions::setCategoryList(const std::vector<std::pair<int, int>> &categoryList)
 {
     _categoryFilter = true;
     _categoryList = categoryList;
