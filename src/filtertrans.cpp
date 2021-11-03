@@ -134,14 +134,16 @@ wxString mmFilterTransactions::getHTML()
                 if (_categoryFilter)
                 {
                     found = false;
-                    std::vector<std::pair<int, int>>::iterator it;
-                    for (it = _categoryList.begin(); it != _categoryList.end(); ++it)
+
+                    for (const auto& it : _categoryList)
                     {
-                        if ((it->first == split.CATEGID) && (it->second == split.SUBCATEGID))
+                        if ((it.first == split.CATEGID) && (it.second == split.SUBCATEGID)) {
                             found = true;
                             break;
+                        }
                     }
                 }
+
                 if (found)
                 {
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
