@@ -33,8 +33,8 @@ public:
     // Filter setup methods
     void setDateRange(wxDateTime startDate, wxDateTime endDate);
     void setAccountList(const wxArrayString* accountList);
-    void setPayeeList(wxArrayInt payeeList);
-    void setCategoryList(std::vector<std::pair<int, int>> categoryList);
+    void setPayeeList(const wxArrayInt payeeList);
+    void setCategoryList(const std::vector<std::pair<int, int>> categoryList);
  
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>

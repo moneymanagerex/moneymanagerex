@@ -57,13 +57,13 @@ void mmFilterTransactions::setAccountList(const wxArrayString* accountList)
     }
 }
 
-void mmFilterTransactions::setPayeeList(wxArrayInt payeeList)
+void mmFilterTransactions::setPayeeList(const wxArrayInt payeeList)
 {
     _payeeFilter = true;
     _payeeList = payeeList;
 }
 
-void mmFilterTransactions::setCategoryList(std::vector<std::pair<int, int>> categoryList)
+void mmFilterTransactions::setCategoryList(const std::vector<std::pair<int, int>> categoryList)
 {
     _categoryFilter = true;
     _categoryList = categoryList;
@@ -224,7 +224,6 @@ table {
         if (acc)
         {
             double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
-            const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
             hb.addCurrencyCell(amount, curr);
         }
         else
