@@ -93,7 +93,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
+    hb.addReportHeader(getReportTitle());
 
     hb.addDivContainer("shadow");
     {
