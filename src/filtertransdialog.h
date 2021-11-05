@@ -56,6 +56,7 @@ public:
     bool getAccountCheckBox();
     bool getCategoryCheckBox();
     bool getSimilarStatus();
+    bool getRangeCheckBox();
     bool getDateRangeCheckBox();
     bool getStartDateCheckBox();
     bool getHideColumnsCheckBox();
@@ -153,6 +154,9 @@ private:
     wxString prev_value_;
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
+    std::vector<wxSharedPtr<mmDateRange>> all_date_ranges_;
+    wxCheckBox* rangeCheckBox_;
+    wxChoice* rangeChoice_;
     wxCheckBox* startDateCheckBox_;
     wxChoice* startDateDropDown_;
     wxCheckBox* dateRangeCheckBox_;
