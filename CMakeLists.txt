@@ -601,13 +601,20 @@ install(FILES
     resources/mmex.png
     DESTINATION "${MMEX_RES_DIR}")
 
-#Themes
-file(GLOB THEME_FILES ${CMAKE_CURRENT_BINARY_DIR}/*.mmextheme)
-install(FILES ${THEME_FILES} DESTINATION ${MMEX_RES_DIR}/themes)
+install(FILES #Themes
+    "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
+    DESTINATION "${MMEX_RES_DIR}")
 
-#GRM files
-file(GLOB GRM_FILES ${CMAKE_CURRENT_BINARY_DIR}/*.grm)
-install(FILES ${GRM_FILES} DESTINATION ${MMEX_RES_DIR}/reports)
+install(FILES #Custom Reports
+    "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
+    "${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm"
+    "${CMAKE_CURRENT_BINARY_DIR}/SimpleClock.grm"
+    DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)
     # .desktop File
