@@ -454,16 +454,15 @@ add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR
 )
 
 # Build reports zip files
-set(GRM_ACC_AccBal "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/description.txt"
-                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/luacontent.lua"
-                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/sqlcontent.sql"
-                   "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/template.htt"
-)
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_ACC_AccBal}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
+set(GRM_DEFAULT_FILES "description.txt" "luacontent.lua" "sqlcontent.sql" "template.htt")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Asset/AssetsSummary/")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/SimpleClock.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Others/Simple Clock/")
 
 add_custom_target(generate_reports ALL DEPENDS  "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
+                                                "${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm"
+                                                "${CMAKE_CURRENT_BINARY_DIR}/SimpleClock.grm"
 )
-
 
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
@@ -600,13 +599,21 @@ install(FILES
     resources/home_page.htt
     resources/kaching.wav
     resources/mmex.png
+    DESTINATION "${MMEX_RES_DIR}")
+
+install(FILES #Themes
     "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
+    DESTINATION "${MMEX_RES_DIR}")
+
+install(FILES #Custom Reports
     "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
+    "${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm"
+    "${CMAKE_CURRENT_BINARY_DIR}/SimpleClock.grm"
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)
