@@ -456,7 +456,7 @@ add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR
 # Build reports zip files
 set(GRM_DEFAULT_FILES "description.txt" "luacontent.lua" "sqlcontent.sql" "template.htt" "sample.png")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURBCE_DIR}/general-reports/packages/Asset/AssetsSummary/")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Asset/AssetsSummary/")
 
 add_custom_target(generate_reports ALL DEPENDS  "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
 )
