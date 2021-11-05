@@ -103,7 +103,7 @@ table {
     start.ParseISODate(m_transDialog->getBeginDate());
     end.ParseISODate(m_transDialog->getEndDate());
     hb.DisplayDateHeading(start, end
-        , m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox()
+        , m_transDialog->getRangeCheckBox() || m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox()
         , m_transDialog->getStartDateCheckBox());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 

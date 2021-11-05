@@ -1201,9 +1201,12 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
 
     if (rangeCheckBox_->IsChecked())
     {
-        const wxString startPoint = rangeChoice_->GetStringSelection();
-        json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
-        json_writer.String(startPoint.utf8_str());
+        const wxString range = rangeChoice_->GetStringSelection();
+        if (!range.empty())
+        {
+            json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
+            json_writer.String(range.utf8_str());
+        }
     }
 
     if (startDateCheckBox_->IsChecked())
