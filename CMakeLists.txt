@@ -434,35 +434,41 @@ function(create_zip output_file input_files working_dir)
     )
 endfunction()
 
-# Build themes zip files
-file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/default/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/default/")
-file(GLOB THEME_COLORFUL_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/colorful/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme" "${THEME_COLORFUL_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/colorful/")
-file(GLOB THEME_SIMPLEBLACK_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/simple-black/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme" "${THEME_SIMPLEBLACK_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/simple-black/")
-file(GLOB THEME_YELLOWBLUE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/yellow-blue/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBLUE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/yellow-blue/")
-file(GLOB THEME_DARKMODE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme" "${THEME_DARKMODE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/dark-mode/")
+MACRO(GETSUBDIRS result curdir)
+  FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+  SET(dirlist "")
+  FOREACH(child ${children})
+    IF(IS_DIRECTORY ${curdir}/${child})
+      LIST(APPEND dirlist ${child})
+    ENDIF()
+  ENDFOREACH()
+  SET(${result} ${dirlist})
+ENDMACRO()
 
-add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/dark-mode.mmextheme"
-)
+# Generate Themes
+GETSUBDIRS(THEMESDIR "${PROJECT_SOURCE_DIR}/themes/system-themes/")
+FOREACH(THEMENAME ${THEMESDIR})
+    file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/*")
+    create_zip("${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/")
+    list(APPEND THEMEFILES "${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme")
+ENDFOREACH()
+add_custom_target(generate_theme_files ALL DEPENDS ${THEMEFILES})
 
-# Build reports zip files
-set(GRM_DEFAULT_FILES "description.txt" "luacontent.lua" "sqlcontent.sql" "template.htt")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Account/AccountBalances/")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Asset/AssetsSummary/")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/SimpleClock.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/Others/Simple Clock/")
-
-add_custom_target(generate_reports ALL DEPENDS  "${CMAKE_CURRENT_BINARY_DIR}/AccountBalances.grm"
-                                                "${CMAKE_CURRENT_BINARY_DIR}/AssetsSummary.grm"
-                                                "${CMAKE_CURRENT_BINARY_DIR}/SimpleClock.grm"
-)
+# Generate Reports
+GETSUBDIRS(GRMGROUPDIR "${PROJECT_SOURCE_DIR}/general-reports/packages/")
+FOREACH(GRMGROUP ${GRMGROUPDIR})
+    GETSUBDIRS(GRMDIR "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/")
+    FOREACH(GRMNAME ${GRMDIR})
+        set(GRM_DEFAULT_FILES   "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/description.txt" 
+                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/luacontent.lua" 
+                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/sqlcontent.sql" 
+                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/template.htt"
+        )
+        create_zip("${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/")
+        list(APPEND GRMFILES "${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm")
+        ENDFOREACH()
+ENDFOREACH()
+add_custom_target(generate_grm_files ALL DEPENDS ${GRMFILES})
 
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
@@ -601,13 +607,9 @@ install(FILES
     resources/mmex.png
     DESTINATION "${MMEX_RES_DIR}")
 
-#Themes
-file(GLOB THEME_FILES ${CMAKE_CURRENT_BINARY_DIR}/*.mmextheme)
-install(FILES ${THEME_FILES} DESTINATION ${MMEX_RES_DIR})
-
-#GRM files
-file(GLOB GRM_FILES ${CMAKE_CURRENT_BINARY_DIR}/*.grm)
-install(FILES ${GRM_FILES} DESTINATION ${MMEX_RES_DIR})
+#Themes & GRM
+install(FILES ${THEMEFILES} DESTINATION ${MMEX_RES_DIR})
+install(FILES ${GRMFILES} DESTINATION ${MMEX_RES_DIR})
 
 if(LINUX)
     # .desktop File
