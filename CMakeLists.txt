@@ -283,6 +283,8 @@ else()
     set(MMEX_DOC_DIR share/doc/mmex)
     set(MMEX_RES_DIR share/mmex/res)
 endif()
+set(MMEX_RES_DIR_THEMES "${MMEX_RES_DIR}/themes")
+set(MMEX_RES_DIR_REPORTS "${MMEX_RES_DIR}/reports")
 
 
 # --------- wxWidgets dependency ---------
@@ -466,7 +468,7 @@ FOREACH(GRMGROUP ${GRMGROUPDIR})
         )
         create_zip("${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/")
         list(APPEND GRMFILES "${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm")
-        ENDFOREACH()
+    ENDFOREACH()
 ENDFOREACH()
 add_custom_target(generate_grm_files ALL DEPENDS ${GRMFILES})
 
@@ -608,8 +610,8 @@ install(FILES
     DESTINATION "${MMEX_RES_DIR}")
 
 #Themes & GRM
-install(FILES ${THEMEFILES} DESTINATION ${MMEX_RES_DIR})
-install(FILES ${GRMFILES} DESTINATION ${MMEX_RES_DIR})
+install(FILES ${THEMEFILES} DESTINATION ${MMEX_RES_DIR_THEMES})
+install(FILES ${GRMFILES} DESTINATION ${MMEX_RES_DIR_REPORTS})
 
 if(LINUX)
     # .desktop File
