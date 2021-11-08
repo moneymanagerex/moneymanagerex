@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 16:53\n"
+"PO-Revision-Date: 2021-11-08 17:01\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2527,7 +2527,7 @@ msgstr "Avant"
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "Période"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
