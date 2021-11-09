@@ -997,10 +997,10 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& WXUNUSED(event))
     OnFocusChange(evt);
 }
 
-#if defined (__WXMAC__)
+
 void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& event)
 {
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+#if defined (__WXMAC__)    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!
     wxString accountName = event.GetString();
     if (cbAccount_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
@@ -1018,9 +1018,6 @@ void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& event)
         cbAccount_->Popup();
         cbAccount_->SetEvtHandlerEnabled(true);
     }
-#else
-void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& WXUNUSED(event))
-{
 #endif
     event.Skip();
 }
