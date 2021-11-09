@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 16:36\n"
+"PO-Revision-Date: 2021-11-09 07:42\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2328,7 +2328,7 @@ msgstr "Οι προγραμματιστές μπορούν να σας ζητή�
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "Πίσω"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
 #: reports/transactions.cpp:156
@@ -2394,7 +2394,7 @@ msgstr "Από\tΗμερομηνία"
 
 #: filtertransdialog.cpp:239
 msgid "Period Range"
-msgstr ""
+msgstr "Εύρος Περιόδου"
 
 #: filtertransdialog.cpp:267 reports/mmDateRange.cpp:33
 msgid "Date Range"
@@ -2527,7 +2527,7 @@ msgstr "Πριν"
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "Περίοδος"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
