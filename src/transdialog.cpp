@@ -54,6 +54,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
     EVT_COMBOBOX(ID_DIALOG_TRANS_PAYEECOMBO, mmTransDialog::OnAccountOrPayeeUpdated)
+    EVT_COMBOBOX(ID_DIALOG_TRANS_FROMACCOUNT, mmTransDialog::OnFromAccountUpdated)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -72,6 +73,8 @@ void mmTransDialog::SetEventHandlers()
 {
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
+    cbAccount_->Connect(ID_DIALOG_TRANS_FROMACCOUNT, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(mmTransDialog::OnFromAccountUpdated), nullptr, this);
     m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
@@ -518,7 +521,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
-    cbAccount_ = new wxComboBox(this, wxID_ANY);
+    cbAccount_ = new wxComboBox(this, ID_DIALOG_TRANS_FROMACCOUNT);
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
@@ -992,6 +995,34 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& WXUNUSED(event))
 #endif
     wxChildFocusEvent evt;
     OnFocusChange(evt);
+}
+
+#if defined (__WXMAC__)
+void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& event)
+{
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    wxString accountName = event.GetString();
+    if (cbAccount_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        cbAccount_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+        cbAccount_->Clear();
+        
+        Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(accountName, true);
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
+        for (const auto &account : filtd)
+            cbAccount_->Insert(account.ACCOUNTNAME, 0);
+  
+        cbAccount_->ChangeValue(accountName);
+        cbAccount_->SetInsertionPointEnd();
+        cbAccount_->Popup();
+        cbAccount_->SetEvtHandlerEnabled(true);
+    }
+#else
+void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& WXUNUSED(event))
+{
+#endif
+    event.Skip();
 }
 
 void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
