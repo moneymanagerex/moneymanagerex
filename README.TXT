@@ -13,7 +13,7 @@ MS Windows: 95, 98, ME, 2000, NT, XP, 7, 8, 8.1, 10, 11
         Unicode builds: x86, x64, ia64 versions available.
 
 Unixes: almost any Unix workstation with GTK+ 2.0 and above.
-Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
+Mac: Mac OS X 10.10+, 11+, 12+ (Intel/ARM64)
 
 -[Russian]-----------------------------------------------------------------------
 Money Manager Ex - бесплатная, с открытым исходным кодом,
@@ -30,7 +30,7 @@ MS Windows: 95, 98, ME, 2000, NT, XP, 7, 8, 8.1, 10, 11
         Юникод сборки: x86, x64, ia64 версии.
 
 Юниксы: любой Unix с GTK+ 2.0 и выше.
-Маки: Mac OS 8.6/9.x (Классик) или Mac OS X 10.x.
+Mac: Mac OS X 10.10+, 11+, 12+ (Intel/ARM64)
 
 -[Italian]-----------------------------------------------------------------------
 Money Manager Ex и un programma di gestione finanziaria personale gratuito, 
@@ -49,8 +49,7 @@ MS Windows: 95, 98, ME, 2000, NT, XP, 7, 8, 8.1, 10, 11
         Build ANSI e Unicode; versioni x86, x64, ia64.
 
 Unixes: la magior parte dei sistemi Unix co GTK+ 2.0 e successivi.
-
-Mac: Mac OS 8.6/9.x (es. Classic) o Mac OS X 10.x.
+Mac: Mac OS X 10.10+, 11+, 12+ (Intel/ARM64)
 
 -[Polish]-----------------------------------------------------------------------
 Money Manager Ex to program rozwijany jako open source służący do zarządzania
@@ -83,7 +82,7 @@ MS Windows: 95, 98, ME, 2000, NT, XP, 7, 8, 8.1, 10, 11
         Unicode-Builds: x86, x64, ia64 Versionen verfügbar.
 
 Unixe: fast jede Unix-Workstation mit GTK+ 2.0 und höher.
-Mac: Mac OS 8.6/9.x (z. B. Classic) oder Mac OS X 10.x.
+Mac: Mac OS X 10.10+, 11+, 12+ (Intel/ARM64)
 -[Francais]------------------------------------------------------------------------
 Money Manager Ex est un logiciel de finances personnelles gratuit, open-source, multiplateforme et facile à utiliser. 
 logiciel de finances personnelles. Il aide principalement à organiser les finances d'une personne et à garder la trace 
@@ -99,4 +98,4 @@ MS Windows : 95, 98, ME, 2000, NT, XP, 7, 8, 8.1, 10, 11
         Constructions Unicode : versions x86, x64, ia64 disponibles.
 
 Unixes : presque toutes les stations de travail Unix avec GTK+ 2.0 et plus.
-Mac : Mac OS 8.6/9.x (ex. Classic) ou Mac OS X 10.x.
+Mac: Mac OS X 10.10+, 11+, 12+ (Intel/ARM64)
