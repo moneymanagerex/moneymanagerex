@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-09 13:23\n"
+"PO-Revision-Date: 2021-11-11 12:47\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -777,7 +777,7 @@ msgstr "Săptămînală"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr ""
+msgstr "La doua săptămâni"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:52 mmframereport.cpp:129
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
@@ -864,7 +864,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:129
 msgid "Date Due"
-msgstr ""
+msgstr "Dată scadentă"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1275
 msgid "Repeats"
@@ -2379,7 +2379,7 @@ msgstr "De la data"
 
 #: filtertransdialog.cpp:239
 msgid "Period Range"
-msgstr ""
+msgstr "Interval perioadă"
 
 #: filtertransdialog.cpp:267 reports/mmDateRange.cpp:33
 msgid "Date Range"
@@ -2512,7 +2512,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "Perioadă"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
