@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 16:36\n"
+"PO-Revision-Date: 2021-11-12 16:43\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -580,19 +580,19 @@ msgstr "הזנת מחרוזת לחיפוש נכס"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:394 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "עצה: ניתן להשתמש בתווים כלליים - סימן שאלה (?), כוכבית (*) - בקריטריוני החיפוש."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:395 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "אפשר להשתמש בסימן השאלה (?) כדי למצוא כל תו בודד - לדוגמה, ש?ת יחזיר 'שבת' ו'שנת'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:396 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "אפשר להשתמש בכוכבית (*) כדי למצוא מספר תוים כל שהוא - לדוגמה, ש*ם יחזיר 'שרתים' ו'שלהבת'."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:397 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "שימוש בכוכבית(*) בתחילת המחרוזת להחזרת מחרוזת כל שהיא מאמצע המשפט."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -2334,7 +2334,7 @@ msgstr "מפתחים עשויים לבקש לקבל מידע המוצג כאן �
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "אחורה"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
 #: reports/transactions.cpp:156
@@ -2400,7 +2400,7 @@ msgstr "מתאריך"
 
 #: filtertransdialog.cpp:239
 msgid "Period Range"
-msgstr ""
+msgstr "טווח תקופות"
 
 #: filtertransdialog.cpp:267 reports/mmDateRange.cpp:33
 msgid "Date Range"
@@ -2442,7 +2442,7 @@ msgstr "טווח סכומים"
 
 #: filtertransdialog.cpp:393
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "נא להזין מחרוזת כל שהיא לחיפושה בהערות התנועה"
 
 #: filtertransdialog.cpp:405
 msgid "Select the Color"
@@ -2450,19 +2450,19 @@ msgstr "בחירת צבע"
 
 #: filtertransdialog.cpp:412
 msgid "Presentation Options"
-msgstr ""
+msgstr "אפשרויות תצוגה"
 
 #: filtertransdialog.cpp:427
 msgid "Hide Columns"
-msgstr ""
+msgstr "הסתרת עמודות"
 
 #: filtertransdialog.cpp:438 filtertransdialog.cpp:700
 msgid "Group By"
-msgstr ""
+msgstr "קבוץ לפי"
 
 #: filtertransdialog.cpp:446
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "הגדרת אופן קיבוץ הדוח"
 
 #: filtertransdialog.cpp:465
 msgid "Settings"
@@ -2485,15 +2485,15 @@ msgstr "ניקוי כל השדות המוגדרים מראש בבחירה נוכ
 
 #: filtertransdialog.cpp:717
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "האם לשמור לפני שממשיכים?"
 
 #: filtertransdialog.cpp:718
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "הגדרות המסנן שונו"
 
 #: filtertransdialog.cpp:770
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "הסתר עמודות דוח"
 
 #: filtertransdialog.cpp:913 filtertransdialog.cpp:1663
 msgid "Please Enter"
@@ -2533,7 +2533,7 @@ msgstr "לפני"
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "תקופה"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
@@ -3977,7 +3977,7 @@ msgstr "שכפול תנועה"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "נא להזין מחרוזת כל שהיא לחיפושה בנתוני התנועה הקרובה ביותר"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -6309,7 +6309,7 @@ msgstr "הכנסות מול הוצאות - חודשי"
 
 #: reports/incexpenses.cpp:215 reports/incexpenses.cpp:256
 msgid "Cumulative"
-msgstr ""
+msgstr "מצטבר"
 
 #: reports/mmDateRange.cpp:85
 msgid "Current Month"
