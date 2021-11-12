@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-12 16:53\n"
+"PO-Revision-Date: 2021-11-12 17:03\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1002,7 +1002,7 @@ msgstr "פיצול"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1307
 msgid "Use split Categories"
-msgstr "נא להשתמש בפיצול "
+msgstr "שימוש בפיצול סוגי־אב"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:133
 #: budgetingpanel.cpp:298 filtertrans.cpp:196 filtertransdialog.cpp:57
@@ -2371,7 +2371,7 @@ msgstr "הכל למעט מותאמים"
 
 #: filtertransdialog.cpp:70
 msgid "Start of Financial Year"
-msgstr "תחילת שנה פיננסית"
+msgstr "תחילת שנת כספים"
 
 #: filtertransdialog.cpp:71
 msgid "Start of This Year"
@@ -2967,7 +2967,7 @@ msgstr "נתונים"
 
 #: import_export/qif_import_gui.cpp:264
 msgid "Use account number instead of account name"
-msgstr "להשתמש במספר חשבון במקום שם חשבון"
+msgstr "שימוש במספר חשבון במקום שם חשבון"
 
 #: import_export/qif_import_gui.cpp:268
 msgid "Include payee field in notes"
@@ -5601,7 +5601,7 @@ msgstr "שנת כספים"
 
 #: optionsettingsgeneral.cpp:182
 msgid "Start Day"
-msgstr "יום התחלה"
+msgstr "מתחילה ביום"
 
 #: optionsettingsgeneral.cpp:188
 msgid "Specify Day for start of financial year"
@@ -5609,7 +5609,7 @@ msgstr "נא להגדיר את היום הראשון בשנת הכספים"
 
 #: optionsettingsgeneral.cpp:192
 msgid "Start Month"
-msgstr "חודש התחלה"
+msgstr "מתחילה בחודש"
 
 #: optionsettingsgeneral.cpp:204
 msgid "Specify month for start of financial year"
@@ -5617,7 +5617,7 @@ msgstr "נא להגדיר את החודש הראשון בשנת הכספים"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Use Original Date when Pasting Transactions"
-msgstr "להשתמש בתאריך מקורי בזמן רישום תנועה"
+msgstr "שימוש בתאריך מקורי בזמן רישום תנועה"
 
 #: optionsettingsgeneral.cpp:211
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
@@ -5633,7 +5633,7 @@ msgstr "בחירההאם להשתמש בתאריך מקורי, או תאריך '
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Transaction Sound"
-msgstr "להשתמש בצליל תנועה"
+msgstr "שימוש בצליל תנועה"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use sounds when entering transactions"
@@ -5874,7 +5874,7 @@ msgstr "קיזוז תקציב (ימים):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr "קידום או איחור תאריך ההתחלה מה -1 בחודש או בשנה, במספר ימים"
+msgstr "קידום או איחור תאריך ההתחלה מה־1 בחודש או בשנה, במספר ימים"
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
@@ -6289,7 +6289,7 @@ msgstr "לאורך זמן"
 
 #: reports/htmlbuilder.cpp:206
 msgid "User specified start day"
-msgstr "תאריך התחלה מוגדר על ידך"
+msgstr "תאריך התחלה מוגדר משתמש"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
