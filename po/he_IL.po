@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-12 16:43\n"
+"PO-Revision-Date: 2021-11-12 16:53\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1748,7 +1748,7 @@ msgstr "הצגת שנה נוכחית"
 
 #: constants.cpp:188
 msgid "View Current Financial Year"
-msgstr "הצגת שנה פיננסית נוכחית"
+msgstr "הצגת שנת כספים נוכחית"
 
 #: constants.cpp:189
 msgid "View Last Year"
@@ -1756,7 +1756,7 @@ msgstr "הצגת שנה קודמת"
 
 #: constants.cpp:190
 msgid "View Last Financial Year"
-msgstr "הצגת שנה פיננסית קודמת"
+msgstr "הצגת שנת כספים קודמת"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
@@ -4319,11 +4319,11 @@ msgstr "הצגת/הסתרת חשבונות ניירות ערך בסרגל הני
 
 #: mmframe.cpp:1412
 msgid "Budgets: As Financial &Years"
-msgstr "תקציב: כשנה &פיננסית"
+msgstr "תקציב: כשנת &כספים"
 
 #: mmframe.cpp:1412
 msgid "Display Budgets in Financial Year Format"
-msgstr "הצגת תקציב בתבנית שנה פיננסית"
+msgstr "הצגת תקציב בתבנית שנת כספים"
 
 #: mmframe.cpp:1414
 msgid "Budgets: &Include Transfers in Totals"
@@ -5543,7 +5543,7 @@ msgstr "יעד"
 
 #: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
-msgstr "כותרת תצוגה"
+msgstr "כותרת לתצוגה"
 
 #: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
@@ -5597,7 +5597,7 @@ msgstr "נא לבחור לשימוש בהיסטוריית שערים (שער ל�
 
 #: optionsettingsgeneral.cpp:175
 msgid "Financial Year"
-msgstr "שנה פיננסית"
+msgstr "שנת כספים"
 
 #: optionsettingsgeneral.cpp:182
 msgid "Start Day"
@@ -5605,7 +5605,7 @@ msgstr "יום התחלה"
 
 #: optionsettingsgeneral.cpp:188
 msgid "Specify Day for start of financial year"
-msgstr "נא להגדיר את היום הראשון בשנה הפיננסית"
+msgstr "נא להגדיר את היום הראשון בשנת הכספים"
 
 #: optionsettingsgeneral.cpp:192
 msgid "Start Month"
@@ -5613,7 +5613,7 @@ msgstr "חודש התחלה"
 
 #: optionsettingsgeneral.cpp:204
 msgid "Specify month for start of financial year"
-msgstr "נא להגדיר את החודש הראשון בשנה הפיננסית"
+msgstr "נא להגדיר את החודש הראשון בשנת הכספים"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Use Original Date when Pasting Transactions"
@@ -6357,15 +6357,15 @@ msgstr "שנה קודמת"
 
 #: reports/mmDateRange.cpp:213
 msgid "Current Financial Year"
-msgstr "שנה פיננסית נוכחית"
+msgstr "שנת כספים נוכחית"
 
 #: reports/mmDateRange.cpp:223
 msgid "Current Financial Year to Date"
-msgstr "שנה פיננסית נוכחית להיום"
+msgstr "שנת כספים נוכחית להיום"
 
 #: reports/mmDateRange.cpp:234
 msgid "Last Financial Year"
-msgstr "שנה פיננסית קודמת"
+msgstr "שנת כספים קודמת"
 
 #: reports/mmDateRange.cpp:253
 msgid "Custom"
