@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-13 07:16\n"
+"PO-Revision-Date: 2021-11-13 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1806,7 +1806,7 @@ msgstr "מפריד עשרוני"
 
 #: currencydialog.cpp:205 currencydialog.cpp:272 currencydialog.cpp:301
 msgid "Grouping Char"
-msgstr "מפריד אלפים"
+msgstr "תו קיבוץ"
 
 #: currencydialog.cpp:213
 msgid "Scale"
@@ -2178,7 +2178,7 @@ msgstr "מרשמים"
 
 #: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
 msgid "Auto"
-msgstr "רכב"
+msgstr "אוטומטי"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
@@ -5850,7 +5850,7 @@ msgstr "נא להגדיר את החשבונות הגלויים"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr "מפריד "
+msgstr "תוחם סוג-אב"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5918,7 +5918,7 @@ msgstr "הגדרת נוסח ערכת נושא מועדפת אחרת ככל שז�
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr "אופן ערכת נושא"
+msgstr "מצב ערכת נושא"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
@@ -5946,7 +5946,7 @@ msgstr "גדול מאוד (48 פיקסל)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr "גודל סמל סרגל כלים"
+msgstr "גודל סמל סרגל־כלים"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
@@ -5954,7 +5954,7 @@ msgstr "גודל סמל ניווט"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr "גודל סמל אחרים"
+msgstr "גודל סמלים אחרים"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
