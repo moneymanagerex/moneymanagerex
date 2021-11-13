@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-13 11:06\n"
+"PO-Revision-Date: 2021-11-13 11:16\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5435,11 +5435,11 @@ msgstr "ספרית ארכיב לצרופות %s בלבד:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr "לכל סוג מערכת הפעלה (Win, Mac, Unix) קיימת ספרית צרופות משלה"
+msgstr "לכל סוג מערכת הפעלה (וינדוס, מק, יוניקס) קיימת תקית צרופות משלה"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr "נא לדפדף לבחירת ספריה"
+msgstr "נא לדפדף לבחירת תיקיה"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:188
 msgid "Real path:"
@@ -5457,17 +5457,17 @@ msgstr "%s -> מחיצת מסמכי משתמש"
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr "%s -> ספרית פרופיל משתמש"
+msgstr "%s -> תקית פרופיל משתמש"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr "%s -> ספרית קובצי מסד נתונים .MMB"
+msgstr "%s -> תקית קובצי מסד נתונים .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr "%s -> ספרית נתוני ישומון MMEX"
+msgstr "%s -> תקית נתוני ישומון MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5479,15 +5479,15 @@ msgstr "טרם הוגדר"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
-msgstr "ספרית וינדוס -> "
+msgstr "תקית וינדוס -> "
 
 #: optionsettingsattachment.cpp:130
 msgid "Mac folder -> "
-msgstr "ספרית מק -> "
+msgstr "תקית מק -> "
 
 #: optionsettingsattachment.cpp:137
 msgid "Unix folder -> "
-msgstr "ספרית יוניקס -> "
+msgstr "תקית יוניקס -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
@@ -5515,11 +5515,11 @@ msgstr "בחירת סיפריה שתשמש כארכיב צרופות"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr "לא ניתן לכתוב לספרית הצרופות!"
+msgstr "לא ניתן לכתוב לתקית הצרופות!"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
-msgstr "ספרית צרופות"
+msgstr "תקית צרופות"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
@@ -5650,7 +5650,7 @@ msgstr "שם מיקום לא תקין"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
-msgstr "אתר הבית של שערי נ\"ע"
+msgstr "אתר הבית לשערי נירות ערך"
 
 #: optionsettingsmisc.cpp:74
 msgid "Clear the field to Reset the value to system default."
@@ -7283,7 +7283,7 @@ msgstr "תנועות לא הורדו:"
 
 #: webapp.cpp:563
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "נא לתקן את ספרית הצרופות או למחוק צרופות מיישומון המרשתת"
+msgstr "נא לתקן את תקית הצרופות או למחוק צרופות מיישומון המרשתת"
 
 #: webapp.cpp:564
 msgid "Attachment folder error"
