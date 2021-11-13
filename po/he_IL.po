@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-13 07:06\n"
+"PO-Revision-Date: 2021-11-13 07:16\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1397,19 +1397,19 @@ msgstr "הסתרת  תקציב בסכום אפס"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "הצגת  תכנון תקציב"
+msgstr "הצגת סוגי־אב תכנון תקציב"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "הצגת  תקציב הכנסות"
+msgstr "הצגת סוגי־אב תקציב הכנסות"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "הצגת  תקציב הוצאות"
+msgstr "הצגת סוגי־אב תקציב הוצאות"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr "הצגת תמצית  תקציב"
+msgstr "הצגת תמצית סוגי־אב תקציב"
 
 #: budgetingpanel.cpp:172
 #, c-format
@@ -1552,7 +1552,7 @@ msgstr "הרחב"
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:175
 msgid "Show All"
-msgstr "הצגת הכל"
+msgstr "הצג הכול"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
@@ -4002,7 +4002,7 @@ msgstr "הפרש: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Displayed Bal: "
-msgstr "תצוגת יתרה: "
+msgstr "יתרה מוצגת: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -4311,7 +4311,7 @@ msgstr "הצגת/הסתרת חלון הניווט"
 
 #: mmframe.cpp:1409
 msgid "&Display Share Accounts"
-msgstr "&הצגת חשבונות ניירות ערך"
+msgstr "&מצג חשבונות ניירות ערך"
 
 #: mmframe.cpp:1409
 msgid "Show/Hide Share Accounts in the navigation tree"
@@ -4323,7 +4323,7 @@ msgstr "תקציב: כשנת &כספים"
 
 #: mmframe.cpp:1412
 msgid "Display Budgets in Financial Year Format"
-msgstr "הצגת תקציב בתבנית שנת כספים"
+msgstr "מצג תקציב בתבנית שנת כספים"
 
 #: mmframe.cpp:1414
 msgid "Budgets: &Include Transfers in Totals"
@@ -4355,7 +4355,7 @@ msgstr "הצגת רמז־צץ"
 
 #: mmframe.cpp:1422 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr "הצגת עצות אודות כסף"
+msgstr "הצגת עצות לניהול פיננסי תקין"
 
 #: mmframe.cpp:1442
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -5543,7 +5543,7 @@ msgstr "יעד"
 
 #: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
-msgstr "כותרת לתצוגה"
+msgstr "הצגת כותרת"
 
 #: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
@@ -5559,7 +5559,7 @@ msgstr "שפה"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
-msgstr "נא להגדיר את תבנית תאריך לתצוגה"
+msgstr "הגדרת תבנית התאריך שתוצג"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
@@ -5866,7 +5866,7 @@ msgstr "מצג תקציב כולל תנועות מסוג 'העברה'"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr "הצגת דוח תקציב לפי  עם תמצית"
+msgstr "הצגת דוח תקציב סוגי־אב עם סיכומים"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
@@ -6491,7 +6491,7 @@ msgstr "ארגון צרופות לניר ערך זה"
 
 #: sharetransactiondialog.cpp:279 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
-msgstr "הצגת עמוד האתר של סמל ניר הערך"
+msgstr "הצגת עמוד האתר לסמל ניר הערך שצוין"
 
 #: sharetransactiondialog.cpp:289 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
@@ -7459,7 +7459,7 @@ msgstr "אופציונאלי - הזנת תאור או את שימך."
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
-msgstr "משמש ככותרת לתצוגה והדפסת דוחות ממסד הנתונים."
+msgstr "משמש ככותרת לממסד־הנתונים בתצוגת והדפסת דוחות."
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
