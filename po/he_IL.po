@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-13 11:25\n"
+"PO-Revision-Date: 2021-11-13 11:36\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgstr "פרטי גישה:"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "הזנת שם משתמש/קוד גישה לחשבון במוסד הכספי. שים לב! שדה זה אינו מאובטח וכל אדם עם גישה לבסיס הנתונים יוכל לגשת אליו."
+msgstr "הזנת שם משתמש/קוד גישה לחשבון במוסד הכספי. לתשומת לב! שדה זה אינו מאובטח וכל אדם עם גישה למסד הנתונים יוכל לגשת אליו."
 
 #: accountdialog.cpp:236
 msgid "Statement"
@@ -3523,7 +3523,7 @@ msgstr "שגיאת היסטורית מטבע"
 
 #: maincurrencydialog.cpp:523
 msgid "Set as Base Currency"
-msgstr "הגדר כמטבע בסיס"
+msgstr "הגדרה כמטבע הבסיס"
 
 #: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
@@ -3558,7 +3558,7 @@ msgstr "האם לעדכן שערי מטבע להיום?"
 #: maincurrencydialog.cpp:819
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "לא ניתן להוריד היסטוריה עבור סמל בסיס %s. היסטורית מחירים לא זמינה!"
+msgstr "לא ניתן להוריד היסטוריה עבור סמל בסיס %s. היסטורית שערים אינה זמינה!"
 
 #: maincurrencydialog.cpp:862 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
