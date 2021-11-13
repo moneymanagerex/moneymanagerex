@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-13 07:25\n"
+"PO-Revision-Date: 2021-11-13 11:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +175,7 @@ msgstr "אתר מרשתת:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr "נא להזין מען url של המוסד הכספי."
+msgstr "נא להזין מען URL של המוסד הכספי."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
@@ -274,11 +274,11 @@ msgstr "מטבע"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr "נא להזין מען url תקין"
+msgstr "נא להזין מען URL תקין"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr "מען url לא תקין"
+msgstr "מען URL לא תקין"
 
 #: accountdialog.h:37 mmframe.cpp:1478 mmframe.cpp:1722
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -1052,7 +1052,7 @@ msgstr "בחירה באחת מההערות שבשימוש תכוף"
 #: billsdepositsdialog.cpp:650 transdialog.cpp:1309
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "הקלדת הערת טקסט שתרצה לצרף לתנועה זו."
+msgstr "הקלדת הערת מלל שתצורף לתנועה זו."
 
 #: billsdepositsdialog.cpp:679
 msgid "Choose Bank Account or Term Account"
@@ -1889,7 +1889,7 @@ msgstr "השלמה אוטומטית"
 
 #: customfieldeditdialog.cpp:158
 msgid "Enables autocomplete on custom field"
-msgstr "מאפשר השלמת טקסט אוטומטית בשדות מותאמים"
+msgstr "אפשור השלמת מלל באופן אוטומטי בשדות מותאמים אישית"
 
 #: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
@@ -5758,11 +5758,11 @@ msgstr "הגדרות יישומון מרשתת"
 
 #: optionsettingsnet.cpp:65 webappdialog.cpp:103
 msgid "Url"
-msgstr "פורטן"
+msgstr "מען URL"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
-msgstr "נא להגדיר את מען url יישומון השרת ללא הלוכסן בסוף"
+msgstr "נא להגדיר את מען URL יישומון השרת ללא הלוכסן בסוף"
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
@@ -5778,7 +5778,7 @@ msgstr "מידע נוסף על יישומון המרשתת"
 
 #: optionsettingsnet.cpp:83
 msgid "Proxy Settings"
-msgstr "הגדרות פרוקסי"
+msgstr "הגדרות מתווך"
 
 #: optionsettingsnet.cpp:91
 msgid "Specify the proxy IP address"
@@ -5786,15 +5786,15 @@ msgstr "נא להגדיר את כתובת ה־IP של המתווך"
 
 #: optionsettingsnet.cpp:97
 msgid "Specify proxy port number"
-msgstr "נא להגדיר את הפורט של המתווך"
+msgstr "נא להגדיר את המפתח של המתווך"
 
 #: optionsettingsnet.cpp:100
 msgid "Proxy"
-msgstr "פרוקסי"
+msgstr "מתווך"
 
 #: optionsettingsnet.cpp:102
 msgid "Port"
-msgstr "פורט"
+msgstr "מפתח"
 
 #: optionsettingsnet.cpp:108
 msgid "Usage statistics"
@@ -6170,7 +6170,7 @@ msgstr "דווח תקלה"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr "החלפת טקסט זה (מסומן ב>) עם תיאור מפורט של התקלה."
+msgstr "החלפת מלל זה (מסומן ב >) בתיאור מפורט של הבעיה."
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
