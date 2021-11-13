@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-12 17:03\n"
+"PO-Revision-Date: 2021-11-13 07:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "אִפְשׁוּר שליחת נתוני שימוש אנונימיים �
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:606 wizard_update.cpp:192
 msgid "&OK "
-msgstr "&אוקיי "
+msgstr "&אישור "
 
 #: accountdialog.cpp:111 mmframe.cpp:1481
 msgid "Edit Account"
@@ -584,11 +584,11 @@ msgstr "עצה: ניתן להשתמש בתווים כלליים - סימן שא�
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:395 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr "אפשר להשתמש בסימן השאלה (?) כדי למצוא כל תו בודד - לדוגמה, ש?ת יחזיר 'שבת' ו'שנת'."
+msgstr "ניתן להשתמש בסימן השאלה (?) כדי למצוא כל תו בודד - לדוגמה, ש?ת יחזיר 'שבת' ו'שנת'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:396 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr "אפשר להשתמש בכוכבית (*) כדי למצוא מספר תוים כל שהוא - לדוגמה, ש*ם יחזיר 'שרתים' ו'שלהבת'."
+msgstr "ניתן להשתמש בכוכבית (*) כדי למצוא מספר תוים כל שהוא - לדוגמה, ש*ם יחזיר 'שרתים' ו'שלהבת'."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:397 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
@@ -5584,8 +5584,8 @@ msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בד
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr "תבנית נגזרת מהמיקום.\n"
-"נא להשאיר ריק כדי להגדיר תבנית ידנית באמצעות דו־שיח 'מטבע | עריכה'"
+msgstr "התבנית נגזרת ממיקום המערכת (locale).\n"
+"נא להשאיר ריק כדי להגדיר תבנית באופן ידני, באמצעות דו־שיח 'מטבע | עריכה'"
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
