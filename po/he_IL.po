@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-13 11:16\n"
+"PO-Revision-Date: 2021-11-13 11:25\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "אִפְשׁוּר שליחת נתוני שימוש באופן אנונ�
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr "אִפְשׁוּר שליחת נתוני שימוש אנונימיים על מנת לסייע לפתוח."
+msgstr "אִפְשׁוּר שליחת נתוני שימוש אנונימיים אודות MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -2239,13 +2239,13 @@ msgstr "שדרוג מסד נתוני MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr "שגיאה מסד נתוני MMEX!"
+msgstr "שגיאת מסד נתוני MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "גרסת מסד נתונים %i לא נתמכת  גרסת MMEX זו \n"
+msgstr "גרסת מסד נתונים %i לא נתמכת בגרסת MMEX זו.\n"
 "נא לשדרג את MMEX לגרסה חדשה יותר."
 
 #: dbupgrade.cpp:120
@@ -2268,11 +2268,11 @@ msgstr "סוג קובץ שגוי!"
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
 msgid "MMEX debug error"
-msgstr "שגיאת ניפוי תקלי MMEX"
+msgstr "שגיאת ניפוי תקלים ב־MMEX"
 
 #: dbupgrade.cpp:226 dbupgrade.cpp:277
 msgid "Query error, please contact MMEX support!"
-msgstr "שגיאת שאילתה , יש ליצור קשר עם תמיכת MMEX!"
+msgstr "שגיאת שאילתה, יש ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:233 dbupgrade.cpp:288
 msgid "Invalid file content, please contact MMEX support!"
@@ -2285,7 +2285,7 @@ msgstr "נא לשלוח קובץ יומן זה לצוות תמיכת MMEX: נא 
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:284
 msgid "MMEX debug"
-msgstr "ניפוי תקלי MMEX"
+msgstr "ניפוי תקלים MMEX"
 
 #: dbupgrade.cpp:244
 msgid "Save debug file"
@@ -2293,7 +2293,7 @@ msgstr "שמור קובץ ניפוי"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr "תחזוקת בסיס הנתונים הושלמה , נא להפעיל מחדש את MMEX!"
+msgstr "תחזוקת מסד הנתונים הושלמה, נא להפעיל את MMEX מחדש!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
@@ -2322,7 +2322,7 @@ msgstr "שגיאה: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1820
 msgid "Opening MMEX Database - Error"
-msgstr "שגיאה - בפתיחת מסד נתוני MMEX"
+msgstr "שגיאה בפתיחת מסד נתוני MMEX"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -3148,7 +3148,7 @@ msgstr "נא להגדיר את סדר השדות בקובץ"
 
 #: import_export/univcsvdialog.cpp:244
 msgid "&MMEX format"
-msgstr "&מבנה MMEX"
+msgstr "&תבנית MMEX"
 
 #: import_export/univcsvdialog.cpp:261
 msgid "&Up"
@@ -3224,7 +3224,7 @@ msgstr "שמור תבנית"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
-msgstr "תבנית MMEX סטנדרטית"
+msgstr "תבנית MMEX תקנית"
 
 #: import_export/univcsvdialog.cpp:445
 msgid "Move Up"
@@ -7157,7 +7157,7 @@ msgstr "ענף Git: "
 
 #: util.cpp:1224
 msgid "MMEX is using the following support products:"
-msgstr "MMEX משתמשת במוצרי התמיכה הבאים:"
+msgstr "MMEX עושה שימוש במוצרי התמיכה הבאים:"
 
 #: util.cpp:1242
 msgid "Build using:"
