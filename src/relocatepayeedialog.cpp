@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -89,7 +90,6 @@ void relocatePayeeDialog::CreateControls()
     cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
     cbSourcePayee_->Enable();
     cbSourcePayee_->SetMinSize(wxSize(180, -1));
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
 
     cbDelete_ = new wxCheckBox(this, wxID_ANY
         , _("Delete source payee after relocation"));
@@ -98,8 +98,17 @@ void relocatePayeeDialog::CreateControls()
     cbDestPayee_->Append(Model_Payee::instance().all_payee_names());
     cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
     cbDestPayee_->SetMinSize(wxSize(180, -1));
-    cbDestPayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
 
+    // Event handlers - Mac handles char by char to support non-native autocomplete
+#if defined (__WXMAC__)
+    cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeTextUpdated), nullptr, this);    
+    cbDestPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeTextUpdated), nullptr, this);    
+#else
+    cbSourcePayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
+    cbDestPayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
+#endif
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
@@ -192,7 +201,7 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             cbSourcePayee_->Delete(empty);
             cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
         }
-        cbSourcePayee_->SetValue("");
+        cbSourcePayee_->Clear();
         cbSourcePayee_->SetSelection(wxNOT_FOUND);
         sourcePayeeID_ = -1;
         IsOkOk();
@@ -236,12 +245,35 @@ void relocatePayeeDialog::IsOkOk()
 
     wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
     ok->Enable(e);
-    if (e) {
-        ok->SetFocus();
-    }
 }
 
 void relocatePayeeDialog::OnPayeeChanged(wxCommandEvent& WXUNUSED(event))
 {
+    IsOkOk();
+}
+
+void relocatePayeeDialog::OnPayeeTextUpdated(wxCommandEvent& event)
+{
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!!
+
+    wxComboBox* payeeCombo = (event.GetId() == wxID_BOTTOM) ? cbSourcePayee_ : cbDestPayee_;
+    wxString payeeName = event.GetString();
+
+    if (payeeCombo->GetSelection() == wxNOT_FOUND) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        payeeCombo->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+        payeeCombo->Clear();      
+        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
+        for (const auto &payee : filtd) {
+            payeeCombo->Insert(payee.PAYEENAME, 0);
+        }
+        payeeCombo->ChangeValue(payeeName);
+        payeeCombo->SetInsertionPointEnd();
+        if (!payeeName.IsEmpty())
+            payeeCombo->Popup();
+        payeeCombo->SetEvtHandlerEnabled(true);
+    }
     IsOkOk();
 }
