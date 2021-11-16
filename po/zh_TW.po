@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-16 06:51\n"
+"PO-Revision-Date: 2021-11-16 07:03\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2784,15 +2784,15 @@ msgstr ""
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
 msgid "QIF Export"
-msgstr ""
+msgstr "匯出QIF檔"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr ""
+msgstr "匯出JSON檔案"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "匯出CSV檔案"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2812,7 +2812,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3104 mmframe.cpp:3108
 #: mmframe.cpp:3127 mmframe.cpp:3131
@@ -2851,7 +2851,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF檔 (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
@@ -2859,11 +2859,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON檔 (*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1565
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV檔 (*.csv)"
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
@@ -3364,7 +3364,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "XML Files (*.xml)"
-msgstr "XML 檔案 (*.xml)"
+msgstr "XML檔 (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
@@ -4109,11 +4109,11 @@ msgstr ""
 
 #: mmframe.cpp:1303 mmframe.cpp:1308 mmframe.cpp:1375 mmframe.cpp:1382
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV檔..."
 
 #: mmframe.cpp:1304 mmframe.cpp:1310 mmframe.cpp:1376 mmframe.cpp:1384
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML檔..."
 
 #: mmframe.cpp:1304 mmframe.cpp:1376
 msgid "Import from XML (Excel format)"
@@ -4121,7 +4121,7 @@ msgstr ""
 
 #: mmframe.cpp:1305 mmframe.cpp:1311 mmframe.cpp:1377 mmframe.cpp:1385
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF檔..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
@@ -4137,7 +4137,7 @@ msgstr "顯示帳目"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
-msgstr ""
+msgstr "&新增資料庫"
 
 #: mmframe.cpp:1360 mmframe.cpp:1719 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4161,11 +4161,11 @@ msgstr "另存新資料庫"
 
 #: mmframe.cpp:1369
 msgid "&Recent Files..."
-msgstr ""
+msgstr "&最近使用..."
 
 #: mmframe.cpp:1370
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "清除最近使用清單"
 
 #: mmframe.cpp:1375
 msgid "Import from any CSV file"
@@ -4193,7 +4193,7 @@ msgstr ""
 
 #: mmframe.cpp:1384
 msgid "Export to XML"
-msgstr ""
+msgstr "匯出XML檔案"
 
 #: mmframe.cpp:1386
 msgid "Export to JSON"
@@ -4209,7 +4209,7 @@ msgstr "匯出HTML檔案"
 
 #: mmframe.cpp:1393 mmframe.cpp:1756
 msgid "&Print..."
-msgstr ""
+msgstr "列印"
 
 #: mmframe.cpp:1393 mmframe.cpp:1756
 msgid "Print current view"
