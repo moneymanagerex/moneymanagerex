@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -47,6 +48,7 @@ private:
     void OnCancel(wxCommandEvent& event);
 
     void OnPayeeChanged(wxCommandEvent& event);
+    void OnPayeeTextUpdated(wxCommandEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;
