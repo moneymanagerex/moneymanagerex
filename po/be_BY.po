@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 18:38\n"
+"PO-Revision-Date: 2021-11-16 15:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2186,7 +2186,7 @@ msgstr "Жыццё"
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr "Хата"
+msgstr "Хатнія"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
