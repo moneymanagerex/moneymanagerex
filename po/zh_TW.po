@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-16 05:38\n"
+"PO-Revision-Date: 2021-11-16 06:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -533,7 +533,7 @@ msgstr "全部"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:284 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "&新增 "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
@@ -552,7 +552,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "&編輯 "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
@@ -3160,7 +3160,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Preview"
-msgstr ""
+msgstr "預覽"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
@@ -3192,11 +3192,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:445
 msgid "Move Up"
-msgstr ""
+msgstr "上移"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Move &Down"
-msgstr ""
+msgstr "下移"
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:201
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3204,11 +3204,11 @@ msgstr "指定匯入/匯出CSV檔案時使用的分隔符號"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr ""
+msgstr "檔案匯入"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr ""
+msgstr "檔案輸入"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
@@ -3241,7 +3241,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr ""
+msgstr "匯入"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3364,7 +3364,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML 檔案 (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
@@ -3418,7 +3418,7 @@ msgstr ""
 #: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr ""
+msgstr "價格"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3430,11 +3430,11 @@ msgstr ""
 
 #: maincurrencydialog.cpp:285
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "下載歷史匯率"
 
 #: maincurrencydialog.cpp:288
 msgid "&Add / Update "
-msgstr ""
+msgstr "&新增 / 修改 "
 
 #: maincurrencydialog.cpp:289
 msgid "Add Currency Values to history"
