@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-16 07:03\n"
+"PO-Revision-Date: 2021-11-17 00:47\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1927,7 +1927,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -2239,7 +2239,7 @@ msgstr ""
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
 msgid "MMEX debug error"
-msgstr ""
+msgstr "MMEX debug錯誤"
 
 #: dbupgrade.cpp:226 dbupgrade.cpp:277
 msgid "Query error, please contact MMEX support!"
@@ -2256,11 +2256,11 @@ msgstr ""
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:284
 msgid "MMEX debug"
-msgstr ""
+msgstr "MMEX debug"
 
 #: dbupgrade.cpp:244
 msgid "Save debug file"
-msgstr ""
+msgstr "儲存debug檔案"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2308,7 +2308,7 @@ msgstr ""
 #: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
 #: reports/transactions.cpp:156
 msgid "Color"
-msgstr ""
+msgstr "顏色"
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:640 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
