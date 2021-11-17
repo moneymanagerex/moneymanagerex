@@ -676,7 +676,9 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance, true);
     if (dlg.ShowModal() != wxID_CANCEL)
     {
-        m_selected_id[0] = dlg.GetTransactionID();
+        m_selected_id.clear();
+        m_pasted_id.push_back(dlg.GetTransactionID());
+        m_cp->mmPlayTransactionSound();
         refreshVisualList();
     }
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
