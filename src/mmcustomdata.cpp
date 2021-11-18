@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2017 Gabriele-V
 Copyright (C) 2018, 2021 Nikolay Akimov
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -110,6 +111,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             if (!data.empty())
             {
+                SetWidgetChanged(controlID, data);
                 Description->SetValue(true);
             }
 
