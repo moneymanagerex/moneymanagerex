@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-18 00:56\n"
+"PO-Revision-Date: 2021-11-18 01:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4677,7 +4677,7 @@ msgstr "顯示貨幣管理對話框"
 
 #: mmframe.cpp:1735
 msgid "&Options..."
-msgstr ""
+msgstr "選項(&O)..."
 
 #: mmframe.cpp:1743 mmframe.cpp:2595
 msgid "Register/View Release &Notifications"
