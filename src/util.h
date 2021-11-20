@@ -244,3 +244,6 @@ void mmToolTip(wxWindow* widget, wxString tip);
 
 //fast alternative for pow(10, y)
 int pow10(int y);
+
+// escape HTML characters
+wxString HTMLEncode(wxString input);

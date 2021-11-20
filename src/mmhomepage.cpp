@@ -292,8 +292,8 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
     wxString output = "";
     wxDate today = wxDate::Today();
 
-    //                    days, payee, description, amount, account
-    std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
+    //                    days, payee, description, amount, account, notes
+    std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*, wxString> > bd_days;
     for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_TRANSDATE))
     {
         int daysPayment = Model_Billsdeposits::TRANSDATE(&entry)
@@ -339,7 +339,8 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
             if (payee) payeeStr += payee->PAYEENAME;
         }
         double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
-        bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account));
+        wxString notes = HTMLEncode(entry.NOTES);
+        bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, notes));
     }
 
     //std::sort(bd_days.begin(), bd_days.end());
@@ -364,7 +365,14 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         for (const auto& item : bd_days)
         {
             output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
-            output += "<td>" + std::get<1>(item) + "</td>"; //payee
+            output += "<td>" + std::get<1>(item);
+            wxString notes = std::get<5>(item);
+            if (notes.Length() > 150)
+                notes = notes.Left(150) + "...";
+            if (!notes.IsEmpty())
+                output += wxString::Format("<br><i>%s</i>", notes);
+
+            output += "</td>";
             output += wxString::Format("<td class='money'>%s</td>\n"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
             output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
