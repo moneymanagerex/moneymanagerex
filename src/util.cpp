@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2020 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -1564,4 +1564,20 @@ int pow10(int y)
     case 9: return 1000000000;
     default: return 10;
     }
+}
+
+wxString HTMLEncode(wxString input)
+{
+    wxString output;
+    for(int pos = 0; pos < input.Len(); ++pos) {
+        switch(static_cast<char>(input.GetChar(pos))) {
+            case '&':  output.Append("&amp;");      break;
+            case '\"': output.Append("&quot;");     break;
+            case '\'': output.Append("&apos;");     break;
+            case '<':  output.Append("&lt;");       break;
+            case '>':  output.Append("&gt;");       break;
+            default:   output.Append(input[pos]);   break;
+        }
+    }
+    return output;
 }
