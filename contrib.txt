@@ -126,11 +126,11 @@ Michael Ellis
 François Maréchal
 Peter Hulm
 Wiesław Stawiszyński
+Michel SERIN
 Gérard AGNESIO
 Jose Manuel Marrero León
 Jean-Francois Zahnen
 Markus Egg
-Michel SERIN
 Roger Chandler
 William R Detamore
 Alexander Habegger
@@ -140,6 +140,7 @@ John David Bowman
 Kenneth Wiggers
 Lucas Lopez Azcona
 Officer Young
+Pedro Rocha
 Raleigh Meade
 Stelios Stylianou
 Thierry PAPINOT
@@ -147,10 +148,11 @@ Jiří Vyskočil
 Roger Spindler
 Edgar Lloren
 Xiaoyun Wang
+Dario Bavicchi
 Jean-michel LOUISET
 Werner Ammann
-Antonio Navarro Sánchez
 Brian Crow
+Antonio Navarro Sánchez
 Tim Carden
 Jérémy DUFRAISSE
 Jean-michel BAUD
@@ -164,6 +166,8 @@ Massimo casaccia
 Nicolas Arzamendia
 Sean Vinaja
 Timothy Pope
+Alberto Gäumann - Reumer
+Craig Shirley
 Peter Pfister
 David Lehmann
 Fr. Cycus Chungu
@@ -182,6 +186,7 @@ Ian Rowe
 Jonathan Thomas
 RICARDO ITURRIAGA
 José Moya Iglesias
+Giuseppe conti
 
 ### 2020
 Renato
