@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-11-22 12:30+0300\n"
-"PO-Revision-Date: 2021-11-22 09:39\n"
+"POT-Creation-Date: 2021-11-23 00:42+0300\n"
+"PO-Revision-Date: 2021-11-22 21:52\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "Абярыце, ці часта выкарыстоўваеце гэты 
 #: filtertransdialog.cpp:385 filtertransdialog.cpp:1297
 #: import_export/qif_export.cpp:597 import_export/qif_import_gui.cpp:105
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:237
-#: reports/transactions.cpp:165 sharetransactiondialog.cpp:270
+#: reports/transactions.cpp:164 sharetransactiondialog.cpp:270
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:211
 #: transdialog.cpp:583 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
@@ -374,7 +374,7 @@ msgstr "Пакажыце назву актыва"
 #: mmchecking_list.cpp:207 mmreportspanel.cpp:255 mmreportspanel.cpp:273
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:249
 #: reports/incexpenses.cpp:252 reports/summary.cpp:319
-#: reports/transactions.cpp:157 stockdialog.cpp:297 stockdialog.cpp:676
+#: reports/transactions.cpp:156 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:461
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
 msgid "Date"
@@ -449,7 +449,7 @@ msgstr "Рахунак актыва ня знойдзены.\n\n"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:127 filtertrans.cpp:189
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
-#: reports/transactions.cpp:155 stocks_list.cpp:88
+#: reports/transactions.cpp:154 stocks_list.cpp:88
 msgid "ID"
 msgstr "ID"
 
@@ -459,7 +459,7 @@ msgstr "ID"
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
 #: maincurrencydialog.cpp:251 mmhomepage.cpp:436 reports/incexpenses.cpp:112
-#: reports/transactions.cpp:163 splitdetailsdialog.cpp:120
+#: reports/transactions.cpp:162 splitdetailsdialog.cpp:120
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:504
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
@@ -925,7 +925,7 @@ msgstr "Пакажыце стан аперацыі"
 #: filtertransdialog.cpp:1249 import_export/qif_export.cpp:589
 #: import_export/qif_import_gui.cpp:234 import_export/qif_import_gui.cpp:245
 #: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:218
-#: reports/transactions.cpp:161 transactionsupdatedialog.cpp:131
+#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:131
 #: transdialog.cpp:484 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:145
 msgid "Status"
@@ -949,7 +949,7 @@ msgstr "Ручное пазначэнне сумы, што будзе перал
 #: import_export/univcsvdialog.cpp:107 maincurrencydialog.cpp:612
 #: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:190
 #: reports/categexp.cpp:178 reports/incexpenses.cpp:113
-#: reports/transactions.cpp:164 splitdetailsdialog.cpp:136
+#: reports/transactions.cpp:163 splitdetailsdialog.cpp:136
 #: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:161
 #: transdialog.cpp:518 usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
@@ -965,7 +965,7 @@ msgstr "Пакажыце суму для рахунка, куды робіцца
 #: filtertransdialog.cpp:1184 import_export/qif_export.cpp:591
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:154
 #: import_export/qif_import_gui.cpp:226 import_export/qif_import_gui.cpp:813
-#: mmchecking_list.cpp:213 reports/transactions.cpp:159 transdialog.cpp:315
+#: mmchecking_list.cpp:213 reports/transactions.cpp:158 transdialog.cpp:315
 #: transdialog.cpp:526 usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
 msgstr "Рахунак"
@@ -987,7 +987,7 @@ msgstr "Пакажыце рахунак для гэтай запланавана
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
 #: import_export/univcsvdialog.cpp:106 mmchecking_list.cpp:216
 #: model/Model_Attachment.cpp:29 reports/payee.cpp:139
-#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:172
+#: reports/transactions.cpp:159 transactionsupdatedialog.cpp:172
 #: transdialog.cpp:299 transdialog.cpp:532 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
@@ -1014,7 +1014,7 @@ msgstr "Распадзяліць агульную суму па розных к�
 #: mmchecking_list.cpp:220 mmhomepage.cpp:190
 #: reports/budgetcategorysummary.cpp:189 reports/budgetingperf.cpp:220
 #: reports/categexp.cpp:177 reports/categexp.cpp:432
-#: reports/transactions.cpp:162 splitdetailsdialog.cpp:145
+#: reports/transactions.cpp:161 splitdetailsdialog.cpp:145
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
 #: transdialog.cpp:554 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
@@ -1034,7 +1034,7 @@ msgstr "Пакажыце нумар чэка або нумар аперацыі"
 #: filtertransdialog.cpp:377 filtertransdialog.cpp:1290
 #: import_export/qif_export.cpp:596 import_export/qif_import_gui.cpp:100
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:209
-#: reports/transactions.cpp:158 transdialog.cpp:566
+#: reports/transactions.cpp:157 transdialog.cpp:566
 #: usertransactionpanel.cpp:202
 msgid "Number"
 msgstr "Нумар"
@@ -2338,7 +2338,7 @@ msgid "Back"
 msgstr "Назад"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
-#: reports/transactions.cpp:156
+#: reports/transactions.cpp:155
 msgid "Color"
 msgstr "Колер"
 
@@ -6427,11 +6427,11 @@ msgstr "Камісія"
 msgid "Stocks Performance Charts"
 msgstr "Прадстаўленне каціровак"
 
-#: reports/transactions.cpp:273
+#: reports/transactions.cpp:272
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr "Усе аперацыі: спісанні, унёскі і пераказы"
 
-#: reports/transactions.cpp:291
+#: reports/transactions.cpp:290
 msgid "All Transactions excluding Transfers"
 msgstr "Усе аперацыі акрамя пераказаў"
 
@@ -6837,7 +6837,7 @@ msgstr "Каціроўкі паспяхова абноўленыя"
 msgid "Last updated %s"
 msgstr "Апошняе абнаўленне %s"
 
-#: stockspanel.cpp:412 util.cpp:643 util.cpp:791
+#: stockspanel.cpp:412 util.cpp:643 util.cpp:799
 msgid "Nothing to update"
 msgstr "Няма чаго абнаўляць"
 
@@ -7015,7 +7015,7 @@ msgstr "Сак"
 msgid "Apr"
 msgstr "Кра"
 
-#: util.cpp:294 util.h:156
+#: util.cpp:294 util.h:157
 msgid "May"
 msgstr "Тра"
 
@@ -7107,108 +7107,108 @@ msgstr "Сб"
 msgid "Currency rates have been updated"
 msgstr "Курсы валютаў абноўленыя"
 
-#: util.cpp:767 util.cpp:873 util.cpp:932
+#: util.cpp:775 util.cpp:891 util.cpp:950
 msgid "JSON Parse Error"
 msgstr "Памылка аналіза JSON"
 
-#: util.cpp:881 util.cpp:940
+#: util.cpp:899 util.cpp:958
 msgid "Expected response to contain a data or error string"
 msgstr "На запыт чакаўся адказ, што змяшчае радок дадзеных або памылку"
 
-#: util.cpp:912
+#: util.cpp:930
 msgid "Could not find asset for symbol"
 msgstr "Немагчыма знайсці актыў для сымбаля"
 
-#: util.cpp:947
+#: util.cpp:965
 msgid "Could not get base currency!"
 msgstr "Немагчыма атрымаць асноўную валюту"
 
-#: util.cpp:953
+#: util.cpp:971
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:956
+#: util.cpp:974
 msgid "Could not find currency 'USD', needed for converting history prices"
 msgstr "Не атрымалася знайсці валюту «USD», неабходную для канвертавання цэнаў у гісторыі"
 
-#: util.cpp:977
+#: util.cpp:995
 msgid "Could not parse price in asset history"
 msgstr "Аналіз кошта з гісторыі актываў не атрымаўся"
 
-#: util.cpp:1207
+#: util.cpp:1225
 #, c-format
 msgid "Version: %s"
 msgstr "Вэрсія: %s"
 
-#: util.cpp:1208
+#: util.cpp:1226
 msgid "Build on"
 msgstr "Створаная"
 
-#: util.cpp:1209
+#: util.cpp:1227
 msgid "Database version: "
 msgstr "Вэрсія базы дадзеных: "
 
-#: util.cpp:1216
+#: util.cpp:1234
 msgid "Git commit: "
 msgstr "Git commit: "
 
-#: util.cpp:1220
+#: util.cpp:1238
 msgid "Git branch: "
 msgstr "Галінка Git: "
 
-#: util.cpp:1224
+#: util.cpp:1242
 msgid "MMEX is using the following support products:"
 msgstr "MMEX выкарыстоўвае наступныя прадукты:"
 
-#: util.cpp:1242
+#: util.cpp:1260
 msgid "Build using:"
 msgstr "Створаны з дапамогай:"
 
-#: util.cpp:1263
+#: util.cpp:1281
 msgid "Running on:"
 msgstr "Працуе на:"
 
-#: util.h:155
+#: util.h:156
 msgid "January"
 msgstr "Студзень"
 
-#: util.h:155
+#: util.h:156
 msgid "February"
 msgstr "Люты"
 
-#: util.h:155
+#: util.h:156
 msgid "March"
 msgstr "Сакавік"
 
-#: util.h:156
+#: util.h:157
 msgid "April"
 msgstr "Красавік"
 
-#: util.h:156
+#: util.h:157
 msgid "June"
 msgstr "Чэрвень"
 
-#: util.h:157
+#: util.h:158
 msgid "July"
 msgstr "Ліпень"
 
-#: util.h:157
+#: util.h:158
 msgid "August"
 msgstr "Жнівень"
 
-#: util.h:157
+#: util.h:158
 msgid "September"
 msgstr "Верасень"
 
-#: util.h:158
+#: util.h:159
 msgid "October"
 msgstr "Кастрычнік"
 
-#: util.h:158
+#: util.h:159
 msgid "November"
 msgstr "Лістапад"
 
-#: util.h:158
+#: util.h:159
 msgid "December"
 msgstr "Снежань"
 
