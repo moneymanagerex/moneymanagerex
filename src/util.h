@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2013-2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -134,7 +135,7 @@ enum yahoo_price_type { FIAT = 0, SHARES };
 bool getOnlineCurrencyRates(wxString& msg, int curr_id = -1, bool used_only = true);
 bool get_yahoo_prices(std::map<wxString, double>& symbols
     , std::map<wxString, double>& out
-    , const wxString base_currency_symbol
+    , const wxString& base_currency_symbol
     , wxString& output
     , int type);
 bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& price_usd, wxString& output);

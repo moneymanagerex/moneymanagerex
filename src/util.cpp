@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013-2020 Nikolay Akimov
+ Copyright (C) 2013-2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -725,11 +725,19 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
 
 bool get_yahoo_prices(std::map<wxString, double>& symbols
     , std::map<wxString, double>& out
-    , const wxString base_currency_symbol
+    , const wxString& base_currency_symbol
     , wxString& output
     , int type)
 {
+    double conversion_factor = 1.0;
     wxString buffer;
+
+    wxString base_curr_symbol = base_currency_symbol;
+    if (type == yahoo_price_type::FIAT && !wxString("USD|EUR").Contains(base_currency_symbol))
+    {
+        base_curr_symbol = "USD";
+        buffer += wxString::Format("%s%s=X,", base_currency_symbol, base_curr_symbol);
+    }
 
     for (const auto& entry : symbols)
     {
@@ -739,9 +747,9 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 
         if (type == yahoo_price_type::FIAT) {
             if (g_fiat_curr().Contains(entry.first))
-                buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
+                buffer += wxString::Format("%s%s=X,", entry.first, base_curr_symbol);
             else
-                buffer += wxString::Format("%s-%s,", entry.first, base_currency_symbol);
+                buffer += wxString::Format("%s-%s,", entry.first, base_curr_symbol);
         }
         else {
             buffer += entry.first + ",";
@@ -803,24 +811,29 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
                 continue;
             auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
 
+            double price = 0.0;
             wxRegEx pattern("^([A-Z]{3})[A-Z]{3}=X$");
             if (pattern.Matches(currency_symbol))
             {
                 if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
                     continue;
-                const auto price = v["regularMarketPrice"].GetFloat();
+                price = v["regularMarketPrice"].GetFloat();
                 currency_symbol = pattern.GetMatch(currency_symbol, 1);
-                out[currency_symbol] = (price <= 0 ? 0 : price);
             }
             wxRegEx crypto_pattern("^([A-Z]{3,})-[A-Z]{3}$");
             if (crypto_pattern.Matches(currency_symbol))
             {
                 if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
                     continue;
-                const auto price = v["regularMarketPrice"].GetFloat();
+                price = v["regularMarketPrice"].GetFloat();
                 currency_symbol = crypto_pattern.GetMatch(currency_symbol, 1);
-                out[currency_symbol] = (price <= 0 ? 0 : price);
             }
+
+            if (currency_symbol == base_currency_symbol)
+                conversion_factor = price;
+            else
+                out[currency_symbol] = (price <= 0.0 ? 0.0 : price);
+
         }
     }
     else
@@ -846,6 +859,11 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             wxLogDebug("item: %u %s %f", i, symbol, price);
             out[symbol] = price <= 0 ? 0 : price / k;
         }
+    }
+
+    for (auto& item : out)
+    {
+        item.second /= conversion_factor;
     }
 
     return true;

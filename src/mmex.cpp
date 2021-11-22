@@ -271,7 +271,7 @@ bool OnInitImpl(mmGUIApp* app)
         {
             const auto file_name = wxFileName(source_file).GetFullName();
             const auto file_etx = wxFileName(file_name).GetExt();
-            if ((file_etx == "mo") || (file_etx == "css" || (file_etx == "mmextheme"))) continue;
+            if ( wxString("mo|css|mmextheme|grm").Contains(file_etx)) continue;
 
             wxFileInputStream input(source_file);
             wxMemoryOutputStream memOut(nullptr);

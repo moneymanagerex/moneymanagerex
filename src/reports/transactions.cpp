@@ -111,7 +111,6 @@ table {
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     const int groupBy = m_transDialog->getGroupBy();
     wxString lastSortLabel = "";
-    wxString sortLabel;
 
     std::map<int, double> total; //Store transaction amount with original currency
     std::map<int, double> total_in_base_curr; //Store transactions amount daily converted to base currency
