@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 18:38\n"
+"PO-Revision-Date: 2021-11-16 19:04\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2186,7 +2186,7 @@ msgstr "Жыццё"
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr "Хата"
+msgstr "Хатнія"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
@@ -3685,7 +3685,8 @@ msgstr "Рэкамендацыя: Рабіце рызервовую копію �
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr "Папярэджанне: Файл базы дадзеных .mmb не зашыфраваны. Гэта значыць, што любы, хто валодае адпаведнымі навыкамі, можа адчыніць гэты файл і прачытаць ягонае змесціва. Паклапаціцеся аб абароне вашых фінансавых дадзеных."
+msgstr "Папярэджанне: Файл базы дадзеных .mmb не зашыфраваны. Гэта значыць, што будзь-хто, хто валодае адпаведнымі навыкамі, \n"
+"можа адчыніць гэты файл і прачытаць ягонае змесціва. Паклапаціцеся аб абароне вашых фінансавых дадзеных."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."

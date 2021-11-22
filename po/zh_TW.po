@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 16:36\n"
+"PO-Revision-Date: 2021-11-18 01:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -49,11 +49,11 @@ msgstr "隱私"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "傳送匿名使用者統計使用資料"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "開啟傳送幫助有關 MMEX 使用情況的匿名資料"
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -325,7 +325,7 @@ msgstr "打開%s網站以獲取最新新聞，更新等"
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr ""
+msgstr "下次 %s 啟動時顯示視窗"
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
@@ -334,7 +334,7 @@ msgstr "離開 "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "開啟上次使用的資料庫：%s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -346,11 +346,11 @@ msgstr "編輯資產"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "新增資產交易紀錄"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "編輯資產交易紀錄"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -411,11 +411,11 @@ msgstr "指定資產是否折舊"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr ""
+msgstr "% 比率"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "輸入資產每年的變化比率"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -435,7 +435,7 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&取消 "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
@@ -533,7 +533,7 @@ msgstr "全部"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:284 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "&新增 "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
@@ -552,7 +552,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "&編輯 "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
@@ -1927,7 +1927,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -2239,7 +2239,7 @@ msgstr ""
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
 msgid "MMEX debug error"
-msgstr ""
+msgstr "MMEX debug錯誤"
 
 #: dbupgrade.cpp:226 dbupgrade.cpp:277
 msgid "Query error, please contact MMEX support!"
@@ -2256,11 +2256,11 @@ msgstr ""
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:284
 msgid "MMEX debug"
-msgstr ""
+msgstr "MMEX debug"
 
 #: dbupgrade.cpp:244
 msgid "Save debug file"
-msgstr ""
+msgstr "儲存debug檔案"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2308,7 +2308,7 @@ msgstr ""
 #: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
 #: reports/transactions.cpp:156
 msgid "Color"
-msgstr ""
+msgstr "顏色"
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:640 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
@@ -2784,15 +2784,15 @@ msgstr ""
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
 msgid "QIF Export"
-msgstr ""
+msgstr "匯出QIF檔"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr ""
+msgstr "匯出JSON檔案"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "匯出CSV檔案"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2812,7 +2812,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3104 mmframe.cpp:3108
 #: mmframe.cpp:3127 mmframe.cpp:3131
@@ -2851,7 +2851,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF檔 (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
@@ -2859,11 +2859,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON檔 (*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1565
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV檔 (*.csv)"
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
@@ -3160,7 +3160,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Preview"
-msgstr ""
+msgstr "預覽"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
@@ -3192,11 +3192,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:445
 msgid "Move Up"
-msgstr ""
+msgstr "上移"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Move &Down"
-msgstr ""
+msgstr "下移"
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:201
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3204,11 +3204,11 @@ msgstr "指定匯入/匯出CSV檔案時使用的分隔符號"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr ""
+msgstr "檔案匯入"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr ""
+msgstr "檔案輸入"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
@@ -3241,7 +3241,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr ""
+msgstr "匯入"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3364,7 +3364,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML檔 (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
@@ -3418,7 +3418,7 @@ msgstr ""
 #: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr ""
+msgstr "價格"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3430,11 +3430,11 @@ msgstr ""
 
 #: maincurrencydialog.cpp:285
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "下載歷史匯率"
 
 #: maincurrencydialog.cpp:288
 msgid "&Add / Update "
-msgstr ""
+msgstr "&新增 / 修改 "
 
 #: maincurrencydialog.cpp:289
 msgid "Add Currency Values to history"
@@ -4109,11 +4109,11 @@ msgstr ""
 
 #: mmframe.cpp:1303 mmframe.cpp:1308 mmframe.cpp:1375 mmframe.cpp:1382
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV檔..."
 
 #: mmframe.cpp:1304 mmframe.cpp:1310 mmframe.cpp:1376 mmframe.cpp:1384
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML檔..."
 
 #: mmframe.cpp:1304 mmframe.cpp:1376
 msgid "Import from XML (Excel format)"
@@ -4121,7 +4121,7 @@ msgstr ""
 
 #: mmframe.cpp:1305 mmframe.cpp:1311 mmframe.cpp:1377 mmframe.cpp:1385
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF檔..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
@@ -4137,7 +4137,7 @@ msgstr "顯示帳目"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
-msgstr ""
+msgstr "&新增資料庫"
 
 #: mmframe.cpp:1360 mmframe.cpp:1719 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4161,11 +4161,11 @@ msgstr "另存新資料庫"
 
 #: mmframe.cpp:1369
 msgid "&Recent Files..."
-msgstr ""
+msgstr "&最近使用..."
 
 #: mmframe.cpp:1370
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "清除最近使用清單"
 
 #: mmframe.cpp:1375
 msgid "Import from any CSV file"
@@ -4193,7 +4193,7 @@ msgstr ""
 
 #: mmframe.cpp:1384
 msgid "Export to XML"
-msgstr ""
+msgstr "匯出XML檔案"
 
 #: mmframe.cpp:1386
 msgid "Export to JSON"
@@ -4209,7 +4209,7 @@ msgstr "匯出HTML檔案"
 
 #: mmframe.cpp:1393 mmframe.cpp:1756
 msgid "&Print..."
-msgstr ""
+msgstr "列印"
 
 #: mmframe.cpp:1393 mmframe.cpp:1756
 msgid "Print current view"
@@ -4529,7 +4529,7 @@ msgstr ""
 
 #: mmframe.cpp:1624
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1624
 msgid "Access open source code repository and track reported bug statuses"
@@ -4537,7 +4537,7 @@ msgstr ""
 
 #: mmframe.cpp:1626
 msgid "W&iki pages"
-msgstr ""
+msgstr "Wiki百科"
 
 #: mmframe.cpp:1626
 msgid "Read and update wiki pages"
@@ -4545,7 +4545,7 @@ msgstr ""
 
 #: mmframe.cpp:1628
 msgid "F&orum"
-msgstr ""
+msgstr "論壇"
 
 #: mmframe.cpp:1629
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4593,7 +4593,7 @@ msgstr ""
 
 #: mmframe.cpp:1646
 msgid "&Community"
-msgstr ""
+msgstr "社群"
 
 #: mmframe.cpp:1647
 msgid "Stay in touch with MMEX community"
@@ -4677,7 +4677,7 @@ msgstr "顯示貨幣管理對話框"
 
 #: mmframe.cpp:1735
 msgid "&Options..."
-msgstr ""
+msgstr "選項(&O)..."
 
 #: mmframe.cpp:1743 mmframe.cpp:2595
 msgid "Register/View Release &Notifications"
