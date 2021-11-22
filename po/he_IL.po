@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-22 12:30+0300\n"
-"PO-Revision-Date: 2021-11-22 09:39\n"
+"PO-Revision-Date: 2021-11-22 16:37\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5447,7 +5447,7 @@ msgstr "נתיב ממשי:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr "מקרה (ניתן לשימוש כמשתנה בתחילת הנתיב שלעיל)"
+msgstr "מקרא: (ניתן לשימוש כמשתנה בתחילת הנתיב שלעיל)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
