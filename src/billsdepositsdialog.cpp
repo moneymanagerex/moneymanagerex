@@ -387,7 +387,9 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     }
 
     m_bill_data.TRANSACTIONNUMBER = t.TRANSACTIONNUMBER;
+    textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
     m_bill_data.NOTES = t.NOTES;
+    textNotes_->SetValue(m_bill_data.NOTES);
     setCategoryLabel();
 }
 

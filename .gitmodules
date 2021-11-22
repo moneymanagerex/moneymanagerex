@@ -31,3 +31,6 @@
 [submodule "3rd/fmt"]
 	path = 3rd/fmt
 	url = https://github.com/fmtlib/fmt
+[submodule "general-reports"]
+	path = general-reports
+	url = https://github.com/moneymanagerex/general-reports

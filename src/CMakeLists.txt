@@ -105,6 +105,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     defs.h
     diagnostics.cpp
     diagnostics.h
+    filtertrans.cpp
+    filtertrans.h
     filtertransdialog.cpp
     filtertransdialog.h
     general_report_manager.cpp

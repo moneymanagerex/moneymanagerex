@@ -86,6 +86,7 @@ private:
     void OnColourButton(wxCommandEvent& event);
     void OnColourSelected(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
+    void OnFromAccountUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
@@ -165,6 +166,7 @@ private:
         ID_DIALOG_TRANS_SPLITCHECKBOX,
         ID_DIALOG_TRANS_BUTTONTRANSNUM,
         ID_DIALOG_TRANS_PAYEECOMBO,
+        ID_DIALOG_TRANS_FROMACCOUNT,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_TRANS_CUSTOMFIELDS,

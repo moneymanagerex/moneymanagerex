@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #ifndef MM_EX_REPORTBASE_H_
 #define MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
+#include "filtertrans.h"
 #include "mmDateRange.h"
 #include "option.h"
 #include "model/Model_Report.h"
@@ -54,6 +56,7 @@ public:
     void initReportSettings(const wxString& settings);
 
 public:
+    mmFilterTransactions m_filter;
     static const char * m_template;
     enum RepParams
     {

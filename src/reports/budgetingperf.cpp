@@ -37,6 +37,8 @@ mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
 {}
 
 void mmReportBudgetingPerformance::DisplayRow(const wxString& catName
+    , int catID
+    , int subCatID
     , double estimated
     , double actual
     , int month
@@ -50,7 +52,10 @@ void mmReportBudgetingPerformance::DisplayRow(const wxString& catName
             hb.startTotalTableRow();
         else
             hb.startTableRow();
-        hb.addTableCell(catName);
+        if (bTotalRow)
+            hb.addTableCell(catName);
+        else
+            hb.addTableCellLink(wxString::Format("viewtrans:%d:%d", catID, subCatID), catName);
 
         const double est = estimated / 12.0;
         for (const auto &i : stats)
@@ -199,6 +204,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
     hb.addReportHeader(headingStr);
     hb.DisplayDateHeading(yearBegin, yearEnd);
+    // Prime the filter
+    m_filter.clear();
+    m_filter.setDateRange(yearBegin, yearEnd);
+    m_filter.setAccountList(accountArray_);
 
     hb.addDivContainer("shadow");
     {
@@ -251,7 +260,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     for (const auto &i : categoryStats[category.CATEGID][-1])
                         monthlyActual[i.first] += i.second;
 
-                    DisplayRow(category.CATEGNAME, estimated, actual
+                    DisplayRow(category.CATEGNAME, category.CATEGID, -1, estimated, actual
                         , month, hb, categoryStats[category.CATEGID][-1]);
 
                     for (const Model_Subcategory::Data& subcategory : allSubcategories)
@@ -272,6 +281,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                             monthlyActual[i.first] += i.second;
 
                         DisplayRow(category.CATEGNAME + delimiter + subcategory.SUBCATEGNAME
+                            , category.CATEGID
+                            , subcategory.SUBCATEGID
                             , estimated, actual
                             , month, hb
                             , categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
@@ -281,7 +292,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.endTbody();
             hb.startTfoot();
             {
-                DisplayRow(_("Monthly Total"), monthlyEst, monthlyAct, month, hb, monthlyActual, true);
+                DisplayRow(_("Monthly Total"), -1, -1, monthlyEst, monthlyAct, month, hb, monthlyActual, true);
             }
             hb.endTfoot();
         }
