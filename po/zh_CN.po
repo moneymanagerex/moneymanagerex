@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-09 02:55\n"
+"POT-Creation-Date: 2021-11-22 12:30+0300\n"
+"PO-Revision-Date: 2021-11-22 09:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
-#: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
+#: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:493
 #: budgetentrydialog.cpp:157 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:242
 #: customfieldeditdialog.cpp:191 filtertransdialog.cpp:514
@@ -64,10 +64,10 @@ msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
 #: import_export/qif_export.cpp:230 import_export/qif_export.cpp:253
 #: import_export/qif_import_gui.cpp:323 optiondialog.cpp:165
 #: payeedialog.cpp:130 relocatecategorydialog.cpp:123
-#: relocatepayeedialog.cpp:131 reports/reportbase.cpp:335
+#: relocatepayeedialog.cpp:140 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:325 splitdetailsdialog.cpp:161
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
-#: transdialog.cpp:606 wizard_update.cpp:192
+#: transdialog.cpp:609 wizard_update.cpp:192
 msgid "&OK "
 msgstr "&OK "
 
@@ -129,13 +129,13 @@ msgid "Select whether this is an account that is used often. This is used to fil
 msgstr "选择这是否是经常使用的账户。 此选项用于筛选显示界面中的账户。"
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
-#: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:141 filtertrans.cpp:199
+#: billsdepositsdialog.cpp:628 billsdepositspanel.cpp:141 filtertrans.cpp:199
 #: filtertransdialog.cpp:385 filtertransdialog.cpp:1297
 #: import_export/qif_export.cpp:597 import_export/qif_import_gui.cpp:105
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:237
 #: reports/transactions.cpp:165 sharetransactiondialog.cpp:270
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:211
-#: transdialog.cpp:580 usertransactionpanel.cpp:206 webappdialog.cpp:154
+#: transdialog.cpp:583 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
 msgstr "备注"
 
@@ -375,7 +375,7 @@ msgstr "请输入资产名称"
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:249
 #: reports/incexpenses.cpp:252 reports/summary.cpp:319
 #: reports/transactions.cpp:157 stockdialog.cpp:297 stockdialog.cpp:676
-#: transactionsupdatedialog.cpp:118 transdialog.cpp:458
+#: transactionsupdatedialog.cpp:118 transdialog.cpp:461
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
 msgid "Date"
 msgstr "日期"
@@ -453,14 +453,14 @@ msgstr "资产账户未找到。\n\n"
 msgid "ID"
 msgstr "ID"
 
-#: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:134
+#: assetspanel.cpp:62 billsdepositsdialog.cpp:556 billsdepositspanel.cpp:134
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:331
 #: filtertransdialog.cpp:1263 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:251 mmhomepage.cpp:428 reports/incexpenses.cpp:112
+#: maincurrencydialog.cpp:251 mmhomepage.cpp:436 reports/incexpenses.cpp:112
 #: reports/transactions.cpp:163 splitdetailsdialog.cpp:120
-#: transactionsupdatedialog.cpp:145 transdialog.cpp:501
+#: transactionsupdatedialog.cpp:145 transdialog.cpp:504
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "类型"
@@ -520,7 +520,7 @@ msgstr "MMEX 允许您跟踪固定资产，如汽车、房屋、土地和其他�
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:478 mmframe.cpp:745
-#: mmframe.cpp:1543 mmframe.cpp:3013 mmhomepage.cpp:560 mmhomepagepanel.cpp:224
+#: mmframe.cpp:1543 mmframe.cpp:3013 mmhomepage.cpp:568 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "资产"
 
@@ -850,135 +850,135 @@ msgstr "编辑周期性交易"
 msgid "Enter Recurring Transaction"
 msgstr "输入周期性交易"
 
-#: billsdepositsdialog.cpp:410
+#: billsdepositsdialog.cpp:412
 msgid "Recurring Transaction Details"
 msgstr "周期性交易详情"
 
-#: billsdepositsdialog.cpp:422
+#: billsdepositsdialog.cpp:424
 msgid "Specify the date when this bill or deposit is due"
 msgstr "指定下一笔账单或存款的日期"
 
-#: billsdepositsdialog.cpp:433
+#: billsdepositsdialog.cpp:435
 msgid "Retard or advance the date of the 'next occurrence'"
 msgstr "推迟或提前“下一次发生”的日期"
 
-#: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:129
+#: billsdepositsdialog.cpp:440 billsdepositspanel.cpp:129
 msgid "Date Due"
 msgstr "应付日期  "
 
-#: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1275
+#: billsdepositsdialog.cpp:444 billsdepositsdialog.cpp:1277
 msgid "Repeats"
 msgstr "重复"
 
-#: billsdepositsdialog.cpp:449
+#: billsdepositsdialog.cpp:451
 msgid "Back to the last occurring date with the specified values"
 msgstr "返回上次发生日期指定的值"
 
-#: billsdepositsdialog.cpp:451
+#: billsdepositsdialog.cpp:453
 msgid "Advance the next occurring date with the specified values"
 msgstr "以指定的值提前下一个发生日期"
 
-#: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1317
+#: billsdepositsdialog.cpp:461 billsdepositsdialog.cpp:1319
 msgid "Payments Left"
 msgstr "剩余付款数"
 
-#: billsdepositsdialog.cpp:473
+#: billsdepositsdialog.cpp:475
 msgid "Request user to enter payment"
 msgstr "要求用户输入付款"
 
-#: billsdepositsdialog.cpp:474
+#: billsdepositsdialog.cpp:476
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "用户请求在“付款日期”输入此交易"
 
-#: billsdepositsdialog.cpp:477
+#: billsdepositsdialog.cpp:479
 msgid "Grant automatic execute"
 msgstr "授权自动执行"
 
-#: billsdepositsdialog.cpp:478
+#: billsdepositsdialog.cpp:480
 msgid "The requested payment will occur without user interaction"
 msgstr "请求的付款将在没有用户交互的情况下发生。"
 
-#: billsdepositsdialog.cpp:502 filtertrans.cpp:179 transdialog.cpp:437
+#: billsdepositsdialog.cpp:504 filtertrans.cpp:179 transdialog.cpp:440
 msgid "Transaction Details"
 msgstr "交易明细"
 
-#: billsdepositsdialog.cpp:512
+#: billsdepositsdialog.cpp:514
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "指定用户需要输入此交易的日期"
 
-#: billsdepositsdialog.cpp:521
+#: billsdepositsdialog.cpp:523
 msgid "Advance or retard the user request date of this transaction"
 msgstr "提早或推迟此交易的用户请求日期"
 
-#: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:128
+#: billsdepositsdialog.cpp:528 billsdepositspanel.cpp:128
 msgid "Date Paid"
 msgstr "付款日期"
 
-#: billsdepositsdialog.cpp:537 filtertransdialog.cpp:328 transdialog.cpp:1305
+#: billsdepositsdialog.cpp:539 filtertransdialog.cpp:328 transdialog.cpp:1339
 msgid "Specify the status for the transaction"
 msgstr "指定交易状态"
 
-#: billsdepositsdialog.cpp:539 billsdepositspanel.cpp:132 filtertrans.cpp:195
+#: billsdepositsdialog.cpp:541 billsdepositspanel.cpp:132 filtertrans.cpp:195
 #: filtertransdialog.cpp:318 filtertransdialog.cpp:692
 #: filtertransdialog.cpp:1249 import_export/qif_export.cpp:589
 #: import_export/qif_import_gui.cpp:234 import_export/qif_import_gui.cpp:245
 #: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:218
 #: reports/transactions.cpp:161 transactionsupdatedialog.cpp:131
-#: transdialog.cpp:481 usertransactionpanel.cpp:178 webappdialog.cpp:149
+#: transdialog.cpp:484 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:145
 msgid "Status"
 msgstr "状态"
 
-#: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1306
+#: billsdepositsdialog.cpp:546 splitdetailsdialog.cpp:131 transdialog.cpp:1340
 msgid "Specify the type of transactions to be created."
 msgstr "指定要创建的交易的类型"
 
-#: billsdepositsdialog.cpp:545 transdialog.cpp:496
+#: billsdepositsdialog.cpp:547 transdialog.cpp:499
 msgid "&Advanced"
 msgstr "高级(&A)"
 
-#: billsdepositsdialog.cpp:548 transdialog.cpp:1310
+#: billsdepositsdialog.cpp:550 transdialog.cpp:1344
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "指定转账账户"
 
-#: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:135
+#: billsdepositsdialog.cpp:560 billsdepositspanel.cpp:135
 #: budgetingpanel.cpp:301 filtertrans.cpp:198 filtertransdialog.cpp:619
 #: filtertransdialog.cpp:630 import_export/qif_export.cpp:594
 #: import_export/univcsvdialog.cpp:107 maincurrencydialog.cpp:612
-#: mmhomepage.cpp:362 mmhomepage.cpp:430 reports/budgetcategorysummary.cpp:190
+#: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:190
 #: reports/categexp.cpp:178 reports/incexpenses.cpp:113
 #: reports/transactions.cpp:164 splitdetailsdialog.cpp:136
 #: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:161
-#: transdialog.cpp:515 usertransactionpanel.cpp:142 webappdialog.cpp:153
+#: transdialog.cpp:518 usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
 msgstr "金额"
 
-#: billsdepositsdialog.cpp:571 transdialog.cpp:1291
+#: billsdepositsdialog.cpp:573 transdialog.cpp:1325
 msgid "Specify the transfer amount in the To Account"
 msgstr "指定转账账户"
 
-#: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:844
-#: billsdepositsdialog.cpp:858 billsdepositspanel.cpp:130 filtertrans.cpp:193
+#: billsdepositsdialog.cpp:585 billsdepositsdialog.cpp:846
+#: billsdepositsdialog.cpp:860 billsdepositspanel.cpp:130 filtertrans.cpp:193
 #: filtertransdialog.cpp:55 filtertransdialog.cpp:211
 #: filtertransdialog.cpp:1184 import_export/qif_export.cpp:591
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:154
 #: import_export/qif_import_gui.cpp:226 import_export/qif_import_gui.cpp:813
-#: mmchecking_list.cpp:213 reports/transactions.cpp:159 transdialog.cpp:312
-#: transdialog.cpp:523 usertransactionpanel.cpp:112 webappdialog.cpp:148
+#: mmchecking_list.cpp:213 reports/transactions.cpp:159 transdialog.cpp:315
+#: transdialog.cpp:526 usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
 msgstr "账户"
 
-#: billsdepositsdialog.cpp:586 billsdepositsdialog.cpp:680
-#: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:762
-#: billsdepositsdialog.cpp:822 usertransactionpanel.cpp:113
+#: billsdepositsdialog.cpp:588 billsdepositsdialog.cpp:682
+#: billsdepositsdialog.cpp:714 billsdepositsdialog.cpp:764
+#: billsdepositsdialog.cpp:824 usertransactionpanel.cpp:113
 msgid "Select Account"
 msgstr "选择账户"
 
-#: billsdepositsdialog.cpp:587
+#: billsdepositsdialog.cpp:589
 msgid "Specify the Account that will own the recurring transaction"
 msgstr "指定此周期性交易所属的账户"
 
-#: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:845
+#: billsdepositsdialog.cpp:592 billsdepositsdialog.cpp:847
 #: billsdepositspanel.cpp:131 filtertrans.cpp:194 filtertransdialog.cpp:56
 #: filtertransdialog.cpp:285 filtertransdialog.cpp:604
 #: filtertransdialog.cpp:1224 import_export/qif_export.cpp:592
@@ -986,25 +986,25 @@ msgstr "指定此周期性交易所属的账户"
 #: import_export/univcsvdialog.cpp:106 mmchecking_list.cpp:216
 #: model/Model_Attachment.cpp:29 reports/payee.cpp:139
 #: reports/transactions.cpp:160 transactionsupdatedialog.cpp:172
-#: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
+#: transdialog.cpp:299 transdialog.cpp:532 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
 msgstr "收款人"
 
-#: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:882
+#: billsdepositsdialog.cpp:595 billsdepositsdialog.cpp:884
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
 msgstr "选择收款人"
 
-#: billsdepositsdialog.cpp:600 transdialog.cpp:542
+#: billsdepositsdialog.cpp:602 transdialog.cpp:545
 msgid "Split"
 msgstr "多笔交易"
 
-#: billsdepositsdialog.cpp:603 transdialog.cpp:1307
+#: billsdepositsdialog.cpp:605 transdialog.cpp:1341
 msgid "Use split Categories"
 msgstr "拆分类目"
 
-#: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:133
+#: billsdepositsdialog.cpp:611 billsdepositspanel.cpp:133
 #: budgetingpanel.cpp:298 filtertrans.cpp:196 filtertransdialog.cpp:57
 #: filtertransdialog.cpp:296 filtertransdialog.cpp:1232
 #: import_export/qif_export.cpp:593 import_export/qif_import_gui.cpp:103
@@ -1014,150 +1014,150 @@ msgstr "拆分类目"
 #: reports/categexp.cpp:177 reports/categexp.cpp:432
 #: reports/transactions.cpp:162 splitdetailsdialog.cpp:145
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
-#: transdialog.cpp:551 usertransactionpanel.cpp:189 webappdialog.cpp:152
+#: transdialog.cpp:554 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
 msgstr "类目"
 
-#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1440
-#: transactionsupdatedialog.cpp:203 transdialog.cpp:405 transdialog.cpp:1044
+#: billsdepositsdialog.cpp:613 billsdepositsdialog.cpp:1442
+#: transactionsupdatedialog.cpp:203 transdialog.cpp:408 transdialog.cpp:1078
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
 msgstr "选择类目"
 
-#: billsdepositsdialog.cpp:620 transdialog.cpp:1308
+#: billsdepositsdialog.cpp:622 transdialog.cpp:1342
 msgid "Specify any associated check number or transaction number"
 msgstr "指定相关的查询号或交易号"
 
-#: billsdepositsdialog.cpp:622 billsdepositspanel.cpp:140 filtertrans.cpp:192
+#: billsdepositsdialog.cpp:624 billsdepositspanel.cpp:140 filtertrans.cpp:192
 #: filtertransdialog.cpp:377 filtertransdialog.cpp:1290
 #: import_export/qif_export.cpp:596 import_export/qif_import_gui.cpp:100
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:209
-#: reports/transactions.cpp:158 transdialog.cpp:563
+#: reports/transactions.cpp:158 transdialog.cpp:566
 #: usertransactionpanel.cpp:202
 msgid "Number"
 msgstr "账号"
 
-#: billsdepositsdialog.cpp:631
+#: billsdepositsdialog.cpp:633
 msgid "Organize attachments of this recurring transaction"
 msgstr "管理此周期性交易的附件"
 
-#: billsdepositsdialog.cpp:634 transdialog.cpp:576
+#: billsdepositsdialog.cpp:636 transdialog.cpp:579
 msgid "User Colors"
 msgstr "用户颜色"
 
-#: billsdepositsdialog.cpp:638 transdialog.cpp:582 usertransactionpanel.cpp:217
+#: billsdepositsdialog.cpp:640 transdialog.cpp:585 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
 msgstr "选择一个常用的备注"
 
-#: billsdepositsdialog.cpp:650 transdialog.cpp:1309
+#: billsdepositsdialog.cpp:652 transdialog.cpp:1343
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "添加关于该交易的备注。"
 
-#: billsdepositsdialog.cpp:679
+#: billsdepositsdialog.cpp:681
 msgid "Choose Bank Account or Term Account"
 msgstr "选择账户"
 
-#: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:762
+#: billsdepositsdialog.cpp:714 billsdepositsdialog.cpp:764
 msgid "Account name"
 msgstr "账户名称"
 
-#: billsdepositsdialog.cpp:819 billsdepositsdialog.cpp:859
-#: filtertransdialog.cpp:1217 transdialog.cpp:299 transdialog.cpp:380
+#: billsdepositsdialog.cpp:821 billsdepositsdialog.cpp:861
+#: filtertransdialog.cpp:1217 transdialog.cpp:302 transdialog.cpp:383
 msgid "From"
 msgstr "从"
 
-#: billsdepositsdialog.cpp:831 transdialog.cpp:293
+#: billsdepositsdialog.cpp:833 transdialog.cpp:296
 msgid "To"
 msgstr "到"
 
-#: billsdepositsdialog.cpp:832
+#: billsdepositsdialog.cpp:834
 msgid "Select To Account"
 msgstr "选择存入账户"
 
-#: billsdepositsdialog.cpp:934
+#: billsdepositsdialog.cpp:936
 msgid "The payment date is after the due date, is this what you intended?"
 msgstr "付款日期在到期日之后，这是您想要的吗？"
 
-#: billsdepositsdialog.cpp:935
+#: billsdepositsdialog.cpp:937
 msgid "Looks like a late payment"
 msgstr "看起来像一个逾期付款"
 
-#: billsdepositsdialog.cpp:1234
+#: billsdepositsdialog.cpp:1236
 msgid "Specify the transfer amount in the From Account"
 msgstr "指定转账账户"
 
-#: billsdepositsdialog.cpp:1276
+#: billsdepositsdialog.cpp:1278
 msgid "Activates"
 msgstr "增值"
 
-#: billsdepositsdialog.cpp:1278
+#: billsdepositsdialog.cpp:1280
 msgid "Period: Days"
 msgstr "周期（天）"
 
-#: billsdepositsdialog.cpp:1279
+#: billsdepositsdialog.cpp:1281
 msgid "Period: Months"
 msgstr "每四个月"
 
-#: billsdepositsdialog.cpp:1286
+#: billsdepositsdialog.cpp:1288
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr "指定时间段以激活。\n"
 "在未激活时变为空。"
 
-#: billsdepositsdialog.cpp:1294
+#: billsdepositsdialog.cpp:1296
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr "指定几个月的时间段来激活。\n"
 "在未激活时变为空。"
 
-#: billsdepositsdialog.cpp:1302
+#: billsdepositsdialog.cpp:1304
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr "指定时间段以激活。\n"
 "在未激活时留空。"
 
-#: billsdepositsdialog.cpp:1310
+#: billsdepositsdialog.cpp:1312
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr "指定几个月的时间段来激活。\n"
 "在未激活时变为空。"
 
-#: billsdepositsdialog.cpp:1318
+#: billsdepositsdialog.cpp:1320
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr "指定要支付的付款数量。\n"
 "如果是持续付款，请留空。"
 
-#: billsdepositsdialog.cpp:1343 filtertransdialog.cpp:604
+#: billsdepositsdialog.cpp:1345 filtertransdialog.cpp:604
 #: filtertransdialog.cpp:619 filtertransdialog.cpp:630
 #: filtertransdialog.cpp:646 filtertransdialog.cpp:692
 #: filtertransdialog.cpp:700 optionsettingsgeneral.cpp:287 util.cpp:691
 msgid "Invalid value"
 msgstr "无效值"
 
-#: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1135
+#: billsdepositsdialog.cpp:1345 import_export/univcsvdialog.cpp:1135
 #: maincurrencydialog.cpp:469 mmframe.cpp:3340 optionsettingsgeneral.cpp:287
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
 msgstr "错误"
 
-#: billsdepositsdialog.cpp:1408 transdialog.cpp:1268
+#: billsdepositsdialog.cpp:1410 transdialog.cpp:1302
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
 msgstr "指定交易类目"
 
-#: billsdepositsdialog.cpp:1430 categdialog.cpp:119
-#: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:393
+#: billsdepositsdialog.cpp:1432 categdialog.cpp:119
+#: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:396
 msgid "Categories"
 msgstr "分类"
 
-#: billsdepositsdialog.cpp:1465 transdialog.cpp:1342
+#: billsdepositsdialog.cpp:1467 transdialog.cpp:1376
 msgid "Clear color"
 msgstr "消除颜色"
 
-#: billsdepositsdialog.cpp:1470 filtertransdialog.cpp:1741 transdialog.cpp:1347
+#: billsdepositsdialog.cpp:1472 filtertransdialog.cpp:1741 transdialog.cpp:1381
 #, c-format
 msgid "Color #%i"
 msgstr "颜色 #%i"
@@ -1170,7 +1170,7 @@ msgstr "新的周期性交易"
 msgid "Specify where the transaction is going to"
 msgstr "指定交易的对象"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1300
+#: billsdepositsdialog.h:125 transdialog.cpp:1334
 msgid "Specify where the transaction is coming from"
 msgstr "指定交易的对象"
 
@@ -1178,7 +1178,7 @@ msgstr "指定交易的对象"
 msgid "Specify which account the transfer is going to"
 msgstr "指定发生转账的账户"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1295 usertransactionpanel.cpp:146
+#: billsdepositsdialog.h:127 transdialog.cpp:1329 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
 msgstr "指定交易的金额"
 
@@ -1219,7 +1219,7 @@ msgstr "重复"
 msgid "Autorepeat"
 msgstr "自动重复"
 
-#: billsdepositspanel.cpp:139 mmhomepage.cpp:362
+#: billsdepositspanel.cpp:139 mmhomepage.cpp:363
 msgid "Payment"
 msgstr "付款"
 
@@ -1352,7 +1352,7 @@ msgstr "类别："
 msgid "Expense"
 msgstr "支出"
 
-#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:432
+#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:440
 #: reports/categexp.cpp:128 reports/categexp.cpp:161 reports/categexp.cpp:398
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:217
 #: reports/incexpenses.cpp:253
@@ -2065,7 +2065,7 @@ msgid "Other Expenses"
 msgstr "其它支出"
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:34
-#: model/Model_Checking.cpp:31 transdialog.cpp:363
+#: model/Model_Checking.cpp:31 transdialog.cpp:366
 msgid "Transfer"
 msgstr "转账"
 
@@ -2331,7 +2331,7 @@ msgstr "返回"
 msgid "Color"
 msgstr "颜色"
 
-#: filtertransdialog.cpp:45 mmhomepage.cpp:640 model/Model_Billsdeposits.cpp:40
+#: filtertransdialog.cpp:45 mmhomepage.cpp:648 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "已核实"
@@ -2964,8 +2964,8 @@ msgstr "在备注中包含收款人字段"
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
 #: import_export/univcsvdialog.cpp:742 import_export/univcsvdialog.cpp:877
 #: import_export/univcsvdialog.cpp:880 import_export/univcsvdialog.cpp:901
-#: import_export/univcsvdialog.cpp:908 themes.cpp:229 transdialog.cpp:341
-#: transdialog.cpp:1004 transdialog.cpp:1008 transdialog.cpp:1013
+#: import_export/univcsvdialog.cpp:908 themes.cpp:229 transdialog.cpp:344
+#: transdialog.cpp:1038 transdialog.cpp:1042 transdialog.cpp:1047
 #: webapp.cpp:399 webapp.cpp:408
 msgid "Unknown"
 msgstr "不清楚"
@@ -3112,7 +3112,7 @@ msgid "Don't Care"
 msgstr "不处理"
 
 #: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:228
-#: mmhomepage.cpp:641 reports/summary.cpp:329
+#: mmhomepage.cpp:649 reports/summary.cpp:329
 msgid "Balance"
 msgstr "余额"
 
@@ -3838,86 +3838,86 @@ msgstr "作为重复"
 msgid "Mark all being selected"
 msgstr "标记所有被选中"
 
-#: mmchecking_list.cpp:793
+#: mmchecking_list.cpp:795
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "您真的要删除显示的所有交易吗？"
 
-#: mmchecking_list.cpp:794 mmchecking_list.cpp:805 mmchecking_list.cpp:816
-#: mmchecking_list.cpp:863
+#: mmchecking_list.cpp:796 mmchecking_list.cpp:807 mmchecking_list.cpp:818
+#: mmchecking_list.cpp:865
 msgid "Confirm Transaction Deletion"
 msgstr "确认删除交易"
 
-#: mmchecking_list.cpp:804 mmchecking_list.cpp:815
+#: mmchecking_list.cpp:806 mmchecking_list.cpp:817
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "您真的想要删除显示的所有 \"%s\"交易吗？"
 
-#: mmchecking_list.cpp:804
+#: mmchecking_list.cpp:806
 msgid "Follow Up"
 msgstr "跟进"
 
-#: mmchecking_list.cpp:815
+#: mmchecking_list.cpp:817
 msgid "Unreconciled"
 msgstr "未核实"
 
-#: mmchecking_list.cpp:858
+#: mmchecking_list.cpp:860
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "您真的要删除 %i 所选的交易吗？"
 
-#: mmchecking_list.cpp:913
+#: mmchecking_list.cpp:915
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "已锁定交易日期：%s\n\n"
 "已核实对账交易。"
 
-#: mmchecking_list.cpp:916 transdialog.cpp:729 transdialog.cpp:762
+#: mmchecking_list.cpp:918 transdialog.cpp:732 transdialog.cpp:765
 msgid "MMEX Transaction Check"
 msgstr "MMEX 交易检查"
 
-#: mmchecking_list.cpp:949
+#: mmchecking_list.cpp:951
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "该编辑将影响涉及已关闭账户的 %i 笔交易。"
 
-#: mmchecking_list.cpp:951
+#: mmchecking_list.cpp:953
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "是否仍要执行编辑？"
 
-#: mmchecking_list.cpp:952
+#: mmchecking_list.cpp:954
 msgid "Closed Account Check"
 msgstr "已关闭账户检查"
 
-#: mmchecking_list.cpp:1138
+#: mmchecking_list.cpp:1140
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "您真的要移动 %i 所选的交易吗？"
 
-#: mmchecking_list.cpp:1143
+#: mmchecking_list.cpp:1145
 msgid "Confirm Transaction Move"
 msgstr "确认交易移动"
 
-#: mmchecking_list.cpp:1149
+#: mmchecking_list.cpp:1151
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "正在将 %i 笔交易移动到..."
 
-#: mmchecking_list.cpp:1153 stocks_list.cpp:292
+#: mmchecking_list.cpp:1155 stocks_list.cpp:292
 msgid "Select the destination Account "
 msgstr "选择存入账户"
 
-#: mmchecking_list.cpp:1221
+#: mmchecking_list.cpp:1223
 msgid "Recurring Transaction saved."
 msgstr "周期性交易已保存。"
 
-#: mmcheckingpanel.cpp:333 mmframe.cpp:1725 transdialog.cpp:180
+#: mmcheckingpanel.cpp:333 mmframe.cpp:1725 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "新增交易"
 
@@ -3985,26 +3985,26 @@ msgstr "所选交易余额： %s"
 msgid "Days between selected transactions: %d"
 msgstr "所选交易之间的天数： %d"
 
-#: mmcustomdata.cpp:61
+#: mmcustomdata.cpp:62
 msgid "Custom fields"
 msgstr "自定义字段"
 
-#: mmcustomdata.cpp:309
+#: mmcustomdata.cpp:311
 msgid "Please select"
 msgstr "请选择"
 
-#: mmcustomdata.cpp:309
+#: mmcustomdata.cpp:311
 msgid "Multi Choice"
 msgstr "多项选择"
 
-#: mmcustomdata.cpp:637
+#: mmcustomdata.cpp:639
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
 msgstr "无法保存自定义字段%s\":\n"
 "值 \"%s\" 与 RegEx 验证\"%s 不匹配"
 
-#: mmcustomdata.cpp:640
+#: mmcustomdata.cpp:642
 msgid "CustomField validation error"
 msgstr "自定义字段验证错误"
 
@@ -4042,17 +4042,17 @@ msgstr "工具栏"
 msgid "Favourites"
 msgstr "收藏夹"
 
-#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:625 reports/summary.cpp:285
+#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:633 reports/summary.cpp:285
 #: reports/summary.cpp:321
 msgid "Bank Accounts"
 msgstr "银行账户"
 
-#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:626 reports/summary.cpp:286
+#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:634 reports/summary.cpp:286
 #: reports/summary.cpp:322
 msgid "Credit Card Accounts"
 msgstr "信用卡账户"
 
-#: mmframe.cpp:474 mmframe.cpp:733 mmhomepage.cpp:628 reports/summary.cpp:288
+#: mmframe.cpp:474 mmframe.cpp:733 mmhomepage.cpp:636 reports/summary.cpp:288
 #: reports/summary.cpp:324
 msgid "Term Accounts"
 msgstr "定期账户"
@@ -4061,11 +4061,11 @@ msgstr "定期账户"
 msgid "Stock Portfolios"
 msgstr "股票投资"
 
-#: mmframe.cpp:476 mmframe.cpp:725 mmhomepage.cpp:624
+#: mmframe.cpp:476 mmframe.cpp:725 mmhomepage.cpp:632
 msgid "Cash Accounts"
 msgstr "现金账户"
 
-#: mmframe.cpp:477 mmframe.cpp:729 mmhomepage.cpp:627 reports/summary.cpp:287
+#: mmframe.cpp:477 mmframe.cpp:729 mmhomepage.cpp:635 reports/summary.cpp:287
 #: reports/summary.cpp:323
 msgid "Loan Accounts"
 msgstr "贷款账户"
@@ -4082,7 +4082,7 @@ msgstr "主页"
 msgid "All Transactions"
 msgstr "所有交易"
 
-#: mmframe.cpp:741 mmhomepage.cpp:631 reports/summary.cpp:290
+#: mmframe.cpp:741 mmhomepage.cpp:639 reports/summary.cpp:290
 #: reports/summary.cpp:326
 msgid "Share Accounts"
 msgstr "股票账户"
@@ -5003,7 +5003,7 @@ msgstr "这个应用程序的语言已经被改变。当应用程序再次启动
 msgid "General Group Report"
 msgstr "常规组报告"
 
-#: mmframereport.cpp:105 mmhomepage.cpp:792 model/Model_Report.cpp:403
+#: mmframereport.cpp:105 mmhomepage.cpp:800 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "捕获异常"
@@ -5082,7 +5082,7 @@ msgstr "盈亏"
 msgid "Total"
 msgstr "总计："
 
-#: mmhomepage.cpp:108 mmhomepage.cpp:680 reports/incexpenses.cpp:298
+#: mmhomepage.cpp:108 mmhomepage.cpp:688 reports/incexpenses.cpp:298
 #: reports/payee.cpp:170 reports/summarystocks.cpp:155
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
@@ -5093,56 +5093,56 @@ msgstr "总计："
 msgid "Top Withdrawals: %s"
 msgstr "收支排行：%s"
 
-#: mmhomepage.cpp:362
+#: mmhomepage.cpp:363
 msgid "Account / Payee"
 msgstr "账户/收款人"
 
-#: mmhomepage.cpp:426
+#: mmhomepage.cpp:434
 #, c-format
 msgid "Income vs Expenses: %s"
 msgstr "收支情况：%s"
 
-#: mmhomepage.cpp:436 reports/categexp.cpp:123 reports/categexp.cpp:151
+#: mmhomepage.cpp:444 reports/categexp.cpp:123 reports/categexp.cpp:151
 #: reports/categexp.cpp:397 reports/categexp.cpp:472 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:218 reports/incexpenses.cpp:254
 #: reports/payee.cpp:141
 msgid "Expenses"
 msgstr "支出"
 
-#: mmhomepage.cpp:440 reports/incexpenses.cpp:121
+#: mmhomepage.cpp:448 reports/incexpenses.cpp:121
 msgid "Difference:"
 msgstr "差额："
 
-#: mmhomepage.cpp:444
+#: mmhomepage.cpp:452
 msgid "Income/Expenses"
 msgstr "收支"
 
-#: mmhomepage.cpp:468
+#: mmhomepage.cpp:476
 msgid "Transaction Statistics"
 msgstr "交易明细"
 
-#: mmhomepage.cpp:510
+#: mmhomepage.cpp:518
 msgid "Follow Up On Transactions: "
 msgstr "需跟进的交易"
 
-#: mmhomepage.cpp:514
+#: mmhomepage.cpp:522
 msgid "Total Transactions: "
 msgstr "交易笔数"
 
-#: mmhomepage.cpp:536 reports/categexp.cpp:230 reports/summarystocks.cpp:170
+#: mmhomepage.cpp:544 reports/categexp.cpp:230 reports/summarystocks.cpp:170
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
 msgstr "总计："
 
-#: mmhomepage.cpp:629
+#: mmhomepage.cpp:637
 msgid "Investment Accounts"
 msgstr "投资账户"
 
-#: mmhomepage.cpp:630 reports/summary.cpp:289 reports/summary.cpp:325
+#: mmhomepage.cpp:638 reports/summary.cpp:289 reports/summary.cpp:325
 msgid "Asset Accounts"
 msgstr "资产账户"
 
-#: mmhomepage.cpp:778
+#: mmhomepage.cpp:786
 msgid "Currency Exchange Rates"
 msgstr "货币汇率"
 
@@ -5988,15 +5988,15 @@ msgstr "选择源类目"
 msgid "Select Destination Category"
 msgstr "选择目标类目"
 
-#: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
+#: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:121
 msgid "Relocate:"
 msgstr "更改位置："
 
-#: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:113
+#: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:122
 msgid "to:"
 msgstr "至："
 
-#: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:156
+#: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:165
 msgid "Please Confirm:"
 msgstr "请确认："
 
@@ -6004,7 +6004,7 @@ msgstr "请确认："
 msgid "Category Relocation Confirmation"
 msgstr "类目移动确认"
 
-#: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
+#: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:241
 #, c-format
 msgid "Records found in transactions: %i"
 msgstr "在交易中找到的记录：%i"
@@ -6014,7 +6014,7 @@ msgstr "在交易中找到的记录：%i"
 msgid "Records found in split transactions: %i"
 msgstr "在拆分交易中找到的记录： %i"
 
-#: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
+#: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:242
 #, c-format
 msgid "Records found in recurring transactions: %i"
 msgstr "在重复交易中找到记录： %i"
@@ -6034,11 +6034,11 @@ msgstr "作为默认收款人类别找到的记录：%i"
 msgid "Records found in budget: %i"
 msgstr "在预算中找到的记录： %i"
 
-#: relocatepayeedialog.cpp:52
+#: relocatepayeedialog.cpp:53
 msgid "Relocate Payee Dialog"
 msgstr "转移收款人对话框"
 
-#: relocatepayeedialog.cpp:82
+#: relocatepayeedialog.cpp:83
 msgid "Relocate all source payee to the destination payee"
 msgstr "将原收款人的交易全部转移至目标收款人中"
 
@@ -6046,12 +6046,12 @@ msgstr "将原收款人的交易全部转移至目标收款人中"
 msgid "Delete source payee after relocation"
 msgstr "转移后删除原收款人"
 
-#: relocatepayeedialog.cpp:152
+#: relocatepayeedialog.cpp:161
 #, c-format
 msgid "From %s to %s"
 msgstr "从 %s 到 %s"
 
-#: relocatepayeedialog.cpp:157
+#: relocatepayeedialog.cpp:166
 msgid "Payee Relocation Confirmation"
 msgstr "收款人转移确认"
 
@@ -6849,68 +6849,68 @@ msgstr "多交易更新"
 msgid "Append"
 msgstr "追加"
 
-#: transactionsupdatedialog.cpp:325 transdialog.cpp:666
+#: transactionsupdatedialog.cpp:325 transdialog.cpp:669
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
 msgstr "您以前没有使用过这个收款人姓名。 名字正确吗？\n"
 "%s"
 
-#: transactionsupdatedialog.cpp:326 transdialog.cpp:667
+#: transactionsupdatedialog.cpp:326 transdialog.cpp:670
 msgid "Confirm payee name"
 msgstr "确认收款人姓名"
 
-#: transdialog.cpp:180
+#: transdialog.cpp:183
 msgid "Duplicate Transaction"
 msgstr "复制并增加交易"
 
-#: transdialog.cpp:180
+#: transdialog.cpp:183
 msgid "Edit Transaction"
 msgstr "编辑交易"
 
-#: transdialog.cpp:469 usertransactionpanel.cpp:104
+#: transdialog.cpp:472 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
 msgstr "指定交易日期"
 
-#: transdialog.cpp:561
+#: transdialog.cpp:564
 msgid "Populate Transaction #"
 msgstr "移动交易 #"
 
-#: transdialog.cpp:571 usertransactionpanel.cpp:210
+#: transdialog.cpp:574 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
 msgstr "管理此交易的附件"
 
-#: transdialog.cpp:610
+#: transdialog.cpp:613
 msgid "Show/Hide custom fields window"
 msgstr "显示/隐藏自定义字段窗口"
 
-#: transdialog.cpp:760
+#: transdialog.cpp:763
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr "此交易将超过您的账户限额。\n\n"
 "您想要继续吗？"
 
-#: transdialog.cpp:1286
+#: transdialog.cpp:1320
 msgid "Specify account the money is taken from"
 msgstr "指定钱来自于的账户"
 
-#: transdialog.cpp:1287
+#: transdialog.cpp:1321
 msgid "Specify account the money is moved to"
 msgstr "指定钱被移动到的账户"
 
-#: transdialog.cpp:1288
+#: transdialog.cpp:1322
 msgid "Specify the transfer amount in the From Account."
 msgstr "指定转账来源账户。"
 
-#: transdialog.cpp:1296
+#: transdialog.cpp:1330
 msgid "Specify account for the transaction"
 msgstr "指定交易的账户"
 
-#: transdialog.cpp:1298
+#: transdialog.cpp:1332
 msgid "Specify to whom the transaction is going to"
 msgstr "指定交易的对象"
 
-#: transdialog.cpp:1304 usertransactionpanel.cpp:96
+#: transdialog.cpp:1338 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
 msgstr "指定交易日期"
 
