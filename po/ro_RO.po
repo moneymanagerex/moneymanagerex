@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-08 19:25+0300\n"
-"PO-Revision-Date: 2021-11-08 16:36\n"
+"PO-Revision-Date: 2021-11-11 12:47\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -777,7 +777,7 @@ msgstr "Săptămînală"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr ""
+msgstr "La doua săptămâni"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:52 mmframereport.cpp:129
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
@@ -864,7 +864,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:129
 msgid "Date Due"
-msgstr ""
+msgstr "Dată scadentă"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1275
 msgid "Repeats"
@@ -1939,7 +1939,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "Proprietăți"
 
 #: customfieldlistdialog.cpp:65
 #, c-format
@@ -2313,12 +2313,12 @@ msgstr ""
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "Înapoi"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
 #: reports/transactions.cpp:156
 msgid "Color"
-msgstr ""
+msgstr "Culoare"
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:640 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
@@ -2375,11 +2375,11 @@ msgstr ""
 #: filtertransdialog.cpp:229 import_export/qif_export.cpp:154
 #: import_export/qif_import_gui.cpp:174
 msgid "From Date"
-msgstr ""
+msgstr "De la data"
 
 #: filtertransdialog.cpp:239
 msgid "Period Range"
-msgstr ""
+msgstr "Interval perioadă"
 
 #: filtertransdialog.cpp:267 reports/mmDateRange.cpp:33
 msgid "Date Range"
@@ -2425,7 +2425,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:405
 msgid "Select the Color"
-msgstr ""
+msgstr "Selectați culoarea"
 
 #: filtertransdialog.cpp:412
 msgid "Presentation Options"
@@ -2512,7 +2512,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "Perioadă"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
@@ -2820,7 +2820,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
@@ -3430,7 +3430,7 @@ msgstr ""
 #: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr ""
+msgstr "Preț"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -5063,13 +5063,13 @@ msgstr "Cîștig/Pierdere"
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:250
 #: reports/categexp.cpp:179 reports/categexp.cpp:473 reports/summary.cpp:327
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: mmhomepage.cpp:108 mmhomepage.cpp:680 reports/incexpenses.cpp:298
 #: reports/payee.cpp:170 reports/summarystocks.cpp:155
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
-msgstr ""
+msgstr "Total:"
 
 #: mmhomepage.cpp:162
 #, c-format
@@ -5201,7 +5201,7 @@ msgstr "Cont Curent"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Card de credit"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
@@ -5495,7 +5495,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Limbă"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5625,11 +5625,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -5755,7 +5755,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:146
 msgid "Seconds"
-msgstr ""
+msgstr "Secunde"
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
@@ -6253,7 +6253,7 @@ msgstr "Luna Curentă"
 
 #: reports/mmDateRange.cpp:91
 msgid "Today"
-msgstr ""
+msgstr "Astăzi"
 
 #: reports/mmDateRange.cpp:101
 msgid "Current Month to Date"
@@ -6346,7 +6346,7 @@ msgstr ""
 
 #: reports/summarystocks.cpp:109
 msgid "Quantity"
-msgstr ""
+msgstr "Cantitate"
 
 #: reports/summarystocks.cpp:111
 msgid "Current Price"
@@ -6584,35 +6584,35 @@ msgstr ""
 
 #: stockdialog.cpp:713 stockdialog.cpp:743
 msgid "5 Days"
-msgstr ""
+msgstr "5 zile"
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
 msgid "1 Month"
-msgstr ""
+msgstr "1 Lună"
 
 #: stockdialog.cpp:715 stockdialog.cpp:746
 msgid "3 Months"
-msgstr ""
+msgstr "3 Luni"
 
 #: stockdialog.cpp:716
 msgid "6 Months"
-msgstr ""
+msgstr "6 Luni"
 
 #: stockdialog.cpp:717
 msgid "1 Year"
-msgstr ""
+msgstr "1 An"
 
 #: stockdialog.cpp:718
 msgid "2 Years"
-msgstr ""
+msgstr "2 Ani"
 
 #: stockdialog.cpp:719
 msgid "5 Years"
-msgstr ""
+msgstr "5 Ani"
 
 #: stockdialog.cpp:720
 msgid "10 Years"
-msgstr ""
+msgstr "10 Ani"
 
 #: stockdialog.cpp:722
 msgid "Max"
@@ -6925,31 +6925,31 @@ msgstr ""
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "Ian"
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: util.cpp:293
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: util.cpp:294 util.h:156
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "Iun"
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "Iul"
 
 #: util.cpp:295
 msgid "Aug"
@@ -7383,7 +7383,7 @@ msgstr ""
 
 #: wizard_update.cpp:145
 msgid "Version"
-msgstr ""
+msgstr "Versiune"
 
 #: wizard_update.cpp:153
 msgid "You already have the latest version"
