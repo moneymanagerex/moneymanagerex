@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2013 - 2021 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -116,8 +117,8 @@ Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency
 std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
 {
     wxDateTime dt;
-    std::map<wxDateTime, int> DatesList;
-    const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID, NOT_EQUAL));
+    std::map<wxDateTime, int> datesList;
+    const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID));
     for (const auto &account : accounts)
     {
         if (Model_Account::type(account) == Model_Account::TYPE::INVESTMENT)
@@ -125,19 +126,21 @@ std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
             for (const auto trans : Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID)))
             {
                 dt.ParseDate(trans.PURCHASEDATE);
-                DatesList[dt] = 1;
+                datesList[dt] = 1;
             }
         }
         else
         {
-            for (const auto trans : Model_Checking::instance().find(Model_Checking::ACCOUNTID(account.ACCOUNTID)))
+            for (const auto& trans : Model_Checking::instance()
+                .find_or(Model_Checking::ACCOUNTID(account.ACCOUNTID)
+                , Model_Checking::TOACCOUNTID(account.ACCOUNTID)))
             {
                 dt.ParseDate(trans.TRANSDATE);
-                DatesList[dt] = 1;
+                datesList[dt] = 1;
             }
         }
     }
-    return DatesList;
+    return datesList;
 }
 /**
 * Remove the Data record from memory and the database.

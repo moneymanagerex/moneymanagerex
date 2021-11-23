@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
- Copyright (C) 2016, 2020 Nikolay
+ Copyright (C) 2016, 2021 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -116,7 +116,8 @@ void mmMainCurrencyDialog::fillControls()
     {
         int currencyID = currency.CURRENCYID;
 
-        if (skip_unused && !(Model_Account::is_used(currency) || currencyID == base_currency_id)) continue;
+        if (skip_unused && !(Model_Account::is_used(currency) || currencyID == base_currency_id))
+            continue;
         if (!m_maskStr.IsEmpty())
         {
             if (!currency.CURRENCYNAME.Lower().Matches(m_maskStr) && !currency.CURRENCY_SYMBOL.Lower().Matches(m_maskStr))
@@ -570,7 +571,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     {
         historyButtonAdd_->Enable();
         historyButtonDelete_->Enable();
-    }      
+    }
 
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance()
@@ -649,28 +650,28 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
         , _("Currency Dialog")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-    bool CheckDate = msgResult == wxNO;
+    bool isCheckDate = msgResult == wxNO;
 
     wxString msg;
     const std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(m_currency_id);
     wxDateTime begin_date = wxDateTime::Now().Subtract(wxDateSpan::Years(1));
-    if (CheckDate && !DatesList.empty()) {
+    if (isCheckDate && !DatesList.empty()) {
         begin_date = DatesList.begin()->first;
     }
     wxLogDebug("Begin Date: %s", begin_date.FormatISODate());
 
     std::map<wxDateTime, double> historical_rates;
-    bool UpdStatus = GetOnlineHistory(CurrentCurrency->CURRENCY_SYMBOL, begin_date, historical_rates, msg);
+    bool isUpdStatus = GetOnlineHistory(CurrentCurrency->CURRENCY_SYMBOL, begin_date, historical_rates, msg);
 
-    if (!UpdStatus && !g_fiat_curr().Contains(CurrentCurrency->CURRENCY_SYMBOL)) {
+    if (!isUpdStatus && !g_fiat_curr().Contains(CurrentCurrency->CURRENCY_SYMBOL)) {
         wxString coincap_id;
         double coincap_price_usd;
-        UpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
-        if (UpdStatus)
-            UpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
+        isUpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
+        if (isUpdStatus)
+            isUpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
     }
 
-    if (!UpdStatus)
+    if (!isUpdStatus)
     {
         return mmErrorDialogs::MessageError(this
             , wxString::Format(_("Unable to download %s currency rates")
@@ -678,11 +679,11 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
             , _("Currency history error"));
     }
 
-    bool Found = !historical_rates.empty();
-    if (Found)
+    bool isFound = !historical_rates.empty();
+    if (isFound)
     {
         Model_CurrencyHistory::instance().Savepoint();
-        if (CheckDate)
+        if (isCheckDate)
         {
             for (const auto entry : DatesList)
             {
@@ -773,11 +774,11 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     {
         if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
             , _("Currency Dialog")
-            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+            , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
             return true;
     }
 
-    Option::instance().BaseCurrency(baseCurrencyID);
+    Option::instance().setBaseCurrency(baseCurrencyID);
 
     //Update baseconvrate
     Model_Currency::instance().Savepoint();
@@ -797,7 +798,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
     if (wxMessageBox(_("Do you want to update today currency rates?")
             , _("Currency Dialog")
-            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+            , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION) != wxYES)
         return true;
     OnlineUpdateCurRate();
 
@@ -867,7 +868,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime b
     if (!g_fiat_curr().Contains(symbol))
         s = "%s-%s";
 
-    wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
+    const wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
         , wxString::Format(s, symbol, base_currency_symbol)
         , wxString::Format("period1=%s&period2=9999999999&interval=1d", period1)

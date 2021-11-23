@@ -83,7 +83,7 @@ void Option::LoadOptions(bool include_infotable)
         {
             if (mmMainCurrencyDialog::Execute(m_baseCurrency))
             {
-                BaseCurrency(m_baseCurrency);
+                setBaseCurrency(m_baseCurrency);
                 Model_CurrencyHistory::ResetCurrencyHistory();
                 Model_Currency::ResetBaseConversionRates();
             }
@@ -163,7 +163,7 @@ void Option::FinancialYearStartMonth(const wxString& setting)
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
 }
 
-void Option::BaseCurrency(int base_currency_id)
+void Option::setBaseCurrency(int base_currency_id)
 {
     m_baseCurrency = base_currency_id;
     Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
