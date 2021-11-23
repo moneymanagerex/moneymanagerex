@@ -64,7 +64,7 @@ public:
     wxString FinancialYearStartMonth();
 
     // set the base currency ID
-    void BaseCurrency(int base_currency_id);
+    void setBaseCurrency(int base_currency_id);
     // returns the base currency ID
     int getBaseCurrencyID();
 

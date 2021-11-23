@@ -116,7 +116,8 @@ void mmMainCurrencyDialog::fillControls()
     {
         int currencyID = currency.CURRENCYID;
 
-        if (skip_unused && !(Model_Account::is_used(currency) || currencyID == base_currency_id)) continue;
+        if (skip_unused && !(Model_Account::is_used(currency) || currencyID == base_currency_id))
+            continue;
         if (!m_maskStr.IsEmpty())
         {
             if (!currency.CURRENCYNAME.Lower().Matches(m_maskStr) && !currency.CURRENCY_SYMBOL.Lower().Matches(m_maskStr))
@@ -564,17 +565,18 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     {
         historyButtonAdd_->Disable();
         historyButtonDelete_->Disable();
-        return;
+        //return;
     }
     else
     {
         historyButtonAdd_->Enable();
         historyButtonDelete_->Enable();
-    }      
+    }
 
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance()
         .find(Model_CurrencyHistory::CURRENCYID(m_currency_id));
+    wxLogDebug("Base Currency ID: %i History size: %zu", m_currency_id, histData.size());
     std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
     std::reverse(histData.begin(), histData.end());
     if (!histData.empty())
@@ -773,11 +775,11 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     {
         if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
             , _("Currency Dialog")
-            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+            , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
             return true;
     }
 
-    Option::instance().BaseCurrency(baseCurrencyID);
+    Option::instance().setBaseCurrency(baseCurrencyID);
 
     //Update baseconvrate
     Model_Currency::instance().Savepoint();
@@ -797,7 +799,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
     if (wxMessageBox(_("Do you want to update today currency rates?")
             , _("Currency Dialog")
-            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+            , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION) != wxYES)
         return true;
     OnlineUpdateCurRate();
 
@@ -867,7 +869,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime b
     if (!g_fiat_curr().Contains(symbol))
         s = "%s-%s";
 
-    wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
+    const wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
         , wxString::Format(s, symbol, base_currency_symbol)
         , wxString::Format("period1=%s&period2=9999999999&interval=1d", period1)

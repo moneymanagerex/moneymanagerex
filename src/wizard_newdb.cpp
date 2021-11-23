@@ -82,7 +82,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     {
         currencyID_ = base_currency->CURRENCYID;
         currName = base_currency->CURRENCYNAME;
-        Option::instance().BaseCurrency(currencyID_);
+        Option::instance().setBaseCurrency(currencyID_);
     }
 
     itemButtonCurrency_ = new wxButton(this, wxID_ANY, currName, wxDefaultPosition, wxSize(220, -1), 0);
@@ -141,7 +141,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         {
             itemButtonCurrency_->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
             currencyID_ = currency->CURRENCYID;
-            Option::instance().BaseCurrency(currencyID_);
+            Option::instance().setBaseCurrency(currencyID_);
             break;
         }
     }
