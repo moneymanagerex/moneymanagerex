@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
- Copyright (C) 2016, 2020 Nikolay
+ Copyright (C) 2016, 2021 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -650,28 +650,28 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
         , _("Currency Dialog")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-    bool CheckDate = msgResult == wxNO;
+    bool isCheckDate = msgResult == wxNO;
 
     wxString msg;
     const std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(m_currency_id);
     wxDateTime begin_date = wxDateTime::Now().Subtract(wxDateSpan::Years(1));
-    if (CheckDate && !DatesList.empty()) {
+    if (isCheckDate && !DatesList.empty()) {
         begin_date = DatesList.begin()->first;
     }
     wxLogDebug("Begin Date: %s", begin_date.FormatISODate());
 
     std::map<wxDateTime, double> historical_rates;
-    bool UpdStatus = GetOnlineHistory(CurrentCurrency->CURRENCY_SYMBOL, begin_date, historical_rates, msg);
+    bool isUpdStatus = GetOnlineHistory(CurrentCurrency->CURRENCY_SYMBOL, begin_date, historical_rates, msg);
 
-    if (!UpdStatus && !g_fiat_curr().Contains(CurrentCurrency->CURRENCY_SYMBOL)) {
+    if (!isUpdStatus && !g_fiat_curr().Contains(CurrentCurrency->CURRENCY_SYMBOL)) {
         wxString coincap_id;
         double coincap_price_usd;
-        UpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
-        if (UpdStatus)
-            UpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
+        isUpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
+        if (isUpdStatus)
+            isUpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
     }
 
-    if (!UpdStatus)
+    if (!isUpdStatus)
     {
         return mmErrorDialogs::MessageError(this
             , wxString::Format(_("Unable to download %s currency rates")
@@ -679,11 +679,11 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
             , _("Currency history error"));
     }
 
-    bool Found = !historical_rates.empty();
-    if (Found)
+    bool isFound = !historical_rates.empty();
+    if (isFound)
     {
         Model_CurrencyHistory::instance().Savepoint();
-        if (CheckDate)
+        if (isCheckDate)
         {
             for (const auto entry : DatesList)
             {
