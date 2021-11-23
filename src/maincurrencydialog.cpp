@@ -565,7 +565,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     {
         historyButtonAdd_->Disable();
         historyButtonDelete_->Disable();
-        //return;
+        return;
     }
     else
     {
@@ -576,7 +576,6 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance()
         .find(Model_CurrencyHistory::CURRENCYID(m_currency_id));
-    wxLogDebug("Base Currency ID: %i History size: %zu", m_currency_id, histData.size());
     std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
     std::reverse(histData.begin(), histData.end());
     if (!histData.empty())
