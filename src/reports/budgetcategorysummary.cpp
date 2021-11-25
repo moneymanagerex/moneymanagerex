@@ -122,6 +122,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         , headingStr + "<br>" + _("( Estimated Vs Actual )"));
     hb.addReportHeader(headingStr);
     hb.DisplayDateHeading(yearBegin, yearEnd);
+    // Prime the filter
+    m_filter.clear();
+    m_filter.setDateRange(yearBegin, yearEnd);
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
     // Chart
@@ -228,7 +231,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         {
                             wxString categName = "";
                             if (c) categName = c->CATEGNAME;
-                            hb.addTableCell(categName);
+                            hb.addTableCellLink(wxString::Format("viewtrans:%d:-2"
+                                                            , category.second.first)
+                                                            , category.first);
                             hb.addTableCell(wxEmptyString);
                             hb.addTableCell(wxEmptyString);
                             hb.addMoneyCell(catTotalsEstimated);
@@ -248,7 +253,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         double amt = budgetAmt[category.second.first][category.second.second];
                         hb.startTableRow();
                         {
-                            hb.addTableCell(category.first);
+                            hb.addTableCellLink(wxString::Format("viewtrans:%d:%d"
+                                                                , category.second.first
+                                                                , category.second.second)
+                                                                , category.first);
                             hb.addMoneyCell(amt);
                             hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]);
                             hb.addMoneyCell(estimated);
