@@ -548,7 +548,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     };
 
 
-    htmlChart += wxString::Format("chart: { type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
+    htmlChart += wxString::Format("chart: { animations: { enabled: false }, type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
                     , gtype
                     , (gd.type == GraphData::STACKEDAREA) ? "stacked: true," : ""
                     , mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR)
