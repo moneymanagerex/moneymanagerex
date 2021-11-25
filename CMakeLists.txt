@@ -635,6 +635,15 @@ elseif(WIN32)
         DESTINATION "${MMEX_RES_DIR}")
 endif()
 
+# libcurl for Windows, if specified and exists then copy to bin
+if(CMAKE_PREFIX_PATH)
+    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/build/lib/Release/libcurl.dll" CURL_LIBPATH)
+    if(EXISTS "${CURL_LIBPATH}")
+        install(FILES 
+            "${CURL_LIBPATH}"
+            DESTINATION "${MMEX_BIN_DIR}")
+    endif()
+endif()
 
 # --------- CPack ---------
 set(CPACK_PACKAGE_NAME ${MMEX_EXE})
