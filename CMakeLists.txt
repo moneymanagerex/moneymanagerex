@@ -450,7 +450,7 @@ ENDMACRO()
 # Generate Themes
 GETSUBDIRS(THEMESDIR "${PROJECT_SOURCE_DIR}/themes/system-themes/")
 FOREACH(THEMENAME ${THEMESDIR})
-    file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/*")
+    file(GLOB_RECURSE THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/*")
     create_zip("${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/")
     list(APPEND THEMEFILES "${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme")
 ENDFOREACH()
@@ -633,6 +633,14 @@ elseif(WIN32)
     install(FILES
         resources/mmex.ico
         DESTINATION "${MMEX_RES_DIR}")
+endif()
+
+# libcurl for Windows, if specified then copy to bin
+if (CMAKE_PREFIX_PATH)
+    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/build/lib/Release/libcurl.dll" CURL_LIBPATH)
+    install(FILES 
+        "${CURL_LIBPATH}"
+        DESTINATION "${MMEX_BIN_DIR}")
 endif()
 
 
