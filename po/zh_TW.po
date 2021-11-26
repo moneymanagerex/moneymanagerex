@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-26 08:42\n"
+"PO-Revision-Date: 2021-11-26 09:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1041,7 +1041,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:636 transdialog.cpp:579
 msgid "User Colors"
-msgstr ""
+msgstr "自訂顏色"
 
 #: billsdepositsdialog.cpp:640 transdialog.cpp:585 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
@@ -1148,12 +1148,12 @@ msgstr "依類別查看資金走向"
 
 #: billsdepositsdialog.cpp:1467 transdialog.cpp:1376
 msgid "Clear color"
-msgstr ""
+msgstr "清除顏色"
 
 #: billsdepositsdialog.cpp:1472 filtertransdialog.cpp:1741 transdialog.cpp:1381
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "顏色 #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
@@ -2608,7 +2608,7 @@ msgstr ""
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP檔 (*.zip)"
 
 #: general_report_manager.cpp:662
 #, c-format
@@ -4125,11 +4125,11 @@ msgstr "&QIF檔..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV Files..."
 
 #: mmframe.cpp:1312 mmframe.cpp:1386
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON檔..."
 
 #: mmframe.cpp:1323 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4201,7 +4201,7 @@ msgstr ""
 
 #: mmframe.cpp:1387
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML檔..."
 
 #: mmframe.cpp:1387
 msgid "Export to HTML"
@@ -4309,7 +4309,7 @@ msgstr ""
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
-msgstr ""
+msgstr "主頁面&H"
 
 #: mmframe.cpp:1475 mmframe.cpp:1723
 msgid "Show Home Page"
