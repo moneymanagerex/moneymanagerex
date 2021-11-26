@@ -232,8 +232,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                             wxString categName = "";
                             if (c) categName = c->CATEGNAME;
                             hb.addTableCellLink(wxString::Format("viewtrans:%d:-2"
-                                                            , category.second.first)
-                                                            , category.first);
+                                                            , c->CATEGID)
+                                                            , categName);
                             hb.addTableCell(wxEmptyString);
                             hb.addTableCell(wxEmptyString);
                             hb.addMoneyCell(catTotalsEstimated);
