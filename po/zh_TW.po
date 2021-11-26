@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-26 09:00\n"
+"PO-Revision-Date: 2021-11-26 09:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4089,7 +4089,7 @@ msgstr "編輯帳目(&E)"
 
 #: mmframe.cpp:1256 mmframe.cpp:1484
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "更改類型&R"
 
 #: mmframe.cpp:1257 mmframe.cpp:1294 mmframe.cpp:1487
 msgid "&Delete Account"
@@ -4926,11 +4926,11 @@ msgstr ""
 
 #: mmframe.cpp:3155
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "選擇更改的帳戶"
 
 #: mmframe.cpp:3155 mmframe.cpp:3178
 msgid "Account Reallocation"
-msgstr ""
+msgstr "更改帳戶類型"
 
 #: mmframe.cpp:3177
 #, c-format
