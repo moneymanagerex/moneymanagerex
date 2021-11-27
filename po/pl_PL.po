@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-27 22:02\n"
+"PO-Revision-Date: 2021-11-27 22:20\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -3988,7 +3988,7 @@ msgstr "Bilans konta:"
 
 #: mmcheckingpanel.cpp:409
 msgid "Reconciled Bal: "
-msgstr "Bilans uzgodnionych:"
+msgstr "Bilans rozliczeń: "
 
 #: mmcheckingpanel.cpp:411
 msgid "Diff: "
@@ -5443,7 +5443,7 @@ msgstr ""
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Folder profilu użytkownika"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
@@ -5461,7 +5461,7 @@ msgstr "Katalogi dla innych systemów operacyjnych"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Jeszcze nie ustawione"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
@@ -5541,7 +5541,7 @@ msgstr "Nazwa użytkownika jest używana jako tytuł bazy danych."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Język"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5631,7 +5631,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:329
 msgid "bad locale name"
-msgstr ""
+msgstr "błędna nazwa ustawień regionalnych"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5667,15 +5667,15 @@ msgstr "Ostatnio użyta dla beneficjenta"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Użyj domyślnego dla beneficjenta"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Tak"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
