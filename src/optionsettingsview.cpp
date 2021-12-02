@@ -149,7 +149,7 @@ void OptionSettingsView::Create()
     reporting_firstday_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Start day of month for reporting:")), g_flagsH);
 
     m_reporting_firstday = new wxSpinCtrl(this, wxID_ANY
-        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31);
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 28);
     mmToolTip(m_reporting_firstday, _("Allows the 'first day' in the month to be adjusted for reporting purposes"));
     m_reporting_firstday->SetValue(Option::instance().getReportingFirstDay());
     reporting_firstday_sizer->Add(m_reporting_firstday, g_flagsH);
