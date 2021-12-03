@@ -88,7 +88,7 @@ void do_read_file(std::vector<wxString>& data, const wxString& file_path)
     if (!wxFileName::FileExists(file_path)) return;
 
     mmHTMLBuilder hb;
-    hb.init(true);
+    hb.init(true, "");
     wxFileInputStream input(file_path);
     wxTextInputStream text(input);
     wxRegEx link(R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
@@ -127,7 +127,7 @@ void do_read_file(std::vector<wxString>& data, const wxString& file_path)
             hb.end(true);
             data.push_back(hb.getHTMLText());
             hb.clear();
-            hb.init(true);
+            hb.init(true, "");
             txt.clear();
         }
         else
@@ -142,7 +142,7 @@ void do_read_file(std::vector<wxString>& data, const wxString& file_path)
 void mmAboutDialog::initControls()
 {
     mmHTMLBuilder hb;
-    hb.init(true);
+    hb.init(true, "");
     wxString html = getProgramDescription(2);
     html.Replace("\n", "<br>");
     hb.addHeader(1, ::mmex::getProgramName());
