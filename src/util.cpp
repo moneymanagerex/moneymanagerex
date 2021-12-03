@@ -733,7 +733,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     wxString buffer;
 
     wxString base_curr_symbol = base_currency_symbol;
-    if (type == yahoo_price_type::FIAT && !wxString("USD|EUR").Contains(base_currency_symbol))
+    if (type == yahoo_price_type::FIAT && !wxString("USD|EUR|GBP|CHF").Contains(base_currency_symbol))
     {
         base_curr_symbol = "USD";
         buffer += wxString::Format("%s%s=X,", base_currency_symbol, base_curr_symbol);
@@ -741,7 +741,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 
     for (const auto& entry : symbols)
     {
-        wxRegEx pattern(R"(^([-a-zA-Z0-9_@\.]+)$)");
+        wxRegEx pattern(R"(^([-a-zA-Z0-9_@=\.]+)$)");
         if (!pattern.Matches(entry.first))
             continue;
 
