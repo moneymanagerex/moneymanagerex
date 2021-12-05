@@ -52,6 +52,7 @@ namespace tags
 <script>
     window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
     window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+    window.Promise || document.write('<script src="memory:resize-observer.js"><\/script>');
     window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
     window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
 </script>
@@ -527,7 +528,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::LINE_DATETIME:
             gtype = "line";
-            gSeriesType = "label";
+            gSeriesType = "datetime";
             break;
         case GraphData::PIE:
             gtype = "pie";
