@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2016 - 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -77,6 +78,7 @@ void Option::LoadOptions(bool include_infotable)
         m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
         m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
+        if (m_reporting_firstday > 28) m_reporting_firstday = 28;
         m_homepage_incexp_range = Model_Infotable::instance().GetIntInfo("HOMEPAGE_INCEXP_RANGE", 0);
         // Ensure that base currency is set for the database.
         while (m_baseCurrency < 1)

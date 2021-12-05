@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2013 - 2021 Nikolay
+ Copyright (C) 2013 - 2021 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
