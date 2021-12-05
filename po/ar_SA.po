@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-12-05 08:37\n"
+"PO-Revision-Date: 2021-12-05 08:46\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -203,15 +203,15 @@ msgstr ""
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "مؤمن"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "تمكين أو تعطيل قفل المعاملة"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "تاريخ التوفيق:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
@@ -235,23 +235,23 @@ msgstr "حد الرصيد"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "حد الائتمان للحساب. صفر لتعطيل"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "نسبة الفائدة"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "تاريخ الاستحقاق"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "الحد الأدنى للدفع:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "تنظيم مرفقات هذا الحساب"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
@@ -260,7 +260,7 @@ msgstr "الصورة الإفتراضية"
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "الصورة #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
@@ -274,11 +274,11 @@ msgstr "العملة"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "الرجاء إدخال عنوان URL صالح"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "عنوان URL غير صحيح"
 
 #: accountdialog.h:37 mmframe.cpp:1478 mmframe.cpp:1722
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -303,7 +303,7 @@ msgstr "فتح قاعدة بيانات موجودة"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr ""
+msgstr "فتح ملف قاعدة بيانات تم إنشاؤه مسبقاً مع ملحق (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
@@ -320,7 +320,7 @@ msgstr "زُر الموقع للمزيد من المعلومات"
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "افتح موقع %s لآخر الأخبار، التحديثات إلخ"
 
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
@@ -334,7 +334,7 @@ msgstr "&خروج "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "فتح قاعدة البيانات المفتوحة سابقاً: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -415,11 +415,11 @@ msgstr "% القيمة"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "أدخل المعدل الذي يغير به الأصل قيمته بنسبة مئوية في السنة"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "تنظيم مرفقات هذا الحساب"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
@@ -435,7 +435,7 @@ msgstr "تحرير تفاصيل المُعاملة"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&الغاء "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
