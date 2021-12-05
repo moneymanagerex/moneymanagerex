@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-22 21:53\n"
+"PO-Revision-Date: 2021-12-05 08:37\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -215,23 +215,23 @@ msgstr ""
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "تاريخ قفل المعاملة"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "القيمة الدنيا"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "الحد الأدنى لرصيد الحساب. صفر لتعطيل"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:233
 msgid "Credit"
-msgstr ""
+msgstr "ائتمان"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "حد الرصيد"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
