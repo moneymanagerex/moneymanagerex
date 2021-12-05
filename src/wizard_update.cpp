@@ -135,12 +135,8 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const auto body = md2html((r.HasMember("body") && r["body"].IsString())
             ? wxString::FromUTF8(r["body"].GetString()) : "");
 
-        wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
-        const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
-        //const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
-        //if (link.Contains(github)) {
-        //    link.Replace(github, sf);
-        //}
+        const wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
+
         html += wxString::Format("%s<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
             , separator, _("Version"), _("Status"), _("Date"), _("Time"));
         html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"
@@ -152,8 +148,36 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
     auto version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
     if (!new_releases.empty()) {
+
+        const auto ver_num = new_tag.Mid(1);
+
+#if defined(__APPLE__)
+        new_html_url.Replace("/tag/", "/download/");
+        new_html_url.Append(wxString::Format("/mmex-%s-Darwin.dmg", ver_num));
         version = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", new_html_url, version);
+#endif
+
+
+#if defined(__WXGTK__)
+        version = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", new_html_url, version);
+#endif
+
+
+#if defined(__WXMSW__)
+        const auto win_ver =
+#if defined(_WIN64) || defined(__x86_64__)
+            "-win64";
+#else
+            "-win32";
+#endif
+        new_html_url.Replace("/tag/", "/download/");
+        const auto portable = mmex::isPortableMode() ? "-portable" : "";
+        const auto extension = mmex::isPortableMode() ? ".zip" : ".exe";
+        new_html_url.Append(wxString::Format("/mmex-%s%s%s%s", ver_num, win_ver, portable, extension));
+        version = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", new_html_url, version);
+#endif
     }
+
     wxString header = wxString::Format(_("Your version is %s"), mmex::version::string);
     html = wxString::Format(update_template, header, version, html);
 

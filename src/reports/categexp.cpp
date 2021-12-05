@@ -290,10 +290,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     temp_date.findEndOfMonth(); // Sets up start day
     temp_date.start_date(sd);
     temp_date.set_end_date(ed);
-    //temp_date.setValidDate(mmDateRange::START);
-    //temp_date.setValidDate(mmDateRange::END); 
     sd = temp_date.start_date();
-    ed = temp_date.end_date();   
+    ed = temp_date.end_date();
     mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
