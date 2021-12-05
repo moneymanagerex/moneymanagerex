@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-22 21:52\n"
+"PO-Revision-Date: 2021-11-26 09:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -427,11 +427,11 @@ msgstr "輸入該資產相關的註釋"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "新增交易明細"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "修改交易明細"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
@@ -439,7 +439,7 @@ msgstr "&取消 "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "無效的交易資料"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -567,7 +567,7 @@ msgstr "刪除資產"
 #: assetspanel.cpp:493 billsdepositspanel.cpp:311 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "開啟附件"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
@@ -709,7 +709,7 @@ msgstr "移除 "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Att."
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
@@ -749,7 +749,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:486
 msgid "Unable to open file:"
-msgstr ""
+msgstr "無法開啟檔案:"
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
@@ -862,7 +862,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:440 billsdepositspanel.cpp:129
 msgid "Date Due"
-msgstr ""
+msgstr "預計付款日"
 
 #: billsdepositsdialog.cpp:444 billsdepositsdialog.cpp:1277
 msgid "Repeats"
@@ -910,7 +910,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:528 billsdepositspanel.cpp:128
 msgid "Date Paid"
-msgstr ""
+msgstr "付款日期"
 
 #: billsdepositsdialog.cpp:539 filtertransdialog.cpp:328 transdialog.cpp:1339
 msgid "Specify the status for the transaction"
@@ -933,7 +933,7 @@ msgstr "設定交易的類型"
 
 #: billsdepositsdialog.cpp:547 transdialog.cpp:499
 msgid "&Advanced"
-msgstr ""
+msgstr "進階&A"
 
 #: billsdepositsdialog.cpp:550 transdialog.cpp:1344
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -1041,7 +1041,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:636 transdialog.cpp:579
 msgid "User Colors"
-msgstr ""
+msgstr "自訂顏色"
 
 #: billsdepositsdialog.cpp:640 transdialog.cpp:585 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
@@ -1148,12 +1148,12 @@ msgstr "依類別查看資金走向"
 
 #: billsdepositsdialog.cpp:1467 transdialog.cpp:1376
 msgid "Clear color"
-msgstr ""
+msgstr "清除顏色"
 
 #: billsdepositsdialog.cpp:1472 filtertransdialog.cpp:1741 transdialog.cpp:1381
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "顏色 #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
@@ -2608,7 +2608,7 @@ msgstr ""
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP檔 (*.zip)"
 
 #: general_report_manager.cpp:662
 #, c-format
@@ -4089,7 +4089,7 @@ msgstr "編輯帳目(&E)"
 
 #: mmframe.cpp:1256 mmframe.cpp:1484
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "更改類型&R"
 
 #: mmframe.cpp:1257 mmframe.cpp:1294 mmframe.cpp:1487
 msgid "&Delete Account"
@@ -4125,11 +4125,11 @@ msgstr "&QIF檔..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV Files..."
 
 #: mmframe.cpp:1312 mmframe.cpp:1386
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON檔..."
 
 #: mmframe.cpp:1323 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4201,7 +4201,7 @@ msgstr ""
 
 #: mmframe.cpp:1387
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML檔..."
 
 #: mmframe.cpp:1387
 msgid "Export to HTML"
@@ -4309,7 +4309,7 @@ msgstr ""
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
-msgstr ""
+msgstr "主頁面&H"
 
 #: mmframe.cpp:1475 mmframe.cpp:1723
 msgid "Show Home Page"
@@ -4926,11 +4926,11 @@ msgstr ""
 
 #: mmframe.cpp:3155
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "選擇更改的帳戶"
 
 #: mmframe.cpp:3155 mmframe.cpp:3178
 msgid "Account Reallocation"
-msgstr ""
+msgstr "更改帳戶類型"
 
 #: mmframe.cpp:3177
 #, c-format

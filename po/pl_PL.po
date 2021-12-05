@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-22 21:52\n"
+"PO-Revision-Date: 2021-11-27 22:20\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2519,7 +2519,7 @@ msgstr "Szczegóły filtrowania: "
 
 #: filtertransdialog.cpp:1178
 msgid "Label"
-msgstr ""
+msgstr "Etykieta"
 
 #: filtertransdialog.cpp:1196
 msgid "Since"
@@ -2531,7 +2531,7 @@ msgstr "Data do"
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "Okres"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
@@ -2548,7 +2548,7 @@ msgstr "Wybierz konta"
 
 #: filtertransdialog.cpp:1736
 msgid "Not colored"
-msgstr ""
+msgstr "Nie pokolorowano"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -2621,10 +2621,10 @@ msgstr "Utwórz wzorzec"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Zwrócono %zu wiersz, czas trwania: %lld ms"
+msgstr[1] "Zwrócono %zu wierszy, czas trwania: %lld ms"
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "Zwrócono %zu wierszy, czas trwania: %lld ms"
 
 #: general_report_manager.cpp:566
 msgid "SQL Syntax Error"
@@ -2725,7 +2725,7 @@ msgstr "Wybierz plik do zapisania jako raport"
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametry:"
 
 #: images_list.cpp:340
 #, c-format
@@ -2837,15 +2837,15 @@ msgstr "Dziennik"
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3104 mmframe.cpp:3108
 #: mmframe.cpp:3127 mmframe.cpp:3131
@@ -3647,7 +3647,7 @@ msgstr "Wpisz (nie pusty) symbol."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Nieprawidłowa wartość"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
@@ -3774,27 +3774,27 @@ msgstr "&Nowy przelew"
 #: mmchecking_list.cpp:362
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
+msgstr[0] "&Edytuj transakcję"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "&Edytuj transakcje"
 
 #: mmchecking_list.cpp:367
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "&Kopiuj transakcję"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "&Kopiuj transakcje"
 
 #: mmchecking_list.cpp:372
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Wklej transakcję"
 
 #: mmchecking_list.cpp:372
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Wklej transakcje (%d)"
 
 #: mmchecking_list.cpp:377
 msgid "D&uplicate Transaction"
@@ -3988,7 +3988,7 @@ msgstr "Bilans konta:"
 
 #: mmcheckingpanel.cpp:409
 msgid "Reconciled Bal: "
-msgstr "Bilans uzgodnionych:"
+msgstr "Bilans rozliczeń: "
 
 #: mmcheckingpanel.cpp:411
 msgid "Diff: "
@@ -5443,7 +5443,7 @@ msgstr ""
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Folder profilu użytkownika"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
@@ -5461,7 +5461,7 @@ msgstr "Katalogi dla innych systemów operacyjnych"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Jeszcze nie ustawione"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
@@ -5541,7 +5541,7 @@ msgstr "Nazwa użytkownika jest używana jako tytuł bazy danych."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Język"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5631,7 +5631,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:329
 msgid "bad locale name"
-msgstr ""
+msgstr "błędna nazwa ustawień regionalnych"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5667,15 +5667,15 @@ msgstr "Ostatnio użyta dla beneficjenta"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Użyj domyślnego dla beneficjenta"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Tak"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -6854,33 +6854,34 @@ msgstr ""
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć ten motyw? Jeśli chcesz go ponownie użyć, będziesz musiał go ponownie zaimportować."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Coś poszło nie tak podczas próby usunięcia motywu"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Czy na pewno chcesz użyć tego motywu? Pamiętaj, że efekt będzie to widoczny tylko po ponownym uruchomieniu MMEX."
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Aktualizacja wielu transakcji"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
-msgstr ""
+msgstr "Dołącz"
 
 #: transactionsupdatedialog.cpp:325 transdialog.cpp:669
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Nie używałeś wcześniej tej nazwy beneficjenta. Czy nazwa jest poprawna?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:670
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Potwierdź nazwę beneficjenta"
 
 #: transdialog.cpp:183
 msgid "Duplicate Transaction"
@@ -6938,7 +6939,7 @@ msgstr "Określ datę transakcji"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Określ powiązane konto, które będzie zawierać tę transakcję"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6978,11 +6979,11 @@ msgstr "Wybór konta"
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "sty"
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "lut"
 
 #: util.cpp:293
 msgid "Mar"
@@ -6990,7 +6991,7 @@ msgstr "Mar"
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "kwi"
 
 #: util.cpp:294 util.h:157
 msgid "May"
@@ -6998,15 +6999,15 @@ msgstr "Maj"
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "cze"
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "lip"
 
 #: util.cpp:295
 msgid "Aug"
-msgstr ""
+msgstr "sie"
 
 #: util.cpp:295
 msgid "Sep"
@@ -7054,31 +7055,31 @@ msgstr "sobota"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "Niedz."
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "Pon."
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "Wt."
 
 #: util.cpp:309
 msgid "Wed"
-msgstr ""
+msgstr "Śr."
 
 #: util.cpp:309
 msgid "Thu"
-msgstr ""
+msgstr "Czw."
 
 #: util.cpp:309
 msgid "Fri"
-msgstr ""
+msgstr "Pt."
 
 #: util.cpp:310
 msgid "Sat"
-msgstr ""
+msgstr "Sob."
 
 #: util.cpp:676
 msgid "Currency rates have been updated"
@@ -7102,7 +7103,7 @@ msgstr ""
 
 #: util.cpp:971
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:974
 msgid "Could not find currency 'USD', needed for converting history prices"
@@ -7139,7 +7140,7 @@ msgstr "MMEX wykorzystuje następujące produkty:"
 
 #: util.cpp:1260
 msgid "Build using:"
-msgstr ""
+msgstr "Zbuduj za pomocą:"
 
 #: util.cpp:1281
 msgid "Running on:"
@@ -7285,7 +7286,7 @@ msgstr "Status sieci (kliknij aby odświeżyć)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Sprawdzanie nowych transakcji..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -7450,7 +7451,7 @@ msgstr "Kreator uaktualnienia"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Wydania historyczne:"
 
 #: wizard_update.cpp:145
 msgid "Version"
