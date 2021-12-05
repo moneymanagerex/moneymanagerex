@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-11-23 00:42+0300\n"
-"PO-Revision-Date: 2021-11-22 21:52\n"
+"POT-Creation-Date: 2021-12-05 13:13+0300\n"
+"PO-Revision-Date: 2021-12-05 10:27\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Włącz aby pomóc nam przesyłając anonimowe dane o używaniu MMEX."
 #: relocatepayeedialog.cpp:140 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:325 splitdetailsdialog.cpp:161
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
-#: transdialog.cpp:609 wizard_update.cpp:192
+#: transdialog.cpp:609 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&OK"
 
@@ -322,7 +322,7 @@ msgstr "Odwiedź stronę domową po więcej informacji"
 msgid "Open the %s website for latest news, updates etc"
 msgstr "Odwiedź stronę %s aby odnaleźć nowości, uaktualnienia itp."
 
-#: appstartdialog.cpp:124 wizard_update.cpp:185
+#: appstartdialog.cpp:124 wizard_update.cpp:209
 #, c-format
 msgid "Show this window next time %s starts"
 msgstr "Pokaż to okno przy następnym uruchomieniu %s"
@@ -370,13 +370,13 @@ msgstr "Wprowadź nazwę aktywów"
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertrans.cpp:191
 #: filtertransdialog.cpp:646 import_export/qif_export.cpp:588
 #: import_export/qif_import_gui.cpp:99 import_export/univcsvdialog.cpp:105
-#: maincurrencydialog.cpp:239 maincurrencydialog.cpp:261
+#: maincurrencydialog.cpp:240 maincurrencydialog.cpp:262
 #: mmchecking_list.cpp:207 mmreportspanel.cpp:255 mmreportspanel.cpp:273
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:249
 #: reports/incexpenses.cpp:252 reports/summary.cpp:319
 #: reports/transactions.cpp:156 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:461
-#: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
+#: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
 msgstr "Data"
 
@@ -393,7 +393,7 @@ msgid "Select type of asset"
 msgstr "Wybierz rodzaj aktywów"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
-#: maincurrencydialog.cpp:270
+#: maincurrencydialog.cpp:271
 msgid "Value"
 msgstr "Wartość"
 
@@ -458,7 +458,7 @@ msgstr "ID"
 #: filtertransdialog.cpp:1263 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:251 mmhomepage.cpp:436 reports/incexpenses.cpp:112
+#: maincurrencydialog.cpp:252 mmhomepage.cpp:436 reports/incexpenses.cpp:112
 #: reports/transactions.cpp:162 splitdetailsdialog.cpp:120
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:504
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
@@ -549,14 +549,14 @@ msgid "View Asset Transactions"
 msgstr "Pokaż transakcje aktywów"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:288
-#: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
+#: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:528
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
 msgstr "&Edytuj"
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
-#: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
+#: categdialog.cpp:237 maincurrencydialog.cpp:293 mmchecking_list.cpp:406
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
 msgstr "Usuń"
@@ -694,7 +694,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Potwierdź usunięcie załącznika"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
-#: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
+#: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:527
 #: payeedialog.cpp:396 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
 msgstr "Dod&aj"
@@ -704,7 +704,7 @@ msgid "&Open "
 msgstr "&Otwórz"
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
-#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
+#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:529
 #: payeedialog.cpp:399 splittransactionsdialog.cpp:167
 msgid "&Remove "
 msgstr "Usuń"
@@ -925,7 +925,7 @@ msgstr "Określ status dla tej transakcji"
 #: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:218
 #: reports/transactions.cpp:160 transactionsupdatedialog.cpp:131
 #: transdialog.cpp:484 usertransactionpanel.cpp:178 webappdialog.cpp:149
-#: wizard_update.cpp:145
+#: wizard_update.cpp:141
 msgid "Status"
 msgstr "Status"
 
@@ -944,8 +944,8 @@ msgstr "Pozwala ustawić różne kwoty transakcji na koncie źródłowym i docel
 #: billsdepositsdialog.cpp:560 billsdepositspanel.cpp:135
 #: budgetingpanel.cpp:301 filtertrans.cpp:198 filtertransdialog.cpp:619
 #: filtertransdialog.cpp:630 import_export/qif_export.cpp:594
-#: import_export/univcsvdialog.cpp:107 maincurrencydialog.cpp:612
-#: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:190
+#: import_export/univcsvdialog.cpp:107 maincurrencydialog.cpp:613
+#: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:193
 #: reports/categexp.cpp:178 reports/incexpenses.cpp:113
 #: reports/transactions.cpp:163 splitdetailsdialog.cpp:136
 #: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:161
@@ -1010,8 +1010,8 @@ msgstr "Użyj podziału kategorii"
 #: import_export/qif_export.cpp:593 import_export/qif_import_gui.cpp:103
 #: import_export/qif_import_gui.cpp:250 import_export/univcsvdialog.cpp:108
 #: mmchecking_list.cpp:220 mmhomepage.cpp:190
-#: reports/budgetcategorysummary.cpp:189 reports/budgetingperf.cpp:220
-#: reports/categexp.cpp:177 reports/categexp.cpp:432
+#: reports/budgetcategorysummary.cpp:192 reports/budgetingperf.cpp:220
+#: reports/categexp.cpp:177 reports/categexp.cpp:430
 #: reports/transactions.cpp:161 splitdetailsdialog.cpp:145
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
 #: transdialog.cpp:554 usertransactionpanel.cpp:189 webappdialog.cpp:152
@@ -1137,7 +1137,7 @@ msgid "Invalid value"
 msgstr "Nieprawidłowa wartość"
 
 #: billsdepositsdialog.cpp:1345 import_export/univcsvdialog.cpp:1135
-#: maincurrencydialog.cpp:469 mmframe.cpp:3340 optionsettingsgeneral.cpp:287
+#: maincurrencydialog.cpp:470 mmframe.cpp:3340 optionsettingsgeneral.cpp:287
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
@@ -1207,7 +1207,7 @@ msgid "Every %s Months"
 msgstr "Co %s miesiące"
 
 #: billsdepositspanel.cpp:136 budgetingpanel.cpp:300
-#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
+#: reports/budgetcategorysummary.cpp:194 reports/myusage.cpp:164
 msgid "Frequency"
 msgstr "Częstotliwość"
 
@@ -1362,7 +1362,7 @@ msgid "Expense"
 msgstr "Wydatki"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:440
-#: reports/categexp.cpp:128 reports/categexp.cpp:161 reports/categexp.cpp:398
+#: reports/categexp.cpp:128 reports/categexp.cpp:161 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:217
 #: reports/incexpenses.cpp:253
 msgid "Income"
@@ -1465,13 +1465,13 @@ msgstr "Ikona"
 msgid "Sub Category"
 msgstr "Podkategoria"
 
-#: budgetingpanel.cpp:302 reports/budgetcategorysummary.cpp:140
-#: reports/budgetcategorysummary.cpp:192
+#: budgetingpanel.cpp:302 reports/budgetcategorysummary.cpp:143
+#: reports/budgetcategorysummary.cpp:195
 msgid "Estimated"
 msgstr "Oszacowane"
 
-#: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:141
-#: reports/budgetcategorysummary.cpp:193
+#: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:144
+#: reports/budgetcategorysummary.cpp:196
 msgid "Actual"
 msgstr "Rzeczywiste"
 
@@ -1551,7 +1551,7 @@ msgstr "Przypisz wszystkie kategorie do innej kategorii"
 msgid "Expand"
 msgstr "Rozwiń"
 
-#: categdialog.cpp:197 maincurrencydialog.cpp:175
+#: categdialog.cpp:197 maincurrencydialog.cpp:176
 msgid "Show All"
 msgstr "Pokaż wszystko"
 
@@ -1571,7 +1571,7 @@ msgstr "Edytuj nazwę istniejącej kategorii"
 msgid "Delete an existing category. The category cannot be used by existing transactions."
 msgstr "Usuń istniejącą kategorię. Kategoria nie może być używana przez istniejące transakcje."
 
-#: categdialog.cpp:244 maincurrencydialog.cpp:211
+#: categdialog.cpp:244 maincurrencydialog.cpp:212
 msgid "&Select"
 msgstr "Wybierz"
 
@@ -1838,7 +1838,7 @@ msgid "Any changes will be lost without update"
 msgstr "Wszystkie zmiany zostaną utracone bez aktualizowania"
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
-#: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:612
+#: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:613
 #: mmSimpleDialogs.cpp:238
 msgid "Invalid Entry"
 msgstr "Nieprawidłowy wpis"
@@ -2400,7 +2400,7 @@ msgstr "Od daty"
 msgid "Period Range"
 msgstr ""
 
-#: filtertransdialog.cpp:267 reports/mmDateRange.cpp:33
+#: filtertransdialog.cpp:267 reports/mmDateRange.cpp:34
 msgid "Date Range"
 msgstr "Zakres dat"
 
@@ -2519,7 +2519,7 @@ msgstr "Szczegóły filtrowania: "
 
 #: filtertransdialog.cpp:1178
 msgid "Label"
-msgstr ""
+msgstr "Etykieta"
 
 #: filtertransdialog.cpp:1196
 msgid "Since"
@@ -2531,7 +2531,7 @@ msgstr "Data do"
 
 #: filtertransdialog.cpp:1207
 msgid "Period"
-msgstr ""
+msgstr "Okres"
 
 #: filtertransdialog.cpp:1274
 msgid "Amount Min."
@@ -2548,7 +2548,7 @@ msgstr "Wybierz konta"
 
 #: filtertransdialog.cpp:1736
 msgid "Not colored"
-msgstr ""
+msgstr "Nie pokolorowano"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -2621,10 +2621,10 @@ msgstr "Utwórz wzorzec"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Zwrócono %zu wiersz, czas trwania: %lld ms"
+msgstr[1] "Zwrócono %zu wierszy, czas trwania: %lld ms"
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "Zwrócono %zu wierszy, czas trwania: %lld ms"
 
 #: general_report_manager.cpp:566
 msgid "SQL Syntax Error"
@@ -2725,7 +2725,7 @@ msgstr "Wybierz plik do zapisania jako raport"
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametry:"
 
 #: images_list.cpp:340
 #, c-format
@@ -2837,15 +2837,15 @@ msgstr "Dziennik"
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3104 mmframe.cpp:3108
 #: mmframe.cpp:3127 mmframe.cpp:3131
@@ -3425,138 +3425,138 @@ msgstr "Ostatni kurs"
 msgid "Fixed Rate"
 msgstr ""
 
-#: maincurrencydialog.cpp:127
+#: maincurrencydialog.cpp:128
 msgid "N/A"
 msgstr ""
 
-#: maincurrencydialog.cpp:169 maincurrencydialog.cpp:461
+#: maincurrencydialog.cpp:170 maincurrencydialog.cpp:462
 msgid "Online update currency rate"
 msgstr "Odśwież online kursy walut"
 
-#: maincurrencydialog.cpp:172
+#: maincurrencydialog.cpp:173
 msgid "Online Update"
 msgstr "Uaktualnienie online"
 
-#: maincurrencydialog.cpp:176
+#: maincurrencydialog.cpp:177
 msgid "Show all even the unused currencies"
 msgstr ""
 
-#: maincurrencydialog.cpp:206 payeedialog.cpp:126
+#: maincurrencydialog.cpp:207 payeedialog.cpp:126
 msgid "Search:"
 msgstr "Szukanie:"
 
-#: maincurrencydialog.cpp:227
+#: maincurrencydialog.cpp:228
 msgid "Currency History Options"
 msgstr "Opcje historii waluty"
 
-#: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
+#: maincurrencydialog.cpp:246 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
 msgstr "Cena"
 
-#: maincurrencydialog.cpp:267
+#: maincurrencydialog.cpp:268
 msgid "Specify the date of currency value"
 msgstr "Określ datę kursu waluty"
 
-#: maincurrencydialog.cpp:275
+#: maincurrencydialog.cpp:276
 msgid "Enter the currency value"
 msgstr "Wprowadź wartość kursu waluty"
 
-#: maincurrencydialog.cpp:285
+#: maincurrencydialog.cpp:286
 msgid "Download Currency Values history"
 msgstr "Pobierz historię kursów walut"
 
-#: maincurrencydialog.cpp:288
+#: maincurrencydialog.cpp:289
 msgid "&Add / Update "
 msgstr "&Dodaj / Uaktualnij"
 
-#: maincurrencydialog.cpp:289
+#: maincurrencydialog.cpp:290
 msgid "Add Currency Values to history"
 msgstr "Dodaj wartość walut do historii"
 
-#: maincurrencydialog.cpp:293
+#: maincurrencydialog.cpp:294
 msgid "Delete selected Currency Values"
 msgstr "Usuń wybrane wartości Waluty"
 
-#: maincurrencydialog.cpp:297
+#: maincurrencydialog.cpp:298
 msgid "Delete Currency Values history for unused currencies and days"
 msgstr ""
 
-#: maincurrencydialog.cpp:353
+#: maincurrencydialog.cpp:354
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Czy na pewno chcesz usunąć wybraną walutę?"
 
-#: maincurrencydialog.cpp:354 maincurrencydialog.cpp:424
-#: maincurrencydialog.cpp:650 maincurrencydialog.cpp:775
-#: maincurrencydialog.cpp:799 maincurrencydialog.h:76
+#: maincurrencydialog.cpp:355 maincurrencydialog.cpp:425
+#: maincurrencydialog.cpp:651 maincurrencydialog.cpp:776
+#: maincurrencydialog.cpp:800 maincurrencydialog.h:76
 msgid "Currency Dialog"
 msgstr "Ustawienia waluty"
 
-#: maincurrencydialog.cpp:382
+#: maincurrencydialog.cpp:383
 msgid "Base Currency Selection"
 msgstr "Wybór waluty bazowej"
 
-#: maincurrencydialog.cpp:422
+#: maincurrencydialog.cpp:423
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
 msgstr ""
 
-#: maincurrencydialog.cpp:434
+#: maincurrencydialog.cpp:435
 #, c-format
 msgid "Currency History Options: %s "
 msgstr "Opcje historii walut: %s"
 
-#: maincurrencydialog.cpp:490
+#: maincurrencydialog.cpp:491
 msgid "Unable to update history currency rates. Please update them manually!"
 msgstr ""
 
-#: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
-#: maincurrencydialog.cpp:678 maincurrencydialog.cpp:714
-#: maincurrencydialog.cpp:820
+#: maincurrencydialog.cpp:492 maincurrencydialog.cpp:644
+#: maincurrencydialog.cpp:679 maincurrencydialog.cpp:715
+#: maincurrencydialog.cpp:821
 msgid "Currency history error"
 msgstr "Błąd historii waluty"
 
-#: maincurrencydialog.cpp:523
+#: maincurrencydialog.cpp:524
 msgid "Set as Base Currency"
 msgstr "Ustaw jako walutę bazową"
 
-#: maincurrencydialog.cpp:524
+#: maincurrencydialog.cpp:525
 msgid "Online Update Currency Rate"
 msgstr "Uaktualnij kursy walut online"
 
-#: maincurrencydialog.cpp:643
+#: maincurrencydialog.cpp:644
 msgid "No currency selected!"
 msgstr "Nie wybrano waluty!"
 
-#: maincurrencydialog.cpp:649
+#: maincurrencydialog.cpp:650
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Chcesz dodać także daty bez żadnej transakcji?"
 
-#: maincurrencydialog.cpp:676
+#: maincurrencydialog.cpp:677
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr "Nie można pobrać kursów waluty %s"
 
-#: maincurrencydialog.cpp:712
+#: maincurrencydialog.cpp:713
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr "Nie można pobrać historii dla symbolu %s. Historia notowań niedostępna!"
 
-#: maincurrencydialog.cpp:774
+#: maincurrencydialog.cpp:775
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr ""
 
-#: maincurrencydialog.cpp:798
+#: maincurrencydialog.cpp:799
 msgid "Do you want to update today currency rates?"
 msgstr ""
 
-#: maincurrencydialog.cpp:819
+#: maincurrencydialog.cpp:820
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
-#: maincurrencydialog.cpp:862 stockspanel.cpp:406 util.cpp:619
+#: maincurrencydialog.cpp:863 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
 msgstr "Nie można ustalić symbolu podstawowej waluty"
 
@@ -3647,7 +3647,7 @@ msgstr "Wpisz (nie pusty) symbol."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Nieprawidłowa wartość"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
@@ -3774,27 +3774,27 @@ msgstr "&Nowy przelew"
 #: mmchecking_list.cpp:362
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
+msgstr[0] "&Edytuj transakcję"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "&Edytuj transakcje"
 
 #: mmchecking_list.cpp:367
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "&Kopiuj transakcję"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "&Kopiuj transakcje"
 
 #: mmchecking_list.cpp:372
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Wklej transakcję"
 
 #: mmchecking_list.cpp:372
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Wklej transakcje (%d)"
 
 #: mmchecking_list.cpp:377
 msgid "D&uplicate Transaction"
@@ -3988,7 +3988,7 @@ msgstr "Bilans konta:"
 
 #: mmcheckingpanel.cpp:409
 msgid "Reconciled Bal: "
-msgstr "Bilans uzgodnionych:"
+msgstr "Bilans rozliczeń: "
 
 #: mmcheckingpanel.cpp:411
 msgid "Diff: "
@@ -5104,7 +5104,7 @@ msgid "Gain/Loss"
 msgstr "Zysk/Strata"
 
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:250
-#: reports/categexp.cpp:179 reports/categexp.cpp:473 reports/summary.cpp:327
+#: reports/categexp.cpp:179 reports/categexp.cpp:471 reports/summary.cpp:327
 msgid "Total"
 msgstr "Suma"
 
@@ -5129,7 +5129,7 @@ msgid "Income vs Expenses: %s"
 msgstr "Przychody vs Wydatki: %s"
 
 #: mmhomepage.cpp:444 reports/categexp.cpp:123 reports/categexp.cpp:151
-#: reports/categexp.cpp:397 reports/categexp.cpp:472 reports/incexpenses.cpp:88
+#: reports/categexp.cpp:395 reports/categexp.cpp:470 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:218 reports/incexpenses.cpp:254
 #: reports/payee.cpp:141
 msgid "Expenses"
@@ -5340,7 +5340,7 @@ msgstr "Liczba dziesiętna"
 msgid "Boolean"
 msgstr "Logiczne"
 
-#: model/Model_CustomField.cpp:30 wizard_update.cpp:145
+#: model/Model_CustomField.cpp:30 wizard_update.cpp:141
 msgid "Time"
 msgstr "Czas"
 
@@ -5443,7 +5443,7 @@ msgstr ""
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Folder profilu użytkownika"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
@@ -5461,7 +5461,7 @@ msgstr "Katalogi dla innych systemów operacyjnych"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Jeszcze nie ustawione"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
@@ -5541,7 +5541,7 @@ msgstr "Nazwa użytkownika jest używana jako tytuł bazy danych."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Język"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5631,7 +5631,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:329
 msgid "bad locale name"
-msgstr ""
+msgstr "błędna nazwa ustawień regionalnych"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5667,15 +5667,15 @@ msgstr "Ostatnio użyta dla beneficjenta"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Użyj domyślnego dla beneficjenta"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Tak"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -6104,27 +6104,27 @@ msgstr "Podsumowanie budżetu wg kategorii na %s"
 msgid "( Estimated Vs Actual )"
 msgstr " (plan i wykonanie)"
 
-#: reports/budgetcategorysummary.cpp:275
+#: reports/budgetcategorysummary.cpp:283
 msgid "Estimated Income:"
 msgstr "Szacowane dochody:"
 
-#: reports/budgetcategorysummary.cpp:277
+#: reports/budgetcategorysummary.cpp:285
 msgid "Actual Income:"
 msgstr "Rzeczywiste dochody:"
 
-#: reports/budgetcategorysummary.cpp:279
+#: reports/budgetcategorysummary.cpp:287
 msgid "Difference Income:"
 msgstr "Różnica dochodów:"
 
-#: reports/budgetcategorysummary.cpp:286
+#: reports/budgetcategorysummary.cpp:294
 msgid "Estimated Expenses:"
 msgstr "Szacowane wydatki:"
 
-#: reports/budgetcategorysummary.cpp:288
+#: reports/budgetcategorysummary.cpp:296
 msgid "Actual Expenses:"
 msgstr "Rzeczywiste wydatki:"
 
-#: reports/budgetcategorysummary.cpp:290
+#: reports/budgetcategorysummary.cpp:298
 msgid "Difference Expenses:"
 msgstr "Różnica wydatków:"
 
@@ -6216,7 +6216,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: reports/cashflow.cpp:251 reports/categexp.cpp:396
+#: reports/cashflow.cpp:251 reports/categexp.cpp:394
 #: reports/incexpenses.cpp:216 reports/incexpenses.cpp:255
 #: reports/payee.cpp:142
 msgid "Difference"
@@ -6242,11 +6242,11 @@ msgstr ""
 msgid "Category Income/Expenses"
 msgstr "Kategoria Przychody/Wydatki"
 
-#: reports/categexp.cpp:440
+#: reports/categexp.cpp:438
 msgid "Overall"
 msgstr "Ogólnie"
 
-#: reports/categexp.cpp:471 reports/payee.cpp:140
+#: reports/categexp.cpp:469 reports/payee.cpp:140
 msgid "Incomes"
 msgstr "Przychody"
 
@@ -6268,7 +6268,7 @@ msgstr "Od %s do %s"
 msgid "Future"
 msgstr ""
 
-#: reports/htmlbuilder.cpp:178 reports/mmDateRange.cpp:242
+#: reports/htmlbuilder.cpp:178 reports/mmDateRange.cpp:218
 msgid "Over Time"
 msgstr "cały dostępny"
 
@@ -6296,67 +6296,67 @@ msgstr ""
 msgid "Cumulative"
 msgstr ""
 
-#: reports/mmDateRange.cpp:85
+#: reports/mmDateRange.cpp:70
 msgid "Current Month"
 msgstr "bieżący miesiąc"
 
-#: reports/mmDateRange.cpp:91
+#: reports/mmDateRange.cpp:76
 msgid "Today"
 msgstr "dzisiaj"
 
-#: reports/mmDateRange.cpp:101
+#: reports/mmDateRange.cpp:84
 msgid "Current Month to Date"
 msgstr "bieżący miesiąc do dziś"
 
-#: reports/mmDateRange.cpp:113
+#: reports/mmDateRange.cpp:94
 msgid "Last Month"
 msgstr "poprzedni miesiąc"
 
-#: reports/mmDateRange.cpp:123
+#: reports/mmDateRange.cpp:104
 msgid "Last 30 Days"
 msgstr "ostatnie 30 dni"
 
-#: reports/mmDateRange.cpp:133
+#: reports/mmDateRange.cpp:114
 msgid "Last 90 Days"
 msgstr "ostatnie 90 dni"
 
-#: reports/mmDateRange.cpp:143
+#: reports/mmDateRange.cpp:123
 msgid "Last 3 Months"
 msgstr "ostatnie 3 miesiące"
 
-#: reports/mmDateRange.cpp:153
+#: reports/mmDateRange.cpp:132
 msgid "Last 12 Months"
 msgstr "ostatnie 12 miesięcy"
 
-#: reports/mmDateRange.cpp:165
+#: reports/mmDateRange.cpp:143
 msgid "Current Year"
 msgstr "bieżący rok"
 
-#: reports/mmDateRange.cpp:175 stockdialog.cpp:721
+#: reports/mmDateRange.cpp:152 stockdialog.cpp:721
 msgid "Current Year to Date"
 msgstr "bieżący rok do dziś"
 
-#: reports/mmDateRange.cpp:188
+#: reports/mmDateRange.cpp:164
 msgid "Last Year"
 msgstr "poprzedni rok"
 
-#: reports/mmDateRange.cpp:213
+#: reports/mmDateRange.cpp:189
 msgid "Current Financial Year"
 msgstr "bieżący rok finansowy"
 
-#: reports/mmDateRange.cpp:223
+#: reports/mmDateRange.cpp:199
 msgid "Current Financial Year to Date"
 msgstr "bieżący rok finansowy do dziś"
 
-#: reports/mmDateRange.cpp:234
+#: reports/mmDateRange.cpp:210
 msgid "Last Financial Year"
 msgstr "poprzedni rok finansowy"
 
-#: reports/mmDateRange.cpp:253
+#: reports/mmDateRange.cpp:229
 msgid "Custom"
 msgstr "własny"
 
-#: reports/mmDateRange.cpp:262
+#: reports/mmDateRange.cpp:238
 msgid "Last 365 Days"
 msgstr "ostatnie 365 dni"
 
@@ -6854,33 +6854,34 @@ msgstr ""
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć ten motyw? Jeśli chcesz go ponownie użyć, będziesz musiał go ponownie zaimportować."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Coś poszło nie tak podczas próby usunięcia motywu"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Czy na pewno chcesz użyć tego motywu? Pamiętaj, że efekt będzie to widoczny tylko po ponownym uruchomieniu MMEX."
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Aktualizacja wielu transakcji"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
-msgstr ""
+msgstr "Dołącz"
 
 #: transactionsupdatedialog.cpp:325 transdialog.cpp:669
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Nie używałeś wcześniej tej nazwy beneficjenta. Czy nazwa jest poprawna?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:670
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Potwierdź nazwę beneficjenta"
 
 #: transdialog.cpp:183
 msgid "Duplicate Transaction"
@@ -6938,7 +6939,7 @@ msgstr "Określ datę transakcji"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Określ powiązane konto, które będzie zawierać tę transakcję"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6978,11 +6979,11 @@ msgstr "Wybór konta"
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "sty"
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "lut"
 
 #: util.cpp:293
 msgid "Mar"
@@ -6990,7 +6991,7 @@ msgstr "Mar"
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "kwi"
 
 #: util.cpp:294 util.h:157
 msgid "May"
@@ -6998,15 +6999,15 @@ msgstr "Maj"
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "cze"
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "lip"
 
 #: util.cpp:295
 msgid "Aug"
-msgstr ""
+msgstr "sie"
 
 #: util.cpp:295
 msgid "Sep"
@@ -7054,31 +7055,31 @@ msgstr "sobota"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "Niedz."
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "Pon."
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "Wt."
 
 #: util.cpp:309
 msgid "Wed"
-msgstr ""
+msgstr "Śr."
 
 #: util.cpp:309
 msgid "Thu"
-msgstr ""
+msgstr "Czw."
 
 #: util.cpp:309
 msgid "Fri"
-msgstr ""
+msgstr "Pt."
 
 #: util.cpp:310
 msgid "Sat"
-msgstr ""
+msgstr "Sob."
 
 #: util.cpp:676
 msgid "Currency rates have been updated"
@@ -7102,7 +7103,7 @@ msgstr ""
 
 #: util.cpp:971
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:974
 msgid "Could not find currency 'USD', needed for converting history prices"
@@ -7139,7 +7140,7 @@ msgstr "MMEX wykorzystuje następujące produkty:"
 
 #: util.cpp:1260
 msgid "Build using:"
-msgstr ""
+msgstr "Zbuduj za pomocą:"
 
 #: util.cpp:1281
 msgid "Running on:"
@@ -7285,7 +7286,7 @@ msgstr "Status sieci (kliknij aby odświeżyć)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Sprawdzanie nowych transakcji..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -7450,34 +7451,34 @@ msgstr "Kreator uaktualnienia"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Wydania historyczne:"
 
-#: wizard_update.cpp:145
+#: wizard_update.cpp:141
 msgid "Version"
 msgstr "Wersja"
 
-#: wizard_update.cpp:153
+#: wizard_update.cpp:149
 msgid "You already have the latest version"
 msgstr "Masz już zainstalowaną najnowszą wersję"
 
-#: wizard_update.cpp:153
+#: wizard_update.cpp:149
 msgid "A new version of MMEX is available!"
 msgstr "Jest dostępna nowa wersja MMEX!"
 
-#: wizard_update.cpp:157
+#: wizard_update.cpp:181
 #, c-format
 msgid "Your version is %s"
 msgstr "Twoja wersja to %s"
 
-#: wizard_update.cpp:302 wizard_update.cpp:317
+#: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "Unable to check for updates!"
 msgstr "Nie można sprawdzić uaktualnień!"
 
-#: wizard_update.cpp:303 wizard_update.cpp:318
+#: wizard_update.cpp:327 wizard_update.cpp:342
 msgid "Error: "
 msgstr "Błąd: "
 
-#: wizard_update.cpp:304 wizard_update.cpp:320
+#: wizard_update.cpp:328 wizard_update.cpp:344
 msgid "MMEX Update Check"
 msgstr "Sprawdzanie aktualizacji MMEX"
 

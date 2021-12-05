@@ -46,11 +46,8 @@ public:
     void virtual end_date(wxDateTime& end_date);
     void set_end_date(wxDateTime v);
     void findEndOfMonth();
+    void findBeginOfMonth();
     const int startDay() const;
-
-    enum DATE_TYPE { START = 0, END };
-    void setValidDate(const DATE_TYPE dateType);
-
 };
 
 class mmCurrentMonth: public mmDateRange

@@ -498,6 +498,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         int subCatID = -1;
         int payeeID = -1;
         // categoryID, subcategoryID, payeeID
+        //      subcategoryID = -2 means inlude all sub categories for the given category
         while ( tokenizer.HasMoreTokens() )
         {
             switch (i++) {
@@ -520,6 +521,16 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             std::vector<std::pair<int, int>> cats;
             std::pair<int, int> cat;
             cat.first = catID;
+            if (-2 == subCatID) // include all sub categories
+            {
+                Model_Category::Data *category = Model_Category::instance().get(catID);
+                for (const auto &subCategory : Model_Category::sub_category(category))
+                {
+                    cat.second = subCategory.SUBCATEGID;
+                    cats.push_back(cat);
+                }
+                subCatID = -1;          
+            }
             cat.second = subCatID;
             cats.push_back(cat);
             rb_->m_filter.setCategoryList(cats);

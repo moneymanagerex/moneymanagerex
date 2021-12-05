@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012     Lisheng Guan (guanlisheng@gmail.com)
+Copyright (C) 2014 - 2021   Nikolay Akimov
 Copyright (C) 2021          Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -29,7 +30,7 @@ mmDateRange::mmDateRange()
 {
     start_date_ = today_;
     end_date_ = today_;
-    startDay_ = 1;
+    startDay_ = this->startDay_ = Option::instance().getReportingFirstDay();
     title_ = wxTRANSLATE("Date Range");
 }
 
@@ -47,41 +48,25 @@ const wxString mmDateRange::local_title() const
     return wxGetTranslation(title_);
 }
 
-void mmDateRange::setValidDate(const DATE_TYPE dateType)
+void mmDateRange::findBeginOfMonth()
 {
-    int day = (START == dateType) ? this->startDay_ : this->startDay_ - 1;
-    if (START == dateType)
-    {
-        int maxDays = wxDateTime::GetNumberOfDays(this->start_date_.GetMonth(), this->start_date_.GetYear());
-        this->start_date_.SetDay( (day > maxDays) ? maxDays : day );
-    } else
-    {
-        if (0 == day)
-        {
-            end_date_.Subtract(wxDateSpan::Months(1));
-            day = 31;
-        }
-        int maxDays = wxDateTime::GetNumberOfDays(this->end_date_.GetMonth(), this->end_date_.GetYear());
-        this->end_date_.SetDay( (day > maxDays) ? maxDays : day );
-    }
+    if (this->today_.GetDay() < startDay_)
+        this->start_date_.Subtract(wxDateSpan::Months(1));
+    start_date_.SetDay(startDay_);
 }
 
 void mmDateRange::findEndOfMonth()
 {
-    this->startDay_ = Option::instance().getReportingFirstDay();
-
-    if (!(this->end_date_.GetDay() < startDay_))
-        this->end_date_.Add(wxDateSpan::Months(1));
-    this->start_date_ = this->end_date_;
+    if (this->today_.GetDay() < startDay_)
+        this->end_date_.Subtract(wxDateSpan::Months(1));
+    end_date_.Add(wxDateSpan::Months(1)).SetDay(1).Subtract(wxDateSpan::Day()).Add(wxDateSpan::Days(startDay_ - 1));
 }
 
 mmCurrentMonth::mmCurrentMonth()
 : mmDateRange()
 {
     this->findEndOfMonth();
-    setValidDate(END);
-    this->start_date_.Subtract(wxDateSpan::Months(1));
-    setValidDate(START);
+    this->findBeginOfMonth();
     this->title_ = wxTRANSLATE("Current Month");
 }
 
@@ -94,9 +79,7 @@ mmToday::mmToday()
 mmCurrentMonthToDate::mmCurrentMonthToDate()
 : mmDateRange()
 {
-    this->findEndOfMonth();
-    this->start_date_.Subtract(wxDateSpan::Months(1));
-    setValidDate(START);
+    findBeginOfMonth();
     this->end_date_ = today_;
     this->title_ = wxTRANSLATE("Current Month to Date");
 }
@@ -106,10 +89,8 @@ mmLastMonth::mmLastMonth()
 {
     this->findEndOfMonth();
     this->end_date_.Subtract(wxDateSpan::Months(1));
-    this->start_date_ = this->end_date_;
-    setValidDate(END);
+    this->findBeginOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(1));
-    setValidDate(START);
     this->title_ = wxTRANSLATE("Last Month");
 }
 
@@ -137,9 +118,8 @@ mmLast3Months::mmLast3Months()
 : mmDateRange()
 {
     this->findEndOfMonth();
-    setValidDate(END);
-    this->start_date_.Subtract(wxDateSpan::Months(3));
-    setValidDate(START);
+    this->start_date_.Subtract(wxDateSpan::Months(2));
+    this->findBeginOfMonth();
     this->title_ = wxTRANSLATE("Last 3 Months");
 }
 
@@ -147,30 +127,27 @@ mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
     this->findEndOfMonth();
-    setValidDate(END);
-    this->start_date_.Subtract(wxDateSpan::Months(12));
-    setValidDate(START);
+    this->start_date_.Subtract(wxDateSpan::Months(11));
+    this->findBeginOfMonth();
     this->title_ = wxTRANSLATE("Last 12 Months");
 }
 
 mmCurrentYear::mmCurrentYear()
 : mmDateRange()
 {
-    this->findEndOfMonth();
+    this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
-    this->end_date_ = start_date_;
-    setValidDate(START);
-    this->end_date_.Add(wxDateSpan::Months(12));
-    setValidDate(END);
+    this->end_date_ = this->start_date_;
+    this->end_date_.Add(wxDateSpan::Months(11));
+    this->findEndOfMonth();
     this->title_ = wxTRANSLATE("Current Year");
 }
 
 mmCurrentYearToDate::mmCurrentYearToDate()
 : mmDateRange()
 {
-    this->findEndOfMonth();
+    this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
-    setValidDate(START);
     this->end_date_ = today_;
     this->title_ = wxTRANSLATE("Current Year to Date");
 }
@@ -178,13 +155,12 @@ mmCurrentYearToDate::mmCurrentYearToDate()
 mmLastYear::mmLastYear()
 : mmDateRange()
 {
-    this->findEndOfMonth();
+    this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
     this->start_date_.Subtract(wxDateSpan::Years(1));
-    this->end_date_ = start_date_;
-    setValidDate(START);
-    this->end_date_.Add(wxDateSpan::Months(12));
-    setValidDate(END);
+    this->end_date_ = this->start_date_;
+    this->end_date_.Add(wxDateSpan::Months(11));
+    this->findEndOfMonth();
     this->title_ = wxTRANSLATE("Last Year");
 }
 
