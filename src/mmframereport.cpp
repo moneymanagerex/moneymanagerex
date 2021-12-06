@@ -36,6 +36,7 @@ const char *group_report_template = R"(
     <script>
         window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
         window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:resize-observer.js"><\/script>');
         window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
         window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
     </script>

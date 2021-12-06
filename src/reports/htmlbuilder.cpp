@@ -52,6 +52,7 @@ namespace tags
 <script>
     window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
     window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+    window.Promise || document.write('<script src="memory:resize-observer.js"><\/script>');
     window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
     window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
 </script>
@@ -527,7 +528,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::LINE_DATETIME:
             gtype = "line";
-            gSeriesType = "label";
+            gSeriesType = "datetime";
             break;
         case GraphData::PIE:
             gtype = "pie";
@@ -547,6 +548,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                 chartWidth = 70;
     };
 
+    addDivContainer("shadowGraph"); 
 
     htmlChart += wxString::Format("chart: { animations: { enabled: false }, type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
                     , gtype
@@ -579,7 +581,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     std::vector<wxColour> colors;
     if (!gd.colors.empty())
         colors = gd.colors;
-    else  
+    else
         colors = mmThemeMetaColourArray(meta::COLOR_REPORT_PALETTE);
 
     htmlChart += ", colors: ";
@@ -606,7 +608,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
        htmlChart += wxString::Format(",labels: [%s]", categories);
     else
         htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }\n", gSeriesType, categories);
-    
+
     wxString seriesList, pieEntries;
     bool firstList = true;
     for (const auto& entry : gd.series)
@@ -670,6 +672,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         "var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();\n"
         "</script>\n", 
         divid, gtype, htmlPieData, htmlChart, divid));
+    
+    endDiv();
 };
 
 const wxString mmHTMLBuilder::getHTMLText() const

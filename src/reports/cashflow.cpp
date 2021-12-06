@@ -220,23 +220,16 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     for (const auto& entry : forecastVector)
     {
-        wxDate d;
         double amount = entry.amount + tInitialBalance;
-        d.ParseISODate(entry.label);
-        const wxString label = mmGetDateForDisplay(d.FormatISODate());
         gs.values.push_back(amount);
-        gd.labels.push_back(label);
+        gd.labels.push_back(entry.label);
     }
     gd.series.push_back(gs);
 
     if (getChartSelection() == 0 && !gd.series.empty())
     {
-        hb.addDivContainer("shadow");
-        {
-            gd.type = GraphData::LINE_DATETIME;
-            hb.addChart(gd);
-        }
-        hb.endDiv();
+        gd.type = GraphData::LINE_DATETIME;
+        hb.addChart(gd);
     }
 
     hb.addDivContainer("shadow");

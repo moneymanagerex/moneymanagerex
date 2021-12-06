@@ -71,12 +71,7 @@ wxString mmReportForecast::getHTMLText()
     GraphSeries gsWithdrawal, gsDeposit;
     for (const auto & kv : amount_by_day)
     {
-        wxDate d;
-        wxLogDebug("kv.first  = %s", kv.first); 
-        d.ParseISODate(kv.first);
-        const wxString label = mmGetDateForDisplay(d.FormatISODate());
-        wxLogDebug("label  = %s", label); 
-        gd.labels.push_back(label);
+        gd.labels.push_back(kv.first);
         //wxLogDebug(" Values = %d, %d", kv.second.first, kv.second.second);
         gsWithdrawal.values.push_back(kv.second.first);
         gsDeposit.values.push_back(kv.second.second);
@@ -84,16 +79,12 @@ wxString mmReportForecast::getHTMLText()
     gsDeposit.name = _("Deposit");
     gd.series.push_back(gsDeposit);
     gsWithdrawal.name = _("Withdrawal");
-    gd.series.push_back(gsWithdrawal);     
+    gd.series.push_back(gsWithdrawal);
 
-    hb.addDivContainer("shadow");
-    { 
-        gd.type = GraphData::LINE_DATETIME;
-        gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
-                        , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
-        hb.addChart(gd);
-    }
-    hb.endDiv();
+    gd.type = GraphData::LINE_DATETIME;
+    gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                    , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) };
+    hb.addChart(gd);
 
     hb.end();
 
