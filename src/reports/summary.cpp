@@ -300,12 +300,8 @@ wxString mmReportSummaryByDate::getHTMLText()
         for (int i=0; i<Model_Account::MAX; i++)
             gd.series.push_back(gs_data[i]);
 
-        hb.addDivContainer("shadow"); 
-        {                 
-            gd.type = GraphData::STACKEDAREA; 
-            hb.addChart(gd);
-        }
-        hb.endDiv();
+        gd.type = GraphData::STACKEDAREA; 
+        hb.addChart(gd);
     }
 
     hb.addDivContainer("shadow");

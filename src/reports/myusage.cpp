@@ -144,12 +144,8 @@ wxString mmReportMyUsage::getHTMLText()
 
         if (!gd.series.empty())
         {
-            hb.addDivContainer("shadow");
-            {
-                gd.type = GraphData::PIE;
-                hb.addChart(gd);
-            }
-            hb.endDiv();
+            gd.type = GraphData::PIE;
+            hb.addChart(gd);
         }
     }
     

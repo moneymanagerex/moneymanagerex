@@ -86,14 +86,10 @@ wxString mmReportForecast::getHTMLText()
     gsWithdrawal.name = _("Withdrawal");
     gd.series.push_back(gsWithdrawal);     
 
-    hb.addDivContainer("shadow");
-    { 
-        gd.type = GraphData::LINE_DATETIME;
-        gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
-                        , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
-        hb.addChart(gd);
-    }
-    hb.endDiv();
+    gd.type = GraphData::LINE_DATETIME;
+    gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                    , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
+    hb.addChart(gd);
 
     hb.end();
 

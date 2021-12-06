@@ -92,14 +92,10 @@ wxString mmReportIncomeExpenses::getHTMLText()
 
     if (!gd.series.empty())
     {
-        hb.addDivContainer("shadow");
-        {
-            gd.type = GraphData::BAR;
-            gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
-                            , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) };  
-            hb.addChart(gd);
-        }
-        hb.endDiv();
+        gd.type = GraphData::BAR;
+        gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                        , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) };  
+        hb.addChart(gd);
     }
 
     hb.addDivContainer("shadow");
@@ -230,16 +226,12 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
         if (!gd.series.empty())
         {
-            hb.addDivContainer("shadow");
-            {
-                gd.type = GraphData::BARLINE; 
-                gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_PERF)
-                                , mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
-                                , mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
-                                , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
-                hb.addChart(gd);
-            }
-            hb.endDiv();
+            gd.type = GraphData::BARLINE; 
+            gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_PERF)
+                            , mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
+                            , mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                            , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
+            hb.addChart(gd);
         }
     }
 

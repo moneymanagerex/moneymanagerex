@@ -548,6 +548,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                 chartWidth = 70;
     };
 
+    addDivContainer("shadowGraph"); 
 
     htmlChart += wxString::Format("chart: { animations: { enabled: false }, type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
                     , gtype
@@ -671,6 +672,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         "var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();\n"
         "</script>\n", 
         divid, gtype, htmlPieData, htmlChart, divid));
+    
+    endDiv();
 };
 
 const wxString mmHTMLBuilder::getHTMLText() const

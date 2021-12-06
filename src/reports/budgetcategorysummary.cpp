@@ -143,23 +143,19 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 gsEstimated.name = _("Estimated");
                 gsActual.name = _("Actual");
 
-                hb.addDivContainer("shadow");
-                { 
-                    gd.title = categName;
-                    if (gd.labels.size() > 1) // Bar/Line are best with at least 2 items 
-                    {
-                        gd.type = GraphData::BARLINE;
-                        gsEstimated.type = "column";
-                        gsActual.type = "line";
-                    } else
-                    {
-                        gd.type = GraphData::BAR; 
-                    }
-                    gd.series.push_back(gsActual);
-                    gd.series.push_back(gsEstimated);
-                    hb.addChart(gd);
+                gd.title = categName;
+                if (gd.labels.size() > 1) // Bar/Line are best with at least 2 items 
+                {
+                    gd.type = GraphData::BARLINE;
+                    gsEstimated.type = "column";
+                    gsActual.type = "line";
+                } else
+                {
+                    gd.type = GraphData::BAR; 
                 }
-                hb.endDiv();
+                gd.series.push_back(gsActual);
+                gd.series.push_back(gsEstimated);
+                hb.addChart(gd);
 
                 // Now clear for next chart
                 gsActual.values.clear();
