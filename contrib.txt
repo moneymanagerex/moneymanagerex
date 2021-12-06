@@ -128,15 +128,19 @@ Peter Hulm
 Wiesław Stawiszyński
 Michel SERIN
 Gérard AGNESIO
+Matteo Rinaldi
+John David Bowman
 Jose Manuel Marrero León
 Jean-Francois Zahnen
 Markus Egg
+N Vincent
+Paul Moody
 Roger Chandler
 William R Detamore
 Alexander Habegger
 David Coons
 David Morrison
-John David Bowman
+George Cucak
 Kenneth Wiggers
 Lucas Lopez Azcona
 Officer Young
@@ -148,10 +152,11 @@ Jiří Vyskočil
 Roger Spindler
 Edgar Lloren
 Xiaoyun Wang
+Brian Crow
 Dario Bavicchi
 Jean-michel LOUISET
 Werner Ammann
-Brian Crow
+Michael Kerle
 Antonio Navarro Sánchez
 Tim Carden
 Jérémy DUFRAISSE
@@ -180,6 +185,7 @@ Rafael Moreira
 Samuel Sagon
 Francisco Fos Ros
 Marco Giuseppe Stimolo
+Marco Stimolo
 Doru Stoica
 Aaron Lim
 Ian Rowe
