@@ -601,6 +601,7 @@ install(FILES
     3rd/apexcharts.js/dist/apexcharts.min.js  
     resources/ie-polyfill/polyfill.min.js
     resources/ie-polyfill/classlist.min.js
+    resources/ie-polyfill/resize-observer.js
     resources/ie-polyfill/findindex.min.js
     resources/ie-polyfill/umd.min.js
     resources/sorttable.js

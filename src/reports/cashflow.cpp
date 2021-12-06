@@ -231,12 +231,8 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     if (getChartSelection() == 0 && !gd.series.empty())
     {
-        hb.addDivContainer("shadow");
-        {
-            gd.type = GraphData::LINE_DATETIME;
-            hb.addChart(gd);
-        }
-        hb.endDiv();
+        gd.type = GraphData::LINE_DATETIME;
+        hb.addChart(gd);
     }
 
     hb.addDivContainer("shadow");
