@@ -581,7 +581,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     std::vector<wxColour> colors;
     if (!gd.colors.empty())
         colors = gd.colors;
-    else  
+    else
         colors = mmThemeMetaColourArray(meta::COLOR_REPORT_PALETTE);
 
     htmlChart += ", colors: ";
@@ -608,7 +608,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
        htmlChart += wxString::Format(",labels: [%s]", categories);
     else
         htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }\n", gSeriesType, categories);
-    
+
     wxString seriesList, pieEntries;
     bool firstList = true;
     for (const auto& entry : gd.series)
