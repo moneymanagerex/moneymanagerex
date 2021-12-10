@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-12-05 13:13+0300\n"
-"PO-Revision-Date: 2021-12-05 10:27\n"
+"PO-Revision-Date: 2021-12-10 09:45\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -315,7 +315,7 @@ msgstr "עיון במדריך למשתמש"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "למידע נוסף, כדי לבקר באתר הבית"
+msgstr "למידע נוסף, כדאי לבקר באתר הבית"
 
 #: appstartdialog.cpp:116
 #, c-format
@@ -584,7 +584,7 @@ msgstr "עצה: ניתן להשתמש בתווים כלליים - סימן שא�
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:395 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr "ניתן להשתמש בסימן השאלה (?) כדי למצוא כל תו בודד - לדוגמה, ש?ת יחזיר 'שבת' ו'שנת'."
+msgstr "ניתן להשתמש בסימן השאלה (?) כדי למצוא תו בודד כלשהו - לדוגמה, ש?ת יחזיר 'שבת' ו'שנת'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:396 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
