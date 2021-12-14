@@ -182,7 +182,8 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize);
     for (const auto& i : Model_Checking::all_type())
     {
-        m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
+        if (!(m_hasSplits && (Model_Checking::TRANSFER_STR == i)))
+            m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
     m_type_choice->Enable(false);
     m_type_choice->Select(0);
