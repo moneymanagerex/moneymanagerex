@@ -257,7 +257,7 @@ void mmPayeeDialog::EditPayee()
         if (name == payee->PAYEENAME) return;
 
         Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(name));
-        if (payees.empty())
+        if (payees.empty() || name.CmpNoCase(payee->PAYEENAME) == 0)
         {
             payee->PAYEENAME = name;
             m_payee_id = Model_Payee::instance().save(payee);
