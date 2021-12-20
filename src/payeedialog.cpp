@@ -65,11 +65,15 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
 
 int mmPayeeDialog::FindSelectedPayee()
 {
-    int sel = payeeListBox_->GetFirstSelected();
-    wxListItem item;
-    item.SetId(sel);
-    payeeListBox_->GetItem(item);
-    return (item.GetData());
+    int sel = payeeListBox_->GetFocusedItem();
+    if (-1 != sel)
+    {
+        wxListItem item;
+        item.SetId(sel);
+        payeeListBox_->GetItem(item);
+        return (item.GetData());
+    } else
+        return -1;
 }
 
 void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
