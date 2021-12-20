@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -54,7 +55,7 @@ private:
         MENU_RELOCATE_PAYEE
     };
 
-    wxDataViewListCtrl* payeeListBox_;
+    wxListView* payeeListBox_;
     wxSearchCtrl* m_maskTextCtrl;
     wxBitmapButton* m_magicButton;
 
@@ -62,7 +63,7 @@ private:
     int m_payee_rename;
     bool m_payee_choose;
     wxString m_maskStr;
-    bool refreshRequested_;
+    bool refreshRequested_, m_sortByPayee, m_sortReverse;
     std::map<int, wxString> ColName_;
 
 private:
@@ -79,20 +80,16 @@ private:
     void RemoveDefaultCategory();
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
+    int FindSelectedPayee();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 
-    void OnListItemSelected(wxDataViewEvent& event);
-    void OnListItemActivated(wxDataViewEvent& event);
-    void OnDataEditStart(wxDataViewEvent& event);
-    void OnDataChanged(wxDataViewEvent& event);
+    void OnListItemActivated(wxListEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
-    void OnItemRightClick(wxDataViewEvent& event);
+    void OnItemRightClick(wxListEvent& event);
     void OnTextChanged(wxCommandEvent& event);
     void OnMagicButton(wxCommandEvent& event);
-    void OnSorted(wxDataViewEvent& event);
-
-    bool debug_;
+    void OnSort(wxListEvent& event);
 };
 
 inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
