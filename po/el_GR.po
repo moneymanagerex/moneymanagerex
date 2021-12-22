@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-12-22 11:55+0300\n"
-"PO-Revision-Date: 2021-12-22 09:20\n"
+"PO-Revision-Date: 2021-12-22 14:05\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2541,7 +2541,7 @@ msgstr "Μέγιστο Ποσό"
 
 #: filtertransdialog.cpp:1324
 msgid "Column"
-msgstr ""
+msgstr "Στήλη"
 
 #: filtertransdialog.cpp:1742 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -2768,7 +2768,7 @@ msgstr "Το θέμα %s έχει στοιχεία που λείπουν και 
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "Δεν βρέθηκε λειτουργικό θέμα, η εγκατάσταση μπορεί να είναι κατεστραμμένη"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
