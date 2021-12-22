@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-12-22 11:55+0300\n"
-"PO-Revision-Date: 2021-12-22 09:20\n"
+"PO-Revision-Date: 2021-12-22 18:29\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2530,7 +2530,7 @@ msgstr "Belopp max."
 
 #: filtertransdialog.cpp:1324
 msgid "Column"
-msgstr ""
+msgstr "Kolumn"
 
 #: filtertransdialog.cpp:1742 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -2758,7 +2758,7 @@ msgstr "Temat %s har saknade objekt och är inkompatibelt. Återgår till standa
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "Inget fungerande tema hittat, installationen kan vara korrupt"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
