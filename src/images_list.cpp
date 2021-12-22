@@ -517,6 +517,13 @@ void LoadTheme()
     {
         wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
         reverttoDefaultTheme();
+        if (!checkThemeContents(filesInVFS.get()))
+        {
+            // Time to give up as we couldn't find a workable theme
+            wxMessageBox(_("No workable theme found, the installation may be corrupt")
+                , _("Error"), wxOK | wxICON_ERROR);
+            exit(EXIT_FAILURE);
+        }
     } 
 }
 
