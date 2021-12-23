@@ -410,7 +410,7 @@ void mmCheckingPanel::setAccountSummary()
             , Model_Account::toCurrency(m_reconciled_balance, account)
             , _("Diff: ")
             , Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account)
-            , show_displayed_balance_ ? _("Displayed Bal: ") : ""
+            , show_displayed_balance_ ? _("Filtered View Bal: ") : ""
             , show_displayed_balance_ ? Model_Account::toCurrency(m_filteredBalance, account) : "");
         m_header_balance->SetLabelText(summaryLine);
     }
