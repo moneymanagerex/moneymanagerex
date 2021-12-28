@@ -237,8 +237,9 @@ The wxmac stable version with homebrew is still 3.0.5.x, we need a later version
         export MAKEFLAGS=-j4
         ../configure --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=10.14 \
-        --without-libtiff
+        --without-libtiff \
         --enable-universal-binary=arm64,x86_64
+        make
 
     If you want to enable debug then include `--enable-debug`
 
