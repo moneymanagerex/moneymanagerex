@@ -236,11 +236,7 @@ Current stable version that has been tested with MMEX is v3.1.5
         cd build-cocoa
         export MAKEFLAGS=-j4
         ../configure --disable-shared --enable-cxx11 --with-cxx=11 \
-<<<<<<< Updated upstream
         --with-macosx-version-min=10.14 \
-=======
-        --with-macosx-version-min=10.10 \
->>>>>>> Stashed changes
         --without-libtiff \
         --enable-universal-binary=arm64,x86_64
         make
@@ -275,7 +271,7 @@ If you want build the project for debugging purposes replace CMake flag
 
 If you want to just build for the current architecture and don't require a universal build then you can omit `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"`
 
-You could tune `-j8` option to a different number to use all processor cores
+You could tune `-j4` option to a different number to use all processor cores
 during build phase.
 
 Linux
