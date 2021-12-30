@@ -215,14 +215,14 @@ macOS with Homebrew
 
        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-3. Install required packages. You can choose which compiler you want to use:
+3. Install required packages.
 
        brew update && brew install ccache gettext cmake
        brew link --force gettext
 
 #### 2. Build wxWidgets
 
-The wxmac stable version with homebrew is still 3.0.5.x, we need a later version so need to build wxWidgets from source
+Current stable version that has been tested with MMEX is v3.1.5
 
 1. Download Sources
         
@@ -245,24 +245,23 @@ The wxmac stable version with homebrew is still 3.0.5.x, we need a later version
 
     If you want to just build for the current architecture and don't require a universal build then you can omit `--enable-universal-binary=arm64,x86_64`
 
-    You could tune `-j4` option to different number to use all processor cores during build phase.
+    You could tune `-j4` option to a different number to use all processor cores during build phase.
 
 
-#### 2. Download Sources
+#### 3. Download latest MMEX sources
 
     git clone --recursive https://github.com/moneymanagerex/moneymanagerex
 
-#### 3. Compile and Create Package
+#### 4. Compile and Create Package
 
     mkdir moneymanagerex/build
     cd moneymanagerex/build
-    export MAKEFLAGS=-j8
+    export MAKEFLAGS=-j4
     cmake -DCMAKE_CXX_FLAGS="-w" \
     -DwxWidgets_CONFIG_EXECUTABLE={PATH-TO-wxWidgets}/wxWidgets-3.1.5/build-cocoa/wx-config \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
-    -DMACOSX_DEPLOYMENT_TARGET=10.14 \
-    --with-macosx-version-min=10.14 ..
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 ..
     cmake --build . --target package
 
 Replace `{PATH-TO-wxWidgets}` with the path to the directory in which you extracted the wxWidgets source in step 2.
@@ -272,7 +271,7 @@ If you want build the project for debugging purposes replace CMake flag
 
 If you want to just build for the current architecture and don't require a universal build then you can omit `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"`
 
-You could tune `-j4` option to different number to use all processor cores
+You could tune `-j4` option to a different number to use all processor cores
 during build phase.
 
 Linux
