@@ -205,7 +205,6 @@ void Model_Category::getCategoryStats(
             }
         }
 
-
         const double convRate = Model_CurrencyHistory::getDayRate(
             Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
         wxDateTime d = Model_Checking::TRANSDATE(transaction);
@@ -242,7 +241,7 @@ void Model_Category::getCategoryStats(
             for (const auto& entry : splits[transaction.id()])
             {
                 categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT
-                    * convRate * (Model_Checking::balance(transaction) < 0 ? -1 : 1);
+                    * convRate * ((Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL) ? -1 : 1);
             }
         }
     }
