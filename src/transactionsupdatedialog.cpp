@@ -78,7 +78,6 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , m_hasTransfers(false)
     , m_hasNonTransfers(false)
     , m_hasSplits(false)
-    , m_hasMixedCurrency(false)
 {
     m_currency = Model_Currency::GetBaseCurrency(); // base currency if we need it
 
@@ -96,15 +95,7 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
         }
   
         if (!m_hasTransfers && isTransfer)
-        {
             m_hasTransfers = true;
-            const auto acc = Model_Account::instance().get(trx->ACCOUNTID);
-            const auto curr = Model_Currency::instance().get(acc->CURRENCYID);
-            const auto acc2 = Model_Account::instance().get(trx->TOACCOUNTID);
-            const auto curr2 = Model_Currency::instance().get(acc2->CURRENCYID);
-            if (curr != curr2)
-                m_hasMixedCurrency = true;
-        }
 
         if (!m_hasNonTransfers && !isTransfer)    
             m_hasNonTransfers = true;
@@ -195,7 +186,7 @@ void transactionsUpdateDialog::CreateControls()
     // Amount Field --------------------------------------------
     m_amount_checkbox = new wxCheckBox(this, wxID_ANY, _("Amount")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_amount_checkbox->Enable(!m_hasSplits && !m_hasMixedCurrency);
+    m_amount_checkbox->Enable(!m_hasSplits);
 
     m_amount_ctrl = new mmTextCtrl(this, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize
@@ -415,8 +406,6 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (m_amount_checkbox->IsChecked())
         {
             trx->TRANSAMOUNT = amount;
-            if (Model_Checking::is_transfer(trx))
-                trx->TOTRANSAMOUNT = amount;
         }
 
         if (m_categ_checkbox->IsChecked())
@@ -429,6 +418,36 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         {
             trx->TRANSCODE = type;
         }
+ 
+        // Need to consider TOTRANSAMOUNT if material transaction change
+        if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() || m_transferAcc_checkbox->IsChecked())
+        {
+            if (!Model_Checking::is_transfer(trx))
+            {
+                trx->TOTRANSAMOUNT = trx->TRANSAMOUNT;
+            } else
+            {
+                const auto acc = Model_Account::instance().get(trx->ACCOUNTID);
+                const auto curr = Model_Currency::instance().get(acc->CURRENCYID);
+                const auto to_acc = Model_Account::instance().get(trx->TOACCOUNTID);
+                const auto to_curr = Model_Currency::instance().get(to_acc->CURRENCYID);
+                if (curr == to_curr)
+                {
+                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT;                
+                } else
+                {
+                    double exch = 1;
+                    const double convRateTo = Model_CurrencyHistory::getDayRate(to_curr->CURRENCYID, trx->TRANSDATE);
+                    if (convRateTo > 0)
+                    {
+                        const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, trx->TRANSDATE);
+                        exch = convRate / convRateTo;
+                    }
+                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT * exch;
+                }
+            }
+        }
+
 
         Model_Checking::instance().save(trx);
     }
