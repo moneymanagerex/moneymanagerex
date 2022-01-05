@@ -98,13 +98,14 @@ table {
 )";
 
     hb.init(false, extra_style);
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), 
+            ((m_transDialog->getRangeCheckBox() || m_transDialog->getStartDateCheckBox()) ? m_transDialog->getStartDay() : 1),
+            ((m_transDialog->getRangeCheckBox() || m_transDialog->getStartDateCheckBox()) ? m_transDialog->isFutureIgnored() : false ));
     wxDateTime start,end;
     start.ParseISODate(m_transDialog->getBeginDate());
     end.ParseISODate(m_transDialog->getEndDate());
     hb.DisplayDateHeading(start, end
-        , m_transDialog->getRangeCheckBox() || m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox()
-        , m_transDialog->getStartDateCheckBox());
+        , m_transDialog->getRangeCheckBox() || m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
     m_noOfCols = (m_transDialog->getHideColumnsCheckBox()) ? m_transDialog->getHideColumnsID().GetCount() : 11;

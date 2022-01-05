@@ -212,7 +212,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         "Cash Flow Forecast for %i Years Ahead",
         years),
         years);
-    hb.addReportHeader(headingStr);
+    hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 
     GraphData gd;
