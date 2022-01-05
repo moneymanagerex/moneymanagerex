@@ -140,8 +140,9 @@ void mmHTMLBuilder::showUserName()
         addHeader(2, Option::instance().UserName());
 }
 
-void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay)
+void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay, bool futureIgnored)
 {
+    wxLogDebug("futureIgnored: %d",futureIgnored);
     addDivContainer("shadowTitle");
     {
         addText("<header>");
@@ -153,6 +154,7 @@ void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay)
             showUserName();
             addText("<TMPL_VAR DATE_HEADING>");
             addOffsetIndication(startDay);
+            addFutureIgnoredIndication(futureIgnored);
             addReportCurrency();
             addDateNow();
         }
@@ -206,6 +208,12 @@ void mmHTMLBuilder::addOffsetIndication(int startDay)
         addHeader(5, wxString::Format ("%s: %d"
             , _("User specified start day")
             , startDay));
+}
+
+void mmHTMLBuilder::addFutureIgnoredIndication(bool ignore)
+{       
+    if (ignore)
+        addHeader(5, _("Future Transactions have been ignored"));
 }
 
 void mmHTMLBuilder::addDateNow()

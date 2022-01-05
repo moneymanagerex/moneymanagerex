@@ -30,6 +30,7 @@ protected:
     wxDateTime start_date_, end_date_;
     int startDay_;
     wxString title_;
+    bool futureIgnored_;
 
 public:
     mmDateRange();
@@ -48,6 +49,7 @@ public:
     void findEndOfMonth();
     void findBeginOfMonth();
     const int startDay() const;
+    const bool isFutureIgnored() const;
 };
 
 class mmCurrentMonth: public mmDateRange
@@ -163,6 +165,7 @@ inline void mmDateRange::start_date(wxDateTime& start_date) { this->start_date_ 
 inline void mmDateRange::end_date(wxDateTime& end_date) { this->end_date_ = end_date; }
 inline void mmDateRange::set_end_date(wxDateTime v) { end_date_ = v; }
 inline const int mmDateRange::startDay() const { return this ? startDay_ : 1; }
+inline const bool mmDateRange::isFutureIgnored() const { return this->futureIgnored_; }
 
 
 #endif // MM_EX_DATE_RANGE_H_
