@@ -133,7 +133,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
 
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.DisplayFooter(getAccountNames());
     // Prime the filter
@@ -280,7 +280,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDate sd = m_date_range->start_date();
     wxDate ed = m_date_range->end_date();
     sd.Add(wxDateSpan::Months(m_date_selection));
-    ed.Add(wxDateSpan::Months(m_date_selection+1));
+    ed.Add(wxDateSpan::Months(m_date_selection));
     // Use mmDateRange logic to get the right start/end days
     mmDateRange temp_date;
     temp_date.findEndOfMonth(); // Sets up start day
@@ -347,7 +347,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
     hb.DisplayDateHeading(sd, ed, true);
     hb.DisplayFooter(getAccountNames());
     // Prime the filter

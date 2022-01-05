@@ -39,6 +39,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/valnum.h>
 
+#define DATE_MAX 253402214400   /* Dec 31, 9999 */
+
 static const wxString TRANSACTION_STATUSES[] =
 {
     wxTRANSLATE("None"),
@@ -655,6 +657,8 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         {
             m_begin_date = date_range->start_date().FormatISODate(); 
             m_end_date = date_range->end_date().FormatISODate(); 
+            m_startDay = date_range->startDay();
+            m_futureIgnored = date_range->isFutureIgnored();
         }        
     }
 
@@ -682,6 +686,12 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
                 wxASSERT(FALSE);
         }
         m_begin_date = date_range->start_date().FormatISODate();
+        m_futureIgnored = Option::instance().getIgnoreFutureTransactions();
+        if (m_futureIgnored) 
+            m_end_date = wxDateTime::Today().FormatISODate();
+        else
+            m_end_date = wxDateTime(DATE_MAX).FormatISODate();
+        m_startDay = date_range->startDay();
         delete date_range;
     }
 
@@ -1080,9 +1090,9 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
            && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
            && selected_accounts_id_.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
-    else if ((getDateRangeCheckBox() || getRangeCheckBox()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
+    else if ((getDateRangeCheckBox() || getRangeCheckBox()
+                || getStartDateCheckBox()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
-    else if (getStartDateCheckBox() && (tran.TRANSDATE < m_begin_date)) ok = false;
     else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran, split)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;

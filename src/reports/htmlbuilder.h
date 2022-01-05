@@ -61,12 +61,13 @@ public:
     }
 
     /** Add an HTML header */
-    void addReportHeader(const wxString& name, int startDay = 1);
+    void addReportHeader(const wxString& name, int startDay = 1, bool futureIgnored = false);
     void addHeader(int level, const wxString& header);
     void showUserName();
     void addReportCurrency();
     void addDateNow();
     void addOffsetIndication(int startDay);
+    void addFutureIgnoredIndication(bool ignore);
 
     /** Start a table element */
     void startTable();
