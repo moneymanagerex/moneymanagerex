@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-12-22 11:55+0300\n"
+"POT-Creation-Date: 2022-01-06 02:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr ""
 #: payeedialog.cpp:144 relocatecategorydialog.cpp:123
 #: relocatepayeedialog.cpp:140 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:325 splitdetailsdialog.cpp:161
-#: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:280
+#: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:271
 #: transdialog.cpp:609 wizard_update.cpp:216
 msgid "&OK "
 msgstr ""
@@ -133,7 +133,7 @@ msgstr ""
 #: import_export/qif_export.cpp:597 import_export/qif_import_gui.cpp:105
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:237
 #: reports/transactions.cpp:164 sharetransactiondialog.cpp:270
-#: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:251
+#: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:242
 #: transdialog.cpp:583 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
 msgstr ""
@@ -374,7 +374,7 @@ msgstr ""
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:242
 #: reports/incexpenses.cpp:244 reports/summary.cpp:315
 #: reports/transactions.cpp:156 stockdialog.cpp:297 stockdialog.cpp:676
-#: transactionsupdatedialog.cpp:150 transdialog.cpp:461
+#: transactionsupdatedialog.cpp:141 transdialog.cpp:461
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
 msgstr ""
@@ -460,7 +460,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
 #: maincurrencydialog.cpp:252 mmhomepage.cpp:436 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:162 splitdetailsdialog.cpp:120
-#: transactionsupdatedialog.cpp:178 transdialog.cpp:504
+#: transactionsupdatedialog.cpp:169 transdialog.cpp:504
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr ""
@@ -926,7 +926,7 @@ msgstr ""
 #: filtertransdialog.cpp:1256 import_export/qif_export.cpp:589
 #: import_export/qif_import_gui.cpp:234 import_export/qif_import_gui.cpp:245
 #: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:218
-#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:163
+#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:154
 #: transdialog.cpp:484 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:141
 msgid "Status"
@@ -951,7 +951,7 @@ msgstr ""
 #: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:189
 #: reports/categexp.cpp:174 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:163 splitdetailsdialog.cpp:136
-#: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:196
+#: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:187
 #: transdialog.cpp:518 usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
 msgstr ""
@@ -988,7 +988,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
 #: import_export/univcsvdialog.cpp:106 mmchecking_list.cpp:216
 #: model/Model_Attachment.cpp:29 reports/payee.cpp:135
-#: reports/transactions.cpp:159 transactionsupdatedialog.cpp:209
+#: reports/transactions.cpp:159 transactionsupdatedialog.cpp:200
 #: transdialog.cpp:299 transdialog.cpp:532 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
@@ -1016,13 +1016,13 @@ msgstr ""
 #: reports/budgetcategorysummary.cpp:188 reports/budgetingperf.cpp:220
 #: reports/categexp.cpp:173 reports/categexp.cpp:422
 #: reports/transactions.cpp:161 splitdetailsdialog.cpp:145
-#: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:239
+#: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:230
 #: transdialog.cpp:554 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
 msgstr ""
 
 #: billsdepositsdialog.cpp:613 billsdepositsdialog.cpp:1442
-#: transactionsupdatedialog.cpp:243 transdialog.cpp:408 transdialog.cpp:1078
+#: transactionsupdatedialog.cpp:234 transdialog.cpp:408 transdialog.cpp:1078
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
 msgstr ""
@@ -2385,7 +2385,7 @@ msgstr ""
 msgid "Since Today"
 msgstr ""
 
-#: filtertransdialog.cpp:196 transactionsupdatedialog.cpp:144
+#: filtertransdialog.cpp:196 transactionsupdatedialog.cpp:135
 msgid "Specify"
 msgstr ""
 
@@ -2424,7 +2424,7 @@ msgstr ""
 msgid "Deposit"
 msgstr ""
 
-#: filtertransdialog.cpp:341 transactionsupdatedialog.cpp:225
+#: filtertransdialog.cpp:341 transactionsupdatedialog.cpp:216
 msgid "Transfer To"
 msgstr ""
 
@@ -3990,7 +3990,7 @@ msgid "Diff: "
 msgstr ""
 
 #: mmcheckingpanel.cpp:413
-msgid "Displayed Bal: "
+msgid "Filtered View Bal: "
 msgstr ""
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
@@ -6877,22 +6877,22 @@ msgstr ""
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
 msgstr ""
 
-#: transactionsupdatedialog.cpp:114
+#: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
 msgstr ""
 
-#: transactionsupdatedialog.cpp:253
+#: transactionsupdatedialog.cpp:244
 msgid "Append"
 msgstr ""
 
-#: transactionsupdatedialog.cpp:369 transdialog.cpp:669
+#: transactionsupdatedialog.cpp:360 transdialog.cpp:669
 #, c-format
 msgid ""
 "You have not used this payee name before. Is the name correct?\n"
 "%s"
 msgstr ""
 
-#: transactionsupdatedialog.cpp:370 transdialog.cpp:670
+#: transactionsupdatedialog.cpp:361 transdialog.cpp:670
 msgid "Confirm payee name"
 msgstr ""
 
