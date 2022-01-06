@@ -6,7 +6,7 @@
         var dir = 'en';
         var regex = new RegExp("[\\?&]lang=([^&]*)");
         var lang = regex.exec(window.location.search);
-        if (lang && /^(be|it|he|es)$/.test(lang[1]))
+        if (lang && /^(be|cn|de|es|fr|he|hr|it|nl|pl|ru)$/.test(lang[1]))
             dir = lang[1];
         window.location.replace(dir + "/stocks_and_shares.html");
     </script>

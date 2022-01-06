@@ -115,6 +115,12 @@ Spanish
 ---------------------------------------
 ## Sponsors
 
+### 2022
+Renato
+Sven Wiesner
+Roland MORITZ
+Cesar Tadeu Descardeci
+
 ### 2021
 Renato
 Thomas Gretler
@@ -132,15 +138,18 @@ Matteo Rinaldi
 John David Bowman
 Jose Manuel Marrero León
 Jean-Francois Zahnen
+John Weaving
 Markus Egg
 N Vincent
 Paul Moody
 Roger Chandler
 William R Detamore
 Alexander Habegger
+Alessandro Guarnieri
 David Coons
 David Morrison
 George Cucak
+Keith Kollias
 Kenneth Wiggers
 Lucas Lopez Azcona
 Officer Young
@@ -148,13 +157,16 @@ Pedro Rocha
 Raleigh Meade
 Stelios Stylianou
 Thierry PAPINOT
+Werner Hennersdorf
 Jiří Vyskočil
 Roger Spindler
 Edgar Lloren
 Xiaoyun Wang
 Brian Crow
+Glenn Fowler
 Dario Bavicchi
 Jean-michel LOUISET
+NICOLA QUARTO AMARETTI
 Werner Ammann
 Michael Kerle
 Antonio Navarro Sánchez
@@ -168,7 +180,9 @@ Gerald Mead
 Hermann Fessler
 Israel Corbo
 Massimo casaccia
+Nelson Vladimiro Nunes Amaral
 Nicolas Arzamendia
+Philippe Andurao
 Sean Vinaja
 Timothy Pope
 Alberto Gäumann - Reumer
@@ -192,7 +206,7 @@ Ian Rowe
 Jonathan Thomas
 RICARDO ITURRIAGA
 José Moya Iglesias
-Giuseppe conti
+Giuseppe Conti
 
 ### 2020
 Renato

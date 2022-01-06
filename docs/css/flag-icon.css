@@ -23,6 +23,10 @@
   background-image: url(../img/flags/be.svg);
 }
 
+.flag-icon-cn {
+  background-image: url(../img/flags/cn.svg);
+}
+
 .flag-icon-de {
   background-image: url(../img/flags/de.svg);
 }
@@ -47,8 +51,16 @@
   background-image: url(../img/flags/he.svg);
 }
 
+.flag-icon-hr {
+  background-image: url(../img/flags/hr.svg);
+}
+
 .flag-icon-it {
   background-image: url(../img/flags/it.svg);
+}
+
+.flag-icon-nl {
+  background-image: url(../img/flags/nl.svg);
 }
 
 .flag-icon-pl {
