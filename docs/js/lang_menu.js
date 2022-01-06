@@ -8,11 +8,14 @@ function generateLangMenu(nav) {
     var list = [
         { id: "en", flag: "en", lang: "English"   },
         { id: "be", flag: "be", lang: "Belarusian"},
+        { id: "cn", flag: "cn", lang: "Chinese"},
         { id: "de", flag: "de", lang: "German"    },
         { id: "fr", flag: "fr", lang: "French"    },
         { id: "hu", flag: "hu", lang: "Hungarian" },
         { id: "he", flag: "he", lang: "Hebrew"    },
+        { id: "hr", flag: "hr", lang: "Croatian"  },
         { id: "it", flag: "it", lang: "Italian"   },
+        { id: "nl", flag: "nl", lang: "Dutch"     },
         { id: "pl", flag: "pl", lang: "Polish"    },
         { id: "ru", flag: "ru", lang: "Russian"   },
         { id: "es", flag: "es", lang: "Spanish"   }
