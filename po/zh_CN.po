@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-06 02:45+0300\n"
-"PO-Revision-Date: 2022-01-05 23:52\n"
+"PO-Revision-Date: 2022-01-06 00:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3974,7 +3974,7 @@ msgstr "差额： "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "过滤视图平衡："
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -6260,7 +6260,7 @@ msgstr "用户指定的开始日期"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "未来的交易已被忽略"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
