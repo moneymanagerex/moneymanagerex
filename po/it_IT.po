@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-06 02:45+0300\n"
-"PO-Revision-Date: 2022-01-06 20:50\n"
+"PO-Revision-Date: 2022-01-07 12:09\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3987,7 +3987,7 @@ msgstr "Differenza: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr "Vista filtrata del bilancio: "
+msgstr "Vista Filtrata del Saldo: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
