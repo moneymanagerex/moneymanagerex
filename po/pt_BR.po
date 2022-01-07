@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-06 02:45+0300\n"
-"PO-Revision-Date: 2022-01-07 13:43\n"
+"PO-Revision-Date: 2022-01-07 13:52\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6277,7 +6277,7 @@ msgstr "Dia de início especificado pelo usuário"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Transações futuras foram ignoradas"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
