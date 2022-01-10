@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-06 02:45+0300\n"
-"PO-Revision-Date: 2022-01-05 23:53\n"
+"PO-Revision-Date: 2022-01-06 10:23\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3973,7 +3973,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Vizualizare filtrată Bal: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -6239,7 +6239,7 @@ msgstr ""
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Tranzacțiile viitoare au fost ignorate"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"

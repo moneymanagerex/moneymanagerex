@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-06 02:45+0300\n"
-"PO-Revision-Date: 2022-01-05 23:53\n"
+"PO-Revision-Date: 2022-01-06 16:51\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3987,7 +3987,7 @@ msgstr "Verschil: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Gefilterd weergaven balans: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -6277,7 +6277,7 @@ msgstr "Gebruiker opgegeven begindag"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Toekomstige transacties zijn genegeerd"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
