@@ -449,16 +449,16 @@ int Option::AccountImageId(int account_id, bool def)
     return selectedImage;
 }
 
-const wxString Option::getLanguageISO6391(bool get_db)
+const wxString Option::getLanguageCode(bool get_db)
 {
     Option::getLanguageID(get_db);
     if (m_language == wxLANGUAGE_UNKNOWN)
         return wxEmptyString;
     if (m_language == wxLANGUAGE_DEFAULT)
-        return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
+        return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US);
 
     const auto lang = wxLocale::GetLanguageCanonicalName(m_language);
-    return lang.Left(2);
+    return lang;
 }
 
 void Option::setLanguage(wxLanguage& language)
