@@ -384,7 +384,7 @@ int Model_Report::get_html(const Data* r, wxString& out)
         auto s = wxString(wxFileName::GetPathSeparator());
         s.Replace("\\", "\\\\");
         report(L"FILESEPARATOR") = s;
-        report(L"LANGUAGE") = Option::instance().getLanguageISO6391();
+        report(L"LANGUAGE") = Option::instance().getLanguageCode();
         report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
     }
     report(L"ERRORS") = errors;
