@@ -637,9 +637,12 @@ void TransactionListCtrl::OnChar(wxKeyEvent& event)
 
 void TransactionListCtrl::OnSelectAll(wxCommandEvent& WXUNUSED(event))
 {
+    SetEvtHandlerEnabled(false);
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
     }
+    SetEvtHandlerEnabled(true);
+    setExtraTransactionData(false);
 }
 
 void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
