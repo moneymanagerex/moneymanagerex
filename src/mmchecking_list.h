@@ -133,6 +133,7 @@ private:
         MENU_VIEW_DELETE_TRANS,
         MENU_VIEW_DELETE_FLAGGED,
 
+        MENU_ON_SELECT_ALL,
         MENU_ON_COPY_TRANSACTION,
         MENU_ON_PASTE_TRANSACTION,
         MENU_ON_NEW_TRANSACTION,
@@ -189,10 +190,11 @@ private:
     void OnMarkTransaction(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnChar(wxKeyEvent& event);
+    void OnSelectAll(wxCommandEvent& WXUNUSED(event));
     void OnCopy(wxCommandEvent& WXUNUSED(event));
     void OnPaste(wxCommandEvent& WXUNUSED(event));
+    void OnListItemFocused(wxListEvent& WXUNUSED(event));
     int OnPaste(Model_Checking::Data* tran);
-    void OnListItemFocused(wxListEvent & WXUNUSED);
 
     bool TransactionLocked(int AccountID, const wxString& transdate);
     void FindSelectedTransactions();
