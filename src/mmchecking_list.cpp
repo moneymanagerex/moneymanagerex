@@ -64,6 +64,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_EDIT2, TransactionListCtrl::OnEditTransaction)
     EVT_MENU(MENU_TREEPOPUP_MOVE2, TransactionListCtrl::OnMoveTransaction)
 
+    EVT_MENU(MENU_ON_SELECT_ALL, TransactionListCtrl::OnSelectAll)
     EVT_MENU(MENU_ON_COPY_TRANSACTION, TransactionListCtrl::OnCopy)
     EVT_MENU(MENU_ON_PASTE_TRANSACTION, TransactionListCtrl::OnPaste)
     EVT_MENU(MENU_ON_NEW_TRANSACTION, TransactionListCtrl::OnNewTransaction)
@@ -183,6 +184,7 @@ TransactionListCtrl::TransactionListCtrl(
 
     const wxAcceleratorEntry entries[] =
     {
+        wxAcceleratorEntry(wxACCEL_CTRL, 'A', MENU_ON_SELECT_ALL),
         wxAcceleratorEntry(wxACCEL_CTRL, 'C', MENU_ON_COPY_TRANSACTION),
         wxAcceleratorEntry(wxACCEL_CTRL, 'V', MENU_ON_PASTE_TRANSACTION),
         wxAcceleratorEntry(wxACCEL_ALT,  'N', MENU_ON_NEW_TRANSACTION),
@@ -632,6 +634,13 @@ void TransactionListCtrl::OnChar(wxKeyEvent& event)
     }
 }
 //----------------------------------------------------------------------------
+
+void TransactionListCtrl::OnSelectAll(wxCommandEvent& WXUNUSED(event))
+{
+    for (int row = 0; row < GetItemCount(); row++) {
+        SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+    }
+}
 
 void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
