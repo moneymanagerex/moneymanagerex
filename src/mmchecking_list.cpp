@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public as published by
@@ -71,6 +71,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION, TransactionListCtrl::OnDuplicateTransaction)
     EVT_MENU_RANGE(MENU_ON_SET_UDC0, MENU_ON_SET_UDC7, TransactionListCtrl::OnSetUserColour)
 
+    EVT_MENU(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, TransactionListCtrl::OnViewOtherAccount)
     EVT_MENU(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, TransactionListCtrl::OnViewSplitTransaction)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, TransactionListCtrl::OnOrganizeAttachments)
     EVT_MENU(MENU_TREEPOPUP_CREATE_REOCCURANCE, TransactionListCtrl::OnCreateReoccurance)
@@ -384,6 +385,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
+
+    menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _("&View In Other Account"));
+    if (m_cp->m_allAccounts || is_nothing_selected || multiselect || is_foreign || !type_transfer)
+        menu.Enable(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, false);
 
     menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
     if (is_nothing_selected || multiselect || have_category)
@@ -1193,6 +1198,24 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
             refreshVisualList();
         }
     }
+}
+
+//----------------------------------------------------------------------------
+void TransactionListCtrl::OnViewOtherAccount(wxCommandEvent& /*event*/)
+{
+    // we can only get here for a single transfer transaction
+    FindSelectedTransactions();
+
+    const Model_Checking::Data* transel = Model_Checking::instance().get(m_selected_id[0]);
+    Model_Checking::Full_Data tran(*transel);
+
+    int gotoAccountID =  (m_cp->m_AccountID == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
+    wxString gotoAccountName =  (m_cp->m_AccountID == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
+
+    m_cp->m_frame->setAccountNavTreeSection(gotoAccountName);
+    m_cp->m_frame->setGotoAccountID(gotoAccountID, tran.TRANSID);
+    wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+    m_cp->m_frame->GetEventHandler()->AddPendingEvent(event);
 }
 
 //----------------------------------------------------------------------------
