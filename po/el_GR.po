@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-13 09:39\n"
+"PO-Revision-Date: 2022-01-13 10:20\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3807,7 +3807,7 @@ msgstr[1] "&Μετακίνηση Συναλλαγών"
 
 #: mmchecking_list.cpp:389
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Προβολή Σε Άλλο Λογαριασμό"
 
 #: mmchecking_list.cpp:393
 msgid "&View Split Categories"
