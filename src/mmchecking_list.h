@@ -2,7 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -90,6 +90,7 @@ public:
     void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
+    void OnViewOtherAccount(wxCommandEvent& event);
     // Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
@@ -124,6 +125,7 @@ private:
         MENU_TREEPOPUP_MARKDUPLICATE,
         MENU_TREEPOPUP_MARKDELETE,
 
+        MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT,
         MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
         MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
         MENU_TREEPOPUP_CREATE_REOCCURANCE,
