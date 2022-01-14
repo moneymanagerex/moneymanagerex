@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-14 17:02\n"
+"PO-Revision-Date: 2022-01-14 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "Bật để giúp chúng tôi gửi dữ liệu ẩn danh về việc s�
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:271
 #: transdialog.cpp:609 wizard_update.cpp:216
 msgid "&OK "
-msgstr ""
+msgstr "&Được "
 
 #: accountdialog.cpp:111 mmframe.cpp:1481
 msgid "Edit Account"
@@ -77,23 +77,23 @@ msgstr "Sửa tài khoản"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
-msgstr "Tên tài khoản:"
+msgstr "Tên Tài Khoản:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Điền tên tài khoản. Có thể sửa sau nếu muốn."
+msgstr "Điền tên Tài Khoản. Có thể sửa sau nếu muốn."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
-msgstr "Loại tài khoản:"
+msgstr "Loại Tài Khoản:"
 
 #: accountdialog.cpp:152 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
-msgstr "Xác định loại tài khoản muốn tạo"
+msgstr "Xác định loại tài khoản muốn tạo."
 
 #: accountdialog.cpp:156
 msgid "Account Status:"
-msgstr "Tình trạng tài khoản"
+msgstr "Tình trạng Tài Khoản:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -227,11 +227,11 @@ msgstr ""
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
-msgstr ""
+msgstr "Tín dụng"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Hạn mức Tín dụng:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
@@ -255,12 +255,12 @@ msgstr ""
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr ""
+msgstr "Hình Ảnh Mặc Định"
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Hình Ảnh #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
@@ -274,11 +274,11 @@ msgstr "Tiền tệ"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Xin vui lòng nhập một URL hợp lệ"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL không hợp lệ"
 
 #: accountdialog.h:37 mmframe.cpp:1478 mmframe.cpp:1722
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -329,7 +329,7 @@ msgstr ""
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
-msgstr ""
+msgstr "&Thoát "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -435,7 +435,7 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&Hủy "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
@@ -450,7 +450,7 @@ msgstr ""
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:208
 #: reports/transactions.cpp:155 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:556 billsdepositspanel.cpp:134
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:333
@@ -466,11 +466,11 @@ msgstr "Loại"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
-msgstr ""
+msgstr "Giá trị Ban đầu"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "Giá trị Hiện tại"
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
@@ -533,15 +533,15 @@ msgstr "Tất cả"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:284 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "&Mới "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Thêm Giao Dịch "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "&Xem Giao Dịch "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
@@ -552,13 +552,13 @@ msgstr ""
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:379 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "&Sửa "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:293 mmchecking_list.cpp:413
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr ""
+msgstr "&Xóa "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
@@ -614,20 +614,20 @@ msgstr "Quản lý Tài sản"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Tài Khoản \t Ngày\t   Giá Trị\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
-msgstr ""
+msgstr "Mô tả"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "Tập tin"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Thư mục tệp đính kèm chưa được xác định."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
@@ -5252,7 +5252,7 @@ msgstr ""
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Tài Khoản Ngân Hàng"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
