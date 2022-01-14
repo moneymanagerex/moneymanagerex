@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-13 09:39\n"
+"PO-Revision-Date: 2022-01-14 16:56\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -37,23 +37,23 @@ msgstr "Tác giả"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr ""
+msgstr "Các nhà tài trợ"
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr ""
+msgstr "Giấy phép"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "Quyền riêng tư"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Gửi dữ liệu thống kê sử dụng ẩn danh"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Bật để giúp chúng tôi gửi dữ liệu ẩn danh về việc sử dụng MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:493
