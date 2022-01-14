@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-14 17:17\n"
+"PO-Revision-Date: 2022-01-14 17:25\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -239,11 +239,11 @@ msgstr ""
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Lãi suất:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Hạn thanh toán:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
@@ -567,7 +567,7 @@ msgstr "Xóa tài sản"
 #: assetspanel.cpp:493 billsdepositspanel.cpp:311 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Mở các tệp đính kèm"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
@@ -661,7 +661,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:134
 msgid "Other tools"
-msgstr ""
+msgstr "Các công cụ khác"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
@@ -695,17 +695,17 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:527
 #: payeedialog.cpp:378 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Thêm "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "&Mở "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:529
 #: payeedialog.cpp:381 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Loại bỏ "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
@@ -786,7 +786,7 @@ msgstr "Mỗi tháng"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Mỗi 2 tháng"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:60
@@ -818,19 +818,19 @@ msgstr "Mỗi ngày"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "Trong (x) ngày"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "Trong (x) tháng"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Mỗi (x) ngày"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Mỗi (x) tháng"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:64
 msgid "Monthly (last day)"
@@ -2289,7 +2289,7 @@ msgstr ""
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr "Sai: %s"
+msgstr "Lỗi: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1820
 msgid "Opening MMEX Database - Error"
