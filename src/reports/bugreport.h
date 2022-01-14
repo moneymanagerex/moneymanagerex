@@ -33,8 +33,8 @@ const char* bugreport_template = R"(
 </head>
 <body>
 <div class = "container">
-<h3><TMPL_VAR HEADER></h3>
-<div class = "col-xs-8">
+<h2><TMPL_VAR HEADER></h2>
+<BR>
 <TMPL_VAR CONTENTS>
 </div>
 </body>
