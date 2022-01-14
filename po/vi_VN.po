@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-14 16:56\n"
+"PO-Revision-Date: 2022-01-14 17:02\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr ""
+msgstr "Thỏa thuận cấp phép"
 
 #: aboutdialog.cpp:187
 msgid "About"
@@ -102,7 +102,7 @@ msgstr "Xác định liệu tài khoản này đã bị đóng chưa. Các tài 
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Số dư ban đầu: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
@@ -151,7 +151,7 @@ msgstr "Khác"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "Số Thẻ:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
@@ -203,23 +203,23 @@ msgstr ""
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "Đã khóa"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Bật hoặc tắt Khóa giao dịch"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Ngày Đối Chiếu:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Ngày khóa giao dịch"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Giá trị tối thiểu:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
@@ -610,7 +610,7 @@ msgstr ""
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
-msgstr ""
+msgstr "Quản lý Tài sản"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
