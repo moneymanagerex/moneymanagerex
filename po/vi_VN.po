@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-15 10:37\n"
+"PO-Revision-Date: 2022-01-15 10:49\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -3225,7 +3225,8 @@ msgstr ""
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Tài khoản mặc định '%s' cho mẫu này không tồn tại.\n"
+"Vui lòng chọn một tài khoản mới."
 
 #: import_export/univcsvdialog.cpp:541
 msgid "Account does not exist"
@@ -3602,7 +3603,8 @@ msgstr ""
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "Vui lòng nhập một đối tượng giao dịch mới,\n"
+"hoặc lựa chọn bằng cách sử dụng nút dropdown."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
 msgid "Invalid Name"
@@ -4312,7 +4314,7 @@ msgstr ""
 
 #: mmframe.cpp:1449
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Đổi ngôn ngữ của ứng dụng"
 
 #: mmframe.cpp:1450 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
