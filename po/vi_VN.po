@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-14 17:25\n"
+"PO-Revision-Date: 2022-01-15 10:37\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -1228,7 +1228,7 @@ msgstr ""
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:946 mmframe.cpp:749
 #: mmframe.cpp:2804 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Giao Dịch Định Kỳ"
 
 #: billsdepositspanel.cpp:250 filtertransdialog.h:122
 msgid "Transaction Filter"
@@ -3934,7 +3934,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:389
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Tài Khoản Đang Xem : %s"
 
 #: mmcheckingpanel.cpp:407
 msgid "Account Bal: "
@@ -4104,7 +4104,7 @@ msgstr "&Sửa tài khoản"
 
 #: mmframe.cpp:1256 mmframe.cpp:1484
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "&Đổi Loại Tài Khoản"
 
 #: mmframe.cpp:1257 mmframe.cpp:1294 mmframe.cpp:1487
 msgid "&Delete Account"
@@ -4152,7 +4152,7 @@ msgstr "Xem tài khoản"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
-msgstr ""
+msgstr "&CSDL Mới"
 
 #: mmframe.cpp:1360 mmframe.cpp:1719 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4950,7 +4950,7 @@ msgstr ""
 #: mmframe.cpp:3177
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Tài Khoản: %s - Chọn loại mới."
 
 #: mmframe.cpp:3286 payeedialog.cpp:329
 msgid "Payee Relocation Completed."
