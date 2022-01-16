@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-16 02:35\n"
+"PO-Revision-Date: 2022-01-16 07:35\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -1722,23 +1722,23 @@ msgstr "Xem 3 tháng trước"
 
 #: constants.cpp:186
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Xem 12 Tháng Qua"
 
 #: constants.cpp:187
 msgid "View Current Year"
-msgstr ""
+msgstr "Xem Năm Nay"
 
 #: constants.cpp:188
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Xem Năm Tài Chính Hiện Tại"
 
 #: constants.cpp:189
 msgid "View Last Year"
-msgstr ""
+msgstr "Xem Năm Trước"
 
 #: constants.cpp:190
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Xem Năm Tài Chính Trước"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
@@ -1875,7 +1875,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
-msgstr ""
+msgstr "Mặc định"
 
 #: customfieldeditdialog.cpp:163
 msgid "Enter the default for this field\n"
@@ -3171,7 +3171,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Preview"
-msgstr ""
+msgstr "Xem trước"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
@@ -3777,7 +3777,7 @@ msgstr[0] ""
 
 #: mmchecking_list.cpp:389
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Xem Trong Tài Khoản Khác"
 
 #: mmchecking_list.cpp:393
 msgid "&View Split Categories"
@@ -5334,7 +5334,7 @@ msgstr "Tổng quát"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:56
 msgid "View Options"
-msgstr "Hiển thị"
+msgstr "Xem Tùy chọn"
 
 #: optiondialog.cpp:37 webappdialog.cpp:155
 msgid "Attachments"
@@ -5351,7 +5351,7 @@ msgstr "&Áp dụng"
 #: optiondialog.cpp:224
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s trang đã được lưu."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
@@ -5832,11 +5832,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:222
 msgid "Light"
-msgstr ""
+msgstr "Sáng"
 
 #: optionsettingsview.cpp:223
 msgid "Dark"
-msgstr ""
+msgstr "Tối"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
@@ -5844,7 +5844,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Chế độ cá nhân hoá"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
@@ -5856,31 +5856,31 @@ msgstr ""
 
 #: optionsettingsview.cpp:253
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Nhỏ (16 px)"
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Bình thường (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Lớn (32 px)"
 
 #: optionsettingsview.cpp:256
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Khổng lồ (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Kích thước Biểu tượng Thanh công cụ"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Kích thước Biểu tượng điều hướng"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Kích Thước Biểu Tượng Khác"
 
 #: payeedialog.cpp:61
 msgid "Last Used Category"
