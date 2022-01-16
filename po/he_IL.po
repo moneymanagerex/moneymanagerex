@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-13 09:39\n"
+"PO-Revision-Date: 2022-01-16 16:44\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2547,7 +2547,7 @@ msgstr "סכום מירבי"
 
 #: filtertransdialog.cpp:1334
 msgid "Column"
-msgstr ""
+msgstr "עמודה"
 
 #: filtertransdialog.cpp:1752 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -2777,7 +2777,7 @@ msgstr "לערכת נושא %s חסרים פריטים והיא אינה תוא�
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "לא נמצאה ערכת נושאה עבידה, יתכן שההתקנה פגומה"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
@@ -3824,7 +3824,7 @@ msgstr[3] "ה&עברת תנועות"
 
 #: mmchecking_list.cpp:389
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&הצגה בחשבון אחר"
 
 #: mmchecking_list.cpp:393
 msgid "&View Split Categories"
