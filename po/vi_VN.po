@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-16 02:15\n"
+"PO-Revision-Date: 2022-01-16 02:25\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "Bật để giúp chúng tôi gửi dữ liệu ẩn danh về việc s�
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:271
 #: transdialog.cpp:609 wizard_update.cpp:216
 msgid "&OK "
-msgstr "&Được "
+msgstr "&Xong "
 
 #: accountdialog.cpp:111 mmframe.cpp:1481
 msgid "Edit Account"
@@ -2116,7 +2116,7 @@ msgstr "Phí đăng kí"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr "Sách vở"
+msgstr "Sách"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
@@ -2803,7 +2803,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Xuất CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -3191,11 +3191,11 @@ msgstr "Chọn tệp dữ liệu CSV để xuất"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
-msgstr ""
+msgstr "Tên mẫu"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
-msgstr ""
+msgstr "Lưu Mẫu"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
@@ -3215,11 +3215,11 @@ msgstr "Xác định dấu phân cách khi xuất/nhập CSV"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr ""
+msgstr "Nhập tập tin"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr ""
+msgstr "Xuất tập tin"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
@@ -3253,7 +3253,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr ""
+msgstr "Nhập dữ liệu"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -4410,7 +4410,7 @@ msgstr ""
 
 #: mmframe.cpp:1549 mmframe.cpp:2494 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Trình quản lý Chủ đề"
 
 #: mmframe.cpp:1555
 msgid "Transaction Report &Filter..."
@@ -5346,7 +5346,7 @@ msgstr "Mạng"
 
 #: optiondialog.cpp:166
 msgid "&Apply"
-msgstr ""
+msgstr "&Áp dụng"
 
 #: optiondialog.cpp:224
 #, c-format
@@ -5672,7 +5672,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:190
 msgid "CSV Settings"
-msgstr ""
+msgstr "Cài đặt CSV"
 
 #: optionsettingsmisc.cpp:198
 msgid "Delimiter"
@@ -5824,7 +5824,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Mở Trình quản lý Chủ đề"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
