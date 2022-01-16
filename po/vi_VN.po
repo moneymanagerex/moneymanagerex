@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-16 07:35\n"
+"PO-Revision-Date: 2022-01-16 07:44\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -2152,7 +2152,7 @@ msgstr "Thuốc men"
 
 #: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
 msgid "Auto"
-msgstr "Xe"
+msgstr "Tự động"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
@@ -4230,7 +4230,7 @@ msgstr "&In..."
 
 #: mmframe.cpp:1393 mmframe.cpp:1756
 msgid "Print current view"
-msgstr ""
+msgstr "In màn hình hiện tại"
 
 #: mmframe.cpp:1399
 msgid "E&xit\tAlt-X"
@@ -4939,7 +4939,8 @@ msgstr "Chọn tài khoản cần xóa"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa\n"
+" %s tài khoản: %s ?"
 
 #: mmframe.cpp:3155
 msgid "Select the account to reallocate"
@@ -6793,7 +6794,7 @@ msgstr ""
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa chủ đề này không? Nếu muốn sử dụng lại, bạn sẽ phải nhập lại."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
@@ -6801,7 +6802,7 @@ msgstr ""
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Bạn có chắc chắn muốn sử dụng chủ đề này không? Xin lưu ý rằng điều này sẽ chỉ có hiệu lực khi MMEX được khởi động lại."
 
 #: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
