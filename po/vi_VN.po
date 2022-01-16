@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-15 10:49\n"
+"PO-Revision-Date: 2022-01-16 02:15\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -1536,7 +1536,7 @@ msgstr ""
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:176
 msgid "Show All"
-msgstr ""
+msgstr "Hiện Tất Cả"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
@@ -1763,7 +1763,7 @@ msgstr "Tài khoản ưu tiên"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Tên tiền tệ"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
@@ -2160,7 +2160,7 @@ msgstr "Sinh hoạt"
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr "Nhà cửa"
+msgstr "Trang chủ"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
@@ -3413,7 +3413,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:173
 msgid "Online Update"
-msgstr ""
+msgstr "Cập nhật trực tuyến"
 
 #: maincurrencydialog.cpp:177
 msgid "Show all even the unused currencies"
@@ -3438,7 +3438,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:276
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Nhập giá trị của tiền tệ"
 
 #: maincurrencydialog.cpp:286
 msgid "Download Currency Values history"
@@ -3446,7 +3446,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:289
 msgid "&Add / Update "
-msgstr ""
+msgstr "&Thêm / Cập Nhật "
 
 #: maincurrencydialog.cpp:290
 msgid "Add Currency Values to history"
@@ -3956,7 +3956,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
-msgstr ""
+msgstr "Đính kèm"
 
 #: mmcheckingpanel.cpp:500
 #, c-format
@@ -4900,7 +4900,7 @@ msgstr ""
 
 #: mmframe.cpp:2543 optiondialog.cpp:225 optiondialog.h:49
 msgid "MMEX Options"
-msgstr ""
+msgstr "Tùy Chọn MMEX"
 
 #: mmframe.cpp:2665
 msgid "Choose HTML file to Export"
@@ -5338,11 +5338,11 @@ msgstr "Hiển thị"
 
 #: optiondialog.cpp:37 webappdialog.cpp:155
 msgid "Attachments"
-msgstr ""
+msgstr "Các đính kèm"
 
 #: optiondialog.cpp:37
 msgid "Network"
-msgstr ""
+msgstr "Mạng"
 
 #: optiondialog.cpp:166
 msgid "&Apply"
@@ -5517,7 +5517,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
-msgstr ""
+msgstr "Sử dụng lịch sử tiền tệ"
 
 #: optionsettingsgeneral.cpp:171
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
@@ -5780,11 +5780,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Tùy Chọn Giao Dịch/Ngân Sách"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr "Xem dự toán theo tài khóa"
+msgstr "Xem Ngân sách theo Năm Tài chính"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
@@ -7133,7 +7133,7 @@ msgstr ""
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "vui lòng kiểm tra nó trong các tùy chọn mạng."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
@@ -7218,7 +7218,7 @@ msgstr ""
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Tình trạng mạng (bấm để làm mới)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
