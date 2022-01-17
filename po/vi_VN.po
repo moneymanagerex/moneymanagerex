@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-13 09:39\n"
+"PO-Revision-Date: 2022-01-16 07:44\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr ""
+msgstr "Thỏa thuận cấp phép"
 
 #: aboutdialog.cpp:187
 msgid "About"
@@ -37,23 +37,23 @@ msgstr "Tác giả"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr ""
+msgstr "Các nhà tài trợ"
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr ""
+msgstr "Giấy phép"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "Quyền riêng tư"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Gửi dữ liệu thống kê sử dụng ẩn danh"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Bật để giúp chúng tôi gửi dữ liệu ẩn danh về việc sử dụng MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:493
@@ -69,7 +69,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:271
 #: transdialog.cpp:609 wizard_update.cpp:216
 msgid "&OK "
-msgstr ""
+msgstr "&Xong "
 
 #: accountdialog.cpp:111 mmframe.cpp:1481
 msgid "Edit Account"
@@ -77,23 +77,23 @@ msgstr "Sửa tài khoản"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
-msgstr "Tên tài khoản:"
+msgstr "Tên Tài Khoản:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Điền tên tài khoản. Có thể sửa sau nếu muốn."
+msgstr "Điền tên Tài Khoản. Có thể sửa sau nếu muốn."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
-msgstr "Loại tài khoản:"
+msgstr "Loại Tài Khoản:"
 
 #: accountdialog.cpp:152 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
-msgstr "Xác định loại tài khoản muốn tạo"
+msgstr "Xác định loại tài khoản muốn tạo."
 
 #: accountdialog.cpp:156
 msgid "Account Status:"
-msgstr "Tình trạng tài khoản"
+msgstr "Tình trạng Tài Khoản:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -102,7 +102,7 @@ msgstr "Xác định liệu tài khoản này đã bị đóng chưa. Các tài 
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Số dư ban đầu: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
@@ -151,7 +151,7 @@ msgstr "Khác"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "Số Thẻ:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
@@ -203,23 +203,23 @@ msgstr ""
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "Đã khóa"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Bật hoặc tắt Khóa giao dịch"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Ngày Đối Chiếu:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Ngày khóa giao dịch"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Giá trị tối thiểu:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
@@ -227,11 +227,11 @@ msgstr ""
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
-msgstr ""
+msgstr "Tín dụng"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Hạn mức Tín dụng:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
@@ -239,11 +239,11 @@ msgstr ""
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Lãi suất:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Hạn thanh toán:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
@@ -255,12 +255,12 @@ msgstr ""
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr ""
+msgstr "Hình Ảnh Mặc Định"
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Hình Ảnh #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
@@ -274,11 +274,11 @@ msgstr "Tiền tệ"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Xin vui lòng nhập một URL hợp lệ"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL không hợp lệ"
 
 #: accountdialog.h:37 mmframe.cpp:1478 mmframe.cpp:1722
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -329,7 +329,7 @@ msgstr ""
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
-msgstr ""
+msgstr "&Thoát "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -427,15 +427,15 @@ msgstr "Điền ghi chú liên quan"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Chi Tiết Giao Dịch Mới"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Sửa Chi Tiết Giao Dịch"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&Hủy "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
@@ -450,7 +450,7 @@ msgstr ""
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:208
 #: reports/transactions.cpp:155 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:556 billsdepositspanel.cpp:134
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:333
@@ -466,11 +466,11 @@ msgstr "Loại"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
-msgstr ""
+msgstr "Giá trị Ban đầu"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "Giá trị Hiện tại"
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
@@ -533,15 +533,15 @@ msgstr "Tất cả"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:284 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "&Mới "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Thêm Giao Dịch "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "&Xem Giao Dịch "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
@@ -552,13 +552,13 @@ msgstr ""
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:379 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "&Sửa "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:293 mmchecking_list.cpp:413
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr ""
+msgstr "&Xóa "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
@@ -567,7 +567,7 @@ msgstr "Xóa tài sản"
 #: assetspanel.cpp:493 billsdepositspanel.cpp:311 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Mở các tệp đính kèm"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
@@ -610,24 +610,24 @@ msgstr ""
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
-msgstr ""
+msgstr "Quản lý Tài sản"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Tài Khoản \t Ngày\t   Giá Trị\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
-msgstr ""
+msgstr "Mô tả"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "Tập tin"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Thư mục tệp đính kèm chưa được xác định."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
@@ -661,7 +661,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:134
 msgid "Other tools"
-msgstr ""
+msgstr "Các công cụ khác"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
@@ -695,17 +695,17 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:527
 #: payeedialog.cpp:378 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Thêm "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "&Mở "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:529
 #: payeedialog.cpp:381 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Loại bỏ "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
@@ -786,7 +786,7 @@ msgstr "Mỗi tháng"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Mỗi 2 tháng"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:60
@@ -818,19 +818,19 @@ msgstr "Mỗi ngày"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "Trong (x) ngày"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "Trong (x) tháng"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Mỗi (x) ngày"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Mỗi (x) tháng"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:64
 msgid "Monthly (last day)"
@@ -1228,7 +1228,7 @@ msgstr ""
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:946 mmframe.cpp:749
 #: mmframe.cpp:2804 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Giao Dịch Định Kỳ"
 
 #: billsdepositspanel.cpp:250 filtertransdialog.h:122
 msgid "Transaction Filter"
@@ -1536,7 +1536,7 @@ msgstr ""
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:176
 msgid "Show All"
-msgstr ""
+msgstr "Hiện Tất Cả"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
@@ -1722,23 +1722,23 @@ msgstr "Xem 3 tháng trước"
 
 #: constants.cpp:186
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Xem 12 Tháng Qua"
 
 #: constants.cpp:187
 msgid "View Current Year"
-msgstr ""
+msgstr "Xem Năm Nay"
 
 #: constants.cpp:188
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Xem Năm Tài Chính Hiện Tại"
 
 #: constants.cpp:189
 msgid "View Last Year"
-msgstr ""
+msgstr "Xem Năm Trước"
 
 #: constants.cpp:190
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Xem Năm Tài Chính Trước"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
@@ -1763,7 +1763,7 @@ msgstr "Tài khoản ưu tiên"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Tên tiền tệ"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
@@ -1875,7 +1875,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
-msgstr ""
+msgstr "Mặc định"
 
 #: customfieldeditdialog.cpp:163
 msgid "Enter the default for this field\n"
@@ -2116,7 +2116,7 @@ msgstr "Phí đăng kí"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr "Sách vở"
+msgstr "Sách"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
@@ -2152,7 +2152,7 @@ msgstr "Thuốc men"
 
 #: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
 msgid "Auto"
-msgstr "Xe"
+msgstr "Tự động"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
@@ -2160,7 +2160,7 @@ msgstr "Sinh hoạt"
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr "Nhà cửa"
+msgstr "Trang chủ"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
@@ -2289,7 +2289,7 @@ msgstr ""
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr "Sai: %s"
+msgstr "Lỗi: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1820
 msgid "Opening MMEX Database - Error"
@@ -2803,7 +2803,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Xuất CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -3171,7 +3171,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Preview"
-msgstr ""
+msgstr "Xem trước"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
@@ -3191,11 +3191,11 @@ msgstr "Chọn tệp dữ liệu CSV để xuất"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
-msgstr ""
+msgstr "Tên mẫu"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
-msgstr ""
+msgstr "Lưu Mẫu"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
@@ -3215,17 +3215,18 @@ msgstr "Xác định dấu phân cách khi xuất/nhập CSV"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr ""
+msgstr "Nhập tập tin"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr ""
+msgstr "Xuất tập tin"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Tài khoản mặc định '%s' cho mẫu này không tồn tại.\n"
+"Vui lòng chọn một tài khoản mới."
 
 #: import_export/univcsvdialog.cpp:541
 msgid "Account does not exist"
@@ -3252,7 +3253,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr ""
+msgstr "Nhập dữ liệu"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3412,7 +3413,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:173
 msgid "Online Update"
-msgstr ""
+msgstr "Cập nhật trực tuyến"
 
 #: maincurrencydialog.cpp:177
 msgid "Show all even the unused currencies"
@@ -3437,7 +3438,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:276
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Nhập giá trị của tiền tệ"
 
 #: maincurrencydialog.cpp:286
 msgid "Download Currency Values history"
@@ -3445,7 +3446,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:289
 msgid "&Add / Update "
-msgstr ""
+msgstr "&Thêm / Cập Nhật "
 
 #: maincurrencydialog.cpp:290
 msgid "Add Currency Values to history"
@@ -3602,7 +3603,8 @@ msgstr ""
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "Vui lòng nhập một đối tượng giao dịch mới,\n"
+"hoặc lựa chọn bằng cách sử dụng nút dropdown."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
 msgid "Invalid Name"
@@ -3775,7 +3777,7 @@ msgstr[0] ""
 
 #: mmchecking_list.cpp:389
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Xem Trong Tài Khoản Khác"
 
 #: mmchecking_list.cpp:393
 msgid "&View Split Categories"
@@ -3934,7 +3936,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:389
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Tài Khoản Đang Xem : %s"
 
 #: mmcheckingpanel.cpp:407
 msgid "Account Bal: "
@@ -3954,7 +3956,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
-msgstr ""
+msgstr "Đính kèm"
 
 #: mmcheckingpanel.cpp:500
 #, c-format
@@ -4104,7 +4106,7 @@ msgstr "&Sửa tài khoản"
 
 #: mmframe.cpp:1256 mmframe.cpp:1484
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "&Đổi Loại Tài Khoản"
 
 #: mmframe.cpp:1257 mmframe.cpp:1294 mmframe.cpp:1487
 msgid "&Delete Account"
@@ -4152,7 +4154,7 @@ msgstr "Xem tài khoản"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
-msgstr ""
+msgstr "&CSDL Mới"
 
 #: mmframe.cpp:1360 mmframe.cpp:1719 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4228,7 +4230,7 @@ msgstr "&In..."
 
 #: mmframe.cpp:1393 mmframe.cpp:1756
 msgid "Print current view"
-msgstr ""
+msgstr "In màn hình hiện tại"
 
 #: mmframe.cpp:1399
 msgid "E&xit\tAlt-X"
@@ -4312,7 +4314,7 @@ msgstr ""
 
 #: mmframe.cpp:1449
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Đổi ngôn ngữ của ứng dụng"
 
 #: mmframe.cpp:1450 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
@@ -4408,7 +4410,7 @@ msgstr ""
 
 #: mmframe.cpp:1549 mmframe.cpp:2494 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Trình quản lý Chủ đề"
 
 #: mmframe.cpp:1555
 msgid "Transaction Report &Filter..."
@@ -4898,7 +4900,7 @@ msgstr ""
 
 #: mmframe.cpp:2543 optiondialog.cpp:225 optiondialog.h:49
 msgid "MMEX Options"
-msgstr ""
+msgstr "Tùy Chọn MMEX"
 
 #: mmframe.cpp:2665
 msgid "Choose HTML file to Export"
@@ -4937,7 +4939,8 @@ msgstr "Chọn tài khoản cần xóa"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa\n"
+" %s tài khoản: %s ?"
 
 #: mmframe.cpp:3155
 msgid "Select the account to reallocate"
@@ -4950,7 +4953,7 @@ msgstr ""
 #: mmframe.cpp:3177
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Tài Khoản: %s - Chọn loại mới."
 
 #: mmframe.cpp:3286 payeedialog.cpp:329
 msgid "Payee Relocation Completed."
@@ -5252,7 +5255,7 @@ msgstr ""
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Tài Khoản Ngân Hàng"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
@@ -5332,24 +5335,24 @@ msgstr "Tổng quát"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:56
 msgid "View Options"
-msgstr "Hiển thị"
+msgstr "Xem Tùy chọn"
 
 #: optiondialog.cpp:37 webappdialog.cpp:155
 msgid "Attachments"
-msgstr ""
+msgstr "Các đính kèm"
 
 #: optiondialog.cpp:37
 msgid "Network"
-msgstr ""
+msgstr "Mạng"
 
 #: optiondialog.cpp:166
 msgid "&Apply"
-msgstr ""
+msgstr "&Áp dụng"
 
 #: optiondialog.cpp:224
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s trang đã được lưu."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
@@ -5515,7 +5518,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
-msgstr ""
+msgstr "Sử dụng lịch sử tiền tệ"
 
 #: optionsettingsgeneral.cpp:171
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
@@ -5670,7 +5673,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:190
 msgid "CSV Settings"
-msgstr ""
+msgstr "Cài đặt CSV"
 
 #: optionsettingsmisc.cpp:198
 msgid "Delimiter"
@@ -5778,11 +5781,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Tùy Chọn Giao Dịch/Ngân Sách"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr "Xem dự toán theo tài khóa"
+msgstr "Xem Ngân sách theo Năm Tài chính"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
@@ -5822,7 +5825,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Mở Trình quản lý Chủ đề"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
@@ -5830,11 +5833,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:222
 msgid "Light"
-msgstr ""
+msgstr "Sáng"
 
 #: optionsettingsview.cpp:223
 msgid "Dark"
-msgstr ""
+msgstr "Tối"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
@@ -5842,7 +5845,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Chế độ cá nhân hoá"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
@@ -5854,31 +5857,31 @@ msgstr ""
 
 #: optionsettingsview.cpp:253
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Nhỏ (16 px)"
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Bình thường (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Lớn (32 px)"
 
 #: optionsettingsview.cpp:256
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Khổng lồ (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Kích thước Biểu tượng Thanh công cụ"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Kích thước Biểu tượng điều hướng"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Kích Thước Biểu Tượng Khác"
 
 #: payeedialog.cpp:61
 msgid "Last Used Category"
@@ -6791,7 +6794,7 @@ msgstr ""
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa chủ đề này không? Nếu muốn sử dụng lại, bạn sẽ phải nhập lại."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
@@ -6799,7 +6802,7 @@ msgstr ""
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Bạn có chắc chắn muốn sử dụng chủ đề này không? Xin lưu ý rằng điều này sẽ chỉ có hiệu lực khi MMEX được khởi động lại."
 
 #: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
@@ -7131,7 +7134,7 @@ msgstr ""
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "vui lòng kiểm tra nó trong các tùy chọn mạng."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
@@ -7216,7 +7219,7 @@ msgstr ""
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Tình trạng mạng (bấm để làm mới)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
