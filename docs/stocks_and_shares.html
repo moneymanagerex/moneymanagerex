@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        var dir = 'en';
+        var dir = 'en_GB';
         var regex = new RegExp("[\\?&]lang=([^&]*)");
         var lang = regex.exec(window.location.search);
-        if (lang && /^(be|it|he|es)$/.test(lang[1]))
+        if (lang && /^(be_BY|zh_CN|de_DE|es_ES|fr_FR|he_IL|hr_HR|hu_HU|it_IT|nl_NL|pl_PL|ru_RU)$/.test(lang[1]))
             dir = lang[1];
         window.location.replace(dir + "/stocks_and_shares.html");
     </script>

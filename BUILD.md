@@ -9,14 +9,14 @@ Microsoft Windows
 
 ### Prerequisites
 
-1. Install free [Microsoft Visual Studio] Community 2017. Select following
+1. Install free [Microsoft Visual Studio] Community 2022 (64-bit). Select following
    components during install:
    * Windows: Desktop development with C++
      * Visual Studio Core Editor
      * Desktop development with C++ options
-       * VC++ 2017 v141 toolset (x86,x64)
+       * MSVC v 143 - VS 2022 C++ x64/x86 build tools
        * Windows 10 SDK (10.0.x.x) for Desktop C++ x86 and x64
-       * Visual C++ tools for CMake
+       * C++ CMake tools for Windows
 
    Older versions of Visual Studio should work but some settings must be
    adjusted. Please remember different VS versions uses different toolsets.
@@ -29,13 +29,12 @@ Microsoft Windows
    | Visual Studio 2013 |  12.0   |   120   |
    | Visual Studio 2015 |  14.0   |   140   |
    | Visual Studio 2017 |  15.0   |   141   |
+   | Visual Studio 2019 |  16.0   |   142   |
+   | Visual Studio 2022 |  17.0   |   143   |
 
-2. If you use Visual Studio older then 2013 Update 1 download and install
-   [Git for Windows] with default options.
+2. Download and install [gettext pre-compiled binaries] with default options.
 
-3. Download and install [gettext pre-compiled binaries] with default options.
-
-4. Download [wxWidgets 3.x binaries]:
+3. Download [wxWidgets 3.x binaries]:
    - `wxWidgets-3.*.*_Headers.7z`
    - one of `wxMSW-3.*.*-vc141_Dev.7z` or `wxMSW-3.*.*-vc141_x64_Dev.7z`
    - one of `wxMSW-3.*.*-vc141_ReleaseDLL.7z`
@@ -48,18 +47,15 @@ Microsoft Windows
 
        setx wxwin c:\path\to\unpacked\wxwidgets\files
 
-5. Developer Command Prompt
+4. Tools - Command Line - Developer Command Prompt
 
-   Start it from *Start Menu* using *VS2017 x64 Native Tools Command Prompt*
-   or *VS2017 x86 Native Tools Command Prompt* (names my vary in different VS
-   versions).
+   Start it from *Main Menu*
 
    Or start the following command from start menu:
 
-       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86
+       %comspec% /k "%ProgramFiles%\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 
-   Following command can be used with older VS versions (change 14.0 for
-   correct version number):
+   Following command can be used with older VS versions (change 14.0 for correct version number):
 
        %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
 
@@ -68,7 +64,7 @@ Microsoft Windows
 **IMPORTANT**  
 __All following commands must be run from this command prompt!__
 
-6. Clone [MMEX official Git repository] with submodules using command-line:
+5. Clone [MMEX official Git repository] with submodules using command-line:
 
        git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
 
@@ -86,30 +82,29 @@ __All following commands must be run from this command prompt!__
    - Select `Recursively Clone Submodule` check-box
    - Click `Clone` button below
 
-7. Apply patches from `util` directory to CMake modules
+6. Apply patches from `util` directory to CMake modules
 
        cd "%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.8\Modules"
        for %p in (c:\projects\mmex\util\*.cmake-*.patch) do git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn %p
 
    See previous step for instructions if git command is not recognized.
 
-8. [Download sources of curl], unpack them to `c:\` and build [libcurl]
+7. [Download sources of curl], unpack them to `c:\` and build [libcurl]
    library with following commands:
 
        mkdir c:\curl-<version>\build
        cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
+       cmake -G "Visual Studio 17 2022 Win64" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
          -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
          -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
        cmake --build . --target install --config Release --clean-first ^
          -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
-   Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
-   for 64-bit.
+   Replace `Visual Studio 17 2022 Win64` with `Visual Studio 17 2022` for remove 64-bit support.
 
-9. Then you should follow one of  
+8. Then you should follow one of  
    [Visual Studio project] | [Visual Studio CLI] | [Visual Studio CMake]
 
 ### Visual Studio GUI with project file
@@ -122,10 +117,7 @@ tools to manage projects in VS IDE.
        mkdir c:\projects\mmex\build
        cd c:\projects\mmex\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DCMAKE_PREFIX_PATH=c:\libcurl ..
-
-   Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
-   for 64-bit.
+       cmake -G "Visual Studio 17 2022 Win64" -DCMAKE_PREFIX_PATH=c:\libcurl ..
 
    This produce `c:\projects\mmex\build\MMEX.sln` file ready to be loaded into
    Visual Studio GUI.
@@ -170,7 +162,7 @@ or static linking).
    Windows installer and zip archive with portable package should be produced.
 
 
-### Visual Studio 2017 GUI with native CMake support
+### Visual Studio 2022 GUI with native CMake support
 
 This will work in Visual Studio 2017 or newer with _Visual C++ tools for
 CMake_ option installed.
@@ -215,14 +207,14 @@ macOS with Homebrew
 
        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-3. Install required packages. You can choose which compiler you want to use:
+3. Install required packages.
 
        brew update && brew install ccache gettext cmake
        brew link --force gettext
 
 #### 2. Build wxWidgets
 
-The wxmac stable version with homebrew is still 3.0.5.x, we need a later version so need to build wxWidgets from source
+Current stable version that has been tested with MMEX is v3.1.5
 
 1. Download Sources
         
@@ -237,31 +229,31 @@ The wxmac stable version with homebrew is still 3.0.5.x, we need a later version
         export MAKEFLAGS=-j4
         ../configure --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=10.14 \
-        --without-libtiff
+        --without-libtiff \
         --enable-universal-binary=arm64,x86_64
+        make
 
     If you want to enable debug then include `--enable-debug`
 
     If you want to just build for the current architecture and don't require a universal build then you can omit `--enable-universal-binary=arm64,x86_64`
 
-    You could tune `-j4` option to different number to use all processor cores during build phase.
+    You could tune `-j4` option to a different number to use all processor cores during build phase.
 
 
-#### 2. Download Sources
+#### 3. Download latest MMEX sources
 
     git clone --recursive https://github.com/moneymanagerex/moneymanagerex
 
-#### 3. Compile and Create Package
+#### 4. Compile and Create Package
 
     mkdir moneymanagerex/build
     cd moneymanagerex/build
-    export MAKEFLAGS=-j8
+    export MAKEFLAGS=-j4
     cmake -DCMAKE_CXX_FLAGS="-w" \
     -DwxWidgets_CONFIG_EXECUTABLE={PATH-TO-wxWidgets}/wxWidgets-3.1.5/build-cocoa/wx-config \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
-    -DMACOSX_DEPLOYMENT_TARGET=10.14 \
-    --with-macosx-version-min=10.14 ..
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 ..
     cmake --build . --target package
 
 Replace `{PATH-TO-wxWidgets}` with the path to the directory in which you extracted the wxWidgets source in step 2.
@@ -271,7 +263,7 @@ If you want build the project for debugging purposes replace CMake flag
 
 If you want to just build for the current architecture and don't require a universal build then you can omit `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"`
 
-You could tune `-j4` option to different number to use all processor cores
+You could tune `-j4` option to a different number to use all processor cores
 during build phase.
 
 Linux

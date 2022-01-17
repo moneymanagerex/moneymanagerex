@@ -39,6 +39,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/valnum.h>
 
+#define DATE_MAX 253402214400   /* Dec 31, 9999 */
+
 static const wxString TRANSACTION_STATUSES[] =
 {
     wxTRANSLATE("None"),
@@ -655,6 +657,8 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         {
             m_begin_date = date_range->start_date().FormatISODate(); 
             m_end_date = date_range->end_date().FormatISODate(); 
+            m_startDay = date_range->startDay();
+            m_futureIgnored = date_range->isFutureIgnored();
         }        
     }
 
@@ -682,6 +686,12 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
                 wxASSERT(FALSE);
         }
         m_begin_date = date_range->start_date().FormatISODate();
+        m_futureIgnored = Option::instance().getIgnoreFutureTransactions();
+        if (m_futureIgnored) 
+            m_end_date = wxDateTime::Today().FormatISODate();
+        else
+            m_end_date = wxDateTime(DATE_MAX).FormatISODate();
+        m_startDay = date_range->startDay();
         delete date_range;
     }
 
@@ -769,6 +779,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
 
     wxMultiChoiceDialog s_col(this, _("Hide Report Columns")
         , "", column_names);
+    s_col.SetSelections(selected_columns_id_);
 
     wxButton* ok = static_cast<wxButton*>(s_col.FindWindow(wxID_OK));
     if (ok) ok->SetLabel(_("&OK "));
@@ -778,11 +789,11 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     wxString baloon = "";
     wxArrayInt selected_items;
 
-    selected_columns_id_.Clear();
     bHideColumns_->UnsetToolTip();
 
     if (s_col.ShowModal() == wxID_OK)
     {
+        selected_columns_id_.Clear();
         selected_items = s_col.GetSelections();
         for (const auto &entry : selected_items)
         {
@@ -792,7 +803,6 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
             baloon += wxGetTranslation(column_name) + "\n";
         }
     }
-
 
     if (selected_columns_id_.GetCount() == 0)
     {
@@ -1080,9 +1090,9 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
            && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
            && selected_accounts_id_.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
-    else if ((getDateRangeCheckBox() || getRangeCheckBox()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
+    else if ((getDateRangeCheckBox() || getRangeCheckBox()
+                || getStartDateCheckBox()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
-    else if (getStartDateCheckBox() && (tran.TRANSDATE < m_begin_date)) ok = false;
     else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran, split)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
@@ -1166,7 +1176,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
-
+    //Label
     wxString label = m_setting_name->GetStringSelection();
     if (m_setting_name->GetSelection() < 0) {
         label = "";
@@ -1179,6 +1189,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.String(label.utf8_str());
     }
 
+    //Account
     if (accountCheckBox_->IsChecked() && !m_accounts_name.empty())
     {
         json_writer.Key((i18n ? _("Account") : "ACCOUNT").utf8_str());
@@ -1191,6 +1202,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.EndArray();
     }
 
+    //Dates
     if (dateRangeCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Since") : "DATE1").utf8_str());
@@ -1199,6 +1211,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.String(toDateControl_->GetValue().FormatISODate().utf8_str());
     }
 
+    //Date Period Range
     if (rangeCheckBox_->IsChecked())
     {
         const wxString range = rangeChoice_->GetStringSelection();
@@ -1209,6 +1222,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         }
     }
 
+    //From Date
     if (startDateCheckBox_->IsChecked())
     {
         const wxString startPoint = startDateDropDown_->GetStringSelection();
@@ -1219,12 +1233,14 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         }
     }
 
+    //Payee
    if (payeeCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Payee") : "PAYEE").utf8_str());
         json_writer.String(cbPayee_->GetValue().utf8_str());
     }
 
+    //Category
     if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").utf8_str());
@@ -1235,6 +1251,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.String(categ.utf8_str());
     }
 
+    //Status
     if (statusCheckBox_->IsChecked())
     {
         wxArrayString s = Model_Checking::all_status();
@@ -1251,6 +1268,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         }
     }
 
+    //Type
     if (typeCheckBox_->IsChecked())
     {
         wxString type = wxString()
@@ -1265,6 +1283,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         }
     }
 
+    //Amounts
     if (amountRangeCheckBox_->IsChecked())
     {
         if (!amountMinEdit_->IsEmpty())
@@ -1284,6 +1303,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         }
     }
 
+    //Number
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
@@ -1291,6 +1311,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.String(num.utf8_str());
     }
 
+    //Notes
     if (notesCheckBox_->IsChecked())
     {
         wxString notes = notesEdit_->GetValue();
@@ -1298,10 +1319,34 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.String(notes.utf8_str());
     }
 
+    //Colour
     if (colourCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Color") : "COLOR").utf8_str());
         json_writer.Int(colourValue_);
+    }
+
+    // Presentation Options
+
+    // Hide Columns
+    if (showColumnsCheckBox_->IsChecked() && !selected_columns_id_.empty())
+    {
+        json_writer.Key((i18n ? _("Column") : "COLUMN").utf8_str());
+        json_writer.StartArray();
+        for (const auto& acc : selected_columns_id_)
+            json_writer.Int(acc);
+        json_writer.EndArray();
+    }
+
+    // Group By
+    if (groupByCheckBox_->IsChecked())
+    {
+        const wxString groupBy = bGroupBy_->GetStringSelection();
+        if (!groupBy.empty())
+        {
+            json_writer.Key((i18n ? _("Group By") : "GROUPBY").utf8_str());
+            json_writer.String(groupBy.utf8_str());
+        }
     }
 
     json_writer.EndObject();
@@ -1507,6 +1552,36 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     colourButton_->Enable(colourCheckBox_->IsChecked());
     colourButton_->SetBackgroundColour(getUDColour(colourValue_));
     colourButton_->Refresh(); // Needed as setting the background colour does not cause an immediate refresh
+
+    //Presentation Options
+
+    //Hide Columns
+    Value& j_columns = GetValueByPointerWithDefault(j_doc, "/COLUMN", "");
+    selected_columns_id_.Clear();
+    if (j_columns.IsArray())
+    {
+        for (rapidjson::SizeType i = 0; i < j_columns.Size(); i++)
+        {
+            wxASSERT(j_columns[i].IsInt());
+            const int colID = j_columns[i].GetInt();
+
+            selected_columns_id_.Add(colID);
+        }
+        showColumnsCheckBox_->SetValue(true);
+        bHideColumns_->SetLabelText("...");
+    } else
+    {
+        showColumnsCheckBox_->SetValue(false);
+        bHideColumns_->SetLabelText("");
+    }
+    bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
+
+    //Group By
+    Value& j_groupBy = GetValueByPointerWithDefault(j_doc, "/GROUPBY", "");
+    const wxString& s_groupBy = j_groupBy.IsString() ? wxString::FromUTF8(j_groupBy.GetString()) : "";
+    groupByCheckBox_->SetValue(!s_groupBy.empty());
+    bGroupBy_->Enable(groupByCheckBox_->IsChecked());
+    bGroupBy_->SetStringSelection(s_groupBy);
 }
 
 void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
@@ -1516,7 +1591,6 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
     case wxID_FIRST: m_begin_date = event.GetDate().FormatISODate(); break;
     case wxID_LAST: m_end_date = event.GetDate().FormatISODate(); break;
     }
-
 }
 
 const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const

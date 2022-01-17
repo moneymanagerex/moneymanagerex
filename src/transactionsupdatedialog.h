@@ -75,6 +75,7 @@ private:
     Model_Currency::Data* m_currency;
     int m_categ_id;
     int m_subcateg_id;
+    bool m_hasTransfers, m_hasNonTransfers, m_hasSplits;
 
     enum
     {

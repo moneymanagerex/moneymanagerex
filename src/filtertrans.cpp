@@ -176,7 +176,7 @@ table {
 )";
 
     hb.init(false, extra_style);
-    hb.addReportHeader(_("Transaction Details"), 1);
+    hb.addReportHeader(_("Transaction Details"), 1, false);
 
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     hb.addDivContainer();

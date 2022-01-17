@@ -78,6 +78,8 @@ public:
 
     const wxString getBeginDate() { return m_begin_date; };
     const wxString getEndDate() { return m_end_date; };
+    const int getStartDay() { return m_startDay; };
+    const bool isFutureIgnored() { return m_futureIgnored; };
 
 private:
     void BuildPayeeList();
@@ -185,6 +187,8 @@ private:
     wxTextCtrl* transNumberEdit_;
     wxString m_begin_date;
     wxString m_end_date;
+    int m_startDay;
+    bool m_futureIgnored;
 
     wxCheckBox* colourCheckBox_;
     wxButton* colourButton_;

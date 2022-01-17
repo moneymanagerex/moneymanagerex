@@ -146,9 +146,9 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
         path = pattern.GetMatch(path, 1);
     }
 
-    wxString lang_code = Option::instance().getLanguageISO6391();
+    wxString lang_code = Option::instance().getLanguageCode();
     if (lang_code.empty()) {
-        lang_code = "en";
+        lang_code = "en_GB";
     }
     path = wxString::Format(path, wxFileName::GetPathSeparator() + lang_code + wxFileName::GetPathSeparator());
 

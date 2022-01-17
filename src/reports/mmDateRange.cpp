@@ -27,6 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 mmDateRange::mmDateRange()
     : today_(wxDateTime::Today())
     , future_(wxDateTime(DATE_MAX))
+    , futureIgnored_(false)
 {
     start_date_ = today_;
     end_date_ = today_;
@@ -67,6 +68,11 @@ mmCurrentMonth::mmCurrentMonth()
 {
     this->findEndOfMonth();
     this->findBeginOfMonth();
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
     this->title_ = wxTRANSLATE("Current Month");
 }
 
@@ -120,6 +126,11 @@ mmLast3Months::mmLast3Months()
     this->findEndOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(2));
     this->findBeginOfMonth();
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
     this->title_ = wxTRANSLATE("Last 3 Months");
 }
 
@@ -129,6 +140,11 @@ mmLast12Months::mmLast12Months()
     this->findEndOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(11));
     this->findBeginOfMonth();
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
     this->title_ = wxTRANSLATE("Last 12 Months");
 }
 
@@ -140,6 +156,11 @@ mmCurrentYear::mmCurrentYear()
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Months(11));
     this->findEndOfMonth();
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
     this->title_ = wxTRANSLATE("Current Year");
 }
 
@@ -186,6 +207,11 @@ mmCurrentFinancialYear::mmCurrentFinancialYear()
     
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
     this->title_ = wxTRANSLATE("Current Financial Year");
 }
 
@@ -215,6 +241,11 @@ mmAllTime::mmAllTime()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1900);
     this->end_date_ = future_;
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
     this->title_ = wxTRANSLATE("Over Time");
 }
 
@@ -229,6 +260,11 @@ mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& en
     this->title_ = wxTRANSLATE("Custom");
     this->start_date_ = start;
     this->end_date_ = end;
+    if (Option::instance().getIgnoreFutureTransactions() && (end_date_ > today_)) 
+    {
+        end_date_ = today_;
+        futureIgnored_ = true;
+    }
 }
 
 mmLast365Days::mmLast365Days() : mmDateRange()

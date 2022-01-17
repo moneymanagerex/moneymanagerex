@@ -6,16 +6,19 @@
 
 function generateLangMenu(nav) {
     var list = [
-        { id: "en", flag: "en", lang: "English"   },
-        { id: "be", flag: "be", lang: "Belarusian"},
-        { id: "de", flag: "de", lang: "German"    },
-        { id: "fr", flag: "fr", lang: "French"    },
-        { id: "hu", flag: "hu", lang: "Hungarian" },
-        { id: "he", flag: "he", lang: "Hebrew"    },
-        { id: "it", flag: "it", lang: "Italian"   },
-        { id: "pl", flag: "pl", lang: "Polish"    },
-        { id: "ru", flag: "ru", lang: "Russian"   },
-        { id: "es", flag: "es", lang: "Spanish"   }
+        { id: "en_GB", flag: "en", lang: "English"   },
+        { id: "be_BY", flag: "be", lang: "Belarusian"},
+        { id: "zh_CN", flag: "cn", lang: "Chinese"},
+        { id: "de_DE", flag: "de", lang: "German"    },
+        { id: "fr_FR", flag: "fr", lang: "French"    },
+        { id: "hu_HU", flag: "hu", lang: "Hungarian" },
+        { id: "he_IL", flag: "he", lang: "Hebrew"    },
+        { id: "hr_HR", flag: "hr", lang: "Croatian"  },
+        { id: "it_IT", flag: "it", lang: "Italian"   },
+        { id: "nl_NL", flag: "nl", lang: "Dutch"     },
+        { id: "pl_PL", flag: "pl", lang: "Polish"    },
+        { id: "ru_RU", flag: "ru", lang: "Russian"   },
+        { id: "es_ES", flag: "es", lang: "Spanish"   }
     ];
     var docLang = document.getElementsByTagName("html")[0].lang;
     nav = nav.appendChild(document.createElement("small"));

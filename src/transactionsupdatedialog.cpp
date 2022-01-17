@@ -75,8 +75,31 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , m_append_checkbox(nullptr)
     , m_notes_ctrl(nullptr)
     , m_transaction_id(transaction_id)
+    , m_hasTransfers(false)
+    , m_hasNonTransfers(false)
+    , m_hasSplits(false)
 {
     m_currency = Model_Currency::GetBaseCurrency(); // base currency if we need it
+
+    // Determine the mix of transaction that have been selected
+    for (const auto& id : m_transaction_id)
+    {
+        Model_Checking::Data *trx = Model_Checking::instance().get(id);
+        const bool isTransfer = Model_Checking::is_transfer(trx);
+        
+        if (!m_hasSplits)
+        {
+            Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id));
+            if (!split.empty())
+                m_hasSplits = true;
+        }
+  
+        if (!m_hasTransfers && isTransfer)
+            m_hasTransfers = true;
+
+        if (!m_hasNonTransfers && !isTransfer)    
+            m_hasNonTransfers = true;
+    }
 
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_STATIC, _("Multi Transactions Update")
@@ -130,6 +153,7 @@ void transactionsUpdateDialog::CreateControls()
     // Status --------------------------------------------
     m_status_checkbox = new wxCheckBox(this, wxID_ANY, _("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+
     m_status_choice = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize);
     for (const auto& i : Model_Checking::all_status())
@@ -144,11 +168,13 @@ void transactionsUpdateDialog::CreateControls()
     // Type --------------------------------------------
     m_type_checkbox = new wxCheckBox(this, wxID_ANY, _("Type")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
     for (const auto& i : Model_Checking::all_type())
     {
-        m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
+        if (!(m_hasSplits && (Model_Checking::TRANSFER_STR == i)))
+            m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
     m_type_choice->Enable(false);
     m_type_choice->Select(0);
@@ -160,6 +186,8 @@ void transactionsUpdateDialog::CreateControls()
     // Amount Field --------------------------------------------
     m_amount_checkbox = new wxCheckBox(this, wxID_ANY, _("Amount")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_amount_checkbox->Enable(!m_hasSplits);
+
     m_amount_ctrl = new mmTextCtrl(this, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize
         , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
@@ -171,6 +199,7 @@ void transactionsUpdateDialog::CreateControls()
     // Payee --------------------------------------------
     m_payee_checkbox = new wxCheckBox(this, wxID_ANY, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_payee_checkbox->Enable(!m_hasTransfers);
 
     m_payee = new wxComboBox(this, ID_PAYEE);
        wxArrayString all_payees = Model_Payee::instance().all_payee_names();
@@ -186,6 +215,7 @@ void transactionsUpdateDialog::CreateControls()
     // Transfer to account --------------------------------------------
     m_transferAcc_checkbox = new wxCheckBox(this, wxID_ANY, _("Transfer To")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_transferAcc_checkbox->Enable(!m_hasNonTransfers);
 
     m_transferAcc = new wxComboBox(this, ID_TRANS_ACC);
     wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
@@ -199,6 +229,7 @@ void transactionsUpdateDialog::CreateControls()
     // Category -------------------------------------------------
     m_categ_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_categ_checkbox->Enable(!m_hasSplits);
 
     m_categ_btn = new wxButton(this, wxID_VIEW_DETAILS, _("Select Category")
         , wxDefaultPosition);
@@ -268,7 +299,15 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
         type = type_obj->GetData();
-        transfer = Model_Checking::is_transfer(type);
+        transfer = (Model_Checking::TRANSFER_STR == type);
+        if (transfer)
+        {
+            if  (m_hasNonTransfers && !m_transferAcc_checkbox->IsChecked())
+                return mmErrorDialogs::InvalidAccount(m_transferAcc_checkbox, true);
+        } else {
+            if (m_hasTransfers && !m_payee_checkbox->IsChecked())
+                return mmErrorDialogs::InvalidPayee(m_payee_checkbox);
+        }
     }
 
     if (m_categ_checkbox->IsChecked())
@@ -287,24 +326,20 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
         bool is_locked = Model_Checking::is_locked(trx);
 
+        if (is_locked)
+        {
+            skip_trx.push_back(trx->TRANSID);
+            continue;
+        }
+
         if (m_date_checkbox->IsChecked())
         {
-            if (!is_locked) {
-                trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
-            }
-            else {
-                skip_trx.push_back(trx->TRANSID);
-            }
+            trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
         }
 
         if (m_status_checkbox->IsChecked())
         {
-            if (!is_locked) {
-                trx->STATUS = status;
-            }
-            else {
-                skip_trx.push_back(trx->TRANSID);
-            }
+            trx->STATUS = status;
         }
 
         if (m_payee_checkbox->IsChecked())
@@ -336,11 +371,11 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     return;
             }
 
-            if (!Model_Checking::is_transfer(trx))
-                trx->PAYEEID = payee->PAYEEID;
+            trx->PAYEEID = payee->PAYEEID;
+            trx->TOACCOUNTID = -1;
         }
 
-        if (m_transferAcc_checkbox->IsChecked() && !is_locked)
+        if (m_transferAcc_checkbox->IsChecked())
         {
             wxString account_name = m_transferAcc->GetValue();
             if (account_name.IsEmpty())
@@ -352,11 +387,9 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 account_name = m_transferAcc->GetString(account_loc);
             
             Model_Account::Data* account = Model_Account::instance().get(account_name);
- 
-            if (Model_Checking::is_transfer(trx) && (trx->ACCOUNTID != account->ACCOUNTID))
-                trx->TOACCOUNTID = account->ACCOUNTID;
+            trx->TOACCOUNTID = account->ACCOUNTID;
+            trx->PAYEEID = -1;
         }
-
 
         if (m_notes_checkbox->IsChecked())
         {
@@ -372,46 +405,49 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_amount_checkbox->IsChecked())
         {
-            if (!is_locked)
-            {
-
-                if (Model_Checking::is_transfer(trx))
-                {
-                    const auto acc = Model_Account::instance().get(trx->ACCOUNTID);
-                    const auto curr = Model_Currency::instance().get(acc->CURRENCYID);
-                    const auto acc2 = Model_Account::instance().get(trx->TOACCOUNTID);
-                    const auto curr2 = Model_Currency::instance().get(acc2->CURRENCYID);
-                    if (curr == curr2) {
-                        trx->TRANSAMOUNT = amount;
-                        trx->TOTRANSAMOUNT = amount;
-                    }
-                }
-                else
-                {
-                    if (split.find(trx->TRANSID) == split.end()) {
-                        trx->TRANSAMOUNT = amount;
-                    }
-                }
-            }
-            else {
-                skip_trx.push_back(trx->TRANSID);
-            }
+            trx->TRANSAMOUNT = amount;
         }
 
-        if (m_categ_checkbox->IsChecked() && (split.find(trx->TRANSID) == split.end()))
+        if (m_categ_checkbox->IsChecked())
         {
             trx->CATEGID = m_categ_id;
             trx->SUBCATEGID = m_subcateg_id;
         }
 
-        if (m_type_checkbox->IsChecked() && !is_locked)
+        if (m_type_checkbox->IsChecked())
         {
-            if (!Model_Checking::is_transfer(trx->TRANSCODE) && !transfer) {
-                trx->TRANSCODE = type;
-            } else {
-                skip_trx.push_back(trx->TRANSID);
+            trx->TRANSCODE = type;
+        }
+ 
+        // Need to consider TOTRANSAMOUNT if material transaction change
+        if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() || m_transferAcc_checkbox->IsChecked())
+        {
+            if (!Model_Checking::is_transfer(trx))
+            {
+                trx->TOTRANSAMOUNT = trx->TRANSAMOUNT;
+            } else
+            {
+                const auto acc = Model_Account::instance().get(trx->ACCOUNTID);
+                const auto curr = Model_Currency::instance().get(acc->CURRENCYID);
+                const auto to_acc = Model_Account::instance().get(trx->TOACCOUNTID);
+                const auto to_curr = Model_Currency::instance().get(to_acc->CURRENCYID);
+                if (curr == to_curr)
+                {
+                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT;                
+                } else
+                {
+                    double exch = 1;
+                    const double convRateTo = Model_CurrencyHistory::getDayRate(to_curr->CURRENCYID, trx->TRANSDATE);
+                    if (convRateTo > 0)
+                    {
+                        const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, trx->TRANSDATE);
+                        exch = convRate / convRateTo;
+                    }
+                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT * exch;
+                }
             }
         }
+
 
         Model_Checking::instance().save(trx);
     }
@@ -425,7 +461,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void transactionsUpdateDialog::SetPayeeTransferControls()
 {
     wxStringClientData* trans_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
-    bool transfer = (Model_Checking::is_transfer(trans_obj->GetData()));
+    bool transfer = (Model_Checking::TRANSFER_STR == trans_obj->GetData());
 
     m_payee_checkbox->Enable(!transfer);
     m_transferAcc_checkbox->Enable(transfer);
@@ -439,6 +475,7 @@ void transactionsUpdateDialog::SetPayeeTransferControls()
         m_transferAcc->Enable(false);        
     }
 }
+
 void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
     SetPayeeTransferControls();
@@ -462,8 +499,8 @@ void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
         SetPayeeTransferControls();
     } else 
     {
-        m_payee_checkbox->Enable(true);
-        m_transferAcc_checkbox->Enable(true);
+        m_payee_checkbox->Enable(!m_hasTransfers);
+        m_transferAcc_checkbox->Enable(!m_hasNonTransfers);
     }
 
     event.Skip();

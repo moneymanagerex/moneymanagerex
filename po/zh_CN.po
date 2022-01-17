@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-12-05 13:13+0300\n"
-"PO-Revision-Date: 2021-12-05 10:27\n"
+"POT-Creation-Date: 2022-01-13 12:28+0300\n"
+"PO-Revision-Date: 2022-01-14 01:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -59,14 +59,14 @@ msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:493
 #: budgetentrydialog.cpp:157 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:242
-#: customfieldeditdialog.cpp:191 filtertransdialog.cpp:514
-#: filtertransdialog.cpp:774 filtertransdialog.cpp:1682
+#: customfieldeditdialog.cpp:191 filtertransdialog.cpp:516
+#: filtertransdialog.cpp:785 filtertransdialog.cpp:1756
 #: import_export/qif_export.cpp:230 import_export/qif_export.cpp:253
 #: import_export/qif_import_gui.cpp:323 optiondialog.cpp:165
-#: payeedialog.cpp:130 relocatecategorydialog.cpp:123
+#: payeedialog.cpp:144 relocatecategorydialog.cpp:123
 #: relocatepayeedialog.cpp:140 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:325 splitdetailsdialog.cpp:161
-#: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
+#: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:271
 #: transdialog.cpp:609 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&OK "
@@ -130,11 +130,11 @@ msgstr "选择这是否是经常使用的账户。 此选项用于筛选显示�
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:628 billsdepositspanel.cpp:141 filtertrans.cpp:199
-#: filtertransdialog.cpp:385 filtertransdialog.cpp:1297
+#: filtertransdialog.cpp:387 filtertransdialog.cpp:1318
 #: import_export/qif_export.cpp:597 import_export/qif_import_gui.cpp:105
-#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:237
-#: reports/transactions.cpp:164 sharetransactiondialog.cpp:270
-#: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:211
+#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:240
+#: reports/transactions.cpp:165 sharetransactiondialog.cpp:270
+#: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:242
 #: transdialog.cpp:583 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
 msgstr "备注"
@@ -225,7 +225,7 @@ msgstr "最少余额："
 msgid "Account balance lower limit. Zero to disable"
 msgstr "账户余额低于零或者不可用"
 
-#: accountdialog.cpp:261 mmchecking_list.cpp:233
+#: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
 msgstr "信用"
 
@@ -268,7 +268,7 @@ msgstr "账户名称 "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
-#: reports/htmlbuilder.cpp:199
+#: reports/htmlbuilder.cpp:202
 msgid "Currency"
 msgstr "货币"
 
@@ -359,7 +359,7 @@ msgstr "资产明细"
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
 #: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:231
 #: import_export/qif_import_gui.cpp:244 import_export/qif_import_gui.cpp:254
-#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:106
+#: maincurrencydialog.cpp:75 payeedialog.cpp:59 reports/summarystocks.cpp:106
 msgid "Name"
 msgstr "名称"
 
@@ -368,14 +368,14 @@ msgid "Enter the name of the asset"
 msgstr "请输入资产名称"
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertrans.cpp:191
-#: filtertransdialog.cpp:646 import_export/qif_export.cpp:588
+#: filtertransdialog.cpp:648 import_export/qif_export.cpp:588
 #: import_export/qif_import_gui.cpp:99 import_export/univcsvdialog.cpp:105
 #: maincurrencydialog.cpp:240 maincurrencydialog.cpp:262
-#: mmchecking_list.cpp:207 mmreportspanel.cpp:255 mmreportspanel.cpp:273
-#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:249
-#: reports/incexpenses.cpp:252 reports/summary.cpp:319
-#: reports/transactions.cpp:156 stockdialog.cpp:297 stockdialog.cpp:676
-#: transactionsupdatedialog.cpp:118 transdialog.cpp:461
+#: mmchecking_list.cpp:210 mmreportspanel.cpp:255 mmreportspanel.cpp:273
+#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:242
+#: reports/incexpenses.cpp:244 reports/summary.cpp:315
+#: reports/transactions.cpp:157 stockdialog.cpp:297 stockdialog.cpp:676
+#: transactionsupdatedialog.cpp:141 transdialog.cpp:461
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
 msgstr "日期"
@@ -448,19 +448,19 @@ msgstr "资产账户未找到。\n\n"
 "你想要创建一个吗？"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:127 filtertrans.cpp:189
-#: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
-#: reports/transactions.cpp:154 stocks_list.cpp:88
+#: import_export/qif_export.cpp:587 mmchecking_list.cpp:208
+#: reports/transactions.cpp:155 stocks_list.cpp:88
 msgid "ID"
 msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:556 billsdepositspanel.cpp:134
-#: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:331
-#: filtertransdialog.cpp:1263 import_export/qif_export.cpp:125
+#: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:333
+#: filtertransdialog.cpp:1281 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:252 mmhomepage.cpp:436 reports/incexpenses.cpp:112
-#: reports/transactions.cpp:162 splitdetailsdialog.cpp:120
-#: transactionsupdatedialog.cpp:145 transdialog.cpp:504
+#: maincurrencydialog.cpp:252 mmhomepage.cpp:436 reports/incexpenses.cpp:108
+#: reports/transactions.cpp:163 splitdetailsdialog.cpp:120
+#: transactionsupdatedialog.cpp:169 transdialog.cpp:504
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "类型"
@@ -501,8 +501,8 @@ msgstr "编辑资产(&E)"
 msgid "&Delete Asset"
 msgstr "删除资产(&D)"
 
-#: assetspanel.cpp:108 billsdepositspanel.cpp:421 mmchecking_list.cpp:390
-#: mmframe.cpp:1260 payeedialog.cpp:403 stocks_list.cpp:145
+#: assetspanel.cpp:108 billsdepositspanel.cpp:421 mmchecking_list.cpp:397
+#: mmframe.cpp:1260 payeedialog.cpp:385 stocks_list.cpp:145
 msgid "&Organize Attachments"
 msgstr "管理附件(&O)"
 
@@ -518,14 +518,14 @@ msgstr "确认删除资产"
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX 允许您跟踪固定资产，如汽车、房屋、土地和其他资产。 每项资产的价值可按每年一定的汇率升值，每年折旧以一定的汇率折旧，或不改变价值。 总资产被添加到您的总金融价值中。"
 
-#: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
-#: general_report_manager.cpp:1000 mmframe.cpp:478 mmframe.cpp:745
+#: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:724
+#: general_report_manager.cpp:1001 mmframe.cpp:478 mmframe.cpp:745
 #: mmframe.cpp:1543 mmframe.cpp:3013 mmhomepage.cpp:568 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "资产"
 
 #: assetspanel.cpp:424 assetspanel.cpp:700 assetspanel.cpp:717
-#: filtertransdialog.cpp:215 import_export/qif_export.cpp:74
+#: filtertransdialog.cpp:217 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
 #: mmframe.cpp:1318
 msgid "All"
@@ -550,13 +550,13 @@ msgstr "查看资产交易"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:288
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:528
-#: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
+#: mmcheckingpanel.cpp:336 payeedialog.cpp:379 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
 msgstr "编辑(&E) "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:293 budgetyeardialog.cpp:103
-#: categdialog.cpp:237 maincurrencydialog.cpp:293 mmchecking_list.cpp:406
+#: categdialog.cpp:237 maincurrencydialog.cpp:293 mmchecking_list.cpp:413
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
 msgstr "删除(&D)"
@@ -578,19 +578,19 @@ msgstr "搜索"
 msgid "Enter any string to find related assets"
 msgstr "输入任意字符串来查找相关的资产"
 
-#: assetspanel.cpp:505 filtertransdialog.cpp:394 mmcheckingpanel.cpp:366
+#: assetspanel.cpp:505 filtertransdialog.cpp:396 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "提示：您可以在搜索条件中使用通配符 - 问号 (?)、星号 (*)。"
 
-#: assetspanel.cpp:506 filtertransdialog.cpp:395 mmcheckingpanel.cpp:367
+#: assetspanel.cpp:506 filtertransdialog.cpp:397 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "使用问号 (?) 查找任何单个字符 - 例如， s?t 查找 'sat' 和 'set'。"
 
-#: assetspanel.cpp:507 filtertransdialog.cpp:396 mmcheckingpanel.cpp:368
+#: assetspanel.cpp:507 filtertransdialog.cpp:398 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "使用星号 (*) 查找任意数量的字符 - 例如，s*d 查找 'sad' 和 'started'。"
 
-#: assetspanel.cpp:508 filtertransdialog.cpp:397 mmcheckingpanel.cpp:369
+#: assetspanel.cpp:508 filtertransdialog.cpp:399 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "在开头使用星号 (*) 查找句子中间的任何字符串。"
 
@@ -618,7 +618,7 @@ msgstr "资产管理"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "账户 \t 日期\t   价值\n\n"
 
-#: attachmentdialog.cpp:55 general_report_manager.cpp:434
+#: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
 msgstr "描述"
 
@@ -661,7 +661,7 @@ msgstr "管理附件 | %s %i"
 msgid "Organize Attachments | New %s"
 msgstr "管理附件 | 新 %s"
 
-#: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:120
+#: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:134
 msgid "Other tools"
 msgstr "其他工具"
 
@@ -695,7 +695,7 @@ msgstr "确认删除附件"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:527
-#: payeedialog.cpp:396 splittransactionsdialog.cpp:165 stockdialog.cpp:341
+#: payeedialog.cpp:378 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
 msgstr "添加(&A)"
 
@@ -705,7 +705,7 @@ msgstr "打开(&O)"
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:529
-#: payeedialog.cpp:399 splittransactionsdialog.cpp:167
+#: payeedialog.cpp:381 splittransactionsdialog.cpp:167
 msgid "&Remove "
 msgstr "移除(&R)"
 
@@ -762,7 +762,7 @@ msgid "Open attachment failed"
 msgstr "打开附件失败"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:49
-#: filtertransdialog.cpp:44 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
+#: filtertransdialog.cpp:46 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
 #: model/Model_Billsdeposits.cpp:39 model/Model_Budget.cpp:55
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
@@ -779,8 +779,8 @@ msgstr "每周"
 msgid "Fortnightly"
 msgstr "每两周"
 
-#: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:52 mmframereport.cpp:129
-#: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
+#: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:52 mmframereport.cpp:130
+#: mmframereport.cpp:138 mmframereport.cpp:160 mmframereport.cpp:178
 #: model/Model_Budget.cpp:58
 msgid "Monthly"
 msgstr "每月"
@@ -800,7 +800,7 @@ msgstr "每季度"
 msgid "Half-Yearly"
 msgstr "每半年"
 
-#: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:56 mmframereport.cpp:180
+#: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:56 mmframereport.cpp:181
 #: model/Model_Budget.cpp:62
 msgid "Yearly"
 msgstr "每年"
@@ -813,7 +813,7 @@ msgstr "每四个月"
 msgid "Four Weeks"
 msgstr "每四周"
 
-#: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:59 mmframereport.cpp:126
+#: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:59 mmframereport.cpp:127
 #: model/Model_Budget.cpp:63
 msgid "Daily"
 msgstr "每天"
@@ -914,16 +914,16 @@ msgstr "提早或推迟此交易的用户请求日期"
 msgid "Date Paid"
 msgstr "付款日期"
 
-#: billsdepositsdialog.cpp:539 filtertransdialog.cpp:328 transdialog.cpp:1339
+#: billsdepositsdialog.cpp:539 filtertransdialog.cpp:330 transdialog.cpp:1339
 msgid "Specify the status for the transaction"
 msgstr "指定交易状态"
 
 #: billsdepositsdialog.cpp:541 billsdepositspanel.cpp:132 filtertrans.cpp:195
-#: filtertransdialog.cpp:318 filtertransdialog.cpp:692
-#: filtertransdialog.cpp:1249 import_export/qif_export.cpp:589
+#: filtertransdialog.cpp:320 filtertransdialog.cpp:702
+#: filtertransdialog.cpp:1266 import_export/qif_export.cpp:589
 #: import_export/qif_import_gui.cpp:234 import_export/qif_import_gui.cpp:245
-#: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:218
-#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:131
+#: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:221
+#: reports/transactions.cpp:161 transactionsupdatedialog.cpp:154
 #: transdialog.cpp:484 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:141
 msgid "Status"
@@ -942,13 +942,13 @@ msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "指定转账账户"
 
 #: billsdepositsdialog.cpp:560 billsdepositspanel.cpp:135
-#: budgetingpanel.cpp:301 filtertrans.cpp:198 filtertransdialog.cpp:619
-#: filtertransdialog.cpp:630 import_export/qif_export.cpp:594
+#: budgetingpanel.cpp:301 filtertrans.cpp:198 filtertransdialog.cpp:621
+#: filtertransdialog.cpp:632 import_export/qif_export.cpp:594
 #: import_export/univcsvdialog.cpp:107 maincurrencydialog.cpp:613
-#: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:193
-#: reports/categexp.cpp:178 reports/incexpenses.cpp:113
-#: reports/transactions.cpp:163 splitdetailsdialog.cpp:136
-#: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:161
+#: mmhomepage.cpp:363 mmhomepage.cpp:438 reports/budgetcategorysummary.cpp:189
+#: reports/categexp.cpp:174 reports/incexpenses.cpp:109
+#: reports/transactions.cpp:164 splitdetailsdialog.cpp:136
+#: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:187
 #: transdialog.cpp:518 usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
 msgstr "金额"
@@ -959,11 +959,11 @@ msgstr "指定转账账户"
 
 #: billsdepositsdialog.cpp:585 billsdepositsdialog.cpp:846
 #: billsdepositsdialog.cpp:860 billsdepositspanel.cpp:130 filtertrans.cpp:193
-#: filtertransdialog.cpp:55 filtertransdialog.cpp:211
-#: filtertransdialog.cpp:1184 import_export/qif_export.cpp:591
+#: filtertransdialog.cpp:57 filtertransdialog.cpp:213
+#: filtertransdialog.cpp:1195 import_export/qif_export.cpp:591
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:154
 #: import_export/qif_import_gui.cpp:226 import_export/qif_import_gui.cpp:813
-#: mmchecking_list.cpp:213 reports/transactions.cpp:158 transdialog.cpp:315
+#: mmchecking_list.cpp:216 reports/transactions.cpp:159 transdialog.cpp:315
 #: transdialog.cpp:526 usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
 msgstr "账户"
@@ -979,13 +979,13 @@ msgid "Specify the Account that will own the recurring transaction"
 msgstr "指定此周期性交易所属的账户"
 
 #: billsdepositsdialog.cpp:592 billsdepositsdialog.cpp:847
-#: billsdepositspanel.cpp:131 filtertrans.cpp:194 filtertransdialog.cpp:56
-#: filtertransdialog.cpp:285 filtertransdialog.cpp:604
-#: filtertransdialog.cpp:1224 import_export/qif_export.cpp:592
+#: billsdepositspanel.cpp:131 filtertrans.cpp:194 filtertransdialog.cpp:58
+#: filtertransdialog.cpp:287 filtertransdialog.cpp:606
+#: filtertransdialog.cpp:1239 import_export/qif_export.cpp:592
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
-#: import_export/univcsvdialog.cpp:106 mmchecking_list.cpp:216
-#: model/Model_Attachment.cpp:29 reports/payee.cpp:139
-#: reports/transactions.cpp:159 transactionsupdatedialog.cpp:172
+#: import_export/univcsvdialog.cpp:106 mmchecking_list.cpp:219
+#: model/Model_Attachment.cpp:29 reports/payee.cpp:135
+#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:200
 #: transdialog.cpp:299 transdialog.cpp:532 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
@@ -1005,21 +1005,21 @@ msgid "Use split Categories"
 msgstr "拆分类目"
 
 #: billsdepositsdialog.cpp:611 billsdepositspanel.cpp:133
-#: budgetingpanel.cpp:298 filtertrans.cpp:196 filtertransdialog.cpp:57
-#: filtertransdialog.cpp:296 filtertransdialog.cpp:1232
+#: budgetingpanel.cpp:298 filtertrans.cpp:196 filtertransdialog.cpp:59
+#: filtertransdialog.cpp:298 filtertransdialog.cpp:1248
 #: import_export/qif_export.cpp:593 import_export/qif_import_gui.cpp:103
 #: import_export/qif_import_gui.cpp:250 import_export/univcsvdialog.cpp:108
-#: mmchecking_list.cpp:220 mmhomepage.cpp:190
-#: reports/budgetcategorysummary.cpp:192 reports/budgetingperf.cpp:220
-#: reports/categexp.cpp:177 reports/categexp.cpp:430
-#: reports/transactions.cpp:161 splitdetailsdialog.cpp:145
-#: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
+#: mmchecking_list.cpp:223 mmhomepage.cpp:190
+#: reports/budgetcategorysummary.cpp:188 reports/budgetingperf.cpp:220
+#: reports/categexp.cpp:173 reports/categexp.cpp:422
+#: reports/transactions.cpp:162 splitdetailsdialog.cpp:145
+#: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:230
 #: transdialog.cpp:554 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
 msgstr "类目"
 
 #: billsdepositsdialog.cpp:613 billsdepositsdialog.cpp:1442
-#: transactionsupdatedialog.cpp:203 transdialog.cpp:408 transdialog.cpp:1078
+#: transactionsupdatedialog.cpp:234 transdialog.cpp:408 transdialog.cpp:1078
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
 msgstr "选择类目"
@@ -1029,10 +1029,10 @@ msgid "Specify any associated check number or transaction number"
 msgstr "指定相关的查询号或交易号"
 
 #: billsdepositsdialog.cpp:624 billsdepositspanel.cpp:140 filtertrans.cpp:192
-#: filtertransdialog.cpp:377 filtertransdialog.cpp:1290
+#: filtertransdialog.cpp:379 filtertransdialog.cpp:1310
 #: import_export/qif_export.cpp:596 import_export/qif_import_gui.cpp:100
-#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:209
-#: reports/transactions.cpp:157 transdialog.cpp:566
+#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:212
+#: reports/transactions.cpp:158 transdialog.cpp:566
 #: usertransactionpanel.cpp:202
 msgid "Number"
 msgstr "账号"
@@ -1063,7 +1063,7 @@ msgid "Account name"
 msgstr "账户名称"
 
 #: billsdepositsdialog.cpp:821 billsdepositsdialog.cpp:861
-#: filtertransdialog.cpp:1217 transdialog.cpp:302 transdialog.cpp:383
+#: filtertransdialog.cpp:1231 transdialog.cpp:302 transdialog.cpp:383
 msgid "From"
 msgstr "从"
 
@@ -1129,15 +1129,16 @@ msgid "Specify the number of payments to be made.\n"
 msgstr "指定要支付的付款数量。\n"
 "如果是持续付款，请留空。"
 
-#: billsdepositsdialog.cpp:1345 filtertransdialog.cpp:604
-#: filtertransdialog.cpp:619 filtertransdialog.cpp:630
-#: filtertransdialog.cpp:646 filtertransdialog.cpp:692
-#: filtertransdialog.cpp:700 optionsettingsgeneral.cpp:287 util.cpp:691
+#: billsdepositsdialog.cpp:1345 filtertransdialog.cpp:606
+#: filtertransdialog.cpp:621 filtertransdialog.cpp:632
+#: filtertransdialog.cpp:648 filtertransdialog.cpp:702
+#: filtertransdialog.cpp:710 optionsettingsgeneral.cpp:287 util.cpp:691
 msgid "Invalid value"
 msgstr "无效值"
 
-#: billsdepositsdialog.cpp:1345 import_export/univcsvdialog.cpp:1135
-#: maincurrencydialog.cpp:470 mmframe.cpp:3340 optionsettingsgeneral.cpp:287
+#: billsdepositsdialog.cpp:1345 images_list.cpp:524
+#: import_export/univcsvdialog.cpp:1135 maincurrencydialog.cpp:470
+#: mmframe.cpp:3340 optionsettingsgeneral.cpp:287
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
@@ -1149,7 +1150,7 @@ msgid "Specify the category for this transaction"
 msgstr "指定交易类目"
 
 #: billsdepositsdialog.cpp:1432 categdialog.cpp:119
-#: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:396
+#: import_export/qif_export.cpp:137 mmframereport.cpp:135 transdialog.cpp:396
 msgid "Categories"
 msgstr "分类"
 
@@ -1157,7 +1158,7 @@ msgstr "分类"
 msgid "Clear color"
 msgstr "消除颜色"
 
-#: billsdepositsdialog.cpp:1472 filtertransdialog.cpp:1741 transdialog.cpp:1381
+#: billsdepositsdialog.cpp:1472 filtertransdialog.cpp:1815 transdialog.cpp:1381
 #, c-format
 msgid "Color #%i"
 msgstr "颜色 #%i"
@@ -1207,7 +1208,7 @@ msgid "Every %s Months"
 msgstr "每 %s 月"
 
 #: billsdepositspanel.cpp:136 budgetingpanel.cpp:300
-#: reports/budgetcategorysummary.cpp:194 reports/myusage.cpp:164
+#: reports/budgetcategorysummary.cpp:190 reports/myusage.cpp:160
 msgid "Frequency"
 msgstr "频率"
 
@@ -1236,7 +1237,7 @@ msgstr "提示：这些交易可以设置为激活 - 并允许用户在截止日
 msgid "Recurring Transactions"
 msgstr "周期性交易"
 
-#: billsdepositspanel.cpp:250 filtertransdialog.h:120
+#: billsdepositspanel.cpp:250 filtertransdialog.h:122
 msgid "Transaction Filter"
 msgstr "交易过滤"
 
@@ -1353,9 +1354,9 @@ msgid "Expense"
 msgstr "支出"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:440
-#: reports/categexp.cpp:128 reports/categexp.cpp:161 reports/categexp.cpp:396
-#: reports/incexpenses.cpp:85 reports/incexpenses.cpp:217
-#: reports/incexpenses.cpp:253
+#: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:392
+#: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
+#: reports/incexpenses.cpp:245
 msgid "Income"
 msgstr "收入"
 
@@ -1457,12 +1458,12 @@ msgid "Sub Category"
 msgstr "子类目"
 
 #: budgetingpanel.cpp:302 reports/budgetcategorysummary.cpp:143
-#: reports/budgetcategorysummary.cpp:195
+#: reports/budgetcategorysummary.cpp:191
 msgid "Estimated"
 msgstr "估计"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:144
-#: reports/budgetcategorysummary.cpp:196
+#: reports/budgetcategorysummary.cpp:192
 msgid "Actual"
 msgstr "实际"
 
@@ -1665,7 +1666,7 @@ msgstr "类目管理：编辑错误"
 msgid "Category Relocation Completed."
 msgstr "类目移动已完成。"
 
-#: categdialog.cpp:601 mmframe.cpp:3272 mmframe.cpp:3287 payeedialog.cpp:351
+#: categdialog.cpp:601 mmframe.cpp:3272 mmframe.cpp:3287 payeedialog.cpp:330
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "数据库中的记录已更新：%i"
@@ -2326,393 +2327,398 @@ msgstr "开发人员可能会要求您提供此处显示的信息，以帮助诊
 msgid "Back"
 msgstr "返回"
 
-#: filtertrans.cpp:190 filtertransdialog.cpp:401 filtertransdialog.cpp:1303
-#: reports/transactions.cpp:155
+#: filtertrans.cpp:190 filtertransdialog.cpp:403 filtertransdialog.cpp:1325
+#: reports/transactions.cpp:156
 msgid "Color"
 msgstr "颜色"
 
-#: filtertransdialog.cpp:45 mmhomepage.cpp:648 model/Model_Billsdeposits.cpp:40
+#: filtertransdialog.cpp:47 mmhomepage.cpp:648 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "已核实"
 
-#: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
+#: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
 msgstr "无效"
 
-#: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
+#: filtertransdialog.cpp:49 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
 msgid "Follow up"
 msgstr "跟进"
 
-#: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:43
+#: filtertransdialog.cpp:50 model/Model_Billsdeposits.cpp:43
 #: model/Model_Checking.cpp:40
 msgid "Duplicate"
 msgstr "重复"
 
-#: filtertransdialog.cpp:49 filtertransdialog.cpp:1241
+#: filtertransdialog.cpp:51 filtertransdialog.cpp:1258
 msgid "Un-Reconciled"
 msgstr "未核对"
 
-#: filtertransdialog.cpp:50 filtertransdialog.cpp:1242
+#: filtertransdialog.cpp:52 filtertransdialog.cpp:1259
 msgid "All Except Reconciled"
 msgstr "除已对账以外的所有项目"
 
-#: filtertransdialog.cpp:70
+#: filtertransdialog.cpp:72
 msgid "Start of Financial Year"
 msgstr "财政年度开始"
 
-#: filtertransdialog.cpp:71
+#: filtertransdialog.cpp:73
 msgid "Start of This Year"
 msgstr "本年开始"
 
-#: filtertransdialog.cpp:72
+#: filtertransdialog.cpp:74
 msgid "Since 90 days ago"
 msgstr "从90天前开始"
 
-#: filtertransdialog.cpp:73
+#: filtertransdialog.cpp:75
 msgid "Since 30 days ago"
 msgstr "从30天前开始"
 
-#: filtertransdialog.cpp:74
+#: filtertransdialog.cpp:76
 msgid "Since Today"
 msgstr "从今天开始"
 
-#: filtertransdialog.cpp:196 transactionsupdatedialog.cpp:112
+#: filtertransdialog.cpp:198 transactionsupdatedialog.cpp:135
 msgid "Specify"
 msgstr "条件"
 
-#: filtertransdialog.cpp:229 import_export/qif_export.cpp:154
+#: filtertransdialog.cpp:231 import_export/qif_export.cpp:154
 #: import_export/qif_import_gui.cpp:174
 msgid "From Date"
 msgstr "开始日期"
 
-#: filtertransdialog.cpp:239
+#: filtertransdialog.cpp:241
 msgid "Period Range"
 msgstr "周期范围"
 
-#: filtertransdialog.cpp:267 reports/mmDateRange.cpp:34
+#: filtertransdialog.cpp:269 reports/mmDateRange.cpp:35
 msgid "Date Range"
 msgstr "选择日期区间"
 
-#: filtertransdialog.cpp:309 filtertransdialog.cpp:1230
+#: filtertransdialog.cpp:311 filtertransdialog.cpp:1246
 msgid "Include Similar"
 msgstr "包含相似的"
 
-#: filtertransdialog.cpp:311
+#: filtertransdialog.cpp:313
 msgid "Include all subcategories for the selected category."
 msgstr "包含选中类目的所有子类目。"
 
-#: filtertransdialog.cpp:337 import_export/univcsvdialog.cpp:113
-#: mmchecking_list.cpp:222 model/Model_Billsdeposits.cpp:32
-#: model/Model_Checking.cpp:29 reports/forecast.cpp:86
+#: filtertransdialog.cpp:339 import_export/univcsvdialog.cpp:113
+#: mmchecking_list.cpp:225 model/Model_Billsdeposits.cpp:32
+#: model/Model_Checking.cpp:29 reports/forecast.cpp:81
 #: splitdetailsdialog.cpp:125
 msgid "Withdrawal"
 msgstr "支出"
 
-#: filtertransdialog.cpp:339 import_export/univcsvdialog.cpp:114
-#: mmchecking_list.cpp:224 model/Model_Billsdeposits.cpp:33
-#: model/Model_Checking.cpp:30 reports/forecast.cpp:84
+#: filtertransdialog.cpp:341 import_export/univcsvdialog.cpp:114
+#: mmchecking_list.cpp:227 model/Model_Billsdeposits.cpp:33
+#: model/Model_Checking.cpp:30 reports/forecast.cpp:79
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
 msgstr "收入"
 
-#: filtertransdialog.cpp:341 transactionsupdatedialog.cpp:187
+#: filtertransdialog.cpp:343 transactionsupdatedialog.cpp:216
 msgid "Transfer To"
 msgstr "转出"
 
-#: filtertransdialog.cpp:343
+#: filtertransdialog.cpp:345
 msgid "Transfer From"
 msgstr "转入"
 
-#: filtertransdialog.cpp:355
+#: filtertransdialog.cpp:357
 msgid "Amount Range"
 msgstr "金额区间"
 
-#: filtertransdialog.cpp:393
+#: filtertransdialog.cpp:395
 msgid "Enter any string to find it in transaction notes"
 msgstr "输入任何字符串以在交易记录中找到它"
 
-#: filtertransdialog.cpp:405
+#: filtertransdialog.cpp:407
 msgid "Select the Color"
 msgstr "选择颜色"
 
-#: filtertransdialog.cpp:412
+#: filtertransdialog.cpp:414
 msgid "Presentation Options"
 msgstr "演示选项"
 
-#: filtertransdialog.cpp:427
+#: filtertransdialog.cpp:429
 msgid "Hide Columns"
 msgstr "隐藏列"
 
-#: filtertransdialog.cpp:438 filtertransdialog.cpp:700
+#: filtertransdialog.cpp:440 filtertransdialog.cpp:710
+#: filtertransdialog.cpp:1347
 msgid "Group By"
 msgstr "分组方式"
 
-#: filtertransdialog.cpp:446
+#: filtertransdialog.cpp:448
 msgid "Specify how the report should be grouped"
 msgstr "指定报告的分组方式"
 
-#: filtertransdialog.cpp:465
+#: filtertransdialog.cpp:467
 msgid "Settings"
 msgstr "设置"
 
-#: filtertransdialog.cpp:486 filtertransdialog.cpp:911
-#: filtertransdialog.cpp:951 filtertransdialog.cpp:1175
-#: filtertransdialog.cpp:1330 filtertransdialog.cpp:1661
+#: filtertransdialog.cpp:488 filtertransdialog.cpp:921
+#: filtertransdialog.cpp:961 filtertransdialog.cpp:1185
+#: filtertransdialog.cpp:1375 filtertransdialog.cpp:1735
 #, c-format
 msgid "%i: Empty"
 msgstr "%i: 为空"
 
-#: filtertransdialog.cpp:495
+#: filtertransdialog.cpp:497
 msgid "Save active values into current Preset selection"
 msgstr "活动值保存到当前预设选择"
 
-#: filtertransdialog.cpp:500
+#: filtertransdialog.cpp:502
 msgid "Clear all fields for current Preset selection"
 msgstr "清除当前预设选择的所有字段"
 
-#: filtertransdialog.cpp:717
+#: filtertransdialog.cpp:727
 msgid "Do you want to save them before continuing?"
 msgstr "在继续之前要保存它们吗?"
 
-#: filtertransdialog.cpp:718
+#: filtertransdialog.cpp:728
 msgid "Filter settings have changed"
 msgstr "过滤器设置已更改"
 
-#: filtertransdialog.cpp:770
+#: filtertransdialog.cpp:780
 msgid "Hide Report Columns"
 msgstr "隐藏报告列"
 
-#: filtertransdialog.cpp:913 filtertransdialog.cpp:1663
+#: filtertransdialog.cpp:923 filtertransdialog.cpp:1737
 msgid "Please Enter"
 msgstr "请输入"
 
-#: filtertransdialog.cpp:913 filtertransdialog.cpp:1663
+#: filtertransdialog.cpp:923 filtertransdialog.cpp:1737
 msgid "Setting Name"
 msgstr "设置名称"
 
-#: filtertransdialog.cpp:917 filtertransdialog.cpp:1659
-#: filtertransdialog.cpp:1667
+#: filtertransdialog.cpp:927 filtertransdialog.cpp:1733
+#: filtertransdialog.cpp:1741
 msgid "Could not save settings"
 msgstr "无法保存设置"
 
-#: filtertransdialog.cpp:917 filtertransdialog.cpp:1140
-#: filtertransdialog.cpp:1156 filtertransdialog.cpp:1659
-#: filtertransdialog.cpp:1667 reports/myusage.cpp:105 webappdialog.cpp:194
+#: filtertransdialog.cpp:927 filtertransdialog.cpp:1150
+#: filtertransdialog.cpp:1166 filtertransdialog.cpp:1733
+#: filtertransdialog.cpp:1741 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
 msgstr "空值"
 
-#: filtertransdialog.cpp:1152
+#: filtertransdialog.cpp:1162
 msgid "Filtering Details: "
 msgstr "过滤细节"
 
-#: filtertransdialog.cpp:1178
+#: filtertransdialog.cpp:1188
 msgid "Label"
 msgstr "标签"
 
-#: filtertransdialog.cpp:1196
+#: filtertransdialog.cpp:1208
 msgid "Since"
 msgstr "从"
 
-#: filtertransdialog.cpp:1198
+#: filtertransdialog.cpp:1210
 msgid "Before"
 msgstr "之前"
 
-#: filtertransdialog.cpp:1207
+#: filtertransdialog.cpp:1220
 msgid "Period"
 msgstr "周期"
 
-#: filtertransdialog.cpp:1274
+#: filtertransdialog.cpp:1293
 msgid "Amount Min."
 msgstr "最小金额"
 
-#: filtertransdialog.cpp:1282
+#: filtertransdialog.cpp:1301
 msgid "Amount Max."
 msgstr "最大金额"
 
-#: filtertransdialog.cpp:1678 reports/reportbase.cpp:219
+#: filtertransdialog.cpp:1334
+msgid "Column"
+msgstr "列"
+
+#: filtertransdialog.cpp:1752 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
 msgid "Choose Accounts"
 msgstr "选择账户"
 
-#: filtertransdialog.cpp:1736
+#: filtertransdialog.cpp:1810
 msgid "Not colored"
 msgstr "没有颜色"
 
-#: general_report_manager.cpp:247 general_report_manager.cpp:663
+#: general_report_manager.cpp:248 general_report_manager.cpp:664
 msgid "General Reports Manager"
 msgstr "通用报表管理器"
 
-#: general_report_manager.cpp:290 mmframe.cpp:802 mmframe.cpp:2477
-#: mmframe.cpp:2602 reports/myusage.cpp:142 reports/myusage.cpp:163
+#: general_report_manager.cpp:291 mmframe.cpp:802 mmframe.cpp:2477
+#: mmframe.cpp:2602 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr "报表"
 
-#: general_report_manager.cpp:381 import_export/univcsvdialog.cpp:412
+#: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:412
 #: mmframe.cpp:1306 mmframe.cpp:1379
 msgid "&Import"
 msgstr "导入(&I)"
 
-#: general_report_manager.cpp:383
+#: general_report_manager.cpp:384
 msgid "Locate and load a report file."
 msgstr "查找并加载报表文件。"
 
-#: general_report_manager.cpp:385 import_export/univcsvdialog.cpp:414
+#: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:414
 #: mmframe.cpp:1313 mmframe.cpp:1388
 msgid "&Export"
 msgstr "导出(&E)"
 
-#: general_report_manager.cpp:387
+#: general_report_manager.cpp:388
 msgid "Export the report to a new file."
 msgstr "导出报表到新文件。"
 
-#: general_report_manager.cpp:390 stockdialog.cpp:354
+#: general_report_manager.cpp:391 stockdialog.cpp:354
 msgid "&Save "
 msgstr "保存(&S) "
 
-#: general_report_manager.cpp:392
+#: general_report_manager.cpp:393
 msgid "Save changes."
 msgstr "保存更改。"
 
-#: general_report_manager.cpp:394
+#: general_report_manager.cpp:395
 msgid "&Run"
 msgstr "运行(&R)"
 
-#: general_report_manager.cpp:396
+#: general_report_manager.cpp:397
 msgid "Run selected report."
 msgstr "运行选定的报表。"
 
-#: general_report_manager.cpp:408
+#: general_report_manager.cpp:409
 msgid "Output"
 msgstr "输出"
 
-#: general_report_manager.cpp:431
+#: general_report_manager.cpp:432
 msgid "SQL"
 msgstr "SQL"
 
-#: general_report_manager.cpp:432
+#: general_report_manager.cpp:433
 msgid "Lua"
 msgstr "Lua语言"
 
-#: general_report_manager.cpp:433
+#: general_report_manager.cpp:434
 msgid "Template"
 msgstr "模板"
 
-#: general_report_manager.cpp:486
+#: general_report_manager.cpp:487
 msgid "&Test"
 msgstr "测试(&T)"
 
-#: general_report_manager.cpp:487
+#: general_report_manager.cpp:488
 msgid "Create Template"
 msgstr "创建模板"
 
-#: general_report_manager.cpp:539
+#: general_report_manager.cpp:540
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "返回 %zu 行，持续时间： %lld 毫秒"
 
-#: general_report_manager.cpp:566
+#: general_report_manager.cpp:567
 msgid "SQL Syntax Error"
 msgstr "SQL 语法错误"
 
-#: general_report_manager.cpp:597
+#: general_report_manager.cpp:598
 msgid "Load report file:"
 msgstr "加载报表文件："
 
-#: general_report_manager.cpp:599 general_report_manager.cpp:1028
+#: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "General Report Manager files (*.grm)"
 msgstr "常规报表管理器文件 (*.grm)"
 
-#: general_report_manager.cpp:599 general_report_manager.cpp:1028
+#: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "ZIP files (*.zip)"
 msgstr "Zip 文件 (*.zip)"
 
-#: general_report_manager.cpp:662
+#: general_report_manager.cpp:663
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
 msgstr "无法打开文件：\n"
 "%s\n\n"
 
-#: general_report_manager.cpp:726
+#: general_report_manager.cpp:727
 msgid "New Empty Report"
 msgstr "新建报表"
 
-#: general_report_manager.cpp:727
+#: general_report_manager.cpp:728
 msgid "New Sample Report"
 msgstr "新建模板报表"
 
-#: general_report_manager.cpp:730
+#: general_report_manager.cpp:731
 msgid "Change Group"
 msgstr "更改分组"
 
-#: general_report_manager.cpp:732 general_report_manager.cpp:897
+#: general_report_manager.cpp:733 general_report_manager.cpp:898
 msgid "Rename Group"
 msgstr "重命名群组"
 
-#: general_report_manager.cpp:733
+#: general_report_manager.cpp:734
 msgid "UnGroup"
 msgstr "取消分组"
 
-#: general_report_manager.cpp:734
+#: general_report_manager.cpp:735
 msgid "Rename Report"
 msgstr "重命名报表"
 
-#: general_report_manager.cpp:736
+#: general_report_manager.cpp:737
 msgid "Delete Report"
 msgstr "删除报表"
 
-#: general_report_manager.cpp:831 general_report_manager.cpp:979
+#: general_report_manager.cpp:832 general_report_manager.cpp:980
 msgid "Enter the name for the report"
 msgstr "输入报表名称"
 
-#: general_report_manager.cpp:832 general_report_manager.cpp:980
+#: general_report_manager.cpp:833 general_report_manager.cpp:981
 #: mmframe.cpp:1280 mmframe.cpp:1561 mmframe.cpp:1733
 msgid "General Report Manager"
 msgstr "通用报表管理器"
 
-#: general_report_manager.cpp:850
+#: general_report_manager.cpp:851
 msgid "Delete the Report Title:"
 msgstr "删除报表标题："
 
-#: general_report_manager.cpp:879 general_report_manager.cpp:960
+#: general_report_manager.cpp:880 general_report_manager.cpp:961
 msgid "Enter or choose name for the new report group"
 msgstr "输入或选择新报表分组的名称"
 
-#: general_report_manager.cpp:880
+#: general_report_manager.cpp:881
 msgid "Change report group"
 msgstr "更改报表分组"
 
-#: general_report_manager.cpp:896
+#: general_report_manager.cpp:897
 msgid "Enter or choose name for the new group"
 msgstr "输入或选择新分组的名称"
 
-#: general_report_manager.cpp:961
+#: general_report_manager.cpp:962
 msgid "Add Report Group"
 msgstr "添加报表分组"
 
-#: general_report_manager.cpp:974
+#: general_report_manager.cpp:975
 #, c-format
 msgid "New Report %s"
 msgstr "新建报表 %s"
 
-#: general_report_manager.cpp:987
+#: general_report_manager.cpp:988
 msgid "Report Name already exists"
 msgstr "报表名称已存在"
 
-#: general_report_manager.cpp:987 general_report_manager.cpp:994
+#: general_report_manager.cpp:988 general_report_manager.cpp:995
 msgid "New Report"
 msgstr "新建报表"
 
-#: general_report_manager.cpp:1025
+#: general_report_manager.cpp:1026
 msgid "Choose file to Save As Report"
 msgstr "选择要保存报表的文件"
 
-#: general_report_manager.cpp:1203
+#: general_report_manager.cpp:1204
 msgid "Parameters:"
 msgstr "参数："
 
@@ -2755,6 +2761,10 @@ msgstr "找不到主题 %s ，可能不再支持。还原为默认主题。"
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
 msgstr "主题 %s 缺少条目且不兼容。恢复到默认主题"
+
+#: images_list.cpp:523
+msgid "No workable theme found, the installation may be corrupt"
+msgstr "没有找到可用的主题，安装程序可能已损坏"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
@@ -3111,8 +3121,8 @@ msgstr "子类目"
 msgid "Don't Care"
 msgstr "不处理"
 
-#: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:228
-#: mmhomepage.cpp:649 reports/summary.cpp:329
+#: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:231
+#: mmhomepage.cpp:649 reports/summary.cpp:325
 msgid "Balance"
 msgstr "余额"
 
@@ -3430,7 +3440,7 @@ msgstr "在线更新"
 msgid "Show all even the unused currencies"
 msgstr "显示所有未使用的货币"
 
-#: maincurrencydialog.cpp:207 payeedialog.cpp:126
+#: maincurrencydialog.cpp:207 payeedialog.cpp:140
 msgid "Search:"
 msgstr "搜索："
 
@@ -3749,171 +3759,175 @@ msgstr "以英国汇丰银行(HSBC HLDG) 股票为例: HSBA.L"
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr "如果股票名称字段为空，当价格更新时它将被归档"
 
-#: mmchecking_list.cpp:355
+#: mmchecking_list.cpp:358
 msgid "&New Withdrawal"
 msgstr "新增支出(&N)"
 
-#: mmchecking_list.cpp:356
+#: mmchecking_list.cpp:359
 msgid "&New Deposit"
 msgstr "新增收入(&N)"
 
-#: mmchecking_list.cpp:358
+#: mmchecking_list.cpp:361
 msgid "&New Transfer"
 msgstr "新增转帐(&N)"
 
-#: mmchecking_list.cpp:362
+#: mmchecking_list.cpp:365
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] "编辑交易(&E)"
 
-#: mmchecking_list.cpp:367
+#: mmchecking_list.cpp:370
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "复制交易(&C)"
 
-#: mmchecking_list.cpp:372
+#: mmchecking_list.cpp:375
 msgid "&Paste Transaction"
 msgstr "粘贴交易(&P)"
 
-#: mmchecking_list.cpp:372
+#: mmchecking_list.cpp:375
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr "粘贴交易 (%d)(&P)"
 
-#: mmchecking_list.cpp:377
+#: mmchecking_list.cpp:380
 msgid "D&uplicate Transaction"
 msgstr "复制并增加交易(&U)"
 
-#: mmchecking_list.cpp:380
+#: mmchecking_list.cpp:383
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
 msgstr[0] "转移交易(&M)"
 
-#: mmchecking_list.cpp:386
+#: mmchecking_list.cpp:389
+msgid "&View In Other Account"
+msgstr "在其他帐户中查看(&P)"
+
+#: mmchecking_list.cpp:393
 msgid "&View Split Categories"
 msgstr "查看所有预算类目(&V)"
 
-#: mmchecking_list.cpp:394
+#: mmchecking_list.cpp:401
 msgid "Create Recurring T&ransaction"
 msgstr "创建周期性交易(&T)"
 
-#: mmchecking_list.cpp:400
+#: mmchecking_list.cpp:407
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] "删除所选交易(&D)"
 
-#: mmchecking_list.cpp:403
+#: mmchecking_list.cpp:410
 msgid "Delete all transactions in current view"
 msgstr "删除目前查看的所有交易"
 
-#: mmchecking_list.cpp:404
+#: mmchecking_list.cpp:411
 msgid "Delete Viewed \"Follow Up\" Transactions"
 msgstr "删除已查看“跟进”交易"
 
-#: mmchecking_list.cpp:405
+#: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr "删除已查看“未核实”交易"
 
-#: mmchecking_list.cpp:411
+#: mmchecking_list.cpp:418
 msgid "as Reconciled"
 msgstr "已核实"
 
-#: mmchecking_list.cpp:413
+#: mmchecking_list.cpp:420
 msgid "as Unreconciled"
 msgstr "未核实"
 
-#: mmchecking_list.cpp:415
+#: mmchecking_list.cpp:422
 msgid "as Void"
 msgstr "无效"
 
-#: mmchecking_list.cpp:417
+#: mmchecking_list.cpp:424
 msgid "as Followup"
 msgstr "为跟进"
 
-#: mmchecking_list.cpp:419
+#: mmchecking_list.cpp:426
 msgid "as Duplicate"
 msgstr "作为重复"
 
-#: mmchecking_list.cpp:421
+#: mmchecking_list.cpp:428
 msgid "Mark all being selected"
 msgstr "标记所有被选中"
 
-#: mmchecking_list.cpp:795
+#: mmchecking_list.cpp:814
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "您真的要删除显示的所有交易吗？"
 
-#: mmchecking_list.cpp:796 mmchecking_list.cpp:807 mmchecking_list.cpp:818
-#: mmchecking_list.cpp:865
+#: mmchecking_list.cpp:815 mmchecking_list.cpp:826 mmchecking_list.cpp:837
+#: mmchecking_list.cpp:884
 msgid "Confirm Transaction Deletion"
 msgstr "确认删除交易"
 
-#: mmchecking_list.cpp:806 mmchecking_list.cpp:817
+#: mmchecking_list.cpp:825 mmchecking_list.cpp:836
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "您真的想要删除显示的所有 \"%s\"交易吗？"
 
-#: mmchecking_list.cpp:806
+#: mmchecking_list.cpp:825
 msgid "Follow Up"
 msgstr "跟进"
 
-#: mmchecking_list.cpp:817
+#: mmchecking_list.cpp:836
 msgid "Unreconciled"
 msgstr "未核实"
 
-#: mmchecking_list.cpp:860
+#: mmchecking_list.cpp:879
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "您真的要删除 %i 所选的交易吗？"
 
-#: mmchecking_list.cpp:915
+#: mmchecking_list.cpp:934
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "已锁定交易日期：%s\n\n"
 "已核实对账交易。"
 
-#: mmchecking_list.cpp:918 transdialog.cpp:732 transdialog.cpp:765
+#: mmchecking_list.cpp:937 transdialog.cpp:732 transdialog.cpp:765
 msgid "MMEX Transaction Check"
 msgstr "MMEX 交易检查"
 
-#: mmchecking_list.cpp:951
+#: mmchecking_list.cpp:970
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "该编辑将影响涉及已关闭账户的 %i 笔交易。"
 
-#: mmchecking_list.cpp:953
+#: mmchecking_list.cpp:972
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "是否仍要执行编辑？"
 
-#: mmchecking_list.cpp:954
+#: mmchecking_list.cpp:973
 msgid "Closed Account Check"
 msgstr "已关闭账户检查"
 
-#: mmchecking_list.cpp:1140
+#: mmchecking_list.cpp:1159
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "您真的要移动 %i 所选的交易吗？"
 
-#: mmchecking_list.cpp:1145
+#: mmchecking_list.cpp:1164
 msgid "Confirm Transaction Move"
 msgstr "确认交易移动"
 
-#: mmchecking_list.cpp:1151
+#: mmchecking_list.cpp:1170
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "正在将 %i 笔交易移动到..."
 
-#: mmchecking_list.cpp:1155 stocks_list.cpp:292
+#: mmchecking_list.cpp:1174 stocks_list.cpp:292
 msgid "Select the destination Account "
 msgstr "选择存入账户"
 
-#: mmchecking_list.cpp:1223
+#: mmchecking_list.cpp:1260
 msgid "Recurring Transaction saved."
 msgstr "周期性交易已保存。"
 
@@ -3963,8 +3977,8 @@ msgid "Diff: "
 msgstr "差额： "
 
 #: mmcheckingpanel.cpp:413
-msgid "Displayed Bal: "
-msgstr "显示边距： "
+msgid "Filtered View Bal: "
+msgstr "过滤视图平衡："
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -4043,17 +4057,17 @@ msgid "Favourites"
 msgstr "收藏夹"
 
 #: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:633 reports/summary.cpp:285
-#: reports/summary.cpp:321
+#: reports/summary.cpp:317
 msgid "Bank Accounts"
 msgstr "银行账户"
 
 #: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:634 reports/summary.cpp:286
-#: reports/summary.cpp:322
+#: reports/summary.cpp:318
 msgid "Credit Card Accounts"
 msgstr "信用卡账户"
 
 #: mmframe.cpp:474 mmframe.cpp:733 mmhomepage.cpp:636 reports/summary.cpp:288
-#: reports/summary.cpp:324
+#: reports/summary.cpp:320
 msgid "Term Accounts"
 msgstr "定期账户"
 
@@ -4066,7 +4080,7 @@ msgid "Cash Accounts"
 msgstr "现金账户"
 
 #: mmframe.cpp:477 mmframe.cpp:729 mmhomepage.cpp:635 reports/summary.cpp:287
-#: reports/summary.cpp:323
+#: reports/summary.cpp:319
 msgid "Loan Accounts"
 msgstr "贷款账户"
 
@@ -4083,7 +4097,7 @@ msgid "All Transactions"
 msgstr "所有交易"
 
 #: mmframe.cpp:741 mmhomepage.cpp:639 reports/summary.cpp:290
-#: reports/summary.cpp:326
+#: reports/summary.cpp:322
 msgid "Share Accounts"
 msgstr "股票账户"
 
@@ -4371,7 +4385,7 @@ msgstr "类目管理(&C)"
 msgid "Organize &Payees..."
 msgstr "收款人管理(&P)"
 
-#: mmframe.cpp:1510 mmframe.cpp:1728 payeedialog.cpp:77
+#: mmframe.cpp:1510 mmframe.cpp:1728 payeedialog.cpp:84
 msgid "Organize Payees"
 msgstr "收款人管理"
 
@@ -4982,11 +4996,11 @@ msgstr "更改账户类型"
 msgid "Account: %s - Select new type."
 msgstr "账户： %s - 选择新类型。"
 
-#: mmframe.cpp:3286 payeedialog.cpp:350
+#: mmframe.cpp:3286 payeedialog.cpp:329
 msgid "Payee Relocation Completed."
 msgstr "收款人转移已完成。"
 
-#: mmframe.cpp:3290 payeedialog.cpp:354
+#: mmframe.cpp:3290 payeedialog.cpp:333
 msgid "Payee Relocation Result"
 msgstr "收款人转移结果"
 
@@ -4999,64 +5013,64 @@ msgstr "%s 未找到"
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "这个应用程序的语言已经被改变。当应用程序再次启动时这个改变才会生效。"
 
-#: mmframereport.cpp:78
+#: mmframereport.cpp:79
 msgid "General Group Report"
 msgstr "常规组报告"
 
-#: mmframereport.cpp:105 mmhomepage.cpp:800 model/Model_Report.cpp:403
+#: mmframereport.cpp:106 mmhomepage.cpp:800 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "捕获异常"
 
-#: mmframereport.cpp:118
+#: mmframereport.cpp:119
 msgid "Transaction Report"
 msgstr "交易报表"
 
-#: mmframereport.cpp:123
+#: mmframereport.cpp:124
 msgid "Cash Flow"
 msgstr "现金流预测"
 
-#: mmframereport.cpp:140 mmframereport.cpp:204 mmhomepage.cpp:190
+#: mmframereport.cpp:141 mmframereport.cpp:205 mmhomepage.cpp:190
 msgid "Summary"
 msgstr "摘要"
 
-#: mmframereport.cpp:143 reports/categexp.cpp:247
+#: mmframereport.cpp:144 reports/categexp.cpp:243
 msgid "Where the Money Goes"
 msgstr "资金去向"
 
-#: mmframereport.cpp:146 reports/categexp.cpp:253
+#: mmframereport.cpp:147 reports/categexp.cpp:249
 msgid "Where the Money Comes From"
 msgstr "资金来源"
 
-#: mmframereport.cpp:151
+#: mmframereport.cpp:152
 msgid "Forecast Report"
 msgstr "预测报告"
 
-#: mmframereport.cpp:156 optionsettingshome.cpp:73
+#: mmframereport.cpp:157 optionsettingshome.cpp:73
 msgid "Income vs Expenses"
 msgstr "收支情况"
 
-#: mmframereport.cpp:164
+#: mmframereport.cpp:165
 msgid "My Usage"
 msgstr "使用情况"
 
-#: mmframereport.cpp:169 reports/payee.cpp:118
+#: mmframereport.cpp:170 reports/payee.cpp:118
 msgid "Payees"
 msgstr "收款人"
 
-#: mmframereport.cpp:174
+#: mmframereport.cpp:175
 msgid "Summary of Accounts"
 msgstr "所有账户汇总"
 
-#: mmframereport.cpp:189
+#: mmframereport.cpp:190
 msgid "Budget Performance"
 msgstr "预算执行情况"
 
-#: mmframereport.cpp:192
+#: mmframereport.cpp:193
 msgid "Budget Category Summary"
 msgstr "预算类别汇总"
 
-#: mmframereport.cpp:201
+#: mmframereport.cpp:202
 msgid "Stocks Report"
 msgstr "股票报告"
 
@@ -5069,7 +5083,7 @@ msgid "&Forward"
 msgstr "向前(&F)"
 
 #: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:291
-#: reports/summary.cpp:328
+#: reports/summary.cpp:324
 msgid "Stocks"
 msgstr "股票"
 
@@ -5077,13 +5091,13 @@ msgstr "股票"
 msgid "Gain/Loss"
 msgstr "盈亏"
 
-#: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:250
-#: reports/categexp.cpp:179 reports/categexp.cpp:471 reports/summary.cpp:327
+#: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:243
+#: reports/categexp.cpp:175 reports/categexp.cpp:463 reports/summary.cpp:323
 msgid "Total"
 msgstr "总计："
 
-#: mmhomepage.cpp:108 mmhomepage.cpp:688 reports/incexpenses.cpp:298
-#: reports/payee.cpp:170 reports/summarystocks.cpp:155
+#: mmhomepage.cpp:108 mmhomepage.cpp:688 reports/incexpenses.cpp:290
+#: reports/payee.cpp:166 reports/summarystocks.cpp:155
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
 msgstr "总计："
@@ -5102,14 +5116,14 @@ msgstr "账户/收款人"
 msgid "Income vs Expenses: %s"
 msgstr "收支情况：%s"
 
-#: mmhomepage.cpp:444 reports/categexp.cpp:123 reports/categexp.cpp:151
-#: reports/categexp.cpp:395 reports/categexp.cpp:470 reports/incexpenses.cpp:88
-#: reports/incexpenses.cpp:218 reports/incexpenses.cpp:254
-#: reports/payee.cpp:141
+#: mmhomepage.cpp:444 reports/categexp.cpp:123 reports/categexp.cpp:150
+#: reports/categexp.cpp:391 reports/categexp.cpp:462 reports/incexpenses.cpp:88
+#: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
+#: reports/payee.cpp:137
 msgid "Expenses"
 msgstr "支出"
 
-#: mmhomepage.cpp:448 reports/incexpenses.cpp:121
+#: mmhomepage.cpp:448 reports/incexpenses.cpp:117
 msgid "Difference:"
 msgstr "差额："
 
@@ -5129,7 +5143,7 @@ msgstr "需跟进的交易"
 msgid "Total Transactions: "
 msgstr "交易笔数"
 
-#: mmhomepage.cpp:544 reports/categexp.cpp:230 reports/summarystocks.cpp:170
+#: mmhomepage.cpp:544 reports/categexp.cpp:226 reports/summarystocks.cpp:170
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
 msgstr "总计："
@@ -5138,7 +5152,7 @@ msgstr "总计："
 msgid "Investment Accounts"
 msgstr "投资账户"
 
-#: mmhomepage.cpp:638 reports/summary.cpp:289 reports/summary.cpp:325
+#: mmhomepage.cpp:638 reports/summary.cpp:289 reports/summary.cpp:321
 msgid "Asset Accounts"
 msgstr "资产账户"
 
@@ -5208,7 +5222,7 @@ msgid "Hide"
 msgstr "隐藏"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:284
-#: reports/summary.cpp:320
+#: reports/summary.cpp:316
 msgid "Cash"
 msgstr "现金"
 
@@ -5916,59 +5930,59 @@ msgstr "导航栏图标大小"
 msgid "Others Icon Size"
 msgstr "其他图标大小"
 
-#: payeedialog.cpp:67
+#: payeedialog.cpp:61
 msgid "Last Used Category"
 msgstr "最近使用类别"
 
-#: payeedialog.cpp:67
+#: payeedialog.cpp:61
 msgid "Default Category"
 msgstr "默认类目"
 
-#: payeedialog.cpp:202 payeedialog.cpp:242 payeedialog.cpp:270
-msgid "Payee with same name exists"
-msgstr "收帐人名称已存在"
-
-#: payeedialog.cpp:203 payeedialog.cpp:227 payeedialog.cpp:242
-msgid "Organize Payees: Add Payee"
-msgstr "收款人管理"
-
-#: payeedialog.cpp:226
+#: payeedialog.cpp:205
 msgid "Enter the name for the new payee:"
 msgstr "请输入收款人名字："
 
-#: payeedialog.cpp:253
+#: payeedialog.cpp:206 payeedialog.cpp:221
+msgid "Organize Payees: Add Payee"
+msgstr "收款人管理"
+
+#: payeedialog.cpp:221 payeedialog.cpp:249
+msgid "Payee with same name exists"
+msgstr "收帐人名称已存在"
+
+#: payeedialog.cpp:232
 msgid "Modify the name for the payee:"
 msgstr "修改收款人名称："
 
-#: payeedialog.cpp:254 payeedialog.cpp:270
+#: payeedialog.cpp:233 payeedialog.cpp:249
 msgid "Organize Payees: Edit Payee"
 msgstr "收款人管理：编辑收款人"
 
-#: payeedialog.cpp:284
+#: payeedialog.cpp:263
 msgid "Payee in use."
 msgstr "收款人正在使用"
 
-#: payeedialog.cpp:287
+#: payeedialog.cpp:266
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
 msgstr "提示：使用此收款人将所有交易更改为另一个收款人，使用迁移命令："
 
-#: payeedialog.cpp:289
+#: payeedialog.cpp:268
 msgid "Tools -> Relocation of -> Payees"
 msgstr "工具 -> 移动类目或转移收款人 -> 收款人"
 
-#: payeedialog.cpp:290
+#: payeedialog.cpp:269
 msgid "Organize Payees: Delete Error"
 msgstr "收款人管理"
 
-#: payeedialog.cpp:390
+#: payeedialog.cpp:372
 msgid "Define Category"
 msgstr "定义类别"
 
-#: payeedialog.cpp:392
+#: payeedialog.cpp:374
 msgid "Remove Category"
 msgstr "删除类别"
 
-#: payeedialog.cpp:407
+#: payeedialog.cpp:389
 msgid "Relocate Payee"
 msgstr "转移收款人"
 
@@ -6079,27 +6093,27 @@ msgstr "预算类目摘要 - %s"
 msgid "( Estimated Vs Actual )"
 msgstr "（预计对比实际）"
 
-#: reports/budgetcategorysummary.cpp:283
+#: reports/budgetcategorysummary.cpp:279
 msgid "Estimated Income:"
 msgstr "估计收入："
 
-#: reports/budgetcategorysummary.cpp:285
+#: reports/budgetcategorysummary.cpp:281
 msgid "Actual Income:"
 msgstr "实际收入："
 
-#: reports/budgetcategorysummary.cpp:287
+#: reports/budgetcategorysummary.cpp:283
 msgid "Difference Income:"
 msgstr "差额收入："
 
-#: reports/budgetcategorysummary.cpp:294
+#: reports/budgetcategorysummary.cpp:290
 msgid "Estimated Expenses:"
 msgstr "估计费用："
 
-#: reports/budgetcategorysummary.cpp:296
+#: reports/budgetcategorysummary.cpp:292
 msgid "Actual Expenses:"
 msgstr "实际支出："
 
-#: reports/budgetcategorysummary.cpp:298
+#: reports/budgetcategorysummary.cpp:294
 msgid "Difference Expenses:"
 msgstr "差异开支："
 
@@ -6188,37 +6202,37 @@ msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
 msgstr[0] "%i 年前现金流预测"
 
-#: reports/cashflow.cpp:251 reports/categexp.cpp:394
-#: reports/incexpenses.cpp:216 reports/incexpenses.cpp:255
-#: reports/payee.cpp:142
+#: reports/cashflow.cpp:244 reports/categexp.cpp:390
+#: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
+#: reports/payee.cpp:138
 msgid "Difference"
 msgstr "差额"
 
-#: reports/categexp.cpp:208
+#: reports/categexp.cpp:204
 msgid "Category Total: "
 msgstr "类目总计： "
 
-#: reports/categexp.cpp:227
+#: reports/categexp.cpp:223
 msgid "Total Expenses:"
 msgstr "总开支："
 
-#: reports/categexp.cpp:228
+#: reports/categexp.cpp:224
 msgid "Total Income:"
 msgstr "总收入："
 
-#: reports/categexp.cpp:259
+#: reports/categexp.cpp:255
 msgid "Categories Summary"
 msgstr "类别摘要"
 
-#: reports/categexp.cpp:268
+#: reports/categexp.cpp:264
 msgid "Category Income/Expenses"
 msgstr "类目收支"
 
-#: reports/categexp.cpp:438
+#: reports/categexp.cpp:430
 msgid "Overall"
 msgstr "总计"
 
-#: reports/categexp.cpp:469 reports/payee.cpp:140
+#: reports/categexp.cpp:461 reports/payee.cpp:136
 msgid "Incomes"
 msgstr "收入"
 
@@ -6226,109 +6240,113 @@ msgstr "收入"
 msgid "Forecast"
 msgstr "预测"
 
-#: reports/htmlbuilder.cpp:112
+#: reports/htmlbuilder.cpp:113
 #, c-format
 msgid "Report Generated %s %s"
 msgstr "报告生成于 %s %s"
 
-#: reports/htmlbuilder.cpp:172
+#: reports/htmlbuilder.cpp:175
 #, c-format
 msgid "From %s till %s"
 msgstr "从 %s 至 %s"
 
-#: reports/htmlbuilder.cpp:174
+#: reports/htmlbuilder.cpp:177
 msgid "Future"
 msgstr "未来"
 
-#: reports/htmlbuilder.cpp:178 reports/mmDateRange.cpp:218
+#: reports/htmlbuilder.cpp:181 reports/mmDateRange.cpp:249
 msgid "Over Time"
 msgstr "按月"
 
-#: reports/htmlbuilder.cpp:206
+#: reports/htmlbuilder.cpp:209
 msgid "User specified start day"
 msgstr "用户指定的开始日期"
+
+#: reports/htmlbuilder.cpp:216
+msgid "Future Transactions have been ignored"
+msgstr "未来的交易已被忽略"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
 msgstr "收入与支出汇总表"
 
-#: reports/incexpenses.cpp:119
+#: reports/incexpenses.cpp:115
 msgid "Income:"
 msgstr "收入："
 
-#: reports/incexpenses.cpp:120
+#: reports/incexpenses.cpp:116
 msgid "Expenses:"
 msgstr "支出："
 
-#: reports/incexpenses.cpp:137
+#: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
 msgstr "收入与每月支出"
 
-#: reports/incexpenses.cpp:215 reports/incexpenses.cpp:256
+#: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
 msgstr "累计"
 
-#: reports/mmDateRange.cpp:70
+#: reports/mmDateRange.cpp:76
 msgid "Current Month"
 msgstr "本月"
 
-#: reports/mmDateRange.cpp:76
+#: reports/mmDateRange.cpp:82
 msgid "Today"
 msgstr "今天"
 
-#: reports/mmDateRange.cpp:84
+#: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
 msgstr "月初到今日"
 
-#: reports/mmDateRange.cpp:94
+#: reports/mmDateRange.cpp:100
 msgid "Last Month"
 msgstr "上月"
 
-#: reports/mmDateRange.cpp:104
+#: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
 msgstr "最近30天"
 
-#: reports/mmDateRange.cpp:114
+#: reports/mmDateRange.cpp:120
 msgid "Last 90 Days"
 msgstr "最近90天"
 
-#: reports/mmDateRange.cpp:123
+#: reports/mmDateRange.cpp:134
 msgid "Last 3 Months"
 msgstr "查看最近 3 个月"
 
-#: reports/mmDateRange.cpp:132
+#: reports/mmDateRange.cpp:148
 msgid "Last 12 Months"
 msgstr "查看最近 12 个月"
 
-#: reports/mmDateRange.cpp:143
+#: reports/mmDateRange.cpp:164
 msgid "Current Year"
 msgstr "本年"
 
-#: reports/mmDateRange.cpp:152 stockdialog.cpp:721
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:721
 msgid "Current Year to Date"
 msgstr "年初到今日"
 
-#: reports/mmDateRange.cpp:164
+#: reports/mmDateRange.cpp:185
 msgid "Last Year"
 msgstr "上年"
 
-#: reports/mmDateRange.cpp:189
+#: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
 msgstr "本财年"
 
-#: reports/mmDateRange.cpp:199
+#: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
 msgstr "本财年初到今日"
 
-#: reports/mmDateRange.cpp:210
+#: reports/mmDateRange.cpp:236
 msgid "Last Financial Year"
 msgstr "上财年"
 
-#: reports/mmDateRange.cpp:229
+#: reports/mmDateRange.cpp:260
 msgid "Custom"
 msgstr "自定义"
 
-#: reports/mmDateRange.cpp:238
+#: reports/mmDateRange.cpp:274
 msgid "Last 365 Days"
 msgstr "最近365天"
 
@@ -6340,7 +6358,7 @@ msgstr "MMEX 使用频率"
 msgid "Payee Report"
 msgstr "收款人报告"
 
-#: reports/reportbase.cpp:191 reports/transactions.cpp:108
+#: reports/reportbase.cpp:191 reports/transactions.cpp:109
 msgid "Accounts: "
 msgstr "账户"
 
@@ -6382,11 +6400,11 @@ msgstr "佣金"
 msgid "Stocks Performance Charts"
 msgstr "库存性能图表"
 
-#: reports/transactions.cpp:272
+#: reports/transactions.cpp:273
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr "所有交易：提款、存款和转让"
 
-#: reports/transactions.cpp:290
+#: reports/transactions.cpp:291
 msgid "All Transactions excluding Transfers"
 msgstr "不包括转移的所有交易"
 
@@ -6841,22 +6859,22 @@ msgstr "尝试删除主题时出了点问题"
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
 msgstr "您确定要使用此主题吗？ 请注意，这只有在重新启动 MMEX 时才会生效。"
 
-#: transactionsupdatedialog.cpp:82
+#: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
 msgstr "多交易更新"
 
-#: transactionsupdatedialog.cpp:213
+#: transactionsupdatedialog.cpp:244
 msgid "Append"
 msgstr "追加"
 
-#: transactionsupdatedialog.cpp:325 transdialog.cpp:669
+#: transactionsupdatedialog.cpp:360 transdialog.cpp:669
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
 msgstr "您以前没有使用过这个收款人姓名。 名字正确吗？\n"
 "%s"
 
-#: transactionsupdatedialog.cpp:326 transdialog.cpp:670
+#: transactionsupdatedialog.cpp:361 transdialog.cpp:670
 msgid "Confirm payee name"
 msgstr "确认收款人姓名"
 

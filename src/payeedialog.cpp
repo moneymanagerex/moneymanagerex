@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2012 Nikolay Akimov
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -37,12 +38,9 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
     EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
-    EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
-    EVT_DATAVIEW_ITEM_EDITING_STARTED(wxID_ANY, mmPayeeDialog::OnDataEditStart)
-    EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
-    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
-    EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmPayeeDialog::OnItemRightClick)
-    EVT_DATAVIEW_COLUMN_SORTED(wxID_ANY, mmPayeeDialog::OnSorted)
+    EVT_LIST_COL_CLICK(wxID_ANY, mmPayeeDialog::OnSort)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
+    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, mmPayeeDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
@@ -55,18 +53,27 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     , m_payee_rename(-1)
     , m_payee_choose(payee_choose)
     , refreshRequested_(false)
-#ifdef _DEBUG
-    , debug_(true)
-#else
-    , debug_(false)
-#endif
+    , m_sortByPayee (true)
+    , m_sortReverse (false)
 {
-    if (debug_) ColName_[PAYEE_ID] = "#";
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelection() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
 
     Create(parent, name);
+}
+
+int mmPayeeDialog::FindSelectedPayee()
+{
+    int sel = payeeListBox_->GetFocusedItem();
+    if (-1 != sel)
+    {
+        wxListItem item;
+        item.SetId(sel);
+        payeeListBox_->GetItem(item);
+        return (item.GetData());
+    } else
+        return -1;
 }
 
 void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
@@ -96,15 +103,22 @@ void mmPayeeDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
-    //TODO:provide proper style
-    payeeListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxSize(450, 500)/*, wxDV_HORIZ_RULES*/);
+    payeeListBox_ = new wxListView(this, wxID_ANY, wxDefaultPosition, wxSize(450, 500), 
+        wxLC_REPORT | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
 
-    if (debug_) payeeListBox_->AppendTextColumn(ColName_[PAYEE_ID], wxDATAVIEW_CELL_INERT, 30);
-    payeeListBox_->AppendTextColumn(ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 150
-                        , wxALIGN_NOT , wxDATAVIEW_COL_RESIZABLE | wxDATAVIEW_COL_SORTABLE);
-    payeeListBox_->AppendTextColumn(ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 250
-                        , wxALIGN_NOT , wxDATAVIEW_COL_RESIZABLE | wxDATAVIEW_COL_SORTABLE);
+    wxListItem col0, col1;
+    // Add first column
+    col0.SetId(0);
+    col0.SetText(ColName_[PAYEE_NAME]);
+    col0.SetWidth(150);
+    payeeListBox_->InsertColumn(0, col0);
+
+    // Add second column
+    col1.SetId(1);
+    col1.SetText(ColName_[PAYEE_CATEGORY]);
+    col1.SetWidth(250);
+    payeeListBox_->InsertColumn(1, col1);
+
     mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -138,87 +152,52 @@ void mmPayeeDialog::CreateControls()
 
 void mmPayeeDialog::fillControls()
 {
+    this->Freeze();
     payeeListBox_->DeleteAllItems();
+    m_payee_id = -1;
+    
 
-    for (const auto& payee : Model_Payee::instance().FilterPayees(m_maskStr))
+    Model_Payee::Data_Set payees = Model_Payee::instance().FilterPayees(m_maskStr);
+    if (m_sortByPayee)
+        std::stable_sort(payees.begin(), payees.end(), SorterByPAYEENAME());
+    else
     {
+        // Need to compute here as the payee data set does not have the full name
+        std::stable_sort(payees.begin(), payees.end(), [] (Model_Payee::Data x, Model_Payee::Data y)
+        {
+            return(
+                Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID) < 
+                Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)
+            ); 
+        });
+    }
+    if (m_sortReverse)
+        std::reverse(payees.begin(), payees.end());
+
+    int idx = 0;
+    for (const auto& payee : payees)
+    {
+        wxListItem item;
+        item.SetId(idx);
+        item.SetData(payee.PAYEEID);
+        payeeListBox_->InsertItem(item);
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
-        wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", payee.PAYEEID)));
-        data.push_back(wxVariant(payee.PAYEENAME));
-        data.push_back(wxVariant(full_category_name));
-        payeeListBox_->AppendItem(data, static_cast<wxUIntPtr>(payee.PAYEEID));
+        payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);
+        payeeListBox_->SetItem(idx, 1, full_category_name);
+        idx++;
     }
-    if (payeeListBox_->GetItemCount() > 0)
-    {
-        auto first = payeeListBox_->RowToItem(0);
-        m_payee_id = payeeListBox_->GetItemData(first);
-    }
+    this->Thaw();
 }
 
-void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& WXUNUSED(event))
+void mmPayeeDialog::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
-    m_payee_rename = m_payee_id;
+    m_payee_id = FindSelectedPayee();
+    EditPayee();
 }
-
 void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
 {
     m_maskStr = event.GetString();
     fillControls();
-}
-
-void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
-{
-    auto payee = Model_Payee::instance().get(m_payee_rename);
-    int col = event.GetColumn();
-    int row = payeeListBox_->ItemToRow(event.GetItem());
-    wxVariant var;
-    payeeListBox_->GetValue(var, row, col);
-    const wxString value = var.GetString();
-    if (value.empty() || value == payee->PAYEENAME) {
-        SetEvtHandlerEnabled(false);
-        payeeListBox_->SetValue(payee->PAYEENAME, row, col);
-        SetEvtHandlerEnabled(true);
-        return event.Veto();
-    }
-
-    Model_Payee::Data_Set payees;
-    auto all_payees = Model_Payee::instance().all();
-    for (const auto& p : all_payees)
-    {
-        if (m_payee_rename != p.PAYEEID && value.CmpNoCase(p.PAYEENAME) == 0)
-            payees.push_back(p);
-    }
-
-    if (payees.empty())
-    {
-        payee->PAYEENAME = value;
-        Model_Payee::instance().save(payee);
-        mmWebApp::MMEX_WebApp_UpdatePayee();
-        refreshRequested_ = true;
-    }
-    else
-    {
-        wxMessageBox(_("Payee with same name exists")
-            , _("Organize Payees: Add Payee"), wxOK | wxICON_ERROR);
-    }
-
-    fillControls();
-}
-
-void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
-{
-    wxDataViewItem item = event.GetItem();
-    int selected_index = payeeListBox_->ItemToRow(item);
-
-    if (selected_index >= 0)
-        m_payee_id = static_cast<int>(payeeListBox_->GetItemData(item));
-}
-
-void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
-{
-    if (m_payee_id > 0 && m_payee_choose)
-        EndModal(wxID_OK);
 }
 
 void mmPayeeDialog::AddPayee()
@@ -257,7 +236,7 @@ void mmPayeeDialog::EditPayee()
         if (name == payee->PAYEENAME) return;
 
         Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(name));
-        if (payees.empty())
+        if (payees.empty() || name.CmpNoCase(payee->PAYEENAME) == 0)
         {
             payee->PAYEENAME = name;
             m_payee_id = Model_Payee::instance().save(payee);
@@ -373,13 +352,16 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
 
 void mmPayeeDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 {
-    wxDataViewEvent evt;
+    wxListEvent evt;
     OnItemRightClick(evt);
 }
 
-void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
+void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
 {
     if (!m_magicButton->IsEnabled()) return;
+
+    m_payee_id = FindSelectedPayee();
+
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
     evt.SetEventObject(this);
 
@@ -413,32 +395,30 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     event.Skip();
 }
 
-void mmPayeeDialog::OnSorted(wxDataViewEvent& event)
+void mmPayeeDialog::OnSort(wxListEvent& event)
 {
-    int row = payeeListBox_->GetSelectedRow();
-    if (row != wxNOT_FOUND)
-        payeeListBox_->UnselectRow(row);
+    if (0 == event.GetColumn())
+    {
+        if (m_sortByPayee)
+            m_sortReverse = !m_sortReverse;
+        m_sortByPayee = true;
+    } else
+    {
+        if (!m_sortByPayee)
+            m_sortReverse = !m_sortReverse;
+        m_sortByPayee = false;
+    }
+    fillControls();
 }
 
 void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
 {
+    m_payee_id = -1;
     EndModal(wxID_CANCEL);
 }
 
 void mmPayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    if (payeeListBox_->GetItemCount() < 1)
-    {
-        AddPayee();
-    }
-    else if (payeeListBox_->GetSelectedItemsCount() > 0)
-    {
-        EndModal(wxID_OK);
-    }
-    else if (payeeListBox_->GetItemCount() > 0)
-    {
-        auto first = payeeListBox_->RowToItem(0);
-        m_payee_id = payeeListBox_->GetItemData(first);
-        EndModal(wxID_OK);
-    }
+    m_payee_id = FindSelectedPayee();
+    EndModal(wxID_OK);
 }
