@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-18 12:44\n"
+"PO-Revision-Date: 2022-01-18 13:18\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -6817,7 +6817,8 @@ msgstr ""
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Bạn chưa sử dụng tên đối tượng giao dịch này trước đây. Tên có chính xác không?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:361 transdialog.cpp:670
 msgid "Confirm payee name"
