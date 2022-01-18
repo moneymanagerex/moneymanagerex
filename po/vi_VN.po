@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-18 12:38\n"
+"PO-Revision-Date: 2022-01-18 12:44\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -3661,7 +3661,7 @@ msgstr "Mách bạn: Tệp .mmb không được mã hóa nên ai biết cách c�
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "Mẹo: Để đánh dấu một giao dịch là đã được điều chỉnh, chỉ cần chọn giao dịch và nhấn phím 'r' hoặc 'R'. Để đánh dấu một giao dịch là chưa được đối chiếu, chỉ cần chọn giao dịch và nhấn phím 'u' hoặc 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
@@ -3802,7 +3802,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Xóa các giao dịch \"Chưa đối chiếu\" đã xem"
 
 #: mmchecking_list.cpp:418
 msgid "as Reconciled"
@@ -3848,7 +3848,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:836
 msgid "Unreconciled"
-msgstr ""
+msgstr "Chưa đối chiếu"
 
 #: mmchecking_list.cpp:879
 #, c-format
@@ -3860,7 +3860,8 @@ msgstr[0] ""
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Giao dịch đã khóa cho đến ngày: %s\n\n"
+"Các giao dịch được đối chiếu."
 
 #: mmchecking_list.cpp:937 transdialog.cpp:732 transdialog.cpp:765
 msgid "MMEX Transaction Check"
