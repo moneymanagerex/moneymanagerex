@@ -230,8 +230,7 @@ wxString mmReportChartStocks::getHTMLText()
             if (dataCount % freq == 0)
             {
                 const wxDate d = Model_StockHistory::DATE(hist);
-                wxString date = mmGetDateForDisplay(d.FormatISODate());
-                gd.labels.push_back(date);
+                gd.labels.push_back(d.FormatISODate());
                 data.values.push_back(hist.VALUE);
             }
             dataCount++;
