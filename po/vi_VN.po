@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-13 12:28+0300\n"
-"PO-Revision-Date: 2022-01-16 07:44\n"
+"PO-Revision-Date: 2022-01-18 12:38\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,7 @@ msgstr "Hạn mức Tín dụng:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Hạn mức tín dụng cho Tài khoản. Số không để tắt"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
@@ -4035,7 +4035,7 @@ msgstr "Tài khoản ngân hàng"
 #: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:634 reports/summary.cpp:286
 #: reports/summary.cpp:318
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Tài Khoản Thẻ Tín Dụng"
 
 #: mmframe.cpp:474 mmframe.cpp:733 mmhomepage.cpp:636 reports/summary.cpp:288
 #: reports/summary.cpp:320
@@ -5191,7 +5191,7 @@ msgstr "Thanh toán"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Thẻ Tín Dụng"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
