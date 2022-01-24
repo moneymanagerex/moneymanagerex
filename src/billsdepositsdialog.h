@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 Stefano Giorgio
  Copyright (C) 2016 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -84,6 +85,7 @@ private:
 
     bool payeeUnknown_;
     bool m_new_bill;
+    bool m_dup_bill;
     bool m_enter_occur;
     bool autoExecuteUserAck_;
     bool autoExecuteSilent_;
