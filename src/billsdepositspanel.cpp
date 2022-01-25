@@ -1,7 +1,7 @@
 ﻿/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2021 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ enum
 {
     MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1300,
     MENU_TREEPOPUP_EDIT,
+    MENU_TREEPOPUP_DUPLICATE,
     MENU_TREEPOPUP_DELETE,
     MENU_POPUP_BD_ENTER_OCCUR,
     MENU_POPUP_BD_SKIP_OCCUR,
@@ -70,6 +71,7 @@ const wxString BILLSDEPOSITS_REPEATS[] =
 wxBEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmBillsDepositsPanel::OnNewBDSeries)
     EVT_BUTTON(wxID_EDIT, mmBillsDepositsPanel::OnEditBDSeries)
+    EVT_BUTTON(wxID_DUPLICATE, mmBillsDepositsPanel::OnDuplicateBDSeries)    
     EVT_BUTTON(wxID_DELETE, mmBillsDepositsPanel::OnDeleteBDSeries)
     EVT_BUTTON(wxID_PASTE, mmBillsDepositsPanel::OnEnterBDTransaction)
     EVT_BUTTON(wxID_IGNORE, mmBillsDepositsPanel::OnSkipBDTransaction)
@@ -85,6 +87,7 @@ wxBEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,              billsDepositsListCtrl::OnNewBDSeries)
     EVT_MENU(MENU_TREEPOPUP_EDIT,             billsDepositsListCtrl::OnEditBDSeries)
+    EVT_MENU(MENU_TREEPOPUP_DUPLICATE,        billsDepositsListCtrl::OnDuplicateBDSeries)
     EVT_MENU(MENU_TREEPOPUP_DELETE,           billsDepositsListCtrl::OnDeleteBDSeries)
     EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,       billsDepositsListCtrl::OnEnterBDTransaction)
     EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,        billsDepositsListCtrl::OnSkipBDTransaction)
@@ -105,6 +108,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     {
         wxAcceleratorEntry(wxACCEL_CTRL, 'N', MENU_TREEPOPUP_NEW),   
         wxAcceleratorEntry(wxACCEL_CTRL, 'E', MENU_TREEPOPUP_EDIT), 
+        wxAcceleratorEntry(wxACCEL_CTRL, 'U', MENU_TREEPOPUP_DUPLICATE), 
         wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_TREEPOPUP_DELETE),               
         wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
         wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
@@ -290,6 +294,11 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
+    wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _("D&uplicate "));
+    mmToolTip(itemButton82, _("Duplicate Recurring Transaction"));
+    itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 5);
+    itemButton82->Enable(false);
+
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
     mmToolTip(itemButton7, _("Delete Recurring Transaction"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
@@ -372,6 +381,11 @@ void mmBillsDepositsPanel::OnEditBDSeries(wxCommandEvent& event)
     listCtrlAccount_->OnEditBDSeries(event);
 }
 
+void mmBillsDepositsPanel::OnDuplicateBDSeries(wxCommandEvent& event)
+{
+    listCtrlAccount_->OnDuplicateBDSeries(event);
+}
+
 void mmBillsDepositsPanel::OnDeleteBDSeries(wxCommandEvent& event)
 {
     listCtrlAccount_->OnDeleteBDSeries(event);
@@ -416,6 +430,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Recurring Transaction..."));
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Recurring Transaction..."));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Recurring Transaction..."));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
@@ -423,6 +438,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
     menu.Enable(MENU_TREEPOPUP_EDIT, item_active);
+    menu.Enable(MENU_TREEPOPUP_DUPLICATE, item_active);
     menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
 
@@ -636,6 +652,15 @@ void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
+    mmBDDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, false, false);
+    if ( dlg.ShowModal() == wxID_OK )
+        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
+}
+
+void billsDepositsListCtrl::OnDuplicateBDSeries(wxCommandEvent& /*event*/)
+{
+    if (m_selected_row == -1) return;
+
     mmBDDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, true, false);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
@@ -711,7 +736,7 @@ void billsDepositsListCtrl::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
-    mmBDDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, true, false);
+    mmBDDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, false, false);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
@@ -730,11 +755,13 @@ void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
 {
     wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
     wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    wxButton* bDup = static_cast<wxButton*>(FindWindow(wxID_DUPLICATE));
     wxButton* bN = static_cast<wxButton*>(FindWindow(wxID_PASTE));
     wxButton* bS = static_cast<wxButton*>(FindWindow(wxID_IGNORE));
     wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_FILE));
     if (bE) bE->Enable(en);
     if (bD) bD->Enable(en);
+    if (bDup) bDup->Enable(en);
     if (bN) bN->Enable(en);
     if (bS) bS->Enable(en);
     if (bA) bA->Enable(en);
