@@ -108,6 +108,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     {
         wxAcceleratorEntry(wxACCEL_CTRL, 'N', MENU_TREEPOPUP_NEW),   
         wxAcceleratorEntry(wxACCEL_CTRL, 'E', MENU_TREEPOPUP_EDIT), 
+        wxAcceleratorEntry(wxACCEL_CTRL, 'U', MENU_TREEPOPUP_DUPLICATE), 
         wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_TREEPOPUP_DELETE),               
         wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
         wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
@@ -429,7 +430,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Recurring Transaction..."));
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction..."));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("Duplicate Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Recurring Transaction..."));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Recurring Transaction..."));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
