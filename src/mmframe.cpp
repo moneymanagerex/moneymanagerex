@@ -4,7 +4,7 @@
  Copyright (C) 2013 - 2021 Nikolay Akimov
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -2384,6 +2384,9 @@ void mmGUIFrame::refreshPanelData()
         break;
     case mmID_ALLTRANSACTIONS:
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
+        break;
+    case mmID_STOCKS:
+        wxDynamicCast(panelCurrent_, mmStocksPanel)->RefreshList();
         break;
     case mmID_ASSETS:
         break;
