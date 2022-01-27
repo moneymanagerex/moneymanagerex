@@ -773,22 +773,27 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     if (key == wxKeyCode('R')) {
+        // Reconcilled
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
         OnMarkTransaction(evt);
     }
-    else if (key == wxKeyCode('U')) {
+    else if ((key == wxKeyCode('U')) || (key == wxKeyCode('N'))) {
+        // Unreconcilled / None
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('F')) {
+        // Follow-up
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('D')) {
+        // Duplicate
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('V')) {
+        // Void
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
