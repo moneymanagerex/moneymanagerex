@@ -1000,8 +1000,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     int transaction_id = m_selected_id[0];
     Model_Checking::Data* checking_entry = Model_Checking::instance().get(transaction_id);
 
-    if (TransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE))
-    {
+    if (TransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE)) {
         return;
     }
 
@@ -1016,13 +1015,17 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
                 refreshVisualList(transaction_id);
             }
         }
-        else
+        else if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::ASSET))
         {
             mmAssetDialog dlg(this, m_cp->m_frame, &translink, checking_entry);
             if (dlg.ShowModal() == wxID_OK)
             {
                 refreshVisualList(transaction_id);
             }
+        }
+        else
+        {
+            wxASSERT(false);
         }
     }
     else
