@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-29 00:14+0300\n"
-"PO-Revision-Date: 2022-01-28 21:16\n"
+"PO-Revision-Date: 2022-01-28 21:31\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "Ежемесячно (последний рабочий день)"
 
 #: billsdepositsdialog.cpp:311 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Дублировать повторяющуюся транзакцию"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1284,7 +1284,7 @@ msgstr "&Редактировать повторяющуюся транзакц�
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "&Удалить повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -3867,19 +3867,19 @@ msgstr "Удалить показанные не выверенные транз
 
 #: mmchecking_list.cpp:418
 msgid "as Reconciled"
-msgstr "выверено"
+msgstr "как выверенные"
 
 #: mmchecking_list.cpp:420
 msgid "as Unreconciled"
-msgstr "не выверено"
+msgstr "как не выверенные"
 
 #: mmchecking_list.cpp:422
 msgid "as Void"
-msgstr "не учитывать"
+msgstr "как удалённые"
 
 #: mmchecking_list.cpp:424
 msgid "as Follow Up"
-msgstr ""
+msgstr "как отслеживаемые"
 
 #: mmchecking_list.cpp:426
 msgid "as Duplicate"
