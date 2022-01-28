@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2016 - 2021 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -43,12 +43,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 static const wxString TRANSACTION_STATUSES[] =
 {
-    wxTRANSLATE("None"),
+    wxTRANSLATE("Unreconciled"),
     wxTRANSLATE("Reconciled"),
     wxTRANSLATE("Void"),
-    wxTRANSLATE("Follow up"),
+    wxTRANSLATE("Follow Up"),
     wxTRANSLATE("Duplicate"),
-    wxTRANSLATE("Un-Reconciled"),
     wxTRANSLATE("All Except Reconciled")
 };
 
@@ -841,7 +840,7 @@ wxString mmFilterTransactionsDialog::getStatus() const
     wxStringClientData* status_obj =
         static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj) status = status_obj->GetData().Left(1);
-    status.Replace("N", "");
+    status.Replace("U", "");
     return status;
 }
 
@@ -855,10 +854,6 @@ bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
     else if ("A" == filterStatus) // All Except Reconciled
     {
         return "R" != itemStatus;
-    }
-    else if ("U" == filterStatus) // Un-Reconciled
-    {
-        return itemStatus.empty() || "N" == itemStatus;
     }
     return false;
 }
@@ -1255,7 +1250,6 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
     if (statusCheckBox_->IsChecked())
     {
         wxArrayString s = Model_Checking::all_status();
-        s.Add(wxTRANSLATE("Un-Reconciled"));
         s.Add(wxTRANSLATE("All Except Reconciled"));
         int item = choiceStatus_->GetSelection();
         wxString status;

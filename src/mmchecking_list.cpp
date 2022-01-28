@@ -421,7 +421,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Followup"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Follow Up"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
@@ -777,13 +777,13 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
         OnMarkTransaction(evt);
     }
-    else if ((key == wxKeyCode('U')) || (key == wxKeyCode('N'))) {
-        // Unreconcilled / None
+    else if (key == wxKeyCode('U')) {
+        // Unreconcilled
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('F')) {
-        // Follow-up
+        // Follow Up
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
         OnMarkTransaction(evt);
     }

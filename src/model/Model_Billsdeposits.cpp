@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021,2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -36,10 +36,10 @@ const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsde
 
 const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_Billsdeposits::STATUS_ENUM_CHOICES =
 {
-    {Model_Billsdeposits::NONE, wxString(wxTRANSLATE("None"))}
+    {Model_Billsdeposits::NONE, wxString(wxTRANSLATE("Unreconciled"))}
     , {Model_Billsdeposits::RECONCILED, wxString(wxTRANSLATE("Reconciled"))}
     , {Model_Billsdeposits::VOID_, wxString(wxTRANSLATE("Void"))}
-    , {Model_Billsdeposits::FOLLOWUP, wxString(wxTRANSLATE("Follow up"))}
+    , {Model_Billsdeposits::FOLLOWUP, wxString(wxTRANSLATE("Follow Up"))}
     , {Model_Billsdeposits::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
@@ -173,7 +173,7 @@ Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const Data* r)
 wxString Model_Billsdeposits::toShortStatus(const wxString& fullStatus)
 {
     wxString s = fullStatus.Left(1);
-    s.Replace("N", "");
+    s.Replace("U", "");
     return s;
 }
 

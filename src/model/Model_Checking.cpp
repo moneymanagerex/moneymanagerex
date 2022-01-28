@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -33,10 +34,10 @@ const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TY
 
 const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Checking::STATUS_ENUM_CHOICES =
 {
-    {Model_Checking::NONE, wxTRANSLATE("None")}
+    {Model_Checking::NONE, wxTRANSLATE("Unreconciled")}
     , {Model_Checking::RECONCILED, wxString(wxTRANSLATE("Reconciled"))}
     , {Model_Checking::VOID_, wxString(wxTRANSLATE("Void"))}
-    , {Model_Checking::FOLLOWUP, wxString(wxTRANSLATE("Follow up"))}
+    , {Model_Checking::FOLLOWUP, wxString(wxTRANSLATE("Follow Up"))}
     , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
@@ -309,7 +310,7 @@ bool Model_Checking::is_deposit(const Data* r)
 wxString Model_Checking::toShortStatus(const wxString& fullStatus)
 {
     wxString s = fullStatus.Left(1);
-    s.Replace("N", "");
+    s.Replace("U", "");
     return s;
 }
 
