@@ -415,17 +415,17 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     wxMenu* subGlobalOpMenuMark = new wxMenu();
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("as Reconciled"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("as Unreconciled"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Unreconciled"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Reconciled"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Void"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Follow Up"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Follow Up"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Duplicate"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-    menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark all being selected"));
+    menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark as"));
 
     // Disable menu items not ment for foreign transactions
     if (is_foreign)
@@ -773,12 +773,12 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     if (key == wxKeyCode('R')) {
-        // Reconcilled
+        // Reconciled
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('U')) {
-        // Unreconcilled
+        // Unreconciled
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
         OnMarkTransaction(evt);
     }
