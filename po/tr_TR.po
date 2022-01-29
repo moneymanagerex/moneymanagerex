@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-01-29 00:14+0300\n"
-"PO-Revision-Date: 2022-01-28 21:16\n"
+"POT-Creation-Date: 2022-01-30 00:59+0300\n"
+"PO-Revision-Date: 2022-01-29 22:09\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2342,28 +2342,28 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: filtertransdialog.cpp:46 mmchecking_list.cpp:841
+#: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:841
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
 msgstr ""
 
-#: filtertransdialog.cpp:47 mmhomepage.cpp:647 model/Model_Billsdeposits.cpp:40
-#: model/Model_Checking.cpp:38
+#: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
+#: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
 msgid "Reconciled"
 msgstr "Onaylanmış"
 
-#: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:41
-#: model/Model_Checking.cpp:39
+#: filtertransdialog.cpp:48 mmchecking_list.cpp:422
+#: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
 msgid "Void"
 msgstr "Hükümsüz"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:830
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:424 mmchecking_list.cpp:830
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
 msgstr ""
 
-#: filtertransdialog.cpp:50 model/Model_Billsdeposits.cpp:43
-#: model/Model_Checking.cpp:41
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:426
+#: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
 msgstr "EşKopya"
 
@@ -3844,28 +3844,8 @@ msgstr ""
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:418
-msgid "as Reconciled"
-msgstr "Onaylanmış olarak"
-
-#: mmchecking_list.cpp:420
-msgid "as Unreconciled"
-msgstr "Onaylanmamış olarak"
-
-#: mmchecking_list.cpp:422
-msgid "as Void"
-msgstr "Hükümsüz olarak"
-
-#: mmchecking_list.cpp:424
-msgid "as Follow Up"
-msgstr ""
-
-#: mmchecking_list.cpp:426
-msgid "as Duplicate"
-msgstr "Eşkopya olarak"
-
 #: mmchecking_list.cpp:428
-msgid "Mark all being selected"
+msgid "Mark as"
 msgstr ""
 
 #: mmchecking_list.cpp:819
