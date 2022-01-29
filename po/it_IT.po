@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-29 00:14+0300\n"
-"PO-Revision-Date: 2022-01-28 21:16\n"
+"PO-Revision-Date: 2022-01-29 09:47\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "Mensile (ultimo g. lavor.)"
 
 #: billsdepositsdialog.cpp:311 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Duplica Transazione Ricorrente"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1285,7 +1285,7 @@ msgstr "&Modifica operazione ricorrente..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&Uplica Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -3862,7 +3862,7 @@ msgstr "come Nulla"
 
 #: mmchecking_list.cpp:424
 msgid "as Follow Up"
-msgstr ""
+msgstr "segna come da monitorare"
 
 #: mmchecking_list.cpp:426
 msgid "as Duplicate"
