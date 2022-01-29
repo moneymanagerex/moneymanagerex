@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-01-29 00:14+0300\n"
-"PO-Revision-Date: 2022-01-28 21:16\n"
+"POT-Creation-Date: 2022-01-30 00:59+0300\n"
+"PO-Revision-Date: 2022-01-29 22:09\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2342,28 +2342,28 @@ msgstr "返回"
 msgid "Color"
 msgstr "颜色"
 
-#: filtertransdialog.cpp:46 mmchecking_list.cpp:841
+#: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:841
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
 msgstr "未核实"
 
-#: filtertransdialog.cpp:47 mmhomepage.cpp:647 model/Model_Billsdeposits.cpp:40
-#: model/Model_Checking.cpp:38
+#: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
+#: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
 msgid "Reconciled"
 msgstr "已核实"
 
-#: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:41
-#: model/Model_Checking.cpp:39
+#: filtertransdialog.cpp:48 mmchecking_list.cpp:422
+#: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
 msgid "Void"
 msgstr "无效"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:830
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:424 mmchecking_list.cpp:830
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
 msgstr "跟进"
 
-#: filtertransdialog.cpp:50 model/Model_Billsdeposits.cpp:43
-#: model/Model_Checking.cpp:41
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:426
+#: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
 msgstr "重复"
 
@@ -3839,29 +3839,9 @@ msgstr "删除已查看“跟进”交易"
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr "删除已查看“未核实”交易"
 
-#: mmchecking_list.cpp:418
-msgid "as Reconciled"
-msgstr "已核实"
-
-#: mmchecking_list.cpp:420
-msgid "as Unreconciled"
-msgstr "未核实"
-
-#: mmchecking_list.cpp:422
-msgid "as Void"
-msgstr "无效"
-
-#: mmchecking_list.cpp:424
-msgid "as Follow Up"
-msgstr ""
-
-#: mmchecking_list.cpp:426
-msgid "as Duplicate"
-msgstr "作为重复"
-
 #: mmchecking_list.cpp:428
-msgid "Mark all being selected"
-msgstr "标记所有被选中"
+msgid "Mark as"
+msgstr ""
 
 #: mmchecking_list.cpp:819
 msgid "Do you really want to delete all the transactions shown?"
