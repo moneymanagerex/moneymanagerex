@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-29 00:14+0300\n"
-"PO-Revision-Date: 2022-01-28 21:16\n"
+"PO-Revision-Date: 2022-01-29 06:05\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "Mensuellement (dernier jour ouvré)"
 
 #: billsdepositsdialog.cpp:311 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Duplication d'une transaction récurrente"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1285,7 +1285,7 @@ msgstr "&Éditer une opération récurrente..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "Duplication d'une transaction récurrente..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -2460,7 +2460,7 @@ msgstr "Options de présentation"
 
 #: filtertransdialog.cpp:428
 msgid "Hide Columns"
-msgstr ""
+msgstr "Masquer les colonnes"
 
 #: filtertransdialog.cpp:439 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1341
@@ -2500,7 +2500,7 @@ msgstr "Les paramètres du filtre ont été modifiés"
 
 #: filtertransdialog.cpp:779
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Masquer les colonnes du rapport"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Please Enter"
@@ -3862,7 +3862,7 @@ msgstr "Nul"
 
 #: mmchecking_list.cpp:424
 msgid "as Follow Up"
-msgstr ""
+msgstr "comme suivi"
 
 #: mmchecking_list.cpp:426
 msgid "as Duplicate"
@@ -6281,7 +6281,7 @@ msgstr "Date de début spécifiée par l'utilisateur"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Les prochaines transactions ont été ignorées"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
