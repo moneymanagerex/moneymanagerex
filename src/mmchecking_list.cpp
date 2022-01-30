@@ -415,17 +415,17 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     wxMenu* subGlobalOpMenuMark = new wxMenu();
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("as Reconciled"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("as Unreconciled"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Unreconciled"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Reconciled"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Void"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Followup"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Follow Up"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Duplicate"));
     if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-    menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark all being selected"));
+    menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark as"));
 
     // Disable menu items not ment for foreign transactions
     if (is_foreign)
@@ -773,22 +773,27 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     if (key == wxKeyCode('R')) {
+        // Reconciled
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('U')) {
+        // Unreconciled
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('F')) {
+        // Follow Up
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('D')) {
+        // Duplicate
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
         OnMarkTransaction(evt);
     }
     else if (key == wxKeyCode('V')) {
+        // Void
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
@@ -1000,8 +1005,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     int transaction_id = m_selected_id[0];
     Model_Checking::Data* checking_entry = Model_Checking::instance().get(transaction_id);
 
-    if (TransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE))
-    {
+    if (TransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE)) {
         return;
     }
 
@@ -1016,13 +1020,17 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
                 refreshVisualList(transaction_id);
             }
         }
-        else
+        else if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::ASSET))
         {
             mmAssetDialog dlg(this, m_cp->m_frame, &translink, checking_entry);
             if (dlg.ShowModal() == wxID_OK)
             {
                 refreshVisualList(transaction_id);
             }
+        }
+        else
+        {
+            wxASSERT(false);
         }
     }
     else

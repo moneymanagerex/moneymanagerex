@@ -16,7 +16,7 @@ curs.execute("select c.CATEGID, ifnull(s.SUBCATEGID, -1) from CATEGORY_V1 as c l
 all_category = [(c[0], c[1]) for c in curs.fetchall()]
 
 all_type = ("Withdrawal", "Deposit", "Transfer")
-all_status = ("V", "R", "N", "F", "D")
+all_status = ("V", "R", "U", "F", "D")
 
 today = date.today()
 

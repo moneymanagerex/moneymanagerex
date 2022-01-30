@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -461,10 +462,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     }
 
     // Now refresh the display
-    int selected_id = -1;
-    if (listCtrlAccount_->get_selectedIndex() > -1)
-        selected_id = listCtrlAccount_->m_stocks[listCtrlAccount_->get_selectedIndex()].STOCKID;
-    listCtrlAccount_->doRefreshItems(selected_id);
+    RefreshList();
 
     // We are done!
     LastRefreshDT_ = wxDateTime::Now();
@@ -593,5 +591,13 @@ void mmStocksPanel::DisplayAccountDetails(int accountID)
     enableEditDeleteButtons(false);
     listCtrlAccount_->initVirtualListControl();
 
+}
+
+void mmStocksPanel::RefreshList()
+{
+    int selected_id = -1;
+    if (listCtrlAccount_->get_selectedIndex() > -1)
+        selected_id = listCtrlAccount_->m_stocks[listCtrlAccount_->get_selectedIndex()].STOCKID;
+    listCtrlAccount_->doRefreshItems(selected_id);
 }
 

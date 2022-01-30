@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 - 2020 Nikolay Akimov
  Copyright (C) 2016 Stefano Giorgio
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -101,9 +101,9 @@ mmBDDialog::mmBDDialog()
 {
 }
 
-mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
+mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOccur)
     : payeeUnknown_(true)
-    , m_new_bill(!edit)
+    , m_dup_bill(duplicate)
     , m_enter_occur(enterOccur)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
@@ -140,7 +140,9 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
 
     if (!m_new_bill)
     {
-        m_bill_data.BDID = bdID;
+        // If duplicate then we will be creating a new identity
+        if (!m_dup_bill) 
+            m_bill_data.BDID = bdID;
         m_bill_data.TRANSDATE = bill->TRANSDATE;
         m_bill_data.ACCOUNTID = bill->ACCOUNTID;
         m_bill_data.TOACCOUNTID = bill->TOACCOUNTID;
@@ -305,7 +307,10 @@ void mmBDDialog::dataToControls()
 
     if (!m_enter_occur)
     {
-        SetDialogHeader(_("Edit Recurring Transaction"));
+        if (m_dup_bill)
+            SetDialogHeader(_("Duplicate Recurring Transaction"));
+        else
+            SetDialogHeader(_("Edit Recurring Transaction"));
     }
     else
     {
@@ -736,7 +741,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
         {
             bPayee_->SetLabelText(payee->PAYEENAME);
             payeeUnknown_ = false;
-            // Only for new transactions: if user want to autofill last category used for payee.
+            // Only for new/duplicate transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
             if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
                 && (Option::instance().TransCategorySelection() == Option::LASTUSED || 
@@ -892,7 +897,7 @@ void mmBDDialog::resetPayeeString()
             m_bill_data.PAYEEID = filtd[0].PAYEEID;
             payeeUnknown_ = false;
 
-            // Only for new transactions: if user want to autofill last category used for payee.
+            // Only for new/duplicate transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
             if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && Option::instance().TransCategorySelection() == Option::LASTUSED && !categUpdated_ && m_bill_data.BDID == 0)
             {
@@ -1048,7 +1053,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (!m_enter_occur)
     {
         Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(m_bill_data.BDID);
-        if (m_new_bill)
+        if (m_new_bill || m_dup_bill)
         {
             bill = Model_Billsdeposits::instance().create();
         }

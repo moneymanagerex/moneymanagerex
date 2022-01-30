@@ -125,7 +125,8 @@ wxString mmReportSummaryByDate::getHTMLText()
 {
     double          balancePerDay[Model_Account::MAX];
     mmHTMLBuilder   hb;
-    wxDate          date, dateStart = wxDate::Today(), dateEnd = wxDate::Today();
+    wxDate          date = wxDate::Today();
+    wxDate dateStart = date, dateEnd = date;
     wxDateSpan      span;
     mmHistoryItem   *pHistItem;
     mmHistoryData   arHistory;
@@ -206,8 +207,10 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
 
     date = dateEnd;
-    while (date.IsLaterThan(dateStart))
+    date.SetDay(1);
+    while (date.IsLaterThan(dateStart)) {
         date -= span;
+    }
     dateStart = date;
 
     //  prepare the dates array
@@ -357,8 +360,8 @@ wxString mmReportSummaryByDate::getHTMLText()
     
     hb.end();
 
-    wxLogDebug("======= mmReportSummaryByDateMontly::getHTMLText =======");
-    wxLogDebug("%s", hb.getHTMLText());
+    //wxLogDebug("======= mmReportSummaryByDateMontly::getHTMLText =======");
+    //wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
 }

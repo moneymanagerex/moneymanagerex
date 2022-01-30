@@ -389,7 +389,6 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
     OptionSettingsHome home_options;
-    int i = Option::instance().getHomePageIncExpRange();
     wxSharedPtr<mmDateRange> date_range(home_options.get_inc_vs_exp_date_range());
 
     double tIncome = 0.0, tExpenses = 0.0;
@@ -756,24 +755,17 @@ const wxString htmlWidgetCurrency::getHtmlText()
     }
     wxString header;
     loop_t contents;
-    for (const auto i : usedRates)
+    for (const auto& i : usedRates)
     {
         row_t r;
         r(L"CURRENCY_SYMBOL") = i.first;
         wxString row;
-        bool before_delim = true;
-        for (const auto j : usedRates)
+        for (const auto& j : usedRates)
         {
-            if (j.first == i.first) before_delim = false;
             double value = j.second / i.second;
-            if (!before_delim && value < 1.0)
-                value = 1 / value;
-            if (before_delim && value > 1.0)
-                value = 1 / value;
-            row += wxString::Format("<td%s>%s</td>"
-                , j.first == i.first ? " class ='active'" : " class='money'"
-                , j.first == i.first ? "" : Model_Currency::toString(
-                    value, nullptr, 4)
+            row += wxString::Format("<td %s>%s</td>"
+                , j.first == i.first ? "class ='active'" : "class='money'"
+                , j.first == i.first ? "" : Model_Currency::toString(value, nullptr, 4)
             );
         }
         header += wxString::Format("<th class='text-center'>%s</th>", i.first);

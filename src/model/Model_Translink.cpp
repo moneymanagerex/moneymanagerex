@@ -121,10 +121,15 @@ bool Model_Translink::HasShares(const int stock_id)
 
 Model_Translink::Data Model_Translink::TranslinkRecord(const int checking_id)
 {
-    Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
-        Model_Translink::CHECKINGACCOUNTID(checking_id));
+    auto i = Model_Translink::CHECKINGACCOUNTID(checking_id);
+    Model_Translink::Data_Set translink_list = Model_Translink::instance().find(i);
 
-    return translink_list.at(0);
+    if (!translink_list.empty())
+        return *translink_list.begin();
+    else {
+        wxSharedPtr<Model_Translink::Data> t(new Model_Translink::Data);
+        return *t;
+    }
 }
 
 void Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE table_type, const int entry_id)
