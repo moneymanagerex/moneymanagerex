@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-29 22:09\n"
+"PO-Revision-Date: 2022-01-30 07:23\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "חודשי (יום עסקים אחרון)"
 
 #: billsdepositsdialog.cpp:311 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "שכפול תנועה מחזורית"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1284,7 +1284,7 @@ msgstr "&עריכת תנועה מחזורית..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "ש&כפול תנועה מחזורית..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -3867,7 +3867,7 @@ msgstr "מחיקת תנועות מוצגות \"לא מותאם\""
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "סימון כ־"
 
 #: mmchecking_list.cpp:819
 msgid "Do you really want to delete all the transactions shown?"
@@ -3995,7 +3995,7 @@ msgstr "הפרש: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "מצג יתרה מסוננת: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
