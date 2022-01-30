@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011-2018 Nikolay Akimov
+ Copyright (C) 2011-2021 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
