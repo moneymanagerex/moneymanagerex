@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-29 22:09\n"
+"PO-Revision-Date: 2022-01-30 12:07\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -841,7 +841,7 @@ msgstr "Monatlich (letzter Arbeitstag)"
 
 #: billsdepositsdialog.cpp:311 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Wiederkehrende Transaktion duplizieren"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1284,7 +1284,7 @@ msgstr "&Wiederkehrende Buchung bearbeiten..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "&Wiederkehrende Transaktion duplizieren..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -3850,7 +3850,7 @@ msgstr "Lösche angezeigte \"nicht abgestimmte\" Buchungen"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "Markieren als"
 
 #: mmchecking_list.cpp:819
 msgid "Do you really want to delete all the transactions shown?"
