@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-31 00:26\n"
+"PO-Revision-Date: 2022-01-31 00:35\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -880,7 +880,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:466 billsdepositsdialog.cpp:1324
 msgid "Payments Left"
-msgstr ""
+msgstr "Thanh toán còn lại"
 
 #: billsdepositsdialog.cpp:480
 msgid "Request user to enter payment"
@@ -1209,11 +1209,11 @@ msgstr "Tần suất"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr ""
+msgstr "Sự lặp lại"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
-msgstr ""
+msgstr "Tự động lập lại"
 
 #: billsdepositspanel.cpp:143 mmhomepage.cpp:363
 msgid "Payment"
@@ -1286,7 +1286,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:482
 msgid "Manual"
-msgstr ""
+msgstr "Thủ công"
 
 #: billsdepositspanel.cpp:486
 msgid "Suggested"
@@ -1306,7 +1306,7 @@ msgstr[0] ""
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:608
 #: billsdepositspanel.cpp:615 billsdepositspanel.cpp:619
 msgid "Inactive"
-msgstr ""
+msgstr "Không hoạt động"
 
 #: billsdepositspanel.cpp:546 mmhomepage.cpp:319
 #, c-format
