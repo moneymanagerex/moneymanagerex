@@ -93,10 +93,10 @@ mmCurrentMonthToDate::mmCurrentMonthToDate()
 mmLastMonth::mmLastMonth()
 : mmDateRange()
 {
-    this->findEndOfMonth();
     this->end_date_.Subtract(wxDateSpan::Months(1));
-    this->findBeginOfMonth();
+    this->findEndOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(1));
+    this->findBeginOfMonth();
     this->title_ = wxTRANSLATE("Last Month");
 }
 
