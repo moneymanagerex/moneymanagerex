@@ -25,6 +25,9 @@
 #include "constants.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
+#include <iomanip>
+#include <ios>
+
 
 namespace tags
 {
