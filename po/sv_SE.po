@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-29 22:09\n"
+"PO-Revision-Date: 2022-01-30 20:24\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3836,7 +3836,7 @@ msgstr "Ta bort visade transaktioner \"Oförenliga\""
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "Markera som"
 
 #: mmchecking_list.cpp:819
 msgid "Do you really want to delete all the transactions shown?"
