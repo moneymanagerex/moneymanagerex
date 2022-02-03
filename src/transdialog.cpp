@@ -569,32 +569,37 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flagsH);
 
-    // Attachments ---------------------------------------------
+    // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
     mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
 
-    // Colours ---------------------------------------------
+    // Colours
     bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAttachments_->GetSize(), 0);
     //bColours->SetBackgroundColour(mmColors::userDefColor1);
     mmToolTip(bColours_, _("User Colors"));
 
-
-    // Notes ---------------------------------------------
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
+    // Frequently Used Notes
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...", wxDefaultPosition, bAttachments_->GetSize(), 0);
     mmToolTip(bFrequentUsedNotes, _("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 
+    // Now display the Frequently Used Notes, Colour, Attachment buttons
+    wxBoxSizer* notes_sizer = new wxBoxSizer(wxHORIZONTAL); 
+    flex_sizer->Add(notes_sizer);
+    notes_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
+    notes_sizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flagsH));
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
-    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
     RightAlign_sizer->Add(bColours_, wxSizerFlags().Border(wxRIGHT, 5));
-    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxRIGHT, 5));
+    RightAlign_sizer->Add(bAttachments_, wxSizerFlags());
 
-    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "", wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight() * 5), wxTE_MULTILINE);
+    // Notes
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
+        , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight() * 5), wxTE_MULTILINE);
+    mmToolTip(textNotes_, _("Specify any text notes you want to add to this transaction."));
     box_sizer_left->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
