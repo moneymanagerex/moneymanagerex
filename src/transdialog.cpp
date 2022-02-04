@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011-2021 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -156,8 +156,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         }
     }
 
-    int ref_id = m_trx_data.TRANSID;
-    if (m_duplicate || m_new_trx) ref_id = -1;
+    int ref_id = (m_new_trx) ? -1 : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
