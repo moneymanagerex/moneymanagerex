@@ -299,8 +299,8 @@ void mmUnivCSVDialog::CreateControls()
 
     date_format_ = Option::instance().getDateFormat();
     choiceDateFormat_ = new wxChoice(itemPanel7, ID_DATE_FORMAT);
-    initDateMask();
     flex_sizer->Add(choiceDateFormat_, g_flagsH);
+    initDateMask();
 
     // CSV Delimiter
     if (IsCSV())
@@ -475,7 +475,7 @@ void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
     SetSettings(GetStoredSettings(event.GetSelection()));
 }
 
-wxString mmUnivCSVDialog::GetStoredSettings(int id)
+const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 {
     if (id < 0) id = 0;
     const wxString& setting_id = wxString::Format(GetSettingsPrfix() + "%d", id);
@@ -515,6 +515,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             const wxString mask = it->second;
             choiceDateFormat_->SetStringSelection(mask);
             date_format_ = df;
+            m_userDefinedDateMask = true;
         }
         else {
             wxLogDebug("Unrecognized DATE_MASK %s", df);
