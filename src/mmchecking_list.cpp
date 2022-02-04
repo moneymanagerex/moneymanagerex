@@ -726,7 +726,8 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
-    Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
+    //TODO: the clone function can't clone split transactions, or custom data
+    Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
     if ((Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) ||
             (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID))
@@ -734,6 +735,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     int transactionID = Model_Checking::instance().save(copy);
     m_pasted_id.push_back(transactionID);   // add the newly pasted transaction
 
+    // Clone split transactions
     Model_Splittransaction::Cache copy_split;
     for (const auto& split_item : Model_Checking::splittransaction(tran))
     {
@@ -742,6 +744,22 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
         copy_split.push_back(copy_split_item);
     }
     Model_Splittransaction::instance().save(copy_split);
+
+    // Clone duplicate custom fields
+    const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(tran->TRANSID));
+    if (data_set.size() > 0)
+    {
+        Model_CustomFieldData::instance().Savepoint();
+        for (const auto& item : data_set)
+        {
+            Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().create();
+            fieldData->FIELDID = item.FIELDID;
+            fieldData->REFID = transactionID;
+            fieldData->CONTENT = item.CONTENT;
+            Model_CustomFieldData::instance().save(fieldData);
+        }
+        Model_CustomFieldData::instance().ReleaseSavepoint();
+    }
 
     return transactionID;
 }
