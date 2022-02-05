@@ -55,7 +55,6 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
     EVT_COMBOBOX(ID_DIALOG_TRANS_PAYEECOMBO, mmTransDialog::OnAccountOrPayeeUpdated)
-    EVT_TEXT_ENTER(ID_DIALOG_TRANS_PAYEECOMBO, mmTransDialog::OnPayeeDialog)
     EVT_COMBOBOX(ID_DIALOG_TRANS_FROMACCOUNT, mmTransDialog::OnFromAccountUpdated)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
@@ -77,7 +76,7 @@ void mmTransDialog::SetEventHandlers()
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
     cbAccount_->Connect(ID_DIALOG_TRANS_FROMACCOUNT, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnFromAccountUpdated), nullptr, this);
-    cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboTabAction, this);
+    cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboKey, this);
     m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
@@ -537,8 +536,7 @@ void mmTransDialog::CreateControls()
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
-    cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-        0, NULL, wxTE_PROCESS_ENTER );
+    cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO);
 
     cbPayee_->SetMaxSize(cbAccount_->GetSize());
 
@@ -1008,39 +1006,33 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& WXUNUSED(event))
     OnFocusChange(evt);
 }
 
-void mmTransDialog::OnComboTabAction(wxKeyEvent& event)
+void mmTransDialog::OnComboKey(wxKeyEvent& event)
 {
-    if (event.GetKeyCode() == WXK_TAB)
+    if (event.GetKeyCode() == WXK_RETURN)
     {
-        if (wxIsShiftDown())
-            cbPayee_->Navigate(wxNavigationKeyEvent::IsBackward);
-        else 
-            cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
+        if (!m_transfer)
+        {
+            const auto payeeName = cbPayee_->GetValue();
+            if (payeeName.empty())
+            {
+                mmPayeeDialog dlg(this, true);
+                dlg.DisableTools();
+                dlg.ShowModal();
+
+                int payee_id = dlg.getPayeeId();
+                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                if (payee)
+                {
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
+                    cbPayee_->SetInsertionPointEnd();
+                }
+            }
+            else
+                cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
+        }
     }
     else
         event.Skip();
-}
-
-void mmTransDialog::OnPayeeDialog(wxCommandEvent& event)
-{
-    if (!m_transfer)
-    {
-        wxString payeeName = event.GetString();
-        if (payeeName.empty())
-        {
-            mmPayeeDialog dlg(this, true);
-            dlg.DisableTools();
-            dlg.ShowModal();
-
-            int payee_id = dlg.getPayeeId();
-            Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
-            if (payee)
-            {
-                cbPayee_->ChangeValue(payee->PAYEENAME);
-                cbPayee_->SetInsertionPointEnd();
-            }
-        }
-    }
 }
 
 #if defined (__WXMAC__) 
