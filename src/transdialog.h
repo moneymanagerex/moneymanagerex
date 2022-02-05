@@ -86,6 +86,8 @@ private:
     void OnColourButton(wxCommandEvent& event);
     void OnColourSelected(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
+    void OnPayeeDialog(wxCommandEvent& event);
+    void OnComboTabAction(wxKeyEvent& event);
     void OnFromAccountUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
