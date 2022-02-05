@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011-2021 Nikolay Akimov
+ Copyright (C) 2011-2022 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
@@ -28,6 +28,7 @@
 #include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
 #include "paths.h"
+#include "payeedialog.h"
 #include "splittransactionsdialog.h"
 #include "util.h"
 #include "validators.h"
@@ -75,6 +76,7 @@ void mmTransDialog::SetEventHandlers()
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
     cbAccount_->Connect(ID_DIALOG_TRANS_FROMACCOUNT, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnFromAccountUpdated), nullptr, this);
+    cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboKey, this);
     m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
@@ -535,6 +537,7 @@ void mmTransDialog::CreateControls()
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO);
+
     cbPayee_->SetMaxSize(cbAccount_->GetSize());
 
     flex_sizer->Add(payee_label_, g_flagsH);
@@ -568,27 +571,28 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flagsH);
 
-    // Attachments
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
-
-    // Colours
-    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAttachments_->GetSize(), 0);
-    //bColours->SetBackgroundColour(mmColors::userDefColor1);
-    mmToolTip(bColours_, _("User Colors"));
-
     // Frequently Used Notes
-    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...", wxDefaultPosition, bAttachments_->GetSize(), 0);
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+        , "...", wxDefaultPosition, bAuto->GetSize(), 0);
     mmToolTip(bFrequentUsedNotes, _("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 
+    // Colours
+    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAuto->GetSize(), 0);
+    //bColours->SetBackgroundColour(mmColors::userDefColor1);
+    mmToolTip(bColours_, _("User Colors"));
+
+    // Attachments
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
+    mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
+
     // Now display the Frequently Used Notes, Colour, Attachment buttons
     wxBoxSizer* notes_sizer = new wxBoxSizer(wxHORIZONTAL); 
     flex_sizer->Add(notes_sizer);
     notes_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
-    notes_sizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flagsH));
+    notes_sizer->Add(bFrequentUsedNotes, g_flagsH);
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
@@ -1002,6 +1006,34 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& WXUNUSED(event))
     OnFocusChange(evt);
 }
 
+void mmTransDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        if (!m_transfer)
+        {
+            const auto payeeName = cbPayee_->GetValue();
+            if (payeeName.empty())
+            {
+                mmPayeeDialog dlg(this, true);
+                dlg.DisableTools();
+                dlg.ShowModal();
+
+                int payee_id = dlg.getPayeeId();
+                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                if (payee)
+                {
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
+                    cbPayee_->SetInsertionPointEnd();
+                }
+            }
+            else
+                cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
+        }
+    }
+    else
+        event.Skip();
+}
 
 #if defined (__WXMAC__) 
 void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& event)
