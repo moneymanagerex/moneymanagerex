@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-29 22:09\n"
+"PO-Revision-Date: 2022-02-05 13:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "每月（过去营业日）"
 
 #: billsdepositsdialog.cpp:311 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "删除重复交易"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1285,7 +1285,7 @@ msgstr "编辑周期性交易(&E)..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "删除重复交易(&D)..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -3841,7 +3841,7 @@ msgstr "删除已查看“未核实”交易"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "标记为"
 
 #: mmchecking_list.cpp:819
 msgid "Do you really want to delete all the transactions shown?"
