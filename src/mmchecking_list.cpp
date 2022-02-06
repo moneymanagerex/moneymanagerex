@@ -761,6 +761,13 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
         Model_CustomFieldData::instance().ReleaseSavepoint();
     }
 
+    // Clone attachments if wanted
+    if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        mmAttachmentManage::CloneAllAttachments(RefType, tran->TRANSID, transactionID);
+    }
+
     return transactionID;
 }
 

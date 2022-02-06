@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -52,6 +53,7 @@ private:
     wxCheckBox* m_attachments_subfolder;
     wxCheckBox* m_delete_attachments;
     wxCheckBox* m_trash_attachments;
+    wxCheckBox* m_duplicate_attachments;
     wxString m_old_path;
 
     enum
