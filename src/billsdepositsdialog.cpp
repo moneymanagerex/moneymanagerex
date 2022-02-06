@@ -163,6 +163,12 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
             m_bill_data.local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
         }
+        // If duplicate then copy the attachments
+        if (m_dup_bill)
+        {
+            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+            mmAttachmentManage::CloneAllAttachments(RefType, bdID, 0);
+        }
     }
 
     m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
