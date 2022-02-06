@@ -17,9 +17,9 @@
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.5.14)
+set(MMEX_VERSION 1.5.13)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 1)
+SET(MMEX_VERSION_BETA -1)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
