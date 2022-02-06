@@ -187,17 +187,15 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 
 double StocksListCtrl::GetGainLoss(long item) const
 {
-    return GetGainLoss(m_stocks[item]);
+    return getGainLoss(m_stocks[item]);
 }
 
-double StocksListCtrl::GetGainLoss(const Model_Stock::Data& stock)
+double StocksListCtrl::getGainLoss(const Model_Stock::Data& stock)
 {
-    if (stock.PURCHASEPRICE == 0)
-    {
+    if (stock.PURCHASEPRICE == 0) {
         return stock.NUMSHARES * stock.CURRENTPRICE - (stock.VALUE + stock.COMMISSION);
     }
-    else
-    {
+    else {
         return stock.NUMSHARES * stock.CURRENTPRICE - ((stock.NUMSHARES * stock.PURCHASEPRICE) + stock.COMMISSION);
     }
 }
@@ -453,4 +451,68 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 
     SetItemCount(m_stocks.size());
     return selected_item;
+}
+
+void StocksListCtrl::sortTable()
+{
+    std::sort(m_stocks.begin(), m_stocks.end());
+    switch (m_selected_col)
+    {
+    case StocksListCtrl::COL_ID:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
+        break;
+    case StocksListCtrl::COL_DATE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
+        break;
+    case StocksListCtrl::COL_NAME:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
+        break;
+    case StocksListCtrl::COL_SYMBOL:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+        break;
+    case StocksListCtrl::COL_NUMBER:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
+        break;
+    case StocksListCtrl::COL_PRICE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
+        break;
+    case StocksListCtrl::COL_VALUE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
+            {
+                return x.VALUE < y.VALUE;
+            });
+        break;
+    case StocksListCtrl::COL_GAIN_LOSS:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
+            {
+                return getGainLoss(x) < getGainLoss(y);
+            });
+        break;
+    case StocksListCtrl::COL_CURRENT:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
+        break;
+    case StocksListCtrl::COL_CURRVALUE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
+            {
+                double valueX = Model_Stock::CurrentValue(x);
+                double valueY = Model_Stock::CurrentValue(y);
+                return valueX < valueY;
+            });
+        break;
+    case StocksListCtrl::COL_PRICEDATE:
+        //TODO
+        break;
+    case StocksListCtrl::COL_COMMISSION:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
+        break;
+    case StocksListCtrl::COL_NOTES:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
+        break;
+    default:
+        break;
+    }
+    if (!m_asc) std::reverse(m_stocks.begin(), m_stocks.end());
 }

@@ -25,6 +25,9 @@
 #include "constants.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
+#include <iomanip>
+#include <ios>
+
 
 namespace tags
 {
@@ -511,7 +514,7 @@ void mmHTMLBuilder::endTableCell()
 void mmHTMLBuilder::addChart(const GraphData& gd)
 {
     int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    int round = pow10(precision);
+    int k = pow10(precision);
     wxString htmlChart, htmlPieData;
     wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
  
@@ -625,16 +628,18 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         first = true;
         for (const auto& item : entry.values)
         {
-            double v = (floor(item * round) / round);
+            long double v = item * k;
+            v = round(v) / k;
 
             // avoid locale usage with standard printf functionality. Always want 00000.00 format
             std::ostringstream oss;
             oss.imbue(std::locale::classic());
-            
-            oss << fabs(v);
+
+            oss << std::fixed << std::setprecision(precision) << fabs(v);
             wxString valueAbs = oss.str();
+
             oss.str(std::string());
-            oss << v;
+            oss << std::fixed << std::setprecision(precision) << v;
             wxString value = oss.str();
 
             if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)

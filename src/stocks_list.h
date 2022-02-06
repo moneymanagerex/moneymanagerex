@@ -45,9 +45,9 @@ public:
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnStockWebPage(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    long get_selectedIndex() { return m_selected_row; }
-    int getColumnsNumber() { return COL_MAX; }
-    int col_sort() { return COL_DATE; }
+    long get_selectedIndex();
+    int getColumnsNumber();
+    int col_sort();
     wxString getStockInfo(int selectedIndex) const;
     /* Helper Functions/data */
     Model_Stock::Data_Set m_stocks;
@@ -89,8 +89,12 @@ private:
     };
     wxImageList* m_imageList;
     double GetGainLoss(long item) const;
-    static double GetGainLoss(const Model_Stock::Data& stock);
+    static double getGainLoss(const Model_Stock::Data& stock);
     void sortTable();
 };
+
+inline long StocksListCtrl::get_selectedIndex() { return m_selected_row; }
+inline int StocksListCtrl::getColumnsNumber() { return COL_MAX; }
+inline int StocksListCtrl::col_sort() { return COL_DATE; }
 
 #endif

@@ -260,12 +260,19 @@ wxString mmReportSummaryByDate::getHTMLText()
         }
 
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::CASH]);
+        gs_data[0].values.push_back(balancePerDay[Model_Account::CASH]);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::CHECKING]);
+        gs_data[1].values.push_back(balancePerDay[Model_Account::CHECKING]);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::CREDIT_CARD]);
+        gs_data[2].values.push_back(balancePerDay[Model_Account::CREDIT_CARD]);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::LOAN]);
+        gs_data[3].values.push_back(balancePerDay[Model_Account::LOAN]);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::TERM]);
+        gs_data[4].values.push_back(balancePerDay[Model_Account::TERM]);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::ASSET]);
+        gs_data[5].values.push_back(balancePerDay[Model_Account::ASSET]);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::SHARES]);
+        gs_data[6].values.push_back(balancePerDay[Model_Account::SHARES]);
 
         for (int i = 0; i < Model_Account::MAX; i++) {
             if (i != Model_Account::INVESTMENT)
@@ -274,12 +281,10 @@ wxString mmReportSummaryByDate::getHTMLText()
 
         totBalanceEntry.values.push_back(total);
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::INVESTMENT]);
+        gs_data[7].values.push_back(balancePerDay[Model_Account::INVESTMENT]);
         total += balancePerDay[Model_Account::INVESTMENT];
         totBalanceEntry.values.push_back(total);
         totBalanceData.push_back(totBalanceEntry);
-
-        for (int i=0; i<Model_Account::MAX; i++)
-            gs_data[i].values.push_back(balancePerDay[i]);
     }
 
     //Chart
@@ -301,8 +306,8 @@ wxString mmReportSummaryByDate::getHTMLText()
                 wxString::Format("%i", entry.date.GetYear());
             gd.labels.push_back(label);
         }
-        for (int i=0; i<Model_Account::MAX; i++)
-            gd.series.push_back(gs_data[i]);
+        for (const auto& gs : gs_data)
+            gd.series.push_back(gs);
 
         gd.type = GraphData::STACKEDAREA; 
         hb.addChart(gd);

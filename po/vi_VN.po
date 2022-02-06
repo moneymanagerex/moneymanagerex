@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-29 22:10\n"
+"PO-Revision-Date: 2022-01-31 00:43\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -601,7 +601,7 @@ msgstr "Tổng cộng: %s"
 #: assetspanel.cpp:661
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Thay đổi giá trị: %s %s"
 
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
@@ -665,7 +665,7 @@ msgstr "Các công cụ khác"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Nhập đính kèm:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
@@ -689,7 +689,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Xác nhận Xóa Đính kèm"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:527
@@ -737,11 +737,11 @@ msgstr ""
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
-msgstr ""
+msgstr "Không tìm thấy đính kèm:"
 
 #: attachmentdialog.cpp:472
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "Bạn có muốn tiếp tục và xóa tệp đính kèm trên cơ sở dữ liệu không?"
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
@@ -880,7 +880,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:466 billsdepositsdialog.cpp:1324
 msgid "Payments Left"
-msgstr ""
+msgstr "Thanh toán còn lại"
 
 #: billsdepositsdialog.cpp:480
 msgid "Request user to enter payment"
@@ -1209,11 +1209,11 @@ msgstr "Tần suất"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr ""
+msgstr "Sự lặp lại"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
-msgstr ""
+msgstr "Tự động lập lại"
 
 #: billsdepositspanel.cpp:143 mmhomepage.cpp:363
 msgid "Payment"
@@ -1286,7 +1286,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:482
 msgid "Manual"
-msgstr ""
+msgstr "Thủ công"
 
 #: billsdepositspanel.cpp:486
 msgid "Suggested"
@@ -1306,7 +1306,7 @@ msgstr[0] ""
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:608
 #: billsdepositspanel.cpp:615 billsdepositspanel.cpp:619
 msgid "Inactive"
-msgstr ""
+msgstr "Không hoạt động"
 
 #: billsdepositspanel.cpp:546 mmhomepage.cpp:319
 #, c-format
@@ -1756,7 +1756,7 @@ msgstr ""
 
 #: constants.cpp:193
 msgid "ALL"
-msgstr ""
+msgstr "TẤT CẢ"
 
 #: constants.cpp:194 mmframe.cpp:1320 mmframe.cpp:1720
 #: model/Model_Account.cpp:26
@@ -1861,7 +1861,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:145
 msgid "ToolTip"
-msgstr ""
+msgstr "Chú giải"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the tooltip that will be shown"
@@ -3817,7 +3817,7 @@ msgstr "Xóa các giao dịch \"Chưa đối chiếu\" đã xem"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "Đánh dấu là"
 
 #: mmchecking_list.cpp:819
 msgid "Do you really want to delete all the transactions shown?"

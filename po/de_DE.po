@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-30 12:07\n"
+"PO-Revision-Date: 2022-01-31 10:25\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -515,7 +515,7 @@ msgstr "Löschen des Vermögenswerts bestätigen"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "Vermögenswerte werden zu Ihrem finanziellen Gesamtwert addiertmit MMEX können Sie das Anlagevermögen wie Autos, Häuser, Grundstücke und andere Anlagen verfolgen. Jede Anlage kann ihren Wert durch eine bestimmte Rate pro Jahr ändern."
+msgstr "Vermögenswerte werden zu Ihrem finanziellen Gesamtwert addiert. Mit MMEX können Sie das Anlagevermögen wie Autos, Häuser, Grundstücke und andere Anlagen verfolgen. Jede Anlage kann ihren Wert durch eine bestimmte Rate pro Jahr ändern."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:724
 #: general_report_manager.cpp:1001 mmframe.cpp:478 mmframe.cpp:745
@@ -658,7 +658,7 @@ msgstr "Anhänge verwalten | %s %i"
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Anhänge verwalten | New %s"
+msgstr "Anhänge verwalten | Neu %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:134
 msgid "Other tools"

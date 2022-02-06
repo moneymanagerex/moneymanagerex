@@ -295,6 +295,11 @@ Sometimes additional steps / workarounds are needed for specific distribution
 or version - they are included in above mentioned dockerfiles. Please run them
 before next steps.
 
+To use wxWidget 3.1.5 see:
+https://docs.codelite.org/wxWidgets/repo315/#ubuntu-and-debian
+or to build it from sources:
+https://docs.codelite.org/build/build_wx_widgets/
+
 #### 2. Select C++ Compiler
 
 You can choose which compiler you want to use: GCC (default in most Linux
@@ -311,12 +316,79 @@ additional package and select it as default compiler:
 
 #### 3. Download Sources
 
-Same as for [macOS](#2-download-sources)
+You need git to download the sources, see prerequisites above.
+
+If you want the stable 1.5.11 version of mmex:
+
+    git clone --recursive https://github.com/moneymanagerex/moneymanagerex  --branch v1.5.11
+
+If you want the latest (possibly unstable) version of the trunk:
+
+    git clone --recursive https://github.com/moneymanagerex/moneymanagerex
 	
 #### 4. Compile and Create Package
 
-Same as for [macOS](#3-compile-and-create-package)
+Got to the directory, where you downloaded the sources from github.
 
+    cd moneymanagerex/
+    mkdir build
+    cmake . (only sometimes needed)
+    cd build/
+    cmake ..
+
+E.g. for the trunk version the output should be something like:
+
+    -- MMEX configuration summary
+    -- ==========================
+    -- Version        : 1.5.13-Beta.1
+    -- Commit         : 94b606828 (2022-01-30)
+    -- Branch         : master
+    -- Host system    : Linux x86_64
+    -- Target system  : Linux x86_64
+    -- Build types    : 
+    -- Generator      : Unix Makefiles
+    -- Install prefix : /usr/local
+    -- DB encryption  : ON
+    -- 
+    -- Versions
+    -- --========--
+    -- Linux 4.15.0-166-generic
+    -- Ubuntu 18.04 'bionic'
+    -- CMake 3.10.2
+    -- GNU Make 4.1
+    -- ccache
+    -- GNU 7.5.0
+    -- wxWidgets 3.1.5
+    -- wxSQLite3 4.6.0
+    -- Lua 5.3.3
+    -- curl 7.58.0
+    -- gettext 0.19.8.1
+    -- ------------------ 8< -----------------
+    -- Configuring done
+    -- Generating done
+    -- Build files have been written to: <your $HOME >/<directory where you downloaded mmex>/moneymanagerex
+
+Now build
+
+    export MAKEFLAGS=-j4  (to speed up the build)
+    cmake --build .. --target package
+
+If the build was ok the last message should be something like:
+
+    [...]
+    [100%] Built target mmex
+    Run CPack packaging tool...
+    CPack: Create package using DEB
+    CPack: Install projects
+    CPack: - Run preinstall target for: MMEX
+    CPack: - Install project: MMEX
+    CPack: Create package
+    CPackDeb: - Generating dependency list
+    CPack: - package: <directory where you saved the download from git>/moneymanagerex/mmex_1.5.13-Beta.1-1~bionic_amd64.deb generated.
+
+    For testing without installing you can run
+    ../_CPack_Packages/Linux/DEB/mmex-1.5.13-Beta.1-Linux/usr/bin/mmex
+    
 #### 5. Install MMEX Package
 
 | Distribution         | Install package from local file              |

@@ -216,7 +216,7 @@ private:
 
     bool ShowToolTips();
     void OnSettingsSelected(wxCommandEvent& event);
-    wxString GetStoredSettings(int id);
+    const wxString GetStoredSettings(int id) const;
     void SetSettings(const wxString &data);
     ITransactionsFile *CreateFileHandler();
 };
