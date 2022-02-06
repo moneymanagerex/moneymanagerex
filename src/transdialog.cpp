@@ -161,7 +161,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     int ref_id = (m_new_trx) ? -1 : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
-    if (m_duplicate)
+    // If duplicate then we may need to copy the attachments
+    if (m_duplicate && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
         mmAttachmentManage::CloneAllAttachments(RefType, transaction_id, -1);
