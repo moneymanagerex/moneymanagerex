@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-02-06 16:50\n"
+"PO-Revision-Date: 2022-02-06 16:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5647,11 +5647,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -5891,19 +5891,19 @@ msgstr "Especifique el factor de escala usado para las páginas de informe"
 
 #: optionsettingsview.cpp:253
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Pequeño (16 px)"
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Grande (32 px)"
 
 #: optionsettingsview.cpp:256
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
@@ -7038,19 +7038,19 @@ msgstr "Sábado"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:309
 msgid "Wed"
-msgstr ""
+msgstr "Mié"
 
 #: util.cpp:309
 msgid "Thu"
@@ -7086,7 +7086,7 @@ msgstr ""
 
 #: util.cpp:971
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:974
 msgid "Could not find currency 'USD', needed for converting history prices"
