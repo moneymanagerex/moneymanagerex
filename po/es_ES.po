@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-02-06 16:56\n"
+"PO-Revision-Date: 2022-02-06 17:05\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2835,7 +2835,7 @@ msgstr "Exportar JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Exportar a CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2855,7 +2855,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3107 mmframe.cpp:3111
 #: mmframe.cpp:3130 mmframe.cpp:3134
@@ -5867,11 +5867,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:222
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: optionsettingsview.cpp:223
 msgid "Dark"
-msgstr ""
+msgstr "Oscuro"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
