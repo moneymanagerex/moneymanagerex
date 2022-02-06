@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-01-30 00:59+0300\n"
-"PO-Revision-Date: 2022-01-29 22:10\n"
+"PO-Revision-Date: 2022-02-06 16:50\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3883,8 +3883,8 @@ msgstr "Verificar la transacción"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] "La edición afectará %i transacciones relacionadas con una cuenta que está cerrada."
+msgstr[0] "La edición afectará a una transacción de una cuenta que está cerrada."
+msgstr[1] "La edición afectará a %i transacciones de una cuenta que está cerrada."
 
 #: mmchecking_list.cpp:977
 msgid "\n\n"
@@ -7054,15 +7054,15 @@ msgstr ""
 
 #: util.cpp:309
 msgid "Thu"
-msgstr ""
+msgstr "Jue"
 
 #: util.cpp:309
 msgid "Fri"
-msgstr ""
+msgstr "Vie"
 
 #: util.cpp:310
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 #: util.cpp:676
 msgid "Currency rates have been updated"
