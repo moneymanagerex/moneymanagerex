@@ -161,6 +161,13 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     int ref_id = (m_new_trx) ? -1 : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
+    // If duplicate then we may need to copy the attachments
+    if (m_duplicate && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        mmAttachmentManage::CloneAllAttachments(RefType, transaction_id, -1);
+    }
+
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, style, name);
     this->SetMinSize(wxSize(500, 400));
@@ -1321,11 +1328,11 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
             return itemButtonCancel_->SetFocus();
 #endif
 
-    if (m_new_trx)
+    if (m_new_trx || m_duplicate)
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-        mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
-        Model_CustomFieldData::instance().DeleteAllData(RefType, m_trx_data.TRANSID);
+        mmAttachmentManage::DeleteAllAttachments(RefType, -1);
+        Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
     EndModal(wxID_CANCEL);
 }
@@ -1384,7 +1391,8 @@ void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     if (m_new_trx || m_duplicate) {
-        mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
+        mmAttachmentManage::DeleteAllAttachments(RefType, -1);
+        Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
     EndModal(wxID_CANCEL);
 }

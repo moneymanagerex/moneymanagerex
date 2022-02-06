@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2014 Gabriele-V
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -92,6 +93,7 @@ public:
     static bool OpenAttachment(const wxString& FileToOpen);
     static bool DeleteAllAttachments(const wxString& RefType, int RefId);
     static bool RelocateAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
+    static bool CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
     static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
 private:
     static wxString m_PathSep;

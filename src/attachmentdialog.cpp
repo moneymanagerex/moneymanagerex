@@ -1,5 +1,6 @@
 /*******************************************************
-Copyright (C) 2014 Gabriele-V
+ Copyright (C) 2014 Gabriele-V
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -522,6 +523,26 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& RefType, int Old
     }
     Model_Attachment::instance().save(attachments);
 
+    return true;
+}
+
+bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId)
+{
+    auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(OldRefId));
+    const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + RefType + m_PathSep;
+
+    for (auto &entry : attachments)
+    {
+        wxString NewFileName = entry.FILENAME;
+        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%i", NewRefId));
+        wxCopyFile(AttachmentsFolder + entry.FILENAME, AttachmentsFolder + NewFileName);
+        Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
+        NewAttachment->REFTYPE = RefType;
+        NewAttachment->REFID = NewRefId;
+        NewAttachment->FILENAME = NewFileName;
+        NewAttachment->DESCRIPTION = entry.DESCRIPTION;
+        Model_Attachment::instance().save(NewAttachment);
+    }
     return true;
 }
 

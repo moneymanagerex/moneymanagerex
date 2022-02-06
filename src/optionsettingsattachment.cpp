@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -163,6 +164,12 @@ void OptionSettingsAttachment::Create()
     m_trash_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
     mmToolTip(m_trash_attachments, _("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
     attachmentStaticBoxSizer->Add(m_trash_attachments, g_flagsV);
+
+    m_duplicate_attachments = new wxCheckBox(this, wxID_STATIC,
+        _("When duplicating transactions duplicate the attachments also"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_duplicate_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false));
+    mmToolTip(m_trash_attachments, _("Select if you want to copy the attachments to new transactions when they are duplicated or pasted"));
+    attachmentStaticBoxSizer->Add(m_duplicate_attachments, g_flagsV);
 }
 
 void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& WXUNUSED(event))
@@ -239,6 +246,7 @@ bool OptionSettingsAttachment::SaveSettings()
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), m_attachments_path->GetValue().Trim());
     Model_Infotable::instance().Set("ATTACHMENTSDELETE", m_delete_attachments->GetValue());
     Model_Infotable::instance().Set("ATTACHMENTSTRASH", m_trash_attachments->GetValue());
+    Model_Infotable::instance().Set("ATTACHMENTSDUPLICATE", m_duplicate_attachments->GetValue());
 
     return true;
 }
