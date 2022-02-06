@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-06 20:58\n"
+"PO-Revision-Date: 2022-02-06 21:25\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5447,11 +5447,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "Vid duplicering av transaktioner, duplicera även bilagorna"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Välj om du vill kopiera bilagorna till nya transaktioner när de dupliceras eller klistras in"
 
 #: optionsettingsattachment.cpp:180
 msgid "Choose folder to set as attachments archive"
