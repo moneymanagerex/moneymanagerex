@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 17:40\n"
+"PO-Revision-Date: 2022-02-07 17:53\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1079,11 +1079,11 @@ msgstr "Válasszon célszámlát"
 
 #: billsdepositsdialog.cpp:953
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "A fizetés dátuma az esedékesség utánra esik. Ez szándékos?"
 
 #: billsdepositsdialog.cpp:954
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Késedelmes fizetésnek tűnik"
 
 #: billsdepositsdialog.cpp:1253
 msgid "Specify the transfer amount in the From Account"
@@ -1158,12 +1158,12 @@ msgstr "Kategóriák"
 
 #: billsdepositsdialog.cpp:1484 transdialog.cpp:1420
 msgid "Clear color"
-msgstr ""
+msgstr "Sín törlése"
 
 #: billsdepositsdialog.cpp:1489 filtertransdialog.cpp:1809 transdialog.cpp:1425
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Szín #%i"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
@@ -1249,15 +1249,15 @@ msgstr "Duplikálás"
 
 #: billsdepositspanel.cpp:303
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Ismétlődő tranzakció törlése"
 
 #: billsdepositspanel.cpp:307
 msgid "Ente&r"
-msgstr ""
+msgstr "Ente&r"
 
 #: billsdepositspanel.cpp:308
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Add meg következő ismétlődő tranzakció esedékességét"
 
 #: billsdepositspanel.cpp:312
 msgid "&Skip"
@@ -1265,7 +1265,7 @@ msgstr "Átlép"
 
 #: billsdepositspanel.cpp:313
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "A következő ismétlődő tranzakció esedékességének átugrása"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence..."
@@ -1277,19 +1277,19 @@ msgstr "Következő esedékes kihagyása"
 
 #: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Új rendszeres tranzakció..."
 
 #: billsdepositspanel.cpp:432
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "Ismétlődő tranzakció szerkesztése..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "Ismétlődő tranzakció duplikálása..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "Ismétlődő tranzakció törlése..."
 
 #: billsdepositspanel.cpp:482
 msgid "Manual"
@@ -1332,11 +1332,11 @@ msgstr[1] "%d napja lejárt!"
 
 #: billsdepositspanel.cpp:674
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Valóban törli az ismétlődő tarnzakciót?"
 
 #: billsdepositspanel.cpp:675
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Törlés megerősítése"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1420,7 +1420,7 @@ msgstr "Költségvetés kategóriák összesítése"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Pénzügyi év: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1435,7 +1435,7 @@ msgstr "Hónap: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Kezdő dátum ehhez: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -1590,7 +1590,7 @@ msgstr "Írja be az új kategória nevét: "
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "Tipp: ha most adtál hozzá kategóriát, a lista alján keresd."
 
 #: categdialog.cpp:261
 msgid "Add Category"
@@ -1714,7 +1714,7 @@ msgstr "Bezárás"
 
 #: constants.cpp:178
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Speciális szűrő"
 
 #: constants.cpp:179
 msgid "View All Transactions"
@@ -1770,7 +1770,7 @@ msgstr "Számlazárás óta nézet"
 
 #: constants.cpp:193
 msgid "ALL"
-msgstr ""
+msgstr "MIND"
 
 #: constants.cpp:194 mmframe.cpp:1320 mmframe.cpp:1720
 #: model/Model_Account.cpp:26
@@ -1787,7 +1787,7 @@ msgstr "Kedvencek"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Pénznem neve"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
@@ -1820,19 +1820,19 @@ msgstr "Lépték"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Az alap árfolyamra konvertálás"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "A váltási árfolyamot akkor alkalmazza, ha a pénznemhez nem talált előzményeket"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Fix váltási árfolyam"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Pénznemformátum minta:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
@@ -1851,11 +1851,11 @@ msgstr "Érvénytelen bejegyzés"
 #: currencydialog.cpp:318
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Mutasd mint: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Hely használata)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
