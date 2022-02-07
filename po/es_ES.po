@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-06 20:58\n"
+"PO-Revision-Date: 2022-02-07 22:39\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1336,7 +1336,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:675
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Confirmar borrado"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1420,7 +1420,7 @@ msgstr "Ver resumen de categorías del presupuesto"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Año fiscal: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -2372,11 +2372,11 @@ msgstr "Todo excepto reconciliados"
 
 #: filtertransdialog.cpp:71
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Inicio del año fiscal"
 
 #: filtertransdialog.cpp:72
 msgid "Start of This Year"
-msgstr ""
+msgstr "Inicio de este año"
 
 #: filtertransdialog.cpp:73
 msgid "Since 90 days ago"
@@ -3437,7 +3437,7 @@ msgstr "Tarifa fija"
 
 #: maincurrencydialog.cpp:128
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: maincurrencydialog.cpp:170 maincurrencydialog.cpp:462
 msgid "Online update currency rate"
@@ -3845,7 +3845,7 @@ msgstr "Borrar las transacciones \"no reconciliadas\" ya vistas"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "Marcar como"
 
 #: mmchecking_list.cpp:844
 msgid "Do you really want to delete all the transactions shown?"
@@ -4170,7 +4170,7 @@ msgstr "Cuentas visibles"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
-msgstr ""
+msgstr "&Nueva base de datos"
 
 #: mmframe.cpp:1360 mmframe.cpp:1719 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4530,7 +4530,7 @@ msgstr "Visítenos en Facebook"
 
 #: mmframe.cpp:1616
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1616
 msgid "We use Crowdin to translate MMEX"
@@ -5524,7 +5524,7 @@ msgstr "El nombre de usuario se utiliza como título para la base de datos."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
