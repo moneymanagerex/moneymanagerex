@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-06 20:58\n"
+"PO-Revision-Date: 2022-02-07 17:31\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -415,7 +415,7 @@ msgstr " % árfolyam"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Írd be a vagyontárgy éves értékvesztésének értékét százalékos formában"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -444,7 +444,8 @@ msgstr "Érvénytelen tranzakció"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Nem találtam Vagyonszámlát.\n\n"
+"Szeretnél létrhozni egyet?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:189
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:208
@@ -579,15 +580,15 @@ msgstr "Írjon be szöveget a kapcsolódó vagyontárgyak megkereséséhez "
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:395 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Tipp: használhatsz helyettesítő karaktereket - kérdőjel (?), csillag (*) - a keresési kritériumoknál."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:396 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Kérdőjelet (?) használj, ha egyetlen karaktert kell pótolni - pl. s?t esetén \"sat\" és \"set\" a találat."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:397 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Csillagot (*) használj, ha bármennyi karaktert kell helyettesíteni - pl. s*d \"sad\"-et és \"started\"-et találja meg."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:398 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
