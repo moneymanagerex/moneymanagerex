@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 18:44\n"
+"PO-Revision-Date: 2022-02-07 18:49\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3729,7 +3729,7 @@ msgstr "Tipp a kategóriák rendezése párbeszédhez: két betű lenyomásával
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tipp a csődből kilábaláshoz: először magadnak fizess 10 százalékot. Helyezd el egy nehezen elérhető számlán. Gondoskodj róla, hogy arról pénzt levenni valóban nehéz legyen (el kell menni a bankba), hogy tényleg csak körültekintően és nagyobb kiadásoknál nyúlj hozzá."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -3786,14 +3786,16 @@ msgstr "Új átutalás"
 #: mmchecking_list.cpp:365
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tranzakció szerkesztése"
+msgstr[1] "Tranzakció szerkesztése"
 
 #: mmchecking_list.cpp:370
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tranzakció másolása\n\n"
+"Tranzakció másolása"
+msgstr[1] "Tranzakció másolása\n\n"
+"Tranzakció másolása"
 
 #: mmchecking_list.cpp:375
 msgid "&Paste Transaction"
@@ -4338,11 +4340,11 @@ msgstr ""
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
-msgstr ""
+msgstr "Kezdőoldal"
 
 #: mmframe.cpp:1475 mmframe.cpp:1723
 msgid "Show Home Page"
-msgstr ""
+msgstr "Kezdőoldal mutatása"
 
 #: mmframe.cpp:1484
 msgid "Change the account type of an account."
@@ -4354,11 +4356,11 @@ msgstr "Számla törlése az adatbázisból."
 
 #: mmframe.cpp:1500
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Árfolyamok letöltése..."
 
 #: mmframe.cpp:1500 mmframe.cpp:1750
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Valuta- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1506
 msgid "Organize &Categories..."
@@ -4374,7 +4376,7 @@ msgstr "Kedvezményezettek kezelése"
 
 #: mmframe.cpp:1514
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Pénznem rendezése..."
 
 #: mmframe.cpp:1514 mmframe.cpp:1729
 msgid "Organize Currency"
