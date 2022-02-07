@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-06 20:58\n"
+"PO-Revision-Date: 2022-02-07 07:18\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5480,11 +5480,11 @@ msgstr "Selezionare per non eliminare il file se si rimuove  l'allegato, ma inve
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "Quando si duplicano le transazioni si duplicano anche gli allegati"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Selezionare se si desidera copiare gli allegati alle nuove transazioni quando sono duplicati o incollati"
 
 #: optionsettingsattachment.cpp:180
 msgid "Choose folder to set as attachments archive"
