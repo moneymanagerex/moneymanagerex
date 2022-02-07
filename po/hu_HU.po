@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 17:31\n"
+"PO-Revision-Date: 2022-02-07 17:40\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -592,7 +592,7 @@ msgstr "Csillagot (*) használj, ha bármennyi karaktert kell helyettesíteni - 
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:398 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Csillagot (*) használva az elején, hogy a mondaton belül bármilyen karaktersort megtaláljon."
 
 #: assetspanel.cpp:579 stockspanel.cpp:276 stockspanel.cpp:460
 #, c-format
@@ -607,7 +607,8 @@ msgstr "A változás értéke: %s %s"
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Ehhez a vagyontárgyhoz nem tartozik saját számla\n\n"
+"Többszörös tranzakció ezzel a vagyontárggyal nem ajánlott."
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
@@ -841,7 +842,7 @@ msgstr "Havi (utolsó munkanap)"
 
 #: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Ismétlődő tranzakció duplkálása"
 
 #: billsdepositsdialog.cpp:319 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -869,7 +870,7 @@ msgstr "Esedékesség"
 
 #: billsdepositsdialog.cpp:457
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Visszatérés az adott érték legutolsó előfordulásának dátumához"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1294
 msgid "Repeats"
@@ -885,7 +886,7 @@ msgstr "Fennmaradt kifizetések"
 
 #: billsdepositsdialog.cpp:489
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "A felhasználó adja meg a fizetett összeget"
 
 #: billsdepositsdialog.cpp:490
 msgid "User requested to enter this transaction on the 'Date Paid'"
