@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-06 20:58\n"
+"PO-Revision-Date: 2022-02-07 12:56\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5464,7 +5464,7 @@ msgstr "选择移除附件时不删除附件文件，而是将其移动到“已
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "复制交易时也复制附件"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
