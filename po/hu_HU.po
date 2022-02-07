@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:48\n"
+"PO-Revision-Date: 2022-02-07 21:57\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1183,11 +1183,11 @@ msgstr "Jelölje meg az átutalást fogadó számlát"
 
 #: billsdepositsdialog.h:129 transdialog.cpp:1372 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
-msgstr "Adjon meg egy összeget ehhez az ügylethez"
+msgstr "Határozza meg az ügylethez tartozó összeget"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
-msgstr "Határozza meg az átutalás összegét"
+msgstr "Határozza meg az átutalandó összegat"
 
 #: billsdepositspanel.cpp:61
 #, c-format
