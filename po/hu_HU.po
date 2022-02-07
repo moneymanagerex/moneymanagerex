@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 18:26\n"
+"PO-Revision-Date: 2022-02-07 18:44\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3513,22 +3513,22 @@ msgstr "Alap pénznem kiválasztása"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "%s-hoz korábbi árfolyamot találtam, de az opcióknál a \"Használja a pénznem előzményeit\" nincs bekapcsolva: kattints a nemre és engedélyezd, vagy kattints az igenre a(z) %s korábbi árfolyamainak eltávolítására"
 
 #: maincurrencydialog.cpp:435
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "Pénznem-előzmények opciói: %s "
 
 #: maincurrencydialog.cpp:491
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Nem tudom frissíteni a pénznem árfolyamainak a történetét. Kérem, frissítse kézzel!"
 
 #: maincurrencydialog.cpp:492 maincurrencydialog.cpp:644
 #: maincurrencydialog.cpp:679 maincurrencydialog.cpp:715
 #: maincurrencydialog.cpp:821
 msgid "Currency history error"
-msgstr ""
+msgstr "Pénznem-előzmény hiba"
 
 #: maincurrencydialog.cpp:524
 msgid "Set as Base Currency"
@@ -3549,25 +3549,25 @@ msgstr "A tranzakciók nélküli dátumokat is hozzáadja?"
 #: maincurrencydialog.cpp:677
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Nem tudom letölteni a(z) %s valutaárfolyamát"
 
 #: maincurrencydialog.cpp:713
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "A(z) %s szimbólumhoz tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
 
 #: maincurrencydialog.cpp:775
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Az alap pénznem megváltoztatása törli az árfolyamtörténetet. Folytatja?"
 
 #: maincurrencydialog.cpp:799
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Frissíti a mai valutaárfolyamokat?"
 
 #: maincurrencydialog.cpp:820
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "A(z) %s szimbólumhoz tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
 
 #: maincurrencydialog.cpp:863 stockspanel.cpp:338 util.cpp:619
 msgid "Could not find base currency symbol!"
@@ -3575,19 +3575,19 @@ msgstr "Az alap pénznem szimbóluma nem található!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Egy év kivonatolása"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Egy hónap kivonatolása"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Egy hónap hozzáadása"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Egy év hozzáadása"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3630,7 +3630,7 @@ msgstr "Kiválasztás a lenyitó gombban történhet."
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "A gomb lenyomása egy választó mezőt jelenít meg, ahol a számla kijelölhető."
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
@@ -3659,7 +3659,7 @@ msgstr "Kérem, gépeljen be egy nem üres jelt."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Érvénytelen érték"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
@@ -3693,7 +3693,7 @@ msgstr "Tipp: ne felejtsen el másolatot készíteni az .mmb fájljáról!"
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tipp: az .mmb fájl nincs titkosítva. Ez azt jelenti, hogy bárki, aki rendelkezik kellő ismerettel, megnyithatja és olvashatja a tartalmát. Tehát gondoskodj megfelelő védelméről, amennyiben bármilyen érzékeny pénzügyi adatot tárolsz."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
