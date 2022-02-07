@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:00\n"
+"PO-Revision-Date: 2022-02-07 21:08\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -641,7 +641,7 @@ msgstr "Mellékletek könyvtár nincs megadva"
 
 #: attachmentdialog.cpp:71
 msgid "Unable to find attachments folder:"
-msgstr "A mellékletek könyvtár nem található:"
+msgstr "A mellékletek-könyvtár nem található:"
 
 #: attachmentdialog.cpp:74
 msgid "Please verify that above path is correct"
@@ -671,7 +671,7 @@ msgstr "Mellékletek importálása:"
 
 #: attachmentdialog.cpp:171
 msgid "Enter a description for the new attachment:"
-msgstr "Az új melléklet leírása: "
+msgstr "Az új melléklethez adjon leírást:"
 
 #: attachmentdialog.cpp:172
 msgid "Organize Attachments: Add Attachment"
@@ -719,7 +719,7 @@ msgstr "E könyvtárat és fájljait a Money Manager EX szoftver automatikusan k
 
 #: attachmentdialog.cpp:371
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Ne távolítsa el, nevezte át, vagy módosítsa könyvtárat, vagy fájlokat!"
+msgstr "Ne távolítsa el, nevezte át, vagy módosítsa a könyvtárakat, vagy fájlokat."
 
 #: attachmentdialog.cpp:416 attachmentdialog.cpp:424
 msgid "Destination file already exist:"
@@ -735,11 +735,11 @@ msgstr "A célfájl már létezik"
 
 #: attachmentdialog.cpp:427
 msgid "File already found in attachments"
-msgstr "A fájl a mellékletek között már létezik."
+msgstr "A fájlt a mellékletek között már megtaláltam"
 
 #: attachmentdialog.cpp:470
 msgid "Attachment not found:"
-msgstr "Nem található melléklet:"
+msgstr "A melléklet nem található:"
 
 #: attachmentdialog.cpp:473
 msgid "Do you want to continue and delete attachment on database?"
