@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 22:39\n"
+"PO-Revision-Date: 2022-02-07 22:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2455,7 +2455,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:428
 msgid "Hide Columns"
-msgstr ""
+msgstr "Ocultar Columnas"
 
 #: filtertransdialog.cpp:439 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1341
@@ -2547,7 +2547,7 @@ msgstr "Cantidad Máx."
 
 #: filtertransdialog.cpp:1328
 msgid "Column"
-msgstr ""
+msgstr "Columna"
 
 #: filtertransdialog.cpp:1746 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -5275,7 +5275,7 @@ msgstr "Otros"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Transacción"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
