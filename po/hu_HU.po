@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 20:29\n"
+"PO-Revision-Date: 2022-02-07 20:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -126,7 +126,7 @@ msgstr "Kedvenc számla"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "Ezt válassza, ha a számlát gyakran használja. A számlák listájában ez jelenik meg elsőként."
+msgstr "Határozza meg, hogy ez egy gyakran használt számla-e. Ezt a számlamegjelenítés nézetének szűrésre használják."
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:659 billsdepositspanel.cpp:145 filtertrans.cpp:199
@@ -141,7 +141,7 @@ msgstr "Megjegyzés"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
-msgstr "Adjon megjegyzést a számlához"
+msgstr "Írd be a számlával kapcsolatos felhasználói megjegyzéseket és részleteket."
 
 #: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
@@ -163,7 +163,7 @@ msgstr "Adja meg a számlához tartozó számlaszámot."
 
 #: accountdialog.cpp:214
 msgid "Held At:"
-msgstr "Kezelő:"
+msgstr "Számlakezelő:"
 
 #: accountdialog.cpp:216
 msgid "Enter the name of the financial institution in which the account is held."
@@ -191,7 +191,7 @@ msgstr "Belépési adatok: "
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Írja be a hitelesítési információkat a pénzintézethez. Figyelem, nem biztonságos!"
+msgstr "Írja be a pénzintézethez tartozó bejelentkezési és elérési információkat. Figyelem, nem biztonságos, mivel bárki, aki hozzáfér az mmb-fájlhoz elérheti."
 
 #: accountdialog.cpp:236
 msgid "Statement"
@@ -223,7 +223,7 @@ msgstr "Minimális egyenleg:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Számlaegyenleg aló limitje. Nulla a kikapcsoláshoz."
+msgstr "Számlaegyenleg aló határa. Nulla a kikapcsoláshoz"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
@@ -235,7 +235,7 @@ msgstr "Hitelkeret-limit:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr "Számla hitelkeret-limit. Kikapcsolása nullára állítással."
+msgstr "A számla hitelkerete. Nulla a kikapcsoláshoz"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
@@ -247,7 +247,7 @@ msgstr "Kifizetés esedékességi dátuma:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr "Minimum kifizetés:"
+msgstr "Legkisebb kifizetés:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
@@ -320,7 +320,7 @@ msgstr "További információ a weboldalon"
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr "Hírek, frissítések stb. weblap %s megnyitása"
+msgstr "Hírek, frissítések stb. érdekében nyissa meg a(z) %s weblapot"
 
 #: appstartdialog.cpp:124 wizard_update.cpp:209
 #, c-format
@@ -403,15 +403,15 @@ msgstr "Adja meg a vagyontárgy jelenlegi értékét"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
-msgstr "Érték változás"
+msgstr "Értékváltozás"
 
 #: assetdialog.cpp:237
 msgid "Specify if the value of the asset changes over time"
-msgstr "Adja meg, hogy a vagyontárgy értéke változik-e az idő folyamán"
+msgstr "Határozza meg, hogy a vagyontárgy értéke változik-e idővel"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr " % árfolyam"
+msgstr "Árfolyam"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
@@ -419,7 +419,7 @@ msgstr "Írd be a vagyontárgy éves értékvesztésének értékét százaléko
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr "A vagyontárgyhoz tartozó mellékletek rendezése"
+msgstr "Az esközhöz tartozó mellékletek rendezése"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
