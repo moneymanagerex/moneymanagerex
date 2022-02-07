@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 20:01\n"
+"PO-Revision-Date: 2022-02-07 20:24\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -6926,7 +6926,7 @@ msgstr "Adja meg az átutalás dátumát"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Határozd meg a hozzátartozó szálát, ami ezt a tranzakciót tartalmazni fogja"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6966,51 +6966,51 @@ msgstr "Számla kiválasztása"
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "jan."
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "feb."
 
 #: util.cpp:293
 msgid "Mar"
-msgstr ""
+msgstr "márc."
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "ápr."
 
 #: util.cpp:294 util.h:157
 msgid "May"
-msgstr ""
+msgstr "máj."
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "jún."
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "júl."
 
 #: util.cpp:295
 msgid "Aug"
-msgstr ""
+msgstr "aug."
 
 #: util.cpp:295
 msgid "Sep"
-msgstr ""
+msgstr "szept."
 
 #: util.cpp:296
 msgid "Oct"
-msgstr ""
+msgstr "okt."
 
 #: util.cpp:296
 msgid "Nov"
-msgstr ""
+msgstr "nov."
 
 #: util.cpp:296
 msgid "Dec"
-msgstr ""
+msgstr "dec."
 
 #: util.cpp:301
 msgid "Sunday"
@@ -7042,15 +7042,15 @@ msgstr "szombat"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "vas."
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "h."
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "k."
 
 #: util.cpp:309
 msgid "Wed"
