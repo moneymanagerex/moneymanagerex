@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 18:02\n"
+"PO-Revision-Date: 2022-02-07 18:15\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2015,7 +2015,8 @@ msgstr "Üresre akarja változtatni?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "%zu számú találat és csere!\n\n"
+"%zu számú találat és csere!"
 msgstr[1] ""
 
 #: customfieldlistdialog.cpp:263
@@ -2230,7 +2231,7 @@ msgstr "Befektetések hozama"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Az MMEX-adatbázis frissítése %i verzióra sikertelen!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2254,11 +2255,11 @@ msgstr "Az MMEX %i verziójú adatbázisa nem működik ezzel a MMEX verzióval 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX adatbázis sikeresen frissült a(z) %i verzióra"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Javasoljuk az adatbázis optializálását az Eszközök -> Adatbázis -> Optimalizálás-nál"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -2266,7 +2267,7 @@ msgstr "Hibafájl betöltése"
 
 #: dbupgrade.cpp:189
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Hibás fájltípus!"
 
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
@@ -2279,7 +2280,7 @@ msgstr "Lekérdezési hiba, vegye fel a kapcsolatot az MMEX-szel!"
 
 #: dbupgrade.cpp:233 dbupgrade.cpp:288
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Érvénytelen fájltartalom, vegye fel a kapcsolatot az MMEX-támogatással!"
 
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
@@ -2301,7 +2302,7 @@ msgstr "A DB karbantartása kész, zárja be és nyissa meg újra az MMEX-et!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Amikor az adatbázisfájl megnyílik:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2849,15 +2850,15 @@ msgstr "Napló"
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3107 mmframe.cpp:3111
 #: mmframe.cpp:3130 mmframe.cpp:3134
@@ -2900,11 +2901,11 @@ msgstr "QIF fájlok (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Válasszon JSON adatfájlt az exportáláshoz"
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON File (*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1566
 msgid "CSV Files (*.csv)"
@@ -2938,22 +2939,22 @@ msgstr "Exportálás"
 #: import_export/qif_export.cpp:487
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "%zu ügylet exportálása"
 
 #: import_export/qif_export.cpp:637
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Exportált kategóriák száma: %zu"
 
 #: import_export/qif_export.cpp:639
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Exportált tranzakciók száma: %zu"
 
 #: import_export/qif_export.cpp:641
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Exportált számlák száma: %zu"
 
 #: import_export/qif_export.cpp:642 mmframe.cpp:1385
 msgid "Export to QIF"
@@ -3000,17 +3001,17 @@ msgstr "Átvizsgálás"
 #: import_export/qif_import_gui.cpp:384
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Sor olvasása %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:390
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Sor:%zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:463
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "A QIF fájlból beolvasott sorok száma: %zu %lld ms"
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
@@ -3078,7 +3079,7 @@ msgstr "Az importálás sikereden befejeződött"
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Összesen importálva: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1089
 msgid "Imported transactions discarded by user!"
@@ -3090,11 +3091,11 @@ msgstr "QIF import"
 
 #: import_export/qif_import_gui.cpp:988
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "A tranzakciókód hiányzik"
 
 #: import_export/qif_import_gui.cpp:1008
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "A tranzakció kedvezményezettje hiányzik vagy hibás"
 
 #: import_export/qif_import_gui.cpp:1020
 msgid "Date format or date mask is incorrect"
@@ -3102,15 +3103,15 @@ msgstr "A dátumformátum, vagy -maszk hibás!"
 
 #: import_export/qif_import_gui.cpp:1032
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "A tranzakció számlája hibás"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Az átutalási tranzakció számlája hibás"
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "A tranzakció összege hibás"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
