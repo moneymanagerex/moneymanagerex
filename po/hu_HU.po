@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:27\n"
+"PO-Revision-Date: 2022-02-07 21:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -957,7 +957,7 @@ msgstr "Összeg"
 
 #: billsdepositsdialog.cpp:587 transdialog.cpp:1368
 msgid "Specify the transfer amount in the To Account"
-msgstr "A fogadó számlán adja átutalandó összeget"
+msgstr "Az ügylet összegét a címzett számlán határozza meg"
 
 #: billsdepositsdialog.cpp:599 billsdepositsdialog.cpp:863
 #: billsdepositsdialog.cpp:877 billsdepositspanel.cpp:134 filtertrans.cpp:193
@@ -996,15 +996,15 @@ msgstr "Kedvezményezett"
 #: billsdepositsdialog.cpp:609 billsdepositsdialog.cpp:901
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr "Kedvezményezett"
+msgstr "Kedvezményezett kiválasztása"
 
 #: billsdepositsdialog.cpp:616 transdialog.cpp:554
 msgid "Split"
-msgstr "Bontás"
+msgstr "Felosztás"
 
 #: billsdepositsdialog.cpp:619 transdialog.cpp:1384
 msgid "Use split Categories"
-msgstr "Összetett kategóriák használata"
+msgstr "Kategóriafelosztás használata"
 
 #: billsdepositsdialog.cpp:625 billsdepositspanel.cpp:137
 #: budgetingpanel.cpp:298 filtertrans.cpp:196 filtertransdialog.cpp:58
@@ -1024,11 +1024,11 @@ msgstr "Kategória"
 #: transactionsupdatedialog.cpp:234 transdialog.cpp:416 transdialog.cpp:1121
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
-msgstr "Kategória választása"
+msgstr "Kategória kiválasztása"
 
 #: billsdepositsdialog.cpp:636 transdialog.cpp:1385
 msgid "Specify any associated check number or transaction number"
-msgstr "Adja meg a vonatkozó elismervény, vagy ügylet számát"
+msgstr "Adja meg a vonatkozó csekk, vagy ügylet számát"
 
 #: billsdepositsdialog.cpp:638 billsdepositspanel.cpp:144 filtertrans.cpp:192
 #: filtertransdialog.cpp:378 filtertransdialog.cpp:1304
@@ -1037,7 +1037,7 @@ msgstr "Adja meg a vonatkozó elismervény, vagy ügylet számát"
 #: reports/transactions.cpp:158 transdialog.cpp:575
 #: usertransactionpanel.cpp:202
 msgid "Number"
-msgstr "Azonosító"
+msgstr "Szám"
 
 #: billsdepositsdialog.cpp:644 transdialog.cpp:584 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
@@ -1045,24 +1045,24 @@ msgstr "Válassza ki a gyakran használt megjegyzések egyikét"
 
 #: billsdepositsdialog.cpp:650 transdialog.cpp:592
 msgid "User Colors"
-msgstr "Színek használata"
+msgstr "Felhasználói színek"
 
 #: billsdepositsdialog.cpp:654
 msgid "Organize attachments of this recurring transaction"
-msgstr "Rendezze az ehhez az ismétlődő művelt tartozó mellékleteket"
+msgstr "A rendszeres ügylethez tartozó mellékletek rendezése"
 
 #: billsdepositsdialog.cpp:670 transdialog.cpp:612 transdialog.cpp:1386
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Adhat megjegyzést ehhez az ügylethez"
+msgstr "Határozza meg, milyen szöveges megjegyzést akar az ügylethez adni."
 
 #: billsdepositsdialog.cpp:698
 msgid "Choose Bank Account or Term Account"
-msgstr "Bankszámla, vagy időszaki számla kiválasztása"
+msgstr "Bank-, vagy futamidős számla kiválasztása"
 
 #: billsdepositsdialog.cpp:731 billsdepositsdialog.cpp:781
 msgid "Account name"
-msgstr "A számla neve "
+msgstr "Számlanév"
 
 #: billsdepositsdialog.cpp:838 billsdepositsdialog.cpp:878
 #: filtertransdialog.cpp:1226 transdialog.cpp:310 transdialog.cpp:391
@@ -1087,7 +1087,7 @@ msgstr "Késedelmes fizetésnek tűnik"
 
 #: billsdepositsdialog.cpp:1253
 msgid "Specify the transfer amount in the From Account"
-msgstr "Adja meg az átutalást összegét az eredeztető számlán"
+msgstr "Az eredeztető számlán adja meg az átutalást összegét"
 
 #: billsdepositsdialog.cpp:1295
 msgid "Activates"
@@ -1099,7 +1099,7 @@ msgstr "Gyakoriság: napokban"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Period: Months"
-msgstr "Gyakoriság: havonta"
+msgstr "Gyakoriság: hónapok"
 
 #: billsdepositsdialog.cpp:1305
 msgid "Specify period in Days to activate.\n"
