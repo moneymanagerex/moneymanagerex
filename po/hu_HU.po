@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 19:32\n"
+"PO-Revision-Date: 2022-02-07 20:01\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5831,43 +5831,43 @@ msgstr "Költségvetések megtekintése \"átutalási\" tranzakciókkal együtt"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Költségvetési kategóriajelentés megtekintése összesítéssel"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Költségvetés eltolása (nap):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Előre-, vagy visszaállítsd a kezdő dátumot a hónap vagy az év első napjáról az adott számú nappal"
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "A hónap induló napja a jelentéshez:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Lehetővé teszi a hónap \"kezdő napjának\" módosítását a jelentés céljából"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Jövőbeni tranzakciók figyelmen kívül hagyása"
 
 #: optionsettingsview.cpp:164
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Tranzakciós színek"
 
 #: optionsettingsview.cpp:203
 msgid "UI Appearance"
-msgstr ""
+msgstr "Felhasználói felület megjelenése"
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Témakezelő megnyitása"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
-msgstr ""
+msgstr "Stílussablon"
 
 #: optionsettingsview.cpp:222
 msgid "Light"
@@ -6373,7 +6373,7 @@ msgstr "Befektetések összegzése"
 
 #: reports/summarystocks.cpp:108
 msgid "Purchase Date"
-msgstr ""
+msgstr "Beszerzés dátuma"
 
 #: reports/summarystocks.cpp:109
 msgid "Quantity"
@@ -6394,11 +6394,11 @@ msgstr "Részvény szereplése diagram"
 
 #: reports/transactions.cpp:273
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Az összes tranzakció: Kivét, Betét és Transzfer"
 
 #: reports/transactions.cpp:291
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Az összes tranzakció, az átutalásokat kivéve"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
@@ -6507,7 +6507,8 @@ msgstr "*Dátum"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Határozd meg az értékpapír-befektetés kezdő dátumát\n"
+"Az induló részvény-tranzakció létrehozásakor használja."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -6516,7 +6517,8 @@ msgstr "*Értékpapír száma"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Írd be a részvények darabszámát\n"
+"Az induló részvény-tranzakció létrehozásakor használja."
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
@@ -6525,7 +6527,8 @@ msgstr "*Értékpapír ára"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Írd be a részvények darabárát\n"
+"Az induló részvény-tranzakció létrehozásakor használja."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -6534,7 +6537,8 @@ msgstr "*Jutalék"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Írd be a fizetett jutalékokat.\n"
+"Az induló részvény-tranzakció létrehozásakor használja."
 
 #: stockdialog.cpp:250 stocks_list.cpp:96
 msgid "Curr. Share Price"
@@ -6542,7 +6546,7 @@ msgstr "Aktuális részvényár"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Írd be a részvény aktuális árát."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6558,7 +6562,7 @@ msgstr "Ár dátuma"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Határozd meg a részvényár dátumát."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6570,11 +6574,11 @@ msgstr "Részvényár-változás időrendi kimutatás importálása (CSV formát
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "A kijelölt részvényár törlése"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Részvényár hozzáadása az árfolyamtörténethez"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6583,13 +6587,16 @@ msgstr "Befektetési számla"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Nem találtam a részvényszámlát.\n\n"
+"Szeretnél létrehozni egyet?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "A cég nevéhez nem tartozik rézvényszámla.\n\n"
+"Módosítsd a cégnevét, létező, azonos nevű részvényszámlához igazítva. Ha ez egy létező részvény, részvényszámla nélkül, javasolt részvényszámla készítése hozzá.\n\n"
+"Létrehoznál egy új értékpapírszámlát?\n"
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
@@ -6602,12 +6609,12 @@ msgstr "CSV-ből importált bejegyzések: "
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Összes sor: %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Összesen importálva: %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
@@ -6667,7 +6674,7 @@ msgstr "1 hét"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "Határozd meg a részvénytörténet intervallumát"
 
 #: stockdialog.cpp:767 stockdialog.cpp:771
 msgid "Stock history not found!"
@@ -6728,15 +6735,15 @@ msgstr "Ügylet mozgatása innen %s ide..."
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Részvényügyletek hozzáadása"
 
 #: stockspanel.cpp:140
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Részvényügyletek mutatása"
 
 #: stockspanel.cpp:150
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Részvénybefektetés törlése"
 
 #: stockspanel.cpp:154
 msgid "&Move"
@@ -6744,7 +6751,7 @@ msgstr "&Mozgat"
 
 #: stockspanel.cpp:155
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "A kiválasztott tranzakció átvitele más számlára"
 
 #: stockspanel.cpp:168
 msgid "Refresh"
@@ -6769,7 +6776,7 @@ msgstr "Részvények portfólió: %s"
 #: stockspanel.cpp:275
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Összes részvény: %s"
 
 #: stockspanel.cpp:277
 #, c-format
@@ -6814,53 +6821,54 @@ msgstr "Törlés"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr ""
+msgstr "Használja"
 
 #: themes.cpp:233
 msgid "No description available"
-msgstr ""
+msgstr "Leírás nem elérhető"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Válaszd ki az importálandó témafájlt"
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "A téma már létezik. Szeretnéd mégis importálni és felülírni a létező témát?"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Hiba történt a téma importálása közben"
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Biztosan törölnéd ezt a témát? Ha ismét használni szeretnéd, akkor újból importálnod kell majd."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "A Kategória törlése közben hiba történt"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Biztosan használni szeretnéd ezt a témát? Vedd figyelembe, hogy csak az MMEX újraindítása után lépérvénybe."
 
 #: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Többszörös tranzakció frissítése"
 
 #: transactionsupdatedialog.cpp:244
 msgid "Append"
-msgstr ""
+msgstr "Hozzáfűz"
 
 #: transactionsupdatedialog.cpp:360 transdialog.cpp:684
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Nem használtad ezt a kedvezményezettet korábban. Helyes a név?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:361 transdialog.cpp:685
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Hagyd jóvá a kedvezményezett nevét"
 
 #: transdialog.cpp:191
 msgid "Duplicate Transaction"
@@ -6884,7 +6892,7 @@ msgstr "Az ügylethez tartozó mellékletek rendezése"
 
 #: transdialog.cpp:628
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Mutasd/Rejtsd el a felhasználói mezők ablakot"
 
 #: transdialog.cpp:778
 msgid "This transaction will exceed your account limit.\n\n"
