@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 18:57\n"
+"PO-Revision-Date: 2022-02-07 19:05\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4520,7 +4520,7 @@ msgstr "A Money Manager EX honlapjának megnyitása hírek, frissítések stb. m
 
 #: mmframe.cpp:1614
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1614
 msgid "Visit us on Facebook"
@@ -4528,15 +4528,15 @@ msgstr "Látogasson meg minket a Facebook-on."
 
 #: mmframe.cpp:1616
 msgid "&Crowdin"
-msgstr ""
+msgstr "Crowdin"
 
 #: mmframe.cpp:1616
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Az MMEX fordítására Crowdin-t használunk"
 
 #: mmframe.cpp:1618
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1618
 msgid "Follow us on Twitter"
@@ -4544,63 +4544,63 @@ msgstr "Kövessen minket Twitteren"
 
 #: mmframe.cpp:1620
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1620
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Nézz ingyenes videókat az MMEX-ről"
 
 #: mmframe.cpp:1622
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1622
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Az MMEX-csapattal online kommunikálj az asztali vagy mobil eszközödről"
 
 #: mmframe.cpp:1624
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1624
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Lépj be a forráskód tárolójába és kövesd a jelentett hiba státuszát"
 
 #: mmframe.cpp:1626
 msgid "W&iki pages"
-msgstr ""
+msgstr "Wiki oldalak"
 
 #: mmframe.cpp:1626
 msgid "Read and update wiki pages"
-msgstr ""
+msgstr "Olvasd és frissítsd a wiki-oldalakat"
 
 #: mmframe.cpp:1628
 msgid "F&orum"
-msgstr ""
+msgstr "Fórum"
 
 #: mmframe.cpp:1629
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr ""
+msgstr "Látogasd meg az MMEX fórumát a felhasználói megjegyzések olvasásához, vagy a szoftverrel kapcsolatos új ügyek jelentéséhez"
 
 #: mmframe.cpp:1631
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "MoneyManagerEx Androidra"
 
 #: mmframe.cpp:1632
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr ""
+msgstr "Töltsd le az ingyenes androidos verziót és futtasd az MMEX-et az okos telefonodon, vagy táblagépeden"
 
 #: mmframe.cpp:1634
 msgid "&Newsletter"
-msgstr ""
+msgstr "Hírlevél"
 
 #: mmframe.cpp:1635
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "Iratkozz fel az e-mailes hírlevélre, vagy nézd meg a bejelentéseket"
 
 #: mmframe.cpp:1637
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&RSS Hírfolyam"
 
 #: mmframe.cpp:1637
 msgid "Connect RSS web feed to news aggregator"
