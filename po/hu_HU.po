@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 19:22\n"
+"PO-Revision-Date: 2022-02-07 19:32\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5558,7 +5558,7 @@ msgstr "Árfolyamtörténet használata"
 
 #: optionsettingsgeneral.cpp:171
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Jelöld be, hogy az árfolyamtörténetet (napi egy árfolyam) használd, vagy vedd ki a jelölést, fix árfolyam használatához"
 
 #: optionsettingsgeneral.cpp:175
 msgid "Financial Year"
@@ -5590,11 +5590,11 @@ msgstr "Határozza meg, hogy másoláskor a tranzakció eredeti dátumát, vagy 
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Tranzakció duplikálásakor az eredeti dátumot használja"
 
 #: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Határozza meg, hogy tranzakció duplikálásakor annak eredeti dátumát, vagy a jelenlegi dátumot használja-e"
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Transaction Sound"
@@ -5607,11 +5607,11 @@ msgstr "Határozza meg, hogy a tranzakcióknál mikor legyen hangvisszajelzés"
 #: optionsettingsgeneral.cpp:325
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Példa a pénznem értékére: %s"
 
 #: optionsettingsgeneral.cpp:329
 msgid "bad locale name"
-msgstr ""
+msgstr "hibás helynév"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5647,15 +5647,15 @@ msgstr "Az utoljára alkalmazott kedvezményezett"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Alkalmazza az alap kedvezményezettet"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -5675,7 +5675,7 @@ msgstr "Alapértelmezett állapot: "
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Tranzakciós köteg:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
@@ -5767,11 +5767,11 @@ msgstr "Használati statisztikák "
 
 #: optionsettingsnet.cpp:127
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Legfrissebb hírek ellenőrzése indításkor"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Engedélyezd, hogy az alkalmazás indításakor ellenőrizhesse a híreket"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5787,11 +5787,11 @@ msgstr "Másodperc"
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
-msgstr ""
+msgstr "Frissítések"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Frissítések ellenőrzése indításkor"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5807,7 +5807,7 @@ msgstr "Nem végleges változat"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
-msgstr ""
+msgstr "Forrás frissítése"
 
 #: optionsettingsview.cpp:81
 msgid "Specify which accounts are visible"
@@ -5815,19 +5815,19 @@ msgstr "Adja meg, hogy mely számlák látszódjanak"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Kategóriaelválasztó"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Tranzakciós vagy Költségvetési opciók"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Költségvetések megtekintése pénzügyi év szerint"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Költségvetések megtekintése \"átutalási\" tranzakciókkal együtt"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
