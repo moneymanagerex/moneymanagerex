@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:17\n"
+"PO-Revision-Date: 2022-02-07 21:27\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -870,15 +870,15 @@ msgstr "Esedékesség"
 
 #: billsdepositsdialog.cpp:457
 msgid "Back to the last occurring date with the specified values"
-msgstr "Visszatérés az adott érték legutolsó előfordulásának dátumához"
+msgstr "Vissza az adott érték legutolsó előfordulásának dátumához"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1294
 msgid "Repeats"
-msgstr "Ismétlődik"
+msgstr "Ismétlések"
 
 #: billsdepositsdialog.cpp:467
 msgid "Advance the next occurring date with the specified values"
-msgstr "A következő ismétlési dátum eltolása a megadott értékekkel"
+msgstr "Előrelépés az adott érték következő előfordulásának dátumához"
 
 #: billsdepositsdialog.cpp:475 billsdepositsdialog.cpp:1336
 msgid "Payments Left"
@@ -886,11 +886,11 @@ msgstr "Fennmaradt kifizetések"
 
 #: billsdepositsdialog.cpp:489
 msgid "Request user to enter payment"
-msgstr "A felhasználó adja meg a fizetett összeget"
+msgstr "Kéretik megadni az összeget"
 
 #: billsdepositsdialog.cpp:490
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "Kéretik, hogy ezt a tranzakciót a felhasználó a \"Fizetési napon\" vigye be."
+msgstr "Kéretik, hogy a felhasználó a tranzakciót a \"Kifizetés napján\" vigye be"
 
 #: billsdepositsdialog.cpp:493
 msgid "Grant automatic execute"
@@ -910,7 +910,7 @@ msgstr "Adja meg a dátumot, amikor a felhasználónak be kell vinnie ezt az üg
 
 #: billsdepositsdialog.cpp:537
 msgid "Advance or retard the user request date of this transaction"
-msgstr "A tranzakció felhasználó-kérés dátumának léptetés, vagy késleltetése"
+msgstr "A tranzakció felhasználótól elvárt dátumának előrehozása, vagy késleltetése"
 
 #: billsdepositsdialog.cpp:542 billsdepositspanel.cpp:132
 msgid "Date Paid"
@@ -918,7 +918,7 @@ msgstr "Fizetés dátuma"
 
 #: billsdepositsdialog.cpp:553 filtertransdialog.cpp:329 transdialog.cpp:1382
 msgid "Specify the status for the transaction"
-msgstr "Adja meg az ügylet állapotát"
+msgstr "Határozza meg az ügylet állapotát"
 
 #: billsdepositsdialog.cpp:555 billsdepositspanel.cpp:136 filtertrans.cpp:195
 #: filtertransdialog.cpp:319 filtertransdialog.cpp:701
