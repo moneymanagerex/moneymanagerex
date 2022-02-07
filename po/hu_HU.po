@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 18:49\n"
+"PO-Revision-Date: 2022-02-07 18:57\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4396,7 +4396,7 @@ msgstr "Az összes kedvezményezett átsorolása egy másikba."
 
 #: mmframe.cpp:1524
 msgid "Re&location of..."
-msgstr ""
+msgstr "Áthelyezendő..."
 
 #: mmframe.cpp:1525
 msgid "Relocate Categories && Payees"
@@ -4420,15 +4420,15 @@ msgstr "Vagyontárgyak"
 
 #: mmframe.cpp:1549
 msgid "T&heme Manager"
-msgstr ""
+msgstr "Témakezelő"
 
 #: mmframe.cpp:1549 mmframe.cpp:2497 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Témakezelő"
 
 #: mmframe.cpp:1555
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "Tranzakciójelentés és -szűrés..."
 
 #: mmframe.cpp:1555 mmframe.cpp:1731
 msgid "Transaction Report Filter"
@@ -4436,27 +4436,27 @@ msgstr "Ügyletek szűrése"
 
 #: mmframe.cpp:1561
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Fő jelentéskezelő..."
 
 #: mmframe.cpp:1565
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Felhasználói mező kezelője..."
 
 #: mmframe.cpp:1565
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Felhasználói mező kezelője"
 
 #: mmframe.cpp:1571
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "Webapp frissítése"
 
 #: mmframe.cpp:1571 mmframe.cpp:2506 mmframe.cpp:2509
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "Webapp frissítése"
 
 #: mmframe.cpp:1576
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Opcióks...\tCtrl-,"
 
 #: mmframe.cpp:1576 mmframe.cpp:1735
 msgid "Show the Options Dialog"
@@ -4464,23 +4464,23 @@ msgstr "Beállítások párbeszéd megjelenítése"
 
 #: mmframe.cpp:1583
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Titkosított adatbázis konvertálása"
 
 #: mmframe.cpp:1584
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Titkosított adatbázis konvertálása titkosítatlanra"
 
 #: mmframe.cpp:1586
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Titkosítási jelszó módosítása"
 
 #: mmframe.cpp:1587
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Titkosított adatbázis jelszavának módosítása"
 
 #: mmframe.cpp:1589
 msgid "&Optimize Database"
-msgstr ""
+msgstr "Adatbázis &optimalizálás"
 
 #: mmframe.cpp:1590
 msgid "Optimize database space and performance"
@@ -4488,7 +4488,7 @@ msgstr "Adatbázis méretének és működésének optimalizálása "
 
 #: mmframe.cpp:1592
 msgid "Database De&bug"
-msgstr ""
+msgstr "Adatbázis hibakeresése"
 
 #: mmframe.cpp:1593
 msgid "Generate database report or fix errors"
@@ -4496,7 +4496,7 @@ msgstr "Adatbázis-jelentés készítése, vagy hibajavítás."
 
 #: mmframe.cpp:1598
 msgid "Databa&se"
-msgstr ""
+msgstr "Adatbázi&s"
 
 #: mmframe.cpp:1599
 msgid "Database management"
@@ -4512,11 +4512,11 @@ msgstr "Segítség megjelenítése"
 
 #: mmframe.cpp:1611
 msgid "&Website"
-msgstr ""
+msgstr "&Weboldal"
 
 #: mmframe.cpp:1612
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "A Money Manager EX honlapjának megnyitása hírek, frissítések stb. miatt"
 
 #: mmframe.cpp:1614
 msgid "&Facebook"
