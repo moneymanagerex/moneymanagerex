@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:38\n"
+"PO-Revision-Date: 2022-02-07 21:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1104,32 +1104,32 @@ msgstr "Gyakoriság: hónapok"
 #: billsdepositsdialog.cpp:1305
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr "Adja meg az időszakot napokban az aktiválásig.\n"
-"Ha nem aktív, üres lesz."
+msgstr "Adja meg az aktív időszakot napokban.\n"
+"Üresre vált, amikor nem aktív."
 
 #: billsdepositsdialog.cpp:1313
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr "Adja meg a periódust hónapokban az aktiváláshoz.\n"
-"Ha nem aktív, üres lesz."
+msgstr "Adja meg az aktív időszakot hónapokban.\n"
+"Üresre vált, amikor nem aktív."
 
 #: billsdepositsdialog.cpp:1321
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr "Az aktiváláshoz adja meg az időszakot napokban.\n"
-"Hagyja üresen, ha nem aktív!"
+msgstr "Adja meg az aktív időszakot napokban.\n"
+"Üresre vált, amikor nem aktív."
 
 #: billsdepositsdialog.cpp:1329
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr "Adja meg a periódust hónapokban az aktiváláshoz.\n"
-"Hagyja üresen, ha nem aktív."
+msgstr "Adja meg az aktív időszakot hónapokban.\n"
+"Üresre vált, amikor nem aktív."
 
 #: billsdepositsdialog.cpp:1337
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr "Adja meg a teljesítendő kifizetések számát.\n"
-"Hagyja üresen ha a kifizetések örökké folytatódnak."
+msgstr "Adja meg hányszor kell fizetni.\n"
+"Hagyja üresen ha a kifizetésnek nincs lejárata."
 
 #: billsdepositsdialog.cpp:1362 filtertransdialog.cpp:605
 #: filtertransdialog.cpp:620 filtertransdialog.cpp:631
@@ -1149,7 +1149,7 @@ msgstr "Hiba"
 #: billsdepositsdialog.cpp:1427 transdialog.cpp:1345
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
-msgstr "Válasszon kategóriát ehhez az ügylethez"
+msgstr "Határozza meg az ügylet kategóriáját"
 
 #: billsdepositsdialog.cpp:1449 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:135 transdialog.cpp:404
@@ -1158,7 +1158,7 @@ msgstr "Kategóriák"
 
 #: billsdepositsdialog.cpp:1484 transdialog.cpp:1420
 msgid "Clear color"
-msgstr "Sín törlése"
+msgstr "Szín törlése"
 
 #: billsdepositsdialog.cpp:1489 filtertransdialog.cpp:1809 transdialog.cpp:1425
 #, c-format
@@ -1171,11 +1171,11 @@ msgstr "Új rendszeres ügylet"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
-msgstr "Határozza meg, hogy a tranzakció hová irányul"
+msgstr "Határozza meg a tranzakció címzettjét"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1377
 msgid "Specify where the transaction is coming from"
-msgstr "Határozza meg, hogy a tranzakció honnan származik"
+msgstr "Határozza meg, hogy a tranzakció honnan ered"
 
 #: billsdepositsdialog.h:128
 msgid "Specify which account the transfer is going to"
