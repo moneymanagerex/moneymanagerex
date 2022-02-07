@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:08\n"
+"PO-Revision-Date: 2022-02-07 21:17\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -743,11 +743,11 @@ msgstr "A melléklet nem található:"
 
 #: attachmentdialog.cpp:473
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Folytatja és törli az adatbázis mellékeltét?"
+msgstr "Kívánja folytatni és törölni az adatbázis mellékeltét?"
 
 #: attachmentdialog.cpp:474
 msgid "Delete attachment failed"
-msgstr "Melléklet törlése nem sikerült"
+msgstr "A melléklet törlése nem sikerült"
 
 #: attachmentdialog.cpp:487
 msgid "Unable to open file:"
@@ -755,7 +755,7 @@ msgstr "A fájlt nem lehet megnyitni:"
 
 #: attachmentdialog.cpp:490
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Ellenőrizze, hogy a melléklet létezik és jogosult olvasni!"
+msgstr "Ellenőrizze, hogy a fájl létezik-e és felhasználó jogosult-e olvasni."
 
 #: attachmentdialog.cpp:491
 msgid "Open attachment failed"
@@ -775,7 +775,7 @@ msgstr "Hetente"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr "Kéthetenkénti"
+msgstr "Éjjelente"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:130
 #: mmframereport.cpp:138 mmframereport.cpp:160 mmframereport.cpp:178
@@ -826,11 +826,11 @@ msgstr "(x) hónapon belül"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr "(x) naponta"
+msgstr "Minden (x) nap"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr "(x) havonta"
+msgstr "Minden (x) hónap"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -850,7 +850,7 @@ msgstr "Rendszeres ügyletek szerkesztése"
 
 #: billsdepositsdialog.cpp:323
 msgid "Enter Recurring Transaction"
-msgstr "Rendszeres ügylet beírása"
+msgstr "Rendszeres ügylet bevitele"
 
 #: billsdepositsdialog.cpp:423
 msgid "Recurring Transaction Details"
@@ -858,11 +858,11 @@ msgstr "Rendszeres ügylet részletei"
 
 #: billsdepositsdialog.cpp:435
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Adja meg a következő számla vagy betét esedékességi dátumát"
+msgstr "Határozza meg a számla vagy betét esedékessége dátumát"
 
 #: billsdepositsdialog.cpp:446
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr "Késleltesse, vagy hozza előbbre a 'következő ismétlést'"
+msgstr "Késleltesse, vagy hozza előbbre a 'következő előfordulást'"
 
 #: billsdepositsdialog.cpp:451 billsdepositspanel.cpp:133
 msgid "Date Due"
