@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 18:15\n"
+"PO-Revision-Date: 2022-02-07 18:26\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3115,7 +3115,7 @@ msgstr "A tranzakció összege hibás"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "A tranzakció kategóriája hibás"
 
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
@@ -3210,7 +3210,7 @@ msgstr "Előnézet"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Válasszon XML adatfájlt az importáláshoz"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
@@ -3218,7 +3218,7 @@ msgstr "Válassza ki az importálandó CSV adatfájlt"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Válasszon XML adatfájlt az exportáláshoz"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
@@ -3226,7 +3226,7 @@ msgstr "Válasszon CSV fájlt az exportáláshoz"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
-msgstr ""
+msgstr "Sablon neve"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
@@ -3260,7 +3260,8 @@ msgstr "Exportálás"
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "A sablonhoz tartozó '%s' számla nem létezik.\n"
+"Kérem válasszon új számlát."
 
 #: import_export/univcsvdialog.cpp:542
 msgid "Account does not exist"
@@ -3270,11 +3271,11 @@ msgstr "Nem létező számla"
 #: import_export/univcsvdialog.cpp:1847
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Pozitív, ha a típusnak '%s' van"
 
 #: import_export/univcsvdialog.cpp:926
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Az import mezőinek kijelölése hibás!"
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Date field is required."
@@ -3282,7 +3283,7 @@ msgstr "A dátum mező kötelező."
 
 #: import_export/univcsvdialog.cpp:928
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Az Összeg mező vagy mind a Kivétel és a Letét mezők is kellenek."
 
 #: import_export/univcsvdialog.cpp:929 import_export/univcsvdialog.cpp:1058
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3292,7 +3293,7 @@ msgstr "Importálás"
 #: import_export/univcsvdialog.cpp:981
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "A tranzakció a(z) %s: %ld számlához importálva lett"
 
 #: import_export/univcsvdialog.cpp:992
 #, c-format
@@ -3314,12 +3315,12 @@ msgstr "Érvénytelen összeget."
 
 #: import_export/univcsvdialog.cpp:1011
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "A (kivét, vagy letét) típusa ismeretlen."
 
 #: import_export/univcsvdialog.cpp:1036
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "%ld sor: OK, importálva."
 
 #: import_export/univcsvdialog.cpp:1043
 #, c-format
@@ -3418,7 +3419,7 @@ msgstr "Minden Fájl"
 
 #: import_export/univcsvdialog.cpp:1843
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Írja be a CSV fájlban pozitív értéket jelölő kifejezést, pl. \"tartozik\""
 
 #: import_export/univcsvdialog.cpp:1843
 msgid "Enter a value"
@@ -3439,7 +3440,7 @@ msgstr "Rögzített árfolyam"
 
 #: maincurrencydialog.cpp:128
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: maincurrencydialog.cpp:170 maincurrencydialog.cpp:462
 msgid "Online update currency rate"
