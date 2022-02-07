@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 17:53\n"
+"PO-Revision-Date: 2022-02-07 18:02\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1913,23 +1913,23 @@ msgstr "Választék"
 
 #: customfieldeditdialog.cpp:169
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Írd be a mezőhöz tartozó választási lehetőségeket pontosvesszővel elválasztva"
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
-msgstr ""
+msgstr "Számskála"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Írd be a skála engedélyezett decimális értékeit"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
-msgstr ""
+msgstr "Panel oszlopa"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Válassz egy, a tételt a panelen képviselő értéket"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
@@ -1954,7 +1954,7 @@ msgstr "Felhasználói mező - Új/Szerkeszt"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -1978,7 +1978,8 @@ msgstr "Felhasználói mező törlésének jóváhagyása"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Ez a funkció mélyrehatóan megkeresi és lecseréli \"%s\" tetszőleges mezőértéket. Csak a mező teljes tartalmát ellenőrzi és cseréli le, rész vagy közbenső érték cseréje nem megengedett\n"
+"Vedd figyelembe, hogy nincs semmilyen megerősítés!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
