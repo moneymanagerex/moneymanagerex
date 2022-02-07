@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 19:05\n"
+"PO-Revision-Date: 2022-02-07 19:22\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4604,31 +4604,31 @@ msgstr "&RSS Hírfolyam"
 
 #: mmframe.cpp:1637
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "Kapcsold az RSS webfeltöltőt a hírellátóhoz"
 
 #: mmframe.cpp:1639
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "Adakozzon PayPal-on"
 
 #: mmframe.cpp:1640
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Adakozz a csapatnak, hogy támogasd az infrastruktúrát stb"
 
 #: mmframe.cpp:1642
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "Vegyen nekünk egy kávét"
 
 #: mmframe.cpp:1643
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Vegyen a főfejlesztőnek egy kávét"
 
 #: mmframe.cpp:1646
 msgid "&Community"
-msgstr ""
+msgstr "Közösség"
 
 #: mmframe.cpp:1647
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Maradj kapcsolatban az MMEX-közösséggel"
 
 #: mmframe.cpp:1669
 msgid "Report a &Bug"
@@ -5333,19 +5333,19 @@ msgstr ""
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Dátum: "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Záródátum: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Év: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "A sablon üres"
 
 #: model/Model_Report.cpp:247
 #, c-format
@@ -5392,7 +5392,7 @@ msgstr "Az %s csatolt archív könyvtára csak :"
 
 #: optionsettingsattachment.cpp:69
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "MInden Op. rendszernek (Win, Mac, Unix) van a saját könyvtára"
 
 #: optionsettingsattachment.cpp:88
 msgid "Browse for folder"
@@ -5404,27 +5404,27 @@ msgstr "Valós útvonal:"
 
 #: optionsettingsattachment.cpp:98
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Jelmagyarázat (a fenti útvonal elején változóként felhasználható)"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Felhasználói dokumentumkönyvtár"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Felhasználói profilkönyvtár"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Az .MMB adatbázisfájl könyvtára"
 
 #: optionsettingsattachment.cpp:106
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Az MMEX-alkalmazás adatkönyvtára"
 
 #: optionsettingsattachment.cpp:112
 msgid "Other OS folders "
@@ -5432,19 +5432,19 @@ msgstr "Többi Op. rendsz. könyvtárai"
 
 #: optionsettingsattachment.cpp:117
 msgid "Not set yet"
-msgstr ""
+msgstr "Még nincs beállítva"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Windows mappa -> "
 
 #: optionsettingsattachment.cpp:131
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Mac mappa -> "
 
 #: optionsettingsattachment.cpp:138
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Unix mappa -> "
 
 #: optionsettingsattachment.cpp:146
 msgid "Create and use Attachments subfolder"
@@ -5468,11 +5468,11 @@ msgstr "Válaszd, hogy a melléklet eltávolításakor a fájlt ne törölje, ha
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "Amikor tranzakciót duplikálsz a mellékletet is duplikáld"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Akkor válaszd, ha a mellékletet új tranzakcióhoz akarod másolni duplikáláskor, vagy beillesztéskor"
 
 #: optionsettingsattachment.cpp:180
 msgid "Choose folder to set as attachments archive"
@@ -5480,11 +5480,11 @@ msgstr "Válasszon könyvtárat a mellékletek tárolására"
 
 #: optionsettingsattachment.cpp:220
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "A mellékletkönyvtár nem írható!"
 
 #: optionsettingsattachment.cpp:220
 msgid "Attachments folder"
-msgstr ""
+msgstr "Mellékletek könyvtár"
 
 #: optionsettingsattachment.cpp:228
 msgid "Attachments path has been changed!"
@@ -5520,7 +5520,7 @@ msgstr "A felhasználó neve az adatbázis címe is egyben. "
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Nyelv"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5528,7 +5528,7 @@ msgstr "Adja meg a dátum megjelenítési formáját"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Dátumformátum minta:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5549,11 +5549,12 @@ msgstr "A \"Pénznem párbeszédben\" jobb-kattintás és válassza a \"Beeealap
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "A formátum a helyiből származtatott.\n"
+"Hagyd üresen, hogy a formátumot a \"Pénznem párbeszéd | szerkesztés\" használatával kézzel beállítsd"
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
-msgstr ""
+msgstr "Árfolyamtörténet használata"
 
 #: optionsettingsgeneral.cpp:171
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
