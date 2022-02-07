@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 17:53\n"
+"PO-Revision-Date: 2022-02-07 18:02\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5510,7 +5510,7 @@ msgstr "Падчас стварэння дубліката аперацыі та
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr "Абярыце, калі жадаеце таксама капіяваць далучэнні да новай аперацыі падчас дублявання або ўстаўкі"
+msgstr "Абярыце, калі жадаеце капіяваць далучэнні ў новую аперацыю падчас дублявання або ўстаўкі"
 
 #: optionsettingsattachment.cpp:180
 msgid "Choose folder to set as attachments archive"
