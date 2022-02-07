@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 20:48\n"
+"PO-Revision-Date: 2022-02-07 21:00\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -423,7 +423,7 @@ msgstr "Az esközhöz tartozó mellékletek rendezése"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
-msgstr "Írja be a vagyontárgyhoz fűződő megjegyzéseket"
+msgstr "Írja be az eszközhöz kapcsolódó megjegyzéseket"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
@@ -483,11 +483,11 @@ msgstr "Vagyontárgy duplikálása"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr "Vagyoni ügylet hozzáadása"
+msgstr "Eszközművelet hozzáadása"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "Vagyoni ügylet mutatása"
+msgstr "Eszközművelet mutatása"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
@@ -495,11 +495,11 @@ msgstr "Értékpapírszámla megnyitása"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
-msgstr "Vagyontárgy szerkesztése"
+msgstr "Eszköz szerkesztése"
 
 #: assetspanel.cpp:106
 msgid "&Delete Asset"
-msgstr "Vagyontárgy törlése"
+msgstr "Eszköz törlése"
 
 #: assetspanel.cpp:108 billsdepositspanel.cpp:436 mmchecking_list.cpp:397
 #: mmframe.cpp:1260 payeedialog.cpp:390 stocks_list.cpp:145
@@ -508,15 +508,15 @@ msgstr "Mellékletek rendezése"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
-msgstr "Valóban törli a vagyontárgyat?"
+msgstr "Valóban törli az eszközt?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
-msgstr "Vagyontárgy törlésének jóváhagyása"
+msgstr "Eszköz törlésének jóváhagyása"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "Az MMEX lehetővé teszi, hogy meghatározott vagyontárgyait, mint például autók, házak, telkek stb., számon tartsa. A vagyontárgyak értéke évente meghatározott összeggel emelkedhet, csökkenhet, vagy akár változatlanul is hagyható. A vagyontárgyak teljes értéke az Ön pénzügyi helyzetében megjelenik."
+msgstr "Az MMEX lehetővé teszi, hogy meghatározott eszközeti, mint például autók, házak, telkek stb., számon tartsa. A vagyontárgyak értéke évente meghatározott összeggel emelkedhet, csökkenhet, vagy akár változatlanul is hagyható. Az eszközök összértéke az Ön pénzügyi összértékét növeli."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:724
 #: general_report_manager.cpp:1001 mmframe.cpp:478 mmframe.cpp:745
@@ -542,11 +542,11 @@ msgstr "Ügyelt hozzáadása"
 
 #: assetspanel.cpp:475 stockspanel.cpp:139
 msgid "&View Trans "
-msgstr "Átutalás megtekintése"
+msgstr "Ügylet megtekintése "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr "Vagyoni ügylet mutatása"
+msgstr "Eszközművelet mutatása"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:318 billsdepositspanel.cpp:292
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:528
@@ -563,7 +563,7 @@ msgstr "Törlés"
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
-msgstr "Vagyontárgy törlése"
+msgstr "Eszköz törlése"
 
 #: assetspanel.cpp:493 billsdepositspanel.cpp:320 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:162
@@ -602,7 +602,7 @@ msgstr "Összesen: %s"
 #: assetspanel.cpp:661
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr "A változás értéke: %s %s"
+msgstr "Értékváltozás: %s %s"
 
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
@@ -612,7 +612,7 @@ msgstr "Ehhez a vagyontárgyhoz nem tartozik saját számla\n\n"
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
-msgstr "Vagyonkezelés"
+msgstr "Eszközkezelés"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
