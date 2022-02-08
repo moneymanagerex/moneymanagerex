@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 11:39\n"
+"PO-Revision-Date: 2022-02-08 11:55\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3717,7 +3717,7 @@ msgstr "Tipp: az MMEX működése részben módosítható az Eszközök->Beáll�
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "Tipp: meghatározott szempontok szerint transzakciók nyomtatásához használja az ügyletek szűrését válassza ki a kívánt ügyleteket megfelelő, majd nyomtasson a menüből."
+msgstr "Tipp: meghatározott szempontok szerinti tartalmú jelentés nyomtatásához az ügyletek megfelelő szűrésével válassza ki a kívánt ügyleteket, majd nyomtasson a menüből."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3741,11 +3741,11 @@ msgstr "Tipp adósság elkerüléséhez: különítsen el biztonsági tartaléko
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr "Tipp adósságból kilábaláshoz: ne vegyen fel újabb kölcsönöket."
+msgstr "Tipp adósságból kilábaláshoz: ne vegyen fel újabb kölcsönt."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr "Tipp adósság elkerüléséhez: készítsen reális kiadási költségvetést."
+msgstr "Tipp adósság elkerüléséhez: készítsen reális költségvetést a kiadásaira."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
