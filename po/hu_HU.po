@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 04:51\n"
+"PO-Revision-Date: 2022-02-08 05:02\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2364,7 +2364,7 @@ msgstr "Érvénytelen"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:424 mmchecking_list.cpp:855
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
-msgstr ""
+msgstr "Követés"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:426
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
@@ -2377,23 +2377,23 @@ msgstr "Kiegyenlítettek kivételével mind"
 
 #: filtertransdialog.cpp:71
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Pénzügyi év kezdete"
 
 #: filtertransdialog.cpp:72
 msgid "Start of This Year"
-msgstr ""
+msgstr "Ennek az évnek a kezdete"
 
 #: filtertransdialog.cpp:73
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "90 nap óta"
 
 #: filtertransdialog.cpp:74
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "30 nap óta"
 
 #: filtertransdialog.cpp:75
 msgid "Since Today"
-msgstr ""
+msgstr "Mától"
 
 #: filtertransdialog.cpp:197 transactionsupdatedialog.cpp:135
 msgid "Specify"
@@ -2406,7 +2406,7 @@ msgstr "Induló dátum "
 
 #: filtertransdialog.cpp:240
 msgid "Period Range"
-msgstr ""
+msgstr "Időszak kiterjedés"
 
 #: filtertransdialog.cpp:268 reports/mmDateRange.cpp:35
 msgid "Date Range"
@@ -2448,67 +2448,67 @@ msgstr "Összeghatár: "
 
 #: filtertransdialog.cpp:394
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Írjon be bármit, a tranzakciók megjegyzéseiben kereséséhez"
 
 #: filtertransdialog.cpp:406
 msgid "Select the Color"
-msgstr ""
+msgstr "Szín kiválasztása"
 
 #: filtertransdialog.cpp:413
 msgid "Presentation Options"
-msgstr ""
+msgstr "Bemutató beállításai"
 
 #: filtertransdialog.cpp:428
 msgid "Hide Columns"
-msgstr ""
+msgstr "Oszlopok elrejtése"
 
 #: filtertransdialog.cpp:439 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1341
 msgid "Group By"
-msgstr ""
+msgstr "Csoportosította"
 
 #: filtertransdialog.cpp:447
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Határozza meg, miképpen csoportosítsa a jelentések"
 
 #: filtertransdialog.cpp:466
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 #: filtertransdialog.cpp:487 filtertransdialog.cpp:916
 #: filtertransdialog.cpp:956 filtertransdialog.cpp:1180
 #: filtertransdialog.cpp:1369 filtertransdialog.cpp:1729
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i Üres"
 
 #: filtertransdialog.cpp:496
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Az aktív értékeket az éppen kiválasztott alapbeállításokhoz mentse"
 
 #: filtertransdialog.cpp:501
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Az aktuális alapbeállítások rész összes mezőjét üríti"
 
 #: filtertransdialog.cpp:726
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Szeretné ezeket menteni a folytatás előtt?"
 
 #: filtertransdialog.cpp:727
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "A szűrőbeállítások megváltoztak"
 
 #: filtertransdialog.cpp:779
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Üres oszlopok elrejtése"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Please Enter"
-msgstr ""
+msgstr "Kérem adja meg"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Setting Name"
-msgstr ""
+msgstr "Név meghatározása"
 
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1727
 #: filtertransdialog.cpp:1735
