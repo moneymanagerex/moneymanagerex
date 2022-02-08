@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 06:13\n"
+"PO-Revision-Date: 2022-02-08 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3910,19 +3910,23 @@ msgstr "Zárolt számla ellenőrzése"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Valóban mozgatni akarja a kiválasztott ügyletet?\n"
+"Valóban mozgatni akar %i kiválasztott ügyletet?"
+msgstr[1] "Valóban mozgatni akarja a kiválasztott ügyletet?\n"
+"Valóban mozgatni akar %i kiválasztott ügyletet?"
 
 #: mmchecking_list.cpp:1197
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Ügylet mozgatásának megerősítése"
 
 #: mmchecking_list.cpp:1203
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ügylet mozgatása ide...\n"
+"%i ügylet mozgatása ide..."
+msgstr[1] "Ügylet mozgatása ide...\n"
+"%i ügylet mozgatása ide..."
 
 #: mmchecking_list.cpp:1207 stocks_list.cpp:290
 msgid "Select the destination Account "
@@ -3930,7 +3934,7 @@ msgstr "Válassza ki a célszámlát"
 
 #: mmchecking_list.cpp:1293
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Rendszeres ügylet mentve."
 
 #: mmcheckingpanel.cpp:333 mmframe.cpp:1725 transdialog.cpp:191
 msgid "New Transaction"
@@ -3950,16 +3954,16 @@ msgstr "A kijelölt ügylet duplikálása"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Írja be, aminek a legközelebbi előfordulását keresi az ügyletek adataiban"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Teljes jelentés az ügyletekről"
 
 #: mmcheckingpanel.cpp:389
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Számlanézet: %s"
 
 #: mmcheckingpanel.cpp:407
 msgid "Account Bal: "
@@ -3975,7 +3979,7 @@ msgstr "Különb.: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Szűrt egyenlegnézet: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -3984,17 +3988,17 @@ msgstr "Melléklet"
 #: mmcheckingpanel.cpp:500
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "A kiválasztott ügylet: %zu"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "A kiválasztott ügyletek egyenlege: %s"
 
 #: mmcheckingpanel.cpp:507
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "A kiválasztott ügyletek között eltelt napok: %d"
 
 #: mmcustomdata.cpp:62
 msgid "Custom fields"
