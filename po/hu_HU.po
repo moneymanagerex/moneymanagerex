@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 12:07\n"
+"PO-Revision-Date: 2022-02-08 12:42\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3872,7 +3872,7 @@ msgstr "Ügylet törlésének jóváhagyása"
 #: mmchecking_list.cpp:855 mmchecking_list.cpp:866
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Valóban törli az összes, mutatott '%s' ügyletet?"
+msgstr "Valóban törli az összes, mutatott \"%s\" ügyletet?"
 
 #: mmchecking_list.cpp:909
 #, c-format
@@ -3946,7 +3946,7 @@ msgstr "Új ügylet"
 
 #: mmcheckingpanel.cpp:337
 msgid "Edit selected transaction"
-msgstr "A kiválasztott ügyletek szerkesztése"
+msgstr "A kiválasztott ügylet szerkesztése"
 
 #: mmcheckingpanel.cpp:342
 msgid "Delete selected transaction"
@@ -4006,7 +4006,7 @@ msgstr "A kiválasztott ügyletek között eltelt napok: %d"
 
 #: mmcustomdata.cpp:62
 msgid "Custom fields"
-msgstr "Egyéni mezők"
+msgstr "Felhasználói mezők"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
@@ -4036,7 +4036,7 @@ msgstr "A rendszered nyelvével egyező fordítást nem tudok betölteni (%s)."
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr "Kérem, használja a Nézet menüben az Alkalmazás nyelvének kiválasztása pontot a következő nyelvek közül egy kiválasztásához:\n\n"
+msgstr "Kérem, használja a Nézet menüben az Alkalmazás nyelvének váltása pontot a következő nyelvek közül egy kiválasztásához:\n\n"
 "%s"
 
 #: mmex.cpp:134 mmframe.cpp:3380 optionsettingsgeneral.cpp:342
@@ -4047,7 +4047,7 @@ msgstr "Nyelv megváltoztatása"
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Végzetes hiba!\n"
-"Az alkalmazás leáll."
+"Az alkalmazás le fog állni."
 
 #: mmframe.cpp:270
 msgid "Navigation"
@@ -4074,7 +4074,7 @@ msgstr "Hitelkártya-számlák"
 #: mmframe.cpp:474 mmframe.cpp:733 mmhomepage.cpp:635 reports/summary.cpp:297
 #: reports/summary.cpp:329
 msgid "Term Accounts"
-msgstr "Időszaki számlák"
+msgstr "Futamidős számlák"
 
 #: mmframe.cpp:475 mmframe.cpp:737
 msgid "Stock Portfolios"
@@ -4128,7 +4128,7 @@ msgstr "Az MMEX-et aktív adatbázis nélkül nyitották meg."
 
 #: mmframe.cpp:1221
 msgid "MMEX: Menu Popup Error"
-msgstr "MMEX: hiba a felugró menüvel!"
+msgstr "MMEX: felugró menü hiba"
 
 #: mmframe.cpp:1252
 msgid "&New Transaction"
@@ -4156,15 +4156,15 @@ msgstr "Új számla"
 
 #: mmframe.cpp:1296
 msgid "Account &List (Home)"
-msgstr "Számlák listája"
+msgstr "Számlalista (Induló lap)"
 
 #: mmframe.cpp:1303 mmframe.cpp:1308 mmframe.cpp:1375 mmframe.cpp:1382
 msgid "&CSV Files..."
-msgstr "&CSV fájlok.."
+msgstr "&CSV-fájlok..."
 
 #: mmframe.cpp:1304 mmframe.cpp:1310 mmframe.cpp:1376 mmframe.cpp:1384
 msgid "&XML Files..."
-msgstr "&XML fájlok..."
+msgstr "&XML-fájlok..."
 
 #: mmframe.cpp:1304 mmframe.cpp:1376
 msgid "Import from XML (Excel format)"
@@ -4172,19 +4172,19 @@ msgstr "Importálás XML-ből (Excel formátum)"
 
 #: mmframe.cpp:1305 mmframe.cpp:1311 mmframe.cpp:1377 mmframe.cpp:1385
 msgid "&QIF Files..."
-msgstr "&QIF fájlok..."
+msgstr "&QIF-fájlok..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
-msgstr "&MMEX CSV fájlok..."
+msgstr "&MMEX CSV-fájlok..."
 
 #: mmframe.cpp:1312 mmframe.cpp:1386
 msgid "&JSON Files..."
-msgstr "&JSON fájlok..."
+msgstr "&JSON-fájlok..."
 
 #: mmframe.cpp:1323 optionsettingsview.cpp:64
 msgid "Accounts Visible"
-msgstr "Megjelenített számlák"
+msgstr "Látható számlák"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
@@ -4200,7 +4200,7 @@ msgstr "Adatbázis megnyitása\tCtrl-O"
 
 #: mmframe.cpp:1361 mmframe.cpp:1720
 msgid "Open Database"
-msgstr "Adatbázis megnyitása (CTRL+o)"
+msgstr "Adatbázis megnyitása"
 
 #: mmframe.cpp:1362
 msgid "Save Database &As"
@@ -4216,11 +4216,11 @@ msgstr "Legutóbbi fájlok"
 
 #: mmframe.cpp:1370
 msgid "&Clear Recent Files"
-msgstr "Legutóbbi fájlok lista törlése"
+msgstr "Fájlelőzmények-lista törlése"
 
 #: mmframe.cpp:1375
 msgid "Import from any CSV file"
-msgstr "Importálás bármilyen CSV-ből"
+msgstr "Importálás bármilyen CSV-fájlból"
 
 #: mmframe.cpp:1377
 msgid "Import from QIF"
@@ -4232,7 +4232,7 @@ msgstr "&WebApp..."
 
 #: mmframe.cpp:1378
 msgid "Import from WebApp"
-msgstr "WebApp-ból importálva"
+msgstr "WebApp-ból importálás"
 
 #: mmframe.cpp:1382
 msgid "Export to CSV"
@@ -4248,11 +4248,11 @@ msgstr "Exportálás XML-be"
 
 #: mmframe.cpp:1386
 msgid "Export to JSON"
-msgstr "Exportálás JSON-ként"
+msgstr "Exportálás JSON-be"
 
 #: mmframe.cpp:1387
 msgid "&HTML Files..."
-msgstr "&XML fájlok..."
+msgstr "&XML-fájlok..."
 
 #: mmframe.cpp:1387
 msgid "Export to HTML"
@@ -4308,11 +4308,11 @@ msgstr "A költségvetést pénzügyi év formátumban mutassa."
 
 #: mmframe.cpp:1414
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Költségvetések: belevenni az átutalásokat összesen"
+msgstr "Költségvetések: az átutalások beszámítása a végösszegbe"
 
 #: mmframe.cpp:1414
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr "Átutalások beszámítása a költségvetés összesébe"
+msgstr "Átutalások beszámítása a költségvetés végösszegébe"
 
 #: mmframe.cpp:1416
 msgid "Budget Category Report: with &Summaries"
@@ -4320,15 +4320,15 @@ msgstr "Költségvetési kategóriák jelentés: összesítéssel"
 
 #: mmframe.cpp:1416
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr "A kategória összesítéseit a \"Költségvetési kategóriák összesítőbe\" befoglalja!"
+msgstr "A kategóriák összesítéseit foglalja bele Költségvetési kategóriák összesítőbe"
 
 #: mmframe.cpp:1418
 msgid "Ignore F&uture Transactions"
-msgstr "Jövőben tranzakciók figyelmen kívül hagyása"
+msgstr "Jövőbeni tranzakciók figyelmen kívül hagyása"
 
 #: mmframe.cpp:1418
 msgid "Ignore Future transactions"
-msgstr "Jövőben tranzakciók figyelmen kívül hagyása"
+msgstr "Jövőbeni tranzakciók figyelmen kívül hagyása"
 
 #: mmframe.cpp:1420 optionsettingsview.cpp:99
 msgid "Show Tooltips"
@@ -4344,7 +4344,7 @@ msgstr "Váltás teljes képernyős mód között\tShift+F11"
 
 #: mmframe.cpp:1443 mmframe.cpp:1753
 msgid "Toggle Fullscreen"
-msgstr "Váltás Teljes képernyő"
+msgstr "Teljes képernyős váltás"
 
 #: mmframe.cpp:1449
 msgid "Switch Application &Language"
@@ -4352,7 +4352,7 @@ msgstr "Alkalmazás nyelvének váltása"
 
 #: mmframe.cpp:1450 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
-msgstr "Az MMEX nyelvének megváltoztatása"
+msgstr "Az MMEX- kezelőfelülete nyelvének megváltoztatása"
 
 #: mmframe.cpp:1455 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:350
 msgid "system default"
@@ -4368,7 +4368,7 @@ msgstr "Kezdőoldal mutatása"
 
 #: mmframe.cpp:1484
 msgid "Change the account type of an account."
-msgstr "A számla típusának megváltoztatása"
+msgstr "Számla típusának megváltoztatása."
 
 #: mmframe.cpp:1487
 msgid "Delete Account from database"
@@ -4436,7 +4436,7 @@ msgstr "Számlák vagy betétek"
 
 #: mmframe.cpp:1543
 msgid "&Assets"
-msgstr "Vagyontárgyak"
+msgstr "Eszközök"
 
 #: mmframe.cpp:1549
 msgid "T&heme Manager"
@@ -4452,7 +4452,7 @@ msgstr "Tranzakciójelentés és -szűrés..."
 
 #: mmframe.cpp:1555 mmframe.cpp:1731
 msgid "Transaction Report Filter"
-msgstr "Ügyletek szűrése"
+msgstr "Tranzakció-jelentés szűrése"
 
 #: mmframe.cpp:1561
 msgid "General Report &Manager..."
@@ -4468,7 +4468,7 @@ msgstr "Felhasználói mező kezelője"
 
 #: mmframe.cpp:1571
 msgid "Refresh &WebApp"
-msgstr "Webapp frissítése"
+msgstr "&Webapp frissítése"
 
 #: mmframe.cpp:1571 mmframe.cpp:2506 mmframe.cpp:2509
 msgid "Refresh WebApp"
@@ -4528,7 +4528,7 @@ msgstr "Súgó\tF1"
 
 #: mmframe.cpp:1606 mmframe.cpp:1760
 msgid "Show the Help file"
-msgstr "Segítség megjelenítése"
+msgstr "Súgó megjelenítése"
 
 #: mmframe.cpp:1611
 msgid "&Website"
@@ -4544,11 +4544,11 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1614
 msgid "Visit us on Facebook"
-msgstr "Látogasson meg minket a Facebook-on."
+msgstr "Keressen minket a Facebook-on"
 
 #: mmframe.cpp:1616
 msgid "&Crowdin"
-msgstr "Crowdin"
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1616
 msgid "We use Crowdin to translate MMEX"
@@ -4568,7 +4568,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1620
 msgid "Watch free video materials about MMEX"
-msgstr "Nézz ingyenes videókat az MMEX-ről"
+msgstr "Nézzen ingyenes videókat az MMEX-ről"
 
 #: mmframe.cpp:1622
 msgid "&Slack"
@@ -4588,7 +4588,7 @@ msgstr "Lépj be a forráskód tárolójába és kövesd a jelentett hiba státu
 
 #: mmframe.cpp:1626
 msgid "W&iki pages"
-msgstr "Wiki oldalak"
+msgstr "W&iki oldalak"
 
 #: mmframe.cpp:1626
 msgid "Read and update wiki pages"
@@ -4716,15 +4716,15 @@ msgstr "Új"
 
 #: mmframe.cpp:1727
 msgid "Show Organize Categories Dialog"
-msgstr "Kategóriakezelő ablak mutatása"
+msgstr "Kategóriarendező párbeszád mutatása"
 
 #: mmframe.cpp:1728
 msgid "Show Organize Payees Dialog"
-msgstr "Kedvezményezett-kezelő ablak mutatása"
+msgstr "Kedvezményezett-kezelő párbeszéd mutatása"
 
 #: mmframe.cpp:1729
 msgid "Show Organize Currency Dialog"
-msgstr "Pénznemkezelő ablak mutatása"
+msgstr "Pénznemkezelő párbeszéd mutatása"
 
 #: mmframe.cpp:1735
 msgid "&Options..."
@@ -4732,7 +4732,7 @@ msgstr "Beállítások..."
 
 #: mmframe.cpp:1743 mmframe.cpp:2598
 msgid "Register/View Release &Notifications"
-msgstr "Regiszter / Kiadványok és bejelentések nézete"
+msgstr "Kiadási megjegyzések regisztrálása/nézése"
 
 #: mmframe.cpp:1748 optionsettingsnet.cpp:121
 msgid "News"
@@ -4759,15 +4759,15 @@ msgstr "MMEX: titkosított adatbázis"
 
 #: mmframe.cpp:1849
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr "Az MMEX-től kapott hibakövető, vagy -javító fájlt?"
+msgstr "Kapott az MMEX-től kapott hibakövető, vagy -javító fájlt?"
 
 #: mmframe.cpp:1849
 msgid "MMEX upgrade"
-msgstr "MMEX frissítés"
+msgstr "MMEX frissítése"
 
 #: mmframe.cpp:1871 mmframe.cpp:1913
 msgid "No File opened"
-msgstr "Nincs fájl megnyitva"
+msgstr "Nincs nyitott fájl"
 
 #: mmframe.cpp:1873
 msgid "Sorry. The Database version is too old or Database password is incorrect"
