@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 06:25\n"
+"PO-Revision-Date: 2022-02-08 06:34\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4010,13 +4010,14 @@ msgstr "Kérem válasszon"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
-msgstr ""
+msgstr "Többes kijelölés"
 
 #: mmcustomdata.cpp:639
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "A(z) \"%s\" felhasználói mezőt nem tudom menteni:\n"
+"az érték \"%s\" nem felel meg a RegEx hitelesítésnek \"%s\""
 
 #: mmcustomdata.cpp:642
 msgid "CustomField validation error"
