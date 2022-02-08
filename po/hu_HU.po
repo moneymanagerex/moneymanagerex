@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 13:42\n"
+"PO-Revision-Date: 2022-02-08 14:08\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5959,7 +5959,7 @@ msgstr "Írja be az új kedvezményezett nevét: "
 
 #: payeedialog.cpp:211 payeedialog.cpp:226
 msgid "Organize Payees: Add Payee"
-msgstr "Kedvezményezettek kezelése: kedvezményezett hozzáadása."
+msgstr "Kedvezményezettek rendezése: kedvezményezett hozzáadása"
 
 #: payeedialog.cpp:226 payeedialog.cpp:254
 msgid "Payee with same name exists"
@@ -5971,11 +5971,11 @@ msgstr "A kedvezményezett nevének módosítása: "
 
 #: payeedialog.cpp:238 payeedialog.cpp:254
 msgid "Organize Payees: Edit Payee"
-msgstr "Kedvezményezettek kezelése: kedvezményezett szerkesztése"
+msgstr "Kedvezményezettek rendezése: kedvezményezett szerkesztése"
 
 #: payeedialog.cpp:268
 msgid "Payee in use."
-msgstr "A kedvezményezett foglalt."
+msgstr "A kedvezményezett használatban."
 
 #: payeedialog.cpp:271
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
@@ -5987,7 +5987,7 @@ msgstr "Eszközök -> Áthelyezés -> Kedvezményezettek"
 
 #: payeedialog.cpp:274
 msgid "Organize Payees: Delete Error"
-msgstr "Kedvezményezettek kezelése: törlési hiba!"
+msgstr "Kedvezményezettek rendezése: törlési hiba"
 
 #: payeedialog.cpp:377
 msgid "Define Category"
@@ -6051,17 +6051,17 @@ msgstr "A rendszeres ügyletek között talált bejegyzések: %i"
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "Az ismétlődő összetett ügyletek között talált bejegyzések: %i"
+msgstr "Az rendszeres összetett ügyletek között talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "A bejegyzések, mint alapbeállítás szerinti kedvezményezett kategória: %i "
+msgstr "Alapbeállítás szerinti kedvezményezett kategóriaként talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
 msgid "Records found in budget: %i"
-msgstr "Bejegyzések a költségvetésben találhatók: %i"
+msgstr "Költségvetésben talált bejegyzések: %i"
 
 #: relocatepayeedialog.cpp:53
 msgid "Relocate Payee Dialog"
@@ -6073,7 +6073,7 @@ msgstr "A forrás összes kedvezményezettjének áthelyezése a célhoz"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr "Áthelyezés után a kedvezményezettet törlése a forrásban"
+msgstr "Áthelyezés után a forrás-kedvezményezett törlése"
 
 #: relocatepayeedialog.cpp:161
 #, c-format
@@ -6222,7 +6222,7 @@ msgstr[1] ""
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:138
 msgid "Difference"
-msgstr "Különbség"
+msgstr "Különbözet"
 
 #: reports/categexp.cpp:204
 msgid "Category Total: "
@@ -6308,7 +6308,7 @@ msgstr "Jelenlegi hónap"
 
 #: reports/mmDateRange.cpp:82
 msgid "Today"
-msgstr "Mai nap"
+msgstr "Ma"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
@@ -6336,27 +6336,27 @@ msgstr "Elmúlt 12 hónap"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
-msgstr "Idén"
+msgstr "Aktuális év"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:721
 msgid "Current Year to Date"
-msgstr "Ez év mai napig"
+msgstr "Aktuális év a mai napig"
 
 #: reports/mmDateRange.cpp:185
 msgid "Last Year"
-msgstr "Tavaly"
+msgstr "Előző év"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
-msgstr "Jelen pénzügyi évben"
+msgstr "Jelen pénzügyi év"
 
 #: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
-msgstr "Jelen pénzügyi év mai napig"
+msgstr "Jelen pénzügyi év máig"
 
 #: reports/mmDateRange.cpp:236
 msgid "Last Financial Year"
-msgstr "Múlt pénzügyi évben"
+msgstr "Múlt pénzügyi év"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6405,7 +6405,7 @@ msgstr "Mennyiség"
 
 #: reports/summarystocks.cpp:111
 msgid "Current Price"
-msgstr "Napi ár"
+msgstr "Aktuális ár"
 
 #: reports/summarystocks.cpp:112 sharetransactiondialog.cpp:249
 #: stocks_list.cpp:99
@@ -6414,7 +6414,7 @@ msgstr "Jutalék"
 
 #: reports/summarystocks.cpp:184
 msgid "Stocks Performance Charts"
-msgstr "Részvény szereplése diagram"
+msgstr "Részvény teljesítménye diagram"
 
 #: reports/transactions.cpp:273
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -6454,15 +6454,15 @@ msgstr "Értékpapír száma"
 
 #: sharetransactiondialog.cpp:230
 msgid "Enter number of shares held"
-msgstr "Adja meg az értékpapírok darabszámát"
+msgstr "Adja meg birtokolt értékpapírok darabszámát"
 
 #: sharetransactiondialog.cpp:236
 msgid "Share Price"
-msgstr "Értékpapír ár"
+msgstr "Részvényárfolyam"
 
 #: sharetransactiondialog.cpp:243
 msgid "Enter the current value for a single share unit"
-msgstr "Adja meg a jelenlegi egységnyi részvényértéket"
+msgstr "Adja meg a részvény jelenlegi egységárát"
 
 #: sharetransactiondialog.cpp:254
 msgid "Enter any commission paid"
@@ -6486,7 +6486,7 @@ msgstr "Az adott részvényszimbólumhoz tartozó weblap megjelenítése"
 
 #: sharetransactiondialog.cpp:289 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
-msgstr "Adjon megjegyzést az értékpapírhoz"
+msgstr "Írja be a befektetéshez tartozó megjegyzéseket"
 
 #: sharetransactiondialog.cpp:294
 msgid "Add Transaction Details"
@@ -6510,11 +6510,11 @@ msgstr "Bontás részletezése párbeszéd"
 
 #: splittransactionsdialog.cpp:129
 msgid "Split Category Details"
-msgstr "Kategória részelteinek kibontása"
+msgstr "Bontási kategória részletei"
 
 #: splittransactionsdialog.cpp:209
 msgid "Invalid Total Amount"
-msgstr "Érvénytelen teljes összeg"
+msgstr "Érvénytelen végösszeg"
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:145
 msgid "Edit Stock Investment"
@@ -6536,7 +6536,7 @@ msgstr "Határozd meg az értékpapír-befektetés kezdő dátumát\n"
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
-msgstr "*Értékpapír száma"
+msgstr "*Részvény száma"
 
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
@@ -6546,7 +6546,7 @@ msgstr "Írd be a részvények darabszámát\n"
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
-msgstr "*Értékpapír ára"
+msgstr "*Részvény ára"
 
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
@@ -6566,19 +6566,19 @@ msgstr "Írd be a fizetett jutalékokat.\n"
 
 #: stockdialog.cpp:250 stocks_list.cpp:96
 msgid "Curr. Share Price"
-msgstr "Aktuális részvényár"
+msgstr "Akt. részvényár"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr "Írd be a részvény aktuális árát."
+msgstr "Írd be a részvény/értékpapír aktuális árát."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
-msgstr "Részvény időrendi kimutatás opciói"
+msgstr "Részvényelőzmények opciói"
 
 #: stockdialog.cpp:292
 msgid "Stock Price History"
-msgstr "Részvényár-változás időrendi kimutatás"
+msgstr "Részvény árfolyamtörténet"
 
 #: stockdialog.cpp:316 stocks_list.cpp:98
 msgid "Price Date"
@@ -6590,11 +6590,11 @@ msgstr "Határozd meg a részvényár dátumát."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
-msgstr "Részvényár-változás időrendi kimutatás letöltése"
+msgstr "Részvény árfolyamtörténet letöltése"
 
 #: stockdialog.cpp:338
 msgid "Import Stock Price history (CSV Format)"
-msgstr "Részvényár-változás időrendi kimutatás importálása (CSV formátum)"
+msgstr "Részvény árfolyamtörténet importálása (CSV-formátum)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
@@ -6606,7 +6606,7 @@ msgstr "Részvényár hozzáadása az árfolyamtörténethez"
 
 #: stockdialog.cpp:420
 msgid "Held At"
-msgstr "Befektetési számla"
+msgstr "Számlavezető"
 
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
@@ -6678,7 +6678,7 @@ msgstr "10 év"
 
 #: stockdialog.cpp:722
 msgid "Max"
-msgstr "Max"
+msgstr "Max."
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
