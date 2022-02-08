@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 05:10\n"
+"PO-Revision-Date: 2022-02-08 05:21\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2648,7 +2648,7 @@ msgstr "Jelentés-fájl betöltése: "
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Fő jelentéskezelő fájlok (*.grm)"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "ZIP files (*.zip)"
@@ -2737,12 +2737,12 @@ msgstr "Válaszd ki jelentésként mentendő fájlt"
 
 #: general_report_manager.cpp:1204
 msgid "Parameters:"
-msgstr ""
+msgstr "Paraméterek:"
 
 #: images_list.cpp:340
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "A '%s' téma JSON metaadata nem értelmezhető, rosszul megszerkesztettnek tűnik, kérem javítsa."
 
 #: images_list.cpp:341 images_list.cpp:437 images_list.cpp:448
 #: images_list.cpp:483 images_list.cpp:512 images_list.cpp:518
@@ -2753,26 +2753,26 @@ msgstr "Figyelmeztetés"
 #: images_list.cpp:436
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "A(z) '%s' fájl hiányzik, vagy érvénytelen a kiválasztott '%s' témában"
 
 #: images_list.cpp:447
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "A(z) '%s' metaadat hiányzik a kiválasztott '%s' témában"
 
 #: images_list.cpp:480
 msgid "and more..."
-msgstr ""
+msgstr "és továbbiak..."
 
 #: images_list.cpp:482
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Hiányzó vagy érvénytelen '%s' ikonok a kiválasztott '%s' témában: %s"
 
 #: images_list.cpp:511
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "A(z) '%s' téma nem található, vagy már nem támogatott. Az alap téma visszaállítása"
 
 #: images_list.cpp:518
 #, c-format
