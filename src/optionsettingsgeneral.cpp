@@ -311,7 +311,7 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
     double value = 1234567.8910;
 
     try {
-        auto test = fmt::format(std::locale(locale.c_str()), "{:L}", value);
+        const auto test = fmt::format(std::locale(locale.c_str()), "{:L}", value);
 
         wxString cents;
         wxRegEx pattern(R"(([,.][0-9]{2})[0-9]+$)");
@@ -321,7 +321,7 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
         else
             return false;
 
-        const wxString sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
+        const auto sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
             + cents;
         result = wxString::Format(_("Currency value sample: %s"), sample);
     }
