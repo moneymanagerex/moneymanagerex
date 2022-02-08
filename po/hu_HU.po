@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 12:42\n"
+"PO-Revision-Date: 2022-02-08 12:56\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4805,7 +4805,7 @@ msgstr "MMEX-példány ellenőrzése"
 
 #: mmframe.cpp:1996
 msgid "Choose database file to create"
-msgstr "Adja meg az adatbázisfájl nevét"
+msgstr "Válassza ki a létrehozandó adatbázisfájlt"
 
 #: mmframe.cpp:2019
 msgid "Choose database file to open"
@@ -4881,11 +4881,11 @@ msgstr "Ezt a funkciót csak akkor használja, ha az MMEX-től kifejezetten kér
 
 #: mmframe.cpp:2126
 msgid "DB Debug"
-msgstr "DB Debug"
+msgstr "Adatbázis hibakeresés"
 
 #: mmframe.cpp:2145 mmframe.cpp:2166
 msgid "Save database file as"
-msgstr "Adatbázis mentése másként "
+msgstr "Adatbázisfájl mentése másként"
 
 #: mmframe.cpp:2166
 msgid "Can't copy file to itself"
@@ -4904,10 +4904,9 @@ msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr "A vagyoni számlák a kapcsolódó tranzakciókat tartalmazzák\n\n"
-"A vagyonnal kapcsolatos tranzakciók a Vagyon nézetében keletkeznek\n"
-"miután a nézeten belül egy vagyontárgyat kiválszt\n"
-"a vagyonszámlák tartalmazhatnak a normál számlákkal végzett szokásos műveleteket "
+msgstr "A vagyoni számlák az eszközökhöz kapcsolódó tranzakciókat tartalmazzák\n\n"
+"Az eszközökkel kapcsolatos ügyletek a Vagyonnézetben, a nézeten belül, az eszköz kiválasztását követően, hozhatok létre.\n\n"
+"A vagyonszámlák a többi számlán végezhető szokásos ügyleteket is tartalmazhatnak."
 
 #: mmframe.cpp:2340
 msgid "Asset Account Creation"
@@ -4920,12 +4919,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "Részvényszámlák tartalmazzák a részvényműveleteket\n\n"
-"A részvényműveletek végrehajtása a Értékpapír portfólió nézetben történik,\n"
+msgstr "Részvényszámlák a részvényműveleteket tartalmazzák.\n\n"
+"A részvényműveletek bevitele a Értékpapír portfólió nézetben történik,\n"
 "a részvénytársaság kiválasztása után, a hozzárendelt nézetben.\n\n"
-"Ezek a számlák csak akkor válnak láthatóvá, ha már a részvényt hozzárendeltük e részvényszámlához,\n"
-"vagy a menüben Nézet -> Részvényszámlák kiválasztásával.\n"
-"A Részvényszámlákon a normál számlákon szokásos tranzakciókat is tartalmazhatnak. "
+"Ezek a számlák csak akkor láthatók, ha már rendeltünk részvényt a részvényszámlához,\n"
+"vagy a menüben Nézet -> Értékpapírszámlák megjelenítése kiválasztásával.\n"
+"Az Értékpapírszámlák az egyéb számlákon szokásos tranzakciókat is tartalmazhatnak."
 
 #: mmframe.cpp:2352
 msgid "Share Account Creation"
@@ -4945,15 +4944,15 @@ msgstr "Az MMEX opciói frissültek."
 
 #: mmframe.cpp:2545
 msgid "Some settings take effect only after an application restart."
-msgstr "Néhány változtatás csak az alkalmazás újraindítása után lép érvénybe."
+msgstr "Néhány beállítás csak az alkalmazás újraindítása után lép érvénybe."
 
 #: mmframe.cpp:2546 optiondialog.cpp:225 optiondialog.h:49
 msgid "MMEX Options"
-msgstr "MMEX opciók"
+msgstr "MMEX-opciók"
 
 #: mmframe.cpp:2668
 msgid "Choose HTML file to Export"
-msgstr "Válasszon HTML fájlt az exporthoz"
+msgstr "Válasszon HTML-fájlt az exporthoz"
 
 #: mmframe.cpp:3040 mmframe.cpp:3047
 msgid "Downloading stock prices from Yahoo"
