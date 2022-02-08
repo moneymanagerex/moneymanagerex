@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 10:19\n"
+"PO-Revision-Date: 2022-02-08 10:55\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2311,7 +2311,7 @@ msgstr "Nem tudom megnyitni a fájlt"
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
-msgstr "Adja meg egy másik adatbázis elérési útját"
+msgstr "Egy másik adatbázishoz kell elérési utat megadnia"
 
 #: dbwrapper.cpp:78
 msgid "An incorrect password given for an encrypted file\n"
@@ -2328,7 +2328,7 @@ msgstr "Hiba: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1820
 msgid "Opening MMEX Database - Error"
-msgstr "MMEX adatbázis megnyitási hiba"
+msgstr "MMEX-adatbázis megnyitása - Hiba"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -2355,7 +2355,7 @@ msgstr "Nem egyeztetett"
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
 msgid "Reconciled"
-msgstr "Kiegyenlített"
+msgstr "Egyeztetve"
 
 #: filtertransdialog.cpp:48 mmchecking_list.cpp:422
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
@@ -2403,7 +2403,7 @@ msgstr "Meghatároz"
 #: filtertransdialog.cpp:230 import_export/qif_export.cpp:154
 #: import_export/qif_import_gui.cpp:174
 msgid "From Date"
-msgstr "Induló dátum "
+msgstr "Dátumtól"
 
 #: filtertransdialog.cpp:240
 msgid "Period Range"
@@ -2415,11 +2415,11 @@ msgstr "Időtartomány"
 
 #: filtertransdialog.cpp:310 filtertransdialog.cpp:1241
 msgid "Include Similar"
-msgstr "Hasonlókat hozzáveszi"
+msgstr "Hasonlókat is"
 
 #: filtertransdialog.cpp:312
 msgid "Include all subcategories for the selected category."
-msgstr "A választott kategória összes alkategóriájának kiválasztása"
+msgstr "A választott kategória összes alkategóriáját is beleértve."
 
 #: filtertransdialog.cpp:338 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:225 model/Model_Billsdeposits.cpp:32
@@ -2470,7 +2470,7 @@ msgstr "Csoportosította"
 
 #: filtertransdialog.cpp:447
 msgid "Specify how the report should be grouped"
-msgstr "Határozza meg, miképpen csoportosítsa a jelentések"
+msgstr "Határozza meg a jelentések csoportosítását"
 
 #: filtertransdialog.cpp:466
 msgid "Settings"
@@ -2580,7 +2580,7 @@ msgstr "&Importálás"
 
 #: general_report_manager.cpp:384
 msgid "Locate and load a report file."
-msgstr "Jelentés-fájl keresése és betöltése."
+msgstr "Jelentésfájl keresése és betöltése."
 
 #: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:414
 #: mmframe.cpp:1313 mmframe.cpp:1388
@@ -2645,7 +2645,7 @@ msgstr "SQL szintaxishiba"
 
 #: general_report_manager.cpp:598
 msgid "Load report file:"
-msgstr "Jelentés-fájl betöltése: "
+msgstr "Jelentésfájl betöltése:"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "General Report Manager files (*.grm)"
@@ -2672,7 +2672,7 @@ msgstr "Új jelentésminta"
 
 #: general_report_manager.cpp:731
 msgid "Change Group"
-msgstr "Csoport-váltás"
+msgstr "Csoportváltás"
 
 #: general_report_manager.cpp:733 general_report_manager.cpp:898
 msgid "Rename Group"
@@ -2680,7 +2680,7 @@ msgstr "Csoport átnevezése"
 
 #: general_report_manager.cpp:734
 msgid "UnGroup"
-msgstr "Csoportbontás"
+msgstr "Csoport bontása"
 
 #: general_report_manager.cpp:735
 msgid "Rename Report"
@@ -2701,7 +2701,7 @@ msgstr "Fő jelentéskezelő"
 
 #: general_report_manager.cpp:851
 msgid "Delete the Report Title:"
-msgstr "A törlendő jelentés neve: "
+msgstr "Törölje a jelentés címét:"
 
 #: general_report_manager.cpp:880 general_report_manager.cpp:961
 msgid "Enter or choose name for the new report group"
@@ -2726,7 +2726,7 @@ msgstr "Új jelentés %s"
 
 #: general_report_manager.cpp:988
 msgid "Report Name already exists"
-msgstr "Létező jelentéselnevezés"
+msgstr "Már van ilyen nevű jelentés"
 
 #: general_report_manager.cpp:988 general_report_manager.cpp:995
 msgid "New Report"
@@ -2734,7 +2734,7 @@ msgstr "Új jelentés"
 
 #: general_report_manager.cpp:1026
 msgid "Choose file to Save As Report"
-msgstr "Válaszd ki jelentésként mentendő fájlt"
+msgstr "Válassza ki jelentésként mentendő fájlt"
 
 #: general_report_manager.cpp:1204
 msgid "Parameters:"
@@ -2768,7 +2768,7 @@ msgstr "és továbbiak..."
 #: images_list.cpp:482
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr "Hiányzó vagy érvénytelen '%s' ikonok a kiválasztott '%s' témában: %s"
+msgstr "Hiányzó vagy érvénytelen %d' ikon van a kiválasztott '%s' témában: %s"
 
 #: images_list.cpp:511
 #, c-format
@@ -2782,7 +2782,7 @@ msgstr "A(z) '%s' témából hiányoznak elemek és inkompatibilis. Az alap tém
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr "Nincs használható téma, a telepítés sérülhetett"
+msgstr "Nincs használható téma, a telepítés megsérülhetett"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1582
 #: mmSimpleDialogs.cpp:253
@@ -2808,12 +2808,12 @@ msgstr "Exportálási hiba"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr "A fjl nem 2003-as Excel XML munkafüzet formátumú."
+msgstr "A fájl nem 2003-as Excel XML munkafüzet formátumú."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr "Elemzési hiba"
+msgstr "Feldolgozási hiba"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
@@ -2821,7 +2821,7 @@ msgstr "Munkalap nem található"
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr "Tábla"
+msgstr "Táblázat"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
@@ -2829,7 +2829,7 @@ msgstr "A táblázat nem található."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr "Tranzakció"
+msgstr "Ügyletek"
 
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
@@ -2871,7 +2871,7 @@ msgstr "Számlák"
 
 #: import_export/qif_export.cpp:164 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr "Vége dátum"
+msgstr "Dátumig"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
 #: optionsettingsgeneral.cpp:96
@@ -2893,7 +2893,7 @@ msgstr "Töröl"
 
 #: import_export/qif_export.cpp:250
 msgid "Choose Account to Export from:"
-msgstr "Válasszon számlát az exportáláshoz: "
+msgstr "Válassza ki számlát amiből exportál:"
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
@@ -2905,7 +2905,7 @@ msgstr "QIF fájlok (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
-msgstr "Válasszon JSON adatfájlt az exportáláshoz"
+msgstr "Válassza ki a JSON adatfájlt az exportáláshoz"
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
