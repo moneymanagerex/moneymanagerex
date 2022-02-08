@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 21:57\n"
+"PO-Revision-Date: 2022-02-08 04:51\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2316,7 +2316,9 @@ msgstr "Adja meg egy másik adatbázis elérési útját"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "A titkosított fájlhoz helytelen jelszót adott meg\n"
+"vagy\n"
+"olyan fájlt akar megnyitni, ami nem adatbázisfájl\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
@@ -2329,25 +2331,25 @@ msgstr "MMEX adatbázis megnyitási hiba"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnosztika"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "A fejlesztők kérhetik, hogy itt adjon meg adatokat, hogy segítsen a korábban jelentett probléma vizsgálatában."
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:402 filtertransdialog.cpp:1319
 #: reports/transactions.cpp:156
 msgid "Color"
-msgstr ""
+msgstr "Szín"
 
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:866
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr ""
+msgstr "Nem egyeztetett"
 
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
