@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 09:07\n"
+"PO-Revision-Date: 2022-02-08 09:15\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1228,7 +1228,7 @@ msgstr "Kifizetés"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "Az MMEX lehetővé teszi a rendszeres kifizetések beállítását tranzakcióként. Ezek a tranzakciók lehetnek akár jövőbeni rendszeres befizetések, vagy átutalások. A tranzakciók figyelmeztetést generálnak az esemény esedékessége előtt 14 nappal a honlapon."
+msgstr "Az MMEX lehetővé teszi rendszeres kifizetések beállítását tranzakcióként. Ezek a ügyletek lehetnek akár jövőbeni rendszeres befizetések vagy átutalások. A tranzakciók az esemény esedékessége előtt 14 nappal jelzést küldenek a nyitó lapra. "
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1245,7 +1245,7 @@ msgstr "Ügyletek szűrése"
 
 #: billsdepositspanel.cpp:297 mmcheckingpanel.cpp:346
 msgid "D&uplicate "
-msgstr "Duplikálás"
+msgstr "D&uplikálás "
 
 #: billsdepositspanel.cpp:303
 msgid "Delete Recurring Transaction"
@@ -1265,7 +1265,7 @@ msgstr "Átlép"
 
 #: billsdepositspanel.cpp:313
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "A következő ismétlődő tranzakció esedékességének átugrása"
+msgstr "A következő ismétlődő tranzakció előfordulásának átugrása"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence..."
@@ -1273,7 +1273,7 @@ msgstr "Következő esedékesség..."
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
-msgstr "Következő esedékes kihagyása"
+msgstr "Következő előfordulás kihagyása"
 
 #: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction..."
@@ -1293,7 +1293,7 @@ msgstr "Ismétlődő tranzakció törlése..."
 
 #: billsdepositspanel.cpp:482
 msgid "Manual"
-msgstr "Kézi"
+msgstr "Kézikönyv"
 
 #: billsdepositspanel.cpp:486
 msgid "Suggested"
@@ -1320,8 +1320,10 @@ msgstr "Inaktív"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] "%d nap késés!"
-msgstr[1] "%d nap késés!"
+msgstr[0] "%d nap késés!\n"
+"%d nap késés!"
+msgstr[1] "%d nap késés!\n"
+"%d nap késés!"
 
 #: billsdepositspanel.cpp:553 billsdepositspanel.cpp:613 mmhomepage.cpp:321
 #, c-format
