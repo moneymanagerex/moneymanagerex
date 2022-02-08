@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+ Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,7 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/spinctrl.h>
 #include <fmt/core.h>
-#include <fmt/locale.h>
+#include <fmt/format.h>
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
@@ -313,9 +314,9 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
         auto test = fmt::format(std::locale(locale.c_str()), "{:L}", value);
 
         wxString cents;
-        wxRegEx pattern(R"([^0-9][0-9]{2})");
+        wxRegEx pattern(R"(([,.][0-9]{2})[0-9]+$)");
         if (pattern.Matches(test)) {
-            cents = pattern.GetMatch(test, 0);
+            cents = pattern.GetMatch(test, 1);
         }
         else
             return false;
