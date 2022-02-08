@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 06:03\n"
+"PO-Revision-Date: 2022-02-08 06:13\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3882,7 +3882,7 @@ msgstr[1] ""
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Az ügylet zárolva e dátumhoz: %s."
 
 #: mmchecking_list.cpp:967 transdialog.cpp:747 transdialog.cpp:780
 msgid "MMEX Transaction Check"
@@ -3892,17 +3892,19 @@ msgstr "MMEX tranzakció ellenőrzés"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
+msgstr[0] "Zárolt számlához kapcsolódó ügyletet akar szerkeszteni.\n"
+"A szerkesztés %i ügyletre hat, és egy zárolt számlát érint."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:1002
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Tovább folytatja a szerkesztést?"
 
 #: mmchecking_list.cpp:1003
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Zárolt számla ellenőrzése"
 
 #: mmchecking_list.cpp:1192
 #, c-format
