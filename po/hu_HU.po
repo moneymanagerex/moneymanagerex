@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 14:08\n"
+"PO-Revision-Date: 2022-02-08 14:21\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -6682,11 +6682,11 @@ msgstr "Max."
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
-msgstr "Határozza meg a részvény-előzmények gyakoriságát"
+msgstr "Adja meg a részvénytörténet időbeni hatályát"
 
 #: stockdialog.cpp:729 stockdialog.cpp:753
 msgid "Stock History Update"
-msgstr "Részvény-előzmények frissítése"
+msgstr "Részvénytörténet frissítése"
 
 #: stockdialog.cpp:742
 msgid "1 Day"
@@ -6706,7 +6706,7 @@ msgstr "Nem találtam részvény-előzményt!"
 
 #: stockdialog.cpp:768 stockdialog.cpp:880
 msgid "Stock History Error"
-msgstr "Hiba részvényár időrendi kimutatásában"
+msgstr "Hiba a részvénytörténetben"
 
 #: stocks_list.cpp:92
 msgid "Share Total"
@@ -6718,7 +6718,7 @@ msgstr "Kezdő érték"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
-msgstr "Aktuális összérték"
+msgstr "Akt. összérték"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment"
@@ -6790,12 +6790,12 @@ msgstr "Részvényárfolyamok frissítése Yahoo-ról"
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
 msgstr "Ideiglenes részvénylista: %s\n\n"
-"Dátum          Lot          Részvények          Ár        Komisszió\n\n"
+"Dátum          Lot          Részvények          Ár        Jutalék\n\n"
 
 #: stockspanel.cpp:231
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr "Részvények portfólió: %s"
+msgstr "Részvény-portfólió: %s"
 
 #: stockspanel.cpp:275
 #, c-format
@@ -6873,7 +6873,7 @@ msgstr "A Kategória törlése közben hiba történt"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr "Biztosan használni szeretnéd ezt a témát? Vedd figyelembe, hogy csak az MMEX újraindítása után lépérvénybe."
+msgstr "Biztosan használni szeretnéd ezt a témát? Vedd figyelembe, hogy csak az MMEX újraindítása után lép érvénybe."
 
 #: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
@@ -6892,7 +6892,7 @@ msgstr "Nem használtad ezt a kedvezményezettet korábban. Helyes a név?\n"
 
 #: transactionsupdatedialog.cpp:361 transdialog.cpp:685
 msgid "Confirm payee name"
-msgstr "Hagyd jóvá a kedvezményezett nevét"
+msgstr "A kedvezményezett nevének jóváhagyása"
 
 #: transdialog.cpp:191
 msgid "Duplicate Transaction"
@@ -6904,7 +6904,7 @@ msgstr "Ügylet szerkesztése"
 
 #: transdialog.cpp:480 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
-msgstr "Késleltesse, vagy hozza előre a tranzakciót"
+msgstr "Késleltesse, vagy hozza előre a tranzakció dátumát"
 
 #: transdialog.cpp:573
 msgid "Populate Transaction #"
@@ -6938,7 +6938,7 @@ msgstr "Határozza meg az átutalást összegét az eredeztető számlán"
 
 #: transdialog.cpp:1373
 msgid "Specify account for the transaction"
-msgstr "Adjon meg az ügylethez tartozó számlát"
+msgstr "Adja meg az ügylethez tartozó számlát"
 
 #: transdialog.cpp:1375
 msgid "Specify to whom the transaction is going to"
@@ -6954,7 +6954,7 @@ msgstr "Határozd meg a hozzátartozó szálát, ami ezt a tranzakciót tartalma
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr "Erről a számláról tőke kivonása, vagy elhelyezése a számlán."
+msgstr "Erről a számláról tőke kivonása, vagy oda elhelyezése."
 
 #: usertransactionpanel.cpp:129
 msgid "&Transfer"
@@ -7257,7 +7257,7 @@ msgstr "A tranzakció az első bankszámlával kerül beillesztésre:\n"
 
 #: webapp.cpp:478
 msgid "Wrong WebApp account"
-msgstr "Rossz WebApp-számla"
+msgstr "Rossz WebApp-fiók"
 
 #: webapp.cpp:560 webapp.cpp:594 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
@@ -7301,7 +7301,7 @@ msgstr ""
 
 #: webappdialog.cpp:165
 msgid "&Import all "
-msgstr "&Importál mindent"
+msgstr "&Importálás mindent "
 
 #: webappdialog.cpp:167
 msgid "Import and open all "
@@ -7317,7 +7317,7 @@ msgstr ""
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
-msgstr "Nem tudok ügyletet adni az MMEX adatbázisához"
+msgstr "Nem tudok ügyletet adni az MMEX-adatbázisához"
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
@@ -7325,7 +7325,7 @@ msgstr "WebApp kommunikációs hiba"
 
 #: webappdialog.cpp:416
 msgid "Open Attachment"
-msgstr "Mellékletek megnyitása"
+msgstr "Melléklet megnyitása"
 
 #: webappdialog.cpp:418
 msgid "Import and open"
