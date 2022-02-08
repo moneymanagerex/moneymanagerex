@@ -283,9 +283,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     ed.Add(wxDateSpan::Months(m_date_selection));
     // Use mmDateRange logic to get the right start/end days
     mmDateRange temp_date;
-    temp_date.findEndOfMonth(); // Sets up start day
     temp_date.start_date(sd);
     temp_date.set_end_date(ed);
+    temp_date.findEndOfMonth();
     sd = temp_date.start_date();
     ed = temp_date.end_date();
     mmDateRange* date_range = new mmSpecifiedRange(sd, ed);

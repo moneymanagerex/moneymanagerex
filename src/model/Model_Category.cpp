@@ -22,6 +22,7 @@
 #include "Model_Account.h"
 #include "Model_CurrencyHistory.h"
 #include "reports/mmDateRange.h"
+#include "option.h"
 #include <tuple>
 
 Model_Category::Model_Category(): Model<DB_Table_CATEGORY_V1>()
@@ -209,10 +210,12 @@ void Model_Category::getCategoryStats(
             Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
         wxDateTime d = Model_Checking::TRANSDATE(transaction);
 
-        // If financial month starts midway through month then make sure the entries for the calendar month
+        // If month starts midway through month then make sure the entries for the calendar month
         // are adjusted accordingly so we only have a full 12 months
-        int fin_day_start = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-        if (fin_months && (d.GetDay() < fin_day_start))
+        
+        int day_start = (fin_months) ? Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1)
+                                     : Option::instance().getReportingFirstDay();
+        if (d.GetDay() < day_start)
             d.Subtract(wxDateSpan::Month());
 
         int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0; 
