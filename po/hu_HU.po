@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 11:55\n"
+"PO-Revision-Date: 2022-02-08 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3753,19 +3753,19 @@ msgstr "Tipp adósság elkerüléséhez: költsön kevesebbet, mint a bevételei
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr "Tipp adósság elkerüléséhez: tervezze felül a kifizetéseket."
+msgstr "Tipp adósság elkerüléséhez: többet fizessen (vissza), mint a minimum."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr "Boltba menetel és vásárlás előtt: készítsen listát a tényleges szükségletekről. A boltban csak a listán szereplő cikkeket vegye meg."
+msgstr "Boltba menetel és vásárlás előtt: készítsen listát a valóban szükséges dolgokról. A boltban a listán szereplő cikkeket vegye meg."
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr "Az MMEX használatával a részvények és befektetési alapok is követhetők."
+msgstr "Az MMEX-t használva a részvények és befektetési alapok is követhetők."
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Új részvénybejegyzés létrehozásához meg kell adni a szimbólumát, az értékpapírok számát és vételi árfolyamát."
+msgstr "Új részvénybejegyzés készítéshez meg kell adni a szimbólumát, a vásárolt darabszámot és vételi árfolyamot."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -3773,7 +3773,7 @@ msgstr "Minta brit (HSBC HLDG) részvény: HSBA.L"
 
 #: mmTips.h:50
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "Ha a részvény neve mező üres, azt az első árfolyamfrissítéskor kitölti."
+msgstr "Ha a részvény neve mező üres, azt az árfolyamfrissítéskor kitölti"
 
 #: mmchecking_list.cpp:358
 msgid "&New Withdrawal"
@@ -3790,14 +3790,16 @@ msgstr "Új átutalás"
 #: mmchecking_list.cpp:365
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "Tranzakció szerkesztése"
-msgstr[1] "Tranzakció szerkesztése"
+msgstr[0] "Tranzakció szerkesztése\n"
+"Tranzakciók szerkesztése"
+msgstr[1] "Tranzakció szerkesztése\n"
+"Tranzakciók szerkesztése"
 
 #: mmchecking_list.cpp:370
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "Tranzakció másolása\n\n"
-"Tranzakció másolása"
+msgstr[0] "Tranzakció másolása\n"
+"Tranzakciók másolása"
 msgstr[1] "Tranzakció másolása\n\n"
 "Tranzakció másolása"
 
@@ -3817,8 +3819,9 @@ msgstr "Ügylet duplikálása"
 #: mmchecking_list.cpp:383
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] "Ügylet mozgatása"
-msgstr[1] "Ügyletek mozgatása\n\n"
+msgstr[0] "Ügylet mozgatása\n"
+"Ügyletek mozgatása"
+msgstr[1] "Ügylet mozgatása\n"
 "Ügyletek mozgatása"
 
 #: mmchecking_list.cpp:389
@@ -3837,17 +3840,17 @@ msgstr "Rendszeres ügylet létrehozása"
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] "Kiválasztott ügylet törlése\n"
-"Kiválasztott ügylet törlése"
+"Kiválasztott ügyletek törlése"
 msgstr[1] "Kiválasztott ügylet törlése\n"
-"Kiválasztott ügylet törlése"
+"Kiválasztott ügyletek törlése"
 
 #: mmchecking_list.cpp:410
 msgid "Delete all transactions in current view"
-msgstr "Minden ügylet törlése a lapon"
+msgstr "Minden ügylet törlése az aktuális nézetben"
 
 #: mmchecking_list.cpp:411
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr "A megtekintett, követésre kijelölt ügyletek törlése"
+msgstr "A megtekintett, \"követésre kijelölt\" ügyletek törlése"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
