@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 06:53\n"
+"PO-Revision-Date: 2022-02-08 07:58\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5072,7 +5072,7 @@ msgstr ""
 
 #: mmframereport.cpp:193
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Költségvetés kategóriák összesítése"
 
 #: mmframereport.cpp:202
 msgid "Stocks Report"
@@ -5113,7 +5113,7 @@ msgstr "Legnagyobb kivétek: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account / Payee"
-msgstr ""
+msgstr "Számla / Kedvezményezett"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -5154,15 +5154,15 @@ msgstr "Összes összesen: "
 
 #: mmhomepage.cpp:636
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Befektetési számlák"
 
 #: mmhomepage.cpp:637 reports/summary.cpp:298 reports/summary.cpp:330
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Eszközszámlák"
 
 #: mmhomepage.cpp:778
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Valuta váltási árfolyam"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5186,7 +5186,7 @@ msgstr "Oszlopok alaphelyzetbe"
 
 #: mmreportspanel.cpp:142
 msgid "Report"
-msgstr ""
+msgstr "Jelentés"
 
 #: mmreportspanel.cpp:199
 msgid "Period:"
@@ -5194,15 +5194,15 @@ msgstr "Időszak:"
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "Év:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "Költségvetés:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
-msgstr ""
+msgstr "Számlák:"
 
 #: mmreportspanel.cpp:345 reports/reportbase.cpp:185
 #: reports/transactions.cpp:71
@@ -5211,7 +5211,7 @@ msgstr "Összes számla"
 
 #: mmreportspanel.cpp:346
 msgid "Specific Accounts"
-msgstr ""
+msgstr "Meghatározott számlák"
 
 #: mmreportspanel.cpp:362
 msgid "Chart:"
@@ -5292,19 +5292,19 @@ msgstr "Egyéb"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Ügylet"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Részvény"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Bankszámla"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Rendszeres ügylet"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5350,7 +5350,7 @@ msgstr "Kedvezményezett hiba"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Kezdő dátum: "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
@@ -5892,23 +5892,23 @@ msgstr "Stílussablon"
 
 #: optionsettingsview.cpp:222
 msgid "Light"
-msgstr ""
+msgstr "Világos"
 
 #: optionsettingsview.cpp:223
 msgid "Dark"
-msgstr ""
+msgstr "Sötét"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Jelöld ki a használni kívánt, támogatott témaváltozatot"
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Téma mód"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "HTML nagyítási lépték"
 
 #: optionsettingsview.cpp:248
 msgid "Specify which scale factor is used for the report pages"
@@ -5916,35 +5916,35 @@ msgstr "Határozza meg a jelentés oldalainál használt szorzótényezőt."
 
 #: optionsettingsview.cpp:253
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Kicsi (16 px)"
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normál (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Nagy (32 px)"
 
 #: optionsettingsview.cpp:256
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Hatalmas (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Eszköztár ikonméret"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Navigációs ikonméret"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Add meg az ikonméretet"
 
 #: payeedialog.cpp:61
 msgid "Last Used Category"
-msgstr ""
+msgstr "Utoljára használt kategória"
 
 #: payeedialog.cpp:61
 msgid "Default Category"
@@ -5976,7 +5976,7 @@ msgstr "A kedvezményezett foglalt."
 
 #: payeedialog.cpp:271
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "Tipp: az összes, adott kedvezményezetthez tartozó ügylet másik kedvezményezetthez történő átrakásához használja az áthelyezés parancsot:"
 
 #: payeedialog.cpp:273
 msgid "Tools -> Relocation of -> Payees"
@@ -5988,11 +5988,11 @@ msgstr "Kedvezményezettek kezelése: törlési hiba!"
 
 #: payeedialog.cpp:377
 msgid "Define Category"
-msgstr ""
+msgstr "Kategória meghatározása"
 
 #: payeedialog.cpp:379
 msgid "Remove Category"
-msgstr ""
+msgstr "Kategória eltávolítása"
 
 #: payeedialog.cpp:394
 msgid "Relocate Payee"
@@ -6004,15 +6004,15 @@ msgstr "Kategória áthelyezés párbeszédablak"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "A forrás kategória áthelyezése a cél kategóriába"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr ""
+msgstr "A forrás kategória kiválasztása"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr ""
+msgstr "Cél kategória kiválasztása"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:121
 msgid "Relocate:"
@@ -6066,11 +6066,11 @@ msgstr "Kedvezményezett áthelyezése párbeszédablak"
 
 #: relocatepayeedialog.cpp:83
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "A forrás összes kedvezményezettjének áthelyezése a célhoz"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Áthelyezés után a kedvezményezettet törlése a forrásban"
 
 #: relocatepayeedialog.cpp:161
 #, c-format
@@ -6084,12 +6084,12 @@ msgstr "Kedvezményezett áthelyezésének jóváhagyása"
 #: reports/budget.cpp:88
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Pénzügyi év: %s - %i"
 
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Év: %i Hónap: %s"
 
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
@@ -6136,11 +6136,11 @@ msgstr "A(z) %s Költségvetési teljesítménye"
 
 #: reports/budgetingperf.cpp:237 reports/budgetingperf.cpp:239
 msgid "Est."
-msgstr ""
+msgstr "Becs."
 
 #: reports/budgetingperf.cpp:237 reports/budgetingperf.cpp:239
 msgid "Act."
-msgstr ""
+msgstr "Akt."
 
 #: reports/budgetingperf.cpp:240
 msgid "%"
@@ -6148,19 +6148,19 @@ msgstr "%"
 
 #: reports/budgetingperf.cpp:295
 msgid "Monthly Total"
-msgstr ""
+msgstr "Havi összes"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr ""
+msgstr "Hibajelentés"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "A szöveget (>-rel jelölt) cseréld le a probléma részletes leírásával."
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Ne távolítsa el az ehhez a szöveghez lent csatolt információt."
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
