@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 14:21\n"
+"PO-Revision-Date: 2022-02-08 14:40\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -7394,10 +7394,10 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "Időszaki számlák olyan különleges, megtakarítási célú számlák,\n"
+msgstr "Lejáratos számlák olyan különleges, megtakarítási célú számlák,\n"
 "mint a határidős betétek és kötvények számlái. Ezeken \n"
 "a szokásos bevételi folyamatoktól elkülönült rendszeres \n"
-"pénzmozgás lehetséges. "
+"pénzmozgás lehetséges."
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
@@ -7405,7 +7405,7 @@ msgstr "Alap pénznem nincs beállítva."
 
 #: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr "Először ezt állítsa be az Eszközök->Beállításokban, majd hozzon létre új számlát."
+msgstr "Először ezt állítsa be az Eszközök->Beállítások menüben, majd hozzon létre új számlát."
 
 #: wizard_newdb.cpp:25
 msgid "New Database Wizard"
@@ -7423,7 +7423,7 @@ msgid "The next pages will help you create a new database.\n\n"
 "file type before saving."
 msgstr "A következő lapok segítenek új adatbázis létrehozásában.\n"
 " \n"
-"Az adatbázisfájlt .mmb kiterjesztéssel ellátott fájlban tárolja.\n"
+"Az adatbázist .mmb kiterjesztéssel ellátott fájlban tárolja.\n"
 "Mivel ez a fájl fontos pénzügyi adatokat tartalmaz,\n"
 "javasoljuk naponta mentés készítését a következő opciót\n"
 "bekapcsolva: \"Másolat készítése megnyitás előtt\" és\n"
@@ -7448,11 +7448,11 @@ msgstr "Adja meg az adatbázis által alapértelmezetten használt \n"
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
-msgstr "Tetszőleges - adjon meg egy címet, vagy a nevét."
+msgstr "Adjon meg egy címet, vagy a nevét (opcionális)."
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
-msgstr "A megjelenített és nyomtatott jelentésekben az adatbázis neveként használt."
+msgstr "A megjelenített és nyomtatott jelentésekben az adatbázis címeként használt."
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
@@ -7472,7 +7472,7 @@ msgstr "Verzió"
 
 #: wizard_update.cpp:149
 msgid "You already have the latest version"
-msgstr "Már a legfrissebb verziót használod"
+msgstr "Már a legfrissebb verziót használja"
 
 #: wizard_update.cpp:149
 msgid "A new version of MMEX is available!"
