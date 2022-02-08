@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 08:49\n"
+"PO-Revision-Date: 2022-02-08 09:07\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -743,7 +743,7 @@ msgstr "A melléklet nem található:"
 
 #: attachmentdialog.cpp:473
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Kívánja folytatni és törölni az adatbázis mellékeltét?"
+msgstr "Kívánja folytatni és törölni az adatbázis mellékletét?"
 
 #: attachmentdialog.cpp:474
 msgid "Delete attachment failed"
@@ -755,7 +755,7 @@ msgstr "A fájlt nem lehet megnyitni:"
 
 #: attachmentdialog.cpp:490
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Ellenőrizze, hogy a fájl létezik-e és felhasználó jogosult-e olvasni."
+msgstr "Ellenőrizze, hogy a fájl létezik-e és a felhasználó jogosult-e olvasni."
 
 #: attachmentdialog.cpp:491
 msgid "Open attachment failed"
@@ -826,11 +826,11 @@ msgstr "(x) hónapon belül"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr "Minden (x) nap"
+msgstr "Minden (x). nap"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr "Minden (x) hónap"
+msgstr "Minden (x). hónap"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -842,7 +842,7 @@ msgstr "Havi (utolsó munkanap)"
 
 #: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr "Ismétlődő tranzakció duplkálása"
+msgstr "Rendszeres tranzakció duplikálása"
 
 #: billsdepositsdialog.cpp:319 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -874,7 +874,7 @@ msgstr "Vissza az adott érték legutolsó előfordulásának dátumához"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1294
 msgid "Repeats"
-msgstr "Ismétlések"
+msgstr "Ismétlődik"
 
 #: billsdepositsdialog.cpp:467
 msgid "Advance the next occurring date with the specified values"
@@ -941,7 +941,7 @@ msgstr "Szakértői beállítások"
 
 #: billsdepositsdialog.cpp:564 transdialog.cpp:1387
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Engedélyezi a -tól/től és -nak/nek számlákon eltérő összeg szerepeltetését"
+msgstr "Engedélyezi a származtató és a cél számlákon eltérő összeg szerepeltetését."
 
 #: billsdepositsdialog.cpp:574 billsdepositspanel.cpp:139
 #: budgetingpanel.cpp:301 filtertrans.cpp:198 filtertransdialog.cpp:620
@@ -957,7 +957,7 @@ msgstr "Összeg"
 
 #: billsdepositsdialog.cpp:587 transdialog.cpp:1368
 msgid "Specify the transfer amount in the To Account"
-msgstr "Az ügylet összegét a címzett számlán határozza meg"
+msgstr "Az ügylet összegét a célszámlán határozza meg"
 
 #: billsdepositsdialog.cpp:599 billsdepositsdialog.cpp:863
 #: billsdepositsdialog.cpp:877 billsdepositspanel.cpp:134 filtertrans.cpp:193
@@ -978,7 +978,7 @@ msgstr "Számla kiválasztása"
 
 #: billsdepositsdialog.cpp:603
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Határozza meg az rendszeres tranzakcióhoz tartozó számlát"
+msgstr "Határozza a számlát, amihez a rendszer ügylethez tartozik"
 
 #: billsdepositsdialog.cpp:606 billsdepositsdialog.cpp:864
 #: billsdepositspanel.cpp:135 filtertrans.cpp:194 filtertransdialog.cpp:57
@@ -1095,7 +1095,7 @@ msgstr "Érvényesít"
 
 #: billsdepositsdialog.cpp:1297
 msgid "Period: Days"
-msgstr "Gyakoriság: napokban"
+msgstr "Gyakoriság: napok"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Period: Months"
