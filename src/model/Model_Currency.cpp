@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2013 - 2021 Nikolay Akimov
+ Copyright (C) 2013 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include "util.h"
 
 #include <fmt/core.h>
-#include <fmt/locale.h>
+#include <fmt/format.h>
 
 Model_Currency::Model_Currency()
     : Model<DB_Table_CURRENCYFORMATS_V1>()
