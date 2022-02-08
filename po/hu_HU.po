@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 08:41\n"
+"PO-Revision-Date: 2022-02-08 08:49\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -516,7 +516,7 @@ msgstr "Eszköz törlésének jóváhagyása"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "Az MMEX lehetővé teszi, hogy meghatározott eszközeti, mint például autók, házak, telkek stb., számon tartsa. A vagyontárgyak értéke évente meghatározott összeggel emelkedhet, csökkenhet, vagy akár változatlanul is hagyható. Az eszközök összértéke az Ön pénzügyi összértékét növeli."
+msgstr "Az MMEX lehetővé teszi, hogy meghatározott eszközeit, mint például autók, házak, telkek stb., számon tartsa. A vagyontárgyak értéke évente meghatározott összeggel emelkedhet, csökkenhet, vagy akár változatlan is maradhat. Az eszközök összértéke az Ön pénzügyi összértékét növeli."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:724
 #: general_report_manager.cpp:1001 mmframe.cpp:478 mmframe.cpp:745
@@ -538,11 +538,11 @@ msgstr "Új"
 
 #: assetspanel.cpp:470 stockspanel.cpp:134
 msgid "&Add Trans "
-msgstr "Ügyelt hozzáadása"
+msgstr "Ügyl. hozzáadása"
 
 #: assetspanel.cpp:475 stockspanel.cpp:139
 msgid "&View Trans "
-msgstr "Ügylet megtekintése "
+msgstr "Ügyl. megtekintése "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
@@ -576,11 +576,11 @@ msgstr "Keresés"
 
 #: assetspanel.cpp:504
 msgid "Enter any string to find related assets"
-msgstr "Írjon be szöveget a kapcsolódó vagyontárgyak megkereséséhez "
+msgstr "Írjon be bármit a kapcsolódó eszközök megkereséséhez"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:395 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr "Tipp: használhatsz helyettesítő karaktereket - kérdőjel (?), csillag (*) - a keresési kritériumoknál."
+msgstr "Tipp: a keresési kritériumoknál helyettesítő karakterek - kérdőjel (?), csillag (*) - használhatók."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:396 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
@@ -659,7 +659,7 @@ msgstr "Mellékletek rendezése | %s %i"
 #: attachmentdialog.cpp:88
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Mellékletek rendezése | Új %s"
+msgstr "Mellékletek Rendezése | Új %s"
 
 #: attachmentdialog.cpp:128 customfieldlistdialog.cpp:98 payeedialog.cpp:134
 msgid "Other tools"
@@ -667,7 +667,7 @@ msgstr "Egyéb eszközök"
 
 #: attachmentdialog.cpp:160
 msgid "Import attachment:"
-msgstr "Mellékletek importálása:"
+msgstr "Melléklet importálása:"
 
 #: attachmentdialog.cpp:171
 msgid "Enter a description for the new attachment:"
