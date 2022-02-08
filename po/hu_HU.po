@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 05:02\n"
+"PO-Revision-Date: 2022-02-08 05:10\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2513,7 +2513,7 @@ msgstr "Név meghatározása"
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1727
 #: filtertransdialog.cpp:1735
 msgid "Could not save settings"
-msgstr ""
+msgstr "A beállítások nem menthetők"
 
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1145
 #: filtertransdialog.cpp:1161 filtertransdialog.cpp:1727
@@ -2528,31 +2528,31 @@ msgstr "Szűrési feltételek: "
 
 #: filtertransdialog.cpp:1183
 msgid "Label"
-msgstr ""
+msgstr "Címke"
 
 #: filtertransdialog.cpp:1203
 msgid "Since"
-msgstr ""
+msgstr "Óta"
 
 #: filtertransdialog.cpp:1205
 msgid "Before"
-msgstr ""
+msgstr "Előtt"
 
 #: filtertransdialog.cpp:1215
 msgid "Period"
-msgstr ""
+msgstr "Időszak"
 
 #: filtertransdialog.cpp:1287
 msgid "Amount Min."
-msgstr ""
+msgstr "Min. összeg"
 
 #: filtertransdialog.cpp:1295
 msgid "Amount Max."
-msgstr ""
+msgstr "Max. összeg"
 
 #: filtertransdialog.cpp:1328
 msgid "Column"
-msgstr ""
+msgstr "Oszlop"
 
 #: filtertransdialog.cpp:1746 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -2561,7 +2561,7 @@ msgstr "Számlák kiválasztása"
 
 #: filtertransdialog.cpp:1804
 msgid "Not colored"
-msgstr ""
+msgstr "Nincs színezve"
 
 #: general_report_manager.cpp:248 general_report_manager.cpp:664
 msgid "General Reports Manager"
@@ -2634,7 +2634,8 @@ msgstr "Sablon készítése"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "%zu sor visszaadva, időtartam: %lld ms\n"
+"%zu oszlop visszaadva, időtartam: %lld ms"
 msgstr[1] ""
 
 #: general_report_manager.cpp:567
