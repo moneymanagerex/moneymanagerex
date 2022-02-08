@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 13:25\n"
+"PO-Revision-Date: 2022-02-08 13:42\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5590,27 +5590,27 @@ msgstr "Pénzügyi év"
 
 #: optionsettingsgeneral.cpp:182
 msgid "Start Day"
-msgstr "Indító nap"
+msgstr "Kezdőnap"
 
 #: optionsettingsgeneral.cpp:188
 msgid "Specify Day for start of financial year"
-msgstr "Határozza meg a pénzügyi év kezdőnapját!"
+msgstr "Határozza meg a pénzügyi év kezdőnapját"
 
 #: optionsettingsgeneral.cpp:192
 msgid "Start Month"
-msgstr "Induló hónap"
+msgstr "Kezdő hónap"
 
 #: optionsettingsgeneral.cpp:204
 msgid "Specify month for start of financial year"
-msgstr "Határozza meg a pénzügyi év induló hónapját"
+msgstr "Határozza meg a pénzügyi év kezdőnapját"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Use Original Date when Pasting Transactions"
-msgstr "Ügyletek másolásakor az eredeti dátumot használja"
+msgstr "Ügyletek beillesztésekor az eredeti dátumot használja"
 
 #: optionsettingsgeneral.cpp:211
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Határozza meg, hogy másoláskor a tranzakció eredeti dátumát, vagy a jelenlegi dátumot használja-e."
+msgstr "Jelölje be, hogy másoláskor a tranzakció eredeti dátumát, vagy a jelenlegi dátumot használja-e"
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Duplicating Transactions"
@@ -5618,7 +5618,7 @@ msgstr "Tranzakció duplikálásakor az eredeti dátumot használja"
 
 #: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr "Határozza meg, hogy tranzakció duplikálásakor annak eredeti dátumát, vagy a jelenlegi dátumot használja-e"
+msgstr "Jelölje be, hogy tranzakció duplikálásakor annak eredeti dátumát, vagy a jelenlegi dátumot használja-e"
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Transaction Sound"
@@ -5626,7 +5626,7 @@ msgstr "Hangjelzés az ügyletekhez."
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use sounds when entering transactions"
-msgstr "Határozza meg, hogy a tranzakcióknál mikor legyen hangvisszajelzés"
+msgstr "Jelölje be, hogy a tranzakciók bevitelénél legyen-e hangvisszajelzés"
 
 #: optionsettingsgeneral.cpp:325
 #, c-format
@@ -5699,35 +5699,35 @@ msgstr "Alapértelmezett állapot: "
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr "Tranzakciós köteg:"
+msgstr "Kötegelt ügyletek:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
-msgstr "Adatbázis másolat"
+msgstr "Adatbázis mentés"
 
 #: optionsettingsmisc.cpp:163
 msgid "Create a new backup when MMEX Start"
-msgstr "Új másolat készítése MMEX indulásakor"
+msgstr "Új mentés készítése MMEX indulásakor"
 
 #: optionsettingsmisc.cpp:165
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
 msgstr "Az MMEX indulásakor\n"
-"dbFile_start_ÉÉÉÉ-HH-NN.ext néven másolatot készít."
+"létrehozza a dbFile_start_ÉÉÉÉ-HH-NN.ext nevű másolatot."
 
 #: optionsettingsmisc.cpp:170
 msgid "Backup database on exit."
-msgstr "Adatbázis-másolat készítése kilépéskor"
+msgstr "Adatbázis-mentés készítése kilépéskor."
 
 #: optionsettingsmisc.cpp:172
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr "Az MMEX bezáráskor az adatbázis módosítása esetén\n"
-"dbFile_start_ÉÉÉÉ-HH-NN.ext nevű másolatot létrehozza, vagy módosítja."
+"dbFile_start_ÉÉÉÉ-HH-NN.ext néven mentés hozz létre, vagy azt módosítja."
 
 #: optionsettingsmisc.cpp:180
 msgid "Specify max number of backup files"
-msgstr "Határozza meg a fájlmásolatok max. számát"
+msgstr "Határozza meg a fájlmentések max. számát"
 
 #: optionsettingsmisc.cpp:183
 msgid "Max Files"
@@ -5735,7 +5735,7 @@ msgstr "Max. fájl "
 
 #: optionsettingsmisc.cpp:190
 msgid "CSV Settings"
-msgstr "CVS beállítások"
+msgstr "CVS-beállítások"
 
 #: optionsettingsmisc.cpp:198
 msgid "Delimiter"
@@ -5795,7 +5795,7 @@ msgstr "Legfrissebb hírek ellenőrzése indításkor"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr "Engedélyezd, hogy az alkalmazás indításakor ellenőrizhesse a híreket"
+msgstr "Engedélyezze a hírek ellenőrzését az alkalmazás indításakor"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5819,15 +5819,15 @@ msgstr "Frissítések ellenőrzése indításkor"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Engedélyezi, annak ellenőrzését hogy az MMEX-ből van-e új, elérhető verzió  "
+msgstr "Engedélyezi, annak ellenőrzését induláskor, hogy az MMEX-ből van-e új, elérhető verzió"
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
-msgstr "Végleges változat"
+msgstr "Stabil"
 
 #: optionsettingsnet.cpp:164 wizard_update.cpp:114
 msgid "Unstable"
-msgstr "Nem végleges változat"
+msgstr "Nem stabil"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
@@ -5843,19 +5843,19 @@ msgstr "Kategóriaelválasztó"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr "Tranzakciós vagy Költségvetési opciók"
+msgstr "Tranzakció- vagy Költségvetésopciók"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr "Költségvetések megtekintése pénzügyi év szerint"
+msgstr "Költségvetés mutatása pénzügyi év szerint"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
-msgstr "Költségvetések megtekintése \"átutalási\" tranzakciókkal együtt"
+msgstr "Költségvetések mutatása \"átutalási\" ügyletekkel együtt"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr "Költségvetési kategóriajelentés megtekintése összesítéssel"
+msgstr "Költségvetési kategóriák-jelentés megtekintése összesítésekkel"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
