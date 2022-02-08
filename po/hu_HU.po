@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 05:21\n"
+"PO-Revision-Date: 2022-02-08 05:33\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2777,11 +2777,11 @@ msgstr "A(z) '%s' téma nem található, vagy már nem támogatott. Az alap tém
 #: images_list.cpp:518
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "A(z) '%s' témából hiányoznak elemek és inkompatibilis. Az alap téma visszaállítása"
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "Nincs használható téma, a telepítés sérülhetett"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1582
 #: mmSimpleDialogs.cpp:253
@@ -2837,11 +2837,11 @@ msgstr "QIF Exportálás"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON exportálás"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "CSV exportálás"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -4635,7 +4635,7 @@ msgstr "Maradj kapcsolatban az MMEX-közösséggel"
 
 #: mmframe.cpp:1669
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Hiba bejelentése"
 
 #: mmframe.cpp:1670
 msgid "Report an error in application to the developers"
@@ -4643,19 +4643,19 @@ msgstr "Jelentsen be egy alkalmazás hibát a fejlesztőknek"
 
 #: mmframe.cpp:1674
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Diagnosztika megtekintése"
 
 #: mmframe.cpp:1675
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Információkkal segítsd a fejlesztőket"
 
 #: mmframe.cpp:1679
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "Az app. induló párbeszédének mutatása"
 
 #: mmframe.cpp:1679
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Az app. induló párbeszéde"
 
 #: mmframe.cpp:1683
 msgid "Check for &Updates"
@@ -4663,7 +4663,7 @@ msgstr "Frissítések keresése"
 
 #: mmframe.cpp:1683
 msgid "Check For Updates"
-msgstr ""
+msgstr "Frissítések keresése"
 
 #: mmframe.cpp:1687 mmframe.cpp:1759
 msgid "&About..."
@@ -4733,11 +4733,12 @@ msgstr "Váltás Teljes képernyő\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Írd be az adatbázis jelszavát\n\n"
+"%s"
 
 #: mmframe.cpp:1815 mmframe.cpp:2046 mmframe.cpp:2179
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: titkosított adatbázis"
 
 #: mmframe.cpp:1849
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4749,11 +4750,11 @@ msgstr "MMEX frissítés"
 
 #: mmframe.cpp:1871 mmframe.cpp:1913
 msgid "No File opened"
-msgstr ""
+msgstr "Nincs fájl megnyitva"
 
 #: mmframe.cpp:1873
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Elnézést! Vagy az adatbázis verziója túl régi, vagy a jelszó hibás"
 
 #: mmframe.cpp:1903
 msgid "&Next ->"
