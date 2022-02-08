@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 13:06\n"
+"PO-Revision-Date: 2022-02-08 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5267,15 +5267,15 @@ msgstr "Számolási hiba"
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
-msgstr "Növekvő"
+msgstr "Felértékelés"
 
 #: model/Model_Asset.cpp:25
 msgid "Depreciates"
-msgstr "Csökkenő"
+msgstr "Leértékelés"
 
 #: model/Model_Asset.cpp:30
 msgid "Property"
-msgstr "Tulajdonjog"
+msgstr "Tulajdon"
 
 #: model/Model_Asset.cpp:32
 msgid "Household Object"
@@ -5398,7 +5398,7 @@ msgstr "Hálózat"
 
 #: optiondialog.cpp:166
 msgid "&Apply"
-msgstr "Alkalamaz"
+msgstr "Alkalmaz"
 
 #: optiondialog.cpp:224
 #, c-format
@@ -5407,7 +5407,7 @@ msgstr "%s lap mentve"
 
 #: optionsettingsattachment.cpp:58
 msgid "Attachments Settings"
-msgstr "Mellékletetk beállításai"
+msgstr "Mellékletetek beállításai"
 
 #: optionsettingsattachment.cpp:65
 #, c-format
