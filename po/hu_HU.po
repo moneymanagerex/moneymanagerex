@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 09:54\n"
+"PO-Revision-Date: 2022-02-08 10:13\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1896,7 +1896,7 @@ msgstr "Automatikus kiegészítés"
 
 #: customfieldeditdialog.cpp:158
 msgid "Enables autocomplete on custom field"
-msgstr "egyedi mezőkön az automatikus kiegészítés  engedélyezése"
+msgstr "Felhasználói mezőkben az automatikus kiegészítés engedélyezése"
 
 #: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
@@ -1905,8 +1905,8 @@ msgstr "Alapértelmezett"
 #: customfieldeditdialog.cpp:163
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr "Adja meg a mező alapértékét\n"
-"Dátum és idő esetén írjon \"Now\"-t, hogy az aktuális érték legyen az"
+msgstr "Adja meg a mező alapértelmezett értékét\n"
+"Dátumnál vagy időnél beírt \"Now\"-ra, akkor az adott napot, vagy időt teszi meg alapértéknek"
 
 #: customfieldeditdialog.cpp:167
 msgid "Choices"
@@ -1914,7 +1914,7 @@ msgstr "Választék"
 
 #: customfieldeditdialog.cpp:169
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr "Írd be a mezőhöz tartozó választási lehetőségeket pontosvesszővel elválasztva"
+msgstr "A mezőhöz tartozó választási lehetőségeket pontosvesszővel elválasztva írd be"
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
@@ -1930,11 +1930,11 @@ msgstr "Panel oszlopa"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr "Válassz egy, a tételt a panelen képviselő értéket"
+msgstr "Válassz egy értéket a panelen történő megjelenítéshez"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
-msgstr "A mező típusának változtatásával a tartalma törlődik!"
+msgstr "A mező típusának megváltoztatásával a tartalma törlődik!"
 
 #: customfieldeditdialog.cpp:225 customfieldeditdialog.cpp:247 mmframe.cpp:2106
 #: mmframe.cpp:2125
@@ -1947,11 +1947,11 @@ msgstr "Felhasználói mező változtatása"
 
 #: customfieldeditdialog.cpp:246
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr "Módosítottad a választásokat: az eltávolítottak törölve lesznek!"
+msgstr "Módosított a választási lehetőségeket: az eltávolítottak törölve lesznek!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr "Felhasználói mező - Új/Szerkeszt"
+msgstr "Felhasználói mező - új vagy szerkesztés"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
@@ -1964,7 +1964,7 @@ msgstr "Tulajdonságok"
 #: customfieldlistdialog.cpp:65
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr "Felhasználói mezők beállítása | %s"
+msgstr "Felhasználói mezők testre szabása | %s"
 
 #: customfieldlistdialog.cpp:169
 msgid "Do you really want to delete this custom field and all its data?"
@@ -1979,12 +1979,12 @@ msgstr "Felhasználói mező törlésének jóváhagyása"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr "Ez a funkció mélyrehatóan megkeresi és lecseréli \"%s\" tetszőleges mezőértéket. Csak a mező teljes tartalmát ellenőrzi és cseréli le, rész vagy közbenső érték cseréje nem megengedett\n"
+msgstr "Ez a funkció teljes mélységben megkeresi és lecseréli \"%s\" tetszőleges mezőértéket. Csak a mező teljes tartalmát ellenőrzi és cseréli le, rész vagy közbenső érték cseréje nem megengedett\n"
 "Vedd figyelembe, hogy nincs semmilyen megerősítés!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
-msgstr "Hagyja jóvá a felhasználói mező tartalmának frissítését."
+msgstr "A felhasználói mező tartalma frissítésének jóváhagyása"
 
 #: customfieldlistdialog.cpp:196
 msgid "Find what"
@@ -1994,23 +1994,23 @@ msgstr "Mit keressen"
 #: customfieldlistdialog.cpp:208 customfieldlistdialog.cpp:214
 #: customfieldlistdialog.cpp:229
 msgid "Update Custom Field Content"
-msgstr "Felhasználói mezőtartalom frissítése"
+msgstr "Felhasználói mező tartalmának frissítése"
 
 #: customfieldlistdialog.cpp:200
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "Frissíti az üres tartalmakat?\n"
-"Nyomjon no-t a csere folyamatának megszakításához!"
+msgstr "Üres tartalommal frissít?\n"
+"Nyomjon no-t a felülírás megszakításához!"
 
 #: customfieldlistdialog.cpp:208
 msgid "Replace with"
-msgstr "cserélés erre"
+msgstr "Csere erre"
 
 #: customfieldlistdialog.cpp:212
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "Üresre akarja változtatni?\n"
-"Nyomjon no-t a csere folyamatának megszakításához!"
+msgstr "Üres tartalommal frissít?\n"
+"Nyomjon no-t a felülírás megszakításához!"
 
 #: customfieldlistdialog.cpp:228
 #, c-format
@@ -2022,7 +2022,7 @@ msgstr[1] ""
 
 #: customfieldlistdialog.cpp:263
 msgid "&Massive content update "
-msgstr "Nagymértékű tartalaomfrissítés"
+msgstr "Átfogó tartalomfrissítés "
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
@@ -2034,7 +2034,7 @@ msgstr "Étel"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
-msgstr "Pihenés"
+msgstr "Szabadidő"
 
 #: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
 msgid "Automobile"
@@ -2046,7 +2046,7 @@ msgstr "Oktatás"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
-msgstr "Háztartás"
+msgstr "Háztartási szükségletek"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Healthcare"
