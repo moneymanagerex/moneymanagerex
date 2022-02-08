@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 09:15\n"
+"PO-Revision-Date: 2022-02-08 09:29\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1329,12 +1329,13 @@ msgstr[1] "%d nap késés!\n"
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] "%d napja lejárt!"
+msgstr[0] "%d napja lejárt!\n"
+"%d napja lejárt!"
 msgstr[1] "%d napja lejárt!"
 
 #: billsdepositspanel.cpp:674
 msgid "Do you really want to delete the recurring transaction?"
-msgstr "Valóban törli az ismétlődő tarnzakciót?"
+msgstr "Valóban törli az ismétlődő tranzakciót?"
 
 #: billsdepositspanel.cpp:675
 msgid "Confirm Deletion"
@@ -1377,7 +1378,7 @@ msgstr "Bevétel"
 
 #: budgetentrydialog.cpp:134
 msgid "Specify whether this category is an income or an expense category"
-msgstr "Adja meg, hogy a kategória bevétel vagy kiadás kategória"
+msgstr "Adja meg, hogy ez bevételi vagy kiadási kategória"
 
 #: budgetentrydialog.cpp:136
 msgid "Frequency:"
@@ -1393,11 +1394,11 @@ msgstr "Összeg: "
 
 #: budgetentrydialog.cpp:149
 msgid "Enter the amount budgeted for this category."
-msgstr "A kategória költségvetési összegének bevitele"
+msgstr "A kategóriára a költségvetésben tervezett összeg bevitele."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "Minden költségvetés kategória mutatása"
+msgstr "Minden költségvetési kategória mutatása"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
@@ -1409,11 +1410,11 @@ msgstr "A tervezett költségvetés kategóriáinak mutatása"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "Minden bevételi kategória mutatása"
+msgstr "A költségvetés bevételi kategóriáinak mutatása"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "Minden kiadási kategória mutatása"
+msgstr "A költségvetés kiadási kategóriáinak mutatása"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
@@ -1442,7 +1443,7 @@ msgstr "%s    Kezdő dátum ehhez: %s"
 #: budgetingpanel.cpp:189
 #, c-format
 msgid "Budget Setup for %s"
-msgstr "Költségvetési év %s"
+msgstr "Költségvetési erre %s"
 
 #: budgetingpanel.cpp:246
 msgid "Income: "
@@ -1458,7 +1459,7 @@ msgstr "Tényleges: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Difference: "
-msgstr "Különbség: "
+msgstr "Különbözet: "
 
 #: budgetingpanel.cpp:254
 msgid "Expenses: "
@@ -1508,11 +1509,11 @@ msgstr "Jelenlegi költségvetés törlése"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
 msgid "Budget Entry Details"
-msgstr "Költségvetés bevitele részletezés"
+msgstr "Költségvetési tétel részletei"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr "Költségvetési hónap bevitele"
+msgstr "A költségvetési hónap tétele"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
@@ -1521,8 +1522,8 @@ msgstr "Költségvetési év: "
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "Határozza meg a keresett évet! \n"
-"Használja a nyilakat az évszám növelésére, vagy csökkentésére!"
+msgstr "Válassza ki az évet! \n"
+"Használja a nyilakat az évszám növelésére, vagy csökkentésére."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
@@ -1531,16 +1532,16 @@ msgstr "Költségvetési hónap: "
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "Határozza meg a hónapot!\n"
+msgstr "Válassza ki a hónapot!\n"
 "Használja a nyilakat a hónap görgetésére!"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
-msgstr "Költségvetési alap: "
+msgstr "A költségvetés alapja:"
 
 #: budgetyearentrydialog.cpp:112
 msgid "Specify year to base budget on."
-msgstr "Adja meg az alap költségvetés évét"
+msgstr "Adja meg az évet, amire költségvetés alapul."
 
 #: budgetyearentrydialog.cpp:151
 msgid "Budget Year already exists"
@@ -1548,7 +1549,7 @@ msgstr "A költségvetési év létezik"
 
 #: categdialog.cpp:91 mmframe.cpp:1506 mmframe.cpp:1727
 msgid "Organize Categories"
-msgstr "Kategóriák kezelése"
+msgstr "Kategóriák rendezése"
 
 #: categdialog.cpp:190 mmframe.cpp:1519
 msgid "Reassign all categories to another category"
