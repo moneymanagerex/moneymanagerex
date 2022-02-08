@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 05:55\n"
+"PO-Revision-Date: 2022-02-08 06:03\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3802,12 +3802,12 @@ msgstr[1] "Tranzakció másolása\n\n"
 
 #: mmchecking_list.cpp:375
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "Ügylet beillesztése"
 
 #: mmchecking_list.cpp:375
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "Ügylet beillesztése (%d)"
 
 #: mmchecking_list.cpp:380
 msgid "D&uplicate Transaction"
@@ -3816,12 +3816,13 @@ msgstr "Ügylet duplikálása"
 #: mmchecking_list.cpp:383
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ügylet mozgatása"
+msgstr[1] "Ügyletek mozgatása\n\n"
+"Ügyletek mozgatása"
 
 #: mmchecking_list.cpp:389
 msgid "&View In Other Account"
-msgstr ""
+msgstr "Megtekintés egy másik számlában"
 
 #: mmchecking_list.cpp:393
 msgid "&View Split Categories"
@@ -3829,13 +3830,15 @@ msgstr "Összetett kategóriák mutatása"
 
 #: mmchecking_list.cpp:401
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Rendszeres ügylet létrehozása"
 
 #: mmchecking_list.cpp:407
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kiválasztott ügylet törlése\n"
+"Kiválasztott ügylet törlése"
+msgstr[1] "Kiválasztott ügylet törlése\n"
+"Kiválasztott ügylet törlése"
 
 #: mmchecking_list.cpp:410
 msgid "Delete all transactions in current view"
@@ -3843,19 +3846,19 @@ msgstr "Minden ügylet törlése a lapon"
 
 #: mmchecking_list.cpp:411
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "A megtekintett, követésre kijelölt ügyletek törlése"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "A megtekintett \"nem egyeztetett\" ügyletek törlése"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
-msgstr ""
+msgstr "Megjelölés mint"
 
 #: mmchecking_list.cpp:844
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Valóban törli az összes mutatott ügyletet?"
 
 #: mmchecking_list.cpp:845 mmchecking_list.cpp:856 mmchecking_list.cpp:867
 #: mmchecking_list.cpp:914
@@ -3865,13 +3868,14 @@ msgstr "Ügylet törlésének jóváhagyása"
 #: mmchecking_list.cpp:855 mmchecking_list.cpp:866
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Valóban törli az összes, mutatott '%s' ügyletet?"
 
 #: mmchecking_list.cpp:909
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Valóban törli a kiválasztott ügyletet?\n"
+"Valóban törli a kiválasztott ügyleteket?"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:964
