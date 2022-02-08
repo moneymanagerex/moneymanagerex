@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 12:56\n"
+"PO-Revision-Date: 2022-02-08 13:06\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4992,7 +4992,7 @@ msgstr "Valóban törlöd a(z)\n"
 
 #: mmframe.cpp:3158
 msgid "Select the account to reallocate"
-msgstr "Válassza ki az áthelyezés célszámláját: "
+msgstr "Válassza ki az áthelyezendő számlát"
 
 #: mmframe.cpp:3158 mmframe.cpp:3181
 msgid "Account Reallocation"
@@ -5014,7 +5014,7 @@ msgstr "Kedvezményezett áthelyezésének eredménye"
 #: mmframe.cpp:3343
 #, c-format
 msgid "File %s not found"
-msgstr "A fájlokat %s nem találom"
+msgstr "A(z) %s fájlt nem találom"
 
 #: mmframe.cpp:3378 optionsettingsgeneral.cpp:340
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -5022,7 +5022,7 @@ msgstr "Az alkalmazás nyelvét módosította. A változás az alkalmazás köve
 
 #: mmframereport.cpp:79
 msgid "General Group Report"
-msgstr "Általános Csoportjelentés"
+msgstr "Fő Csoportjelentés"
 
 #: mmframereport.cpp:106 mmhomepage.cpp:792 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
@@ -5031,7 +5031,7 @@ msgstr "Kivétel értelmezve"
 
 #: mmframereport.cpp:119
 msgid "Transaction Report"
-msgstr "Ügylet lekérdezések"
+msgstr "Ügyletek jelentés"
 
 #: mmframereport.cpp:124
 msgid "Cash Flow"
@@ -5043,11 +5043,11 @@ msgstr "Összegzés"
 
 #: mmframereport.cpp:144 reports/categexp.cpp:243
 msgid "Where the Money Goes"
-msgstr "Hová ment a pénz"
+msgstr "Hová megy a pénz"
 
 #: mmframereport.cpp:147 reports/categexp.cpp:249
 msgid "Where the Money Comes From"
-msgstr "Ahonnan a pénz érkezett"
+msgstr "Ahonnan a pénz érkezik"
 
 #: mmframereport.cpp:152
 msgid "Forecast Report"
@@ -5055,7 +5055,7 @@ msgstr "Előrejelzés"
 
 #: mmframereport.cpp:157 optionsettingshome.cpp:73
 msgid "Income vs Expenses"
-msgstr "Bevételek és kiadások"
+msgstr "Bevételek vs. kiadások"
 
 #: mmframereport.cpp:165
 msgid "My Usage"
@@ -5075,7 +5075,7 @@ msgstr ""
 
 #: mmframereport.cpp:193
 msgid "Budget Category Summary"
-msgstr "Költségvetés kategóriák összesítése"
+msgstr "Költségvetési kategóriák összesítése"
 
 #: mmframereport.cpp:202
 msgid "Stocks Report"
@@ -5096,12 +5096,12 @@ msgstr "Értékpapírok"
 
 #: mmhomepage.cpp:81 reports/summarystocks.cpp:113 stocks_list.cpp:95
 msgid "Gain/Loss"
-msgstr "Emelkedés/süllyedés"
+msgstr "Nyereség/veszteség"
 
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:243
 #: reports/categexp.cpp:175 reports/categexp.cpp:463 reports/summary.cpp:332
 msgid "Total"
-msgstr "Összes"
+msgstr "Összesen"
 
 #: mmhomepage.cpp:108 mmhomepage.cpp:687 reports/incexpenses.cpp:290
 #: reports/payee.cpp:166 reports/summarystocks.cpp:155
@@ -5121,7 +5121,7 @@ msgstr "Számla / Kedvezményezett"
 #: mmhomepage.cpp:433
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr "Bevételek és kiadások: %s"
+msgstr "Bevételek vs. kiadások: %s"
 
 #: mmhomepage.cpp:443 reports/categexp.cpp:123 reports/categexp.cpp:150
 #: reports/categexp.cpp:391 reports/categexp.cpp:462 reports/incexpenses.cpp:88
@@ -5140,7 +5140,7 @@ msgstr "Bevétel/Kiadások "
 
 #: mmhomepage.cpp:475
 msgid "Transaction Statistics"
-msgstr "Ügylet statisztikák "
+msgstr "Ügyleti statisztikák"
 
 #: mmhomepage.cpp:517
 msgid "Follow Up On Transactions: "
@@ -5161,11 +5161,11 @@ msgstr "Befektetési számlák"
 
 #: mmhomepage.cpp:637 reports/summary.cpp:298 reports/summary.cpp:330
 msgid "Asset Accounts"
-msgstr "Eszközszámlák"
+msgstr "Vagyonszámlák"
 
 #: mmhomepage.cpp:778
 msgid "Currency Exchange Rates"
-msgstr "Valuta váltási árfolyam"
+msgstr "Valuta váltási árfolyamok"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5235,7 +5235,7 @@ msgstr "Készpénz"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr "Folyószámla"
+msgstr "Ellenőrzés"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
@@ -5247,15 +5247,15 @@ msgstr "Kölcsön"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
-msgstr "Időszaki számla"
+msgstr "Lejárat"
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
-msgstr "Befektetési számla"
+msgstr "Befektetés"
 
 #: model/Model_Account.cpp:38 model/Model_Attachment.cpp:26
 msgid "Asset"
-msgstr "Vagyon"
+msgstr "Eszköz"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
@@ -5263,7 +5263,7 @@ msgstr "Értékpapírok"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
-msgstr "Számlahiba"
+msgstr "Számolási hiba"
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
