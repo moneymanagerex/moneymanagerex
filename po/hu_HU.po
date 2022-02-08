@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 10:13\n"
+"PO-Revision-Date: 2022-02-08 10:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2143,7 +2143,7 @@ msgstr "Parkolás"
 
 #: db/DB_Table_Subcategory_V1.h:126
 msgid "Registration"
-msgstr "Üzemben tartás "
+msgstr "Regisztráció"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
@@ -2151,7 +2151,7 @@ msgstr "Könyvek"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
-msgstr "Tanítás"
+msgstr "Oktatás"
 
 #: db/DB_Table_Subcategory_V1.h:130
 msgid "Clothing"
@@ -2167,11 +2167,11 @@ msgstr "Egészség"
 
 #: db/DB_Table_Subcategory_V1.h:134
 msgid "Dental"
-msgstr "Fogorvos"
+msgstr "Fogászat"
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
-msgstr "Szemészet, optika"
+msgstr "Szemészet"
 
 #: db/DB_Table_Subcategory_V1.h:136
 msgid "Physician"
@@ -2256,7 +2256,7 @@ msgstr "Az MMEX %i verziójú adatbázisa nem működik ezzel a MMEX verzióval 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr "MMEX adatbázis sikeresen frissült a(z) %i verzióra"
+msgstr "Az MMEX-adatbázis sikeresen frissült a(z) %i verzióra"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2286,7 +2286,7 @@ msgstr "Érvénytelen fájltartalom, vegye fel a kapcsolatot az MMEX-támogatás
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr "Ezt a log-ot küldd meg aZMMEX-nek:\n"
+msgstr "Ezt a log-ot küldje meg az MMEX-nek:\n"
 "a mentéshez nyomjon OK-t, vagy Cancel-t a kilépéshez"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:284
@@ -2299,7 +2299,7 @@ msgstr "A hibakeresési fájl mentése"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr "A DB karbantartása kész, zárja be és nyissa meg újra az MMEX-et!"
+msgstr "Az adatbázis karbantartása kész, zárja be és nyissa meg újra az MMEX-et!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
