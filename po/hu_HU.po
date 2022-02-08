@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 07:58\n"
+"PO-Revision-Date: 2022-02-08 08:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Határozza meg, hogy ez egy gyakran használt számla-e. Ezt a számlame
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:242
 #: transdialog.cpp:601 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
-msgstr "Megjegyzés"
+msgstr "Megjegyzések"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
@@ -183,11 +183,11 @@ msgstr "Elérhetőség: "
 
 #: accountdialog.cpp:226
 msgid "Enter any contact information for the financial institution."
-msgstr "Írja be a pénzintézet elérhetőségeit"
+msgstr "Írja be a pénzintézet bármely elérhetőségét."
 
 #: accountdialog.cpp:229
 msgid "Access Info:"
-msgstr "Belépési adatok: "
+msgstr "Hozzáférési info.-k:"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
@@ -219,7 +219,7 @@ msgstr "A tranzakciózárolás dátuma"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr "Minimális egyenleg:"
+msgstr "Minimális egy.:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
@@ -231,7 +231,7 @@ msgstr "Hitel"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr "Hitelkeret-limit:"
+msgstr "Hitelkeret:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
@@ -243,7 +243,7 @@ msgstr "Kamatláb:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr "Kifizetés esedékességi dátuma:"
+msgstr "Fizetési határidő:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
@@ -264,7 +264,7 @@ msgstr "Kép #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
-msgstr "Számla neve"
+msgstr "Számlanév "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
@@ -295,7 +295,7 @@ msgstr "Új adatbázis létrehozása"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Új adatbázis fájl létrehozása a kezdéshez"
+msgstr "Új adatbázisfájl létrehozása a kezdéshez"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
@@ -303,7 +303,7 @@ msgstr "Létező adatbázis megnyitása"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "Létező .mmb kiterjesztésű adatbázis megnyitása"
+msgstr "Létező, (*.mmb) kiterjesztésű adatbázisfájl megnyitása"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
@@ -338,11 +338,11 @@ msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
-msgstr "Új vagyontárgy"
+msgstr "Új eszköz"
 
 #: assetdialog.cpp:67 assetspanel.cpp:481
 msgid "Edit Asset"
-msgstr "Vagyontárgy szerkesztése"
+msgstr "Eszköz szerkesztése"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
@@ -451,7 +451,7 @@ msgstr "Nem találtam Vagyonszámlát.\n\n"
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:208
 #: reports/transactions.cpp:155 stocks_list.cpp:88
 msgid "ID"
-msgstr "ID"
+msgstr "Azon."
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:570 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:332
@@ -522,7 +522,7 @@ msgstr "Az MMEX lehetővé teszi, hogy meghatározott eszközeti, mint például
 #: general_report_manager.cpp:1001 mmframe.cpp:478 mmframe.cpp:745
 #: mmframe.cpp:1543 mmframe.cpp:3016 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
 msgid "Assets"
-msgstr "Vagyon"
+msgstr "Eszközök"
 
 #: assetspanel.cpp:424 assetspanel.cpp:700 assetspanel.cpp:717
 #: filtertransdialog.cpp:216 import_export/qif_export.cpp:74
@@ -6164,22 +6164,22 @@ msgstr "Ne távolítsa el az ehhez a szöveghez lent csatolt információt."
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Az MMEX legfrissebb verziója letöltéséhez, amiben a problémát már talán megoldották, használja a Súgó -> Frissítések keresése menüpont."
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Keress hasonlót itt: <a href='%s'>ismert problémák lista</a>. Találat esetén azt frissítsd új bejegyzés készítése helyett."
 
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Ahogy tudod van egy felhasználói <a href='%s'>forum</a>. ahogy a problémákat meg lehet vitatni és megoldást találni."
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Csatlakozz a közösségünkhöz itt: <a href='%s'>Slack</a>. Kérdéseket tehetsz fel és megtudhatod a legfrissebb híreket."
 
 #: reports/bugreport.h:79
 #, c-format
