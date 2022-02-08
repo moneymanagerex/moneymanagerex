@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 08:19\n"
+"PO-Revision-Date: 2022-02-08 08:41\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "Számla neve: "
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Adja meg a számla nevét. Ez a név bármikor megváltoztatható."
+msgstr "Adja meg a számla nevét. A név bármikor átírható."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
@@ -126,7 +126,7 @@ msgstr "Kedvenc számla"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "Határozza meg, hogy ez egy gyakran használt számla-e. Ezt a számlamegjelenítés nézetének szűrésre használják."
+msgstr "Határozza meg, hogy ez egy gyakran használt számla-e. Ezt a számlák megjelenítésénél szűrésre használják."
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:659 billsdepositspanel.cpp:145 filtertrans.cpp:199
@@ -141,7 +141,7 @@ msgstr "Megjegyzések"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
-msgstr "Írd be a számlával kapcsolatos felhasználói megjegyzéseket és részleteket."
+msgstr "Írja be a számlával kapcsolatos felhasználói megjegyzéseket és részleteket."
 
 #: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
@@ -223,7 +223,7 @@ msgstr "Minimális egy.:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Számlaegyenleg aló határa. Nulla a kikapcsoláshoz"
+msgstr "Számlaegyenleg alsó határa. Nulla a kikapcsoláshoz"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
@@ -320,7 +320,7 @@ msgstr "További információ a weboldalon"
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr "Hírek, frissítések stb. érdekében nyissa meg a(z) %s weblapot"
+msgstr "Hírek, frissítések stb. eléréséhez nyissa meg a(z) %s weblapot"
 
 #: appstartdialog.cpp:124 wizard_update.cpp:209
 #, c-format
@@ -390,7 +390,7 @@ msgstr "Vagyontárgy típusa"
 
 #: assetdialog.cpp:214
 msgid "Select type of asset"
-msgstr "Válassza ki a vagyontárgy típusát"
+msgstr "Válassza ki az eszköz típusát"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
 #: maincurrencydialog.cpp:271
@@ -399,7 +399,7 @@ msgstr "Érték"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr "Adja meg a vagyontárgy jelenlegi értékét"
+msgstr "Adja meg az eszköz jelenértékét"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
@@ -415,7 +415,7 @@ msgstr "Árfolyam"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr "Írd be a vagyontárgy éves értékvesztésének értékét százalékos formában"
+msgstr "Írd be a vagyontárgy éves értékváltozása értékét százalékos formában"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
