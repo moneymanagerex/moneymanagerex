@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 14:40\n"
+"PO-Revision-Date: 2022-02-08 15:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -6254,7 +6254,7 @@ msgstr "Bevételek"
 
 #: reports/forecast.cpp:30
 msgid "Forecast"
-msgstr ""
+msgstr "Előrejelzés"
 
 #: reports/htmlbuilder.cpp:116
 #, c-format
