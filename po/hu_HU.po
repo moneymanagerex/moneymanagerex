@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 10:55\n"
+"PO-Revision-Date: 2022-02-08 11:10\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2917,7 +2917,7 @@ msgstr "CSV fájlok (*.csv)"
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
-msgstr "Exportálásra nincs elérhető számla!"
+msgstr "Nincs exportálható számla"
 
 #: import_export/qif_export.cpp:336
 msgid "No Accounts selected for export"
@@ -2925,7 +2925,7 @@ msgstr "Nincs exportálásra kiválasztott számla!"
 
 #: import_export/qif_export.cpp:338
 msgid "To Date less than From Date"
-msgstr "A vég dátum előbbi mint az induló"
+msgstr "A vége dátum korábbi, mint a kezdés dátuma"
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
@@ -2986,7 +2986,7 @@ msgstr "Számlaszám használata a neve helyett"
 
 #: import_export/qif_import_gui.cpp:268
 msgid "Include payee field in notes"
-msgstr "A megjegyzés tartalmazza a kedvezményezettet"
+msgstr "A megjegyzésbe írja be a kedvezményezettet"
 
 #: import_export/qif_import_gui.cpp:347 import_export/qif_import_gui.cpp:350
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
@@ -3024,7 +3024,7 @@ msgstr "Nyomj OK-t a folytatsához"
 #: import_export/qif_import_gui.cpp:665 import_export/qif_import_gui.cpp:694
 #: import_export/qif_import_gui.cpp:711
 msgid "OK"
-msgstr "Rendben"
+msgstr "OK"
 
 #: import_export/qif_import_gui.cpp:675 import_export/qif_import_gui.cpp:694
 #: stockspanel.cpp:392
@@ -3033,15 +3033,15 @@ msgstr "Hiányzó"
 
 #: import_export/qif_import_gui.cpp:721
 msgid "Choose QIF data file to Import"
-msgstr "Válasszon QIF fájlt az importáláshoz"
+msgstr "Válasszon QIF-fájlt az importáláshoz"
 
 #: import_export/qif_import_gui.cpp:800
 msgid "Do you want to import all transaction ?"
-msgstr "Minden megjelenített ügyletet töröl?"
+msgstr "Importálni akarja az összes ügyletet?"
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
-msgstr "Az összes hiányzó számlát, kedvezményezettet és kategóriát létrehozom."
+msgstr "Az összes hiányzó számlát, kedvezményezettet és kategóriát létre fogja hozni."
 
 #: import_export/qif_import_gui.cpp:802
 msgid "Confirm Import"
@@ -3087,7 +3087,7 @@ msgstr "Összesen importálva: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1089
 msgid "Imported transactions discarded by user!"
-msgstr "Tranzakciók importálását a felhasználó kikapcsolta!"
+msgstr "Importált tranzakciók a felhasználó elvetette!"
 
 #: import_export/qif_import_gui.cpp:908 import_export/qif_import_gui.h:44
 msgid "QIF Import"
@@ -3095,7 +3095,7 @@ msgstr "QIF import"
 
 #: import_export/qif_import_gui.cpp:988
 msgid "Transaction code is missing"
-msgstr "A tranzakciókód hiányzik"
+msgstr "A tranzakció kódja hiányzik"
 
 #: import_export/qif_import_gui.cpp:1008
 msgid "Transaction Payee is missing or incorrect"
@@ -3111,7 +3111,7 @@ msgstr "A tranzakció számlája hibás"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Transaction Account for transfer is incorrect"
-msgstr "Az átutalási tranzakció számlája hibás"
+msgstr "Az átutalási művelet számlája hibás"
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
@@ -3162,7 +3162,7 @@ msgstr "Határozza meg a fájl mezőinek sorrendjét"
 
 #: import_export/univcsvdialog.cpp:244
 msgid "&MMEX format"
-msgstr "&MMEX formátum"
+msgstr "&MMEX-formátum"
 
 #: import_export/univcsvdialog.cpp:261
 msgid "&Up"
@@ -3202,7 +3202,7 @@ msgstr "Mellőzendő sorok"
 
 #: import_export/univcsvdialog.cpp:372
 msgid "From start: "
-msgstr "Indul innentől:"
+msgstr "Az elejétől: "
 
 #: import_export/univcsvdialog.cpp:385
 msgid "From end: "
@@ -3218,19 +3218,19 @@ msgstr "Válasszon XML adatfájlt az importáláshoz"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
-msgstr "Válassza ki az importálandó CSV adatfájlt"
+msgstr "Válasszon CSV-adatfájlt az importáláshoz"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr "Válasszon XML adatfájlt az exportáláshoz"
+msgstr "Válasszon XML-adatfájlt az exportáláshoz"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
-msgstr "Válasszon CSV fájlt az exportáláshoz"
+msgstr "Válasszon CSV-adatájlt az exportáláshoz"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
-msgstr "Sablon neve"
+msgstr "Sablonnév"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
@@ -3238,7 +3238,7 @@ msgstr "Sablon mentése"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
-msgstr "MMEX szabvány formátuma"
+msgstr "Szabványos MMEX-formátum"
 
 #: import_export/univcsvdialog.cpp:445
 msgid "Move Up"
@@ -3258,13 +3258,13 @@ msgstr "Fájlimportálás"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr "Exportálás"
+msgstr "Fájlexportálás"
 
 #: import_export/univcsvdialog.cpp:540
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr "A sablonhoz tartozó '%s' számla nem létezik.\n"
+msgstr "A sablonhoz tartozó alapbeállítás szerinti '%s' számla nem létezik.\n"
 "Kérem válasszon új számlát."
 
 #: import_export/univcsvdialog.cpp:542
