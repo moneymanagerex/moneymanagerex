@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 05:41\n"
+"PO-Revision-Date: 2022-02-08 05:55\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4808,29 +4808,30 @@ msgstr "A másképp mentéshez válasszon adatbázisfájlt"
 
 #: mmframe.cpp:2073
 msgid "Converted DB!"
-msgstr ""
+msgstr "Konvertált adatbázis!"
 
 #: mmframe.cpp:2073
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX-üzenet"
 
 #: mmframe.cpp:2079
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: titkosítási jelszó módosítása"
 
 #: mmframe.cpp:2080
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Új jelszó az adatbázishoz\n\n"
+"%s"
 
 #: mmframe.cpp:2085
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Az új jelszó nem lehet üres."
 
 #: mmframe.cpp:2089
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Kérjük, erősítse meg új jelszót"
 
 #: mmframe.cpp:2093
 msgid "Password change completed."
@@ -4875,11 +4876,11 @@ msgstr "A fájl nem másolható önmagára."
 
 #: mmframe.cpp:2179
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Adjon meg jelszót az új adatbázishoz"
 
 #: mmframe.cpp:2268 mmframe.cpp:2287
 msgid "No account available to import"
-msgstr ""
+msgstr "Nincs importálásható számla"
 
 #: mmframe.cpp:2336
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4915,11 +4916,11 @@ msgstr "Értékpapírszámla készítése"
 
 #: mmframe.cpp:2506
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Számlák, Kedvezményezettek és Kategóriák frissítve"
 
 #: mmframe.cpp:2508
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Hiba a WebApp frissítésekor. Ellenőrizze a webszervert és a WebApp beállításait"
 
 #: mmframe.cpp:2544
 msgid "MMEX Options have been updated."
@@ -4927,7 +4928,7 @@ msgstr "Az MMEX opciói frissültek."
 
 #: mmframe.cpp:2545
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Néhány változtatás csak az alkalmazás újraindítása után lép érvénybe."
 
 #: mmframe.cpp:2546 optiondialog.cpp:225 optiondialog.h:49
 msgid "MMEX Options"
@@ -4939,11 +4940,11 @@ msgstr "Válasszon HTML fájlt az exporthoz"
 
 #: mmframe.cpp:3040 mmframe.cpp:3047
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Részvényárfolyamok letöltése Yahoo-ról"
 
 #: mmframe.cpp:3041
 msgid "Please wait..."
-msgstr ""
+msgstr "Kérem várjon..."
 
 #: mmframe.cpp:3090 stockspanel.cpp:402
 #, c-format
@@ -5001,7 +5002,7 @@ msgstr "A fájlokat %s nem találom"
 
 #: mmframe.cpp:3378 optionsettingsgeneral.cpp:340
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Az alkalmazás nyelvét módosította. A változás az alkalmazás következő indításakor lép érvénybe."
 
 #: mmframereport.cpp:79
 msgid "General Group Report"
@@ -5034,7 +5035,7 @@ msgstr "Ahonnan a pénz érkezett"
 
 #: mmframereport.cpp:152
 msgid "Forecast Report"
-msgstr ""
+msgstr "Előrejelzés"
 
 #: mmframereport.cpp:157 optionsettingshome.cpp:73
 msgid "Income vs Expenses"
@@ -5042,7 +5043,7 @@ msgstr "Bevételek és kiadások"
 
 #: mmframereport.cpp:165
 msgid "My Usage"
-msgstr ""
+msgstr "Ahogy használom"
 
 #: mmframereport.cpp:170 reports/payee.cpp:118
 msgid "Payees"
