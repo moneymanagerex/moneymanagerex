@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 05:33\n"
+"PO-Revision-Date: 2022-02-08 05:41\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4762,22 +4762,25 @@ msgstr "Következő ->"
 
 #: mmframe.cpp:1916
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "A korábban megnyitott adatbázist nem találom.\n"
 
 #: mmframe.cpp:1918
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Nem adta meg a titkosított adatbázis jelszavát.\n"
 
 #: mmframe.cpp:1936
 msgid "portable mode"
-msgstr ""
+msgstr "hordozható mód"
 
 #: mmframe.cpp:1972
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "A megnyitni kívánt adatbázist az MMEX egy másik példány nyitottként jelölte meg.\n"
+"Az adatvesztés, vagy ütközés elkerülése érdekében erősen ajánlott az összes, az adatbázist esetleg használó alkalmazás bezárása.\n\n"
+"Ha semmi más nem fut, lehet, hogy az adatbázis az MMEX korábbi használata során bekövetkezett összeomlás miatt maradt nyitva.\n\n"
+"Folytatja az adatbázis megnyitását?"
 
 #: mmframe.cpp:1976
 msgid "MMEX Instance Check"
@@ -4793,15 +4796,15 @@ msgstr "Válassza ki a megnyitni kívánt adatbázis"
 
 #: mmframe.cpp:2036
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Válassza ki a megnyitni kívánt titkosított adatbázist"
 
 #: mmframe.cpp:2046
 msgid "Enter password for database"
-msgstr ""
+msgstr "Írja be az adatbázis jelszavát"
 
 #: mmframe.cpp:2051
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "A másképp mentéshez válasszon adatbázisfájlt"
 
 #: mmframe.cpp:2073
 msgid "Converted DB!"
