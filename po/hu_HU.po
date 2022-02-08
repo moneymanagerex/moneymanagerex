@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 13:13\n"
+"PO-Revision-Date: 2022-02-08 13:25\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5412,7 +5412,7 @@ msgstr "Mellékletetek beállításai"
 #: optionsettingsattachment.cpp:65
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr "Az %s csatolt archív könyvtára csak :"
+msgstr "Melléklet archív könyvtára %s-nak csak:"
 
 #: optionsettingsattachment.cpp:69
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
@@ -5420,7 +5420,7 @@ msgstr "MInden Op. rendszernek (Win, Mac, Unix) van a saját könyvtára"
 
 #: optionsettingsattachment.cpp:88
 msgid "Browse for folder"
-msgstr "Könytár böngészése"
+msgstr "Könvytár keresése"
 
 #: optionsettingsattachment.cpp:93 optionsettingsattachment.cpp:195
 msgid "Real path:"
@@ -5433,7 +5433,7 @@ msgstr "Jelmagyarázat (a fenti útvonal elején változóként felhasználható
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User document directory"
-msgstr "%s -> Felhasználói dokumentumkönyvtár"
+msgstr "%s -> Felhasználói dokumentumok könyvtár"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
@@ -5443,7 +5443,7 @@ msgstr "%s -> Felhasználói profilkönyvtár"
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr "%s -> Az .MMB adatbázisfájl könyvtára"
+msgstr "%s -> Az .MMB-adatbázisfájl könyvtára"
 
 #: optionsettingsattachment.cpp:106
 #, c-format
@@ -5480,11 +5480,11 @@ msgstr "Fájltörlés importálás után"
 
 #: optionsettingsattachment.cpp:159
 msgid "Select to delete file after import in attachments archive"
-msgstr "A fájlnak a mellékletek archívumba importálása utáni törléséhez válaszd"
+msgstr "A fájl mellékletek archívumba történt importálása utáni törléséhez válaszd"
 
 #: optionsettingsattachment.cpp:163
 msgid "When remove attachment, move file instead of delete"
-msgstr "Melléklet eltávolításakor a fájlt mozgassa és nem törölje"
+msgstr "Melléklet eltávolításakor a fájlt mozgassa törlés helyett"
 
 #: optionsettingsattachment.cpp:165
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
@@ -5492,15 +5492,15 @@ msgstr "Válaszd, hogy a melléklet eltávolításakor a fájlt ne törölje, ha
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr "Amikor tranzakciót duplikálsz a mellékletet is duplikáld"
+msgstr "Tranzakciót duplikálásakor a mellékletet is duplikálja"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr "Akkor válaszd, ha a mellékletet új tranzakcióhoz akarod másolni duplikáláskor, vagy beillesztéskor"
+msgstr "Jelöld be, ha a mellékletet új tranzakcióhoz akarod másolni duplikáláskor, vagy beillesztéskor"
 
 #: optionsettingsattachment.cpp:180
 msgid "Choose folder to set as attachments archive"
-msgstr "Válasszon könyvtárat a mellékletek tárolására"
+msgstr "Válasszon könyvtárat a mellékletek archívumának"
 
 #: optionsettingsattachment.cpp:220
 msgid "Attachments folder it's not writable!"
@@ -5512,7 +5512,7 @@ msgstr "Mellékletek könyvtár"
 
 #: optionsettingsattachment.cpp:228
 msgid "Attachments path has been changed!"
-msgstr "A melléklet útvonala megváltozott!"
+msgstr "A mellékletek útvonala megváltozott!"
 
 #: optionsettingsattachment.cpp:230 optionsettingsattachment.cpp:239
 msgid "Attachments folder migration"
@@ -5520,7 +5520,7 @@ msgstr "A mellékletek könyvtár mozgatása"
 
 #: optionsettingsattachment.cpp:236
 msgid "Error moving attachments folder: please move it manually!"
-msgstr "Hiba a mellékletek-könyvtár ozgatásakor: mozgassa kézzel!"
+msgstr "Hiba a mellékletek-könyvtár mozgatásakor: mozgassa kézzel!"
 
 #: optionsettingsattachment.cpp:237
 msgid "Origin"
@@ -5540,7 +5540,7 @@ msgstr "Felhasználó neve"
 
 #: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
-msgstr "A felhasználó neve az adatbázis címe is egyben. "
+msgstr "A felhasználó nevét az adatbázis címében is használja."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
@@ -5568,21 +5568,21 @@ msgstr "Az adatbázis alap pénznemének beállítása a \"Pénznem párbeszéd\
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "A \"Pénznem párbeszédben\" jobb-kattintás és válassza a \"Beeealap pénznemnek\"-et."
+msgstr "A \"Pénznem párbeszédben\" jobb kattintás és jelölje be a \"Beállítás alap pénznemnek\"-et"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr "A formátum a helyiből származtatott.\n"
-"Hagyd üresen, hogy a formátumot a \"Pénznem párbeszéd | szerkesztés\" használatával kézzel beállítsd"
+msgstr "A formátum a lokálisból származtatott.\n"
+"Hagyd üresen, hogy a formátumot a \"Pénznem párbeszéd | szerkesztés\" használatával kézzel állíthasd be"
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
-msgstr "Árfolyamtörténet használata"
+msgstr "Árfolyamelőzmények használata"
 
 #: optionsettingsgeneral.cpp:171
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr "Jelöld be, hogy az árfolyamtörténetet (napi egy árfolyam) használd, vagy vedd ki a jelölést, fix árfolyam használatához"
+msgstr "Jelöld be az árfolyamtörténetet használatához (naponta egy árfolyam), vagy vedd ki a jelölést, fix árfolyam használatához"
 
 #: optionsettingsgeneral.cpp:175
 msgid "Financial Year"
