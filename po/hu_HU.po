@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 09:29\n"
+"PO-Revision-Date: 2022-02-08 09:54\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1561,7 +1561,7 @@ msgstr "Kibont"
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:176
 msgid "Show All"
-msgstr "Mindent megjelenít"
+msgstr "Mindent mutat"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
@@ -1581,11 +1581,11 @@ msgstr "Létező kategória törlése. A kategória nem lehet használatban."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:212
 msgid "&Select"
-msgstr "Kiválaszt"
+msgstr "Kiválasztás"
 
 #: categdialog.cpp:246
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "A jelenleg kijelölt kategória hozzárendelése az ügylethez"
+msgstr "A jelenlegi kategória kijelölése az ügylethez használt kategóriakénti hozzárendeléshez"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
@@ -1601,7 +1601,7 @@ msgstr "Kategória hozzáadása"
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "Már van ilyen kategória"
+msgstr "Már van ilyen nevű kategória"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
@@ -1611,15 +1611,15 @@ msgstr "Tipp: a most hozzáadott kategóriát a lista alján keresse.\n"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr "Kategóriák rendezése: hibás hozzáadás!"
+msgstr "Kategóriák rendezése: hozzáadási hiba"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "Már van ilyen al-kategória"
+msgstr "Már van ilyen nevű al-kategória"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "Érvénytelen fő-kategória. Válasszon a gyökérből."
+msgstr "Érvénytelen szülő kategória. Válassza a gyökeret, vagy fő kategória csomópontját."
 
 #: categdialog.cpp:321
 msgid "Category in use."
@@ -1627,27 +1627,25 @@ msgstr "A kategória használatban van."
 
 #: categdialog.cpp:321
 msgid "Sub-Category in use."
-msgstr "Az alkategória használatban van"
+msgstr "Az al-kategória használatban van."
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Tipp: az összes tranzakció eredeti kategóriájának megváltoztatására\n"
-"másik kategóriára használja az áthelyezés parancsot:"
+msgstr "Tipp: az összes tranzakció eredeti kategóriájának másik kategóriára konvertálásához használja az áthelyezés parancsot:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Tipp: az összes tranzakció eredeti alkategóriájának megváltoztatására\n"
-"másik alkategóriára használja az áthelyezés parancsot:"
+msgstr "Tipp: az összes tranzakció eredeti alkategóriájának másik alkategóriára konvertálásához használja az áthelyezés parancsot:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr "Eszközök -> "
+msgstr "Eszközök -> Áthelyezés -> Kategóriák"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr "Kategóriák kezelése: törlési hiba!"
+msgstr "Kategóriák rendezése: törlési hiba"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
@@ -1663,12 +1661,12 @@ msgstr "Létező kategória törlése."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr "Először az alkategóriákat kell törölni."
+msgstr "Előbb az alkategóriákat kell törölni."
 
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr "Írjon be új nevet '%s' helyett"
+msgstr "Írjon be új nevet e helyett: '%s'"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
@@ -1680,7 +1678,7 @@ msgstr "Kategóriák rendezése: szerkesztési hiba"
 
 #: categdialog.cpp:600 mmframe.cpp:3274
 msgid "Category Relocation Completed."
-msgstr "A kategóriaáthelyezés befejezve."
+msgstr "A kategória áthelyezése megtörtént."
 
 #: categdialog.cpp:601 mmframe.cpp:3275 mmframe.cpp:3290 payeedialog.cpp:335
 #, c-format
@@ -1697,7 +1695,7 @@ msgstr "Választott kategóriák rejtése"
 
 #: categdialog.cpp:669
 msgid "Unhide Selected Category"
-msgstr "Rejtett kategória megjelenítése"
+msgstr "A választott kategória újbóli megjelenítése"
 
 #: categdialog.cpp:671 import_export/univcsvdialog.cpp:443
 msgid "Clear Settings"
@@ -1757,19 +1755,19 @@ msgstr "Idei év mutatása"
 
 #: constants.cpp:188
 msgid "View Current Financial Year"
-msgstr "Jelen pénzügyi év megtekintése"
+msgstr "Jelen pénzügyi év mutatása"
 
 #: constants.cpp:189
 msgid "View Last Year"
-msgstr "Múlt év megtekintése"
+msgstr "Múlt év mutatása"
 
 #: constants.cpp:190
 msgid "View Last Financial Year"
-msgstr "Az elmúlt pénzügyi év megtekintése"
+msgstr "Az elmúlt pénzügyi év mutatása"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
-msgstr "Számlazárás óta nézet"
+msgstr "Számlazárás dátumát követő mutatása"
 
 #: constants.cpp:193
 msgid "ALL"
@@ -1778,7 +1776,7 @@ msgstr "MIND"
 #: constants.cpp:194 mmframe.cpp:1320 mmframe.cpp:1720
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr "Nyitott"
+msgstr "Megnyit"
 
 #: constants.cpp:195 mmframe.cpp:1321 model/Model_Account.cpp:27
 msgid "Closed"
@@ -1798,15 +1796,15 @@ msgstr "Pénznem neve"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
-msgstr "Pénz jele"
+msgstr "Pénznem jele"
 
 #: currencydialog.cpp:183
 msgid "Prefix Symbol"
-msgstr "Pénznem előtag"
+msgstr "Előtag szimbólum"
 
 #: currencydialog.cpp:187
 msgid "Suffix Symbol"
-msgstr "Pénznem utótag"
+msgstr "Utótag szimbólum"
 
 #: currencydialog.cpp:198 currencydialog.cpp:268 currencydialog.cpp:297
 #: import_export/qif_import_gui.cpp:296 import_export/univcsvdialog.cpp:356
@@ -1823,11 +1821,11 @@ msgstr "Lépték"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr "Az alap árfolyamra konvertálás"
+msgstr "Konvertálás alapárfolyamra"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr "A váltási árfolyamot akkor alkalmazza, ha a pénznemhez nem talált előzményeket"
+msgstr "Ha pénznemhez nem talált árfolyamelőzményeket, a váltási árfolyamot fogja használni"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
@@ -1839,7 +1837,7 @@ msgstr "Pénznemformátum minta:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
-msgstr "Mentse az összes változást!"
+msgstr "Mentse a változtatásokat"
 
 #: currencydialog.cpp:248
 msgid "Any changes will be lost without update"
