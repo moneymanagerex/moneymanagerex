@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 06:34\n"
+"PO-Revision-Date: 2022-02-08 06:53\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4021,18 +4021,19 @@ msgstr "A(z) \"%s\" felhasználói mezőt nem tudom menteni:\n"
 
 #: mmcustomdata.cpp:642
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Felhasználói mező érvényesítési hiba"
 
 #: mmex.cpp:122
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "A rendszered nyelvével egyező fordítást nem tudok betölteni (%s)."
 
 #: mmex.cpp:129
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Kérem, használja a Nézet menüben az Alkalmazás nyelvének kiválasztása pontot a következő nyelvek közül egy kiválasztásához:\n\n"
+"%s"
 
 #: mmex.cpp:134 mmframe.cpp:3380 optionsettingsgeneral.cpp:342
 msgid "Language change"
@@ -4041,7 +4042,8 @@ msgstr "Nyelv megváltoztatása"
 #: mmex.cpp:174
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Végzetes hiba!\n"
+"Az alkalmazás leáll."
 
 #: mmframe.cpp:270
 msgid "Navigation"
@@ -4053,7 +4055,7 @@ msgstr "Eszköztár"
 
 #: mmframe.cpp:471 mmframe.cpp:713
 msgid "Favourites"
-msgstr ""
+msgstr "Kedvencek"
 
 #: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:632 reports/summary.cpp:294
 #: reports/summary.cpp:326
@@ -4093,7 +4095,7 @@ msgstr "Összesítő lap"
 
 #: mmframe.cpp:709
 msgid "All Transactions"
-msgstr ""
+msgstr "Minden ügylet"
 
 #: mmframe.cpp:741 mmhomepage.cpp:638 reports/summary.cpp:299
 #: reports/summary.cpp:331
@@ -4170,11 +4172,11 @@ msgstr "&QIF fájlok..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV fájlok..."
 
 #: mmframe.cpp:1312 mmframe.cpp:1386
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON fájlok..."
 
 #: mmframe.cpp:1323 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4182,7 +4184,7 @@ msgstr "Megjelenített számlák"
 
 #: mmframe.cpp:1360
 msgid "&New Database"
-msgstr ""
+msgstr "Új adatbázis"
 
 #: mmframe.cpp:1360 mmframe.cpp:1719 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4234,7 +4236,7 @@ msgstr "CSV-be exportálás"
 
 #: mmframe.cpp:1383
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Exportálás fix CSV-be"
 
 #: mmframe.cpp:1384
 msgid "Export to XML"
@@ -4242,11 +4244,11 @@ msgstr "Exportálás XML-be"
 
 #: mmframe.cpp:1386
 msgid "Export to JSON"
-msgstr ""
+msgstr "Exportálás JSON-ként"
 
 #: mmframe.cpp:1387
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&XML fájlok..."
 
 #: mmframe.cpp:1387
 msgid "Export to HTML"
@@ -4262,11 +4264,11 @@ msgstr "Jelenlegi nézet nyomtatása"
 
 #: mmframe.cpp:1399
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "Kilépés Alt-X"
 
 #: mmframe.cpp:1399
 msgid "Quit this program"
-msgstr ""
+msgstr "A program bezárása"
 
 #: mmframe.cpp:1405
 msgid "&Toolbar"
@@ -4294,7 +4296,7 @@ msgstr "A navigációs fán a részvényszámlák mutatása/elrejtése"
 
 #: mmframe.cpp:1412
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Költségvetés: pénzügyi év szerint"
 
 #: mmframe.cpp:1412
 msgid "Display Budgets in Financial Year Format"
@@ -4326,15 +4328,15 @@ msgstr "Jövőben tranzakciók figyelmen kívül hagyása"
 
 #: mmframe.cpp:1420 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Eszköztippek megjelenítése"
 
 #: mmframe.cpp:1422 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Pénzzel kapcsolatos tippek mutatása"
 
 #: mmframe.cpp:1442
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Váltás teljes képernyős mód között\tShift+F11"
 
 #: mmframe.cpp:1443 mmframe.cpp:1753
 msgid "Toggle Fullscreen"
@@ -4342,15 +4344,15 @@ msgstr "Váltás Teljes képernyő"
 
 #: mmframe.cpp:1449
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Alkalmazás nyelvének váltása"
 
 #: mmframe.cpp:1450 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Az MMEX nyelvének megváltoztatása"
 
 #: mmframe.cpp:1455 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:350
 msgid "system default"
-msgstr ""
+msgstr "rendszer alapértelmezett"
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
