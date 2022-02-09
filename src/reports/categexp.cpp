@@ -165,8 +165,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addDivContainer("shadow"); // Table Container
     {
         hb.addDivContainer();
-        hb.addText("<button onclick=\"collapseAllToggles()\">Collapse All</button>");
-        hb.addText("<button onclick=\"expandAllToggles()\">Expand All</button>");
+        hb.addText(wxString::Format("<button onclick=\"collapseAllToggles()\">%s</button>", _("Collapse All")));
+        hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\">%s</button>", _("Expand All")));
         hb.endDiv();
 
         hb.startTable();
