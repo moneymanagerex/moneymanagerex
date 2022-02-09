@@ -605,6 +605,7 @@ install(FILES
     resources/ie-polyfill/findindex.min.js
     resources/ie-polyfill/umd.min.js
     resources/sorttable.js
+    resources/jquery.min.js
     resources/home_page.htt
     resources/kaching.wav
     resources/mmex.png
