@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2017 James Higley
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -164,6 +164,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     hb.addDivContainer("shadow"); // Table Container
     {
+        hb.addDivContainer();
+        hb.addText("<button onclick=\"collapseAllToggles()\">Collapse All</button>");
+        hb.addText("<button onclick=\"expandAllToggles()\">Expand All</button>");
+        hb.endDiv();
+
         hb.startTable();
         {
             hb.startThead();
@@ -181,35 +186,33 @@ wxString mmReportCategoryExpenses::getHTMLText()
             hb.startTbody();
             {
                 int group = 0;
+                bool header = true;
                 for (const auto& entry : sortedData)
                 {
                     group++;
-                    hb.startTableRow();
+                    if (header)
+                    {
+                        hb.startTableRow("toggle"); 
+                            hb.addTableCell(wxString::Format("<a>+&nbsp;%s</a>", Model_Category::full_name(entry.catID, -1)));
+                            hb.addEmptyTableCell();
+                            hb.addMoneyCell(group_total[entry.categs]);
+                        hb.endTableRow();             
+                        header = false;
+                    }
+
+                    hb.startTableRow("xtoggle");
                     {
                         hb.addTableCellLink(wxString::Format("viewtrans:%d:%d", entry.catID, entry.subCatID)
-                            , entry.name);
+                            , wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp%s",entry.name));
                         hb.addMoneyCell(entry.amount);
-                        if (group_counter[entry.categs] > 1)
-                            hb.addEmptyTableCell();
-                        else
-                            hb.addMoneyCell(entry.amount);
+                        hb.addEmptyTableCell();
                     }
                     hb.endTableRow();
 
-                    if (group_counter[entry.categs] == group && group_counter[entry.categs] > 1)
+                    if (group_counter[entry.categs] == group)
                     {
                         group = 0;
-                        hb.startAltTableRow();
-                        {
-                            hb.addTableCell(_("Category Total: "));
-                            hb.addEmptyTableCell();
-                            hb.addMoneyCell(group_total[entry.categs]);
-                        }
-                        hb.endTableRow();
-                    }
-                    if (group_counter[entry.categs] == 1 || group == 0) 
-                    {
-                        group = 0;
+                        header = true;
                     }
                 }
             }

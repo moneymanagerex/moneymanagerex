@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel, Paulo Lopes
  copyright (C) 2012 - 2021 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -37,6 +37,16 @@ namespace tags
     static const wxString END = R"(
 </body>
 <script>
+    $(".toggle").click(function() {
+        var kids = $(this).nextUntil(".toggle")
+        kids.toggle(kids.first().is(":hidden"))
+    })
+    function expandAllToggles() {
+        $(".xtoggle").show();
+    }
+    function collapseAllToggles() {
+        $(".xtoggle").hide();
+    }
     var elements = document.getElementsByClassName('money');
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.textAlign = 'right';
@@ -61,6 +71,7 @@ namespace tags
 </script>
 <script src = 'memory:apexcharts.min.js'></script>
 <script src = 'memory:sorttable.js'></script>
+<script src = 'memory:jquery.min.js'></script>
 <style>
     /* Sortable tables */
     table.sortable thead {cursor: default;}
@@ -87,7 +98,7 @@ namespace tags
     static const wxString TFOOT_START = "<tfoot>\n";
     static const wxString TFOOT_END = "</tfoot>\n";
     static const wxString TABLE_ROW = "<tr>\n";
-    static const wxString TABLE_ROW_BG = "<tr %s>\n";
+    static const wxString TABLE_ROW_EXTRA = "<tr %s>\n";
     static const wxString TOTAL_TABLE_ROW = "<tr class='success'>\n";
     static const wxString TABLE_ROW_END = "</tr>\n";
     static const wxString TABLE_CELL = "<td%s>";
@@ -455,14 +466,18 @@ void mmHTMLBuilder::startTableRow()
 {
     html_ += tags::TABLE_ROW;
 }
-void mmHTMLBuilder::startTableRow(const wxString& color)
+void mmHTMLBuilder::startTableRow(const wxString& classname)
 {
-    html_ += wxString::Format(tags::TABLE_ROW_BG, wxString::Format("style='background-color:%s'", color));
+    html_ += wxString::Format(tags::TABLE_ROW_EXTRA, wxString::Format("class='%s'", classname));
+}
+void mmHTMLBuilder::startTableRowColor(const wxString& color)
+{
+    html_ += wxString::Format(tags::TABLE_ROW_EXTRA, wxString::Format("style='background-color:%s'", color));
 }
 
 void mmHTMLBuilder::startAltTableRow()
 {
-    startTableRow(mmThemeMetaString(meta::COLOR_REPORT_ALTROW));
+    startTableRowColor(mmThemeMetaString(meta::COLOR_REPORT_ALTROW));
 }
 
 void mmHTMLBuilder::startTotalTableRow()

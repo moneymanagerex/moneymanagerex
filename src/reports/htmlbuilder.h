@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
-  copyright (C) 2012 - 2021 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2012 - 2021 Nikolay Akimov
+ Copyright (C) 2021. 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -116,7 +116,8 @@ public:
     void endDiv();
     void addEmptyTableRow(int cols);
     void startTableRow();
-    void startTableRow(const wxString& color);
+    void startTableRow(const wxString& classname);
+    void startTableRowColor(const wxString& color);
     void startAltTableRow();
     void startTotalTableRow();
     //void startTableRow(const wxString& custom_color);
