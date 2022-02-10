@@ -28,6 +28,8 @@
 #include <fmt/core.h>
 #include <fmt/format.h>
 
+constexpr auto LIMIT = 1e-10;
+
 Model_Currency::Model_Currency()
     : Model<DB_Table_CURRENCYFORMATS_V1>()
 {
@@ -177,9 +179,8 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    static wxString decimal;
     static wxString locale;
-    static wxString defaultLocaleSupport;
+    static wxString d; //default Locale Support Y/N
     static wxString use_locale;
 
     if (locale.empty()) {
@@ -203,59 +204,80 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         }
     }
 
-    if (defaultLocaleSupport.empty())
+    if (d.empty())
     {
         try {
-            defaultLocaleSupport = "Y";
             fmt::format(std::locale("en_US"), "{:L}", 123);
+            d = "Y";
         }
         catch (...) {
-            defaultLocaleSupport = "N";
+            d = "N";
         }
-    }
-
-    if (decimal.empty()) {
-        if (use_locale == "Y")
-            decimal = wxString(fmt::format(std::locale(locale.c_str()), "{:L}", 1.1)).Mid(1, 1);
-        else
-            decimal = ".";
     }
 
     if (precision < 0) {
         precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
     }
 
-    int k = pow10(precision);
-    long double v = value * k;
-    v = round(v) / k;
+    auto l = (use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8"));
+    std::string s;
+    value += LIMIT; //to ignore the negative sign on values of zero #564
 
-    wxString s;
-    if (defaultLocaleSupport == "Y")
+    switch (precision)
     {
-        s = fmt::format((use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US"))
-            , "{:L}", static_cast<unsigned long long>(fabs(v) + 5 / (pow10(precision + 1))));
-    }
-    else {
-        //In case if no en_US supported don't use any one
-        s = fmt::format("{:d}", static_cast<unsigned long long>(fabs(v) + 5 / (pow10(precision + 1))));
+    case (0):
+        s = d == "Y" ? fmt::format(l, "{:.0Lf}", value) : fmt::format("{:.0f}", value);
+        break;
+    case (1):
+        s = d == "Y" ? fmt::format(l, "{:.1Lf}", value) : fmt::format("{:.1f}", value);
+        break;
+    case (2):
+        s = d == "Y" ? fmt::format(l, "{:.2Lf}", value) : fmt::format("{:.2f}", value);
+        break;
+    case (3):
+        s = d == "Y" ? fmt::format(l, "{:.3Lf}", value) : fmt::format("{:.3f}", value);
+        break;
+    case (4):
+        s = d == "Y" ? fmt::format(l, "{:.4Lf}", value) : fmt::format("{:.4f}", value);
+        break;
+    case (5):
+        s = d == "Y" ? fmt::format(l, "{:.5Lf}", value) : fmt::format("{:.5f}", value);
+        break;
+    case (6):
+        s = d == "Y" ? fmt::format(l, "{:.6Lf}", value) : fmt::format("{:.6f}", value);
+        break;
+    case (7):
+        s = d == "Y" ? fmt::format(l, "{:.7Lf}", value) : fmt::format("{:.7f}", value);
+        break;
+    case (8):
+        s = d == "Y" ? fmt::format(l, "{:.8Lf}", value) : fmt::format("{:.8f}", value);
+        break;
+    case (9):
+        s = d == "Y" ? fmt::format(l, "{:.9Lf}", value) : fmt::format("{:.9f}", value);
+        break;
+    default:
+        s = d == "Y" ? fmt::format(l, "{:.4Lf}", value) : fmt::format("{:.4f}", value);
     }
 
-    if (precision > 0) {
-        s += decimal + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<unsigned long long>(fabs(v)), precision)).Mid(2);
+#ifdef __WXMSW__
+    //FIXME: #4191
+    for (auto& i : s) {
+        if (i < 0) i = ' ';
     }
-
-    if (v < 0.0) { s.Prepend("-"); }
+#endif
 
     if (use_locale == "N")
     {
-        s.Replace(".", "\x05");
-        s.Replace(",", "\t");
-        s.Replace("\x05", currency ? currency->DECIMAL_POINT : GetBaseCurrency()->DECIMAL_POINT);
-        s.Replace("\t", currency ? currency->GROUP_SEPARATOR : GetBaseCurrency()->GROUP_SEPARATOR);
+        wxString out(s);
+        out.Replace(".", "\x05");
+        out.Replace(",", "\t");
+        out.Replace("\x05", currency ? currency->DECIMAL_POINT : GetBaseCurrency()->DECIMAL_POINT);
+        out.Replace("\t", currency ? currency->GROUP_SEPARATOR : GetBaseCurrency()->GROUP_SEPARATOR);
+        return out;
     }
 
-    //wxLogDebug("toString : %s -> %s", fmt::format("{:f}", value), s);
-    return s;
+    //wxLogDebug("toString : (%.12f) %s -> %s", value,  fmt::format("{:f}", value), s);
+    return wxString(s);
 }
 
 const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data* currency)
