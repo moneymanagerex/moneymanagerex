@@ -47,6 +47,7 @@ namespace tags
     function collapseAllToggles() {
         $(".xtoggle").hide();
     }
+    collapseAllToggles();
     var elements = document.getElementsByClassName('money');
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.textAlign = 'right';

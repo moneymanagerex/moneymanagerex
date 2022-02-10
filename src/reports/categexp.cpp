@@ -202,13 +202,16 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
                     hb.startTableRow("xtoggle");
                     {
+                        Model_Subcategory::Data *sc = Model_Subcategory::instance().get(entry.subCatID);
+                        wxString displayName = (sc) ? sc->SUBCATEGNAME : entry.name;
                         hb.addTableCellLink(wxString::Format("viewtrans:%d:%d", entry.catID, entry.subCatID)
-                            , wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp%s",entry.name));
+                            , wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp%s", displayName));
                         hb.addMoneyCell(entry.amount);
                         hb.addEmptyTableCell();
                     }
                     hb.endTableRow();
 
+                    // This is the last subcategory for the category
                     if (group_counter[entry.categs] == group)
                     {
                         group = 0;
