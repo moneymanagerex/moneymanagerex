@@ -308,22 +308,13 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
         return true;
     }
 
-    double value = 1234567.8910;
-
     try {
-        const auto test = fmt::format(std::locale(locale.c_str()), "{:L}", value);
-
-        wxString cents;
-        wxRegEx pattern(R"(([,.][0-9]{2})[0-9]+$)");
-        if (pattern.Matches(test)) {
-            cents = pattern.GetMatch(test, 1);
+        auto gs = std::use_facet<std::numpunct<char>>(std::locale("ru_RU.UTF-8")).thousands_sep();
+        auto test = fmt::format(std::locale(locale.c_str()), "{:.2Lf}", 1234567.89);
+        for (auto &i : test) {
+            if (i < 0) i = ' ';
         }
-        else
-            return false;
-
-        const auto sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
-            + cents;
-        result = wxString::Format(_("Currency value sample: %s"), sample);
+        result = wxString::Format(_("Currency value sample: %s"), test);
     }
     catch (std::exception & ex) {
         result = wxString(ex.what());
