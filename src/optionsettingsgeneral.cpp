@@ -309,7 +309,6 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
     }
 
     try {
-        auto gs = std::use_facet<std::numpunct<char>>(std::locale("ru_RU.UTF-8")).thousands_sep();
         auto test = fmt::format(std::locale(locale.c_str()), "{:.2Lf}", 1234567.89);
         for (auto &i : test) {
             if (i < 0) i = ' ';
