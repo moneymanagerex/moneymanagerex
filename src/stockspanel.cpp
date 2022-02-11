@@ -444,7 +444,10 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 
     double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
     //Commision don't calculates here
-    double stockPercentage = (stockCurrentPrice / stockPurchasePrice - 1.0)*100.0;
+    const wxString& stockPercentage = (stockPurchasePrice != 0.0)
+        ? wxString::Format("(%s %%)", Model_Currency::toStringNoFormatting(
+            ((stockCurrentPrice / stockPurchasePrice - 1.0) * 100.0), nullptr, 2))
+        : wxEmptyString;
     double stocktotalPercentage = (stockCurrentPrice / stockavgPurchasePrice - 1.0)*100.0;
     double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
@@ -461,11 +464,11 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
 
     //Selected share info
-    wxString additionInfo = wxString::Format("|%s - %s| = %s, %s * %s = %s ( %s %% )\n"
+    wxString additionInfo = wxString::Format("|%s - %s| = %s, %s * %s = %s %s\n"
         , sCurrentPrice, sPurchasePrice, sDifference
         , sDifference, sNumShares
-        , Model_Currency::toCurrency(GetGainLoss(selectedIndex))
-        , Model_Currency::toStringNoFormatting(stockPercentage, nullptr, 2));
+        , Model_Currency::toCurrency(GetGainLoss(selectedIndex), m_stock_panel->m_currency)
+        , stockPercentage);
 
     //Summary for account for selected symbol
     if (purchasedTime > 1)
