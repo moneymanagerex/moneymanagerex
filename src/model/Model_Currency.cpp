@@ -226,37 +226,37 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     switch (precision)
     {
     case (0):
-        s = d == "Y" ? fmt::format(l, "{:.0Lf}", value) : fmt::format("{:.0f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.0Lf}", value) : fmt::format("{:.0f}", value);
         break;
     case (1):
-        s = d == "Y" ? fmt::format(l, "{:.1Lf}", value) : fmt::format("{:.1f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.1Lf}", value) : fmt::format("{:.1f}", value);
         break;
     case (2):
-        s = d == "Y" ? fmt::format(l, "{:.2Lf}", value) : fmt::format("{:.2f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.2Lf}", value) : fmt::format("{:.2f}", value);
         break;
     case (3):
-        s = d == "Y" ? fmt::format(l, "{:.3Lf}", value) : fmt::format("{:.3f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.3Lf}", value) : fmt::format("{:.3f}", value);
         break;
     case (4):
-        s = d == "Y" ? fmt::format(l, "{:.4Lf}", value) : fmt::format("{:.4f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.4Lf}", value) : fmt::format("{:.4f}", value);
         break;
     case (5):
-        s = d == "Y" ? fmt::format(l, "{:.5Lf}", value) : fmt::format("{:.5f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.5Lf}", value) : fmt::format("{:.5f}", value);
         break;
     case (6):
-        s = d == "Y" ? fmt::format(l, "{:.6Lf}", value) : fmt::format("{:.6f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.6Lf}", value) : fmt::format("{:.6f}", value);
         break;
     case (7):
-        s = d == "Y" ? fmt::format(l, "{:.7Lf}", value) : fmt::format("{:.7f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.7Lf}", value) : fmt::format("{:.7f}", value);
         break;
     case (8):
-        s = d == "Y" ? fmt::format(l, "{:.8Lf}", value) : fmt::format("{:.8f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.8Lf}", value) : fmt::format("{:.8f}", value);
         break;
     case (9):
-        s = d == "Y" ? fmt::format(l, "{:.9Lf}", value) : fmt::format("{:.9f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.9Lf}", value) : fmt::format("{:.9f}", value);
         break;
     default:
-        s = d == "Y" ? fmt::format(l, "{:.4Lf}", value) : fmt::format("{:.4f}", value);
+        s = (d == "Y") ? fmt::format(l, "{:.4Lf}", value) : fmt::format("{:.4f}", value);
     }
 
 #ifdef __WXMSW__
