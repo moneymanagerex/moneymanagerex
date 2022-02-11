@@ -208,7 +208,6 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
 
     //  prepare the dates array
-    date = dateStart;
     while (dateStart <= dateEnd) {
         if (mode_ == MONTHLY)
             dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
