@@ -199,7 +199,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
     else if (mode_ == YEARLY)
     {
-        dateEnd.Set(31, wxDateTime::Dec, wxDateTime::Now().GetYear());
+        dateEnd.Set(31, wxDateTime::Dec, dateEnd.GetYear());
         span = wxDateSpan::Years(1);
     }
     else
@@ -207,22 +207,15 @@ wxString mmReportSummaryByDate::getHTMLText()
         wxFAIL_MSG("unknown report mode");
     }
 
-    date = dateEnd;
-    date.SetDay(1);
-    while (date.IsLaterThan(dateStart)) {
-        date -= span;
-    }
-    dateStart = date;
-
     //  prepare the dates array
-    while (date <= dateEnd)
-    {
+    while (dateStart <= dateEnd) {
         if (mode_ == MONTHLY)
-            date.SetToLastMonthDay(date.GetMonth(), date.GetYear());
-        arDates.push_back(date);
-        wxLogDebug("arDates: %s", date.FormatISODate());
-        date += span;
-    }
+            dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
+        arDates.push_back(dateEnd);
+        dateEnd -= span;
+    };
+    std::reverse(arDates.begin(), arDates.end());
+
 
     for (const auto & end_date : arDates)
     {
