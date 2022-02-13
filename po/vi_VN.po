@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-13 05:43\n"
+"PO-Revision-Date: 2022-02-13 06:24\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -4028,12 +4028,12 @@ msgstr ""
 
 #: mmframe.cpp:476 mmframe.cpp:725 mmhomepage.cpp:631
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Tài khoản tiền mặt"
 
 #: mmframe.cpp:477 mmframe.cpp:729 mmhomepage.cpp:634 reports/summary.cpp:296
 #: reports/summary.cpp:328
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Tài khoản cho vay"
 
 #: mmframe.cpp:509
 msgid "Auto Repeat Transactions"
@@ -4050,7 +4050,7 @@ msgstr ""
 #: mmframe.cpp:741 mmhomepage.cpp:638 reports/summary.cpp:299
 #: reports/summary.cpp:331
 msgid "Share Accounts"
-msgstr ""
+msgstr "Tài khoản dùng chung"
 
 #: mmframe.cpp:753 mmframe.cpp:1535
 msgid "Budget Setup"
@@ -4306,11 +4306,11 @@ msgstr ""
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
-msgstr ""
+msgstr "&Trang Chủ"
 
 #: mmframe.cpp:1475 mmframe.cpp:1723
 msgid "Show Home Page"
-msgstr ""
+msgstr "Hiện Trang Chủ"
 
 #: mmframe.cpp:1484
 msgid "Change the account type of an account."
@@ -5053,7 +5053,7 @@ msgstr ""
 #: mmhomepage.cpp:433
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "Thu và Chi: %s"
 
 #: mmhomepage.cpp:443 reports/categexp.cpp:123 reports/categexp.cpp:150
 #: reports/categexp.cpp:391 reports/categexp.cpp:462 reports/incexpenses.cpp:88
