@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-15 21:06\n"
+"PO-Revision-Date: 2022-02-16 19:40\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2344,7 +2344,7 @@ msgstr ""
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:866
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr ""
+msgstr "Sin conciliar"
 
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
@@ -3841,7 +3841,7 @@ msgstr "Borrar las transacciones \"de seguimiento\" ya vistas"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Borrar las transacciones \"no reconciliadas\" ya vistas"
+msgstr "Borrar las transacciones \"sin conciliar\" ya vistas"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
@@ -3873,7 +3873,7 @@ msgstr[1] "¿Realmente quiere borrar las %i transacciones seleccionadas?"
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Transacción bloqueada hasta la fecha: %s\n\n"
-"Transacciones reconducidas."
+"Transacciones conciliadas."
 
 #: mmchecking_list.cpp:967 transdialog.cpp:747 transdialog.cpp:780
 msgid "MMEX Transaction Check"
