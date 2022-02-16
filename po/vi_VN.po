@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-06 20:58\n"
+"PO-Revision-Date: 2022-02-13 06:24\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -439,7 +439,7 @@ msgstr "&Hủy "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Giao dịch Không hợp lệ"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -639,7 +639,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:71
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Không thể tìm thấy thư mục đính kèm:"
 
 #: attachmentdialog.cpp:74
 msgid "Please verify that above path is correct"
@@ -749,7 +749,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:487
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Không thể mở tệp:"
 
 #: attachmentdialog.cpp:490
 msgid "Please verify that file exists and user has rights to read it."
@@ -4028,12 +4028,12 @@ msgstr ""
 
 #: mmframe.cpp:476 mmframe.cpp:725 mmhomepage.cpp:631
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Tài khoản tiền mặt"
 
 #: mmframe.cpp:477 mmframe.cpp:729 mmhomepage.cpp:634 reports/summary.cpp:296
 #: reports/summary.cpp:328
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Tài khoản cho vay"
 
 #: mmframe.cpp:509
 msgid "Auto Repeat Transactions"
@@ -4050,7 +4050,7 @@ msgstr ""
 #: mmframe.cpp:741 mmhomepage.cpp:638 reports/summary.cpp:299
 #: reports/summary.cpp:331
 msgid "Share Accounts"
-msgstr ""
+msgstr "Tài khoản dùng chung"
 
 #: mmframe.cpp:753 mmframe.cpp:1535
 msgid "Budget Setup"
@@ -4306,11 +4306,11 @@ msgstr ""
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
-msgstr ""
+msgstr "&Trang Chủ"
 
 #: mmframe.cpp:1475 mmframe.cpp:1723
 msgid "Show Home Page"
-msgstr ""
+msgstr "Hiện Trang Chủ"
 
 #: mmframe.cpp:1484
 msgid "Change the account type of an account."
@@ -4716,7 +4716,7 @@ msgstr ""
 
 #: mmframe.cpp:1873
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Xin lỗi. Phiên bản Cơ sở dữ liệu quá cũ hoặc mật khẩu Cơ sở dữ liệu không chính xác"
 
 #: mmframe.cpp:1903
 msgid "&Next ->"
@@ -5053,7 +5053,7 @@ msgstr ""
 #: mmhomepage.cpp:433
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "Thu và Chi: %s"
 
 #: mmhomepage.cpp:443 reports/categexp.cpp:123 reports/categexp.cpp:150
 #: reports/categexp.cpp:391 reports/categexp.cpp:462 reports/incexpenses.cpp:88
@@ -7043,7 +7043,7 @@ msgstr ""
 #: util.cpp:1225
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Phiên bản: %s"
 
 #: util.cpp:1226
 msgid "Build on"
@@ -7051,7 +7051,7 @@ msgstr ""
 
 #: util.cpp:1227
 msgid "Database version: "
-msgstr ""
+msgstr "Phiên bản cơ sở dữ liệu: "
 
 #: util.cpp:1234
 msgid "Git commit: "
@@ -7370,20 +7370,20 @@ msgstr ""
 
 #: wizard_update.cpp:141
 msgid "Version"
-msgstr ""
+msgstr "Phiên bản"
 
 #: wizard_update.cpp:149
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Bạn đã có phiên bản mới nhất"
 
 #: wizard_update.cpp:149
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "Một phiên bản mới của MMEX đã có thể tải về!"
 
 #: wizard_update.cpp:181
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "Phiên bản của bạn là %s"
 
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "Unable to check for updates!"

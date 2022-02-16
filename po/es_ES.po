@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 22:48\n"
+"PO-Revision-Date: 2022-02-15 21:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "Mensualmente (último día laboral)"
 
 #: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Duplicar transacción recurrente"
 
 #: billsdepositsdialog.cpp:319 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1158,7 +1158,7 @@ msgstr "Categorías"
 
 #: billsdepositsdialog.cpp:1484 transdialog.cpp:1420
 msgid "Clear color"
-msgstr ""
+msgstr "Borrar color"
 
 #: billsdepositsdialog.cpp:1489 filtertransdialog.cpp:1809 transdialog.cpp:1425
 #, c-format
@@ -1403,7 +1403,7 @@ msgstr "Ver las categorías del presupuesto que no estén a cero"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "Ver todas las categorías del presupuesto"
+msgstr "Ver las categorías del presupuesto previstas"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
@@ -2460,7 +2460,7 @@ msgstr "Ocultar Columnas"
 #: filtertransdialog.cpp:439 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1341
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #: filtertransdialog.cpp:447
 msgid "Specify how the report should be grouped"
@@ -2468,7 +2468,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:466
 msgid "Settings"
-msgstr ""
+msgstr "Ajustes"
 
 #: filtertransdialog.cpp:487 filtertransdialog.cpp:916
 #: filtertransdialog.cpp:956 filtertransdialog.cpp:1180
@@ -2487,7 +2487,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:726
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "¿Quieres guardarlas antes de continuar?"
 
 #: filtertransdialog.cpp:727
 msgid "Filter settings have changed"
@@ -4912,7 +4912,7 @@ msgstr "Creación de cuenta de acciones"
 
 #: mmframe.cpp:2506
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Cuentas, beneficiarios y categorías actualizadas"
 
 #: mmframe.cpp:2508
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -5096,7 +5096,7 @@ msgstr "Principales salidas: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account / Payee"
-msgstr ""
+msgstr "Cuenta / beneficiario"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -5927,7 +5927,7 @@ msgstr ""
 
 #: payeedialog.cpp:61
 msgid "Last Used Category"
-msgstr ""
+msgstr "Última Categoría Usada"
 
 #: payeedialog.cpp:61
 msgid "Default Category"
@@ -5975,7 +5975,7 @@ msgstr ""
 
 #: payeedialog.cpp:379
 msgid "Remove Category"
-msgstr ""
+msgstr "Eliminar Categoría"
 
 #: payeedialog.cpp:394
 msgid "Relocate Payee"
@@ -6867,11 +6867,12 @@ msgstr "Adjuntar"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "No habías usado este nombre de beneficiario antes. ¿El nombre es correcto?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:361 transdialog.cpp:685
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Confirmar nombre del beneficiario"
 
 #: transdialog.cpp:191
 msgid "Duplicate Transaction"
