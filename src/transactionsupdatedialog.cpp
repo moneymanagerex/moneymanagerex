@@ -265,11 +265,6 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_append_checkbox, g_flagsH);
     box_sizer_left->Add(m_notes_ctrl, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
-    //wxStaticBoxSizer* static_box_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
-    //box_sizer->Add(static_box_sizer, 1, wxGROW | wxALL, 10);
-    //static_box_sizer->Add(grid_sizer, g_flagsExpand);
-    //static_box_sizer->Add(m_notes_ctrl, 0, wxEXPAND | wxALL, 5);
-
     /*************************************************************
      Button Panel with OK/Cancel buttons
     *************************************************************/
