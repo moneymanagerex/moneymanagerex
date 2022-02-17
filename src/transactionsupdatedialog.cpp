@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2017 - 2021 Nikolay Akimov
+ Copyright (C) 2017 - 2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -19,11 +19,12 @@
 
 #include "categdialog.h"
 #include "constants.h"
-#include "paths.h"
+#include "images_list.h"
+#include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
+#include "paths.h"
 #include "transactionsupdatedialog.h"
 #include "validators.h"
-#include "mmSimpleDialogs.h"
 #include "Model_Account.h"
 #include "Model_Checking.h"
 #include "Model_Payee.h"
@@ -34,6 +35,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(transactionsUpdateDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(transactionsUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_OK, transactionsUpdateDialog::OnOk)
     EVT_BUTTON(wxID_VIEW_DETAILS, transactionsUpdateDialog::OnCategChange)
+    EVT_BUTTON(ID_BTN_CUSTOMFIELDS, transactionsUpdateDialog::OnMoreFields)
     EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
     EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
     EVT_COMBOBOX(ID_PAYEE, transactionsUpdateDialog::OnPayeeUpdated)
@@ -101,17 +103,19 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
             m_hasNonTransfers = true;
     }
 
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_STATIC, _("Multi Transactions Update")
-        , wxDefaultPosition, wxSize(500, 300), style);
+    m_custom_fields = new mmCustomDataTransaction(this, -1, ID_CUSTOMFIELDS);
+
+    Create(parent);
 }
 
-bool transactionsUpdateDialog::Create(wxWindow* parent, wxWindowID id
-    , const wxString& caption, const wxPoint& pos
+bool transactionsUpdateDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
     , const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, wxGetTranslation(caption), pos, size, style);
 
     CreateControls();
 
@@ -130,12 +134,19 @@ bool transactionsUpdateDialog::Create(wxWindow* parent, wxWindowID id
 void transactionsUpdateDialog::CreateControls()
 {
     wxBoxSizer* box_sizer = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(box_sizer);
+    wxBoxSizer* box_sizer1 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* box_sizer3 = new wxBoxSizer(wxVERTICAL);
+    box_sizer->Add(box_sizer1, g_flagsExpand);
+    box_sizer1->Add(box_sizer2, g_flagsExpand);
+    box_sizer1->Add(box_sizer3, g_flagsExpand);
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Specify"));
-
+    wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
     wxFlexGridSizer* grid_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     grid_sizer->AddGrowableCol(1, 1);
+    box_sizer_left->Add(grid_sizer, g_flagsV);
+    box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
     // Date --------------------------------------------
     m_date_checkbox = new wxCheckBox(this, wxID_ANY, _("Date")
@@ -246,24 +257,25 @@ void transactionsUpdateDialog::CreateControls()
     m_append_checkbox->SetValue(true);
 
     m_notes_ctrl = new wxTextCtrl(this, wxID_ANY, ""
-        , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+        , wxDefaultPosition, wxSize(-1, m_categ_btn->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     m_notes_ctrl->Enable(false);
     m_append_checkbox->Enable(false);
 
     grid_sizer->Add(m_notes_checkbox, g_flagsH);
     grid_sizer->Add(m_append_checkbox, g_flagsH);
+    box_sizer_left->Add(m_notes_ctrl, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
-    wxStaticBoxSizer* static_box_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
-    box_sizer->Add(static_box_sizer, 1, wxGROW | wxALL, 10);
-    static_box_sizer->Add(grid_sizer, g_flagsExpand);
-    static_box_sizer->Add(m_notes_ctrl, 0, wxEXPAND | wxALL, 5);
+    //wxStaticBoxSizer* static_box_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
+    //box_sizer->Add(static_box_sizer, 1, wxGROW | wxALL, 10);
+    //static_box_sizer->Add(grid_sizer, g_flagsExpand);
+    //static_box_sizer->Add(m_notes_ctrl, 0, wxEXPAND | wxALL, 5);
 
     /*************************************************************
      Button Panel with OK/Cancel buttons
     *************************************************************/
     wxPanel* button_panel = new wxPanel(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    box_sizer->Add(button_panel, wxSizerFlags(g_flagsV).Center());
+    box_sizer_left->Add(button_panel, wxSizerFlags(g_flagsV).Center());
 
     wxBoxSizer* button_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
     button_panel->SetSizer(button_panel_sizer);
@@ -273,8 +285,27 @@ void transactionsUpdateDialog::CreateControls()
         , wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     button_cancel->SetFocus();
 
-    button_panel_sizer->Add(button_ok, g_flagsH);
-    button_panel_sizer->Add(button_cancel, g_flagsH);
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(button_panel
+        , ID_BTN_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+    mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
+    if (m_custom_fields->GetCustomFieldsCount() == 0) {
+        itemButtonHide->Hide();
+    }
+
+    button_panel_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_panel_sizer->Add(button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_panel_sizer->Add(itemButtonHide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+
+    // Custom fields -----------------------------------
+
+    m_custom_fields->FillCustomFields(box_sizer3);
+    if (m_custom_fields->GetActiveCustomFieldsCount() > 0) {
+        wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
+        this->GetEventHandler()->AddPendingEvent(evt);
+    }
+
+    Center();
+    this->SetSizer(box_sizer);
 }
 
 void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
@@ -449,6 +480,8 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
 
+        m_custom_fields->SaveCustomValues(id);
+
         Model_Checking::instance().save(trx);
     }
     Model_Checking::instance().ReleaseSavepoint();
@@ -596,4 +629,17 @@ void transactionsUpdateDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
 #endif
     wxChildFocusEvent evt;
     onFocusChange(evt);
+}
+
+void transactionsUpdateDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
+{
+    wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_BTN_CUSTOMFIELDS));
+
+    if (button)
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
+
+    m_custom_fields->ShowHideCustomPanel();
+
+    this->SetMinSize(wxSize(0, 0));
+    this->Fit();
 }
