@@ -447,7 +447,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     const wxString& stockPercentage = (stockPurchasePrice != 0.0)
         ? wxString::Format("(%s %%)", Model_Currency::toStringNoFormatting(
             ((stockCurrentPrice / stockPurchasePrice - 1.0) * 100.0), nullptr, 2))
-        : wxEmptyString;
+        : "";
     double stocktotalPercentage = (stockCurrentPrice / stockavgPurchasePrice - 1.0)*100.0;
     double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
