@@ -621,20 +621,20 @@ void mmTransDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* button_ok = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
-    mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
+    wxBitmapButton* button_hide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+    mmToolTip(button_hide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
-        itemButtonHide->Hide();
+        button_hide->Hide();
     }
 
-    buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    buttons_sizer->Add(itemButtonHide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(m_button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
-    if (!m_new_trx && !m_duplicate) itemButtonCancel_->SetFocus();
+    if (!m_new_trx && !m_duplicate) m_button_cancel->SetFocus();
 
     buttons_sizer->Realize();
 
@@ -791,7 +791,7 @@ bool mmTransDialog::ValidateData()
 void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 {
     if (wxGetKeyState(WXK_TAB) && wxGetKeyState(WXK_SHIFT))
-        itemButtonCancel_->SetFocus();
+        m_button_cancel->SetFocus();
     else if (wxGetKeyState(WXK_TAB))
         choiceStatus_->SetFocus();
     else if (wxGetKeyState(WXK_UP))
@@ -1324,8 +1324,8 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(WXK_ESCAPE))
-            return itemButtonCancel_->SetFocus();
+    if (object_in_focus_ != m_button_cancel->GetId() && wxGetKeyState(WXK_ESCAPE))
+            return m_button_cancel->SetFocus();
 #endif
 
     if (m_new_trx || m_duplicate)
