@@ -530,6 +530,7 @@ void mmTransDialog::CreateControls()
 
     // Account ---------------------------------------------
     cbAccount_ = new wxComboBox(this, ID_DIALOG_TRANS_FROMACCOUNT);
+    cbAccount_->SetMaxSize(wxSize(m_textAmount->GetSize().GetX() * 2 + 5, -1));
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
@@ -544,7 +545,6 @@ void mmTransDialog::CreateControls()
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO);
-
     cbPayee_->SetMaxSize(cbAccount_->GetSize());
 
     flex_sizer->Add(payee_label_, g_flagsH);
