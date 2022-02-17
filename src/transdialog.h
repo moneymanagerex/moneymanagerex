@@ -113,7 +113,7 @@ private:
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
-    wxButton* itemButtonCancel_;
+    wxButton* m_button_cancel;
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
     wxDatePickerCtrl* dpc_;

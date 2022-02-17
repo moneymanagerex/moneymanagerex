@@ -213,7 +213,9 @@ void transactionsUpdateDialog::CreateControls()
     m_payee_checkbox->Enable(!m_hasTransfers);
 
     m_payee = new wxComboBox(this, ID_PAYEE);
-       wxArrayString all_payees = Model_Payee::instance().all_payee_names();
+    m_payee->SetMaxSize(wxSize(m_amount_ctrl->GetSize().GetX() * 2, -1));
+
+    wxArrayString all_payees = Model_Payee::instance().all_payee_names();
     if (!all_payees.empty()) {
         m_payee->Insert(all_payees, 0);
         m_payee->AutoComplete(all_payees);
@@ -229,6 +231,7 @@ void transactionsUpdateDialog::CreateControls()
     m_transferAcc_checkbox->Enable(!m_hasNonTransfers);
 
     m_transferAcc = new wxComboBox(this, ID_TRANS_ACC);
+    m_transferAcc->SetMaxSize(m_payee->GetSize());
     wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
     m_transferAcc->Insert(account_names, 0);
     m_transferAcc->AutoComplete(account_names);
@@ -272,24 +275,25 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     box_sizer_left->Add(button_panel, wxSizerFlags(g_flagsV).Center());
 
-    wxBoxSizer* button_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
-    button_panel->SetSizer(button_panel_sizer);
+    wxStdDialogButtonSizer* button_sizer = new wxStdDialogButtonSizer;
+    button_panel->SetSizer(button_sizer);
 
     wxButton* button_ok = new wxButton(button_panel, wxID_OK, _("&OK "));
     wxButton* button_cancel = new wxButton(button_panel
         , wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     button_cancel->SetFocus();
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(button_panel
+    wxBitmapButton* button_hide = new wxBitmapButton(button_panel
         , ID_BTN_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
-    mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
+    mmToolTip(button_hide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
-        itemButtonHide->Hide();
+        button_hide->Hide();
     }
 
-    button_panel_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    button_panel_sizer->Add(button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    button_panel_sizer->Add(itemButtonHide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Add(button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Realize();
 
     // Custom fields -----------------------------------
 
