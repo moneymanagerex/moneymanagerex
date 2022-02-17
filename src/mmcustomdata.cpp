@@ -441,6 +441,45 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     return true;
 }
 
+void mmCustomData::UpdateCustomValues(int ref_id)
+{
+    Model_CustomFieldData::instance().Savepoint();
+
+    for (const auto& field : m_fields)
+    {
+        bool is_changed = false;
+
+        wxWindowID controlID = GetBaseID() + field.FIELDID;
+        auto label_id = controlID - GetBaseID() + GetLabelID();
+        wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
+        if (Description) {
+            is_changed = Description->GetValue();
+        }
+
+        if (is_changed)
+        {
+            const auto& data = GetWidgetData(controlID);
+            Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+            if (!data.empty())
+            {
+                if (!fieldData) {
+                    fieldData = Model_CustomFieldData::instance().create();
+                }
+
+                fieldData->REFID = ref_id;
+                fieldData->FIELDID = field.FIELDID;
+                fieldData->CONTENT = data;
+                Model_CustomFieldData::instance().save(fieldData);
+            }
+            else if (fieldData) {
+                Model_CustomFieldData::instance().remove(fieldData->FIELDATADID);
+            }
+        }
+    }
+
+    Model_CustomFieldData::instance().ReleaseSavepoint();
+}
+
 void mmCustomData::OnStringChanged(wxCommandEvent& event)
 {
     int controlID = event.GetId();
@@ -557,8 +596,8 @@ void mmCustomData::OnTimeChanged(wxDateEvent& event)
 
 bool mmCustomData::IsWidgetChanged(wxWindowID id)
 {
-    const wxString& value = m_data_changed.find(id) == m_data_changed.end()
-        ? wxString(wxEmptyString) : m_data_changed.at(id);
+    const wxString& value = (m_data_changed.find(id) == m_data_changed.end())
+        ? "" : m_data_changed.at(id);
     return !value.empty();
 }
 

@@ -33,6 +33,7 @@ public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
+    void UpdateCustomValues(int ref_id);
     bool ValidateCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
     int GetWidgetType(wxWindowID controlID) const;
