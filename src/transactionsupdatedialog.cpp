@@ -478,8 +478,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             }
         }
 
-
-        m_custom_fields->SaveCustomValues(id);
+        m_custom_fields->UpdateCustomValues(id);
 
         Model_Checking::instance().save(trx);
     }
