@@ -1022,6 +1022,8 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         return mmErrorDialogs::InvalidCategory(bCategory_, false);
     }
 
+    if (!m_custom_fields->ValidateCustomValues(-m_bill_data.BDID))
+        return;
 
     if (!m_advanced || m_bill_data.TOTRANSAMOUNT < 0)
     {
@@ -1079,8 +1081,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISODate();
 
     wxStringClientData* status_obj = static_cast<wxStringClientData *>(m_choice_status->GetClientObject(m_choice_status->GetSelection()));
-    if (status_obj)
-    {
+    if (status_obj) {
         m_bill_data.STATUS = Model_Billsdeposits::toShortStatus(status_obj->GetData());
     }
 
@@ -1112,7 +1113,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         bill->NUMOCCURRENCES = m_bill_data.NUMOCCURRENCES;
         bill->FOLLOWUPID = m_bill_data.FOLLOWUPID;
 
-        transID_ = Model_Billsdeposits::instance().save(bill);
+        m_trans_id = Model_Billsdeposits::instance().save(bill);
 
         Model_Budgetsplittransaction::Data_Set splt;
         for (const auto& entry : m_bill_data.local_splits)
@@ -1123,10 +1124,14 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
             splt.push_back(*s);
         }
-        Model_Budgetsplittransaction::instance().update(splt, transID_);
+        Model_Budgetsplittransaction::instance().update(splt, m_trans_id);
 
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, m_trans_id);
+
+        //Custom Data
+        m_custom_fields->SaveCustomValues(-m_trans_id);
+
     }
     else
     {
@@ -1150,24 +1155,26 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             tran->TOTRANSAMOUNT = m_bill_data.TOTRANSAMOUNT;
             tran->FOLLOWUPID = m_bill_data.FOLLOWUPID;
 
-            int transID = Model_Checking::instance().save(tran);
+            int trans_id = Model_Checking::instance().save(tran);
 
             Model_Splittransaction::Data_Set checking_splits;
             for (auto &item : m_bill_data.local_splits)
             {
                 Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
-                split->TRANSID = transID;
+                split->TRANSID = trans_id;
                 split->CATEGID = item.CATEGID;
                 split->SUBCATEGID = item.SUBCATEGID;
                 split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
                 checking_splits.push_back(*split);
             }
-            Model_Splittransaction::instance().update(checking_splits, transID);
+            Model_Splittransaction::instance().update(checking_splits, trans_id);
+
+            //Custom Data
+            m_custom_fields->SaveCustomValues(trans_id);
+
         }
         Model_Billsdeposits::instance().completeBDInSeries(m_bill_data.BDID);
     }
-
-    m_custom_fields->SaveCustomValues(-transID_);
 
     EndModal(wxID_OK);
 }

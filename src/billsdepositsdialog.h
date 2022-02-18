@@ -48,7 +48,7 @@ public:
     mmBDDialog(wxWindow* parent, int bdD, bool duplicate, bool enterOccur);
     int GetTransID()
     {
-        return transID_;
+        return m_trans_id;
     }
 
     void SetDialogHeader(const wxString& header);
@@ -83,7 +83,7 @@ private:
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
-    int transID_;
+    int m_trans_id;
 
     bool payeeUnknown_;
     bool m_new_bill;
