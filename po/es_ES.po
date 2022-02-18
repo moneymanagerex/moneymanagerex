@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-17 20:36\n"
+"PO-Revision-Date: 2022-02-18 12:42\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2508,7 +2508,7 @@ msgstr ""
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1727
 #: filtertransdialog.cpp:1735
 msgid "Could not save settings"
-msgstr ""
+msgstr "No se pudo guardar la configuración"
 
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1145
 #: filtertransdialog.cpp:1161 filtertransdialog.cpp:1727
@@ -2556,7 +2556,7 @@ msgstr "Seleccionar cuentas"
 
 #: filtertransdialog.cpp:1804
 msgid "Not colored"
-msgstr ""
+msgstr "Sin color"
 
 #: general_report_manager.cpp:248 general_report_manager.cpp:664
 msgid "General Reports Manager"
@@ -3911,8 +3911,8 @@ msgstr ""
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Moviendo transacción a..."
+msgstr[1] "Moviendo %i transacciones a..."
 
 #: mmchecking_list.cpp:1207 stocks_list.cpp:290
 msgid "Select the destination Account "
@@ -3965,7 +3965,7 @@ msgstr "Diferencia: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Balance filtrado: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -3974,17 +3974,17 @@ msgstr "Adjunto"
 #: mmcheckingpanel.cpp:500
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Transacciones seleccionadas: %zu"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Balance de las transacciones seleccionadas: %s"
 
 #: mmcheckingpanel.cpp:507
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Días entre las transacciones seleccionadas: %d"
 
 #: mmcustomdata.cpp:62
 msgid "Custom fields"
@@ -5169,7 +5169,7 @@ msgstr "Restablecer columnas"
 
 #: mmreportspanel.cpp:142
 msgid "Report"
-msgstr ""
+msgstr "Informe"
 
 #: mmreportspanel.cpp:199
 msgid "Period:"
@@ -6837,7 +6837,7 @@ msgstr ""
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "El tema ya existe, ¿desea importarlo y sobrescribir el tema existente?"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
@@ -6849,7 +6849,7 @@ msgstr ""
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Algo salió mal al intentar eliminar el tema"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
