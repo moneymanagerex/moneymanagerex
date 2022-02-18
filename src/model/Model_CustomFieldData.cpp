@@ -97,13 +97,11 @@ bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
 {
     const auto& fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
 
-    this->Savepoint();
     for (const auto& field : fields)
     {
         Data* data = Model_CustomFieldData::instance().get(field.FIELDID, RefID);
         if (data)
             Model_CustomFieldData::instance().remove(data->FIELDATADID);
     }
-    this->ReleaseSavepoint();
     return true;
 }

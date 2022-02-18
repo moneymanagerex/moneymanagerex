@@ -153,6 +153,7 @@ private:
     void activateSplitTransactionsDlg();
     static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
     wxSharedPtr<mmCustomData> m_custom_fields;
+
 private:
     enum
     {
