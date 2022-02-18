@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 Stefano Giorgio
- Copyright (C) 2016 Nikolay Akimov
+ Copyright (C) 2016 - 2022 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -25,6 +25,8 @@
 #include <wx/dialog.h>
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
+#include "mmcustomdata.h"
+
 class wxDatePickerCtrl;
 class wxSpinButton;
 class wxSpinEvent;
@@ -46,7 +48,7 @@ public:
     mmBDDialog(wxWindow* parent, int bdD, bool duplicate, bool enterOccur);
     int GetTransID()
     {
-        return transID_;
+        return m_trans_id;
     }
 
     void SetDialogHeader(const wxString& header);
@@ -72,7 +74,7 @@ private:
     void OnAttachments(wxCommandEvent& event);
     void OnColourButton(wxCommandEvent& event);
     void OnColourSelected(wxCommandEvent& event);
-
+private:
     void dataToControls();
     void updateControlsForTransType();
     //void addPayee(wxString payee, int categID, int subcategID );
@@ -81,7 +83,7 @@ private:
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
-    int transID_;
+    int m_trans_id;
 
     bool payeeUnknown_;
     bool m_new_bill;
@@ -92,7 +94,7 @@ private:
     bool m_advanced;
     bool categUpdated_;
     int prevType_;
-
+private:
     wxTextCtrl* textNumber_;
     mmTextCtrl* textAmount_;
     mmTextCtrl* toTextAmount_;
@@ -128,7 +130,7 @@ private:
     const wxString payeeTransferTip_ = _("Specify which account the transfer is going to");
     const wxString amountNormalTip_ = _("Specify the amount for this transaction");
     const wxString amountTransferTip_ = _("Specify the amount to be transferred");
-
+private:
     void resetPayeeString();
     void setTooltips();
     void setCategoryLabel();
@@ -146,10 +148,13 @@ private:
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetPrevOrNextRepeatDate(wxCommandEvent& event);
     void setRepeatDetails();
+    void OnMoreFields(wxCommandEvent& event);
 
     void activateSplitTransactionsDlg();
     static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
+    wxSharedPtr<mmCustomData> m_custom_fields;
 
+private:
     enum
     {
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
@@ -185,6 +190,8 @@ private:
         ID_PANEL_REPORTS_HTMLWINDOW,
         ID_PANEL_REPORTS_HEADER_PANEL,
         ID_PANEL_REPORTS_STATIC_HEADER,
+        ID_CUSTOMFIELDS,
+        ID_BTN_CUSTOMFIELDS
     };
 };
 

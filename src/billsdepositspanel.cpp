@@ -1,6 +1,6 @@
 ﻿/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021 Nikolay Akimov
+ Copyright (C) 2014 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -679,6 +679,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
         int BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), BdId);
+        m_bdp->do_delete_custom_values(-BdId);
         m_bdp->initVirtualListControl();
         refreshVisualList(m_selected_row);
     }
@@ -971,4 +972,10 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 wxString  mmBillsDepositsPanel::BuildPage() const
 {
     return listCtrlAccount_->BuildPage(_("Recurring Transactions")); 
+}
+
+void mmBillsDepositsPanel::do_delete_custom_values(int id)
+{
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    Model_CustomFieldData::DeleteAllData(RefType, id);
 }

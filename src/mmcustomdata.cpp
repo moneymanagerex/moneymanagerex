@@ -657,7 +657,7 @@ void mmCustomData::ShowHideCustomPanel() const
 
 bool mmCustomData::ValidateCustomValues(int ref_id)
 {
-    bool Result = true;
+    bool is_valid = true;
     m_data_changed;
     for (const auto &field : m_fields)
     {
@@ -679,12 +679,12 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
                     "does not match RegEx validation \"%s\"")
                     , field.DESCRIPTION, data, regExStr)
                     , _("CustomField validation error"));
-                Result = false;
+                is_valid = false;
                 continue;
             }
         }
     }
 
-    return Result;
+    return is_valid;
 }
 
