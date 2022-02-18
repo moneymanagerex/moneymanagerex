@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-15 21:06\n"
+"PO-Revision-Date: 2022-02-17 20:36\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1249,7 +1249,7 @@ msgstr "D&uplicar "
 
 #: billsdepositspanel.cpp:303
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Borrar transacción periódica"
 
 #: billsdepositspanel.cpp:307
 msgid "Ente&r"
@@ -1277,11 +1277,11 @@ msgstr "Omitir siguiente aparición"
 
 #: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nueva transacción periódica..."
 
 #: billsdepositspanel.cpp:432
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Editar transacción periódica..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
@@ -1289,7 +1289,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Borrar transacción periódica..."
 
 #: billsdepositspanel.cpp:482
 msgid "Manual"
@@ -2326,7 +2326,7 @@ msgstr "Abriendo base de datos MMEX - Error"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnósticos"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2334,17 +2334,17 @@ msgstr ""
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:402 filtertransdialog.cpp:1319
 #: reports/transactions.cpp:156
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:866
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr ""
+msgstr "Sin conciliar"
 
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
@@ -2380,15 +2380,15 @@ msgstr "Inicio de este año"
 
 #: filtertransdialog.cpp:73
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "Desde hace 90 días"
 
 #: filtertransdialog.cpp:74
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "Desde hace 30 días"
 
 #: filtertransdialog.cpp:75
 msgid "Since Today"
-msgstr ""
+msgstr "Desde hoy"
 
 #: filtertransdialog.cpp:197 transactionsupdatedialog.cpp:135
 msgid "Specify"
@@ -3841,7 +3841,7 @@ msgstr "Borrar las transacciones \"de seguimiento\" ya vistas"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Borrar las transacciones \"no reconciliadas\" ya vistas"
+msgstr "Borrar las transacciones \"sin conciliar\" ya vistas"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
@@ -3873,7 +3873,7 @@ msgstr[1] "¿Realmente quiere borrar las %i transacciones seleccionadas?"
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Transacción bloqueada hasta la fecha: %s\n\n"
-"Transacciones reconducidas."
+"Transacciones conciliadas."
 
 #: mmchecking_list.cpp:967 transdialog.cpp:747 transdialog.cpp:780
 msgid "MMEX Transaction Check"
