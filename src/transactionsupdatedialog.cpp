@@ -103,7 +103,7 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
             m_hasNonTransfers = true;
     }
 
-    m_custom_fields = new mmCustomDataTransaction(this, -1, ID_CUSTOMFIELDS);
+    m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS);
 
     Create(parent);
 }
@@ -136,10 +136,10 @@ void transactionsUpdateDialog::CreateControls()
     wxBoxSizer* box_sizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* box_sizer1 = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer* box_sizer3 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* custom_fields_box_sizer = new wxBoxSizer(wxVERTICAL);
     box_sizer->Add(box_sizer1, g_flagsExpand);
     box_sizer1->Add(box_sizer2, g_flagsExpand);
-    box_sizer1->Add(box_sizer3, g_flagsExpand);
+    box_sizer1->Add(custom_fields_box_sizer, g_flagsExpand);
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Specify"));
     wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
@@ -297,7 +297,7 @@ void transactionsUpdateDialog::CreateControls()
 
     // Custom fields -----------------------------------
 
-    m_custom_fields->FillCustomFields(box_sizer3);
+    m_custom_fields->FillCustomFields(custom_fields_box_sizer);
     if (m_custom_fields->GetActiveCustomFieldsCount() > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
         this->GetEventHandler()->AddPendingEvent(evt);

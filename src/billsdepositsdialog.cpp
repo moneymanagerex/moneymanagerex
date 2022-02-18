@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2016 - 2020 Nikolay Akimov
  Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2016 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -79,6 +79,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
     EVT_BUTTON(wxID_INFO, mmBDDialog::OnColourButton)
+    EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmBDDialog::OnMoreFields)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTON_PAYDATE, mmBDDialog::OnPaidDateChanged)
     EVT_DATE_CHANGED(ID_DIALOG_BD_DUE_DATE, mmBDDialog::OnDueDateChanged)
@@ -172,6 +173,9 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
     }
 
     m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
+
+    int ref_id = (m_new_bill) ? NULL : -m_bill_data.BDID;
+    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
 
     Create(parent);
 }
@@ -408,8 +412,9 @@ void mmBDDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizerOuter = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizerOuter);
-    wxBoxSizer* repeatTransBoxSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* repeatTransBoxSizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* custom_fields_box_sizer = new wxBoxSizer(wxVERTICAL);
 
     /**********************************************************************************************
      Determining where the controls go
@@ -496,22 +501,6 @@ void mmBDDialog::CreateControls()
 
     repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, g_flagsExpand);
     repeatTransBoxSizer->Add(itemCheckBoxAutoExeSilent_, g_flagsExpand);
-
-    /**********************************************************************************************
-    Button Panel with OK and Cancel Buttons
-    ***********************************************************************************************/
-    wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    wxBoxSizer* buttonsPanelSizer = new wxBoxSizer(wxHORIZONTAL);
-    buttonsPanel->SetSizer(buttonsPanelSizer);
-
-    wxButton* okButton = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
-    buttonsPanelSizer->Add(okButton, g_flagsH);
-
-    wxButton* cancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    buttonsPanelSizer->Add(cancelButton, g_flagsH);
-    cancelButton->SetFocus();
-
-    mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
 
     /*************************************************************************************************************/
 
@@ -670,9 +659,41 @@ void mmBDDialog::CreateControls()
     mmToolTip(textNotes_, _("Specify any text notes you want to add to this transaction."));
     transDetailsStaticBoxSizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
-    Fit();
-    Layout();
-    Centre();
+    /**********************************************************************************************
+        Button Panel with OK and Cancel Buttons
+    ***********************************************************************************************/
+    wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
+    buttonsPanel->SetSizer(button_sizer);
+
+    wxButton* button_ok = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
+
+    wxButton* button_cancel = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    button_cancel->SetFocus();
+
+    mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
+    wxBitmapButton* button_hide = new wxBitmapButton(buttonsPanel
+        , ID_BTN_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+    mmToolTip(button_hide, _("Show/Hide custom fields window"));
+    if (m_custom_fields->GetCustomFieldsCount() == 0) {
+        button_hide->Hide();
+    }
+
+    button_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Add(button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+
+    // Custom fields -----------------------------------
+
+    m_custom_fields->FillCustomFields(custom_fields_box_sizer);
+    if (m_custom_fields->GetActiveCustomFieldsCount() > 0) {
+        wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
+        this->GetEventHandler()->AddPendingEvent(evt);
+    }
+
+    mainBoxSizerInner->Add(custom_fields_box_sizer, g_flagsExpand);
+
+    Center();
 }
 
 void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
@@ -911,7 +932,11 @@ void mmBDDialog::resetPayeeString()
 
             // Only for new/duplicate transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
-            if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && Option::instance().TransCategorySelection() == Option::LASTUSED && !categUpdated_ && m_bill_data.BDID == 0)
+            if (filtd[0].CATEGID != -1
+                && m_bill_data.local_splits.empty()
+                && Option::instance().TransCategorySelection() == Option::LASTUSED
+                && !categUpdated_
+                && m_bill_data.BDID == 0)
             {
                 m_bill_data.CATEGID = filtd[0].CATEGID;
                 m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;
@@ -1141,6 +1166,9 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         Model_Billsdeposits::instance().completeBDInSeries(m_bill_data.BDID);
     }
+
+    m_custom_fields->SaveCustomValues(-transID_);
+
     EndModal(wxID_OK);
 }
 
@@ -1511,4 +1539,17 @@ void mmBDDialog::OnColourSelected(wxCommandEvent& event)
     int selected_nemu_item = event.GetId() - wxID_HIGHEST;
     bColours_->SetBackgroundColour(getUDColour(selected_nemu_item));
     m_bill_data.FOLLOWUPID = selected_nemu_item;
+}
+
+void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
+{
+    wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_BTN_CUSTOMFIELDS));
+
+    if (button)
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
+
+    m_custom_fields->ShowHideCustomPanel();
+
+    this->SetMinSize(wxSize(0, 0));
+    this->Fit();
 }
