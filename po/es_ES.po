@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-19 15:46\n"
+"PO-Revision-Date: 2022-02-19 15:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4450,11 +4450,11 @@ msgstr "Administrador de campos personalizados"
 
 #: mmframe.cpp:1571
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "Actualizar &WebApp"
 
 #: mmframe.cpp:1571 mmframe.cpp:2506 mmframe.cpp:2509
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "Actualizar WebApp"
 
 #: mmframe.cpp:1576
 msgid "&Options...\tCtrl-,"
