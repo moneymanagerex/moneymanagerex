@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-19 12:17\n"
+"PO-Revision-Date: 2022-02-19 12:59\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2359,7 +2359,7 @@ msgstr "Nula"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:424 mmchecking_list.cpp:855
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
-msgstr ""
+msgstr "Seguimiento"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:426
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
