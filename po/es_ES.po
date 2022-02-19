@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-19 12:06\n"
+"PO-Revision-Date: 2022-02-19 12:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -211,7 +211,7 @@ msgstr "Activar o desactivar el bloqueo de la transacción"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr "Fecha de Conciliación"
+msgstr "Fecha de conciliación:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
@@ -2344,12 +2344,12 @@ msgstr "Color"
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:866
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr "Sin conciliar"
+msgstr "No conciliada"
 
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
 msgid "Reconciled"
-msgstr "Conciliado"
+msgstr "Conciliada"
 
 #: filtertransdialog.cpp:48 mmchecking_list.cpp:422
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
@@ -3837,11 +3837,11 @@ msgstr "Borrar todas las transacciones de la vista actual"
 
 #: mmchecking_list.cpp:411
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr "Borrar las transacciones \"de seguimiento\" ya vistas"
+msgstr "Borrar las transacciones de seguimiento mostradas"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Borrar las transacciones no conciliadas ya vistas"
+msgstr "Borrar las transacciones no conciliadas mostradas"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
