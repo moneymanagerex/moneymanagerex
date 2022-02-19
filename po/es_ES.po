@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-19 12:59\n"
+"PO-Revision-Date: 2022-02-19 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,7 @@ msgstr "Mensualmente (último día laboral)"
 
 #: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr "Duplicar transacción recurrente"
+msgstr "Duplicar transacción periódica"
 
 #: billsdepositsdialog.cpp:319 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1163,7 +1163,7 @@ msgstr "Borrar color"
 #: billsdepositsdialog.cpp:1489 filtertransdialog.cpp:1809 transdialog.cpp:1425
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Color #%i"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
@@ -1253,11 +1253,11 @@ msgstr "Borrar transacción periódica"
 
 #: billsdepositspanel.cpp:307
 msgid "Ente&r"
-msgstr ""
+msgstr "Registra&r"
 
 #: billsdepositspanel.cpp:308
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Registrar la siguiente aparición de la transacción periódica"
 
 #: billsdepositspanel.cpp:312
 msgid "&Skip"
@@ -1285,7 +1285,7 @@ msgstr "&Editar transacción periódica..."
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplicar transacción periódica..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
@@ -1952,7 +1952,7 @@ msgstr "Nuevo/editar campo personalizado"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -3823,7 +3823,7 @@ msgstr "&Ver categorías divididas"
 
 #: mmchecking_list.cpp:401
 msgid "Create Recurring T&ransaction"
-msgstr "Crear T&ransacción periódica"
+msgstr "Crear t&ransacción periódica"
 
 #: mmchecking_list.cpp:407
 msgid "&Delete selected transaction"
