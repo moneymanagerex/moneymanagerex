@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-19 11:57\n"
+"PO-Revision-Date: 2022-02-19 12:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3841,7 +3841,7 @@ msgstr "Borrar las transacciones \"de seguimiento\" ya vistas"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Borrar las transacciones \"sin conciliar\" ya vistas"
+msgstr "Borrar las transacciones no conciliadas ya vistas"
 
 #: mmchecking_list.cpp:428
 msgid "Mark as"
