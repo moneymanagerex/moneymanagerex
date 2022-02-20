@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 11:55\n"
+"PO-Revision-Date: 2022-02-20 12:09\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -508,7 +508,7 @@ msgstr "&Organizar adjuntos"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
-msgstr "¿Realmente quiere borrar el Activo?"
+msgstr "¿Desea eliminar el Activo?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
@@ -687,7 +687,7 @@ msgstr "Organizar adjuntos: Editar adjunto"
 
 #: attachmentdialog.cpp:240
 msgid "Do you really want to delete this attachment?"
-msgstr "¿Realmente desea eliminar este adjunto?"
+msgstr "¿Desea eliminar este adjunto?"
 
 #: attachmentdialog.cpp:241
 msgid "Confirm Attachment Deletion"
@@ -743,7 +743,7 @@ msgstr "Adjunto no encontrado:"
 
 #: attachmentdialog.cpp:473
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "¿Desea continuar y suprimir el adjunto de la base de datos?"
+msgstr "¿Desea continuar y eliminar el adjunto de la base de datos?"
 
 #: attachmentdialog.cpp:474
 msgid "Delete attachment failed"
@@ -1332,7 +1332,7 @@ msgstr[1] "¡%d días vencido!"
 
 #: billsdepositspanel.cpp:674
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "¿Desea eliminar la transacción periódica?"
 
 #: billsdepositspanel.cpp:675
 msgid "Confirm Deletion"
@@ -1936,7 +1936,7 @@ msgstr "¡Cambiando el tipo de campo borrará todo el contenido!"
 #: customfieldeditdialog.cpp:225 customfieldeditdialog.cpp:247 mmframe.cpp:2106
 #: mmframe.cpp:2125
 msgid "Do you want to proceed?"
-msgstr "¿Deseas continuar?"
+msgstr "¿Desea continuar?"
 
 #: customfieldeditdialog.cpp:226 customfieldeditdialog.cpp:248
 msgid "Custom Field Change"
@@ -1965,7 +1965,7 @@ msgstr "Personalice los campos personalizados | %s"
 
 #: customfieldlistdialog.cpp:169
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr "¿Quieres eliminar este campo personalizado y todos sus datos?"
+msgstr "¿Desea eliminar este campo personalizado y todos sus datos?"
 
 #: customfieldlistdialog.cpp:170
 msgid "Confirm Custom Field Deletion"
@@ -1995,7 +1995,8 @@ msgstr "Actualizar el contenido del campo personalizado"
 #: customfieldlistdialog.cpp:200
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "¿Quiere actulizar el contenido en blanco?|n¡Pulse no si quiere abortar el reemplazo!"
+msgstr "¿Desea actualizar el contenido en blanco?\n"
+"Pulse no si quiere cancelar el reemplazo"
 
 #: customfieldlistdialog.cpp:208
 msgid "Replace with"
@@ -2487,7 +2488,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:726
 msgid "Do you want to save them before continuing?"
-msgstr "¿Quieres guardarlas antes de continuar?"
+msgstr "¿Desea guardarlos antes de continuar?"
 
 #: filtertransdialog.cpp:727
 msgid "Filter settings have changed"
@@ -3494,7 +3495,7 @@ msgstr "Eliminar historial de Valores de Moneda para monedas y días no utilizad
 
 #: maincurrencydialog.cpp:354
 msgid "Do you really want to delete the selected Currency?"
-msgstr "¿Realmente desea eliminar la moneda seleccionada?"
+msgstr "¿Desea eliminar la moneda seleccionada?"
 
 #: maincurrencydialog.cpp:355 maincurrencydialog.cpp:425
 #: maincurrencydialog.cpp:651 maincurrencydialog.cpp:776
@@ -3542,7 +3543,7 @@ msgstr "¡No hay moneda selecionada!"
 
 #: maincurrencydialog.cpp:650
 msgid "Do you want to add also dates without any transaction?"
-msgstr "¿Quieres añadir fechas sin ninguna transacción?"
+msgstr "¿Desea añadir fechas sin ninguna transacción?"
 
 #: maincurrencydialog.cpp:677
 #, c-format
@@ -3810,12 +3811,12 @@ msgstr "D&uplicar transacción"
 #: mmchecking_list.cpp:383
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Mover transacción"
+msgstr[1] "&Mover transacciones"
 
 #: mmchecking_list.cpp:389
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Ver en otra cuenta"
 
 #: mmchecking_list.cpp:393
 msgid "&View Split Categories"
@@ -3849,7 +3850,7 @@ msgstr "Marcar como"
 
 #: mmchecking_list.cpp:844
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "¿Desea eliminar todas las transacciones mostradas?"
 
 #: mmchecking_list.cpp:845 mmchecking_list.cpp:856 mmchecking_list.cpp:867
 #: mmchecking_list.cpp:914
@@ -3859,14 +3860,14 @@ msgstr "Confirmar borrado de transacción"
 #: mmchecking_list.cpp:855 mmchecking_list.cpp:866
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "¿Desea eliminar las \"%s\" transacciones mostradas?"
 
 #: mmchecking_list.cpp:909
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] "¿Realmente quieres borrar la transacción seleccionada?"
-msgstr[1] "¿Realmente quiere borrar las %i transacciones seleccionadas?"
+msgstr[0] "¿Desea eliminar la transacción seleccionada?"
+msgstr[1] "¿Desea eliminar las %i transacciones seleccionadas?"
 
 #: mmchecking_list.cpp:964
 #, c-format
@@ -3890,7 +3891,7 @@ msgstr[1] "La edición afectará a %i transacciones de una cuenta que está cerr
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
-"¿Usted aún quiere llevar a cabo la edición?"
+"¿Desea realizar la edición?"
 
 #: mmchecking_list.cpp:1003
 msgid "Closed Account Check"
@@ -3900,12 +3901,12 @@ msgstr "Verificar cuenta cerrada"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¿Desea mover la transacción seleccionada?"
+msgstr[1] "¿Desea mover las %i transacciones seleccionadas?"
 
 #: mmchecking_list.cpp:1197
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Confirmar el movimiento de la transacción"
 
 #: mmchecking_list.cpp:1203
 #, c-format
@@ -4098,7 +4099,7 @@ msgstr "Ayuda"
 
 #: mmframe.cpp:1193
 msgid "Do you really want to delete the account?"
-msgstr "¿Realmente quiere borrar la cuenta?"
+msgstr "¿Desea eliminar la cuenta?"
 
 #: mmframe.cpp:1200 mmframe.cpp:3142
 msgid "Confirm Account Deletion"
@@ -4534,7 +4535,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1616
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "MMEX utiliza Crowdin para las traducciones"
 
 #: mmframe.cpp:1618
 msgid "&Twitter"
@@ -4642,11 +4643,11 @@ msgstr "Reportar un error en la aplicación a los desarrolladores"
 
 #: mmframe.cpp:1674
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Mostrar diagnósticos"
 
 #: mmframe.cpp:1675
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Ayuda a proporcionar información a los desarrolladores"
 
 #: mmframe.cpp:1679
 msgid "&Show App Start Dialog"
@@ -6592,7 +6593,7 @@ msgstr "Guardado en"
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
 msgstr "Cuenta de activo no encontrada.\n\n"
-"¿Quiere crear una?"
+"¿Desea crear una?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6600,7 +6601,7 @@ msgid "The Company name does not have an associated Share Account.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr "La Compañía no tiene una cuenta de acciones asociada.\n\n"
 "Puedes renombrar la Compañía para ajustarlo a una cuenta de acciones con el mismo nombre. Si hay una acción sin cuenta de acciones, es recomendable que se cree una.\n\n"
-"¿Quieres crear una nueva cuenta de acciones?\n"
+"¿Desea crear una nueva cuenta de acciones?\n"
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
@@ -6726,7 +6727,7 @@ msgstr "Página &web de la acción"
 
 #: stocks_list.cpp:267
 msgid "Do you really want to delete the stock investment?"
-msgstr "¿Realmente quiere borrar la compra de acciones?"
+msgstr "¿Desea eliminar la compra de acciones?"
 
 #: stocks_list.cpp:268
 msgid "Confirm Stock Investment Deletion"
