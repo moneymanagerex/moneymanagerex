@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-07 10:26\n"
+"PO-Revision-Date: 2022-02-20 12:09\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1284,7 +1284,7 @@ msgstr "&Редактировать повторяющуюся транзакц�
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction..."
-msgstr "&Удалить повторяющуюся транзакцию..."
+msgstr "&Дублировать повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:434
 msgid "&Delete Recurring Transaction..."
