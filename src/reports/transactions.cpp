@@ -70,7 +70,7 @@ wxString mmReportTransactions::getHTMLText()
     wxArrayInt selectedAccounts = m_transDialog->getAccountsID();
     wxString accounts = _("All Accounts");
     int allAccounts = true;
-    if (m_transDialog->getAccountCheckBox() && !m_transDialog->getAccountsID().empty()) {
+    if (m_transDialog->is_account_cb_active() && !m_transDialog->getAccountsID().empty()) {
         accounts.clear();
         allAccounts = false;
         for (const auto& acc : selectedAccounts) {
@@ -105,7 +105,7 @@ table {
     start.ParseISODate(m_transDialog->getBeginDate());
     end.ParseISODate(m_transDialog->getEndDate());
     hb.DisplayDateHeading(start, end
-        , m_transDialog->getRangeCheckBox() || m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox());
+        , m_transDialog->getRangeCheckBox() || m_transDialog->is_date_range_cb_active() || m_transDialog->getStartDateCheckBox());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
     m_noOfCols = (m_transDialog->getHideColumnsCheckBox()) ? m_transDialog->getHideColumnsID().GetCount() : 11;
@@ -328,7 +328,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         {
             for (const auto& split : full_tran.m_splits)
             {
-                if (m_transDialog->getCategoryCheckBox())
+                if (m_transDialog->is_category_cb_active())
                 {
                     if (split.CATEGID != m_transDialog->getCategId() ) continue;
                     if (split.SUBCATEGID != m_transDialog->getSubCategId() 
