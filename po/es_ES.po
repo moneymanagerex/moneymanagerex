@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 23:26\n"
+"PO-Revision-Date: 2022-02-20 23:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2524,7 +2524,7 @@ msgstr "Detalles de filtrado: "
 
 #: filtertransdialog.cpp:1183
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: filtertransdialog.cpp:1203
 msgid "Since"
@@ -5864,15 +5864,15 @@ msgstr "Colores de transacciones"
 
 #: optionsettingsview.cpp:203
 msgid "UI Appearance"
-msgstr ""
+msgstr "Interfaz"
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Abrir gestor de temas"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
-msgstr ""
+msgstr "Plantilla de estilo"
 
 #: optionsettingsview.cpp:222
 msgid "Light"
@@ -5888,7 +5888,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Modo de tema"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
@@ -6834,7 +6834,7 @@ msgstr "Sin descripción"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Elija un archivo de tema para importar"
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
@@ -6842,11 +6842,11 @@ msgstr "El tema ya existe, ¿desea importarlo y sobrescribir el tema existente?"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Algo salió mal importando el tema"
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "¿Desea eliminar este tema? Tendrá que volver a importarlo si quiere usarlo de nuevo."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
