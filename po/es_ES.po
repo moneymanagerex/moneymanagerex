@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 12:09\n"
+"PO-Revision-Date: 2022-02-20 12:29\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2448,11 +2448,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:406
 msgid "Select the Color"
-msgstr ""
+msgstr "Seleccione el color"
 
 #: filtertransdialog.cpp:413
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opciones de presentación"
 
 #: filtertransdialog.cpp:428
 msgid "Hide Columns"
@@ -5142,7 +5142,7 @@ msgstr ""
 
 #: mmhomepage.cpp:637 reports/summary.cpp:298 reports/summary.cpp:330
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Cuentas de activos"
 
 #: mmhomepage.cpp:778
 msgid "Currency Exchange Rates"
@@ -5652,7 +5652,7 @@ msgstr "Última utilizada por beneficiario"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Usar predeterminada para el beneficiario"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
