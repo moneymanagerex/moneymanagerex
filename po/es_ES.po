@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 11:45\n"
+"PO-Revision-Date: 2022-02-20 11:55\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4314,11 +4314,11 @@ msgstr "Ignorar transacciones futuras"
 
 #: mmframe.cpp:1420 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Mostrar información"
 
 #: mmframe.cpp:1422 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Mostrar sugerencias del dinero"
 
 #: mmframe.cpp:1442
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -4338,7 +4338,7 @@ msgstr "Cambiar el idioma usado por MMEX"
 
 #: mmframe.cpp:1455 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:350
 msgid "system default"
-msgstr "sistema por defecto"
+msgstr "Valor predeterminado del sistema"
 
 #: mmframe.cpp:1475
 msgid "&Home Page"
@@ -4422,11 +4422,11 @@ msgstr "&Activos"
 
 #: mmframe.cpp:1549
 msgid "T&heme Manager"
-msgstr ""
+msgstr "G&estor de temas"
 
 #: mmframe.cpp:1549 mmframe.cpp:2497 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Gestor de temas"
 
 #: mmframe.cpp:1555
 msgid "Transaction Report &Filter..."
@@ -5472,11 +5472,11 @@ msgstr "Seleccione para no eliminar el archivo cuando se borre el adjunto, sin m
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "Al duplicar transacciones duplicar también los archivos adjuntos"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Seleccione si desea copiar los archivos adjuntos a las nuevas transacciones cuando sean duplicadas"
 
 #: optionsettingsattachment.cpp:180
 msgid "Choose folder to set as attachments archive"
@@ -5594,11 +5594,11 @@ msgstr "Selecciónelo para usar la fecha original de la transacción o la fecha 
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Duplicar transacciones utilizando la fecha original"
 
 #: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Seleccione si desea utilizar la fecha original de la transacción o la fecha actual al duplicar las transacciones"
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Transaction Sound"
@@ -5823,7 +5823,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Opciones de transacciones y presupuesto"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
@@ -5859,7 +5859,7 @@ msgstr "Ignorar transacciones futuras"
 
 #: optionsettingsview.cpp:164
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Colores de transacciones"
 
 #: optionsettingsview.cpp:203
 msgid "UI Appearance"
