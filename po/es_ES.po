@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 12:29\n"
+"PO-Revision-Date: 2022-02-20 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2186,7 +2186,7 @@ msgstr "Vida"
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr "Vivienda"
+msgstr "Inicio"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
@@ -5138,7 +5138,7 @@ msgstr "Suma total:"
 
 #: mmhomepage.cpp:636
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Cuentas de inversión"
 
 #: mmhomepage.cpp:637 reports/summary.cpp:298 reports/summary.cpp:330
 msgid "Asset Accounts"
@@ -6826,11 +6826,11 @@ msgstr "Borrar"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr ""
+msgstr "Usar"
 
 #: themes.cpp:233
 msgid "No description available"
-msgstr ""
+msgstr "Sin descripción"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
@@ -6854,7 +6854,7 @@ msgstr "Algo salió mal al intentar eliminar el tema"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "¿Desea utilizar este tema? Tenga en cuenta que solo tendrá efecto después de reiniciar MMEX."
 
 #: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
