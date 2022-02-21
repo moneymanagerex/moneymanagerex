@@ -1348,7 +1348,33 @@ const wxString mmFilterTransactionsDialog::get_json(bool i18n) const
         json_writer.Int(colourValue_);
     }
 
-    // Presentation Options
+    //UDFC
+    const auto cf = m_custom_fields->GetActiveCustomFields();
+    if (cf.size() > 0)
+    {
+        for (const auto& i : cf)
+        {
+            //const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            const auto field = Model_CustomField::instance().get(i.first);
+
+            wxString data = field ? field->PROPERTIES : "";
+
+            Document j_doc;
+            if (!j_doc.Parse(data.utf8_str()).HasParseError())
+            {
+                Value& j_label = GetValueByPointerWithDefault(j_doc, "/UDFC", "");
+                if (j_label.IsString())
+                {
+                    json_writer.Key(j_label.GetString());
+                    json_writer.String(i.second.utf8_str());
+                }
+            }
+        }
+    }
+
+    /*******************************************************
+     Presentation Options
+    *******************************************************/
 
     // Hide Columns
     if (showColumnsCheckBox_->IsChecked() && !selected_columns_id_.empty())
@@ -1731,7 +1757,10 @@ bool mmFilterTransactionsDialog::is_custom_field_matches(const Model_Checking::D
         {
             if (i.first == j.FIELDID)
             {
-                matched += static_cast<int>(j.CONTENT.Matches(i.second));
+                if (j.CONTENT.Matches(i.second))
+                    matched += 1;
+                else
+                    return false;
             }
         }
     }
