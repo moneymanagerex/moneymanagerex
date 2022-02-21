@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2017 Gabriele-V
-Copyright (C) 2018, 2021 Nikolay Akimov
+Copyright (C) 2018, 2021, 2022 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -331,18 +331,16 @@ size_t mmCustomData::GetActiveCustomFieldsCount() const
     return data_set.size();
 }
 
-std::map<wxString, wxString> mmCustomData::GetActiveCustomFields() const
+std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
 {
-    wxString data;
-    std::map<wxString, wxString> values;
+    std::map<int, wxString> values;
     for (const auto& entry : m_data_changed)
     {
         int id = entry.first - GetBaseID();
         Model_CustomField::Data *item = Model_CustomField::instance().get(id);
         if (item) {
-            data = item->DESCRIPTION;
+            values[item->FIELDID] = entry.second;
         }
-        values[data] = entry.second;
     }
 
     return values;

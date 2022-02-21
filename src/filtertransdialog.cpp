@@ -1128,7 +1128,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
         ok = false;
     else if (is_colour_cb_active() && (colourValue_ != tran.FOLLOWUPID))
         ok = false;
-    else if (!is_custom_field_matches())
+    else if (!is_custom_field_matches(tran))
         ok = false;
     return ok;
 }
@@ -1720,9 +1720,22 @@ bool mmFilterTransactionsDialog::is_colour_cb_active() const
     return colourCheckBox_->IsChecked();
 }
 
-bool mmFilterTransactionsDialog::is_custom_field_matches() const
+bool mmFilterTransactionsDialog::is_custom_field_matches(const Model_Checking::Data& tran) const
 {
-    return true;
+    const auto cf = m_custom_fields->GetActiveCustomFields();
+    int matched = 0;
+    for (const auto& i : cf)
+    {
+        auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(tran.TRANSID));
+        for (const auto& j : DataSet)
+        {
+            if (i.first == j.FIELDID)
+            {
+                matched += static_cast<int>(j.CONTENT.Matches(i.second));
+            }
+        }
+    }
+    return matched == cf.size();
 }
 
 int mmFilterTransactionsDialog::getGroupBy() const

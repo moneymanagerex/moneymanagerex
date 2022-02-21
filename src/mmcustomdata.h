@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2017 Gabriele-V
-Copyright (C) 2018, 2021 Nikolay Akimov
+Copyright (C) 2018, 2021, 2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ public:
     int GetWidgetType(wxWindowID controlID) const;
     size_t GetCustomFieldsCount() const;
     size_t GetActiveCustomFieldsCount() const;
-    std::map<wxString, wxString> GetActiveCustomFields() const;
+    std::map<int, wxString> GetActiveCustomFields() const;
     void SetBaseID(wxWindowID id);
     wxWindowID GetBaseID() const;
     void SetLabelID(wxWindowID id);
