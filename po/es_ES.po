@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 14:26\n"
+"PO-Revision-Date: 2022-02-21 14:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5843,15 +5843,15 @@ msgstr "Ver informe de categoría de presupuesto con totales"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Desviación del presupuesto (días):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Adelantar o retrasar la fecha de inicio desde el primer día del mes o del año en una cantidad determinada de días"
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Día de inicio del mes para informes:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
@@ -5919,15 +5919,15 @@ msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Tamaño de iconos de la barra de herramientas"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Tamaño de iconos de navegación"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Tamaño de otros iconos"
 
 #: payeedialog.cpp:61
 msgid "Last Used Category"
