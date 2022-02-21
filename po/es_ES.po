@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 23:37\n"
+"PO-Revision-Date: 2022-02-21 10:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2402,7 +2402,7 @@ msgstr "Fecha de inicio"
 
 #: filtertransdialog.cpp:240
 msgid "Period Range"
-msgstr ""
+msgstr "Período"
 
 #: filtertransdialog.cpp:268 reports/mmDateRange.cpp:35
 msgid "Date Range"
@@ -2456,7 +2456,7 @@ msgstr "Opciones de presentación"
 
 #: filtertransdialog.cpp:428
 msgid "Hide Columns"
-msgstr "Ocultar Columnas"
+msgstr "Ocultar columnas"
 
 #: filtertransdialog.cpp:439 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1341
@@ -2465,7 +2465,7 @@ msgstr "Agrupar por"
 
 #: filtertransdialog.cpp:447
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Especifique cómo se debe agrupar el informe"
 
 #: filtertransdialog.cpp:466
 msgid "Settings"
@@ -2476,7 +2476,7 @@ msgstr "Ajustes"
 #: filtertransdialog.cpp:1369 filtertransdialog.cpp:1729
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: vacío"
 
 #: filtertransdialog.cpp:496
 msgid "Save active values into current Preset selection"
@@ -2484,7 +2484,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:501
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Borrar todos los campos de la selección preestablecida actual"
 
 #: filtertransdialog.cpp:726
 msgid "Do you want to save them before continuing?"
@@ -2504,7 +2504,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Setting Name"
-msgstr ""
+msgstr "Nombre del ajuste"
 
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1727
 #: filtertransdialog.cpp:1735
@@ -2536,7 +2536,7 @@ msgstr "Antes"
 
 #: filtertransdialog.cpp:1215
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: filtertransdialog.cpp:1287
 msgid "Amount Min."
@@ -5892,7 +5892,7 @@ msgstr "Modo de tema"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Factor de escala de HTML"
 
 #: optionsettingsview.cpp:248
 msgid "Specify which scale factor is used for the report pages"
