@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 05:20\n"
+"PO-Revision-Date: 2022-02-21 05:27\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -631,7 +631,7 @@ msgstr "Thư mục tệp đính kèm chưa được xác định."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Vui lòng thiết lập trong Công cụ -> Tùy chọn -> Phần đính kèm"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -4001,7 +4001,7 @@ msgstr "Mục lục"
 
 #: mmframe.cpp:271
 msgid "Toolbar"
-msgstr ""
+msgstr "Thanh công cụ"
 
 #: mmframe.cpp:471 mmframe.cpp:713
 msgid "Favourites"
@@ -4278,7 +4278,7 @@ msgstr ""
 
 #: mmframe.cpp:1420 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Hiển thị chú giải"
 
 #: mmframe.cpp:1422 optionsettingsview.cpp:105
 msgid "Show Money Tips"
