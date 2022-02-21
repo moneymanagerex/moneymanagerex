@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 14:50\n"
+"PO-Revision-Date: 2022-02-21 15:27\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2292,7 +2292,7 @@ msgstr "Depuración MMEX"
 
 #: dbupgrade.cpp:244
 msgid "Save debug file"
-msgstr "Guarde el fichero de depuración"
+msgstr "Guardar archivo de depuración"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2304,7 +2304,7 @@ msgstr "Cuando se abre el archivo de base de datos:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
-msgstr "No se puede abrir el fichero"
+msgstr "No se puede abrir el archivo"
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
@@ -2586,7 +2586,7 @@ msgstr "&Exportar"
 
 #: general_report_manager.cpp:388
 msgid "Export the report to a new file."
-msgstr "Exportar la consulta a un nuevo fichero."
+msgstr "Exportar el informe a un nuevo archivo."
 
 #: general_report_manager.cpp:391 stockdialog.cpp:354
 msgid "&Save "
@@ -2641,7 +2641,7 @@ msgstr "Error en la sintaxis SQL"
 
 #: general_report_manager.cpp:598
 msgid "Load report file:"
-msgstr "Cargar fichero de informe:"
+msgstr "Cargar archivo de informe:"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "General Report Manager files (*.grm)"
@@ -2783,7 +2783,7 @@ msgstr "No se ha encontrado ningún tema funcional, la instalación puede estar 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1582
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
-msgstr "No es posible abrir el fichero."
+msgstr "No se puede abrir el archivo."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:971 mmframe.cpp:2268 mmframe.cpp:2287
@@ -2792,7 +2792,7 @@ msgstr "Importar Universal CSV"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr "No es posible crear el archivo."
+msgstr "No se puede crear el archivo."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
@@ -2893,7 +2893,7 @@ msgstr "Seleccionar cuenta de la que exportar:"
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
-msgstr "Seleccionar el fichero QIF a exportar"
+msgstr "Seleccionar el archivo QIF a exportar"
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
@@ -4157,7 +4157,7 @@ msgstr "Importar desde XML (formato Excel)"
 
 #: mmframe.cpp:1305 mmframe.cpp:1311 mmframe.cpp:1377 mmframe.cpp:1385
 msgid "&QIF Files..."
-msgstr "Ficheros &QIF..."
+msgstr "Archivos &QIF..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
