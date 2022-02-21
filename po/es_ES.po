@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 14:13\n"
+"PO-Revision-Date: 2022-02-21 14:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2333,7 +2333,7 @@ msgstr "Diagnósticos"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Los desarrolladores pueden pedirle que proporcione información presentada aquí para ayudar a diagnosticar los problemas con el programa de los que informe."
 
 #: filtertrans.cpp:183
 msgid "Back"
@@ -2446,7 +2446,7 @@ msgstr "Rango de cantidad"
 
 #: filtertransdialog.cpp:394
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Introduzca cualquier texto para encontrarlo en las notas de transacción"
 
 #: filtertransdialog.cpp:406
 msgid "Select the Color"
@@ -2494,15 +2494,15 @@ msgstr "¿Desea guardarlos antes de continuar?"
 
 #: filtertransdialog.cpp:727
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "La configuración del filtro ha cambiado"
 
 #: filtertransdialog.cpp:779
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Ocultar columnas del informe"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Please Enter"
-msgstr ""
+msgstr "Por favor, introduzca"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Setting Name"
@@ -2739,7 +2739,7 @@ msgstr "Parámetros:"
 #: images_list.cpp:340
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "El archivo JSON de metadatos del tema '%s' no puede ser analizado y parece mal construido."
 
 #: images_list.cpp:341 images_list.cpp:437 images_list.cpp:448
 #: images_list.cpp:483 images_list.cpp:512 images_list.cpp:518
@@ -2750,12 +2750,12 @@ msgstr "Aviso"
 #: images_list.cpp:436
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Falta el archivo '%s' o no es válido en el tema seleccionado '%s'"
 
 #: images_list.cpp:447
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Faltan los metadatos '%s' en el tema elegido '%s'"
 
 #: images_list.cpp:480
 msgid "and more..."
@@ -2778,7 +2778,7 @@ msgstr "Tema %s tiene elementos perdidos y además es incompatible. Regresando a
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "No se ha encontrado ningún tema funcional, la instalación puede estar corrupta"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1582
 #: mmSimpleDialogs.cpp:253
@@ -3210,7 +3210,7 @@ msgstr "Vista previa"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Seleccione el archivo de datos XML a importar"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
@@ -3218,7 +3218,7 @@ msgstr "Seleccionar el fichero CSV a importar"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Seleccione el archivo XML a exportar"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
@@ -3943,7 +3943,7 @@ msgstr "Duplicar transacción seleccionada"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Introduzca cualquier texto para encontrarlo en los datos de transacción más cercanos"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -4161,7 +4161,7 @@ msgstr "Ficheros &QIF..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&Archivos CSV de MMEX..."
 
 #: mmframe.cpp:1312 mmframe.cpp:1386
 msgid "&JSON Files..."
