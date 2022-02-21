@@ -827,7 +827,7 @@ void mmGUIFrame::updateNavTreeControl()
             else if (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))
                 continue;
 
-            int selectedImage = Option::instance().AccountImageId(account.ACCOUNTID);
+            int selectedImage = Option::instance().AccountImageId(account.ACCOUNTID, false);
 
             wxTreeItemId tacct;
 

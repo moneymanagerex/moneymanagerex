@@ -347,7 +347,7 @@ void mmNewAcctDialog::fillControls()
     double initBal = m_account->INITIALBAL;
     m_initbalance_ctrl->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
 
-    int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID);
+    int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID, false, true);
     m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
 
     m_accessInfo = m_account->ACCESSINFO;
