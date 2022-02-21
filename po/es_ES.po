@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 10:26\n"
+"PO-Revision-Date: 2022-02-21 12:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1435,7 +1435,7 @@ msgstr "Mes: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    fecha de inicio de: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -1830,7 +1830,7 @@ msgstr "Tasa de conversión fija"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Ejemplo de formato de moneda:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
