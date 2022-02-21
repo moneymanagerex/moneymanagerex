@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 14:33\n"
+"PO-Revision-Date: 2022-02-21 14:50\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4779,7 +4779,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "La base de datos que está intentando abrir está marcada como abierta por otra instancia de MMEX.\n"
+"Para evitar pérdidas de datos o conflictos, se recomienda encarecidamente que cierre todas las demás aplicaciones que puedan estar utilizando la base de datos.\n\n"
+"Si no se está ejecutando nada más, es posible que la base de datos se haya quedado marcada como abierta como resultado de un bloqueo durante el uso anterior de MMEX.\n\n"
+"¿Desea continuar abriendo esta base de datos?"
 
 #: mmframe.cpp:1976
 msgid "MMEX Instance Check"
@@ -4919,7 +4922,7 @@ msgstr "Cuentas, beneficiarios y categorías actualizadas"
 
 #: mmframe.cpp:2508
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Problema al actualizar la WebApp, compruebe la configuración del servidor Web y de WebApp"
 
 #: mmframe.cpp:2544
 msgid "MMEX Options have been updated."
@@ -4927,7 +4930,7 @@ msgstr "Las opciones de MMEX se han actualizado."
 
 #: mmframe.cpp:2545
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Algunos ajustes solo surten efecto después de reiniciar la aplicación."
 
 #: mmframe.cpp:2546 optiondialog.cpp:225 optiondialog.h:49
 msgid "MMEX Options"
@@ -5282,15 +5285,15 @@ msgstr "Transacción"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Accion"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "CuentaBancaria"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "TransaccionRecurrente"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5535,7 +5538,7 @@ msgstr "Especifique el formato de la fecha a mostrar"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Ejemplo de formato de fecha:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5683,7 +5686,7 @@ msgstr "Estado por defecto:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Transacciones masivas:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
@@ -5855,7 +5858,7 @@ msgstr "Día de inicio del mes para informes:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Permite elegir el primer día del mes para los informes"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -5887,7 +5890,7 @@ msgstr "Oscuro"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Especifique la variante del tema a usar si es compatible"
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
@@ -6252,7 +6255,7 @@ msgstr "Desde %s hasta %s"
 
 #: reports/htmlbuilder.cpp:180
 msgid "Future"
-msgstr ""
+msgstr "Futuro"
 
 #: reports/htmlbuilder.cpp:184 reports/mmDateRange.cpp:249
 msgid "Over Time"
@@ -6260,7 +6263,7 @@ msgstr "Todo el tiempo"
 
 #: reports/htmlbuilder.cpp:212
 msgid "User specified start day"
-msgstr ""
+msgstr "Día de inicio especificado por el usuario"
 
 #: reports/htmlbuilder.cpp:219
 msgid "Future Transactions have been ignored"
@@ -7091,7 +7094,7 @@ msgstr "Se esperaba una respuesta que tuviera datos o una cadena de error"
 
 #: util.cpp:930
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "No se pudo encontrar el activo del símbolo"
 
 #: util.cpp:965
 msgid "Could not get base currency!"
