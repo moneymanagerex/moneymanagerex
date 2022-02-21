@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 02:15\n"
+"PO-Revision-Date: 2022-02-21 05:20\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -773,7 +773,7 @@ msgstr "Mỗi tuần"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr ""
+msgstr "Hai tuần một lần"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:130
 #: mmframereport.cpp:138 mmframereport.cpp:160 mmframereport.cpp:178
@@ -836,7 +836,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Hàng tháng (ngày làm việc cuối cùng)"
 
 #: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
@@ -3050,7 +3050,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Đã nhập dữ liệu thành công"
 
 #: import_export/qif_import_gui.cpp:898
 #, c-format
@@ -4286,11 +4286,11 @@ msgstr ""
 
 #: mmframe.cpp:1442
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Bật/tắt Toàn màn hình\tShift+F11"
 
 #: mmframe.cpp:1443 mmframe.cpp:1753
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Bật/tắt Toàn màn hình"
 
 #: mmframe.cpp:1449
 msgid "Switch Application &Language"
@@ -4690,7 +4690,7 @@ msgstr ""
 
 #: mmframe.cpp:1753
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Bật/tắt Toàn màn hình\tF11"
 
 #: mmframe.cpp:1814
 #, c-format
