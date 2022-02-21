@@ -64,19 +64,13 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "NAV_HELP.svg", { NAV_HELP, true } },
     { "FAVOURITE.svg", { FAVOURITE, true } },
     { "SAVINGS_NORMAL.svg", { SAVINGS_NORMAL, true } },
-    { "SAVINGS_CLOSED.svg", { SAVINGS_CLOSED, true } },
     { "CC_NORMAL.svg", { CC_NORMAL, true } },
-    { "CC_CLOSED.svg", { CC_CLOSED, true } },
     { "CASH_NORMAL.svg", { CASH_NORMAL, true } },
-    { "CASH_CLOSED.svg", { CASH_CLOSED, true } },
     { "LOAN_ACC_NORMAL.svg", { LOAN_ACC_NORMAL, true } },
-    { "LOAN_ACC_CLOSED.svg", { LOAN_ACC_CLOSED, true } },
     { "TERM_NORMAL.svg", { TERM_NORMAL, true } },
-    { "TERM_CLOSED.svg", { TERM_CLOSED, true } },
     { "STOCKS_NORMAL.svg", { STOCKS_NORMAL, true } },
-    { "STOCKS_CLOSED.svg", { STOCKS_CLOSED, true } },
     { "ASSET_NORMAL.svg", { ASSET_NORMAL, true } },
-    { "ASSET_CLOSED.svg", { ASSET_CLOSED, true } },
+    { "ACCOUNT_CLOSED.svg", { ACCOUNT_CLOSED, true } },
     { "RECURRING.svg", { RECURRING, true } },
     { "BUDGET.svg", { BUDGET, true } },
     { "PIE_CHART.svg", { PIE_CHART, true } },
@@ -203,21 +197,15 @@ static const std::map<int, wxBitmap> navtree_images()
         , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE) }
         , { FILTER_PNG, mmBitmap(png::NAV_FILTER) }
         , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL) }
-        , { ASSET_CLOSED_PNG, mmBitmap(png::ASSET_CLOSED) } 
         , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM) }
         , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM) } //TODO: GRM rep group ico
         , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
-        , { SAVINGS_ACC_CLOSED_PNG, mmBitmap(png::SAVINGS_CLOSED) }
         , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL) }
-        , { CARD_ACC_CLOSED_PNG, mmBitmap(png::CC_CLOSED) }
         , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL) }
-        , { TERM_ACC_CLOSED_PNG, mmBitmap(png::TERM_CLOSED) }
         , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL) }
-        , { STOCK_ACC_CLOSED_PNG, mmBitmap(png::STOCKS_CLOSED) }
         , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL) }
-        , { CASH_ACC_CLOSED_PNG, mmBitmap(png::CASH_CLOSED) }
         , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
-        , { LOAN_ACC_CLOSED_PNG, mmBitmap(png::LOAN_ACC_CLOSED) }
+        , { ACCOUNT_CLOSED_PNG, mmBitmap(png::ACCOUNT_CLOSED) }
     };
 };
 

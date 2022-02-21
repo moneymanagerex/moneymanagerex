@@ -130,7 +130,7 @@ public:
     int getNavigationIconSize();
     int getToolbarIconSize();
 
-    int AccountImageId(int account_id, bool def = false);
+    int AccountImageId(int account_id, bool def, bool ignoreClosure = false);
     bool getSendUsageStatistics() const;
 
     void IgnoreFutureTransactions(bool value);
