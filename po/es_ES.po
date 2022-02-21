@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-21 12:17\n"
+"PO-Revision-Date: 2022-02-21 12:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1785,7 +1785,7 @@ msgstr "Favoritas"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr "Nombre de moneda"
+msgstr "Nombre de divisa"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
@@ -1830,7 +1830,7 @@ msgstr "Tasa de conversión fija"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr "Ejemplo de formato de moneda:"
+msgstr "Ejemplo de formato de divisa:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
@@ -1853,7 +1853,7 @@ msgstr "%.2f se muestra como: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(usando configuración regional)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
@@ -1915,19 +1915,19 @@ msgstr "Introduzca las elecciones para este campo separadas por punto y coma"
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
-msgstr ""
+msgstr "Escala de dígitos"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Introduzca la escala decimal permitida"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
-msgstr ""
+msgstr "Columna del panel"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Seleccione un valor para representar el elemento en un panel"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
@@ -5555,7 +5555,8 @@ msgstr "Botón derecho del ratón y seleccione 'Configurar como moneda base' en 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Formato derivado de la configuración regional.\n"
+"Deje en blanco para establecer el formato manualmente a través de 'Ventana de divisas | Editar'"
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
@@ -5612,11 +5613,11 @@ msgstr "Selecciónelo para usar sonidos al introducir transacciones"
 #: optionsettingsgeneral.cpp:325
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Ejemplo del valor de la divisa: %s"
 
 #: optionsettingsgeneral.cpp:329
 msgid "bad locale name"
-msgstr ""
+msgstr "nombre de configuración regional incorrecto"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5820,7 +5821,7 @@ msgstr "Especifique qué cuentas son visibles"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Delimitador de categoría"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5972,11 +5973,11 @@ msgstr "Organizar beneficiarios: Error al borrar"
 
 #: payeedialog.cpp:377
 msgid "Define Category"
-msgstr ""
+msgstr "Seleccionar categoría"
 
 #: payeedialog.cpp:379
 msgid "Remove Category"
-msgstr "Eliminar Categoría"
+msgstr "Eliminar categoría"
 
 #: payeedialog.cpp:394
 msgid "Relocate Payee"
@@ -6261,7 +6262,7 @@ msgstr ""
 
 #: reports/htmlbuilder.cpp:219
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Las transacciones futuras han sido ignoradas"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
@@ -6281,7 +6282,7 @@ msgstr "Ingresos vs Gastos mensuales"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Acumulado"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -7084,7 +7085,7 @@ msgstr "Error de sintáxis JSON"
 
 #: util.cpp:899 util.cpp:958
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Se esperaba una respuesta que tuviera datos o una cadena de error"
 
 #: util.cpp:930
 msgid "Could not find asset for symbol"
@@ -7092,7 +7093,7 @@ msgstr ""
 
 #: util.cpp:965
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "¡No se pudo obtener la divisa base!"
 
 #: util.cpp:971
 msgid "USD"
@@ -7100,11 +7101,11 @@ msgstr "USD"
 
 #: util.cpp:974
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "No se pudo encontrar la divisa 'USD', necesaria para convertir los precios del historial"
 
 #: util.cpp:995
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "No se pudo analizar el precio en el historial de activos"
 
 #: util.cpp:1225
 #, c-format
