@@ -380,7 +380,8 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         wxDateTime date;
         date.ParseDate(value);
         d->SetValue(date);
-        wxCommandEvent evt(wxEVT_DATE_CHANGED, controlID);
+        wxDateEvent evt(d, date, wxEVT_DATE_CHANGED);
+        //evt.SetDate(date);
         d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxTimePickerCtrl")
@@ -389,7 +390,7 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         wxDateTime time;
         time.ParseTime(value);
         d->SetValue(time);
-        wxCommandEvent evt(wxEVT_TIME_CHANGED, controlID);
+        wxDateEvent evt(d, time, wxEVT_TIME_CHANGED);
         d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxSpinCtrlDouble")
@@ -399,14 +400,17 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         if (value.ToDouble(&num)) {
             d->SetValue(num);
             wxCommandEvent evt(wxEVT_SPINCTRLDOUBLE, controlID);
+            evt.SetString(value);
             d->GetEventHandler()->AddPendingEvent(evt);
         }
     }
     else if (class_name == "wxSpinCtrl")
     {
         wxSpinCtrl* d = static_cast<wxSpinCtrl*>(w);
-        d->SetValue(wxAtoi(value));
+        int v = wxAtoi(value);
+        d->SetValue(v);
         wxCommandEvent evt(wxEVT_SPINCTRL, controlID);
+        evt.SetInt(v);
         d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxChoice")
@@ -414,6 +418,7 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         wxChoice* d = static_cast<wxChoice*>(w);
         d->SetStringSelection(value);
         wxCommandEvent evt(wxEVT_CHOICE, controlID);
+        evt.SetString(value);
         d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxButton")
@@ -432,7 +437,11 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
     else if (class_name == "wxCheckBox")
     {
         wxCheckBox* d = static_cast<wxCheckBox*>(w);
-        d->SetValue(wxString("TRUE1").Contains(value));
+        bool v = !value.empty() && wxString("TRUE1").Contains(value);
+        d->SetValue(v);
+        wxCommandEvent evt(wxEVT_CHECKBOX, controlID);
+        evt.SetInt(v);
+        d->GetEventHandler()->AddPendingEvent(evt);
     }
 }
 

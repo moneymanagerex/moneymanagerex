@@ -39,7 +39,8 @@ mmReportTransactions::~mmReportTransactions()
 {
     // incase the user wants to print a report, we maintain the transaction dialog
     // until we are finished with the report.
-    //m_transDialog->Destroy();
+    if(m_transDialog)
+        m_transDialog->Destroy();
 }
 
 void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols)
@@ -65,7 +66,7 @@ void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<i
 
 wxString mmReportTransactions::getHTMLText()
 {
-    Run(m_transDialog.get());
+    Run(m_transDialog);
 
     wxArrayInt selectedAccounts = m_transDialog->getAccountsID();
     wxString accounts = _("All Accounts");
