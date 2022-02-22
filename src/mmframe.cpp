@@ -2472,10 +2472,10 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
+    mmFilterTransactionsDialog* dlg(new mmFilterTransactionsDialog(this, true, true));
     if (dlg->ShowModal() == wxID_OK)
     {
-        mmReportTransactions* rs = new mmReportTransactions(dlg.get());
+        mmReportTransactions* rs = new mmReportTransactions(dlg);
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }

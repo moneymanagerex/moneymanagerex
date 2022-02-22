@@ -140,7 +140,7 @@ private:
 
 private:
     wxSharedPtr<wxImageList> m_imageList;
-    wxSharedPtr<mmFilterTransactionsDialog> transFilterDlg_;
+    mmFilterTransactionsDialog* transFilterDlg_;
     billsDepositsListCtrl* listCtrlAccount_;
     wxStaticText* m_infoText;
     wxStaticText* m_infoTextMini;
