@@ -300,10 +300,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 {
     long controlID = event.GetId();
-    OnMultiChoice(controlID);
-}
-void mmCustomData::OnMultiChoice(long controlID)
-{
+    auto init = event.GetInt();
     wxButton* button = static_cast<wxButton*>(m_dialog->FindWindow(controlID));
     if (!button) {
         return;
@@ -329,19 +326,20 @@ void mmCustomData::OnMultiChoice(long controlID)
     }
 
     wxString data = label;
-    wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this, _("Please select"), _("Multi Choice"), all_choices);
-    MultiChoice->SetSelections(arr_selections);
-
-    if (MultiChoice->ShowModal() == wxID_OK)
+    if (init != -1)
     {
-        data.clear();
-        for (const auto &s : MultiChoice->GetSelections()) {
-            data += all_choices[s] + ";";
-        }
-        data.RemoveLast();
-    }
+        wxSharedPtr<wxMultiChoiceDialog> MultiChoice(new wxMultiChoiceDialog(this, _("Please select"), _("Multi Choice"), all_choices));
+        MultiChoice->SetSelections(arr_selections);
 
-    delete MultiChoice;
+        if (MultiChoice->ShowModal() == wxID_OK)
+        {
+            data.clear();
+            for (const auto& s : MultiChoice->GetSelections()) {
+                data += all_choices[s] + ";";
+            }
+            data.RemoveLast();
+        }
+    }
     button->SetLabel(data);
     SetWidgetChanged(controlID, data);
 }
@@ -381,7 +379,6 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         date.ParseDate(value);
         d->SetValue(date);
         wxDateEvent evt(d, date, wxEVT_DATE_CHANGED);
-        //evt.SetDate(date);
         d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxTimePickerCtrl")
@@ -425,9 +422,9 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
     {
         wxButton* d = static_cast<wxButton*>(w);
         d->SetLabel(value);
-        //wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, controlID);
-        //d->GetEventHandler()->AddPendingEvent(evt);
-        //TODO: FIXME
+        wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, controlID);
+        evt.SetInt(-1);
+        d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxTextCtrl")
     {
