@@ -148,9 +148,6 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 
 int mmFilterTransactionsDialog::ShowModal()
 {
-    BuildPayeeList();
-    SetStoredSettings(-1);
-
     return wxDialog::ShowModal();
 }
 
@@ -534,7 +531,7 @@ void mmFilterTransactionsDialog::CreateControls()
     // Custom fields -----------------------------------
 
     m_custom_fields->FillCustomFields(custom_fields_box_sizer);
-    if (m_custom_fields->GetActiveCustomFieldsCount() > 0) {
+    if (m_custom_fields->GetActiveCustomFields().size() > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -593,7 +590,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         colourButton_->Enable(colourCheckBox_->IsChecked());
         bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
-        bGroupBy_->Enable(groupByCheckBox_->IsChecked());
+        bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
     }
 
     if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
@@ -1348,15 +1345,13 @@ const wxString mmFilterTransactionsDialog::get_json(bool i18n) const
         json_writer.Int(colourValue_);
     }
 
-    //UDFC
+    //Save UDFC as JSON
     const auto cf = m_custom_fields->GetActiveCustomFields();
     if (cf.size() > 0)
     {
         for (const auto& i : cf)
         {
-            //const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
             const auto field = Model_CustomField::instance().get(i.first);
-
             wxString data = field ? field->PROPERTIES : "";
 
             Document j_doc;
@@ -1601,7 +1596,20 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     colourButton_->SetBackgroundColour(getUDColour(colourValue_));
     colourButton_->Refresh(); // Needed as setting the background colour does not cause an immediate refresh
 
-    //Presentation Options
+    //UDFC
+    bool is_udfc_found = false;
+    for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
+    {
+        if (j_doc.HasMember(udfc_entry.c_str())) {
+            auto value = j_doc[const_cast<char*>((const char*)udfc_entry.mb_str())].GetString();
+            m_custom_fields->SetStringValue(udfc_entry, value);
+            is_udfc_found = true;
+        }
+    }
+
+    /*******************************************************
+     Presentation Options
+    *******************************************************/
 
     //Hide Columns
     Value& j_columns = GetValueByPointerWithDefault(j_doc, "/COLUMN", "");
@@ -1628,8 +1636,13 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     Value& j_groupBy = GetValueByPointerWithDefault(j_doc, "/GROUPBY", "");
     const wxString& s_groupBy = j_groupBy.IsString() ? wxString::FromUTF8(j_groupBy.GetString()) : "";
     groupByCheckBox_->SetValue(!s_groupBy.empty());
-    bGroupBy_->Enable(groupByCheckBox_->IsChecked());
+    bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
     bGroupBy_->SetStringSelection(s_groupBy);
+
+    if (is_udfc_found) {
+        m_custom_fields->ShowHideCustomPanel();
+    }
+
 }
 
 void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)

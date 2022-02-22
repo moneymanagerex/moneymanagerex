@@ -43,7 +43,23 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     , m_ref_id(ref_id)
 {
     m_dialog = dialog;
-    m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    const auto fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    for (const auto& i : fields)
+    {
+        Document j_doc;
+        wxString s_label;
+        if (!j_doc.Parse(i.PROPERTIES.utf8_str()).HasParseError())
+        {
+            Value& j_label = GetValueByPointerWithDefault(j_doc, "/UDFC", "");
+            if (j_label.IsString()) {
+                s_label = j_label.GetString();
+            }
+            if (s_label.Matches("UDFC*"))
+            {
+                m_fields.push_back(i);
+            }
+        }
+    }
     std::sort(m_fields.begin(), m_fields.end(), SorterByFIELDID());
     m_data_changed.clear();
 }
@@ -94,6 +110,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             , wxCommandEventHandler(mmCustomData::OnCheckBoxActivated), nullptr, this);
 
         grid_sizer_custom->Add(Description, g_flagsH);
+
 
         switch (Model_CustomField::type(field))
         {
@@ -344,6 +361,55 @@ std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
     }
 
     return values;
+}
+
+void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
+{
+    wxWindow* w = m_dialog->FindWindowById(controlID);
+    if (!w)
+        return;
+    const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+
+    if (class_name == "wxDatePickerCtrl")
+    {
+        wxDatePickerCtrl* d = static_cast<wxDatePickerCtrl*>(w);
+        d->GetValue().FormatISODate();
+    }
+    else if (class_name == "wxTimePickerCtrl")
+    {
+        wxTimePickerCtrl* d = static_cast<wxTimePickerCtrl*>(w);
+        d->GetValue().FormatISOTime();
+    }
+    else if (class_name == "wxSpinCtrlDouble")
+    {
+        wxSpinCtrlDouble* d = static_cast<wxSpinCtrlDouble*>(w);
+        wxString::Format("%f", d->GetValue());
+    }
+    else if (class_name == "wxSpinCtrl")
+    {
+        wxSpinCtrl* d = static_cast<wxSpinCtrl*>(w);
+        wxString::Format("%i", d->GetValue());
+    }
+    else if (class_name == "wxChoice")
+    {
+        wxChoice* d = static_cast<wxChoice*>(w);
+        d->GetStringSelection();
+    }
+    else if (class_name == "wxButton")
+    {
+        wxButton* d = static_cast<wxButton*>(w);
+        d->GetLabel();
+    }
+    else if (class_name == "wxTextCtrl")
+    {
+        wxTextCtrl* d = static_cast<wxTextCtrl*>(w);
+        if (d) d->SetValue(value);
+    }
+    else if (class_name == "wxCheckBox")
+    {
+        wxCheckBox* d = static_cast<wxCheckBox*>(w);
+        (d->GetValue() ? "TRUE" : "FALSE");
+    }
 }
 
 const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
@@ -653,10 +719,32 @@ void mmCustomData::ShowHideCustomPanel() const
     }
 }
 
+void mmCustomData::SetStringValue(const wxString& udfc_entry, const wxString& value)
+{
+    wxLogDebug("%s %s", udfc_entry, value);
+    for (const auto& field : m_fields)
+    {
+        Document j_doc;
+        wxString s_label;
+        if (!j_doc.Parse(field.PROPERTIES.utf8_str()).HasParseError())
+        {
+            Value& j_label = GetValueByPointerWithDefault(j_doc, "/UDFC", "");
+            if (j_label.IsString()) {
+                s_label = j_label.GetString();
+            }
+
+            if (s_label == udfc_entry)
+            {
+                wxWindowID widget_id = GetBaseID() + field.FIELDID;
+                SetWidgetData(widget_id, value);
+            }
+        }
+    }
+}
+
 bool mmCustomData::ValidateCustomValues(int ref_id)
 {
     bool is_valid = true;
-    m_data_changed;
     for (const auto &field : m_fields)
     {
         wxWindowID labelID = GetLabelID() + field.FIELDID;

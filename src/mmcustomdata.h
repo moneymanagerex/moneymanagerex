@@ -34,8 +34,10 @@ public:
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
     void UpdateCustomValues(int ref_id);
+    void SetStringValue(const wxString& udfc_entry, const wxString& value);
     bool ValidateCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
+    void SetWidgetData(wxWindowID controlID, const wxString& value);
     int GetWidgetType(wxWindowID controlID) const;
     size_t GetCustomFieldsCount() const;
     size_t GetActiveCustomFieldsCount() const;

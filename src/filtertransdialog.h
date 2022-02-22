@@ -220,8 +220,8 @@ private:
         ID_DIALOG_DATEPRESET= wxID_HIGHEST + 900,
         ID_DIALOG_COLOUR,
         ID_DIALOG_COLUMNS,
+        ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
-        ID_BTN_CUSTOMFIELDS
     };
 };
 
