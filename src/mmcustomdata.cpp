@@ -70,7 +70,7 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
         , ref_id)
 {
     SetBaseID(base_id);
-    SetLabelID(base_id + GetCustomFieldsCount());
+    SetLabelID(base_id + 100); //GetCustomFieldsCount());
 }
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
@@ -300,6 +300,10 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 {
     long controlID = event.GetId();
+    OnMultiChoice(controlID);
+}
+void mmCustomData::OnMultiChoice(long controlID)
+{
     wxButton* button = static_cast<wxButton*>(m_dialog->FindWindow(controlID));
     if (!button) {
         return;
@@ -373,42 +377,62 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
     if (class_name == "wxDatePickerCtrl")
     {
         wxDatePickerCtrl* d = static_cast<wxDatePickerCtrl*>(w);
-        d->GetValue().FormatISODate();
+        wxDateTime date;
+        date.ParseDate(value);
+        d->SetValue(date);
+        wxCommandEvent evt(wxEVT_DATE_CHANGED, controlID);
+        d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxTimePickerCtrl")
     {
         wxTimePickerCtrl* d = static_cast<wxTimePickerCtrl*>(w);
-        d->GetValue().FormatISOTime();
+        wxDateTime time;
+        time.ParseTime(value);
+        d->SetValue(time);
+        wxCommandEvent evt(wxEVT_TIME_CHANGED, controlID);
+        d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxSpinCtrlDouble")
     {
         wxSpinCtrlDouble* d = static_cast<wxSpinCtrlDouble*>(w);
-        wxString::Format("%f", d->GetValue());
+        double num;
+        if (value.ToDouble(&num)) {
+            d->SetValue(num);
+            wxCommandEvent evt(wxEVT_SPINCTRLDOUBLE, controlID);
+            d->GetEventHandler()->AddPendingEvent(evt);
+        }
     }
     else if (class_name == "wxSpinCtrl")
     {
         wxSpinCtrl* d = static_cast<wxSpinCtrl*>(w);
-        wxString::Format("%i", d->GetValue());
+        d->SetValue(wxAtoi(value));
+        wxCommandEvent evt(wxEVT_SPINCTRL, controlID);
+        d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxChoice")
     {
         wxChoice* d = static_cast<wxChoice*>(w);
-        d->GetStringSelection();
+        d->SetStringSelection(value);
+        wxCommandEvent evt(wxEVT_CHOICE, controlID);
+        d->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (class_name == "wxButton")
     {
         wxButton* d = static_cast<wxButton*>(w);
-        d->GetLabel();
+        d->SetLabel(value);
+        //wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, controlID);
+        //d->GetEventHandler()->AddPendingEvent(evt);
+        //TODO: FIXME
     }
     else if (class_name == "wxTextCtrl")
     {
         wxTextCtrl* d = static_cast<wxTextCtrl*>(w);
-        if (d) d->SetValue(value);
+        d->SetValue(value);
     }
     else if (class_name == "wxCheckBox")
     {
         wxCheckBox* d = static_cast<wxCheckBox*>(w);
-        (d->GetValue() ? "TRUE" : "FALSE");
+        d->SetValue(wxString("TRUE1").Contains(value));
     }
 }
 
@@ -682,7 +706,7 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
     wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
     if (Description) {
         Description->SetValue(true);
-        wxLogDebug("Description %i value = %i", label_id, 1);
+        wxLogDebug("[V] %s = %s", Description->GetLabel(), data);
     }
 }
 

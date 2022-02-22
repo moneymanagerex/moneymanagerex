@@ -36,7 +36,7 @@ public:
 private:
     void Run(mmFilterTransactionsDialog* transDialog);
     Model_Checking::Full_Data_Set trans_;
-    mmFilterTransactionsDialog* m_transDialog;
+    wxSharedPtr<mmFilterTransactionsDialog> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols);
 

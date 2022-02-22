@@ -217,7 +217,7 @@ private:
     enum
     {
         /* FIlter Dialog */
-        ID_DIALOG_DATEPRESET= wxID_HIGHEST + 900,
+        ID_DIALOG_DATEPRESET= wxID_HIGHEST + 897,
         ID_DIALOG_COLOUR,
         ID_DIALOG_COLUMNS,
         ID_BTN_CUSTOMFIELDS,

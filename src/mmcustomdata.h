@@ -68,6 +68,7 @@ private:
     void OnDateChanged(wxDateEvent& event);
     void OnTimeChanged(wxDateEvent& event);
     void OnMultiChoice(wxCommandEvent& event);
+    void OnMultiChoice(long controlID);
     void OnSingleChoice(wxCommandEvent& event);
     void OnCheckBoxChanged(wxCommandEvent& event);
     void OnCheckBoxActivated(wxCommandEvent& event);
