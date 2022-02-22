@@ -192,10 +192,8 @@ void mmPayeeDialog::fillControls()
 void mmPayeeDialog::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
     m_payee_id = FindSelectedPayee();
-    if (m_payee_choose) {
-        m_payee_id = FindSelectedPayee();
+    if (m_payee_choose)
         EndModal(wxID_OK);
-    }
     else
         EditPayee();
 }
@@ -424,6 +422,11 @@ void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmPayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    m_payee_id = FindSelectedPayee();
-    EndModal(wxID_OK);
+    if (payeeListBox_->GetItemCount() < 1)
+        AddPayee();
+    else
+    {
+        m_payee_id = FindSelectedPayee();
+        EndModal(wxID_OK);
+    }
 }
