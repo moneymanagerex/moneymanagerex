@@ -31,6 +31,7 @@ class mmCustomData : public wxDialog
 {
 public:
     mmCustomData();
+    ~mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
     void UpdateCustomValues(int ref_id);
@@ -54,6 +55,7 @@ public:
     void ClearSettings() const;
     bool IsCustomPanelShown() const;
     void ShowHideCustomPanel() const;
+    void ShowCustomPanel() const;
 
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);

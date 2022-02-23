@@ -65,7 +65,7 @@ mmReportsPanel::mmReportsPanel(
 mmReportsPanel::~mmReportsPanel()
 {
     if (cleanup_ && rb_) {
-        delete rb_;
+        //delete rb_;
     }
 
     m_all_date_ranges.clear();

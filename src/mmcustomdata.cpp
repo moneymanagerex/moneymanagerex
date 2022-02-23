@@ -30,6 +30,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/collpane.h>
 #include <wx/spinctrl.h>
 
+mmCustomData::~mmCustomData()
+{
+    wxLogDebug("~mmCustomData");
+}
+
 mmCustomData::mmCustomData()
     : wxDialog()
     , m_ref_id(-1)
@@ -747,6 +752,11 @@ void mmCustomData::ShowHideCustomPanel() const
         if (!m_fields.empty())
             m_static_box->Show();
     }
+}
+
+void mmCustomData::ShowCustomPanel() const
+{
+    m_static_box->Show();
 }
 
 void mmCustomData::SetStringValue(const wxString& udfc_entry, const wxString& value)

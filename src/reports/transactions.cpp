@@ -28,7 +28,7 @@
 #include <algorithm>
 #include <vector>
 
-mmReportTransactions::mmReportTransactions(mmFilterTransactionsDialog* transDialog)
+mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
     : mmPrintableBase("Transaction Report")
     , m_transDialog(transDialog)
     , trans_()
@@ -37,10 +37,6 @@ mmReportTransactions::mmReportTransactions(mmFilterTransactionsDialog* transDial
 
 mmReportTransactions::~mmReportTransactions()
 {
-    // incase the user wants to print a report, we maintain the transaction dialog
-    // until we are finished with the report.
-    if(m_transDialog)
-        m_transDialog->Destroy();
 }
 
 void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols)
@@ -315,13 +311,13 @@ table {
     return hb.getHTMLText();
 }
 
-void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
+void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!dlg->checkAll(tran, splits)) continue;
+        if (!dlg.get()->checkAll(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
@@ -344,7 +340,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     }
     
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
-    switch (dlg->getGroupBy())
+    switch (dlg.get()->getGroupBy())
     {
         case mmFilterTransactionsDialog::GROUPBY_ACCOUNT:
             std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());

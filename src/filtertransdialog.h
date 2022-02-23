@@ -40,6 +40,7 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
+    ~mmFilterTransactionsDialog();
     mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false);
 
     virtual int ShowModal();

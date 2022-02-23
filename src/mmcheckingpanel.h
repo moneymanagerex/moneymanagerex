@@ -129,7 +129,7 @@ private:
     wxStaticText* m_info_panel_mini;
     wxStaticText* m_statTextTransFilter;
 
-    mmFilterTransactionsDialog* m_trans_filter_dlg;
+    wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
 private:
     int m_currentView;

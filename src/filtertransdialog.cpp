@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/valnum.h>
 
-#define DATE_MAX 253402214400   /* Dec 31, 9999 */
+constexpr auto DATE_MAX = 253402214400   /* Dec 31, 9999 */;
 
 static const wxString TRANSACTION_STATUSES[] =
 {
@@ -105,7 +105,13 @@ EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
 EVT_BUTTON(ID_DIALOG_COLOUR, mmFilterTransactionsDialog::OnColourButton)
 wxEND_EVENT_TABLE()
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(){}
+mmFilterTransactionsDialog::mmFilterTransactionsDialog()
+{
+}
+mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
+{
+    wxLogDebug("~mmFilterTransactionsDialog");
+}
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode)
     : categID_(-1)
@@ -115,7 +121,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
     , isMultiAccount_(showAccountFilter)
     , isReportMode_(isReportMode)
 {
-    m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS);
+    m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
     Create(parent);
     is_values_correct();
 }
@@ -1640,7 +1646,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     bGroupBy_->SetStringSelection(s_groupBy);
 
     if (is_udfc_found) {
-        m_custom_fields->ShowHideCustomPanel();
+        m_custom_fields->ShowCustomPanel();
     }
 
 }
