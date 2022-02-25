@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-25 15:38\n"
+"PO-Revision-Date: 2022-02-25 16:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2563,7 +2563,7 @@ msgstr "Sin color"
 
 #: general_report_manager.cpp:248 general_report_manager.cpp:664
 msgid "General Reports Manager"
-msgstr "Administrador de informes"
+msgstr "Administrador de informes generales"
 
 #: general_report_manager.cpp:291 mmframe.cpp:802 mmframe.cpp:2480
 #: mmframe.cpp:2605 reports/myusage.cpp:142 reports/myusage.cpp:159
@@ -2645,7 +2645,7 @@ msgstr "Cargar archivo de informe:"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "General Report Manager files (*.grm)"
-msgstr "Archivos del administrador de informes (*.grm)"
+msgstr "Archivos del Administrador de informes generales (*.grm)"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "ZIP files (*.zip)"
@@ -2693,7 +2693,7 @@ msgstr "Indicar el nombre para el informe"
 #: general_report_manager.cpp:833 general_report_manager.cpp:981
 #: mmframe.cpp:1280 mmframe.cpp:1561 mmframe.cpp:1733
 msgid "General Report Manager"
-msgstr "Administrador de informes"
+msgstr "Administrador de informes generales"
 
 #: general_report_manager.cpp:851
 msgid "Delete the Report Title:"
