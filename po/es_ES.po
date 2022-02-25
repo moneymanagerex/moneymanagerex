@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-25 14:56\n"
+"PO-Revision-Date: 2022-02-25 15:38\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4441,7 +4441,7 @@ msgstr "Filtro de informe de transacciones"
 
 #: mmframe.cpp:1561
 msgid "General Report &Manager..."
-msgstr "&Administrador de informes..."
+msgstr "&Administrador de informes generales..."
 
 #: mmframe.cpp:1565
 msgid "C&ustom Fields Manager..."
