@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-26 12:16\n"
+"PO-Revision-Date: 2022-02-26 12:24\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5554,8 +5554,8 @@ msgstr "Seleccione la divisa por defecto de la BD usando la pantalla 'Divisa'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Botón derecho del ratón y seleccione 'Configurar como moneda base' en \n"
-"la pantalla 'Moneda'"
+msgstr "Botón derecho del ratón y seleccione 'Configurar como divisa base' en \n"
+"la pantalla 'Divisa'"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
@@ -6954,7 +6954,7 @@ msgstr "Transferencia de fondos desde/a esta cuenta. Desmarque para seleccionar\
 
 #: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
-msgstr "Moneda usada para esta transacción."
+msgstr "Divisa usada para esta transacción."
 
 #: usertransactionpanel.cpp:176
 msgid "Specify the status for this transaction"
@@ -7391,7 +7391,7 @@ msgstr "Las cuentas a plazo son cuentas bancarias especializadas.\n"
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
-msgstr "No se ha seleccionado moneda base para la cuenta."
+msgstr "No se ha seleccionado divisa base para la cuenta."
 
 #: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
@@ -7423,16 +7423,16 @@ msgstr "Las siguientes páginas le ayudarán a creara una nueva base de datos.\n
 
 #: wizard_newdb.cpp:92
 msgid "Base Currency for account"
-msgstr "Moneda base para la cuenta"
+msgstr "Divisa base para la cuenta"
 
 #: wizard_newdb.cpp:95
 msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Especifique la moneda base (o por defecto) para ser usada por\n"
-"la base de datos. La moneda base se puede cambiar posteriormente\n"
-"mediante las opciones. Las cuentas nuevas utilizarán esta moneda\n"
+msgstr "Especifique la divisa base (o por defecto) para ser usada por\n"
+"la base de datos. La divisa base se puede cambiar posteriormente\n"
+"mediante las opciones. Las cuentas nuevas utilizarán esta divisa\n"
 "por defecto, aunque se puede cambiar editando la cuenta."
 
 #: wizard_newdb.cpp:112
@@ -7445,7 +7445,7 @@ msgstr "Se usa como título de la base de datos para los informes impresos y por
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
-msgstr "Moneda base no fijada"
+msgstr "Divisa base no fijada"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
