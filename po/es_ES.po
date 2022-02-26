@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-26 12:06\n"
+"PO-Revision-Date: 2022-02-26 12:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -110,15 +110,15 @@ msgstr "Introduzca el saldo inicial de esta cuenta."
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1834
 msgid "Currency:"
-msgstr "Moneda:"
+msgstr "Divisa:"
 
 #: accountdialog.cpp:173 currencydialog.cpp:101
 msgid "Select Currency"
-msgstr "Seleccionar Moneda"
+msgstr "Seleccionar divisa"
 
 #: accountdialog.cpp:179
 msgid "Specify the currency to be used by this account."
-msgstr "Especifique la moneda a usar en esta cuenta."
+msgstr "Especifique la divisa a usar en esta cuenta."
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
@@ -270,7 +270,7 @@ msgstr "Nombre de Cuenta "
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:205
 msgid "Currency"
-msgstr "Moneda"
+msgstr "Divisa"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
@@ -1785,15 +1785,15 @@ msgstr "Favoritas"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr "Nombre de divisa"
+msgstr "Nombre de la divisa"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
-msgstr "Nombre de la moneda"
+msgstr "Nombre de la divisa"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
-msgstr "Símbolo de la moneda"
+msgstr "Símbolo de la divisa"
 
 #: currencydialog.cpp:183
 msgid "Prefix Symbol"
@@ -1822,7 +1822,7 @@ msgstr "Conversión a Tasa Base"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr "La tasa de conversión se utilizará en caso de que no se haya encontrado ningún historial de divisas para la moneda"
+msgstr "La tasa de conversión se utilizará en caso de que no se haya encontrado ningún historial de divisas para la divisa"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
@@ -3452,7 +3452,7 @@ msgstr "Actualización online"
 
 #: maincurrencydialog.cpp:177
 msgid "Show all even the unused currencies"
-msgstr "Mostrar todo incluso las monedas no utilizadas"
+msgstr "Mostrar todas incluyendo las divisas no utilizadas"
 
 #: maincurrencydialog.cpp:207 payeedialog.cpp:140
 msgid "Search:"
@@ -3460,7 +3460,7 @@ msgstr "Buscar:"
 
 #: maincurrencydialog.cpp:228
 msgid "Currency History Options"
-msgstr "Opciones del histórico de la moneda"
+msgstr "Opciones del histórico de la divisa"
 
 #: maincurrencydialog.cpp:246 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
@@ -3469,11 +3469,11 @@ msgstr "Precio"
 
 #: maincurrencydialog.cpp:268
 msgid "Specify the date of currency value"
-msgstr "Especificar la fecha de valor de la moneda"
+msgstr "Especificar la fecha de valor de la divisa"
 
 #: maincurrencydialog.cpp:276
 msgid "Enter the currency value"
-msgstr "Introduzca el valor de la moneda"
+msgstr "Introduzca el valor de la divisa"
 
 #: maincurrencydialog.cpp:286
 msgid "Download Currency Values history"
@@ -3485,19 +3485,19 @@ msgstr "&Añadir / Actualizar "
 
 #: maincurrencydialog.cpp:290
 msgid "Add Currency Values to history"
-msgstr "Agregar valores de moneda al histórico"
+msgstr "Agregar valores de divisa al histórico"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete selected Currency Values"
-msgstr "Borrar los valores de moneda seleccionados"
+msgstr "Borrar los valores de divisa seleccionados"
 
 #: maincurrencydialog.cpp:298
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr "Eliminar historial de Valores de Moneda para monedas y días no utilizados"
+msgstr "Eliminar historial de Valores de divisa para divisas y días no utilizados"
 
 #: maincurrencydialog.cpp:354
 msgid "Do you really want to delete the selected Currency?"
-msgstr "¿Desea eliminar la moneda seleccionada?"
+msgstr "¿Desea eliminar la divisa seleccionada?"
 
 #: maincurrencydialog.cpp:355 maincurrencydialog.cpp:425
 #: maincurrencydialog.cpp:651 maincurrencydialog.cpp:776
@@ -3507,33 +3507,33 @@ msgstr "Ventana de divisas"
 
 #: maincurrencydialog.cpp:383
 msgid "Base Currency Selection"
-msgstr "Selección de la moneda base"
+msgstr "Selección de la divisa base"
 
 #: maincurrencydialog.cpp:423
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr "Tasas históricas para %s encontradas, pero \"Usar histórico de monedas\" en las opciones está deshabilitado:\n"
+msgstr "Tasas históricas para %s encontradas, pero \"Usar histórico de divisas\" en las opciones está deshabilitado:\n"
 "haga clic en no y habilítelo o haga clic en sí para eliminar todas las tasas históricas de %s"
 
 #: maincurrencydialog.cpp:435
 #, c-format
 msgid "Currency History Options: %s "
-msgstr "Opciones del histórico de la moneda: %s "
+msgstr "Opciones del histórico de la divisa: %s "
 
 #: maincurrencydialog.cpp:491
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "No se puede actualizar el histórico de tasas de monedas. ¡Por favor actualícelas manualmente!"
+msgstr "No se puede actualizar el histórico de tasas de divisas. ¡Por favor, actualícelas manualmente!"
 
 #: maincurrencydialog.cpp:492 maincurrencydialog.cpp:644
 #: maincurrencydialog.cpp:679 maincurrencydialog.cpp:715
 #: maincurrencydialog.cpp:821
 msgid "Currency history error"
-msgstr "Error del histórico de la moneda"
+msgstr "Error del histórico de la divisa"
 
 #: maincurrencydialog.cpp:524
 msgid "Set as Base Currency"
-msgstr "Establecer como moneda principal"
+msgstr "Establecer como divisa principal"
 
 #: maincurrencydialog.cpp:525
 msgid "Online Update Currency Rate"
@@ -3541,7 +3541,7 @@ msgstr "Actualización online del tipo de cambio"
 
 #: maincurrencydialog.cpp:644
 msgid "No currency selected!"
-msgstr "¡No hay moneda selecionada!"
+msgstr "¡No hay divisa selecionada!"
 
 #: maincurrencydialog.cpp:650
 msgid "Do you want to add also dates without any transaction?"
@@ -3550,7 +3550,7 @@ msgstr "¿Desea añadir fechas sin ninguna transacción?"
 #: maincurrencydialog.cpp:677
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr "Imposible descargar las tasas de cambio de la moneda %s"
+msgstr "Imposible descargar las tasas de cambio de la divisa %s"
 
 #: maincurrencydialog.cpp:713
 #, c-format
@@ -3559,7 +3559,7 @@ msgstr "Imposible descargar el histórico del símbolo %s. ¡Las tasas de cambio
 
 #: maincurrencydialog.cpp:775
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Cambiar la moneda base eliminará todo el histórico de tasas, ¿Continuar?"
+msgstr "Cambiar la divisa base eliminará todo el histórico de tasas, ¿Continuar?"
 
 #: maincurrencydialog.cpp:799
 msgid "Do you want to update today currency rates?"
@@ -3572,7 +3572,7 @@ msgstr "No se puede descargar el histórico del símbolo base %s. ¡El históric
 
 #: maincurrencydialog.cpp:863 stockspanel.cpp:338 util.cpp:619
 msgid "Could not find base currency symbol!"
-msgstr "¡No se puede encontrar el símbolo de la moneda base!"
+msgstr "¡No se puede encontrar el símbolo de la divisa base!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3719,7 +3719,7 @@ msgstr "Consejo: Para imprimir un extracto con transacciones cumpliendo unos det
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Consejo: Seleccione el tipo de cambio para las monedas en caso de que tenga cuentas con diferente moneda."
+msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que tenga cuentas con diferente divisa."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -4385,7 +4385,7 @@ msgstr "Organizar divi&sas..."
 
 #: mmframe.cpp:1514 mmframe.cpp:1729
 msgid "Organize Currency"
-msgstr "Organizar monedas"
+msgstr "Organizar divisas"
 
 #: mmframe.cpp:1518
 msgid "&Categories..."
@@ -4709,7 +4709,7 @@ msgstr "Mostrar la ventana para organizar beneficiarios"
 
 #: mmframe.cpp:1729
 msgid "Show Organize Currency Dialog"
-msgstr "Mostrar la ventana para organizar monedas"
+msgstr "Mostrar la ventana para organizar divisas"
 
 #: mmframe.cpp:1735
 msgid "&Options..."
@@ -5151,7 +5151,7 @@ msgstr "Cuentas de activos"
 
 #: mmhomepage.cpp:778
 msgid "Currency Exchange Rates"
-msgstr "Cambio de Divisas"
+msgstr "Cambio de divisas"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5542,15 +5542,15 @@ msgstr "Ejemplo de formato de fecha:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
-msgstr "Moneda base"
+msgstr "Divisa base"
 
 #: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
-msgstr "Seleccionar moneda"
+msgstr "Seleccionar divisa"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Seleccione la moneda por defecto de la BD usando la pantalla 'Moneda'"
+msgstr "Seleccione la divisa por defecto de la BD usando la pantalla 'Divisa'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
