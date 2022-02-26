@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-25 16:08\n"
+"PO-Revision-Date: 2022-02-26 12:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -219,11 +219,11 @@ msgstr "La fecha del bloqueo de la transacción"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr "Balance mínimo:"
+msgstr "Saldo mínimo:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Límite inferior del balance de la cuenta. 0 para deshabilitar"
+msgstr "Límite inferior del saldo de la cuenta. 0 para deshabilitar"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
@@ -3956,11 +3956,11 @@ msgstr "Vista de cuenta: %s"
 
 #: mmcheckingpanel.cpp:407
 msgid "Account Bal: "
-msgstr "Balance de cuenta: "
+msgstr "Saldo de cuenta: "
 
 #: mmcheckingpanel.cpp:409
 msgid "Reconciled Bal: "
-msgstr "Balance conciliado: "
+msgstr "Saldo conciliado: "
 
 #: mmcheckingpanel.cpp:411
 msgid "Diff: "
@@ -3968,7 +3968,7 @@ msgstr "Diferencia: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr "Balance filtrado: "
+msgstr "Saldo filtrado: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -3982,7 +3982,7 @@ msgstr "Transacciones seleccionadas: %zu"
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr "Balance de las transacciones seleccionadas: %s"
+msgstr "Saldo de las transacciones seleccionadas: %s"
 
 #: mmcheckingpanel.cpp:507
 #, c-format
@@ -6368,7 +6368,7 @@ msgstr "Cuentas: "
 #: reports/summary.cpp:151
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr "Balance de cuentas - %s"
+msgstr "Saldo de cuentas - %s"
 
 #: reports/summary.cpp:151
 msgid "Monthly Report"
