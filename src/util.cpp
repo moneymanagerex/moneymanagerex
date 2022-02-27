@@ -1587,15 +1587,21 @@ int pow10(int y)
 wxString HTMLEncode(wxString input)
 {
     wxString output;
-    for(int pos = 0; pos < input.Len(); ++pos) {
-        switch(static_cast<char>(input.GetChar(pos))) {
-            case '&':  output.Append("&amp;");      break;
-            case '\"': output.Append("&quot;");     break;
-            case '\'': output.Append("&apos;");     break;
-            case '<':  output.Append("&lt;");       break;
-            case '>':  output.Append("&gt;");       break;
-            default:   output.Append(input[pos]);   break;
-        }
+    for(int pos = 0; pos < input.Len(); ++pos) 
+    {
+        wxUniChar c = input.GetChar(pos);
+        if (c.IsAscii())
+            switch(static_cast<char>(c)) 
+            {
+                case '&':  output.Append("&amp;");      break;
+                case '\"': output.Append("&quot;");     break;
+                case '\'': output.Append("&apos;");     break;
+                case '<':  output.Append("&lt;");       break;
+                case '>':  output.Append("&gt;");       break;
+                default:   output.Append(c);            break;
+            }
+        else
+            output.Append(c);
     }
     return output;
 }
