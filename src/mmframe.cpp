@@ -2475,8 +2475,8 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
     if (dlg->ShowModal() == wxID_OK)
     {
-        wxSharedPtr<mmReportTransactions> rs(new mmReportTransactions(dlg));
-        createReportsPage(rs.get(), true);
+        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }
     m_nav_tree_ctrl->Refresh();

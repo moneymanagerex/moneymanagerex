@@ -37,6 +37,8 @@ mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialo
 
 mmReportTransactions::~mmReportTransactions()
 {
+    if (m_transDialog)
+        m_transDialog->Destroy();
 }
 
 void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols)

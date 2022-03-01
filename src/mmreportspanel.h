@@ -50,7 +50,7 @@ public:
     void sortTable() {}
 
     bool saveReportText(bool initial = true);
-    mmPrintableBase* getPrintableBase() { return rb_; }
+    mmPrintableBase* getPrintableBase();
     void PrintPage();
 
     mmGUIFrame *m_frame;
@@ -92,5 +92,6 @@ private:
 
 };
 
+inline mmPrintableBase* mmReportsPanel::getPrintableBase() { return rb_; }
 #endif
 

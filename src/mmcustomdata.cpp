@@ -372,7 +372,7 @@ std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
 
 void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
 {
-    wxWindow* w = m_dialog->FindWindowById(controlID);
+    wxWindow* w = m_dialog->FindWindowById(controlID, m_dialog);
     if (!w)
         return;
     const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
@@ -456,7 +456,7 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
     }
     else
     {
-        wxWindow* w = m_dialog->FindWindowById(controlID);
+        wxWindow* w = m_dialog->FindWindowById(controlID, m_dialog);
         if (w)
         {
             const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
@@ -619,7 +619,7 @@ void mmCustomData::ClearSettings() const
     {
         //wxWindowID controlID = GetBaseID() + field.FIELDID;
         wxWindowID labelID = GetLabelID() + field.FIELDID;
-        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID));
+        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb) cb->SetValue(false);
     }
 }
@@ -788,7 +788,7 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
     for (const auto &field : m_fields)
     {
         wxWindowID labelID = GetLabelID() + field.FIELDID;
-        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID));
+        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (!cb || !cb->GetValue())
             continue;
 
