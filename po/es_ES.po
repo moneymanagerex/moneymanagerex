@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-26 12:24\n"
+"PO-Revision-Date: 2022-03-01 13:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr "Abrir la última base de datos utilizada"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "Crear una Nueva Base de datos"
+msgstr "Crear una nueva base de datos"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
