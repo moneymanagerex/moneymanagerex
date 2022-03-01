@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-01 13:20\n"
+"PO-Revision-Date: 2022-03-01 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -295,7 +295,7 @@ msgstr "Crear una nueva base de datos"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Crear un nuevo fichero de base de datos con el que comenzar"
+msgstr "Crear un nuevo archivo de base de datos para empezar"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
@@ -3683,7 +3683,7 @@ msgstr "Recomendación: Hacer una copia de seguridad de la base de datos .mmb co
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr "Recomendación: Antes de actualizar a una nueva versión de MMEX, asegúrese de hacer una copia de seguridad del fichero de base de datos .mmb."
+msgstr "Recomendación: Antes de actualizar a una nueva versión de MMEX, asegúrese de hacer una copia de seguridad del archivo de base de datos .mmb."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -7413,11 +7413,11 @@ msgid "The next pages will help you create a new database.\n\n"
 "file type before saving."
 msgstr "Las siguientes páginas le ayudarán a creara una nueva base de datos.\n\n"
 "Tu archivo de base de datos se almacena con una extensión de .mmb.\n"
-"Como este fichero contiene información financiera importante,\n"
+"Como este archivo contiene información financiera importante,\n"
 "le recomendamos crear copias de seguridad diarias con las Opciones\n"
 "de configuración: 'Copia de seguridad antes de abrir', y almacenando\n"
 "estas copias de seguridad en una localización diferente.\n\n"
-"La base de datos se puede encriptar más tarde si se necesita, usando\n"
+"La base de datos se puede cifrar más tarde si se necesita, usando\n"
 "la opción: 'Guarda base de datos como' y cambiando el tipo de\n"
 "archivo antes de guardar."
 
