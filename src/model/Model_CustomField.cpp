@@ -90,15 +90,20 @@ const wxString Model_CustomField::fieldtype_desc(const int FieldTypeEnum)
     return reftype_desc;
 }
 
-Model_CustomField::FIELDTYPE Model_CustomField::type(const Data* r)
+Model_CustomField::FIELDTYPE Model_CustomField::type(const wxString& value)
 {
     for (const auto& item : FIELDTYPE_CHOICES)
     {
-        if (item.second.CmpNoCase(r->TYPE) == 0)
+        if (item.second.CmpNoCase(value) == 0)
             return item.first;
     }
 
     return UNKNOWN;
+}
+
+Model_CustomField::FIELDTYPE Model_CustomField::type(const Data* r)
+{
+    return type(r->TYPE);
 }
 
 Model_CustomField::FIELDTYPE Model_CustomField::type(const Data& r)

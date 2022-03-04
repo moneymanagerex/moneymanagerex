@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2017 Gabriele-V
-Copyright (C) 2018, 2021 Nikolay Akimov
+Copyright (C) 2018, 2021, 2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,15 +31,18 @@ class mmCustomData : public wxDialog
 {
 public:
     mmCustomData();
+    ~mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
     void UpdateCustomValues(int ref_id);
+    void SetStringValue(const wxString& udfc_entry, const wxString& value);
     bool ValidateCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
+    void SetWidgetData(wxWindowID controlID, const wxString& value);
     int GetWidgetType(wxWindowID controlID) const;
     size_t GetCustomFieldsCount() const;
     size_t GetActiveCustomFieldsCount() const;
-    std::map<wxString, wxString> GetActiveCustomFields() const;
+    std::map<int, wxString> GetActiveCustomFields() const;
     void SetBaseID(wxWindowID id);
     wxWindowID GetBaseID() const;
     void SetLabelID(wxWindowID id);
@@ -52,6 +55,7 @@ public:
     void ClearSettings() const;
     bool IsCustomPanelShown() const;
     void ShowHideCustomPanel() const;
+    void ShowCustomPanel() const;
 
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);

@@ -28,7 +28,7 @@
 #include <algorithm>
 #include <vector>
 
-mmReportTransactions::mmReportTransactions(mmFilterTransactionsDialog* transDialog)
+mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
     : mmPrintableBase("Transaction Report")
     , m_transDialog(transDialog)
     , trans_()
@@ -37,9 +37,8 @@ mmReportTransactions::mmReportTransactions(mmFilterTransactionsDialog* transDial
 
 mmReportTransactions::~mmReportTransactions()
 {
-    // incase the user wants to print a report, we maintain the transaction dialog
-    // until we are finished with the report.
-    m_transDialog->Destroy();
+    if (m_transDialog)
+        m_transDialog->Destroy();
 }
 
 void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols)
@@ -70,7 +69,7 @@ wxString mmReportTransactions::getHTMLText()
     wxArrayInt selectedAccounts = m_transDialog->getAccountsID();
     wxString accounts = _("All Accounts");
     int allAccounts = true;
-    if (m_transDialog->getAccountCheckBox() && !m_transDialog->getAccountsID().empty()) {
+    if (m_transDialog->is_account_cb_active() && !m_transDialog->getAccountsID().empty()) {
         accounts.clear();
         allAccounts = false;
         for (const auto& acc : selectedAccounts) {
@@ -105,7 +104,7 @@ table {
     start.ParseISODate(m_transDialog->getBeginDate());
     end.ParseISODate(m_transDialog->getEndDate());
     hb.DisplayDateHeading(start, end
-        , m_transDialog->getRangeCheckBox() || m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox());
+        , m_transDialog->getRangeCheckBox() || m_transDialog->is_date_range_cb_active() || m_transDialog->getStartDateCheckBox());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
     m_noOfCols = (m_transDialog->getHideColumnsCheckBox()) ? m_transDialog->getHideColumnsID().GetCount() : 11;
@@ -314,13 +313,13 @@ table {
     return hb.getHTMLText();
 }
 
-void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
+void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!dlg->checkAll(tran, splits)) continue;
+        if (!dlg.get()->checkAll(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
@@ -328,7 +327,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         {
             for (const auto& split : full_tran.m_splits)
             {
-                if (m_transDialog->getCategoryCheckBox())
+                if (m_transDialog->is_category_cb_active())
                 {
                     if (split.CATEGID != m_transDialog->getCategId() ) continue;
                     if (split.SUBCATEGID != m_transDialog->getSubCategId() 
@@ -343,7 +342,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     }
     
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
-    switch (dlg->getGroupBy())
+    switch (dlg.get()->getGroupBy())
     {
         case mmFilterTransactionsDialog::GROUPBY_ACCOUNT:
             std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());

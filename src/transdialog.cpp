@@ -168,8 +168,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         mmAttachmentManage::CloneAllAttachments(RefType, transaction_id, -1);
     }
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, style, name);
+    Create(parent);
     this->SetMinSize(wxSize(500, 400));
 
     dataToControls();
