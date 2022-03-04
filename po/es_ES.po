@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-20 12:29\n"
+"PO-Revision-Date: 2022-03-04 10:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -110,15 +110,15 @@ msgstr "Introduzca el saldo inicial de esta cuenta."
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1834
 msgid "Currency:"
-msgstr "Moneda:"
+msgstr "Divisa:"
 
 #: accountdialog.cpp:173 currencydialog.cpp:101
 msgid "Select Currency"
-msgstr "Seleccionar Moneda"
+msgstr "Seleccionar divisa"
 
 #: accountdialog.cpp:179
 msgid "Specify the currency to be used by this account."
-msgstr "Especifique la moneda a usar en esta cuenta."
+msgstr "Especifique la divisa a usar en esta cuenta."
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
@@ -219,11 +219,11 @@ msgstr "La fecha del bloqueo de la transacción"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr "Balance mínimo:"
+msgstr "Saldo mínimo:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Límite inferior del balance de la cuenta. 0 para deshabilitar"
+msgstr "Límite inferior del saldo de la cuenta. 0 para deshabilitar"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:236
 msgid "Credit"
@@ -270,7 +270,7 @@ msgstr "Nombre de Cuenta "
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:205
 msgid "Currency"
-msgstr "Moneda"
+msgstr "Divisa"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
@@ -291,15 +291,15 @@ msgstr "Abrir la última base de datos utilizada"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "Crear una Nueva Base de datos"
+msgstr "Crear una nueva base de datos"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Crear un nuevo fichero de base de datos con el que comenzar"
+msgstr "Crear un nuevo archivo de base de datos para empezar"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "Abrir una Base de datos existente"
+msgstr "Abrir una base de datos existente"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -307,7 +307,7 @@ msgstr "Abrir un fichero de base de datos existente con extensión (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr "Leer la Documentación"
+msgstr "Leer la documentación"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
@@ -315,7 +315,7 @@ msgstr "Leer el manual de usuario"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "Visitar la Página web para más información"
+msgstr "Visitar la página web para más información"
 
 #: appstartdialog.cpp:116
 #, c-format
@@ -1435,7 +1435,7 @@ msgstr "Mes: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    fecha de inicio de: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -1785,15 +1785,15 @@ msgstr "Favoritas"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr "Nombre de moneda"
+msgstr "Nombre de la divisa"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
-msgstr "Nombre de la moneda"
+msgstr "Nombre de la divisa"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
-msgstr "Símbolo de la moneda"
+msgstr "Símbolo de la divisa"
 
 #: currencydialog.cpp:183
 msgid "Prefix Symbol"
@@ -1822,7 +1822,7 @@ msgstr "Conversión a Tasa Base"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr "La tasa de conversión se utilizará en caso de que no se haya encontrado ningún historial de divisas para la moneda"
+msgstr "La tasa de conversión se utilizará en caso de que no se haya encontrado ningún historial de divisas para la divisa"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
@@ -1830,7 +1830,7 @@ msgstr "Tasa de conversión fija"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Ejemplo de formato de divisa:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
@@ -1853,7 +1853,7 @@ msgstr "%.2f se muestra como: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(usando configuración regional)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
@@ -1915,19 +1915,19 @@ msgstr "Introduzca las elecciones para este campo separadas por punto y coma"
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
-msgstr ""
+msgstr "Escala de dígitos"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Introduzca la escala decimal permitida"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
-msgstr ""
+msgstr "Columna del panel"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Seleccione un valor para representar el elemento en un panel"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
@@ -1976,7 +1976,9 @@ msgstr "Confirmar eliminación de campo personalizado"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Esta función buscará y reemplazará masivamente los valores del campo personalizados \"%s\"\n"
+"Coincidirá con y reemplazará sólo el valor completo del campo. no hay la posibilidad de sustituciones parciales\n"
+"¡Tenga en cuenta que no hay ningún tipo de confirmación!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2012,8 +2014,8 @@ msgstr "¿Quiere actualizar los blancos?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¡%zu caso encontrado y reemplazado!"
+msgstr[1] "¡%zu casos encontrados y reemplazados!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Massive content update "
@@ -2186,7 +2188,7 @@ msgstr "Vida"
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr "Vivienda"
+msgstr "Inicio"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
@@ -2290,7 +2292,7 @@ msgstr "Depuración MMEX"
 
 #: dbupgrade.cpp:244
 msgid "Save debug file"
-msgstr "Guarde el fichero de depuración"
+msgstr "Guardar archivo de depuración"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2302,7 +2304,7 @@ msgstr "Cuando se abre el archivo de base de datos:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
-msgstr "No se puede abrir el fichero"
+msgstr "No se puede abrir el archivo"
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
@@ -2331,7 +2333,7 @@ msgstr "Diagnósticos"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Los desarrolladores pueden pedirle que proporcione información presentada aquí para ayudar a diagnosticar los problemas con el programa de los que informe."
 
 #: filtertrans.cpp:183
 msgid "Back"
@@ -2402,7 +2404,7 @@ msgstr "Fecha de inicio"
 
 #: filtertransdialog.cpp:240
 msgid "Period Range"
-msgstr ""
+msgstr "Período"
 
 #: filtertransdialog.cpp:268 reports/mmDateRange.cpp:35
 msgid "Date Range"
@@ -2444,7 +2446,7 @@ msgstr "Rango de cantidad"
 
 #: filtertransdialog.cpp:394
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Introduzca cualquier texto para encontrarlo en las notas de transacción"
 
 #: filtertransdialog.cpp:406
 msgid "Select the Color"
@@ -2456,7 +2458,7 @@ msgstr "Opciones de presentación"
 
 #: filtertransdialog.cpp:428
 msgid "Hide Columns"
-msgstr "Ocultar Columnas"
+msgstr "Ocultar columnas"
 
 #: filtertransdialog.cpp:439 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1341
@@ -2465,26 +2467,26 @@ msgstr "Agrupar por"
 
 #: filtertransdialog.cpp:447
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Especifique cómo se debe agrupar el informe"
 
 #: filtertransdialog.cpp:466
 msgid "Settings"
-msgstr "Ajustes"
+msgstr "Preajustes"
 
 #: filtertransdialog.cpp:487 filtertransdialog.cpp:916
 #: filtertransdialog.cpp:956 filtertransdialog.cpp:1180
 #: filtertransdialog.cpp:1369 filtertransdialog.cpp:1729
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: vacío"
 
 #: filtertransdialog.cpp:496
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Guardar la selección en el preajuste actual"
 
 #: filtertransdialog.cpp:501
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Borrar todos los campos del preajuste actual"
 
 #: filtertransdialog.cpp:726
 msgid "Do you want to save them before continuing?"
@@ -2492,19 +2494,19 @@ msgstr "¿Desea guardarlos antes de continuar?"
 
 #: filtertransdialog.cpp:727
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "La configuración del filtro ha cambiado"
 
 #: filtertransdialog.cpp:779
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Ocultar columnas del informe"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Please Enter"
-msgstr ""
+msgstr "Por favor, introduzca"
 
 #: filtertransdialog.cpp:918 filtertransdialog.cpp:1731
 msgid "Setting Name"
-msgstr ""
+msgstr "Nombre del ajuste"
 
 #: filtertransdialog.cpp:922 filtertransdialog.cpp:1727
 #: filtertransdialog.cpp:1735
@@ -2524,7 +2526,7 @@ msgstr "Detalles de filtrado: "
 
 #: filtertransdialog.cpp:1183
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: filtertransdialog.cpp:1203
 msgid "Since"
@@ -2536,7 +2538,7 @@ msgstr "Antes"
 
 #: filtertransdialog.cpp:1215
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: filtertransdialog.cpp:1287
 msgid "Amount Min."
@@ -2561,7 +2563,7 @@ msgstr "Sin color"
 
 #: general_report_manager.cpp:248 general_report_manager.cpp:664
 msgid "General Reports Manager"
-msgstr "Administrador general de informes"
+msgstr "Administrador de informes generales"
 
 #: general_report_manager.cpp:291 mmframe.cpp:802 mmframe.cpp:2480
 #: mmframe.cpp:2605 reports/myusage.cpp:142 reports/myusage.cpp:159
@@ -2584,7 +2586,7 @@ msgstr "&Exportar"
 
 #: general_report_manager.cpp:388
 msgid "Export the report to a new file."
-msgstr "Exportar la consulta a un nuevo fichero."
+msgstr "Exportar el informe a un nuevo archivo."
 
 #: general_report_manager.cpp:391 stockdialog.cpp:354
 msgid "&Save "
@@ -2639,11 +2641,11 @@ msgstr "Error en la sintaxis SQL"
 
 #: general_report_manager.cpp:598
 msgid "Load report file:"
-msgstr "Cargar fichero de informe:"
+msgstr "Cargar archivo de informe:"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "General Report Manager files (*.grm)"
-msgstr "Archivos del administrador general de informes (*.grm)"
+msgstr "Archivos del Administrador de informes generales (*.grm)"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1029
 msgid "ZIP files (*.zip)"
@@ -2691,7 +2693,7 @@ msgstr "Indicar el nombre para el informe"
 #: general_report_manager.cpp:833 general_report_manager.cpp:981
 #: mmframe.cpp:1280 mmframe.cpp:1561 mmframe.cpp:1733
 msgid "General Report Manager"
-msgstr "Administrador general de informes"
+msgstr "Administrador de informes generales"
 
 #: general_report_manager.cpp:851
 msgid "Delete the Report Title:"
@@ -2737,7 +2739,7 @@ msgstr "Parámetros:"
 #: images_list.cpp:340
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "El archivo JSON de metadatos del tema '%s' no puede ser analizado y parece mal construido."
 
 #: images_list.cpp:341 images_list.cpp:437 images_list.cpp:448
 #: images_list.cpp:483 images_list.cpp:512 images_list.cpp:518
@@ -2748,12 +2750,12 @@ msgstr "Aviso"
 #: images_list.cpp:436
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Falta el archivo '%s' o no es válido en el tema seleccionado '%s'"
 
 #: images_list.cpp:447
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Faltan los metadatos '%s' en el tema elegido '%s'"
 
 #: images_list.cpp:480
 msgid "and more..."
@@ -2776,12 +2778,12 @@ msgstr "Tema %s tiene elementos perdidos y además es incompatible. Regresando a
 
 #: images_list.cpp:523
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "No se ha encontrado ningún tema funcional, la instalación puede estar corrupta"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1582
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
-msgstr "No es posible abrir el fichero."
+msgstr "No se puede abrir el archivo."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:971 mmframe.cpp:2268 mmframe.cpp:2287
@@ -2790,7 +2792,7 @@ msgstr "Importar Universal CSV"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr "No es posible crear el archivo."
+msgstr "No se puede crear el archivo."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
@@ -2891,7 +2893,7 @@ msgstr "Seleccionar cuenta de la que exportar:"
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
-msgstr "Seleccionar el fichero QIF a exportar"
+msgstr "Seleccionar el archivo QIF a exportar"
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
@@ -3208,7 +3210,7 @@ msgstr "Vista previa"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Seleccione el archivo de datos XML a importar"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
@@ -3216,7 +3218,7 @@ msgstr "Seleccionar el fichero CSV a importar"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Seleccione el archivo XML a exportar"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
@@ -3450,7 +3452,7 @@ msgstr "Actualización online"
 
 #: maincurrencydialog.cpp:177
 msgid "Show all even the unused currencies"
-msgstr "Mostrar todo incluso las monedas no utilizadas"
+msgstr "Mostrar todas incluyendo las divisas no utilizadas"
 
 #: maincurrencydialog.cpp:207 payeedialog.cpp:140
 msgid "Search:"
@@ -3458,7 +3460,7 @@ msgstr "Buscar:"
 
 #: maincurrencydialog.cpp:228
 msgid "Currency History Options"
-msgstr "Opciones del histórico de la moneda"
+msgstr "Opciones del histórico de la divisa"
 
 #: maincurrencydialog.cpp:246 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
@@ -3467,11 +3469,11 @@ msgstr "Precio"
 
 #: maincurrencydialog.cpp:268
 msgid "Specify the date of currency value"
-msgstr "Especificar la fecha de valor de la moneda"
+msgstr "Especificar la fecha de valor de la divisa"
 
 #: maincurrencydialog.cpp:276
 msgid "Enter the currency value"
-msgstr "Introduzca el valor de la moneda"
+msgstr "Introduzca el valor de la divisa"
 
 #: maincurrencydialog.cpp:286
 msgid "Download Currency Values history"
@@ -3483,19 +3485,19 @@ msgstr "&Añadir / Actualizar "
 
 #: maincurrencydialog.cpp:290
 msgid "Add Currency Values to history"
-msgstr "Agregar valores de moneda al histórico"
+msgstr "Agregar valores de divisa al histórico"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete selected Currency Values"
-msgstr "Borrar los valores de moneda seleccionados"
+msgstr "Borrar los valores de divisa seleccionados"
 
 #: maincurrencydialog.cpp:298
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr "Eliminar historial de Valores de Moneda para monedas y días no utilizados"
+msgstr "Eliminar historial de Valores de divisa para divisas y días no utilizados"
 
 #: maincurrencydialog.cpp:354
 msgid "Do you really want to delete the selected Currency?"
-msgstr "¿Desea eliminar la moneda seleccionada?"
+msgstr "¿Desea eliminar la divisa seleccionada?"
 
 #: maincurrencydialog.cpp:355 maincurrencydialog.cpp:425
 #: maincurrencydialog.cpp:651 maincurrencydialog.cpp:776
@@ -3505,33 +3507,33 @@ msgstr "Ventana de divisas"
 
 #: maincurrencydialog.cpp:383
 msgid "Base Currency Selection"
-msgstr "Selección de la moneda base"
+msgstr "Selección de la divisa base"
 
 #: maincurrencydialog.cpp:423
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr "Tasas históricas para %s encontradas, pero \"Usar histórico de monedas\" en las opciones está deshabilitado:\n"
+msgstr "Tasas históricas para %s encontradas, pero \"Usar histórico de divisas\" en las opciones está deshabilitado:\n"
 "haga clic en no y habilítelo o haga clic en sí para eliminar todas las tasas históricas de %s"
 
 #: maincurrencydialog.cpp:435
 #, c-format
 msgid "Currency History Options: %s "
-msgstr "Opciones del histórico de la moneda: %s "
+msgstr "Opciones del histórico de la divisa: %s "
 
 #: maincurrencydialog.cpp:491
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "No se puede actualizar el histórico de tasas de monedas. ¡Por favor actualícelas manualmente!"
+msgstr "No se puede actualizar el histórico de tasas de divisas. ¡Por favor, actualícelas manualmente!"
 
 #: maincurrencydialog.cpp:492 maincurrencydialog.cpp:644
 #: maincurrencydialog.cpp:679 maincurrencydialog.cpp:715
 #: maincurrencydialog.cpp:821
 msgid "Currency history error"
-msgstr "Error del histórico de la moneda"
+msgstr "Error del histórico de la divisa"
 
 #: maincurrencydialog.cpp:524
 msgid "Set as Base Currency"
-msgstr "Establecer como moneda principal"
+msgstr "Establecer como divisa principal"
 
 #: maincurrencydialog.cpp:525
 msgid "Online Update Currency Rate"
@@ -3539,7 +3541,7 @@ msgstr "Actualización online del tipo de cambio"
 
 #: maincurrencydialog.cpp:644
 msgid "No currency selected!"
-msgstr "¡No hay moneda selecionada!"
+msgstr "¡No hay divisa selecionada!"
 
 #: maincurrencydialog.cpp:650
 msgid "Do you want to add also dates without any transaction?"
@@ -3548,7 +3550,7 @@ msgstr "¿Desea añadir fechas sin ninguna transacción?"
 #: maincurrencydialog.cpp:677
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr "Imposible descargar las tasas de cambio de la moneda %s"
+msgstr "Imposible descargar las tasas de cambio de la divisa %s"
 
 #: maincurrencydialog.cpp:713
 #, c-format
@@ -3557,7 +3559,7 @@ msgstr "Imposible descargar el histórico del símbolo %s. ¡Las tasas de cambio
 
 #: maincurrencydialog.cpp:775
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Cambiar la moneda base eliminará todo el histórico de tasas, ¿Continuar?"
+msgstr "Cambiar la divisa base eliminará todo el histórico de tasas, ¿Continuar?"
 
 #: maincurrencydialog.cpp:799
 msgid "Do you want to update today currency rates?"
@@ -3570,7 +3572,7 @@ msgstr "No se puede descargar el histórico del símbolo base %s. ¡El históric
 
 #: maincurrencydialog.cpp:863 stockspanel.cpp:338 util.cpp:619
 msgid "Could not find base currency symbol!"
-msgstr "¡No se puede encontrar el símbolo de la moneda base!"
+msgstr "¡No se puede encontrar el símbolo de la divisa base!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3681,7 +3683,7 @@ msgstr "Recomendación: Hacer una copia de seguridad de la base de datos .mmb co
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr "Recomendación: Antes de actualizar a una nueva versión de MMEX, asegúrese de hacer una copia de seguridad del fichero de base de datos .mmb."
+msgstr "Recomendación: Antes de actualizar a una nueva versión de MMEX, asegúrese de hacer una copia de seguridad del archivo de base de datos .mmb."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -3717,7 +3719,7 @@ msgstr "Consejo: Para imprimir un extracto con transacciones cumpliendo unos det
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Consejo: Seleccione el tipo de cambio para las monedas en caso de que tenga cuentas con diferente moneda."
+msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que tenga cuentas con diferente divisa."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -3941,7 +3943,7 @@ msgstr "Duplicar transacción seleccionada"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Introduzca cualquier texto para encontrarlo en los datos de transacción más cercanos"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -3954,11 +3956,11 @@ msgstr "Vista de cuenta: %s"
 
 #: mmcheckingpanel.cpp:407
 msgid "Account Bal: "
-msgstr "Balance de cuenta: "
+msgstr "Saldo de cuenta: "
 
 #: mmcheckingpanel.cpp:409
 msgid "Reconciled Bal: "
-msgstr "Balance conciliado: "
+msgstr "Saldo conciliado: "
 
 #: mmcheckingpanel.cpp:411
 msgid "Diff: "
@@ -3966,7 +3968,7 @@ msgstr "Diferencia: "
 
 #: mmcheckingpanel.cpp:413
 msgid "Filtered View Bal: "
-msgstr "Balance filtrado: "
+msgstr "Saldo filtrado: "
 
 #: mmcheckingpanel.cpp:467 webapp.cpp:585
 msgid "Attachment"
@@ -3980,7 +3982,7 @@ msgstr "Transacciones seleccionadas: %zu"
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr "Balance de las transacciones seleccionadas: %s"
+msgstr "Saldo de las transacciones seleccionadas: %s"
 
 #: mmcheckingpanel.cpp:507
 #, c-format
@@ -4155,11 +4157,11 @@ msgstr "Importar desde XML (formato Excel)"
 
 #: mmframe.cpp:1305 mmframe.cpp:1311 mmframe.cpp:1377 mmframe.cpp:1385
 msgid "&QIF Files..."
-msgstr "Ficheros &QIF..."
+msgstr "Archivos &QIF..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&Archivos CSV de MMEX..."
 
 #: mmframe.cpp:1312 mmframe.cpp:1386
 msgid "&JSON Files..."
@@ -4223,7 +4225,7 @@ msgstr "Exportar a CSV"
 
 #: mmframe.cpp:1383
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Exportar a un CSV corregido"
 
 #: mmframe.cpp:1384
 msgid "Export to XML"
@@ -4383,7 +4385,7 @@ msgstr "Organizar divi&sas..."
 
 #: mmframe.cpp:1514 mmframe.cpp:1729
 msgid "Organize Currency"
-msgstr "Organizar monedas"
+msgstr "Organizar divisas"
 
 #: mmframe.cpp:1518
 msgid "&Categories..."
@@ -4439,7 +4441,7 @@ msgstr "Filtro de informe de transacciones"
 
 #: mmframe.cpp:1561
 msgid "General Report &Manager..."
-msgstr "&Administrador de informe general..."
+msgstr "&Administrador de informes generales..."
 
 #: mmframe.cpp:1565
 msgid "C&ustom Fields Manager..."
@@ -4707,7 +4709,7 @@ msgstr "Mostrar la ventana para organizar beneficiarios"
 
 #: mmframe.cpp:1729
 msgid "Show Organize Currency Dialog"
-msgstr "Mostrar la ventana para organizar monedas"
+msgstr "Mostrar la ventana para organizar divisas"
 
 #: mmframe.cpp:1735
 msgid "&Options..."
@@ -4777,7 +4779,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "La base de datos que está intentando abrir está marcada como abierta por otra instancia de MMEX.\n"
+"Para evitar pérdidas de datos o conflictos, se recomienda encarecidamente que cierre todas las demás aplicaciones que puedan estar utilizando la base de datos.\n\n"
+"Si no se está ejecutando nada más, es posible que la base de datos se haya quedado marcada como abierta como resultado de un bloqueo durante el uso anterior de MMEX.\n\n"
+"¿Desea continuar abriendo esta base de datos?"
 
 #: mmframe.cpp:1976
 msgid "MMEX Instance Check"
@@ -4917,7 +4922,7 @@ msgstr "Cuentas, beneficiarios y categorías actualizadas"
 
 #: mmframe.cpp:2508
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Problema al actualizar la WebApp, compruebe la configuración del servidor Web y de WebApp"
 
 #: mmframe.cpp:2544
 msgid "MMEX Options have been updated."
@@ -4925,7 +4930,7 @@ msgstr "Las opciones de MMEX se han actualizado."
 
 #: mmframe.cpp:2545
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Algunos ajustes solo surten efecto después de reiniciar la aplicación."
 
 #: mmframe.cpp:2546 optiondialog.cpp:225 optiondialog.h:49
 msgid "MMEX Options"
@@ -5138,7 +5143,7 @@ msgstr "Suma total:"
 
 #: mmhomepage.cpp:636
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Cuentas de inversión"
 
 #: mmhomepage.cpp:637 reports/summary.cpp:298 reports/summary.cpp:330
 msgid "Asset Accounts"
@@ -5146,7 +5151,7 @@ msgstr "Cuentas de activos"
 
 #: mmhomepage.cpp:778
 msgid "Currency Exchange Rates"
-msgstr "Cambio de Divisas"
+msgstr "Cambio de divisas"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5280,15 +5285,15 @@ msgstr "Transacción"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Accion"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "CuentaBancaria"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "TransaccionRecurrente"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5533,29 +5538,30 @@ msgstr "Especifique el formato de la fecha a mostrar"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Ejemplo de formato de fecha:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
-msgstr "Moneda base"
+msgstr "Divisa base"
 
 #: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
-msgstr "Seleccionar moneda"
+msgstr "Seleccionar divisa"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Seleccione la moneda por defecto de la BD usando la pantalla 'Moneda'"
+msgstr "Seleccione la divisa por defecto de la BD usando la pantalla 'Divisa'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Botón derecho del ratón y seleccione 'Configurar como moneda base' en \n"
-"la pantalla 'Moneda'"
+msgstr "Botón derecho del ratón y seleccione 'Configurar como divisa base' en \n"
+"la pantalla 'Divisa'"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Formato derivado de la configuración regional.\n"
+"Deje en blanco para establecer el formato manualmente a través de 'Ventana de divisas | Editar'"
 
 #: optionsettingsgeneral.cpp:169
 msgid "Use currency history"
@@ -5612,11 +5618,11 @@ msgstr "Selecciónelo para usar sonidos al introducir transacciones"
 #: optionsettingsgeneral.cpp:325
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Ejemplo del valor de la divisa: %s"
 
 #: optionsettingsgeneral.cpp:329
 msgid "bad locale name"
-msgstr ""
+msgstr "nombre de configuración regional incorrecto"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5680,7 +5686,7 @@ msgstr "Estado por defecto:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Transacciones masivas:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
@@ -5820,7 +5826,7 @@ msgstr "Especifique qué cuentas son visibles"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Delimitador de categoría"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5840,19 +5846,19 @@ msgstr "Ver informe de categoría de presupuesto con totales"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Desviación del presupuesto (días):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Adelantar o retrasar la fecha de inicio desde el primer día del mes o del año en una cantidad determinada de días"
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Día de inicio del mes para informes:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Permite elegir el primer día del mes para los informes"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -5864,15 +5870,15 @@ msgstr "Colores de transacciones"
 
 #: optionsettingsview.cpp:203
 msgid "UI Appearance"
-msgstr ""
+msgstr "Interfaz"
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Abrir gestor de temas"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
-msgstr ""
+msgstr "Plantilla de estilo"
 
 #: optionsettingsview.cpp:222
 msgid "Light"
@@ -5884,15 +5890,15 @@ msgstr "Oscuro"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Especifique la variante del tema a usar si es compatible"
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Modo de tema"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Factor de escala de HTML"
 
 #: optionsettingsview.cpp:248
 msgid "Specify which scale factor is used for the report pages"
@@ -5916,15 +5922,15 @@ msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Tamaño de iconos de la barra de herramientas"
 
 #: optionsettingsview.cpp:273
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Tamaño de iconos de navegación"
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Tamaño de otros iconos"
 
 #: payeedialog.cpp:61
 msgid "Last Used Category"
@@ -5972,11 +5978,11 @@ msgstr "Organizar beneficiarios: Error al borrar"
 
 #: payeedialog.cpp:377
 msgid "Define Category"
-msgstr ""
+msgstr "Seleccionar categoría"
 
 #: payeedialog.cpp:379
 msgid "Remove Category"
-msgstr "Eliminar Categoría"
+msgstr "Eliminar categoría"
 
 #: payeedialog.cpp:394
 msgid "Relocate Payee"
@@ -6249,7 +6255,7 @@ msgstr "Desde %s hasta %s"
 
 #: reports/htmlbuilder.cpp:180
 msgid "Future"
-msgstr ""
+msgstr "Futuro"
 
 #: reports/htmlbuilder.cpp:184 reports/mmDateRange.cpp:249
 msgid "Over Time"
@@ -6257,11 +6263,11 @@ msgstr "Todo el tiempo"
 
 #: reports/htmlbuilder.cpp:212
 msgid "User specified start day"
-msgstr ""
+msgstr "Día de inicio especificado por el usuario"
 
 #: reports/htmlbuilder.cpp:219
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Las transacciones futuras han sido ignoradas"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
@@ -6281,7 +6287,7 @@ msgstr "Ingresos vs Gastos mensuales"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Acumulado"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -6362,7 +6368,7 @@ msgstr "Cuentas: "
 #: reports/summary.cpp:151
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr "Balance de cuentas - %s"
+msgstr "Saldo de cuentas - %s"
 
 #: reports/summary.cpp:151
 msgid "Monthly Report"
@@ -6826,15 +6832,15 @@ msgstr "Borrar"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr ""
+msgstr "Usar"
 
 #: themes.cpp:233
 msgid "No description available"
-msgstr ""
+msgstr "Sin descripción"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Elija un archivo de tema para importar"
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
@@ -6842,11 +6848,11 @@ msgstr "El tema ya existe, ¿desea importarlo y sobrescribir el tema existente?"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Algo salió mal importando el tema"
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "¿Desea eliminar este tema? Tendrá que volver a importarlo si quiere usarlo de nuevo."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
@@ -6854,7 +6860,7 @@ msgstr "Algo salió mal al intentar eliminar el tema"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "¿Desea utilizar este tema? Tenga en cuenta que solo tendrá efecto después de reiniciar MMEX."
 
 #: transactionsupdatedialog.cpp:105
 msgid "Multi Transactions Update"
@@ -6948,7 +6954,7 @@ msgstr "Transferencia de fondos desde/a esta cuenta. Desmarque para seleccionar\
 
 #: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
-msgstr "Moneda usada para esta transacción."
+msgstr "Divisa usada para esta transacción."
 
 #: usertransactionpanel.cpp:176
 msgid "Specify the status for this transaction"
@@ -7084,15 +7090,15 @@ msgstr "Error de sintáxis JSON"
 
 #: util.cpp:899 util.cpp:958
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Se esperaba una respuesta que tuviera datos o una cadena de error"
 
 #: util.cpp:930
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "No se pudo encontrar el activo del símbolo"
 
 #: util.cpp:965
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "¡No se pudo obtener la divisa base!"
 
 #: util.cpp:971
 msgid "USD"
@@ -7100,11 +7106,11 @@ msgstr "USD"
 
 #: util.cpp:974
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "No se pudo encontrar la divisa 'USD', necesaria para convertir los precios del historial"
 
 #: util.cpp:995
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "No se pudo analizar el precio en el historial de activos"
 
 #: util.cpp:1225
 #, c-format
@@ -7385,7 +7391,7 @@ msgstr "Las cuentas a plazo son cuentas bancarias especializadas.\n"
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
-msgstr "No se ha seleccionado moneda base para la cuenta."
+msgstr "No se ha seleccionado divisa base para la cuenta."
 
 #: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
@@ -7407,26 +7413,26 @@ msgid "The next pages will help you create a new database.\n\n"
 "file type before saving."
 msgstr "Las siguientes páginas le ayudarán a creara una nueva base de datos.\n\n"
 "Tu archivo de base de datos se almacena con una extensión de .mmb.\n"
-"Como este fichero contiene información financiera importante,\n"
+"Como este archivo contiene información financiera importante,\n"
 "le recomendamos crear copias de seguridad diarias con las Opciones\n"
 "de configuración: 'Copia de seguridad antes de abrir', y almacenando\n"
 "estas copias de seguridad en una localización diferente.\n\n"
-"La base de datos se puede encriptar más tarde si se necesita, usando\n"
+"La base de datos se puede cifrar más tarde si se necesita, usando\n"
 "la opción: 'Guarda base de datos como' y cambiando el tipo de\n"
 "archivo antes de guardar."
 
 #: wizard_newdb.cpp:92
 msgid "Base Currency for account"
-msgstr "Moneda base para la cuenta"
+msgstr "Divisa base para la cuenta"
 
 #: wizard_newdb.cpp:95
 msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Especifique la moneda base (o por defecto) para ser usada por\n"
-"la base de datos. La moneda base se puede cambiar posteriormente\n"
-"mediante las opciones. Las cuentas nuevas utilizarán esta moneda\n"
+msgstr "Especifique la divisa base (o por defecto) para ser usada por\n"
+"la base de datos. La divisa base se puede cambiar posteriormente\n"
+"mediante las opciones. Las cuentas nuevas utilizarán esta divisa\n"
 "por defecto, aunque se puede cambiar editando la cuenta."
 
 #: wizard_newdb.cpp:112
@@ -7439,7 +7445,7 @@ msgstr "Se usa como título de la base de datos para los informes impresos y por
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
-msgstr "Moneda base no fijada"
+msgstr "Divisa base no fijada"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
