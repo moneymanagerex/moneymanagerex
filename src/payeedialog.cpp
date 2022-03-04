@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2012 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -166,8 +166,8 @@ void mmPayeeDialog::fillControls()
         std::stable_sort(payees.begin(), payees.end(), [] (Model_Payee::Data x, Model_Payee::Data y)
         {
             return(
-                Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID) < 
-                Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)
+                Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID).
+                    CmpNoCase(Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)) < 0
             ); 
         });
     }

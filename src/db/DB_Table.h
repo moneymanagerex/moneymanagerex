@@ -3,6 +3,7 @@
 /**
  *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
+ *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
  *      @file
  *
@@ -180,7 +181,7 @@ struct SorterByACCOUNTNAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (x.ACCOUNTNAME) < (y.ACCOUNTNAME);
+        return (x.ACCOUNTNAME.CmpNoCase(y.ACCOUNTNAME) < 0);
     }
 };
 
@@ -324,7 +325,7 @@ struct SorterByCATEGNAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (x.CATEGNAME) < (y.CATEGNAME);
+        return (x.CATEGNAME.CmpNoCase(y.CATEGNAME) < 0);
     }
 };
 
@@ -738,7 +739,7 @@ struct SorterByPAYEENAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (x.PAYEENAME) < (y.PAYEENAME);
+        return (x.PAYEENAME.CmpNoCase(y.PAYEENAME) < 0);
     }
 };
 
@@ -1044,7 +1045,7 @@ struct SorterBySUBCATEGNAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (x.SUBCATEGNAME) < (y.SUBCATEGNAME);
+        return (x.SUBCATEGNAME.CmpNoCase(y.SUBCATEGNAME) < 0);
     }
 };
 

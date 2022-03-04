@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
 #include "model/Model_Infotable.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
+wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialogTreeCtrl, wxTreeCtrl);
 
 wxBEGIN_EVENT_TABLE(mmCategDialog, wxDialog)
 EVT_BUTTON(wxID_OK, mmCategDialog::OnBSelect)
@@ -44,6 +45,20 @@ EVT_TREE_ITEM_ACTIVATED(wxID_ANY, mmCategDialog::OnDoubleClicked)
 EVT_TREE_ITEM_MENU(wxID_ANY, mmCategDialog::OnItemRightClick)
 EVT_MENU(wxID_ANY, mmCategDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
+
+mmCategDialogTreeCtrl::mmCategDialogTreeCtrl(wxWindow *parent, const wxWindowID id,
+                       const wxPoint& pos, const wxSize& size,
+                       long style)
+    : wxTreeCtrl(parent, id, pos, size, style)
+{
+}
+
+// Only need to override the OnCompareItems sort method to make it case insensitive
+int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)		
+{
+    return ( GetItemText(item1).CmpNoCase(GetItemText(item2)) );
+}
+
 
 mmCategDialog::mmCategDialog()
     : m_treeCtrl(nullptr)
@@ -207,10 +222,10 @@ void mmCategDialog::CreateControls()
     itemBoxSizer33->Add(m_cbShowAll, g_flagsH);
 
 #if defined (__WXGTK__) || defined (__WXMAC__)
-    m_treeCtrl = new wxTreeCtrl(this, wxID_ANY,
+    m_treeCtrl = new mmCategDialogTreeCtrl(this, wxID_ANY,
         wxDefaultPosition, wxSize(200, 380));
 #else
-    m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
+    m_treeCtrl = new mmCategDialogTreeCtrl(this, wxID_ANY
         , wxDefaultPosition, wxSize(200, 380)
         , wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES);
 #endif

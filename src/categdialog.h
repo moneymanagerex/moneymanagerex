@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2022 Mark Whalleuy (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,18 @@
 
 #include "defs.h"
 #include "model/Model_Category.h"
+
+class mmCategDialogTreeCtrl : public wxTreeCtrl
+{
+    wxDECLARE_DYNAMIC_CLASS(mmCategDialogTreeCtrl);
+public:
+    mmCategDialogTreeCtrl() { };
+    mmCategDialogTreeCtrl(wxWindow *parent, const wxWindowID id,
+                       const wxPoint& pos, const wxSize& size,
+                       long style=wxTR_DEFAULT_STYLE);
+protected:
+    int OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2);	
+};
 
 class mmTreeItemCateg : public wxTreeItemData
 {
@@ -92,7 +105,7 @@ private:
     bool categShowStatus(int categId, int subCategId);
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
 
-    wxTreeCtrl* m_treeCtrl;
+    mmCategDialogTreeCtrl* m_treeCtrl;
     wxButton* m_buttonAdd;
     wxButton* m_buttonEdit;
     wxButton* m_buttonSelect;
