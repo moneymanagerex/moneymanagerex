@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-01 13:35\n"
+"PO-Revision-Date: 2022-03-04 10:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -299,7 +299,7 @@ msgstr "Crear un nuevo archivo de base de datos para empezar"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "Abrir una Base de datos existente"
+msgstr "Abrir una base de datos existente"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -307,7 +307,7 @@ msgstr "Abrir un fichero de base de datos existente con extensión (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr "Leer la Documentación"
+msgstr "Leer la documentación"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
@@ -315,7 +315,7 @@ msgstr "Leer el manual de usuario"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "Visitar la Página web para más información"
+msgstr "Visitar la página web para más información"
 
 #: appstartdialog.cpp:116
 #, c-format
