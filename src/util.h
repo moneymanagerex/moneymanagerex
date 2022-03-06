@@ -239,7 +239,7 @@ private:
 const wxColor* bestFontColour(wxColour background);
 
 // used where differences occur between platforms
-wxImageList* createImageList();
+wxImageList* createImageList(int size = 0);
 
 void mmToolTip(wxWindow* widget, wxString tip);
 

@@ -1537,9 +1537,9 @@ const wxString md2html(const wxString& md)
     return body;
 }
 
-wxImageList* createImageList()
+wxImageList* createImageList(int size)
 {
-    int x = Option::instance().getIconSize();
+    int x = (size > 0) ? size : Option::instance().getIconSize();
     return(new wxImageList(x, x, false));   // No mask creation, not needed and causes image correuption on Mac
 
 }

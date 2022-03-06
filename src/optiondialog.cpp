@@ -79,16 +79,14 @@ bool mmOptionsDialog::Create(wxWindow* parent
 
 void mmOptionsDialog::CreateControls()
 {
-    int all_icons_size = Option::instance().getIconSize();
-    Option::instance().setIconSize(48);
-    m_imageList = createImageList();
-    m_imageList->Add(mmBitmap(png::VIEW));
-    m_imageList->Add(mmBitmap(png::ATTACHMENTS));
-    m_imageList->Add(mmBitmap(png::GENERAL));
-    m_imageList->Add(mmBitmap(png::OTHERS));
-    m_imageList->Add(mmBitmap(png::NETWORK));
-    m_imageList->Add(mmBitmap(png::HOME));
-    Option::instance().setIconSize(all_icons_size);
+    const int optionIconSize = 48;
+    m_imageList = createImageList(optionIconSize);
+    m_imageList->Add(mmBitmap(png::VIEW, optionIconSize));
+    m_imageList->Add(mmBitmap(png::ATTACHMENTS, optionIconSize));
+    m_imageList->Add(mmBitmap(png::GENERAL, optionIconSize));
+    m_imageList->Add(mmBitmap(png::OTHERS, optionIconSize));
+    m_imageList->Add(mmBitmap(png::NETWORK, optionIconSize));
+    m_imageList->Add(mmBitmap(png::HOME, optionIconSize));
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);

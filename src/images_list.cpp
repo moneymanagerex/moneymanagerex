@@ -185,64 +185,64 @@ Document metaData_doc;
 
 static wxSharedPtr<wxArrayString> filesInVFS;
 
-static const std::map<int, wxBitmap> navtree_images()
+static const std::map<int, wxBitmap> navtree_images(int size)
 {
     return{
-        { HOUSE_PNG, mmBitmap(png::NAV_HOME) }
-        , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS) }
-        , { SCHEDULE_PNG, mmBitmap(png::RECURRING) }
-        , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
-        , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
-        , { HELP_PNG, mmBitmap(png::NAV_HELP) }
-        , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE) }
-        , { FILTER_PNG, mmBitmap(png::NAV_FILTER) }
-        , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL) }
-        , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM) }
-        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM) } //TODO: GRM rep group ico
-        , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
-        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL) }
-        , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL) }
-        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL) }
-        , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL) }
+        { HOUSE_PNG, mmBitmap(png::NAV_HOME, size) }
+        , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS, size) }
+        , { SCHEDULE_PNG, mmBitmap(png::RECURRING, size) }
+        , { CALENDAR_PNG, mmBitmap(png::BUDGET, size) }
+        , { PIECHART_PNG, mmBitmap(png::PIE_CHART, size) }
+        , { HELP_PNG, mmBitmap(png::NAV_HELP, size) }
+        , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE, size) }
+        , { FILTER_PNG, mmBitmap(png::NAV_FILTER, size) }
+        , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL, size) }
+        , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM, size) }
+        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM, size) } //TODO: GRM rep group ico
+        , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL, size) }
+        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL, size) }
+        , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL, size) }
+        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL, size) }
+        , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL, size) }
         , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
-        , { ACCOUNT_CLOSED_PNG, mmBitmap(png::ACCOUNT_CLOSED) }
+        , { ACCOUNT_CLOSED_PNG, mmBitmap(png::ACCOUNT_CLOSED, size) }
     };
 };
 
 // Custom icons for accounts
-static const std::map<int, wxBitmap> acc_images()
+static const std::map<int, wxBitmap> acc_images(int size)
 {
     return
     {
-        { ACC_ICON_MONEY, mmBitmap(png::ACC_MONEY) }
-        , { ACC_ICON_EURO, mmBitmap(png::ACC_EURO) }
-        , { ACC_ICON_FLAG, mmBitmap(png::ACC_FLAG) }
-        , { ACC_ICON_COINS, mmBitmap(png::ACC_COINS) }
-        , { ACC_ICON_ABOUT, mmBitmap(png::ACC_ABOUT) }
-        , { ACC_ICON_CLOCK, mmBitmap(png::ACC_CLOCK) }
-        , { ACC_ICON_CAT, mmBitmap(png::ACC_CAT) }
-        , { ACC_ICON_DOG, mmBitmap(png::ACC_DOG) }
-        , { ACC_ICON_TREES, mmBitmap(png::ACC_TREES) }
-        , { ACC_ICON_HOURGLASS, mmBitmap(png::ACC_HOURGLASS) }
-        , { ACC_ICON_WORK, mmBitmap(png::ACC_WORK) }
-        , { ACC_ICON_PAYPAL, mmBitmap(png::ACC_PAYPAL)}
-        , { ACC_ICON_WALLET, mmBitmap(png::ACC_WALLET) }
-        , { ACC_ICON_RUBIK, mmBitmap(png::ACC_RUBIK) }
+        { ACC_ICON_MONEY, mmBitmap(png::ACC_MONEY, size) }
+        , { ACC_ICON_EURO, mmBitmap(png::ACC_EURO, size) }
+        , { ACC_ICON_FLAG, mmBitmap(png::ACC_FLAG, size) }
+        , { ACC_ICON_COINS, mmBitmap(png::ACC_COINS, size) }
+        , { ACC_ICON_ABOUT, mmBitmap(png::ACC_ABOUT, size) }
+        , { ACC_ICON_CLOCK, mmBitmap(png::ACC_CLOCK, size) }
+        , { ACC_ICON_CAT, mmBitmap(png::ACC_CAT, size) }
+        , { ACC_ICON_DOG, mmBitmap(png::ACC_DOG, size) }
+        , { ACC_ICON_TREES, mmBitmap(png::ACC_TREES, size) }
+        , { ACC_ICON_HOURGLASS, mmBitmap(png::ACC_HOURGLASS, size) }
+        , { ACC_ICON_WORK, mmBitmap(png::ACC_WORK, size) }
+        , { ACC_ICON_PAYPAL, mmBitmap(png::ACC_PAYPAL, size)}
+        , { ACC_ICON_WALLET, mmBitmap(png::ACC_WALLET, size) }
+        , { ACC_ICON_RUBIK, mmBitmap(png::ACC_RUBIK, size) }
     };
 }
 
-wxImageList* navtree_images_list()
+wxImageList* navtree_images_list(int size)
 {
-    int x = Option::instance().getIconSize();
+    int x = (size > 0) ? size : Option::instance().getIconSize();
     if (x < 16) x = 16;
     if (x > 48) x = 48;
-    wxImageList* imageList = createImageList();
-    for (const auto& img : navtree_images())
+    wxImageList* imageList = createImageList(x);
+    for (const auto& img : navtree_images(x))
     {
         wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
         imageList->Add(img.second);
     }
-    for (const auto& img : acc_images())
+    for (const auto& img : acc_images(x))
     {
         wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
         imageList->Add(img.second);
