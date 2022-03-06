@@ -953,8 +953,20 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 }
 '''
     for field in sorted(fields):
-        transl = 'wxGetTranslation' if field == 'CURRENCYNAME' else ''
-        code += '''
+        if field == 'ACCOUNTNAME' or field == 'CATEGNAME' or field == 'PAYEENAME' or field == 'SUBCATEGNAME':
+            code += '''
+struct SorterBy%s
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.%s.CmpNoCase(y.%s) < 0);
+    }
+};
+''' % ( field, field, field)
+        else:
+            transl = 'wxGetTranslation' if field == 'CURRENCYNAME' else ''
+            code += '''
 struct SorterBy%s
 { 
     template<class DATA>
@@ -975,6 +987,7 @@ if __name__ == '__main__':
 /**
  *      Copyright: (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
+ *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
  *      @file
  *
