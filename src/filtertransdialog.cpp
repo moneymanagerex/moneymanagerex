@@ -1188,7 +1188,7 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = get_json(true);
-    filterDetails.Replace("\n", "<br>");
+    filterDetails.Replace("\n", " ");
     filterDetails.Replace(R"("")", _("Empty value"));
     filterDetails.Replace("\"", "");
     filterDetails.replace(0, 1, ' ');
