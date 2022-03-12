@@ -204,7 +204,7 @@ static const std::map<int, wxBitmap> navtree_images(int size)
         , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL, size) }
         , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL, size) }
         , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL, size) }
-        , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
+        , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL, size) }
         , { ACCOUNT_CLOSED_PNG, mmBitmap(png::ACCOUNT_CLOSED, size) }
     };
 };
