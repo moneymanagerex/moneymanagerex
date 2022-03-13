@@ -345,9 +345,9 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbTypeDeposit_ = new wxCheckBox(itemPanel, wxID_ANY, _("Deposit")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbTypeTransferTo_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer To")
+    cbTypeTransferTo_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer Out")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer From")
+    cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer In")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     itemPanelSizer->Add(typeCheckBox_, g_flagsH);
@@ -584,8 +584,19 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         choiceStatus_->Enable(statusCheckBox_->IsChecked());
         cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
         cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-        cbTypeTransferTo_->Enable(accountCheckBox_->IsChecked() && typeCheckBox_->IsChecked());
+        cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
         cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
+        if (!accountCheckBox_->IsChecked())
+        {
+            cbTypeTransferFrom_->Hide();
+            cbTypeTransferTo_->SetLabel(_("Transfer"));
+            Layout();
+        } else
+        {
+            cbTypeTransferFrom_->Show();
+            cbTypeTransferTo_->SetLabel(_("Transfer Out"));
+            Layout();
+        }
         amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
         amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
         notesEdit_->Enable(notesCheckBox_->IsChecked());
