@@ -31,7 +31,7 @@ mmDateRange::mmDateRange()
 {
     start_date_ = today_;
     end_date_ = today_;
-    startDay_ = this->startDay_ = Option::instance().getReportingFirstDay();
+    startDay_ = Option::instance().getReportingFirstDay();
     title_ = wxTRANSLATE("Date Range");
 }
 
