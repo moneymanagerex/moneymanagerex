@@ -189,6 +189,13 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
 
     CreateControls();
     dataToControls();
+
+    //generate date change events for set weekday name
+    wxDateEvent dateEventPaid(m_date_paid, m_date_paid->GetValue(), wxEVT_DATE_CHANGED);
+    GetEventHandler()->ProcessEvent(dateEventPaid);
+    wxDateEvent dateEventDue(m_date_due, m_date_due->GetValue(), wxEVT_DATE_CHANGED);
+    GetEventHandler()->ProcessEvent(dateEventDue);
+
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     SetIcon(mmex::getProgramIcon());
@@ -327,6 +334,7 @@ void mmBDDialog::dataToControls()
     {
         SetDialogHeader(_("Enter Recurring Transaction"));
         m_date_due->Disable();
+        itemStaticTextWeekDue_->Disable();
         wxSpinButton* spinTransDate = static_cast<wxSpinButton*>(FindWindow(ID_DIALOG_BD_REPEAT_DATE_SPINNER));
         if (spinTransDate) spinTransDate->Disable();
         m_choice_transaction_type->Disable();
@@ -454,6 +462,17 @@ void mmBDDialog::CreateControls()
     dueDateDateBoxSizer->Add(spinNextOccDate, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
 #endif
 
+    //Text field for name of day of the week
+    wxSize WeekDayNameMaxSize(wxDefaultSize);
+    for (wxDateTime::WeekDay d = wxDateTime::Sun;
+            d != wxDateTime::Inv_WeekDay;
+            d = wxDateTime::WeekDay(d+1))
+        WeekDayNameMaxSize.IncTo(GetTextExtent(
+            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
+
+    itemStaticTextWeekDue_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
+    dueDateDateBoxSizer->Add(itemStaticTextWeekDue_, g_flagsH);
+
     itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
     itemFlexGridSizer5->Add(dueDateDateBoxSizer);
 
@@ -528,6 +547,9 @@ void mmBDDialog::CreateControls()
     spinTransDate->SetRange(-32768, 32768);
     transDateBoxSizer->Add(spinTransDate, g_flagsH);
 #endif
+
+    itemStaticTextWeekPaid_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
+    transDateBoxSizer->Add(itemStaticTextWeekPaid_, g_flagsH);
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
     transPanelSizer->Add(transDateBoxSizer);
@@ -1500,14 +1522,20 @@ void mmBDDialog::setCategoryLabel()
     setTooltips();
 }
 
-void mmBDDialog::OnPaidDateChanged(wxDateEvent& WXUNUSED(event))
+void mmBDDialog::OnPaidDateChanged(wxDateEvent& event)
 {
-
+    //get weekday name
+    wxDateTime date = event.GetDate();
+    if (date.IsValid())
+        itemStaticTextWeekPaid_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
 }
 
-void mmBDDialog::OnDueDateChanged(wxDateEvent& WXUNUSED(event))
+void mmBDDialog::OnDueDateChanged(wxDateEvent& event)
 {
-
+    //get weekday name
+    wxDateTime date = event.GetDate();
+    if (date.IsValid())
+        itemStaticTextWeekDue_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
 }
 
 void mmBDDialog::OnColourButton(wxCommandEvent& /*event*/)
