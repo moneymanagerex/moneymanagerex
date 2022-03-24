@@ -111,7 +111,9 @@ private:
     wxChoice* m_choice_status;
     wxChoice* m_choice_transaction_type;
     wxDatePickerCtrl* m_date_paid;      // Stored in ::TRANSDATE
+    wxStaticText* itemStaticTextWeekDue_;
     wxDatePickerCtrl* m_date_due;       // Stored in ::NEXTOCCURRENCEDATE
+    wxStaticText* itemStaticTextWeekPaid_;
     wxChoice* m_choice_repeat;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
