@@ -1794,7 +1794,7 @@ bool mmFilterTransactionsDialog::is_custom_field_matches(const Model_Checking::D
             }
         }
     }
-    return matched == cf.size();
+    return matched == static_cast<int>(cf.size());
 }
 
 int mmFilterTransactionsDialog::getGroupBy() const
