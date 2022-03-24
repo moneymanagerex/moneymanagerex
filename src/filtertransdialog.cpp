@@ -1618,7 +1618,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
     {
         if (j_doc.HasMember(udfc_entry.c_str())) {
-            auto value = j_doc[const_cast<char*>((const char*)udfc_entry.mb_str())].GetString();
+            auto value = j_doc[const_cast<char*>(static_cast<const char*>(udfc_entry.mb_str()))].GetString();
             m_custom_fields->SetStringValue(udfc_entry, value);
             is_udfc_found = true;
         }
