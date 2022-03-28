@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-08 16:36\n"
+"PO-Revision-Date: 2022-03-28 16:11\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5599,7 +5599,7 @@ msgstr "Wählen Sie hier aus, ob das aktuelle oder das Original-Datum beim Kopie
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Duplicating Transactions"
-msgstr "Originaldatum beim Kopieren von Buchungen beibehalten"
+msgstr "Originaldatum bei der Duplizierung von Transaktionen verwenden"
 
 #: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
