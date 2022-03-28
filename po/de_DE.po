@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-28 16:11\n"
+"PO-Revision-Date: 2022-03-28 16:50\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5591,7 +5591,7 @@ msgstr "Geben Sie das Monat für den Beginn des Geschäftsjahres an"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Use Original Date when Pasting Transactions"
-msgstr "Originaldatum beim Kopieren von Buchungen beibehalten"
+msgstr "Originaldatum beim Kopieren/Einfügen beibehalten"
 
 #: optionsettingsgeneral.cpp:211
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
