@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-29 04:02\n"
+"PO-Revision-Date: 2022-03-29 04:20\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -2012,7 +2012,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Food"
-msgstr ""
+msgstr "உணவு"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
@@ -2024,7 +2024,7 @@ msgstr "வாகனம்"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Education"
-msgstr ""
+msgstr "கல்வி"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
@@ -2036,23 +2036,23 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Insurance"
-msgstr ""
+msgstr "காப்பீடு"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Vacation"
-msgstr ""
+msgstr "விடுமுறை"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Taxes"
-msgstr ""
+msgstr "வரிகள்"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Miscellaneous"
-msgstr ""
+msgstr "இதர"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Gifts"
-msgstr ""
+msgstr "பரிசுகள்"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Other Income"
@@ -2073,19 +2073,19 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:112
 msgid "Electricity"
-msgstr ""
+msgstr "மின்சாரம்"
 
 #: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
 msgid "Gas"
-msgstr ""
+msgstr "எரிவாயு"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr ""
+msgstr "இணையம்"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
-msgstr ""
+msgstr "வாடகை"
 
 #: db/DB_Table_Subcategory_V1.h:116
 msgid "Cable TV"
@@ -2093,11 +2093,11 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:117
 msgid "Water"
-msgstr ""
+msgstr "தண்ணீர்"
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
-msgstr ""
+msgstr "மளிகைகள்"
 
 #: db/DB_Table_Subcategory_V1.h:119
 msgid "Dining out"
@@ -2105,7 +2105,7 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:120
 msgid "Movies"
-msgstr ""
+msgstr "திரைப்படங்கள்"
 
 #: db/DB_Table_Subcategory_V1.h:121
 msgid "Video Rental"
@@ -2117,7 +2117,7 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:123
 msgid "Maintenance"
-msgstr ""
+msgstr "பராமரிப்பு"
 
 #: db/DB_Table_Subcategory_V1.h:125
 msgid "Parking"
@@ -2129,7 +2129,7 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr ""
+msgstr "புத்தகங்கள்"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
@@ -2145,7 +2145,7 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
 msgid "Health"
-msgstr ""
+msgstr "உடல்நலம்"
 
 #: db/DB_Table_Subcategory_V1.h:134
 msgid "Dental"
@@ -2173,11 +2173,11 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
 msgid "Home"
-msgstr ""
+msgstr "வீடு"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
-msgstr ""
+msgstr "பயணம்"
 
 #: db/DB_Table_Subcategory_V1.h:143
 msgid "Lodging"
@@ -2189,11 +2189,11 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:145
 msgid "Income Tax"
-msgstr ""
+msgstr "வருமான வரி"
 
 #: db/DB_Table_Subcategory_V1.h:146
 msgid "House Tax"
-msgstr ""
+msgstr "வீட்டு வரி"
 
 #: db/DB_Table_Subcategory_V1.h:147
 msgid "Water Tax"
