@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-28 16:50\n"
+"PO-Revision-Date: 2022-03-29 04:02\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "தனியுரிமை"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
@@ -203,7 +203,7 @@ msgstr ""
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "பூட்டப்பட்டது"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
@@ -571,11 +571,11 @@ msgstr ""
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
-msgstr ""
+msgstr "தேடு"
 
 #: assetspanel.cpp:504
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "தேடல்"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:395 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
@@ -623,7 +623,7 @@ msgstr ""
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "கோப்பு"
 
 #: attachmentdialog.cpp:65
 msgid "Attachment folder not defined."
@@ -812,7 +812,7 @@ msgstr "நான்கு வாரங்களுக்கொருமுற�
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:60 mmframereport.cpp:127
 #: model/Model_Budget.cpp:63
 msgid "Daily"
-msgstr ""
+msgstr "தினமும்"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
@@ -1437,7 +1437,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:246
 msgid "Income: "
-msgstr ""
+msgstr "வருமானம்: "
 
 #: budgetingpanel.cpp:247 budgetingpanel.cpp:255
 msgid "Estimated: "
@@ -1453,7 +1453,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:254
 msgid "Expenses: "
-msgstr ""
+msgstr "செலவுகள்: "
 
 #: budgetingpanel.cpp:297
 msgid "Icon"
