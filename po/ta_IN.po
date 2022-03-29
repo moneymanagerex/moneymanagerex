@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-29 04:20\n"
+"PO-Revision-Date: 2022-03-29 04:33\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -73,11 +73,11 @@ msgstr ""
 
 #: accountdialog.cpp:111 mmframe.cpp:1481
 msgid "Edit Account"
-msgstr "கணக்கை மாற்று"
+msgstr "கணக்கை திருத்து"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
-msgstr "கணக்கு பெயர்:"
+msgstr "கணக்கின் பெயர்:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -137,7 +137,7 @@ msgstr "அடிக்கடி பயன்படும் கணக்கா 
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:242
 #: transdialog.cpp:601 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
-msgstr "குறிப்பு"
+msgstr "குறிப்புகள்"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
@@ -147,7 +147,7 @@ msgstr "இக்கணக்கு பற்றி பயனர் குறி
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
 #: optiondialog.cpp:37
 msgid "Others"
-msgstr "மற்றவை"
+msgstr "பிற"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
@@ -972,7 +972,7 @@ msgstr "கணக்கு"
 #: billsdepositsdialog.cpp:731 billsdepositsdialog.cpp:781
 #: billsdepositsdialog.cpp:841 usertransactionpanel.cpp:113
 msgid "Select Account"
-msgstr "தேர்ந்தெடு"
+msgstr "கணக்கைத் தேர்ந்தெடு"
 
 #: billsdepositsdialog.cpp:603
 msgid "Specify the Account that will own the recurring transaction"
@@ -1022,7 +1022,7 @@ msgstr "வகை"
 #: transactionsupdatedialog.cpp:234 transdialog.cpp:416 transdialog.cpp:1121
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
-msgstr "வகையை தேர்ந்தெடு"
+msgstr "வகையைத் தேர்ந்தெடு"
 
 #: billsdepositsdialog.cpp:636 transdialog.cpp:1385
 msgid "Specify any associated check number or transaction number"
@@ -1357,14 +1357,14 @@ msgstr "வகை:"
 
 #: budgetentrydialog.cpp:128
 msgid "Expense"
-msgstr "செலவு"
+msgstr "செலவீனம்"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:439
 #: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:392
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr "வரவு"
+msgstr "வருமானம்"
 
 #: budgetentrydialog.cpp:134
 msgid "Specify whether this category is an income or an expense category"
@@ -2197,11 +2197,11 @@ msgstr "வீட்டு வரி"
 
 #: db/DB_Table_Subcategory_V1.h:147
 msgid "Water Tax"
-msgstr ""
+msgstr "தண்ணீர் வரி"
 
 #: db/DB_Table_Subcategory_V1.h:149
 msgid "Salary"
-msgstr ""
+msgstr "சம்பளம்"
 
 #: db/DB_Table_Subcategory_V1.h:150
 msgid "Reimbursement/Refunds"
@@ -2323,7 +2323,7 @@ msgstr ""
 #: filtertrans.cpp:190 filtertransdialog.cpp:402 filtertransdialog.cpp:1319
 #: reports/transactions.cpp:156
 msgid "Color"
-msgstr ""
+msgstr "நிறம்"
 
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:418 mmchecking_list.cpp:866
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
@@ -2452,7 +2452,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:466
 msgid "Settings"
-msgstr ""
+msgstr "அமைப்புகள்"
 
 #: filtertransdialog.cpp:487 filtertransdialog.cpp:916
 #: filtertransdialog.cpp:956 filtertransdialog.cpp:1180
@@ -2725,7 +2725,7 @@ msgstr ""
 #: images_list.cpp:483 images_list.cpp:512 images_list.cpp:518
 #: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
 msgid "Warning"
-msgstr ""
+msgstr "எச்சரிக்கை"
 
 #: images_list.cpp:436
 #, c-format
@@ -2739,7 +2739,7 @@ msgstr ""
 
 #: images_list.cpp:480
 msgid "and more..."
-msgstr ""
+msgstr "மேலும் பல..."
 
 #: images_list.cpp:482
 #, c-format
