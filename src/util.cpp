@@ -1449,26 +1449,23 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
 
 const wxString getVFname4print(const wxString& name, const wxString& data)
 {
-#ifndef __WXGTK__
+#if defined(__WXMSW__) || defined(__WXMAC__)
 
-    int fid = 0;
+    static int file_id = 0;
+    wxString file_name = wxString::Format("%s%i.htm", name, file_id);
     wxFileSystem fsys;
-    wxSharedPtr<wxFSFile> f (fsys.OpenFile(wxString::Format("memory:%s%i.htm", name, fid)));
-    if (f) {
-        wxMemoryFSHandler::RemoveFile(wxString::Format("%s%i.htm", name, fid));
-        fid = 1;
-    }
-    f.reset(fsys.OpenFile(wxString::Format("memory:%s1.htm", name)));
-    if (f) {
-        wxMemoryFSHandler::RemoveFile(wxString::Format("%s1.htm", name));
-        fid = 0;
+    wxSharedPtr<wxFSFile> f(fsys.OpenFile("memory:" + file_name));
+    //If the file is in virtual memory, then it must be deleted. But you can't use his name.
+    if (f.get()) {
+        wxMemoryFSHandler::RemoveFile(file_name);
+        ++file_id %= 2;
+        file_name = wxString::Format("%s%i.htm", name, file_id);
     }
 
     wxCharBuffer char_buffer;
     char_buffer = data.ToUTF8();
-
-    wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, char_buffer.length());
-    return wxString::Format("memory:%s%i.htm", name, fid);
+    wxMemoryFSHandler::AddFile(file_name, char_buffer, char_buffer.length());
+    return ("memory:" + file_name);
 
 #else
     wxString txt = data;
