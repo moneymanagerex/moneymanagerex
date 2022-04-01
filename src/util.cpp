@@ -1459,14 +1459,13 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
     if (f.get()) {
         wxMemoryFSHandler::RemoveFile(file_name);
         ++file_id %= 2;
+        file_name = wxString::Format("%s%i.htm", name, file_id);
     }
 
     wxCharBuffer char_buffer;
     char_buffer = data.ToUTF8();
-
-    file_name = wxString::Format("%s%i.htm", name, file_id);
     wxMemoryFSHandler::AddFile(file_name, char_buffer, char_buffer.length());
-    return "memory:" + file_name;
+    return ("memory:" + file_name);
 
 #else
     wxString txt = data;
