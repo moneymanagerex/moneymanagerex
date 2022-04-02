@@ -350,7 +350,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
                 {
-#ifndef __WXGTK__
+#if defined(__WXMSW__) || defined(__WXMAC__)
                     wxMemoryOutputStream memOut(nullptr);
                     themeStream.Read(memOut);
                     const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
@@ -361,12 +361,12 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                         , buffer->GetBufferSize());
                     wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
 #else
-                    const wxString themeFile = mmex::getTempFolder() + fileName;
-                    wxFileOutputStream fileOut(themeFile);
+                    const wxString theme_file = mmex::getTempFolder() + fileName;
+                    wxFileOutputStream fileOut(theme_file);
                     if (!fileOut.IsOk())
                         wxLogError("Could not copy %s !", fileFullPath);
                     else
-                        wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, themeFile);
+                        wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, theme_file);
                     themeStream.Read(fileOut);
 #endif
                     filesInVFS->Add(fileName);

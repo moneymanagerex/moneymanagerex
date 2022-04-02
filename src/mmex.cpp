@@ -256,7 +256,7 @@ bool OnInitImpl(mmGUIApp* app)
 
     wxImage::AddHandler(new wxPNGHandler);  
     // Resource files
-#ifndef __WXGTK__
+#if defined(__WXMSW__) || defined(__WXMAC__)
 
     wxFileSystem::AddHandler(new wxMemoryFSHandler);
 
@@ -293,6 +293,9 @@ bool OnInitImpl(mmGUIApp* app)
     for (const auto& sourceFile : filesArray)
     {
         const wxString repFile = tempDir + wxFileName(sourceFile).GetFullName();
+        const auto file_etx = wxFileName(repFile).GetExt();
+        if (wxString("mo|css|mmextheme|grm").Contains(file_etx)) continue;
+
         if (::wxFileExists(sourceFile))
         {
             if (!::wxFileExists(repFile)

@@ -1451,15 +1451,12 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
 {
 #if defined(__WXMSW__) || defined(__WXMAC__)
 
-    static int file_id = 0;
-    wxString file_name = wxString::Format("%s%i.htm", name, file_id);
+    const wxString file_name = "report.htm";
     wxFileSystem fsys;
     wxSharedPtr<wxFSFile> f(fsys.OpenFile("memory:" + file_name));
-    //If the file is in virtual memory, then it must be deleted. But you can't use his name.
+    //If the file is in virtual memory, then it must be deleted before use.
     if (f.get()) {
         wxMemoryFSHandler::RemoveFile(file_name);
-        ++file_id %= 2;
-        file_name = wxString::Format("%s%i.htm", name, file_id);
     }
 
     wxCharBuffer char_buffer;
