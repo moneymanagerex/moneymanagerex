@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-02-10 13:17\n"
+"PO-Revision-Date: 2022-04-02 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2339,7 +2339,7 @@ msgstr "Os desenvolvedores podem solicitar que você forneça informações apre
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "Voltar"
 
 #: filtertrans.cpp:190 filtertransdialog.cpp:402 filtertransdialog.cpp:1319
 #: reports/transactions.cpp:156
@@ -2540,7 +2540,7 @@ msgstr "Antes"
 
 #: filtertransdialog.cpp:1215
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: filtertransdialog.cpp:1287
 msgid "Amount Min."
@@ -5283,7 +5283,7 @@ msgstr "Outro"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Transação"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
@@ -5291,7 +5291,7 @@ msgstr ""
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Conta Bancária"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
