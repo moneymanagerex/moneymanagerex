@@ -158,11 +158,17 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         }
     }
 
-    int ref_id = (m_new_trx) ? -1 : m_trx_data.TRANSID;
+    int ref_id = (m_new_trx) ? NULL : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, style, name);
+    // If duplicate then we may need to copy the attachments
+    if (m_duplicate && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        mmAttachmentManage::CloneAllAttachments(RefType, transaction_id, -1);
+    }
+
+    Create(parent);
     this->SetMinSize(wxSize(500, 400));
 
     dataToControls();
@@ -523,6 +529,7 @@ void mmTransDialog::CreateControls()
 
     // Account ---------------------------------------------
     cbAccount_ = new wxComboBox(this, ID_DIALOG_TRANS_FROMACCOUNT);
+    cbAccount_->SetMaxSize(wxSize(m_textAmount->GetSize().GetX() * 2 + 5, -1));
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
@@ -537,7 +544,6 @@ void mmTransDialog::CreateControls()
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO);
-
     cbPayee_->SetMaxSize(cbAccount_->GetSize());
 
     flex_sizer->Add(payee_label_, g_flagsH);
@@ -614,20 +620,20 @@ void mmTransDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* button_ok = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
-    mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
+    wxBitmapButton* button_hide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+    mmToolTip(button_hide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
-        itemButtonHide->Hide();
+        button_hide->Hide();
     }
 
-    buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    buttons_sizer->Add(itemButtonHide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(m_button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
-    if (!m_new_trx && !m_duplicate) itemButtonCancel_->SetFocus();
+    if (!m_new_trx && !m_duplicate) m_button_cancel->SetFocus();
 
     buttons_sizer->Realize();
 
@@ -784,7 +790,7 @@ bool mmTransDialog::ValidateData()
 void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 {
     if (wxGetKeyState(WXK_TAB) && wxGetKeyState(WXK_SHIFT))
-        itemButtonCancel_->SetFocus();
+        m_button_cancel->SetFocus();
     else if (wxGetKeyState(WXK_TAB))
         choiceStatus_->SetFocus();
     else if (wxGetKeyState(WXK_UP))
@@ -1317,15 +1323,15 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(WXK_ESCAPE))
-            return itemButtonCancel_->SetFocus();
+    if (object_in_focus_ != m_button_cancel->GetId() && wxGetKeyState(WXK_ESCAPE))
+            return m_button_cancel->SetFocus();
 #endif
 
-    if (m_new_trx)
+    if (m_new_trx || m_duplicate)
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-        mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
-        Model_CustomFieldData::instance().DeleteAllData(RefType, m_trx_data.TRANSID);
+        mmAttachmentManage::DeleteAllAttachments(RefType, -1);
+        Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
     EndModal(wxID_CANCEL);
 }
@@ -1384,7 +1390,8 @@ void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     if (m_new_trx || m_duplicate) {
-        mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
+        mmAttachmentManage::DeleteAllAttachments(RefType, -1);
+        Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
     EndModal(wxID_CANCEL);
 }

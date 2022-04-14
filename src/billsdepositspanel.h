@@ -104,14 +104,16 @@ public:
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
     void RefreshList();
-    int getColumnsNumber() { return COL_MAX; }
-    int col_sort() { return COL_PAYMENT_DATE; }
+    int getColumnsNumber();
+    int col_sort();
 
     const wxString GetFrequency(const Model_Billsdeposits::Data* item) const;
     const wxString GetRemainingDays(const Model_Billsdeposits::Data* item) const;
 
     wxString BuildPage() const;
     wxDate getToday() const;
+
+    void do_delete_custom_values(int id);
 
 private:
     void CreateControls();
@@ -173,6 +175,7 @@ private:
 };
 
 inline wxDate mmBillsDepositsPanel::getToday() const { return m_today; }
-
+inline int mmBillsDepositsPanel::getColumnsNumber() { return COL_MAX; }
+inline int mmBillsDepositsPanel::col_sort() { return COL_PAYMENT_DATE; }
 #endif
 

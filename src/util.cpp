@@ -1449,26 +1449,20 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
 
 const wxString getVFname4print(const wxString& name, const wxString& data)
 {
-#ifndef __WXGTK__
+#if defined(__WXMSW__) || defined(__WXMAC__)
 
-    int fid = 0;
+    const wxString file_name = "report.htm";
     wxFileSystem fsys;
-    wxSharedPtr<wxFSFile> f (fsys.OpenFile(wxString::Format("memory:%s%i.htm", name, fid)));
-    if (f) {
-        wxMemoryFSHandler::RemoveFile(wxString::Format("%s%i.htm", name, fid));
-        fid = 1;
-    }
-    f.reset(fsys.OpenFile(wxString::Format("memory:%s1.htm", name)));
-    if (f) {
-        wxMemoryFSHandler::RemoveFile(wxString::Format("%s1.htm", name));
-        fid = 0;
+    wxSharedPtr<wxFSFile> f(fsys.OpenFile("memory:" + file_name));
+    //If the file is in virtual memory, then it must be deleted before use.
+    if (f.get()) {
+        wxMemoryFSHandler::RemoveFile(file_name);
     }
 
     wxCharBuffer char_buffer;
     char_buffer = data.ToUTF8();
-
-    wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, char_buffer.length());
-    return wxString::Format("memory:%s%i.htm", name, fid);
+    wxMemoryFSHandler::AddFile(file_name, char_buffer, char_buffer.length());
+    return ("memory:" + file_name);
 
 #else
     wxString txt = data;
@@ -1537,9 +1531,9 @@ const wxString md2html(const wxString& md)
     return body;
 }
 
-wxImageList* createImageList()
+wxImageList* createImageList(int size)
 {
-    int x = Option::instance().getIconSize();
+    int x = (size > 0) ? size : Option::instance().getIconSize();
     return(new wxImageList(x, x, false));   // No mask creation, not needed and causes image correuption on Mac
 
 }
@@ -1587,15 +1581,21 @@ int pow10(int y)
 wxString HTMLEncode(wxString input)
 {
     wxString output;
-    for(int pos = 0; pos < input.Len(); ++pos) {
-        switch(static_cast<char>(input.GetChar(pos))) {
-            case '&':  output.Append("&amp;");      break;
-            case '\"': output.Append("&quot;");     break;
-            case '\'': output.Append("&apos;");     break;
-            case '<':  output.Append("&lt;");       break;
-            case '>':  output.Append("&gt;");       break;
-            default:   output.Append(input[pos]);   break;
-        }
+    for(int pos = 0; pos < input.Len(); ++pos) 
+    {
+        wxUniChar c = input.GetChar(pos);
+        if (c.IsAscii())
+            switch(static_cast<char>(c)) 
+            {
+                case '&':  output.Append("&amp;");      break;
+                case '\"': output.Append("&quot;");     break;
+                case '\'': output.Append("&apos;");     break;
+                case '<':  output.Append("&lt;");       break;
+                case '>':  output.Append("&gt;");       break;
+                default:   output.Append(c);            break;
+            }
+        else
+            output.Append(c);
     }
     return output;
 }

@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+ Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,7 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/spinctrl.h>
 #include <fmt/core.h>
-#include <fmt/locale.h>
+#include <fmt/format.h>
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
@@ -307,22 +308,12 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
         return true;
     }
 
-    double value = 1234567.8910;
-
     try {
-        auto test = fmt::format(std::locale(locale.c_str()), "{:L}", value);
-
-        wxString cents;
-        wxRegEx pattern(R"([^0-9][0-9]{2})");
-        if (pattern.Matches(test)) {
-            cents = pattern.GetMatch(test, 0);
+        auto test = fmt::format(std::locale(locale.c_str()), "{:.2Lf}", 1234567.89);
+        for (auto &i : test) {
+            if (i < 0) i = ' ';
         }
-        else
-            return false;
-
-        const wxString sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
-            + cents;
-        result = wxString::Format(_("Currency value sample: %s"), sample);
+        result = wxString::Format(_("Currency value sample: %s"), test);
     }
     catch (std::exception & ex) {
         result = wxString(ex.what());

@@ -73,7 +73,7 @@ private:
     enum
     {
         /* Themes Dialog */
-        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 900,
+        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 555,
         ID_DIALOG_THEME_IMPORT,
         ID_DIALOG_THEME_DELETE,
         ID_DIALOG_THEME_USE

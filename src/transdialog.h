@@ -56,11 +56,11 @@ public:
     );
 
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = "Transactions Dialog"
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
         , const wxString& name = "mmTransDialog"
     );
 
@@ -113,7 +113,7 @@ private:
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
-    wxButton* itemButtonCancel_;
+    wxButton* m_button_cancel;
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
     wxDatePickerCtrl* dpc_;
@@ -151,7 +151,7 @@ private:
     enum
     {
         /* Transaction Dialog */
-        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 900,
+        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 897,
         ID_DIALOG_TRANS_TEXTNUMBER,
         ID_DIALOG_TRANS_BUTTONDATE,
         ID_DIALOG_TRANS_TEXTNOTES,

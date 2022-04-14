@@ -240,7 +240,7 @@ void mmThemesDialog::RefreshView()
     const wxString webImageName = "web.png";
     const wxString themeImageName = "themeimage.png";
 
-#ifndef __WXGTK__
+#if defined(__WXMSW__) || defined(__WXMAC__)
     if (vfsThemeImageLoaded)
     {
         wxMemoryFSHandler::RemoveFile(webImageName);

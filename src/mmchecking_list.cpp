@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
+ Copyright (C) 2013, 2014, 2020, 2021, 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -761,6 +761,13 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
         Model_CustomFieldData::instance().ReleaseSavepoint();
     }
 
+    // Clone attachments if wanted
+    if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        mmAttachmentManage::CloneAllAttachments(RefType, tran->TRANSID, transactionID);
+    }
+
     return transactionID;
 }
 
@@ -912,6 +919,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
         Model_Splittransaction::instance().Savepoint();
+        Model_CustomFieldData::instance().Savepoint();
         for (const auto& i : m_selected_id)
         {
             Model_Checking::Data* trx = Model_Checking::instance().get(i);
@@ -926,14 +934,20 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 m_cp->m_frame->RefreshNavigationTree();
             }
 
-            // remove also removes any split transactions
             Model_Checking::instance().remove(i);
+
+            // remove also any split transactions
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), i);
+
+            // remove also any custom fields for the transaction
+            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            Model_CustomFieldData::DeleteAllData(RefType, i);
 
             m_selectedForCopy.erase(std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), i)
                 , m_selectedForCopy.end());
         }
         m_selected_id.clear();
+        Model_CustomFieldData::instance().ReleaseSavepoint();
         Model_Splittransaction::instance().ReleaseSavepoint();
         Model_Attachment::instance().ReleaseSavepoint();
         Model_Checking::instance().ReleaseSavepoint();

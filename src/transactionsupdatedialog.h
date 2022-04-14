@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2017 - 2021 Nikolay Akimov
+ Copyright (C) 2017 - 2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #include "defs.h"
 #include "mmcombobox.h"
+#include "mmcustomdata.h"
 class mmTextCtrl;
 
 class transactionsUpdateDialog : public wxDialog
@@ -36,11 +37,11 @@ public:
 
 private:
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = wxTRANSLATE("Multi Transactions Update")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxSize(500, 300)
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     void CreateControls();
     void SetEventHandlers();
@@ -52,6 +53,7 @@ private:
     void OnAccountUpdated(wxCommandEvent& event);
     void SetPayeeTransferControls();
     void OnTransTypeChanged(wxCommandEvent& event);
+    void OnMoreFields(wxCommandEvent& event);
 
 private:
     wxCheckBox* m_payee_checkbox;
@@ -76,13 +78,16 @@ private:
     int m_categ_id;
     int m_subcateg_id;
     bool m_hasTransfers, m_hasNonTransfers, m_hasSplits;
+    wxSharedPtr<mmCustomData> m_custom_fields;
 
     enum
     {
         /* Transaction Dialog */
-        ID_PAYEE = wxID_HIGHEST + 900,
+        ID_PAYEE = wxID_HIGHEST + 897,
         ID_TRANS_TYPE,
-        ID_TRANS_ACC
+        ID_TRANS_ACC,
+        ID_BTN_CUSTOMFIELDS,
+        ID_CUSTOMFIELDS,
     };
 };
 

@@ -388,18 +388,11 @@ void Option::setHomePageIncExpRange(int value)
     m_homepage_incexp_range = value;
 }
 
-int Option::AccountImageId(int account_id, bool def)
+int Option::AccountImageId(int account_id, bool def, bool ignoreClosure)
 {
-    int max = acc_img::MAX_ACC_ICON - img::LAST_NAVTREE_PNG;
-    int min = 1;
-    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
-    if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
-    if (!def && (custom_img_id >= min && custom_img_id <= max))
-        return custom_img_id + img::LAST_NAVTREE_PNG - 1;
-
-    int selectedImage = img::SAVINGS_ACC_NORMAL_PNG; //Default value
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
+    int selectedImage = img::SAVINGS_ACC_NORMAL_PNG; //Default value
 
     Model_Account::Data* account = Model_Account::instance().get(account_id);
     if (account)
@@ -407,41 +400,42 @@ int Option::AccountImageId(int account_id, bool def)
         acctType = Model_Account::type(account);
         acctStatus = account->STATUS;
     }
-    bool closed = acctStatus == "Closed";
+
+    if (!def && !ignoreClosure && (acctStatus == "Closed"))
+        return img::ACCOUNT_CLOSED_PNG;
+
+    int max = acc_img::MAX_ACC_ICON - img::LAST_NAVTREE_PNG;
+    int min = 1;
+    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
+    if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
+    if (!def && (custom_img_id >= min && custom_img_id <= max))
+        return custom_img_id + img::LAST_NAVTREE_PNG - 1;
 
     switch (acctType)
     {
     case (Model_Account::CHECKING) :
-        if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_PNG;
-        else selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
+        selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
         break;
     case (Model_Account::TERM) :
-        if (closed) selectedImage = img::TERM_ACC_CLOSED_PNG;
-         else  selectedImage = img::TERMACCOUNT_NORMAL_PNG;
+        selectedImage = img::TERMACCOUNT_NORMAL_PNG;
         break;
     case (Model_Account::INVESTMENT) :
-        if (closed) selectedImage = img::STOCK_ACC_CLOSED_PNG;
-        else  selectedImage = img::STOCK_ACC_NORMAL_PNG;
+        selectedImage = img::STOCK_ACC_NORMAL_PNG;
         break;
     case (Model_Account::CREDIT_CARD) :
-        if (closed) selectedImage = img::CARD_ACC_CLOSED_PNG;
-         else   selectedImage = img::CARD_ACC_NORMAL_PNG;
+        selectedImage = img::CARD_ACC_NORMAL_PNG;
         break;
     case (Model_Account::CASH) :
-        if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
-         else selectedImage = img::CASH_ACC_NORMAL_PNG;
+        selectedImage = img::CASH_ACC_NORMAL_PNG;
         break;
     case (Model_Account::LOAN) :
-        if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
-         else selectedImage = img::LOAN_ACC_NORMAL_PNG;
+        selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
     case (Model_Account::ASSET) :
-        if (closed) selectedImage = img::ASSET_CLOSED_PNG;
-         else selectedImage = img::ASSET_NORMAL_PNG;
+        selectedImage = img::ASSET_NORMAL_PNG;
         break;
     case (Model_Account::SHARES) :
-        if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
-        else selectedImage = img::LOAN_ACC_NORMAL_PNG;
+        selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
     default:
         wxASSERT(false);

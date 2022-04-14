@@ -53,6 +53,7 @@ public:
     static const wxString fieldtype_desc(const int FieldTypeEnum);
     static FIELDTYPE type(const Data* r);
     static FIELDTYPE type(const Data& r);
+    static FIELDTYPE type(const wxString& value);
     static const wxArrayString all_type();
     static const wxString getRegEx(const wxString& Properties);
     static const wxString getTooltip(const wxString& Properties);

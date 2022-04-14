@@ -64,19 +64,13 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "NAV_HELP.svg", { NAV_HELP, true } },
     { "FAVOURITE.svg", { FAVOURITE, true } },
     { "SAVINGS_NORMAL.svg", { SAVINGS_NORMAL, true } },
-    { "SAVINGS_CLOSED.svg", { SAVINGS_CLOSED, true } },
     { "CC_NORMAL.svg", { CC_NORMAL, true } },
-    { "CC_CLOSED.svg", { CC_CLOSED, true } },
     { "CASH_NORMAL.svg", { CASH_NORMAL, true } },
-    { "CASH_CLOSED.svg", { CASH_CLOSED, true } },
     { "LOAN_ACC_NORMAL.svg", { LOAN_ACC_NORMAL, true } },
-    { "LOAN_ACC_CLOSED.svg", { LOAN_ACC_CLOSED, true } },
     { "TERM_NORMAL.svg", { TERM_NORMAL, true } },
-    { "TERM_CLOSED.svg", { TERM_CLOSED, true } },
     { "STOCKS_NORMAL.svg", { STOCKS_NORMAL, true } },
-    { "STOCKS_CLOSED.svg", { STOCKS_CLOSED, true } },
     { "ASSET_NORMAL.svg", { ASSET_NORMAL, true } },
-    { "ASSET_CLOSED.svg", { ASSET_CLOSED, true } },
+    { "ACCOUNT_CLOSED.svg", { ACCOUNT_CLOSED, true } },
     { "RECURRING.svg", { RECURRING, true } },
     { "BUDGET.svg", { BUDGET, true } },
     { "PIE_CHART.svg", { PIE_CHART, true } },
@@ -191,70 +185,64 @@ Document metaData_doc;
 
 static wxSharedPtr<wxArrayString> filesInVFS;
 
-static const std::map<int, wxBitmap> navtree_images()
+static const std::map<int, wxBitmap> navtree_images(int size)
 {
     return{
-        { HOUSE_PNG, mmBitmap(png::NAV_HOME) }
-        , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS) }
-        , { SCHEDULE_PNG, mmBitmap(png::RECURRING) }
-        , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
-        , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
-        , { HELP_PNG, mmBitmap(png::NAV_HELP) }
-        , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE) }
-        , { FILTER_PNG, mmBitmap(png::NAV_FILTER) }
-        , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL) }
-        , { ASSET_CLOSED_PNG, mmBitmap(png::ASSET_CLOSED) } 
-        , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM) }
-        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM) } //TODO: GRM rep group ico
-        , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
-        , { SAVINGS_ACC_CLOSED_PNG, mmBitmap(png::SAVINGS_CLOSED) }
-        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL) }
-        , { CARD_ACC_CLOSED_PNG, mmBitmap(png::CC_CLOSED) }
-        , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL) }
-        , { TERM_ACC_CLOSED_PNG, mmBitmap(png::TERM_CLOSED) }
-        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL) }
-        , { STOCK_ACC_CLOSED_PNG, mmBitmap(png::STOCKS_CLOSED) }
-        , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL) }
-        , { CASH_ACC_CLOSED_PNG, mmBitmap(png::CASH_CLOSED) }
-        , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
-        , { LOAN_ACC_CLOSED_PNG, mmBitmap(png::LOAN_ACC_CLOSED) }
+        { HOUSE_PNG, mmBitmap(png::NAV_HOME, size) }
+        , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS, size) }
+        , { SCHEDULE_PNG, mmBitmap(png::RECURRING, size) }
+        , { CALENDAR_PNG, mmBitmap(png::BUDGET, size) }
+        , { PIECHART_PNG, mmBitmap(png::PIE_CHART, size) }
+        , { HELP_PNG, mmBitmap(png::NAV_HELP, size) }
+        , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE, size) }
+        , { FILTER_PNG, mmBitmap(png::NAV_FILTER, size) }
+        , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL, size) }
+        , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM, size) }
+        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM, size) } //TODO: GRM rep group ico
+        , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL, size) }
+        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL, size) }
+        , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL, size) }
+        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL, size) }
+        , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL, size) }
+        , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL, size) }
+        , { ACCOUNT_CLOSED_PNG, mmBitmap(png::ACCOUNT_CLOSED, size) }
     };
 };
 
 // Custom icons for accounts
-static const std::map<int, wxBitmap> acc_images()
+static const std::map<int, wxBitmap> acc_images(int size)
 {
     return
     {
-        { ACC_ICON_MONEY, mmBitmap(png::ACC_MONEY) }
-        , { ACC_ICON_EURO, mmBitmap(png::ACC_EURO) }
-        , { ACC_ICON_FLAG, mmBitmap(png::ACC_FLAG) }
-        , { ACC_ICON_COINS, mmBitmap(png::ACC_COINS) }
-        , { ACC_ICON_ABOUT, mmBitmap(png::ACC_ABOUT) }
-        , { ACC_ICON_CLOCK, mmBitmap(png::ACC_CLOCK) }
-        , { ACC_ICON_CAT, mmBitmap(png::ACC_CAT) }
-        , { ACC_ICON_DOG, mmBitmap(png::ACC_DOG) }
-        , { ACC_ICON_TREES, mmBitmap(png::ACC_TREES) }
-        , { ACC_ICON_HOURGLASS, mmBitmap(png::ACC_HOURGLASS) }
-        , { ACC_ICON_WORK, mmBitmap(png::ACC_WORK) }
-        , { ACC_ICON_PAYPAL, mmBitmap(png::ACC_PAYPAL)}
-        , { ACC_ICON_WALLET, mmBitmap(png::ACC_WALLET) }
-        , { ACC_ICON_RUBIK, mmBitmap(png::ACC_RUBIK) }
+        { ACC_ICON_MONEY, mmBitmap(png::ACC_MONEY, size) }
+        , { ACC_ICON_EURO, mmBitmap(png::ACC_EURO, size) }
+        , { ACC_ICON_FLAG, mmBitmap(png::ACC_FLAG, size) }
+        , { ACC_ICON_COINS, mmBitmap(png::ACC_COINS, size) }
+        , { ACC_ICON_ABOUT, mmBitmap(png::ACC_ABOUT, size) }
+        , { ACC_ICON_CLOCK, mmBitmap(png::ACC_CLOCK, size) }
+        , { ACC_ICON_CAT, mmBitmap(png::ACC_CAT, size) }
+        , { ACC_ICON_DOG, mmBitmap(png::ACC_DOG, size) }
+        , { ACC_ICON_TREES, mmBitmap(png::ACC_TREES, size) }
+        , { ACC_ICON_HOURGLASS, mmBitmap(png::ACC_HOURGLASS, size) }
+        , { ACC_ICON_WORK, mmBitmap(png::ACC_WORK, size) }
+        , { ACC_ICON_PAYPAL, mmBitmap(png::ACC_PAYPAL, size)}
+        , { ACC_ICON_WALLET, mmBitmap(png::ACC_WALLET, size) }
+        , { ACC_ICON_RUBIK, mmBitmap(png::ACC_RUBIK, size) }
     };
 }
 
-wxImageList* navtree_images_list()
+wxImageList* navtree_images_list(int size)
 {
-    int x = Option::instance().getIconSize();
+    int x = (size > 0) ? size : Option::instance().getIconSize();
     if (x < 16) x = 16;
     if (x > 48) x = 48;
-    wxImageList* imageList = createImageList();
-    for (const auto& img : navtree_images())
+    wxImageList* imageList = createImageList(x);
+    for (const auto& img : navtree_images(x))
     {
         wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
         imageList->Add(img.second);
     }
-    for (const auto& img : acc_images())
+    for (const auto& img : acc_images(x))
     {
         wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
         imageList->Add(img.second);
@@ -362,7 +350,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
                 {
-#ifndef __WXGTK__
+#if defined(__WXMSW__) || defined(__WXMAC__)
                     wxMemoryOutputStream memOut(nullptr);
                     themeStream.Read(memOut);
                     const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
@@ -373,12 +361,12 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                         , buffer->GetBufferSize());
                     wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
 #else
-                    const wxString themeFile = mmex::getTempFolder() + fileName;
-                    wxFileOutputStream fileOut(themeFile);
+                    const wxString theme_file = mmex::getTempFolder() + fileName;
+                    wxFileOutputStream fileOut(theme_file);
                     if (!fileOut.IsOk())
                         wxLogError("Could not copy %s !", fileFullPath);
                     else
-                        wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, themeFile);
+                        wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, theme_file);
                     themeStream.Read(fileOut);
 #endif
                     filesInVFS->Add(fileName);
