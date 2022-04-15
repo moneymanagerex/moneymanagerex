@@ -172,7 +172,10 @@ after_build:
 - if %configuration%==Debug set "pkgsuff=-debug"
 - for %%f in (*.exe *.zip) do
     if /i %%~xf==.exe (move "%%f" "..\%%~nf%xp%%pkgsuff%.exe")
-    else (move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
+    else ( mkdir "%%~nf%xp%%pkgsuff%" &&
+        fsutil file createnew "%%~nf%xp%%pkgsuff%\mmexini.db3" 0 &&
+        7z a "%%f" "%%~nf%xp%%pkgsuff%\mmexini.db3" &&   
+        move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
 
 test: off
 
