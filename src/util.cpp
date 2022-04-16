@@ -1451,7 +1451,7 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
 {
 #if defined(__WXMSW__) || defined(__WXMAC__)
 
-    const wxString file_name = "report.htm";
+    const wxString file_name = wxString::Format("%s.htm", name);
     wxFileSystem fsys;
     wxSharedPtr<wxFSFile> f(fsys.OpenFile("memory:" + file_name));
     //If the file is in virtual memory, then it must be deleted before use.
