@@ -58,11 +58,11 @@ namespace tags
 </script>
 </html>
 )";
-    static const char HTML[] = R"(<!DOCTYPE html>
+    static const wxString HTML = R"(<!DOCTYPE html>
 <html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>%s - Report</title>
-<link href = 'memory:master.css' rel = 'stylesheet' />
+<link href = 'memory:master.css' rel = 'stylesheet'>
 <script>
     window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
     window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
@@ -141,7 +141,7 @@ void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
                     , fg.IsEmpty() ? "" : wxString::Format("text='%s';", fg));
     } else
     {
-        html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
+        html_ = wxString::Format(tags::HTML
             , mmex::getProgramName()
             , wxString::Format("%d", Option::instance().getHtmlFontSize())
             , extra_style);
