@@ -26,7 +26,7 @@ environment:
   # clcache config
   clcVer: 4.1.0
   # libcurl config
-  curlVer: 7_61_0
+  curlVer: 7_82_0
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
