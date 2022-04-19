@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-02-06 23:43+0300\n"
-"PO-Revision-Date: 2022-03-04 10:21\n"
+"PO-Revision-Date: 2022-04-14 20:31\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2352,7 +2352,7 @@ msgstr "No conciliada"
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:420 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
 msgid "Reconciled"
-msgstr "Conciliada"
+msgstr "Conciliado"
 
 #: filtertransdialog.cpp:48 mmchecking_list.cpp:422
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
