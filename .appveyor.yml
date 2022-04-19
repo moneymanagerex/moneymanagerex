@@ -139,7 +139,7 @@ install:
       -DCURL_STATICLIB=%curlStatic%
       -DHTTP_ONLY=ON
       -DENABLE_MANUAL=OFF
-      -DCMAKE_USE_WINSSL=ON
+      -DCURL_USE_SCHANNEL=ON
       -DBUILD_TESTING=OFF
       -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
       .. &&
