@@ -26,7 +26,7 @@ environment:
   # clcache config
   clcVer: 4.1.0
   # libcurl config
-  curlVer: 7_61_0
+  curlVer: 7_82_0
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
@@ -139,7 +139,7 @@ install:
       -DCURL_STATICLIB=%curlStatic%
       -DHTTP_ONLY=ON
       -DENABLE_MANUAL=OFF
-      -DCMAKE_USE_WINSSL=ON
+      -DCURL_USE_SCHANNEL=ON
       -DBUILD_TESTING=OFF
       -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
       .. &&

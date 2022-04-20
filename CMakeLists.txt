@@ -639,7 +639,7 @@ endif()
 
 # libcurl for Windows, if specified and exists then copy to bin
 if(CMAKE_PREFIX_PATH)
-    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/build/lib/Release/libcurl.dll" CURL_LIBPATH)
+    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/bin/libcurl.dll" CURL_LIBPATH)
     if(EXISTS "${CURL_LIBPATH}")
         install(FILES 
             "${CURL_LIBPATH}"
