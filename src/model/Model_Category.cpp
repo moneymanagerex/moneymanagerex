@@ -124,6 +124,19 @@ bool Model_Category::is_used(int id, int sub_id)
     return false;
 }
 
+bool Model_Category::is_used(int id)
+{
+    const auto& trans = Model_Checking::instance().find(Model_Checking::CATEGID(id));
+    if (!trans.empty()) return true;
+    const auto& split = Model_Splittransaction::instance().find(Model_Checking::CATEGID(id));
+    if (!split.empty()) return true;
+    const auto& deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id));
+    if (!deposits.empty()) return true;
+    const auto& deposit_split = Model_Budgetsplittransaction::instance().find(Model_Billsdeposits::CATEGID(id));
+    if (!deposit_split.empty()) return true;
+
+    return false;
+}
 bool Model_Category::has_income(int id, int sub_id)
 {
     double sum = 0.0;
