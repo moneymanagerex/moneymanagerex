@@ -39,7 +39,7 @@ wxBEGIN_EVENT_TABLE(mmQIFExportDialog, wxDialog)
     EVT_CLOSE(mmQIFExportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFExportDialog::mmQIFExportDialog(wxWindow * parent, int type)
+mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type)
 {
     m_type = type;
     wxString type_name;
@@ -432,14 +432,20 @@ void mmQIFExportDialog::mmExportQIF()
         switch (m_type)
         {
         case JSON:
-            mmExportTransaction::getCategoriesJSON(json_writer);
+            if (cCategs_->IsChecked()) {
+                mmExportTransaction::getCategoriesJSON(json_writer);
+                numCategories = Model_Category::instance().all_categories().size();
+            }
+            else {
+                mmExportTransaction::getUsedCategoriesJSON(json_writer);
+            }
             break;
         case QIF:
             buffer << mmExportTransaction::getCategoriesQIF();
+            numCategories = Model_Category::instance().all_categories().size();
             break;
         }
         sErrorMsg << _("Categories exported") << "\n";
-        numCategories = Model_Category::instance().all_categories().size();
     }
 
     std::unordered_map <int /*account ID*/, wxString> allAccounts4Export;
@@ -633,13 +639,13 @@ void mmQIFExportDialog::mmExportQIF()
     else
         *log_field_ << buffer;
 
-    wxMessageDialog msgDlg(this
-        , wxString::Format(_("Number of categories exported: %zu"), numCategories)
-        + "\n"
-        + wxString::Format(_("Number of transactions exported: %zu"), numRecords)
-        + "\n"
-        + wxString::Format(_("Number of accounts exported: %zu"), allAccounts4Export.size())
-        , _("Export to QIF"), wxOK | wxICON_INFORMATION);
+    wxString msg = "";
+    if (numCategories > 0)
+        msg += wxString::Format(_("Number of categories exported: %zu \n"), numCategories);
+    msg += wxString::Format(_("Number of transactions exported: %zu \n"), numRecords);
+    msg += wxString::Format(_("Number of accounts exported: %zu"), allAccounts4Export.size());
+
+    wxMessageDialog msgDlg(this, msg, _("Export to QIF"), wxOK | wxICON_INFORMATION);
 
     msgDlg.ShowModal();
 }

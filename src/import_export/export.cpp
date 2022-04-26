@@ -373,6 +373,44 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     json_writer.EndArray();
 }
 
+void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
+{
+    json_writer.Key("CATEGORIES");
+    json_writer.StartArray();
+    for (const auto& category : Model_Category::instance().all())
+    {
+        if (!Model_Category::instance().is_used(category.CATEGID))
+            continue;
+        json_writer.StartObject();
+        json_writer.Key("ID");
+        json_writer.Int(category.CATEGID);
+        json_writer.Key("NAME");
+        json_writer.String(category.CATEGNAME.utf8_str());
+
+        const auto sub_categ = Model_Category::sub_category(category);
+        if (!sub_categ.empty())
+        {
+            json_writer.Key("SUB_CATEGORIES");
+            json_writer.StartArray();
+            for (const auto& sub_category : sub_categ)
+            {
+                if (!Model_Subcategory::instance().is_used(sub_category.SUBCATEGID))
+                    continue;
+                auto test = sub_categ.to_json();
+                json_writer.StartObject();
+                json_writer.Key("ID");
+                json_writer.Int(sub_category.SUBCATEGID);
+                json_writer.Key("NAME");
+                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
+                json_writer.EndObject();
+            }
+            json_writer.EndArray();
+        }
+        json_writer.EndObject();
+    }
+    json_writer.EndArray();
+}
+
 void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
 {
     json_writer.StartObject();
