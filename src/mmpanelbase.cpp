@@ -110,7 +110,7 @@ void mmListCtrl::OnItemResize(wxListEvent& event)
     int i = event.GetColumn();
     int width = GetColumnWidth(i);
     if (!m_col_width.IsEmpty())
-        Model_Setting::instance().Set(wxString::Format(m_col_width, i), width);
+        Model_Setting::instance().Set(wxString::Format(m_col_width, GetRealColumn(i)), width);
 }
 
 void mmListCtrl::OnColClick(wxListEvent& WXUNUSED(event))
@@ -130,8 +130,8 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         {
             int id = MENU_HEADER_COLUMN + i;
             submenu->AppendCheckItem(id, m_columns[i].HEADER);
-            if (Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(i)), m_columns[i].WIDTH) != 0)
-                submenu->Check(id, true);
+            int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(i)), m_columns[i].WIDTH);
+            submenu->Check(id, width != 0);
         }
         menu.AppendSubMenu(submenu, _("Hide/Show Columns"));
         menu.Append(MENU_HEADER_HIDE, _("Hide this column"));
