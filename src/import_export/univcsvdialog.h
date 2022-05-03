@@ -104,9 +104,14 @@ private:
 
     enum EUnivCvs
     {
-        UNIV_CSV_DATE = 0,
+        UNIV_CSV_ID = 0,
+        UNIV_CSV_DATE,
+        UNIV_CSV_STATUS,
+        UNIV_CSV_TYPE,
+        UNIV_CSV_ACCOUNT,
         UNIV_CSV_PAYEE,
         UNIV_CSV_AMOUNT,
+        UNIV_CSV_CURRENCY,
         UNIV_CSV_CATEGORY,
         UNIV_CSV_SUBCATEGORY,
         UNIV_CSV_TRANSNUM,
@@ -115,7 +120,6 @@ private:
         UNIV_CSV_WITHDRAWAL,
         UNIV_CSV_DEPOSIT,
         UNIV_CSV_BALANCE,
-        UNIV_CSV_TYPE,
         UNIV_CSV_LAST
     };
 
@@ -167,7 +171,7 @@ private:
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal, DefindByType };
     wxCheckBox* m_checkBoxExportTitles;
 
-    int fromAccountID_;
+    int accountID_;
     bool importSuccessful_;
     bool m_userDefinedDateMask;
     int m_object_in_focus;
@@ -227,7 +231,7 @@ inline bool mmUnivCSVDialog::isImportCompletedSuccessfully() const
 }
 inline int mmUnivCSVDialog::ImportedAccountID() const
 {
-    return fromAccountID_;
+    return accountID_;
 }
 
 inline bool mmUnivCSVDialog::IsImporter() const
