@@ -59,16 +59,14 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
         const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
         const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
-        payee = wxString::Format("%s %s %s -> %s %s %s"
-            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
-            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
+        payee = acc_to->ACCOUNTNAME;
         //Transaction number used to make transaction unique
         // to proper merge transfer records
-        if (transNum.IsEmpty() && notes.IsEmpty())
+        if (transNum.IsEmpty() && notes.IsEmpty()) {
             transNum = wxString::Format("#%i", full_tran.id());
+        }
 
-        if (reverce)
-        {
+        if (reverce) {
             account = acc_to->ACCOUNTNAME;
             currency = curr_to->CURRENCY_SYMBOL;
         }
