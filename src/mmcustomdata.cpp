@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2017 Gabriele-V
 Copyright (C) 2018, 2021, 2022 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -48,24 +48,8 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     , m_ref_id(ref_id)
 {
     m_dialog = dialog;
-    const auto fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
-    for (const auto& i : fields)
-    {
-        Document j_doc;
-        wxString s_label;
-        if (!j_doc.Parse(i.PROPERTIES.utf8_str()).HasParseError())
-        {
-            Value& j_label = GetValueByPointerWithDefault(j_doc, "/UDFC", "");
-            if (j_label.IsString()) {
-                s_label = j_label.GetString();
-            }
-            if (s_label.Matches("UDFC*"))
-            {
-                m_fields.push_back(i);
-            }
-        }
-    }
-    std::sort(m_fields.begin(), m_fields.end(), SorterByFIELDID());
+    m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
     m_data_changed.clear();
 }
 
