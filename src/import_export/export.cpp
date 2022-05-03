@@ -41,7 +41,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     , const wxString& dateMask, bool reverce)
 {
     wxString buffer = "";
-    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
+    bool is_transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
     wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
@@ -54,23 +54,19 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     wxString account = acc_in->ACCOUNTNAME;
     wxString currency = curr_in->CURRENCY_SYMBOL;
 
-    if (transfer)
+    if (is_transfer)
     {
         const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
         const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
-        payee = wxString::Format("%s %s %s -> %s %s %s"
-            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
-            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
+        payee = reverce ? acc_to->ACCOUNTNAME : acc_in->ACCOUNTNAME;
+        account = reverce ? acc_in->ACCOUNTNAME : acc_to->ACCOUNTNAME;
+        currency = reverce ? curr_in->CURRENCY_SYMBOL : curr_to->CURRENCY_SYMBOL;
+
         //Transaction number used to make transaction unique
         // to proper merge transfer records
-        if (transNum.IsEmpty() && notes.IsEmpty())
+        if (transNum.IsEmpty() && notes.IsEmpty()) {
             transNum = wxString::Format("#%i", full_tran.id());
-
-        if (reverce)
-        {
-            account = acc_to->ACCOUNTNAME;
-            currency = curr_to->CURRENCY_SYMBOL;
         }
     }
 
@@ -114,7 +110,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
         double value = Model_Checking::balance(full_tran
-            , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
+            , (reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;

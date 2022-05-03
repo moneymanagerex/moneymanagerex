@@ -395,6 +395,38 @@ wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
     return this->PAYEENAME;
 }
 
+const wxString Model_Checking::Full_Data::get_currency_code(int account_id) const
+{
+    if (TYPE::TRANSFER == type(this->TRANSCODE))
+    {
+        if (this->ACCOUNTID == account_id || account_id == -1) 
+            account_id = this->ACCOUNTID;
+        else
+            account_id = this->TOACCOUNTID;
+    }
+    Model_Account::Data* acc = Model_Account::instance().get(account_id);
+    int currency_id = acc ? acc->CURRENCYID: -1;
+    Model_Currency::Data* curr = Model_Currency::instance().get(currency_id);
+
+    return curr ? curr->CURRENCY_SYMBOL : "";
+}
+
+const wxString Model_Checking::Full_Data::get_account_name(int account_id) const
+{
+    if (TYPE::TRANSFER == type(this->TRANSCODE))
+    {
+        if (this->ACCOUNTID == account_id || account_id == -1) {
+            return this->ACCOUNTNAME;
+        }
+        else {
+            Model_Account::Data* acc = Model_Account::instance().get(TOACCOUNTID);
+            return acc ? acc->ACCOUNTNAME : "";
+        }
+    }
+
+    return this->ACCOUNTNAME;
+}
+
 bool Model_Checking::Full_Data::is_foreign() const
 {
     return (this->TOACCOUNTID > 0) && ((this->TRANSCODE == all_type()[DEPOSIT]) || (this->TRANSCODE == all_type()[WITHDRAWAL]));
