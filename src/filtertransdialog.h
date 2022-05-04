@@ -115,6 +115,7 @@ private:
     bool is_number_cb_active() const;
     bool is_notes_cb_active() const;
     bool is_colour_cb_active() const;
+    bool is_custom_field_active() const;
     bool is_custom_field_matches(const Model_Checking::Data& tran) const;
     void setPresettings(const wxString& view);
     void clearSettings();

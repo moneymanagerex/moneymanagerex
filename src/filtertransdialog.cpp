@@ -871,7 +871,8 @@ bool mmFilterTransactionsDialog::isSomethingSelected() const
         || is_amount_range_max_cb_active()
         || is_number_cb_active()
         || is_notes_cb_active()
-        || is_colour_cb_active();
+        || is_colour_cb_active()
+        || is_custom_field_active();
 }
 
 const wxString mmFilterTransactionsDialog::getStatus() const
@@ -1142,7 +1143,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
         ok = false;
     else if (is_colour_cb_active() && (colourValue_ != tran.FOLLOWUPID))
         ok = false;
-    else if (!is_custom_field_matches(tran))
+    else if (is_custom_field_active() && !is_custom_field_matches(tran))
         ok = false;
     return ok;
 }
@@ -1362,25 +1363,16 @@ const wxString mmFilterTransactionsDialog::get_json(bool i18n) const
         json_writer.Int(colourValue_);
     }
 
-    //Save UDFC as JSON
+    //Custom Fields
     const auto cf = m_custom_fields->GetActiveCustomFields();
     if (cf.size() > 0)
     {
         for (const auto& i : cf)
         {
             const auto field = Model_CustomField::instance().get(i.first);
-            wxString data = field ? field->PROPERTIES : "";
+            json_writer.Key(wxString::Format("CUSTOM%i",field->FIELDID).utf8_str());
+            json_writer.String(i.second.utf8_str());
 
-            Document j_doc;
-            if (!j_doc.Parse(data.utf8_str()).HasParseError())
-            {
-                Value& j_label = GetValueByPointerWithDefault(j_doc, "/UDFC", "");
-                if (j_label.IsString())
-                {
-                    json_writer.Key(j_label.GetString());
-                    json_writer.String(i.second.utf8_str());
-                }
-            }
         }
     }
 
@@ -1613,14 +1605,16 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     colourButton_->SetBackgroundColour(getUDColour(colourValue_));
     colourButton_->Refresh(); // Needed as setting the background colour does not cause an immediate refresh
 
-    //UDFC
-    bool is_udfc_found = false;
-    for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
+    //Custom Fields
+    bool is_custom_found = false;
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    for (const auto& i : Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
     {
-        if (j_doc.HasMember(udfc_entry.c_str())) {
-            auto value = j_doc[const_cast<char*>(static_cast<const char*>(udfc_entry.mb_str()))].GetString();
-            m_custom_fields->SetStringValue(udfc_entry, value);
-            is_udfc_found = true;
+        wxString entry = wxString::Format("CUSTOM%i",i.FIELDID);
+        if (j_doc.HasMember(entry.c_str())) {
+            auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
+            m_custom_fields->SetStringValue(i.FIELDID, value);
+            is_custom_found = true;
         }
     }
 
@@ -1656,7 +1650,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
     bGroupBy_->SetStringSelection(s_groupBy);
 
-    if (is_udfc_found) {
+    if (is_custom_found) {
         m_custom_fields->ShowCustomPanel();
     }
 
@@ -1774,6 +1768,12 @@ bool mmFilterTransactionsDialog::is_notes_cb_active() const
 bool mmFilterTransactionsDialog::is_colour_cb_active() const
 {
     return colourCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::is_custom_field_active() const
+{
+    const auto cf = m_custom_fields->GetActiveCustomFields();
+    return (cf.size() > 0);
 }
 
 bool mmFilterTransactionsDialog::is_custom_field_matches(const Model_Checking::Data& tran) const
