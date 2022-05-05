@@ -815,6 +815,12 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("Type");
     column_names.Add("Amount");
     column_names.Add("Notes");
+    column_names.Add("UDFC01");
+    column_names.Add("UDFC02");
+    column_names.Add("UDFC03");
+    column_names.Add("UDFC04");
+    column_names.Add("UDFC05");
+
 
     wxMultiChoiceDialog s_col(this, _("Hide Report Columns")
         , "", column_names);
