@@ -520,50 +520,57 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
         json_writer.StartObject();
 
         // Data
-        json_writer.Key("CUSTOM_FIELDS_DATA");
-        json_writer.StartArray();
-
         wxArrayInt cd;
         Model_CustomFieldData::Data_Set cds = Model_CustomFieldData::instance().all();
-        for (const auto & entry : cds)
-        {
-            if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
-                if (cd.Index(entry.FIELDID) == wxNOT_FOUND)
-                    cd.Add(entry.FIELDID);
 
+        if (!cds.empty()) {
+            json_writer.Key("CUSTOM_FIELDS_DATA");
+            json_writer.StartArray();
 
-            json_writer.StartObject();
-            entry.as_json(json_writer);
-            json_writer.EndObject();
-
+            for (const auto& entry : cds)
+            {
+                if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
+                {
+                    if (cd.Index(entry.FIELDID) == wxNOT_FOUND) {
+                        cd.Add(entry.FIELDID);
+                    }
+                    json_writer.StartObject();
+                    entry.as_json(json_writer);
+                    json_writer.EndObject();
+                }
+            }
+            json_writer.EndArray();
         }
-        json_writer.EndArray();
 
         //Settings
-        json_writer.Key("CUSTOM_FIELDS_SETTINGS");
-        json_writer.StartArray();
+        Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(
+            Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)
+        );
 
-        Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
-        for (const auto& entry : custom_fields)
-        {
-            if (entry.REFTYPE != RefType) continue;
-            if (cd.Index(entry.FIELDID) == wxNOT_FOUND) continue;
+        if (!custom_fields.empty()) {
+            json_writer.Key("CUSTOM_FIELDS_SETTINGS");
+            json_writer.StartArray();
 
-            json_writer.StartObject();
-            json_writer.Key("ID");
-            json_writer.Int(entry.FIELDID);
-            json_writer.Key("REFTYPE");
-            json_writer.String(entry.REFTYPE.utf8_str());
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(entry.DESCRIPTION.utf8_str());
-            json_writer.Key("TYPE");
-            json_writer.String(entry.TYPE.utf8_str());
-            json_writer.Key("PROPERTIES");
-            json_writer.RawValue(entry.PROPERTIES.utf8_str(), entry.PROPERTIES.utf8_str().length(), rapidjson::Type::kObjectType);
+            for (const auto& entry : custom_fields)
+            {
+                if (cd.Index(entry.FIELDID) == wxNOT_FOUND)
+                    continue;
+
+                json_writer.StartObject();
+                json_writer.Key("ID");
+                json_writer.Int(entry.FIELDID);
+                json_writer.Key("REFTYPE");
+                json_writer.String(entry.REFTYPE.utf8_str());
+                json_writer.Key("DESCRIPTION");
+                json_writer.String(entry.DESCRIPTION.utf8_str());
+                json_writer.Key("TYPE");
+                json_writer.String(entry.TYPE.utf8_str());
+                json_writer.Key("PROPERTIES");
+                json_writer.RawValue(entry.PROPERTIES.utf8_str(), entry.PROPERTIES.utf8_str().length(), rapidjson::Type::kObjectType);
+                json_writer.EndObject();
+            }
+            json_writer.EndArray();
             json_writer.EndObject();
         }
-        json_writer.EndArray();
-        json_writer.EndObject();
-
     }
 }

@@ -500,13 +500,16 @@ void mmQIFExportDialog::mmExportQIF()
             case JSON:
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[account_id] = "";
-                if (allPayees4Export.Index(full_tran.PAYEEID) == wxNOT_FOUND && full_tran.TRANSCODE != Model_Checking::all_type()[Model_Checking::TRANSFER])
+                if (allPayees4Export.Index(full_tran.PAYEEID) == wxNOT_FOUND
+                    && full_tran.TRANSCODE != Model_Checking::all_type()[Model_Checking::TRANSFER]) {
                     allPayees4Export.Add(full_tran.PAYEEID);
+                }
 
                 if (!Model_Attachment::instance().FilterAttachments(RefType, full_tran.id()).empty()
                     && allAttachments4Export.Index(full_tran.TRANSID) == wxNOT_FOUND) {
                     allAttachments4Export.Add(full_tran.TRANSID);
                 }
+
                 for (const auto & entry : Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id())))
                 {
                     if (allCustomFields4Export.Index(entry.FIELDATADID) == wxNOT_FOUND) {
