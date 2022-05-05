@@ -743,27 +743,10 @@ void mmCustomData::ShowCustomPanel() const
     m_static_box->Show();
 }
 
-void mmCustomData::SetStringValue(const wxString& udfc_entry, const wxString& value)
+void mmCustomData::SetStringValue(const int fieldId, const wxString& value)
 {
-    wxLogDebug("%s %s", udfc_entry, value);
-    for (const auto& field : m_fields)
-    {
-        Document j_doc;
-        wxString s_label;
-        if (!j_doc.Parse(field.PROPERTIES.utf8_str()).HasParseError())
-        {
-            Value& j_label = GetValueByPointerWithDefault(j_doc, "/UDFC", "");
-            if (j_label.IsString()) {
-                s_label = j_label.GetString();
-            }
-
-            if (s_label == udfc_entry)
-            {
-                wxWindowID widget_id = GetBaseID() + field.FIELDID;
-                SetWidgetData(widget_id, value);
-            }
-        }
-    }
+    wxWindowID widget_id = GetBaseID() + fieldId;
+    SetWidgetData(widget_id, value);
 }
 
 bool mmCustomData::ValidateCustomValues(int ref_id)
