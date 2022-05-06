@@ -350,6 +350,13 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
     wxWindow* w = m_dialog->FindWindowById(controlID, m_dialog);
     if (!w)
         return;
+
+    if (value.empty())
+    {
+        ResetWidgetChanged(controlID);
+        return;
+    }
+
     const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
 
     if (class_name == "wxDatePickerCtrl")
@@ -402,9 +409,11 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
     {
         wxButton* d = static_cast<wxButton*>(w);
         d->SetLabel(value);
+
         wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, controlID);
         evt.SetInt(-1);
         d->GetEventHandler()->AddPendingEvent(evt);
+
     }
     else if (class_name == "wxTextCtrl")
     {
@@ -414,7 +423,7 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
     else if (class_name == "wxCheckBox")
     {
         wxCheckBox* d = static_cast<wxCheckBox*>(w);
-        bool v = !value.empty() && wxString("TRUE1").Contains(value);
+        bool v = wxString("TRUE|true|1").Contains(value);
         d->SetValue(v);
         wxCommandEvent evt(wxEVT_CHECKBOX, controlID);
         evt.SetInt(v);
@@ -431,7 +440,7 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
     }
     else
     {
-        wxWindow* w = m_dialog->FindWindowById(controlID, m_dialog);
+        wxWindow* w = FindWindowById(controlID, m_dialog);
         if (w)
         {
             const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
@@ -570,6 +579,11 @@ void mmCustomData::OnStringChanged(wxCommandEvent& event)
 
 void mmCustomData::ResetWidgetChanged(wxWindowID id)
 {
+    auto label_id = id - GetBaseID() + GetLabelID();
+    wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
+    if (check_box) {
+        check_box->SetValue(false);
+    }
     m_data_changed.erase(id);
 }
 
@@ -578,9 +592,9 @@ void mmCustomData::ResetWidgetsChanged()
     for (const auto& entry : m_data_changed)
     {
         auto label_id = entry.first - GetBaseID() + GetLabelID();
-        wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
-        if (Description) {
-            Description->SetValue(false);
+        wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
+        if (check_box) {
+            check_box->SetValue(false);
             wxLogDebug("Description %i value = %s", label_id, "FALSE");
         }
     }
@@ -588,11 +602,11 @@ void mmCustomData::ResetWidgetsChanged()
     m_data_changed.clear();
 }
 
-void mmCustomData::ClearSettings() const
+void mmCustomData::ClearSettings()
 {
     for (const auto &field : m_fields)
     {
-        //wxWindowID controlID = GetBaseID() + field.FIELDID;
+        SetStringValue(field.FIELDID, "");
         wxWindowID labelID = GetLabelID() + field.FIELDID;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb)

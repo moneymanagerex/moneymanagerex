@@ -537,7 +537,8 @@ void mmFilterTransactionsDialog::CreateControls()
     // Custom fields -----------------------------------
 
     m_custom_fields->FillCustomFields(custom_fields_box_sizer);
-    if (m_custom_fields->GetActiveCustomFields().size() > 0) {
+    auto cf_count = m_custom_fields->GetCustomFieldsCount();
+    if (cf_count > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -1615,6 +1616,10 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
             const auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
             m_custom_fields->SetStringValue(i.FIELDID, value);
             is_custom_found = true;
+        }
+        else
+        {
+            m_custom_fields->SetStringValue(i.FIELDID, "");
         }
     }
 
