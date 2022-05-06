@@ -240,7 +240,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NOTES);
 
-    int i = COL_NOTES;
+    int i = COL_UDFC01;
     const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
     {
@@ -249,8 +249,9 @@ TransactionListCtrl::TransactionListCtrl(
         if (name != udfc_entry)
         {
             m_columns.push_back(PANEL_COLUMN(name, 100, wxLIST_FORMAT_LEFT));
-            m_real_columns.push_back(static_cast<EColumn>(++i));
+            m_real_columns.push_back(static_cast<EColumn>(i));
         }
+        i++;
     }
 
     // V2 used as now maps to real column names and this resets everything to default
