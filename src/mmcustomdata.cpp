@@ -115,10 +115,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             grid_sizer_custom->Add(CustomString, g_flagsExpand);
 
-            if (!data.empty())
-            {
+            if (!data.empty()) {
                 SetWidgetChanged(controlID, data);
-                Description->SetValue(true);
             }
 
             CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
@@ -134,7 +132,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             else {
                 value = trunc(test);
                 SetWidgetChanged(controlID, wxString::Format("%i", value));
-                Description->SetValue(true);
             }
 
             wxSpinCtrl* CustomInteger = new wxSpinCtrl(scrolled_window, controlID,
@@ -154,7 +151,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 SetWidgetChanged(controlID, wxString::Format("%f", value));
-                Description->SetValue(true);
             }
 
             int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
@@ -179,7 +175,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             {
                 CustomBoolean->SetValue(data == "TRUE");
                 SetWidgetChanged(controlID, data);
-                Description->SetValue(true);
             }
 
             mmToolTip(CustomBoolean, Model_CustomField::getTooltip(field.PROPERTIES));
@@ -197,7 +192,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 SetWidgetChanged(controlID, value.FormatISODate());
-                Description->SetValue(true);
             }
 
             wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(scrolled_window, controlID
@@ -217,7 +211,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 SetWidgetChanged(controlID, value.FormatISOTime());
-                Description->SetValue(true);
             }
 
             wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
@@ -248,7 +241,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             {
                 CustomChoice->SetStringSelection(data);
                 SetWidgetChanged(controlID, data);
-                Description->SetValue(true);
             }
 
             CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
@@ -266,7 +258,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             if (!content.empty()) {
                 SetWidgetChanged(controlID, content);
-                Description->SetValue(true);
             }
 
             multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
@@ -604,7 +595,8 @@ void mmCustomData::ClearSettings() const
         //wxWindowID controlID = GetBaseID() + field.FIELDID;
         wxWindowID labelID = GetLabelID() + field.FIELDID;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
-        if (cb) cb->SetValue(false);
+        if (cb)
+            cb->SetValue(false);
     }
 }
 
@@ -698,10 +690,10 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
     m_data_changed[id] = data;
 
     auto label_id = id - GetBaseID() + GetLabelID();
-    wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
-    if (Description) {
-        Description->SetValue(true);
-        wxLogDebug("[V] %s = %s", Description->GetLabel(), data);
+    wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
+    if (check_box) {
+        check_box->SetValue(true);
+        wxLogDebug("[V] %s = %s", check_box->GetLabel(), data);
     }
 }
 
@@ -743,7 +735,7 @@ void mmCustomData::ShowCustomPanel() const
     m_static_box->Show();
 }
 
-void mmCustomData::SetStringValue(const int fieldId, const wxString& value)
+void mmCustomData::SetStringValue(int fieldId, const wxString& value)
 {
     wxWindowID widget_id = GetBaseID() + fieldId;
     SetWidgetData(widget_id, value);

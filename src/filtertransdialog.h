@@ -201,19 +201,19 @@ private:
     wxString m_end_date;
     int m_startDay;
     bool m_futureIgnored;
-    int colourValue_;
-    int categID_;
-    int subcategID_;
+    int m_colour_value;
+    int m_categ_id;
+    int m_subcateg_id;
     int payeeID_;
-    bool bSimilarCategoryStatus_;
-    wxString payeeStr_;
+    bool is_similar_category_status;
+    wxString m_payee_str;
 
     /* Selected accounts values */
     //All account names
     wxArrayString m_accounts_name;
     //Selected accountns ID
-    wxArrayInt selected_accounts_id_;
-    wxArrayInt selected_columns_id_;
+    wxArrayInt m_selected_accounts_id;
+    wxArrayInt m_selected_columns_id;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
     enum
