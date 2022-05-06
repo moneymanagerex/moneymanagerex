@@ -35,7 +35,7 @@ public:
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
     void UpdateCustomValues(int ref_id);
-    void SetStringValue(const int fieldID, const wxString& value);
+    void SetStringValue(int fieldID, const wxString& value);
     bool ValidateCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
     void SetWidgetData(wxWindowID controlID, const wxString& value);
@@ -52,7 +52,7 @@ public:
     bool IsSomeWidgetChanged() const;
     bool IsDataFound(const Model_Checking::Full_Data &tran);
     void ResetWidgetsChanged();
-    void ClearSettings() const;
+    void ClearSettings();
     bool IsCustomPanelShown() const;
     void ShowHideCustomPanel() const;
     void ShowCustomPanel() const;
