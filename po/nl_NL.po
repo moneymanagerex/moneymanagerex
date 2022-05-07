@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-07 14:38+0300\n"
-"PO-Revision-Date: 2022-05-07 11:45\n"
+"PO-Revision-Date: 2022-05-07 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2443,11 +2443,11 @@ msgstr "Ontvangst"
 
 #: filtertransdialog.cpp:348 filtertransdialog.cpp:598
 msgid "Transfer Out"
-msgstr ""
+msgstr "Overdracht uit"
 
 #: filtertransdialog.cpp:350
 msgid "Transfer In"
-msgstr ""
+msgstr "Overdracht in"
 
 #: filtertransdialog.cpp:362
 msgid "Amount Range"
@@ -2958,7 +2958,7 @@ msgstr ""
 #: import_export/qif_export.cpp:636
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "Aantal transacties geëxporteerd: %zu\n"
 
 #: import_export/qif_export.cpp:637
 #, c-format
@@ -6221,11 +6221,11 @@ msgstr "Verschil"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
-msgstr ""
+msgstr "Alles inklappen"
 
 #: reports/categexp.cpp:169
 msgid "Expand All"
-msgstr ""
+msgstr "Alles uitklappen"
 
 #: reports/categexp.cpp:229
 msgid "Total Expenses:"
