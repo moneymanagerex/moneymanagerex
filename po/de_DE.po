@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-07 21:45+0300\n"
-"PO-Revision-Date: 2022-05-07 19:18\n"
+"PO-Revision-Date: 2022-05-07 19:29\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2953,12 +2953,12 @@ msgstr "Exportiere Buchung %zu"
 #: import_export/qif_export.cpp:634
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "Anzahl der exportierten Kategorien: %zu \n"
 
 #: import_export/qif_export.cpp:636
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "Anzahl der exportierten Buchungen: %zu\n"
 
 #: import_export/qif_export.cpp:637
 #, c-format
@@ -6207,11 +6207,11 @@ msgstr "Differenz"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
-msgstr ""
+msgstr "Alle einklappen"
 
 #: reports/categexp.cpp:169
 msgid "Expand All"
-msgstr ""
+msgstr "Alle ausklappen"
 
 #: reports/categexp.cpp:229
 msgid "Total Expenses:"
