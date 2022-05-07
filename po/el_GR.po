@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-07 14:38+0300\n"
-"PO-Revision-Date: 2022-05-07 11:46\n"
+"POT-Creation-Date: 2022-05-07 21:45+0300\n"
+"PO-Revision-Date: 2022-05-07 18:51\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4019,22 +4019,7 @@ msgstr "Αδυναμία αποθήκευσης προσαρμοσμένου π�
 msgid "CustomField validation error"
 msgstr "Σφάλμα επικύρωσης CustomField"
 
-#: mmex.cpp:122
-#, c-format
-msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr "Δεν είναι δυνατή η φόρτωση μετάφρασης για την προεπιλεγμένη γλώσσα του συστήματός σας (%s)."
-
-#: mmex.cpp:129
-#, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
-"%s"
-msgstr "Παρακαλούμε χρησιμοποιήστε την επιλογή Switch Application Language στο μενού προβολής για να επιλέξετε μία από τις ακόλουθες διαθέσιμες γλώσσες: %s"
-
-#: mmex.cpp:134 mmframe.cpp:3369 optionsettingsgeneral.cpp:333
-msgid "Language change"
-msgstr "Αλλαγή γλώσσας"
-
-#: mmex.cpp:174
+#: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Παρουσιάστηκε μοιραίο σφάλμα.\n"
@@ -5007,6 +4992,10 @@ msgstr "Το αρχείο %s δεν βρέθηκε"
 #: mmframe.cpp:3367 optionsettingsgeneral.cpp:331
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Η γλώσσα αυτής της εφαρμογής έχει αλλάξει. Η αλλαγή θα τεθεί σε ισχύ την επόμενη φορά που θα ξεκινήσει η εφαρμογή."
+
+#: mmframe.cpp:3369 optionsettingsgeneral.cpp:333
+msgid "Language change"
+msgstr "Αλλαγή γλώσσας"
 
 #: mmframereport.cpp:79
 msgid "General Group Report"
