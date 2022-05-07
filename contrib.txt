@@ -130,6 +130,8 @@ Brian Crow
 Paolo Pagano
 Orlando Ernesto Lopez D
 Marcus Egg
+Edward Hill
+David Goodfellow
 
 ### 2021
 Renato

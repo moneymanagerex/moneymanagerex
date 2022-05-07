@@ -55,6 +55,8 @@ public:
         wxArrayString ATTACHMENT_DESCRIPTION;
         Model_Splittransaction::Data_Set m_splits;
         wxString real_payee_name(int account_id) const;
+        const wxString get_currency_code(int account_id) const;
+        const wxString get_account_name(int account_id) const;
         bool has_split() const;
         bool has_attachment() const;
         bool is_foreign() const;

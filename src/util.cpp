@@ -1251,7 +1251,7 @@ const wxString getProgramDescription(int type)
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")" << eol
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
         << bull + LUA_RELEASE << eol
-        << bull + "lunasvg v2.0.1" << eol
+        << bull + "lunasvg v2.3.1" << eol
         << bull + curl_version() << eol
         << bull + GETTEXT_VERSION << eol
         << bull + "apexcharts.js" << eol
@@ -1451,7 +1451,7 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
 {
 #if defined(__WXMSW__) || defined(__WXMAC__)
 
-    const wxString file_name = "report.htm";
+    const wxString file_name = wxString::Format("%s.htm", name);
     wxFileSystem fsys;
     wxSharedPtr<wxFSFile> f(fsys.OpenFile("memory:" + file_name));
     //If the file is in virtual memory, then it must be deleted before use.

@@ -41,7 +41,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     , const wxString& dateMask, bool reverce)
 {
     wxString buffer = "";
-    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
+    bool is_transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
     wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
@@ -54,23 +54,19 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     wxString account = acc_in->ACCOUNTNAME;
     wxString currency = curr_in->CURRENCY_SYMBOL;
 
-    if (transfer)
+    if (is_transfer)
     {
         const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
         const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
-        payee = wxString::Format("%s %s %s -> %s %s %s"
-            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
-            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
+        payee = reverce ? acc_to->ACCOUNTNAME : acc_in->ACCOUNTNAME;
+        account = reverce ? acc_in->ACCOUNTNAME : acc_to->ACCOUNTNAME;
+        currency = reverce ? curr_in->CURRENCY_SYMBOL : curr_to->CURRENCY_SYMBOL;
+
         //Transaction number used to make transaction unique
         // to proper merge transfer records
-        if (transNum.IsEmpty() && notes.IsEmpty())
+        if (transNum.IsEmpty() && notes.IsEmpty()) {
             transNum = wxString::Format("#%i", full_tran.id());
-
-        if (reverce)
-        {
-            account = acc_to->ACCOUNTNAME;
-            currency = curr_to->CURRENCY_SYMBOL;
         }
     }
 
@@ -114,7 +110,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
         double value = Model_Checking::balance(full_tran
-            , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
+            , (reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
@@ -373,6 +369,44 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     json_writer.EndArray();
 }
 
+void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
+{
+    json_writer.Key("CATEGORIES");
+    json_writer.StartArray();
+    for (const auto& category : Model_Category::instance().all())
+    {
+        if (!Model_Category::instance().is_used(category.CATEGID))
+            continue;
+        json_writer.StartObject();
+        json_writer.Key("ID");
+        json_writer.Int(category.CATEGID);
+        json_writer.Key("NAME");
+        json_writer.String(category.CATEGNAME.utf8_str());
+
+        const auto sub_categ = Model_Category::sub_category(category);
+        if (!sub_categ.empty())
+        {
+            json_writer.Key("SUB_CATEGORIES");
+            json_writer.StartArray();
+            for (const auto& sub_category : sub_categ)
+            {
+                if (!Model_Subcategory::instance().is_used(sub_category.SUBCATEGID))
+                    continue;
+                auto test = sub_categ.to_json();
+                json_writer.StartObject();
+                json_writer.Key("ID");
+                json_writer.Int(sub_category.SUBCATEGID);
+                json_writer.Key("NAME");
+                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
+                json_writer.EndObject();
+            }
+            json_writer.EndArray();
+        }
+        json_writer.EndObject();
+    }
+    json_writer.EndArray();
+}
+
 void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
 {
     json_writer.StartObject();
@@ -486,50 +520,57 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
         json_writer.StartObject();
 
         // Data
-        json_writer.Key("CUSTOM_FIELDS_DATA");
-        json_writer.StartArray();
-
         wxArrayInt cd;
         Model_CustomFieldData::Data_Set cds = Model_CustomFieldData::instance().all();
-        for (const auto & entry : cds)
-        {
-            if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
-                if (cd.Index(entry.FIELDID) == wxNOT_FOUND)
-                    cd.Add(entry.FIELDID);
 
+        if (!cds.empty()) {
+            json_writer.Key("CUSTOM_FIELDS_DATA");
+            json_writer.StartArray();
 
-            json_writer.StartObject();
-            entry.as_json(json_writer);
-            json_writer.EndObject();
-
+            for (const auto& entry : cds)
+            {
+                if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
+                {
+                    if (cd.Index(entry.FIELDID) == wxNOT_FOUND) {
+                        cd.Add(entry.FIELDID);
+                    }
+                    json_writer.StartObject();
+                    entry.as_json(json_writer);
+                    json_writer.EndObject();
+                }
+            }
+            json_writer.EndArray();
         }
-        json_writer.EndArray();
 
         //Settings
-        json_writer.Key("CUSTOM_FIELDS_SETTINGS");
-        json_writer.StartArray();
+        Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(
+            Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)
+        );
 
-        Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
-        for (const auto& entry : custom_fields)
-        {
-            if (entry.REFTYPE != RefType) continue;
-            if (cd.Index(entry.FIELDID) == wxNOT_FOUND) continue;
+        if (!custom_fields.empty()) {
+            json_writer.Key("CUSTOM_FIELDS_SETTINGS");
+            json_writer.StartArray();
 
-            json_writer.StartObject();
-            json_writer.Key("ID");
-            json_writer.Int(entry.FIELDID);
-            json_writer.Key("REFTYPE");
-            json_writer.String(entry.REFTYPE.utf8_str());
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(entry.DESCRIPTION.utf8_str());
-            json_writer.Key("TYPE");
-            json_writer.String(entry.TYPE.utf8_str());
-            json_writer.Key("PROPERTIES");
-            json_writer.RawValue(entry.PROPERTIES.utf8_str(), entry.PROPERTIES.utf8_str().length(), rapidjson::Type::kObjectType);
+            for (const auto& entry : custom_fields)
+            {
+                if (cd.Index(entry.FIELDID) == wxNOT_FOUND)
+                    continue;
+
+                json_writer.StartObject();
+                json_writer.Key("ID");
+                json_writer.Int(entry.FIELDID);
+                json_writer.Key("REFTYPE");
+                json_writer.String(entry.REFTYPE.utf8_str());
+                json_writer.Key("DESCRIPTION");
+                json_writer.String(entry.DESCRIPTION.utf8_str());
+                json_writer.Key("TYPE");
+                json_writer.String(entry.TYPE.utf8_str());
+                json_writer.Key("PROPERTIES");
+                json_writer.RawValue(entry.PROPERTIES.utf8_str(), entry.PROPERTIES.utf8_str().length(), rapidjson::Type::kObjectType);
+                json_writer.EndObject();
+            }
+            json_writer.EndArray();
             json_writer.EndObject();
         }
-        json_writer.EndArray();
-        json_writer.EndObject();
-
     }
 }

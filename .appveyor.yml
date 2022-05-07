@@ -26,14 +26,14 @@ environment:
   # clcache config
   clcVer: 4.1.0
   # libcurl config
-  curlVer: 7_61_0
+  curlVer: 7_82_0
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
-  wxVer: 3.1.5
+  wxVer: 3.1.6
   wxwin: C:\wxWidgets-$(wxver)-$(configuration)
   wxShared: 0
-  wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
+  wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
   # Microsoft compiler options
   CL: /MP
   matrix:
@@ -139,7 +139,7 @@ install:
       -DCURL_STATICLIB=%curlStatic%
       -DHTTP_ONLY=ON
       -DENABLE_MANUAL=OFF
-      -DCMAKE_USE_WINSSL=ON
+      -DCURL_USE_SCHANNEL=ON
       -DBUILD_TESTING=OFF
       -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
       .. &&
@@ -172,7 +172,10 @@ after_build:
 - if %configuration%==Debug set "pkgsuff=-debug"
 - for %%f in (*.exe *.zip) do
     if /i %%~xf==.exe (move "%%f" "..\%%~nf%xp%%pkgsuff%.exe")
-    else (move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
+    else ( mkdir "%%~nf%xp%%pkgsuff%" &&
+        fsutil file createnew "%%~nf%xp%%pkgsuff%\mmexini.db3" 0 &&
+        7z a "%%f" "%%~nf%xp%%pkgsuff%\mmexini.db3" &&   
+        move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
 
 test: off
 

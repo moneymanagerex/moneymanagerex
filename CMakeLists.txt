@@ -17,9 +17,9 @@
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.5.14)
+set(MMEX_VERSION 1.5.16)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
@@ -639,7 +639,7 @@ endif()
 
 # libcurl for Windows, if specified and exists then copy to bin
 if(CMAKE_PREFIX_PATH)
-    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/build/lib/Release/libcurl.dll" CURL_LIBPATH)
+    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/bin/libcurl.dll" CURL_LIBPATH)
     if(EXISTS "${CURL_LIBPATH}")
         install(FILES 
             "${CURL_LIBPATH}"
