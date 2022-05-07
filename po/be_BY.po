@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-07 14:38+0300\n"
-"PO-Revision-Date: 2022-05-07 11:46\n"
+"POT-Creation-Date: 2022-05-07 21:45+0300\n"
+"PO-Revision-Date: 2022-05-07 18:51\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4047,23 +4047,7 @@ msgstr "Не атрымалася захаваць карыстальніцка�
 msgid "CustomField validation error"
 msgstr "Памылка пераверкі карыстальніцкага поля"
 
-#: mmex.cpp:122
-#, c-format
-msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr "Немагчыма спампаваць пераклад для мовы вашай сістэмы (%s)."
-
-#: mmex.cpp:129
-#, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
-"%s"
-msgstr "Калі ласка, выкарыстоўвайце параметр «Мова Дадатка» ў меню «Выгляд», каб абраць адну з дасяжных моваў:\n\n"
-"%s"
-
-#: mmex.cpp:134 mmframe.cpp:3369 optionsettingsgeneral.cpp:333
-msgid "Language change"
-msgstr "Выбар мовы"
-
-#: mmex.cpp:174
+#: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Сталася непапраўная памылка.\n"
@@ -5040,6 +5024,10 @@ msgstr "Файл %s ня знойдзены"
 #: mmframe.cpp:3367 optionsettingsgeneral.cpp:331
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Мова дадатка змененая. Аднак ўступіць у моц пры наступным запуску дадатка."
+
+#: mmframe.cpp:3369 optionsettingsgeneral.cpp:333
+msgid "Language change"
+msgstr "Выбар мовы"
 
 #: mmframereport.cpp:79
 msgid "General Group Report"

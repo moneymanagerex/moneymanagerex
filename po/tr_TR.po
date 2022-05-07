@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-07 14:38+0300\n"
-"PO-Revision-Date: 2022-05-07 11:45\n"
+"POT-Creation-Date: 2022-05-07 21:45+0300\n"
+"PO-Revision-Date: 2022-05-07 18:51\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -4016,23 +4016,7 @@ msgstr "\"%s\": özel alanı kaydedilemez \"%s\" \n"
 msgid "CustomField validation error"
 msgstr "Özel Alan geçerlilik hatası"
 
-#: mmex.cpp:122
-#, c-format
-msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr "Sisteminizin varsayılan dili (%s) için bir çeviri yüklenemez."
-
-#: mmex.cpp:129
-#, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
-"%s"
-msgstr "Aşağıdaki kullanılabilir dillerden birini seçmek için lütfen Görünüm menüsündeki Uygulama Dilini Değiştir seçeneğini kullanın:\n\n"
-"%s"
-
-#: mmex.cpp:134 mmframe.cpp:3369 optionsettingsgeneral.cpp:333
-msgid "Language change"
-msgstr "Dil değiştirme"
-
-#: mmex.cpp:174
+#: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Kritik hata oluştu.\n"
@@ -5001,6 +4985,10 @@ msgstr "%s dosyası bulunamadı"
 #: mmframe.cpp:3367 optionsettingsgeneral.cpp:331
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Bu uygulama için dil değişti. Değişiklik uygulama yeniden başlatıldığında etkili olacak."
+
+#: mmframe.cpp:3369 optionsettingsgeneral.cpp:333
+msgid "Language change"
+msgstr "Dil değiştirme"
 
 #: mmframereport.cpp:79
 msgid "General Group Report"

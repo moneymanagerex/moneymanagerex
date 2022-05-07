@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-07 14:38+0300\n"
-"PO-Revision-Date: 2022-05-07 11:46\n"
+"POT-Creation-Date: 2022-05-07 21:45+0300\n"
+"PO-Revision-Date: 2022-05-07 18:52\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -4030,23 +4030,7 @@ msgstr "Nije moguće spremiti prilagođeno polje „%s”:\n"
 msgid "CustomField validation error"
 msgstr "Greška provjere prilagođenog polja"
 
-#: mmex.cpp:122
-#, c-format
-msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr "Nije moguće učitati prijevod za zadani jezik tvojeg sustava (%s)."
-
-#: mmex.cpp:129
-#, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
-"%s"
-msgstr "Koristi opciju „Zamijeni jezik programa” u izborniku Prikaz za biranje jednog od sljedećih dostupnih jezika:\n\n"
-"%s"
-
-#: mmex.cpp:134 mmframe.cpp:3369 optionsettingsgeneral.cpp:333
-msgid "Language change"
-msgstr "Promjena jezika"
-
-#: mmex.cpp:174
+#: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Dogodila se fatalna greška.\n"
@@ -5020,6 +5004,10 @@ msgstr "Datoteka %s nije pronađena"
 #: mmframe.cpp:3367 optionsettingsgeneral.cpp:331
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Jezik programa je promijenjen. Do promjene će doći prilikom sljedećeg pokretanja programa."
+
+#: mmframe.cpp:3369 optionsettingsgeneral.cpp:333
+msgid "Language change"
+msgstr "Promjena jezika"
 
 #: mmframereport.cpp:79
 msgid "General Group Report"
