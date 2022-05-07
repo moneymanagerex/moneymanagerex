@@ -77,7 +77,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     if (lang == this->m_lang && lang != wxLANGUAGE_UNKNOWN) {
         return false;
     }
-    wxTranslations *trans = new wxTranslations;
+    wxTranslations* trans = new wxTranslations;
     trans->SetLanguage(lang);
     trans->AddStdCatalog();
     if (trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) || lang == wxLANGUAGE_ENGLISH_US || lang == wxLANGUAGE_DEFAULT)
@@ -90,7 +90,8 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     else
     {
         wxArrayString lang_files = trans->GetAvailableTranslations("mmex");
-        lang_files.Add("en_US");
+        if (lang_files.Index("en_US") == wxNOT_FOUND)
+            lang_files.Add("en_US");
         wxArrayString lang_names;
         for (const auto & file : lang_files)
         {
@@ -117,22 +118,19 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
 #else
             best = trans->GetBestTranslation("mmex");
 #endif
-            if (best.IsEmpty()) {
-                best = wxLocale::GetLanguageName(wxLocale::GetSystemLanguage());
-                msg = wxString::Format(_("Cannot load a translation for the default language of your system (%s)."),
-                    best);
-            }
+            msg = wxString::Format("Cannot load a translation for the language: %s", best);
+            lang = wxLANGUAGE_UNKNOWN;
         }
-
-        msg += "\n\n";
         if (lang == wxLANGUAGE_UNKNOWN) {
-            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n%s"), languages_list);
+            msg += "\n\n";
+            msg += wxString::Format("Please use the Switch Application Language option in "
+                "View menu to select one of the following available languages:\n\n%s", languages_list);
             m_lang = wxLANGUAGE_DEFAULT;
             Option::instance().setLanguage(m_lang);
         }
 
-        mmErrorDialogs::MessageWarning(NULL, msg, _("Language change"));
         wxDELETE(trans);
+        mmErrorDialogs::MessageWarning(NULL, msg, "Language change");
         return false;
     }
 }

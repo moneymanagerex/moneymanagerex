@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-07 14:38+0300\n"
-"PO-Revision-Date: 2022-05-07 11:46\n"
+"POT-Creation-Date: 2022-05-07 21:45+0300\n"
+"PO-Revision-Date: 2022-05-07 18:51\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4021,23 +4021,7 @@ msgstr "Konnte benutzerdefiniertes Feld \"%snicht speichern\":\n"
 msgid "CustomField validation error"
 msgstr "Fehler bei der Validierung von benutzerdefinierten Feldern"
 
-#: mmex.cpp:122
-#, c-format
-msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr "Eine Übersetzung für die Standardsprache Ihres Systems kann nicht geladen werden (%s)."
-
-#: mmex.cpp:129
-#, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
-"%s"
-msgstr "Bitte verwenden Sie die Option Anwendungssprache wechseln im Menü Ansicht um eine der folgenden verfügbaren Sprachen auszuwählen:\n\n"
-"%s"
-
-#: mmex.cpp:134 mmframe.cpp:3369 optionsettingsgeneral.cpp:333
-msgid "Language change"
-msgstr "Sprache geändert"
-
-#: mmex.cpp:174
+#: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Ein schwerer Fehler ist aufgetreten.\n"
@@ -5011,6 +4995,10 @@ msgstr "Datei %s nicht gefunden"
 #: mmframe.cpp:3367 optionsettingsgeneral.cpp:331
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Die Sprache für diese Anwendung wurde geändert. Die Änderung wird beim nächsten Start der Anwendung wirksam."
+
+#: mmframe.cpp:3369 optionsettingsgeneral.cpp:333
+msgid "Language change"
+msgstr "Sprache geändert"
 
 #: mmframereport.cpp:79
 msgid "General Group Report"
