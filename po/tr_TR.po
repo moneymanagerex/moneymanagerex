@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-07 21:45+0300\n"
-"PO-Revision-Date: 2022-05-07 18:51\n"
+"PO-Revision-Date: 2022-05-08 16:20\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2439,11 +2439,11 @@ msgstr "Yatan"
 
 #: filtertransdialog.cpp:348 filtertransdialog.cpp:598
 msgid "Transfer Out"
-msgstr ""
+msgstr "Dışa Transfer"
 
 #: filtertransdialog.cpp:350
 msgid "Transfer In"
-msgstr ""
+msgstr "İçe Transfer"
 
 #: filtertransdialog.cpp:362
 msgid "Amount Range"
