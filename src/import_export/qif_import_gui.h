@@ -61,6 +61,8 @@ private:
     void OnCancel(wxCommandEvent& WXUNUSED(event));
     void OnOk(wxCommandEvent& WXUNUSED(event));
     void OnDecimalChange(wxCommandEvent& event);
+    void OnFileNameChanged(wxCommandEvent& event);
+    void save_file_name();
     bool mmReadQIFFile();
     int getOrCreateAccounts();
     void getOrCreatePayees();
@@ -97,7 +99,7 @@ private:
     wxDataViewListCtrl* payeeListBox_;
     wxDataViewListCtrl* categoryListBox_;
     wxButton* button_search_;
-    wxTextCtrl* file_name_ctrl_;
+    wxComboBox* file_name_ctrl_;
     wxChoice* m_choiceEncoding;
     wxTextCtrl* log_field_;
     wxCheckBox* dateFromCheckBox_;

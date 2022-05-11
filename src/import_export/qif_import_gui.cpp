@@ -117,25 +117,41 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
 
 void mmQIFImportDialog::CreateControls()
 {
+    wxSizerFlags flagsExpand;
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_TOP).Border(wxLEFT | wxRIGHT | wxTOP, 5);
+
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(main_sizer);
     wxBoxSizer* left_sizer = new wxBoxSizer(wxVERTICAL);
 
-    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    //flex_sizer->AddGrowableCol(1);
+    //File to import, file path and browse button
+    wxPanel* file_panel = new wxPanel(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    main_sizer->Add(file_panel, 0, wxEXPAND | wxALL, 1);
 
-    // File Name --------------------------------------------
-    wxStaticText* file_name_label = new wxStaticText(this, wxID_STATIC, _("File Name:"));
-    button_search_ = new wxButton(this, wxID_OPEN, _("Choose &file"));
+    wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
+    file_panel->SetSizer(itemBoxSizer7);
+
+    wxStaticText* file_name_label = new wxStaticText(file_panel, wxID_ANY, _("File Name:"));
+    itemBoxSizer7->Add(file_name_label, g_flagsH);
+
+    wxArrayString files = Model_Setting::instance().GetArrayStringSetting("LAST_QIF_FILES", 10);
+    file_name_ctrl_ = new  wxComboBox(file_panel, wxID_FILE, "", wxDefaultPosition, wxDefaultSize, files, wxTE_PROCESS_ENTER);
+    file_name_ctrl_->SetMinSize(wxSize(300, -1));
+    itemBoxSizer7->Add(file_name_ctrl_, 1, wxALL | wxGROW, 5);
+    file_name_ctrl_->Connect(wxID_FILE
+        , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmQIFImportDialog::OnFileNameChanged), nullptr, this);
+    file_name_ctrl_->Connect(wxID_FILE
+        , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmQIFImportDialog::OnFileNameChanged), nullptr, this);
+
+    button_search_ = new wxButton(file_panel, wxID_OPEN, _("&Browse"));
+    itemBoxSizer7->Add(button_search_, g_flagsH);
     button_search_->Connect(wxID_OPEN, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnFileSearch), nullptr, this);
 
-    file_name_ctrl_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
-        , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
 
-    flex_sizer->Add(file_name_label, g_flagsH);
-    flex_sizer->Add(button_search_, g_flagsH);
-    main_sizer->Add(file_name_ctrl_, 0, wxALL | wxGROW, 5);
+    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    //flex_sizer->AddGrowableCol(1);
     left_sizer->Add(flex_sizer, g_flagsExpand);
 
     //Encoding
@@ -335,7 +351,7 @@ void mmQIFImportDialog::CreateControls()
 void mmQIFImportDialog::fillControls()
 {
     refreshTabs(LOG_TAB | TRX_TAB | ACC_TAB | PAYEE_TAB | CAT_TAB);
-    btnOK_->Enable(!file_name_ctrl_->IsEmpty());
+    btnOK_->Enable(!file_name_ctrl_->GetValue().IsEmpty());
 }
 
 bool mmQIFImportDialog::mmReadQIFFile()
@@ -725,7 +741,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
         correctEmptyFileExt("qif", m_FileNameStr);
 
         log_field_->ChangeValue("");
-        file_name_ctrl_->SetValue(m_FileNameStr);
+        file_name_ctrl_->ChangeValue(m_FileNameStr);
         mmReadQIFFile();
     }
 }
@@ -898,6 +914,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         vQIF_trxs_.clear();
         btnOK_->Enable(false);
         progressDlg.Destroy();
+
+        save_file_name();
     }
     else
     {
@@ -1316,4 +1334,21 @@ void mmQIFImportDialog::OnDecimalChange(wxCommandEvent& event)
     }
 
     event.Skip();
+}
+
+void mmQIFImportDialog::OnFileNameChanged(wxCommandEvent& WXUNUSED(event))
+{
+    const wxString file_name = file_name_ctrl_->GetValue();
+
+    wxFileName csv_file(file_name);
+    if (csv_file.FileExists()) {
+        m_FileNameStr = file_name;
+        log_field_->ChangeValue("");
+        mmReadQIFFile();
+    }
+}
+
+void mmQIFImportDialog::save_file_name()
+{
+    Model_Setting::instance().Prepend("LAST_QIF_FILES", m_FileNameStr, 10);
 }
