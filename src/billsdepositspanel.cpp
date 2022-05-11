@@ -428,7 +428,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction"));
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Recurring Transaction"));
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction"));
     menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Recurring Transaction"));
