@@ -1295,16 +1295,16 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             if ((str != "item@Term Accounts") && (str != "item@Stocks"))
             {
                 wxMenu* importFrom = new wxMenu;
-                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
-                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format)"));
-                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
+                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files"));
+                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files"), _("Import from XML (Excel format)"));
+                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files"));
                 menu.AppendSubMenu(importFrom, _("&Import"));
                 wxMenu* exportTo = new wxMenu;
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files..."));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files..."));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files..."));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files"));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files"));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files"));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files"));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files"));
                 menu.AppendSubMenu(exportTo, _("&Export"));
                 menu.AppendSeparator();
             }
@@ -1361,31 +1361,31 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     m_menuRecentFiles = new wxMenu;
-    menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), m_menuRecentFiles);
+    menu_file->Append(MENU_RECENT_FILES, _("&Recent Files"), m_menuRecentFiles);
     wxMenuItem* menuClearRecentFiles = new wxMenuItem(menu_file, MENU_RECENT_FILES_CLEAR, _("&Clear Recent Files"));
     menu_file->Append(menuClearRecentFiles);
     menu_file->AppendSeparator();
 
     wxMenu* importMenu = new wxMenu;
-    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
-    importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
-    importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
-    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
+    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files"), _("Import from any CSV file"));
+    importMenu->Append(MENU_IMPORT_XML, _("&XML Files"), _("Import from XML (Excel format)"));
+    importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files"), _("Import from QIF"));
+    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp"), _("Import from WebApp"));
     menu_file->Append(MENU_IMPORT, _("&Import"), importMenu);
 
     wxMenu* exportMenu = new wxMenu;
-    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV Files..."), _("Export to CSV"));
-    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV Files..."), _("Export to fixed CSV"));
-    exportMenu->Append(MENU_EXPORT_XML, _("&XML Files..."), _("Export to XML"));
-    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files..."), _("Export to QIF"));
-    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON Files..."), _("Export to JSON"));
-    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML Files..."), _("Export to HTML"));
+    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV Files"), _("Export to CSV"));
+    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV Files"), _("Export to fixed CSV"));
+    exportMenu->Append(MENU_EXPORT_XML, _("&XML Files"), _("Export to XML"));
+    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files"), _("Export to QIF"));
+    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON Files"), _("Export to JSON"));
+    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML Files"), _("Export to HTML"));
     menu_file->Append(MENU_EXPORT, _("&Export"), exportMenu);
 
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
-        _("&Print..."), _("Print current view"));
+        _("&Print"), _("Print current view"));
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
@@ -1492,31 +1492,31 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _("Download Ra&tes..."), _("Download Currency and Stock rates"));
+        , MENU_RATES, _("Download Ra&tes"), _("Download Currency and Stock rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
-        , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
+        , MENU_ORGCATEGS, _("Organize &Categories"), _("Organize Categories"));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
-        , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
+        , MENU_ORGPAYEE, _("Organize &Payees"), _("Organize Payees"));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , _("Organize Curre&ncy..."), _("Organize Currency"));
+        , _("Organize Curre&ncy"), _("Organize Currency"));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
-        , MENU_CATEGORY_RELOCATION, _("&Categories...")
+        , MENU_CATEGORY_RELOCATION, _("&Categories")
         , _("Reassign all categories to another category"));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
-        , MENU_PAYEE_RELOCATION, _("&Payees...")
+        , MENU_PAYEE_RELOCATION, _("&Payees")
         , _("Reassign all payees to another payee"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
-        , MENU_RELOCATION, _("Re&location of...")
+        , MENU_RELOCATION, _("Re&location of")
         , _("Relocate Categories && Payees"));
     wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemCategoryRelocation);
@@ -1547,17 +1547,17 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
-        , _("Transaction Report &Filter..."), _("Transaction Report Filter"));
+        , _("Transaction Report &Filter"), _("Transaction Report Filter"));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
-        , _("General Report &Manager..."), _("General Report Manager"));
+        , _("General Report &Manager"), _("General Report Manager"));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
-        , _("C&ustom Fields Manager..."), _("Custom Fields Manager"));
+        , _("C&ustom Fields Manager"), _("Custom Fields Manager"));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
@@ -1679,7 +1679,7 @@ void mmGUIFrame::createMenu()
     menuHelp->Append(menuItemCheck);
 
     wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT
-        , _("&About..."), _("Show about dialog"));
+        , _("&About"), _("Show about dialog"));
     menuHelp->Append(menuItemAbout);
 
     menuBar_ = new wxMenuBar;
@@ -1724,7 +1724,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM, toolbar_icon_size), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), mmBitmap(png::OPTIONS, toolbar_icon_size), _("Show the Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Options"), mmBitmap(png::OPTIONS, toolbar_icon_size), _("Show the Options Dialog"));
     toolBar_->AddSeparator();
 
     wxString news_array;
@@ -1745,10 +1745,10 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmap(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PRINT, _("&Print..."), mmBitmap(png::PRINT, toolbar_icon_size), _("Print current view"));
+    toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmap(png::PRINT, toolbar_icon_size), _("Print current view"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About..."), mmBitmap(png::ABOUT, toolbar_icon_size), _("Show about dialog"));
+    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmap(png::ABOUT, toolbar_icon_size), _("Show about dialog"));
     toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP, toolbar_icon_size), _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes

@@ -286,7 +286,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if (accounts.empty()) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->m_account_id);
-    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), from_account->ACCOUNTNAME);
+    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to"), from_account->ACCOUNTNAME);
     mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts);
 
     int toAccountID = -1;
