@@ -90,6 +90,44 @@ void Model_Setting::Set(const wxString& key, const wxString& value)
     }
 }
 
+void Model_Setting::Prepend(const wxString& key, const wxString& value, int limit)
+{
+    Data* setting = this->get_one(SETTINGNAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
+    }
+
+    if (!setting)
+    {
+        setting = this->create();
+        setting->SETTINGNAME = key;
+    }
+
+    int i = 0;
+    wxString buffer;
+    wxArrayString a;
+    wxStringTokenizer token(setting->SETTINGVALUE, "|");
+    while (token.HasMoreTokens() && i < limit)
+    {
+        a.Add(token.GetNextToken());
+        i++;
+    }
+
+    if (a.Index(value) == wxNOT_FOUND) {
+        buffer = value;
+    }
+
+    for (const auto& item : a)
+    {
+        buffer += ("|" + item);
+    }
+    setting->SETTINGVALUE = buffer;
+
+    setting->save(this->db_);
+}
+
 // Getter
 bool Model_Setting::GetBoolSetting(const wxString& key, bool default_value)
 {
@@ -121,6 +159,36 @@ wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& de
         return setting->SETTINGVALUE;
     }
     return default_value;
+}
+
+wxArrayString Model_Setting::GetArrayStringSetting(const wxString& key, int limit)
+{
+    wxString data;
+    Data* setting = this->get_one(SETTINGNAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (items.empty()) {
+            return wxArrayString();
+        }
+        else {
+            data = items[0].SETTINGVALUE;
+        }
+    }
+    else
+    {
+        data = setting->SETTINGVALUE;
+    }
+
+    int i = 0;
+    wxArrayString a;
+    wxStringTokenizer token(data, "|");
+    while (token.HasMoreTokens() && i < limit)
+    {
+        a.Add(token.GetNextToken());
+        i++;
+    }
+    return a;
 }
 
 wxString Model_Setting::getLastDbPath()

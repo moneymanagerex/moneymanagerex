@@ -63,13 +63,15 @@ public:
     void Set(const wxString& key, bool value);
     void Set(const wxString& key, const wxColour& value);
     void Set(const wxString& key, const wxString& value);
+    void Prepend(const wxString& key, const wxString& value, int limit);
 
 public:
     // Getter
     bool GetBoolSetting(const wxString& key, bool default_value);
     int GetIntSetting(const wxString& key, int default_value);
-
     wxString GetStringSetting(const wxString& key, const wxString& default_value);
+    wxArrayString GetArrayStringSetting(const wxString& key, int limit);
+
     wxString getLastDbPath();
 
     /* Returns true if key setting found */
