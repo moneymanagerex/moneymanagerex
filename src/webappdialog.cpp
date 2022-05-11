@@ -129,7 +129,7 @@ void mmWebAppDialog::CreateControls()
     //Loading --------------------------------------------
     loadingSizer_ = new wxFlexGridSizer(0, 2, 0, 0);
 
-    wxStaticText* gauge_label = new wxStaticText(this, wxID_STATIC, _("Checking for new transactions..."));
+    wxStaticText* gauge_label = new wxStaticText(this, wxID_STATIC, _("Checking for new transactions"));
     gauge_ = new wxGauge(this, wxID_STATIC, 100, wxDefaultPosition, wxDefaultSize, wxGA_HORIZONTAL, wxDefaultValidator);
     gauge_->SetMinSize(wxSize(300, -1));
 

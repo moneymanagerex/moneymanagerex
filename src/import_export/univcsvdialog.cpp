@@ -1058,7 +1058,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     msg << wxString::Format(_("Log file written to: %s"), logFile.GetFullPath());
 
     if (!is_canceled && wxMessageBox(
-        msg + (nImportedLines > 0 ? "\n\n" + _("Please confirm saving...") : "")
+        msg + (nImportedLines > 0 ? "\n\n" + _("Please confirm saving") : "")
         , _("Import")
         , wxOK | (nImportedLines > 0 ? wxCANCEL : 0)
         | (nImportedLines == 0 ? wxICON_ERROR :
