@@ -370,7 +370,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
 
     std::unordered_map <int, wxString> trx;
 
-    mmDates* dParser = new mmDates;
+    wxSharedPtr<mmDates> dParser(new mmDates);
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
@@ -452,8 +452,6 @@ bool mmQIFImportDialog::mmReadQIFFile()
             choiceDateFormat_->SetStringSelection(date_mask);
         }
     }
-
-    delete dParser;
 
     fillControls();
 
