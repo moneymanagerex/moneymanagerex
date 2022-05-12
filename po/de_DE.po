@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-11 20:03\n"
+"PO-Revision-Date: 2022-05-12 08:59\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1274,7 +1274,7 @@ msgstr "Nächste wiederkehrende Buchung überspringen"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "Nächstes Ereignis eingeben"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1282,19 +1282,19 @@ msgstr "Überspringe nächstes Ereignis"
 
 #: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&Wiederkehrende Buchung bearbeiten"
 
 #: billsdepositspanel.cpp:432
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&Neue wiederkehrende Buchung"
 
 #: billsdepositspanel.cpp:434
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "&Wiederkehrende Transaktion duplizieren"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "&lösche wiederkehrende Buchung"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -3359,7 +3359,7 @@ msgstr "Die Logdatei befindet sich in: %s"
 
 #: import_export/univcsvdialog.cpp:1061 stockdialog.cpp:680
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Bitte bestätigen Sie die Speicherung"
 
 #: import_export/univcsvdialog.cpp:1094
 msgid "No imported transactions!"
@@ -4134,11 +4134,11 @@ msgstr "Konten&liste"
 
 #: mmframe.cpp:1298 mmframe.cpp:1303 mmframe.cpp:1370 mmframe.cpp:1377
 msgid "&CSV Files"
-msgstr ""
+msgstr "&CSV-Dateien"
 
 #: mmframe.cpp:1299 mmframe.cpp:1305 mmframe.cpp:1371 mmframe.cpp:1379
 msgid "&XML Files"
-msgstr ""
+msgstr "&XML-Dateien"
 
 #: mmframe.cpp:1299 mmframe.cpp:1371
 msgid "Import from XML (Excel format)"
@@ -4146,15 +4146,15 @@ msgstr "Import von XML (Excel Format)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1306 mmframe.cpp:1372 mmframe.cpp:1380
 msgid "&QIF Files"
-msgstr ""
+msgstr "&QIF-Dateien"
 
 #: mmframe.cpp:1304 mmframe.cpp:1378
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "&MMEX CSV Dateien"
 
 #: mmframe.cpp:1307 mmframe.cpp:1381
 msgid "&JSON Files"
-msgstr ""
+msgstr "&JSON-Dateien"
 
 #: mmframe.cpp:1318 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4186,7 +4186,7 @@ msgstr "Datenbank speichern unter"
 
 #: mmframe.cpp:1364
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Zuletzt verwendete Dateien"
 
 #: mmframe.cpp:1365
 msgid "&Clear Recent Files"
@@ -4202,7 +4202,7 @@ msgstr "Import von QIF"
 
 #: mmframe.cpp:1373
 msgid "&WebApp"
-msgstr ""
+msgstr "&WebApp"
 
 #: mmframe.cpp:1373
 msgid "Import from WebApp"
@@ -4226,7 +4226,7 @@ msgstr "Nach JSON exportieren"
 
 #: mmframe.cpp:1382
 msgid "&HTML Files"
-msgstr ""
+msgstr "&HTML-Dateien"
 
 #: mmframe.cpp:1382
 msgid "Export to HTML"
