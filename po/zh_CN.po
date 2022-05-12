@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-12 06:12\n"
+"PO-Revision-Date: 2022-05-12 06:18\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4417,11 +4417,11 @@ msgstr "交易报表筛选器"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "常规报告管理器(&M)"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "自定义字段管理器(&U)"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4645,7 +4645,7 @@ msgstr "检查更新"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "关于(&A)"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4689,7 +4689,7 @@ msgstr "显示货币管理对话框"
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "选项(&O)"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6721,7 +6721,7 @@ msgstr "确认删除股票投资"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "正在将交易从 %s 移动到"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7263,7 +7263,7 @@ msgstr "网络状态（点击刷新）"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "正在检查新的交易"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
