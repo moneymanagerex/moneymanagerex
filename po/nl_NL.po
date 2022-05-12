@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-12 05:29\n"
+"PO-Revision-Date: 2022-05-12 05:42\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3359,7 +3359,7 @@ msgstr "Logbestand geschreven naar: %s"
 
 #: import_export/univcsvdialog.cpp:1061 stockdialog.cpp:680
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Bevestig voordat u opslaat"
 
 #: import_export/univcsvdialog.cpp:1094
 msgid "No imported transactions!"
@@ -4134,11 +4134,11 @@ msgstr "Rekeningen&lijst (Basis)"
 
 #: mmframe.cpp:1298 mmframe.cpp:1303 mmframe.cpp:1370 mmframe.cpp:1377
 msgid "&CSV Files"
-msgstr ""
+msgstr "&CSV-bestanden"
 
 #: mmframe.cpp:1299 mmframe.cpp:1305 mmframe.cpp:1371 mmframe.cpp:1379
 msgid "&XML Files"
-msgstr ""
+msgstr "&XML-bestanden"
 
 #: mmframe.cpp:1299 mmframe.cpp:1371
 msgid "Import from XML (Excel format)"
@@ -4146,15 +4146,15 @@ msgstr "Import van XML (Excel opmaak)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1306 mmframe.cpp:1372 mmframe.cpp:1380
 msgid "&QIF Files"
-msgstr ""
+msgstr "&QIF-bestanden"
 
 #: mmframe.cpp:1304 mmframe.cpp:1378
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "&MMEX CSV bestanden"
 
 #: mmframe.cpp:1307 mmframe.cpp:1381
 msgid "&JSON Files"
-msgstr ""
+msgstr "&JSON bestanden"
 
 #: mmframe.cpp:1318 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4186,7 +4186,7 @@ msgstr "Databestand opslaan als"
 
 #: mmframe.cpp:1364
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Recente bestanden"
 
 #: mmframe.cpp:1365
 msgid "&Clear Recent Files"
@@ -4202,7 +4202,7 @@ msgstr "Importeer een QIF-bestand"
 
 #: mmframe.cpp:1373
 msgid "&WebApp"
-msgstr ""
+msgstr "&WebApp"
 
 #: mmframe.cpp:1373
 msgid "Import from WebApp"
@@ -4226,7 +4226,7 @@ msgstr "Exporteren als JSON"
 
 #: mmframe.cpp:1382
 msgid "&HTML Files"
-msgstr ""
+msgstr "&HTML bestanden"
 
 #: mmframe.cpp:1382
 msgid "Export to HTML"
@@ -4234,7 +4234,7 @@ msgstr "Export naar HTML-bestand"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "&Print"
-msgstr ""
+msgstr "&Afdrukken"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "Print current view"
@@ -4350,7 +4350,7 @@ msgstr "Verwijder een rekening uit het databestand"
 
 #: mmframe.cpp:1495
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "Download &tarieven"
 
 #: mmframe.cpp:1495 mmframe.cpp:1742
 msgid "Download Currency and Stock rates"
@@ -4358,11 +4358,11 @@ msgstr "Download valutakoersen en aandelenkoersen"
 
 #: mmframe.cpp:1501
 msgid "Organize &Categories"
-msgstr ""
+msgstr "Beheren &categorieën"
 
 #: mmframe.cpp:1505
 msgid "Organize &Payees"
-msgstr ""
+msgstr "Beheren &begunstigden"
 
 #: mmframe.cpp:1505 mmframe.cpp:1720 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4370,7 +4370,7 @@ msgstr "Beheren begunstigden: "
 
 #: mmframe.cpp:1509
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "Beheren valuta's"
 
 #: mmframe.cpp:1509 mmframe.cpp:1721
 msgid "Organize Currency"
@@ -4378,11 +4378,11 @@ msgstr "Beheren valuta's"
 
 #: mmframe.cpp:1513
 msgid "&Categories"
-msgstr ""
+msgstr "Categorieën"
 
 #: mmframe.cpp:1516
 msgid "&Payees"
-msgstr ""
+msgstr "&Begunstigden"
 
 #: mmframe.cpp:1517
 msgid "Reassign all payees to another payee"
@@ -4390,7 +4390,7 @@ msgstr "Alle begunstigden aan een andere begunstigde toewijzen"
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "Opnieuw Toewijzen van"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4422,7 +4422,7 @@ msgstr "Thema Beheerder"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "Transactie &rapport filter"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
@@ -4430,11 +4430,11 @@ msgstr "Transactie rapportfilter"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "Algemene rapport beheerder"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Aangepaste velden beheerder"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4658,7 +4658,7 @@ msgstr "Controleer op updates"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "&Over"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4702,7 +4702,7 @@ msgstr "Toon beheren valutavenster"
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "&Opties"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6738,7 +6738,7 @@ msgstr "Bevestig verwijderen van de belegging in effecten"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Verplaats transacties van %s naar"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7280,7 +7280,7 @@ msgstr "Netwerkstatus (klik om te vernieuwen)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Aan het controleren voor nieuwe transacties"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
