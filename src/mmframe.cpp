@@ -550,6 +550,19 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     checking_splits.push_back(split);
                 }
                 Model_Splittransaction::instance().save(checking_splits);
+
+                // Copy the custom fields to the newly created transaction
+                const auto& customDataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(-q1.BDID));
+                Model_CustomFieldData::instance().Savepoint();
+                for (const auto& entry : customDataSet)
+                {
+                    Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().create();
+                    fieldData->FIELDID = entry.FIELDID;
+                    fieldData->REFID = transID;
+                    fieldData->CONTENT = entry.CONTENT;
+                    Model_CustomFieldData::instance().save(fieldData);
+                }
+                Model_CustomFieldData::instance().ReleaseSavepoint();
             }
             Model_Billsdeposits::instance().completeBDInSeries(q1.BDID);
             createHomePage();
