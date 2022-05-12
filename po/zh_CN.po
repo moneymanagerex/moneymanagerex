@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-11 20:02\n"
+"PO-Revision-Date: 2022-05-12 06:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1275,7 +1275,7 @@ msgstr "跳过下一次重复发生的事务"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "确认下次交易"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1283,19 +1283,19 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "编辑周期性交易(&E)"
 
 #: billsdepositspanel.cpp:432
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "新建周期性交易(&N)"
 
 #: billsdepositspanel.cpp:434
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "重复周期性交易(&U)"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "删除周期性交易(&D)"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -3354,7 +3354,7 @@ msgstr "日志文件写入到： %s"
 
 #: import_export/univcsvdialog.cpp:1061 stockdialog.cpp:680
 msgid "Please confirm saving"
-msgstr ""
+msgstr "请确认保存"
 
 #: import_export/univcsvdialog.cpp:1094
 msgid "No imported transactions!"
@@ -4121,11 +4121,11 @@ msgstr "账户列表(&L)"
 
 #: mmframe.cpp:1298 mmframe.cpp:1303 mmframe.cpp:1370 mmframe.cpp:1377
 msgid "&CSV Files"
-msgstr ""
+msgstr "CSV 文件(&C)"
 
 #: mmframe.cpp:1299 mmframe.cpp:1305 mmframe.cpp:1371 mmframe.cpp:1379
 msgid "&XML Files"
-msgstr ""
+msgstr "XML 文件(&X)"
 
 #: mmframe.cpp:1299 mmframe.cpp:1371
 msgid "Import from XML (Excel format)"
@@ -4133,15 +4133,15 @@ msgstr "从 XML 导入(Excel 格式)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1306 mmframe.cpp:1372 mmframe.cpp:1380
 msgid "&QIF Files"
-msgstr ""
+msgstr "QIF 文件(&Q)"
 
 #: mmframe.cpp:1304 mmframe.cpp:1378
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "MMEX CSV 文件(&M)"
 
 #: mmframe.cpp:1307 mmframe.cpp:1381
 msgid "&JSON Files"
-msgstr ""
+msgstr "JSON 文件(&J)"
 
 #: mmframe.cpp:1318 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4173,7 +4173,7 @@ msgstr "保存数据库"
 
 #: mmframe.cpp:1364
 msgid "&Recent Files"
-msgstr ""
+msgstr "最近的文件(&R)"
 
 #: mmframe.cpp:1365
 msgid "&Clear Recent Files"
@@ -4189,7 +4189,7 @@ msgstr "导入QIF文件"
 
 #: mmframe.cpp:1373
 msgid "&WebApp"
-msgstr ""
+msgstr "网络应用"
 
 #: mmframe.cpp:1373
 msgid "Import from WebApp"
@@ -4213,7 +4213,7 @@ msgstr "导出到 JSON"
 
 #: mmframe.cpp:1382
 msgid "&HTML Files"
-msgstr ""
+msgstr "HTML 文件(&H)"
 
 #: mmframe.cpp:1382
 msgid "Export to HTML"
@@ -4221,7 +4221,7 @@ msgstr "导出到 HTML"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "&Print"
-msgstr ""
+msgstr "打印(&P)"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "Print current view"
@@ -4337,7 +4337,7 @@ msgstr "从数据库中删除账户"
 
 #: mmframe.cpp:1495
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "下载速率​​(&T)"
 
 #: mmframe.cpp:1495 mmframe.cpp:1742
 msgid "Download Currency and Stock rates"
@@ -4345,11 +4345,11 @@ msgstr "下载货币和股票汇率"
 
 #: mmframe.cpp:1501
 msgid "Organize &Categories"
-msgstr ""
+msgstr "分类管理(&C)"
 
 #: mmframe.cpp:1505
 msgid "Organize &Payees"
-msgstr ""
+msgstr "收款人管理(&P)"
 
 #: mmframe.cpp:1505 mmframe.cpp:1720 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4357,7 +4357,7 @@ msgstr "收款人管理"
 
 #: mmframe.cpp:1509
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "管理货币(&N)"
 
 #: mmframe.cpp:1509 mmframe.cpp:1721
 msgid "Organize Currency"
@@ -4365,11 +4365,11 @@ msgstr "货币管理"
 
 #: mmframe.cpp:1513
 msgid "&Categories"
-msgstr ""
+msgstr "分类(&C)"
 
 #: mmframe.cpp:1516
 msgid "&Payees"
-msgstr ""
+msgstr "收款人(&P)"
 
 #: mmframe.cpp:1517
 msgid "Reassign all payees to another payee"
@@ -4377,7 +4377,7 @@ msgstr "重新分配所有收款人到另一个收款人"
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "重新定位(&L)"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4409,7 +4409,7 @@ msgstr "主题管理器"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "交易报告过滤器(&F)"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
