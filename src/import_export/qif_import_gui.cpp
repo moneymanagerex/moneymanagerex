@@ -75,12 +75,12 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
 {
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     payeeIsNotes_ = false;
-    Create(parent);
-    SetMinSize(wxSize(500, 300));
-
-    const auto &acc = Model_Account::instance().get(account_id);
+    const auto& acc = Model_Account::instance().get(account_id);
     if (acc)
         m_accountNameStr = acc->ACCOUNTNAME;
+
+    Create(parent);
+    SetMinSize(wxSize(500, 300));
 }
 
 wxString mmQIFImportDialog::OnGetItemText(long item, long column) const
@@ -171,11 +171,19 @@ void mmQIFImportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     accountDropDown_ = new wxChoice(this, wxID_ANY);
     accountDropDown_->SetMinSize(wxSize(180, -1));
-    for (const auto& a : Model_Account::instance().all_checking_account_names())
-        accountDropDown_->Append(a, new wxStringClientData(a));
-
     accountDropDown_->Enable(false);
-    accountDropDown_->SetSelection(0);
+
+    for (const auto& a : Model_Account::instance().all_checking_account_names()) {
+        accountDropDown_->Append(a, new wxStringClientData(a));
+        if (a == m_accountNameStr) {
+            accountDropDown_->SetStringSelection(a);
+            accountDropDown_->Enable();
+            accountCheckBox_->SetValue(true);
+        }
+    }
+
+    if (accountDropDown_->GetSelection() == wxNOT_FOUND)
+        accountDropDown_->Enable(false);
 
     flex_sizer->Add(accountCheckBox_, g_flagsH);
     flex_sizer->Add(accountDropDown_, g_flagsH);
@@ -359,6 +367,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     size_t numLines = 0;
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
+    m_accountNameStr.clear();
     m_QIFcategoryNames.clear();
     m_QIFcategoryNames[_("Unknown")] = std::make_pair(-1, -1);
     m_QIFpayeeNames.clear();
@@ -810,6 +819,10 @@ void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 
 void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
+    if (getOrCreateAccounts() == 0 && !accountCheckBox_->IsChecked()) {
+        return mmErrorDialogs::MessageInvalid(this, _("Account"));
+    }
+
     wxString sMsg;
     wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?")
         + "\n" + _("All missing account, payees and categories will be created.")
@@ -821,11 +834,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         wxProgressDialog progressDlg(_("Please wait"), _("Importing")
             , nTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
         progressDlg.Update(1, _("Importing Accounts"));
-        if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue())
-        {
-            progressDlg.Update(nTransactions + 1);
-            return mmErrorDialogs::MessageInvalid(this, _("Account"));
-        }
+
         mmWebApp::MMEX_WebApp_UpdateAccount();
         progressDlg.Update(1, _("Importing Payees"));
         getOrCreatePayees();
