@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-11 20:03\n"
+"PO-Revision-Date: 2022-05-12 08:59\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1276,7 +1276,7 @@ msgstr "Παράλειψη Επόμενης Εμφάνισης Επαναλαμ�
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "Εισάγετε την επόμενη Εμφάνιση"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1284,19 +1284,19 @@ msgstr "Παράκαμψη επόμενης εμφάνισης"
 
 #: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&Επεξεργασία Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositspanel.cpp:432
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&Νέα Επαναλαμβανόμενη Συναλλαγή"
 
 #: billsdepositspanel.cpp:434
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "Δ%ημιουργία Αντιγράφου Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "&Διαγραφή Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -3358,7 +3358,7 @@ msgstr "Το αρχείο καταγραφής γράφτηκε στο: %s"
 
 #: import_export/univcsvdialog.cpp:1061 stockdialog.cpp:680
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Παρακαλούμε επιβεβαιώστε την αποθήκευση"
 
 #: import_export/univcsvdialog.cpp:1094
 msgid "No imported transactions!"
@@ -4132,11 +4132,11 @@ msgstr "&Λίστα Λογαριασμών (Αρχική σελίδα)"
 
 #: mmframe.cpp:1298 mmframe.cpp:1303 mmframe.cpp:1370 mmframe.cpp:1377
 msgid "&CSV Files"
-msgstr ""
+msgstr "&CSV Αρχεία"
 
 #: mmframe.cpp:1299 mmframe.cpp:1305 mmframe.cpp:1371 mmframe.cpp:1379
 msgid "&XML Files"
-msgstr ""
+msgstr "&XML Αρχεία"
 
 #: mmframe.cpp:1299 mmframe.cpp:1371
 msgid "Import from XML (Excel format)"
@@ -4144,15 +4144,15 @@ msgstr "Εισαγωγή από XML (μορφή Excel)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1306 mmframe.cpp:1372 mmframe.cpp:1380
 msgid "&QIF Files"
-msgstr ""
+msgstr "&QIF Αρχεία"
 
 #: mmframe.cpp:1304 mmframe.cpp:1378
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "&MMEX CSV Αρχεία"
 
 #: mmframe.cpp:1307 mmframe.cpp:1381
 msgid "&JSON Files"
-msgstr ""
+msgstr "&JSON Αρχεία"
 
 #: mmframe.cpp:1318 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4184,7 +4184,7 @@ msgstr "Αποθήκευση βάσης δεδομένων ως"
 
 #: mmframe.cpp:1364
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Πρόσφατα Αρχεία"
 
 #: mmframe.cpp:1365
 msgid "&Clear Recent Files"
@@ -4200,7 +4200,7 @@ msgstr "Εισαγωγή από QIF"
 
 #: mmframe.cpp:1373
 msgid "&WebApp"
-msgstr ""
+msgstr "&WebApp"
 
 #: mmframe.cpp:1373
 msgid "Import from WebApp"
@@ -4224,7 +4224,7 @@ msgstr "Εξαγωγή σε JSON"
 
 #: mmframe.cpp:1382
 msgid "&HTML Files"
-msgstr ""
+msgstr "&HTML Αρχεία"
 
 #: mmframe.cpp:1382
 msgid "Export to HTML"
@@ -4232,7 +4232,7 @@ msgstr "Εξαγωγή σε HTML"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "&Print"
-msgstr ""
+msgstr "&Εκτύπωση"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "Print current view"
@@ -4348,7 +4348,7 @@ msgstr "Διαγραφή λογαριασμού από τη βάση δεδομ�
 
 #: mmframe.cpp:1495
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "Κατεβάστε τις Ισο&τιμίες"
 
 #: mmframe.cpp:1495 mmframe.cpp:1742
 msgid "Download Currency and Stock rates"
@@ -4356,11 +4356,11 @@ msgstr "Κατεβάστε το νόμισμα και τις ισοτιμίες 
 
 #: mmframe.cpp:1501
 msgid "Organize &Categories"
-msgstr ""
+msgstr "Οργάνωση &Κατηγοριών"
 
 #: mmframe.cpp:1505
 msgid "Organize &Payees"
-msgstr ""
+msgstr "Οργάνωση &Δικαιούχων"
 
 #: mmframe.cpp:1505 mmframe.cpp:1720 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4368,7 +4368,7 @@ msgstr "Οργάνωση δικαιούχων"
 
 #: mmframe.cpp:1509
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "Οργάνωση Νομισμά&των"
 
 #: mmframe.cpp:1509 mmframe.cpp:1721
 msgid "Organize Currency"
@@ -4376,11 +4376,11 @@ msgstr "Οργάνωση των νομισμάτων"
 
 #: mmframe.cpp:1513
 msgid "&Categories"
-msgstr ""
+msgstr "&Κατηγορίες"
 
 #: mmframe.cpp:1516
 msgid "&Payees"
-msgstr ""
+msgstr "&Δικαιούχοι"
 
 #: mmframe.cpp:1517
 msgid "Reassign all payees to another payee"
@@ -4388,7 +4388,7 @@ msgstr "Εκχώρηση όλων των δικαιούχων σε έναν άλ
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "Με&τατόπιση των"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4420,7 +4420,7 @@ msgstr "Διαχειριστής Θεμάτων"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "&Φίλτρο Εκθέσεων Συναλλαγών"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
@@ -4428,11 +4428,11 @@ msgstr "Φίλτρο εκθέσεων συναλλαγών"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "&Διαχείριση Γενικών Αναφορών"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Διαχειριστής Π&ροσαρμοσμένων Πεδίων"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4656,7 +4656,7 @@ msgstr "Ελέγχος Για Ενημερώσεις"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "&Σχετικά"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4700,7 +4700,7 @@ msgstr "Εμφάνιση του παραθύρου οργάνωσης των ν�
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "&Επιλογές"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6730,7 +6730,7 @@ msgstr "Επιβεβαιώστε την διαγραφή της επένδυση
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Μετακίνηση συναλλαγής από %s σε"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7271,7 +7271,7 @@ msgstr "Κατάσταση δικτύου (κάντε κλικ για ανανέ
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Έλεγχος για νέες συναλλαγές"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
