@@ -121,7 +121,7 @@ void Model_Setting::Prepend(const wxString& key, const wxString& value, int limi
 
     for (const auto& item : a)
     {
-        buffer += ("|" + item);
+        buffer += ((buffer.empty() ? "" : "|") + item);
     }
     setting->SETTINGVALUE = buffer;
 
