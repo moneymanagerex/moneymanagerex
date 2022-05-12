@@ -108,15 +108,15 @@ void Model_Setting::Prepend(const wxString& key, const wxString& value, int limi
     int i = 0;
     wxString buffer;
     wxArrayString a;
+    a.Add(value);
     wxStringTokenizer token(setting->SETTINGVALUE, "|");
     while (token.HasMoreTokens() && i < limit)
     {
-        a.Add(token.GetNextToken());
-        i++;
-    }
-
-    if (a.Index(value) == wxNOT_FOUND) {
-        buffer = value;
+        const auto item = token.GetNextToken();
+        if (a.Index(item) == wxNOT_FOUND) {
+            a.Add(item);
+            i++;
+        }
     }
 
     for (const auto& item : a)
