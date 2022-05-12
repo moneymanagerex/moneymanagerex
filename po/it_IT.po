@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-12 09:38\n"
+"PO-Revision-Date: 2022-05-12 09:59\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4390,7 +4390,7 @@ msgstr "Riassegna tutti i beneficiari ad un altro"
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "Sostituzione di"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4422,7 +4422,7 @@ msgstr "Gestore dei temi"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "&Filtro Segnalazione Transazioni"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
@@ -4430,11 +4430,11 @@ msgstr "Filtro Resoconto Operazioni"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "&Manager Report Generale"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Gestore Campi C&ustom"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4658,7 +4658,7 @@ msgstr "Controlla gli aggiornamenti"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "&Informazioni"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4702,7 +4702,7 @@ msgstr "Mostra la Gestione Valute"
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "&Opzioni"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6738,7 +6738,7 @@ msgstr "Conferma eliminazione Investimento in titoli"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Spostamento della transazione da %s a"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7280,7 +7280,7 @@ msgstr "Stato della rete (clicca per aggiornare)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Controllo di nuove transazioni"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
