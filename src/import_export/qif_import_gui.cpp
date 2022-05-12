@@ -182,8 +182,9 @@ void mmQIFImportDialog::CreateControls()
         }
     }
 
-    if (accountDropDown_->GetSelection() == wxNOT_FOUND)
+    if (accountDropDown_->GetSelection() == wxNOT_FOUND) {
         accountDropDown_->Enable(false);
+    }
 
     flex_sizer->Add(accountCheckBox_, g_flagsH);
     flex_sizer->Add(accountDropDown_, g_flagsH);
@@ -396,6 +397,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     std::unordered_map <int, wxString> trx;
 
     wxSharedPtr<mmDates> dParser(new mmDates);
+    std::map<wxString, int> comma({ {".", 0}, {",", 0} });
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
@@ -439,6 +441,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
             trx.clear();
             continue;
         }
+
         //Parse Categories
         const wxString& s = trx.find(CategorySplit) != trx.end() ? trx[CategorySplit] : "";
         if (!s.empty())
@@ -459,6 +462,13 @@ bool mmQIFImportDialog::mmReadQIFFile()
             dParser->doHandleStatistics(data);
         }
 
+        //Parse numbers
+        if (lineType == Amount)
+        {
+            comma["."] += data.Contains(".") ? data.find(".") + 1 : 0;
+            comma[","] += data.Contains(",") ? data.find(",") + 1 : 0;
+        }
+
         if (trx[lineType].empty() || lineType == AcctType)
             trx[lineType] = data;
         else
@@ -467,6 +477,9 @@ bool mmQIFImportDialog::mmReadQIFFile()
     }
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
 
+    if (comma[","] > comma["."]) {
+        m_choiceDecimalSeparator->SetDecimalChar(",");
+    }
 
     if (!m_userDefinedDateMask)
     {
@@ -486,6 +499,15 @@ bool mmQIFImportDialog::mmReadQIFFile()
     wxString sMsg = wxString::Format(_("Number of lines read from QIF file: %zu in %lld ms")
         , numLines, interval);
     *log_field_ << sMsg << "\n";
+
+    if (!m_QIFaccounts.empty()) {
+        sMsg = _("Accounts:");
+        for (const auto& i : m_QIFaccounts) {
+            sMsg += ("\n" + i.first);
+        }
+        *log_field_ << sMsg << "\n";
+    }
+
     sMsg = wxString::Format(_("Press OK Button to continue"));
     *log_field_ << sMsg << "\n";
 
@@ -795,9 +817,15 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
         {
             accountDropDown_->Enable(true);
             m_accountNameStr = "";
-            wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(accountDropDown_->GetSelection()));
+            auto sel = accountDropDown_->GetSelection();
+            if (sel == wxNOT_FOUND) {
+                accountDropDown_->SetSelection(0);
+                sel = 0;
+            }
+            wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(sel));
             if (data_obj)
                 m_accountNameStr = data_obj->GetData();
+            
         }
         else {
             accountDropDown_->Enable(false);
@@ -819,8 +847,8 @@ void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 
 void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    if (getOrCreateAccounts() == 0 && !accountCheckBox_->IsChecked()) {
-        return mmErrorDialogs::MessageInvalid(this, _("Account"));
+    if (m_QIFaccounts.empty() && m_accountNameStr.empty() && !accountCheckBox_->IsChecked()) {
+        return mmErrorDialogs::InvalidAccount(accountDropDown_);
     }
 
     wxString sMsg;
@@ -830,6 +858,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
+        getOrCreateAccounts();
         int nTransactions = vQIF_trxs_.size();
         wxProgressDialog progressDlg(_("Please wait"), _("Importing")
             , nTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
@@ -1035,7 +1064,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     }
 
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
-    dateStr.Replace(" ", "");
+    if (!m_dateFormatStr.Contains(" ")) dateStr.Replace(" ", "");
     wxDateTime dtdt;
     wxString::const_iterator end;
     if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
