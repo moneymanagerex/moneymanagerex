@@ -1386,6 +1386,10 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
                 //Increase the date mask rating if parse date is recent (1 month ago) date
                 if (dtdt <= m_today && dtdt >= m_month_ago)
                     m_date_parsing_stat[mask] ++;
+
+                //Decrease the data mask rating if parsed date is in future
+                if (dtdt > m_today)
+                    m_date_parsing_stat[mask] -= 2;
             }
             else {
                 invalidMask.Add(mask);
