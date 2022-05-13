@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-13 07:54\n"
+"PO-Revision-Date: 2022-05-13 08:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4388,7 +4388,7 @@ msgstr "Дыспетчар &катыгорыяў"
 
 #: mmframe.cpp:1505
 msgid "Organize &Payees"
-msgstr ""
+msgstr "Дыспетчар а&трымальнікаў"
 
 #: mmframe.cpp:1505 mmframe.cpp:1720 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4396,7 +4396,7 @@ msgstr "Дыспетчар платнікоў"
 
 #: mmframe.cpp:1509
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "Дыспетчар валю&таў"
 
 #: mmframe.cpp:1509 mmframe.cpp:1721
 msgid "Organize Currency"
@@ -4404,11 +4404,11 @@ msgstr "Уладкаваць валюты"
 
 #: mmframe.cpp:1513
 msgid "&Categories"
-msgstr ""
+msgstr "&Катыгорыі"
 
 #: mmframe.cpp:1516
 msgid "&Payees"
-msgstr ""
+msgstr "&Атрымальнікі"
 
 #: mmframe.cpp:1517
 msgid "Reassign all payees to another payee"
@@ -4416,7 +4416,7 @@ msgstr "Замена аднаго платніка на іншага"
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "Пера&соўванне"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4448,7 +4448,7 @@ msgstr "Дыспетчар тэмаў"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "&Справаздача па крытэрыях"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
@@ -4456,11 +4456,11 @@ msgstr "Фільтраваць справаздачы па крытэрах"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "Дыспетчар агульных &справаздачаў"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Дыспетчар карыстальніцкіх &палёў"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4684,7 +4684,7 @@ msgstr "Праверыць, ці існуе новая вэрсія"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "Пра &нас"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4728,7 +4728,7 @@ msgstr "Адчыніць дыспетчар валютаў"
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "&Налады"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6766,7 +6766,7 @@ msgstr "Спраўдзіце выдаленне інвестыцыі"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Перасоўванне аперацыі з %s на"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7308,7 +7308,7 @@ msgstr "Статус сеткі (націсніце, каб абнавіць)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Праверка новых аперацыяў"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
