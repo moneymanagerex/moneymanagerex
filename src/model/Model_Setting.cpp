@@ -105,26 +105,40 @@ void Model_Setting::Prepend(const wxString& key, const wxString& value, int limi
         setting->SETTINGNAME = key;
     }
 
-    int i = 0;
-    wxString buffer;
+    int i = 1;
     wxArrayString a;
     a.Add(value);
-    wxStringTokenizer token(setting->SETTINGVALUE, "|");
-    while (token.HasMoreTokens() && i < limit)
+
+    Document j_doc;
+    if (j_doc.Parse(setting->SETTINGVALUE.utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
     {
-        const auto item = token.GetNextToken();
-        if (a.Index(item) == wxNOT_FOUND) {
-            a.Add(item);
-            i++;
+        for (auto& v : j_doc.GetArray())
+        {
+            if (i >= limit && limit != -1) break;
+            if (v.IsString()) {
+                const auto item = wxString::FromUTF8(v.GetString());
+                if (a.Index(item) == wxNOT_FOUND) {
+                    a.Add(item);
+                    i++;
+                }
+            }
         }
     }
 
-    for (const auto& item : a)
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartArray();
+    for (const auto& entry : a)
     {
-        buffer += ((buffer.empty() ? "" : "|") + item);
+        json_writer.String(entry.utf8_str());
     }
-    setting->SETTINGVALUE = buffer;
+    json_writer.EndArray();
 
+    setting->SETTINGVALUE = wxString::FromUTF8(json_buffer.GetString());
     setting->save(this->db_);
 }
 
@@ -146,7 +160,7 @@ int Model_Setting::GetIntSetting(const wxString& key, int default_value)
     return default_value;
 }
 
-wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
+const wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
 {
     Data* setting = this->get_one(SETTINGNAME(key));
     if (!setting) // not cached
@@ -161,7 +175,7 @@ wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& de
     return default_value;
 }
 
-wxArrayString Model_Setting::GetArrayStringSetting(const wxString& key, int limit)
+const wxArrayString Model_Setting::GetArrayStringSetting(const wxString& key)
 {
     wxString data;
     Data* setting = this->get_one(SETTINGNAME(key));
@@ -180,14 +194,23 @@ wxArrayString Model_Setting::GetArrayStringSetting(const wxString& key, int limi
         data = setting->SETTINGVALUE;
     }
 
-    int i = 0;
     wxArrayString a;
-    wxStringTokenizer token(data, "|");
-    while (token.HasMoreTokens() && i < limit)
-    {
-        a.Add(token.GetNextToken());
-        i++;
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
     }
+
+    if (j_doc.IsArray())
+    {
+        for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++)
+        {
+            wxASSERT(j_doc[i].IsString());
+            const auto item = wxString::FromUTF8(j_doc[i].GetString());
+            wxLogDebug("%s", item);
+            a.Add(item);
+        }
+    }
+
     return a;
 }
 
