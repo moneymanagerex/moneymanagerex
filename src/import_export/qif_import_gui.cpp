@@ -508,6 +508,9 @@ bool mmQIFImportDialog::mmReadQIFFile()
         *log_field_ << sMsg << "\n";
     }
 
+    sMsg = _("Date Format: ") + "\n" + choiceDateFormat_->GetValue();
+    *log_field_ << sMsg << "\n";
+
     sMsg = wxString::Format(_("Press OK Button to continue"));
     *log_field_ << sMsg << "\n";
 
@@ -625,7 +628,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 void mmQIFImportDialog::refreshTabs(int tabs)
 {
     int num = 0;
-    if (tabs & LOG_TAB)
+    if (tabs & TRX_TAB)
     {
         wxString acc;
         dataListBox_->DeleteAllItems();
@@ -780,8 +783,12 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& WXUNUSED(event))
 {
     wxStringClientData* data = static_cast<wxStringClientData*>(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
-    if (data) m_dateFormatStr = data->GetData();
-    m_userDefinedDateMask = true;
+    if (data && m_dateFormatStr != data->GetData()) {
+        m_dateFormatStr = data->GetData();
+        m_userDefinedDateMask = true;
+        wxString sMsg = _("Date Format: ") + "\n" + choiceDateFormat_->GetValue();
+        *log_field_ << sMsg << "\n";
+    }
     refreshTabs(TRX_TAB);
 }
 
