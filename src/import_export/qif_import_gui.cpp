@@ -135,7 +135,7 @@ void mmQIFImportDialog::CreateControls()
     wxStaticText* file_name_label = new wxStaticText(file_panel, wxID_ANY, _("File Name:"));
     itemBoxSizer7->Add(file_name_label, g_flagsH);
 
-    wxArrayString files = Model_Setting::instance().GetArrayStringSetting("LAST_QIF_FILES");
+    wxArrayString files = Model_Setting::instance().GetArrayStringSetting("RECENT_QIF_FILES");
     file_name_ctrl_ = new  wxComboBox(file_panel, wxID_FILE, "", wxDefaultPosition, wxDefaultSize, files, wxTE_PROCESS_ENTER);
     file_name_ctrl_->SetMinSize(wxSize(300, -1));
     itemBoxSizer7->Add(file_name_ctrl_, 1, wxALL | wxGROW, 5);
@@ -1395,5 +1395,5 @@ void mmQIFImportDialog::OnFileNameChanged(wxCommandEvent& WXUNUSED(event))
 
 void mmQIFImportDialog::save_file_name()
 {
-    Model_Setting::instance().Prepend("LAST_QIF_FILES", m_FileNameStr, 10);
+    Model_Setting::instance().Prepend("RECENT_QIF_FILES", m_FileNameStr, 10);
 }
