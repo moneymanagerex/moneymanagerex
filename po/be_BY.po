@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-11 20:03\n"
+"PO-Revision-Date: 2022-05-13 08:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1276,7 +1276,7 @@ msgstr "Ігнараваць наступнае з’яўленне заплан
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "Дадаць чэргавую"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1284,19 +1284,19 @@ msgstr "Абмінуць чэргавую дату"
 
 #: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&Рыдагаваць запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:432
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&Стварыць запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:434
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "Зрабіць &дублікат аперацыі, што паўтараецца"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "&Прыбраць запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -3368,7 +3368,7 @@ msgstr "Файл справаздачы запісаны ў: %s"
 
 #: import_export/univcsvdialog.cpp:1061 stockdialog.cpp:680
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Калі ласка, спраўдзіце захаванне"
 
 #: import_export/univcsvdialog.cpp:1094
 msgid "No imported transactions!"
@@ -4160,11 +4160,11 @@ msgstr "Пачатковая &старонка (хатняя)"
 
 #: mmframe.cpp:1298 mmframe.cpp:1303 mmframe.cpp:1370 mmframe.cpp:1377
 msgid "&CSV Files"
-msgstr ""
+msgstr "Файлы &CSV"
 
 #: mmframe.cpp:1299 mmframe.cpp:1305 mmframe.cpp:1371 mmframe.cpp:1379
 msgid "&XML Files"
-msgstr ""
+msgstr "Файлы &XML"
 
 #: mmframe.cpp:1299 mmframe.cpp:1371
 msgid "Import from XML (Excel format)"
@@ -4172,15 +4172,15 @@ msgstr "Імпартаваць з XML (фармат Excel)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1306 mmframe.cpp:1372 mmframe.cpp:1380
 msgid "&QIF Files"
-msgstr ""
+msgstr "Файлы &QIF"
 
 #: mmframe.cpp:1304 mmframe.cpp:1378
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "Файлы &MMEX CSV"
 
 #: mmframe.cpp:1307 mmframe.cpp:1381
 msgid "&JSON Files"
-msgstr ""
+msgstr "Файлы &JSON"
 
 #: mmframe.cpp:1318 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4212,7 +4212,7 @@ msgstr "Захаваць Базу дадзеных як"
 
 #: mmframe.cpp:1364
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Нядаўнія файлы"
 
 #: mmframe.cpp:1365
 msgid "&Clear Recent Files"
@@ -4228,7 +4228,7 @@ msgstr "Імпарт з QIF"
 
 #: mmframe.cpp:1373
 msgid "&WebApp"
-msgstr ""
+msgstr "&WebApp"
 
 #: mmframe.cpp:1373
 msgid "Import from WebApp"
@@ -4252,7 +4252,7 @@ msgstr "Экспарт у JSON"
 
 #: mmframe.cpp:1382
 msgid "&HTML Files"
-msgstr ""
+msgstr "Файлы &HTML"
 
 #: mmframe.cpp:1382
 msgid "Export to HTML"
@@ -4260,7 +4260,7 @@ msgstr "Экспарт у HTML"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "&Print"
-msgstr ""
+msgstr "&Друкаваць"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "Print current view"
@@ -4376,7 +4376,7 @@ msgstr "Выдаліць рахунак з базы дадзеных"
 
 #: mmframe.cpp:1495
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "Спампаваць ку&рсы"
 
 #: mmframe.cpp:1495 mmframe.cpp:1742
 msgid "Download Currency and Stock rates"
@@ -4384,11 +4384,11 @@ msgstr "Спампаваць курсы валютаў і акцыяў"
 
 #: mmframe.cpp:1501
 msgid "Organize &Categories"
-msgstr ""
+msgstr "Дыспетчар &катыгорыяў"
 
 #: mmframe.cpp:1505
 msgid "Organize &Payees"
-msgstr ""
+msgstr "Дыспетчар а&трымальнікаў"
 
 #: mmframe.cpp:1505 mmframe.cpp:1720 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4396,7 +4396,7 @@ msgstr "Дыспетчар платнікоў"
 
 #: mmframe.cpp:1509
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "Дыспетчар валю&таў"
 
 #: mmframe.cpp:1509 mmframe.cpp:1721
 msgid "Organize Currency"
@@ -4404,11 +4404,11 @@ msgstr "Уладкаваць валюты"
 
 #: mmframe.cpp:1513
 msgid "&Categories"
-msgstr ""
+msgstr "&Катыгорыі"
 
 #: mmframe.cpp:1516
 msgid "&Payees"
-msgstr ""
+msgstr "&Атрымальнікі"
 
 #: mmframe.cpp:1517
 msgid "Reassign all payees to another payee"
@@ -4416,7 +4416,7 @@ msgstr "Замена аднаго платніка на іншага"
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "Пера&соўванне"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4448,7 +4448,7 @@ msgstr "Дыспетчар тэмаў"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "&Справаздача па крытэрыях"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
@@ -4456,11 +4456,11 @@ msgstr "Фільтраваць справаздачы па крытэрах"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "Дыспетчар агульных &справаздачаў"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Дыспетчар карыстальніцкіх &палёў"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4684,7 +4684,7 @@ msgstr "Праверыць, ці існуе новая вэрсія"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "Пра &нас"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4728,7 +4728,7 @@ msgstr "Адчыніць дыспетчар валютаў"
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "&Налады"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6766,7 +6766,7 @@ msgstr "Спраўдзіце выдаленне інвестыцыі"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Перасоўванне аперацыі з %s на"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7308,7 +7308,7 @@ msgstr "Статус сеткі (націсніце, каб абнавіць)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Праверка новых аперацыяў"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
