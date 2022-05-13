@@ -1422,8 +1422,8 @@ void mmBDDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
         default:
             if (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV)
             {
-                m_date_paid->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_paid->GetValue()));
-                m_date_due->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_due->GetValue()));
+                m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, -span, m_date_paid->GetValue()));
+                m_date_due->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, -span, m_date_due->GetValue()));
             } else
             {
                 m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_paid->GetValue()));

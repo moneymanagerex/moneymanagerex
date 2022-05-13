@@ -167,8 +167,7 @@ public:
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
 
     void completeBDInSeries(int bdID);
-    static const wxDateTime nextOccurDate(int type, int numRepeats, const wxDateTime& nextOccurDate);
-    static const wxDateTime previousOccurDate(int repeatsType, int numRepeats, const wxDateTime& nextOccurDate);
+    static const wxDateTime nextOccurDate(int type, int numRepeats, wxDateTime nextOccurDate);
 };
 
 #endif // 
