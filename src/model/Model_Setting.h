@@ -69,8 +69,8 @@ public:
     // Getter
     bool GetBoolSetting(const wxString& key, bool default_value);
     int GetIntSetting(const wxString& key, int default_value);
-    wxString GetStringSetting(const wxString& key, const wxString& default_value);
-    wxArrayString GetArrayStringSetting(const wxString& key, int limit);
+    const wxString GetStringSetting(const wxString& key, const wxString& default_value);
+    const wxArrayString GetArrayStringSetting(const wxString& key);
 
     wxString getLastDbPath();
 
