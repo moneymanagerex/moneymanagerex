@@ -475,18 +475,22 @@ const std::map<wxString, wxString> &date_formats_regex()
     const wxString yy = "(([ ][0-9])|([0-9]{1,2}))";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     const wxString tail = "($|[^0-9])+";
+    const wxString head = "^";
 
     for (const auto entry : g_date_formats_map())
     {
         wxString regexp = entry.first;
+        regexp.Replace(".", R"([.])");
+        regexp.Replace("/", R"(\/)");
+        regexp.Replace(" ", R"(\s)");
         regexp.Replace("%Mon", mon);
         regexp.Replace("%w", week);
         regexp.Replace("%d", dd);
         regexp.Replace("%m", mm);
         regexp.Replace("%Y", yyyy);
         regexp.Replace("%y", yy);
-        regexp.Replace(".", R"(\.)");
         regexp.Append(tail);
+        regexp.Prepend(head);
         date_regex[entry.first] = regexp;
     }
 
@@ -1393,6 +1397,7 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
             }
             else {
                 invalidMask.Add(mask);
+                m_date_parsing_stat.erase(mask);
             }
         }
 
