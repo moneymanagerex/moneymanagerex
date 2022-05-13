@@ -1342,7 +1342,7 @@ mmDates::mmDates()
     , m_error_count(0)
 {
     m_date_parsing_stat.clear();
-    m_month_ago = m_today.Subtract(wxDateSpan::Months(1));
+    m_month_ago = wxDate(m_today).Subtract(wxDateSpan::Months(1));
 }
 
 
