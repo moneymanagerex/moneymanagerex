@@ -75,8 +75,6 @@ public:
     int getSubCategId() const;
     const wxArrayInt getAccountsID() const;
     const wxArrayInt getHideColumnsID() const;
-    
-    void SetStoredSettings(int id);
 
     const wxString getBeginDate() const;
     const wxString getEndDate() const;
@@ -118,7 +116,6 @@ private:
     bool is_custom_field_active() const;
     bool is_custom_field_matches(const Model_Checking::Data& tran) const;
     void setPresettings(const wxString& view);
-    void clearSettings();
 
     /// Creation
     bool Create(wxWindow* parent
@@ -131,13 +128,13 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void dataToControls();
+    void SetSettingsLabel();
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
 
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
-    void OnButtonSaveClick(wxCommandEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void datePresetMenu(wxMouseEvent& event);
@@ -145,7 +142,6 @@ private:
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
-    void SaveSettings(int menu_item);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnColourButton(wxCommandEvent& /*event*/);
     void OnShowColumnsButton(wxCommandEvent& /*event*/);

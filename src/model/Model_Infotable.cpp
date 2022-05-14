@@ -100,6 +100,59 @@ void Model_Infotable::Set(const wxString& key, const wxColour& value)
     this->Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
 }
 
+void Model_Infotable::Prepend(const wxString& key, const wxString& value, int limit)
+{
+    Data* setting = this->get_one(INFONAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(INFONAME(key));
+        if (!items.empty()) setting = this->get(items[0].INFOID);
+    }
+
+    if (!setting)
+    {
+        setting = this->create();
+        setting->INFONAME = key;
+    }
+    int i = 1;
+    wxArrayString a;
+    if (!value.empty() && limit != 0)
+        a.Add(value);
+
+    Document j_doc;
+    if (j_doc.Parse(setting->INFOVALUE.utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
+    {
+        for (auto& v : j_doc.GetArray())
+        {
+            if (i >= limit && limit != -1) break;
+            if (v.IsString()) {
+                const auto item = wxString::FromUTF8(v.GetString());
+                if (a.Index(item) == wxNOT_FOUND) {
+                    a.Add(item);
+                    i++;
+                }
+            }
+        }
+    }
+
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartArray();
+    for (const auto& entry : a)
+    {
+        json_writer.String(entry.utf8_str());
+    }
+    json_writer.EndArray();
+
+    setting->INFOVALUE = wxString::FromUTF8(json_buffer.GetString());
+    setting->save(this->db_);
+}
+
+
 // Getter
 bool Model_Infotable::GetBoolInfo(const wxString& key, bool default_value)
 {
@@ -157,6 +210,45 @@ const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxCo
     }
 
     return default_value;
+}
+
+const wxArrayString Model_Infotable::GetArrayStringSetting(const wxString& key)
+{
+    wxString data;
+    Data* setting = this->get_one(INFONAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(INFONAME(key));
+        if (items.empty()) {
+            return wxArrayString();
+        }
+        else {
+            data = items[0].INFOVALUE;
+        }
+    }
+    else
+    {
+        data = setting->INFOVALUE;
+    }
+
+    wxArrayString a;
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
+    {
+        for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++)
+        {
+            wxASSERT(j_doc[i].IsString());
+            const auto item = wxString::FromUTF8(j_doc[i].GetString());
+            wxLogDebug("%s", item);
+            a.Add(item);
+        }
+    }
+
+    return a;
 }
 
 /* Returns true if key setting found */
