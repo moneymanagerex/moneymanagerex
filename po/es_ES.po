@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-11 22:37+0300\n"
-"PO-Revision-Date: 2022-05-11 20:03\n"
+"PO-Revision-Date: 2022-05-14 13:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1275,7 +1275,7 @@ msgstr "Omitir la siguiente aparición de la transacción periódica"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "Registrar siguiente aparición"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1283,19 +1283,19 @@ msgstr "Omitir siguiente aparición"
 
 #: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&Editar transacción periódica"
 
 #: billsdepositspanel.cpp:432
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&Nueva transacción periódica"
 
 #: billsdepositspanel.cpp:434
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "D&uplicar transacción periódica"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "&Borrar transacción periódica"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -4132,11 +4132,11 @@ msgstr "&Listado de cuentas (Inicio)"
 
 #: mmframe.cpp:1298 mmframe.cpp:1303 mmframe.cpp:1370 mmframe.cpp:1377
 msgid "&CSV Files"
-msgstr ""
+msgstr "&Archivos CSV"
 
 #: mmframe.cpp:1299 mmframe.cpp:1305 mmframe.cpp:1371 mmframe.cpp:1379
 msgid "&XML Files"
-msgstr ""
+msgstr "&Archivos XML"
 
 #: mmframe.cpp:1299 mmframe.cpp:1371
 msgid "Import from XML (Excel format)"
@@ -4144,15 +4144,15 @@ msgstr "Importar desde XML (formato Excel)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1306 mmframe.cpp:1372 mmframe.cpp:1380
 msgid "&QIF Files"
-msgstr ""
+msgstr "&Archivos QIF"
 
 #: mmframe.cpp:1304 mmframe.cpp:1378
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "&Archivos CSV de MMEX"
 
 #: mmframe.cpp:1307 mmframe.cpp:1381
 msgid "&JSON Files"
-msgstr ""
+msgstr "&Archivos JSON"
 
 #: mmframe.cpp:1318 optionsettingsview.cpp:64
 msgid "Accounts Visible"
@@ -4184,7 +4184,7 @@ msgstr "Guardar base de datos como"
 
 #: mmframe.cpp:1364
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Archivos recientes"
 
 #: mmframe.cpp:1365
 msgid "&Clear Recent Files"
@@ -4200,7 +4200,7 @@ msgstr "Importar desde QIF"
 
 #: mmframe.cpp:1373
 msgid "&WebApp"
-msgstr ""
+msgstr "&WebApp"
 
 #: mmframe.cpp:1373
 msgid "Import from WebApp"
@@ -4224,7 +4224,7 @@ msgstr "Exportar a JSON"
 
 #: mmframe.cpp:1382
 msgid "&HTML Files"
-msgstr ""
+msgstr "&Archivos HTML"
 
 #: mmframe.cpp:1382
 msgid "Export to HTML"
@@ -4232,7 +4232,7 @@ msgstr "Exportar a HTML"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "&Print"
-msgstr ""
+msgstr "&Imprimir"
 
 #: mmframe.cpp:1388 mmframe.cpp:1748
 msgid "Print current view"
@@ -4356,11 +4356,11 @@ msgstr "Descargar tasas de divisas y acciones"
 
 #: mmframe.cpp:1501
 msgid "Organize &Categories"
-msgstr ""
+msgstr "Organizar &categorías"
 
 #: mmframe.cpp:1505
 msgid "Organize &Payees"
-msgstr ""
+msgstr "Organizar &beneficiarios"
 
 #: mmframe.cpp:1505 mmframe.cpp:1720 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4368,7 +4368,7 @@ msgstr "Organizar beneficiarios"
 
 #: mmframe.cpp:1509
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "Organizar divi&sas"
 
 #: mmframe.cpp:1509 mmframe.cpp:1721
 msgid "Organize Currency"
@@ -4376,11 +4376,11 @@ msgstr "Organizar divisas"
 
 #: mmframe.cpp:1513
 msgid "&Categories"
-msgstr ""
+msgstr "&Categorías"
 
 #: mmframe.cpp:1516
 msgid "&Payees"
-msgstr ""
+msgstr "&Beneficiarios"
 
 #: mmframe.cpp:1517
 msgid "Reassign all payees to another payee"
@@ -4388,7 +4388,7 @@ msgstr "Reasignar todos los beneficiarios a otro beneficiario"
 
 #: mmframe.cpp:1519
 msgid "Re&location of"
-msgstr ""
+msgstr "Re&organización de"
 
 #: mmframe.cpp:1520
 msgid "Relocate Categories && Payees"
@@ -4420,7 +4420,7 @@ msgstr "Gestor de temas"
 
 #: mmframe.cpp:1550
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "&Filtro de informe de transacciones"
 
 #: mmframe.cpp:1550 mmframe.cpp:1723
 msgid "Transaction Report Filter"
@@ -4428,11 +4428,11 @@ msgstr "Filtro de informe de transacciones"
 
 #: mmframe.cpp:1556
 msgid "General Report &Manager"
-msgstr ""
+msgstr "&Administrador de informes generales"
 
 #: mmframe.cpp:1560
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Administrador de campos p&ersonalizados"
 
 #: mmframe.cpp:1560
 msgid "Custom Fields Manager"
@@ -4656,7 +4656,7 @@ msgstr "Buscar actualizaciones"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "&About"
-msgstr ""
+msgstr "&Acerca de"
 
 #: mmframe.cpp:1682 mmframe.cpp:1751
 msgid "Show about dialog"
@@ -4700,7 +4700,7 @@ msgstr "Mostrar la ventana para organizar divisas"
 
 #: mmframe.cpp:1727
 msgid "&Options"
-msgstr ""
+msgstr "&Opciones"
 
 #: mmframe.cpp:1735 mmframe.cpp:2587
 msgid "Register/View Release &Notifications"
@@ -6737,7 +6737,7 @@ msgstr "Confirmar borrado de la compra de acciones"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Moviendo transacción de %s a"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7280,7 +7280,7 @@ msgstr "Estado de la red (clic para actualizar)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Buscando nuevas transacciones"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
