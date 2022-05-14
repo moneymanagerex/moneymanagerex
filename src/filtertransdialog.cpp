@@ -136,9 +136,8 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    wxCommandEvent* evt = new wxCommandEvent(wxEVT_CHECKBOX, wxID_ANY);
-    AddPendingEvent(*evt);
-    delete evt;
+    wxCommandEvent evt(wxEVT_CHECKBOX, wxID_ANY);
+    AddPendingEvent(evt);
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -542,7 +541,7 @@ void mmFilterTransactionsDialog::CreateControls()
     auto cf_count = m_custom_fields->GetCustomFieldsCount();
     if (cf_count > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
-        this->GetEventHandler()->AddPendingEvent(evt);
+        AddPendingEvent(evt);
     }
 
     Center();
@@ -759,17 +758,24 @@ bool mmFilterTransactionsDialog::is_values_correct()
 void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 {
     if (is_values_correct()) {
+        auto label = m_setting_name->GetStringSelection();
         const wxString new_settings_string = get_json();
-        if (m_settings_json != new_settings_string && !m_setting_name->GetStringSelection().empty())
+        if (m_settings_json != new_settings_string && !label.empty())
         {
-            // settings have been changed to ask if we want to save
-            wxMessageDialog msgDlg(this
-                , _("Do you want to save them before continuing?")
-                , _("Filter settings have changed")
-                , wxYES_NO | wxYES_DEFAULT);
-            if (msgDlg.ShowModal() == wxID_YES)
+            wxString new_name = label;
+            while (label == new_name)
             {
-                m_settings_json = new_settings_string;
+                new_name = wxGetTextFromUser(
+                    _("Filter settings have changed") + "\n" +
+                    _("Do you want to save them before continuing?") + "\n" +
+                    _("Please Enter")
+                    , _("Setting Name"), label);
+            }
+
+            if (!new_name.empty())
+            {
+                m_setting_name->SetString(m_setting_name->GetSelection(), new_name);
+                m_settings_json = get_json();
                 Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", m_settings_json, -1);
             }
         }
@@ -962,18 +968,21 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     int size = m_setting_name->GetCount();
     if (sel >= 0)
     {
-        for (int i = 0; i < size; i++)
+        m_setting_name->Delete(sel--);
+        m_settings_json.clear();
+
+        for (int i = 0; i < size -1; i++)
         {
             wxStringClientData* settings_obj =
                 static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
             if (settings_obj) {
                 Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size - 1);
             }
-            m_setting_name->Delete(sel--);
-            m_settings_json.clear();
         }
 
         m_setting_name->SetSelection(sel < 0 ? 0 : sel);
+        wxCommandEvent e(wxID_APPLY);
+        OnSettingsSelected(e);
         dataToControls();
     }
 }
