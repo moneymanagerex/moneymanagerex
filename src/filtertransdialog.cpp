@@ -973,17 +973,18 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     int size = m_setting_name->GetCount();
     if (sel >= 0)
     {
-        m_setting_name->Delete(sel--);
-        m_settings_json.clear();
-
-        for (int i = 0; i < size -1; i++)
+        for (int i = 0; i < size; i++)
         {
+            wxLogDebug("%i", i);
             wxStringClientData* settings_obj =
                 static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
             if (settings_obj) {
                 Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size - 1);
             }
         }
+
+        m_setting_name->Delete(sel--);
+        m_settings_json.clear();
 
         m_setting_name->SetSelection(sel < 0 ? 0 : sel);
         wxCommandEvent evt(wxID_APPLY);
@@ -1822,6 +1823,12 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
     for (unsigned int i = 0; i < m_setting_name->GetCount(); i++)
     {
         label_names.Add(m_setting_name->GetString(i));
+    }
+
+    if (label_names.empty() && label.empty())
+    {
+        label_names.Add("");
+        label = "";
     }
 
     while (label_names.Index(label) != wxNOT_FOUND)
