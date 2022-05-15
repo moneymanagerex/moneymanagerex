@@ -222,12 +222,12 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
         if (group_name != record.GROUPNAME && !no_group)
         {
             group = m_nav_tree_ctrl->AppendItem(reports, wxGetTranslation(record.GROUPNAME), img::CUSTOMSQL_GRP_PNG, img::CUSTOMSQL_GRP_PNG);
-            m_nav_tree_ctrl->SetItemData(group, new mmTreeItemData(record.GROUPNAME, new mmGeneralGroupReport(record.GROUPNAME)));
+            m_nav_tree_ctrl->SetItemData(group, new mmTreeItemData(new mmGeneralGroupReport(record.GROUPNAME), record.GROUPNAME));
             group_name = record.GROUPNAME;
         }
         Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
         wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : group, wxGetTranslation(record.REPORTNAME), img::CUSTOMSQL_PNG, img::CUSTOMSQL_PNG);
-        m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
+        m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData( new mmGeneralReport(r), r->REPORTNAME));
     }
 }
 

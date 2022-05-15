@@ -796,12 +796,12 @@ void mmGUIFrame::updateNavTreeControl()
             {
                 if (entry.second == e.BUDGETYEARID) {
                     year_budget = m_nav_tree_ctrl->AppendItem(budgeting, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
-                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID, true, false));
+                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID, false));
                 }
                 else if (pattern_month.Matches(e.BUDGETYEARNAME) && pattern_month.GetMatch(e.BUDGETYEARNAME, 1) == entry.first)
                 {
                     wxTreeItemId month_budget = m_nav_tree_ctrl->AppendItem(year_budget, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
-                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID, true, false));
+                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID, false));
                 }
             }
         }
@@ -841,8 +841,11 @@ void mmGUIFrame::updateNavTreeControl()
 
             if (Model_Account::FAVORITEACCT(account) && (Model_Account::status(account) == Model_Account::OPEN))
             {
-                tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
-                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false, false));
+                if (Model_Account::type(account) != Model_Account::INVESTMENT)
+                {
+                    tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                }
             }
 
             switch (Model_Account::type(account))
@@ -850,10 +853,11 @@ void mmGUIFrame::updateNavTreeControl()
             case Model_Account::INVESTMENT:
             {
                 tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::STOCK, account.ACCOUNTID, true));
                 // find all the accounts associated with this stock portfolio
                 Model_Stock::Data_Set stock_account_list = Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID));
                 // Put the names of the Stock_entry names as children of the stock account.
-                for (const auto &stock_entry : stock_account_list)
+                for (const auto& stock_entry : stock_account_list)
                 {
                     if (Model_Translink::HasShares(stock_entry.STOCKID))
                     {
@@ -861,36 +865,43 @@ void mmGUIFrame::updateNavTreeControl()
                         int account_id = stock_entry.STOCKID;
                         if (Model_Translink::ShareAccountId(account_id))
                         {
-                            m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(mmTreeItemData::STOCK, account_id, false, true));
+                            m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(mmTreeItemData::ACCOUNT, account_id, true));
                         }
                     }
                 }
-            }
-            break;
-            case Model_Account::SHARES:
-                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            case Model_Account::ASSET:
-                tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            case Model_Account::TERM:
-                tacct = m_nav_tree_ctrl->AppendItem(termAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            case Model_Account::CREDIT_CARD:
-                tacct = m_nav_tree_ctrl->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            case Model_Account::CASH:
-                tacct = m_nav_tree_ctrl->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            case Model_Account::LOAN:
-                tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            default:
-                tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             }
 
-            m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false, false));
+            case Model_Account::CHECKING:
+                tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            case Model_Account::SHARES:
+                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            case Model_Account::ASSET:
+                tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            case Model_Account::TERM:
+                tacct = m_nav_tree_ctrl->AppendItem(termAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            case Model_Account::CREDIT_CARD:
+                tacct = m_nav_tree_ctrl->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            case Model_Account::CASH:
+                tacct = m_nav_tree_ctrl->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            case Model_Account::LOAN:
+                tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID, false));
+                break;
+            }
+
         }
 
         loadNavigationTreeItemsStatusFromJson();
@@ -1082,27 +1093,24 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::REPORT:
         activeReport_ = true;
         return createReportsPage(iData->get_report(), false);
-    }
-
-
-    if (iData->getType() == mmTreeItemData::ACCOUNT)
+    case mmTreeItemData::GRM:
+        activeReport_ = true;
+        return createReportsPage(iData->get_report(), false);
+    case mmTreeItemData::ACCOUNT:
     {
-        int accountID = iData->getData();
-        Model_Account::Data* account = Model_Account::instance().get(accountID);
-        if (account)
-        {
-            gotoAccountID_ = accountID;
-            if (Model_Account::type(account) != Model_Account::INVESTMENT)
-                createCheckingAccountPage(gotoAccountID_);
-            else
-                createStocksAccountPage(gotoAccountID_);
-        }
-        else
-        {
-            /* cannot find accountid */
-            wxASSERT(false);
-        }
+        Model_Account::Data* account = Model_Account::instance().get(iData->getData());
+        gotoAccountID_ = account->ACCOUNTID;
+        return createCheckingAccountPage(gotoAccountID_);
     }
+    case mmTreeItemData::STOCK:
+    {
+        Model_Account::Data* account = Model_Account::instance().get(iData->getData());
+        gotoAccountID_ = account->ACCOUNTID;
+        return createStocksAccountPage(gotoAccountID_);
+    }
+    }
+    wxLogDebug("");
+
 }
 //----------------------------------------------------------------------------
 

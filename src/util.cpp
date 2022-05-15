@@ -65,22 +65,17 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int type, int id, bool isBudget, bool isReadOnly)
+mmTreeItemData::mmTreeItemData(int type, int id, bool isReadOnly)
     : id_(id)
     , type_(type)
-    , isBudgetingNode_(isBudget)
     , isReadOnly_(isReadOnly)
     , report_(nullptr)
 {
-    if (isBudget)
-        stringData_ = (wxString::Format("item@Budget_%i", id));
-    else
-        stringData_ = (wxString::Format("%i", id));
+    stringData_ = (wxString::Format("%i", id));
 }
 mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
     : id_(0)
     , type_(mmTreeItemData::REPORT)
-    , isBudgetingNode_(false)
     , isReadOnly_(false)
     , stringData_("report@" + string)
     , report_(report)
@@ -88,6 +83,14 @@ mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
     const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
     const wxString& settings = Model_Infotable::instance().GetStringInfo(n, "");
     report_->initReportSettings(settings);
+}
+mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& string)
+    : id_(0)
+    , type_(mmTreeItemData::GRM)
+    , isReadOnly_(false)
+    , stringData_("report@" + string)
+    , report_(report)
+{
 }
 
 mmTreeItemData::mmTreeItemData(int type, const wxString& name)

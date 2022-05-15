@@ -77,8 +77,9 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int type, int id, bool isBudget, bool isReadOnly);
+    mmTreeItemData(int type, int id, bool isReadOnly);
     mmTreeItemData(const wxString& string, mmPrintableBase* report);
+    mmTreeItemData(mmPrintableBase* report, const wxString& string);
     mmTreeItemData(int type, const wxString& name);
     
     ~mmTreeItemData() {}
@@ -112,7 +113,6 @@ public:
 private:
     int id_;
     int type_;
-    bool isBudgetingNode_;
     bool isReadOnly_;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
