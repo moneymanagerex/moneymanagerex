@@ -119,6 +119,21 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
     wxTreeItemId transactionList = m_nav_tree_ctrl->AppendItem(reports, _("Transaction Report"), img::FILTER_PNG, img::FILTER_PNG);
     m_nav_tree_ctrl->SetItemData(transactionList, new mmTreeItemData(mmTreeItemData::FILTER, "Transaction Report"));
 
+    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+    for (const auto& data : filter_settings)
+    {
+        Document j_doc;
+        if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+            j_doc.Parse("{}");
+        }
+
+        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+
+        wxTreeItemId item = m_nav_tree_ctrl->AppendItem(transactionList, s_label, img::FILTER_PNG, img::FILTER_PNG);
+        m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(mmTreeItemData::FILTER_REPORT, data));
+    }
+
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(reports, _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);

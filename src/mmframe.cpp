@@ -1096,6 +1096,10 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::GRM:
         activeReport_ = true;
         return createReportsPage(iData->get_report(), false);
+    case mmTreeItemData::FILTER_REPORT:
+        activeReport_ = true;
+        wxLogDebug(iData->getString());
+        return;
     case mmTreeItemData::ACCOUNT:
     {
         Model_Account::Data* account = Model_Account::instance().get(iData->getData());
@@ -2458,11 +2462,11 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
     if (dlg->ShowModal() == wxID_OK)
     {
+        updateNavTreeControl();
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }
-    m_nav_tree_ctrl->Refresh();
 }
 
 void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))

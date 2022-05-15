@@ -107,6 +107,7 @@ public:
         ASSETS,
         BILLS,
         FILTER,
+        FILTER_REPORT,
         DO_NOTHING
     };
 
