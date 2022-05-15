@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013-2021 Nikolay Akimov
+ Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -77,23 +77,41 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int id, bool isBudget, bool isReadOnly);
+    mmTreeItemData(int type, int id, bool isBudget, bool isReadOnly);
     mmTreeItemData(const wxString& string, mmPrintableBase* report);
-    mmTreeItemData(mmPrintableBase* report);
-    mmTreeItemData(const wxString& string, bool isReadOnly);
+    mmTreeItemData(int type, const wxString& name);
     
     ~mmTreeItemData() {}
 
     int getData() const;
     const wxString getString() const;
     mmPrintableBase* get_report() const;
-    bool isStringData() const;
-    bool isBudgetingNode() const;
     bool isReadOnly() const;
+    int getType() const;
+    enum {
+        HOME_PAGE,
+        HELP_PAGE_MAIN,
+        HELP_PAGE_STOCKS,
+        HELP_PAGE_GRM,
+        HELP_INVESTMENT,
+        HELP_BUDGET,
+        HELP_CUSTOM_SQL,
+        BUDGET,
+        ACCOUNT,
+        STOCK,
+        REPORT,
+        GRM,
+        ALL_TRANSACTIONS,
+        FAVORITES,
+        ASSETS,
+        BILLS,
+        FILTER,
+        DO_NOTHING
+    };
 
 private:
     int id_;
-    bool isString_;
+    int type_;
     bool isBudgetingNode_;
     bool isReadOnly_;
     wxString stringData_;
@@ -103,9 +121,8 @@ private:
 inline int mmTreeItemData::getData() const { return id_; }
 inline const wxString mmTreeItemData::getString() const { return stringData_; }
 inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
-inline bool mmTreeItemData::isStringData() const { return isString_; }
-inline bool mmTreeItemData::isBudgetingNode() const { return isBudgetingNode_; }
 inline bool mmTreeItemData::isReadOnly() const { return isReadOnly_; }
+inline int mmTreeItemData::getType() const { return type_; }
 
 //----------------------------------------------------------------------------
 

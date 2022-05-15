@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013-2021 Nikolay Akimov
+ Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -65,9 +65,9 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int id, bool isBudget, bool isReadOnly)
+mmTreeItemData::mmTreeItemData(int type, int id, bool isBudget, bool isReadOnly)
     : id_(id)
-    , isString_(false)
+    , type_(type)
     , isBudgetingNode_(isBudget)
     , isReadOnly_(isReadOnly)
     , report_(nullptr)
@@ -79,7 +79,7 @@ mmTreeItemData::mmTreeItemData(int id, bool isBudget, bool isReadOnly)
 }
 mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
     : id_(0)
-    , isString_(true)
+    , type_(mmTreeItemData::REPORT)
     , isBudgetingNode_(false)
     , isReadOnly_(false)
     , stringData_("report@" + string)
@@ -90,20 +90,10 @@ mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
     report_->initReportSettings(settings);
 }
 
-mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
+mmTreeItemData::mmTreeItemData(int type, const wxString& name)
     : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
-    , isReadOnly_(false)
-    , stringData_("report@" + report->getReportTitle())
-    , report_(report)
-{}
-mmTreeItemData::mmTreeItemData(const wxString& string, bool isReadOnly)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
-    , isReadOnly_(isReadOnly)
-    , stringData_("item@" + string)
+    , type_(type)
+    , stringData_(wxString::Format("item@%s", name))
     , report_(nullptr)
 {}
 

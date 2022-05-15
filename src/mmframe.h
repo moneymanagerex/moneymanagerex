@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2012 Stefano Giorgio
-Copyright (C) 2013, 2021 Nikolay Akimov
+Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
@@ -135,7 +135,7 @@ private:
     void createMenu();
     void CreateToolBar();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
-    void createHelpPage();
+    void createHelpPage(int index = mmex::HTML_INDEX);
     void refreshPanelData();
 
     void createHomePage();
