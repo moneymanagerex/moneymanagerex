@@ -62,7 +62,7 @@ public:
     bool is_date_range_cb_active() const;
     bool getStartDateCheckBox() const;
     bool getHideColumnsCheckBox() const;
-
+    void SetJsonSettings(const wxString& data);
 
     enum groupBy {
         GROUPBY_ACCOUNT,
@@ -148,8 +148,7 @@ private:
     void OnMoreFields(wxCommandEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
-    const wxString get_json(bool i18n = false) const;
-    void from_json(const wxString &data);
+    const wxString GetJsonSetings(bool i18n = false) const;
 
     bool is_values_correct();
 

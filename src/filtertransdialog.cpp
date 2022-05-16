@@ -181,7 +181,7 @@ void mmFilterTransactionsDialog::dataToControls()
     m_accounts_name.Sort();
 
     BuildPayeeList();
-    from_json(m_settings_json);
+    SetJsonSettings(m_settings_json);
 }
 void mmFilterTransactionsDialog::SetSettingsLabel()
 {
@@ -762,7 +762,7 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 {
     if (is_values_correct()) {
         auto label = m_setting_name->GetStringSelection();
-        const wxString new_settings_string = get_json();
+        const wxString new_settings_string = GetJsonSetings();
         if (m_settings_json != new_settings_string && !label.empty())
         {
             wxArrayString label_names;
@@ -783,7 +783,7 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
             if (!label.empty())
             {
                 m_setting_name->SetString(m_setting_name->GetSelection(), label);
-                m_settings_json = get_json();
+                m_settings_json = GetJsonSetings();
                 Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", m_settings_json, -1);
             }
         }
@@ -1180,7 +1180,7 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 
 const wxString mmFilterTransactionsDialog::getDescriptionToolTip() const
 {
-    wxString filterDetails = get_json(true);
+    wxString filterDetails = GetJsonSetings(true);
     filterDetails.Replace(R"("")", _("Empty value"));
     filterDetails.Replace("\"", "");
     filterDetails.Replace("[", "");
@@ -1195,7 +1195,7 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 {
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
-    wxString filterDetails = get_json(true);
+    wxString filterDetails = GetJsonSetings(true);
     filterDetails.Replace("\n", " ");
     filterDetails.Replace(R"("")", _("Empty value"));
     filterDetails.Replace("\"", "");
@@ -1204,7 +1204,7 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addText(filterDetails);
 }
 
-const wxString mmFilterTransactionsDialog::get_json(bool i18n) const
+const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -1402,7 +1402,7 @@ const wxString mmFilterTransactionsDialog::get_json(bool i18n) const
     return wxString::FromUTF8(json_buffer.GetString());
 }
 
-void mmFilterTransactionsDialog::from_json(const wxString &data)
+void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
 {
     if (data.empty()) return;
 
@@ -1843,7 +1843,7 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
     {
         m_setting_name->Append(label);
         m_setting_name->SetStringSelection(label);
-        m_settings_json = get_json();
+        m_settings_json = GetJsonSetings();
         Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", m_settings_json, -1);
 
         SetSettingsLabel();
