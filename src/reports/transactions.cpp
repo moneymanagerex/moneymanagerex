@@ -66,15 +66,15 @@ wxString mmReportTransactions::getHTMLText()
 {
     Run(m_transDialog);
 
-    wxArrayInt selectedAccounts = m_transDialog->getAccountsID();
-    wxString accounts = _("All Accounts");
-    int allAccounts = true;
+    wxArrayInt selected_accounts = m_transDialog->getAccountsID();
+    wxString accounts_label = _("All Accounts");
+    bool allAccounts = true;
     if (m_transDialog->is_account_cb_active() && !m_transDialog->getAccountsID().empty()) {
-        accounts.clear();
+        accounts_label.clear();
         allAccounts = false;
-        for (const auto& acc : selectedAccounts) {
+        for (const auto& acc : selected_accounts) {
             Model_Account::Data* a = Model_Account::instance().get(acc);
-            accounts += (accounts.empty() ? "" : ", ") + a->ACCOUNTNAME;
+            accounts_label += (accounts_label.empty() ? "" : ", ") + a->ACCOUNTNAME;
         }
     }
 
@@ -105,7 +105,7 @@ table {
     end.ParseISODate(m_transDialog->getEndDate());
     hb.DisplayDateHeading(start, end
         , m_transDialog->getRangeCheckBox() || m_transDialog->is_date_range_cb_active() || m_transDialog->getStartDateCheckBox());
-    hb.DisplayFooter(_("Accounts: ") + accounts);
+    hb.DisplayFooter(_("Accounts: ") + accounts_label);
 
     m_noOfCols = (m_transDialog->getHideColumnsCheckBox()) ? m_transDialog->getHideColumnsID().GetCount() : 11;
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -182,8 +182,8 @@ table {
         int noOfTrans = 1; 
         if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER) &&
             (allAccounts ||
-            ((selectedAccounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
-            && (selectedAccounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
+            ((selected_accounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
+            && (selected_accounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
                 noOfTrans = 2;
 
         auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
@@ -224,7 +224,7 @@ table {
                 if (acc)
                 {
                     double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
-                    if (noOfTrans || (!allAccounts && (selectedAccounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
+                    if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(9)) hb.addCurrencyCell(amount, curr);

@@ -496,8 +496,6 @@ void mmFilterTransactionsDialog::CreateControls()
     SetSettingsLabel();
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
-    wxCommandEvent e(wxID_APPLY);
-    OnSettingsSelected(e);
 
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE, mmBitmapButtonSize));
@@ -1418,6 +1416,7 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     m_setting_name->SetStringSelection(s_label);
 
     //Account
+    m_selected_accounts_id.clear();
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
     if (isMultiAccount_ && j_account.IsArray())
     {
