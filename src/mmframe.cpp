@@ -1101,9 +1101,13 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         activeReport_ = true;
         return createReportsPage(iData->get_report(), false);
     case mmTreeItemData::FILTER_REPORT:
+    {
         activeReport_ = true;
-        wxLogDebug(iData->getString());
-        return;
+        wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
+        dlg->SetJsonSettings(iData->getString());
+        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        return createReportsPage(rs, true);
+    }
     case mmTreeItemData::ACCOUNT:
     {
         Model_Account::Data* account = Model_Account::instance().get(iData->getData());
