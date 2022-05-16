@@ -292,7 +292,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     {
         if (openFile(dbpath.GetFullPath(), false))
         {
-            updateNavTreeControl();
+            DoRecreateNavTreeControl();
             //setHomePageActive(false);
             createHomePage();
             mmLoadColorsFromDatabase();
@@ -702,15 +702,14 @@ void mmGUIFrame::createControls()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::updateNavTreeControl()
+void mmGUIFrame::DoRecreateNavTreeControl()
 {
     windowsFreezeThaw(m_nav_tree_ctrl);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
-    cleanupNavTreeControl(root);
-    m_nav_tree_ctrl->DeleteAllItems();
+    resetNavTreeControl();
 
-    root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
+    //wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
+    wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
     m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Home Page"));
     m_nav_tree_ctrl->SetItemBold(root, true);
     m_nav_tree_ctrl->SetFocus();
@@ -1071,8 +1070,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     selectedItemData_ = iData;
 
     activeReport_ = false;
-    wxSharedPtr<wxCommandEvent> evt;
-
+    wxCommandEvent e;
     switch (iData->getType())
     {
     case mmTreeItemData::DO_NOTHING:
@@ -1088,14 +1086,11 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::HELP_BUDGET:
         return createHelpPage(mmex::HTML_BUDGET);
     case mmTreeItemData::FILTER:
-        evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-        return AddPendingEvent(*evt.get());
+        return OnTransactionReport(e);
     case mmTreeItemData::ASSETS:
-        evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        return AddPendingEvent(*evt.get());
+        return OnAssets(e);
     case mmTreeItemData::BILLS:
-        evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        return AddPendingEvent(*evt.get());
+        return OnBillsDeposits(e);
     case  mmTreeItemData::ALL_TRANSACTIONS:
         return createAllTransactionsPage();
     case mmTreeItemData::BUDGET:
@@ -1168,7 +1163,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
-                updateNavTreeControl();
+                DoRecreateNavTreeControl();
                 createHomePage(); //TODO: refreshPanelData(); and change selection
             }
         }
@@ -1207,7 +1202,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->ACCOUNTID);
-                updateNavTreeControl();
+                DoRecreateNavTreeControl();
                 createHomePage();
             }
         }
@@ -1371,7 +1366,7 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
     case MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED: m_temp_view = VIEW_ACCOUNTS_CLOSED_STR; break;
     }
     Model_Setting::instance().SetViewAccounts(m_temp_view);
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
     createHomePage();
 
     //Restore settings
@@ -2225,7 +2220,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     m_password.clear();
     if (openFile(newFileName.GetFullPath(), false, new_password))
     {
-        updateNavTreeControl();
+        DoRecreateNavTreeControl();
         createHomePage();
     }
 }
@@ -2266,7 +2261,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     mmQIFImportDialog dlg(this, gotoAccountID_);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
     if (account_id > 0)
     {
         setGotoAccountID(account_id, -1);
@@ -2374,7 +2369,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
             ), _("Share Account Creation"));
         }
 
-        updateNavTreeControl();
+        DoRecreateNavTreeControl();
     }
 
     createHomePage();
@@ -2478,18 +2473,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
-{
-    if (m_db)
-    {
-        mmBudgetYearDialog(this).ShowModal();
-        updateNavTreeControl();
-        createHomePage();
-    }
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
@@ -2497,12 +2481,60 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
     if (dlg->ShowModal() == wxID_OK)
     {
-        updateNavTreeControl();
+        DoRecreateNavTreeControl();
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         createReportsPage(rs, true);
         setNavTreeSection(_("Transaction Report"));
     }
 }
+
+void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
+{
+    if (m_db)
+    {
+        mmBudgetYearDialog(this).ShowModal();
+        DoRecreateNavTreeControl();
+        createHomePage();
+        setNavTreeSection(_("Budget Setup"));
+    }
+}
+
+void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
+{
+    if (!m_db) return;
+
+    mmGeneralReportManager dlg(this, m_db.get());
+    dlg.ShowModal();
+    DoRecreateNavTreeControl();
+    createHomePage(); //FIXME: refreshPanelData() crash if GRM opened then closed;
+}
+
+void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
+{
+    if (!m_db.get()) return;
+
+    mmOptionsDialog systemOptions(this, this->m_app);
+    if (systemOptions.ShowModal() == wxID_OK)
+    {
+        //set the View Menu Option items the same as the options saved.
+        menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(Option::instance().BudgetFinancialYears());
+        menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(Option::instance().BudgetIncludeTransfers());
+        menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(Option::instance().BudgetReportWithSummaries());
+        menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(Option::instance().getIgnoreFutureTransactions());
+        menuBar_->FindItem(MENU_VIEW_SHOW_TOOLTIPS)->Check(Option::instance().getShowToolTips());
+        menuBar_->FindItem(MENU_VIEW_SHOW_MONEYTIPS)->Check(Option::instance().getShowMoneyTips());
+        menuBar_->Refresh();
+        menuBar_->Update();
+
+        DoRecreateNavTreeControl();
+        createHomePage();
+
+        const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n"
+            + _("Some settings take effect only after an application restart.");
+        wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
+    }
+}
+//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 {
@@ -2531,43 +2563,6 @@ void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
                 _("Refresh WebApp"), wxOK | wxICON_ERROR);
 }
 
-void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
-{
-    if (!m_db) return;
-
-    mmGeneralReportManager dlg(this, m_db.get());
-    dlg.ShowModal();
-    updateNavTreeControl();
-    createHomePage(); //FIXME: refreshPanelData() crash if GRM opened then closed;
-}
-
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
-{
-    if (!m_db.get()) return;
-
-    mmOptionsDialog systemOptions(this, this->m_app);
-    if (systemOptions.ShowModal() == wxID_OK)
-    {
-        //set the View Menu Option items the same as the options saved.
-        menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(Option::instance().BudgetFinancialYears());
-        menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(Option::instance().BudgetIncludeTransfers());
-        menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(Option::instance().BudgetReportWithSummaries());
-        menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(Option::instance().getIgnoreFutureTransactions());
-        menuBar_->FindItem(MENU_VIEW_SHOW_TOOLTIPS)->Check(Option::instance().getShowToolTips());
-        menuBar_->FindItem(MENU_VIEW_SHOW_MONEYTIPS)->Check(Option::instance().getShowMoneyTips());        
-        menuBar_->Refresh();
-        menuBar_->Update();
-
-        updateNavTreeControl();
-        createHomePage();
-
-        const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n"
-            + _("Some settings take effect only after an application restart.");
-        wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
-    }
-}
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
@@ -2741,6 +2736,7 @@ void mmGUIFrame::createHomePage()
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
     }
+
     if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
         m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
     }
@@ -3137,7 +3133,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         mmNewAcctDialog dlg(account, this);
         if (dlg.ShowModal() == wxID_OK)
         {
-            updateNavTreeControl();
+            DoRecreateNavTreeControl();
             createHomePage();
         }
     }
@@ -3169,7 +3165,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->id());
         }
     }
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
     createHomePage();
 }
 //----------------------------------------------------------------------------
@@ -3208,7 +3204,7 @@ void mmGUIFrame::ReallocateAccount(int accountID)
         account->ACCOUNTTYPE = types[sel];
         Model_Account::instance().save(account);
 
-        updateNavTreeControl();
+        DoRecreateNavTreeControl();
         createHomePage();
     }
 }
@@ -3239,12 +3235,12 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &WXUNUSED(event))
 {
     m_hide_share_accounts = !m_hide_share_accounts;
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
 }
 
 void mmGUIFrame::RefreshNavigationTree()
 {
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
 }
 
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event))
@@ -3268,21 +3264,21 @@ void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().IgnoreFutureTransactions(!Option::instance().getIgnoreFutureTransactions());
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
     createHomePage();
 }
 
 void mmGUIFrame::OnViewShowToolTips(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().ShowToolTips(!Option::instance().getShowToolTips());
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
     createHomePage();
 }
 
 void mmGUIFrame::OnViewShowMoneyTips(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().ShowMoneyTips(!Option::instance().getShowMoneyTips());
-    updateNavTreeControl();
+    DoRecreateNavTreeControl();
     createHomePage();
 }
 //----------------------------------------------------------------------------
@@ -3335,7 +3331,7 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 
     if (openFile(dbFileName, newDatabase))
     {
-        updateNavTreeControl();
+        DoRecreateNavTreeControl();
         createHomePage();
         mmLoadColorsFromDatabase();
     }
