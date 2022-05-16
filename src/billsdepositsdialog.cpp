@@ -1408,20 +1408,21 @@ void mmBDDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
     int repeatType = m_choice_repeat->GetSelection();
     wxString valueStr = textNumRepeats_->GetValue();
     int span = 1;
+    bool goPrev = (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV);
     switch (repeatType)
     {
         case INXDAYS:
         case INXMONTHS:
         case EVERYXDAYS:
         case EVERYXMONTHS:
-            span = event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV ? -wxAtoi(valueStr) : wxAtoi(valueStr);
+            span = wxAtoi(valueStr);
             if (!valueStr.IsNumber() || !span) {
                 mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
                 break;
             }
         default:
-            m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_paid->GetValue()));
-            m_date_due->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_due->GetValue()));
+            m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_paid->GetValue(), goPrev));
+            m_date_due->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_due->GetValue(), goPrev));
     }
 }
 
