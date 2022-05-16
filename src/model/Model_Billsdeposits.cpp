@@ -359,9 +359,9 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
     }
 }
 
-const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepeats, wxDateTime nextOccurDate)
+const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepeats, wxDateTime nextOccurDate, bool reverse)
 {
-    int k = numRepeats < 0 ? -1 : 1;
+    int k = reverse ? -1 : 1;
 
     wxDateTime dt = nextOccurDate;
     if (repeatsType == REPEAT_WEEKLY)
@@ -385,13 +385,13 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
     else if (repeatsType == REPEAT_DAILY)
         dt.Add(wxDateSpan::Days(k));
     else if (repeatsType == REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
-        dt.Add(wxDateSpan::Days(numRepeats));
+        dt.Add(wxDateSpan::Days(numRepeats * k));
     else if (repeatsType == REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
-        dt.Add(wxDateSpan::Months(numRepeats));
+        dt.Add(wxDateSpan::Months(numRepeats * k));
     else if (repeatsType == REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
-        dt.Add(wxDateSpan::Days(numRepeats));
+        dt.Add(wxDateSpan::Days(numRepeats * k));
     else if (repeatsType == REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
-        dt.Add(wxDateSpan::Months(numRepeats));
+        dt.Add(wxDateSpan::Months(numRepeats * k));
     else if (repeatsType == REPEAT_MONTHLY_LAST_DAY
         ||   repeatsType == REPEAT_MONTHLY_LAST_BUSINESS_DAY)
     {

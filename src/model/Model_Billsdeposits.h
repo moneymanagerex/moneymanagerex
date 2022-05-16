@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ COPYRIGHT (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -167,7 +168,7 @@ public:
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
 
     void completeBDInSeries(int bdID);
-    static const wxDateTime nextOccurDate(int type, int numRepeats, wxDateTime nextOccurDate);
+    static const wxDateTime nextOccurDate(int type, int numRepeats, wxDateTime nextOccurDate, bool reverse = false);
 };
 
 #endif // 
