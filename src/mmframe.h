@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2012 Stefano Giorgio
-Copyright (C) 2013, 2021 Nikolay Akimov
+Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
@@ -135,7 +135,7 @@ private:
     void createMenu();
     void CreateToolBar();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
-    void createHelpPage();
+    void createHelpPage(int index = mmex::HTML_INDEX);
     void refreshPanelData();
 
     void createHomePage();
@@ -154,8 +154,11 @@ private:
     void saveSettings();
     void menuEnableItems(bool enable);
     void updateNavTreeControl();
-    void updateReportNavigation(wxTreeItemId& reports);
+    void updateReportNavigation(wxTreeItemId& parent_item);
+    void updateGRMNavigation(wxTreeItemId& parent_item);
+    void updateFilterNavigation(wxTreeItemId& parent_item);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
+    void AppendImportMenu(wxMenu& menu);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);

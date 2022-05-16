@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 Stefano Giorgio
- Copyright (C) 2013 - 2021 Nikolay Akimov
+ Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
@@ -175,6 +175,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, mmGUIFrame::OnExportToJSON)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, mmGUIFrame::OnImportXML)
+EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, mmGUIFrame::OnImportQIF)
 EVT_MENU_RANGE(MENU_TREEPOPUP_ACCOUNT_VIEWALL, MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, mmGUIFrame::OnViewAccountsTemporaryChange)
 EVT_MENU_RANGE(MENU_LANG + 1, MENU_LANG_MAX, mmGUIFrame::OnChangeGUILanguage)
 
@@ -710,56 +711,56 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->DeleteAllItems();
 
     root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
-    m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData("Home Page", true));
+    m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Home Page"));
     m_nav_tree_ctrl->SetItemBold(root, true);
     m_nav_tree_ctrl->SetFocus();
 
     wxTreeItemId alltransactions = m_nav_tree_ctrl->AppendItem(root, _("All Transactions"), img::ALLTRANSACTIONS_PNG, img::ALLTRANSACTIONS_PNG);
-    m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData("All Transactions", false));
+    m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
     m_nav_tree_ctrl->SetItemBold(alltransactions, true);
 
     wxTreeItemId favourites = m_nav_tree_ctrl->AppendItem(root, _("Favourites"), img::FAVOURITE_PNG, img::FAVOURITE_PNG);
-    m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData("Favourites", false));
+    m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favourites"));
     m_nav_tree_ctrl->SetItemBold(favourites, true);
 
    wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts", false));
+    m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Bank Accounts"));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
 
     wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_NORMAL_PNG, img::CARD_ACC_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts", false));
+    m_nav_tree_ctrl->SetItemData(cardAccounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Credit Card Accounts"));
     m_nav_tree_ctrl->SetItemBold(cardAccounts, true);
 
     wxTreeItemId cashAccounts = m_nav_tree_ctrl->AppendItem(root, _("Cash Accounts"), img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(cashAccounts, new mmTreeItemData("Cash Accounts", false));
+    m_nav_tree_ctrl->SetItemData(cashAccounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Cash Accounts"));
     m_nav_tree_ctrl->SetItemBold(cashAccounts, true);
 
     wxTreeItemId loanAccounts = m_nav_tree_ctrl->AppendItem(root, _("Loan Accounts"), img::LOAN_ACC_NORMAL_PNG, img::LOAN_ACC_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts", false));
+    m_nav_tree_ctrl->SetItemData(loanAccounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Loan Accounts"));
     m_nav_tree_ctrl->SetItemBold(loanAccounts, true);
 
     wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_NORMAL_PNG, img::TERMACCOUNT_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts", false));
+    m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Term Accounts"));
     m_nav_tree_ctrl->SetItemBold(termAccounts, true);
 
     wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_NORMAL_PNG, img::STOCK_ACC_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks", false));
+    m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData(mmTreeItemData::HELP_PAGE_STOCKS, "Stock Portfolios"));
     m_nav_tree_ctrl->SetItemBold(stocks, true);
 
     wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_NORMAL_PNG, img::STOCK_ACC_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts", false));
+    m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Share Accounts"));
     m_nav_tree_ctrl->SetItemBold(shareAccounts, true);
 
     wxTreeItemId assets = m_nav_tree_ctrl->AppendItem(root, _("Assets"), img::ASSET_NORMAL_PNG, img::ASSET_NORMAL_PNG);
-    m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets", false));
+    m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData(mmTreeItemData::ASSETS, "Assets"));
     m_nav_tree_ctrl->SetItemBold(assets, true);
 
     wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
-    m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData("Bills & Deposits", false));
+    m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData(mmTreeItemData::BILLS, "Recurring Transactions"));
     m_nav_tree_ctrl->SetItemBold(bills, true);
 
     wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
-    m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting", true));
+    m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData(mmTreeItemData::HELP_BUDGET, "Budget Setup"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
     const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
@@ -796,27 +797,37 @@ void mmGUIFrame::updateNavTreeControl()
             {
                 if (entry.second == e.BUDGETYEARID) {
                     year_budget = m_nav_tree_ctrl->AppendItem(budgeting, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
-                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(e.BUDGETYEARID, true, false));
+                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID));
                 }
                 else if (pattern_month.Matches(e.BUDGETYEARNAME) && pattern_month.GetMatch(e.BUDGETYEARNAME, 1) == entry.first)
                 {
                     wxTreeItemId month_budget = m_nav_tree_ctrl->AppendItem(year_budget, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
-                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(e.BUDGETYEARID, true, false));
+                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID));
                 }
             }
         }
     }
 
+
+    wxTreeItemId transactionFilter = m_nav_tree_ctrl->AppendItem(root, _("Transaction Report"), img::FILTER_PNG, img::FILTER_PNG);
+    m_nav_tree_ctrl->SetItemBold(transactionFilter, true);
+    m_nav_tree_ctrl->SetItemData(transactionFilter, new mmTreeItemData(mmTreeItemData::FILTER, "Transaction Report"));
+    this->updateFilterNavigation(transactionFilter);
+
     wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemBold(reports, true);
-    m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports", true));
-
+    m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData(mmTreeItemData::HELP_PAGE_GRM, "Reports"));
     this->updateReportNavigation(reports);
+
+    wxTreeItemId grm = m_nav_tree_ctrl->AppendItem(root, _("General Report Manager"), img::CUSTOMSQL_GRP_PNG, img::CUSTOMSQL_GRP_PNG);
+    m_nav_tree_ctrl->SetItemBold(grm, true);
+    m_nav_tree_ctrl->SetItemData(grm, new mmTreeItemData(mmTreeItemData::HELP_PAGE_GRM, "General Report Manager"));
+    this->updateGRMNavigation(grm);
 
     ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId help = m_nav_tree_ctrl->AppendItem(root, _("Help"), img::HELP_PNG, img::HELP_PNG);
-    m_nav_tree_ctrl->SetItemData(help, new mmTreeItemData("Help", false));
+    m_nav_tree_ctrl->SetItemData(help, new mmTreeItemData(mmTreeItemData::HELP_PAGE_MAIN, "Help"));
     m_nav_tree_ctrl->SetItemBold(help, true);
 
     if (m_db)
@@ -841,8 +852,11 @@ void mmGUIFrame::updateNavTreeControl()
 
             if (Model_Account::FAVORITEACCT(account) && (Model_Account::status(account) == Model_Account::OPEN))
             {
-                tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
-                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false, false));
+                if (Model_Account::type(account) != Model_Account::INVESTMENT)
+                {
+                    tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
+                }
             }
 
             switch (Model_Account::type(account))
@@ -850,10 +864,11 @@ void mmGUIFrame::updateNavTreeControl()
             case Model_Account::INVESTMENT:
             {
                 tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::STOCK, account.ACCOUNTID));
                 // find all the accounts associated with this stock portfolio
                 Model_Stock::Data_Set stock_account_list = Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID));
                 // Put the names of the Stock_entry names as children of the stock account.
-                for (const auto &stock_entry : stock_account_list)
+                for (const auto& stock_entry : stock_account_list)
                 {
                     if (Model_Translink::HasShares(stock_entry.STOCKID))
                     {
@@ -861,36 +876,42 @@ void mmGUIFrame::updateNavTreeControl()
                         int account_id = stock_entry.STOCKID;
                         if (Model_Translink::ShareAccountId(account_id))
                         {
-                            m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(account_id, false, true));
+                            m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(mmTreeItemData::ACCOUNT, account_id));
                         }
                     }
                 }
+                break;
             }
-            break;
+            case Model_Account::CHECKING:
+                tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
+                break;
             case Model_Account::SHARES:
                 tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             case Model_Account::ASSET:
                 tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             case Model_Account::TERM:
                 tacct = m_nav_tree_ctrl->AppendItem(termAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             case Model_Account::CREDIT_CARD:
                 tacct = m_nav_tree_ctrl->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             case Model_Account::CASH:
                 tacct = m_nav_tree_ctrl->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             case Model_Account::LOAN:
                 tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                break;
-            default:
-                tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             }
 
-            m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false, false));
         }
 
         loadNavigationTreeItemsStatusFromJson();
@@ -1020,7 +1041,7 @@ void mmGUIFrame::navTreeStateToJson()
         }
 
         mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && iData->isStringData() && m_nav_tree_ctrl->IsExpanded(next))
+        if (iData && !iData->getString().empty() && m_nav_tree_ctrl->IsExpanded(next))
         {
             json_writer.Key(iData->getString().utf8_str());
             json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
@@ -1037,98 +1058,73 @@ void mmGUIFrame::navTreeStateToJson()
 
 void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 {
-    menuPrintingEnable(false);
+    if (!m_db) return;
+
     wxTreeItemId selectedItem = event.GetItem();
     if (!selectedItem) return;
 
-    m_nav_tree_ctrl->Update();
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
     if (!iData) return;
 
+    menuPrintingEnable(false);
+    m_nav_tree_ctrl->Update();
     selectedItemData_ = iData;
 
     activeReport_ = false;
-    if (!iData->isStringData())
+    wxSharedPtr<wxCommandEvent> evt;
+
+    switch (iData->getType())
     {
-        if (iData->isBudgetingNode())
-        {
-            int budgetID = iData->getData();
-            createBudgetingPage(budgetID);
-        }
-        else
-        {
-            int accountID = iData->getData();
-            Model_Account::Data* account = Model_Account::instance().get(accountID);
-            if (account)
-            {
-                gotoAccountID_ = accountID;
-                if (Model_Account::type(account) != Model_Account::INVESTMENT)
-                    createCheckingAccountPage(gotoAccountID_);
-                else
-                    createStocksAccountPage(gotoAccountID_);
-            }
-            else
-            {
-                /* cannot find accountid */
-                wxASSERT(false);
-            }
-        }
-    }
-    else
+    case mmTreeItemData::DO_NOTHING:
+        return;
+    case mmTreeItemData::HOME_PAGE:
+        return createHomePage();
+    case mmTreeItemData::HELP_PAGE_MAIN:
+        return createHelpPage();
+    case mmTreeItemData::HELP_PAGE_STOCKS:
+        return createHelpPage(mmex::HTML_INVESTMENT);
+    case mmTreeItemData::HELP_PAGE_GRM:
+        return createHelpPage(mmex::HTML_CUSTOM_SQL);
+    case mmTreeItemData::HELP_BUDGET:
+        return createHelpPage(mmex::HTML_BUDGET);
+    case mmTreeItemData::FILTER:
+        evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
+        return AddPendingEvent(*evt.get());
+    case mmTreeItemData::ASSETS:
+        evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+        return AddPendingEvent(*evt.get());
+    case mmTreeItemData::BILLS:
+        evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+        return AddPendingEvent(*evt.get());
+    case  mmTreeItemData::ALL_TRANSACTIONS:
+        return createAllTransactionsPage();
+    case mmTreeItemData::BUDGET:
+        return createBudgetingPage(iData->getData());
+    case mmTreeItemData::REPORT:
+        activeReport_ = true;
+        return createReportsPage(iData->get_report(), false);
+    case mmTreeItemData::GRM:
+        activeReport_ = true;
+        return createReportsPage(iData->get_report(), false);
+    case mmTreeItemData::FILTER_REPORT:
+        activeReport_ = true;
+        wxLogDebug(iData->getString());
+        return;
+    case mmTreeItemData::ACCOUNT:
     {
-        helpFileIndex_ = -1;
-        const wxString data = iData->getString();
-        if (data == "item@Help")
-            helpFileIndex_ = mmex::HTML_INDEX;
-        else if (data == "item@Stocks")
-            helpFileIndex_ = mmex::HTML_INVESTMENT;
-        else if (data == "item@Budgeting")
-            helpFileIndex_ = mmex::HTML_BUDGET;
-        else if (data == "item@Reports")
-            helpFileIndex_ = mmex::HTML_CUSTOM_SQL;
-
-        if (helpFileIndex_ > -1)
-        {
-            createHelpPage();
-            return;
-        }
-
-        if (!m_db) return;
-
-        if (data == "item@Home Page")
-        {
-            createHomePage();
-            return;
-        }
-        else if (data == "item@Favourites")
-            return; //do nothing
-        else if (data == "item@Bank Accounts")
-            return; //do nothing
-        else if (data == "item@All Transactions") {
-            createAllTransactionsPage();
-            return;
-        }
-
-        wxRegEx pattern(R"(^(report@))");
-        if (pattern.Matches(data))
-        {
-
-            activeReport_ = true;
-            createReportsPage(iData->get_report(), false);
-            return;
-        }
-
-        wxSharedPtr<wxCommandEvent> evt;
-        if (data == "item@Assets")
-            evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        else if (data == "item@Bills & Deposits")
-            evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        else if (data == "item@Transaction Report")
-            evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-        if (evt)
-            AddPendingEvent(*evt.get());
-
+        Model_Account::Data* account = Model_Account::instance().get(iData->getData());
+        gotoAccountID_ = account->ACCOUNTID;
+        return createCheckingAccountPage(gotoAccountID_);
     }
+    case mmTreeItemData::STOCK:
+    {
+        Model_Account::Data* account = Model_Account::instance().get(iData->getData());
+        gotoAccountID_ = account->ACCOUNTID;
+        return createStocksAccountPage(gotoAccountID_);
+    }
+    }
+    wxLogDebug("");
+
 }
 //----------------------------------------------------------------------------
 
@@ -1237,6 +1233,22 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::AppendImportMenu(wxMenu& menu)
+{
+    wxMenu* importFrom(new wxMenu);
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files"), _("Import from XML (Excel format)"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files"));
+    menu.AppendSubMenu(importFrom, _("&Import"));
+    wxMenu* exportTo(new wxMenu);
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files"));
+    menu.AppendSubMenu(exportTo, _("&Export"));
+}
+
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 {
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(id));
@@ -1245,92 +1257,99 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     else
         return;
 
-    if (!iData->isStringData())
+    switch (iData->getType())
+    {
+    case mmTreeItemData::HOME_PAGE:
+    {
+        wxMenu menu;
+        menu.Append(MENU_THEME_MANAGER, _("T&heme Manager"));
+        PopupMenu(&menu, pt);
+        break;
+    }
+    case mmTreeItemData::HELP_BUDGET:
+    case mmTreeItemData::BUDGET:
+    {
+        wxCommandEvent e;
+        return OnBudgetSetupDialog(e);
+    }
+    case  mmTreeItemData::GRM:
+    case  mmTreeItemData::HELP_PAGE_GRM:
+    {
+        wxMenu menu;
+        menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
+        PopupMenu(&menu, pt);
+        break;
+    }
+    case mmTreeItemData::STOCK:
     {
         int data = iData->getData();
-        if (!iData->isBudgetingNode())
-        {
-            Model_Account::Data* account = Model_Account::instance().get(data);
-            if (account)
-            {
-                wxMenu menu;
-                if (account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::INVESTMENT])
-                {
-                    gotoAccountID_ = account->ACCOUNTID;
-                    menu.Append(MENU_TREEPOPUP_NEW, _("&New Transaction"));
-                    menu.AppendSeparator();
-                }
-                menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
-                menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
-                menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
-                menu.AppendSeparator();
-                menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-                menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
 
-                menu.Enable(MENU_TREEPOPUP_REALLOCATE, Model_Account::type(account) != Model_Account::INVESTMENT);
-                menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
-
-                PopupMenu(&menu, pt);
-            }
-        }
-    }
-    else
-    {
-        const auto str = iData->getString();
-        if (str == "item@Budgeting")
-        {
-            wxCommandEvent e;
-            OnBudgetSetupDialog(e);
-        }
-        else if (str == "item@Reports")
+        Model_Account::Data* account = Model_Account::instance().get(data);
+        if (account)
         {
             wxMenu menu;
-            menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
+            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
+            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
+            menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
+
             PopupMenu(&menu, pt);
         }
-        else if (str == "item@Favourites" ||
-            str == "item@Bank Accounts" ||
-            str == "item@Cash Accounts" ||
-            str == "item@Loan Accounts" ||
-            str == "item@Term Accounts" ||
-            str == "item@Credit Card Accounts" ||
-            str == "item@Stocks")
+        break;
+    }
+    case mmTreeItemData::ACCOUNT:
+    {
+        int data = iData->getData();
+
+        Model_Account::Data* account = Model_Account::instance().get(data);
+        if (account)
         {
-            // Create for Account types: Bank, Cash, Loan, Credit Card, Term & Stocks 
             wxMenu menu;
-            menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
+            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
             menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
+            menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
+            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::SHARES]);
+            menu.AppendSeparator();
+            AppendImportMenu(menu);
+            PopupMenu(&menu, pt);
+        }
+        break;
+    }
+    case mmTreeItemData::MENU_ACCOUNT:
+    case mmTreeItemData::MENU_FAVORITES:
+    case mmTreeItemData::ALL_TRANSACTIONS:
+    {
+        wxMenu menu;
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
+        menu.AppendSeparator();
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
+        menu.AppendSeparator();
 
-            // Create only for Account types: Bank, Cash, Loan & Credit Card
-            if ((str != "item@Term Accounts") && (str != "item@Stocks"))
-            {
-                wxMenu* importFrom = new wxMenu;
-                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files"));
-                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files"), _("Import from XML (Excel format)"));
-                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files"));
-                menu.AppendSubMenu(importFrom, _("&Import"));
-                wxMenu* exportTo = new wxMenu;
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files"));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files"));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files"));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files"));
-                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files"));
-                menu.AppendSubMenu(exportTo, _("&Export"));
-                menu.AppendSeparator();
-            }
+        AppendImportMenu(menu);
 
-            wxMenu* viewAccounts = new wxMenu;
+        if (iData->getType() != mmTreeItemData::MENU_FAVORITES && iData->getType() != mmTreeItemData::ALL_TRANSACTIONS)
+        {
+            menu.AppendSeparator();
+            wxMenu* viewAccounts(new wxMenu);
             viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _("All"))->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
             viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("Favorites"))->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
             viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _("Open"))->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
             viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, _("Closed"))->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
-
             menu.AppendSubMenu(viewAccounts, _("Accounts Visible"));
-            PopupMenu(&menu, pt);
         }
+
+        PopupMenu(&menu, pt);
+        break;
+    }
     }
 }
 //----------------------------------------------------------------------------
@@ -2478,11 +2497,11 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
     if (dlg->ShowModal() == wxID_OK)
     {
+        updateNavTreeControl();
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         createReportsPage(rs, true);
-        setNavTreeSection(_("Reports"));
+        setNavTreeSection(_("Transaction Report"));
     }
-    m_nav_tree_ctrl->Refresh();
 }
 
 void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
@@ -2755,8 +2774,9 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createHelpPage()
+void mmGUIFrame::createHelpPage(int index)
 {
+    helpFileIndex_ = index;
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();

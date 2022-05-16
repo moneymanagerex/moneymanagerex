@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013-2021 Nikolay Akimov
+ Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -65,45 +65,37 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int id, bool isBudget, bool isReadOnly)
+mmTreeItemData::mmTreeItemData(int type, int id)
     : id_(id)
-    , isString_(false)
-    , isBudgetingNode_(isBudget)
-    , isReadOnly_(isReadOnly)
+    , type_(type)
+    , isReadOnly_(false)
     , report_(nullptr)
 {
-    if (isBudget)
-        stringData_ = (wxString::Format("item@Budget_%i", id));
-    else
-        stringData_ = (wxString::Format("%i", id));
+    stringData_ = (wxString::Format("%i", id));
 }
-mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
+mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
+    : id_(-1)
+    , type_(mmTreeItemData::REPORT)
     , isReadOnly_(false)
-    , stringData_("report@" + string)
+    , stringData_(data)
     , report_(report)
 {
     const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
     const wxString& settings = Model_Infotable::instance().GetStringInfo(n, "");
     report_->initReportSettings(settings);
 }
-
-mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
+mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& data)
+    : id_(-1)
+    , type_(mmTreeItemData::GRM)
     , isReadOnly_(false)
-    , stringData_("report@" + report->getReportTitle())
+    , stringData_(data)
     , report_(report)
 {}
-mmTreeItemData::mmTreeItemData(const wxString& string, bool isReadOnly)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
-    , isReadOnly_(isReadOnly)
-    , stringData_("item@" + string)
+mmTreeItemData::mmTreeItemData(int type, const wxString& data)
+    : id_(-1)
+    , type_(type)
+    , isReadOnly_(true)
+    , stringData_(data)
     , report_(nullptr)
 {}
 
