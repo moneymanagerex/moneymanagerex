@@ -154,8 +154,11 @@ private:
     void saveSettings();
     void menuEnableItems(bool enable);
     void updateNavTreeControl();
-    void updateReportNavigation(wxTreeItemId& reports);
+    void updateReportNavigation(wxTreeItemId& parent_item);
+    void updateGRMNavigation(wxTreeItemId& parent_item);
+    void updateFilterNavigation(wxTreeItemId& parent_item);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
+    void AppendImportMenu(wxMenu& menu);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);

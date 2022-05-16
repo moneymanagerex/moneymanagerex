@@ -77,10 +77,10 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int type, int id, bool isReadOnly);
-    mmTreeItemData(const wxString& string, mmPrintableBase* report);
-    mmTreeItemData(mmPrintableBase* report, const wxString& string);
-    mmTreeItemData(int type, const wxString& name);
+    mmTreeItemData(int type, int id);
+    mmTreeItemData(const wxString& data, mmPrintableBase* report);
+    mmTreeItemData(mmPrintableBase* report, const wxString& data);
+    mmTreeItemData(int type, const wxString& data);
     
     ~mmTreeItemData() {}
 
@@ -96,7 +96,6 @@ public:
         HELP_PAGE_GRM,
         HELP_INVESTMENT,
         HELP_BUDGET,
-        HELP_CUSTOM_SQL,
         BUDGET,
         ACCOUNT,
         STOCK,
@@ -108,6 +107,9 @@ public:
         BILLS,
         FILTER,
         FILTER_REPORT,
+        MENU_ACCOUNT,
+        MENU_FAVORITES,
+        MENU_REPORT,
         DO_NOTHING
     };
 
