@@ -122,6 +122,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
 {
     m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
     Create(parent);
+    dataToControls();
     is_values_correct();
 }
 
@@ -173,7 +174,8 @@ void mmFilterTransactionsDialog::dataToControls()
     m_accounts_name.clear();
     m_selected_accounts_id.clear();
 
-    for (const auto& acc : Model_Account::instance().all()) {
+    const auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
+    for (const auto& acc : accounts) {
         m_accounts_name.push_back(acc.ACCOUNTNAME);
     }
     m_accounts_name.Sort();
@@ -622,11 +624,12 @@ bool mmFilterTransactionsDialog::is_values_correct()
 {
     if (accountCheckBox_->IsChecked())
     {
-        //TODO
-    }
-    else
-    {
-        m_selected_accounts_id.clear();
+        if (m_selected_accounts_id.empty())
+        {
+            mmErrorDialogs::ToolTip4Object(bSelectedAccounts_
+                , _("Invalid value"), _("Account"));
+            return false;
+        }
     }
 
     if (payeeCheckBox_->IsChecked())
