@@ -1254,26 +1254,24 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         selectedItemData_ = iData;
     else
         return;
-
+    wxCommandEvent e;
+    wxMenu menu;
     switch (iData->getType())
     {
     case mmTreeItemData::HOME_PAGE:
     {
-        wxMenu menu;
         menu.Append(MENU_THEME_MANAGER, _("T&heme Manager"));
         PopupMenu(&menu, pt);
         break;
     }
     case mmTreeItemData::HELP_BUDGET:
     case mmTreeItemData::BUDGET:
-    {
-        wxCommandEvent e;
         return OnBudgetSetupDialog(e);
-    }
+    case mmTreeItemData::FILTER:
+        return OnTransactionReport(e);
     case  mmTreeItemData::GRM:
     case  mmTreeItemData::HELP_PAGE_GRM:
     {
-        wxMenu menu;
         menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
         PopupMenu(&menu, pt);
         break;
@@ -1285,7 +1283,6 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            wxMenu menu;
             menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
             menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
             menu.AppendSeparator();
@@ -1304,7 +1301,6 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            wxMenu menu;
             menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
             menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
             menu.AppendSeparator();
@@ -1324,7 +1320,6 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::MENU_FAVORITES:
     case mmTreeItemData::ALL_TRANSACTIONS:
     {
-        wxMenu menu;
         menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
@@ -2478,7 +2473,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
-    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+    const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
 
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
     if (dlg->ShowModal() == wxID_OK) {
