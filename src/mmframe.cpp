@@ -2478,14 +2478,19 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
+    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
-    if (dlg->ShowModal() == wxID_OK)
-    {
-        DoRecreateNavTreeControl();
+    if (dlg->ShowModal() == wxID_OK) {
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         createReportsPage(rs, true);
+    }
+
+    if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
+        DoRecreateNavTreeControl();
         setNavTreeSection(_("Transaction Report"));
     }
+
 }
 
 void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
