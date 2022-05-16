@@ -496,6 +496,8 @@ void mmFilterTransactionsDialog::CreateControls()
     SetSettingsLabel();
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
+    wxCommandEvent e(wxID_APPLY);
+    OnSettingsSelected(e);
 
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE, mmBitmapButtonSize));
@@ -976,11 +978,12 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     {
         for (int i = 0; i < size; i++)
         {
-            wxLogDebug("%i", i);
-            wxStringClientData* settings_obj =
-                static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
-            if (settings_obj) {
-                Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size - 1);
+            if (sel != i) {
+                wxStringClientData* settings_obj =
+                    static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
+                if (settings_obj) {
+                    Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size - 1);
+                }
             }
         }
 
