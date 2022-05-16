@@ -142,6 +142,7 @@ private:
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
+    void DoSaveSettings();
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnColourButton(wxCommandEvent& /*event*/);
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
