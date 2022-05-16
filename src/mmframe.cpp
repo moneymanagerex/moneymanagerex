@@ -708,7 +708,6 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     resetNavTreeControl();
 
-    //wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
     m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Home Page"));
     m_nav_tree_ctrl->SetItemBold(root, true);
