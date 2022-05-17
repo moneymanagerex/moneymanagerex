@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-16 21:15+0300\n"
-"PO-Revision-Date: 2022-05-17 11:25\n"
+"PO-Revision-Date: 2022-05-17 11:44\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1274,7 +1274,7 @@ msgstr "דילוג על המופע תנועה מחזורית הבאה"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "הזנת המופע הבא"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1282,19 +1282,19 @@ msgstr "דילוג על המופע הבא"
 
 #: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&עריכת תנועה מחזורית"
 
 #: billsdepositspanel.cpp:432
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&תנועה מחזורית חדשה"
 
 #: billsdepositspanel.cpp:434
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "ש&כפול תנועה מחזורית"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "&מחיקת תנועה מחזורית"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -2952,12 +2952,12 @@ msgstr "יצוא תנועות %zu"
 #: import_export/qif_export.cpp:634
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "מספר סוגי-האב שיצואו: %zu \n"
 
 #: import_export/qif_export.cpp:636
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "מספר תנועות שיוצאו: %zu\n"
 
 #: import_export/qif_export.cpp:637
 #, c-format
@@ -3364,7 +3364,7 @@ msgstr "קובץ לוג נכתב ל: %s"
 
 #: import_export/univcsvdialog.cpp:1061 stockdialog.cpp:680
 msgid "Please confirm saving"
-msgstr ""
+msgstr "נא לאשר שמירה"
 
 #: import_export/univcsvdialog.cpp:1094
 msgid "No imported transactions!"
@@ -4131,11 +4131,11 @@ msgstr "MMEX: שגיאת תפריט צץ"
 
 #: mmframe.cpp:1237 mmframe.cpp:1242 mmframe.cpp:1400 mmframe.cpp:1407
 msgid "&CSV Files"
-msgstr ""
+msgstr "&קובצי CSV"
 
 #: mmframe.cpp:1238 mmframe.cpp:1244 mmframe.cpp:1401 mmframe.cpp:1409
 msgid "&XML Files"
-msgstr ""
+msgstr "&קובצי XML"
 
 #: mmframe.cpp:1238 mmframe.cpp:1401
 msgid "Import from XML (Excel format)"
@@ -4143,15 +4143,15 @@ msgstr "ייברא מ XML (תבנית אקסל)"
 
 #: mmframe.cpp:1239 mmframe.cpp:1245 mmframe.cpp:1402 mmframe.cpp:1410
 msgid "&QIF Files"
-msgstr ""
+msgstr "&קובצי QIF"
 
 #: mmframe.cpp:1243 mmframe.cpp:1408
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "&קובצי &CSV MMEX"
 
 #: mmframe.cpp:1246 mmframe.cpp:1411
 msgid "&JSON Files"
-msgstr ""
+msgstr "קובצי JSON&"
 
 #: mmframe.cpp:1263 mmframe.cpp:1574
 msgid "T&heme Manager"
@@ -4211,7 +4211,7 @@ msgstr "שמור מסד נתונים כ"
 
 #: mmframe.cpp:1394
 msgid "&Recent Files"
-msgstr ""
+msgstr "&קבצים אחרונים"
 
 #: mmframe.cpp:1395
 msgid "&Clear Recent Files"
@@ -4227,7 +4227,7 @@ msgstr "יבוא מ QIF"
 
 #: mmframe.cpp:1403
 msgid "&WebApp"
-msgstr ""
+msgstr "יישומון &מרשתת"
 
 #: mmframe.cpp:1403
 msgid "Import from WebApp"
@@ -4251,7 +4251,7 @@ msgstr "יצוא ל־JSON"
 
 #: mmframe.cpp:1412
 msgid "&HTML Files"
-msgstr ""
+msgstr "קובצי HTML&"
 
 #: mmframe.cpp:1412
 msgid "Export to HTML"
@@ -4259,7 +4259,7 @@ msgstr "יצוא ל HTML"
 
 #: mmframe.cpp:1418 mmframe.cpp:1778
 msgid "&Print"
-msgstr ""
+msgstr "&הדפסה"
 
 #: mmframe.cpp:1418 mmframe.cpp:1778
 msgid "Print current view"
@@ -4375,7 +4375,7 @@ msgstr "מחיקת חשבון ממסד הנתונים"
 
 #: mmframe.cpp:1525
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "אחזור &שערים"
 
 #: mmframe.cpp:1525 mmframe.cpp:1772
 msgid "Download Currency and Stock rates"
@@ -4383,11 +4383,11 @@ msgstr "עדכון שערי מטבע ונירות ערך"
 
 #: mmframe.cpp:1531
 msgid "Organize &Categories"
-msgstr ""
+msgstr "ניהול &סוגי־אב"
 
 #: mmframe.cpp:1535
 msgid "Organize &Payees"
-msgstr ""
+msgstr "ניהול &מוטבים"
 
 #: mmframe.cpp:1535 mmframe.cpp:1750 payeedialog.cpp:84
 msgid "Organize Payees"
@@ -4395,7 +4395,7 @@ msgstr "ניהול מוטבים"
 
 #: mmframe.cpp:1539
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "ניהול מ&טבעות"
 
 #: mmframe.cpp:1539 mmframe.cpp:1751
 msgid "Organize Currency"
@@ -4403,11 +4403,11 @@ msgstr "ניהול מטבעות"
 
 #: mmframe.cpp:1543
 msgid "&Categories"
-msgstr ""
+msgstr "&סוגי־אב"
 
 #: mmframe.cpp:1546
 msgid "&Payees"
-msgstr ""
+msgstr "&מוטבים"
 
 #: mmframe.cpp:1547
 msgid "Reassign all payees to another payee"
@@ -4415,7 +4415,7 @@ msgstr "הקצאת מחדש את כל המוטבים למוטב אחר"
 
 #: mmframe.cpp:1549
 msgid "Re&location of"
-msgstr ""
+msgstr "העב&רת"
 
 #: mmframe.cpp:1550
 msgid "Relocate Categories && Payees"
@@ -4443,7 +4443,7 @@ msgstr "מנהל ערכת נושא"
 
 #: mmframe.cpp:1580
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "מסנן דוח &תנועות"
 
 #: mmframe.cpp:1580 mmframe.cpp:1753
 msgid "Transaction Report Filter"
@@ -4451,11 +4451,11 @@ msgstr "מסנן דוח תנועות"
 
 #: mmframe.cpp:1586
 msgid "General Report &Manager"
-msgstr ""
+msgstr "מנהל דוחות &כללי"
 
 #: mmframe.cpp:1590
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "מ&נהל שדות מותאם אישית"
 
 #: mmframe.cpp:1590
 msgid "Custom Fields Manager"
@@ -4679,7 +4679,7 @@ msgstr "בדיקת זמינות עדכונים"
 
 #: mmframe.cpp:1712 mmframe.cpp:1781
 msgid "&About"
-msgstr ""
+msgstr "&על אודות"
 
 #: mmframe.cpp:1712 mmframe.cpp:1781
 msgid "Show about dialog"
@@ -4723,7 +4723,7 @@ msgstr "הצגת תיבת דו-שיח ניהול מטבעות"
 
 #: mmframe.cpp:1757
 msgid "&Options"
-msgstr ""
+msgstr "&אפשרויות"
 
 #: mmframe.cpp:1765 mmframe.cpp:2617
 msgid "Register/View Release &Notifications"
@@ -6219,11 +6219,11 @@ msgstr "הפרש"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
-msgstr ""
+msgstr "צימום הכול"
 
 #: reports/categexp.cpp:169
 msgid "Expand All"
-msgstr ""
+msgstr "הרחבת הכל"
 
 #: reports/categexp.cpp:229
 msgid "Total Expenses:"
@@ -6752,7 +6752,7 @@ msgstr "אישור מחיקת ניר ערך"
 #: stocks_list.cpp:289
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "העברת תנועה מ: %s ל:"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7295,7 +7295,7 @@ msgstr "מצב רשת (נא להקיש לרענון)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "בדיקת המצאות תנועות חדשות"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
