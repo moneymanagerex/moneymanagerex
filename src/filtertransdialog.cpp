@@ -960,16 +960,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        for (int i = 0; i < size; i++)
-        {
-            if (sel != i || size == 1) {
-                wxStringClientData* settings_obj =
-                    static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
-                if (settings_obj) {
-                    Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size - 1);
-                }
-            }
-        }
+        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel);
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
