@@ -556,7 +556,8 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     if (event.GetId() == similarCategCheckBox_->GetId())
     {
         is_similar_category_status = similarCategCheckBox_->IsChecked();
-    } else if (event.GetId() != cbTypeWithdrawal_->GetId() &&
+    }
+    else if (event.GetId() != cbTypeWithdrawal_->GetId() &&
         event.GetId() != cbTypeDeposit_->GetId() &&
         event.GetId() != cbTypeTransferTo_->GetId() &&
         event.GetId() != cbTypeTransferFrom_->GetId())
@@ -568,13 +569,13 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
             dateRangeCheckBox_->SetValue(false);
 
         }
-        if (event.GetId() == rangeCheckBox_->GetId())
+        else if (event.GetId() == rangeCheckBox_->GetId())
         {
             startDateCheckBox_->SetValue(false);
             dateRangeCheckBox_->SetValue(false);
 
         }
-        if (event.GetId() == dateRangeCheckBox_->GetId())
+        else if (event.GetId() == dateRangeCheckBox_->GetId())
         {
             startDateCheckBox_->SetValue(false);
             rangeCheckBox_->SetValue(false);
@@ -595,7 +596,8 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
             cbTypeTransferFrom_->Hide();
             cbTypeTransferTo_->SetLabel(_("Transfer"));
             Layout();
-        } else
+        }
+        else
         {
             cbTypeTransferFrom_->Show();
             cbTypeTransferTo_->SetLabel(_("Transfer Out"));
