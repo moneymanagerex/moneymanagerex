@@ -128,7 +128,8 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void dataToControls();
-    void SetSettingsLabel();
+    void DoInitSettingNameChoice();
+    void DoUpdateSettings();
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
@@ -142,7 +143,7 @@ private:
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
-    void DoSaveSettings();
+    void DoSaveSettings(bool is_user_request = false);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnColourButton(wxCommandEvent& /*event*/);
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
