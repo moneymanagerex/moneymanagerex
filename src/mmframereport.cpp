@@ -113,7 +113,7 @@ private:
     Model_Report::Data_Set m_sub_reports;
 };
 
-void mmGUIFrame::updateReportNavigation(wxTreeItemId& parent_item)
+void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 {
     wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(parent_item, _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData(mmTreeItemData::MENU_REPORT, "Cash Flow"));
@@ -202,7 +202,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& parent_item)
 
 }
 
-void mmGUIFrame::updateGRMNavigation(wxTreeItemId& parent_item)
+void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
 {
     /*GRM Reports*/
     auto records = Model_Report::instance().all();
@@ -228,7 +228,7 @@ void mmGUIFrame::updateGRMNavigation(wxTreeItemId& parent_item)
 
 }
 
-void mmGUIFrame::updateFilterNavigation(wxTreeItemId& parent_item)
+void mmGUIFrame::DoUpdateFilterNavigation(wxTreeItemId& parent_item)
 {
 
     wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");

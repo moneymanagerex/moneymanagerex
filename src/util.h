@@ -163,7 +163,7 @@ const wxString mmPlatformType();
 
 //All components version in TXT, HTML, ABOUT
 const wxString getProgramDescription(int type = 0);
-void windowsFreezeThaw(wxWindow* w);
+void DoWindowsFreezeThaw(wxWindow* w);
 const wxString md2html(const wxString& md);
 const wxString getVFname4print(const wxString& name, const wxString& data);
 void clearVFprintedFiles(const wxString& name);

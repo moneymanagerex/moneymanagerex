@@ -704,8 +704,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::DoRecreateNavTreeControl()
 {
-    windowsFreezeThaw(m_nav_tree_ctrl);
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    DoWindowsFreezeThaw(m_nav_tree_ctrl);
     resetNavTreeControl();
 
     wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
@@ -760,67 +759,22 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData(mmTreeItemData::HELP_BUDGET, "Budget Setup"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
-
-    const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
-    if (!all_budgets.empty())
-    {
-        std::map <wxString, int> years;
-
-        wxRegEx pattern_year(R"(^([0-9]{4})$)");
-        wxRegEx pattern_month(R"(^([0-9]{4})-([0-9]{2})$)");
-
-        for (const auto& e : all_budgets)
-        {
-            const wxString& name = e.BUDGETYEARNAME;
-            if (pattern_year.Matches(name))
-            {
-                years[name] = e.BUDGETYEARID;
-
-            }
-            else
-            {
-                if (pattern_month.Matches(name)) {
-                    wxString root_year = pattern_month.GetMatch(name, 1);
-                    if (years.find(root_year) == years.end()) {
-                        years[root_year] = e.BUDGETYEARID;
-                    }
-                }
-            }
-        }
-
-        for (const auto& entry : years)
-        {
-            wxTreeItemId year_budget;
-            for (const auto& e : all_budgets)
-            {
-                if (entry.second == e.BUDGETYEARID) {
-                    year_budget = m_nav_tree_ctrl->AppendItem(budgeting, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
-                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID));
-                }
-                else if (pattern_month.Matches(e.BUDGETYEARNAME) && pattern_month.GetMatch(e.BUDGETYEARNAME, 1) == entry.first)
-                {
-                    wxTreeItemId month_budget = m_nav_tree_ctrl->AppendItem(year_budget, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
-                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID));
-                }
-            }
-        }
-    }
-
+    this->DoUpdateBudgetNavigation(budgeting);
 
     wxTreeItemId transactionFilter = m_nav_tree_ctrl->AppendItem(root, _("Transaction Report"), img::FILTER_PNG, img::FILTER_PNG);
     m_nav_tree_ctrl->SetItemBold(transactionFilter, true);
     m_nav_tree_ctrl->SetItemData(transactionFilter, new mmTreeItemData(mmTreeItemData::FILTER, "Transaction Report"));
-    this->updateFilterNavigation(transactionFilter);
+    this->DoUpdateFilterNavigation(transactionFilter);
 
     wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemBold(reports, true);
     m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData(mmTreeItemData::HELP_PAGE_GRM, "Reports"));
-    this->updateReportNavigation(reports);
+    this->DoUpdateReportNavigation(reports);
 
     wxTreeItemId grm = m_nav_tree_ctrl->AppendItem(root, _("General Report Manager"), img::CUSTOMSQL_GRP_PNG, img::CUSTOMSQL_GRP_PNG);
     m_nav_tree_ctrl->SetItemBold(grm, true);
     m_nav_tree_ctrl->SetItemData(grm, new mmTreeItemData(mmTreeItemData::HELP_PAGE_GRM, "General Report Manager"));
-    this->updateGRMNavigation(grm);
+    this->DoUpdateGRMNavigation(grm);
 
     ///////////////////////////////////////////////////////////////////
 
@@ -940,12 +894,11 @@ void mmGUIFrame::DoRecreateNavTreeControl()
             m_nav_tree_ctrl->Delete(shareAccounts);
         }
     }
-    windowsFreezeThaw(m_nav_tree_ctrl);
     m_nav_tree_ctrl->SelectItem(root);
     m_nav_tree_ctrl->EnsureVisible(root);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    DoWindowsFreezeThaw(m_nav_tree_ctrl);
 }
 
 void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
@@ -2717,7 +2670,7 @@ void mmGUIFrame::createHomePage()
     }
     else
     {
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(homePanel_
             , this, mmID_HOMEPAGE
@@ -2726,7 +2679,7 @@ void mmGUIFrame::createHomePage()
         );
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
     }
 
     if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
@@ -2747,7 +2700,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     if (!rs) return;
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 
-    windowsFreezeThaw(homePanel_);
+    DoWindowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmReportsPanel(rs
         , cleanup, homePanel_, this, mmID_REPORTS
@@ -2755,7 +2708,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
+    DoWindowsFreezeThaw(homePanel_);
 
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -2766,12 +2719,12 @@ void mmGUIFrame::createHelpPage(int index)
 {
     helpFileIndex_ = index;
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    windowsFreezeThaw(homePanel_);
+    DoWindowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
+    DoWindowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
@@ -2796,14 +2749,14 @@ void mmGUIFrame::createBillsDeposits()
     }
     else
     {
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS);
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
         homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -2837,13 +2790,13 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     }
     else
     {
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
 
         panelCurrent_ = new mmBudgetingPanel(budgetYearID, homePanel_, this, mmID_BUDGET);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
     }
 
     json_writer.Key("seconds");
@@ -2877,12 +2830,12 @@ void mmGUIFrame::createAllTransactionsPage()
     else
     {
 
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
     }
 
     json_writer.Key("seconds");
@@ -2921,13 +2874,13 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     }
     else
     {
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
         creditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
     }
 
     json_writer.Key("seconds");
@@ -2965,12 +2918,12 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     else
     {
         //updateNavTreeControl();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
+        DoWindowsFreezeThaw(homePanel_);
     }
 
     json_writer.Key("seconds");
@@ -3016,12 +2969,12 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
     const auto time = wxDateTime::UNow();
 
-    windowsFreezeThaw(homePanel_);
+    DoWindowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
+    DoWindowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
     setNavTreeSection(_("Assets"));
 
@@ -3407,4 +3360,52 @@ void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
         }
     }
     event.Skip();
+}
+
+void mmGUIFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
+{
+    const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
+    if (!all_budgets.empty())
+    {
+        std::map <wxString, int> years;
+
+        wxRegEx pattern_year(R"(^([0-9]{4})$)");
+        wxRegEx pattern_month(R"(^([0-9]{4})-([0-9]{2})$)");
+
+        for (const auto& e : all_budgets)
+        {
+            const wxString& name = e.BUDGETYEARNAME;
+            if (pattern_year.Matches(name))
+            {
+                years[name] = e.BUDGETYEARID;
+
+            }
+            else
+            {
+                if (pattern_month.Matches(name)) {
+                    wxString root_year = pattern_month.GetMatch(name, 1);
+                    if (years.find(root_year) == years.end()) {
+                        years[root_year] = e.BUDGETYEARID;
+                    }
+                }
+            }
+        }
+
+        for (const auto& entry : years)
+        {
+            wxTreeItemId year_budget;
+            for (const auto& e : all_budgets)
+            {
+                if (entry.second == e.BUDGETYEARID) {
+                    year_budget = m_nav_tree_ctrl->AppendItem(parent_item, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
+                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID));
+                }
+                else if (pattern_month.Matches(e.BUDGETYEARNAME) && pattern_month.GetMatch(e.BUDGETYEARNAME, 1) == entry.first)
+                {
+                    wxTreeItemId month_budget = m_nav_tree_ctrl->AppendItem(year_budget, e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
+                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(mmTreeItemData::BUDGET, e.BUDGETYEARID));
+                }
+            }
+        }
+    }
 }

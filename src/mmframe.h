@@ -154,9 +154,10 @@ private:
     void saveSettings();
     void menuEnableItems(bool enable);
     void DoRecreateNavTreeControl();
-    void updateReportNavigation(wxTreeItemId& parent_item);
-    void updateGRMNavigation(wxTreeItemId& parent_item);
-    void updateFilterNavigation(wxTreeItemId& parent_item);
+    void DoUpdateReportNavigation(wxTreeItemId& parent_item);
+    void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
+    void DoUpdateFilterNavigation(wxTreeItemId& parent_item);
+    void DoUpdateBudgetNavigation(wxTreeItemId& parent_item);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void AppendImportMenu(wxMenu& menu);
     void showBeginAppDialog(bool fromScratch = false);
