@@ -284,7 +284,7 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 
 void mmGeneralReportManager::fillControls()
 {
-    windowsFreezeThaw(this);
+    DoWindowsFreezeThaw(this);
     viewControls(false);
     SetEvtHandlerEnabled(false);
     m_treeCtrl->DeleteAllItems();
@@ -317,7 +317,7 @@ void mmGeneralReportManager::fillControls()
     m_treeCtrl->SelectItem(m_selectedItemID);
     SetEvtHandlerEnabled(true);
     m_treeCtrl->SetFocus();
-    windowsFreezeThaw(this);
+    DoWindowsFreezeThaw(this);
     //Show help page or report detailes (bugs:#421)
     wxTreeEvent evt(wxEVT_TREE_SEL_CHANGED, ID_REPORT_LIST);
     evt.SetItem(m_selectedItemID);

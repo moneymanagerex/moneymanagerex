@@ -581,7 +581,7 @@ const wxString mmPlatformType()
     return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
 }
 
-void windowsFreezeThaw(wxWindow* w)
+void DoWindowsFreezeThaw(wxWindow* w)
 {
 #ifdef __WXGTK__
     return;
