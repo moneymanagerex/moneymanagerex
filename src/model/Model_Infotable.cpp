@@ -152,6 +152,52 @@ void Model_Infotable::Prepend(const wxString& key, const wxString& value, int li
     setting->save(this->db_);
 }
 
+void Model_Infotable::Erase(const wxString& key, int row)
+{
+    Document j_doc;
+    if (j_doc.Parse(GetStringInfo(key, "[]").utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
+    {
+        j_doc.Erase(j_doc.Begin() + row);
+
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
+        j_doc.Accept(json_writer);
+        const wxString json_string = wxString::FromUTF8(json_buffer.GetString());
+        Set(key, json_string);
+        wxLogDebug(json_string);
+    }
+}
+
+void Model_Infotable::Update(const wxString& key, int row, const wxString& value)
+{
+    Document j_doc, j_doc_new;
+    if (j_doc.Parse(GetStringInfo(key, "[]").utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
+    {
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
+        json_writer.StartArray();
+        for (SizeType i = 0; i < j_doc.Size(); i++)
+        {
+            if (row == static_cast<int>(i))
+                json_writer.String(value.utf8_str());
+            else
+                json_writer.String(j_doc[i].GetString());
+        }
+        json_writer.EndArray();
+
+        const wxString json_string = wxString::FromUTF8(json_buffer.GetString());
+        Set(key, json_string);
+        wxLogDebug(json_string);
+    }
+}
 
 // Getter
 bool Model_Infotable::GetBoolInfo(const wxString& key, bool default_value)
