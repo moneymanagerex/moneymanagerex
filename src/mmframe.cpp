@@ -2421,16 +2421,15 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
     const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
 
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
-    if (dlg->ShowModal() == wxID_OK) {
-        mmReportTransactions* rs = new mmReportTransactions(dlg);
-        createReportsPage(rs, true);
-    }
-
+    bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
         setNavTreeSection(_("Transaction Report"));
     }
-
+    if (is_ok) {
+        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        createReportsPage(rs, true);
+    }
 }
 
 void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
