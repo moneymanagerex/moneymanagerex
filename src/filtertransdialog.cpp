@@ -1798,23 +1798,10 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 void mmFilterTransactionsDialog::DoUpdateSettings()
 {
     int sel = m_setting_name->GetSelection();
-    m_settings_json = GetJsonSetings();
-    int size = m_setting_name->GetCount();
-    if (sel >= 0)
+    if (sel != wxNOT_FOUND)
     {
-        for (int i = 0; i < size; i++)
-        {
-            if (sel != i) {
-                wxStringClientData* settings_obj =
-                    static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
-                if (settings_obj) {
-                    Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size);
-                }
-            }
-            else {
-                Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", m_settings_json, size);
-            }
-        }
+        m_settings_json = GetJsonSetings();
+        Model_Infotable::instance().Update("TRANSACTIONS_FILTER", sel, m_settings_json);
     }
 }
 

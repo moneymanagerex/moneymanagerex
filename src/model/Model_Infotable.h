@@ -53,7 +53,7 @@ public:
     void Set(const wxString& key, const wxColour& value);
     void Prepend(const wxString& key, const wxString& value, int limit);
     void Erase(const wxString& key, int row);
-    void Update(const wxString& key, int row);
+    void Update(const wxString& key, int row, const wxString& value);
 
 public:
     // Getter
