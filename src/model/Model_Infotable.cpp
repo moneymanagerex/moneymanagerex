@@ -193,7 +193,7 @@ void Model_Infotable::Update(const wxString& key, int row, const wxString& value
         }
         json_writer.EndArray();
 
-        const wxString json_string = wxString::FromUTF8(json_buffer.GetString());
+        const wxString& json_string = wxString::FromUTF8(json_buffer.GetString());
         Set(key, json_string);
         wxLogDebug(json_string);
     }

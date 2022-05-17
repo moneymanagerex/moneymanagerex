@@ -692,21 +692,34 @@ bool mmFilterTransactionsDialog::is_values_correct()
 
     if (rangeCheckBox_->IsChecked())
     {
-        const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges[rangeChoice_->GetSelection()];
-        if (date_range)
+        int sel = rangeChoice_->GetSelection();
+        if (sel != wxNOT_FOUND)
         {
-            m_begin_date = date_range->start_date().FormatISODate(); 
-            m_end_date = date_range->end_date().FormatISODate(); 
-            m_startDay = date_range->startDay();
-            m_futureIgnored = date_range->isFutureIgnored();
-        }        
+            const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges[sel];
+            if (date_range)
+            {
+                m_begin_date = date_range->start_date().FormatISODate();
+                m_end_date = date_range->end_date().FormatISODate();
+                m_startDay = date_range->startDay();
+                m_futureIgnored = date_range->isFutureIgnored();
+            }
+        }
+        else
+        {
+            mmErrorDialogs::ToolTip4Object(rangeChoice_
+                , _("Invalid value"), _("Date"));
+            return false;
+        }
     }
 
     if (startDateCheckBox_->IsChecked())
     {
-        mmDateRange* date_range = NULL;
-        switch (startDateDropDown_->GetSelection())
+        wxSharedPtr<mmDateRange> date_range;
+        int sel = startDateDropDown_->GetSelection();
+        if (sel != wxNOT_FOUND)
         {
+            switch (sel)
+            {
             case FROM_FIN_YEAR:
                 date_range = new mmCurrentFinancialYear();
                 break;
@@ -724,15 +737,21 @@ bool mmFilterTransactionsDialog::is_values_correct()
                 break;
             default:
                 wxASSERT(FALSE);
+            }
+            m_begin_date = date_range->start_date().FormatISODate();
+            m_futureIgnored = Option::instance().getIgnoreFutureTransactions();
+            if (m_futureIgnored)
+                m_end_date = wxDateTime::Today().FormatISODate();
+            else
+                m_end_date = wxDateTime(DATE_MAX).FormatISODate();
+            m_startDay = date_range->startDay();
         }
-        m_begin_date = date_range->start_date().FormatISODate();
-        m_futureIgnored = Option::instance().getIgnoreFutureTransactions();
-        if (m_futureIgnored) 
-            m_end_date = wxDateTime::Today().FormatISODate();
         else
-            m_end_date = wxDateTime(DATE_MAX).FormatISODate();
-        m_startDay = date_range->startDay();
-        delete date_range;
+        {
+            mmErrorDialogs::ToolTip4Object(startDateDropDown_
+                , _("Invalid value"), _("Date"));
+            return false;
+        }
     }
 
     if (statusCheckBox_->IsChecked() && choiceStatus_->GetSelection() < 0)
@@ -1429,25 +1448,31 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     m_begin_date = j_date1.IsString() ? wxString::FromUTF8(j_date1.GetString()) : "";
     Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
     m_end_date = j_date2.IsString() ? wxString::FromUTF8(j_date2.GetString()) : "";
-    dateRangeCheckBox_->SetValue(!m_begin_date.empty() || !m_end_date.empty());
-    fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-    toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-    fromDateCtrl_->SetValue(mmParseISODate(m_begin_date));
-    toDateControl_->SetValue(mmParseISODate(m_end_date));
+    wxDateTime bd, ed;
+    bd = mmParseISODate(m_begin_date);
+    ed = mmParseISODate(m_end_date);
+    if (bd.IsValid() && ed.IsValid())
+    {
+        dateRangeCheckBox_->SetValue(!m_begin_date.empty() || !m_end_date.empty());
+        fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
+        toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+        fromDateCtrl_->SetValue(bd);
+        toDateControl_->SetValue(ed);
+    }
 
     //Date Period Range
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
     const wxString& s_range = j_period.IsString() ? wxString::FromUTF8(j_period.GetString()) : "";
-    rangeCheckBox_->SetValue(!s_range.empty());
-    rangeChoice_->Enable(rangeCheckBox_->IsChecked());
     rangeChoice_->SetStringSelection(s_range);
+    rangeCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
+    rangeChoice_->Enable(rangeCheckBox_->IsChecked());
 
     //From Date
     Value& j_from = GetValueByPointerWithDefault(j_doc, "/FROM", "");
     const wxString& s_startPoint = j_from.IsString() ? wxString::FromUTF8(j_from.GetString()) : "";
-    startDateCheckBox_->SetValue(!s_startPoint.empty());
-    startDateDropDown_->Enable(startDateCheckBox_->IsChecked());
     startDateDropDown_->SetStringSelection(s_startPoint);
+    startDateCheckBox_->SetValue(startDateDropDown_->GetSelection() != wxNOT_FOUND);
+    startDateDropDown_->Enable(startDateCheckBox_->IsChecked());
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
@@ -1853,10 +1878,8 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
                 return;
             }
         }
-
-        DoUpdateSettings();
+       DoUpdateSettings();
     }
-    
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))

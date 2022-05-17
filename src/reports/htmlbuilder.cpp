@@ -185,16 +185,17 @@ void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay, bool fut
 void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange, bool withNoEndDate)
 {
     wxString sDate;
-    if (withDateRange)
-    {
+    if (withDateRange && startDate.IsValid() && endDate.IsValid()) {
         sDate << wxString::Format(_("From %s till %s")
             , mmGetDateForDisplay(startDate.FormatISODate())
             , withNoEndDate ? _("Future") : mmGetDateForDisplay(endDate.FormatISODate()));
     }
-    else
-    {
+    else if (!withDateRange) {
         sDate << _("Over Time");
     }
+    else
+        wxASSERT(false);
+
     wxString t = wxString::Format(tags::HEADER, 4, sDate, 4);
     this->html_.Replace("<TMPL_VAR DATE_HEADING>", t);
 }
