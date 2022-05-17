@@ -116,7 +116,6 @@ public:
 private:
     int id_;
     int type_;
-    bool isReadOnly_;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
 };
@@ -124,7 +123,6 @@ private:
 inline int mmTreeItemData::getData() const { return id_; }
 inline const wxString mmTreeItemData::getString() const { return stringData_; }
 inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
-inline bool mmTreeItemData::isReadOnly() const { return isReadOnly_; }
 inline int mmTreeItemData::getType() const { return type_; }
 
 //----------------------------------------------------------------------------

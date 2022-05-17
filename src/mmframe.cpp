@@ -1259,11 +1259,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     switch (iData->getType())
     {
     case mmTreeItemData::HOME_PAGE:
-    {
-        menu.Append(MENU_THEME_MANAGER, _("T&heme Manager"));
-        PopupMenu(&menu, pt);
-        break;
-    }
+        return OnThemeManager(e);
     case mmTreeItemData::HELP_BUDGET:
     case mmTreeItemData::BUDGET:
         return OnBudgetSetupDialog(e);
@@ -1271,11 +1267,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return OnTransactionReport(e);
     case  mmTreeItemData::GRM:
     case  mmTreeItemData::HELP_PAGE_GRM:
-    {
-        menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
-        PopupMenu(&menu, pt);
-        break;
-    }
+        return OnGeneralReportManager(e);
     case mmTreeItemData::STOCK:
     {
         int data = iData->getData();
