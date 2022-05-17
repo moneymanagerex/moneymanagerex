@@ -183,7 +183,7 @@ void mmFilterTransactionsDialog::dataToControls()
     BuildPayeeList();
     SetJsonSettings(m_settings_json);
 }
-void mmFilterTransactionsDialog::SetSettingsLabel()
+void mmFilterTransactionsDialog::DoInitSettingNameChoice()
 {
     m_setting_name->Clear();
     wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
@@ -493,7 +493,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     m_setting_name = new wxChoice(this, wxID_APPLY);
     settings_box_sizer->Add(m_setting_name, g_flagsExpand);
-    SetSettingsLabel();
+    DoInitSettingNameChoice();
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
     wxCommandEvent e(wxID_APPLY);
@@ -948,21 +948,21 @@ double mmFilterTransactionsDialog::getAmountMax() const
 
 void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 {
-    if (wxMessageBox(
-        _("The selected item will be deleted") + "\n\n" +
-        _("Do you wish to continue?")
-        , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
-    {
-        return;
-    }
-
     int sel = m_setting_name->GetSelection();
     int size = m_setting_name->GetCount();
-    if (sel >= 0)
+    if (sel >= 0 && size > 0)
     {
+        if (wxMessageBox(
+            _("The selected item will be deleted") + "\n\n" +
+            _("Do you wish to continue?")
+            , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
+        {
+            return;
+        }
+
         for (int i = 0; i < size; i++)
         {
-            if (sel != i) {
+            if (sel != i || size == 1) {
                 wxStringClientData* settings_obj =
                     static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
                 if (settings_obj) {
@@ -1804,19 +1804,39 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
     }
 }
 
-void mmFilterTransactionsDialog::DoSaveSettings()
+void mmFilterTransactionsDialog::DoUpdateSettings()
 {
-    auto label = m_setting_name->GetStringSelection();
-    const wxString new_settings_string = GetJsonSetings();
-    if (m_settings_json != new_settings_string && !label.empty())
+    int sel = m_setting_name->GetSelection();
+    m_settings_json = GetJsonSetings();
+    int size = m_setting_name->GetCount();
+    if (sel >= 0)
     {
-        label = wxGetTextFromUser(
-            _("Filter settings have changed") + "\n" +
-            _("Do you want to save them before continuing?") + "\n\n" +
-            _("Setting Name")
-            , _("Please Enter"), label);
+        for (int i = 0; i < size; i++)
+        {
+            if (sel != i) {
+                wxStringClientData* settings_obj =
+                    static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
+                if (settings_obj) {
+                    Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size);
+                }
+            }
+            else {
+                Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", m_settings_json, size);
+            }
+        }
+    }
+}
 
-        if (label.empty())
+void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
+{
+    const auto label = m_setting_name->GetStringSelection();
+    wxString user_label;
+
+    if (is_user_request)
+    {
+        user_label = wxGetTextFromUser(_("Setting Name"), _("Please Enter"), label);
+
+        if (user_label.empty())
             return;
 
         wxArrayString label_names;
@@ -1824,42 +1844,46 @@ void mmFilterTransactionsDialog::DoSaveSettings()
             label_names.Add(m_setting_name->GetString(i));
         }
 
-        if (label_names.Index(label) == wxNOT_FOUND)
+        if (label_names.Index(user_label) == wxNOT_FOUND)
         {
-            m_setting_name->Append(label);
-            m_setting_name->SetStringSelection(label);
+            m_setting_name->Append(user_label);
+            m_setting_name->SetStringSelection(user_label);
             m_settings_json = GetJsonSetings();
             Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", m_settings_json, -1);
         }
+        else if (label == user_label)
+        {
+            DoUpdateSettings();
+        }
         else
         {
-            int sel = m_setting_name->GetSelection();
-            int size = m_setting_name->GetCount();
-            if (sel >= 0)
+            if (wxMessageBox(_("The entered name is already in use"), _("Warning"), wxOK | wxICON_WARNING) == wxOK)
+            { }
+        }
+        DoInitSettingNameChoice();
+
+    }
+    else
+    {
+        if (m_settings_json != GetJsonSetings() && !label.empty())
+        {
+            if (wxMessageBox(
+                _("Filter settings have changed") + "\n" +
+                _("Do you want to save them before continuing?") + "\n\n"
+                , _("Please confirm"), wxYES_NO | wxICON_WARNING) == wxNO)
             {
-                for (int i = 0; i < size; i++)
-                {
-                    if (sel != i) {
-                        wxStringClientData* settings_obj =
-                            static_cast<wxStringClientData*>(m_setting_name->GetClientObject(i));
-                        if (settings_obj) {
-                            Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", settings_obj->GetData(), size);
-                        }
-                    }
-                    else {
-                        Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", new_settings_string, size);
-                        m_settings_json = new_settings_string;
-                    }
-                }
+                return;
             }
         }
-        SetSettingsLabel();
+
+        DoUpdateSettings();
     }
+    
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 {
-    DoSaveSettings();
+    DoSaveSettings(true);
 }
 
 void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
