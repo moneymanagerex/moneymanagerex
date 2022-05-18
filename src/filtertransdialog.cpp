@@ -1430,7 +1430,7 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     // Hide Columns
     if (showColumnsCheckBox_->IsChecked() && !m_selected_columns_id.empty())
     {
-        json_writer.Key((i18n ? _("Column") : "COLUMN").utf8_str());
+        json_writer.Key((i18n ? _("Hide Columns") : "COLUMN").utf8_str());
         json_writer.StartArray();
         for (const auto& acc : m_selected_columns_id)
             json_writer.Int(acc);
