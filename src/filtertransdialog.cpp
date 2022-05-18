@@ -1447,15 +1447,15 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
 
     //Dates
     Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
-    m_begin_date = j_date1.IsString() ? wxString::FromUTF8(j_date1.GetString()) : "";
+    const wxString& begin_date = j_date1.IsString() ? wxString::FromUTF8(j_date1.GetString()) : "";
     Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
-    m_end_date = j_date2.IsString() ? wxString::FromUTF8(j_date2.GetString()) : "";
+    const wxString& end_date = j_date2.IsString() ? wxString::FromUTF8(j_date2.GetString()) : "";
     wxDateTime bd, ed;
-    bd = mmParseISODate(m_begin_date);
-    ed = mmParseISODate(m_end_date);
+    bd = mmParseISODate(begin_date);
+    ed = mmParseISODate(end_date);
     if (bd.IsValid() && ed.IsValid())
     {
-        dateRangeCheckBox_->SetValue(!m_begin_date.empty() || !m_end_date.empty());
+        dateRangeCheckBox_->SetValue(!begin_date.empty() || !end_date.empty());
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         fromDateCtrl_->SetValue(bd);
@@ -1466,14 +1466,14 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
     const wxString& s_range = j_period.IsString() ? wxString::FromUTF8(j_period.GetString()) : "";
     rangeChoice_->SetStringSelection(s_range);
-    rangeCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
+    rangeCheckBox_->SetValue(!s_range.empty());
     rangeChoice_->Enable(rangeCheckBox_->IsChecked());
 
     //From Date
     Value& j_from = GetValueByPointerWithDefault(j_doc, "/FROM", "");
     const wxString& s_startPoint = j_from.IsString() ? wxString::FromUTF8(j_from.GetString()) : "";
     startDateDropDown_->SetStringSelection(s_startPoint);
-    startDateCheckBox_->SetValue(startDateDropDown_->GetSelection() != wxNOT_FOUND);
+    startDateCheckBox_->SetValue(!s_startPoint.empty());
     startDateDropDown_->Enable(startDateCheckBox_->IsChecked());
 
     //Payee
