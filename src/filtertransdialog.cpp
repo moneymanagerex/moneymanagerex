@@ -1853,7 +1853,7 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
         }
         else if (label == user_label)
         {
-            DoUpdateSettings();
+            return DoUpdateSettings();
         }
         else
         {
