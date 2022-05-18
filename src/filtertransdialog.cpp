@@ -200,7 +200,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
 void mmFilterTransactionsDialog::DoInitSettingNameChoice()
 {
     m_setting_name->Clear();
-    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER", true);
     for (const auto& data : filter_settings)
     {
         Document j_doc;
@@ -981,6 +981,26 @@ double mmFilterTransactionsDialog::getAmountMax() const
     return amount;
 }
 
+int mmFilterTransactionsDialog::FindLabelInJSON(const wxString settingName)
+{
+    // Important: Get the unsorted array
+    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+    int sel = 0;
+    for (const auto& data : filter_settings)
+    {
+        Document j_doc;
+        if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+            j_doc.Parse("{}");
+        }
+        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+        if (s_label == settingName)
+            break;
+        ++sel;
+    }
+    return sel;
+}
+
 void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 {
     int sel = m_setting_name->GetSelection();
@@ -995,7 +1015,8 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel);
+        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER"
+            , FindLabelInJSON(m_setting_name->GetStringSelection()));
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
@@ -1855,7 +1876,7 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
     if (sel != wxNOT_FOUND)
     {
         m_settings_json = GetJsonSetings();
-        Model_Infotable::instance().Update("TRANSACTIONS_FILTER", sel, m_settings_json);
+        Model_Infotable::instance().Update("TRANSACTIONS_FILTER", FindLabelInJSON(m_setting_name->GetStringSelection()), m_settings_json);
     }
 }
 
