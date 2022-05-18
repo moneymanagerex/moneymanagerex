@@ -1204,31 +1204,53 @@ const wxString mmFilterTransactionsDialog::getDescriptionToolTip() const
 
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 {
-    hb.addHeader(3, _("Filtering Details: "));
+    hb.addHeader(4, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
-    wxString filterDetails = GetJsonSetings(true);
-    filterDetails.RemoveLast(1);
-    filterDetails = filterDetails.Mid(1);
+    wxString data = GetJsonSetings(true);
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+        j_doc.Parse("{}");
+    }
 
     wxString buffer;
-    wxStringTokenizer token(filterDetails, "\n");
-    while (token.HasMoreTokens())
+
+    for (Value::ConstMemberIterator itr = j_doc.MemberBegin();
+        itr != j_doc.MemberEnd(); ++itr)
     {
-        wxString temp = token.GetNextToken();
-        if (temp.empty()) continue;
-        if (temp.EndsWith("[")) {
-            temp.Replace("[", "");
-            while (token.HasMoreTokens() && !temp.EndsWith("],")) {
-                temp += token.GetNextToken();
-            }
-            temp.Replace("]", "");
-            if (temp.EndsWith(","))
-                temp.RemoveLast(1);
+        switch (itr->value.GetType())
+        {
+        case kStringType:
+            buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
+                wxString::FromUTF8(itr->name.GetString()), wxString::FromUTF8(itr->value.GetString()));
+            break;
+        case kNumberType:
+        {
+            wxString ds;
+            double d = itr->value.GetDouble();
+            if (static_cast<int>(d) == d)
+                ds = wxString::Format("%i", static_cast<int>(d));
+            else
+                ds = wxString::Format("%.2f", d);
+            buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
+                wxString::FromUTF8(itr->name.GetString()), ds);
+            break;
         }
-        temp.Replace(R"(")", "<b>", false);
-        temp.Replace(R"(")", "</b>", false);
-        temp.Replace(R"(")", "");
-        buffer += "<kbd><samp>" + temp + "</samp></kbd>";
+        case kArrayType:
+        {
+            wxString e;
+            for (const auto& a : itr->value.GetArray()) {
+                if (a.GetType() == kNumberType)
+                    e += (e.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
+                else if (a.GetType() == kStringType)
+                    e += (e.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
+            }
+            buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
+                wxString::FromUTF8(itr->name.GetString()), e);
+            break;
+        }
+        default:
+            break;
+        }
     }
 
     hb.addText(buffer);
