@@ -412,17 +412,18 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     return false;
 }
 
-const wxDateTime mmParseISODate(const wxString& str)
+bool mmParseISODate(const wxString& in, wxDateTime& out)
 {
-    wxDateTime dt;
-    if (str.IsEmpty() || !dt.ParseDate(str))
-        dt = wxDateTime::Today();
-    int year = dt.GetYear();
+    if (in.IsEmpty() || !out.ParseDate(in)) {
+        out = wxDateTime::Today();
+        return false;
+    }
+    int year = out.GetYear();
     if (year < 50)
-        dt.Add(wxDateSpan::Years(2000));
+        out.Add(wxDateSpan::Years(2000));
     else if (year < 100)
-        dt.Add(wxDateSpan::Years(1900));
-    return dt;
+        out.Add(wxDateSpan::Years(1900));
+    return true;
 }
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)

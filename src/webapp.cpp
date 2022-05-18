@@ -366,7 +366,9 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
             }
 
             if (trx.HasMember("Date") && trx["Date"].IsString()) {
-                WebTran.Date = mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()));
+                wxDateTime d;
+                mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()), d);
+                WebTran.Date = d;
             }
 
             if (trx.HasMember("Amount") && trx["Amount"].IsString()) {
