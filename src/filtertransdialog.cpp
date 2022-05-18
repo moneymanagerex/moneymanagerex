@@ -1446,21 +1446,16 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
 
     //Dates
-    Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
-    const wxString& begin_date = j_date1.IsString() ? wxString::FromUTF8(j_date1.GetString()) : "";
-    Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
-    const wxString& end_date = j_date2.IsString() ? wxString::FromUTF8(j_date2.GetString()) : "";
+    const wxString& begin_date = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE1", "").GetString());
+    const wxString& end_date = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE2", "").GetString());
     wxDateTime bd, ed;
-    bd = mmParseISODate(begin_date);
-    ed = mmParseISODate(end_date);
-    if (bd.IsValid() && ed.IsValid())
-    {
-        dateRangeCheckBox_->SetValue(!begin_date.empty() || !end_date.empty());
-        fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-        toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-        fromDateCtrl_->SetValue(bd);
-        toDateControl_->SetValue(ed);
-    }
+    bool is_bd_valid = mmParseISODate(begin_date, bd);
+    bool is_ed_valid = mmParseISODate(end_date, ed);
+    dateRangeCheckBox_->SetValue(is_bd_valid && is_ed_valid);
+    fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
+    toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+    fromDateCtrl_->SetValue(bd);
+    toDateControl_->SetValue(ed);
 
     //Date Period Range
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");

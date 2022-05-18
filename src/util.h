@@ -180,7 +180,7 @@ static const wxString MONTHS[12] =
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 const wxString mmGetMonthName(wxDateTime::Month month);
 const std::map<wxString, wxString> &date_formats_regex();
-const wxDateTime mmParseISODate(const wxString& str);
+bool mmParseISODate(const wxString& in_str, wxDateTime& out_date);
 const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dateFormat = Option::instance().getDateFormat());
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
