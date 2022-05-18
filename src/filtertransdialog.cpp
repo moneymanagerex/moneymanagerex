@@ -1207,12 +1207,22 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = GetJsonSetings(true);
-    filterDetails.Replace("\n", " ");
-    filterDetails.Replace(R"("")", _("Empty value"));
-    filterDetails.Replace("\"", "");
-    filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
-    hb.addText(filterDetails);
+    filterDetails = filterDetails.Mid(1);
+
+    wxString buffer;
+    wxStringTokenizer token(filterDetails, ",\n");
+    while (token.HasMoreTokens())
+    {
+        wxString temp = token.GetNextToken();
+        if (temp.empty()) continue;
+        temp.Replace(R"(")", "<b>", false);
+        temp.Replace(R"(")", "</b>", false);
+        temp.Replace(R"(")", "");
+        buffer += "<kbd><samp>" + temp + "</samp></kbd>";
+    }
+
+    hb.addText(buffer);
 }
 
 const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
@@ -1223,12 +1233,11 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
 
     //Label
     wxString label = m_setting_name->GetStringSelection();
-    if (m_setting_name->GetSelection() < 0) {
+    if (m_setting_name->GetSelection() == wxNOT_FOUND) {
         label = "";
     }
 
-    const wxString default_label = wxString::Format(_("%i: Empty"), m_setting_name->GetSelection() + 1);
-    if (!label.empty() && label != default_label)
+    if (!label.empty())
     {
         json_writer.Key((i18n ? _("Label") : "LABEL").utf8_str());
         json_writer.String(label.utf8_str());
