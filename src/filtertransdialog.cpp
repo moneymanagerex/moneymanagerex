@@ -122,7 +122,21 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
 {
     m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
     Create(parent);
-    dataToControls();
+    dataToControls(m_settings_json);
+    is_values_correct();
+}
+
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const wxString& json)
+    : m_categ_id(-1)
+    , m_subcateg_id(-1)
+    , payeeID_(-1)
+    , is_similar_category_status(false)
+    , isMultiAccount_(true)
+    , isReportMode_(true)
+{
+    m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
+    Create(parent);
+    dataToControls(json);
     is_values_correct();
 }
 
@@ -169,7 +183,7 @@ void mmFilterTransactionsDialog::BuildPayeeList()
     cbPayee_->SetEvtHandlerEnabled(true);
 }
 
-void mmFilterTransactionsDialog::dataToControls()
+void mmFilterTransactionsDialog::dataToControls(const wxString& json)
 {
     m_accounts_name.clear();
     m_selected_accounts_id.clear();
@@ -181,7 +195,7 @@ void mmFilterTransactionsDialog::dataToControls()
     m_accounts_name.Sort();
 
     BuildPayeeList();
-    SetJsonSettings(m_settings_json);
+    SetJsonSettings(json);
 }
 void mmFilterTransactionsDialog::DoInitSettingNameChoice()
 {
@@ -989,7 +1003,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
         m_setting_name->SetSelection(sel < 0 ? 0 : sel);
         wxCommandEvent evt(wxID_APPLY);
         OnSettingsSelected(evt);
-        dataToControls();
+        dataToControls(m_settings_json);
     }
 }
 
@@ -1813,7 +1827,7 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
         if (settings_obj)
             m_settings_json = settings_obj->GetData();
 
-        dataToControls();
+        dataToControls(m_settings_json);
     }
 }
 

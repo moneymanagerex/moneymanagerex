@@ -42,6 +42,7 @@ public:
     mmFilterTransactionsDialog();
     ~mmFilterTransactionsDialog();
     mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false);
+    mmFilterTransactionsDialog(wxWindow* parent, const wxString& json);
 
     virtual int ShowModal();
 
@@ -62,7 +63,6 @@ public:
     bool is_date_range_cb_active() const;
     bool getStartDateCheckBox() const;
     bool getHideColumnsCheckBox() const;
-    void SetJsonSettings(const wxString& data);
 
     enum groupBy {
         GROUPBY_ACCOUNT,
@@ -82,6 +82,8 @@ public:
     bool isFutureIgnored() const;
 
 private:
+    void SetJsonSettings(const wxString& data);
+    void dataToControls(const wxString& json);
     void BuildPayeeList();
 
     bool is_amountrange_min_cb_active() const;
@@ -127,7 +129,6 @@ private:
 private:
     /// Creates the controls and sizers
     void CreateControls();
-    void dataToControls();
     void DoInitSettingNameChoice();
     void DoUpdateSettings();
 

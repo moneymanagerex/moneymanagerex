@@ -1056,8 +1056,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::FILTER_REPORT:
     {
         activeReport_ = true;
-        wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
-        dlg->SetJsonSettings(iData->getString());
+        wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, iData->getString()));
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         return createReportsPage(rs, true);
     }
