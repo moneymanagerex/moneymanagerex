@@ -1211,11 +1211,20 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     filterDetails = filterDetails.Mid(1);
 
     wxString buffer;
-    wxStringTokenizer token(filterDetails, ",\n");
+    wxStringTokenizer token(filterDetails, "\n");
     while (token.HasMoreTokens())
     {
         wxString temp = token.GetNextToken();
         if (temp.empty()) continue;
+        if (temp.EndsWith("[")) {
+            temp.Replace("[", "");
+            while (token.HasMoreTokens() && !temp.EndsWith("],")) {
+                temp += token.GetNextToken();
+            }
+            temp.Replace("]", "");
+            if (temp.EndsWith(","))
+                temp.RemoveLast(1);
+        }
         temp.Replace(R"(")", "<b>", false);
         temp.Replace(R"(")", "</b>", false);
         temp.Replace(R"(")", "");
