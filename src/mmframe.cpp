@@ -2436,9 +2436,13 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
 {
     if (m_db)
     {
+        const auto a = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME).to_json();
         mmBudgetYearDialog(this).ShowModal();
-        DoRecreateNavTreeControl();
-        createHomePage();
+        const auto b = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME).to_json();
+        if (a != b) {
+            DoRecreateNavTreeControl();
+            createHomePage();
+        }
         setNavTreeSection(_("Budget Setup"));
     }
 }
@@ -2450,7 +2454,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
     mmGeneralReportManager dlg(this, m_db.get());
     dlg.ShowModal();
     DoRecreateNavTreeControl();
-    createHomePage(); //FIXME: refreshPanelData() crash if GRM opened then closed;
+    createHomePage();
 }
 
 void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
