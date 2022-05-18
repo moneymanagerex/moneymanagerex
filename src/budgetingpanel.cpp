@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 Stefano Giorgio
+ Copyright (C) 2013 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -279,9 +280,9 @@ void mmBudgetingPanel::CreateControls()
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i)
+        int col_width = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i)
             , listCtrlBudget_->m_columns[i].WIDTH);
-        listCtrlBudget_->SetColumnWidth(i, col);
+        listCtrlBudget_->SetColumnWidth(i, col_width);
     }
     itemBoxSizer2->Add(listCtrlBudget_.get(), 1, wxGROW | wxALL, 1);
 }
