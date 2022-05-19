@@ -121,7 +121,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
     m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
     Create(parent);
     dataToControls(json);
-    is_values_correct();
+    is_values_correct(true);
 }
 
 bool mmFilterTransactionsDialog::Create(wxWindow* parent
@@ -618,16 +618,13 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     event.Skip();
 }
 
-bool mmFilterTransactionsDialog::is_values_correct()
+bool mmFilterTransactionsDialog::is_values_correct(bool silent)
 {
-    if (accountCheckBox_->IsChecked())
+    if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty())
     {
-        if (m_selected_accounts_id.empty())
-        {
-            mmErrorDialogs::ToolTip4Object(bSelectedAccounts_
-                , _("Invalid value"), _("Account"));
-            return false;
-        }
+        if (!silent)
+            mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _("Invalid value"), _("Account"));
+        return false;
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -640,8 +637,8 @@ bool mmFilterTransactionsDialog::is_values_correct()
         }
         else
         {
-            mmErrorDialogs::ToolTip4Object(cbPayee_
-                , _("Invalid value"), _("Payee"));
+            if (!silent)
+                mmErrorDialogs::ToolTip4Object(cbPayee_, _("Invalid value"), _("Payee"));
             return false;
         }
     }
@@ -655,8 +652,8 @@ bool mmFilterTransactionsDialog::is_values_correct()
         if (!amountMinEdit_->Calculate(currency_precision))
         {
             amountMinEdit_->GetDouble(min_amount);
-            mmErrorDialogs::ToolTip4Object(amountMinEdit_
-                , _("Invalid value"), _("Amount"));
+            if (!silent)
+                mmErrorDialogs::ToolTip4Object(amountMinEdit_, _("Invalid value"), _("Amount"));
             return false;
         }
 
@@ -666,8 +663,8 @@ bool mmFilterTransactionsDialog::is_values_correct()
             amountMaxEdit_->GetDouble(max_amount);
             if (max_amount < min_amount)
             {
-                mmErrorDialogs::ToolTip4Object(amountMaxEdit_
-                    , _("Invalid value"), _("Amount"));
+                if (!silent)
+                    mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _("Invalid value"), _("Amount"));
                 return false;
             }
         }
@@ -680,10 +677,9 @@ bool mmFilterTransactionsDialog::is_values_correct()
         if (m_begin_date > m_end_date)
         {
             const auto today = wxDate::Today().FormatISODate();
-            int id = m_begin_date >= today
-                ? fromDateCtrl_->GetId() : toDateControl_->GetId();
-            mmErrorDialogs::ToolTip4Object(FindWindow(id)
-                , _("Invalid value"), _("Date"));
+            int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
+            if (!silent)
+                mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Invalid value"), _("Date"));
             return false;
         }
     }
@@ -704,8 +700,8 @@ bool mmFilterTransactionsDialog::is_values_correct()
         }
         else
         {
-            mmErrorDialogs::ToolTip4Object(rangeChoice_
-                , _("Invalid value"), _("Date"));
+            if (!silent)
+                mmErrorDialogs::ToolTip4Object(rangeChoice_, _("Invalid value"), _("Date"));
             return false;
         }
     }
@@ -746,25 +742,25 @@ bool mmFilterTransactionsDialog::is_values_correct()
         }
         else
         {
-            mmErrorDialogs::ToolTip4Object(startDateDropDown_
-                , _("Invalid value"), _("Date"));
+            if (!silent)
+                mmErrorDialogs::ToolTip4Object(startDateDropDown_, _("Invalid value"), _("Date"));
             return false;
         }
     }
 
-    if (statusCheckBox_->IsChecked() && choiceStatus_->GetSelection() < 0)
+    if (statusCheckBox_->IsChecked() && choiceStatus_->GetSelection() == wxNOT_FOUND)
     {
         int id = choiceStatus_->GetId();
-        mmErrorDialogs::ToolTip4Object(FindWindow(id)
-            , _("Invalid value"), _("Status"));
+        if (!silent)
+            mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Invalid value"), _("Status"));
         return false;
     }
 
-    if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() < 0)
+    if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND)
     {
         int id = bGroupBy_->GetId();
-        mmErrorDialogs::ToolTip4Object(FindWindow(id)
-            , _("Invalid value"), _("Group By"));
+        if (!silent)
+            mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Invalid value"), _("Group By"));
         return false;
     }
 
@@ -1201,39 +1197,38 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     for (Value::ConstMemberIterator itr = j_doc.MemberBegin();
         itr != j_doc.MemberEnd(); ++itr)
     {
+        const auto& name = wxGetTranslation(wxString::FromUTF8(itr->name.GetString()));
         switch (itr->value.GetType())
         {
         case kTrueType:
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
-                wxString::FromUTF8(itr->name.GetString()), L"\u2713");
+                name, L"\u2713");
             break;
         case kStringType:
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
-                wxString::FromUTF8(itr->name.GetString()), wxString::FromUTF8(itr->value.GetString()));
+                name, wxString::FromUTF8(itr->value.GetString()));
             break;
         case kNumberType:
         {
-            wxString ds;
+            wxString temp;
             double d = itr->value.GetDouble();
             if (static_cast<int>(d) == d)
-                ds = wxString::Format("%i", static_cast<int>(d));
+                temp = wxString::Format("%i", static_cast<int>(d));
             else
-                ds = wxString::Format("%.2f", d);
-            buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
-                wxString::FromUTF8(itr->name.GetString()), ds);
+                temp = wxString::Format("%.2f", d);
+            temp += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n", name, temp);
             break;
         }
         case kArrayType:
         {
-            wxString e;
+            wxString temp;
             for (const auto& a : itr->value.GetArray()) {
                 if (a.GetType() == kNumberType)
-                    e += (e.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
+                    temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
                 else if (a.GetType() == kStringType)
-                    e += (e.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
+                    temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
             }
-            buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
-                wxString::FromUTF8(itr->name.GetString()), e);
+            temp += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n", name, temp);
             break;
         }
         default:
@@ -1502,15 +1497,15 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     //Date Period Range
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
     const wxString& s_range = j_period.IsString() ? wxString::FromUTF8(j_period.GetString()) : "";
-    rangeChoice_->SetStringSelection(s_range);
-    rangeCheckBox_->SetValue(!s_range.empty());
+    rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
+    rangeCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
     rangeChoice_->Enable(rangeCheckBox_->IsChecked());
 
     //From Date
     Value& j_from = GetValueByPointerWithDefault(j_doc, "/FROM", "");
     const wxString& s_startPoint = j_from.IsString() ? wxString::FromUTF8(j_from.GetString()) : "";
-    startDateDropDown_->SetStringSelection(s_startPoint);
-    startDateCheckBox_->SetValue(!s_startPoint.empty());
+    startDateDropDown_->SetStringSelection(wxGetTranslation(s_startPoint));
+    startDateCheckBox_->SetValue(startDateDropDown_->GetSelection() != wxNOT_FOUND);
     startDateDropDown_->Enable(startDateCheckBox_->IsChecked());
 
     //Payee
@@ -1523,8 +1518,6 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
-    categoryCheckBox_->SetValue(!s_category.empty());
-    btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
     m_subcateg_id = -1;
     m_categ_id = -1;
@@ -1542,6 +1535,8 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
         {
             m_categ_id = entry.second.first;
             m_subcateg_id = entry.second.second;
+            categoryCheckBox_->SetValue(m_categ_id != -1);
+            btnCategory_->Enable(categoryCheckBox_->IsChecked());
             break;
         }
     }
@@ -1559,9 +1554,9 @@ void mmFilterTransactionsDialog::SetJsonSettings(const wxString &data)
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
     const wxString& s_status = j_status.IsString() ? wxString::FromUTF8(j_status.GetString()) : "";
-    statusCheckBox_->SetValue(!s_status.empty());
-    choiceStatus_->Enable(statusCheckBox_->IsChecked());
     choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
+    statusCheckBox_->SetValue(choiceStatus_->GetSelection() != wxNOT_FOUND);
+    choiceStatus_->Enable(statusCheckBox_->IsChecked());
 
     //Type
     Value& j_type = GetValueByPointerWithDefault(j_doc, "/TYPE", "");

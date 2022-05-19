@@ -153,7 +153,7 @@ private:
     void OnCategs(wxCommandEvent& event);
     const wxString GetJsonSetings(bool i18n = false) const;
 
-    bool is_values_correct();
+    bool is_values_correct(bool silent = false);
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
