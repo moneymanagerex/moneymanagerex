@@ -981,7 +981,7 @@ double mmFilterTransactionsDialog::getAmountMax() const
     return amount;
 }
 
-int mmFilterTransactionsDialog::FindLabelInJSON(const wxString settingName)
+int mmFilterTransactionsDialog::FindLabelInJSON(const wxString& settingName) const
 {
     // Important: Get the unsorted array
     wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
@@ -995,10 +995,10 @@ int mmFilterTransactionsDialog::FindLabelInJSON(const wxString settingName)
         Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
         const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
         if (s_label == settingName)
-            break;
+            return sel;
         ++sel;
     }
-    return sel;
+    return wxNOT_FOUND;
 }
 
 void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
@@ -1015,8 +1015,9 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER"
-            , FindLabelInJSON(m_setting_name->GetStringSelection()));
+        sel = FindLabelInJSON(m_setting_name->GetStringSelection());
+        if (sel != wxNOT_FOUND)
+            Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel);
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
@@ -1897,8 +1898,11 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
     int sel = m_setting_name->GetSelection();
     if (sel != wxNOT_FOUND)
     {
-        m_settings_json = GetJsonSetings();
-        Model_Infotable::instance().Update("TRANSACTIONS_FILTER", FindLabelInJSON(m_setting_name->GetStringSelection()), m_settings_json);
+        sel = FindLabelInJSON(m_setting_name->GetStringSelection());
+        if (sel != wxNOT_FOUND) {
+            m_settings_json = GetJsonSetings();
+            Model_Infotable::instance().Update("TRANSACTIONS_FILTER", sel, m_settings_json);
+        }
     }
 }
 

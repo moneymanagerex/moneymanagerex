@@ -131,7 +131,7 @@ private:
     void CreateControls();
     void DoInitSettingNameChoice();
     void DoUpdateSettings();
-    int FindLabelInJSON(const wxString settingName);
+    int FindLabelInJSON(const wxString& settingName) const;
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
