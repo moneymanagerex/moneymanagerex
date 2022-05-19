@@ -1186,16 +1186,16 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 void mmGUIFrame::AppendImportMenu(wxMenu& menu)
 {
     wxMenu* importFrom(new wxMenu);
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files"));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files"), _("Import from XML (Excel format)"));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, __(wxTRANSLATE("&CSV Files")));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, __(wxTRANSLATE("&XML Files")), _("Import from XML (Excel format)"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, __(wxTRANSLATE("&QIF Files")));
     menu.AppendSubMenu(importFrom, _("&Import"));
     wxMenu* exportTo(new wxMenu);
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, __(wxTRANSLATE("&CSV Files")));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, __(wxTRANSLATE("&MMEX CSV Files")));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, __(wxTRANSLATE("&XML Files")));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, __(wxTRANSLATE("&QIF Files")));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, __(wxTRANSLATE("&JSON Files")));
     menu.AppendSubMenu(exportTo, _("&Export"));
 }
 
@@ -1227,11 +1227,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
-            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
+            menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Account")));
+            menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Account")));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
 
             PopupMenu(&menu, pt);
@@ -1245,13 +1245,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
-            menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
+            menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Account")));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, __(wxTRANSLATE("&Reallocate Account")));
             menu.AppendSeparator();
-            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
+            menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Account")));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::SHARES]);
             menu.AppendSeparator();
@@ -1264,11 +1264,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::MENU_FAVORITES:
     case mmTreeItemData::ALL_TRANSACTIONS:
     {
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, __(wxTRANSLATE("New &Account")));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, __(wxTRANSLATE("&Edit Account")));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
         menu.AppendSeparator();
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, __(wxTRANSLATE("&Delete Account")));
         menu.AppendSeparator();
 
         AppendImportMenu(menu);
