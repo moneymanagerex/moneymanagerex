@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-19 15:21+0300\n"
-"PO-Revision-Date: 2022-05-19 12:27\n"
+"POT-Creation-Date: 2022-05-19 19:51+0300\n"
+"PO-Revision-Date: 2022-05-19 17:05\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -336,15 +336,15 @@ msgstr "Çı&kış"
 msgid "Open the previously opened database : %s"
 msgstr "Son açılan veritabanını aç: %s"
 
-#: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
+#: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:473
 msgid "New Asset"
 msgstr "Yeni Varlık"
 
-#: assetdialog.cpp:67 assetspanel.cpp:481
+#: assetdialog.cpp:67 assetspanel.cpp:487
 msgid "Edit Asset"
 msgstr "Varlık Düzenle"
 
-#: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
+#: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:477
 msgid "Add Asset Transaction"
 msgstr "Varlık İşlemi Ekle"
 
@@ -498,124 +498,124 @@ msgstr "Varlık Hesabını &Aç"
 msgid "&Edit Asset"
 msgstr "Varlık &Düzenle"
 
-#: assetspanel.cpp:106
+#: assetspanel.cpp:107
 msgid "&Delete Asset"
 msgstr "Varlık &Sil"
 
-#: assetspanel.cpp:108 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
-#: mmframe.cpp:1234 mmframe.cpp:1254 payeedialog.cpp:388 stocks_list.cpp:145
+#: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
+#: mmframe.cpp:1234 mmframe.cpp:1254 payeedialog.cpp:388 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr "İlişikleri Dü&zenleyin"
 
-#: assetspanel.cpp:200
+#: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
 msgstr "Varlığı silmek istediğinizden emin misiniz ?"
 
-#: assetspanel.cpp:201
+#: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
 msgstr "Varlık Silme Onayı"
 
-#: assetspanel.cpp:385
+#: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX size araba, arsa, arazi, ev ve diğerleri gibi duran varlıkları izleme olanağı sağlar. Her varlığın değeri her yıl belli bir oranda artabilir, azalabilir veya değişmeyebilir. Toplam varlık değeri toplam finansal değere eklenir."
 
-#: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:724
+#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:724
 #: general_report_manager.cpp:1001 mmframe.cpp:479 mmframe.cpp:751
 #: mmframe.cpp:1504 mmframe.cpp:2981 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "Varlıklar"
 
-#: assetspanel.cpp:424 assetspanel.cpp:700 assetspanel.cpp:717
+#: assetspanel.cpp:430 assetspanel.cpp:706 assetspanel.cpp:723
 #: filtertransdialog.cpp:238 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
 #: mmframe.cpp:1278
 msgid "All"
 msgstr "Tümü"
 
-#: assetspanel.cpp:466 billsdepositspanel.cpp:288 mmcheckingpanel.cpp:332
+#: assetspanel.cpp:472 billsdepositspanel.cpp:288 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:130
 msgid "&New "
 msgstr "&Yeni"
 
-#: assetspanel.cpp:470 stockspanel.cpp:134
+#: assetspanel.cpp:476 stockspanel.cpp:134
 msgid "&Add Trans "
 msgstr "İş&lem Ekle"
 
-#: assetspanel.cpp:475 stockspanel.cpp:139
+#: assetspanel.cpp:481 stockspanel.cpp:139
 msgid "&View Trans "
 msgstr "İşle&m Gör"
 
-#: assetspanel.cpp:476
+#: assetspanel.cpp:482
 msgid "View Asset Transactions"
 msgstr "Varlık İşlemlerini Göster"
 
-#: assetspanel.cpp:480 attachmentdialog.cpp:318 billsdepositspanel.cpp:292
+#: assetspanel.cpp:486 attachmentdialog.cpp:318 billsdepositspanel.cpp:292
 #: categdialog.cpp:248 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:528
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:382 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:144
 msgid "&Edit "
 msgstr "Düz&enle"
 
-#: assetspanel.cpp:485 billsdepositspanel.cpp:302 budgetyeardialog.cpp:103
+#: assetspanel.cpp:491 billsdepositspanel.cpp:302 budgetyeardialog.cpp:103
 #: categdialog.cpp:252 maincurrencydialog.cpp:293 mmchecking_list.cpp:414
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:149
 msgid "&Delete "
 msgstr "&Sil"
 
-#: assetspanel.cpp:486
+#: assetspanel.cpp:492
 msgid "Delete Asset"
 msgstr "Varlık Sil"
 
-#: assetspanel.cpp:493 billsdepositspanel.cpp:320 mmcheckingpanel.cpp:354
+#: assetspanel.cpp:499 billsdepositspanel.cpp:320 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:162
 msgid "Open attachments"
 msgstr "İlişikleri aç"
 
-#: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
+#: assetspanel.cpp:506 assetspanel.cpp:507 mmcheckingpanel.cpp:362
 msgid "Search"
 msgstr "Arama"
 
-#: assetspanel.cpp:504
+#: assetspanel.cpp:510
 msgid "Enter any string to find related assets"
 msgstr "İlgili varlığı bulmak için herhangi bir dize giriniz"
 
-#: assetspanel.cpp:505 filtertransdialog.cpp:415 mmcheckingpanel.cpp:366
+#: assetspanel.cpp:511 filtertransdialog.cpp:415 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr ""
 
-#: assetspanel.cpp:506 filtertransdialog.cpp:416 mmcheckingpanel.cpp:367
+#: assetspanel.cpp:512 filtertransdialog.cpp:416 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr ""
 
-#: assetspanel.cpp:507 filtertransdialog.cpp:417 mmcheckingpanel.cpp:368
+#: assetspanel.cpp:513 filtertransdialog.cpp:417 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr ""
 
-#: assetspanel.cpp:508 filtertransdialog.cpp:418 mmcheckingpanel.cpp:369
+#: assetspanel.cpp:514 filtertransdialog.cpp:418 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:579 stockspanel.cpp:276 stockspanel.cpp:463
+#: assetspanel.cpp:585 stockspanel.cpp:276 stockspanel.cpp:463
 #, c-format
 msgid "Total: %s"
 msgstr "Toplam: %s"
 
-#: assetspanel.cpp:661
+#: assetspanel.cpp:667
 #, c-format
 msgid "Change in Value: %s %s"
 msgstr "Değerdeki Değişim: %s %s"
 
-#: assetspanel.cpp:777
+#: assetspanel.cpp:783
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr "Bu varlığın kendi hesabı yok\n\n"
 "Bu varlık için birden fazla işlem yapılması önerilmez."
 
-#: assetspanel.cpp:779
+#: assetspanel.cpp:785
 msgid "Asset Management"
 msgstr "Varlık Yönetimi"
 
-#: assetspanel.cpp:798
+#: assetspanel.cpp:804
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Hesap \t Tarih\t   Değer\n\n"
 
@@ -1283,15 +1283,15 @@ msgstr ""
 msgid "Skip next Occurrence"
 msgstr "Sonraki gerçekleşmeyi atlayın"
 
-#: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
-msgid "&Edit Recurring Transaction"
-msgstr ""
-
-#: billsdepositspanel.cpp:432
+#: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction"
 msgstr ""
 
-#: billsdepositspanel.cpp:434
+#: billsdepositspanel.cpp:432
+msgid "&Edit Recurring Transaction"
+msgstr ""
+
+#: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction"
 msgstr ""
 
@@ -3793,8 +3793,8 @@ msgid "&New Transfer"
 msgstr "&Yeni Aktarım"
 
 #: mmchecking_list.cpp:366
-msgid "&Edit Transaction"
-msgid_plural "&Edit Transactions"
+msgid "&Edit Transaction..."
+msgid_plural "&Edit Transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -3818,8 +3818,8 @@ msgid "D&uplicate Transaction"
 msgstr "İşlemi Ko&pyala"
 
 #: mmchecking_list.cpp:384
-msgid "&Move Transaction"
-msgid_plural "&Move Transactions"
+msgid "&Move Transaction..."
+msgid_plural "&Move Transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -3836,8 +3836,8 @@ msgid "Create Recurring T&ransaction"
 msgstr ""
 
 #: mmchecking_list.cpp:408
-msgid "&Delete selected transaction"
-msgid_plural "&Delete selected transactions"
+msgid "&Delete selected transaction..."
+msgid_plural "&Delete selected transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -3923,7 +3923,7 @@ msgid_plural "Moving %i transactions to..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1215 stocks_list.cpp:290
+#: mmchecking_list.cpp:1215 stocks_list.cpp:291
 msgid "Select the destination Account "
 msgstr "Alıcı Hesabı seçin"
 
@@ -6698,23 +6698,23 @@ msgstr "Menkul Değer İşlemlerini &Göster"
 msgid "&Edit Stock Investment"
 msgstr "&Menkul Kıymet Yatırımı Düzenle"
 
-#: stocks_list.cpp:143
+#: stocks_list.cpp:144
 msgid "&Delete Stock Investment"
 msgstr "Menkul Kıymet Yatırımı &Sil"
 
-#: stocks_list.cpp:146
+#: stocks_list.cpp:147
 msgid "Stock &Web Page"
 msgstr "Hisse (Pay) &Web Sayfası"
 
-#: stocks_list.cpp:267
+#: stocks_list.cpp:268
 msgid "Do you really want to delete the stock investment?"
 msgstr "Menkul Kıymet Yatırımını silmek istediğinizden gerçekten emin misiniz ?"
 
-#: stocks_list.cpp:268
+#: stocks_list.cpp:269
 msgid "Confirm Stock Investment Deletion"
 msgstr "Menkul Kıymet Yatırımı Silme Onayı"
 
-#: stocks_list.cpp:289
+#: stocks_list.cpp:290
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr ""
