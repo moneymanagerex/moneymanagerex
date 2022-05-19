@@ -94,18 +94,19 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Asset"));
+    menu.Append(MENU_TREEPOPUP_NEW, __(wxTRANSLATE("&New Asset")));
     menu.AppendSeparator();
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Asset"));
+    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, __(wxTRANSLATE("D&uplicate Asset")));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _("&Add Asset Transaction"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, __(wxTRANSLATE("&Add Asset Transaction")));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Asset Transactions"));
-    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _("&Open Asset Account"));
+    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, __(wxTRANSLATE("&Open Asset Account")));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Asset"));
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Asset"));
+    menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Asset")));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
+    menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Asset")));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
     if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -115,6 +116,11 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_DELETE, false);
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
+
+    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::ASSET]));
+    menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
+    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
+
     PopupMenu(&menu, event.GetPosition());
 }
 
