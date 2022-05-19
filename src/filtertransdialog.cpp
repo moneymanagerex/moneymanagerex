@@ -1203,6 +1203,10 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     {
         switch (itr->value.GetType())
         {
+        case kTrueType:
+            buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
+                wxString::FromUTF8(itr->name.GetString()), L"\u2713");
+            break;
         case kStringType:
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
                 wxString::FromUTF8(itr->name.GetString()), wxString::FromUTF8(itr->value.GetString()));
