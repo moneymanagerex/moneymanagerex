@@ -75,22 +75,6 @@ static const wxString FROM_DATES[] =
     wxTRANSLATE("Since Today")
 };
 
-static const wxString DATE_PRESETTINGS[] =
-{
-    VIEW_TRANS_ALL_STR,
-    VIEW_TRANS_TODAY_STR,
-    VIEW_TRANS_CURRENT_MONTH_STR,
-    VIEW_TRANS_LAST_30_DAYS_STR,
-    VIEW_TRANS_LAST_90_DAYS_STR,
-    VIEW_TRANS_LAST_MONTH_STR,
-    VIEW_TRANS_LAST_3MONTHS_STR,
-    VIEW_TRANS_LAST_12MONTHS_STR,
-    VIEW_TRANS_CURRENT_YEAR_STR,
-    VIEW_TRANS_CRRNT_FIN_YEAR_STR,
-    VIEW_TRANS_LAST_YEAR_STR,
-    VIEW_TRANS_LAST_FIN_YEAR_STR
-};
-
 wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmFilterTransactionsDialog, wxDialog)
@@ -197,7 +181,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     BuildPayeeList();
     SetJsonSettings(json);
 }
-void mmFilterTransactionsDialog::DoInitSettingNameChoice()
+void mmFilterTransactionsDialog::DoInitSettingNameChoice() const
 {
     m_setting_name->Clear();
     wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER", true);
@@ -303,7 +287,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(rangeChoice_, g_flagsExpand);
 
     // Date Range
-    dateRangeCheckBox_ = new wxCheckBox(itemPanel, ID_DIALOG_DATEPRESET, _("Date Range")
+    dateRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Date Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(dateRangeCheckBox_, g_flagsH);
 
@@ -311,8 +295,6 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     toDateControl_ = new wxDatePickerCtrl(itemPanel, wxID_LAST, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-    dateRangeCheckBox_->Connect(ID_DIALOG_DATEPRESET, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), nullptr, this);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
     dateSizer->Add(fromDateCtrl_, g_flagsExpand);
@@ -1031,28 +1013,8 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 
 void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
 {
-    auto selected_nemu_item = event.GetId();
-    if (selected_nemu_item < wxID_HIGHEST)
-    {
-        setPresettings(DATE_PRESETTINGS[selected_nemu_item]);
-    }
-    else
-    {
-        selected_nemu_item -= wxID_HIGHEST;
-        colourButton_->SetBackgroundColour(getUDColour(selected_nemu_item));
-        m_colour_value = selected_nemu_item;
-    }
-}
-
-void mmFilterTransactionsDialog::datePresetMenu(wxMouseEvent& event)
-{
-    wxMenu menu;
-    int id = 0;
-    for (const auto& i : DATE_PRESETTINGS)
-    {
-        menu.Append(id++, wxGetTranslation(i));
-    }
-    PopupMenu(&menu, event.GetPosition());
+    m_colour_value = event.GetId() - wxID_HIGHEST;
+    colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
 }
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
@@ -1932,7 +1894,7 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
         }
         else if (label == user_label)
         {
-            return DoUpdateSettings();
+            DoUpdateSettings();
         }
         else
         {
@@ -2021,14 +1983,12 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
 
 void mmFilterTransactionsDialog::OnColourButton(wxCommandEvent& /*event*/)
 {
-    wxMenu* mainMenu = new wxMenu;
+    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
 
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Not colored"), 0));
-    mainMenu->Append(menuItem);
-
+    wxMenuItem* menuItem;
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
@@ -2045,8 +2005,7 @@ void mmFilterTransactionsDialog::OnColourButton(wxCommandEvent& /*event*/)
         mainMenu->Append(menuItem);
     }
 
-    PopupMenu(mainMenu);
-    delete mainMenu;
+    PopupMenu(mainMenu.get());
 }
 
 void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
