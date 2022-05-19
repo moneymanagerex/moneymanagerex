@@ -129,9 +129,9 @@ private:
 private:
     /// Creates the controls and sizers
     void CreateControls();
-    void DoInitSettingNameChoice();
+    void DoInitSettingNameChoice() const;
     void DoUpdateSettings();
-    int FindLabelInJSON(const wxString settingName);
+    int FindLabelInJSON(const wxString& settingName) const;
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
@@ -140,7 +140,6 @@ private:
     void OnButtonCancelClick(wxCommandEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
-    void datePresetMenu(wxMouseEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
@@ -218,8 +217,7 @@ private:
     enum
     {
         /* FIlter Dialog */
-        ID_DIALOG_DATEPRESET= wxID_HIGHEST + 897,
-        ID_DIALOG_COLOUR,
+        ID_DIALOG_COLOUR = wxID_HIGHEST + 897,
         ID_DIALOG_COLUMNS,
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
