@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 15:21+0300\n"
-"PO-Revision-Date: 2022-05-19 12:27\n"
+"PO-Revision-Date: 2022-05-19 12:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2496,15 +2496,15 @@ msgstr "Ocultar columnas del informe"
 
 #: filtertransdialog.cpp:993
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Se eliminará el elemento seleccionado"
 
 #: filtertransdialog.cpp:994
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "¿Desea continuar?"
 
 #: filtertransdialog.cpp:995
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Borrado de elementos de configuración"
 
 #: filtertransdialog.cpp:1179 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
@@ -2549,7 +2549,7 @@ msgstr "Por favor, introduzca"
 
 #: filtertransdialog.cpp:1901
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "El nombre introducido ya está en uso"
 
 #: filtertransdialog.cpp:1901 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -2568,7 +2568,7 @@ msgstr "¿Desea guardarlos antes de continuar?"
 
 #: filtertransdialog.cpp:1914
 msgid "Please confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: filtertransdialog.cpp:1930 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
