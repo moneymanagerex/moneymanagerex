@@ -94,28 +94,6 @@ table {
   th.Account, th.Category, th.Payee {
   width: 10%;
 }
-/* key / menu sequences */
-kbd.menu,
-kbd.key,
-kbd>samp,
-kbd>kbd {
-    -moz-border-radius: 3px;
-    -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
-    -webkit-border-radius: 3px;
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
-    color: #333;
-    display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.85em;
-    line-height: 1.4;
-    margin: 0 .1em;
-    padding: .1em .6em;
-    text-shadow: 0 1px 0 white;
-}
 )";
 
     hb.init(false, extra_style);
