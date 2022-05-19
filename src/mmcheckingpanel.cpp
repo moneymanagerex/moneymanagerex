@@ -520,8 +520,10 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    if (Option::instance().getShowMoneyTips()) 
+    if (Option::instance().getShowMoneyTips())
         m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
+    else
+        m_info_panel->SetLabelText("");
 }
 //----------------------------------------------------------------------------
 
