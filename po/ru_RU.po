@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:17\n"
+"PO-Revision-Date: 2022-05-19 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2505,15 +2505,15 @@ msgstr "Скрыть столбцы отчёта"
 
 #: filtertransdialog.cpp:993
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Выбранный элемент будет удален"
 
 #: filtertransdialog.cpp:994
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Вы хотите продолжить?"
 
 #: filtertransdialog.cpp:995
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Удаление элемента настроек"
 
 #: filtertransdialog.cpp:1179 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
@@ -2558,7 +2558,7 @@ msgstr "Пожалуйста, введите"
 
 #: filtertransdialog.cpp:1901
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "Введенное имя уже используется"
 
 #: filtertransdialog.cpp:1901 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -3808,10 +3808,10 @@ msgstr "Новый перевод"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Редактировать транзакцию..."
+msgstr[1] "&Редактировать транзакции..."
+msgstr[2] "&Редактировать транзакции..."
+msgstr[3] "&Редактировать транзакции..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3837,10 +3837,10 @@ msgstr "Дублировать транзакцию"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Переместить транзакцию..."
+msgstr[1] "&Переместить транзакции..."
+msgstr[2] "&Переместить транзакции..."
+msgstr[3] "&Переместить транзакции..."
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
@@ -3857,10 +3857,10 @@ msgstr "Создать повторяющуюся транзакцию"
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Удалить отмеченную транзакцию..."
+msgstr[1] "&Удалить отмеченные транзакции..."
+msgstr[2] "&Удалить отмеченные транзакции..."
+msgstr[3] "&Удалить отмеченные транзакции..."
 
 #: mmchecking_list.cpp:411
 msgid "Delete all transactions in current view"
