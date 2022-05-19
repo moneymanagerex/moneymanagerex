@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:05\n"
+"PO-Revision-Date: 2022-05-19 17:37\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3799,8 +3799,8 @@ msgstr "&Nieuwe overboeking"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Bewerk transactie..."
+msgstr[1] "&Bewerk transacties..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3824,8 +3824,8 @@ msgstr "Kopieer transactie"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Verplaats transactie..."
+msgstr[1] "&Verplaats transacties..."
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
@@ -3842,8 +3842,8 @@ msgstr "Nieuwe herhalende t&ransactie"
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Verwijder geselecteerde transactie..."
+msgstr[1] "&Verwijder geselecteerde transacties..."
 
 #: mmchecking_list.cpp:411
 msgid "Delete all transactions in current view"
