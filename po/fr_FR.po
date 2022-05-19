@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 15:21+0300\n"
-"PO-Revision-Date: 2022-05-19 12:27\n"
+"PO-Revision-Date: 2022-05-19 12:43\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2502,7 +2502,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:994
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Souhaitez-vous continuer ?"
 
 #: filtertransdialog.cpp:995
 msgid "Settings item deletion"
@@ -2551,7 +2551,7 @@ msgstr "Saisir s'il vous plait"
 
 #: filtertransdialog.cpp:1901
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "La valeur saisie est déjà utilisée"
 
 #: filtertransdialog.cpp:1901 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -2570,7 +2570,7 @@ msgstr "Souhaitez-vous sauver avant de continuer ?"
 
 #: filtertransdialog.cpp:1914
 msgid "Please confirm"
-msgstr ""
+msgstr "Merci de confirmer"
 
 #: filtertransdialog.cpp:1930 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
