@@ -258,7 +258,7 @@ const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxCo
     return default_value;
 }
 
-const wxArrayString Model_Infotable::GetArrayStringSetting(const wxString& key)
+const wxArrayString Model_Infotable::GetArrayStringSetting(const wxString& key, bool sort)
 {
     wxString data;
     Data* setting = this->get_one(INFONAME(key));
@@ -294,6 +294,10 @@ const wxArrayString Model_Infotable::GetArrayStringSetting(const wxString& key)
         }
     }
 
+    // Crude sort of JSON (case sensitive), could be improved by actually sorting by a field
+    // but this should be sufficient if you want to sort by first element
+    if (sort)
+        a.Sort();
     return a;
 }
 
