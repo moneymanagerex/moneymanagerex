@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-16 21:15+0300\n"
-"PO-Revision-Date: 2022-05-16 18:34\n"
+"PO-Revision-Date: 2022-05-19 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -592,7 +592,7 @@ msgstr "Use o asterisco (*) para localizar qualquer número de caracteres - por 
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:422 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Use o asterisco (*) no começo para encontrar qualquer string no meio da frase."
 
 #: assetspanel.cpp:579 stockspanel.cpp:276 stockspanel.cpp:463
 #, c-format
@@ -2413,7 +2413,7 @@ msgstr "Data Inicial"
 
 #: filtertransdialog.cpp:264
 msgid "Period Range"
-msgstr ""
+msgstr "Intervalo de Período"
 
 #: filtertransdialog.cpp:292 reports/mmDateRange.cpp:35
 msgid "Date Range"
