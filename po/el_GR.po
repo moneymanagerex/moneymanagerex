@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 15:21+0300\n"
-"PO-Revision-Date: 2022-05-19 12:27\n"
+"PO-Revision-Date: 2022-05-19 14:03\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2499,15 +2499,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:993
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Το επιλεγμένο στοιχείο θα διαγραφεί"
 
 #: filtertransdialog.cpp:994
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Θέλετε να συνεχίσετε;"
 
 #: filtertransdialog.cpp:995
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Διαγραφή ρυθμίσεων στοιχείου"
 
 #: filtertransdialog.cpp:1179 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
@@ -2552,7 +2552,7 @@ msgstr "Παρακαλούμε εισάγετε"
 
 #: filtertransdialog.cpp:1901
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "Το όνομα χρησιμοποιείται ήδη"
 
 #: filtertransdialog.cpp:1901 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -2571,7 +2571,7 @@ msgstr "Θέλετε να τα αποθηκεύσετε πριν συνεχίσ�
 
 #: filtertransdialog.cpp:1914
 msgid "Please confirm"
-msgstr ""
+msgstr "Παρακαλώ επιβεβαιώστε"
 
 #: filtertransdialog.cpp:1930 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
