@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-19 15:21+0300\n"
-"PO-Revision-Date: 2022-05-19 12:27\n"
+"POT-Creation-Date: 2022-05-19 19:51+0300\n"
+"PO-Revision-Date: 2022-05-19 17:06\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -336,15 +336,15 @@ msgstr "&Verlassen "
 msgid "Open the previously opened database : %s"
 msgstr "Öffne die zuvor geöffnete Datenbank: %s"
 
-#: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
+#: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:473
 msgid "New Asset"
 msgstr "Neuer Vermögenswert"
 
-#: assetdialog.cpp:67 assetspanel.cpp:481
+#: assetdialog.cpp:67 assetspanel.cpp:487
 msgid "Edit Asset"
 msgstr "Vermögenswert bearbeiten"
 
-#: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
+#: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:477
 msgid "Add Asset Transaction"
 msgstr "Anlagenbuchung hinzufügen"
 
@@ -497,124 +497,124 @@ msgstr "&Anlagenkonto öffnen"
 msgid "&Edit Asset"
 msgstr "&Vermögenswert bearbeiten"
 
-#: assetspanel.cpp:106
+#: assetspanel.cpp:107
 msgid "&Delete Asset"
 msgstr "&Vermögenswert löschen"
 
-#: assetspanel.cpp:108 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
-#: mmframe.cpp:1234 mmframe.cpp:1254 payeedialog.cpp:388 stocks_list.cpp:145
+#: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
+#: mmframe.cpp:1234 mmframe.cpp:1254 payeedialog.cpp:388 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr "&Beilage verwalten"
 
-#: assetspanel.cpp:200
+#: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
 msgstr "Soll dieser Vermögenswert wirklich gelöscht werden?"
 
-#: assetspanel.cpp:201
+#: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
 msgstr "Löschen des Vermögenswerts bestätigen"
 
-#: assetspanel.cpp:385
+#: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "Vermögenswerte werden zu Ihrem finanziellen Gesamtwert addiert. Mit MMEX können Sie das Anlagevermögen wie Autos, Häuser, Grundstücke und andere Anlagen verfolgen. Jede Anlage kann ihren Wert durch eine bestimmte Rate pro Jahr ändern."
 
-#: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:724
+#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:724
 #: general_report_manager.cpp:1001 mmframe.cpp:479 mmframe.cpp:751
 #: mmframe.cpp:1504 mmframe.cpp:2981 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "Vermögenswerte"
 
-#: assetspanel.cpp:424 assetspanel.cpp:700 assetspanel.cpp:717
+#: assetspanel.cpp:430 assetspanel.cpp:706 assetspanel.cpp:723
 #: filtertransdialog.cpp:238 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
 #: mmframe.cpp:1278
 msgid "All"
 msgstr "Alle"
 
-#: assetspanel.cpp:466 billsdepositspanel.cpp:288 mmcheckingpanel.cpp:332
+#: assetspanel.cpp:472 billsdepositspanel.cpp:288 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:130
 msgid "&New "
 msgstr "&Neu "
 
-#: assetspanel.cpp:470 stockspanel.cpp:134
+#: assetspanel.cpp:476 stockspanel.cpp:134
 msgid "&Add Trans "
 msgstr "Buchung &hinzufügen "
 
-#: assetspanel.cpp:475 stockspanel.cpp:139
+#: assetspanel.cpp:481 stockspanel.cpp:139
 msgid "&View Trans "
 msgstr "Transfer"
 
-#: assetspanel.cpp:476
+#: assetspanel.cpp:482
 msgid "View Asset Transactions"
 msgstr "Anlagenbuchungen ansehen"
 
-#: assetspanel.cpp:480 attachmentdialog.cpp:318 billsdepositspanel.cpp:292
+#: assetspanel.cpp:486 attachmentdialog.cpp:318 billsdepositspanel.cpp:292
 #: categdialog.cpp:248 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:528
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:382 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:144
 msgid "&Edit "
 msgstr "&Bearbeiten "
 
-#: assetspanel.cpp:485 billsdepositspanel.cpp:302 budgetyeardialog.cpp:103
+#: assetspanel.cpp:491 billsdepositspanel.cpp:302 budgetyeardialog.cpp:103
 #: categdialog.cpp:252 maincurrencydialog.cpp:293 mmchecking_list.cpp:414
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:149
 msgid "&Delete "
 msgstr "&Löschen "
 
-#: assetspanel.cpp:486
+#: assetspanel.cpp:492
 msgid "Delete Asset"
 msgstr "Vermögenswert löschen"
 
-#: assetspanel.cpp:493 billsdepositspanel.cpp:320 mmcheckingpanel.cpp:354
+#: assetspanel.cpp:499 billsdepositspanel.cpp:320 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:162
 msgid "Open attachments"
 msgstr "Anhang öffnen"
 
-#: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
+#: assetspanel.cpp:506 assetspanel.cpp:507 mmcheckingpanel.cpp:362
 msgid "Search"
 msgstr "Suchen"
 
-#: assetspanel.cpp:504
+#: assetspanel.cpp:510
 msgid "Enter any string to find related assets"
 msgstr "Geben Sie eine beliebige Zeichenfolge ein, um die entsprechenden Vermögenswerte zu finden"
 
-#: assetspanel.cpp:505 filtertransdialog.cpp:415 mmcheckingpanel.cpp:366
+#: assetspanel.cpp:511 filtertransdialog.cpp:415 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "Tipps: Sie können Platzhalter - Fragezeichen (?), Sternchen (*) - in Ihren Suchkriterien verwenden."
 
-#: assetspanel.cpp:506 filtertransdialog.cpp:416 mmcheckingpanel.cpp:367
+#: assetspanel.cpp:512 filtertransdialog.cpp:416 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "Benutzen Sie das Fragezeichen (?), um ein einzelnes Zeichen zu finden - zum Beispiel findet s?t 'sat' und 'set'."
 
-#: assetspanel.cpp:507 filtertransdialog.cpp:417 mmcheckingpanel.cpp:368
+#: assetspanel.cpp:513 filtertransdialog.cpp:417 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "Verwenden Sie den Stern (*), um eine beliebige Anzahl von Zeichen zu finden - zum Beispiel s*d findet 'sad' und 'started'."
 
-#: assetspanel.cpp:508 filtertransdialog.cpp:418 mmcheckingpanel.cpp:369
+#: assetspanel.cpp:514 filtertransdialog.cpp:418 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Benutzen Sie den Stern (*) am Anfang, um jede Zeichenkette in der Mitte des Satzes zu finden."
 
-#: assetspanel.cpp:579 stockspanel.cpp:276 stockspanel.cpp:463
+#: assetspanel.cpp:585 stockspanel.cpp:276 stockspanel.cpp:463
 #, c-format
 msgid "Total: %s"
 msgstr "Gesamt: %s"
 
-#: assetspanel.cpp:661
+#: assetspanel.cpp:667
 #, c-format
 msgid "Change in Value: %s %s"
 msgstr "Wertveränderung: %s %s"
 
-#: assetspanel.cpp:777
+#: assetspanel.cpp:783
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr "Diese Anlage hat kein eigenes Konto\n\n"
 "Mehrere Transaktionen für diese Anlage werden nicht empfohlen."
 
-#: assetspanel.cpp:779
+#: assetspanel.cpp:785
 msgid "Asset Management"
 msgstr "Vermögensverwaltung"
 
-#: assetspanel.cpp:798
+#: assetspanel.cpp:804
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Konto \t Datum \t Wert\n\n"
 
@@ -1282,15 +1282,15 @@ msgstr "Nächstes Ereignis eingeben"
 msgid "Skip next Occurrence"
 msgstr "Überspringe nächstes Ereignis"
 
-#: billsdepositspanel.cpp:431 billsdepositspanel.cpp:433
-msgid "&Edit Recurring Transaction"
-msgstr "&Wiederkehrende Buchung bearbeiten"
-
-#: billsdepositspanel.cpp:432
+#: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction"
 msgstr "&Neue wiederkehrende Buchung"
 
-#: billsdepositspanel.cpp:434
+#: billsdepositspanel.cpp:432
+msgid "&Edit Recurring Transaction"
+msgstr "&Wiederkehrende Buchung bearbeiten"
+
+#: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction"
 msgstr "&Wiederkehrende Transaktion duplizieren"
 
@@ -3797,10 +3797,10 @@ msgid "&New Transfer"
 msgstr "&Neue Überweisung"
 
 #: mmchecking_list.cpp:366
-msgid "&Edit Transaction"
-msgid_plural "&Edit Transactions"
-msgstr[0] "&Buchung bearbeiten"
-msgstr[1] "&Buchung bearbeiten"
+msgid "&Edit Transaction..."
+msgid_plural "&Edit Transactions..."
+msgstr[0] ""
+msgstr[1] ""
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3822,10 +3822,10 @@ msgid "D&uplicate Transaction"
 msgstr "Buchung D&uplizieren"
 
 #: mmchecking_list.cpp:384
-msgid "&Move Transaction"
-msgid_plural "&Move Transactions"
-msgstr[0] "&Buchung verschieben"
-msgstr[1] "&Buchung verschieben"
+msgid "&Move Transaction..."
+msgid_plural "&Move Transactions..."
+msgstr[0] ""
+msgstr[1] ""
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
@@ -3840,10 +3840,10 @@ msgid "Create Recurring T&ransaction"
 msgstr "Wiederkehrende Buchung erstellen"
 
 #: mmchecking_list.cpp:408
-msgid "&Delete selected transaction"
-msgid_plural "&Delete selected transactions"
-msgstr[0] "&Markierte Buchungen löschen"
-msgstr[1] "&Markierte Buchungen löschen"
+msgid "&Delete selected transaction..."
+msgid_plural "&Delete selected transactions..."
+msgstr[0] ""
+msgstr[1] ""
 
 #: mmchecking_list.cpp:411
 msgid "Delete all transactions in current view"
@@ -3928,7 +3928,7 @@ msgid_plural "Moving %i transactions to..."
 msgstr[0] "Verschiebung Buchung nach..."
 msgstr[1] "Verschiebung von %i Buchungen nach..."
 
-#: mmchecking_list.cpp:1215 stocks_list.cpp:290
+#: mmchecking_list.cpp:1215 stocks_list.cpp:291
 msgid "Select the destination Account "
 msgstr "Empfängerkonto wählen "
 
@@ -6715,23 +6715,23 @@ msgstr "Aktienbuchung &anzeigen"
 msgid "&Edit Stock Investment"
 msgstr "Wertpapieranlagen &bearbeiten"
 
-#: stocks_list.cpp:143
+#: stocks_list.cpp:144
 msgid "&Delete Stock Investment"
 msgstr "Wertpapieranlagen &löschen"
 
-#: stocks_list.cpp:146
+#: stocks_list.cpp:147
 msgid "Stock &Web Page"
 msgstr "Börsenkurs &Webseite"
 
-#: stocks_list.cpp:267
+#: stocks_list.cpp:268
 msgid "Do you really want to delete the stock investment?"
 msgstr "Soll die Wertpapieranlage wirklich gelöscht werden?"
 
-#: stocks_list.cpp:268
+#: stocks_list.cpp:269
 msgid "Confirm Stock Investment Deletion"
 msgstr "Bestätigen Sie die Löschung der Wertpapieranlage"
 
-#: stocks_list.cpp:289
+#: stocks_list.cpp:290
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr "Verschieben der Buchungen von %s nach"
