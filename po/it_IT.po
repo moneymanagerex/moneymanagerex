@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 15:21+0300\n"
-"PO-Revision-Date: 2022-05-19 13:42\n"
+"PO-Revision-Date: 2022-05-19 14:03\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2570,7 +2570,7 @@ msgstr "Vuoi salvare prima di continuare?"
 
 #: filtertransdialog.cpp:1914
 msgid "Please confirm"
-msgstr ""
+msgstr "Per favore, conferma"
 
 #: filtertransdialog.cpp:1930 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
