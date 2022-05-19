@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:05\n"
+"PO-Revision-Date: 2022-05-19 20:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3799,7 +3799,7 @@ msgstr "&Nouveau Virement"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
+msgstr[0] "&Éditer l'opération..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:371
@@ -3824,7 +3824,7 @@ msgstr "Dupliquer l'opération"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
+msgstr[0] "&Déplacer l'opération..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:390
@@ -3842,7 +3842,7 @@ msgstr "Créer une opération récurrente"
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "Effacer l'opération sélectionnée..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:411
