@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:27\n"
+"PO-Revision-Date: 2022-05-19 22:45\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1073,7 +1073,7 @@ msgstr "Название счёта"
 #: billsdepositsdialog.cpp:882 billsdepositsdialog.cpp:922
 #: filtertransdialog.cpp:1300 transdialog.cpp:309 transdialog.cpp:390
 msgid "From"
-msgstr "Из"
+msgstr "От"
 
 #: billsdepositsdialog.cpp:894 transdialog.cpp:303
 msgid "To"
