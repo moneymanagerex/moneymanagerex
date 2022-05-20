@@ -1206,7 +1206,7 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
             break;
         case kStringType:
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
-                name, wxString::FromUTF8(itr->value.GetString()));
+                name, wxGetTranslation(wxString::FromUTF8(itr->value.GetString())));
             break;
         case kNumberType:
         {
@@ -1282,22 +1282,30 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     //Date Period Range
     if (rangeCheckBox_->IsChecked())
     {
-        const wxString range = rangeChoice_->GetStringSelection();
-        if (!range.empty())
+        int sel = rangeChoice_->GetSelection();
+        if (sel != wxNOT_FOUND)
         {
-            json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
-            json_writer.String(range.utf8_str());
+            const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges[sel];
+            if (date_range)
+            {
+                json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
+                json_writer.String(date_range->title().utf8_str());
+            }
         }
     }
 
     //From Date
     if (startDateCheckBox_->IsChecked())
     {
-        const wxString startPoint = startDateDropDown_->GetStringSelection();
-        if (!startPoint.empty())
+        int sel = startDateDropDown_->GetSelection();
+        if (sel != wxNOT_FOUND)
         {
-            json_writer.Key((i18n ? _("From") : "FROM").utf8_str());
-            json_writer.String(startPoint.utf8_str());
+            wxStringClientData* obj = static_cast<wxStringClientData*>(startDateDropDown_->GetClientObject(sel));
+            if (obj)
+            {
+                json_writer.Key((i18n ? _("From") : "FROM").utf8_str());
+                json_writer.String(obj->GetData().utf8_str());
+            }
         }
     }
 
