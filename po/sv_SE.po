@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:05\n"
+"PO-Revision-Date: 2022-05-20 15:56\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2487,15 +2487,15 @@ msgstr "Dölj rapportkolumner"
 
 #: filtertransdialog.cpp:993
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Det valda objektet kommer att tas bort"
 
 #: filtertransdialog.cpp:994
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Vill du fortsätta?"
 
 #: filtertransdialog.cpp:995
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Inställning för att radera objekt"
 
 #: filtertransdialog.cpp:1179 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
@@ -2540,7 +2540,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1901
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "Det angivna namnet används redan"
 
 #: filtertransdialog.cpp:1901 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -2559,7 +2559,7 @@ msgstr "Vill du spara innan du fortsätter?"
 
 #: filtertransdialog.cpp:1914
 msgid "Please confirm"
-msgstr ""
+msgstr "Bekräfta"
 
 #: filtertransdialog.cpp:1930 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -3785,8 +3785,8 @@ msgstr "&Ny överföring"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Redigera transaktion..."
+msgstr[1] "&Redigera transaktion..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3810,7 +3810,7 @@ msgstr "D&uplicera transaktion"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
+msgstr[0] "&Flytta transaktion..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:390
