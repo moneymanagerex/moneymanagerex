@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:06\n"
+"PO-Revision-Date: 2022-05-20 07:27\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3798,7 +3798,8 @@ msgstr "&Νέα Μεταφορά"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
+msgstr[0] "&Επεξεργασία Συναλλαγής...\n\n"
+"&Επεξεργασία Συναλλαγών..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:371
@@ -3823,7 +3824,7 @@ msgstr "Διπλότυπη συναλλαγή"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
+msgstr[0] "&Μετακίνηση Συναλλαγής..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:390
@@ -3841,7 +3842,8 @@ msgstr "Δημιουργία Επαναλαμβανόμενης Σ&υναλλα�
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "&Διαγραφή επιλεγμένης συναλλαγής...\n\n"
+"&Διαγραφή επιλεγμένων συναλλαγών..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:411
