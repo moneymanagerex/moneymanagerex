@@ -1914,7 +1914,9 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
             wxLogDebug("%s %s", dates.get()->start_date().FormatISODate(), dates.get()->end_date().FormatISODate());
             m_begin_date = dates.get()->start_date().FormatISODate();
             m_end_date = dates.get()->end_date().FormatISODate();
-            //m_futureIgnored = (id == ID_FROM_DATE);
+            m_futureIgnored = dates->isFutureIgnored();
+            fromDateCtrl_->SetValue(dates->start_date());
+            toDateControl_->SetValue(dates->end_date());
         }
 
         break;
