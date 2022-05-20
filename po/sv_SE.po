@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-20 15:56\n"
+"PO-Revision-Date: 2022-05-20 16:07\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3786,7 +3786,7 @@ msgstr "&Ny överföring"
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
 msgstr[0] "&Redigera transaktion..."
-msgstr[1] "&Redigera transaktion..."
+msgstr[1] "&Redigera transaktioner..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3811,7 +3811,7 @@ msgstr "D&uplicera transaktion"
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] "&Flytta transaktion..."
-msgstr[1] ""
+msgstr[1] "&Flytta transaktioner..."
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
@@ -3828,8 +3828,8 @@ msgstr "Skapa återkommande T&ransaktion"
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Ta bort markerad transaktion..."
+msgstr[1] "&Ta bort markerade transaktioner..."
 
 #: mmchecking_list.cpp:411
 msgid "Delete all transactions in current view"
