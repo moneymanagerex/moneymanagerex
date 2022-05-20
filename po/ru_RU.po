@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 22:45\n"
+"PO-Revision-Date: 2022-05-20 18:25\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2422,7 +2422,7 @@ msgstr "С даты"
 
 #: filtertransdialog.cpp:262
 msgid "Period Range"
-msgstr "Диапазон дат"
+msgstr "Период"
 
 #: filtertransdialog.cpp:290 reports/mmDateRange.cpp:35
 msgid "Date Range"
