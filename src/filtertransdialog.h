@@ -61,7 +61,6 @@ public:
     bool getSimilarStatus() const;
     bool getRangeCheckBox() const;
     bool is_date_range_cb_active() const;
-    bool getStartDateCheckBox() const;
     bool getHideColumnsCheckBox() const;
 
     enum groupBy {
@@ -82,7 +81,6 @@ public:
     bool isFutureIgnored() const;
 
 private:
-    void SetJsonSettings(const wxString& data);
     void dataToControls(const wxString& json);
     void BuildPayeeList();
 
@@ -129,6 +127,7 @@ private:
 private:
     /// Creates the controls and sizers
     void CreateControls();
+    void DoInitVariables();
     void DoInitSettingNameChoice() const;
     void DoUpdateSettings();
     int FindLabelInJSON(const wxString& settingName) const;
@@ -149,18 +148,17 @@ private:
     void OnColourButton(wxCommandEvent& /*event*/);
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
     void OnMoreFields(wxCommandEvent& event);
+    void OnChoice(wxCommandEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
     const wxString GetJsonSetings(bool i18n = false) const;
 
-    bool is_values_correct(bool silent = false);
+    bool is_values_correct();
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
     wxCheckBox* rangeCheckBox_;
     wxChoice* rangeChoice_;
-    wxCheckBox* startDateCheckBox_;
-    wxChoice* startDateDropDown_;
     wxCheckBox* dateRangeCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateControl_;
@@ -221,6 +219,7 @@ private:
         ID_DIALOG_COLUMNS,
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
+        ID_DATE_RANGE,
     };
 };
 
