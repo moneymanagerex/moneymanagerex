@@ -114,20 +114,20 @@ void mmFilterTransactionsDialog::DoInitVariables()
 
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
+    //m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
+    //m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
+    //m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
 
     m_accounts_name.clear();
     const auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
@@ -254,6 +254,20 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
     evt.SetInt(rangeChoice_->GetSelection());
     OnChoice(evt);
+
+    if (j_doc.HasMember("TODAY") && j_doc["TODAY"].IsBool())
+    {
+        cbToday_->SetValue(true);
+        wxCommandEvent e(wxID_ANY, ID_TODAY_CB);
+        OnCheckboxClick(e);
+    }
+    else if (j_doc.HasMember("FUTURE") && j_doc["FUTURE"].IsBool())
+    {
+        cbFuture_->SetValue(true);
+        wxCommandEvent e(wxID_ANY, ID_FUTURE_CB);
+        OnCheckboxClick(e);
+    }
+
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
@@ -503,7 +517,7 @@ void mmFilterTransactionsDialog::CreateControls()
     }
 
    // Period Range
-    rangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Period Range")
+    rangeCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _("Period Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(rangeCheckBox_, g_flagsH);
 
@@ -514,8 +528,25 @@ void mmFilterTransactionsDialog::CreateControls()
     }
     itemPanelSizer->Add(rangeChoice_, g_flagsExpand);
 
+    // End date
+    wxStaticText* end_date = new wxStaticText(itemPanel, wxID_ANY, _("End date: "));
+
+    wxFlexGridSizer* end_date_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    end_date_sizer->AddGrowableCol(0, 1);
+    //end_date_sizer->AddGrowableCol(1, 1);
+    cbToday_ = new wxCheckBox(itemPanel, ID_TODAY_CB, _("Today")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbFuture_ = new wxCheckBox(itemPanel, ID_FUTURE_CB, _("Future")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+
+    itemPanelSizer->Add(end_date, g_flagsH);
+    itemPanelSizer->Add(end_date_sizer, g_flagsExpand);
+    end_date_sizer->Add(cbToday_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
+    end_date_sizer->Add(cbFuture_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
+
+
     // Date Range
-    dateRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Date Range")
+    dateRangeCheckBox_ = new wxCheckBox(itemPanel, ID_DATE_RANGE_CB, _("Date Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(dateRangeCheckBox_, g_flagsH);
 
@@ -531,15 +562,11 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Payee
-    payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Payee")
+    payeeCheckBox_ = new wxCheckBox(itemPanel, ID_PAYEE_CB, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
     cbPayee_ = new wxComboBox(itemPanel, wxID_ANY);
-
-
-
-
     cbPayee_->SetMinSize(wxSize(220, -1));
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), nullptr, this);
@@ -547,7 +574,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
 
     // Category
-    categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
+    categoryCheckBox_ = new wxCheckBox(itemPanel, ID_CATEGORY_CB, _("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
@@ -560,7 +587,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize);
     btnCategory_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), nullptr, this);
-    similarCategCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include Similar"),
+    similarCategCheckBox_ = new wxCheckBox(itemPanel, ID_SIMILAR_CB, _("Include Similar"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     mmToolTip(similarCategCheckBox_, _("Include all subcategories for the selected category."));
 
@@ -569,7 +596,7 @@ void mmFilterTransactionsDialog::CreateControls()
     categSizer->AddSpacer(5);
 
     // Status
-    statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
+    statusCheckBox_ = new wxCheckBox(itemPanel, ID_STATUS_CB, _("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(statusCheckBox_, g_flagsH);
 
@@ -582,7 +609,7 @@ void mmFilterTransactionsDialog::CreateControls()
     mmToolTip(choiceStatus_, _("Specify the status for the transaction"));
 
     // Type
-    typeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Type")
+    typeCheckBox_ = new wxCheckBox(itemPanel, ID_TYPE_CB, _("Type")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     wxFlexGridSizer* typeSizer = new wxFlexGridSizer(0, 2, 0, 0);
@@ -606,7 +633,7 @@ void mmFilterTransactionsDialog::CreateControls()
     typeSizer->AddSpacer(2);
 
     // Amount
-    amountRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Amount Range")
+    amountRangeCheckBox_ = new wxCheckBox(itemPanel, ID_AMOUNT_CB, _("Amount Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(amountRangeCheckBox_, g_flagsH);
 
@@ -628,7 +655,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Number
-    transNumberCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Number")
+    transNumberCheckBox_ = new wxCheckBox(itemPanel, ID_NUMBER_CB, _("Number")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(transNumberCheckBox_, g_flagsH);
 
@@ -636,7 +663,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
 
     // Notes
-    notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes")
+    notesCheckBox_ = new wxCheckBox(itemPanel, ID_NOTES_CB, _("Notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(notesCheckBox_, g_flagsH);
 
@@ -652,7 +679,7 @@ void mmFilterTransactionsDialog::CreateControls()
     );
 
     // Colour
-    colourCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
+    colourCheckBox_ = new wxCheckBox(itemPanel, ID_COLOR_CB, _("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(colourCheckBox_, g_flagsH);
 
@@ -678,7 +705,7 @@ void mmFilterTransactionsDialog::CreateControls()
     presBoxSizer->Add(presPanelSizer, g_flagsExpand);
 
     //Hide columns
-    showColumnsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Hide Columns")
+    showColumnsCheckBox_ = new wxCheckBox(presPanel, ID_COLUMNS_CB, _("Hide Columns")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
 
@@ -689,7 +716,7 @@ void mmFilterTransactionsDialog::CreateControls()
     presPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
     //Group By
-    groupByCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Group By")
+    groupByCheckBox_ = new wxCheckBox(presPanel, ID_GROUPBY_CB, _("Group By")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(groupByCheckBox_, g_flagsH);
 
@@ -782,58 +809,87 @@ void mmFilterTransactionsDialog::CreateControls()
 
 void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 {
-    if (event.GetId() == similarCategCheckBox_->GetId())
+    int id = event.GetId();
+    switch (id)
     {
+    case ID_SIMILAR_CB:
         is_similar_category_status = similarCategCheckBox_->IsChecked();
-    }
-    else if (event.GetId() != cbTypeWithdrawal_->GetId() &&
-        event.GetId() != cbTypeDeposit_->GetId() &&
-        event.GetId() != cbTypeTransferTo_->GetId() &&
-        event.GetId() != cbTypeTransferFrom_->GetId())
-
+        break;
+    case ID_PERIOD_CB:
+        dateRangeCheckBox_->SetValue(!rangeCheckBox_->IsChecked());
+        break;
+    case ID_DATE_RANGE_CB:
+        rangeCheckBox_->SetValue(!dateRangeCheckBox_->IsChecked());
+        break;
+    case ID_TODAY_CB:
     {
-        if (event.GetId() == rangeCheckBox_->GetId()) {
-            dateRangeCheckBox_->SetValue(false);
+        if (cbToday_->IsChecked()) {
+            wxDate d = wxDate::Today();
+            m_end_date = d.FormatISODate();
+            toDateControl_->SetValue(d);
+            if (cbFuture_->IsChecked())
+                cbFuture_->SetValue(false);
         }
-        else if (event.GetId() == dateRangeCheckBox_->GetId()) {
-            rangeCheckBox_->SetValue(false);
+        else {
+            wxCommandEvent e(wxEVT_CHOICE, ID_DATE_RANGE);
+            e.SetInt(rangeChoice_->GetSelection());
+            OnChoice(e);
         }
-
-        bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
-        cbPayee_->Enable(payeeCheckBox_->IsChecked());
-        btnCategory_->Enable(categoryCheckBox_->IsChecked());
-        similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
-        choiceStatus_->Enable(statusCheckBox_->IsChecked());
-        cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
-        cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-        cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
-        cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
-        if (!accountCheckBox_->IsChecked())
-        {
-            cbTypeTransferFrom_->Hide();
-            cbTypeTransferTo_->SetLabel(_("Transfer"));
-            Layout();
+        m_futureIgnored = cbToday_->IsChecked();
+        break;
+    }
+    case ID_FUTURE_CB:
+    {
+        if (cbFuture_->IsChecked()) {
+            wxDate d = wxDate::Today().SetMonth(wxDate::Dec).SetDay(31).SetYear(9999);
+            toDateControl_->SetValue(d);
+            m_end_date = d.FormatISODate();
+            if (cbToday_->IsChecked())
+                cbToday_->SetValue(false);
         }
-        else
-        {
-            cbTypeTransferFrom_->Show();
-            cbTypeTransferTo_->SetLabel(_("Transfer Out"));
-            Layout();
+        else {
+            wxCommandEvent e(wxEVT_CHOICE, ID_DATE_RANGE);
+            e.SetInt(rangeChoice_->GetSelection());
+            OnChoice(e);
         }
-        amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
-        amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
-        notesEdit_->Enable(notesCheckBox_->IsChecked());
-        transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-        rangeChoice_->Enable(rangeCheckBox_->IsChecked());
-        fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-        toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-        colourButton_->Enable(colourCheckBox_->IsChecked());
-        bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
-        bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
+        m_futureIgnored = !cbFuture_->IsChecked();
+        break;
+    }
     }
 
-    if (accountCheckBox_->IsChecked() && m_selected_accounts_id.size() <= 0)
-        bSelectedAccounts_->SetLabelText("");
+    cbPayee_->Enable(payeeCheckBox_->IsChecked());
+    btnCategory_->Enable(categoryCheckBox_->IsChecked());
+    similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
+    choiceStatus_->Enable(statusCheckBox_->IsChecked());
+    cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
+    cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
+    cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
+    cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
+    bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
+    if (!accountCheckBox_->IsChecked())
+    {
+        if (m_selected_accounts_id.size() <= 0)
+            bSelectedAccounts_->SetLabelText("");
+        cbTypeTransferFrom_->Hide();
+        cbTypeTransferTo_->SetLabel(_("Transfer"));
+        Layout();
+    }
+    else
+    {
+        cbTypeTransferFrom_->Show();
+        cbTypeTransferTo_->SetLabel(_("Transfer Out"));
+        Layout();
+    }
+    amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
+    amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
+    notesEdit_->Enable(notesCheckBox_->IsChecked());
+    transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
+    rangeChoice_->Enable(rangeCheckBox_->IsChecked());
+    fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
+    toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+    colourButton_->Enable(colourCheckBox_->IsChecked());
+    bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
+    bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
 
     event.Skip();
 }
@@ -1156,50 +1212,6 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
     colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
 }
 
-void mmFilterTransactionsDialog::setPresettings(const wxString& view)
-{
-    wxSharedPtr<mmDateRange> date_range;
-    dateRangeCheckBox_->SetValue(true);
-
-    if (view == VIEW_TRANS_ALL_STR)
-        dateRangeCheckBox_->SetValue(false);
-    else if (view == VIEW_TRANS_TODAY_STR)
-        date_range = new mmToday;
-    else if (view == VIEW_TRANS_CURRENT_MONTH_STR)
-        date_range = new mmCurrentMonth;
-    else if (view == VIEW_TRANS_LAST_30_DAYS_STR)
-        date_range = new mmLast30Days;
-    else if (view == VIEW_TRANS_LAST_90_DAYS_STR)
-        date_range = new mmLast90Days;
-    else if (view == VIEW_TRANS_LAST_MONTH_STR)
-        date_range = new mmLastMonth;
-    else if (view == VIEW_TRANS_LAST_3MONTHS_STR)
-        date_range = new mmLast3Months;
-    else if (view == VIEW_TRANS_LAST_12MONTHS_STR)
-        date_range = new mmLast12Months;
-    else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
-        date_range = new mmCurrentYear;
-    else if (view == VIEW_TRANS_CRRNT_FIN_YEAR_STR)
-        date_range = new mmCurrentFinancialYear();
-    else if (view == VIEW_TRANS_LAST_YEAR_STR)
-        date_range = new mmLastYear;
-    else if (view == VIEW_TRANS_LAST_FIN_YEAR_STR)
-        date_range = new mmLastFinancialYear();
-    if (date_range == NULL)
-        date_range = new mmCurrentMonth;
-
-    m_begin_date = date_range->start_date().FormatISODate();
-    m_end_date = date_range->end_date().FormatISODate();
-
-    if (dateRangeCheckBox_->IsChecked())
-    {
-        fromDateCtrl_->SetValue(date_range->start_date());
-        toDateControl_->SetValue(date_range->end_date());
-        fromDateCtrl_->Enable();
-        toDateControl_->Enable();
-    }
-}
-
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
     cbPayee_->SetEvtHandlerEnabled(false);
@@ -1421,16 +1433,24 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     }
 
     //Date Period Range
-    if (rangeCheckBox_->IsChecked())
+    else if (rangeCheckBox_->IsChecked())
     {
         int sel = rangeChoice_->GetSelection();
         if (sel != wxNOT_FOUND)
         {
-            const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges[sel];
-            if (date_range)
-            {
+            const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges.at(sel);
+            if (date_range) {
                 json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
                 json_writer.String(date_range->title().utf8_str());
+            }
+
+            if (cbToday_->IsChecked()) {
+                json_writer.Key((i18n ? _("Today") : "TODAY").utf8_str());
+                json_writer.Bool(true);
+            }
+            else if (cbFuture_->IsChecked()) {
+                json_writer.Key((i18n ? _("Future") : "FUTURE").utf8_str());
+                json_writer.Bool(true);
             }
         }
     }
@@ -1911,12 +1931,14 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
         if (sel != wxNOT_FOUND)
         {
             wxSharedPtr<mmDateRange> dates(m_all_date_ranges.at(sel));
-            wxLogDebug("%s %s", dates.get()->start_date().FormatISODate(), dates.get()->end_date().FormatISODate());
-            m_begin_date = dates.get()->start_date().FormatISODate();
-            m_end_date = dates.get()->end_date().FormatISODate();
+            wxLogDebug("%s %s", dates->start_date().FormatISODate(), dates.get()->end_date().FormatISODate());
+            m_begin_date = dates->start_date().FormatISODate();
+            m_end_date = dates->end_date().FormatISODate();
             m_futureIgnored = dates->isFutureIgnored();
             fromDateCtrl_->SetValue(dates->start_date());
             toDateControl_->SetValue(dates->end_date());
+            cbToday_->SetValue(false);
+            cbFuture_->SetValue(false);
         }
 
         break;

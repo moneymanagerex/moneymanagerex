@@ -115,7 +115,6 @@ private:
     bool is_colour_cb_active() const;
     bool is_custom_field_active() const;
     bool is_custom_field_matches(const Model_Checking::Data& tran) const;
-    void setPresettings(const wxString& view);
 
     /// Creation
     bool Create(wxWindow* parent
@@ -158,6 +157,8 @@ private:
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
     wxCheckBox* rangeCheckBox_;
+    wxCheckBox* cbToday_;
+    wxCheckBox* cbFuture_;
     wxChoice* rangeChoice_;
     wxCheckBox* dateRangeCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
@@ -220,6 +221,21 @@ private:
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
         ID_DATE_RANGE,
+        ID_PERIOD_CB,
+        ID_DATE_RANGE_CB,
+        ID_TODAY_CB,
+        ID_FUTURE_CB,
+        ID_SIMILAR_CB,
+        ID_PAYEE_CB,
+        ID_CATEGORY_CB,
+        ID_STATUS_CB,
+        ID_TYPE_CB,
+        ID_AMOUNT_CB,
+        ID_NUMBER_CB,
+        ID_NOTES_CB,
+        ID_COLOR_CB,
+        ID_COLUMNS_CB,
+        ID_GROUPBY_CB,
     };
 };
 
