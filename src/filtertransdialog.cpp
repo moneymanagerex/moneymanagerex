@@ -536,7 +536,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Payee
-    payeeCheckBox_ = new wxCheckBox(itemPanel, ID_PAYEE_CB, _("Payee")
+    payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
@@ -548,7 +548,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
 
     // Category
-    categoryCheckBox_ = new wxCheckBox(itemPanel, ID_CATEGORY_CB, _("Category")
+    categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
@@ -570,7 +570,7 @@ void mmFilterTransactionsDialog::CreateControls()
     categSizer->AddSpacer(5);
 
     // Status
-    statusCheckBox_ = new wxCheckBox(itemPanel, ID_STATUS_CB, _("Status")
+    statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(statusCheckBox_, g_flagsH);
 
@@ -583,7 +583,7 @@ void mmFilterTransactionsDialog::CreateControls()
     mmToolTip(choiceStatus_, _("Specify the status for the transaction"));
 
     // Type
-    typeCheckBox_ = new wxCheckBox(itemPanel, ID_TYPE_CB, _("Type")
+    typeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Type")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     wxFlexGridSizer* typeSizer = new wxFlexGridSizer(0, 2, 0, 0);
@@ -607,7 +607,7 @@ void mmFilterTransactionsDialog::CreateControls()
     typeSizer->AddSpacer(2);
 
     // Amount
-    amountRangeCheckBox_ = new wxCheckBox(itemPanel, ID_AMOUNT_CB, _("Amount Range")
+    amountRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Amount Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(amountRangeCheckBox_, g_flagsH);
 
@@ -629,7 +629,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Number
-    transNumberCheckBox_ = new wxCheckBox(itemPanel, ID_NUMBER_CB, _("Number")
+    transNumberCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Number")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(transNumberCheckBox_, g_flagsH);
 
@@ -637,7 +637,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
 
     // Notes
-    notesCheckBox_ = new wxCheckBox(itemPanel, ID_NOTES_CB, _("Notes")
+    notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(notesCheckBox_, g_flagsH);
 
@@ -653,7 +653,7 @@ void mmFilterTransactionsDialog::CreateControls()
     );
 
     // Colour
-    colourCheckBox_ = new wxCheckBox(itemPanel, ID_COLOR_CB, _("Color")
+    colourCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(colourCheckBox_, g_flagsH);
 
@@ -679,7 +679,7 @@ void mmFilterTransactionsDialog::CreateControls()
     presBoxSizer->Add(presPanelSizer, g_flagsExpand);
 
     //Hide columns
-    showColumnsCheckBox_ = new wxCheckBox(presPanel, ID_COLUMNS_CB, _("Hide Columns")
+    showColumnsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Hide Columns")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
 
@@ -690,7 +690,7 @@ void mmFilterTransactionsDialog::CreateControls()
     presPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
     //Group By
-    groupByCheckBox_ = new wxCheckBox(presPanel, ID_GROUPBY_CB, _("Group By")
+    groupByCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Group By")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(groupByCheckBox_, g_flagsH);
 
@@ -834,7 +834,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     event.Skip();
 }
 
-bool mmFilterTransactionsDialog::is_values_correct()
+bool mmFilterTransactionsDialog::is_values_correct() const
 {
     if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty()) {
         mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _("Invalid value"), _("Account"));
@@ -878,8 +878,6 @@ bool mmFilterTransactionsDialog::is_values_correct()
 
     if (dateRangeCheckBox_->IsChecked())
     {
-        m_begin_date = fromDateCtrl_->GetValue().FormatISODate();
-        m_end_date = toDateControl_->GetValue().FormatISODate();
         if (m_begin_date > m_end_date)
         {
             const auto today = wxDate::Today().FormatISODate();

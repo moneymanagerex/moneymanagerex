@@ -152,7 +152,7 @@ private:
     void OnCategs(wxCommandEvent& event);
     const wxString GetJsonSetings(bool i18n = false) const;
 
-    bool is_values_correct();
+    bool is_values_correct() const;
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
@@ -221,19 +221,7 @@ private:
         ID_DATE_RANGE,
         ID_PERIOD_CB,
         ID_DATE_RANGE_CB,
-        ID_TODAY_CB,
-        ID_FUTURE_CB,
-        ID_SIMILAR_CB,
-        ID_PAYEE_CB,
-        ID_CATEGORY_CB,
-        ID_STATUS_CB,
-        ID_TYPE_CB,
-        ID_AMOUNT_CB,
-        ID_NUMBER_CB,
-        ID_NOTES_CB,
-        ID_COLOR_CB,
-        ID_COLUMNS_CB,
-        ID_GROUPBY_CB,
+        ID_SIMILAR_CB
     };
 };
 
