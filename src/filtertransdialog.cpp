@@ -1529,59 +1529,9 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
     }
 }
 
-const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const
-{
-    return m_selected_accounts_id;
-}
-
-const wxArrayInt mmFilterTransactionsDialog::getHideColumnsID() const
-{
-    return m_selected_columns_id;
-}
-
-bool mmFilterTransactionsDialog::is_status_cb_active() const
-{
-    return statusCheckBox_->IsChecked();
-}
-
 bool mmFilterTransactionsDialog::is_account_cb_active() const
 {
     return accountCheckBox_->GetValue() && !m_selected_accounts_id.empty();
-}
-
-bool mmFilterTransactionsDialog::getHideColumnsCheckBox() const
-{
-    return showColumnsCheckBox_->GetValue();
-}
-
-bool mmFilterTransactionsDialog::is_category_cb_active() const
-{
-    return categoryCheckBox_->IsChecked();
-}
-
-bool mmFilterTransactionsDialog::getSimilarStatus() const
-{
-    return is_similar_category_status;
-}
-
-int mmFilterTransactionsDialog::getCategId() const
-{
-    return m_categ_id;
-}
-
-int mmFilterTransactionsDialog::getSubCategId() const
-{
-    return m_subcateg_id;
-}
-
-bool mmFilterTransactionsDialog::is_date_range_cb_active() const
-{
-    return dateRangeCheckBox_->GetValue();
-}
-
-bool mmFilterTransactionsDialog::getRangeCheckBox() const
-{
-    return rangeCheckBox_->GetValue();
 }
 
 bool mmFilterTransactionsDialog::is_amountrange_min_cb_active() const
@@ -1592,41 +1542,6 @@ bool mmFilterTransactionsDialog::is_amountrange_min_cb_active() const
 bool mmFilterTransactionsDialog::is_amount_range_max_cb_active() const
 {
     return amountRangeCheckBox_->GetValue() && !amountMaxEdit_->GetValue().IsEmpty();
-}
-
-const wxString mmFilterTransactionsDialog::getNumber() const
-{
-    return transNumberEdit_->GetValue();
-}
-
-const wxString mmFilterTransactionsDialog::getNotes() const
-{
-    return notesEdit_->GetValue();
-}
-
-bool mmFilterTransactionsDialog::is_type_cb_active() const
-{
-    return typeCheckBox_->IsChecked();
-}
-
-bool mmFilterTransactionsDialog::is_payee_cb_active() const
-{
-    return payeeCheckBox_->IsChecked();
-}
-
-bool mmFilterTransactionsDialog::is_number_cb_active() const
-{
-    return transNumberCheckBox_->IsChecked();
-}
-
-bool mmFilterTransactionsDialog::is_notes_cb_active() const
-{
-    return notesCheckBox_->IsChecked();
-}
-
-bool mmFilterTransactionsDialog::is_colour_cb_active() const
-{
-    return colourCheckBox_->IsChecked();
 }
 
 bool mmFilterTransactionsDialog::is_custom_field_active() const
@@ -1869,9 +1784,7 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
             fromDateCtrl_->SetValue(dates->start_date());
             toDateControl_->SetValue(dates->end_date());
         }
-
         break;
     }
-
     }
 }

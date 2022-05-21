@@ -241,6 +241,24 @@ inline const wxString mmFilterTransactionsDialog::getBeginDate() const { return 
 inline const wxString mmFilterTransactionsDialog::getEndDate() const { return m_end_date; }
 inline int mmFilterTransactionsDialog::getStartDay() const { return m_startDay; }
 inline bool mmFilterTransactionsDialog::isFutureIgnored() const { return m_futureIgnored; }
+inline bool mmFilterTransactionsDialog::is_date_range_cb_active() const { return dateRangeCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::getRangeCheckBox() const { return rangeCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::is_type_cb_active() const { return typeCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_payee_cb_active() const { return payeeCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_number_cb_active() const { return transNumberCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_notes_cb_active() const { return notesCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_colour_cb_active() const { return colourCheckBox_->IsChecked(); }
+inline const wxString mmFilterTransactionsDialog::getNumber() const { return transNumberEdit_->GetValue(); }
+inline const wxString mmFilterTransactionsDialog::getNotes() const { return notesEdit_->GetValue(); }
+inline bool mmFilterTransactionsDialog::getSimilarStatus() const { return is_similar_category_status; }
+inline int mmFilterTransactionsDialog::getCategId() const { return m_categ_id; }
+inline int mmFilterTransactionsDialog::getSubCategId() const { return m_subcateg_id; }
+inline bool mmFilterTransactionsDialog::getHideColumnsCheckBox() const { return showColumnsCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
+inline const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const { return m_selected_accounts_id; }
+inline const wxArrayInt mmFilterTransactionsDialog::getHideColumnsID() const { return m_selected_columns_id; }
+inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
+
 
 #endif
 // FILTERTRANSDIALOG_H_
