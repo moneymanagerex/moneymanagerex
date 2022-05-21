@@ -20,8 +20,10 @@
 #define MM_EX_APPSTARTDIALOG_H_
 
 #include <wx/dialog.h>
+#include "mmex.h"
 
 class wxCheckBox;
+class mmGUIApp;
 
 class mmAppStartDialog: public wxDialog
 {
@@ -29,7 +31,8 @@ class mmAppStartDialog: public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAppStartDialog(wxWindow* parent, const wxString& name = "mmAppStartDialog");
+    mmGUIApp* m_app;
+    mmAppStartDialog(wxWindow* parent, mmGUIApp* app, const wxString& name = "mmAppStartDialog");
     ~mmAppStartDialog();
     void SetCloseButtonToExit();
 
@@ -49,6 +52,7 @@ private:
     void CreateControls();
     void OnButtonAppstartOpenDatabaseClick( wxCommandEvent& event );
     void OnButtonAppstartNewDatabaseClick( wxCommandEvent& event );
+    void OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/ );
     void OnButtonAppstartHelpClick( wxCommandEvent& event );
     void OnButtonAppstartWebsiteClick( wxCommandEvent& event );
     void OnButtonAppstartLastDatabaseClick( wxCommandEvent& event );
