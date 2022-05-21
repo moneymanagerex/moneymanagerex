@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:05\n"
+"PO-Revision-Date: 2022-05-21 06:06\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr ""
+msgstr "உரிமம்"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
@@ -151,7 +151,7 @@ msgstr "பிற"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "அட்டை எண்:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
@@ -231,7 +231,7 @@ msgstr ""
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "கடன் வரம்பு:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
@@ -436,7 +436,7 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&தவிர் "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
@@ -467,11 +467,11 @@ msgstr "வகை"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
-msgstr ""
+msgstr "தொடக்க மதிப்பு"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "தற்போதைய மதிப்பு"
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
@@ -559,7 +559,7 @@ msgstr ""
 #: categdialog.cpp:252 maincurrencydialog.cpp:293 mmchecking_list.cpp:414
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:149
 msgid "&Delete "
-msgstr ""
+msgstr "&அழி "
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
