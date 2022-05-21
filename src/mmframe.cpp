@@ -2590,7 +2590,7 @@ void mmGUIFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::showBeginAppDialog(bool fromScratch)
 {
-    mmAppStartDialog dlg(this);
+    mmAppStartDialog dlg(this, m_app);
     if (fromScratch) {
         dlg.SetCloseButtonToExit();
     }
@@ -2616,6 +2616,10 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_NEW);
         AddPendingEvent(evt);
+    } else if (end_mod == wxID_SETUP)
+    {
+            auto language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+            const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
     }
 }
 //----------------------------------------------------------------------------
