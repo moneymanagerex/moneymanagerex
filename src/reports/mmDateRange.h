@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012     Lisheng Guan (guanlisheng@gmail.com)
+Copyright (C) 2014 - 2022   Nikolay Akimov
 Copyright (C) 2021          Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -154,6 +155,37 @@ class mmLast365Days: public mmDateRange
 public:
     mmLast365Days();
 };
+
+class mmSinseToday : public mmDateRange
+{
+public:
+    mmSinseToday();
+};
+
+class mmSinse30days : public mmDateRange
+{
+public:
+    mmSinse30days();
+};
+
+class mmSinse90days : public mmDateRange
+{
+public:
+    mmSinse90days();
+};
+
+class mmSinseCurrentYear : public mmDateRange
+{
+public:
+    mmSinseCurrentYear();
+};
+
+class mmSinseCurrentFinancialYear : public mmCurrentFinancialYear
+{
+public:
+    mmSinseCurrentFinancialYear();
+};
+
 
 inline const wxDateTime mmDateRange::start_date() const { return this->start_date_; }
 inline const wxDateTime mmDateRange::end_date() const { return this->end_date_; }

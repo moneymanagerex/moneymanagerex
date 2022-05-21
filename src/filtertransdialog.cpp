@@ -114,20 +114,25 @@ void mmFilterTransactionsDialog::DoInitVariables()
 
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
-    //m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
-    //m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
-    //m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseToday()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinse30days()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinse90days()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentFinancialYear()));
 
     m_accounts_name.clear();
     const auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
@@ -254,20 +259,6 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
     evt.SetInt(rangeChoice_->GetSelection());
     OnChoice(evt);
-
-    if (j_doc.HasMember("TODAY") && j_doc["TODAY"].IsBool())
-    {
-        cbToday_->SetValue(true);
-        wxCommandEvent e(wxID_ANY, ID_TODAY_CB);
-        OnCheckboxClick(e);
-    }
-    else if (j_doc.HasMember("FUTURE") && j_doc["FUTURE"].IsBool())
-    {
-        cbFuture_->SetValue(true);
-        wxCommandEvent e(wxID_ANY, ID_FUTURE_CB);
-        OnCheckboxClick(e);
-    }
-
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
@@ -527,23 +518,6 @@ void mmFilterTransactionsDialog::CreateControls()
         rangeChoice_->Append(date_range.get()->local_title());
     }
     itemPanelSizer->Add(rangeChoice_, g_flagsExpand);
-
-    // End date
-    wxStaticText* end_date = new wxStaticText(itemPanel, wxID_ANY, _("End date: "));
-
-    wxFlexGridSizer* end_date_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    end_date_sizer->AddGrowableCol(0, 1);
-    //end_date_sizer->AddGrowableCol(1, 1);
-    cbToday_ = new wxCheckBox(itemPanel, ID_TODAY_CB, _("Today")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbFuture_ = new wxCheckBox(itemPanel, ID_FUTURE_CB, _("Future")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-
-    itemPanelSizer->Add(end_date, g_flagsH);
-    itemPanelSizer->Add(end_date_sizer, g_flagsExpand);
-    end_date_sizer->Add(cbToday_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
-    end_date_sizer->Add(cbFuture_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
-
 
     // Date Range
     dateRangeCheckBox_ = new wxCheckBox(itemPanel, ID_DATE_RANGE_CB, _("Date Range")
@@ -821,40 +795,6 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     case ID_DATE_RANGE_CB:
         rangeCheckBox_->SetValue(!dateRangeCheckBox_->IsChecked());
         break;
-    case ID_TODAY_CB:
-    {
-        if (cbToday_->IsChecked()) {
-            wxDate d = wxDate::Today();
-            m_end_date = d.FormatISODate();
-            toDateControl_->SetValue(d);
-            if (cbFuture_->IsChecked())
-                cbFuture_->SetValue(false);
-        }
-        else {
-            wxCommandEvent e(wxEVT_CHOICE, ID_DATE_RANGE);
-            e.SetInt(rangeChoice_->GetSelection());
-            OnChoice(e);
-        }
-        m_futureIgnored = cbToday_->IsChecked();
-        break;
-    }
-    case ID_FUTURE_CB:
-    {
-        if (cbFuture_->IsChecked()) {
-            wxDate d = wxDate::Today().SetMonth(wxDate::Dec).SetDay(31).SetYear(9999);
-            toDateControl_->SetValue(d);
-            m_end_date = d.FormatISODate();
-            if (cbToday_->IsChecked())
-                cbToday_->SetValue(false);
-        }
-        else {
-            wxCommandEvent e(wxEVT_CHOICE, ID_DATE_RANGE);
-            e.SetInt(rangeChoice_->GetSelection());
-            OnChoice(e);
-        }
-        m_futureIgnored = !cbFuture_->IsChecked();
-        break;
-    }
     }
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
@@ -1443,15 +1383,6 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
                 json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
                 json_writer.String(date_range->title().utf8_str());
             }
-
-            if (cbToday_->IsChecked()) {
-                json_writer.Key((i18n ? _("Today") : "TODAY").utf8_str());
-                json_writer.Bool(true);
-            }
-            else if (cbFuture_->IsChecked()) {
-                json_writer.Key((i18n ? _("Future") : "FUTURE").utf8_str());
-                json_writer.Bool(true);
-            }
         }
     }
 
@@ -1937,8 +1868,6 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
             m_futureIgnored = dates->isFutureIgnored();
             fromDateCtrl_->SetValue(dates->start_date());
             toDateControl_->SetValue(dates->end_date());
-            cbToday_->SetValue(false);
-            cbFuture_->SetValue(false);
         }
 
         break;
