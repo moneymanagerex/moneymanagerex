@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012     Lisheng Guan (guanlisheng@gmail.com)
-Copyright (C) 2014 - 2021   Nikolay Akimov
+Copyright (C) 2014 - 2022   Nikolay Akimov
 Copyright (C) 2021          Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -272,4 +272,43 @@ mmLast365Days::mmLast365Days() : mmDateRange()
     this->start_date_.Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
     // no change to end_date_
     this->title_ = wxTRANSLATE("Last 365 Days");
+}
+
+mmSinseToday::mmSinseToday() : mmDateRange()
+{
+    this->end_date_ = future_;
+    this->title_ = wxTRANSLATE("Since Today");
+}
+
+mmSinse30days::mmSinse30days() : mmDateRange()
+{
+    this->start_date_
+        .Subtract(wxDateSpan::Months(1))
+        .Add(wxDateSpan::Days(1));
+    this->end_date_ = future_;
+    this->title_ = wxTRANSLATE("Since 30 days ago");
+}
+
+mmSinse90days::mmSinse90days() : mmDateRange()
+{
+    this->start_date_
+        .Subtract(wxDateSpan::Months(3))
+        .Add(wxDateSpan::Days(1));
+    this->end_date_ = future_;
+    this->title_ = wxTRANSLATE("Since 90 days ago");
+}
+
+mmSinseCurrentYear::mmSinseCurrentYear() : mmDateRange()
+{
+    this->findBeginOfMonth();
+    this->start_date_.SetMonth(wxDateTime::Jan);
+    this->end_date_ = future_;
+    this->title_ = wxTRANSLATE("Since Start of This Year");
+}
+
+mmSinseCurrentFinancialYear::mmSinseCurrentFinancialYear() : mmCurrentFinancialYear()
+{
+    futureIgnored_ = false;
+    this->end_date_ = future_;
+    this->title_ = wxTRANSLATE("Since Start of Financial Year");
 }

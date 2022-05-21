@@ -157,8 +157,6 @@ private:
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
     wxCheckBox* rangeCheckBox_;
-    wxCheckBox* cbToday_;
-    wxCheckBox* cbFuture_;
     wxChoice* rangeChoice_;
     wxCheckBox* dateRangeCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
