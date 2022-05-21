@@ -37,7 +37,7 @@ def is_trans(s):
 def adjust_translate(s):
     """Return the correct translated syntax for c++"""
     trans_str = s.replace("_tr_", "").replace('"','')
-    trans_str = 'wxTRANSLATE("' + trans_str + '")'
+    trans_str = '_("' + trans_str + '")'
 
     return trans_str
 
