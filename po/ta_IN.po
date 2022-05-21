@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-21 06:06\n"
+"PO-Revision-Date: 2022-05-21 06:26\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -619,7 +619,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:56 general_report_manager.cpp:435
 msgid "Description"
-msgstr ""
+msgstr "விளக்கம்"
 
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:185
