@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-22 19:31+0300\n"
-"PO-Revision-Date: 2022-05-22 16:38\n"
+"PO-Revision-Date: 2022-05-22 18:55\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Öffnet eine bereits erstellte Datenbank mit der Dateiendung (*.mmb)"
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Sprache wechseln"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -6349,7 +6349,7 @@ msgstr "Seit 90 Tagen"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Seit Beginn dieses Jahres"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
