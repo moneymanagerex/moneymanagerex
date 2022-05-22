@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-22 19:31+0300\n"
-"PO-Revision-Date: 2022-05-22 16:38\n"
+"POT-Creation-Date: 2022-05-23 00:15+0300\n"
+"PO-Revision-Date: 2022-05-22 21:17\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -144,8 +144,8 @@ msgstr "Ghi chú"
 msgid "Enter user notes and details about this account."
 msgstr "Điền ghi chú của người dùng và chi tiết của tài khoản này"
 
-#: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
-#: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
+#: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:130
+#: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:149
 #: optiondialog.cpp:37
 msgid "Others"
 msgstr "Khác"
@@ -1393,7 +1393,7 @@ msgstr "Loại:"
 msgid "Expense"
 msgstr "Chi"
 
-#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:439
+#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:124 mmhomepage.cpp:439
 #: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:398
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -2040,209 +2040,209 @@ msgstr[0] ""
 msgid "&Massive content update "
 msgstr ""
 
-#: db/DB_Table_Category_V1.h:111
+#: db/DB_Table_Category_V1.h:112
 msgid "Bills"
 msgstr "Hóa đơn"
 
-#: db/DB_Table_Category_V1.h:112
+#: db/DB_Table_Category_V1.h:113
 msgid "Food"
 msgstr "Thức ăn"
 
-#: db/DB_Table_Category_V1.h:113
+#: db/DB_Table_Category_V1.h:114
 msgid "Leisure"
 msgstr "Giải trí"
 
-#: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
+#: db/DB_Table_Category_V1.h:115 model/Model_Asset.cpp:31
 msgid "Automobile"
 msgstr "Ô-tô"
 
-#: db/DB_Table_Category_V1.h:115
+#: db/DB_Table_Category_V1.h:116
 msgid "Education"
 msgstr "Giáo dục"
 
-#: db/DB_Table_Category_V1.h:116
+#: db/DB_Table_Category_V1.h:117
 msgid "Homeneeds"
 msgstr "Nhu cầu trong nhà"
 
-#: db/DB_Table_Category_V1.h:117
+#: db/DB_Table_Category_V1.h:118
 msgid "Healthcare"
 msgstr ""
 
-#: db/DB_Table_Category_V1.h:118
+#: db/DB_Table_Category_V1.h:119
 msgid "Insurance"
 msgstr "Bảo hiểm"
 
-#: db/DB_Table_Category_V1.h:119
+#: db/DB_Table_Category_V1.h:120
 msgid "Vacation"
 msgstr "Nghỉ mát"
 
-#: db/DB_Table_Category_V1.h:120
+#: db/DB_Table_Category_V1.h:121
 msgid "Taxes"
 msgstr "Thuế"
 
-#: db/DB_Table_Category_V1.h:121
+#: db/DB_Table_Category_V1.h:122
 msgid "Miscellaneous"
 msgstr "Linh tinh"
 
-#: db/DB_Table_Category_V1.h:122
+#: db/DB_Table_Category_V1.h:123
 msgid "Gifts"
 msgstr "Quà tặng"
 
-#: db/DB_Table_Category_V1.h:124
+#: db/DB_Table_Category_V1.h:125
 msgid "Other Income"
 msgstr "Thu nhập khác"
 
-#: db/DB_Table_Category_V1.h:125
+#: db/DB_Table_Category_V1.h:126
 msgid "Other Expenses"
 msgstr "Chi phí khác"
 
-#: db/DB_Table_Category_V1.h:126 filtertransdialog.cpp:816
+#: db/DB_Table_Category_V1.h:127 filtertransdialog.cpp:816
 #: filtertransdialog.cpp:1368 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:32 transdialog.cpp:373
 msgid "Transfer"
 msgstr "Chuyển khoản"
 
-#: db/DB_Table_Subcategory_V1.h:111
+#: db/DB_Table_Subcategory_V1.h:112
 msgid "Telephone"
 msgstr "Điện thoại"
 
-#: db/DB_Table_Subcategory_V1.h:112
+#: db/DB_Table_Subcategory_V1.h:113
 msgid "Electricity"
 msgstr "Điện"
 
-#: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
+#: db/DB_Table_Subcategory_V1.h:114 db/DB_Table_Subcategory_V1.h:125
 msgid "Gas"
 msgstr "Xăng"
 
-#: db/DB_Table_Subcategory_V1.h:114
+#: db/DB_Table_Subcategory_V1.h:115
 msgid "Internet"
 msgstr ""
 
-#: db/DB_Table_Subcategory_V1.h:115
+#: db/DB_Table_Subcategory_V1.h:116
 msgid "Rent"
 msgstr "Tiền thuê nhà"
 
-#: db/DB_Table_Subcategory_V1.h:116
+#: db/DB_Table_Subcategory_V1.h:117
 msgid "Cable TV"
 msgstr "Truyền hình cáp"
 
-#: db/DB_Table_Subcategory_V1.h:117
+#: db/DB_Table_Subcategory_V1.h:118
 msgid "Water"
 msgstr "Nước"
 
-#: db/DB_Table_Subcategory_V1.h:118
+#: db/DB_Table_Subcategory_V1.h:119
 msgid "Groceries"
 msgstr "Tạp phẩm"
 
-#: db/DB_Table_Subcategory_V1.h:119
+#: db/DB_Table_Subcategory_V1.h:120
 msgid "Dining out"
 msgstr "Ăn ngoài"
 
-#: db/DB_Table_Subcategory_V1.h:120
+#: db/DB_Table_Subcategory_V1.h:121
 msgid "Movies"
 msgstr "Phim"
 
-#: db/DB_Table_Subcategory_V1.h:121
+#: db/DB_Table_Subcategory_V1.h:122
 msgid "Video Rental"
 msgstr "Thuê phim"
 
-#: db/DB_Table_Subcategory_V1.h:122
+#: db/DB_Table_Subcategory_V1.h:123
 msgid "Magazines"
 msgstr "Tạp chí"
 
-#: db/DB_Table_Subcategory_V1.h:123
+#: db/DB_Table_Subcategory_V1.h:124
 msgid "Maintenance"
 msgstr "Bảo trì"
 
-#: db/DB_Table_Subcategory_V1.h:125
+#: db/DB_Table_Subcategory_V1.h:126
 msgid "Parking"
 msgstr "Đậu xe"
 
-#: db/DB_Table_Subcategory_V1.h:126
+#: db/DB_Table_Subcategory_V1.h:127
 msgid "Registration"
 msgstr "Phí đăng kí"
 
-#: db/DB_Table_Subcategory_V1.h:127
+#: db/DB_Table_Subcategory_V1.h:128
 msgid "Books"
 msgstr "Sách"
 
-#: db/DB_Table_Subcategory_V1.h:128
+#: db/DB_Table_Subcategory_V1.h:129
 msgid "Tuition"
 msgstr "Học phí"
 
-#: db/DB_Table_Subcategory_V1.h:130
+#: db/DB_Table_Subcategory_V1.h:131
 msgid "Clothing"
 msgstr "Quần áo"
 
-#: db/DB_Table_Subcategory_V1.h:131
+#: db/DB_Table_Subcategory_V1.h:132
 msgid "Furnishing"
 msgstr "Đồ đạc"
 
-#: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
+#: db/DB_Table_Subcategory_V1.h:134 db/DB_Table_Subcategory_V1.h:142
 msgid "Health"
 msgstr "Y tế"
 
-#: db/DB_Table_Subcategory_V1.h:134
+#: db/DB_Table_Subcategory_V1.h:135
 msgid "Dental"
 msgstr "Khám răng"
 
-#: db/DB_Table_Subcategory_V1.h:135
+#: db/DB_Table_Subcategory_V1.h:136
 msgid "Eyecare"
 msgstr "Khám răng"
 
-#: db/DB_Table_Subcategory_V1.h:136
+#: db/DB_Table_Subcategory_V1.h:137
 msgid "Physician"
 msgstr "Bác sĩ"
 
-#: db/DB_Table_Subcategory_V1.h:137
+#: db/DB_Table_Subcategory_V1.h:138
 msgid "Prescriptions"
 msgstr "Thuốc men"
 
-#: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
+#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:221
 msgid "Auto"
 msgstr "Tự động"
 
-#: db/DB_Table_Subcategory_V1.h:139
+#: db/DB_Table_Subcategory_V1.h:140
 msgid "Life"
 msgstr "Sinh hoạt"
 
-#: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
+#: db/DB_Table_Subcategory_V1.h:141 optiondialog.cpp:37
 msgid "Home"
 msgstr "Trang chủ"
 
-#: db/DB_Table_Subcategory_V1.h:142
+#: db/DB_Table_Subcategory_V1.h:143
 msgid "Travel"
 msgstr "Du lịch"
 
-#: db/DB_Table_Subcategory_V1.h:143
+#: db/DB_Table_Subcategory_V1.h:144
 msgid "Lodging"
 msgstr "Nhà trọ"
 
-#: db/DB_Table_Subcategory_V1.h:144
+#: db/DB_Table_Subcategory_V1.h:145
 msgid "Sightseeing"
 msgstr "Ngắm cảnh"
 
-#: db/DB_Table_Subcategory_V1.h:145
+#: db/DB_Table_Subcategory_V1.h:146
 msgid "Income Tax"
 msgstr "Thuế thu nhập"
 
-#: db/DB_Table_Subcategory_V1.h:146
+#: db/DB_Table_Subcategory_V1.h:147
 msgid "House Tax"
 msgstr "Thuế nhà"
 
-#: db/DB_Table_Subcategory_V1.h:147
+#: db/DB_Table_Subcategory_V1.h:148
 msgid "Water Tax"
 msgstr "Thuế nước"
 
-#: db/DB_Table_Subcategory_V1.h:149
+#: db/DB_Table_Subcategory_V1.h:150
 msgid "Salary"
 msgstr "Lương"
 
-#: db/DB_Table_Subcategory_V1.h:150
+#: db/DB_Table_Subcategory_V1.h:151
 msgid "Reimbursement/Refunds"
 msgstr "Nợ ứng trước / Tiền hoàn trả"
 
-#: db/DB_Table_Subcategory_V1.h:151
+#: db/DB_Table_Subcategory_V1.h:152
 msgid "Investment Income"
 msgstr "Thu nhập đầu tư"
 
@@ -2471,7 +2471,7 @@ msgid "Save active values into current Preset selection"
 msgstr ""
 
 #: filtertransdialog.cpp:738
-msgid "Clear all fields for current Preset selection"
+msgid "Delete current Preset selection"
 msgstr ""
 
 #: filtertransdialog.cpp:1018
