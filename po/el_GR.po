@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-22 12:56+0300\n"
-"PO-Revision-Date: 2022-05-22 10:07\n"
+"PO-Revision-Date: 2022-05-22 13:57\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgstr "Άνοιγμα μιας ήδη δημιουργημένης βάσης �
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Αλλαγή γλώσσας"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -6337,11 +6337,11 @@ msgstr "Από 90 ημέρες πριν"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Από την αρχή του τρέχοντος έτους"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Από την αρχή του οικονομικού έτους"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
