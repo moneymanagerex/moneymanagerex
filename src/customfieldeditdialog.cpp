@@ -149,7 +149,7 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flagsH);
-    m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, "");
+    m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, R"(^.+$)");
     mmToolTip(m_itemRegEx, _("Enter the RegEx to validate field"));
     itemFlexGridSizer6->Add(m_itemRegEx, g_flagsExpand);
 
