@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-22 12:56+0300\n"
-"PO-Revision-Date: 2022-05-22 10:07\n"
+"PO-Revision-Date: 2022-05-22 12:58\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgstr "Öppna en tidigare skapad databasfil med filändelsen (*.mmb)"
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Byt språk"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -6309,11 +6309,11 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Sedan början av detta år"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Sedan början av räkenskapsåret"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
