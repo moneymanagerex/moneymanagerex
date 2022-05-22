@@ -139,7 +139,7 @@ private:
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
-    void OnPayeeUpdated(wxCommandEvent& event);
+    void OnPayeeUpdated(wxCommandEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
     void DoSaveSettings(bool is_user_request = false);

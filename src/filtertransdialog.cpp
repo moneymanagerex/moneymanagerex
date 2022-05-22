@@ -256,9 +256,11 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
     datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
-    wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
-    evt.SetInt(rangeChoice_->GetSelection());
-    OnChoice(evt);
+    {
+        wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
+        evt.SetInt(rangeChoice_->GetSelection());
+        OnChoice(evt);
+    }
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
@@ -267,7 +269,10 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
     BuildPayeeList();
-    OnPayeeUpdated(evt);
+    {
+        wxCommandEvent evt(wxID_ANY);
+        OnPayeeUpdated(evt);
+    }
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
@@ -1202,7 +1207,7 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
     colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
 }
 
-void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
+void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& WXUNUSED(event))
 {
     cbPayee_->SetEvtHandlerEnabled(false);
     Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
@@ -1212,7 +1217,6 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
         cbPayee_->SetValue(payee->PAYEENAME);
     }
     cbPayee_->SetEvtHandlerEnabled(true);
-    event.Skip();
 }
 
 template<class MODEL, class DATA>
