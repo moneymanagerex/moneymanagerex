@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-22 12:56+0300\n"
-"PO-Revision-Date: 2022-05-22 10:07\n"
+"PO-Revision-Date: 2022-05-22 11:37\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgstr "Open een databestand met de extensie (*.mmb)"
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Wijzig taal"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -6344,11 +6344,11 @@ msgstr "Sinds 90 dagen geleden"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Sinds het begin van dit jaar"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Sinds het begin van het financieel jaar"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
