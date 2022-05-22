@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-19 19:51+0300\n"
-"PO-Revision-Date: 2022-05-19 17:05\n"
+"PO-Revision-Date: 2022-05-22 04:37\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2504,15 +2504,15 @@ msgstr "הסתר עמודות דוח"
 
 #: filtertransdialog.cpp:993
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "הפריטים שנבחרו יימחקו"
 
 #: filtertransdialog.cpp:994
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "האם להמשיך?"
 
 #: filtertransdialog.cpp:995
 msgid "Settings item deletion"
-msgstr ""
+msgstr "הגדרות מחיקת פריט"
 
 #: filtertransdialog.cpp:1179 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
@@ -2557,7 +2557,7 @@ msgstr "נא להזין"
 
 #: filtertransdialog.cpp:1901
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "השם שהוזן נמצא כבר בשימוש"
 
 #: filtertransdialog.cpp:1901 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -2576,7 +2576,7 @@ msgstr "האם לשמור לפני שממשיכים?"
 
 #: filtertransdialog.cpp:1914
 msgid "Please confirm"
-msgstr ""
+msgstr "נא לאשר"
 
 #: filtertransdialog.cpp:1930 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -3808,10 +3808,10 @@ msgstr "העברה ח&דשה"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
+msgstr[0] "&עריכת תנועה..."
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "&עריכת תנועות..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3837,10 +3837,10 @@ msgstr "שכ&פול תנועה"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "ה&עברת תנועה..."
+msgstr[1] "ה&עברת תנועות..."
+msgstr[2] "ה&עברת תנועות..."
+msgstr[3] "ה&עברת תנועות..."
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
@@ -3857,7 +3857,7 @@ msgstr "יצירת &תנועות מחזורית"
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "&מחיקת תנועה שנבחרה..."
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
