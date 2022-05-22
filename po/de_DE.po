@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-22 19:31+0300\n"
-"PO-Revision-Date: 2022-05-22 19:10\n"
+"POT-Creation-Date: 2022-05-23 00:15+0300\n"
+"PO-Revision-Date: 2022-05-22 21:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -144,8 +144,8 @@ msgstr "Anmerkungen"
 msgid "Enter user notes and details about this account."
 msgstr "Bemerkungen und Details zu diesem Konto."
 
-#: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
-#: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
+#: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:130
+#: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:149
 #: optiondialog.cpp:37
 msgid "Others"
 msgstr "Sonstiges"
@@ -1402,7 +1402,7 @@ msgstr "Typ:"
 msgid "Expense"
 msgstr "Ausgaben"
 
-#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:439
+#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:124 mmhomepage.cpp:439
 #: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:398
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -2058,209 +2058,209 @@ msgstr[1] "%zu Vorkommnisse gefunden und ersetzt!"
 msgid "&Massive content update "
 msgstr "&Umfangreiches Inhalts-Update "
 
-#: db/DB_Table_Category_V1.h:111
+#: db/DB_Table_Category_V1.h:112
 msgid "Bills"
 msgstr "Rechnungen"
 
-#: db/DB_Table_Category_V1.h:112
+#: db/DB_Table_Category_V1.h:113
 msgid "Food"
 msgstr "Lebensmittel"
 
-#: db/DB_Table_Category_V1.h:113
+#: db/DB_Table_Category_V1.h:114
 msgid "Leisure"
 msgstr "Freizeit"
 
-#: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
+#: db/DB_Table_Category_V1.h:115 model/Model_Asset.cpp:31
 msgid "Automobile"
 msgstr "Pkw"
 
-#: db/DB_Table_Category_V1.h:115
+#: db/DB_Table_Category_V1.h:116
 msgid "Education"
 msgstr "Bildung"
 
-#: db/DB_Table_Category_V1.h:116
+#: db/DB_Table_Category_V1.h:117
 msgid "Homeneeds"
 msgstr "Heim- und Hausbedarf"
 
-#: db/DB_Table_Category_V1.h:117
+#: db/DB_Table_Category_V1.h:118
 msgid "Healthcare"
 msgstr "Gesundheit"
 
-#: db/DB_Table_Category_V1.h:118
+#: db/DB_Table_Category_V1.h:119
 msgid "Insurance"
 msgstr "Versicherung"
 
-#: db/DB_Table_Category_V1.h:119
+#: db/DB_Table_Category_V1.h:120
 msgid "Vacation"
 msgstr "Urlaub"
 
-#: db/DB_Table_Category_V1.h:120
+#: db/DB_Table_Category_V1.h:121
 msgid "Taxes"
 msgstr "Steuern"
 
-#: db/DB_Table_Category_V1.h:121
+#: db/DB_Table_Category_V1.h:122
 msgid "Miscellaneous"
 msgstr "Verschiedenes"
 
-#: db/DB_Table_Category_V1.h:122
+#: db/DB_Table_Category_V1.h:123
 msgid "Gifts"
 msgstr "Geschenke"
 
-#: db/DB_Table_Category_V1.h:124
+#: db/DB_Table_Category_V1.h:125
 msgid "Other Income"
 msgstr "Andere Einnahmen"
 
-#: db/DB_Table_Category_V1.h:125
+#: db/DB_Table_Category_V1.h:126
 msgid "Other Expenses"
 msgstr "Andere Ausgaben"
 
-#: db/DB_Table_Category_V1.h:126 filtertransdialog.cpp:816
+#: db/DB_Table_Category_V1.h:127 filtertransdialog.cpp:816
 #: filtertransdialog.cpp:1368 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:32 transdialog.cpp:373
 msgid "Transfer"
 msgstr "Transfer"
 
-#: db/DB_Table_Subcategory_V1.h:111
+#: db/DB_Table_Subcategory_V1.h:112
 msgid "Telephone"
 msgstr "Telefon"
 
-#: db/DB_Table_Subcategory_V1.h:112
+#: db/DB_Table_Subcategory_V1.h:113
 msgid "Electricity"
 msgstr "Strom"
 
-#: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
+#: db/DB_Table_Subcategory_V1.h:114 db/DB_Table_Subcategory_V1.h:125
 msgid "Gas"
 msgstr "Gas"
 
-#: db/DB_Table_Subcategory_V1.h:114
+#: db/DB_Table_Subcategory_V1.h:115
 msgid "Internet"
 msgstr "Internet"
 
-#: db/DB_Table_Subcategory_V1.h:115
+#: db/DB_Table_Subcategory_V1.h:116
 msgid "Rent"
 msgstr "Miete"
 
-#: db/DB_Table_Subcategory_V1.h:116
+#: db/DB_Table_Subcategory_V1.h:117
 msgid "Cable TV"
 msgstr "Kabelfernsehen"
 
-#: db/DB_Table_Subcategory_V1.h:117
+#: db/DB_Table_Subcategory_V1.h:118
 msgid "Water"
 msgstr "Wasser"
 
-#: db/DB_Table_Subcategory_V1.h:118
+#: db/DB_Table_Subcategory_V1.h:119
 msgid "Groceries"
 msgstr "Einkäufe"
 
-#: db/DB_Table_Subcategory_V1.h:119
+#: db/DB_Table_Subcategory_V1.h:120
 msgid "Dining out"
 msgstr "Restaurantessen"
 
-#: db/DB_Table_Subcategory_V1.h:120
+#: db/DB_Table_Subcategory_V1.h:121
 msgid "Movies"
 msgstr "Filme"
 
-#: db/DB_Table_Subcategory_V1.h:121
+#: db/DB_Table_Subcategory_V1.h:122
 msgid "Video Rental"
 msgstr "Videoverleih"
 
-#: db/DB_Table_Subcategory_V1.h:122
+#: db/DB_Table_Subcategory_V1.h:123
 msgid "Magazines"
 msgstr "Zeitschriften"
 
-#: db/DB_Table_Subcategory_V1.h:123
+#: db/DB_Table_Subcategory_V1.h:124
 msgid "Maintenance"
 msgstr "Unterhalt"
 
-#: db/DB_Table_Subcategory_V1.h:125
+#: db/DB_Table_Subcategory_V1.h:126
 msgid "Parking"
 msgstr "Parkplatz"
 
-#: db/DB_Table_Subcategory_V1.h:126
+#: db/DB_Table_Subcategory_V1.h:127
 msgid "Registration"
 msgstr "Registrierung"
 
-#: db/DB_Table_Subcategory_V1.h:127
+#: db/DB_Table_Subcategory_V1.h:128
 msgid "Books"
 msgstr "Bücher"
 
-#: db/DB_Table_Subcategory_V1.h:128
+#: db/DB_Table_Subcategory_V1.h:129
 msgid "Tuition"
 msgstr "Studiengebühren"
 
-#: db/DB_Table_Subcategory_V1.h:130
+#: db/DB_Table_Subcategory_V1.h:131
 msgid "Clothing"
 msgstr "Kleidung"
 
-#: db/DB_Table_Subcategory_V1.h:131
+#: db/DB_Table_Subcategory_V1.h:132
 msgid "Furnishing"
 msgstr "Einrichtung"
 
-#: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
+#: db/DB_Table_Subcategory_V1.h:134 db/DB_Table_Subcategory_V1.h:142
 msgid "Health"
 msgstr "Gesundheit"
 
-#: db/DB_Table_Subcategory_V1.h:134
+#: db/DB_Table_Subcategory_V1.h:135
 msgid "Dental"
 msgstr "Zahnarzt"
 
-#: db/DB_Table_Subcategory_V1.h:135
+#: db/DB_Table_Subcategory_V1.h:136
 msgid "Eyecare"
 msgstr "Augenoptiker"
 
-#: db/DB_Table_Subcategory_V1.h:136
+#: db/DB_Table_Subcategory_V1.h:137
 msgid "Physician"
 msgstr "Arzt"
 
-#: db/DB_Table_Subcategory_V1.h:137
+#: db/DB_Table_Subcategory_V1.h:138
 msgid "Prescriptions"
 msgstr "Vorschriften"
 
-#: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
+#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:221
 msgid "Auto"
 msgstr "Auto"
 
-#: db/DB_Table_Subcategory_V1.h:139
+#: db/DB_Table_Subcategory_V1.h:140
 msgid "Life"
 msgstr "Lebensunterhalt"
 
-#: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
+#: db/DB_Table_Subcategory_V1.h:141 optiondialog.cpp:37
 msgid "Home"
 msgstr "Haus"
 
-#: db/DB_Table_Subcategory_V1.h:142
+#: db/DB_Table_Subcategory_V1.h:143
 msgid "Travel"
 msgstr "Reisen"
 
-#: db/DB_Table_Subcategory_V1.h:143
+#: db/DB_Table_Subcategory_V1.h:144
 msgid "Lodging"
 msgstr "Unterkunft"
 
-#: db/DB_Table_Subcategory_V1.h:144
+#: db/DB_Table_Subcategory_V1.h:145
 msgid "Sightseeing"
 msgstr "Besichtigungen"
 
-#: db/DB_Table_Subcategory_V1.h:145
+#: db/DB_Table_Subcategory_V1.h:146
 msgid "Income Tax"
 msgstr "Einkommenssteuer"
 
-#: db/DB_Table_Subcategory_V1.h:146
+#: db/DB_Table_Subcategory_V1.h:147
 msgid "House Tax"
 msgstr "Haus Steuern"
 
-#: db/DB_Table_Subcategory_V1.h:147
+#: db/DB_Table_Subcategory_V1.h:148
 msgid "Water Tax"
 msgstr "Wasser Steuern"
 
-#: db/DB_Table_Subcategory_V1.h:149
+#: db/DB_Table_Subcategory_V1.h:150
 msgid "Salary"
 msgstr "Gehalt"
 
-#: db/DB_Table_Subcategory_V1.h:150
+#: db/DB_Table_Subcategory_V1.h:151
 msgid "Reimbursement/Refunds"
 msgstr "Erstattung / Rückerstattungen"
 
-#: db/DB_Table_Subcategory_V1.h:151
+#: db/DB_Table_Subcategory_V1.h:152
 msgid "Investment Income"
 msgstr "Vermögenseinkommen"
 
@@ -2495,8 +2495,8 @@ msgid "Save active values into current Preset selection"
 msgstr "Aktive Werte in die aktuelle Preset-Auswahl speichern"
 
 #: filtertransdialog.cpp:738
-msgid "Clear all fields for current Preset selection"
-msgstr "Alle Felder der aktuellen Preset-Auswahl löschen"
+msgid "Delete current Preset selection"
+msgstr ""
 
 #: filtertransdialog.cpp:1018
 msgid "Hide Report Columns"
