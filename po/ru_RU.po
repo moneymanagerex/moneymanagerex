@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-22 12:56+0300\n"
-"PO-Revision-Date: 2022-05-22 10:07\n"
+"PO-Revision-Date: 2022-05-22 14:27\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgstr "Открыть существующую базу данных с рас�
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Изменить язык"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -6371,11 +6371,11 @@ msgstr "Начиная с 90 дней назад"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "С начала этого года"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "С начала финансового года"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
