@@ -726,8 +726,6 @@ void mmFilterTransactionsDialog::CreateControls()
     DoInitSettingNameChoice();
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
-    wxCommandEvent e(wxID_APPLY);
-    OnSettingsSelected(e);
 
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE, mmBitmapButtonSize));
@@ -773,8 +771,11 @@ void mmFilterTransactionsDialog::CreateControls()
     auto cf_count = m_custom_fields->GetCustomFieldsCount();
     if (cf_count > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
-        AddPendingEvent(evt);
+        OnMoreFields(evt);
     }
+
+    wxCommandEvent e(wxID_APPLY);
+    OnSettingsSelected(e);
 
     Center();
     this->SetSizer(box_sizer);
