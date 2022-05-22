@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-22 19:31+0300\n"
-"PO-Revision-Date: 2022-05-22 16:38\n"
+"POT-Creation-Date: 2022-05-23 00:15+0300\n"
+"PO-Revision-Date: 2022-05-22 21:17\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -144,8 +144,8 @@ msgstr "Бележки"
 msgid "Enter user notes and details about this account."
 msgstr "Въведете бележки и детайли за този акаунт."
 
-#: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
-#: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
+#: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:130
+#: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:149
 #: optiondialog.cpp:37
 msgid "Others"
 msgstr "Други"
@@ -1396,7 +1396,7 @@ msgstr "Вид:"
 msgid "Expense"
 msgstr "Разход"
 
-#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:439
+#: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:124 mmhomepage.cpp:439
 #: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:398
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -2049,209 +2049,209 @@ msgstr[1] ""
 msgid "&Massive content update "
 msgstr ""
 
-#: db/DB_Table_Category_V1.h:111
+#: db/DB_Table_Category_V1.h:112
 msgid "Bills"
 msgstr "Сметки"
 
-#: db/DB_Table_Category_V1.h:112
+#: db/DB_Table_Category_V1.h:113
 msgid "Food"
 msgstr "Храна"
 
-#: db/DB_Table_Category_V1.h:113
+#: db/DB_Table_Category_V1.h:114
 msgid "Leisure"
 msgstr "Отдих"
 
-#: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
+#: db/DB_Table_Category_V1.h:115 model/Model_Asset.cpp:31
 msgid "Automobile"
 msgstr "Автомобил"
 
-#: db/DB_Table_Category_V1.h:115
+#: db/DB_Table_Category_V1.h:116
 msgid "Education"
 msgstr "Образование"
 
-#: db/DB_Table_Category_V1.h:116
+#: db/DB_Table_Category_V1.h:117
 msgid "Homeneeds"
 msgstr "Домашни потреби"
 
-#: db/DB_Table_Category_V1.h:117
+#: db/DB_Table_Category_V1.h:118
 msgid "Healthcare"
 msgstr "Здравеопазване"
 
-#: db/DB_Table_Category_V1.h:118
+#: db/DB_Table_Category_V1.h:119
 msgid "Insurance"
 msgstr "Застраховка"
 
-#: db/DB_Table_Category_V1.h:119
+#: db/DB_Table_Category_V1.h:120
 msgid "Vacation"
 msgstr "Ваканция"
 
-#: db/DB_Table_Category_V1.h:120
+#: db/DB_Table_Category_V1.h:121
 msgid "Taxes"
 msgstr "Такси"
 
-#: db/DB_Table_Category_V1.h:121
+#: db/DB_Table_Category_V1.h:122
 msgid "Miscellaneous"
 msgstr "Разни"
 
-#: db/DB_Table_Category_V1.h:122
+#: db/DB_Table_Category_V1.h:123
 msgid "Gifts"
 msgstr "Подаръци"
 
-#: db/DB_Table_Category_V1.h:124
+#: db/DB_Table_Category_V1.h:125
 msgid "Other Income"
 msgstr "Други приходи"
 
-#: db/DB_Table_Category_V1.h:125
+#: db/DB_Table_Category_V1.h:126
 msgid "Other Expenses"
 msgstr "Други разходи"
 
-#: db/DB_Table_Category_V1.h:126 filtertransdialog.cpp:816
+#: db/DB_Table_Category_V1.h:127 filtertransdialog.cpp:816
 #: filtertransdialog.cpp:1368 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:32 transdialog.cpp:373
 msgid "Transfer"
 msgstr "Трансфер"
 
-#: db/DB_Table_Subcategory_V1.h:111
+#: db/DB_Table_Subcategory_V1.h:112
 msgid "Telephone"
 msgstr "Телефон"
 
-#: db/DB_Table_Subcategory_V1.h:112
+#: db/DB_Table_Subcategory_V1.h:113
 msgid "Electricity"
 msgstr "Електричество"
 
-#: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
+#: db/DB_Table_Subcategory_V1.h:114 db/DB_Table_Subcategory_V1.h:125
 msgid "Gas"
 msgstr "Газ"
 
-#: db/DB_Table_Subcategory_V1.h:114
+#: db/DB_Table_Subcategory_V1.h:115
 msgid "Internet"
 msgstr "Интернет"
 
-#: db/DB_Table_Subcategory_V1.h:115
+#: db/DB_Table_Subcategory_V1.h:116
 msgid "Rent"
 msgstr "Рента"
 
-#: db/DB_Table_Subcategory_V1.h:116
+#: db/DB_Table_Subcategory_V1.h:117
 msgid "Cable TV"
 msgstr "Кабелна телевизия"
 
-#: db/DB_Table_Subcategory_V1.h:117
+#: db/DB_Table_Subcategory_V1.h:118
 msgid "Water"
 msgstr "Вода"
 
-#: db/DB_Table_Subcategory_V1.h:118
+#: db/DB_Table_Subcategory_V1.h:119
 msgid "Groceries"
 msgstr "Зеленчуци"
 
-#: db/DB_Table_Subcategory_V1.h:119
+#: db/DB_Table_Subcategory_V1.h:120
 msgid "Dining out"
 msgstr "Излизане"
 
-#: db/DB_Table_Subcategory_V1.h:120
+#: db/DB_Table_Subcategory_V1.h:121
 msgid "Movies"
 msgstr "Филми"
 
-#: db/DB_Table_Subcategory_V1.h:121
+#: db/DB_Table_Subcategory_V1.h:122
 msgid "Video Rental"
 msgstr "Видео под наем"
 
-#: db/DB_Table_Subcategory_V1.h:122
+#: db/DB_Table_Subcategory_V1.h:123
 msgid "Magazines"
 msgstr "Списания"
 
-#: db/DB_Table_Subcategory_V1.h:123
+#: db/DB_Table_Subcategory_V1.h:124
 msgid "Maintenance"
 msgstr "Поддръжка"
 
-#: db/DB_Table_Subcategory_V1.h:125
+#: db/DB_Table_Subcategory_V1.h:126
 msgid "Parking"
 msgstr "Паркинг"
 
-#: db/DB_Table_Subcategory_V1.h:126
+#: db/DB_Table_Subcategory_V1.h:127
 msgid "Registration"
 msgstr "Регистрация"
 
-#: db/DB_Table_Subcategory_V1.h:127
+#: db/DB_Table_Subcategory_V1.h:128
 msgid "Books"
 msgstr "Книги"
 
-#: db/DB_Table_Subcategory_V1.h:128
+#: db/DB_Table_Subcategory_V1.h:129
 msgid "Tuition"
 msgstr "Обучение"
 
-#: db/DB_Table_Subcategory_V1.h:130
+#: db/DB_Table_Subcategory_V1.h:131
 msgid "Clothing"
 msgstr "Дрехи"
 
-#: db/DB_Table_Subcategory_V1.h:131
+#: db/DB_Table_Subcategory_V1.h:132
 msgid "Furnishing"
 msgstr "Мебели"
 
-#: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
+#: db/DB_Table_Subcategory_V1.h:134 db/DB_Table_Subcategory_V1.h:142
 msgid "Health"
 msgstr "Здраве"
 
-#: db/DB_Table_Subcategory_V1.h:134
+#: db/DB_Table_Subcategory_V1.h:135
 msgid "Dental"
 msgstr "Зъболекар"
 
-#: db/DB_Table_Subcategory_V1.h:135
+#: db/DB_Table_Subcategory_V1.h:136
 msgid "Eyecare"
 msgstr "Очен лекар"
 
-#: db/DB_Table_Subcategory_V1.h:136
+#: db/DB_Table_Subcategory_V1.h:137
 msgid "Physician"
 msgstr "Физиолог"
 
-#: db/DB_Table_Subcategory_V1.h:137
+#: db/DB_Table_Subcategory_V1.h:138
 msgid "Prescriptions"
 msgstr "Рецепти"
 
-#: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
+#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:221
 msgid "Auto"
 msgstr "Автомобил"
 
-#: db/DB_Table_Subcategory_V1.h:139
+#: db/DB_Table_Subcategory_V1.h:140
 msgid "Life"
 msgstr "Живот"
 
-#: db/DB_Table_Subcategory_V1.h:140 optiondialog.cpp:37
+#: db/DB_Table_Subcategory_V1.h:141 optiondialog.cpp:37
 msgid "Home"
 msgstr "Дом"
 
-#: db/DB_Table_Subcategory_V1.h:142
+#: db/DB_Table_Subcategory_V1.h:143
 msgid "Travel"
 msgstr "Пътешествие"
 
-#: db/DB_Table_Subcategory_V1.h:143
+#: db/DB_Table_Subcategory_V1.h:144
 msgid "Lodging"
 msgstr "Жилище"
 
-#: db/DB_Table_Subcategory_V1.h:144
+#: db/DB_Table_Subcategory_V1.h:145
 msgid "Sightseeing"
 msgstr "Забележителности"
 
-#: db/DB_Table_Subcategory_V1.h:145
+#: db/DB_Table_Subcategory_V1.h:146
 msgid "Income Tax"
 msgstr "Такса приходи"
 
-#: db/DB_Table_Subcategory_V1.h:146
+#: db/DB_Table_Subcategory_V1.h:147
 msgid "House Tax"
 msgstr "Такса жилище"
 
-#: db/DB_Table_Subcategory_V1.h:147
+#: db/DB_Table_Subcategory_V1.h:148
 msgid "Water Tax"
 msgstr "Такса вода"
 
-#: db/DB_Table_Subcategory_V1.h:149
+#: db/DB_Table_Subcategory_V1.h:150
 msgid "Salary"
 msgstr "Заплата"
 
-#: db/DB_Table_Subcategory_V1.h:150
+#: db/DB_Table_Subcategory_V1.h:151
 msgid "Reimbursement/Refunds"
 msgstr "Възстановяване/Възстановявания"
 
-#: db/DB_Table_Subcategory_V1.h:151
+#: db/DB_Table_Subcategory_V1.h:152
 msgid "Investment Income"
 msgstr "Приход от инвестиции"
 
@@ -2481,7 +2481,7 @@ msgid "Save active values into current Preset selection"
 msgstr ""
 
 #: filtertransdialog.cpp:738
-msgid "Clear all fields for current Preset selection"
+msgid "Delete current Preset selection"
 msgstr ""
 
 #: filtertransdialog.cpp:1018
