@@ -254,8 +254,8 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
     const wxString& s_range = j_period.IsString() ? wxString::FromUTF8(j_period.GetString()) : "";
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
-    rangeCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
-    rangeChoice_->Enable(rangeCheckBox_->IsChecked());
+    datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
+    rangeChoice_->Enable(datesCheckBox_->IsChecked());
     wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
     evt.SetInt(rangeChoice_->GetSelection());
     OnChoice(evt);
@@ -490,7 +490,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemBoxSizer4->Add(itemPanelSizer, g_flagsExpand);
     
     // Account
-    accountCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Account")
+    accountCheckBox_ = new wxCheckBox(itemPanel, ID_ACCOUNT_CB, _("Account")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(accountCheckBox_, g_flagsH);
 
@@ -508,9 +508,9 @@ void mmFilterTransactionsDialog::CreateControls()
     }
 
    // Period Range
-    rangeCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _("Period Range")
+    datesCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _("Period Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(rangeCheckBox_, g_flagsH);
+    itemPanelSizer->Add(datesCheckBox_, g_flagsH);
 
     rangeChoice_ = new wxChoice(itemPanel, ID_DATE_RANGE);
     rangeChoice_->SetName("DateRanges");
@@ -790,11 +790,33 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         is_similar_category_status = similarCategCheckBox_->IsChecked();
         break;
     case ID_PERIOD_CB:
-        dateRangeCheckBox_->SetValue(!rangeCheckBox_->IsChecked());
+        if (dateRangeCheckBox_->IsChecked())
+            dateRangeCheckBox_->SetValue(false);
         break;
     case ID_DATE_RANGE_CB:
-        rangeCheckBox_->SetValue(!dateRangeCheckBox_->IsChecked());
+        if (datesCheckBox_->IsChecked())
+            datesCheckBox_->SetValue(false);
         break;
+    case ID_ACCOUNT_CB:
+    {
+        if (accountCheckBox_->IsChecked())
+        {
+            cbTypeTransferFrom_->Show();
+            cbTypeTransferFrom_->Enable();
+            cbTypeTransferTo_->SetLabel(_("Transfer Out"));
+            Layout();
+        }
+        else
+        {
+            m_selected_accounts_id.clear();
+            bSelectedAccounts_->SetLabelText("");
+            cbTypeTransferFrom_->Hide();
+            cbTypeTransferFrom_->Disable();
+            cbTypeTransferTo_->SetLabel(_("Transfer"));
+            Layout();
+        }
+        break;
+    }
     }
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
@@ -806,25 +828,11 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
     bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
-    if (!accountCheckBox_->IsChecked())
-    {
-        if (m_selected_accounts_id.size() <= 0)
-            bSelectedAccounts_->SetLabelText("");
-        cbTypeTransferFrom_->Hide();
-        cbTypeTransferTo_->SetLabel(_("Transfer"));
-        Layout();
-    }
-    else
-    {
-        cbTypeTransferFrom_->Show();
-        cbTypeTransferTo_->SetLabel(_("Transfer Out"));
-        Layout();
-    }
     amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-    rangeChoice_->Enable(rangeCheckBox_->IsChecked());
+    rangeChoice_->Enable(datesCheckBox_->IsChecked());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     colourButton_->Enable(colourCheckBox_->IsChecked());
@@ -887,7 +895,7 @@ bool mmFilterTransactionsDialog::is_values_correct() const
         }
     }
 
-    if (rangeCheckBox_->IsChecked() && rangeChoice_->GetSelection() == wxNOT_FOUND) {
+    if (datesCheckBox_->IsChecked() && rangeChoice_->GetSelection() == wxNOT_FOUND) {
         mmErrorDialogs::ToolTip4Object(rangeChoice_, _("Invalid value"), _("Date"));
         return false;
     }
@@ -1298,12 +1306,23 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
         case kStringType:
         {
             wxString value = wxString::FromUTF8(itr->value.GetString());
-            wxRegEx pattern(R"(^[0-9]{4}-[0-9]{2}-[0-9]{2}$)");
-            if (pattern.Matches(value))
+            wxRegEx pattern_date(R"(^[0-9]{4}-[0-9]{2}-[0-9]{2}$)");
+            wxRegEx pattern_type(R"(^(W?D?T?F?)$)");
+            if (pattern_date.Matches(value))
             {
                 wxDateTime dt;
                 if (mmParseISODate(value, dt))
                     value = mmGetDateForDisplay(value);
+            }
+            else if (pattern_type.Matches(value))
+            {
+                wxString temp;
+                if (value.Contains("W")) temp += (temp.empty() ? "" : ", ") + _("Withdrawal");
+                if (value.Contains("D")) temp += (temp.empty() ? "" : ", ") + _("Deposit");
+                if (value.Contains("F")) temp += (temp.empty() ? "" : ", ") + _("Transfer In");
+                if (value.Contains("T")) temp += (temp.empty() ? "" : ", ")
+                    + (getAccountsID().empty() ? _("Transfer") : _("Transfer Out"));
+                value = temp;
             }
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
                 name, wxGetTranslation(value));
@@ -1381,7 +1400,7 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     }
 
     //Date Period Range
-    else if (rangeCheckBox_->IsChecked())
+    else if (datesCheckBox_->IsChecked())
     {
         int sel = rangeChoice_->GetSelection();
         if (sel != wxNOT_FOUND)
@@ -1430,11 +1449,15 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     //Type
     if (typeCheckBox_->IsChecked())
     {
-        wxString type = wxString()
-            << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
-            << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
-            << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
-            << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
+        wxString type;
+        if (typeCheckBox_->IsChecked())
+        {
+            if (cbTypeWithdrawal_->IsChecked()) type += "W";
+            if (cbTypeDeposit_->IsChecked()) type += "D";
+            if (cbTypeTransferTo_->IsChecked()) type += "T";
+            if (cbTypeTransferFrom_->IsThisEnabled() && cbTypeTransferFrom_->IsChecked()) type += "F";
+        }
+ 
         if (!type.empty())
         {
             json_writer.Key((i18n ? _("Type") : "TYPE").utf8_str());
