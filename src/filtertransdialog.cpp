@@ -254,7 +254,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
     const wxString& s_range = j_period.IsString() ? wxString::FromUTF8(j_period.GetString()) : "";
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
-    datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
+    datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND && !s_range.empty());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
     {
         wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
@@ -314,7 +314,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
     const wxString& s_status = j_status.IsString() ? wxString::FromUTF8(j_status.GetString()) : "";
     choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
-    statusCheckBox_->SetValue(choiceStatus_->GetSelection() != wxNOT_FOUND);
+    statusCheckBox_->SetValue(choiceStatus_->GetSelection() != wxNOT_FOUND && !s_status.empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
 
     //Type
