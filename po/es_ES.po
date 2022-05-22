@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-23 00:15+0300\n"
-"PO-Revision-Date: 2022-05-22 21:17\n"
+"PO-Revision-Date: 2022-05-22 21:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Abrir un fichero de base de datos existente con extensión (*.mmb)"
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Cambiar el idioma"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -2494,7 +2494,7 @@ msgstr "Guardar la selección en el preajuste actual"
 
 #: filtertransdialog.cpp:738
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Eliminar la selección preestablecida actual"
 
 #: filtertransdialog.cpp:1018
 msgid "Hide Report Columns"
@@ -6350,11 +6350,11 @@ msgstr "Desde hace 90 días"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Desde el comienzo de este año"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Desde el comienzo del ejercicio financiero"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
