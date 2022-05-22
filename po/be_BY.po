@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-23 00:15+0300\n"
-"PO-Revision-Date: 2022-05-22 21:17\n"
+"PO-Revision-Date: 2022-05-22 22:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Адчыніць існуючую базу дадзеных з пашы�
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Змяніць мову"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -2503,7 +2503,7 @@ msgstr "Захаваць актыўныя значэння ў бягучы ша�
 
 #: filtertransdialog.cpp:738
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Выдаліць абраны шаблон"
 
 #: filtertransdialog.cpp:1018
 msgid "Hide Report Columns"
@@ -6379,11 +6379,11 @@ msgstr "Пачыная з 90 дзён таму"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Ад пачатка бягучага года"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Ад пачатка фінансавага года"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
