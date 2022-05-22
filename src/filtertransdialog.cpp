@@ -845,19 +845,49 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 bool mmFilterTransactionsDialog::is_values_correct() const
 {
     if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty()) {
-        mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _("Invalid value"), _("Account"));
+        mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _("Account"), _("Invalid value"), wxICON_ERROR);
         return false;
     }
 
-    if (payeeCheckBox_->IsChecked())
+    if (dateRangeCheckBox_->IsChecked())
+    {
+        if (m_begin_date > m_end_date)
+        {
+            const auto today = wxDate::Today().FormatISODate();
+            int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
+            mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Date"), _("Invalid value"), wxICON_ERROR);
+            return false;
+        }
+    }
+
+    if (datesCheckBox_->IsChecked() && rangeChoice_->GetSelection() == wxNOT_FOUND) {
+        mmErrorDialogs::ToolTip4Object(rangeChoice_, _("Date"), _("Invalid value"), wxICON_ERROR);
+        return false;
+    }
+
+    if (is_payee_cb_active())
     {
         Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
         if (!payee)
         {
 
-            mmErrorDialogs::ToolTip4Object(cbPayee_, _("Invalid value"), _("Payee"));
+            mmErrorDialogs::ToolTip4Object(cbPayee_, _("Payee"), _("Invalid value"), wxICON_ERROR);
             return false;
         }
+    }
+
+    if (is_category_cb_active())
+    {
+        Model_Category::Data* categ = Model_Category::instance().get(m_categ_id);
+        if (!categ) {
+            mmErrorDialogs::ToolTip4Object(btnCategory_, _("Category"), _("Invalid value"), wxICON_ERROR);
+            return false;
+        }
+    }
+
+    if (is_status_cb_active() && choiceStatus_->GetSelection() == wxNOT_FOUND) {
+        mmErrorDialogs::ToolTip4Object(choiceStatus_, _("Status"), _("Invalid value"), wxICON_ERROR);
+        return false;
     }
 
     if (amountRangeCheckBox_->IsChecked())
@@ -869,7 +899,7 @@ bool mmFilterTransactionsDialog::is_values_correct() const
         if (!amountMinEdit_->Calculate(currency_precision))
         {
             amountMinEdit_->GetDouble(min_amount);
-            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _("Invalid value"), _("Amount"));
+            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _("Amount"), _("Invalid value"), wxICON_ERROR);
             return false;
         }
 
@@ -878,35 +908,48 @@ bool mmFilterTransactionsDialog::is_values_correct() const
             double max_amount = 0;
             amountMaxEdit_->GetDouble(max_amount);
             if (max_amount < min_amount) {
-                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _("Invalid value"), _("Amount"));
+                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _("Amount"), _("Invalid value"), wxICON_ERROR);
                 return false;
             }
         }
     }
 
-    if (dateRangeCheckBox_->IsChecked())
+    if (transNumberCheckBox_->IsChecked())
     {
-        if (m_begin_date > m_end_date)
-        {
-            const auto today = wxDate::Today().FormatISODate();
-            int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
-            mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Invalid value"), _("Date"));
+        if (transNumberEdit_->GetValue().empty()) {
+            mmErrorDialogs::ToolTip4Object(transNumberEdit_, _("Number"), _("Invalid value"), wxICON_ERROR);
             return false;
         }
     }
 
-    if (datesCheckBox_->IsChecked() && rangeChoice_->GetSelection() == wxNOT_FOUND) {
-        mmErrorDialogs::ToolTip4Object(rangeChoice_, _("Invalid value"), _("Date"));
-        return false;
+    if (notesCheckBox_->IsChecked())
+    {
+        if (notesEdit_->GetValue().empty()) {
+            mmErrorDialogs::ToolTip4Object(notesEdit_, _("Notes"), _("Invalid value"), wxICON_ERROR);
+            return false;
+        }
     }
 
-    if (statusCheckBox_->IsChecked() && choiceStatus_->GetSelection() == wxNOT_FOUND) {
-        mmErrorDialogs::ToolTip4Object(choiceStatus_, _("Invalid value"), _("Status"));
-        return false;
+    if (is_colour_cb_active())
+    {
+        if (m_colour_value < 1 || m_colour_value > 7) {
+            mmErrorDialogs::ToolTip4Object(colourButton_
+                , _("Color"), _("Invalid value"), wxICON_ERROR);
+            return false;
+        }
+    }
+
+    if (showColumnsCheckBox_->IsChecked())
+    {
+        if (m_selected_columns_id.empty()) {
+            mmErrorDialogs::ToolTip4Object(bHideColumns_
+                , _("Hide Columns"), _("Invalid value"), wxICON_ERROR);
+            return false;
+        }
     }
 
     if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND) {
-        mmErrorDialogs::ToolTip4Object(bGroupBy_, _("Invalid value"), _("Group By"));
+        mmErrorDialogs::ToolTip4Object(bGroupBy_, _("Group By"), _("Invalid value"), wxICON_ERROR);
         return false;
     }
 
