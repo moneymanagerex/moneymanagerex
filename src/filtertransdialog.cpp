@@ -1296,9 +1296,19 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
                 name, L"\u2713");
             break;
         case kStringType:
+        {
+            wxString value = wxString::FromUTF8(itr->value.GetString());
+            wxRegEx pattern(R"(^[0-9]{4}-[0-9]{2}-[0-9]{2}$)");
+            if (pattern.Matches(value))
+            {
+                wxDateTime dt;
+                if (mmParseISODate(value, dt))
+                    value = mmGetDateForDisplay(value);
+            }
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n",
-                name, wxGetTranslation(wxString::FromUTF8(itr->value.GetString())));
+                name, wxGetTranslation(value));
             break;
+        }
         case kNumberType:
         {
             wxString temp;
