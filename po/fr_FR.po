@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-22 12:56+0300\n"
-"PO-Revision-Date: 2022-05-22 10:38\n"
+"PO-Revision-Date: 2022-05-22 16:18\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6349,7 +6349,7 @@ msgstr "Depuis le début de cette année"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr "Depuis le début de l'exercice financier"
+msgstr "Depuis le début de l'année comptable"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
