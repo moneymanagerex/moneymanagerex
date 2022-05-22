@@ -156,7 +156,7 @@ private:
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
-    wxCheckBox* rangeCheckBox_;
+    wxCheckBox* datesCheckBox_;
     wxChoice* rangeChoice_;
     wxCheckBox* dateRangeCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
@@ -172,8 +172,8 @@ private:
     wxCheckBox* typeCheckBox_;
     wxCheckBox* cbTypeWithdrawal_;
     wxCheckBox* cbTypeDeposit_;
-    wxCheckBox* cbTypeTransferTo_;
-    wxCheckBox* cbTypeTransferFrom_;
+    wxCheckBox* cbTypeTransferTo_; // Transfer Out
+    wxCheckBox* cbTypeTransferFrom_; // Transfer In
     wxCheckBox* amountRangeCheckBox_;
     mmTextCtrl* amountMinEdit_;
     mmTextCtrl* amountMaxEdit_;
@@ -220,6 +220,7 @@ private:
         ID_CUSTOMFIELDS,
         ID_DATE_RANGE,
         ID_PERIOD_CB,
+        ID_ACCOUNT_CB,
         ID_DATE_RANGE_CB,
         ID_SIMILAR_CB
     };
@@ -230,7 +231,7 @@ inline const wxString mmFilterTransactionsDialog::getEndDate() const { return m_
 inline int mmFilterTransactionsDialog::getStartDay() const { return m_startDay; }
 inline bool mmFilterTransactionsDialog::isFutureIgnored() const { return m_futureIgnored; }
 inline bool mmFilterTransactionsDialog::is_date_range_cb_active() const { return dateRangeCheckBox_->GetValue(); }
-inline bool mmFilterTransactionsDialog::getRangeCheckBox() const { return rangeCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::getRangeCheckBox() const { return datesCheckBox_->GetValue(); }
 inline bool mmFilterTransactionsDialog::is_type_cb_active() const { return typeCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_payee_cb_active() const { return payeeCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_number_cb_active() const { return transNumberCheckBox_->IsChecked(); }
