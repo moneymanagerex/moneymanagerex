@@ -735,7 +735,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
     wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR, mmBitmapButtonSize));
-    mmToolTip(itemButtonClear, _("Clear all fields for current Preset selection"));
+    mmToolTip(itemButtonClear, _("Delete current Preset selection"));
     settings_box_sizer->Add(itemButtonClear, g_flagsH);
 
     box_sizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
