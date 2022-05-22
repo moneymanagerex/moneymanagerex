@@ -1558,9 +1558,12 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     {
         for (const auto& i : cf)
         {
-            const auto field = Model_CustomField::instance().get(i.first);
-            json_writer.Key(wxString::Format("CUSTOM%i",field->FIELDID).utf8_str());
-            json_writer.String(i.second.utf8_str());
+            if (!i.second.empty())
+            {
+                const auto field = Model_CustomField::instance().get(i.first);
+                json_writer.Key(wxString::Format("CUSTOM%i", field->FIELDID).utf8_str());
+                json_writer.String(i.second.utf8_str());
+            }
 
         }
     }
@@ -1689,6 +1692,9 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
 
 void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
 {
+    if (!is_values_correct())
+        return;
+
     const auto label = m_setting_name->GetStringSelection();
     wxString user_label;
 
