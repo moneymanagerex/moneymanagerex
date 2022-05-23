@@ -76,6 +76,7 @@ void mmTransDialog::SetEventHandlers()
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
     cbAccount_->Connect(ID_DIALOG_TRANS_FROMACCOUNT, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnFromAccountUpdated), nullptr, this);
+    cbAccount_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboKey, this);
     cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboKey, this);
     m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
@@ -1016,7 +1017,11 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
 {
     if (event.GetKeyCode() == WXK_RETURN)
     {
-        if (!m_transfer)
+        if (object_in_focus_ == ID_DIALOG_TRANS_FROMACCOUNT)
+        {
+            cbAccount_->Navigate(wxNavigationKeyEvent::IsForward);
+        }
+        else if (!m_transfer && object_in_focus_ == ID_DIALOG_TRANS_PAYEECOMBO)
         {
             const auto payeeName = cbPayee_->GetValue();
             if (payeeName.empty())
@@ -1323,9 +1328,12 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != m_button_cancel->GetId() && wxGetKeyState(WXK_ESCAPE))
+    if (object_in_focus_ != wxID_CANCEL && wxGetKeyState(WXK_ESCAPE))
             return m_button_cancel->SetFocus();
 #endif
+    if (object_in_focus_ != wxID_CANCEL) {
+        return;
+    }
 
     if (m_new_trx || m_duplicate)
     {
