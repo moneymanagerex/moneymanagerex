@@ -36,6 +36,8 @@ environment:
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
   # Microsoft compiler options
   CL: /MP
+  # Python version to use
+  pythonDir: C:\Python38-x64
   matrix:
   # - comp: 141
   - { comp: 141, wxShared: 1 }
@@ -58,6 +60,8 @@ environment:
 init:
 # AppVeyor missing paths
 - if "%VS150COMNTOOLS%"=="" set "VS150COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\"
+ Set python path
+- cmd: set PATH=%pythonDir%;%pythonDir%\Scripts;%PATH%
 # Set developer command prompt
 - if %platform:~-2%==64 (set arch=amd64) else (set arch=amd64_x86)
 - if %comp% LSS 120 if %platform:~-2%==64 (set arch=x86_amd64) else (set arch=x86)
