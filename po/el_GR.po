@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-23 00:15+0300\n"
-"PO-Revision-Date: 2022-05-22 21:17\n"
+"PO-Revision-Date: 2022-05-23 08:36\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2497,7 +2497,7 @@ msgstr "Αποθήκευση ενεργών τιμών στην τρέχουσα
 
 #: filtertransdialog.cpp:738
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Διαγραφή τρέχουσας επιλογής προεπιλογών"
 
 #: filtertransdialog.cpp:1018
 msgid "Hide Report Columns"
