@@ -1223,10 +1223,29 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
     colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
 }
 
-void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& WXUNUSED(event))
+void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
+    wxString payeeName = event.GetString();
     cbPayee_->SetEvtHandlerEnabled(false);
-    Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
+#if defined (__WXMAC__)
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        cbPayee_->Clear();
+
+        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
+        for (const auto &payee : filtd)
+            cbPayee_->Insert(payee.PAYEENAME, 0);
+
+        cbPayee_->ChangeValue(payeeName);
+        cbPayee_->SetInsertionPointEnd();
+        cbPayee_->Popup();
+    }
+#endif
+
+    Model_Payee::Data* payee = Model_Payee::instance().get(payeeName);
     if (payee)
     {
         payeeID_ = payee->PAYEEID;
