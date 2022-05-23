@@ -445,7 +445,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
 
 }
 
-void mmFilterTransactionsDialog::DoInitSettingNameChoice() const
+void mmFilterTransactionsDialog::DoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
     wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER", true);
@@ -462,7 +462,10 @@ void mmFilterTransactionsDialog::DoInitSettingNameChoice() const
     }
 
     if (m_setting_name->GetCount() > 0)
-        m_setting_name->SetSelection(0);
+        if (sel.IsEmpty())
+            m_setting_name->SetSelection(0);
+        else
+            m_setting_name->SetStringSelection(sel);
 }
 
 void mmFilterTransactionsDialog::CreateControls()
@@ -1730,8 +1733,7 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
             if (wxMessageBox(_("The entered name is already in use"), _("Warning"), wxOK | wxICON_WARNING) == wxOK)
             { }
         }
-        DoInitSettingNameChoice();
-
+        DoInitSettingNameChoice(user_label);
     }
     else
     {

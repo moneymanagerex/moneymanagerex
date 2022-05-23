@@ -127,7 +127,7 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void DoInitVariables();
-    void DoInitSettingNameChoice() const;
+    void DoInitSettingNameChoice(wxString sel="") const;
     void DoUpdateSettings();
     int FindLabelInJSON(const wxString& settingName) const;
 
