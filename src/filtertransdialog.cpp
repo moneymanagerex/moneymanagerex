@@ -92,7 +92,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
     DoInitVariables();
     Create(parent);
     dataToControls(m_settings_json);
-    is_values_correct();
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const wxString& json)
@@ -876,13 +875,27 @@ bool mmFilterTransactionsDialog::is_values_correct() const
 
     if (is_payee_cb_active())
     {
-        Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
-        if (!payee)
-        {
+        bool ok = false;
+        wxString value = cbPayee_->GetValue();
 
-            mmErrorDialogs::ToolTip4Object(cbPayee_, _("Payee"), _("Invalid value"), wxICON_ERROR);
-            return false;
+        wxRegEx pattern("^(" + value + ")$");
+        if (pattern.IsValid())
+        {
+            Model_Payee::Data_Set payees = Model_Payee::instance().all();
+            for (const auto& payee : payees)
+            {
+                if (pattern.Matches(payee.PAYEENAME)) {
+                    ok = true;
+                    break;
+                }
+            }
+            if (ok == false) {
+                mmErrorDialogs::ToolTip4Object(cbPayee_, _("Payee"), _("Invalid value"), wxICON_ERROR);
+                return false;
+            }
         }
+        else
+            return false;
     }
 
     if (is_category_cb_active())
@@ -1226,8 +1239,15 @@ template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::is_payee_matches(const DATA &tran)
 {
     const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-    if (payee)
-        return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
+    if (payee) {
+        wxString value = cbPayee_->GetValue();
+        if (!value.empty()) {
+            wxRegEx pattern("^(" + value + ")$");
+            if (pattern.IsValid() && pattern.Matches(payee->PAYEENAME)) {
+                return true;
+            }
+        }
+    }
     return false;
 }
 
