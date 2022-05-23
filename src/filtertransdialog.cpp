@@ -268,7 +268,6 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
-    BuildPayeeList();
     {
         wxCommandEvent evt(wxID_ANY);
         OnPayeeUpdated(evt);
@@ -554,6 +553,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), nullptr, this);
 
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
+    BuildPayeeList();
 
     // Category
     categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
