@@ -254,11 +254,13 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
     const wxString& s_range = j_period.IsString() ? wxString::FromUTF8(j_period.GetString()) : "";
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
-    datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND);
+    datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND && !s_range.empty());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
-    wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
-    evt.SetInt(rangeChoice_->GetSelection());
-    OnChoice(evt);
+    {
+        wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
+        evt.SetInt(rangeChoice_->GetSelection());
+        OnChoice(evt);
+    }
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
@@ -267,7 +269,10 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
     BuildPayeeList();
-    OnPayeeUpdated(evt);
+    {
+        wxCommandEvent evt(wxID_ANY);
+        OnPayeeUpdated(evt);
+    }
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
@@ -309,7 +314,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
     const wxString& s_status = j_status.IsString() ? wxString::FromUTF8(j_status.GetString()) : "";
     choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
-    statusCheckBox_->SetValue(choiceStatus_->GetSelection() != wxNOT_FOUND);
+    statusCheckBox_->SetValue(choiceStatus_->GetSelection() != wxNOT_FOUND && !s_status.empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
 
     //Type
@@ -738,7 +743,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
     wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR, mmBitmapButtonSize));
-    mmToolTip(itemButtonClear, _("Clear all fields for current Preset selection"));
+    mmToolTip(itemButtonClear, _("Delete current Preset selection"));
     settings_box_sizer->Add(itemButtonClear, g_flagsH);
 
     box_sizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
@@ -1205,7 +1210,7 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
     colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
 }
 
-void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
+void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& WXUNUSED(event))
 {
     cbPayee_->SetEvtHandlerEnabled(false);
     Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
@@ -1215,7 +1220,6 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
         cbPayee_->SetValue(payee->PAYEENAME);
     }
     cbPayee_->SetEvtHandlerEnabled(true);
-    event.Skip();
 }
 
 template<class MODEL, class DATA>
