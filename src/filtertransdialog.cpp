@@ -550,6 +550,7 @@ void mmFilterTransactionsDialog::CreateControls()
     cbPayee_->SetMinSize(wxSize(220, -1));
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), nullptr, this);
+    cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmFilterTransactionsDialog::OnComboKey, this);
 
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
     BuildPayeeList();
@@ -991,9 +992,20 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
     }
 }
 
-void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
 {
-    EndModal(wxID_CANCEL);
+    wxWindow* w = FindFocus();
+    if (w && w->GetId() == wxID_CANCEL)
+        EndModal(wxID_CANCEL);
+}
+
+void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN) {
+        cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
+    }
+    else
+        event.Skip();
 }
 
 void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)

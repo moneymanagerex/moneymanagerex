@@ -136,6 +136,7 @@ private:
 
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
