@@ -105,6 +105,7 @@ private:
     wxButton* bPayee_;
     wxButton* bAccount_;
     wxButton* bAttachments_;
+    wxButton* m_button_cancel;
     wxButton* bColours_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;

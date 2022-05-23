@@ -1252,23 +1252,26 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    wxMenu menu;
-    int id = wxID_LOWEST;
-    for (const auto& entry : frequentNotes_)
-    {
-        const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
-        menu.Append(++id, label);
-    }
-
     if (!frequentNotes_.empty())
+    {
+        wxMenu menu;
+        int id = wxID_LOWEST;
+        for (const auto& entry : frequentNotes_) {
+            const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+            menu.Append(++id, label);
+        }
         PopupMenu(&menu);
+    }
 }
 
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_LOWEST;
-    if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size())
-        textNotes_->ChangeValue(frequentNotes_[i - 1]);
+    if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
+        if (!textNotes_->GetValue().EndsWith("\n"))
+            textNotes_->AppendText("\n");
+        textNotes_->AppendText(frequentNotes_[i - 1]);
+    }
 }
 
 void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
