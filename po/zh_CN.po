@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-23 00:15+0300\n"
-"PO-Revision-Date: 2022-05-22 21:17\n"
+"PO-Revision-Date: 2022-05-23 03:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "打开一个已创建的扩展名数据库文件(*.mmb)"
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "更改语言"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -2492,7 +2492,7 @@ msgstr "活动值保存到当前预设选择"
 
 #: filtertransdialog.cpp:738
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "删除当前预设选择"
 
 #: filtertransdialog.cpp:1018
 msgid "Hide Report Columns"
@@ -6334,7 +6334,7 @@ msgstr "从90天前开始"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "自今年年初"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
