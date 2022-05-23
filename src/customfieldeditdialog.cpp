@@ -96,9 +96,8 @@ void mmCustomFieldEditDialog::dataToControls()
         wxString choices = wxEmptyString;
         for (const auto& arrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
         {
-            choices << arrChoices << ";";
+            choices += (choices.empty() ? "": ";") + arrChoices;
         }
-        choices.RemoveLast(1);
         m_itemChoices->ChangeValue(choices);
     }
     else
@@ -262,13 +261,20 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
+    const wxString regexp = m_itemRegEx->GetValue();
+    if (!regexp.empty())
+    {
+        wxRegEx pattern(regexp);
+        if (!pattern.IsValid())
+            return;
+    }
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;
     m_field->TYPE = Model_CustomField::fieldtype_desc(m_itemType->GetSelection());
     m_field->PROPERTIES = Model_CustomField::formatProperties(
         m_itemTooltip->GetValue(),
-        m_itemRegEx->GetValue(),
+        regexp,
         m_itemAutocomplete->GetValue(),
         m_itemDefault->GetValue(),
         ArrChoices,
