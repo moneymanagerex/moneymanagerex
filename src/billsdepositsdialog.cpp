@@ -691,8 +691,8 @@ void mmBDDialog::CreateControls()
 
     wxButton* button_ok = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
 
-    wxButton* button_cancel = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    button_cancel->SetFocus();
+    m_button_cancel = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    m_button_cancel->SetFocus();
 
     mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
     wxBitmapButton* button_hide = new wxBitmapButton(buttonsPanel
@@ -703,7 +703,7 @@ void mmBDDialog::CreateControls()
     }
 
     button_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    button_sizer->Add(button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    button_sizer->Add(m_button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     button_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
     // Custom fields -----------------------------------
@@ -729,6 +729,15 @@ void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
+    wxWindow* w = FindFocus();
+#ifndef __WXMAC__
+    if (w && w->GetId() != wxID_CANCEL && wxGetKeyState(WXK_ESCAPE))
+        return m_button_cancel->SetFocus();
+#endif
+    if (w && w->GetId() != wxID_CANCEL) {
+        return;
+    }
+
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     if (!m_bill_data.BDID)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
@@ -988,9 +997,11 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 
 void mmBDDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    size_t i = event.GetId() - wxID_LOWEST;
-    if (i > 0 && i <= frequentNotes_.size()) {
-        textNotes_->ChangeValue(frequentNotes_[i - 1]);
+    int i = event.GetId() - wxID_LOWEST;
+    if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
+        if (!textNotes_->GetValue().EndsWith("\n"))
+            textNotes_->AppendText("\n");
+        textNotes_->AppendText(frequentNotes_[i - 1]);
     }
 }
 
