@@ -43,16 +43,18 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 {
     m_colour_value = event.GetId() - wxID_HIGHEST;
     SetBackgroundColour(getUDColour(m_colour_value));
+    event.Skip();
 }
 
-void mmColorButton::OnColourButton(wxCommandEvent& /*event*/)
+void mmColorButton::OnColourButton(wxCommandEvent& event)
 {
-    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
+    wxMenu mainMenu;
+    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
+    mainMenu.Append(menuItem);
 
-    wxMenuItem* menuItem;
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
@@ -66,10 +68,11 @@ void mmColorButton::OnColourButton(wxCommandEvent& /*event*/)
         memoryDC.SelectObject(wxNullBitmap);
         menuItem->SetBitmap(bitmap);
 
-        mainMenu->Append(menuItem);
+        mainMenu.Append(menuItem);
     }
 
-    PopupMenu(mainMenu.get());
+    PopupMenu(&mainMenu);
+    event.Skip();
 }
 
 int mmColorButton::GetColorId() const
