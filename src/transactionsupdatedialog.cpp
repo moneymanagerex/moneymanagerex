@@ -369,19 +369,16 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
         bool is_locked = Model_Checking::is_locked(trx);
 
-        if (is_locked)
-        {
+        if (is_locked) {
             skip_trx.push_back(trx->TRANSID);
             continue;
         }
 
-        if (m_date_checkbox->IsChecked())
-        {
+        if (m_date_checkbox->IsChecked()) {
             trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
         }
 
-        if (m_status_checkbox->IsChecked())
-        {
+        if (m_status_checkbox->IsChecked()) {
             trx->STATUS = status;
         }
 
@@ -436,10 +433,10 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_color_checkbox->IsChecked())
         {
-            if (m_color_id < 1 || m_color_id > 7) {
+            if (m_color_id < 0 || m_color_id > 7) {
                 return mmErrorDialogs::ToolTip4Object(bColours_, _("Color"), _("Invalid value"), wxICON_ERROR);
             }
-            trx->FOLLOWUPID = m_color_id;
+            trx->FOLLOWUPID = m_color_id == 0 ? -1 : m_color_id ;
         }
 
         if (m_notes_checkbox->IsChecked())
@@ -454,8 +451,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             }
         }
 
-        if (m_amount_checkbox->IsChecked())
-        {
+        if (m_amount_checkbox->IsChecked()) {
             trx->TRANSAMOUNT = amount;
         }
 
@@ -465,8 +461,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             trx->SUBCATEGID = m_subcateg_id;
         }
 
-        if (m_type_checkbox->IsChecked())
-        {
+        if (m_type_checkbox->IsChecked()) {
             trx->TRANSCODE = type;
         }
  

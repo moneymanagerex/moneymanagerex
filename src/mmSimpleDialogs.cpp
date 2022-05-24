@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmSimpleDialogs.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmex.h"
 #include "paths.h"
 #include "util.h"
@@ -27,6 +28,55 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Setting.h"
 
 #include <wx/richtooltip.h>
+
+
+wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
+EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
+EVT_BUTTON(wxID_ANY, mmColorButton::OnColourButton)
+wxEND_EVENT_TABLE()
+mmColorButton::mmColorButton(wxWindow* parent, wxWindowID id, wxSize size)
+    :wxButton(parent, id, "", wxDefaultPosition, size)
+{
+}
+
+void mmColorButton::OnMenuSelected(wxCommandEvent& event)
+{
+    m_colour_value = event.GetId() - wxID_HIGHEST;
+    SetBackgroundColour(getUDColour(m_colour_value));
+}
+
+void mmColorButton::OnColourButton(wxCommandEvent& /*event*/)
+{
+    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
+
+    wxMenuItem* menuItem;
+    for (int i = 1; i <= 7; ++i)
+    {
+        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+#ifdef __WXMSW__
+        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
+#endif
+        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
+        wxMemoryDC memoryDC(bitmap);
+        wxRect rect(memoryDC.GetSize());
+
+        memoryDC.SetBackground(wxBrush(getUDColour(i)));
+        memoryDC.Clear();
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
+        memoryDC.SelectObject(wxNullBitmap);
+        menuItem->SetBitmap(bitmap);
+
+        mainMenu->Append(menuItem);
+    }
+
+    PopupMenu(mainMenu.get());
+}
+
+int mmColorButton::GetColorId() const
+{
+    return m_colour_value;
+}
+
 
 mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
     : wxChoice(parent, id)

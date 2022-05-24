@@ -30,6 +30,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class wxComboBox;
 class wxTextCtrl;
 class wxChoice;
+class wxButton;
+
+class mmColorButton : public wxButton
+{
+public:
+    mmColorButton(wxWindow* parent
+        , wxWindowID id
+        , wxSize size = wxDefaultSize
+    );
+    int GetColorId() const;
+private:
+    void OnMenuSelected(wxCommandEvent& event);
+    void OnColourButton(wxCommandEvent& /*event*/);
+    int m_colour_value;
+    wxDECLARE_EVENT_TABLE();
+};
 
 class mmChoiceAmountMask : public wxChoice
 {

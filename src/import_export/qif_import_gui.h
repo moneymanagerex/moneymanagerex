@@ -113,6 +113,8 @@ private:
     wxCheckBox* payeeIsNotesCheckBox_;
     wxButton* btnOK_;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
+    wxCheckBox* colorCheckBox_;
+    mmColorButton* mmColorBtn_;
 
     bool payeeIsNotes_; //Include payee field in notes
 
@@ -128,6 +130,9 @@ private:
         COL_VALUE,
         COL_NOTES,
         COL_MAX, // number of columns
+    };
+    enum {
+        ID_COLOR_BUTTON = wxID_HIGHEST
     };
     std::map<int, wxString> ColName_;
 };
