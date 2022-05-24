@@ -994,7 +994,7 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 
 void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
 {
-#ifndef __WXMAC__
+#ifdef __WXMSW__
     wxWindow* w = FindFocus();
     if (w && w->GetId() != wxID_CANCEL)
         return;

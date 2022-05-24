@@ -729,7 +729,7 @@ void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
-#ifndef __WXMAC__
+#ifdef __WXMSW__
     wxWindow* w = FindFocus();
     if (w && w->GetId() != wxID_CANCEL && wxGetKeyState(WXK_ESCAPE))
         return m_button_cancel->SetFocus();
