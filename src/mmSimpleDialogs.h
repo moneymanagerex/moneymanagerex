@@ -42,7 +42,7 @@ public:
     int GetColorId() const;
 private:
     void OnMenuSelected(wxCommandEvent& event);
-    void OnColourButton(wxCommandEvent& /*event*/);
+    void OnColourButton(wxCommandEvent& event);
     int m_colour_value;
     wxDECLARE_EVENT_TABLE();
 };

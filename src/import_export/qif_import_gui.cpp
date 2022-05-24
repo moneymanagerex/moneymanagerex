@@ -46,8 +46,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
 EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick)
 EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
+EVT_MENU(ID_COLOR_BUTTON, mmQIFImportDialog::OnMenuSelected)
 EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
-EVT_CHOICE(wxID_ANY, mmQIFImportDialog::OnAccountChanged)
+EVT_CHOICE(ID_ACCOUNT, mmQIFImportDialog::OnAccountChanged)
 EVT_CLOSE(mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -169,7 +170,7 @@ void mmQIFImportDialog::CreateControls()
     //Account
     accountCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Account")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    accountDropDown_ = new wxChoice(this, wxID_ANY);
+    accountDropDown_ = new wxChoice(this, ID_ACCOUNT);
     accountDropDown_->SetMinSize(wxSize(180, -1));
     accountDropDown_->Enable(false);
 
@@ -858,12 +859,13 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
     refreshTabs(t);
 }
 
-void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
+void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& event)
 {
-    wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(accountDropDown_->GetSelection()));
-    if (data_obj)
-        m_accountNameStr = data_obj->GetData();
-    refreshTabs(TRX_TAB);
+    wxStringClientData* client_obj = static_cast<wxStringClientData*>(event.GetClientObject());
+    if (client_obj) {
+        m_accountNameStr = client_obj->GetData();
+        refreshTabs(TRX_TAB);
+    }
 }
 
 void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
@@ -1320,24 +1322,24 @@ void mmQIFImportDialog::getOrCreateCategories()
     for (const auto &item : m_QIFcategoryNames)
     {
         wxStringTokenizer token(item.first, ":");
-        const wxString categStr = token.GetNextToken();
-        Model_Category::Data *c = Model_Category::instance().get(categStr);
-        //if (c && std::find(data_set.begin(), data_set.end(), c) != data_set.end()) continue;
-        if (temp.Index(categStr) != wxNOT_FOUND) continue;
+const wxString categStr = token.GetNextToken();
+Model_Category::Data* c = Model_Category::instance().get(categStr);
+//if (c && std::find(data_set.begin(), data_set.end(), c) != data_set.end()) continue;
+if (temp.Index(categStr) != wxNOT_FOUND) continue;
 
-        if (!c)
-        {
-            c = Model_Category::instance().create();
-            c->CATEGNAME = categStr;
-            c->CATEGID = -1;
-        }
-        data_set.push_back(c);
-        temp.Add(categStr);
+if (!c)
+{
+    c = Model_Category::instance().create();
+    c->CATEGNAME = categStr;
+    c->CATEGID = -1;
+}
+data_set.push_back(c);
+temp.Add(categStr);
     }
     Model_Category::instance().save(data_set);
 
     Model_Subcategory::Cache sub_data_set;
-    for (const auto &item : m_QIFcategoryNames)
+    for (const auto& item : m_QIFcategoryNames)
     {
         wxStringTokenizer token(item.first, ":");
         const wxString categStr = token.GetNextToken();
@@ -1350,10 +1352,10 @@ void mmQIFImportDialog::getOrCreateCategories()
             subcategStr.Replace(":", "|");
         }
 
-        Model_Category::Data *c = Model_Category::instance().get(categStr);
+        Model_Category::Data* c = Model_Category::instance().get(categStr);
         wxASSERT(c);
 
-        Model_Subcategory::Data *sc = Model_Subcategory::instance().get(subcategStr, c->CATEGID);
+        Model_Subcategory::Data* sc = Model_Subcategory::instance().get(subcategStr, c->CATEGID);
         if (!sc)
         {
             sc = Model_Subcategory::instance().create();
@@ -1364,7 +1366,7 @@ void mmQIFImportDialog::getOrCreateCategories()
     }
     Model_Subcategory::instance().save(sub_data_set);
 
-    for (const auto &item : m_QIFcategoryNames) {
+    for (const auto& item : m_QIFcategoryNames) {
         int subcategID = -1, categID = -1;
         wxStringTokenizer token(item.first, ":");
         const wxString categStr = token.GetNextToken();
@@ -1382,7 +1384,7 @@ void mmQIFImportDialog::getOrCreateCategories()
 int mmQIFImportDialog::get_last_imported_acc()
 {
     int accID = -1;
-    Model_Account::Data * acc = Model_Account::instance().get(m_accountNameStr);
+    Model_Account::Data* acc = Model_Account::instance().get(m_accountNameStr);
     if (acc)
         accID = acc->ACCOUNTID;
     return accID;
@@ -1414,4 +1416,10 @@ void mmQIFImportDialog::OnFileNameChanged(wxCommandEvent& WXUNUSED(event))
 void mmQIFImportDialog::save_file_name()
 {
     Model_Setting::instance().Prepend("RECENT_QIF_FILES", m_FileNameStr, 10);
+}
+
+void mmQIFImportDialog::OnMenuSelected(wxCommandEvent& event)
+{
+    mmColorBtn_->Enable(false);
+    colorCheckBox_->SetValue(false);
 }

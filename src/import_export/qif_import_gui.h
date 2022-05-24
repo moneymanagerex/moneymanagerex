@@ -55,13 +55,14 @@ private:
     void fillControls();
     void OnFileSearch(wxCommandEvent& event);
     void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));
-    void OnAccountChanged(wxCommandEvent& WXUNUSED(event));
+    void OnAccountChanged(wxCommandEvent& event);
     void OnDateMaskChange(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& WXUNUSED(event));
     void OnOk(wxCommandEvent& WXUNUSED(event));
     void OnDecimalChange(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
     void save_file_name();
     bool mmReadQIFFile();
     int getOrCreateAccounts();
@@ -132,7 +133,8 @@ private:
         COL_MAX, // number of columns
     };
     enum {
-        ID_COLOR_BUTTON = wxID_HIGHEST
+        ID_COLOR_BUTTON = wxID_HIGHEST,
+        ID_ACCOUNT
     };
     std::map<int, wxString> ColName_;
 };
