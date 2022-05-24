@@ -1921,6 +1921,7 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
             wxLogDebug("%s %s", dates->start_date().FormatISODate(), dates.get()->end_date().FormatISODate());
             m_begin_date = dates->start_date().FormatISODate();
             m_end_date = dates->end_date().FormatISODate();
+            m_startDay = dates->startDay();
             m_futureIgnored = dates->isFutureIgnored();
             fromDateCtrl_->SetValue(dates->start_date());
             toDateControl_->SetValue(dates->end_date());
