@@ -994,9 +994,13 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 
 void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
 {
+#ifndef __WXMAC__
     wxWindow* w = FindFocus();
-    if (w && w->GetId() == wxID_CANCEL)
-        EndModal(wxID_CANCEL);
+    if (w && w->GetId() != wxID_CANCEL)
+        return;
+#endif
+
+    EndModal(wxID_CANCEL);
 }
 
 void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
