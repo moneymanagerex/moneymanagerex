@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-23 00:15+0300\n"
-"PO-Revision-Date: 2022-05-22 21:17\n"
+"PO-Revision-Date: 2022-05-24 00:08\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Abrir um Arquivo de Dados já criado com a extensão (*.mmb)"
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "Alterar idioma"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -2496,7 +2496,7 @@ msgstr "Salvar os valores na predefinição atual"
 
 #: filtertransdialog.cpp:738
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Excluir seleção de predefinição atual"
 
 #: filtertransdialog.cpp:1018
 msgid "Hide Report Columns"
@@ -2504,15 +2504,15 @@ msgstr "Ocultar colunas do relatório"
 
 #: filtertransdialog.cpp:1178
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "O item selecionado será excluído"
 
 #: filtertransdialog.cpp:1179
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Você deseja continuar?"
 
 #: filtertransdialog.cpp:1180
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Configurações de exclusão de item"
 
 #: filtertransdialog.cpp:1318 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
@@ -2557,7 +2557,7 @@ msgstr "Por favor, insira"
 
 #: filtertransdialog.cpp:1726
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "O nome adicionado já está em uso"
 
 #: filtertransdialog.cpp:1726 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
@@ -2576,7 +2576,7 @@ msgstr "Deseja salvar antes de continuar?"
 
 #: filtertransdialog.cpp:1739
 msgid "Please confirm"
-msgstr ""
+msgstr "Confirme, por favor"
 
 #: filtertransdialog.cpp:1755 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
@@ -3809,8 +3809,8 @@ msgstr "&Nova Transferência"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Editar Transação..."
+msgstr[1] "&Editar Transações..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3834,8 +3834,8 @@ msgstr "D&uplicar Transacção"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Mover Transação..."
+msgstr[1] "&Mover Transações..."
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
@@ -3852,8 +3852,8 @@ msgstr "Criar T&ransação Recorrente"
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Excluir transação selecionada..."
+msgstr[1] "&Excluir transações selecionadas..."
 
 #: mmchecking_list.cpp:411
 msgid "Delete all transactions in current view"
@@ -6351,11 +6351,11 @@ msgstr "Desde 90 dias atrás"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Desde o início deste ano"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Desde o início do exercício financeiro"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
