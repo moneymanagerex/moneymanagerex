@@ -300,11 +300,14 @@ void mmQIFImportDialog::CreateControls()
 
     wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
     choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
+    wxArrayString auto_fills;
     for (const auto& i : g_date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
+        auto_fills.Add(i.second);
         if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
     }
+    choiceDateFormat_->AutoComplete(auto_fills);
     choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED
         , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
 
