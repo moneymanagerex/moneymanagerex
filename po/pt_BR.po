@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-24 20:47+0300\n"
-"PO-Revision-Date: 2022-05-24 17:52\n"
+"PO-Revision-Date: 2022-05-24 18:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1815,7 +1815,7 @@ msgstr "TODOS"
 #: constants.cpp:192 mmframe.cpp:1280 mmframe.cpp:1678
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr "Abertas"
+msgstr "Aberta"
 
 #: constants.cpp:193 mmframe.cpp:1281 model/Model_Account.cpp:27
 msgid "Closed"
@@ -2466,7 +2466,7 @@ msgstr "Intervalo de valor"
 
 #: filtertransdialog.cpp:652
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Digite qualquer sequência de caracteres para encontrá-la nas observações"
 
 #: filtertransdialog.cpp:664
 msgid "Select the Color"
@@ -2507,7 +2507,9 @@ msgstr "Excluir seleção de predefinição atual"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Este nome não corresponde a nenhum beneficiário.\n"
+"Você quer continuar a usá-lo?\n"
+"%s"
 
 #: filtertransdialog.cpp:1055
 msgid "Hide Report Columns"
@@ -3975,7 +3977,7 @@ msgstr "Duplicar a transação selecionada"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Insira qualquer sequência de caracteres para encontrá-la nos dados das transações mais próximos"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -5281,7 +5283,7 @@ msgstr "Transação"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Stock"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
@@ -5289,7 +5291,7 @@ msgstr "Conta Bancária"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Transação Recorrente"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -6282,7 +6284,7 @@ msgstr "Receitas vs Despesas Mensais"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Acumulado"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
