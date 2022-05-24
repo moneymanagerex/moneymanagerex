@@ -1333,10 +1333,11 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #ifndef __WXMAC__
     if (object_in_focus_ != wxID_CANCEL && wxGetKeyState(WXK_ESCAPE))
             return m_button_cancel->SetFocus();
-#endif
+
     if (object_in_focus_ != wxID_CANCEL) {
         return;
     }
+#endif
 
     if (m_new_trx || m_duplicate)
     {

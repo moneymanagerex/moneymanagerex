@@ -729,14 +729,15 @@ void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
-    wxWindow* w = FindFocus();
 #ifndef __WXMAC__
+    wxWindow* w = FindFocus();
     if (w && w->GetId() != wxID_CANCEL && wxGetKeyState(WXK_ESCAPE))
         return m_button_cancel->SetFocus();
-#endif
+
     if (w && w->GetId() != wxID_CANCEL) {
         return;
     }
+#endif
 
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     if (!m_bill_data.BDID)
