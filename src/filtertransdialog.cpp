@@ -267,10 +267,6 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
-    {
-        wxCommandEvent evt(wxID_ANY);
-        OnPayeeUpdated(evt);
-    }
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
@@ -891,8 +887,12 @@ bool mmFilterTransactionsDialog::is_values_correct() const
                 }
             }
             if (ok == false) {
-                mmErrorDialogs::ToolTip4Object(cbPayee_, _("Payee"), _("Invalid value"), wxICON_ERROR);
-                return false;
+                if (wxMessageBox(wxString::Format(_("This name does not currently match any payees.\n"
+                    "Do you want to continue to use it?\n%s"), value)
+                    , _("Invalid value"), wxYES_NO | wxICON_INFORMATION) == wxNO)
+                {
+                    return false;
+                }
             }
         }
         else
@@ -1735,9 +1735,6 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
 
 void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
 {
-    if (!is_values_correct())
-        return;
-
     const auto label = m_setting_name->GetStringSelection();
     wxString user_label;
 
@@ -1789,7 +1786,9 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 {
-    DoSaveSettings(true);
+    if (is_values_correct()) {
+        DoSaveSettings(true);
+    }
 }
 
 void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
