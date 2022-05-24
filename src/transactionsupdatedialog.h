@@ -54,6 +54,9 @@ private:
     void SetPayeeTransferControls();
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
+    void OnColourButton(wxCommandEvent& /*event*/);
+    void OnColourSelected(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
 
 private:
     wxCheckBox* m_payee_checkbox;
@@ -66,6 +69,8 @@ private:
     wxChoice* m_status_choice;
     wxCheckBox* m_categ_checkbox;
     wxButton* m_categ_btn;
+    wxButton* bColours_;
+    wxCheckBox* m_color_checkbox;
     wxCheckBox* m_type_checkbox;
     wxChoice* m_type_choice;
     wxCheckBox* m_amount_checkbox;
@@ -77,6 +82,7 @@ private:
     Model_Currency::Data* m_currency;
     int m_categ_id;
     int m_subcateg_id;
+    int m_color_id;
     bool m_hasTransfers, m_hasNonTransfers, m_hasSplits;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
