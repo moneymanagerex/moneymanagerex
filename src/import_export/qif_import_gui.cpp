@@ -300,29 +300,33 @@ void mmQIFImportDialog::CreateControls()
 
     wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
     choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
+    wxArrayString auto_fills;
     for (const auto& i : g_date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
+        auto_fills.Add(i.second);
         if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
     }
+    choiceDateFormat_->AutoComplete(auto_fills);
     choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED
         , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
 
-    wxFlexGridSizer* flex_sizer_b = new wxFlexGridSizer(0, 2, 0, 0);
-    flex_sizer_b->Add(accountNumberCheckBox_, g_flagsH);
-    flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsH);
+    wxFlexGridSizer* flex_sizer_b = new wxFlexGridSizer(0, 3, 0, 0);
+    flex_sizer_b->Add(accountNumberCheckBox_, g_flagsBorder1H);
+    flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsBorder1H);
+    flex_sizer_b->AddSpacer(1);
 
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
-    date_sizer->Add(dateFormat, g_flagsH);
-    date_sizer->Add(choiceDateFormat_, g_flagsH);
-    flex_sizer_b->Add(date_sizer, g_flagsH);
+    date_sizer->Add(dateFormat, g_flagsBorder1H);
+    date_sizer->Add(choiceDateFormat_, g_flagsBorder1H);
+    flex_sizer_b->Add(date_sizer, g_flagsBorder1H);
 
 
     wxStaticText* decamalCharText = new wxStaticText(this, wxID_STATIC, _("Decimal Char"));
     m_choiceDecimalSeparator = new mmChoiceAmountMask(this, wxID_ANY);
     wxBoxSizer* decamalCharSizer = new wxBoxSizer(wxHORIZONTAL);
-    decamalCharSizer->Add(decamalCharText, g_flagsH);
-    decamalCharSizer->Add(m_choiceDecimalSeparator, g_flagsH);
+    decamalCharSizer->Add(decamalCharText, g_flagsBorder1H);
+    decamalCharSizer->Add(m_choiceDecimalSeparator, g_flagsBorder1H);
     m_choiceDecimalSeparator->SetDecimalChar(decimal_);
     m_choiceDecimalSeparator->Connect(wxID_ANY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmQIFImportDialog::OnDecimalChange), nullptr, this);
@@ -330,11 +334,22 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer_b->Add(decamalCharSizer, g_flagsH);
     //
 
+    colorCheckBox_ = new wxCheckBox(this, wxID_PASTE, _("Color")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    mmColorBtn_ = new mmColorButton(this, ID_COLOR_BUTTON
+        , wxSize(m_choiceDecimalSeparator->GetSize().GetY(), m_choiceDecimalSeparator->GetSize().GetY()));
+    mmColorBtn_->Enable(false);
+    wxBoxSizer* colorSizer = new wxBoxSizer(wxHORIZONTAL);
+    colorSizer->Add(colorCheckBox_, g_flagsBorder1H);
+    colorSizer->Add(mmColorBtn_, g_flagsBorder1H);
+    flex_sizer_b->Add(colorSizer, g_flagsBorder1H);
+
     wxBoxSizer* inTop_sizer = new wxBoxSizer(wxVERTICAL);
     inTop_sizer->Add(top_sizer, g_flagsV);
     inTop_sizer->Add(flex_sizer_b, g_flagsExpand);
     main_sizer->Add(inTop_sizer, g_flagsV);
     main_sizer->Add(qif_notebook, g_flagsExpand);
+
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -796,27 +811,25 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     int t = TRX_TAB;
 
-    if (event.GetId() == wxID_FILE8 || event.GetId() == wxID_FILE9)
+    switch (event.GetId())
     {
+    case wxID_PASTE:
+        mmColorBtn_->Enable(colorCheckBox_->IsChecked());
+        return;
+    case wxID_FILE8:
+    case wxID_FILE9:
         fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
         toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
         return;
-    }
-
-    if (event.GetId() == wxID_FILE6)
-    {
+    case wxID_FILE6:
         t = t | PAYEE_TAB;
-    }
-
-    if (event.GetId() == wxID_FILE7)
-    {
+        break;
+    case wxID_FILE7:
         t = t | PAYEE_TAB;
         payeeIsNotes_ = payeeIsNotesCheckBox_->IsChecked();
         if (!m_FileNameStr.IsEmpty())
             mmReadQIFFile(); //TODO: 1:Why read file again? 2:In future may be def payee in settings
-    }
-
-    if (event.GetId() == wxID_FILE5)
+    case wxID_FILE5:
     {
         t = t | ACC_TAB;
         if (accountCheckBox_->IsChecked()
@@ -832,13 +845,14 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
             wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(sel));
             if (data_obj)
                 m_accountNameStr = data_obj->GetData();
-            
+
         }
         else {
             accountDropDown_->Enable(false);
             accountCheckBox_->SetValue(false);
             m_accountNameStr = "";
         }
+    }
     }
 
     refreshTabs(t);
@@ -883,7 +897,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
         int count = 0;
-        const wxString transferStr = Model_Checking::TRANSFER_STR;
+        const wxString& transferStr = Model_Checking::TRANSFER_STR;
 
         const auto begin_date = toDateCtrl_->GetValue().FormatISODate();
         const auto end_date = fromDateCtrl_->GetValue().FormatISODate();
@@ -1121,7 +1135,9 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     }
     trx->STATUS = status;
 
-    trx->FOLLOWUPID = -1;
+    int color_id = mmColorBtn_->GetColorId();
+    trx->FOLLOWUPID = (color_id > 0 && color_id < 8) ? color_id : -1;
+
     const wxString value = mmTrimAmount(t.find(Amount) != t.end() ? t[Amount] : "", decimal_, ".");
     if (value.empty())
     {
