@@ -931,16 +931,16 @@ void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
     if (m_selected_row == -1) return;
     int id = m_bdp->bills_[m_selected_row].BDID;
 
-    int user_colour_id = event.GetId();
-    user_colour_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_colour_id);
+    int user_color_id = event.GetId();
+    user_color_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_color_id);
 
     Model_Billsdeposits::instance().Savepoint();
 
     Model_Billsdeposits::Data* item = Model_Billsdeposits::instance().get(id);
     if (item)
     {
-        item->FOLLOWUPID = user_colour_id;
+        item->FOLLOWUPID = user_color_id;
         Model_Billsdeposits::instance().save(item);
     }
     Model_Billsdeposits::instance().ReleaseSavepoint();

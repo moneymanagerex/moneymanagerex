@@ -113,7 +113,7 @@ private:
     bool is_payee_cb_active() const;
     bool is_number_cb_active() const;
     bool is_notes_cb_active() const;
-    bool is_colour_cb_active() const;
+    bool is_color_cb_active() const;
     bool is_custom_field_active() const;
     bool is_custom_field_matches(const Model_Checking::Data& tran) const;
 
@@ -185,8 +185,8 @@ private:
     wxBitmapButton* m_btnSaveAs;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
-    wxCheckBox* colourCheckBox_;
-    mmColorButton* colourButton_;
+    wxCheckBox* colorCheckBox_;
+    mmColorButton* colorButton_;
     wxCheckBox* showColumnsCheckBox_;
     wxButton* bHideColumns_;
     wxCheckBox* groupByCheckBox_;
@@ -198,7 +198,7 @@ private:
     wxString m_end_date;
     int m_startDay;
     bool m_futureIgnored;
-    int m_colour_value;
+    int m_color_value;
     int m_categ_id;
     int m_subcateg_id;
     int payeeID_;
@@ -245,7 +245,7 @@ inline bool mmFilterTransactionsDialog::is_type_cb_active() const { return typeC
 inline bool mmFilterTransactionsDialog::is_payee_cb_active() const { return payeeCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_number_cb_active() const { return transNumberCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_notes_cb_active() const { return notesCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_colour_cb_active() const { return colourCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_color_cb_active() const { return colorCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
 

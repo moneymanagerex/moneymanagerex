@@ -572,18 +572,18 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     bool in_the_future = (tran.TRANSDATE > m_today);
 
     // apply alternating background pattern
-    int user_colour_id = tran.FOLLOWUPID;
-    if (user_colour_id < 0) user_colour_id = 0;
-    else if (user_colour_id > 7) user_colour_id = 0;
+    int user_color_id = tran.FOLLOWUPID;
+    if (user_color_id < 0) user_color_id = 0;
+    else if (user_color_id > 7) user_color_id = 0;
 
-    if (user_colour_id == 0) {
+    if (user_color_id == 0) {
         if (in_the_future) {
             return (item % 2 ? m_attr3.get() : m_attr4.get());
         }
         return (item % 2 ? m_attr1.get() : m_attr2.get());
     }
 
-    switch (user_colour_id)
+    switch (user_color_id)
     {
     case 1:
         return m_attr11.get();
@@ -1110,9 +1110,9 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
     FindSelectedTransactions();
-    int user_colour_id = event.GetId();
-    user_colour_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_colour_id);
+    int user_color_id = event.GetId();
+    user_color_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_color_id);
 
     Model_Checking::instance().Savepoint();
     for (const auto i : m_selected_id)
@@ -1120,7 +1120,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
         Model_Checking::Data* transaction = Model_Checking::instance().get(i);
         if (transaction)
         {
-            transaction->FOLLOWUPID = user_colour_id;
+            transaction->FOLLOWUPID = user_color_id;
             Model_Checking::instance().save(transaction);
         }
     }

@@ -43,7 +43,7 @@ public:
 private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnColourButton(wxCommandEvent& event);
-    int m_colour_value;
+    int m_color_value;
     wxDECLARE_EVENT_TABLE();
 };
 

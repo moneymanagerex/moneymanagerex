@@ -319,16 +319,16 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
     wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
     if (button)
     {
-        wxColour colour = button->GetBackgroundColour();
+        wxColour color = button->GetBackgroundColour();
         wxColourData data;
         data.SetChooseFull(true);
-        data.SetColour(colour);
+        data.SetColour(color);
 
         wxColourDialog dialog(this, &data);
         if (dialog.ShowModal() == wxID_OK)
         {
-            colour = dialog.GetColourData().GetColour();
-            button->SetBackgroundColour(colour);
+            color = dialog.GetColourData().GetColour();
+            button->SetBackgroundColour(color);
         }
     }
 }
