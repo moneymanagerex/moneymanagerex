@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-24 20:47+0300\n"
-"PO-Revision-Date: 2022-05-25 07:20\n"
+"PO-Revision-Date: 2022-05-25 07:43\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "פתיחת מסד נתונים קיים,  קובץ עם סיומת (mmb.
 
 #: appstartdialog.cpp:114
 msgid "Change Language"
-msgstr ""
+msgstr "החלפת שפה"
 
 #: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1411
 #: optionsettingsgeneral.cpp:94
@@ -2506,14 +2506,16 @@ msgstr "שמירת ערכים פעילים להגדרה מראש נוכחית"
 
 #: filtertransdialog.cpp:742
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "מחיקת בחירת הגדרה מראש נוכחית"
 
 #: filtertransdialog.cpp:890
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "שם זה אינו תואם לשם מוטב כלשהו.\n"
+"האם להמשיך להשתמש בשם זה?\n"
+"%s"
 
 #: filtertransdialog.cpp:1055
 msgid "Hide Report Columns"
@@ -6388,11 +6390,11 @@ msgstr "90 יום אחרונים"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "מתחילת שנת כספים נוכחית"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "מתחילת שנת כספים"
 
 #: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
