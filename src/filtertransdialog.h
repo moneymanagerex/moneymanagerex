@@ -149,6 +149,7 @@ private:
     void OnMoreFields(wxCommandEvent& event);
     void OnChoice(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
+    void OnQuit(wxCloseEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
     const wxString GetJsonSetings(bool i18n = false) const;

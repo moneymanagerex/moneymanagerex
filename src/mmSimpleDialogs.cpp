@@ -43,6 +43,15 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 {
     m_colour_value = event.GetId() - wxID_HIGHEST;
     SetBackgroundColour(getUDColour(m_colour_value));
+    if (GetSize().GetX() > 40)
+    {
+        if (m_colour_value <= 0) {
+            SetLabel(wxString::Format(_("Clear color")));
+        }
+        else {
+            SetLabel(wxString::Format(_("Color #%i"), m_colour_value));
+        }
+    }
     event.Skip();
 }
 

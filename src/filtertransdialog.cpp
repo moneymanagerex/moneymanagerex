@@ -64,12 +64,13 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmFilterTransactionsDialog, wxDialog)
 EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
 EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
-EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
 EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
 EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmFilterTransactionsDialog::OnMoreFields)
 EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::OnMenuSelected)
 EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
 EVT_CHOICE(wxID_ANY, mmFilterTransactionsDialog::OnChoice)
+EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
+EVT_CLOSE(mmFilterTransactionsDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog()
@@ -1002,6 +1003,11 @@ void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
     EndModal(wxID_CANCEL);
 }
 
+void mmFilterTransactionsDialog::OnQuit(wxCloseEvent& /*event*/)
+{
+    EndModal(wxID_CANCEL);
+}
+
 void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
 {
     if (event.GetKeyCode() == WXK_RETURN) {
@@ -1903,5 +1909,6 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
     if (!m_colour_value) {
         colourButton_->Enable(false);
         colourCheckBox_->SetValue(false);
+        colourButton_->SetLabel("");
     }
 }
