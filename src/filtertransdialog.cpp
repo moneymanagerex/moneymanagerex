@@ -1218,9 +1218,9 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        sel = FindLabelInJSON(m_setting_name->GetStringSelection());
-        if (sel != wxNOT_FOUND)
-            Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel);
+        int sel_json = FindLabelInJSON(m_setting_name->GetStringSelection());
+        if (sel_json != wxNOT_FOUND)
+            Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel_json);
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
