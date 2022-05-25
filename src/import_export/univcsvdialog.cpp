@@ -63,6 +63,7 @@ EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnFileBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
 EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
 EVT_CHECKBOX(wxID_ANY, mmUnivCSVDialog::OnCheckboxClick)
+EVT_MENU(wxID_ANY, mmUnivCSVDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -420,7 +421,7 @@ void mmUnivCSVDialog::CreateControls()
     //Import File button
     wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer0->Add(itemPanel5, 0, wxALIGN_RIGHT | wxALL, 1);
+    itemBoxSizer0->Add(itemPanel5, 0, wxALIGN_CENTER | wxALL, 1);
 
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel5->SetSizer(itemBoxSizer6);
@@ -981,6 +982,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     long lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
     const long linesToImport = lastRow - firstRow;
     long countEmptyLines = 0;
+    int color_id = colorCheckBox_->IsChecked() ? colorButton_->GetColorId() : -1;
+    if (colorCheckBox_->IsChecked() && color_id < 0 || color_id > 7) {
+        return mmErrorDialogs::ToolTip4Object(colorButton_, _("Color"), _("Invalid value"), wxICON_ERROR);
+    }
 
     Model_Checking::instance().Begin();
     Model_Checking::instance().Savepoint("IMP");
@@ -1046,6 +1051,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         pTransaction->STATUS = holder.Status;
         pTransaction->TRANSACTIONNUMBER = holder.Number;
         pTransaction->NOTES = holder.Notes;
+        pTransaction->FOLLOWUPID = color_id;
 
         Model_Checking::instance().save(pTransaction);
 
@@ -1925,4 +1931,9 @@ ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()
 void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     colorButton_->Enable(colorCheckBox_->IsChecked());
+}
+
+void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
+{
+    colorButton_->Enable(false);
 }

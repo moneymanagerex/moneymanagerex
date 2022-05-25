@@ -213,6 +213,7 @@ private:
     void changeFocus(wxChildFocusEvent& event);
     void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
     void OnCheckboxClick(wxCommandEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
 private:
     void OnLoad();
     void UpdateListItemBackground();
