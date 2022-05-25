@@ -64,12 +64,13 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmFilterTransactionsDialog, wxDialog)
 EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
 EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
-EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
 EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
 EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmFilterTransactionsDialog::OnMoreFields)
 EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::OnMenuSelected)
 EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
 EVT_CHOICE(wxID_ANY, mmFilterTransactionsDialog::OnChoice)
+EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
+EVT_CLOSE(mmFilterTransactionsDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog()
@@ -87,7 +88,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
     , is_similar_category_status(false)
     , isMultiAccount_(showAccountFilter)
     , isReportMode_(isReportMode)
-    , m_colour_value(-1)
+    , m_color_value(-1)
 {
     DoInitVariables();
     Create(parent);
@@ -373,15 +374,15 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     notesEdit_->ChangeValue(s_notes);
 
     //Colour
-    m_colour_value = -1;
-    colourCheckBox_->SetValue(false);
+    m_color_value = -1;
+    colorCheckBox_->SetValue(false);
     if (j_doc.HasMember("COLOR") && j_doc["COLOR"].IsInt()) {
-        colourCheckBox_->SetValue(true);
-        m_colour_value = j_doc["COLOR"].GetInt();
+        colorCheckBox_->SetValue(true);
+        m_color_value = j_doc["COLOR"].GetInt();
     }
-    colourButton_->Enable(colourCheckBox_->IsChecked());
-    colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
-    colourButton_->Refresh(); // Needed as setting the background colour does not cause an immediate refresh
+    colorButton_->Enable(colorCheckBox_->IsChecked());
+    colorButton_->SetBackgroundColour(getUDColour(m_color_value));
+    colorButton_->Refresh(); // Needed as setting the background color does not cause an immediate refresh
 
     //Custom Fields
     bool is_custom_found = false;
@@ -657,12 +658,12 @@ void mmFilterTransactionsDialog::CreateControls()
     );
 
     // Colour
-    colourCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
+    colorCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(colourCheckBox_, g_flagsH);
+    itemPanelSizer->Add(colorCheckBox_, g_flagsH);
 
-    colourButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
-    itemPanelSizer->Add(colourButton_, g_flagsExpand);
+    colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
+    itemPanelSizer->Add(colorButton_, g_flagsExpand);
 
     /******************************************************************************
      Presentation Panel
@@ -839,7 +840,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-    colourButton_->Enable(colourCheckBox_->IsChecked());
+    colorButton_->Enable(colorCheckBox_->IsChecked());
     bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
     bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
 
@@ -952,10 +953,10 @@ bool mmFilterTransactionsDialog::is_values_correct() const
         }
     }
 
-    if (is_colour_cb_active())
+    if (is_color_cb_active())
     {
-        if (m_colour_value < 1 || m_colour_value > 7) {
-            mmErrorDialogs::ToolTip4Object(colourButton_
+        if (m_color_value < 1 || m_color_value > 7) {
+            mmErrorDialogs::ToolTip4Object(colorButton_
                 , _("Color"), _("Invalid value"), wxICON_ERROR);
             return false;
         }
@@ -999,6 +1000,11 @@ void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
         return;
 #endif
 
+    EndModal(wxID_CANCEL);
+}
+
+void mmFilterTransactionsDialog::OnQuit(wxCloseEvent& /*event*/)
+{
     EndModal(wxID_CANCEL);
 }
 
@@ -1105,7 +1111,7 @@ bool mmFilterTransactionsDialog::isSomethingSelected() const
         || is_amount_range_max_cb_active()
         || is_number_cb_active()
         || is_notes_cb_active()
-        || is_colour_cb_active()
+        || is_color_cb_active()
         || is_custom_field_active();
 }
 
@@ -1327,7 +1333,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     else if (is_notes_cb_active() && (getNotes().empty() ? !tran.NOTES.empty()
         : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
         ok = false;
-    else if (is_colour_cb_active() && (m_colour_value != tran.FOLLOWUPID))
+    else if (is_color_cb_active() && (m_color_value != tran.FOLLOWUPID))
         ok = false;
     else if (is_custom_field_active() && !is_custom_field_matches(tran))
         ok = false;
@@ -1601,10 +1607,10 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     }
 
     //Colour
-    if (colourCheckBox_->IsChecked())
+    if (colorCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Color") : "COLOR").utf8_str());
-        json_writer.Int(m_colour_value);
+        json_writer.Int(m_color_value);
     }
 
     //Custom Fields
@@ -1899,9 +1905,10 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
 
 void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
 {
-    m_colour_value = colourButton_->GetColorId();
-    if (!m_colour_value) {
-        colourButton_->Enable(false);
-        colourCheckBox_->SetValue(false);
+    m_color_value = colorButton_->GetColorId();
+    if (!m_color_value) {
+        colorButton_->Enable(false);
+        colorCheckBox_->SetValue(false);
+        colorButton_->SetLabel("");
     }
 }
