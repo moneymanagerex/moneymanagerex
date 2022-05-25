@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-25 15:11+0300\n"
-"PO-Revision-Date: 2022-05-25 12:18\n"
+"PO-Revision-Date: 2022-05-25 17:02\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2432,11 +2432,11 @@ msgstr "Insättning"
 #: filtertransdialog.cpp:601 filtertransdialog.cpp:811
 #: filtertransdialog.cpp:1429
 msgid "Transfer Out"
-msgstr ""
+msgstr "Överföring ut"
 
 #: filtertransdialog.cpp:603 filtertransdialog.cpp:1427
 msgid "Transfer In"
-msgstr ""
+msgstr "Överföring in"
 
 #: filtertransdialog.cpp:615
 msgid "Amount Range"
