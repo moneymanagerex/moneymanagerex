@@ -23,6 +23,7 @@
 
 #include "mmcustomdata.h"
 #include "defs.h"
+#include "mmSimpleDialogs.h"
 
 #include "Model_Checking.h"
 #include "Model_Payee.h"
@@ -83,8 +84,6 @@ private:
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnColourButton(wxCommandEvent& event);
-    void OnColourSelected(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnComboKey(wxKeyEvent& event);
     void OnFromAccountUpdated(wxCommandEvent& event);
@@ -108,7 +107,7 @@ private:
     wxTextCtrl* textNotes_;
     wxButton* bCategory_;
     wxButton* bAttachments_;
-    wxButton* bColours_;
+    mmColorButton* bColours_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;

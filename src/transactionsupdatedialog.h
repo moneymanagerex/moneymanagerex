@@ -20,6 +20,7 @@
 #ifndef MM_EX_TRANSACTIONSUPDATE_H_
 #define MM_EX_TRANSACTIONSUPDATE_H_
 
+#include "mmSimpleDialogs.h"
 #include "defs.h"
 #include "mmcombobox.h"
 #include "mmcustomdata.h"
@@ -54,8 +55,6 @@ private:
     void SetPayeeTransferControls();
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
-    void OnColourButton(wxCommandEvent& /*event*/);
-    void OnColourSelected(wxCommandEvent& event);
     void OnComboKey(wxKeyEvent& event);
 
 private:
@@ -69,7 +68,7 @@ private:
     wxChoice* m_status_choice;
     wxCheckBox* m_categ_checkbox;
     wxButton* m_categ_btn;
-    wxButton* bColours_;
+    mmColorButton* bColours_;
     wxCheckBox* m_color_checkbox;
     wxCheckBox* m_type_checkbox;
     wxChoice* m_type_choice;
@@ -82,7 +81,6 @@ private:
     Model_Currency::Data* m_currency;
     int m_categ_id;
     int m_subcateg_id;
-    int m_color_id;
     bool m_hasTransfers, m_hasNonTransfers, m_hasSplits;
     wxSharedPtr<mmCustomData> m_custom_fields;
 

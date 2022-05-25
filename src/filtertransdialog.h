@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma interface "filtertransdialog.cpp"
 #endif
 
+#include "mmSimpleDialogs.h"
 #include "mmcustomdata.h"
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
@@ -139,16 +140,15 @@ private:
     void OnComboKey(wxKeyEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
-    void OnMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
     void DoSaveSettings(bool is_user_request = false);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
-    void OnColourButton(wxCommandEvent& /*event*/);
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
     void OnMoreFields(wxCommandEvent& event);
     void OnChoice(wxCommandEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
     const wxString GetJsonSetings(bool i18n = false) const;
@@ -185,7 +185,7 @@ private:
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     wxCheckBox* colourCheckBox_;
-    wxButton* colourButton_;
+    mmColorButton* colourButton_;
     wxCheckBox* showColumnsCheckBox_;
     wxButton* bHideColumns_;
     wxCheckBox* groupByCheckBox_;
@@ -215,8 +215,7 @@ private:
     enum
     {
         /* FIlter Dialog */
-        ID_DIALOG_COLOUR = wxID_HIGHEST + 897,
-        ID_DIALOG_COLUMNS,
+        ID_DIALOG_COLUMNS = wxID_HIGHEST + 897,
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
         ID_DATE_RANGE,

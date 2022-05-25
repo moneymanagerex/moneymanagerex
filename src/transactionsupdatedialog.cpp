@@ -37,13 +37,11 @@ wxBEGIN_EVENT_TABLE(transactionsUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_OK, transactionsUpdateDialog::OnOk)
     EVT_BUTTON(wxID_VIEW_DETAILS, transactionsUpdateDialog::OnCategChange)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, transactionsUpdateDialog::OnMoreFields)
-    EVT_BUTTON(wxID_INFO, transactionsUpdateDialog::OnColourButton)
     EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
     EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
     EVT_COMBOBOX(ID_PAYEE, transactionsUpdateDialog::OnPayeeUpdated)
     EVT_COMBOBOX(ID_TRANS_ACC, transactionsUpdateDialog::OnAccountUpdated)
     EVT_CHOICE(ID_TRANS_TYPE, transactionsUpdateDialog::OnTransTypeChanged)
-    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 8, transactionsUpdateDialog::OnColourSelected)
 wxEND_EVENT_TABLE()
 
 void transactionsUpdateDialog::SetEventHandlers()
@@ -83,7 +81,6 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , m_hasTransfers(false)
     , m_hasNonTransfers(false)
     , m_hasSplits(false)
-    , m_color_id(0)
 {
     m_currency = Model_Currency::GetBaseCurrency(); // base currency if we need it
 
@@ -260,8 +257,7 @@ void transactionsUpdateDialog::CreateControls()
     // Colours --------------------------------------------
     m_color_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, m_categ_btn->GetSize(), 0);
-    //bColours->SetBackgroundColour(mmColors::userDefColor1);
+    bColours_ = new mmColorButton(this, wxID_HIGHEST, m_categ_btn->GetSize());
     mmToolTip(bColours_, _("User Colors"));
     grid_sizer->Add(m_color_checkbox, g_flagsH);
     grid_sizer->Add(bColours_, g_flagsExpand);
@@ -433,10 +429,11 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_color_checkbox->IsChecked())
         {
-            if (m_color_id < 0 || m_color_id > 7) {
+            int color_id = bColours_->GetColorId();
+            if (color_id < 0 || color_id > 7) {
                 return mmErrorDialogs::ToolTip4Object(bColours_, _("Color"), _("Invalid value"), wxICON_ERROR);
             }
-            trx->FOLLOWUPID = m_color_id == 0 ? -1 : m_color_id ;
+            trx->FOLLOWUPID = color_id == 0 ? -1 : color_id ;
         }
 
         if (m_notes_checkbox->IsChecked())
@@ -654,47 +651,6 @@ void transactionsUpdateDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
-}
-
-void transactionsUpdateDialog::OnColourButton(wxCommandEvent& /*event*/)
-{
-    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_INFO);
-    ev.SetEventObject(this);
-
-    wxMenu mainMenu;
-
-    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
-    mainMenu.Append(menuItem);
-
-    for (int i = 1; i <= 7; ++i)
-    {
-        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
-#ifdef __WXMSW__
-        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
-#endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
-        wxMemoryDC memoryDC(bitmap);
-        wxRect rect(memoryDC.GetSize());
-
-        memoryDC.SetBackground(wxBrush(getUDColour(i)));
-        memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
-        memoryDC.SelectObject(wxNullBitmap);
-        menuItem->SetBitmap(bitmap);
-
-        mainMenu.Append(menuItem);
-    }
-
-    PopupMenu(&mainMenu);
-}
-
-void transactionsUpdateDialog::OnColourSelected(wxCommandEvent& event)
-{
-    int sel = event.GetId() - wxID_HIGHEST;
-    auto test = event.GetString();
-    bColours_->SetBackgroundColour(getUDColour(sel));
-    bColours_->SetLabel(wxString::Format(_("Color #%i"), sel));
-    m_color_id = sel;
 }
 
 void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
