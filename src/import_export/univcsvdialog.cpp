@@ -62,6 +62,8 @@ EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
 EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnFileBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
 EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
+EVT_CHECKBOX(wxID_ANY, mmUnivCSVDialog::OnCheckboxClick)
+EVT_MENU(wxID_ANY, mmUnivCSVDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -90,7 +92,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_setting_name_ctrl_(nullptr),
     log_field_(nullptr),
     m_textDelimiter(nullptr),
-    m_rowSelectionStaticBox_(nullptr),
     m_spinIgnoreFirstRows_(nullptr),
     m_spinIgnoreLastRows_(nullptr),
     choiceDateFormat_(nullptr),
@@ -364,12 +365,16 @@ void mmUnivCSVDialog::CreateControls()
         m_choiceDecimalSeparator->Connect(ID_UD_DECIMAL, wxEVT_COMMAND_CHOICE_SELECTED
             , wxCommandEventHandler(mmUnivCSVDialog::OnDecimalChange), nullptr, this);
 
+
+        wxBoxSizer* itemBoxSizer111 = new wxBoxSizer(wxHORIZONTAL);
+        itemBoxSizer2->Add(itemBoxSizer111);
+
         // Select rows to import (not relevant for export)
         // Container.
-        m_rowSelectionStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
-        m_rowSelectionStaticBox_->SetFont(staticBoxFontSetting);
-        wxStaticBoxSizer* rowSelectionStaticBoxSizer = new wxStaticBoxSizer(m_rowSelectionStaticBox_, wxHORIZONTAL);
-        itemBoxSizer2->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
+        wxStaticBox* rowSelectionStaticBox = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
+        rowSelectionStaticBox->SetFont(staticBoxFontSetting);
+        wxStaticBoxSizer* rowSelectionStaticBoxSizer = new wxStaticBoxSizer(rowSelectionStaticBox, wxHORIZONTAL);
+        itemBoxSizer111->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
 
         // "Ignore first" title, spin and event handler.
         wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
@@ -383,6 +388,15 @@ void mmUnivCSVDialog::CreateControls()
             , wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
 
         rowSelectionStaticBoxSizer->AddSpacer(30);
+
+        // Colour
+        colorCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Color")
+            , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        itemBoxSizer111->Add(colorCheckBox_, g_flagsH);
+        colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(m_textDelimiter->GetSize().GetY(), m_textDelimiter->GetSize().GetY()));
+        itemBoxSizer111->Add(colorButton_, g_flagsH);
+        colorButton_->Enable(false);
+
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
@@ -407,7 +421,7 @@ void mmUnivCSVDialog::CreateControls()
     //Import File button
     wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer0->Add(itemPanel5, 0, wxALIGN_RIGHT | wxALL, 1);
+    itemBoxSizer0->Add(itemPanel5, 0, wxALIGN_CENTER | wxALL, 1);
 
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel5->SetSizer(itemBoxSizer6);
@@ -968,6 +982,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     long lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
     const long linesToImport = lastRow - firstRow;
     long countEmptyLines = 0;
+    int color_id = colorCheckBox_->IsChecked() ? colorButton_->GetColorId() : -1;
+    if (colorCheckBox_->IsChecked() && color_id < 0 || color_id > 7) {
+        return mmErrorDialogs::ToolTip4Object(colorButton_, _("Color"), _("Invalid value"), wxICON_ERROR);
+    }
 
     Model_Checking::instance().Begin();
     Model_Checking::instance().Savepoint("IMP");
@@ -1033,6 +1051,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         pTransaction->STATUS = holder.Status;
         pTransaction->TRANSACTIONNUMBER = holder.Number;
         pTransaction->NOTES = holder.Notes;
+        pTransaction->FOLLOWUPID = color_id;
 
         Model_Checking::instance().save(pTransaction);
 
@@ -1907,4 +1926,14 @@ ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()
 
     // CSV
     return new FileCSV(this, g_encoding.at(m_choiceEncoding->GetSelection()).first, delimit_);
+}
+
+void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
+{
+    colorButton_->Enable(colorCheckBox_->IsChecked());
+}
+
+void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
+{
+    colorButton_->Enable(false);
 }
