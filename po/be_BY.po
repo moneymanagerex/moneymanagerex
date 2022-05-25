@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-25 15:11+0300\n"
-"PO-Revision-Date: 2022-05-25 12:18\n"
+"PO-Revision-Date: 2022-05-25 14:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2011,7 +2011,9 @@ msgstr "Спраўдзіце выдаленне карыстальніцкага
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Гэтая функцыя будзе паўсюль выконваць пошук і замену значэнняў карыстальніцкага поля «%s»\n"
+"Будуць замененыя толькі поўныя супадзення поля, частковае або сярэдняе значэнне не дапускаецца\n"
+"Калі ласка, улічвайце, што няма ніякай праверкі!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2054,7 +2056,7 @@ msgstr[3] "%zu супадзенняў знойдзеныя і замененыя
 
 #: customfieldlistdialog.cpp:263
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&Абнаўленне змесціва паўсюль "
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Bills"
@@ -2497,7 +2499,9 @@ msgstr "Выдаліць абраны шаблон"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Гэтае імя не супадае ні з адным платніком.\n"
+"Усё адно жадаеце яго выкарыстаць?\n"
+"%s"
 
 #: filtertransdialog.cpp:1060
 msgid "Hide Report Columns"
