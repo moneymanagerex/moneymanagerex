@@ -1,5 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -344,4 +346,23 @@ void Model_Infotable::SetCustomDialogSize(const wxString& RefType, const wxSize&
     wxString strSize;
     strSize << Size.GetWidth() << ";" << Size.GetHeight();
     Set("CUSTOMDIALOG_SIZE:" + RefType, strSize);
+}
+
+int Model_Infotable::FindLabelInJSON(const wxString& entry, const wxString& labelID)
+{
+    // Important: Get the unsorted array
+    wxArrayString settings = Model_Infotable::instance().GetArrayStringSetting(entry);
+    int sel = 0;
+    for (const auto& data : settings)
+    {
+        Document j_doc;
+        if (j_doc.Parse(data.utf8_str()).HasParseError())
+            j_doc.Parse("{}");
+        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+        if (s_label == labelID)
+            return sel;
+        ++sel;
+    }
+    return wxNOT_FOUND;
 }
