@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-25 15:11+0300\n"
-"PO-Revision-Date: 2022-05-25 12:18\n"
+"PO-Revision-Date: 2022-05-25 12:45\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2004,7 +2004,9 @@ msgstr "Confirmar eliminación de campo personalizado"
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Esta función buscará y reemplazará masivamente los valores del campo personalizado \"%s\"\n"
+"Coincidirá y reemplazará solo el valor completo del campo, sin la posibilidad de sustituciones parciales\n"
+"¡Tenga en cuenta que no hay ningún tipo de confirmación!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2045,7 +2047,7 @@ msgstr[1] "¡%zu casos encontrados y reemplazados!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&Actualización masiva del contenido "
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Bills"
