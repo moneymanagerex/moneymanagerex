@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-25 15:11+0300\n"
-"PO-Revision-Date: 2022-05-25 12:18\n"
+"PO-Revision-Date: 2022-05-25 14:28\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2011,7 +2011,9 @@ msgstr "אישור מחיקת שדה מותאם אישית"
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "אפשרות זו תחפש ותחליף באופן גורף את \"%s\" בערכי שדה מותאמים אישית.\n"
+"היא תתאים ותחליף את מלוא ערך השדה, החלפת חלקים או קטעים מהערך אינה אפשרית.\n"
+"כללי אימות לא נתמכים אף הם!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2054,7 +2056,7 @@ msgstr[3] "%zu מופעים נמצאו והוחלפו!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&עדכון תכולה גורף "
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Bills"
