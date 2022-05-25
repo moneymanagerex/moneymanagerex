@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-24 20:47+0300\n"
-"PO-Revision-Date: 2022-05-24 18:59\n"
+"POT-Creation-Date: 2022-05-25 15:11+0300\n"
+"PO-Revision-Date: 2022-05-25 12:18\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -56,18 +56,18 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Aiutaci inviando statistiche anonime sull'utilizzo di MMEX"
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:144
-#: assetdialog.cpp:305 attachmentdialog.cpp:121 billsdepositsdialog.cpp:692
+#: assetdialog.cpp:305 attachmentdialog.cpp:121 billsdepositsdialog.cpp:690
 #: budgetentrydialog.cpp:157 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:242
 #: customfieldeditdialog.cpp:191 filtertransdialog.cpp:756
-#: filtertransdialog.cpp:1060 filtertransdialog.cpp:1800
+#: filtertransdialog.cpp:1065 filtertransdialog.cpp:1818
 #: import_export/qif_export.cpp:230 import_export/qif_export.cpp:253
-#: import_export/qif_import_gui.cpp:348 optiondialog.cpp:163
+#: import_export/qif_import_gui.cpp:364 optiondialog.cpp:163
 #: payeedialog.cpp:144 relocatecategorydialog.cpp:123
 #: relocatepayeedialog.cpp:140 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:325 splitdetailsdialog.cpp:161
-#: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:296
-#: transdialog.cpp:624 wizard_update.cpp:216
+#: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:292
+#: transdialog.cpp:622 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&OK "
 
@@ -129,13 +129,13 @@ msgid "Select whether this is an account that is used often. This is used to fil
 msgstr "Da selezionare se è un conto di utilizzo frequente. Questa opzione è utilizzata per filtrare i dati da visualizzare."
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
-#: billsdepositsdialog.cpp:671 billsdepositspanel.cpp:145 filtertrans.cpp:199
-#: filtertransdialog.cpp:644 filtertransdialog.cpp:951
-#: filtertransdialog.cpp:1587 import_export/qif_export.cpp:594
-#: import_export/qif_import_gui.cpp:105 import_export/univcsvdialog.cpp:116
+#: billsdepositsdialog.cpp:669 billsdepositspanel.cpp:145 filtertrans.cpp:199
+#: filtertransdialog.cpp:645 filtertransdialog.cpp:951
+#: filtertransdialog.cpp:1605 import_export/qif_export.cpp:594
+#: import_export/qif_import_gui.cpp:106 import_export/univcsvdialog.cpp:116
 #: mmchecking_list.cpp:240 reports/transactions.cpp:164
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:264 stocks_list.cpp:100
-#: transactionsupdatedialog.cpp:271 transdialog.cpp:601
+#: transactionsupdatedialog.cpp:267 transdialog.cpp:599
 #: usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
 msgstr "Note"
@@ -268,7 +268,7 @@ msgid "Account Name "
 msgstr "Nome del Conto "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:592
-#: import_export/qif_import_gui.cpp:258 import_export/univcsvdialog.cpp:112
+#: import_export/qif_import_gui.cpp:259 import_export/univcsvdialog.cpp:112
 #: optionsettingsgeneral.cpp:117 reports/htmlbuilder.cpp:218
 msgid "Currency"
 msgstr "Valuta"
@@ -384,8 +384,8 @@ msgid "Asset Details"
 msgstr "Dettagli del Cespite"
 
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
-#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:256
-#: import_export/qif_import_gui.cpp:269 import_export/qif_import_gui.cpp:279
+#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:257
+#: import_export/qif_import_gui.cpp:270 import_export/qif_import_gui.cpp:280
 #: maincurrencydialog.cpp:75 payeedialog.cpp:59 reports/summarystocks.cpp:106
 msgid "Name"
 msgstr "Nome"
@@ -396,13 +396,13 @@ msgstr "Inserire il nome del Cespite"
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertrans.cpp:191
 #: filtertransdialog.cpp:863 filtertransdialog.cpp:869
-#: import_export/qif_export.cpp:585 import_export/qif_import_gui.cpp:99
+#: import_export/qif_export.cpp:585 import_export/qif_import_gui.cpp:100
 #: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:240
 #: maincurrencydialog.cpp:262 mmchecking_list.cpp:210 mmreportspanel.cpp:255
 #: mmreportspanel.cpp:273 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:242 reports/incexpenses.cpp:244 reports/summary.cpp:317
 #: reports/transactions.cpp:156 stockdialog.cpp:297 stockdialog.cpp:676
-#: transactionsupdatedialog.cpp:156 transdialog.cpp:469
+#: transactionsupdatedialog.cpp:153 transdialog.cpp:467
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
 msgstr "Data"
@@ -419,7 +419,7 @@ msgstr "Tipo di Cespite"
 msgid "Select type of asset"
 msgstr "Selezionare il tipo di cespite"
 
-#: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
+#: assetdialog.cpp:219 import_export/qif_import_gui.cpp:105
 #: maincurrencydialog.cpp:271
 msgid "Value"
 msgstr "Valore"
@@ -480,14 +480,14 @@ msgstr "Conto cespiti non trovato.\n\n"
 msgid "ID"
 msgstr "ID"
 
-#: assetspanel.cpp:62 billsdepositsdialog.cpp:582 billsdepositspanel.cpp:138
-#: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:590
-#: filtertransdialog.cpp:1550 import_export/qif_export.cpp:125
-#: import_export/qif_export.cpp:587 import_export/qif_import_gui.cpp:102
-#: import_export/qif_import_gui.cpp:257 import_export/univcsvdialog.cpp:108
+#: assetspanel.cpp:62 billsdepositsdialog.cpp:580 billsdepositspanel.cpp:138
+#: customfieldlistdialog.cpp:54 filtertrans.cpp:197 filtertransdialog.cpp:591
+#: filtertransdialog.cpp:1568 import_export/qif_export.cpp:125
+#: import_export/qif_export.cpp:587 import_export/qif_import_gui.cpp:103
+#: import_export/qif_import_gui.cpp:258 import_export/univcsvdialog.cpp:108
 #: maincurrencydialog.cpp:252 mmhomepage.cpp:435 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:162 splitdetailsdialog.cpp:120
-#: transactionsupdatedialog.cpp:184 transdialog.cpp:512
+#: transactionsupdatedialog.cpp:181 transdialog.cpp:510
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "Tipo"
@@ -552,7 +552,7 @@ msgid "Assets"
 msgstr "Cespiti"
 
 #: assetspanel.cpp:430 assetspanel.cpp:706 assetspanel.cpp:723
-#: filtertransdialog.cpp:499 import_export/qif_export.cpp:74
+#: filtertransdialog.cpp:500 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
 #: mmframe.cpp:1278
 msgid "All"
@@ -605,19 +605,19 @@ msgstr "Ricerca"
 msgid "Enter any string to find related assets"
 msgstr "Inserire un testo per trovare i relativi cespiti"
 
-#: assetspanel.cpp:511 filtertransdialog.cpp:653 mmcheckingpanel.cpp:366
+#: assetspanel.cpp:511 filtertransdialog.cpp:654 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "Suggerimenti: È possibile utilizzare caratteri jolly - punto interrogativo (?), asterisco (*) - nei criteri di ricerca."
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:654 mmcheckingpanel.cpp:367
+#: assetspanel.cpp:512 filtertransdialog.cpp:655 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "Utilizzare il punto interrogativo (?) per trovare qualsiasi singolo carattere - per esempio, s?t trova 'sat' e 'set'."
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:655 mmcheckingpanel.cpp:368
+#: assetspanel.cpp:513 filtertransdialog.cpp:656 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "Usa l'asterisco (*) per trovare qualsiasi numero di caratteri - per esempio, s*d trova 'sad' e 'started'."
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:656 mmcheckingpanel.cpp:369
+#: assetspanel.cpp:514 filtertransdialog.cpp:657 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Utilizzare l'asterisco (*) nell'inizio per trovare qualsiasi stringa nel mezzo della frase."
 
@@ -788,7 +788,7 @@ msgstr "Verificare che il file esista e che l'utente abbia i diritti per leggerl
 msgid "Open attachment failed"
 msgstr "Apertura allegato fallita"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:36
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:99
 #: model/Model_Asset.cpp:23 model/Model_Budget.cpp:55 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
@@ -867,254 +867,254 @@ msgstr "Mensile (ultimo giorno)"
 msgid "Monthly (last business day)"
 msgstr "Mensile (ultimo g. lavor.)"
 
-#: billsdepositsdialog.cpp:329 billsdepositspanel.cpp:298
+#: billsdepositsdialog.cpp:327 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
 msgstr "Duplica Transazione Ricorrente"
 
-#: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:293
+#: billsdepositsdialog.cpp:329 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
 msgstr "Modifica operazione ricorrente"
 
-#: billsdepositsdialog.cpp:335
+#: billsdepositsdialog.cpp:333
 msgid "Enter Recurring Transaction"
 msgstr "Inserire operazione ricorrente"
 
-#: billsdepositsdialog.cpp:437
+#: billsdepositsdialog.cpp:435
 msgid "Recurring Transaction Details"
 msgstr "Dettagli operazione ricorrente"
 
-#: billsdepositsdialog.cpp:449
+#: billsdepositsdialog.cpp:447
 msgid "Specify the date when this bill or deposit is due"
 msgstr "Inserire la data della prossima scadenza"
 
-#: billsdepositsdialog.cpp:460
+#: billsdepositsdialog.cpp:458
 msgid "Retard or advance the date of the 'next occurrence'"
 msgstr "Ritarda o posticipa la data della \"prossima ricorrenza\""
 
-#: billsdepositsdialog.cpp:476 billsdepositspanel.cpp:133
+#: billsdepositsdialog.cpp:474 billsdepositspanel.cpp:133
 msgid "Date Due"
 msgstr "Data Scadenza"
 
-#: billsdepositsdialog.cpp:482
+#: billsdepositsdialog.cpp:480
 msgid "Back to the last occurring date with the specified values"
 msgstr "Torna all'ultima data con i valori specificati"
 
-#: billsdepositsdialog.cpp:484 billsdepositsdialog.cpp:1364
+#: billsdepositsdialog.cpp:482 billsdepositsdialog.cpp:1364
 msgid "Repeats"
 msgstr "Ripetizioni"
 
-#: billsdepositsdialog.cpp:492
+#: billsdepositsdialog.cpp:490
 msgid "Advance the next occurring date with the specified values"
 msgstr "Anticipa la prossima data con i valori specificati"
 
-#: billsdepositsdialog.cpp:500 billsdepositsdialog.cpp:1406
+#: billsdepositsdialog.cpp:498 billsdepositsdialog.cpp:1406
 msgid "Payments Left"
 msgstr "Pagamenti rimanenti"
 
-#: billsdepositsdialog.cpp:514
+#: billsdepositsdialog.cpp:512
 msgid "Request user to enter payment"
 msgstr "Si richiede all'utente di inserire il pagamento"
 
-#: billsdepositsdialog.cpp:515
+#: billsdepositsdialog.cpp:513
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "All'utente è richiesto di inserire questa operazione il giorno del pagamento"
 
-#: billsdepositsdialog.cpp:518
+#: billsdepositsdialog.cpp:516
 msgid "Grant automatic execute"
 msgstr "Autorizza l'esecuzione automatica per questa voce"
 
-#: billsdepositsdialog.cpp:519
+#: billsdepositsdialog.cpp:517
 msgid "The requested payment will occur without user interaction"
 msgstr "L'Esecuzione Automatica non richiederà l'intervento dell'utente"
 
-#: billsdepositsdialog.cpp:527 filtertrans.cpp:179 transdialog.cpp:448
+#: billsdepositsdialog.cpp:525 filtertrans.cpp:179 transdialog.cpp:446
 msgid "Transaction Details"
 msgstr "Dettagli Operazione"
 
-#: billsdepositsdialog.cpp:537
+#: billsdepositsdialog.cpp:535
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "Specificare la data in cui sarà richiesto all'utente di inserire questa operazione"
 
-#: billsdepositsdialog.cpp:546
+#: billsdepositsdialog.cpp:544
 msgid "Advance or retard the user request date of this transaction"
 msgstr "Ritarda o anticipa la data richiesta dell'operazione"
 
-#: billsdepositsdialog.cpp:554 billsdepositspanel.cpp:132
+#: billsdepositsdialog.cpp:552 billsdepositspanel.cpp:132
 msgid "Date Paid"
 msgstr "Data Pagamento"
 
-#: billsdepositsdialog.cpp:565 filtertransdialog.cpp:587 transdialog.cpp:1393
+#: billsdepositsdialog.cpp:563 filtertransdialog.cpp:588 transdialog.cpp:1397
 msgid "Specify the status for the transaction"
 msgstr "Indicare lo stato dell'operazione"
 
-#: billsdepositsdialog.cpp:567 billsdepositspanel.cpp:136 filtertrans.cpp:195
-#: filtertransdialog.cpp:577 filtertransdialog.cpp:912
-#: filtertransdialog.cpp:1531 import_export/qif_export.cpp:586
-#: import_export/qif_import_gui.cpp:259 import_export/qif_import_gui.cpp:270
-#: import_export/qif_import_gui.cpp:280 import_export/univcsvdialog.cpp:107
+#: billsdepositsdialog.cpp:565 billsdepositspanel.cpp:136 filtertrans.cpp:195
+#: filtertransdialog.cpp:578 filtertransdialog.cpp:912
+#: filtertransdialog.cpp:1549 import_export/qif_export.cpp:586
+#: import_export/qif_import_gui.cpp:260 import_export/qif_import_gui.cpp:271
+#: import_export/qif_import_gui.cpp:281 import_export/univcsvdialog.cpp:107
 #: mmchecking_list.cpp:221 reports/transactions.cpp:160
-#: transactionsupdatedialog.cpp:169 transdialog.cpp:492
+#: transactionsupdatedialog.cpp:166 transdialog.cpp:490
 #: usertransactionpanel.cpp:178 webappdialog.cpp:149 wizard_update.cpp:141
 msgid "Status"
 msgstr "Stato"
 
-#: billsdepositsdialog.cpp:572 splitdetailsdialog.cpp:131 transdialog.cpp:1394
+#: billsdepositsdialog.cpp:570 splitdetailsdialog.cpp:131 transdialog.cpp:1398
 msgid "Specify the type of transactions to be created."
 msgstr "Specificare il tipo di operazione da creare."
 
-#: billsdepositsdialog.cpp:573 transdialog.cpp:507
+#: billsdepositsdialog.cpp:571 transdialog.cpp:505
 msgid "&Advanced"
 msgstr "&Avanzate"
 
-#: billsdepositsdialog.cpp:576 transdialog.cpp:1398
+#: billsdepositsdialog.cpp:574 transdialog.cpp:1402
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Consente di impostare diversi importi nei conti di Origine e Destinazione"
 
-#: billsdepositsdialog.cpp:586 billsdepositspanel.cpp:139
+#: billsdepositsdialog.cpp:584 billsdepositspanel.cpp:139
 #: budgetingpanel.cpp:302 filtertrans.cpp:198 filtertransdialog.cpp:925
 #: filtertransdialog.cpp:934 import_export/qif_export.cpp:591
 #: import_export/univcsvdialog.cpp:111 maincurrencydialog.cpp:613
 #: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/budgetcategorysummary.cpp:189
 #: reports/categexp.cpp:179 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:163 splitdetailsdialog.cpp:136
-#: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:202
-#: transdialog.cpp:526 usertransactionpanel.cpp:142 webappdialog.cpp:153
+#: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:199
+#: transdialog.cpp:524 usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
 msgstr "Importo"
 
-#: billsdepositsdialog.cpp:599 transdialog.cpp:1379
+#: billsdepositsdialog.cpp:597 transdialog.cpp:1383
 msgid "Specify the transfer amount in the To Account"
 msgstr "Specificare l'importo da trasferire al Conto Destinazione"
 
-#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:917
-#: billsdepositsdialog.cpp:931 billsdepositspanel.cpp:134 filtertrans.cpp:193
-#: filtertransdialog.cpp:56 filtertransdialog.cpp:495 filtertransdialog.cpp:853
-#: filtertransdialog.cpp:1470 import_export/qif_export.cpp:588
-#: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:170
-#: import_export/qif_import_gui.cpp:251 import_export/univcsvdialog.cpp:109
-#: mmchecking_list.cpp:216 reports/transactions.cpp:158 transdialog.cpp:323
-#: transdialog.cpp:535 usertransactionpanel.cpp:112 webappdialog.cpp:148
+#: billsdepositsdialog.cpp:609 billsdepositsdialog.cpp:915
+#: billsdepositsdialog.cpp:929 billsdepositspanel.cpp:134 filtertrans.cpp:193
+#: filtertransdialog.cpp:56 filtertransdialog.cpp:496 filtertransdialog.cpp:853
+#: filtertransdialog.cpp:1488 import_export/qif_export.cpp:588
+#: import_export/qif_import_gui.cpp:99 import_export/qif_import_gui.cpp:171
+#: import_export/qif_import_gui.cpp:252 import_export/univcsvdialog.cpp:109
+#: mmchecking_list.cpp:216 reports/transactions.cpp:158 transdialog.cpp:321
+#: transdialog.cpp:533 usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
 msgstr "Conto"
 
-#: billsdepositsdialog.cpp:614 billsdepositsdialog.cpp:753
-#: billsdepositsdialog.cpp:785 billsdepositsdialog.cpp:835
-#: billsdepositsdialog.cpp:895 usertransactionpanel.cpp:113
+#: billsdepositsdialog.cpp:612 billsdepositsdialog.cpp:751
+#: billsdepositsdialog.cpp:783 billsdepositsdialog.cpp:833
+#: billsdepositsdialog.cpp:893 usertransactionpanel.cpp:113
 msgid "Select Account"
 msgstr "Seleziona Conto"
 
-#: billsdepositsdialog.cpp:615
+#: billsdepositsdialog.cpp:613
 msgid "Specify the Account that will own the recurring transaction"
 msgstr "Specificare il Conto su cui sarà registrata l'operazione ricorrente"
 
-#: billsdepositsdialog.cpp:618 billsdepositsdialog.cpp:918
+#: billsdepositsdialog.cpp:616 billsdepositsdialog.cpp:916
 #: billsdepositspanel.cpp:135 filtertrans.cpp:194 filtertransdialog.cpp:57
-#: filtertransdialog.cpp:541 filtertransdialog.cpp:1506
-#: import_export/qif_export.cpp:589 import_export/qif_import_gui.cpp:101
-#: import_export/qif_import_gui.cpp:264 import_export/univcsvdialog.cpp:110
+#: filtertransdialog.cpp:542 filtertransdialog.cpp:1524
+#: import_export/qif_export.cpp:589 import_export/qif_import_gui.cpp:102
+#: import_export/qif_import_gui.cpp:265 import_export/univcsvdialog.cpp:110
 #: mmchecking_list.cpp:219 model/Model_Attachment.cpp:29 reports/payee.cpp:135
-#: reports/transactions.cpp:159 transactionsupdatedialog.cpp:215
-#: transdialog.cpp:307 transdialog.cpp:541 usertransactionpanel.cpp:182
+#: reports/transactions.cpp:159 transactionsupdatedialog.cpp:212
+#: transdialog.cpp:305 transdialog.cpp:539 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
 msgstr "Beneficiario"
 
-#: billsdepositsdialog.cpp:621 billsdepositsdialog.cpp:955
+#: billsdepositsdialog.cpp:619 billsdepositsdialog.cpp:953
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
 msgstr "Seleziona Beneficiario"
 
-#: billsdepositsdialog.cpp:628 transdialog.cpp:554
+#: billsdepositsdialog.cpp:626 transdialog.cpp:552
 msgid "Split"
 msgstr "Suddividi"
 
-#: billsdepositsdialog.cpp:631 transdialog.cpp:1395
+#: billsdepositsdialog.cpp:629 transdialog.cpp:1399
 msgid "Use split Categories"
 msgstr "Usa Categorie suddivise"
 
-#: billsdepositsdialog.cpp:637 billsdepositspanel.cpp:137
+#: billsdepositsdialog.cpp:635 billsdepositspanel.cpp:137
 #: budgetingpanel.cpp:299 filtertrans.cpp:196 filtertransdialog.cpp:58
-#: filtertransdialog.cpp:555 filtertransdialog.cpp:906
-#: filtertransdialog.cpp:1513 import_export/qif_export.cpp:590
-#: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:275
+#: filtertransdialog.cpp:556 filtertransdialog.cpp:906
+#: filtertransdialog.cpp:1531 import_export/qif_export.cpp:590
+#: import_export/qif_import_gui.cpp:104 import_export/qif_import_gui.cpp:276
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:223
 #: mmhomepage.cpp:190 reports/budgetcategorysummary.cpp:188
 #: reports/budgetingperf.cpp:220 reports/categexp.cpp:178
 #: reports/categexp.cpp:428 reports/transactions.cpp:161
 #: splitdetailsdialog.cpp:145 splittransactionsdialog.cpp:137
-#: transactionsupdatedialog.cpp:249 transdialog.cpp:563
+#: transactionsupdatedialog.cpp:246 transdialog.cpp:561
 #: usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
 msgstr "Categoria"
 
-#: billsdepositsdialog.cpp:639 billsdepositsdialog.cpp:1522
-#: transactionsupdatedialog.cpp:253 transdialog.cpp:416 transdialog.cpp:1125
+#: billsdepositsdialog.cpp:637 billsdepositsdialog.cpp:1522
+#: transactionsupdatedialog.cpp:250 transdialog.cpp:414 transdialog.cpp:1129
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
 msgstr "Selezione Categoria"
 
-#: billsdepositsdialog.cpp:648 transdialog.cpp:1396
+#: billsdepositsdialog.cpp:646 transdialog.cpp:1400
 msgid "Specify any associated check number or transaction number"
 msgstr "Inserire il numero di controllo o il numero dell'operazione"
 
-#: billsdepositsdialog.cpp:650 billsdepositspanel.cpp:144 filtertrans.cpp:192
-#: filtertransdialog.cpp:636 filtertransdialog.cpp:943
-#: filtertransdialog.cpp:1579 import_export/qif_export.cpp:593
-#: import_export/qif_import_gui.cpp:100 import_export/univcsvdialog.cpp:115
-#: mmchecking_list.cpp:212 reports/transactions.cpp:157 transdialog.cpp:575
+#: billsdepositsdialog.cpp:648 billsdepositspanel.cpp:144 filtertrans.cpp:192
+#: filtertransdialog.cpp:637 filtertransdialog.cpp:943
+#: filtertransdialog.cpp:1597 import_export/qif_export.cpp:593
+#: import_export/qif_import_gui.cpp:101 import_export/univcsvdialog.cpp:115
+#: mmchecking_list.cpp:212 reports/transactions.cpp:157 transdialog.cpp:573
 #: usertransactionpanel.cpp:202
 msgid "Number"
 msgstr "Numero"
 
-#: billsdepositsdialog.cpp:656 transdialog.cpp:584 usertransactionpanel.cpp:217
+#: billsdepositsdialog.cpp:654 transdialog.cpp:582 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
 msgstr "Selezionare una delle note usate di frequente"
 
-#: billsdepositsdialog.cpp:662 transactionsupdatedialog.cpp:265
-#: transdialog.cpp:592
+#: billsdepositsdialog.cpp:660 transactionsupdatedialog.cpp:261
+#: transdialog.cpp:590
 msgid "User Colors"
 msgstr "Colori Utente"
 
-#: billsdepositsdialog.cpp:666
+#: billsdepositsdialog.cpp:664
 msgid "Organize attachments of this recurring transaction"
 msgstr "Gestisce gli allegati per questa operazione ricorrente"
 
-#: billsdepositsdialog.cpp:682 transdialog.cpp:612 transdialog.cpp:1397
+#: billsdepositsdialog.cpp:680 transdialog.cpp:610 transdialog.cpp:1401
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Inserire una nota per questa operazione."
 
-#: billsdepositsdialog.cpp:700 filtertransdialog.cpp:763
-#: transactionsupdatedialog.cpp:303 transdialog.cpp:628
+#: billsdepositsdialog.cpp:698 filtertransdialog.cpp:763
+#: transactionsupdatedialog.cpp:299 transdialog.cpp:626
 msgid "Show/Hide custom fields window"
 msgstr "Mostra/Nascondi finestra campi personalizzati"
 
-#: billsdepositsdialog.cpp:752
+#: billsdepositsdialog.cpp:750
 msgid "Choose Bank Account or Term Account"
 msgstr "Scegli un Conto Bancario o un Conto a Termine"
 
-#: billsdepositsdialog.cpp:785 billsdepositsdialog.cpp:835
+#: billsdepositsdialog.cpp:783 billsdepositsdialog.cpp:833
 msgid "Account name"
 msgstr "Nome Conto"
 
-#: billsdepositsdialog.cpp:892 billsdepositsdialog.cpp:932 transdialog.cpp:310
-#: transdialog.cpp:391
+#: billsdepositsdialog.cpp:890 billsdepositsdialog.cpp:930 transdialog.cpp:308
+#: transdialog.cpp:389
 msgid "From"
 msgstr "Da"
 
-#: billsdepositsdialog.cpp:904 transdialog.cpp:304
+#: billsdepositsdialog.cpp:902 transdialog.cpp:302
 msgid "To"
 msgstr "A"
 
-#: billsdepositsdialog.cpp:905
+#: billsdepositsdialog.cpp:903
 msgid "Select To Account"
 msgstr "Selezionare Conto di Destinazione"
 
-#: billsdepositsdialog.cpp:1013
+#: billsdepositsdialog.cpp:1011
 msgid "The payment date is after the due date, is this what you intended?"
 msgstr "La data di pagamento è dopo la data di scadenza, è questo ciò che si intendeva?"
 
-#: billsdepositsdialog.cpp:1014
+#: billsdepositsdialog.cpp:1012
 msgid "Looks like a late payment"
 msgstr "Sembra un pagamento in ritardo"
 
@@ -1171,7 +1171,7 @@ msgstr "Specifica il numero di pagamenti da fare.\n"
 #: filtertransdialog.cpp:934 filtertransdialog.cpp:943
 #: filtertransdialog.cpp:951 filtertransdialog.cpp:960
 #: filtertransdialog.cpp:969 filtertransdialog.cpp:975
-#: optionsettingsgeneral.cpp:288 transactionsupdatedialog.cpp:440 util.cpp:684
+#: optionsettingsgeneral.cpp:288 transactionsupdatedialog.cpp:434 util.cpp:684
 msgid "Invalid value"
 msgstr "Valore non valido "
 
@@ -1183,49 +1183,37 @@ msgstr "Valore non valido "
 msgid "Error"
 msgstr "Errore"
 
-#: billsdepositsdialog.cpp:1490 transdialog.cpp:1356
+#: billsdepositsdialog.cpp:1490 transdialog.cpp:1360
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
 msgstr "Specifica la categoria di questa operazione"
 
 #: billsdepositsdialog.cpp:1512 categdialog.cpp:134
-#: import_export/qif_export.cpp:137 mmframereport.cpp:129 transdialog.cpp:404
+#: import_export/qif_export.cpp:137 mmframereport.cpp:129 transdialog.cpp:402
 msgid "Categories"
 msgstr "Categorie"
 
-#: billsdepositsdialog.cpp:1553 transactionsupdatedialog.cpp:671
-#: transdialog.cpp:1431
-msgid "Clear color"
-msgstr "Rimuovi colore"
-
-#: billsdepositsdialog.cpp:1558 filtertransdialog.cpp:1857
-#: transactionsupdatedialog.cpp:676 transactionsupdatedialog.cpp:701
-#: transdialog.cpp:1436
-#, c-format
-msgid "Color #%i"
-msgstr "Colore #%i"
-
-#: billsdepositsdialog.h:59 billsdepositspanel.cpp:289
+#: billsdepositsdialog.h:60 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
 msgstr "Nuova operazione ricorrente"
 
-#: billsdepositsdialog.h:131
+#: billsdepositsdialog.h:130
 msgid "Specify where the transaction is going to"
 msgstr "Specificare la destinazione dell'operazione"
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1388
+#: billsdepositsdialog.h:131 transdialog.cpp:1392
 msgid "Specify where the transaction is coming from"
 msgstr "Specificare l'origine dell'operazione"
 
-#: billsdepositsdialog.h:133
+#: billsdepositsdialog.h:132
 msgid "Specify which account the transfer is going to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1383 usertransactionpanel.cpp:146
+#: billsdepositsdialog.h:133 transdialog.cpp:1387 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
 msgstr "Specificare l'importo di questa operazione"
 
-#: billsdepositsdialog.h:135
+#: billsdepositsdialog.h:134
 msgid "Specify the amount to be transferred"
 msgstr "Specifica l'importo da trasferire"
 
@@ -1279,7 +1267,7 @@ msgstr "Suggerimento: Queste operazioni possono essere impostate come da attivar
 msgid "Recurring Transactions"
 msgstr "Operazioni Ricorrenti"
 
-#: billsdepositspanel.cpp:254 filtertransdialog.h:122
+#: billsdepositspanel.cpp:254 filtertransdialog.h:123
 msgid "Transaction Filter"
 msgstr "Filtro Operazioni"
 
@@ -1846,7 +1834,7 @@ msgid "Suffix Symbol"
 msgstr "Simbolo suffisso"
 
 #: currencydialog.cpp:198 currencydialog.cpp:268 currencydialog.cpp:297
-#: import_export/qif_import_gui.cpp:321 import_export/univcsvdialog.cpp:360
+#: import_export/qif_import_gui.cpp:326 import_export/univcsvdialog.cpp:360
 msgid "Decimal Char"
 msgstr "Separatore Decimale"
 
@@ -1884,7 +1872,7 @@ msgstr "Ogni modifica sarà persa senza aggiornamento"
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
 #: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:613
-#: mmSimpleDialogs.cpp:238
+#: mmSimpleDialogs.cpp:301
 msgid "Invalid Entry"
 msgstr "Inserimento non valido"
 
@@ -2015,12 +2003,10 @@ msgstr "Conferma Cancellazione Campi Personalizzati"
 
 #: customfieldlistdialog.cpp:188
 #, c-format
-msgid "This function will massive search & replace for \"%s\" custom field values\n"
+msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr "Questa funzione cercherà e sostituirà in modo massiccio i valori del campo personalizzato \"%s\" \n"
-"Confronterà la corrispondenza e sostituirà solo il completo valore del campo, non sono consentite sostituzioni parziali o intermedie\n"
-"Si prega di tenere ben presente che non c'è alcuna convalida!"
+msgstr ""
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2060,8 +2046,8 @@ msgstr[0] "%zu evento trovato e sostituito!"
 msgstr[1] "%zu eventi trovati e sostituiti!"
 
 #: customfieldlistdialog.cpp:263
-msgid "&Massive content update "
-msgstr "&Aggiornamento massivo del contenuto"
+msgid "&Bulk content update "
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Bills"
@@ -2120,8 +2106,8 @@ msgid "Other Expenses"
 msgstr "Altre Uscite"
 
 #: db/DB_Table_Category_V1.h:127 filtertransdialog.cpp:820
-#: filtertransdialog.cpp:1411 model/Model_Billsdeposits.cpp:34
-#: model/Model_Checking.cpp:32 transdialog.cpp:374
+#: filtertransdialog.cpp:1429 model/Model_Billsdeposits.cpp:34
+#: model/Model_Checking.cpp:32 transdialog.cpp:372
 msgid "Transfer"
 msgstr "Trasferimento"
 
@@ -2361,7 +2347,7 @@ msgstr "Password errata per il database criptato\n"
 "oppure\n"
 "si è provato ad aprire un file che non è un database MMEX\n"
 
-#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:917 webapp.cpp:120
+#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:933 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "Errore: %s"
@@ -2382,9 +2368,10 @@ msgstr "Gli sviluppatori possono chiederti di fornire le informazioni qui presen
 msgid "Back"
 msgstr "Indietro"
 
-#: filtertrans.cpp:190 filtertransdialog.cpp:660 filtertransdialog.cpp:960
-#: filtertransdialog.cpp:1594 reports/transactions.cpp:155
-#: transactionsupdatedialog.cpp:261 transactionsupdatedialog.cpp:440
+#: filtertrans.cpp:190 filtertransdialog.cpp:661 filtertransdialog.cpp:960
+#: filtertransdialog.cpp:1612 import_export/qif_import_gui.cpp:338
+#: reports/transactions.cpp:155 transactionsupdatedialog.cpp:258
+#: transactionsupdatedialog.cpp:434
 msgid "Color"
 msgstr "Colore"
 
@@ -2413,76 +2400,72 @@ msgstr "Da Monitorare"
 msgid "Duplicate"
 msgstr "Duplicata"
 
-#: filtertransdialog.cpp:51 filtertransdialog.cpp:1524
+#: filtertransdialog.cpp:51 filtertransdialog.cpp:1542
 msgid "All Except Reconciled"
 msgstr "Mostra tutto eccetto le riconciliate"
 
-#: filtertransdialog.cpp:480 transactionsupdatedialog.cpp:148
+#: filtertransdialog.cpp:481 transactionsupdatedialog.cpp:145
 msgid "Specify"
 msgstr "Specificare"
 
-#: filtertransdialog.cpp:513
+#: filtertransdialog.cpp:514
 msgid "Period Range"
 msgstr "Intervallo di Tempo"
 
-#: filtertransdialog.cpp:525 reports/mmDateRange.cpp:35
+#: filtertransdialog.cpp:526 reports/mmDateRange.cpp:35
 msgid "Date Range"
 msgstr "Periodo"
 
-#: filtertransdialog.cpp:568 filtertransdialog.cpp:1516
+#: filtertransdialog.cpp:569 filtertransdialog.cpp:1534
 msgid "Include Similar"
 msgstr "Includi simili"
 
-#: filtertransdialog.cpp:570
+#: filtertransdialog.cpp:571
 msgid "Include all subcategories for the selected category."
 msgstr "Include tutte le sotto-categorie della categoria selezionata."
 
-#: filtertransdialog.cpp:596 filtertransdialog.cpp:1407
+#: filtertransdialog.cpp:597 filtertransdialog.cpp:1425
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:225
 #: model/Model_Billsdeposits.cpp:32 model/Model_Checking.cpp:30
 #: reports/forecast.cpp:81 splitdetailsdialog.cpp:125
 msgid "Withdrawal"
 msgstr "Prelievo"
 
-#: filtertransdialog.cpp:598 filtertransdialog.cpp:1408
+#: filtertransdialog.cpp:599 filtertransdialog.cpp:1426
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:227
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:31
 #: reports/forecast.cpp:79 splitdetailsdialog.cpp:126
 msgid "Deposit"
 msgstr "Deposito"
 
-#: filtertransdialog.cpp:600 filtertransdialog.cpp:811
-#: filtertransdialog.cpp:1411
+#: filtertransdialog.cpp:601 filtertransdialog.cpp:811
+#: filtertransdialog.cpp:1429
 msgid "Transfer Out"
 msgstr "Trasferisci Fuori"
 
-#: filtertransdialog.cpp:602 filtertransdialog.cpp:1409
+#: filtertransdialog.cpp:603 filtertransdialog.cpp:1427
 msgid "Transfer In"
 msgstr "Trasferisci In"
 
-#: filtertransdialog.cpp:614
+#: filtertransdialog.cpp:615
 msgid "Amount Range"
 msgstr "Intervallo Importo"
 
-#: filtertransdialog.cpp:652
+#: filtertransdialog.cpp:653
 msgid "Enter any string to find it in transaction notes"
 msgstr "Inserisci qualsiasi stringa per trovarla nelle note della transazione"
-
-#: filtertransdialog.cpp:664
-msgid "Select the Color"
-msgstr "Seleziona il Colore"
 
 #: filtertransdialog.cpp:671
 msgid "Presentation Options"
 msgstr "Opzioni di Presentazione"
 
 #: filtertransdialog.cpp:686 filtertransdialog.cpp:969
-#: filtertransdialog.cpp:1621
+#: filtertransdialog.cpp:1639
 msgid "Hide Columns"
 msgstr "Nascondi Colonne"
 
 #: filtertransdialog.cpp:697 filtertransdialog.cpp:975
-#: filtertransdialog.cpp:1634
+#: filtertransdialog.cpp:1652
 msgid "Group By"
 msgstr "Raggruppa per"
 
@@ -2511,87 +2494,87 @@ msgstr "Questo nome attualmente non corrisponde a nessun beneficiario.\n"
 "Vuoi continuare a usarlo?\n"
 "%s"
 
-#: filtertransdialog.cpp:1055
+#: filtertransdialog.cpp:1060
 msgid "Hide Report Columns"
 msgstr "Nascondi le Colonne del Report"
 
-#: filtertransdialog.cpp:1215
+#: filtertransdialog.cpp:1220
 msgid "The selected item will be deleted"
 msgstr "L'elemento selezionato verrà eliminato"
 
-#: filtertransdialog.cpp:1216
+#: filtertransdialog.cpp:1221
 msgid "Do you wish to continue?"
 msgstr "Vuoi continuare?"
 
-#: filtertransdialog.cpp:1217
+#: filtertransdialog.cpp:1222
 msgid "Settings item deletion"
 msgstr "Eliminazione dell'impostazione"
 
-#: filtertransdialog.cpp:1361 reports/myusage.cpp:105 webappdialog.cpp:194
+#: filtertransdialog.cpp:1379 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
 msgstr "Valore vuoto"
 
-#: filtertransdialog.cpp:1373
+#: filtertransdialog.cpp:1391
 msgid "Filtering Details: "
 msgstr "Dettagli Filtro: "
 
-#: filtertransdialog.cpp:1463
+#: filtertransdialog.cpp:1481
 msgid "Label"
 msgstr "Etichetta"
 
-#: filtertransdialog.cpp:1483
+#: filtertransdialog.cpp:1501
 msgid "Since"
 msgstr "Dal"
 
-#: filtertransdialog.cpp:1485
+#: filtertransdialog.cpp:1503
 msgid "Before"
 msgstr "Prima"
 
-#: filtertransdialog.cpp:1497
+#: filtertransdialog.cpp:1515
 msgid "Period"
 msgstr "Periodo"
 
-#: filtertransdialog.cpp:1562
+#: filtertransdialog.cpp:1580
 msgid "Amount Min."
 msgstr "Importo Min."
 
-#: filtertransdialog.cpp:1570
+#: filtertransdialog.cpp:1588
 msgid "Amount Max."
 msgstr "Importo Max."
 
-#: filtertransdialog.cpp:1743
+#: filtertransdialog.cpp:1761
 msgid "Setting Name"
 msgstr "Nome impostazione"
 
-#: filtertransdialog.cpp:1743
+#: filtertransdialog.cpp:1761
 msgid "Please Enter"
 msgstr "Inserisci"
 
-#: filtertransdialog.cpp:1766
+#: filtertransdialog.cpp:1784
 msgid "The entered name is already in use"
 msgstr "Il nome inserito è già in uso"
 
-#: filtertransdialog.cpp:1766 images_list.cpp:329 images_list.cpp:425
+#: filtertransdialog.cpp:1784 images_list.cpp:329 images_list.cpp:425
 #: images_list.cpp:436 images_list.cpp:471 images_list.cpp:500
-#: images_list.cpp:506 import_export/qif_import_gui.cpp:715
-#: import_export/qif_import_gui.cpp:718
+#: images_list.cpp:506 import_export/qif_import_gui.cpp:731
+#: import_export/qif_import_gui.cpp:734
 msgid "Warning"
 msgstr "Attenzione"
 
-#: filtertransdialog.cpp:1776
+#: filtertransdialog.cpp:1794
 msgid "Filter settings have changed"
 msgstr "Le impostazioni dei filtri sono cambiate"
 
-#: filtertransdialog.cpp:1777
+#: filtertransdialog.cpp:1795
 msgid "Do you want to save them before continuing?"
 msgstr "Vuoi salvare prima di continuare?"
 
-#: filtertransdialog.cpp:1778
+#: filtertransdialog.cpp:1796
 msgid "Please confirm"
 msgstr "Per favore, conferma"
 
-#: filtertransdialog.cpp:1796 reports/reportbase.cpp:219
+#: filtertransdialog.cpp:1814 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
 msgid "Choose Accounts"
 msgstr "Scegliere Conti"
@@ -2810,7 +2793,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Nessun tema utilizzabile trovato, l'installazione potrebbe essere danneggiata"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1600
-#: mmSimpleDialogs.cpp:253
+#: mmSimpleDialogs.cpp:316
 msgid "Unable to open file."
 msgstr "Impossibile aprire il file."
 
@@ -2873,7 +2856,7 @@ msgstr "Esporta CSV"
 msgid "Parameters"
 msgstr "Parametri"
 
-#: import_export/qif_export.cpp:115 import_export/qif_import_gui.cpp:222
+#: import_export/qif_export.cpp:115 import_export/qif_import_gui.cpp:223
 msgid "Log"
 msgstr "Registro"
 
@@ -2894,15 +2877,15 @@ msgstr "CSV"
 msgid "Accounts"
 msgstr "Conti"
 
-#: import_export/qif_export.cpp:154 import_export/qif_import_gui.cpp:199
+#: import_export/qif_export.cpp:154 import_export/qif_import_gui.cpp:200
 msgid "From Date"
 msgstr "Dalla data"
 
-#: import_export/qif_export.cpp:164 import_export/qif_import_gui.cpp:209
+#: import_export/qif_export.cpp:164 import_export/qif_import_gui.cpp:210
 msgid "To Date"
 msgstr "Alla data"
 
-#: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:301
+#: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:302
 #: optionsettingsgeneral.cpp:97
 msgid "Date Format"
 msgstr "Formato Data"
@@ -2911,7 +2894,7 @@ msgstr "Formato Data"
 msgid "Write to File"
 msgstr "Scrivi su file"
 
-#: import_export/qif_export.cpp:193 import_export/qif_import_gui.cpp:135
+#: import_export/qif_export.cpp:193 import_export/qif_import_gui.cpp:136
 #: import_export/univcsvdialog.cpp:172
 msgid "File Name:"
 msgstr "Nome File:"
@@ -2928,7 +2911,7 @@ msgstr "Selezionare il Conto da esportare:"
 msgid "Choose QIF data file to Export"
 msgstr "Selezionare file da esportare in QIF"
 
-#: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:771
+#: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:787
 msgid "QIF Files (*.qif)"
 msgstr "File QIF (*.qif)"
 
@@ -2960,8 +2943,8 @@ msgstr "'Alla Data' non può essere antecedente a 'Dalla Data'"
 msgid "Categories exported"
 msgstr "Categorie esportate"
 
-#: import_export/qif_export.cpp:465 import_export/qif_import_gui.cpp:382
-#: import_export/qif_import_gui.cpp:870
+#: import_export/qif_export.cpp:465 import_export/qif_import_gui.cpp:398
+#: import_export/qif_import_gui.cpp:886
 msgid "Please wait"
 msgstr "Attendere prego"
 
@@ -2993,178 +2976,178 @@ msgstr "Numero di account esportati: %zu"
 msgid "Export to QIF"
 msgstr "Esporta in file QIF"
 
-#: import_export/qif_import_gui.cpp:147 import_export/univcsvdialog.cpp:185
+#: import_export/qif_import_gui.cpp:148 import_export/univcsvdialog.cpp:185
 msgid "&Browse"
 msgstr "&Sfoglia"
 
-#: import_export/qif_import_gui.cpp:158 import_export/univcsvdialog.cpp:326
+#: import_export/qif_import_gui.cpp:159 import_export/univcsvdialog.cpp:326
 msgid "Encoding:"
 msgstr "Codifica:"
 
-#: import_export/qif_import_gui.cpp:193
+#: import_export/qif_import_gui.cpp:194
 msgid "Filtering Details:"
 msgstr "Dettagli filtro:"
 
-#: import_export/qif_import_gui.cpp:232
+#: import_export/qif_import_gui.cpp:233
 msgid "Data"
 msgstr "Dati"
 
-#: import_export/qif_import_gui.cpp:289
+#: import_export/qif_import_gui.cpp:290
 msgid "Use account number instead of account name"
 msgstr "Utilizzare il numero di conto invece del nome"
 
-#: import_export/qif_import_gui.cpp:293
+#: import_export/qif_import_gui.cpp:294
 msgid "Include payee field in notes"
 msgstr "Includere il campo beneficiario nelle note"
 
-#: import_export/qif_import_gui.cpp:373 import_export/qif_import_gui.cpp:376
-#: import_export/qif_import_gui.cpp:597 import_export/qif_import_gui.cpp:1183
+#: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
+#: import_export/qif_import_gui.cpp:613 import_export/qif_import_gui.cpp:1203
 #: import_export/univcsvdialog.cpp:747 import_export/univcsvdialog.cpp:882
 #: import_export/univcsvdialog.cpp:885 import_export/univcsvdialog.cpp:906
-#: import_export/univcsvdialog.cpp:913 themes.cpp:229 transdialog.cpp:352
-#: transdialog.cpp:1085 transdialog.cpp:1089 transdialog.cpp:1094
+#: import_export/univcsvdialog.cpp:913 themes.cpp:229 transdialog.cpp:350
+#: transdialog.cpp:1089 transdialog.cpp:1093 transdialog.cpp:1098
 #: webapp.cpp:401 webapp.cpp:410
 msgid "Unknown"
 msgstr "Sconosciuta"
 
-#: import_export/qif_import_gui.cpp:382
+#: import_export/qif_import_gui.cpp:398
 msgid "Scanning"
 msgstr "Scansione"
 
-#: import_export/qif_import_gui.cpp:411
+#: import_export/qif_import_gui.cpp:427
 #, c-format
 msgid "Reading line %zu, %lld ms"
 msgstr "Lettura linea %zu, %lld ms"
 
-#: import_export/qif_import_gui.cpp:417
+#: import_export/qif_import_gui.cpp:433
 #, c-format
 msgid "Line %zu \t %s\n"
 msgstr "Linea %zu \t %s\n"
 
-#: import_export/qif_import_gui.cpp:499
+#: import_export/qif_import_gui.cpp:515
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Numero di linee lette dal file QIF: %zu in %lld ms"
 
-#: import_export/qif_import_gui.cpp:504 mmreportspanel.cpp:340
+#: import_export/qif_import_gui.cpp:520 mmreportspanel.cpp:340
 msgid "Accounts:"
 msgstr "Account:"
 
-#: import_export/qif_import_gui.cpp:511 import_export/qif_import_gui.cpp:789
+#: import_export/qif_import_gui.cpp:527 import_export/qif_import_gui.cpp:805
 #: import_export/univcsvdialog.cpp:300
 msgid "Date Format: "
 msgstr "Formato data: "
 
-#: import_export/qif_import_gui.cpp:514
+#: import_export/qif_import_gui.cpp:530
 msgid "Press OK Button to continue"
 msgstr "Premere OK per continuare"
 
-#: import_export/qif_import_gui.cpp:713 import_export/qif_import_gui.cpp:742
-#: import_export/qif_import_gui.cpp:759
+#: import_export/qif_import_gui.cpp:729 import_export/qif_import_gui.cpp:758
+#: import_export/qif_import_gui.cpp:775
 msgid "OK"
 msgstr "OK"
 
-#: import_export/qif_import_gui.cpp:723 import_export/qif_import_gui.cpp:742
+#: import_export/qif_import_gui.cpp:739 import_export/qif_import_gui.cpp:758
 #: stockspanel.cpp:392
 msgid "Missing"
 msgstr "Mancante"
 
-#: import_export/qif_import_gui.cpp:769
+#: import_export/qif_import_gui.cpp:785
 msgid "Choose QIF data file to Import"
 msgstr "Scegliere file dati QIF da importare"
 
-#: import_export/qif_import_gui.cpp:862
+#: import_export/qif_import_gui.cpp:878
 msgid "Do you want to import all transaction ?"
 msgstr "Vuoi importare tutte le operazioni?"
 
-#: import_export/qif_import_gui.cpp:863
+#: import_export/qif_import_gui.cpp:879
 msgid "All missing account, payees and categories will be created."
 msgstr "Saranno creati tutti i conti, beneficiari e categorie mancanti."
 
-#: import_export/qif_import_gui.cpp:864
+#: import_export/qif_import_gui.cpp:880
 msgid "Confirm Import"
 msgstr "Conferma Importazione"
 
-#: import_export/qif_import_gui.cpp:870
+#: import_export/qif_import_gui.cpp:886
 msgid "Importing"
 msgstr "Importazione"
 
-#: import_export/qif_import_gui.cpp:872
+#: import_export/qif_import_gui.cpp:888
 msgid "Importing Accounts"
 msgstr "Importazione Conti"
 
-#: import_export/qif_import_gui.cpp:875
+#: import_export/qif_import_gui.cpp:891
 msgid "Importing Payees"
 msgstr "Importazione Beneficiari"
 
-#: import_export/qif_import_gui.cpp:878
+#: import_export/qif_import_gui.cpp:894
 msgid "Importing Categories"
 msgstr "Importazione Categorie"
 
-#: import_export/qif_import_gui.cpp:895
+#: import_export/qif_import_gui.cpp:911
 #, c-format
 msgid "Importing transaction %i of %i"
 msgstr "Importazione operazione  %i di %i"
 
-#: import_export/qif_import_gui.cpp:928
+#: import_export/qif_import_gui.cpp:944
 msgid "Importing Transfers"
 msgstr "Importazione Trasferimenti"
 
-#: import_export/qif_import_gui.cpp:953
+#: import_export/qif_import_gui.cpp:969
 msgid "Importing Split transactions"
 msgstr "Importazione categorie suddivise"
 
-#: import_export/qif_import_gui.cpp:957
+#: import_export/qif_import_gui.cpp:973
 msgid "Import finished successfully"
 msgstr "Importazione conclusa con successo"
 
-#: import_export/qif_import_gui.cpp:957
+#: import_export/qif_import_gui.cpp:973
 #, c-format
 msgid "Total Imported: %zu"
 msgstr "Totale importato: %zu"
 
-#: import_export/qif_import_gui.cpp:967 import_export/univcsvdialog.cpp:1093
+#: import_export/qif_import_gui.cpp:983 import_export/univcsvdialog.cpp:1093
 msgid "Imported transactions discarded by user!"
 msgstr "Importazione operazioni annullata dall'utente!"
 
-#: import_export/qif_import_gui.cpp:969 import_export/qif_import_gui.h:44
+#: import_export/qif_import_gui.cpp:985 import_export/qif_import_gui.h:44
 msgid "QIF Import"
 msgstr "Importa file QIF"
 
-#: import_export/qif_import_gui.cpp:1049
+#: import_export/qif_import_gui.cpp:1065
 msgid "Transaction code is missing"
 msgstr "Codice operazione mancante"
 
-#: import_export/qif_import_gui.cpp:1069
+#: import_export/qif_import_gui.cpp:1085
 msgid "Transaction Payee is missing or incorrect"
 msgstr "Beneficiario operazione mancante o non corretto"
 
-#: import_export/qif_import_gui.cpp:1081
+#: import_export/qif_import_gui.cpp:1097
 msgid "Date format or date mask is incorrect"
 msgstr "Formato data non corretto"
 
-#: import_export/qif_import_gui.cpp:1093
+#: import_export/qif_import_gui.cpp:1109
 msgid "Transaction Account is incorrect"
 msgstr "Conto operazione non corretto"
 
-#: import_export/qif_import_gui.cpp:1102
+#: import_export/qif_import_gui.cpp:1118
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Conto operazione per trasferimento non corretto"
 
-#: import_export/qif_import_gui.cpp:1128
+#: import_export/qif_import_gui.cpp:1148
 msgid "Transaction Amount is incorrect"
 msgstr "Importo operazione non corretto"
 
-#: import_export/qif_import_gui.cpp:1150
+#: import_export/qif_import_gui.cpp:1170
 msgid "Transaction Category is incorrect"
 msgstr "Categoria operazione non corretta"
 
-#: import_export/qif_import_gui.cpp:1242
+#: import_export/qif_import_gui.cpp:1262
 #, c-format
 msgid "Added account: %s"
 msgstr "Aggiunto conto: %s"
 
-#: import_export/qif_import_gui.cpp:1283 import_export/univcsvdialog.cpp:889
+#: import_export/qif_import_gui.cpp:1303 import_export/univcsvdialog.cpp:889
 #, c-format
 msgid "Added payee: %s"
 msgstr "Aggiunto Beneficiario: %s"
@@ -3418,7 +3401,7 @@ msgstr "Impossibile eliminare il file. Il file potrebbe essere bloccato da un al
 msgid "Destination file error"
 msgstr "Errore file di destinazione"
 
-#: import_export/univcsvdialog.cpp:1140 mmSimpleDialogs.cpp:261
+#: import_export/univcsvdialog.cpp:1140 mmSimpleDialogs.cpp:324
 msgid "Invalid Account"
 msgstr "Conto non valido"
 
@@ -3608,88 +3591,97 @@ msgstr "Impossibile scaricare lo storico del simbolo %s. Cronologia dei tassi no
 msgid "Could not find base currency symbol!"
 msgstr "Impossibile trovare il simbolo della Valuta base!"
 
-#: mmSimpleDialogs.cpp:177
+#: mmSimpleDialogs.cpp:49 mmSimpleDialogs.cpp:61
+msgid "Clear color"
+msgstr "Rimuovi colore"
+
+#: mmSimpleDialogs.cpp:52 mmSimpleDialogs.cpp:66
+#, c-format
+msgid "Color #%i"
+msgstr "Colore #%i"
+
+#: mmSimpleDialogs.cpp:240
 msgid "Subtract one year"
 msgstr "Sottrae un anno"
 
-#: mmSimpleDialogs.cpp:178
+#: mmSimpleDialogs.cpp:241
 msgid "Subtract one month"
 msgstr "Sottrae un mese"
 
-#: mmSimpleDialogs.cpp:179
+#: mmSimpleDialogs.cpp:242
 msgid "Add one month"
 msgstr "Aggiunge un mese"
 
-#: mmSimpleDialogs.cpp:180
+#: mmSimpleDialogs.cpp:243
 msgid "Add one year"
 msgstr "Aggiunge un anno"
 
-#: mmSimpleDialogs.cpp:237
+#: mmSimpleDialogs.cpp:300
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Inserimento %s non valido"
 
-#: mmSimpleDialogs.cpp:244
+#: mmSimpleDialogs.cpp:307
 msgid "Please use this button for category selection."
 msgstr "Utilizzare questo bottone per la scelta della categoria."
 
-#: mmSimpleDialogs.cpp:245
+#: mmSimpleDialogs.cpp:308
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Usare questo bottone per la selezione della categoria\n"
 "oppure usare la casella 'Suddividi' per categorie multiple."
 
-#: mmSimpleDialogs.cpp:248
+#: mmSimpleDialogs.cpp:311
 msgid "Invalid Category"
 msgstr "Categoria non valida"
 
-#: mmSimpleDialogs.cpp:253
+#: mmSimpleDialogs.cpp:316
 msgid "File name is empty."
 msgstr "Il nome del file è vuoto."
 
-#: mmSimpleDialogs.cpp:254
+#: mmSimpleDialogs.cpp:317
 msgid "Please select the file for this operation."
 msgstr "Specificare il file per questa operazione."
 
-#: mmSimpleDialogs.cpp:264
+#: mmSimpleDialogs.cpp:327
 msgid "Please select the account for this transaction."
 msgstr "Specificare il conto per questa operazione."
 
-#: mmSimpleDialogs.cpp:266
+#: mmSimpleDialogs.cpp:329
 msgid "Please specify which account the transfer is going to."
 msgstr "Specificare il conto verso il quale effettuare il trasferimento."
 
-#: mmSimpleDialogs.cpp:268
+#: mmSimpleDialogs.cpp:331
 msgid "Selection can be made by using the dropdown button."
 msgstr "La selezione può essere fatta usando l'elenco a discesa."
 
-#: mmSimpleDialogs.cpp:271
+#: mmSimpleDialogs.cpp:334
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Premendo il tasto si fornirà un elenco a spunta dove potrà essere selezionato il beneficiario."
 
-#: mmSimpleDialogs.cpp:280
+#: mmSimpleDialogs.cpp:343
 msgid "Invalid Payee"
 msgstr "Beneficiario non valido"
 
-#: mmSimpleDialogs.cpp:281
+#: mmSimpleDialogs.cpp:344
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Digitare il nuovo beneficiario,\n"
 "oppure sceglierlo tramite l'elenco a discesa."
 
-#: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
+#: mmSimpleDialogs.cpp:352 mmSimpleDialogs.cpp:364
 msgid "Invalid Name"
 msgstr "Nome non valido"
 
-#: mmSimpleDialogs.cpp:292 mmSimpleDialogs.cpp:304
+#: mmSimpleDialogs.cpp:355 mmSimpleDialogs.cpp:367
 msgid "Already exist!"
 msgstr "Già presente!"
 
-#: mmSimpleDialogs.cpp:294
+#: mmSimpleDialogs.cpp:357
 msgid "Please type in a non empty name."
 msgstr "Inserire un nome non vuoto."
 
-#: mmSimpleDialogs.cpp:306
+#: mmSimpleDialogs.cpp:369
 msgid "Please type in a non empty symbol."
 msgstr "Inserire un simbolo."
 
@@ -3912,7 +3904,7 @@ msgid "Locked transaction to date: %s\n\n"
 msgstr "Transazione bloccata alla data: %s\n\n"
 "Transazioni Riconciliate."
 
-#: mmchecking_list.cpp:975 transdialog.cpp:747 transdialog.cpp:780
+#: mmchecking_list.cpp:975 transdialog.cpp:745 transdialog.cpp:778
 msgid "MMEX Transaction Check"
 msgstr "Controllo operazione MMEX"
 
@@ -3959,7 +3951,7 @@ msgstr "Seleziona il Conto di Destinazione "
 msgid "Recurring Transaction saved."
 msgstr "Operazione Ricorrente salvata."
 
-#: mmcheckingpanel.cpp:333 mmframe.cpp:1683 transdialog.cpp:191
+#: mmcheckingpanel.cpp:333 mmframe.cpp:1683 transdialog.cpp:189
 msgid "New Transaction"
 msgstr "Nuova Operazione"
 
@@ -6879,76 +6871,76 @@ msgstr "Qualcosa è andato storto nel tentativo di cancellare il tema."
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
 msgstr "Sei sicuro di voler usare questo tema? Nota che questo avrà effetto solo quando MMEX sarà riavviato."
 
-#: transactionsupdatedialog.cpp:234
+#: transactionsupdatedialog.cpp:231
 msgid "Transfer To"
 msgstr "Trasferimento A"
 
-#: transactionsupdatedialog.cpp:273
+#: transactionsupdatedialog.cpp:269
 msgid "Append"
 msgstr "Aggiungi"
 
-#: transactionsupdatedialog.cpp:403 transdialog.cpp:684
+#: transactionsupdatedialog.cpp:396 transdialog.cpp:682
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
 msgstr "Non hai usato questo nome del beneficiario prima. Il nome è corretto?\n"
 "%s"
 
-#: transactionsupdatedialog.cpp:404 transdialog.cpp:685
+#: transactionsupdatedialog.cpp:397 transdialog.cpp:683
 msgid "Confirm payee name"
 msgstr "Conferma nome del beneficiario"
 
-#: transactionsupdatedialog.h:41
+#: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
 msgstr "Aggiornamento delle operazioni multiple"
 
-#: transdialog.cpp:191
+#: transdialog.cpp:189
 msgid "Duplicate Transaction"
 msgstr "Duplica operazione"
 
-#: transdialog.cpp:191
+#: transdialog.cpp:189
 msgid "Edit Transaction"
 msgstr "Modifica Operazione"
 
-#: transdialog.cpp:480 usertransactionpanel.cpp:104
+#: transdialog.cpp:478 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
 msgstr "Ritarda o anticipa la data della operazione"
 
-#: transdialog.cpp:573
+#: transdialog.cpp:571
 msgid "Populate Transaction #"
 msgstr "Numerazione progressiva della operazione #"
 
-#: transdialog.cpp:596 usertransactionpanel.cpp:210
+#: transdialog.cpp:594 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
 msgstr "Gestione allegati di questa operazione"
 
-#: transdialog.cpp:778
+#: transdialog.cpp:776
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr "Questa operazione supererà il limite del conto.\n\n"
 "Vuoi continuare?"
 
-#: transdialog.cpp:1374
+#: transdialog.cpp:1378
 msgid "Specify account the money is taken from"
 msgstr "Specificare il Conto dal quale si effettua il trasferimento"
 
-#: transdialog.cpp:1375
+#: transdialog.cpp:1379
 msgid "Specify account the money is moved to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: transdialog.cpp:1376
+#: transdialog.cpp:1380
 msgid "Specify the transfer amount in the From Account."
 msgstr "Specificare l'importo da trasferire dal Conto Origine."
 
-#: transdialog.cpp:1384
+#: transdialog.cpp:1388
 msgid "Specify account for the transaction"
 msgstr "Specificare il conto per questa operazione"
 
-#: transdialog.cpp:1386
+#: transdialog.cpp:1390
 msgid "Specify to whom the transaction is going to"
 msgstr "Specificare la destinazione dell'operazione"
 
-#: transdialog.cpp:1392 usertransactionpanel.cpp:96
+#: transdialog.cpp:1396 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
 msgstr "Specificare la data dell'operazione"
 
