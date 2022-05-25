@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -75,6 +76,8 @@ public:
     void SetOpenCustomDialog(const wxString& RefType, bool Status);
     wxSize CustomDialogSize(const wxString& RefType);
     void SetCustomDialogSize(const wxString& RefType, const wxSize& Size);
+    //Use to search through a set of JSON data for a particular label
+    int FindLabelInJSON(const wxString& entry, const wxString& labelID);
 };
 
 #endif // 

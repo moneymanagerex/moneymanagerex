@@ -81,7 +81,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
     wxLogDebug("~mmFilterTransactionsDialog");
 }
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode)
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode, wxString selected)
     : m_categ_id(-1)
     , m_subcateg_id(-1)
     , payeeID_(-1)
@@ -92,6 +92,8 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
 {
     DoInitVariables();
     Create(parent);
+    if (!selected.IsEmpty())
+        m_settings_json = selected;
     dataToControls(m_settings_json);
 }
 
@@ -1190,26 +1192,6 @@ double mmFilterTransactionsDialog::getAmountMax() const
     return amount;
 }
 
-int mmFilterTransactionsDialog::FindLabelInJSON(const wxString& settingName) const
-{
-    // Important: Get the unsorted array
-    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
-    int sel = 0;
-    for (const auto& data : filter_settings)
-    {
-        Document j_doc;
-        if (j_doc.Parse(data.utf8_str()).HasParseError()) {
-            j_doc.Parse("{}");
-        }
-        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
-        if (s_label == settingName)
-            return sel;
-        ++sel;
-    }
-    return wxNOT_FOUND;
-}
-
 void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 {
     int sel = m_setting_name->GetSelection();
@@ -1224,7 +1206,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        int sel_json = FindLabelInJSON(m_setting_name->GetStringSelection());
+        int sel_json = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", m_setting_name->GetStringSelection());
         if (sel_json != wxNOT_FOUND)
             Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel_json);
 
@@ -1743,7 +1725,7 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
     int sel = m_setting_name->GetSelection();
     if (sel != wxNOT_FOUND)
     {
-        sel = FindLabelInJSON(m_setting_name->GetStringSelection());
+        sel = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", m_setting_name->GetStringSelection());
         if (sel != wxNOT_FOUND) {
             m_settings_json = GetJsonSetings();
             Model_Infotable::instance().Update("TRANSACTIONS_FILTER", sel, m_settings_json);

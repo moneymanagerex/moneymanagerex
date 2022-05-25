@@ -154,6 +154,9 @@ EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
 EVT_MENU(MENU_TREEPOPUP_REALLOCATE, mmGUIFrame::OnPopupReallocateAccount)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
 
+EVT_MENU(MENU_TREEPOPUP_FILTER_DELETE, mmGUIFrame::OnPopupDeleteFilter)
+EVT_MENU(MENU_TREEPOPUP_FILTER_EDIT, mmGUIFrame::OnPopupEditFilter)
+
 EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
@@ -1136,6 +1139,65 @@ void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& WXUNUSED(event))
 }
 //----------------------------------------------------------------------------
 
+const wxString GrabLabel(wxString data)
+{
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError())
+        j_doc.Parse("{}");
+    Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+    return(j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "");
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
+{
+    if (!m_db) return;
+
+    wxString data = selectedItemData_->getString();
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError())
+        j_doc.Parse("{}");
+    Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+    wxString selected = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+
+    if (wxMessageBox(
+      _("The selected item will be deleted") + "\n\n" +
+      _("Do you wish to continue?")
+      , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
+        return;
+
+    int sel_json = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", selected);
+    if (sel_json != wxNOT_FOUND)
+    {
+        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel_json);
+        DoRecreateNavTreeControl();
+        createHomePage();
+    }
+}
+//--------------------------------------------------------------------------
+
+void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
+{
+    if (!m_db) return;
+    if (Model_Account::instance().all().empty()) return;
+    wxString data = selectedItemData_->getString();
+
+    const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+
+    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true, data));
+    bool is_ok = (dlg->ShowModal() == wxID_OK);
+    if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
+        DoRecreateNavTreeControl();
+        setNavTreeSection(_("Transaction Report"));
+    }
+
+    if (is_ok) {
+        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        createReportsPage(rs, true);
+    }
+}
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
@@ -1217,6 +1279,15 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return OnBudgetSetupDialog(e);
     case mmTreeItemData::FILTER:
         return OnTransactionReport(e);
+    case mmTreeItemData::FILTER_REPORT:
+    {
+        const wxString data = iData->getString();
+        wxLogDebug("MENU FILTER: %s", data);
+        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, __(wxTRANSLATE("&Edit Filter")));
+        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, __(wxTRANSLATE("&Delete Filter")));
+        PopupMenu(&menu, pt);
+        break;
+    }
     case  mmTreeItemData::GRM:
     case  mmTreeItemData::HELP_PAGE_GRM:
         return OnGeneralReportManager(e);

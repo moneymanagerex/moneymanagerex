@@ -4,7 +4,8 @@ Copyright (C) 2012 Stefano Giorgio
 Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -210,6 +211,10 @@ private:
     void OnEditAccount(wxCommandEvent& event);
     void OnDeleteAccount(wxCommandEvent& event);
     void OnReallocateAccount(wxCommandEvent& event);
+
+    void OnPopupEditFilter(wxCommandEvent& event);
+    void OnPopupDeleteFilter(wxCommandEvent& event);   
+
 private:
     void OnOrgCategories(wxCommandEvent& event);
     void OnOrgPayees(wxCommandEvent& event);
@@ -349,6 +354,10 @@ private:
         MENU_TREEPOPUP_MOVE,
         MENU_TREEPOPUP_DELETE,
         MENU_TREEPOPUP_REALLOCATE,
+
+        // Transaction Report Filter
+        MENU_TREEPOPUP_FILTER_EDIT,
+        MENU_TREEPOPUP_FILTER_DELETE,
 
         //
         MENU_TREEPOPUP_ACCOUNT_NEW,
