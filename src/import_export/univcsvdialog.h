@@ -156,7 +156,6 @@ private:
     wxTextCtrl* m_setting_name_ctrl_;
     wxTextCtrl* log_field_;
     wxTextCtrl* m_textDelimiter;
-    wxStaticBox* m_rowSelectionStaticBox_;
     wxSpinCtrl* m_spinIgnoreFirstRows_;
     wxSpinCtrl* m_spinIgnoreLastRows_;
 
@@ -165,6 +164,8 @@ private:
     wxChoice* choiceDateFormat_;
     wxChoice* m_choiceEncoding;
     wxString date_format_;
+    mmColorButton* colorButton_;
+    wxCheckBox* colorCheckBox_;
 
     wxChoice* m_choiceAmountFieldSign;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
@@ -211,6 +212,7 @@ private:
     void OnChoiceChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
     void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
+    void OnCheckboxClick(wxCommandEvent& event);
 private:
     void OnLoad();
     void UpdateListItemBackground();
