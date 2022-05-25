@@ -69,7 +69,6 @@ EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
 EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmFilterTransactionsDialog::OnMoreFields)
 EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::OnMenuSelected)
 EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
-EVT_BUTTON(ID_DIALOG_COLOUR, mmFilterTransactionsDialog::OnColourButton)
 EVT_CHOICE(wxID_ANY, mmFilterTransactionsDialog::OnChoice)
 wxEND_EVENT_TABLE()
 
@@ -88,6 +87,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
     , is_similar_category_status(false)
     , isMultiAccount_(showAccountFilter)
     , isReportMode_(isReportMode)
+    , m_colour_value(-1)
 {
     DoInitVariables();
     Create(parent);
@@ -373,7 +373,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     notesEdit_->ChangeValue(s_notes);
 
     //Colour
-    m_colour_value = 0;
+    m_colour_value = -1;
     colourCheckBox_->SetValue(false);
     if (j_doc.HasMember("COLOR") && j_doc["COLOR"].IsInt()) {
         colourCheckBox_->SetValue(true);
@@ -661,8 +661,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(colourCheckBox_, g_flagsH);
 
-    colourButton_ = new wxButton(itemPanel, ID_DIALOG_COLOUR, _("Select the Color"));
-    m_colour_value = 0;
+    colourButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
     itemPanelSizer->Add(colourButton_, g_flagsExpand);
 
     /******************************************************************************
@@ -1231,12 +1230,6 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
         OnSettingsSelected(evt);
         dataToControls(m_settings_json);
     }
-}
-
-void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
-{
-    m_colour_value = event.GetId() - wxID_HIGHEST;
-    colourButton_->SetBackgroundColour(getUDColour(m_colour_value));
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -1866,33 +1859,6 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
     }
 }
 
-void mmFilterTransactionsDialog::OnColourButton(wxCommandEvent& /*event*/)
-{
-    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
-
-    wxMenuItem* menuItem;
-    for (int i = 1; i <= 7; ++i)
-    {
-        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
-#ifdef __WXMSW__
-        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
-#endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
-        wxMemoryDC memoryDC(bitmap);
-        wxRect rect(memoryDC.GetSize());
-
-        memoryDC.SetBackground(wxBrush(getUDColour(i)));
-        memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
-        memoryDC.SelectObject(wxNullBitmap);
-        menuItem->SetBitmap(bitmap);
-
-        mainMenu->Append(menuItem);
-    }
-
-    PopupMenu(mainMenu.get());
-}
-
 void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_BTN_CUSTOMFIELDS));
@@ -1928,5 +1894,14 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
         }
         break;
     }
+    }
+}
+
+void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
+{
+    m_colour_value = colourButton_->GetColorId();
+    if (!m_colour_value) {
+        colourButton_->Enable(false);
+        colourCheckBox_->SetValue(false);
     }
 }

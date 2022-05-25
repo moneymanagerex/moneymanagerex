@@ -22,6 +22,7 @@
 #ifndef MM_EX_BDDIALOG_H_
 #define MM_EX_BDDIALOG_H_
 
+#include "mmSimpleDialogs.h"
 #include <wx/dialog.h>
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
@@ -72,8 +73,6 @@ private:
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnColourButton(wxCommandEvent& event);
-    void OnColourSelected(wxCommandEvent& event);
 private:
     void dataToControls();
     void updateControlsForTransType();
@@ -106,7 +105,7 @@ private:
     wxButton* bAccount_;
     wxButton* bAttachments_;
     wxButton* m_button_cancel;
-    wxButton* bColours_;
+    mmColorButton* bColours_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     wxChoice* m_choice_status;

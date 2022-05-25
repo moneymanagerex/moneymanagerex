@@ -63,8 +63,6 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
     EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmTransDialog::OnNoteSelected)
-    EVT_MENU_RANGE(wxID_HIGHEST , wxID_HIGHEST + 8, mmTransDialog::OnColourSelected)
-    EVT_BUTTON(wxID_INFO, mmTransDialog::OnColourButton)
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_CLOSE(mmTransDialog::OnQuit)
@@ -587,7 +585,7 @@ void mmTransDialog::CreateControls()
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 
     // Colours
-    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAuto->GetSize(), 0);
+    bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     //bColours->SetBackgroundColour(mmColors::userDefColor1);
     mmToolTip(bColours_, _("User Colors"));
 
@@ -782,6 +780,12 @@ bool mmTransDialog::ValidateData()
             return false;
         }
     }
+
+    int color_id = bColours_->GetColorId();
+    if (color_id > 0 && color_id < 8)
+        m_trx_data.FOLLOWUPID = color_id;
+    else
+        m_trx_data.FOLLOWUPID = -1;
 
     return true;
 }
@@ -1419,44 +1423,4 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
-}
-
-void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
-{
-    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_INFO);
-    ev.SetEventObject(this);
-
-    wxMenu* mainMenu = new wxMenu;
-
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
-    mainMenu->Append(menuItem);
-
-    for (int i = 1; i <= 7; ++i)
-    {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
-#ifdef __WXMSW__
-        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
-#endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
-        wxMemoryDC memoryDC(bitmap);
-        wxRect rect(memoryDC.GetSize());
-
-        memoryDC.SetBackground(wxBrush(getUDColour(i)));
-        memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
-        memoryDC.SelectObject(wxNullBitmap);
-        menuItem->SetBitmap(bitmap);
-
-        mainMenu->Append(menuItem);
-    }
-
-    PopupMenu(mainMenu);
-    delete mainMenu;
-}
-
-void mmTransDialog::OnColourSelected(wxCommandEvent& event)
-{
-    int selected_nemu_item = event.GetId() - wxID_HIGHEST;
-    bColours_->SetBackgroundColour(getUDColour(selected_nemu_item));
-    m_trx_data.FOLLOWUPID = selected_nemu_item;
 }

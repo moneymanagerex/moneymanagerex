@@ -46,7 +46,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
 EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick)
 EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
-EVT_MENU(ID_COLOR_BUTTON, mmQIFImportDialog::OnMenuSelected)
+EVT_MENU(wxID_HIGHEST, mmQIFImportDialog::OnMenuSelected)
 EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
 EVT_CHOICE(ID_ACCOUNT, mmQIFImportDialog::OnAccountChanged)
 EVT_CLOSE(mmQIFImportDialog::OnQuit)
@@ -337,7 +337,7 @@ void mmQIFImportDialog::CreateControls()
 
     colorCheckBox_ = new wxCheckBox(this, wxID_PASTE, _("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    mmColorBtn_ = new mmColorButton(this, ID_COLOR_BUTTON
+    mmColorBtn_ = new mmColorButton(this, wxID_HIGHEST
         , wxSize(m_choiceDecimalSeparator->GetSize().GetY(), m_choiceDecimalSeparator->GetSize().GetY()));
     mmColorBtn_->Enable(false);
     wxBoxSizer* colorSizer = new wxBoxSizer(wxHORIZONTAL);

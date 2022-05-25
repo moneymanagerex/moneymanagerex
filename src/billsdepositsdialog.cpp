@@ -78,7 +78,6 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
-    EVT_BUTTON(wxID_INFO, mmBDDialog::OnColourButton)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmBDDialog::OnMoreFields)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTON_PAYDATE, mmBDDialog::OnPaidDateChanged)
@@ -93,7 +92,6 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
-    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 8, mmBDDialog::OnColourSelected)
     EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -658,7 +656,7 @@ void mmBDDialog::CreateControls()
         , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
 
     // Colours
-    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bFrequentUsedNotes->GetSize());
+    bColours_ = new mmColorButton(this, wxID_LOWEST, bFrequentUsedNotes->GetSize());
     mmToolTip(bColours_, _("User Colors"));
 
     // Attachments
@@ -1016,8 +1014,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
 
     Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    if (!acc)
-    {
+    if (!acc) {
         return mmErrorDialogs::InvalidAccount(bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
     }
 
@@ -1089,12 +1086,11 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     // Multiplex Auto executable onto the repeat field of the database.
     m_bill_data.REPEATS = m_choice_repeat->GetSelection();
-    if (autoExecuteUserAck_)
-    {
+    if (autoExecuteUserAck_) {
         m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
     }
-    if (autoExecuteSilent_)
-    {
+
+    if (autoExecuteSilent_) {
         m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
     }
 
@@ -1104,8 +1100,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (!numRepeatStr.empty())
     {
         long cnt = 0;
-        if (numRepeatStr.ToLong(&cnt))
-        {
+        if (numRepeatStr.ToLong(&cnt)) {
             wxASSERT(std::numeric_limits<int>::min() <= cnt);
             wxASSERT(cnt <= std::numeric_limits<int>::max());
             m_bill_data.NUMOCCURRENCES = static_cast<int>(cnt);
@@ -1123,11 +1118,16 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_bill_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_bill_data.NOTES = textNotes_->GetValue();
 
+    int color_id = bColours_->GetColorId();
+    if (color_id > 0 && color_id < 8)
+        m_bill_data.FOLLOWUPID = color_id;
+    else
+        m_bill_data.FOLLOWUPID = -1;
+
     if (!m_enter_occur)
     {
         Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(m_bill_data.BDID);
-        if (m_new_bill || m_dup_bill)
-        {
+        if (m_new_bill || m_dup_bill) {
             bill = Model_Billsdeposits::instance().create();
         }
 
@@ -1541,45 +1541,6 @@ void mmBDDialog::OnDueDateChanged(wxDateEvent& event)
     wxDateTime date = event.GetDate();
     if (date.IsValid())
         itemStaticTextWeekDue_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
-}
-
-void mmBDDialog::OnColourButton(wxCommandEvent& /*event*/)
-{
-    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_INFO);
-    ev.SetEventObject(this);
-
-    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
-
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
-    mainMenu->Append(menuItem);
-
-    for (int i = 1; i <= 7; ++i)
-    {
-        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
-#ifdef __WXMSW__
-        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
-#endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
-        wxMemoryDC memoryDC(bitmap);
-        wxRect rect(memoryDC.GetSize());
-
-        memoryDC.SetBackground(wxBrush(getUDColour(i)));
-        memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
-        memoryDC.SelectObject(wxNullBitmap);
-        menuItem->SetBitmap(bitmap);
-
-        mainMenu->Append(menuItem);
-    }
-
-    PopupMenu(mainMenu.get());
-}
-
-void mmBDDialog::OnColourSelected(wxCommandEvent& event)
-{
-    int selected_nemu_item = event.GetId() - wxID_HIGHEST;
-    bColours_->SetBackgroundColour(getUDColour(selected_nemu_item));
-    m_bill_data.FOLLOWUPID = selected_nemu_item;
 }
 
 void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))

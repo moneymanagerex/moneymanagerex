@@ -133,8 +133,7 @@ private:
         COL_MAX, // number of columns
     };
     enum {
-        ID_COLOR_BUTTON = wxID_HIGHEST,
-        ID_ACCOUNT
+        ID_ACCOUNT = wxID_HIGHEST + 1
     };
     std::map<int, wxString> ColName_;
 };
