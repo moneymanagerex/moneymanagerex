@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-25 15:01+0300\n"
+"POT-Creation-Date: 2022-05-25 15:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2007,7 +2007,7 @@ msgstr ""
 #: customfieldlistdialog.cpp:188
 #, c-format
 msgid ""
-"This function will massive search & replace for \"%s\" custom field values\n"
+"This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
@@ -2050,7 +2050,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: customfieldlistdialog.cpp:263
-msgid "&Massive content update "
+msgid "&Bulk content update "
 msgstr ""
 
 #: db/DB_Table_Category_V1.h:112

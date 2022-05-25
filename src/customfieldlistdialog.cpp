@@ -185,7 +185,7 @@ void mmCustomFieldListDialog::UpdateField()
         return;
 
     int UpdateResponse = wxMessageBox(
-        wxString::Format(_("This function will massive search & replace for \"%s\" custom field values\n"
+        wxString::Format(_("This function will bulk search & replace for \"%s\" custom field values\n"
             "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
             "Please consider that there isn't any validation!"),field->DESCRIPTION)
         , _("Confirm Custom Field Content Update")
@@ -260,7 +260,7 @@ void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->AppendSeparator();
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_FIELD, _("&Edit ")));
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_FIELD, _("&Remove ")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_UPDATE_FIELD, _("&Massive content update ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_UPDATE_FIELD, _("&Bulk content update ")));
     if (!field)
     {
         mainMenu->Enable(MENU_EDIT_FIELD, false);
