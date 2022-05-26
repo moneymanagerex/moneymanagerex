@@ -84,7 +84,6 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode, wxString selected)
     : m_categ_id(-1)
     , m_subcateg_id(-1)
-    , payeeID_(-1)
     , is_similar_category_status(false)
     , isMultiAccount_(showAccountFilter)
     , isReportMode_(isReportMode)
@@ -100,7 +99,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool sh
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const wxString& json)
     : m_categ_id(-1)
     , m_subcateg_id(-1)
-    , payeeID_(-1)
     , is_similar_category_status(false)
     , isMultiAccount_(true)
     , isReportMode_(true)
@@ -1246,7 +1244,6 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
     Model_Payee::Data* payee = Model_Payee::instance().get(payeeName);
     if (payee)
     {
-        payeeID_ = payee->PAYEEID;
         cbPayee_->SetValue(payee->PAYEENAME);
     }
     cbPayee_->SetEvtHandlerEnabled(true);
