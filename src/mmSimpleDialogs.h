@@ -39,6 +39,7 @@ public:
         , wxWindowID id
         , wxSize size = wxDefaultSize
     );
+    void SetBackgroundColor(int color_id);
     int GetColorId() const;
 private:
     void OnMenuSelected(wxCommandEvent& event);
