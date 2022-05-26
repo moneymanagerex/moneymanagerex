@@ -200,7 +200,6 @@ private:
     int m_color_value;
     int m_categ_id;
     int m_subcateg_id;
-    int payeeID_;
     bool is_similar_category_status;
     wxString m_payee_str;
 
