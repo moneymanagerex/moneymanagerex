@@ -284,18 +284,19 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     const auto subcateg_name = categ_token.GetNextToken().Trim(false);
     s_category = categ_name + (s_category.Contains(":") ? delimiter + subcateg_name : "");
 
-    for (const auto& entry : Model_Category::instance().all_categories())
-    {
-        //wxLogDebug("%s : %i %i", entry.first, entry.second.first, entry.second.second);
-        if (s_category == entry.first)
+    if (!s_category.IsEmpty())
+        for (const auto& entry : Model_Category::instance().all_categories())
         {
-            m_categ_id = entry.second.first;
-            m_subcateg_id = entry.second.second;
-            categoryCheckBox_->SetValue(m_categ_id != -1);
-            btnCategory_->Enable(categoryCheckBox_->IsChecked());
-            break;
+            //wxLogDebug("%s : %i %i", entry.first, entry.second.first, entry.second.second);
+            if (s_category == entry.first)
+            {
+                m_categ_id = entry.second.first;
+                m_subcateg_id = entry.second.second;
+                break;
+            }
         }
-    }
+    categoryCheckBox_->SetValue(m_categ_id != -1);
+    btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
     btnCategory_->SetLabelText(Model_Category::full_name(m_categ_id, m_subcateg_id));
 

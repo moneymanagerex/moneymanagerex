@@ -1137,16 +1137,7 @@ void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& WXUNUSED(event))
         ReallocateAccount(account_id);
     }
 }
-//----------------------------------------------------------------------------
 
-const wxString GrabLabel(wxString data)
-{
-    Document j_doc;
-    if (j_doc.Parse(data.utf8_str()).HasParseError())
-        j_doc.Parse("{}");
-    Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-    return(j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "");
-}
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
