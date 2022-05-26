@@ -1600,7 +1600,7 @@ wxString HTMLEncode(wxString input)
 
 const wxString __(const char* c)
 {
-    wxString mystring = wxString::FromUTF8(c);
+    wxString mystring = wxGetTranslation(wxString::FromUTF8(c));
     if (mystring.Contains("\t"))
         mystring.Replace("\t", "...\t", false);
     else
