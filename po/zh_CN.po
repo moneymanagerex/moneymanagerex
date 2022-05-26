@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-25 15:11+0300\n"
-"PO-Revision-Date: 2022-05-25 12:18\n"
+"PO-Revision-Date: 2022-05-26 02:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2003,7 +2003,9 @@ msgstr "确认自定义字段删除"
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "此函数将批量搜索并替换\"%s\"自定义字段值\n"
+"它将匹配并只替换完整的字段值。 不允许替换部分或中值\n"
+"请考虑没有任何验证！"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -2043,7 +2045,7 @@ msgstr[0] "创建并替换了 %zu 次事件！"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Bulk content update "
-msgstr ""
+msgstr "批量内容更新(&B)"
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Bills"
