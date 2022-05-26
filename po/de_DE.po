@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-26 10:28+0300\n"
-"PO-Revision-Date: 2022-05-26 09:51\n"
+"PO-Revision-Date: 2022-05-26 10:04\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2048,7 +2048,7 @@ msgstr[1] "%zu Vorkommnisse gefunden und ersetzt!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&Masseninhalt-Update "
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Bills"
@@ -2487,7 +2487,7 @@ msgstr "Aktive Werte in die aktuelle Preset-Auswahl speichern"
 
 #: filtertransdialog.cpp:744
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Aktuelle Preset-Auswahl löschen"
 
 #: filtertransdialog.cpp:892
 #, c-format
@@ -4159,11 +4159,11 @@ msgstr "&JSON-Dateien"
 
 #: mmframe.cpp:1286
 msgid "&Edit Filter"
-msgstr ""
+msgstr "Filter bearbeiten"
 
 #: mmframe.cpp:1287
 msgid "&Delete Filter"
-msgstr ""
+msgstr "Filter löschen"
 
 #: mmframe.cpp:1301 mmframe.cpp:1319 mmframe.cpp:1339 mmframe.cpp:1513
 msgid "&Edit Account"
