@@ -32,7 +32,7 @@ class mmCustomFieldEditDialog : public wxDialog
 
 public:
     mmCustomFieldEditDialog() {};
-    mmCustomFieldEditDialog(wxWindow *parent, Model_CustomField::Data* field, const wxString& fieldRefType);
+    mmCustomFieldEditDialog(wxWindow *parent, Model_CustomField::Data* field);
 
     Model_CustomField::Data* m_field;
 private:
@@ -52,7 +52,8 @@ private:
 
     wxString m_fieldRefType;
     wxTextCtrl* m_itemDescription;
-    wxChoice*  m_itemType;
+    wxChoice* m_itemType;
+    wxChoice* m_itemReference;
     wxChoice*  m_itemUDFC;
     wxTextCtrl* m_itemTooltip;
     wxTextCtrl* m_itemRegEx;

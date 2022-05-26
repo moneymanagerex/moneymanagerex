@@ -2548,9 +2548,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db) return;
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-
-    mmCustomFieldListDialog dlg(this, ref_type);
+    mmCustomFieldListDialog dlg(this);
     dlg.ShowModal();
     createHomePage();
 }

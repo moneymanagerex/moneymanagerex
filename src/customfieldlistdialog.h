@@ -31,13 +31,14 @@ class mmCustomFieldListDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmCustomFieldListDialog(wxWindow* parent, const wxString& RefType);
+    mmCustomFieldListDialog(wxWindow* parent);
 
 private:
     enum cols
     {
         FIELD_ID = 0,
         FIELD_DESCRIPTION,
+        FIELD_REF,
         FIELD_TYPE,
         FIELD_PROPERTIES
     };
@@ -52,7 +53,6 @@ private:
 
     wxDataViewListCtrl* fieldListBox_;
 
-    wxString m_RefType;
     int m_field_id;
     mmCustomFieldListDialog() : m_field_id(-1) {}
     std::map<int, wxString> ColName_;

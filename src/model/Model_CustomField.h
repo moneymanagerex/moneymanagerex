@@ -57,6 +57,7 @@ public:
     static const wxArrayString all_type();
     static const wxString getRegEx(const wxString& Properties);
     static const wxString getTooltip(const wxString& Properties);
+    static int getReference(const wxString& Properties);
     static bool getAutocomplete(const wxString& Properties);
     static const wxString getDefault(const wxString& Properties);
     static const wxArrayString getChoices(const wxString& Properties);

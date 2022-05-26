@@ -41,9 +41,9 @@ wxBEGIN_EVENT_TABLE(mmCustomFieldEditDialog, wxDialog)
     EVT_CLOSE(mmCustomFieldEditDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field, const wxString& fieldRefType)
+mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field)
     : m_field(field)
-    , m_fieldRefType(fieldRefType)
+    , m_fieldRefType(Model_Attachment::instance().all_type()[Model_Attachment::REFTYPE::TRANSACTION])
     , m_itemDescription(nullptr)
     , m_itemType(nullptr)
     , m_itemUDFC(nullptr)
@@ -85,6 +85,7 @@ void mmCustomFieldEditDialog::dataToControls()
     {
         m_itemDescription->SetValue(m_field->DESCRIPTION);
         m_itemType->SetSelection(Model_CustomField::type(m_field));
+        m_itemReference->SetSelection(Model_CustomField::getReference(m_field->REFTYPE));
         m_itemTooltip->SetValue(Model_CustomField::getTooltip(m_field->PROPERTIES));
         m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
@@ -102,6 +103,7 @@ void mmCustomFieldEditDialog::dataToControls()
     }
     else
     {
+        m_itemReference->SetSelection(Model_CustomField::getReference(m_fieldRefType));
         m_itemType->SetSelection(Model_CustomField::STRING);
         m_itemUDFC->SetSelection(0);
     }
@@ -141,6 +143,14 @@ void mmCustomFieldEditDialog::CreateControls()
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
     mmToolTip(m_itemType, _("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
+
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Reference")), g_flagsH);
+    m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
+    for (const auto& type : Model_Attachment::instance().all_type())
+        m_itemReference->Append(wxGetTranslation(type), new wxStringClientData(type));
+    mmToolTip(m_itemReference, _("Select reference of custom field"));
+    itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
+    m_itemReference->Enable(false);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
