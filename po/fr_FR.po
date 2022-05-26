@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-26 10:28+0300\n"
-"PO-Revision-Date: 2022-05-26 07:32\n"
+"PO-Revision-Date: 2022-05-26 08:14\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4160,11 +4160,11 @@ msgstr "Fichiers JSON"
 
 #: mmframe.cpp:1286
 msgid "&Edit Filter"
-msgstr ""
+msgstr "Éditer le filtre"
 
 #: mmframe.cpp:1287
 msgid "&Delete Filter"
-msgstr ""
+msgstr "Supprimer le filtre"
 
 #: mmframe.cpp:1301 mmframe.cpp:1319 mmframe.cpp:1339 mmframe.cpp:1513
 msgid "&Edit Account"
