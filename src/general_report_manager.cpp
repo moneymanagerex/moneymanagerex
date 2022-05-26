@@ -407,22 +407,22 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
     editors_notebook->InsertPage(type, out_tab, _("Output"));
-    wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
 
-   browser_ = wxWebView::New();
+    browser_ = wxWebView::New();
 #ifdef __WXMAC__
     // With WKWebView handlers need to be registered before creation
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->Create(out_tab, ID_WEB);
+    browser_->Create(out_tab, mmID_BROWSER);
 #else
-    browser_->Create(out_tab, ID_WEB);
-   browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser_->Create(out_tab, mmID_BROWSER);
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 #endif
-     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmGeneralReportManager::OnNewWindow, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmGeneralReportManager::OnNewWindow, this, mmID_BROWSER);
 
-    out_sizer->Add(browser_, g_flagsExpand);
-    out_tab->SetSizerAndFit(out_sizer);
+     out_sizer->Add(browser_, g_flagsExpand);
+     out_tab->SetSizerAndFit(out_sizer);
 }
 
 void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int type)

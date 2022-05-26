@@ -117,7 +117,7 @@ void mmHomePagePanel::createControls()
     browser_->EnableContextMenu(false);
 #endif
 
-    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, mmID_BROWSER);
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
 }
