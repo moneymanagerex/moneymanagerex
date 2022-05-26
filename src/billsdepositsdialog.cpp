@@ -209,7 +209,7 @@ void mmBDDialog::dataToControls()
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
-    bColours_->SetBackgroundColour(getUDColour(m_bill_data.FOLLOWUPID));
+    bColours_->SetBackgroundColor(m_bill_data.FOLLOWUPID);
 
     for (const auto& entry : BILLSDEPOSITS_REPEATS)
     {
