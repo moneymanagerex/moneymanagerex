@@ -382,7 +382,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
         m_color_value = j_doc["COLOR"].GetInt();
     }
     colorButton_->Enable(colorCheckBox_->IsChecked());
-    colorButton_->SetBackgroundColour(getUDColour(m_color_value));
+    colorButton_->SetBackgroundColor(m_color_value);
     colorButton_->Refresh(); // Needed as setting the background color does not cause an immediate refresh
 
     //Custom Fields

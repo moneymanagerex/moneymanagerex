@@ -90,6 +90,11 @@ int mmColorButton::GetColorId() const
     return m_color_value;
 }
 
+void mmColorButton::SetBackgroundColor(int color_id)
+{
+    SetBackgroundColour(getUDColour(color_id));
+    m_color_value = color_id;
+}
 
 mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
     : wxChoice(parent, id)
