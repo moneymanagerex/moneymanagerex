@@ -23,6 +23,7 @@
 #include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
 #include "paths.h"
+#include "payeedialog.h"
 #include "transactionsupdatedialog.h"
 #include "validators.h"
 #include "Model_Account.h"
@@ -214,6 +215,7 @@ void transactionsUpdateDialog::CreateControls()
 
     m_payee = new wxComboBox(this, ID_PAYEE);
     m_payee->SetMaxSize(wxSize(m_amount_ctrl->GetSize().GetX() * 2, -1));
+    m_payee->Bind(wxEVT_CHAR_HOOK, &transactionsUpdateDialog::OnComboKey, this);
 
     wxArrayString all_payees = Model_Payee::instance().all_payee_names();
     if (!all_payees.empty()) {
@@ -251,6 +253,15 @@ void transactionsUpdateDialog::CreateControls()
 
     grid_sizer->Add(m_categ_checkbox, g_flagsH);
     grid_sizer->Add(m_categ_btn, g_flagsExpand);
+
+    // Colours --------------------------------------------
+    m_color_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Color")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    bColours_ = new mmColorButton(this, wxID_HIGHEST, m_categ_btn->GetSize());
+    mmToolTip(bColours_, _("User Colors"));
+    grid_sizer->Add(m_color_checkbox, g_flagsH);
+    grid_sizer->Add(bColours_, g_flagsExpand);
+    bColours_->Enable(false);
 
     // Notes --------------------------------------------
     m_notes_checkbox = new wxCheckBox(this, wxID_ANY, _("Notes")
@@ -324,13 +335,11 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     wxString type = "";
-    bool transfer;
     if (m_type_checkbox->IsChecked())
     {
         wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
         type = type_obj->GetData();
-        transfer = (Model_Checking::TRANSFER_STR == type);
-        if (transfer)
+        if (Model_Checking::TRANSFER_STR == type)
         {
             if  (m_hasNonTransfers && !m_transferAcc_checkbox->IsChecked())
                 return mmErrorDialogs::InvalidAccount(m_transferAcc_checkbox, true);
@@ -356,19 +365,16 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
         bool is_locked = Model_Checking::is_locked(trx);
 
-        if (is_locked)
-        {
+        if (is_locked) {
             skip_trx.push_back(trx->TRANSID);
             continue;
         }
 
-        if (m_date_checkbox->IsChecked())
-        {
+        if (m_date_checkbox->IsChecked()) {
             trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
         }
 
-        if (m_status_checkbox->IsChecked())
-        {
+        if (m_status_checkbox->IsChecked()) {
             trx->STATUS = status;
         }
 
@@ -421,6 +427,15 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             trx->PAYEEID = -1;
         }
 
+        if (m_color_checkbox->IsChecked())
+        {
+            int color_id = bColours_->GetColorId();
+            if (color_id < 0 || color_id > 7) {
+                return mmErrorDialogs::ToolTip4Object(bColours_, _("Color"), _("Invalid value"), wxICON_ERROR);
+            }
+            trx->FOLLOWUPID = color_id == 0 ? -1 : color_id ;
+        }
+
         if (m_notes_checkbox->IsChecked())
         {
             if (m_append_checkbox->IsChecked()) {
@@ -433,8 +448,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             }
         }
 
-        if (m_amount_checkbox->IsChecked())
-        {
+        if (m_amount_checkbox->IsChecked()) {
             trx->TRANSAMOUNT = amount;
         }
 
@@ -444,8 +458,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             trx->SUBCATEGID = m_subcateg_id;
         }
 
-        if (m_type_checkbox->IsChecked())
-        {
+        if (m_type_checkbox->IsChecked()) {
             trx->TRANSCODE = type;
         }
  
@@ -514,7 +527,6 @@ void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
 
 void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
 {
-
     m_dpc->Enable(m_date_checkbox->IsChecked());
     m_status_choice->Enable(m_status_checkbox->IsChecked());
     m_type_choice->Enable(m_type_checkbox->IsChecked());
@@ -522,14 +534,13 @@ void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
     m_transferAcc->Enable(m_transferAcc_checkbox->IsChecked());
     m_categ_btn->Enable(m_categ_checkbox->IsChecked());
     m_amount_ctrl->Enable(m_amount_checkbox->IsChecked());
+    bColours_->Enable(m_color_checkbox->IsChecked());
     m_notes_ctrl->Enable(m_notes_checkbox->IsChecked());
     m_append_checkbox->Enable(m_notes_checkbox->IsChecked());
 
-    if (m_type_checkbox->IsChecked())
-    {
+    if (m_type_checkbox->IsChecked()) {
         SetPayeeTransferControls();
-    } else 
-    {
+    } else {
         m_payee_checkbox->Enable(!m_hasTransfers);
         m_transferAcc_checkbox->Enable(!m_hasNonTransfers);
     }
@@ -640,4 +651,37 @@ void transactionsUpdateDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
+}
+
+void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        wxWindow* w = FindFocus();
+        if (w && w->GetId() == ID_TRANS_ACC) {
+            m_transferAcc->Navigate(wxNavigationKeyEvent::IsForward);
+        }
+        else if (w && w->GetId() == ID_PAYEE)
+        {
+            const auto payeeName = m_payee->GetValue();
+            if (payeeName.empty())
+            {
+                mmPayeeDialog dlg(this, true);
+                dlg.DisableTools();
+                dlg.ShowModal();
+
+                int payee_id = dlg.getPayeeId();
+                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                if (payee)
+                {
+                    m_payee->ChangeValue(payee->PAYEENAME);
+                    m_payee->SetInsertionPointEnd();
+                }
+            }
+            else
+                m_payee->Navigate(wxNavigationKeyEvent::IsForward);
+        }
+    }
+    else
+        event.Skip();
 }

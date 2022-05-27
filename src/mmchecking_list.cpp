@@ -356,14 +356,14 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         }
     }
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, _("&New Withdrawal"));
-    menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, _("&New Deposit"));
+    menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, __(wxTRANSLATE("&New Withdrawal")));
+    menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, __(wxTRANSLATE("&New Deposit")));
     if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-        menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer"));
+        menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, __(wxTRANSLATE("&New Transfer")));
 
     menu.AppendSeparator();
 
-    menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction", "&Edit Transactions", selected));
+    menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction...", "&Edit Transactions...", selected));
     if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
     if (!m_cp->m_allAccounts)     // Copy/Paste not suitable if all accounts visible
@@ -378,10 +378,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
     }
 
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
+    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, __(wxTRANSLATE("D&uplicate Transaction")));
     if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-    menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction", "&Move Transactions", selected));
+    menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction...", "&Move Transactions...", selected));
     if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
@@ -395,22 +395,22 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (is_nothing_selected || multiselect || have_category)
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
     if (is_nothing_selected || multiselect)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
-    menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Recurring T&ransaction"));
+    menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, __(wxTRANSLATE("Create Recurring T&ransaction")));
     if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
 
     menu.AppendSeparator();
 
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, wxPLURAL("&Delete selected transaction", "&Delete selected transactions", selected));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, wxPLURAL("&Delete selected transaction...", "&Delete selected transactions...", selected));
     if (is_nothing_selected) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, _("Delete all transactions in current view"));
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Transactions"));
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \"Unreconciled\" Transactions"));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, __(wxTRANSLATE("Delete all transactions in current view")));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, __(wxTRANSLATE("Delete Viewed \"Follow Up\" Transactions")));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, __(wxTRANSLATE("Delete Viewed \"Unreconciled\" Transactions")));
     menu.Append(MENU_TREEPOPUP_DELETE2, _("&Delete "), subGlobalOpMenuDelete);
 
     menu.AppendSeparator();
@@ -572,18 +572,18 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     bool in_the_future = (tran.TRANSDATE > m_today);
 
     // apply alternating background pattern
-    int user_colour_id = tran.FOLLOWUPID;
-    if (user_colour_id < 0) user_colour_id = 0;
-    else if (user_colour_id > 7) user_colour_id = 0;
+    int user_color_id = tran.FOLLOWUPID;
+    if (user_color_id < 0) user_color_id = 0;
+    else if (user_color_id > 7) user_color_id = 0;
 
-    if (user_colour_id == 0) {
+    if (user_color_id == 0) {
         if (in_the_future) {
             return (item % 2 ? m_attr3.get() : m_attr4.get());
         }
         return (item % 2 ? m_attr1.get() : m_attr2.get());
     }
 
-    switch (user_colour_id)
+    switch (user_color_id)
     {
     case 1:
         return m_attr11.get();
@@ -1110,9 +1110,9 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
     FindSelectedTransactions();
-    int user_colour_id = event.GetId();
-    user_colour_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_colour_id);
+    int user_color_id = event.GetId();
+    user_color_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_color_id);
 
     Model_Checking::instance().Savepoint();
     for (const auto i : m_selected_id)
@@ -1120,7 +1120,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
         Model_Checking::Data* transaction = Model_Checking::instance().get(i);
         if (transaction)
         {
-            transaction->FOLLOWUPID = user_colour_id;
+            transaction->FOLLOWUPID = user_color_id;
             Model_Checking::instance().save(transaction);
         }
     }

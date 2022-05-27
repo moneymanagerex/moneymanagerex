@@ -134,15 +134,16 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool hide_menu_item = (m_selected_row < 0);
 
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Stock Investment"));
+    menu.Append(MENU_TREEPOPUP_NEW, __(wxTRANSLATE("&New Stock Investment")));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _("&Add Stock Transactions"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, __(wxTRANSLATE("&Add Stock Transactions")));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Stock Transactions"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Stock Investment"));
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Stock Investment"));
+    menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Stock Investment")));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
+    menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Stock Investment")));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
     menu.Append(wxID_INDEX, _("Stock &Web Page"));
 
     menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);
@@ -286,7 +287,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if (accounts.empty()) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->m_account_id);
-    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), from_account->ACCOUNTNAME);
+    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to"), from_account->ACCOUNTNAME);
     mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts);
 
     int toAccountID = -1;

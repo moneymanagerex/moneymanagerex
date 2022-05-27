@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -51,6 +52,9 @@ public:
     void Set(const wxString& key, const wxDateTime& date);
     void Set(const wxString& key, const wxString& value);
     void Set(const wxString& key, const wxColour& value);
+    void Prepend(const wxString& key, const wxString& value, int limit);
+    void Erase(const wxString& key, int row);
+    void Update(const wxString& key, int row, const wxString& value);
 
 public:
     // Getter
@@ -58,6 +62,7 @@ public:
     int GetIntInfo(const wxString& key, int default_value);
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
     const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
+    const wxArrayString GetArrayStringSetting(const wxString& key, bool sort = false);
 
     /* Returns true if key setting found */
     bool KeyExists(const wxString& key);
@@ -71,6 +76,8 @@ public:
     void SetOpenCustomDialog(const wxString& RefType, bool Status);
     wxSize CustomDialogSize(const wxString& RefType);
     void SetCustomDialogSize(const wxString& RefType, const wxSize& Size);
+    //Use to search through a set of JSON data for a particular label
+    int FindLabelInJSON(const wxString& entry, const wxString& labelID);
 };
 
 #endif // 

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2014 - 2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  
  This program is free software; you can redistribute it and/or modify
@@ -63,13 +64,15 @@ public:
     void Set(const wxString& key, bool value);
     void Set(const wxString& key, const wxColour& value);
     void Set(const wxString& key, const wxString& value);
+    void Prepend(const wxString& key, const wxString& value, int limit);
 
 public:
     // Getter
     bool GetBoolSetting(const wxString& key, bool default_value);
     int GetIntSetting(const wxString& key, int default_value);
+    const wxString GetStringSetting(const wxString& key, const wxString& default_value);
+    const wxArrayString GetArrayStringSetting(const wxString& key);
 
-    wxString GetStringSetting(const wxString& key, const wxString& default_value);
     wxString getLastDbPath();
 
     /* Returns true if key setting found */

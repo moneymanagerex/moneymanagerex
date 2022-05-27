@@ -79,6 +79,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
     for (const auto &field : m_fields)
     {
+        bool nonDefaultData = true;
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
         if (!fieldData)
         {
@@ -86,6 +87,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             fieldData->FIELDID = field.FIELDID;
             fieldData->REFID = m_ref_id;
             fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
+            nonDefaultData = false;
         }
 
         wxWindowID controlID = GetBaseID() + field.FIELDID;
@@ -116,7 +118,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             grid_sizer_custom->Add(CustomString, g_flagsExpand);
 
             if (!data.empty()) {
-                SetWidgetChanged(controlID, data);
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, data);
             }
 
             CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
@@ -131,7 +134,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 value = trunc(test);
-                SetWidgetChanged(controlID, wxString::Format("%i", value));
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, wxString::Format("%i", value));
             }
 
             wxSpinCtrl* CustomInteger = new wxSpinCtrl(scrolled_window, controlID,
@@ -150,7 +154,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = 0;
             }
             else {
-                SetWidgetChanged(controlID, wxString::Format("%f", value));
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, wxString::Format("%f", value));
             }
 
             int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
@@ -174,7 +179,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             if (!data.empty())
             {
                 CustomBoolean->SetValue(data == "TRUE");
-                SetWidgetChanged(controlID, data);
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, data);
             }
 
             mmToolTip(CustomBoolean, Model_CustomField::getTooltip(field.PROPERTIES));
@@ -191,7 +197,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = wxDate::Today();
             }
             else {
-                SetWidgetChanged(controlID, value.FormatISODate());
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, value.FormatISODate());
             }
 
             wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(scrolled_window, controlID
@@ -210,7 +217,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value.ParseTime("00:00:00");
             }
             else {
-                SetWidgetChanged(controlID, value.FormatISOTime());
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, value.FormatISOTime());
             }
 
             wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
@@ -240,7 +248,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             if (!data.empty())
             {
                 CustomChoice->SetStringSelection(data);
-                SetWidgetChanged(controlID, data);
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, data);
             }
 
             CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
@@ -257,7 +266,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
             if (!content.empty()) {
-                SetWidgetChanged(controlID, content);
+                if (nonDefaultData) 
+                    SetWidgetChanged(controlID, content);
             }
 
             multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED

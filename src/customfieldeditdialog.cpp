@@ -41,9 +41,9 @@ wxBEGIN_EVENT_TABLE(mmCustomFieldEditDialog, wxDialog)
     EVT_CLOSE(mmCustomFieldEditDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field, const wxString& fieldRefType)
+mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field)
     : m_field(field)
-    , m_fieldRefType(fieldRefType)
+    , m_fieldRefType(Model_Attachment::instance().all_type()[Model_Attachment::REFTYPE::TRANSACTION])
     , m_itemDescription(nullptr)
     , m_itemType(nullptr)
     , m_itemUDFC(nullptr)
@@ -85,6 +85,7 @@ void mmCustomFieldEditDialog::dataToControls()
     {
         m_itemDescription->SetValue(m_field->DESCRIPTION);
         m_itemType->SetSelection(Model_CustomField::type(m_field));
+        m_itemReference->SetSelection(Model_CustomField::getReference(m_field->REFTYPE));
         m_itemTooltip->SetValue(Model_CustomField::getTooltip(m_field->PROPERTIES));
         m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
@@ -96,13 +97,13 @@ void mmCustomFieldEditDialog::dataToControls()
         wxString choices = wxEmptyString;
         for (const auto& arrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
         {
-            choices << arrChoices << ";";
+            choices += (choices.empty() ? "": ";") + arrChoices;
         }
-        choices.RemoveLast(1);
         m_itemChoices->ChangeValue(choices);
     }
     else
     {
+        m_itemReference->SetSelection(Model_CustomField::getReference(m_fieldRefType));
         m_itemType->SetSelection(Model_CustomField::STRING);
         m_itemUDFC->SetSelection(0);
     }
@@ -129,6 +130,16 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->AddGrowableCol(1, 1);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Attribute of")), g_flagsH);
+    m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
+    for (const auto& type : Model_Attachment::REFTYPE_CHOICES) {
+        if (type.first != Model_Attachment::BILLSDEPOSIT)
+            m_itemReference->Append(wxGetTranslation(type.second), new wxStringClientData(type.second));
+    }
+    mmToolTip(m_itemReference, _("Select the item that the custom field is associated with"));
+    itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
+    m_itemReference->Enable(false);
+
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsExpand);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY);
     m_itemDescription->SetMinSize(wxSize(150, -1));
@@ -149,7 +160,7 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flagsH);
-    m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, "");
+    m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, R"(^.+$)");
     mmToolTip(m_itemRegEx, _("Enter the RegEx to validate field"));
     itemFlexGridSizer6->Add(m_itemRegEx, g_flagsExpand);
 
@@ -262,13 +273,20 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
+    const wxString regexp = m_itemRegEx->GetValue();
+    if (!regexp.empty())
+    {
+        wxRegEx pattern(regexp);
+        if (!pattern.IsValid())
+            return;
+    }
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;
     m_field->TYPE = Model_CustomField::fieldtype_desc(m_itemType->GetSelection());
     m_field->PROPERTIES = Model_CustomField::formatProperties(
         m_itemTooltip->GetValue(),
-        m_itemRegEx->GetValue(),
+        regexp,
         m_itemAutocomplete->GetValue(),
         m_itemDefault->GetValue(),
         ArrChoices,

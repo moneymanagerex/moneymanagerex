@@ -20,6 +20,7 @@
 #ifndef MM_EX_TRANSACTIONSUPDATE_H_
 #define MM_EX_TRANSACTIONSUPDATE_H_
 
+#include "mmSimpleDialogs.h"
 #include "defs.h"
 #include "mmcombobox.h"
 #include "mmcustomdata.h"
@@ -54,6 +55,7 @@ private:
     void SetPayeeTransferControls();
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
 
 private:
     wxCheckBox* m_payee_checkbox;
@@ -66,6 +68,8 @@ private:
     wxChoice* m_status_choice;
     wxCheckBox* m_categ_checkbox;
     wxButton* m_categ_btn;
+    mmColorButton* bColours_;
+    wxCheckBox* m_color_checkbox;
     wxCheckBox* m_type_checkbox;
     wxChoice* m_type_choice;
     wxCheckBox* m_amount_checkbox;

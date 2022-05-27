@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2014 - 2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -90,6 +91,58 @@ void Model_Setting::Set(const wxString& key, const wxString& value)
     }
 }
 
+void Model_Setting::Prepend(const wxString& key, const wxString& value, int limit)
+{
+    Data* setting = this->get_one(SETTINGNAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
+    }
+
+    if (!setting)
+    {
+        setting = this->create();
+        setting->SETTINGNAME = key;
+    }
+
+    int i = 1;
+    wxArrayString a;
+    a.Add(value);
+
+    Document j_doc;
+    if (j_doc.Parse(setting->SETTINGVALUE.utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
+    {
+        for (auto& v : j_doc.GetArray())
+        {
+            if (i >= limit && limit != -1) break;
+            if (v.IsString()) {
+                const auto item = wxString::FromUTF8(v.GetString());
+                if (a.Index(item) == wxNOT_FOUND) {
+                    a.Add(item);
+                    i++;
+                }
+            }
+        }
+    }
+
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartArray();
+    for (const auto& entry : a)
+    {
+        json_writer.String(entry.utf8_str());
+    }
+    json_writer.EndArray();
+
+    setting->SETTINGVALUE = wxString::FromUTF8(json_buffer.GetString());
+    setting->save(this->db_);
+}
+
 // Getter
 bool Model_Setting::GetBoolSetting(const wxString& key, bool default_value)
 {
@@ -108,7 +161,7 @@ int Model_Setting::GetIntSetting(const wxString& key, int default_value)
     return default_value;
 }
 
-wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
+const wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
 {
     Data* setting = this->get_one(SETTINGNAME(key));
     if (!setting) // not cached
@@ -121,6 +174,45 @@ wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& de
         return setting->SETTINGVALUE;
     }
     return default_value;
+}
+
+const wxArrayString Model_Setting::GetArrayStringSetting(const wxString& key)
+{
+    wxString data;
+    Data* setting = this->get_one(SETTINGNAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (items.empty()) {
+            return wxArrayString();
+        }
+        else {
+            data = items[0].SETTINGVALUE;
+        }
+    }
+    else
+    {
+        data = setting->SETTINGVALUE;
+    }
+
+    wxArrayString a;
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+        j_doc.Parse("[]");
+    }
+
+    if (j_doc.IsArray())
+    {
+        for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++)
+        {
+            wxASSERT(j_doc[i].IsString());
+            const auto item = wxString::FromUTF8(j_doc[i].GetString());
+            wxLogDebug("%s", item);
+            a.Add(item);
+        }
+    }
+
+    return a;
 }
 
 wxString Model_Setting::getLastDbPath()

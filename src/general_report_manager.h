@@ -135,7 +135,6 @@ private:
         ID_GROUP,
         ID_UNGROUP,
         ID_NOTEBOOK,
-        ID_WEB,
         ID_TYPELABEL,
         ID_TEST,
         ID_SQL_CONTENT,

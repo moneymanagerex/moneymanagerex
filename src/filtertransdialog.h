@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 - 2022 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma interface "filtertransdialog.cpp"
 #endif
 
+#include "mmSimpleDialogs.h"
 #include "mmcustomdata.h"
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
@@ -41,7 +42,8 @@ public:
     /// Constructors
     mmFilterTransactionsDialog();
     ~mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false);
+    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false, wxString selected = "");
+    mmFilterTransactionsDialog(wxWindow* parent, const wxString& json);
 
     virtual int ShowModal();
 
@@ -60,9 +62,7 @@ public:
     bool getSimilarStatus() const;
     bool getRangeCheckBox() const;
     bool is_date_range_cb_active() const;
-    bool getStartDateCheckBox() const;
     bool getHideColumnsCheckBox() const;
-
 
     enum groupBy {
         GROUPBY_ACCOUNT,
@@ -75,8 +75,6 @@ public:
     int getSubCategId() const;
     const wxArrayInt getAccountsID() const;
     const wxArrayInt getHideColumnsID() const;
-    
-    void SetStoredSettings(int id);
 
     const wxString getBeginDate() const;
     const wxString getEndDate() const;
@@ -84,6 +82,7 @@ public:
     bool isFutureIgnored() const;
 
 private:
+    void dataToControls(const wxString& json);
     void BuildPayeeList();
 
     bool is_amountrange_min_cb_active() const;
@@ -114,11 +113,9 @@ private:
     bool is_payee_cb_active() const;
     bool is_number_cb_active() const;
     bool is_notes_cb_active() const;
-    bool is_colour_cb_active() const;
+    bool is_color_cb_active() const;
     bool is_custom_field_active() const;
     bool is_custom_field_matches(const Model_Checking::Data& tran) const;
-    void setPresettings(const wxString& view);
-    void clearSettings();
 
     /// Creation
     bool Create(wxWindow* parent
@@ -130,39 +127,38 @@ private:
 private:
     /// Creates the controls and sizers
     void CreateControls();
-    void dataToControls();
+    void DoInitVariables();
+    void DoInitSettingNameChoice(wxString sel="") const;
+    void DoUpdateSettings();
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
 
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
-    void OnButtonSaveClick(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
-    void datePresetMenu(wxMouseEvent& event);
-    void OnMenuSelected(wxCommandEvent& event);
-    void OnPayeeUpdated(wxCommandEvent& event);
+    void OnPayeeUpdated(wxCommandEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
-    void SaveSettings(int menu_item);
+    void DoSaveSettings(bool is_user_request = false);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
-    void OnColourButton(wxCommandEvent& /*event*/);
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
     void OnMoreFields(wxCommandEvent& event);
+    void OnChoice(wxCommandEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
+    void OnQuit(wxCloseEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
-    const wxString get_json(bool i18n = false) const;
-    void from_json(const wxString &data);
+    const wxString GetJsonSetings(bool i18n = false) const;
 
-    bool is_values_correct();
+    bool is_values_correct() const;
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
-    wxCheckBox* rangeCheckBox_;
+    wxCheckBox* datesCheckBox_;
     wxChoice* rangeChoice_;
-    wxCheckBox* startDateCheckBox_;
-    wxChoice* startDateDropDown_;
     wxCheckBox* dateRangeCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateControl_;
@@ -177,8 +173,8 @@ private:
     wxCheckBox* typeCheckBox_;
     wxCheckBox* cbTypeWithdrawal_;
     wxCheckBox* cbTypeDeposit_;
-    wxCheckBox* cbTypeTransferTo_;
-    wxCheckBox* cbTypeTransferFrom_;
+    wxCheckBox* cbTypeTransferTo_; // Transfer Out
+    wxCheckBox* cbTypeTransferFrom_; // Transfer In
     wxCheckBox* amountRangeCheckBox_;
     mmTextCtrl* amountMinEdit_;
     mmTextCtrl* amountMaxEdit_;
@@ -188,8 +184,8 @@ private:
     wxBitmapButton* m_btnSaveAs;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
-    wxCheckBox* colourCheckBox_;
-    wxButton* colourButton_;
+    wxCheckBox* colorCheckBox_;
+    mmColorButton* colorButton_;
     wxCheckBox* showColumnsCheckBox_;
     wxButton* bHideColumns_;
     wxCheckBox* groupByCheckBox_;
@@ -201,10 +197,9 @@ private:
     wxString m_end_date;
     int m_startDay;
     bool m_futureIgnored;
-    int m_colour_value;
+    int m_color_value;
     int m_categ_id;
     int m_subcateg_id;
-    int payeeID_;
     bool is_similar_category_status;
     wxString m_payee_str;
 
@@ -219,11 +214,14 @@ private:
     enum
     {
         /* FIlter Dialog */
-        ID_DIALOG_DATEPRESET= wxID_HIGHEST + 897,
-        ID_DIALOG_COLOUR,
-        ID_DIALOG_COLUMNS,
+        ID_DIALOG_COLUMNS = wxID_HIGHEST + 897,
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
+        ID_DATE_RANGE,
+        ID_PERIOD_CB,
+        ID_ACCOUNT_CB,
+        ID_DATE_RANGE_CB,
+        ID_SIMILAR_CB
     };
 };
 
@@ -231,6 +229,23 @@ inline const wxString mmFilterTransactionsDialog::getBeginDate() const { return 
 inline const wxString mmFilterTransactionsDialog::getEndDate() const { return m_end_date; }
 inline int mmFilterTransactionsDialog::getStartDay() const { return m_startDay; }
 inline bool mmFilterTransactionsDialog::isFutureIgnored() const { return m_futureIgnored; }
+inline bool mmFilterTransactionsDialog::getSimilarStatus() const { return is_similar_category_status; }
+inline int mmFilterTransactionsDialog::getCategId() const { return m_categ_id; }
+inline int mmFilterTransactionsDialog::getSubCategId() const { return m_subcateg_id; }
+inline const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const { return m_selected_accounts_id; }
+inline const wxArrayInt mmFilterTransactionsDialog::getHideColumnsID() const { return m_selected_columns_id; }
+inline bool mmFilterTransactionsDialog::is_date_range_cb_active() const { return dateRangeCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::getRangeCheckBox() const { return datesCheckBox_->GetValue(); }
+inline const wxString mmFilterTransactionsDialog::getNumber() const { return transNumberEdit_->GetValue(); }
+inline const wxString mmFilterTransactionsDialog::getNotes() const { return notesEdit_->GetValue(); }
+inline bool mmFilterTransactionsDialog::getHideColumnsCheckBox() const { return showColumnsCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::is_type_cb_active() const { return typeCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_payee_cb_active() const { return payeeCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_number_cb_active() const { return transNumberCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_notes_cb_active() const { return notesCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_color_cb_active() const { return colorCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
 
 #endif
 // FILTERTRANSDIALOG_H_

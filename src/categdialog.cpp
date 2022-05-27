@@ -151,6 +151,8 @@ void mmCategDialog::fillControls()
             m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
             if (!bShow)
                 m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
+            if (m_categ_id == category.CATEGID)
+                m_selectedItemId = maincat;
 
             for (const auto &sub_category : Model_Category::sub_category(category))
             {

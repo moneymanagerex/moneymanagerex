@@ -373,7 +373,7 @@ void mmReportsPanel::CreateControls()
         }
     }
 
-   browser_ = wxWebView::New();
+    browser_ = wxWebView::New();
 #ifdef __WXMAC__
     // With WKWebView handlers need to be registered before creation
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
@@ -382,7 +382,7 @@ void mmReportsPanel::CreateControls()
     browser_->Create(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 #endif
-    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmReportsPanel::OnNewWindow, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmReportsPanel::OnNewWindow, this, mmID_BROWSER);
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }

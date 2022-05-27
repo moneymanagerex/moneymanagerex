@@ -135,6 +135,12 @@ const wxString Model_CustomField::getTooltip(const wxString& Properties)
     return "";
 }
 
+int Model_CustomField::getReference(const wxString& Properties)
+{
+    int ref_type_id = Model_Attachment::instance().all_type().Index(Properties);
+    return ref_type_id;
+}
+
 const wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
     Document json_doc;

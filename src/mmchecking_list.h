@@ -141,14 +141,14 @@ private:
         MENU_ON_NEW_TRANSACTION,
         MENU_ON_DUPLICATE_TRANSACTION,
 
-        MENU_ON_SET_UDC0, //Default colour
-        MENU_ON_SET_UDC1, //User defined colour 1
-        MENU_ON_SET_UDC2, //User defined colour 2
-        MENU_ON_SET_UDC3, //User defined colour 3
-        MENU_ON_SET_UDC4, //User defined colour 4
-        MENU_ON_SET_UDC5, //User defined colour 5
-        MENU_ON_SET_UDC6, //User defined colour 6
-        MENU_ON_SET_UDC7, //User defined colour 7
+        MENU_ON_SET_UDC0, //Default color
+        MENU_ON_SET_UDC1, //User defined color 1
+        MENU_ON_SET_UDC2, //User defined color 2
+        MENU_ON_SET_UDC3, //User defined color 3
+        MENU_ON_SET_UDC4, //User defined color 4
+        MENU_ON_SET_UDC5, //User defined color 5
+        MENU_ON_SET_UDC6, //User defined color 6
+        MENU_ON_SET_UDC7, //User defined color 7
 
         MENU_TREEPOPUP_NEW_WITHDRAWAL,
         MENU_TREEPOPUP_NEW_DEPOSIT,

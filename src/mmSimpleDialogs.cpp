@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
+Copyright (C) 2015, 2016, 2020, 2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmSimpleDialogs.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmex.h"
 #include "paths.h"
 #include "util.h"
@@ -26,6 +28,73 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Setting.h"
 
 #include <wx/richtooltip.h>
+
+
+wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
+EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
+EVT_BUTTON(wxID_ANY, mmColorButton::OnColourButton)
+wxEND_EVENT_TABLE()
+mmColorButton::mmColorButton(wxWindow* parent, wxWindowID id, wxSize size)
+    :wxButton(parent, id, "", wxDefaultPosition, size)
+    , m_color_value(-1)
+{
+}
+
+void mmColorButton::OnMenuSelected(wxCommandEvent& event)
+{
+    m_color_value = event.GetId() - wxID_HIGHEST;
+    SetBackgroundColour(getUDColour(m_color_value));
+    if (GetSize().GetX() > 40)
+    {
+        if (m_color_value <= 0) {
+            SetLabel(wxString::Format(_("Clear color")));
+        }
+        else {
+            SetLabel(wxString::Format(_("Color #%i"), m_color_value));
+        }
+    }
+    event.Skip();
+}
+
+void mmColorButton::OnColourButton(wxCommandEvent& event)
+{
+    wxMenu mainMenu;
+    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
+    mainMenu.Append(menuItem);
+
+    for (int i = 1; i <= 7; ++i)
+    {
+        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+#ifdef __WXMSW__
+        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
+#endif
+        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
+        wxMemoryDC memoryDC(bitmap);
+        wxRect rect(memoryDC.GetSize());
+
+        memoryDC.SetBackground(wxBrush(getUDColour(i)));
+        memoryDC.Clear();
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
+        memoryDC.SelectObject(wxNullBitmap);
+        menuItem->SetBitmap(bitmap);
+
+        mainMenu.Append(menuItem);
+    }
+
+    PopupMenu(&mainMenu);
+    event.Skip();
+}
+
+int mmColorButton::GetColorId() const
+{
+    return m_color_value;
+}
+
+void mmColorButton::SetBackgroundColor(int color_id)
+{
+    SetBackgroundColour(getUDColour(color_id));
+    m_color_value = color_id;
+}
 
 mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
     : wxChoice(parent, id)

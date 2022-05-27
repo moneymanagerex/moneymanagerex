@@ -424,16 +424,17 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     m_bdp->updateBottomPanelData(m_selected_row);
     bool item_active = (m_selected_row >= 0);
     wxMenu menu;
-    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence..."));
+    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, __(wxTRANSLATE("Enter next Occurrence")));
     menu.AppendSeparator();
     menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Recurring Transaction..."));
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction..."));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Recurring Transaction..."));
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_NEW, __(wxTRANSLATE("&New Recurring Transaction")));
+    menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Recurring Transaction")));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, __(wxTRANSLATE("D&uplicate Recurring Transaction")));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
+    menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Recurring Transaction")));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
     
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
@@ -930,16 +931,16 @@ void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
     if (m_selected_row == -1) return;
     int id = m_bdp->bills_[m_selected_row].BDID;
 
-    int user_colour_id = event.GetId();
-    user_colour_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_colour_id);
+    int user_color_id = event.GetId();
+    user_color_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_color_id);
 
     Model_Billsdeposits::instance().Savepoint();
 
     Model_Billsdeposits::Data* item = Model_Billsdeposits::instance().get(id);
     if (item)
     {
-        item->FOLLOWUPID = user_colour_id;
+        item->FOLLOWUPID = user_color_id;
         Model_Billsdeposits::instance().save(item);
     }
     Model_Billsdeposits::instance().ReleaseSavepoint();

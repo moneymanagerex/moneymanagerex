@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013-2021 Nikolay Akimov
+ Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -65,45 +65,33 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int id, bool isBudget, bool isReadOnly)
+mmTreeItemData::mmTreeItemData(int type, int id)
     : id_(id)
-    , isString_(false)
-    , isBudgetingNode_(isBudget)
-    , isReadOnly_(isReadOnly)
+    , type_(type)
     , report_(nullptr)
 {
-    if (isBudget)
-        stringData_ = (wxString::Format("item@Budget_%i", id));
-    else
-        stringData_ = (wxString::Format("%i", id));
+    stringData_ = (wxString::Format("%i", id));
 }
-mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
-    , isReadOnly_(false)
-    , stringData_("report@" + string)
+mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
+    : id_(-1)
+    , type_(mmTreeItemData::REPORT)
+    , stringData_(data)
     , report_(report)
 {
     const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
     const wxString& settings = Model_Infotable::instance().GetStringInfo(n, "");
     report_->initReportSettings(settings);
 }
-
-mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
-    , isReadOnly_(false)
-    , stringData_("report@" + report->getReportTitle())
+mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& data)
+    : id_(-1)
+    , type_(mmTreeItemData::GRM)
+    , stringData_(data)
     , report_(report)
 {}
-mmTreeItemData::mmTreeItemData(const wxString& string, bool isReadOnly)
-    : id_(0)
-    , isString_(true)
-    , isBudgetingNode_(false)
-    , isReadOnly_(isReadOnly)
-    , stringData_("item@" + string)
+mmTreeItemData::mmTreeItemData(int type, const wxString& data)
+    : id_(-1)
+    , type_(type)
+    , stringData_(data)
     , report_(nullptr)
 {}
 
@@ -424,17 +412,18 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     return false;
 }
 
-const wxDateTime mmParseISODate(const wxString& str)
+bool mmParseISODate(const wxString& in, wxDateTime& out)
 {
-    wxDateTime dt;
-    if (str.IsEmpty() || !dt.ParseDate(str))
-        dt = wxDateTime::Today();
-    int year = dt.GetYear();
+    if (in.IsEmpty() || !out.ParseDate(in)) {
+        out = wxDateTime::Today();
+        return false;
+    }
+    int year = out.GetYear();
     if (year < 50)
-        dt.Add(wxDateSpan::Years(2000));
+        out.Add(wxDateSpan::Years(2000));
     else if (year < 100)
-        dt.Add(wxDateSpan::Years(1900));
-    return dt;
+        out.Add(wxDateSpan::Years(1900));
+    return true;
 }
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
@@ -475,18 +464,22 @@ const std::map<wxString, wxString> &date_formats_regex()
     const wxString yy = "(([ ][0-9])|([0-9]{1,2}))";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     const wxString tail = "($|[^0-9])+";
+    const wxString head = "^";
 
     for (const auto entry : g_date_formats_map())
     {
         wxString regexp = entry.first;
+        regexp.Replace(".", R"([.])");
+        regexp.Replace("/", R"(\/)");
+        regexp.Replace(" ", R"(\s)");
         regexp.Replace("%Mon", mon);
         regexp.Replace("%w", week);
         regexp.Replace("%d", dd);
         regexp.Replace("%m", mm);
         regexp.Replace("%Y", yyyy);
         regexp.Replace("%y", yy);
-        regexp.Replace(".", R"(\.)");
         regexp.Append(tail);
+        regexp.Prepend(head);
         date_regex[entry.first] = regexp;
     }
 
@@ -589,7 +582,7 @@ const wxString mmPlatformType()
     return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
 }
 
-void windowsFreezeThaw(wxWindow* w)
+void DoWindowsFreezeThaw(wxWindow* w)
 {
 #ifdef __WXGTK__
     return;
@@ -1342,7 +1335,7 @@ mmDates::mmDates()
     , m_error_count(0)
 {
     m_date_parsing_stat.clear();
-    m_month_ago = m_today.Subtract(wxDateSpan::Months(1));
+    m_month_ago = wxDate::Today().Subtract(wxDateSpan::Months(1));
 }
 
 
@@ -1386,9 +1379,14 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
                 //Increase the date mask rating if parse date is recent (1 month ago) date
                 if (dtdt <= m_today && dtdt >= m_month_ago)
                     m_date_parsing_stat[mask] ++;
+
+                //Decrease the data mask rating if parsed date is in future
+                if (dtdt > m_today)
+                    m_date_parsing_stat[mask] -= 2;
             }
             else {
                 invalidMask.Add(mask);
+                m_date_parsing_stat.erase(mask);
             }
         }
 
@@ -1598,4 +1596,14 @@ wxString HTMLEncode(wxString input)
             output.Append(c);
     }
     return output;
+}
+
+const wxString __(const char* c)
+{
+    wxString mystring = wxGetTranslation(wxString::FromUTF8(c));
+    if (mystring.Contains("\t"))
+        mystring.Replace("\t", "...\t", false);
+    else
+        mystring.Append("...");
+    return mystring;
 }

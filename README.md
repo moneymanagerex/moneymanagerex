@@ -44,7 +44,8 @@ Download
 
 You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for Windows, macOS and Linux.
 
-[Download stats](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+
 
 
 Credits
@@ -79,7 +80,7 @@ This software uses the following open source packages:
 External public resources
 ================
 
-[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Instagram] | [crowdin.com] | [SourceForge] | [GitHub]
+[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [crowdin.com] | [SourceForge] | [GitHub]
 | [Docker images] | [Twitter] [![tw]][Twitter]
 
 Tips
@@ -90,7 +91,7 @@ Tips
 * You can download dozen of cool reports from [general report] repository
 * Star it if you feel it is helpful [![st]][stargazers]
 
-[website]: http://moneymanagerex.org "MMEX website"
+[website]: https://moneymanagerex.org "MMEX website"
 [AppVeyor]: https://ci.appveyor.com/project/moneymanagerex/moneymanagerex "AppVeyor CI"
 [Travis]: http://travis-ci.com/moneymanagerex/moneymanagerex "Travis CI"
 [OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
@@ -102,7 +103,7 @@ Tips
 [packagecloud]: https://packagecloud.io/moneymanagerex/ "packagecloud DEB & RPM repository"
 [CodeDocs]: https://codedocs.xyz/moneymanagerex/moneymanagerex/ "doxygen generated source code documentation"
 [Slack]: http://slack.moneymanagerex.org/
-[Forum]: http://forum.moneymanagerex.org
+[Forum]: https://forum.moneymanagerex.org
 [Wiki]: https://sourceforge.net/p/moneymanagerex/wiki/mmex
 [Facebook]: https://www.facebook.com/MoneyManagerEx
 [YouTube]: https://www.youtube.com/channel/UCAqVC0fOt6C5OnGv_DzE0wg
@@ -133,14 +134,13 @@ Tips
 [s]: https://img.shields.io/sourceforge/dt/moneymanagerex.svg?label=%20sf&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
 [gha]: https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg?label=%20gh&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
 [ghl]: https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total.svg?label=%20gh%20latest&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
-[w]: https://img.shields.io/website-up-down-brightgreen-red/http/www.moneymanagerex.org/.svg
+[w]: https://img.shields.io/website-up-down-brightgreen-red/https/moneymanagerex.org/.svg
 [p]: https://img.shields.io/website-up-down-brightgreen-red/https/packagecloud.io/moneymanagerex/.svg?label=deb%20rpm%20repo
 [stable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex.svg?label=stable
 [unstable]: https://img.shields.io/badge/unstable-v1.5.16--beta-yellow
 [st]: https://img.shields.io/github/stars/moneymanagerex/moneymanagerex.svg?&label=GitHub&style=social&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA50lEQVQoz5XSr0oFQRzF8c%2FuBd0iiCYviHi1GXwABYMugiaLmKw3iF18AetF8B1MNouDb6AICgbfwCqGKf4JrjIse132lGHOnC%2FMnN%2FQoBjMxyDEYN8Y5WP8IbYwisFMF%2FCkWuew2QrGYCIGI%2FQS%2BzQGs3Uwi8EOjrFReZMNN4nIcI9bnGUxeMOUblrJsYevDtAlXrLqbUc4%2F6esX90Upe2%2FcorSBQ5boGvsNrX63AK%2B4rMJXG8Bl9IxpeBaLfhY2y%2Bm%2Bbx2AA84KEqrWMYVPtBP81nya%2FpYwFNRek%2F8HgaYxl1R%2FozuGyXRMhoIJiaoAAAAAElFTkSuQmCC
 [tw]: https://img.shields.io/twitter/follow/MoneyManagerEx.svg?style=social&label=follow
 [Buy us a Cofee]: https://cash.me/$guanlisheng/1
-[Instagram]: https://www.instagram.com/moneymanagerex/
 [Donate via PayPal]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 [crowdin.com]: https://crowdin.com/project/moneymanagerex
 
