@@ -136,7 +136,7 @@ void mmCustomFieldEditDialog::CreateControls()
         if (type.first != Model_Attachment::BILLSDEPOSIT)
             m_itemReference->Append(wxGetTranslation(type.second), new wxStringClientData(type.second));
     }
-    //mmToolTip(m_itemReference, _("Select reference of custom field"));
+    mmToolTip(m_itemReference, _("Select the item that the custom field is associated with"));
     itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
     m_itemReference->Enable(false);
 
