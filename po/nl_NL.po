@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-27 18:28+0300\n"
-"PO-Revision-Date: 2022-05-27 15:36\n"
+"PO-Revision-Date: 2022-05-27 16:45\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1896,7 +1896,7 @@ msgstr "Kenmerk van"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Selecteer het item waaraan het aangepaste veld is gekoppeld"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -4126,15 +4126,15 @@ msgstr "Help"
 
 #: mmframe.cpp:1192
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Er bestaat al een instelling met deze naam"
 
 #: mmframe.cpp:1194
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Geef een nieuwe naam op voor deze instelling"
 
 #: mmframe.cpp:1196
 msgid "Name in use"
-msgstr ""
+msgstr "Naam in gebruik"
 
 #: mmframe.cpp:1253
 msgid "Do you really want to delete the account?"
@@ -4182,7 +4182,7 @@ msgstr "Bewerk filter"
 
 #: mmframe.cpp:1331
 msgid "&Rename Filter"
-msgstr ""
+msgstr "&Filternaam wijzigen"
 
 #: mmframe.cpp:1332
 msgid "&Delete Filter"
