@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-27 18:28+0300\n"
-"PO-Revision-Date: 2022-05-27 15:37\n"
+"PO-Revision-Date: 2022-05-27 15:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4128,11 +4128,11 @@ msgstr ""
 
 #: mmframe.cpp:1194
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Por favor, especifique un nuevo nombre para la configuración"
 
 #: mmframe.cpp:1196
 msgid "Name in use"
-msgstr ""
+msgstr "Nombre en uso"
 
 #: mmframe.cpp:1253
 msgid "Do you really want to delete the account?"
@@ -4180,7 +4180,7 @@ msgstr "&Editar filtro"
 
 #: mmframe.cpp:1331
 msgid "&Rename Filter"
-msgstr ""
+msgstr "&Renombrar filtro"
 
 #: mmframe.cpp:1332
 msgid "&Delete Filter"
