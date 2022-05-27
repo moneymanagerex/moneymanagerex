@@ -570,7 +570,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
 {
     const wxString& def_view = Model_Setting::instance().ViewTransactions();
     m_currentView = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
-    if (m_currentView < 0 || m_currentView >= static_cast<int>(menu_labels().size()))
+    if (m_currentView < 0 || m_currentView >= static_cast<int>(menu_labels().size() - 1))
         m_currentView = menu_labels().Index(VIEW_TRANS_ALL_STR);
 
 }
@@ -652,11 +652,15 @@ void mmCheckingPanel::initFilterSettings()
     }
     delete date_range;
 
-    const auto item = menu_labels()[m_currentView];
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
+    auto item = menu_labels()[m_currentView];
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_statTextTransFilter->SetLabelText(label);
+
+    if (m_currentView == MENU_VIEW_FILTER_DIALOG)
+        m_currentView = MENU_VIEW_ALLTRANSACTIONS;
+    item = menu_labels()[m_currentView];
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
