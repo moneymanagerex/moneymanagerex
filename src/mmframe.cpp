@@ -1189,7 +1189,7 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
             nameOK = true;
         else
         {
-            wxString msgStr = wxString() << _("A settimg with this name already exists") << "\n"
+            wxString msgStr = wxString() << _("A setting with this name already exists") << "\n"
             << "\n"
             << _("Please specify a new name for the setting") << "\n";
 
