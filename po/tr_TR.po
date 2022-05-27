@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-27 13:09+0300\n"
-"PO-Revision-Date: 2022-05-27 10:12\n"
+"POT-Creation-Date: 2022-05-27 13:11+0300\n"
+"PO-Revision-Date: 2022-05-27 10:18\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1892,6 +1892,10 @@ msgstr "Özel Alan Ayrıntıları"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
+msgstr ""
+
+#: customfieldeditdialog.cpp:139
+msgid "Select the item that the custom field is associated with"
 msgstr ""
 
 #: customfieldeditdialog.cpp:147
