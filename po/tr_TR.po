@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-27 18:24+0300\n"
-"PO-Revision-Date: 2022-05-27 15:29\n"
+"POT-Creation-Date: 2022-05-27 18:28+0300\n"
+"PO-Revision-Date: 2022-05-27 15:36\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -4118,7 +4118,7 @@ msgid "Help"
 msgstr "Yardım"
 
 #: mmframe.cpp:1192
-msgid "A settimg with this name already exists"
+msgid "A setting with this name already exists"
 msgstr ""
 
 #: mmframe.cpp:1194
