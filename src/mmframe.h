@@ -213,6 +213,7 @@ private:
     void OnReallocateAccount(wxCommandEvent& event);
 
     void OnPopupEditFilter(wxCommandEvent& event);
+    void OnPopupRenameFilter(wxCommandEvent& event);
     void OnPopupDeleteFilter(wxCommandEvent& event);   
 
 private:
@@ -357,6 +358,7 @@ private:
 
         // Transaction Report Filter
         MENU_TREEPOPUP_FILTER_EDIT,
+        MENU_TREEPOPUP_FILTER_RENAME,
         MENU_TREEPOPUP_FILTER_DELETE,
 
         //
