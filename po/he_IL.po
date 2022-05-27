@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-05-27 13:11+0300\n"
-"PO-Revision-Date: 2022-05-27 10:19\n"
+"POT-Creation-Date: 2022-05-27 18:24+0300\n"
+"PO-Revision-Date: 2022-05-27 15:30\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "אִפְשׁוּר שליחת נתוני שימוש אנונימיים �
 msgid "&OK "
 msgstr "&אישור "
 
-#: accountdialog.cpp:111 mmframe.cpp:1504
+#: accountdialog.cpp:111 mmframe.cpp:1558
 msgid "Edit Account"
 msgstr "עריכת חשבון"
 
@@ -281,7 +281,7 @@ msgstr "נא להזין מען URL תקין"
 msgid "Invalid URL"
 msgstr "מען URL לא תקין"
 
-#: accountdialog.h:37 mmframe.cpp:1501 mmframe.cpp:1742
+#: accountdialog.h:37 mmframe.cpp:1555 mmframe.cpp:1796
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
 msgid "New Account"
 msgstr "חשבון חדש"
@@ -310,7 +310,7 @@ msgstr "פתיחת מסד נתונים קיים,  קובץ עם סיומת (mmb.
 msgid "Change Language"
 msgstr "החלפת שפה"
 
-#: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1473
+#: appstartdialog.cpp:115 appstartdialog.cpp:218 mmframe.cpp:1527
 #: optionsettingsgeneral.cpp:94
 msgid "Change language used for MMEX GUI"
 msgstr "החלפת שפה בממשק משתמש MMEX"
@@ -346,7 +346,7 @@ msgstr "&יציאה "
 msgid "Open the previously opened database : %s"
 msgstr "פתיחת מסד הנתונים שהיה בשימוש לאחרונה: %s"
 
-#: appstartdialog.cpp:205 mmframe.cpp:1478 mmframe.cpp:2682
+#: appstartdialog.cpp:205 mmframe.cpp:1532 mmframe.cpp:2736
 #: optionsettingsgeneral.cpp:84 optionsettingsgeneral.cpp:341
 msgid "system default"
 msgstr "ברירת מחדל של המערכת"
@@ -355,11 +355,11 @@ msgstr "ברירת מחדל של המערכת"
 msgid "Language"
 msgstr "שפה"
 
-#: appstartdialog.cpp:225 mmframe.cpp:3407 optionsettingsgeneral.cpp:331
+#: appstartdialog.cpp:225 mmframe.cpp:3461 optionsettingsgeneral.cpp:331
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "שפת היישום השתנתה. השינוי ייכנס לתוקף באתחול הבא של היישום."
 
-#: appstartdialog.cpp:227 mmframe.cpp:3409 optionsettingsgeneral.cpp:333
+#: appstartdialog.cpp:227 mmframe.cpp:3463 optionsettingsgeneral.cpp:333
 msgid "Language change"
 msgstr "שינוי שפה"
 
@@ -529,7 +529,7 @@ msgid "&Delete Asset"
 msgstr "&מחיקת נכס"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
-#: mmframe.cpp:1296 mmframe.cpp:1316 payeedialog.cpp:388 stocks_list.cpp:146
+#: mmframe.cpp:1350 mmframe.cpp:1370 payeedialog.cpp:388 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr "&ניהול צרופות"
 
@@ -546,15 +546,15 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון כל שנה בשיעור מסוים, או, לא לשנות ערך כלל. סך־כל ערכם של הנכסים מתווסף לשווי הפיננסי הכולל."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:724
-#: general_report_manager.cpp:1001 mmframe.cpp:482 mmframe.cpp:754
-#: mmframe.cpp:1566 mmframe.cpp:3045 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
+#: general_report_manager.cpp:1001 mmframe.cpp:483 mmframe.cpp:755
+#: mmframe.cpp:1620 mmframe.cpp:3099 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "נכסים"
 
 #: assetspanel.cpp:430 assetspanel.cpp:706 assetspanel.cpp:723
 #: filtertransdialog.cpp:501 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
-#: mmframe.cpp:1340
+#: mmframe.cpp:1394
 msgid "All"
 msgstr "כולם"
 
@@ -1177,7 +1177,7 @@ msgstr "ערך לא תקין"
 
 #: billsdepositsdialog.cpp:1432 images_list.cpp:512
 #: import_export/univcsvdialog.cpp:1159 maincurrencydialog.cpp:470
-#: mmframe.cpp:3372 optionsettingsgeneral.cpp:288
+#: mmframe.cpp:3426 optionsettingsgeneral.cpp:288
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:327 stockspanel.cpp:328
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
@@ -1262,8 +1262,8 @@ msgstr "MMEX מאפשרת הגדרת תשלומים קבועים כתנועות 
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "עצה:  ניתן להגדיר תנועות אלו שיפעלו אוטומטית – תהיה אפשרות להתאים את כל הערכים בתנועה  בתאריך היעד."
 
-#: billsdepositspanel.cpp:245 billsdepositspanel.cpp:975 mmframe.cpp:758
-#: mmframe.cpp:2836 mmhomepagepanel.cpp:230
+#: billsdepositspanel.cpp:245 billsdepositspanel.cpp:975 mmframe.cpp:759
+#: mmframe.cpp:2890 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
 msgstr "תנועות מחזרית"
 
@@ -1578,11 +1578,11 @@ msgstr "הזנת שנת בסיס לתקציב."
 msgid "Budget Year already exists"
 msgstr "שנת תקציב קיימת"
 
-#: categdialog.cpp:106 mmframe.cpp:1529 mmframe.cpp:1747
+#: categdialog.cpp:106 mmframe.cpp:1583 mmframe.cpp:1801
 msgid "Organize Categories"
 msgstr "ניהול "
 
-#: categdialog.cpp:207 mmframe.cpp:1542
+#: categdialog.cpp:207 mmframe.cpp:1596
 msgid "Reassign all categories to another category"
 msgstr "הקצאה מחודשת של כל סוגי־האב לסוג־אב אחר"
 
@@ -1709,16 +1709,16 @@ msgstr "עריכת סוג־אב"
 msgid "Organise Categories: Editing Error"
 msgstr "ניהול : שגיאת עריכה"
 
-#: categdialog.cpp:617 mmframe.cpp:3303
+#: categdialog.cpp:617 mmframe.cpp:3357
 msgid "Category Relocation Completed."
 msgstr "העברת סוג־אב הושלמה."
 
-#: categdialog.cpp:618 mmframe.cpp:3304 mmframe.cpp:3319 payeedialog.cpp:333
+#: categdialog.cpp:618 mmframe.cpp:3358 mmframe.cpp:3373 payeedialog.cpp:333
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "רשומות עודכנו במסד הנתונים:  %i"
 
-#: categdialog.cpp:620 mmframe.cpp:3306
+#: categdialog.cpp:620 mmframe.cpp:3360
 msgid "Category Relocation Result"
 msgstr "תוצאת העברת סוג־אב"
 
@@ -1806,16 +1806,16 @@ msgstr "הצגת 'ממועד' דף החשבון"
 msgid "ALL"
 msgstr "הכל"
 
-#: constants.cpp:192 mmframe.cpp:1342 mmframe.cpp:1740
+#: constants.cpp:192 mmframe.cpp:1396 mmframe.cpp:1794
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "פעילים"
 
-#: constants.cpp:193 mmframe.cpp:1343 model/Model_Account.cpp:27
+#: constants.cpp:193 mmframe.cpp:1397 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "לא פעיל"
 
-#: constants.cpp:194 mmframe.cpp:1341
+#: constants.cpp:194 mmframe.cpp:1395
 msgid "Favorites"
 msgstr "מועדפים"
 
@@ -1977,8 +1977,8 @@ msgstr "נא לבחור ערך לייצוג הפריט בלוח"
 msgid "Changing field type will delete all content!"
 msgstr "שינוי סוג שדה תמחק את כל התוכן!"
 
-#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2124
-#: mmframe.cpp:2143
+#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2178
+#: mmframe.cpp:2197
 msgid "Do you want to proceed?"
 msgstr "האם להמשיך?"
 
@@ -2368,7 +2368,7 @@ msgstr "הוזנה ססמה שגויה לקובץ מוצפן\n"
 msgid "Error: %s"
 msgstr "שגיאה: %s"
 
-#: dbwrapper.cpp:85 mmframe.cpp:1838
+#: dbwrapper.cpp:85 mmframe.cpp:1892
 msgid "Opening MMEX Database - Error"
 msgstr "שגיאה בפתיחת מסד נתוני MMEX"
 
@@ -2515,15 +2515,15 @@ msgstr "שם זה אינו תואם לשם מוטב כלשהו.\n"
 msgid "Hide Report Columns"
 msgstr "הסתר עמודות דוח"
 
-#: filtertransdialog.cpp:1201 mmframe.cpp:1155
+#: filtertransdialog.cpp:1201 mmframe.cpp:1156
 msgid "The selected item will be deleted"
 msgstr "הפריטים שנבחרו יימחקו"
 
-#: filtertransdialog.cpp:1202 mmframe.cpp:1156
+#: filtertransdialog.cpp:1202 mmframe.cpp:1157
 msgid "Do you wish to continue?"
 msgstr "האם להמשיך?"
 
-#: filtertransdialog.cpp:1203 mmframe.cpp:1157
+#: filtertransdialog.cpp:1203 mmframe.cpp:1158
 msgid "Settings item deletion"
 msgstr "הגדרות מחיקת פריט"
 
@@ -2560,11 +2560,11 @@ msgstr "סכום מזערי"
 msgid "Amount Max."
 msgstr "סכום מירבי"
 
-#: filtertransdialog.cpp:1741
+#: filtertransdialog.cpp:1741 mmframe.cpp:1185
 msgid "Setting Name"
 msgstr "שם הגדרה"
 
-#: filtertransdialog.cpp:1741
+#: filtertransdialog.cpp:1741 mmframe.cpp:1185
 msgid "Please Enter"
 msgstr "נא להזין"
 
@@ -2600,13 +2600,13 @@ msgstr "בחירת חשבונות"
 msgid "General Reports Manager"
 msgstr "מנהל דוחות כללי"
 
-#: general_report_manager.cpp:291 mmframe.cpp:772 mmframe.cpp:2628
+#: general_report_manager.cpp:291 mmframe.cpp:773 mmframe.cpp:2682
 #: reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr "דוחות"
 
 #: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:430
-#: mmframe.cpp:1245 mmframe.cpp:1402
+#: mmframe.cpp:1298 mmframe.cpp:1456
 msgid "&Import"
 msgstr "&יבוא"
 
@@ -2615,7 +2615,7 @@ msgid "Locate and load a report file."
 msgstr "אתר וטען קובץ דוח."
 
 #: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:432
-#: mmframe.cpp:1252 mmframe.cpp:1411
+#: mmframe.cpp:1305 mmframe.cpp:1465
 msgid "&Export"
 msgstr "&יצוא"
 
@@ -2728,7 +2728,7 @@ msgid "Enter the name for the report"
 msgstr "הזנת שם הדוח"
 
 #: general_report_manager.cpp:833 general_report_manager.cpp:981
-#: mmframe.cpp:777 mmframe.cpp:1584 mmframe.cpp:1753
+#: mmframe.cpp:778 mmframe.cpp:1638 mmframe.cpp:1807
 msgid "General Report Manager"
 msgstr "מנהל דוחות כללי"
 
@@ -2817,7 +2817,7 @@ msgid "Unable to open file."
 msgstr "לא ניתן לפתוח קובץ."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:993 mmframe.cpp:2286 mmframe.cpp:2305
+#: import_export/univcsvdialog.cpp:993 mmframe.cpp:2340 mmframe.cpp:2359
 msgid "Universal CSV Import"
 msgstr "אוניברסלי  CSV יבוא"
 
@@ -2891,8 +2891,8 @@ msgstr "JSON"
 msgid "CSV"
 msgstr "CSV"
 
-#: import_export/qif_export.cpp:143 mmframe.cpp:3136 mmframe.cpp:3140
-#: mmframe.cpp:3159 mmframe.cpp:3163
+#: import_export/qif_export.cpp:143 mmframe.cpp:3190 mmframe.cpp:3194
+#: mmframe.cpp:3213 mmframe.cpp:3217
 msgid "Accounts"
 msgstr "חשבונות"
 
@@ -2991,7 +2991,7 @@ msgstr "מספר תנועות שיוצאו: %zu\n"
 msgid "Number of accounts exported: %zu"
 msgstr "מספר חשבונות שיוצאו: %zu"
 
-#: import_export/qif_export.cpp:639 mmframe.cpp:1408
+#: import_export/qif_export.cpp:639 mmframe.cpp:1462
 msgid "Export to QIF"
 msgstr "יצוא ל QIF"
 
@@ -3987,7 +3987,7 @@ msgstr "בחירת בחשבון היעד "
 msgid "Recurring Transaction saved."
 msgstr "תנועות מחזוריות נשמרו."
 
-#: mmcheckingpanel.cpp:333 mmframe.cpp:1745 transdialog.cpp:189
+#: mmcheckingpanel.cpp:333 mmframe.cpp:1799 transdialog.cpp:189
 msgid "New Transaction"
 msgstr "תנועה חדשה"
 
@@ -4055,22 +4055,22 @@ msgstr "ימים שבין התנועות שנבחרו: %d"
 msgid "Custom fields"
 msgstr "שדות מותאם אישית"
 
-#: mmcustomdata.cpp:311
+#: mmcustomdata.cpp:321
 msgid "Please select"
 msgstr "בחירת"
 
-#: mmcustomdata.cpp:311
+#: mmcustomdata.cpp:321
 msgid "Multi Choice"
 msgstr "בחירה מרובה"
 
-#: mmcustomdata.cpp:777
+#: mmcustomdata.cpp:787
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
 msgstr "לא ניתן לשמור שדה מותאם אישית \"%s\":\n"
 "ערך של \"%s\" אינו תואם לכללי האימות RegEx של \"%s\""
 
-#: mmcustomdata.cpp:780
+#: mmcustomdata.cpp:790
 msgid "CustomField validation error"
 msgstr "שגיאת אימות בשדה מותאם אישית"
 
@@ -4080,747 +4080,763 @@ msgid "Fatal error occured.\n"
 msgstr "אירעה שגיאה חמורה. \n"
 "היישום יסגרסגר."
 
-#: mmframe.cpp:274
+#: mmframe.cpp:275
 msgid "Navigation"
 msgstr "סרגל ניווט"
 
-#: mmframe.cpp:275
+#: mmframe.cpp:276
 msgid "Toolbar"
 msgstr "סרגל כלים"
 
-#: mmframe.cpp:475 mmframe.cpp:722
+#: mmframe.cpp:476 mmframe.cpp:723
 msgid "Favourites"
 msgstr "מועדפים"
 
-#: mmframe.cpp:476 mmframe.cpp:726 mmhomepage.cpp:632 reports/summary.cpp:287
+#: mmframe.cpp:477 mmframe.cpp:727 mmhomepage.cpp:632 reports/summary.cpp:287
 #: reports/summary.cpp:319
 msgid "Bank Accounts"
 msgstr "חשבונות בנק"
 
-#: mmframe.cpp:477 mmframe.cpp:730 mmhomepage.cpp:633 reports/summary.cpp:288
+#: mmframe.cpp:478 mmframe.cpp:731 mmhomepage.cpp:633 reports/summary.cpp:288
 #: reports/summary.cpp:320
 msgid "Credit Card Accounts"
 msgstr "כרטיסי אשראי"
 
-#: mmframe.cpp:478 mmframe.cpp:742 mmhomepage.cpp:635 reports/summary.cpp:290
+#: mmframe.cpp:479 mmframe.cpp:743 mmhomepage.cpp:635 reports/summary.cpp:290
 #: reports/summary.cpp:322
 msgid "Term Accounts"
 msgstr "חשבונות חיסכון"
 
-#: mmframe.cpp:479 mmframe.cpp:746
+#: mmframe.cpp:480 mmframe.cpp:747
 msgid "Stock Portfolios"
 msgstr "תיק ניירות ערך"
 
-#: mmframe.cpp:480 mmframe.cpp:734 mmhomepage.cpp:631
+#: mmframe.cpp:481 mmframe.cpp:735 mmhomepage.cpp:631
 msgid "Cash Accounts"
 msgstr "מזומנים"
 
-#: mmframe.cpp:481 mmframe.cpp:738 mmhomepage.cpp:634 reports/summary.cpp:289
+#: mmframe.cpp:482 mmframe.cpp:739 mmhomepage.cpp:634 reports/summary.cpp:289
 #: reports/summary.cpp:321
 msgid "Loan Accounts"
 msgstr "חשבונות הלוואה"
 
-#: mmframe.cpp:513
+#: mmframe.cpp:514
 msgid "Auto Repeat Transactions"
 msgstr "תנועות מחזורית אוטומטית"
 
-#: mmframe.cpp:713 mmframe.cpp:1743
+#: mmframe.cpp:714 mmframe.cpp:1797
 msgid "Home Page"
 msgstr "עמוד הבית"
 
-#: mmframe.cpp:718
+#: mmframe.cpp:719
 msgid "All Transactions"
 msgstr "כל התנועות"
 
-#: mmframe.cpp:750 mmhomepage.cpp:638 reports/summary.cpp:292
+#: mmframe.cpp:751 mmhomepage.cpp:638 reports/summary.cpp:292
 #: reports/summary.cpp:324
 msgid "Share Accounts"
 msgstr "חשבונות  ניירות ערך"
 
-#: mmframe.cpp:762 mmframe.cpp:1558 mmframe.cpp:2507
+#: mmframe.cpp:763 mmframe.cpp:1612 mmframe.cpp:2561
 msgid "Budget Setup"
 msgstr "הגדרת תקציב"
 
-#: mmframe.cpp:767 mmframe.cpp:1182 mmframe.cpp:2488
+#: mmframe.cpp:768 mmframe.cpp:1218 mmframe.cpp:1235 mmframe.cpp:2542
 msgid "Transaction Report"
 msgstr "דוח תנועות"
 
-#: mmframe.cpp:784 mmframe.cpp:2578 mmhelppanel.cpp:69
+#: mmframe.cpp:785 mmframe.cpp:2632 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "עזרה"
 
-#: mmframe.cpp:1200
+#: mmframe.cpp:1192
+msgid "A settimg with this name already exists"
+msgstr ""
+
+#: mmframe.cpp:1194
+msgid "Please specify a new name for the setting"
+msgstr ""
+
+#: mmframe.cpp:1196
+msgid "Name in use"
+msgstr ""
+
+#: mmframe.cpp:1253
 msgid "Do you really want to delete the account?"
 msgstr "האם למחוק את החשבון?"
 
-#: mmframe.cpp:1207 mmframe.cpp:3171
+#: mmframe.cpp:1260 mmframe.cpp:3225
 msgid "Confirm Account Deletion"
 msgstr "אישור מחיקת חשבון"
 
-#: mmframe.cpp:1227
+#: mmframe.cpp:1280
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX נפתחה ללא מסד נתונים פעיל."
 
-#: mmframe.cpp:1228
+#: mmframe.cpp:1281
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: שגיאת תפריט צץ"
 
-#: mmframe.cpp:1242 mmframe.cpp:1247 mmframe.cpp:1398 mmframe.cpp:1405
+#: mmframe.cpp:1295 mmframe.cpp:1300 mmframe.cpp:1452 mmframe.cpp:1459
 msgid "&CSV Files"
 msgstr "&קובצי CSV"
 
-#: mmframe.cpp:1243 mmframe.cpp:1249 mmframe.cpp:1399 mmframe.cpp:1407
+#: mmframe.cpp:1296 mmframe.cpp:1302 mmframe.cpp:1453 mmframe.cpp:1461
 msgid "&XML Files"
 msgstr "&קובצי XML"
 
-#: mmframe.cpp:1243 mmframe.cpp:1399
+#: mmframe.cpp:1296 mmframe.cpp:1453
 msgid "Import from XML (Excel format)"
 msgstr "ייברא מ XML (תבנית אקסל)"
 
-#: mmframe.cpp:1244 mmframe.cpp:1250 mmframe.cpp:1400 mmframe.cpp:1408
+#: mmframe.cpp:1297 mmframe.cpp:1303 mmframe.cpp:1454 mmframe.cpp:1462
 msgid "&QIF Files"
 msgstr "&קובצי QIF"
 
-#: mmframe.cpp:1248 mmframe.cpp:1406
+#: mmframe.cpp:1301 mmframe.cpp:1460
 msgid "&MMEX CSV Files"
 msgstr "&קובצי &CSV MMEX"
 
-#: mmframe.cpp:1251 mmframe.cpp:1409
+#: mmframe.cpp:1304 mmframe.cpp:1463
 msgid "&JSON Files"
 msgstr "קובצי JSON&"
 
-#: mmframe.cpp:1277
+#: mmframe.cpp:1330
 msgid "&Edit Filter"
 msgstr ""
 
-#: mmframe.cpp:1278
+#: mmframe.cpp:1331
+msgid "&Rename Filter"
+msgstr ""
+
+#: mmframe.cpp:1332
 msgid "&Delete Filter"
 msgstr ""
 
-#: mmframe.cpp:1292 mmframe.cpp:1310 mmframe.cpp:1330 mmframe.cpp:1504
+#: mmframe.cpp:1346 mmframe.cpp:1364 mmframe.cpp:1384 mmframe.cpp:1558
 msgid "&Edit Account"
 msgstr "ע&ריכת חשבון"
 
-#: mmframe.cpp:1293 mmframe.cpp:1313 mmframe.cpp:1333 mmframe.cpp:1510
+#: mmframe.cpp:1347 mmframe.cpp:1367 mmframe.cpp:1387 mmframe.cpp:1564
 msgid "&Delete Account"
 msgstr "מחי&קת חשבון"
 
-#: mmframe.cpp:1295 mmframe.cpp:1315
+#: mmframe.cpp:1349 mmframe.cpp:1369
 msgid "&Launch Account Website"
 msgstr "פתיחת א&תר החשבון"
 
-#: mmframe.cpp:1311 mmframe.cpp:1507
+#: mmframe.cpp:1365 mmframe.cpp:1561
 msgid "&Reallocate Account"
 msgstr "&שינוי סוג חשבון"
 
-#: mmframe.cpp:1329 mmframe.cpp:1501
+#: mmframe.cpp:1383 mmframe.cpp:1555
 msgid "New &Account"
 msgstr "חשבון ח&דש"
 
-#: mmframe.cpp:1331
+#: mmframe.cpp:1385
 msgid "Account &List (Home)"
 msgstr "רשימת חש&בונות - בית"
 
-#: mmframe.cpp:1344 optionsettingsview.cpp:64
+#: mmframe.cpp:1398 optionsettingsview.cpp:64
 msgid "Accounts Visible"
 msgstr "חשבונות גלויים"
 
-#: mmframe.cpp:1383
+#: mmframe.cpp:1437
 msgid "&New Database"
 msgstr "&מסד נתונים חדש"
 
-#: mmframe.cpp:1383 mmframe.cpp:1739 wizard_newdb.cpp:124
+#: mmframe.cpp:1437 mmframe.cpp:1793 wizard_newdb.cpp:124
 msgid "New Database"
 msgstr "מסד נתונים חדש"
 
-#: mmframe.cpp:1384
+#: mmframe.cpp:1438
 msgid "&Open Database\tCtrl-O"
 msgstr "פ&תיחת מסד נתונים\tCtrl-O"
 
-#: mmframe.cpp:1384 mmframe.cpp:1740
+#: mmframe.cpp:1438 mmframe.cpp:1794
 msgid "Open Database"
 msgstr "פתיחת מסד נתונים"
 
-#: mmframe.cpp:1385
+#: mmframe.cpp:1439
 msgid "Save Database &As"
 msgstr "שמירת &מסד נתונים בשם"
 
-#: mmframe.cpp:1385
+#: mmframe.cpp:1439
 msgid "Save Database As"
 msgstr "שמור מסד נתונים כ"
 
-#: mmframe.cpp:1392
+#: mmframe.cpp:1446
 msgid "&Recent Files"
 msgstr "&קבצים אחרונים"
 
-#: mmframe.cpp:1393
+#: mmframe.cpp:1447
 msgid "&Clear Recent Files"
 msgstr "&ניקוי רשימת קבצים אחרונים"
 
-#: mmframe.cpp:1398
+#: mmframe.cpp:1452
 msgid "Import from any CSV file"
 msgstr "יבוא מקובץ CSV כלשהו"
 
-#: mmframe.cpp:1400
+#: mmframe.cpp:1454
 msgid "Import from QIF"
 msgstr "יבוא מ QIF"
 
-#: mmframe.cpp:1401
+#: mmframe.cpp:1455
 msgid "&WebApp"
 msgstr "יישומון &מרשתת"
 
-#: mmframe.cpp:1401
+#: mmframe.cpp:1455
 msgid "Import from WebApp"
 msgstr "יבוא מיישומון מרשתת"
 
-#: mmframe.cpp:1405
+#: mmframe.cpp:1459
 msgid "Export to CSV"
 msgstr "יצוא ל CAV"
 
-#: mmframe.cpp:1406
+#: mmframe.cpp:1460
 msgid "Export to fixed CSV"
 msgstr "יצוא ל־CSV קבוע"
 
-#: mmframe.cpp:1407
+#: mmframe.cpp:1461
 msgid "Export to XML"
 msgstr "יצוא ל XML"
 
-#: mmframe.cpp:1409
+#: mmframe.cpp:1463
 msgid "Export to JSON"
 msgstr "יצוא ל־JSON"
 
-#: mmframe.cpp:1410
+#: mmframe.cpp:1464
 msgid "&HTML Files"
 msgstr "קובצי HTML&"
 
-#: mmframe.cpp:1410
+#: mmframe.cpp:1464
 msgid "Export to HTML"
 msgstr "יצוא ל HTML"
 
-#: mmframe.cpp:1416 mmframe.cpp:1776
+#: mmframe.cpp:1470 mmframe.cpp:1830
 msgid "&Print"
 msgstr "&הדפסה"
 
-#: mmframe.cpp:1416 mmframe.cpp:1776
+#: mmframe.cpp:1470 mmframe.cpp:1830
 msgid "Print current view"
 msgstr "הדפסת תצוגה נוכחית"
 
-#: mmframe.cpp:1422
+#: mmframe.cpp:1476
 msgid "E&xit\tAlt-X"
 msgstr "י&ציאה Alt-X"
 
-#: mmframe.cpp:1422
+#: mmframe.cpp:1476
 msgid "Quit this program"
 msgstr "יציאה תוכנית זו"
 
-#: mmframe.cpp:1428
+#: mmframe.cpp:1482
 msgid "&Toolbar"
 msgstr "ס&רגל כלים"
 
-#: mmframe.cpp:1428
+#: mmframe.cpp:1482
 msgid "Show/Hide the toolbar"
 msgstr "הצגת/הסתרת סרגל כלים"
 
-#: mmframe.cpp:1430
+#: mmframe.cpp:1484
 msgid "&Navigation"
 msgstr "&סרגל ניווט"
 
-#: mmframe.cpp:1430
+#: mmframe.cpp:1484
 msgid "Show/Hide the Navigation tree control"
 msgstr "הצגת/הסתרת חלון הניווט"
 
-#: mmframe.cpp:1432
+#: mmframe.cpp:1486
 msgid "&Display Share Accounts"
 msgstr "&מצג חשבונות ניירות ערך"
 
-#: mmframe.cpp:1432
+#: mmframe.cpp:1486
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr "הצגת/הסתרת חשבונות ניירות ערך בסרגל הניווט"
 
-#: mmframe.cpp:1435
+#: mmframe.cpp:1489
 msgid "Budgets: As Financial &Years"
 msgstr "תקציב: כשנת &כספים"
 
-#: mmframe.cpp:1435
+#: mmframe.cpp:1489
 msgid "Display Budgets in Financial Year Format"
 msgstr "מצג תקציב בתבנית שנת כספים"
 
-#: mmframe.cpp:1437
+#: mmframe.cpp:1491
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "תקציב: &כלול תנועות 'העברה' בסיכומים"
 
-#: mmframe.cpp:1437
+#: mmframe.cpp:1491
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "כל תנועות מסוג העברה ביתרות התקציב"
 
-#: mmframe.cpp:1439
+#: mmframe.cpp:1493
 msgid "Budget Category Report: with &Summaries"
 msgstr "דוח תקציב לפי סוג־אב: עם &סיכומים"
 
-#: mmframe.cpp:1439
+#: mmframe.cpp:1493
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "הכללת תמצית  בדוח תקציב על פי "
 
-#: mmframe.cpp:1441
+#: mmframe.cpp:1495
 msgid "Ignore F&uture Transactions"
 msgstr "החרגת תנועות ע&תידיות"
 
-#: mmframe.cpp:1441
+#: mmframe.cpp:1495
 msgid "Ignore Future transactions"
 msgstr "התעלם מתנועות עתידיות"
 
-#: mmframe.cpp:1443 optionsettingsview.cpp:99
+#: mmframe.cpp:1497 optionsettingsview.cpp:99
 msgid "Show Tooltips"
 msgstr "הצגת רמז־צץ"
 
-#: mmframe.cpp:1445 optionsettingsview.cpp:105
+#: mmframe.cpp:1499 optionsettingsview.cpp:105
 msgid "Show Money Tips"
 msgstr "הצגת עצות לניהול פיננסי תקין"
 
-#: mmframe.cpp:1465
+#: mmframe.cpp:1519
 msgid "Toggle &Fullscreen\tShift+F11"
 msgstr "מחלף מסך מלא Shift+F11"
 
-#: mmframe.cpp:1466 mmframe.cpp:1773
+#: mmframe.cpp:1520 mmframe.cpp:1827
 msgid "Toggle Fullscreen"
 msgstr "עבור/חזור מסך מלא"
 
-#: mmframe.cpp:1472
+#: mmframe.cpp:1526
 msgid "Switch Application &Language"
 msgstr "החלפת שפת &ישום"
 
-#: mmframe.cpp:1498
+#: mmframe.cpp:1552
 msgid "&Home Page"
 msgstr "&עמוד הבית"
 
-#: mmframe.cpp:1498 mmframe.cpp:1743
+#: mmframe.cpp:1552 mmframe.cpp:1797
 msgid "Show Home Page"
 msgstr "הצגת עמוד הבית"
 
-#: mmframe.cpp:1507
+#: mmframe.cpp:1561
 msgid "Change the account type of an account."
 msgstr "שנוי סוג החשבון."
 
-#: mmframe.cpp:1510
+#: mmframe.cpp:1564
 msgid "Delete Account from database"
 msgstr "מחיקת חשבון ממסד הנתונים"
 
-#: mmframe.cpp:1523
+#: mmframe.cpp:1577
 msgid "Download Ra&tes"
 msgstr "אחזור &שערים"
 
-#: mmframe.cpp:1523 mmframe.cpp:1770
+#: mmframe.cpp:1577 mmframe.cpp:1824
 msgid "Download Currency and Stock rates"
 msgstr "עדכון שערי מטבע ונירות ערך"
 
-#: mmframe.cpp:1529
+#: mmframe.cpp:1583
 msgid "Organize &Categories"
 msgstr "ניהול &סוגי־אב"
 
-#: mmframe.cpp:1533
+#: mmframe.cpp:1587
 msgid "Organize &Payees"
 msgstr "ניהול &מוטבים"
 
-#: mmframe.cpp:1533 mmframe.cpp:1748 payeedialog.cpp:84
+#: mmframe.cpp:1587 mmframe.cpp:1802 payeedialog.cpp:84
 msgid "Organize Payees"
 msgstr "ניהול מוטבים"
 
-#: mmframe.cpp:1537
+#: mmframe.cpp:1591
 msgid "Organize Curre&ncy"
 msgstr "ניהול מ&טבעות"
 
-#: mmframe.cpp:1537 mmframe.cpp:1749
+#: mmframe.cpp:1591 mmframe.cpp:1803
 msgid "Organize Currency"
 msgstr "ניהול מטבעות"
 
-#: mmframe.cpp:1541
+#: mmframe.cpp:1595
 msgid "&Categories"
 msgstr "&סוגי־אב"
 
-#: mmframe.cpp:1544
+#: mmframe.cpp:1598
 msgid "&Payees"
 msgstr "&מוטבים"
 
-#: mmframe.cpp:1545
+#: mmframe.cpp:1599
 msgid "Reassign all payees to another payee"
 msgstr "הקצאת מחדש את כל המוטבים למוטב אחר"
 
-#: mmframe.cpp:1547
+#: mmframe.cpp:1601
 msgid "Re&location of"
 msgstr "העב&רת"
 
-#: mmframe.cpp:1548
+#: mmframe.cpp:1602
 msgid "Relocate Categories && Payees"
 msgstr "העברת קטגוריות ו&מוטבים"
 
-#: mmframe.cpp:1558
+#: mmframe.cpp:1612
 msgid "&Budget Setup"
 msgstr "&הגדרת תקציב"
 
-#: mmframe.cpp:1562
+#: mmframe.cpp:1616
 msgid "&Recurring Transactions"
 msgstr "תנועות מ&חזרית"
 
-#: mmframe.cpp:1562
+#: mmframe.cpp:1616
 msgid "Bills && Deposits"
 msgstr "משיכות והפקדות"
 
-#: mmframe.cpp:1566
+#: mmframe.cpp:1620
 msgid "&Assets"
 msgstr "&נכסים"
 
-#: mmframe.cpp:1572
+#: mmframe.cpp:1626
 msgid "T&heme Manager"
 msgstr "מ&נהל ערכת נושא"
 
-#: mmframe.cpp:1572 mmframe.cpp:2558 optionsettingsview.cpp:338 themes.cpp:137
+#: mmframe.cpp:1626 mmframe.cpp:2612 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
 msgstr "מנהל ערכת נושא"
 
-#: mmframe.cpp:1578
+#: mmframe.cpp:1632
 msgid "Transaction Report &Filter"
 msgstr "מסנן דוח &תנועות"
 
-#: mmframe.cpp:1578 mmframe.cpp:1751
+#: mmframe.cpp:1632 mmframe.cpp:1805
 msgid "Transaction Report Filter"
 msgstr "מסנן דוח תנועות"
 
-#: mmframe.cpp:1584
+#: mmframe.cpp:1638
 msgid "General Report &Manager"
 msgstr "מנהל דוחות &כללי"
 
-#: mmframe.cpp:1588
+#: mmframe.cpp:1642
 msgid "C&ustom Fields Manager"
 msgstr "מ&נהל שדות מותאם אישית"
 
-#: mmframe.cpp:1588
+#: mmframe.cpp:1642
 msgid "Custom Fields Manager"
 msgstr "מנהל שדות מותאם אישית"
 
-#: mmframe.cpp:1594
+#: mmframe.cpp:1648
 msgid "Refresh &WebApp"
 msgstr "רענון &יישומון מרשתת"
 
-#: mmframe.cpp:1594 mmframe.cpp:2567 mmframe.cpp:2570
+#: mmframe.cpp:1648 mmframe.cpp:2621 mmframe.cpp:2624
 msgid "Refresh WebApp"
 msgstr "רענון יישומון מרשתת"
 
-#: mmframe.cpp:1599
+#: mmframe.cpp:1653
 msgid "&Options...\tCtrl-,"
 msgstr "&אפשרויות... Ctrl-,"
 
-#: mmframe.cpp:1599 mmframe.cpp:1755
+#: mmframe.cpp:1653 mmframe.cpp:1809
 msgid "Show the Options Dialog"
 msgstr "הצגת תיבת דו-שיח אפשרויות"
 
-#: mmframe.cpp:1606
+#: mmframe.cpp:1660
 msgid "Convert Encrypted &DB"
 msgstr "המרת &מסד נתונים מוצפן"
 
-#: mmframe.cpp:1607
+#: mmframe.cpp:1661
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "הסרת הצפנה ממסד נתונים מוצפן"
 
-#: mmframe.cpp:1609
+#: mmframe.cpp:1663
 msgid "Change Encrypted &Password"
 msgstr "שנוי ססמה &מוצפנת"
 
-#: mmframe.cpp:1610
+#: mmframe.cpp:1664
 msgid "Change the password of an encrypted database"
 msgstr "שינוי ססמה למסד נתונים מוצפן"
 
-#: mmframe.cpp:1612
+#: mmframe.cpp:1666
 msgid "&Optimize Database"
 msgstr "&מיטוב מסד נתונים"
 
-#: mmframe.cpp:1613
+#: mmframe.cpp:1667
 msgid "Optimize database space and performance"
 msgstr "מטב את שטח וביצועי מסד הנתונים"
 
-#: mmframe.cpp:1615
+#: mmframe.cpp:1669
 msgid "Database De&bug"
 msgstr "ניפוי תקלים במסד הנ&תונים"
 
-#: mmframe.cpp:1616
+#: mmframe.cpp:1670
 msgid "Generate database report or fix errors"
 msgstr "חולל דוח מסד נתונים או תקן שגויים"
 
-#: mmframe.cpp:1621
+#: mmframe.cpp:1675
 msgid "Databa&se"
 msgstr "מסד נ&תונים"
 
-#: mmframe.cpp:1622
+#: mmframe.cpp:1676
 msgid "Database management"
 msgstr "ניהול מסד נתונים"
 
-#: mmframe.cpp:1629 mmframe.cpp:1780
+#: mmframe.cpp:1683 mmframe.cpp:1834
 msgid "&Help\tF1"
 msgstr "ע&זרה\tF1"
 
-#: mmframe.cpp:1629 mmframe.cpp:1780
+#: mmframe.cpp:1683 mmframe.cpp:1834
 msgid "Show the Help file"
 msgstr "הצגת קובץ עזרה"
 
-#: mmframe.cpp:1634
+#: mmframe.cpp:1688
 msgid "&Website"
 msgstr "&אתר מרשתת"
 
-#: mmframe.cpp:1635
+#: mmframe.cpp:1689
 msgid "Open the Money Manager EX website for latest news, updates etc"
 msgstr "בקר באתר Money Manager EX לחדשות, עדכונים ועוד"
 
-#: mmframe.cpp:1637
+#: mmframe.cpp:1691
 msgid "&Facebook"
 msgstr "&פייסבוק"
 
-#: mmframe.cpp:1637
+#: mmframe.cpp:1691
 msgid "Visit us on Facebook"
 msgstr "בקרו אותנו בפייסבוק"
 
-#: mmframe.cpp:1639
+#: mmframe.cpp:1693
 msgid "&Crowdin"
 msgstr "&כראודין"
 
-#: mmframe.cpp:1639
+#: mmframe.cpp:1693
 msgid "We use Crowdin to translate MMEX"
 msgstr "אנו משתמשים בכראודין לתרגום MMEX"
 
-#: mmframe.cpp:1641
+#: mmframe.cpp:1695
 msgid "&Twitter"
 msgstr "&טוויטר"
 
-#: mmframe.cpp:1641
+#: mmframe.cpp:1695
 msgid "Follow us on Twitter"
 msgstr "עקוב אחרינו בטוויטר"
 
-#: mmframe.cpp:1643
+#: mmframe.cpp:1697
 msgid "&YouTube"
 msgstr "&יוטיוב"
 
-#: mmframe.cpp:1643
+#: mmframe.cpp:1697
 msgid "Watch free video materials about MMEX"
 msgstr "צפיה בתכני וידאו חינמיים על אודות MMEX"
 
-#: mmframe.cpp:1645
+#: mmframe.cpp:1699
 msgid "&Slack"
 msgstr "&Slack"
 
-#: mmframe.cpp:1645
+#: mmframe.cpp:1699
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr "תקשור מקוון עם צוות MMEX משולחן העבודה או מהנייד"
 
-#: mmframe.cpp:1647
+#: mmframe.cpp:1701
 msgid "&GitHub"
 msgstr "&גיטהאב"
 
-#: mmframe.cpp:1647
+#: mmframe.cpp:1701
 msgid "Access open source code repository and track reported bug statuses"
 msgstr "גש למאגר קוד פתוח למעקב אחר מצב תקלות"
 
-#: mmframe.cpp:1649
+#: mmframe.cpp:1703
 msgid "W&iki pages"
 msgstr "דפי &ויקי"
 
-#: mmframe.cpp:1649
+#: mmframe.cpp:1703
 msgid "Read and update wiki pages"
 msgstr "קרt ועדכון דפי wiki"
 
-#: mmframe.cpp:1651
+#: mmframe.cpp:1705
 msgid "F&orum"
 msgstr "פ&ורום"
 
-#: mmframe.cpp:1652
+#: mmframe.cpp:1706
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr "בקרו בפורום MMEX, צפו בתגובות משתמשים אחרים או דווחו על בעיות תכנה חדשות"
 
-#: mmframe.cpp:1654
+#: mmframe.cpp:1708
 msgid "Money Manager Ex for &Android"
 msgstr "MoneyManagerEx עבור אנדרואיד"
 
-#: mmframe.cpp:1655
+#: mmframe.cpp:1709
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr "קבל גרסת אנדרואיד חינמית  ולהפעל את  MMEX מהטלפון החכם או מהטאבלט"
 
-#: mmframe.cpp:1657
+#: mmframe.cpp:1711
 msgid "&Newsletter"
 msgstr "&עמוד חדשות"
 
-#: mmframe.cpp:1658
+#: mmframe.cpp:1712
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr "הרשם לרשימת תפוצה לקבלת חדשות לדוא\"ל או צפה בהכרזות עדכניות"
 
-#: mmframe.cpp:1660
+#: mmframe.cpp:1714
 msgid "&RSS Feed"
 msgstr "&הזנת RSS"
 
-#: mmframe.cpp:1660
+#: mmframe.cpp:1714
 msgid "Connect RSS web feed to news aggregator"
 msgstr "התחבר לשרות RSS למצבור חדשות"
 
-#: mmframe.cpp:1662
+#: mmframe.cpp:1716
 msgid "&Donate via PayPal"
 msgstr "&תרומה באמצעות PayPal"
 
-#: mmframe.cpp:1663
+#: mmframe.cpp:1717
 msgid "Donate the team to support infrastructure etc"
 msgstr "תרומה לצוות, להמשך תמיכה בתשתית וכו'"
 
-#: mmframe.cpp:1665
+#: mmframe.cpp:1719
 msgid "&Buy us a Coffee"
 msgstr "&הזמינו אותנו לקפה"
 
-#: mmframe.cpp:1666
+#: mmframe.cpp:1720
 msgid "Buy key developer a coffee"
 msgstr "הזמינו את מפתח הראשי לקפה"
 
-#: mmframe.cpp:1669
+#: mmframe.cpp:1723
 msgid "&Community"
 msgstr "&קהילה"
 
-#: mmframe.cpp:1670
+#: mmframe.cpp:1724
 msgid "Stay in touch with MMEX community"
 msgstr "שמירת קשר עם קהילת MMEX"
 
-#: mmframe.cpp:1692
+#: mmframe.cpp:1746
 msgid "Report a &Bug"
 msgstr "&דווח &תקל"
 
-#: mmframe.cpp:1693
+#: mmframe.cpp:1747
 msgid "Report an error in application to the developers"
 msgstr "דווח למתכנתים על שגיאה בישום"
 
-#: mmframe.cpp:1697
+#: mmframe.cpp:1751
 msgid "View Diagnostics"
 msgstr "צפיה באבחונים"
 
-#: mmframe.cpp:1698
+#: mmframe.cpp:1752
 msgid "Help provide information to the developers"
 msgstr "סיוע בהעברת מידע למפתחים"
 
-#: mmframe.cpp:1702
+#: mmframe.cpp:1756
 msgid "&Show App Start Dialog"
 msgstr "&הצגת דו־שיח אתחול ישומון"
 
-#: mmframe.cpp:1702
+#: mmframe.cpp:1756
 msgid "App Start Dialog"
 msgstr "דו־שיח אתחול ישומון"
 
-#: mmframe.cpp:1706
+#: mmframe.cpp:1760
 msgid "Check for &Updates"
 msgstr "בדיקת זמינות &עדכונים"
 
-#: mmframe.cpp:1706
+#: mmframe.cpp:1760
 msgid "Check For Updates"
 msgstr "בדיקת זמינות עדכונים"
 
-#: mmframe.cpp:1710 mmframe.cpp:1779
+#: mmframe.cpp:1764 mmframe.cpp:1833
 msgid "&About"
 msgstr "&על אודות"
 
-#: mmframe.cpp:1710 mmframe.cpp:1779
+#: mmframe.cpp:1764 mmframe.cpp:1833
 msgid "Show about dialog"
 msgstr "הצגת חלון אודות"
 
-#: mmframe.cpp:1714
+#: mmframe.cpp:1768
 msgid "&File"
 msgstr "ק&ובץ"
 
-#: mmframe.cpp:1715
+#: mmframe.cpp:1769
 msgid "&Accounts"
 msgstr "חש&בונות"
 
-#: mmframe.cpp:1716
+#: mmframe.cpp:1770
 msgid "&Tools"
 msgstr "כ&לים"
 
-#: mmframe.cpp:1717
+#: mmframe.cpp:1771
 msgid "&View"
 msgstr "&תצוגה"
 
-#: mmframe.cpp:1718
+#: mmframe.cpp:1772
 msgid "&Help"
 msgstr "ע&זרה"
 
-#: mmframe.cpp:1739 mmframe.cpp:1745
+#: mmframe.cpp:1793 mmframe.cpp:1799
 msgid "New"
 msgstr "חדש"
 
-#: mmframe.cpp:1747
+#: mmframe.cpp:1801
 msgid "Show Organize Categories Dialog"
 msgstr "הצגת תיבת דו-שיח ניהול קטגוריות"
 
-#: mmframe.cpp:1748
+#: mmframe.cpp:1802
 msgid "Show Organize Payees Dialog"
 msgstr "הצגת תיבת דו-שיח נוהל מוטבים"
 
-#: mmframe.cpp:1749
+#: mmframe.cpp:1803
 msgid "Show Organize Currency Dialog"
 msgstr "הצגת תיבת דו-שיח ניהול מטבעות"
 
-#: mmframe.cpp:1755
+#: mmframe.cpp:1809
 msgid "&Options"
 msgstr "&אפשרויות"
 
-#: mmframe.cpp:1763 mmframe.cpp:2621
+#: mmframe.cpp:1817 mmframe.cpp:2675
 msgid "Register/View Release &Notifications"
 msgstr "רישום / צפיה במהדורות חדשות והודעות"
 
-#: mmframe.cpp:1768 optionsettingsnet.cpp:121
+#: mmframe.cpp:1822 optionsettingsnet.cpp:121
 msgid "News"
 msgstr "חדשות"
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:1824
 msgid "Download rates"
 msgstr "עדכון שערים"
 
-#: mmframe.cpp:1773
+#: mmframe.cpp:1827
 msgid "Toggle Fullscreen\tF11"
 msgstr "עבור/חזור מסך מלא\tF11"
 
-#: mmframe.cpp:1832
+#: mmframe.cpp:1886
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr "נא להזין ססמה למסד הנתונים\n\n"
 "%s"
 
-#: mmframe.cpp:1833 mmframe.cpp:2064 mmframe.cpp:2197
+#: mmframe.cpp:1887 mmframe.cpp:2118 mmframe.cpp:2251
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: מסד נתונים מוצפן"
 
-#: mmframe.cpp:1867
+#: mmframe.cpp:1921
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr "האם תמיכת MMEX סיפקה קובץ ניפוי תקלים/תיקון?"
 
-#: mmframe.cpp:1867
+#: mmframe.cpp:1921
 msgid "MMEX upgrade"
 msgstr "שדרוג MMEX"
 
-#: mmframe.cpp:1889 mmframe.cpp:1931
+#: mmframe.cpp:1943 mmframe.cpp:1985
 msgid "No File opened"
 msgstr "קובץ לא נפתח"
 
-#: mmframe.cpp:1891
+#: mmframe.cpp:1945
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr "למצער, גרסת מסד הנתונים ישנה מדי, או, ססמת מסד הנתונים שגויה"
 
-#: mmframe.cpp:1921
+#: mmframe.cpp:1975
 msgid "&Next ->"
 msgstr "&הבא ->"
 
-#: mmframe.cpp:1934
+#: mmframe.cpp:1988
 msgid "Cannot locate previously opened database.\n"
 msgstr "מסד הנתונים שנפתח לאחרונה לא אותר.\n"
 
-#: mmframe.cpp:1936
+#: mmframe.cpp:1990
 msgid "Password not entered for encrypted Database.\n"
 msgstr "לא הוזנה ססמה למסד נתונים מוצפן.\n"
 
-#: mmframe.cpp:1954
+#: mmframe.cpp:2008
 msgid "portable mode"
 msgstr "מצב נייד"
 
-#: mmframe.cpp:1990
+#: mmframe.cpp:2044
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
@@ -4830,74 +4846,74 @@ msgstr "מסד הנתונים אותו מנסים לפתוח, מסומן כפת�
 "אם אין מופע פעיל אחר, יתכן ומסד הנתונים נשאר פתוח כתוצאה מכשל תכנה בשימוש קודם.\n\n"
 "האם להמשיך בפתיחת מסד הנתונים?"
 
-#: mmframe.cpp:1994
+#: mmframe.cpp:2048
 msgid "MMEX Instance Check"
 msgstr "בדיקה מהירה של MMEX"
 
-#: mmframe.cpp:2014
+#: mmframe.cpp:2068
 msgid "Choose database file to create"
 msgstr "בחירת קובץ מסד נתונים ליצירה"
 
-#: mmframe.cpp:2037
+#: mmframe.cpp:2091
 msgid "Choose database file to open"
 msgstr "בחירת קובץ מסד נתונים לפתיחה"
 
-#: mmframe.cpp:2054
+#: mmframe.cpp:2108
 msgid "Choose Encrypted database file to open"
 msgstr "בחירת קובץ מסד נתונים מוצפן לפתיחה"
 
-#: mmframe.cpp:2064
+#: mmframe.cpp:2118
 msgid "Enter password for database"
 msgstr "נא להזין ססמה למסד הנתונים"
 
-#: mmframe.cpp:2069
+#: mmframe.cpp:2123
 msgid "Choose database file to Save As"
 msgstr "בחירת קובץ מסד נתונים לשמירה"
 
-#: mmframe.cpp:2091
+#: mmframe.cpp:2145
 msgid "Converted DB!"
 msgstr "מסד הנתונים הומר!"
 
-#: mmframe.cpp:2091
+#: mmframe.cpp:2145
 msgid "MMEX message"
 msgstr "הודעת MMEX"
 
-#: mmframe.cpp:2097
+#: mmframe.cpp:2151
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: שינוי ססמת הצפנה"
 
-#: mmframe.cpp:2098
+#: mmframe.cpp:2152
 #, c-format
 msgid "New password for database\n\n"
 "%s"
 msgstr "נא להזין ססמה למסד נתונים חדש\n"
 "%s"
 
-#: mmframe.cpp:2103
+#: mmframe.cpp:2157
 msgid "New password must not be empty."
 msgstr "שדה ססמה חדשה לא יכול להישאר ריק."
 
-#: mmframe.cpp:2107
+#: mmframe.cpp:2161
 msgid "Please confirm new password"
 msgstr "נא לאשר ססמה חדשה"
 
-#: mmframe.cpp:2111
+#: mmframe.cpp:2165
 msgid "Password change completed."
 msgstr "שינוי הסיסמה הושלם."
 
-#: mmframe.cpp:2115
+#: mmframe.cpp:2169
 msgid "Confirm password failed."
 msgstr "אישור סיסמה נכשל."
 
-#: mmframe.cpp:2124
+#: mmframe.cpp:2178
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr "ודא שקיים גיבוי עדכני של מסד הנתונים  לפני ביצוע המיטוב"
 
-#: mmframe.cpp:2125 mmframe.cpp:2135
+#: mmframe.cpp:2179 mmframe.cpp:2189
 msgid "DB Optimization"
 msgstr "מטב את מסד הנתונים"
 
-#: mmframe.cpp:2132
+#: mmframe.cpp:2186
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
@@ -4905,31 +4921,31 @@ msgid "Database Optimization Completed!\n\n"
 msgstr "אופטימיזצית מסד הנתונים הושלמה!\n\n"
 "גודל לפני: %s גודל לאחר: %s\n"
 
-#: mmframe.cpp:2143
+#: mmframe.cpp:2197
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr "ניתן להשתמש בפונקציה זו רק אם נתבקשתם במפורש  צוות תמיכת MMEX"
 
-#: mmframe.cpp:2144
+#: mmframe.cpp:2198
 msgid "DB Debug"
 msgstr "ניפוי מסד נתונים"
 
-#: mmframe.cpp:2163 mmframe.cpp:2184
+#: mmframe.cpp:2217 mmframe.cpp:2238
 msgid "Save database file as"
 msgstr "שמור קובץ מסד נתונים בשם"
 
-#: mmframe.cpp:2184
+#: mmframe.cpp:2238
 msgid "Can't copy file to itself"
 msgstr "לא ניתן להעתיק קובץ לתוך עצמו"
 
-#: mmframe.cpp:2197
+#: mmframe.cpp:2251
 msgid "Enter password for new database"
 msgstr "נא להזין ססמה למסד נתונים חדש"
 
-#: mmframe.cpp:2286 mmframe.cpp:2305
+#: mmframe.cpp:2340 mmframe.cpp:2359
 msgid "No account available to import"
 msgstr "אין חשבון זמין ליבוא"
 
-#: mmframe.cpp:2354
+#: mmframe.cpp:2408
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -4939,11 +4955,11 @@ msgstr "חשבונות נכסים, מכילם תנועות של נכסים ור�
 "לאחר בחירת נכס בתוך תצוגה זו.\n\n"
 "חשבונות נכסים יכולת לכלול גם תנועות רגילות לחשבונות רגילים."
 
-#: mmframe.cpp:2358
+#: mmframe.cpp:2412
 msgid "Asset Account Creation"
 msgstr "יצירת חשבון נכס"
 
-#: mmframe.cpp:2364
+#: mmframe.cpp:2418
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -4957,92 +4973,92 @@ msgstr "חשבונות ניירות ערך מכילים תנועות בנייר�
 "או באמצעות תפריט תצוגה -> 'הצגת חשבונות ניירות ערך'\n"
 "חשבונות ניירות ערך יכולים להכיל גם תנועות רגילות לחשבון רגיל."
 
-#: mmframe.cpp:2370
+#: mmframe.cpp:2424
 msgid "Share Account Creation"
 msgstr "יצירת חשבון ניירות ערך"
 
-#: mmframe.cpp:2541
+#: mmframe.cpp:2595
 msgid "MMEX Options have been updated."
 msgstr "אפשרויות MMEX עודכנו."
 
-#: mmframe.cpp:2542
+#: mmframe.cpp:2596
 msgid "Some settings take effect only after an application restart."
 msgstr "חלק מההגדרות יכנסו לתוקף רק לאחר אתחול היישום."
 
-#: mmframe.cpp:2543 optiondialog.cpp:223 optiondialog.h:49
+#: mmframe.cpp:2597 optiondialog.cpp:223 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "אפשרויות MMEX"
 
-#: mmframe.cpp:2567
+#: mmframe.cpp:2621
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "עדכון חשבונות, מוטבים, וסוגי־אב"
 
-#: mmframe.cpp:2569
+#: mmframe.cpp:2623
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "הסוגיה אירעה בעת עדכון יישומון מרשתת, נא לבדוק את שרת המרשתת ואת הגדרות יישומון המרשתת"
 
-#: mmframe.cpp:2695
+#: mmframe.cpp:2749
 msgid "Choose HTML file to Export"
 msgstr "בחירת קובץ HTML ליצוא"
 
-#: mmframe.cpp:3069 mmframe.cpp:3076
+#: mmframe.cpp:3123 mmframe.cpp:3130
 msgid "Downloading stock prices from Yahoo"
 msgstr "עדכון שערי נירות ערך מ Yahoo"
 
-#: mmframe.cpp:3070
+#: mmframe.cpp:3124
 msgid "Please wait..."
 msgstr "נא להמתין..."
 
-#: mmframe.cpp:3119 stockspanel.cpp:402
+#: mmframe.cpp:3173 stockspanel.cpp:402
 #, c-format
 msgid "%s on %s"
 msgstr "%s ב %s"
 
-#: mmframe.cpp:3136
+#: mmframe.cpp:3190
 msgid "No account available to edit!"
 msgstr "אין חשבון זמין לעריכה!"
 
-#: mmframe.cpp:3140
+#: mmframe.cpp:3194
 msgid "Choose Account to Edit"
 msgstr "בחירת חשבוון לעריכה"
 
-#: mmframe.cpp:3159
+#: mmframe.cpp:3213
 msgid "No account available to delete!"
 msgstr "אין חשבון זמין למחיקה!"
 
-#: mmframe.cpp:3163
+#: mmframe.cpp:3217
 msgid "Choose Account to Delete"
 msgstr "בחירת חשבון למחיקה"
 
-#: mmframe.cpp:3168
+#: mmframe.cpp:3222
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "האם למחוק את\n"
 " %s חשבון: %s ?"
 
-#: mmframe.cpp:3187
+#: mmframe.cpp:3241
 msgid "Select the account to reallocate"
 msgstr "בחירת את החשבון עבורו יבוצע שינוי סוג"
 
-#: mmframe.cpp:3187 mmframe.cpp:3210
+#: mmframe.cpp:3241 mmframe.cpp:3264
 msgid "Account Reallocation"
 msgstr "שינוי סוג חשבון"
 
-#: mmframe.cpp:3209
+#: mmframe.cpp:3263
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "חשבון:  %s  - בחירת סוג חדש."
 
-#: mmframe.cpp:3318 payeedialog.cpp:332
+#: mmframe.cpp:3372 payeedialog.cpp:332
 msgid "Payee Relocation Completed."
 msgstr "העברת מוטב הושלמה."
 
-#: mmframe.cpp:3322 payeedialog.cpp:336
+#: mmframe.cpp:3376 payeedialog.cpp:336
 msgid "Payee Relocation Result"
 msgstr "תוצאת העברת מוטבים"
 
-#: mmframe.cpp:3372
+#: mmframe.cpp:3426
 #, c-format
 msgid "File %s not found"
 msgstr "קובץ %s לא נמצא"
