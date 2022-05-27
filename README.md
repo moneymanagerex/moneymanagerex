@@ -44,7 +44,8 @@ Download
 
 You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for Windows, macOS and Linux.
 
-[Download stats](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+
 
 
 Credits
