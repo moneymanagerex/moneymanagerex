@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-27 18:28+0300\n"
-"PO-Revision-Date: 2022-05-27 15:37\n"
+"PO-Revision-Date: 2022-05-27 16:52\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1893,11 +1893,11 @@ msgstr "Λεπτομέρειες Προσαρμοσμένου Πεδίου"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "Χαρακτηριστικό του"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Επιλέξτε το στοιχείο με το οποίο συνδέεται το προσαρμοσμένο πεδίο"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -2000,7 +2000,7 @@ msgstr "Ιδιότητες"
 
 #: customfieldlistdialog.cpp:66
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Προσαρμογή προσαρμοσμένων πεδίων"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -4123,15 +4123,15 @@ msgstr "Βοήθεια"
 
 #: mmframe.cpp:1192
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Υπάρχει ήδη μια ρύθμιση με αυτό το όνομα"
 
 #: mmframe.cpp:1194
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Παρακαλώ ορίστε ένα νέο όνομα για την ρύθμιση"
 
 #: mmframe.cpp:1196
 msgid "Name in use"
-msgstr ""
+msgstr "Όνομα σε χρήση"
 
 #: mmframe.cpp:1253
 msgid "Do you really want to delete the account?"
@@ -4179,7 +4179,7 @@ msgstr "&Επεξεργασία Φίλτρου"
 
 #: mmframe.cpp:1331
 msgid "&Rename Filter"
-msgstr ""
+msgstr "&Μετονομασία Φίλτρου"
 
 #: mmframe.cpp:1332
 msgid "&Delete Filter"
