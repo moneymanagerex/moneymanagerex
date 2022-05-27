@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2016 Gabriele-V
+Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -49,8 +50,8 @@ mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent) :
     #endif
 {
     if (debug_) ColName_[FIELD_ID] = _("#");
-    ColName_[FIELD_DESCRIPTION] = _("Name");
-    ColName_[FIELD_REF] = _("Reference");
+    ColName_[FIELD_REF] = _("Attribute of");
+    ColName_[FIELD_NAME] = _("Name");
     ColName_[FIELD_TYPE] = _("Type");
     ColName_[FIELD_PROPERTIES] = _("Properties");
 
@@ -80,8 +81,8 @@ void mmCustomFieldListDialog::CreateControls()
     fieldListBox_->SetMinSize(wxSize(512, 256));
 
     if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_ID], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
-    fieldListBox_->AppendTextColumn(ColName_[FIELD_DESCRIPTION], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     fieldListBox_->AppendTextColumn(ColName_[FIELD_REF], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    fieldListBox_->AppendTextColumn(ColName_[FIELD_NAME], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     fieldListBox_->AppendTextColumn(ColName_[FIELD_TYPE], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     fieldListBox_->AppendTextColumn(ColName_[FIELD_PROPERTIES], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     mainBoxSizer->Add(fieldListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
@@ -110,13 +111,13 @@ void mmCustomFieldListDialog::fillControls()
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
     int firstInTheListID = -1;
-    for (const auto &entry : fields)
+    for (const auto& entry : fields)
     {
         if (firstInTheListID == -1) firstInTheListID = entry.FIELDID;
         wxVector<wxVariant> data;
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.FIELDID)));
-        data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(wxGetTranslation(entry.REFTYPE)));
+        data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(wxGetTranslation(entry.TYPE)));
 
         wxString Properties = entry.PROPERTIES;

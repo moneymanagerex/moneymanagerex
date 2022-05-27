@@ -37,7 +37,7 @@ private:
     enum cols
     {
         FIELD_ID = 0,
-        FIELD_DESCRIPTION,
+        FIELD_NAME,
         FIELD_REF,
         FIELD_TYPE,
         FIELD_PROPERTIES

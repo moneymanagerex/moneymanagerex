@@ -130,6 +130,16 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->AddGrowableCol(1, 1);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Attribute of")), g_flagsH);
+    m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
+    for (const auto& type : Model_Attachment::REFTYPE_CHOICES) {
+        if (type.first != Model_Attachment::BILLSDEPOSIT)
+            m_itemReference->Append(wxGetTranslation(type.second), new wxStringClientData(type.second));
+    }
+    mmToolTip(m_itemReference, _("Select reference of custom field"));
+    itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
+    m_itemReference->Enable(false);
+
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsExpand);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY);
     m_itemDescription->SetMinSize(wxSize(150, -1));
@@ -143,14 +153,6 @@ void mmCustomFieldEditDialog::CreateControls()
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
     mmToolTip(m_itemType, _("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
-
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Reference")), g_flagsH);
-    m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (const auto& type : Model_Attachment::instance().all_type())
-        m_itemReference->Append(wxGetTranslation(type), new wxStringClientData(type));
-    mmToolTip(m_itemReference, _("Select reference of custom field"));
-    itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
-    m_itemReference->Enable(false);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
