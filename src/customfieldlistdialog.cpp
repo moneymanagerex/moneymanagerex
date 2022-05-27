@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2016 Gabriele-V
+Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -40,9 +41,8 @@ wxBEGIN_EVENT_TABLE( mmCustomFieldListDialog, wxDialog )
 wxEND_EVENT_TABLE()
 
 
-mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxString& RefType) :
-    m_RefType(RefType)
-    , m_field_id(-1)
+mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent) :
+    m_field_id(-1)
     #ifdef _DEBUG
         , debug_(true)
     #else
@@ -50,9 +50,10 @@ mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxStri
     #endif
 {
     if (debug_) ColName_[FIELD_ID] = _("#");
-    ColName_[FIELD_DESCRIPTION] = _("Name");
+    ColName_[FIELD_REF] = _("Attribute of");
+    ColName_[FIELD_NAME] = _("Name");
     ColName_[FIELD_TYPE] = _("Type");
-    if (debug_) ColName_[FIELD_PROPERTIES] = _("Properties");
+    ColName_[FIELD_PROPERTIES] = _("Properties");
 
     Create(parent);
 }
@@ -62,10 +63,9 @@ void mmCustomFieldListDialog::Create(wxWindow* parent)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
-    wxString WindowTitle = wxString::Format(_("Personalize custom fields | %s"), m_RefType);
+    wxString WindowTitle = wxString::Format(_("Personalize custom fields"));
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style))
         return;
-
     CreateControls();
     fillControls();
     SetIcon(mmex::getProgramIcon());
@@ -78,12 +78,13 @@ void mmCustomFieldListDialog::CreateControls()
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
     fieldListBox_ = new wxDataViewListCtrl( this, wxID_ANY);
-    fieldListBox_->SetMinSize(wxSize(460, 500));
+    fieldListBox_->SetMinSize(wxSize(512, 256));
 
     if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_ID], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
-    fieldListBox_->AppendTextColumn(ColName_[FIELD_DESCRIPTION], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    fieldListBox_->AppendTextColumn(ColName_[FIELD_REF], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    fieldListBox_->AppendTextColumn(ColName_[FIELD_NAME], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     fieldListBox_->AppendTextColumn(ColName_[FIELD_TYPE], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
-    if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_PROPERTIES], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    fieldListBox_->AppendTextColumn(ColName_[FIELD_PROPERTIES], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     mainBoxSizer->Add(fieldListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -105,24 +106,24 @@ void mmCustomFieldListDialog::fillControls()
 {
     fieldListBox_->DeleteAllItems();
 
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_RefType));
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().all();
     if (fields.empty()) return;
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
     int firstInTheListID = -1;
-    for (const auto &entry : fields)
+    for (const auto& entry : fields)
     {
         if (firstInTheListID == -1) firstInTheListID = entry.FIELDID;
         wxVector<wxVariant> data;
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.FIELDID)));
+        data.push_back(wxVariant(wxGetTranslation(entry.REFTYPE)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(wxGetTranslation(entry.TYPE)));
-        if (debug_)
-        {
-            wxString Properties = entry.PROPERTIES;
-            Properties.Replace("\n", "", true);
-            data.push_back(wxVariant(Properties));
-        }
+
+        wxString Properties = entry.PROPERTIES;
+        Properties.Replace("\n", "", true);
+        data.push_back(wxVariant(Properties));
+
         fieldListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.FIELDID));
     }
 
@@ -142,7 +143,7 @@ void mmCustomFieldListDialog::OnListItemSelected(wxDataViewEvent& event)
 
 void mmCustomFieldListDialog::AddField()
 {
-    mmCustomFieldEditDialog dlg(this, nullptr, m_RefType);
+    mmCustomFieldEditDialog dlg(this, nullptr);
     if (dlg.ShowModal() != wxID_OK)
         return;
     fillControls();
@@ -153,7 +154,7 @@ void mmCustomFieldListDialog::EditField()
     Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
     if (field)
     {
-        mmCustomFieldEditDialog dlg(this, field, m_RefType);
+        mmCustomFieldEditDialog dlg(this, field);
         if (dlg.ShowModal() != wxID_OK)
             return;
         fillControls();
