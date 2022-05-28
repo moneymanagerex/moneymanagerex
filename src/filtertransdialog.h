@@ -183,6 +183,7 @@ private:
     wxTextCtrl* notesEdit_;
     wxChoice* m_setting_name;
     wxBitmapButton* m_btnSaveAs;
+    wxBitmapButton* m_itemButtonClear;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     wxCheckBox* colorCheckBox_;
