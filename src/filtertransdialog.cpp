@@ -90,11 +90,11 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , isReportMode_(isReport)
     , m_color_value(-1)
 {
+    DoInitVariables();
+    Create(parent);
     if (!selected.empty())
         m_settings_json = selected;
 
-    DoInitVariables();
-    Create(parent);
     dataToControls(m_settings_json);
 }
 
