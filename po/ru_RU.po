@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-27 18:28+0300\n"
-"PO-Revision-Date: 2022-05-27 16:06\n"
+"PO-Revision-Date: 2022-05-28 17:28\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1800,7 +1800,7 @@ msgstr "Прошлый финансовый год"
 
 #: constants.cpp:189
 msgid "View Since Statement Date"
-msgstr "Показать дату выписки"
+msgstr "Показать с даты выписки"
 
 #: constants.cpp:191
 msgid "ALL"
