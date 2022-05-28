@@ -81,18 +81,20 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
     wxLogDebug("~mmFilterTransactionsDialog");
 }
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode, wxString selected)
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport, wxString selected)
     : m_categ_id(-1)
     , m_subcateg_id(-1)
     , is_similar_category_status(false)
-    , isMultiAccount_(showAccountFilter)
-    , isReportMode_(isReportMode)
+    , isMultiAccount_(accountID == -1)
+    , accountID_(accountID)
+    , isReportMode_(isReport)
     , m_color_value(-1)
 {
+    if (!selected.empty())
+        m_settings_json = selected;
+
     DoInitVariables();
     Create(parent);
-    if (!selected.IsEmpty())
-        m_settings_json = selected;
     dataToControls(m_settings_json);
 }
 
@@ -101,6 +103,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
     , m_subcateg_id(-1)
     , is_similar_category_status(false)
     , isMultiAccount_(true)
+    , accountID_(-1)
     , isReportMode_(true)
 {
     DoInitVariables();
@@ -227,9 +230,12 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
         }
     }
     else
-        accountCheckBox_->SetValue(false);
-
-    bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
+    {
+        accountCheckBox_->SetValue(accountID_ != -1);
+        Model_Account::Data* acc = Model_Account::instance().get(accountID_);
+        bSelectedAccounts_->SetLabelText(acc ? acc->ACCOUNTNAME : "");
+        m_selected_accounts_id.Add(accountID_);
+    }
 
     //Dates
     const wxString& begin_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE1", "").GetString());
@@ -457,11 +463,12 @@ void mmFilterTransactionsDialog::DoInitSettingNameChoice(wxString sel) const
         m_setting_name->Append(s_label, new wxStringClientData(data));
     }
 
-    if (m_setting_name->GetCount() > 0)
-        if (sel.IsEmpty())
+    if (m_setting_name->GetCount() > 0) {
+        if (sel.empty())
             m_setting_name->SetSelection(0);
         else
             m_setting_name->SetStringSelection(sel);
+    }
 }
 
 void mmFilterTransactionsDialog::CreateControls()
@@ -503,13 +510,6 @@ void mmFilterTransactionsDialog::CreateControls()
     bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
-
-    if (!isMultiAccount_) 
-    {
-            accountCheckBox_->Disable();
-            bSelectedAccounts_->SetLabelText("");
-            bSelectedAccounts_->Disable();
-    }
 
    // Period Range
     datesCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _("Period Range")
@@ -833,7 +833,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
-    bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
+    bSelectedAccounts_->Enable(accountCheckBox_->IsChecked() && accountCheckBox_->IsEnabled());
     amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
     notesEdit_->Enable(notesCheckBox_->IsChecked());

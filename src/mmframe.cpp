@@ -1228,7 +1228,7 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 
     const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true, data));
+    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true, data));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
@@ -2535,7 +2535,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 
     const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
+    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();

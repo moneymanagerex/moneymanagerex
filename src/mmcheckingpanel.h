@@ -134,7 +134,7 @@ private:
 private:
     int m_currentView;
     int m_AccountID;
-    bool m_allAccounts; // TRUE = All accounts are displayed
+    bool isAllAccounts_; // TRUE = All accounts are displayed
     wxString m_sortSaveTitle;   // Used for saving sort settings
     bool m_transFilterActive;
     wxString m_begin_date;
