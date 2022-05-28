@@ -1299,6 +1299,8 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId selectedItem = event.GetItem();
     m_nav_tree_ctrl->SelectItem(selectedItem);
+
+    OnSelChanged(event);
 }
 //----------------------------------------------------------------------------
 
