@@ -753,6 +753,8 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     m_account = Model_Account::instance().get(m_AccountID);
     m_currency = Model_Account::currency(m_account);
 
+    m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false));
+
     initViewTransactionsHeader();
     initFilterSettings();
 
