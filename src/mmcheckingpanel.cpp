@@ -103,8 +103,12 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
 
     m_transFilterActive = false;
-    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
-    wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+    wxString json;
+    if (!isAllAccounts_)
+    {
+        const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+        json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+    }
     m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false, json);
     initFilterSettings();
 
