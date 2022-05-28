@@ -134,7 +134,7 @@ private:
 private:
     int m_currentView;
     int m_AccountID;
-    bool m_allAccounts; // TRUE = All accounts are displayed
+    bool isAllAccounts_; // TRUE = All accounts are displayed
     wxString m_sortSaveTitle;   // Used for saving sort settings
     bool m_transFilterActive;
     wxString m_begin_date;
@@ -172,7 +172,8 @@ private:
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnMouseLeftDown( wxCommandEvent& event );
+    void OnMouseLeftDown(wxCommandEvent& event);
+    void OnButtonRightDown(wxMouseEvent& event);
     void OnViewPopupSelected(wxCommandEvent& event);
     void OnSearchTxtEntered(wxCommandEvent& event);
 

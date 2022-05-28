@@ -161,9 +161,9 @@ TransactionListCtrl::TransactionListCtrl(
 ) :
     mmListCtrl(parent, id),
     m_cp(cp),
-    m_attr1(new wxListItemAttr(*bestFontColour(m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0)), m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
+    m_attr1(new wxListItemAttr(*bestFontColour(m_cp->isAllAccounts_ ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0)), m_cp->isAllAccounts_ ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
     m_attr2(new wxListItemAttr(*bestFontColour(mmThemeMetaColour(meta::COLOR_LIST)), mmThemeMetaColour(meta::COLOR_LIST), wxNullFont)),
-    m_attr3(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
+    m_attr3(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), m_cp->isAllAccounts_ ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
     m_attr4(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), wxNullColour, wxNullFont)),
     m_attr11(new wxListItemAttr(*bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont)),
     m_attr12(new wxListItemAttr(*bestFontColour(mmColors::userDefColor2), mmColors::userDefColor2, wxNullFont)),
@@ -211,7 +211,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NUMBER);
-    if (m_cp->m_allAccounts)
+    if (m_cp->isAllAccounts_)
     {
         m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
         m_real_columns.push_back(COL_ACCOUNT);
@@ -226,7 +226,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_WITHDRAWAL);
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_real_columns.push_back(COL_DEPOSIT);
-    if (!m_cp->m_allAccounts)
+    if (!m_cp->isAllAccounts_)
     {
         m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
         m_real_columns.push_back(COL_BALANCE);
@@ -256,7 +256,7 @@ TransactionListCtrl::TransactionListCtrl(
 
     // V2 used as now maps to real column names and this resets everything to default
     // to avoid strange column widths when this code version is first
-    m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
+    m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
     m_today = wxDateTime::Today().FormatISODate();
@@ -366,7 +366,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction...", "&Edit Transactions...", selected));
     if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
-    if (!m_cp->m_allAccounts)     // Copy/Paste not suitable if all accounts visible
+    if (!m_cp->isAllAccounts_)     // Copy/Paste not suitable if all accounts visible
     {
         menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
         if (is_nothing_selected) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
@@ -388,7 +388,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _("&View In Other Account"));
-    if (m_cp->m_allAccounts || is_nothing_selected || multiselect || is_foreign || !type_transfer)
+    if (m_cp->isAllAccounts_ || is_nothing_selected || multiselect || is_foreign || !type_transfer)
         menu.Enable(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, false);
 
     menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
@@ -656,7 +656,7 @@ void TransactionListCtrl::OnSelectAll(wxCommandEvent& WXUNUSED(event))
 void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
     // we can't copy with multiple accounts open or there is nothing to copy
-    if (m_cp->m_allAccounts || GetSelectedItemCount() < 1) return;
+    if (m_cp->isAllAccounts_ || GetSelectedItemCount() < 1) return;
 
     // collect the selected transactions for copy
     FindSelectedTransactions();
@@ -707,7 +707,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
     // we can't paste with multiple accounts open or there is nothing to paste
-    if (m_cp->m_allAccounts || m_selectedForCopy.size() < 1) return;
+    if (m_cp->isAllAccounts_ || m_selectedForCopy.size() < 1) return;
     
     FindSelectedTransactions();
     Model_Checking::instance().Savepoint();
@@ -723,7 +723,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 
 int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 {
-    wxASSERT(!m_cp->m_allAccounts);
+    wxASSERT(!m_cp->isAllAccounts_);
 
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
@@ -1498,11 +1498,11 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
 
     bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
         && m_cp->m_AccountID != tran.ACCOUNTID;
-    Model_Account::Data* account = Model_Account::instance().get(is_transfer && !m_cp->m_allAccounts ? tran.TOACCOUNTID : tran.ACCOUNTID);
+    Model_Account::Data* account = Model_Account::instance().get(is_transfer && !m_cp->isAllAccounts_ ? tran.TOACCOUNTID : tran.ACCOUNTID);
     Model_Currency::Data* currency = account
         ? Model_Currency::instance().get(account->CURRENCYID)
         : Model_Currency::GetBaseCurrency();
-    double balance = m_cp->m_allAccounts
+    double balance = m_cp->isAllAccounts_
         ? Model_Checking::balance(tran, tran.ACCOUNTID)
         : tran.AMOUNT;
 
@@ -1510,14 +1510,14 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     {
     case TransactionListCtrl::COL_WITHDRAWAL:
         if (balance <= 0.0) {
-            return m_cp->m_allAccounts
+            return m_cp->isAllAccounts_
                 ? Model_Currency::toCurrency(-balance, currency)
                 : Model_Currency::toString(-balance, currency);
         }
         return "";
     case TransactionListCtrl::COL_DEPOSIT:
         if (balance > 0.0) {
-            return m_cp->m_allAccounts
+            return m_cp->isAllAccounts_
                 ? Model_Currency::toCurrency(balance, currency)
                 : Model_Currency::toString(balance, currency);
         }

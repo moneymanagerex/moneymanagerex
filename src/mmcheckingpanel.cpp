@@ -64,7 +64,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     : m_filteredBalance(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
-    , m_allAccounts((-1 == accountID) ? true : false)
+    , isAllAccounts_((-1 == accountID) ? true : false)
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
@@ -86,7 +86,7 @@ bool mmCheckingPanel::Create(
     const wxSize& size,long style, const wxString& name
 )
 {
-    if (m_allAccounts)
+    if (isAllAccounts_)
     {
         m_currency = Model_Currency::GetBaseCurrency();
     } else 
@@ -103,7 +103,7 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
 
     m_transFilterActive = false;
-    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_allAccounts, false);
+    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false);
     initFilterSettings();
 
     RefreshList();
@@ -125,7 +125,7 @@ void mmCheckingPanel::filterTable()
 {
     m_listCtrlAccount->m_trans.clear();
 
-    m_account_balance = !m_allAccounts && m_account ? m_account->INITIALBAL : 0.0;
+    m_account_balance = !isAllAccounts_ && m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
@@ -152,7 +152,7 @@ void mmCheckingPanel::filterTable()
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
 
-    const auto i = m_allAccounts ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
+    const auto i = isAllAccounts_ ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
     for (const auto& tran : i)
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
@@ -225,13 +225,19 @@ void mmCheckingPanel::filterTable()
     }
 }
 
+void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
+{
+    wxCommandEvent evt(wxID_ANY, wxID_HIGHEST + MENU_VIEW_FILTER_DIALOG);
+    OnViewPopupSelected(evt);
+}
+
 void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
     wxMenu menu;
     int id = MENU_VIEW_ALLTRANSACTIONS;
     for (const auto& i : menu_labels())
     {
-        if (!m_allAccounts || (MENU_VIEW_STATEMENTDATE != id))
+        if (!isAllAccounts_ || (MENU_VIEW_STATEMENTDATE != id))
             menu.Append(wxID_HIGHEST + id, wxGetTranslation(i));
         id++;
     }
@@ -270,6 +276,8 @@ void mmCheckingPanel::CreateControls()
     m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY, "");
     itemBoxSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
 
+    m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
+
     m_header_balance = new wxStaticText(headerPanel, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
 
@@ -297,7 +305,7 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
     // load the global variables
-    m_sortSaveTitle = m_allAccounts ? "ALLTRANS" : "CHECK";
+    m_sortSaveTitle = isAllAccounts_ ? "ALLTRANS" : "CHECK";
 
     long val = m_listCtrlAccount->COL_DEF_SORT;
     wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL", m_sortSaveTitle), wxString() << val);
@@ -383,7 +391,7 @@ void mmCheckingPanel::CreateControls()
 
 wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
-    if (m_allAccounts)
+    if (isAllAccounts_)
         return wxString::Format(_("Full Transactions Report"));
     else
         return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
@@ -400,7 +408,7 @@ void mmCheckingPanel::setAccountSummary()
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
     m_header_text->SetLabelText(GetPanelTitle(*account));
 
-    if (!m_allAccounts)
+    if (!isAllAccounts_)
     {
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
         const wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
@@ -671,10 +679,16 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
     {
+        const auto json_settings = m_trans_filter_dlg->GetJsonSetings();
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
             && m_trans_filter_dlg->isSomethingSelected());
         if (!m_transFilterActive)
             m_currentView = MENU_VIEW_ALLTRANSACTIONS;
+
+        if (json_settings != m_trans_filter_dlg->GetJsonSetings()) {
+            wxLogDebug("Update needed");
+            //m_frame->DoRecreateNavTreeControl();
+        }
     }
 
     initFilterSettings();

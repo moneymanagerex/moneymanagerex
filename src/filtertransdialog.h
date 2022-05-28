@@ -42,7 +42,7 @@ public:
     /// Constructors
     mmFilterTransactionsDialog();
     ~mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false, wxString selected = "");
+    mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport,  wxString selected = "");
     mmFilterTransactionsDialog(wxWindow* parent, const wxString& json);
 
     virtual int ShowModal();
@@ -63,7 +63,7 @@ public:
     bool getRangeCheckBox() const;
     bool is_date_range_cb_active() const;
     bool getHideColumnsCheckBox() const;
-
+public:
     enum groupBy {
         GROUPBY_ACCOUNT,
         GROUPBY_PAYEE,
@@ -80,6 +80,7 @@ public:
     const wxString getEndDate() const;
     int getStartDay() const;
     bool isFutureIgnored() const;
+    const wxString GetJsonSetings(bool i18n = false) const;
 
 private:
     void dataToControls(const wxString& json);
@@ -101,6 +102,7 @@ private:
     const wxString getNotes() const;
 
     bool isMultiAccount_;
+    int accountID_;
     bool isReportMode_;
 
 private:
@@ -151,7 +153,6 @@ private:
     void OnQuit(wxCloseEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
-    const wxString GetJsonSetings(bool i18n = false) const;
 
     bool is_values_correct() const;
 
