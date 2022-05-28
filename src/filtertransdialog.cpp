@@ -203,6 +203,15 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     wxString s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
     m_setting_name->SetStringSelection(s_label);
 
+    if (!isMultiAccount_)
+    {
+        m_setting_name->Disable();
+        m_itemButtonClear->Hide();
+        m_btnSaveAs->Hide();
+        bSelectedAccounts_->Disable();
+        accountCheckBox_->Disable();
+    }
+
     //Account
     m_selected_accounts_id.clear();
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
@@ -450,17 +459,27 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
 void mmFilterTransactionsDialog::DoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
-    wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER", true);
-    for (const auto& data : filter_settings)
+    if (isMultiAccount_)
     {
-        Document j_doc;
-        if (j_doc.Parse(data.utf8_str()).HasParseError()) {
-            j_doc.Parse("{}");
-        }
+        wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER", true);
+        for (const auto& data : filter_settings)
+        {
+            Document j_doc;
+            if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+                j_doc.Parse("{}");
+            }
 
-        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
-        m_setting_name->Append(s_label, new wxStringClientData(data));
+            Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+            const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+            m_setting_name->Append(s_label, new wxStringClientData(data));
+        }
+    }
+    else
+    {
+        Model_Account::Data* acc = Model_Account::instance().get(accountID_);
+        wxString account_name = acc ? acc->ACCOUNTNAME : "";
+        m_setting_name->Append(account_name, new wxStringClientData(account_name));
+        sel = "";
     }
 
     if (m_setting_name->GetCount() > 0) {
@@ -739,9 +758,9 @@ void mmFilterTransactionsDialog::CreateControls()
     m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
-    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR, mmBitmapButtonSize));
-    mmToolTip(itemButtonClear, _("Delete current Preset selection"));
-    settings_box_sizer->Add(itemButtonClear, g_flagsH);
+    m_itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR, mmBitmapButtonSize));
+    mmToolTip(m_itemButtonClear, _("Delete current Preset selection"));
+    settings_box_sizer->Add(m_itemButtonClear, g_flagsH);
 
     box_sizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
@@ -1705,6 +1724,8 @@ void mmFilterTransactionsDialog::ResetFilterStatus()
 
 void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
+    if (!isMultiAccount_)
+        return;
     int sel = event.GetSelection();
     int count = m_setting_name->GetCount();
     if (count > 0)
@@ -1720,14 +1741,21 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 
 void mmFilterTransactionsDialog::DoUpdateSettings()
 {
-    int sel = m_setting_name->GetSelection();
-    if (sel != wxNOT_FOUND)
+    if (isMultiAccount_)
     {
-        sel = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", m_setting_name->GetStringSelection());
-        if (sel != wxNOT_FOUND) {
-            m_settings_json = GetJsonSetings();
-            Model_Infotable::instance().Update("TRANSACTIONS_FILTER", sel, m_settings_json);
+        int sel = m_setting_name->GetSelection();
+        if (sel != wxNOT_FOUND)
+        {
+            sel = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", m_setting_name->GetStringSelection());
+            if (sel != wxNOT_FOUND) {
+                m_settings_json = GetJsonSetings();
+                Model_Infotable::instance().Update("TRANSACTIONS_FILTER", sel, m_settings_json);
+            }
         }
+    }
+    else
+    {
+        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", accountID_), GetJsonSetings());
     }
 }
 
@@ -1768,7 +1796,7 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
     }
     else
     {
-        if (m_settings_json != GetJsonSetings() && !label.empty())
+        if (isMultiAccount_ && m_settings_json != GetJsonSetings() && !label.empty())
         {
             if (wxMessageBox(
                 _("Filter settings have changed") + "\n" +

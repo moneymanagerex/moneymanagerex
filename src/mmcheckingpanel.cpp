@@ -103,7 +103,13 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
 
     m_transFilterActive = false;
-    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false);
+    wxString json;
+    if (!isAllAccounts_)
+    {
+        const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+        json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+    }
+    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false, json);
     initFilterSettings();
 
     RefreshList();
@@ -576,9 +582,17 @@ void mmCheckingPanel::OnOpenAttachment(wxCommandEvent& event)
 
 void mmCheckingPanel::initViewTransactionsHeader()
 {
-    const wxString& def_view = Model_Setting::instance().ViewTransactions();
-    m_currentView = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
-    if (m_currentView < 0 || m_currentView >= static_cast<int>(menu_labels().size() - 1))
+    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+    const auto& data = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+        j_doc.Parse("{}");
+    }
+    Value& j_filter = GetValueByPointerWithDefault(j_doc, "/FILTER", "");
+    wxString s_filter = j_filter.IsString() ? wxString::FromUTF8(j_filter.GetString()) : VIEW_TRANS_ALL_STR;
+
+    m_currentView = menu_labels().Index(s_filter);
+    if (m_currentView < 0 || m_currentView >= static_cast<int>(menu_labels().size()))
         m_currentView = menu_labels().Index(VIEW_TRANS_ALL_STR);
 
 }
@@ -665,10 +679,30 @@ void mmCheckingPanel::initFilterSettings()
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_statTextTransFilter->SetLabelText(label);
 
-    if (m_currentView == MENU_VIEW_FILTER_DIALOG)
-        m_currentView = MENU_VIEW_ALLTRANSACTIONS;
-    item = menu_labels()[m_currentView];
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
+    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+    wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+    Document j_doc;
+    if (j_doc.Parse(json.utf8_str()).HasParseError())
+    {
+        j_doc.Parse("{}");
+    }
+
+    if (j_doc.HasMember("FILTER")) {
+        Value::MemberIterator v_name = j_doc.FindMember("FILTER");
+        j_doc["FILTER"].SetString(item.mb_str(), j_doc.GetAllocator());
+    }
+    else
+    {
+        auto& allocator = j_doc.GetAllocator();
+        rapidjson::Value key("FILTER", allocator);
+        rapidjson::Value value(item.mb_str(), allocator);
+        j_doc.AddMember(key, value, allocator);
+    }
+
+    json = JSON_PrettyFormated(j_doc);
+    wxLogDebug("%s", json);
+
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), json);
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -684,11 +718,6 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
             && m_trans_filter_dlg->isSomethingSelected());
         if (!m_transFilterActive)
             m_currentView = MENU_VIEW_ALLTRANSACTIONS;
-
-        if (json_settings != m_trans_filter_dlg->GetJsonSetings()) {
-            wxLogDebug("Update needed");
-            //m_frame->DoRecreateNavTreeControl();
-        }
     }
 
     initFilterSettings();
@@ -753,7 +782,9 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     m_account = Model_Account::instance().get(m_AccountID);
     m_currency = Model_Account::currency(m_account);
 
-    m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false));
+    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+    wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+    m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json));
 
     initViewTransactionsHeader();
     initFilterSettings();
