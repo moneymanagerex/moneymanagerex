@@ -1374,15 +1374,21 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 
 const wxString mmFilterTransactionsDialog::getDescriptionToolTip() const
 {
-    wxString filterDetails = GetJsonSetings(true);
-    filterDetails.Replace(R"("")", _("Empty value"));
-    filterDetails.Replace("\"", "");
-    filterDetails.Replace("[", "");
-    filterDetails.Replace("]", "");
-    filterDetails.replace(0, 1, ' ');
-    filterDetails.RemoveLast(1);
-    filterDetails.Append("\n ");
-    return filterDetails;
+    wxString buffer;
+    wxStringTokenizer token(GetJsonSetings(true), "\n");
+    while (token.HasMoreTokens())
+    {
+        wxString c = token.GetNextToken().Trim();
+        c.Replace(R"("")", _("Empty value"));
+        c.Replace("\"", "");
+        c.Replace("[", "");
+        c.Replace("]", "");
+        c.replace(0, 1, ' ');
+        if (c.EndsWith(",")) c.RemoveLast(1);
+        if (!c.empty()) buffer += c + "\n";
+    }
+
+    return buffer;
 }
 
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
