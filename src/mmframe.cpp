@@ -161,6 +161,7 @@ EVT_MENU(MENU_TREEPOPUP_FILTER_EDIT, mmGUIFrame::OnPopupEditFilter)
 EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
+EVT_TREE_ITEM_COLLAPSING(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsing)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
 EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
@@ -962,6 +963,18 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
     if (!iData) return;
     navTreeStateToJson();
 }
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& event)
+{
+    mmTreeItemData* iData =
+        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
+
+    // disallow collapsing of HOME item
+    if (mmTreeItemData::HOME_PAGE == iData->getType())
+        event.Veto();
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)

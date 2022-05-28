@@ -253,6 +253,7 @@ private:
     void OnViewAccountsTemporaryChange(wxCommandEvent& event);
 
     void OnTreeItemExpanded(wxTreeEvent& event);
+    void OnTreeItemCollapsing(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
     void navTreeStateToJson();
 
