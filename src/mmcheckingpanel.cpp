@@ -225,6 +225,12 @@ void mmCheckingPanel::filterTable()
     }
 }
 
+void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
+{
+    wxCommandEvent evt(wxID_ANY, wxID_HIGHEST + MENU_VIEW_FILTER_DIALOG);
+    OnViewPopupSelected(evt);
+}
+
 void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
     wxMenu menu;
@@ -269,6 +275,8 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerHHeader2->AddSpacer(20);
     m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY, "");
     itemBoxSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
+
+    m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
 
     m_header_balance = new wxStaticText(headerPanel, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
