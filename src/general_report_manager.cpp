@@ -335,8 +335,13 @@ void mmGeneralReportManager::CreateControls()
     wxBoxSizer* topScreenSizer = new wxBoxSizer(wxHORIZONTAL);
     mainBoxSizer->Add(topScreenSizer, 1, wxGROW | wxALL);
 
-    m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST, wxDefaultPosition, wxDefaultSize,
-        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_TWIST_BUTTONS);
+#if defined (__WXMSW__)
+    long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES | wxTR_TWIST_BUTTONS;
+#else
+    long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
+#endif
+    m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
+        , wxDefaultPosition, wxSize(200, 200), treeCtrlFlags);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
 

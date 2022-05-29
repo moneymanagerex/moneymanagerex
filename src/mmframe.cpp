@@ -676,9 +676,14 @@ void mmGUIFrame::menuPrintingEnable(bool enable)
 
 void mmGUIFrame::createControls()
 {
+#if defined (__WXMSW__)
     m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL, wxDefaultPosition, wxDefaultSize,
-        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_TWIST_BUTTONS);
-
+        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES | wxTR_TWIST_BUTTONS);
+#else
+    // Under GTK, row lines look ugly
+    m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
+        wxDefaultPosition, wxDefaultSize);
+#endif
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
