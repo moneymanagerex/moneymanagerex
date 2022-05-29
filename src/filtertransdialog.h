@@ -198,6 +198,7 @@ private:
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     wxString m_begin_date;
     wxString m_end_date;
+    wxString m_filter_key;
     int m_startDay;
     bool m_futureIgnored;
     int m_color_value;
