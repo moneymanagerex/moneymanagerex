@@ -81,6 +81,7 @@ public:
     int getStartDay() const;
     bool isFutureIgnored() const;
     const wxString GetJsonSetings(bool i18n = false) const;
+    const wxString GetTypes() const;
 
 private:
     void dataToControls(const wxString& json);
