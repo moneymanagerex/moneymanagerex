@@ -162,7 +162,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
-    SetMinSize(wxSize(400, 580));
+    SetMinSize(wxSize(400, 480));
     SetIcon(mmex::getProgramIcon());
 
     Centre();
@@ -459,6 +459,7 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
         showColumnsCheckBox_->Hide();
         bHideColumns_->Hide();
         m_setting_name->Hide();
+        Fit();
     }
 }
 
@@ -931,6 +932,11 @@ bool mmFilterTransactionsDialog::is_values_correct() const
         return false;
     }
 
+    if (is_type_cb_active() && GetTypes().empty()) {
+        mmErrorDialogs::ToolTip4Object(cbTypeWithdrawal_, _("Type"), _("Invalid value"), wxICON_ERROR);
+        return false;
+    }
+
     if (amountRangeCheckBox_->IsChecked())
     {
         Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
@@ -1172,11 +1178,11 @@ bool mmFilterTransactionsDialog::is_type_maches(const wxString& typeState, int a
     {
         result = true;
     }
-    else if (typeState == Model_Checking::all_type()[Model_Checking::WITHDRAWAL] && cbTypeWithdrawal_->GetValue())
+    else if (typeState == Model_Checking::all_type()[Model_Checking::WITHDRAWAL] && cbTypeWithdrawal_->IsChecked())
     {
         result = true;
     }
-    else if (typeState == Model_Checking::all_type()[Model_Checking::DEPOSIT] && cbTypeDeposit_->GetValue())
+    else if (typeState == Model_Checking::all_type()[Model_Checking::DEPOSIT] && cbTypeDeposit_->IsChecked())
     {
         result = true;
     }
@@ -1467,6 +1473,16 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addText(buffer);
 }
 
+const wxString  mmFilterTransactionsDialog::GetTypes() const
+{
+    wxString type;
+    if (cbTypeWithdrawal_->IsChecked()) type += "W";
+    if (cbTypeDeposit_->IsChecked()) type += "D";
+    if (cbTypeTransferTo_->IsChecked()) type += "T";
+    if (cbTypeTransferFrom_->IsThisEnabled() && cbTypeTransferFrom_->IsChecked()) type += "F";
+    return type;
+}
+
 const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
 {
     StringBuffer json_buffer;
@@ -1557,15 +1573,7 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     //Type
     if (typeCheckBox_->IsChecked())
     {
-        wxString type;
-        if (typeCheckBox_->IsChecked())
-        {
-            if (cbTypeWithdrawal_->IsChecked()) type += "W";
-            if (cbTypeDeposit_->IsChecked()) type += "D";
-            if (cbTypeTransferTo_->IsChecked()) type += "T";
-            if (cbTypeTransferFrom_->IsThisEnabled() && cbTypeTransferFrom_->IsChecked()) type += "F";
-        }
- 
+        wxString type = GetTypes();
         if (!type.empty())
         {
             json_writer.Key((i18n ? _("Type") : "TYPE").utf8_str());
