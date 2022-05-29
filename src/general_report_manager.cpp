@@ -336,7 +336,7 @@ void mmGeneralReportManager::CreateControls()
     mainBoxSizer->Add(topScreenSizer, 1, wxGROW | wxALL);
 
     m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST, wxDefaultPosition, wxDefaultSize,
-        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_TWIST_BUTTONS);
+        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
 
