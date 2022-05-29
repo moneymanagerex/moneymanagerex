@@ -203,15 +203,6 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     wxString s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
     m_setting_name->SetStringSelection(s_label);
 
-    if (!isMultiAccount_)
-    {
-        m_setting_name->Disable();
-        m_itemButtonClear->Hide();
-        m_btnSaveAs->Hide();
-        bSelectedAccounts_->Disable();
-        accountCheckBox_->Disable();
-    }
-
     //Account
     m_selected_accounts_id.clear();
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
@@ -454,6 +445,21 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
         m_custom_fields->ShowCustomPanel();
     }
 
+    if (!isMultiAccount_)
+    {
+        bSelectedAccounts_->Disable();
+        accountCheckBox_->Disable();
+        bSelectedAccounts_->Hide();
+        accountCheckBox_->Hide();
+        m_setting_name->Disable();
+        m_itemButtonClear->Hide();
+        m_btnSaveAs->Hide();
+        groupByCheckBox_->Hide();
+        bGroupBy_->Hide();
+        showColumnsCheckBox_->Hide();
+        bHideColumns_->Hide();
+        m_setting_name->Hide();
+    }
 }
 
 void mmFilterTransactionsDialog::DoInitSettingNameChoice(wxString sel) const
@@ -518,7 +524,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     itemPanel->SetSizer(itemBoxSizer4);
     itemBoxSizer4->Add(itemPanelSizer, g_flagsExpand);
-    
+
     // Account
     accountCheckBox_ = new wxCheckBox(itemPanel, ID_ACCOUNT_CB, _("Account")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -530,14 +536,14 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
 
-   // Period Range
+    // Period Range
     datesCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _("Period Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(datesCheckBox_, g_flagsH);
 
     rangeChoice_ = new wxChoice(itemPanel, ID_DATE_RANGE);
     rangeChoice_->SetName("DateRanges");
-    for (const auto & date_range : m_all_date_ranges) {
+    for (const auto& date_range : m_all_date_ranges) {
         rangeChoice_->Append(date_range.get()->local_title());
     }
     itemPanelSizer->Add(rangeChoice_, g_flagsExpand);
@@ -691,6 +697,7 @@ void mmFilterTransactionsDialog::CreateControls()
     wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
     wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
     box_sizer2->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
+    if (!isMultiAccount_) static_box_sizer_pres->Hide();
 
     wxPanel* presPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
@@ -719,31 +726,22 @@ void mmFilterTransactionsDialog::CreateControls()
     presPanelSizer->Add(groupByCheckBox_, g_flagsH);
 
     bGroupBy_ = new wxChoice(presPanel, wxID_ANY);
-    for (const auto& i : GROUPBY_OPTIONS)
+    for (const auto& i : GROUPBY_OPTIONS) {
         bGroupBy_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    }
     presPanelSizer->Add(bGroupBy_, g_flagsExpand);
     mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
 
-    //Disable items that are only applicable to report mode
-    if (!isReportMode_)
-    {
-        showColumnsCheckBox_->Disable();
-        bHideColumns_->SetLabelText("");
-        bHideColumns_->Disable();
-        groupByCheckBox_->Disable();
-        bGroupBy_->SetLabelText("");
-        bGroupBy_->Disable();
-    }
-
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
-
     wxBoxSizer* settings_sizer = new wxBoxSizer(wxVERTICAL);
     settings_sizer->Add(settings_box_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
-    wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Settings"));
-    settings_box_sizer->Add(settings, g_flagsH);
-    settings_box_sizer->AddSpacer(5);
+    if (isMultiAccount_) {
+        wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Settings"));
+        settings_box_sizer->Add(settings, g_flagsH);
+        settings_box_sizer->AddSpacer(5);
+    }
 
     m_setting_name = new wxChoice(this, wxID_APPLY);
     settings_box_sizer->Add(m_setting_name, g_flagsExpand);
