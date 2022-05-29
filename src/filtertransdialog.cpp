@@ -454,12 +454,14 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
         m_setting_name->Disable();
         m_itemButtonClear->Hide();
         m_btnSaveAs->Hide();
+        m_setting_name->Hide();
+        Fit();
+    }
+    if (!isReportMode_) {
         groupByCheckBox_->Hide();
         bGroupBy_->Hide();
         showColumnsCheckBox_->Hide();
         bHideColumns_->Hide();
-        m_setting_name->Hide();
-        Fit();
     }
 }
 
@@ -698,7 +700,7 @@ void mmFilterTransactionsDialog::CreateControls()
     wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
     wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
     box_sizer2->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
-    if (!isMultiAccount_) static_box_sizer_pres->Hide();
+    if (!isReportMode_) static_box_sizer_pres->Hide();
 
     wxPanel* presPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
