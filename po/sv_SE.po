@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-27 18:28+0300\n"
-"PO-Revision-Date: 2022-05-27 15:36\n"
+"PO-Revision-Date: 2022-05-29 17:28\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1886,7 +1886,7 @@ msgstr "Detaljer för anpassat fält"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "Attribut för"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
@@ -1993,7 +1993,7 @@ msgstr "Egenskaper"
 
 #: customfieldlistdialog.cpp:66
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Anpassa anpassade fält"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
