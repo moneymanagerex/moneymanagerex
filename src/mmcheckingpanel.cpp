@@ -602,7 +602,7 @@ void mmCheckingPanel::initFilterSettings()
     m_transFilterActive = false;
     wxString label = "";
     m_bitmapTransFilter->UnsetToolTip();
-    mmDateRange* date_range = NULL;
+    wxSharedPtr<mmDateRange> date_range(new mmAllTime);
 
     m_begin_date = "";
     m_end_date = "";
@@ -661,10 +661,6 @@ void mmCheckingPanel::initFilterSettings()
         break;
     }
 
-    if (date_range == NULL) {
-        date_range = new mmAllTime;
-    }
-
     if (m_begin_date.empty()) {
         m_begin_date = date_range->start_date().FormatISODate();
     }
@@ -672,7 +668,6 @@ void mmCheckingPanel::initFilterSettings()
     if (m_end_date.empty()) {
         m_end_date = date_range->end_date().FormatISODate();
     }
-    delete date_range;
 
     auto item = menu_labels()[m_currentView];
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
@@ -700,15 +695,12 @@ void mmCheckingPanel::initFilterSettings()
     }
 
     json = JSON_PrettyFormated(j_doc);
-    wxLogDebug("%s", json);
-
     Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), json);
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
     m_currentView = event.GetId() - wxID_HIGHEST;
-
     m_transFilterActive = false;
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
@@ -730,7 +722,6 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     if (search_string.IsEmpty()) return;
 
     m_listCtrlAccount->doSearchText(search_string);
-
 }
 
 void mmCheckingPanel::DisplaySplitCategories(int transID)
@@ -808,4 +799,3 @@ void mmCheckingPanel::mmPlayTransactionSound()
             registerSound.Play(wxSOUND_ASYNC);
     }
 }
-
