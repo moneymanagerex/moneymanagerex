@@ -699,13 +699,14 @@ void mmFilterTransactionsDialog::CreateControls()
     /******************************************************************************
      Presentation Panel
     *******************************************************************************/
-    wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
-    wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
-    box_sizer2->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
-    if (!isReportMode_) static_box_sizer_pres->Hide();
 
     wxPanel* presPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
+    if (isReportMode_) {
+        wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
+        wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
+        box_sizer2->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
+        itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
+    }
 
     wxBoxSizer* presBoxSizer = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* presPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
