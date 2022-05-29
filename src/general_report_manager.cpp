@@ -336,7 +336,7 @@ void mmGeneralReportManager::CreateControls()
     mainBoxSizer->Add(topScreenSizer, 1, wxGROW | wxALL);
 
 #if defined (__WXMSW__)
-    long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
+    long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES | wxTR_TWIST_BUTTONS;
 #else
     long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #endif
