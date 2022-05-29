@@ -707,6 +707,8 @@ void mmFilterTransactionsDialog::CreateControls()
         box_sizer2->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
         itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
     }
+    else
+        presPanel->Hide();
 
     wxBoxSizer* presBoxSizer = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* presPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
