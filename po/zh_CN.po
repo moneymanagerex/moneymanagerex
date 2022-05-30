@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-29 22:43+0300\n"
-"PO-Revision-Date: 2022-05-29 19:50\n"
+"PO-Revision-Date: 2022-05-30 06:17\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4113,7 +4113,7 @@ msgstr "帮助"
 
 #: mmframe.cpp:1199
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "具有此名称的设置已存在"
 
 #: mmframe.cpp:1201
 msgid "Please specify a new name for the setting"
