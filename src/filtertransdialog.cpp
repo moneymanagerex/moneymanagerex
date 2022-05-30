@@ -1818,7 +1818,11 @@ void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
     }
     else
     {
-        if (isMultiAccount_ && m_settings_json != GetJsonSetings() && !label.empty())
+        const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
+        const auto l = GetLabelString();
+        int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
+        const auto json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
+        if (isMultiAccount_ && json != GetJsonSetings() && !label.empty())
         {
             if (wxMessageBox(
                 _("Filter settings have changed") + "\n" +
