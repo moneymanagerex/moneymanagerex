@@ -446,29 +446,6 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     if (is_custom_found) {
         m_custom_fields->ShowCustomPanel();
     }
-
-    if (!isMultiAccount_)
-    {
-        bSelectedAccounts_->Disable();
-        accountCheckBox_->Disable();
-        bSelectedAccounts_->Hide();
-        accountCheckBox_->Hide();
-        m_setting_name->Disable();
-        m_itemButtonClear->Hide();
-        m_btnSaveAs->Hide();
-        m_setting_name->Hide();
-        Fit();
-    }
-    if (!isReportMode_) {
-        groupByCheckBox_->Disable();
-        bGroupBy_->Disable();
-        showColumnsCheckBox_->Disable();
-        bHideColumns_->Disable();
-        groupByCheckBox_->Hide();
-        bGroupBy_->Hide();
-        showColumnsCheckBox_->Hide();
-        bHideColumns_->Hide();
-    }
 }
 
 void mmFilterTransactionsDialog::DoInitSettingNameChoice(wxString sel) const
@@ -805,6 +782,29 @@ void mmFilterTransactionsDialog::CreateControls()
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
         OnMoreFields(evt);
     }
+
+    if (!isMultiAccount_)
+    {
+        bSelectedAccounts_->Disable();
+        accountCheckBox_->Disable();
+        bSelectedAccounts_->Hide();
+        accountCheckBox_->Hide();
+        m_setting_name->Disable();
+        m_itemButtonClear->Hide();
+        m_btnSaveAs->Hide();
+        m_setting_name->Hide();
+    }
+    if (!isReportMode_) {
+        groupByCheckBox_->Disable();
+        bGroupBy_->Disable();
+        showColumnsCheckBox_->Disable();
+        bHideColumns_->Disable();
+        groupByCheckBox_->Hide();
+        bGroupBy_->Hide();
+        showColumnsCheckBox_->Hide();
+        bHideColumns_->Hide();
+    }
+    Fit();
 
     wxCommandEvent e(wxID_APPLY);
     OnSettingsSelected(e);
