@@ -103,12 +103,9 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
 
     m_transFilterActive = false;
-    wxString json;
-    if (!isAllAccounts_)
-    {
-        const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
-        json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
-    }
+    const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })", Model_Setting::instance().ViewTransactions());
+    wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+
     m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false, json);
     initFilterSettings();
 
@@ -674,11 +671,11 @@ void mmCheckingPanel::initFilterSettings()
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_statTextTransFilter->SetLabelText(label);
 
-    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+    const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })"
+        , Model_Setting::instance().ViewTransactions());
     wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
     Document j_doc;
-    if (j_doc.Parse(json.utf8_str()).HasParseError())
-    {
+    if (j_doc.Parse(json.utf8_str()).HasParseError()) {
         j_doc.Parse("{}");
     }
 
@@ -689,9 +686,8 @@ void mmCheckingPanel::initFilterSettings()
     else
     {
         auto& allocator = j_doc.GetAllocator();
-        rapidjson::Value key("FILTER", allocator);
         rapidjson::Value value(item.mb_str(), allocator);
-        j_doc.AddMember(key, value, allocator);
+        j_doc.AddMember("FILTER", value, allocator);
     }
 
     json = JSON_PrettyFormated(j_doc);
