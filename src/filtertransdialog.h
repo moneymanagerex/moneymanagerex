@@ -42,7 +42,7 @@ public:
     /// Constructors
     mmFilterTransactionsDialog();
     ~mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false, wxString selected = "");
+    mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport,  wxString selected = "");
     mmFilterTransactionsDialog(wxWindow* parent, const wxString& json);
 
     virtual int ShowModal();
@@ -63,7 +63,7 @@ public:
     bool getRangeCheckBox() const;
     bool is_date_range_cb_active() const;
     bool getHideColumnsCheckBox() const;
-
+public:
     enum groupBy {
         GROUPBY_ACCOUNT,
         GROUPBY_PAYEE,
@@ -80,6 +80,8 @@ public:
     const wxString getEndDate() const;
     int getStartDay() const;
     bool isFutureIgnored() const;
+    const wxString GetJsonSetings(bool i18n = false) const;
+    const wxString GetTypes() const;
 
 private:
     void dataToControls(const wxString& json);
@@ -89,6 +91,7 @@ private:
     bool is_amount_range_max_cb_active() const;
     double getAmountMax() const;
     double getAmountMin() const;
+    const wxString GetLabelString() const;
 
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool is_payee_matches(const DATA &tran);
@@ -101,6 +104,7 @@ private:
     const wxString getNotes() const;
 
     bool isMultiAccount_;
+    int accountID_;
     bool isReportMode_;
 
 private:
@@ -151,7 +155,6 @@ private:
     void OnQuit(wxCloseEvent& event);
 private:
     void OnCategs(wxCommandEvent& event);
-    const wxString GetJsonSetings(bool i18n = false) const;
 
     bool is_values_correct() const;
 
@@ -182,6 +185,7 @@ private:
     wxTextCtrl* notesEdit_;
     wxChoice* m_setting_name;
     wxBitmapButton* m_btnSaveAs;
+    wxBitmapButton* m_itemButtonClear;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     wxCheckBox* colorCheckBox_;
@@ -195,6 +199,7 @@ private:
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     wxString m_begin_date;
     wxString m_end_date;
+    wxString m_filter_key;
     int m_startDay;
     bool m_futureIgnored;
     int m_color_value;
@@ -246,6 +251,7 @@ inline bool mmFilterTransactionsDialog::is_notes_cb_active() const { return note
 inline bool mmFilterTransactionsDialog::is_color_cb_active() const { return colorCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
+inline const wxString mmFilterTransactionsDialog::GetLabelString() const { return  m_setting_name->GetStringSelection(); }
 
 #endif
 // FILTERTRANSDIALOG_H_

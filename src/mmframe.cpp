@@ -155,11 +155,13 @@ EVT_MENU(MENU_TREEPOPUP_REALLOCATE, mmGUIFrame::OnPopupReallocateAccount)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
 
 EVT_MENU(MENU_TREEPOPUP_FILTER_DELETE, mmGUIFrame::OnPopupDeleteFilter)
+EVT_MENU(MENU_TREEPOPUP_FILTER_RENAME, mmGUIFrame::OnPopupRenameFilter)
 EVT_MENU(MENU_TREEPOPUP_FILTER_EDIT, mmGUIFrame::OnPopupEditFilter)
 
 EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
+EVT_TREE_ITEM_COLLAPSING(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsing)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
 EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
@@ -674,15 +676,9 @@ void mmGUIFrame::menuPrintingEnable(bool enable)
 
 void mmGUIFrame::createControls()
 {
-#if defined (__WXGTK__) || defined (__WXMAC__)
-    // Under GTK, row lines look ugly
-    m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
-        wxDefaultPosition, wxDefaultSize);
-#else
-    m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
-        wxDefaultPosition, wxDefaultSize, wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES);
+    m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL, wxDefaultPosition, wxDefaultSize,
+        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS);
 
-#endif
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
@@ -963,6 +959,18 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& event)
+{
+    mmTreeItemData* iData =
+        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
+
+    // disallow collapsing of HOME item
+    if (mmTreeItemData::HOME_PAGE == iData->getType())
+        event.Veto();
+}
+
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 {
     mmTreeItemData* iData =
@@ -1167,6 +1175,58 @@ void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
 }
 //--------------------------------------------------------------------------
 
+void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
+{
+    if (!m_db) return;
+    wxString data = selectedItemData_->getString();
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError())
+        j_doc.Parse("{}");
+    Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+    wxString selected = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+
+    wxString new_name;
+    bool nameOK = false;
+    while (!nameOK)
+    {
+        new_name = wxGetTextFromUser(_("Setting Name"), _("Please Enter"), selected);
+        if (new_name.empty())
+            return;
+        if (wxNOT_FOUND == Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", new_name))
+            nameOK = true;
+        else
+        {
+            wxString msgStr = wxString() << _("A setting with this name already exists") << "\n"
+            << "\n"
+            << _("Please specify a new name for the setting") << "\n";
+
+            wxMessageBox(msgStr, _("Name in use"), wxICON_ERROR);
+        }
+    }
+
+    int sel_json = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", selected);
+    if (sel_json != wxNOT_FOUND)
+    {
+        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel_json);
+
+        // Change the name
+        Value::MemberIterator v_name = j_doc.FindMember("LABEL");
+        v_name->value.SetString(new_name.mb_str(), j_doc.GetAllocator());
+        // Serialize the new entry
+        StringBuffer buffer;
+        buffer.Clear();
+        PrettyWriter<StringBuffer> writer(buffer);
+        writer.SetFormatOptions(kFormatSingleLineArray);
+        j_doc.Accept(writer);
+        data = wxString::FromUTF8(buffer.GetString());
+        Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", data, -1);
+        
+        DoRecreateNavTreeControl();
+        setNavTreeSection(_("Transaction Report"));
+    }
+}
+//--------------------------------------------------------------------------
+
 void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 {
     if (!m_db) return;
@@ -1175,7 +1235,7 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 
     const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true, data));
+    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true, data));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
@@ -1233,6 +1293,8 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId selectedItem = event.GetItem();
     m_nav_tree_ctrl->SelectItem(selectedItem);
+
+    OnSelChanged(event);
 }
 //----------------------------------------------------------------------------
 
@@ -1275,6 +1337,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         const wxString data = iData->getString();
         wxLogDebug("MENU FILTER: %s", data);
         menu.Append(MENU_TREEPOPUP_FILTER_EDIT, __(wxTRANSLATE("&Edit Filter")));
+        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, __(wxTRANSLATE("&Rename Filter")));
         menu.Append(MENU_TREEPOPUP_FILTER_DELETE, __(wxTRANSLATE("&Delete Filter")));
         PopupMenu(&menu, pt);
         break;
@@ -2481,7 +2544,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 
     const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, true, true));
+    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
