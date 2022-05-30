@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-29 22:43+0300\n"
-"PO-Revision-Date: 2022-05-29 19:51\n"
+"PO-Revision-Date: 2022-05-30 10:41\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1897,11 +1897,11 @@ msgstr "פרטי שדה מותאם אישית"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "מאפיין של"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "בחירת הפריט אליו משוייך שדה מותאם אישית"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -2004,7 +2004,7 @@ msgstr "מאפינים"
 
 #: customfieldlistdialog.cpp:66
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "שדות מותאמים אישית"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -4151,15 +4151,15 @@ msgstr "עזרה"
 
 #: mmframe.cpp:1199
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "קיית כבר הגדרה בשם זה"
 
 #: mmframe.cpp:1201
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "לא נהגדיר שם חדש להגדרה"
 
 #: mmframe.cpp:1203
 msgid "Name in use"
-msgstr ""
+msgstr "שם כבר בשימוש"
 
 #: mmframe.cpp:1260
 msgid "Do you really want to delete the account?"
@@ -4203,15 +4203,15 @@ msgstr "קובצי JSON&"
 
 #: mmframe.cpp:1339
 msgid "&Edit Filter"
-msgstr ""
+msgstr "&עריכת מסנן"
 
 #: mmframe.cpp:1340
 msgid "&Rename Filter"
-msgstr ""
+msgstr "&שינוי שם מסנן"
 
 #: mmframe.cpp:1341
 msgid "&Delete Filter"
-msgstr ""
+msgstr "&מחקת מסנן"
 
 #: mmframe.cpp:1355 mmframe.cpp:1373 mmframe.cpp:1393 mmframe.cpp:1567
 msgid "&Edit Account"
