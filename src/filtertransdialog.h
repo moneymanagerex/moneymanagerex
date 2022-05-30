@@ -91,6 +91,7 @@ private:
     bool is_amount_range_max_cb_active() const;
     double getAmountMax() const;
     double getAmountMin() const;
+    const wxString GetLabelString() const;
 
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool is_payee_matches(const DATA &tran);
@@ -250,6 +251,7 @@ inline bool mmFilterTransactionsDialog::is_notes_cb_active() const { return note
 inline bool mmFilterTransactionsDialog::is_color_cb_active() const { return colorCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
+inline const wxString mmFilterTransactionsDialog::GetLabelString() const { return  m_setting_name->GetStringSelection(); }
 
 #endif
 // FILTERTRANSDIALOG_H_

@@ -1237,7 +1237,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, m_setting_name->GetStringSelection());
+        int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, GetLabelString());
         if (sel_json != wxNOT_FOUND)
             Model_Infotable::instance().Erase(m_filter_key, sel_json);
 
@@ -1500,7 +1500,7 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     json_writer.StartObject();
 
     //Label
-    wxString label = m_setting_name->GetStringSelection();
+    wxString label = GetLabelString();
     if (m_setting_name->GetSelection() == wxNOT_FOUND) {
         label = "";
     }
@@ -1768,14 +1768,14 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
         int sel = m_setting_name->GetSelection();
         if (sel != wxNOT_FOUND)
         {
-            sel = Model_Infotable::instance().FindLabelInJSON(m_filter_key, m_setting_name->GetStringSelection());
+            sel = Model_Infotable::instance().FindLabelInJSON(m_filter_key, GetLabelString());
             if (sel != wxNOT_FOUND) {
                 m_settings_json = GetJsonSetings();
                 Model_Infotable::instance().Update(m_filter_key, sel, m_settings_json);
             }
         }
     }
-    else
+    if (!isReportMode_)
     {
         Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", accountID_), GetJsonSetings());
     }
@@ -1783,7 +1783,7 @@ void mmFilterTransactionsDialog::DoUpdateSettings()
 
 void mmFilterTransactionsDialog::DoSaveSettings(bool is_user_request)
 {
-    const auto label = m_setting_name->GetStringSelection();
+    const auto label = GetLabelString();
     wxString user_label;
 
     if (is_user_request)
