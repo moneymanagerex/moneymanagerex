@@ -327,6 +327,7 @@ void mmBDDialog::dataToControls()
             SetDialogHeader(_("Duplicate Recurring Transaction"));
         else
             SetDialogHeader(_("Edit Recurring Transaction"));
+        textAmount_->SetFocus();
     }
     else
     {
@@ -337,12 +338,13 @@ void mmBDDialog::dataToControls()
         if (spinTransDate) spinTransDate->Disable();
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
-        textAmount_->SetFocus();
         itemCheckBoxAutoExeSilent_->Disable();
         itemCheckBoxAutoExeUserAck_->Disable();
         textNumRepeats_->Disable();
         m_btn_due_prev_date->Disable();
         m_btn_due_date->Disable();
+        auto bok = static_cast<wxButton*>(FindWindowById(wxID_OK, this));
+        if (bok) bok->SetFocus();
     }
 
     setTooltips();
@@ -690,7 +692,6 @@ void mmBDDialog::CreateControls()
     wxButton* button_ok = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
 
     m_button_cancel = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    m_button_cancel->SetFocus();
 
     mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
     wxBitmapButton* button_hide = new wxBitmapButton(buttonsPanel
