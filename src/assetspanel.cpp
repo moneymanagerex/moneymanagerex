@@ -171,7 +171,7 @@ void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.m_asset->ASSETID);
-        m_panel->m_frame->RefreshNavigationTree();
+        //m_panel->m_frame->RefreshNavigationTree();
     }
 }
 

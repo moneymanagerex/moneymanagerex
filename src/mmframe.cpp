@@ -893,7 +893,7 @@ void mmGUIFrame::DoRecreateNavTreeControl()
             m_nav_tree_ctrl->Delete(shareAccounts);
         }
     }
-    m_nav_tree_ctrl->SelectItem(root);
+    //m_nav_tree_ctrl->SelectItem(root);
     m_nav_tree_ctrl->EnsureVisible(root);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
