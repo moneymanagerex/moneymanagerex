@@ -30,6 +30,76 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 
 
+wxBEGIN_EVENT_TABLE(mmComboBoxCategory, wxComboBox)
+EVT_TEXT(wxID_ANY, mmComboBoxCategory::OnTextUpdated)
+wxEND_EVENT_TABLE()
+
+mmCategoryItem::mmCategoryItem(int category, int subcategory)
+    : category_(category)
+    , subcategory_(subcategory)
+{
+}
+
+mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
+    :wxComboBox(parent, id, "", wxDefaultPosition, size)
+    , category_(-1)
+    , subcategory_(-1)
+{
+    Create();
+}
+
+void mmComboBoxCategory::Create()
+{
+    unsigned int i = 0;
+    auto categories = Model_Category::instance().all_categories();
+    for (const auto& item : categories)
+    {
+        auto_complite_.Add(item.first);
+        wxSharedPtr<mmCategoryItem> category_item(new mmCategoryItem(item.second.first, item.second.second));
+        this->Insert(item.first, i++, category_item.get());
+    }
+    this->AutoComplete(auto_complite_);
+    Bind(wxEVT_CHAR_HOOK, &mmComboBoxCategory::OnKeyPressed, this);
+}
+
+void mmComboBoxCategory::OnKeyPressed(wxKeyEvent& event)
+{
+    auto text = GetValue();
+    if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
+    {
+        for (const auto& item : auto_complite_)
+        {
+            if (item.CmpNoCase(text) == 0) {
+                SetValue(item);
+                Dismiss();
+                break;
+            }
+        }
+    }
+    event.Skip();
+}
+
+void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
+{
+    category_ = -1;
+    subcategory_ = -1;
+    auto string = event.GetString();
+    auto sel = auto_complite_.Index(string);
+    if (sel != wxNOT_FOUND)
+    {
+        auto client_data = static_cast<mmCategoryItem*>(GetClientData(sel));
+        if (client_data) {
+            category_ = client_data->GetCategoryId();
+            subcategory_ = client_data->GetSubcategoryId();
+        }
+    }
+    wxLogDebug("Text Entered %i %i | %i %s", category_, subcategory_, sel, string);
+    event.Skip();
+}
+
+
+/* --------------------------------------------------------- */
+
 wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
 EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
 EVT_BUTTON(wxID_ANY, mmColorButton::OnColourButton)

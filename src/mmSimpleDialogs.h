@@ -32,6 +32,44 @@ class wxTextCtrl;
 class wxChoice;
 class wxButton;
 
+class mmCategoryItem
+{
+public:
+    mmCategoryItem(int category, int subcategory);
+    int GetCategoryId() const;
+    int GetSubcategoryId() const;
+private:
+    int category_;
+    int subcategory_;
+};
+inline int mmCategoryItem::GetCategoryId() const { return category_; }
+inline int mmCategoryItem::GetSubcategoryId() const { return subcategory_; }
+
+class mmComboBoxCategory : public wxComboBox
+{
+public:
+    mmComboBoxCategory(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    int GetCategoryId() const;
+    int GetSubcategoryId() const;
+private:
+    void Create();
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+private:
+    int category_;
+    int subcategory_;
+    wxArrayString auto_complite_;
+
+    wxDECLARE_EVENT_TABLE();
+};
+inline int mmComboBoxCategory::GetCategoryId() const { return category_; }
+inline int mmComboBoxCategory::GetSubcategoryId() const { return subcategory_; }
+
+/* -------------------------------------------- */
+
 class mmColorButton : public wxButton
 {
 public:
