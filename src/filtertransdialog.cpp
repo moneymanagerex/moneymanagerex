@@ -565,16 +565,6 @@ void mmFilterTransactionsDialog::CreateControls()
     BuildPayeeList();
 
     // Category
-
-    wxCheckBox* test_cb = new wxCheckBox(itemPanel, wxID_ANY, _("Payee")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(test_cb, g_flagsH);
-    mmComboBoxCategory* test = new mmComboBoxCategory(itemPanel);
-    itemPanelSizer->Add(test, g_flagsExpand);
-
-
-
-
     categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 

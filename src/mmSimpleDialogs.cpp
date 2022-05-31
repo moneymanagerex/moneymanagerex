@@ -34,14 +34,8 @@ wxBEGIN_EVENT_TABLE(mmComboBoxCategory, wxComboBox)
 EVT_TEXT(wxID_ANY, mmComboBoxCategory::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
-mmCategoryItem::mmCategoryItem(int category, int subcategory)
-    : category_(category)
-    , subcategory_(subcategory)
-{
-}
-
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
-    :wxComboBox(parent, id, "", wxDefaultPosition, size)
+    : wxComboBox(parent, id, "", wxDefaultPosition, size)
     , category_(-1)
     , subcategory_(-1)
 {
@@ -51,14 +45,14 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
 void mmComboBoxCategory::Create()
 {
     unsigned int i = 0;
-    auto categories = Model_Category::instance().all_categories();
-    for (const auto& item : categories)
+    wxArrayString auto_complite;
+    all_categories_ = Model_Category::instance().all_categories();
+    for (const auto& item : all_categories_)
     {
-        auto_complite_.Add(item.first);
-        wxSharedPtr<mmCategoryItem> category_item(new mmCategoryItem(item.second.first, item.second.second));
-        this->Insert(item.first, i++, category_item.get());
+        auto_complite.Add(item.first);
+        this->Insert(item.first, i++);
     }
-    this->AutoComplete(auto_complite_);
+    this->AutoComplete(auto_complite);
     Bind(wxEVT_CHAR_HOOK, &mmComboBoxCategory::OnKeyPressed, this);
 }
 
@@ -67,10 +61,10 @@ void mmComboBoxCategory::OnKeyPressed(wxKeyEvent& event)
     auto text = GetValue();
     if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
     {
-        for (const auto& item : auto_complite_)
+        for (const auto& item : all_categories_)
         {
-            if (item.CmpNoCase(text) == 0) {
-                SetValue(item);
+            if (item.first.CmpNoCase(text) == 0) {
+                SetValue(item.first);
                 Dismiss();
                 break;
             }
@@ -84,17 +78,33 @@ void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
     category_ = -1;
     subcategory_ = -1;
     auto string = event.GetString();
-    auto sel = auto_complite_.Index(string);
-    if (sel != wxNOT_FOUND)
+    if (all_categories_.find(string) != all_categories_.end())
     {
-        auto client_data = static_cast<mmCategoryItem*>(GetClientData(sel));
-        if (client_data) {
-            category_ = client_data->GetCategoryId();
-            subcategory_ = client_data->GetSubcategoryId();
-        }
+        category_ = all_categories_.at(string).first;
+        subcategory_ = all_categories_.at(string).second;
+        wxLogDebug("Text Entered %i %i | %s", category_, subcategory_, string);
     }
-    wxLogDebug("Text Entered %i %i | %i %s", category_, subcategory_, sel, string);
     event.Skip();
+}
+
+bool mmComboBoxCategory::IsCategoryValid(wxWindow* w) const
+{
+    Model_Category::Data* categ = Model_Category::instance().get(category_);
+    if (categ)
+    {
+        if (subcategory_ != -1) {
+            Model_Subcategory::Data* subcateg = Model_Subcategory::instance().get(subcategory_);
+            if (subcateg)
+                return true;
+        }
+        else
+            return true;
+    }
+
+    if (w)
+        mmErrorDialogs::ToolTip4Object(w, _("Invalid Category"), _("Error"), wxICON_ERROR);
+
+    return false;
 }
 
 
