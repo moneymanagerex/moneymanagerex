@@ -1,4 +1,6 @@
 /*******************************************************
+ Copyright (C) 2013 - 2016, 2020, 2022 Nikolay Akimov
+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -43,9 +45,9 @@ private:
     bool Create(wxWindow* parent
         , wxWindowID id
         , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
     void CreateControls();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
