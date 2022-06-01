@@ -82,10 +82,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport, wxString selected)
-    : m_categ_id(-1)
-    , m_subcateg_id(-1)
-    , is_similar_category_status(false)
-    , isMultiAccount_(accountID == -1)
+    : isMultiAccount_(accountID == -1)
     , accountID_(accountID)
     , isReportMode_(isReport)
     , m_color_value(-1)
@@ -100,10 +97,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const wxString& json)
-    : m_categ_id(-1)
-    , m_subcateg_id(-1)
-    , is_similar_category_status(false)
-    , isMultiAccount_(true)
+    : isMultiAccount_(true)
     , accountID_(-1)
     , isReportMode_(true)
     , m_filter_key("TRANSACTIONS_FILTER")
@@ -281,38 +275,15 @@ void mmFilterTransactionsDialog::dataToControls(const wxString& json)
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
 
-    m_subcateg_id = -1;
-    m_categ_id = -1;
-
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
     wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
     const auto categ_name = categ_token.GetNextToken().Trim();
     const auto subcateg_name = categ_token.GetNextToken().Trim(false);
     s_category = categ_name + (s_category.Contains(":") ? delimiter + subcateg_name : "");
 
-    if (!s_category.IsEmpty())
-        for (const auto& entry : Model_Category::instance().all_categories())
-        {
-            //wxLogDebug("%s : %i %i", entry.first, entry.second.first, entry.second.second);
-            if (s_category == entry.first)
-            {
-                m_categ_id = entry.second.first;
-                m_subcateg_id = entry.second.second;
-                break;
-            }
-        }
-    categoryCheckBox_->SetValue(m_categ_id != -1);
+    categoryCheckBox_->SetValue(!s_category.IsEmpty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
-
-    btnCategory_->SetLabelText(Model_Category::full_name(m_categ_id, m_subcateg_id));
-
-    is_similar_category_status = false;
-    if (j_doc.HasMember("SIMILAR_YN") && j_doc["SIMILAR_YN"].IsBool())
-    {
-        is_similar_category_status = j_doc["SIMILAR_YN"].GetBool();
-    }
-    similarCategCheckBox_->SetValue(is_similar_category_status);
-    similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
+    btnCategory_->SetLabelText(s_category);
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
@@ -574,17 +545,9 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
     itemPanelSizer->Add(categSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
-    btnCategory_ = new wxButton(itemPanel, wxID_ANY, ""
-        , wxDefaultPosition, wxDefaultSize);
-    btnCategory_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), nullptr, this);
-    similarCategCheckBox_ = new wxCheckBox(itemPanel, ID_SIMILAR_CB, _("Include Similar"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    mmToolTip(similarCategCheckBox_, _("Include all subcategories for the selected category."));
-
+    btnCategory_ = new mmComboBoxCategory(itemPanel, wxID_ANY);
     categSizer->Add(btnCategory_, g_flagsExpand);
-    categSizer->Add(similarCategCheckBox_, wxSizerFlags(g_flagsH).Center().Border(0));
-    categSizer->AddSpacer(5);
+
 
     // Status
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
@@ -819,9 +782,6 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     int id = event.GetId();
     switch (id)
     {
-    case ID_SIMILAR_CB:
-        is_similar_category_status = similarCategCheckBox_->IsChecked();
-        break;
     case ID_PERIOD_CB:
         if (dateRangeCheckBox_->IsChecked())
             dateRangeCheckBox_->SetValue(false);
@@ -854,7 +814,6 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
-    similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
@@ -927,13 +886,10 @@ bool mmFilterTransactionsDialog::is_values_correct() const
             return false;
     }
 
-    if (is_category_cb_active())
+    if (is_category_cb_active() && btnCategory_->GetValue().empty())
     {
-        Model_Category::Data* categ = Model_Category::instance().get(m_categ_id);
-        if (!categ) {
-            mmErrorDialogs::ToolTip4Object(btnCategory_, _("Category"), _("Invalid value"), wxICON_ERROR);
-            return false;
-        }
+        mmErrorDialogs::ToolTip4Object(btnCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
+        return false;
     }
 
     if (is_status_cb_active() && choiceStatus_->GetSelection() == wxNOT_FOUND) {
@@ -1048,25 +1004,6 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
     }
     else
         event.Skip();
-}
-
-void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
-{
-    Model_Category::Data* category = Model_Category::instance().get(m_categ_id);
-    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(m_subcateg_id);
-    int categID = category ? category->CATEGID : -1;
-    int subcategID = sub_category ? sub_category->SUBCATEGID : -1;
-    mmCategDialog dlg(this, true, categID, subcategID);
-
-    if (dlg.ShowModal() == wxID_OK)
-    {
-        m_categ_id = dlg.getCategId();
-        m_subcateg_id = dlg.getSubCategId();
-        category = Model_Category::instance().get(m_categ_id);
-        sub_category = Model_Subcategory::instance().get(m_subcateg_id);
-
-        btnCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
-    }
 }
 
 void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
@@ -1300,26 +1237,29 @@ bool mmFilterTransactionsDialog::is_payee_matches(const DATA &tran)
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::is_category_matches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
-    const auto it = splits.find(tran.id());
-    if (it == splits.end())
-    {
-        if (m_categ_id != tran.CATEGID) return false;
-        if (m_subcateg_id != tran.SUBCATEGID && !is_similar_category_status) return false;
+    wxArrayString trx_categories;
+    const auto& it = splits.find(tran.id());
+    if (it == splits.end()) {
+        trx_categories.Add(Model_Category::full_name(tran.CATEGID, tran.SUBCATEGID));
     }
-    else
-    {
-        bool bMatching = false;
-        for (const auto &split : it->second)
-        {
-            if (split.CATEGID != m_categ_id) continue;
-            if (split.SUBCATEGID != m_subcateg_id && !is_similar_category_status) continue;
-
-            bMatching = true;
-            break;
+    else {
+        for (const auto& split : it->second) {
+            trx_categories.Add(Model_Category::full_name(split.CATEGID, split.SUBCATEGID));
         }
-        if (!bMatching) return false;
     }
-    return true;
+
+    const auto& value = btnCategory_->GetValue();
+    if (!value.empty()) {
+        for (const auto& item : trx_categories)
+        {
+            wxRegEx pattern("^(" + value + ")$");
+            if (pattern.IsValid() && pattern.Matches(item)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
@@ -1558,10 +1498,7 @@ const wxString mmFilterTransactionsDialog::GetJsonSetings(bool i18n) const
     if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        auto categ = Model_Category::full_name(m_categ_id, m_subcateg_id);
-        json_writer.String(categ.utf8_str());
-        json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").utf8_str());
-        json_writer.Bool(is_similar_category_status);
+        json_writer.String(btnCategory_->GetValue().utf8_str());
     }
 
     //Status

@@ -381,7 +381,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
-    for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
+    for (const auto& tran : Model_Checking::instance().all())
     {
         if (!dlg.get()->checkAll(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
@@ -389,17 +389,18 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split()) 
         {
+            const auto& value = dlg.get()->GetCategoryPattern();
+            wxRegEx pattern("^(" + value + ")$");
+
             for (const auto& split : full_tran.m_splits)
             {
-                if (m_transDialog->is_category_cb_active())
-                {
-                    if (split.CATEGID != m_transDialog->getCategId() ) continue;
-                    if (split.SUBCATEGID != m_transDialog->getSubCategId() 
-                        && !m_transDialog->getSimilarStatus()) continue;
+                const auto& categ = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
+
+                if (pattern.Matches(categ)) {
+                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
+                    full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+                    trans_.push_back(full_tran);
                 }
-                full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
-                full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-                trans_.push_back(full_tran);
             }
         } else
             trans_.push_back(full_tran);

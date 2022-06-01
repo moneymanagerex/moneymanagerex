@@ -59,7 +59,7 @@ public:
     bool is_status_cb_active() const;
     bool is_account_cb_active() const;
     bool is_category_cb_active() const;
-    bool getSimilarStatus() const;
+    const wxString GetCategoryPattern() const;
     bool getRangeCheckBox() const;
     bool is_date_range_cb_active() const;
     bool getHideColumnsCheckBox() const;
@@ -71,8 +71,6 @@ public:
     };
     int getGroupBy() const;
 
-    int getCategId() const;
-    int getSubCategId() const;
     const wxArrayInt getAccountsID() const;
     const wxArrayInt getHideColumnsID() const;
 
@@ -153,9 +151,8 @@ private:
     void OnChoice(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
-private:
-    void OnCategs(wxCommandEvent& event);
 
+private:
     bool is_values_correct() const;
 
     wxCheckBox* accountCheckBox_;
@@ -168,8 +165,7 @@ private:
     wxCheckBox* payeeCheckBox_;
     wxComboBox* cbPayee_;
     wxCheckBox* categoryCheckBox_;
-    wxButton* btnCategory_;
-    wxCheckBox* similarCategCheckBox_;
+    mmComboBoxCategory* btnCategory_;
     wxCheckBox* statusCheckBox_;
 private:
     wxChoice* choiceStatus_;
@@ -203,9 +199,6 @@ private:
     int m_startDay;
     bool m_futureIgnored;
     int m_color_value;
-    int m_categ_id;
-    int m_subcateg_id;
-    bool is_similar_category_status;
     wxString m_payee_str;
 
     /* Selected accounts values */
@@ -225,8 +218,7 @@ private:
         ID_DATE_RANGE,
         ID_PERIOD_CB,
         ID_ACCOUNT_CB,
-        ID_DATE_RANGE_CB,
-        ID_SIMILAR_CB
+        ID_DATE_RANGE_CB
     };
 };
 
@@ -234,9 +226,6 @@ inline const wxString mmFilterTransactionsDialog::getBeginDate() const { return 
 inline const wxString mmFilterTransactionsDialog::getEndDate() const { return m_end_date; }
 inline int mmFilterTransactionsDialog::getStartDay() const { return m_startDay; }
 inline bool mmFilterTransactionsDialog::isFutureIgnored() const { return m_futureIgnored; }
-inline bool mmFilterTransactionsDialog::getSimilarStatus() const { return is_similar_category_status; }
-inline int mmFilterTransactionsDialog::getCategId() const { return m_categ_id; }
-inline int mmFilterTransactionsDialog::getSubCategId() const { return m_subcateg_id; }
 inline const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const { return m_selected_accounts_id; }
 inline const wxArrayInt mmFilterTransactionsDialog::getHideColumnsID() const { return m_selected_columns_id; }
 inline bool mmFilterTransactionsDialog::is_date_range_cb_active() const { return dateRangeCheckBox_->GetValue(); }
@@ -252,6 +241,7 @@ inline bool mmFilterTransactionsDialog::is_color_cb_active() const { return colo
 inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
 inline const wxString mmFilterTransactionsDialog::GetLabelString() const { return  m_setting_name->GetStringSelection(); }
+inline const wxString mmFilterTransactionsDialog::GetCategoryPattern() const { return btnCategory_->GetValue(); }
 
 #endif
 // FILTERTRANSDIALOG_H_
