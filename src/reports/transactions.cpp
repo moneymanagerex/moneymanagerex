@@ -66,10 +66,10 @@ wxString mmReportTransactions::getHTMLText()
 {
     Run(m_transDialog);
 
-    wxArrayInt selected_accounts = m_transDialog->getAccountsID();
+    wxArrayInt selected_accounts = m_transDialog->mmGetAccountsID();
     wxString accounts_label = _("All Accounts");
     bool allAccounts = true;
-    if (m_transDialog->is_account_cb_active() && !m_transDialog->getAccountsID().empty()) {
+    if (m_transDialog->mmIsAccountChecked() && !m_transDialog->mmGetAccountsID().empty()) {
         accounts_label.clear();
         allAccounts = false;
         for (const auto& acc : selected_accounts) {
@@ -98,18 +98,18 @@ table {
 
     hb.init(false, extra_style);
     hb.addReportHeader(getReportTitle(), 
-            ((m_transDialog->getRangeCheckBox()) ? m_transDialog->getStartDay() : 1),
-            ((m_transDialog->getRangeCheckBox()) ? m_transDialog->isFutureIgnored() : false ));
+            ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmGetStartDay() : 1),
+            ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false ));
     wxDateTime start,end;
-    start.ParseISODate(m_transDialog->getBeginDate());
-    end.ParseISODate(m_transDialog->getEndDate());
+    start.ParseISODate(m_transDialog->mmGetBeginDate());
+    end.ParseISODate(m_transDialog->mmGetEndDate());
     hb.DisplayDateHeading(start, end
-        , m_transDialog->getRangeCheckBox() || m_transDialog->is_date_range_cb_active());
+        , m_transDialog->mmIsRangeChecked() || m_transDialog->mmIsDateRangeChecked());
     hb.DisplayFooter(_("Accounts: ") + accounts_label);
 
-    m_noOfCols = (m_transDialog->getHideColumnsCheckBox()) ? m_transDialog->getHideColumnsID().GetCount() : 11;
+    m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    const int groupBy = m_transDialog->getGroupBy();
+    const int groupBy = m_transDialog->mmGetGroupBy();
     wxString lastSortLabel = "";
 
     std::map<int, double> total; //Store transaction amount with original currency
@@ -369,7 +369,7 @@ table {
     hb.endDiv();
     hb.addDivContainer("shadow");
     {
-        m_transDialog->getDescription(hb);
+        m_transDialog->mmGetDescription(hb);
     }
     hb.endDiv();
     hb.end();
@@ -383,13 +383,13 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all())
     {
-        if (!dlg.get()->checkAll(tran, splits)) continue;
+        if (!dlg.get()->mmIsRecordMatches(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split()) 
         {
-            const auto& value = dlg.get()->GetCategoryPattern();
+            const auto& value = dlg.get()->mmGetCategoryPattern();
             wxRegEx pattern("^(" + value + ")$");
 
             for (const auto& split : full_tran.m_splits)
@@ -407,7 +407,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
     }
     
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
-    switch (dlg.get()->getGroupBy())
+    switch (dlg.get()->mmGetGroupBy())
     {
         case mmFilterTransactionsDialog::GROUPBY_ACCOUNT:
             std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());
@@ -423,9 +423,9 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 
 bool mmReportTransactions::showColumnById(int num)
 {
-    if (m_transDialog->getHideColumnsCheckBox())
+    if (m_transDialog->mmIsHideColumnsChecked())
     {
-        wxArrayInt columns = m_transDialog->getHideColumnsID();
+        wxArrayInt columns = m_transDialog->mmGetHideColumnsID();
         return columns.Index(num) == wxNOT_FOUND;
     }
     return true;
