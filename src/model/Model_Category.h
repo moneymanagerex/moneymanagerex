@@ -55,8 +55,8 @@ public:
     static const std::map<wxString, std::pair<int, int> > all_categories();
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);
-    static const wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = nullptr);
     static const wxString full_name(int category_id, int subcategory_id);
+    static const wxString full_name(int category_id, int subcategory_id, wxString delimiter);
     static bool is_used(int id, int sub_id);
     static bool is_used(int id);
     static bool has_income(int id, int sub_id = -1);
@@ -67,6 +67,9 @@ public:
         , bool group_by_month = true
         , std::map<int, std::map<int, double> > *budgetAmt = nullptr
         , bool fin_months = false);
+private:
+    static const wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = nullptr);
+
 };
 
 #endif //

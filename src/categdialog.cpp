@@ -713,7 +713,5 @@ bool mmCategDialog::categShowStatus(int categId, int subCategId)
 
 wxString mmCategDialog::getFullCategName()
 {
-    Model_Category::Data *category = Model_Category::instance().get(m_categ_id);
-    Model_Subcategory::Data *subcategory = (m_subcateg_id != -1 ? Model_Subcategory::instance().get(m_subcateg_id) : 0);
-    return Model_Category::full_name(category, subcategory);
+    return Model_Category::full_name(m_categ_id, m_subcateg_id);
 }

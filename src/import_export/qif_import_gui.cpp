@@ -1196,7 +1196,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 trx->CATEGID = payee->CATEGID;
                 trx->SUBCATEGID = payee->SUBCATEGID;
             }
-            categStr = Model_Category::full_name(trx->CATEGID, trx->SUBCATEGID);
+            categStr = Model_Category::full_name(trx->CATEGID, trx->SUBCATEGID, ":");
 
             if (categStr.empty())
             {
