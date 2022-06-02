@@ -347,7 +347,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     for (const Model_Billsdeposits::Data& data
         : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        if (transFilterActive_ && !transFilterDlg_->checkAll(data, split))
+        if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, split))
             continue;
 
         Model_Billsdeposits::Full_Data r(data);
@@ -956,7 +956,7 @@ void mmBillsDepositsPanel::RefreshList()
 void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 {
 
-    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->isSomethingSelected())
+    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->mmIsSomethingChecked())
     {
         transFilterActive_ = true;
         m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));

@@ -171,7 +171,7 @@ void mmCheckingPanel::filterTable()
 
         if (m_transFilterActive)
         {
-            if (!m_trans_filter_dlg->checkAll(tran, splits))
+            if (!m_trans_filter_dlg->mmIsRecordMatches(tran, splits))
                 continue;
         }
         else
@@ -653,7 +653,7 @@ void mmCheckingPanel::initFilterSettings()
         }
         break;
     case MENU_VIEW_FILTER_DIALOG:
-        mmToolTip(m_bitmapTransFilter, m_trans_filter_dlg->getDescriptionToolTip());
+        mmToolTip(m_bitmapTransFilter, m_trans_filter_dlg->mmGetDescriptionToolTip());
         m_transFilterActive = true;
         break;
     }
@@ -701,9 +701,9 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
     {
-        const auto json_settings = m_trans_filter_dlg->GetJsonSetings();
+        const auto json_settings = m_trans_filter_dlg->mmGetJsonSetings();
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
-            && m_trans_filter_dlg->isSomethingSelected());
+            && m_trans_filter_dlg->mmIsSomethingChecked());
         if (!m_transFilterActive)
             m_currentView = MENU_VIEW_ALLTRANSACTIONS;
     }

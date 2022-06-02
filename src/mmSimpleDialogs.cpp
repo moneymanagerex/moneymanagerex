@@ -30,6 +30,86 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 
 
+wxBEGIN_EVENT_TABLE(mmComboBoxCategory, wxComboBox)
+EVT_TEXT(wxID_ANY, mmComboBoxCategory::OnTextUpdated)
+wxEND_EVENT_TABLE()
+
+mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
+    : wxComboBox(parent, id, "", wxDefaultPosition, size)
+    , category_(-1)
+    , subcategory_(-1)
+{
+    Create();
+}
+
+void mmComboBoxCategory::Create()
+{
+    unsigned int i = 0;
+    wxArrayString auto_complite;
+    all_categories_ = Model_Category::instance().all_categories();
+    for (const auto& item : all_categories_)
+    {
+        auto_complite.Add(item.first);
+        this->Insert(item.first, i++);
+    }
+    this->AutoComplete(auto_complite);
+    Bind(wxEVT_CHAR_HOOK, &mmComboBoxCategory::OnKeyPressed, this);
+}
+
+void mmComboBoxCategory::OnKeyPressed(wxKeyEvent& event)
+{
+    auto text = GetValue();
+    if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
+    {
+        for (const auto& item : all_categories_)
+        {
+            if (item.first.CmpNoCase(text) == 0) {
+                SetValue(item.first);
+                Dismiss();
+                break;
+            }
+        }
+    }
+    event.Skip();
+}
+
+void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
+{
+    category_ = -1;
+    subcategory_ = -1;
+    auto string = event.GetString();
+    if (all_categories_.find(string) != all_categories_.end())
+    {
+        category_ = all_categories_.at(string).first;
+        subcategory_ = all_categories_.at(string).second;
+        wxLogDebug("Text Entered %i %i | %s", category_, subcategory_, string);
+    }
+    event.Skip();
+}
+
+bool mmComboBoxCategory::IsCategoryValid(wxWindow* w) const
+{
+    Model_Category::Data* categ = Model_Category::instance().get(category_);
+    if (categ)
+    {
+        if (subcategory_ != -1) {
+            Model_Subcategory::Data* subcateg = Model_Subcategory::instance().get(subcategory_);
+            if (subcateg)
+                return true;
+        }
+        else
+            return true;
+    }
+
+    if (w)
+        mmErrorDialogs::ToolTip4Object(w, _("Invalid Category"), _("Error"), wxICON_ERROR);
+
+    return false;
+}
+
+
+/* --------------------------------------------------------- */
+
 wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
 EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
 EVT_BUTTON(wxID_ANY, mmColorButton::OnColourButton)

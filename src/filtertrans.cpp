@@ -98,7 +98,7 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, t
     return false;
 }
 
-bool mmFilterTransactions::checkAll(const Model_Checking::Data &tran
+bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
     , const std::map<int, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
@@ -122,7 +122,7 @@ wxString mmFilterTransactions::getHTML()
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!checkAll(tran, splits)) continue;
+        if (!mmIsRecordMatches(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
