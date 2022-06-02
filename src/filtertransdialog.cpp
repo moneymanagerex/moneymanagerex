@@ -284,6 +284,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
         for (const auto& categ : categs) {
             if (categ.CATEGNAME == categ_name) {
                 s_category.Replace(categ_name + ":", categ_name + delimiter);
+                break;
             }
         }
     }
