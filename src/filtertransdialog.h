@@ -152,7 +152,7 @@ private:
     void OnQuit(wxCloseEvent& event);
 
 private:
-    bool is_values_correct() const;
+    bool mmIsValuesCorrect() const;
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;

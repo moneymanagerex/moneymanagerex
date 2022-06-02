@@ -834,7 +834,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     event.Skip();
 }
 
-bool mmFilterTransactionsDialog::is_values_correct() const
+bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
 {
     if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty()) {
         mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _("Account"), _("Invalid value"), wxICON_ERROR);
@@ -886,10 +886,17 @@ bool mmFilterTransactionsDialog::is_values_correct() const
             return false;
     }
 
-    if (mmIsCategoryChecked() && categoryComboBox_->GetValue().empty())
+    if (mmIsCategoryChecked())
     {
-        mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Invalid value"), _("Category"), wxICON_ERROR);
-        return false;
+        auto value = categoryComboBox_->GetValue();
+        if (value.empty()) {
+            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Category"), wxICON_ERROR);
+            return false;
+        }
+        wxRegEx pattern("^(" + value + ")$");
+        if (!pattern.IsValid()) {
+            return false;
+        }
     }
 
     if (mmIsStatusChecked() && choiceStatus_->GetSelection() == wxNOT_FOUND) {
@@ -974,7 +981,7 @@ bool mmFilterTransactionsDialog::is_values_correct() const
 
 void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 {
-    if (is_values_correct())
+    if (mmIsValuesCorrect())
     {
         mmDoSaveSettings();
         EndModal(wxID_OK);
@@ -1775,7 +1782,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 {
-    if (is_values_correct()) {
+    if (mmIsValuesCorrect()) {
         mmDoSaveSettings(true);
     }
 }
