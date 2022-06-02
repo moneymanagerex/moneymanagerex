@@ -860,7 +860,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     if (mmIsPayeeChecked())
     {
         bool ok = false;
-        wxString value = cbPayee_->GetValue();
+        const wxString& value = cbPayee_->GetValue();
 
         if (value.empty()) {
             mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Payee"), wxICON_ERROR);
@@ -893,7 +893,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
 
     if (mmIsCategoryChecked())
     {
-        auto value = categoryComboBox_->GetValue();
+        const auto& value = categoryComboBox_->GetValue();
         if (value.empty()) {
             mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Category"), wxICON_ERROR);
             return false;
@@ -905,12 +905,12 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     }
 
     if (mmIsStatusChecked() && choiceStatus_->GetSelection() == wxNOT_FOUND) {
-        mmErrorDialogs::ToolTip4Object(choiceStatus_, _("Status"), _("Invalid value"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(choiceStatus_, _("Invalid value"), _("Status"), wxICON_ERROR);
         return false;
     }
 
     if (mmIsTypeChecked() && mmGetTypes().empty()) {
-        mmErrorDialogs::ToolTip4Object(cbTypeWithdrawal_, _("Type"), _("Invalid value"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(cbTypeWithdrawal_, _("Invalid value"), _("Type"), wxICON_ERROR);
         return false;
     }
 
@@ -923,7 +923,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         if (!amountMinEdit_->Calculate(currency_precision))
         {
             amountMinEdit_->GetDouble(min_amount);
-            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _("Amount"), _("Invalid value"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _("Invalid value"), _("Amount"), wxICON_ERROR);
             return false;
         }
 
@@ -932,33 +932,16 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
             double max_amount = 0;
             amountMaxEdit_->GetDouble(max_amount);
             if (max_amount < min_amount) {
-                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _("Amount"), _("Invalid value"), wxICON_ERROR);
+                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _("Invalid value"), _("Amount"), wxICON_ERROR);
                 return false;
             }
-        }
-    }
-
-    if (transNumberCheckBox_->IsChecked())
-    {
-        if (transNumberEdit_->GetValue().empty()) {
-            mmErrorDialogs::ToolTip4Object(transNumberEdit_, _("Number"), _("Invalid value"), wxICON_ERROR);
-            return false;
-        }
-    }
-
-    if (notesCheckBox_->IsChecked())
-    {
-        if (notesEdit_->GetValue().empty()) {
-            mmErrorDialogs::ToolTip4Object(notesEdit_, _("Notes"), _("Invalid value"), wxICON_ERROR);
-            return false;
         }
     }
 
     if (mmIsColorChecked())
     {
         if (m_color_value < 1 || m_color_value > 7) {
-            mmErrorDialogs::ToolTip4Object(colorButton_
-                , _("Color"), _("Invalid value"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(colorButton_, _("Invalid value"), _("Color"), wxICON_ERROR);
             return false;
         }
     }
@@ -966,14 +949,13 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     if (showColumnsCheckBox_->IsChecked())
     {
         if (m_selected_columns_id.empty()) {
-            mmErrorDialogs::ToolTip4Object(bHideColumns_
-                , _("Hide Columns"), _("Invalid value"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(bHideColumns_, _("Invalid value"), _("Hide Columns"), wxICON_ERROR);
             return false;
         }
     }
 
     if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND) {
-        mmErrorDialogs::ToolTip4Object(bGroupBy_, _("Group By"), _("Invalid value"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(bGroupBy_, _("Invalid value"), _("Group By"), wxICON_ERROR);
         return false;
     }
 
