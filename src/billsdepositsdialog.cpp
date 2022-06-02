@@ -972,10 +972,7 @@ void mmBDDialog::resetPayeeString()
             {
                 m_bill_data.CATEGID = filtd[0].CATEGID;
                 m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;
-
-                const Model_Category::Data* category = Model_Category::instance().get(m_bill_data.CATEGID);
-                const Model_Subcategory::Data* sub_category = (m_bill_data.SUBCATEGID != -1 ? Model_Subcategory::instance().get(m_bill_data.SUBCATEGID) : 0);
-                bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
+                bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
             }
         }
     }

@@ -406,11 +406,8 @@ void mmTransDialog::dataToControls()
         }
         else
         {
-            Model_Category::Data *category = Model_Category::instance().get(m_trx_data.CATEGID);
-            Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(m_trx_data.SUBCATEGID));
-            fullCategoryName = Model_Category::full_name(category, subcategory);
-            if (fullCategoryName.IsEmpty())
-            {
+            fullCategoryName = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
+            if (fullCategoryName.IsEmpty()) {
                 fullCategoryName = _("Select Category");
             }
         }
@@ -1115,12 +1112,9 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
         if (category)
         {
-            Model_Subcategory::Data *subcategory = (payee->SUBCATEGID != -1 ? Model_Subcategory::instance().get(payee->SUBCATEGID) : 0);
-            wxString fullCategoryName = Model_Category::full_name(category, subcategory);
-
             m_trx_data.CATEGID = payee->CATEGID;
             m_trx_data.SUBCATEGID = payee->SUBCATEGID;
-            bCategory_->SetLabelText(fullCategoryName);
+            bCategory_->SetLabelText(Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID));
             wxLogDebug("Category: %s = %.2f", bCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
         }
         else

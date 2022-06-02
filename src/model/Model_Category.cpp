@@ -110,6 +110,18 @@ const wxString Model_Category::full_name(int category_id, int subcategory_id)
     return full_name(category, sub_category);
 }
 
+const wxString Model_Category::full_name(int category_id, int subcategory_id, wxString delimiter)
+{
+    Data* category = Model_Category::instance().get(category_id);
+    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategory_id);
+    if (!category) return "";
+    if (sub_category)
+        return category->CATEGNAME + delimiter + sub_category->SUBCATEGNAME;
+    else {
+        return category->CATEGNAME;
+    }
+}
+
 bool Model_Category::is_used(int id, int sub_id)
 {
     const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));

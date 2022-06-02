@@ -275,11 +275,18 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
 
-    const wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
-    wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
-    const auto categ_name = categ_token.GetNextToken().Trim();
-    const auto subcateg_name = categ_token.GetNextToken().Trim(false);
-    s_category = categ_name + (s_category.Contains(":") ? delimiter + subcateg_name : "");
+    const wxString& delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
+    if (delimiter != ":" && s_category.Contains(":"))
+    {
+        wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
+        const auto& categ_name = categ_token.GetNextToken();
+        Model_Category::Data_Set categs = Model_Category::instance().all();
+        for (const auto& categ : categs) {
+            if (categ.CATEGNAME == categ_name) {
+                s_category.Replace(categ_name + ":", categ_name + delimiter);
+            }
+        }
+    }
 
     categoryCheckBox_->SetValue(!s_category.IsEmpty());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
@@ -1492,7 +1499,15 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        json_writer.String(categoryComboBox_->GetValue().utf8_str());
+        if (categoryComboBox_->IsCategoryValid())
+        {
+            int categ = categoryComboBox_->GetCategoryId();
+            int subcateg = categoryComboBox_->GetSubcategoryId();
+            const auto& full_name = Model_Category::full_name(categ, subcateg, ":");
+            json_writer.String(full_name.utf8_str());
+        } else {
+            json_writer.String(categoryComboBox_->GetValue().utf8_str());
+        }
     }
 
     //Status
