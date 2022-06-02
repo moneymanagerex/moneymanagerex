@@ -77,7 +77,7 @@ void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
 {
     category_ = -1;
     subcategory_ = -1;
-    auto string = event.GetString();
+    const auto& string = event.GetString();
     if (all_categories_.find(string) != all_categories_.end())
     {
         category_ = all_categories_.at(string).first;

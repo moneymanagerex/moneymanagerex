@@ -1184,7 +1184,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
-    wxString payeeName = event.GetString();
+    const wxString& payeeName = event.GetString();
     cbPayee_->SetEvtHandlerEnabled(false);
 #if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
