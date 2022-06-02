@@ -862,6 +862,11 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         bool ok = false;
         wxString value = cbPayee_->GetValue();
 
+        if (value.empty()) {
+            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Payee"), wxICON_ERROR);
+            return false;
+        }
+
         wxRegEx pattern("^(" + value + ")$");
         if (pattern.IsValid())
         {
@@ -1232,7 +1237,7 @@ bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
     if (payee) {
         wxString value = cbPayee_->GetValue();
         if (!value.empty()) {
-            wxRegEx pattern("^(" + value + ")$");
+            wxRegEx pattern("^(" + value + ")$", wxRE_ICASE);
             if (pattern.IsValid() && pattern.Matches(payee->PAYEENAME)) {
                 return true;
             }
@@ -1259,7 +1264,7 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std
     if (!value.empty()) {
         for (const auto& item : trx_categories)
         {
-            wxRegEx pattern("^(" + value + ")$");
+            wxRegEx pattern("^(" + value + ")$", wxRE_ICASE);
             if (pattern.IsValid() && pattern.Matches(item)) {
                 return true;
             }
