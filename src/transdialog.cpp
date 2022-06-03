@@ -55,7 +55,6 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
     EVT_COMBOBOX(ID_DIALOG_TRANS_PAYEECOMBO, mmTransDialog::OnAccountOrPayeeUpdated)
-    EVT_COMBOBOX(ID_DIALOG_TRANS_FROMACCOUNT, mmTransDialog::OnFromAccountUpdated)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -72,9 +71,6 @@ void mmTransDialog::SetEventHandlers()
 {
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
-    cbAccount_->Connect(ID_DIALOG_TRANS_FROMACCOUNT, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(mmTransDialog::OnFromAccountUpdated), nullptr, this);
-    cbAccount_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboKey, this);
     cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmTransDialog::OnComboKey, this);
     m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
@@ -524,11 +520,12 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
-    cbAccount_ = new wxComboBox(this, ID_DIALOG_TRANS_FROMACCOUNT);
-    cbAccount_->SetMaxSize(wxSize(m_textAmount->GetSize().GetX() * 2 + 5, -1));
-
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
+
+    cbAccount_ = new mmComboBoxAccount(this, ID_DIALOG_TRANS_FROMACCOUNT);
+    cbAccount_->SetMaxSize(wxSize(m_textAmount->GetSize().GetX() * 2 + 5, -1));
+
     flex_sizer->Add(account_label_, g_flagsH);
     flex_sizer->Add(cbAccount_, g_flagsExpand);
 
@@ -649,13 +646,10 @@ bool mmTransDialog::ValidateData()
     if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
 
-    Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
-    if (!account || Model_Account::type(account) == Model_Account::INVESTMENT)
-    {
-        mmErrorDialogs::InvalidAccount(cbAccount_);
+    if (!cbAccount_->IsAccountValid())
         return false;
-    }
-    m_trx_data.ACCOUNTID = account->ACCOUNTID;
+
+    m_trx_data.ACCOUNTID = cbAccount_->mmGetAccountId();
 
     if (!m_transfer)
     {
@@ -730,6 +724,7 @@ bool mmTransDialog::ValidateData()
     }
 
     /* Check if transaction is to proceed.*/
+    Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
         if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
@@ -1017,11 +1012,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
 {
     if (event.GetKeyCode() == WXK_RETURN)
     {
-        if (object_in_focus_ == ID_DIALOG_TRANS_FROMACCOUNT)
-        {
-            cbAccount_->Navigate(wxNavigationKeyEvent::IsForward);
-        }
-        else if (!m_transfer && object_in_focus_ == ID_DIALOG_TRANS_PAYEECOMBO)
+        if (!m_transfer && object_in_focus_ == ID_DIALOG_TRANS_PAYEECOMBO)
         {
             const auto payeeName = cbPayee_->GetValue();
             if (payeeName.empty())
@@ -1044,35 +1035,6 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
     }
     else
         event.Skip();
-}
-
-#if defined (__WXMAC__) 
-void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& event)
-{
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!
-    wxString accountName = event.GetString();
-    if (cbAccount_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
-    {
-        cbAccount_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-        cbAccount_->Clear();
-        
-        Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(accountName, true);
-        std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
-        for (const auto &account : filtd)
-            cbAccount_->Insert(account.ACCOUNTNAME, 0);
-  
-        cbAccount_->ChangeValue(accountName);
-        cbAccount_->SetInsertionPointEnd();
-        cbAccount_->Popup();
-        cbAccount_->SetEvtHandlerEnabled(true);
-    }
-#else
-void mmTransDialog::OnFromAccountUpdated(wxCommandEvent& WXUNUSED(event))
-{
-#endif
-    wxChildFocusEvent evt;
-    OnFocusChange(evt);
 }
 
 void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2014, 2020 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -70,6 +71,7 @@ public:
 
 public:
     wxArrayString all_checking_account_names(bool skip_closed = false);
+    const std::map<wxString, int> all_accounts(bool skip_closed = false);
 
     static wxArrayString all_status();
     static wxArrayString all_type();
