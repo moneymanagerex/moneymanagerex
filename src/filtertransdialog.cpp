@@ -868,16 +868,17 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     if (mmIsPayeeChecked())
     {
         bool ok = false;
-        const wxString& value = cbPayee_->GetValue();
+        const auto& value = cbPayee_->GetValue();
 
         if (value.empty()) {
             mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Payee"), wxICON_ERROR);
             return false;
         }
 
-        wxRegEx pattern("^(" + value + ")$");
+        wxRegEx pattern(value);
         if (pattern.IsValid())
         {
+            pattern.Compile("^(" + value + ")$", wxRE_ICASE);
             Model_Payee::Data_Set payees = Model_Payee::instance().all();
             for (const auto& payee : payees)
             {
@@ -906,7 +907,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
             mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Category"), wxICON_ERROR);
             return false;
         }
-        wxRegEx pattern("^(" + value + ")$");
+        wxRegEx pattern(value);
         if (!pattern.IsValid()) {
             return false;
         }
@@ -1225,7 +1226,7 @@ bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
 {
     const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
     if (payee) {
-        wxString value = cbPayee_->GetValue();
+        const wxString& value = cbPayee_->GetValue();
         if (!value.empty()) {
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE);
             if (pattern.IsValid() && pattern.Matches(payee->PAYEENAME)) {
@@ -1250,7 +1251,10 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std
         }
     }
 
-    const auto& value = categoryComboBox_->GetValue();
+    auto value = categoryComboBox_->GetValue();
+    if (trx_categories.Index(value) != wxNOT_FOUND)
+        value = categoryComboBox_->mmGetPattern();
+
     if (!value.empty()) {
         for (const auto& item : trx_categories)
         {
