@@ -646,7 +646,7 @@ bool mmTransDialog::ValidateData()
     if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
 
-    if (!cbAccount_->IsAccountValid())
+    if (!cbAccount_->IsAccountValid(cbAccount_))
         return false;
 
     m_trx_data.ACCOUNTID = cbAccount_->mmGetAccountId();

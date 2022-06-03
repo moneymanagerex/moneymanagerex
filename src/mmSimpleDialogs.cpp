@@ -605,7 +605,7 @@ void mmErrorDialogs::MessageWarning(wxWindow *parent
 
 void mmErrorDialogs::MessageInvalid(wxWindow *parent, const wxString &message)
 {
-    const wxString& msg = wxString::Format(_("Entry %s is invalid"), message);
+    const wxString& msg = wxString::Format(_("Entry %s is invalid"), message, wxICON_ERROR);
     MessageError(parent, msg, _("Invalid Entry"));
 }
 
@@ -624,7 +624,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
     const wxString errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
     const wxString errorMessage = _("Please select the file for this operation.");
 
-    ToolTip4Object(object, errorMessage, errorHeader);
+    ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
@@ -643,7 +643,7 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm
     }
     errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
-    ToolTip4Object(object, errorMessage, errorHeader);
+    ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidPayee(wxWindow *object)
@@ -652,7 +652,7 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object)
     const wxString& errorMessage = _("Please type in a new payee,\n"
             "or make a selection using the dropdown button.")
         + "\n";
-    ToolTip4Object(object, errorMessage, errorHeader);
+    ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
@@ -664,7 +664,7 @@ void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
     else
         errorMessage = _("Please type in a non empty name.");
 
-    ToolTip4Object(textBox, errorMessage, errorHeader);
+    ToolTip4Object(textBox, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
@@ -676,7 +676,7 @@ void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
     else
         errorMessage = _("Please type in a non empty symbol.");
  
-    ToolTip4Object(textBox, errorMessage, errorHeader);
+    ToolTip4Object(textBox, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::ToolTip4Object(wxWindow *object, const wxString &message, const wxString &title, int ico)
