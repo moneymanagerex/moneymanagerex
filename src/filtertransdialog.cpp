@@ -170,20 +170,6 @@ int mmFilterTransactionsDialog::ShowModal()
     return wxDialog::ShowModal();
 }
 
-void mmFilterTransactionsDialog::mmDoBuildPayeeList()
-{
-    wxArrayString all_payees = Model_Payee::instance().all_payee_names();
-    wxString selected = cbPayee_->GetValue();
-    cbPayee_->SetEvtHandlerEnabled(false);
-    cbPayee_->Clear();
-    if (!all_payees.empty()) {
-        cbPayee_->Insert(all_payees, 0);
-        cbPayee_->AutoComplete(all_payees);
-        cbPayee_->SetValue(selected);
-    }
-    cbPayee_->SetEvtHandlerEnabled(true);
-}
-
 void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 {
     if (json.empty()) return;
@@ -534,14 +520,10 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
-    cbPayee_ = new wxComboBox(itemPanel, wxID_ANY);
+    cbPayee_ = new mmComboBoxPayee(itemPanel, wxID_ANY);
     cbPayee_->SetMinSize(wxSize(220, -1));
-    cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), nullptr, this);
-    cbPayee_->Bind(wxEVT_CHAR_HOOK, &mmFilterTransactionsDialog::OnComboKey, this);
 
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
-    mmDoBuildPayeeList();
 
     // Category
     categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
@@ -868,7 +850,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     if (mmIsPayeeChecked())
     {
         bool ok = false;
-        const auto& value = cbPayee_->GetValue();
+        const auto& value = cbPayee_->mmGetPattern();
 
         if (value.empty()) {
             mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Payee"), wxICON_ERROR);
@@ -998,15 +980,6 @@ void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
 void mmFilterTransactionsDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     EndModal(wxID_CANCEL);
-}
-
-void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
-{
-    if (event.GetKeyCode() == WXK_RETURN) {
-        cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
-    }
-    else
-        event.Skip();
 }
 
 void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
@@ -1191,42 +1164,12 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     }
 }
 
-void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
-{
-    const wxString& payeeName = event.GetString();
-    cbPayee_->SetEvtHandlerEnabled(false);
-#if defined (__WXMAC__)
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!
-    if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
-    {
-        cbPayee_->Clear();
-
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
-        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
-        for (const auto &payee : filtd)
-            cbPayee_->Insert(payee.PAYEENAME, 0);
-
-        cbPayee_->ChangeValue(payeeName);
-        cbPayee_->SetInsertionPointEnd();
-        cbPayee_->Popup();
-    }
-#endif
-
-    Model_Payee::Data* payee = Model_Payee::instance().get(payeeName);
-    if (payee)
-    {
-        cbPayee_->SetValue(payee->PAYEENAME);
-    }
-    cbPayee_->SetEvtHandlerEnabled(true);
-}
-
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
 {
     const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
     if (payee) {
-        const wxString& value = cbPayee_->GetValue();
+        const wxString value = cbPayee_->mmGetPattern();
         if (!value.empty()) {
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE);
             if (pattern.IsValid() && pattern.Matches(payee->PAYEENAME)) {
@@ -1251,9 +1194,7 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std
         }
     }
 
-    auto value = categoryComboBox_->GetValue();
-    if (trx_categories.Index(value) != wxNOT_FOUND)
-        value = categoryComboBox_->mmGetPattern();
+    auto value = categoryComboBox_->mmGetPattern();
 
     if (!value.empty()) {
         for (const auto& item : trx_categories)

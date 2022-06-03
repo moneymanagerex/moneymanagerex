@@ -32,8 +32,41 @@ class wxTextCtrl;
 class wxChoice;
 class wxButton;
 
+class mmComboBox : public wxComboBox
+{
+public:
+    mmComboBox(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    const wxString mmGetPattern(const wxString& value) const;
+};
 
-class mmComboBoxCategory : public wxComboBox
+class mmComboBoxPayee : public mmComboBox
+{
+public:
+    mmComboBoxPayee(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    int GetPayeeId() const;
+    bool IsPayeeValid(wxWindow* w = nullptr) const;
+    const wxString mmGetPattern() const;
+private:
+    void Create();
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+private:
+    int payeeID_;
+    std::map<wxString, int> all_payees_;
+
+    wxDECLARE_EVENT_TABLE();
+};
+inline int mmComboBoxPayee::GetPayeeId() const { return this->payeeID_; }
+
+/* -------------------------------------------- */
+
+class mmComboBoxCategory : public mmComboBox
 {
 public:
     mmComboBoxCategory(wxWindow* parent
