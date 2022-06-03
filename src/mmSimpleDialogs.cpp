@@ -30,6 +30,92 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+wxBEGIN_EVENT_TABLE(mmComboBoxAccount, mmComboBox)
+EVT_TEXT(wxID_ANY, mmComboBoxAccount::OnTextUpdated)
+wxEND_EVENT_TABLE()
+
+mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+    , accountID_(-1)
+{
+    Create();
+}
+
+void mmComboBoxAccount::Create()
+{
+    unsigned int i = 0;
+    wxArrayString auto_complite;
+    all_accounts_ = Model_Account::instance().all_accounts();
+    for (const auto& item : all_accounts_)
+    {
+        auto_complite.Add(item.first);
+        this->Insert(item.first, i++);
+    }
+    this->AutoComplete(auto_complite);
+    Bind(wxEVT_CHAR_HOOK, &mmComboBoxAccount::OnKeyPressed, this);
+}
+
+void mmComboBoxAccount::OnKeyPressed(wxKeyEvent& event)
+{
+    auto text = GetValue();
+    if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
+    {
+        for (const auto& item : all_accounts_)
+        {
+            if (item.first.CmpNoCase(text) == 0) {
+                SetValue(item.first);
+                Dismiss();
+                break;
+            }
+        }
+    }
+    event.Skip();
+}
+
+void mmComboBoxAccount::OnTextUpdated(wxCommandEvent& event)
+{
+    accountID_ = -1;
+    const auto& typedText = event.GetString();
+#if defined (__WXMAC__)
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    this->SetEvtHandlerEnabled(false);
+    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        this->Clear();
+
+        Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(typedText);
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
+        for (const auto& acc : filtd)
+            this->Insert(acc.ACCOUNTNAME, 0);
+
+        this->ChangeValue(typedText);
+        this->SetInsertionPointEnd();
+        this->Popup();
+    }
+    this->SetEvtHandlerEnabled(true);
+#endif
+    if (all_accounts_.find(typedText) != all_accounts_.end()) {
+        accountID_ = all_accounts_.at(typedText);
+    }
+    event.Skip();
+}
+
+bool mmComboBoxAccount::IsAccountValid(wxWindow* w) const
+{
+    Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    if (account) {
+        return true;
+    }
+
+    if (w)
+        mmErrorDialogs::ToolTip4Object(w, _("Invalid value"), _("Account"), wxICON_ERROR);
+
+    return false;
+}
+
+/* --------------------------------------------------------- */
+
 wxBEGIN_EVENT_TABLE(mmComboBoxPayee, mmComboBox)
 EVT_TEXT(wxID_ANY, mmComboBoxPayee::OnTextUpdated)
 wxEND_EVENT_TABLE()
@@ -100,10 +186,8 @@ void mmComboBoxPayee::OnTextUpdated(wxCommandEvent& event)
     }
     this->SetEvtHandlerEnabled(true);
 #endif
-    if (all_payees_.find(typedText) != all_payees_.end())
-    {
+    if (all_payees_.find(typedText) != all_payees_.end()) {
         payeeID_ = all_payees_.at(typedText);
-        wxLogDebug("Text Entered  %s | %i", typedText, payeeID_);
     }
     event.Skip();
 }
@@ -194,7 +278,6 @@ void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
     {
         category_ = all_categories_.at(typedText).first;
         subcategory_ = all_categories_.at(typedText).second;
-        wxLogDebug("Text Entered %i %i | %s", category_, subcategory_, typedText);
     }
     event.Skip();
 }

@@ -42,6 +42,30 @@ public:
     const wxString mmGetPattern(const wxString& value) const;
 };
 
+class mmComboBoxAccount : public mmComboBox
+{
+public:
+    mmComboBoxAccount(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    int mmGetAccountId() const;
+    bool IsAccountValid(wxWindow* w = nullptr) const;
+    const wxString mmGetPattern() const;
+private:
+    void Create();
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+private:
+    int accountID_;
+    std::map<wxString, int> all_accounts_;
+
+    wxDECLARE_EVENT_TABLE();
+};
+inline int mmComboBoxAccount::mmGetAccountId() const { return this->accountID_; }
+
+/* -------------------------------------------- */
+
 class mmComboBoxPayee : public mmComboBox
 {
 public:
