@@ -89,7 +89,7 @@ void mmComboBoxPayee::OnTextUpdated(wxCommandEvent& event)
     {
         this->Clear();
 
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
+        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(typedText);
         std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
         for (const auto& payee : filtd)
             this->Insert(payee.PAYEENAME, 0);
