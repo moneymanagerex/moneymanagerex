@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,17 @@ Model_Category& Model_Category::instance(wxSQLite3Database* db)
 Model_Category& Model_Category::instance()
 {
     return Singleton<Model_Category>::instance();
+}
+
+const wxArrayString Model_Category::FilterCategory(const wxString& category_pattern)
+{
+    wxArrayString categories;
+    for (auto &category : Model_Category::instance().all_categories())
+    {
+        if (category.first.Lower().Matches(category_pattern.Lower().Append("*")))
+            categories.push_back(category.first);
+    }
+    return categories;
 }
 
 Model_Category::Data* Model_Category::get(const wxString& name)
