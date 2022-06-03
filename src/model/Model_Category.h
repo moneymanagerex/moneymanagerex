@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,7 @@ public:
     /** Return the Data record for the given category name */
     Data* get(const wxString& name);
 
+    const wxArrayString FilterCategory(const wxString& category_pattern);
     static const std::map<wxString, std::pair<int, int> > all_categories();
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);

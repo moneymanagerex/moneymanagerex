@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
 Copyright (C) 2015, 2016, 2020, 2022 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -77,12 +78,31 @@ void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
 {
     category_ = -1;
     subcategory_ = -1;
-    const auto& string = event.GetString();
-    if (all_categories_.find(string) != all_categories_.end())
+    const auto& typedText = event.GetString();
+#if defined (__WXMAC__)
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    this->SetEvtHandlerEnabled(false);
+    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
     {
-        category_ = all_categories_.at(string).first;
-        subcategory_ = all_categories_.at(string).second;
-        wxLogDebug("Text Entered %i %i | %s", category_, subcategory_, string);
+        this->Clear();
+
+        wxArrayString filtd = Model_Category::instance().FilterCategory(typedText);        
+        filtd.Sort();
+        for (const auto &category : filtd)
+            this->Insert(category, 0);
+
+        this->ChangeValue(typedText);
+        this->SetInsertionPointEnd();
+        this->Popup();
+    }
+    this->SetEvtHandlerEnabled(true);
+#endif
+    if (all_categories_.find(typedText) != all_categories_.end())
+    {
+        category_ = all_categories_.at(typedText).first;
+        subcategory_ = all_categories_.at(typedText).second;
+        wxLogDebug("Text Entered %i %i | %s", category_, subcategory_, typedText);
     }
     event.Skip();
 }
