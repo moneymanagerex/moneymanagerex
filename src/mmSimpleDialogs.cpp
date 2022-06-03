@@ -127,6 +127,18 @@ bool mmComboBoxCategory::IsCategoryValid(wxWindow* w) const
     return false;
 }
 
+const wxString mmComboBoxCategory::mmGetPattern() const
+{
+    wxString buffer;
+    for (const wxString& c : GetValue()) {
+        if (wxString(R"(.^$*+?()[{\|)").Contains(c)) {
+            buffer += R"(\)";
+        }
+        buffer += c;
+    }
+    return buffer;
+}
+
 
 /* --------------------------------------------------------- */
 

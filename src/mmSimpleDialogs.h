@@ -43,6 +43,7 @@ public:
     int GetCategoryId() const;
     int GetSubcategoryId() const;
     bool IsCategoryValid(wxWindow* w = nullptr) const;
+    const wxString mmGetPattern() const;
 private:
     void Create();
     void OnKeyPressed(wxKeyEvent& event);
