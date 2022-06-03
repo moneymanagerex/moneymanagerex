@@ -27,13 +27,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 #include "webapp.h"
 
-class mmComboBox : public wxTextCtrl
+class mmComboBoxText : public wxTextCtrl
 {
 public:
     using wxTextCtrl::Connect;
 
-    mmComboBox() {}
-    mmComboBox(wxWindow *parent, wxWindowID id
+    mmComboBoxText() {}
+    mmComboBoxText(wxWindow *parent, wxWindowID id
         , const wxString &value
         , bool payee
         , const wxPoint &pos = wxDefaultPosition

@@ -30,13 +30,105 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+wxBEGIN_EVENT_TABLE(mmComboBoxPayee, mmComboBox)
+EVT_TEXT(wxID_ANY, mmComboBoxPayee::OnTextUpdated)
+wxEND_EVENT_TABLE()
 
-wxBEGIN_EVENT_TABLE(mmComboBoxCategory, wxComboBox)
+mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
+    : wxComboBox(parent, id, "", wxDefaultPosition, size)
+{
+}
+
+mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+    , payeeID_(-1)
+{
+    Create();
+}
+
+void mmComboBoxPayee::Create()
+{
+    unsigned int i = 0;
+    wxArrayString auto_complite;
+    all_payees_ = Model_Payee::instance().all_payees();
+    for (const auto& item : all_payees_)
+    {
+        auto_complite.Add(item.first);
+        this->Insert(item.first, i++);
+    }
+    this->AutoComplete(auto_complite);
+    Bind(wxEVT_CHAR_HOOK, &mmComboBoxPayee::OnKeyPressed, this);
+}
+
+void mmComboBoxPayee::OnKeyPressed(wxKeyEvent& event)
+{
+    auto text = GetValue();
+    if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
+    {
+        for (const auto& item : all_payees_)
+        {
+            if (item.first.CmpNoCase(text) == 0) {
+                SetValue(item.first);
+                Dismiss();
+                break;
+            }
+        }
+    }
+    event.Skip();
+}
+
+void mmComboBoxPayee::OnTextUpdated(wxCommandEvent& event)
+{
+    payeeID_ = -1;
+    const auto& typedText = event.GetString();
+#if defined (__WXMAC__)
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    this->SetEvtHandlerEnabled(false);
+    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        this->Clear();
+
+        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
+        for (const auto& payee : filtd)
+            this->Insert(payee.PAYEENAME, 0);
+
+        this->ChangeValue(typedText);
+        this->SetInsertionPointEnd();
+        this->Popup();
+    }
+    this->SetEvtHandlerEnabled(true);
+#endif
+    if (all_payees_.find(typedText) != all_payees_.end())
+    {
+        payeeID_ = all_payees_.at(typedText);
+        wxLogDebug("Text Entered  %s | %i", typedText, payeeID_);
+    }
+    event.Skip();
+}
+
+bool mmComboBoxPayee::IsPayeeValid(wxWindow* w) const
+{
+    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+    if (payee) {
+        return true;
+    }
+
+    if (w)
+        mmErrorDialogs::ToolTip4Object(w, _("Invalid value"), _("Payee"), wxICON_ERROR);
+
+    return false;
+}
+
+/* --------------------------------------------------------- */
+
+wxBEGIN_EVENT_TABLE(mmComboBoxCategory, mmComboBox)
 EVT_TEXT(wxID_ANY, mmComboBoxCategory::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
-    : wxComboBox(parent, id, "", wxDefaultPosition, size)
+    : mmComboBox(parent, id, size)
     , category_(-1)
     , subcategory_(-1)
 {
@@ -129,8 +221,24 @@ bool mmComboBoxCategory::IsCategoryValid(wxWindow* w) const
 
 const wxString mmComboBoxCategory::mmGetPattern() const
 {
+    auto value = GetValue();
+    if (all_categories_.find(value) != all_categories_.end())
+        return mmComboBox::mmGetPattern(value);
+    return value;
+}
+
+const wxString mmComboBoxPayee::mmGetPattern() const
+{
+    auto value = GetValue();
+    if (all_payees_.find(value) != all_payees_.end())
+        return mmComboBox::mmGetPattern(value);
+    return value;
+}
+
+const wxString mmComboBox::mmGetPattern(const wxString& value) const
+{
     wxString buffer;
-    for (const wxString& c : GetValue()) {
+    for (const wxString& c : value) {
         if (wxString(R"(.^$*+?()[{\|)").Contains(c)) {
             buffer += R"(\)";
         }
@@ -138,7 +246,6 @@ const wxString mmComboBoxCategory::mmGetPattern() const
     }
     return buffer;
 }
-
 
 /* --------------------------------------------------------- */
 

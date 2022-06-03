@@ -83,7 +83,6 @@ public:
 private:
     const wxString mmGetTypes() const;
     void mmDoDataToControls(const wxString& json);
-    void mmDoBuildPayeeList();
 
     bool mmIsAmountRangeMinChecked() const;
     bool mmIsAmountRangeMaxChecked() const;
@@ -138,10 +137,8 @@ private:
 
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
-    void OnComboKey(wxKeyEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
-    void OnPayeeUpdated(wxCommandEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
@@ -162,7 +159,7 @@ private:
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateControl_;
     wxCheckBox* payeeCheckBox_;
-    wxComboBox* cbPayee_;
+    mmComboBoxPayee* cbPayee_;
     wxCheckBox* categoryCheckBox_;
     mmComboBoxCategory* categoryComboBox_;
     wxCheckBox* statusCheckBox_;
