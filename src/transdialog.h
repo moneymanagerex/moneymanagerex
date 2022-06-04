@@ -86,7 +86,6 @@ private:
     void OnAttachments(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnComboKey(wxKeyEvent& event);
-    void OnFromAccountUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
@@ -108,7 +107,7 @@ private:
     wxButton* bCategory_;
     wxButton* bAttachments_;
     mmColorButton* bColours_;
-    wxComboBox* cbAccount_;
+    mmComboBoxAccount* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;

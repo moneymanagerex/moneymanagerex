@@ -1,4 +1,6 @@
 /*******************************************************
+ Copyright (C) 2013 - 2016, 2020, 2022 Nikolay Akimov
+
   This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -65,15 +67,13 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asse
     if (m_asset || trans_data)
     {
         m_dialog_heading = _("Edit Asset");
-        if (trans_data)
-        {
+        if (trans_data) {
             m_hidden_trans_entry = false;
             m_dialog_heading = _("Add Asset Transaction");
         }
     }
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, m_dialog_heading);
 }
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry)
@@ -98,8 +98,7 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Tran
         m_asset = Model_Asset::instance().get(transfer_entry->LINKRECORDID);
     }
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, m_dialog_heading);
 }
 
 bool mmAssetDialog::Create(wxWindow* parent

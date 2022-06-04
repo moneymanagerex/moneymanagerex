@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,11 +53,12 @@ public:
     /** Return the Data record for the given category name */
     Data* get(const wxString& name);
 
+    const wxArrayString FilterCategory(const wxString& category_pattern);
     static const std::map<wxString, std::pair<int, int> > all_categories();
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);
-    static const wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = nullptr);
     static const wxString full_name(int category_id, int subcategory_id);
+    static const wxString full_name(int category_id, int subcategory_id, wxString delimiter);
     static bool is_used(int id, int sub_id);
     static bool is_used(int id);
     static bool has_income(int id, int sub_id = -1);
@@ -67,6 +69,9 @@ public:
         , bool group_by_month = true
         , std::map<int, std::map<int, double> > *budgetAmt = nullptr
         , bool fin_months = false);
+private:
+    static const wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = nullptr);
+
 };
 
 #endif //

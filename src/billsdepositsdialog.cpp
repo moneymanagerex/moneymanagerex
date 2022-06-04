@@ -327,6 +327,7 @@ void mmBDDialog::dataToControls()
             SetDialogHeader(_("Duplicate Recurring Transaction"));
         else
             SetDialogHeader(_("Edit Recurring Transaction"));
+        textAmount_->SetFocus();
     }
     else
     {
@@ -337,12 +338,13 @@ void mmBDDialog::dataToControls()
         if (spinTransDate) spinTransDate->Disable();
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
-        textAmount_->SetFocus();
         itemCheckBoxAutoExeSilent_->Disable();
         itemCheckBoxAutoExeUserAck_->Disable();
         textNumRepeats_->Disable();
         m_btn_due_prev_date->Disable();
         m_btn_due_date->Disable();
+        auto bok = static_cast<wxButton*>(FindWindowById(wxID_OK, this));
+        if (bok) bok->SetFocus();
     }
 
     setTooltips();
@@ -690,7 +692,6 @@ void mmBDDialog::CreateControls()
     wxButton* button_ok = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
 
     m_button_cancel = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    m_button_cancel->SetFocus();
 
     mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
     wxBitmapButton* button_hide = new wxBitmapButton(buttonsPanel
@@ -971,10 +972,7 @@ void mmBDDialog::resetPayeeString()
             {
                 m_bill_data.CATEGID = filtd[0].CATEGID;
                 m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;
-
-                const Model_Category::Data* category = Model_Category::instance().get(m_bill_data.CATEGID);
-                const Model_Subcategory::Data* sub_category = (m_bill_data.SUBCATEGID != -1 ? Model_Subcategory::instance().get(m_bill_data.SUBCATEGID) : 0);
-                bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
+                bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
             }
         }
     }

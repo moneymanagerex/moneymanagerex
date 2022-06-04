@@ -96,6 +96,16 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
+const std::map<wxString, int> Model_Payee::all_payees()
+{
+    std::map<wxString, int> payees;
+    for (const auto& payee : this->all(COL_PAYEENAME))
+    {
+        payees[payee.PAYEENAME] = payee.PAYEEID;
+    }
+    return payees;
+}
+
 const wxArrayString Model_Payee::used_payee_names()
 {
     wxArrayString payees;

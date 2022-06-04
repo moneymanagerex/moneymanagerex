@@ -139,10 +139,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& WXUNUSED(event))
     {
         m_sourceCatID    = sourceCat.getCategId();
         m_sourceSubCatID = sourceCat.getSubCategId();
-        Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(m_sourceSubCatID);
-
-        m_buttonSource->SetLabelText(Model_Category::full_name(category, sub_category));
+        m_buttonSource->SetLabelText(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
         IsOkOk();
     }
 }

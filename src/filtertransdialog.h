@@ -47,61 +47,57 @@ public:
 
     virtual int ShowModal();
 
-    bool checkAll(const Model_Checking::Data &tran
+    bool mmIsRecordMatches(const Model_Checking::Data &tran
         , const std::map<int, Model_Splittransaction::Data_Set>& split);
-    bool checkAll(const Model_Billsdeposits::Data &tran
+    bool mmIsRecordMatches(const Model_Billsdeposits::Data &tran
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
-    const wxString getDescriptionToolTip() const;
-    void getDescription(mmHTMLBuilder &hb);
-    void ResetFilterStatus();
+    const wxString mmGetDescriptionToolTip() const;
+    const wxString mmGetCategoryPattern() const;
+    void mmGetDescription(mmHTMLBuilder &hb);
+    void mmDoResetFilterStatus();
 
-    bool isSomethingSelected() const;
-    bool is_status_cb_active() const;
-    bool is_account_cb_active() const;
-    bool is_category_cb_active() const;
-    bool getSimilarStatus() const;
-    bool getRangeCheckBox() const;
-    bool is_date_range_cb_active() const;
-    bool getHideColumnsCheckBox() const;
+    bool mmIsSomethingChecked() const;
+    bool mmIsStatusChecked() const;
+    bool mmIsAccountChecked() const;
+    bool mmIsCategoryChecked() const;
+    bool mmIsRangeChecked() const;
+    bool mmIsDateRangeChecked() const;
+    bool mmIsHideColumnsChecked() const;
 public:
     enum groupBy {
         GROUPBY_ACCOUNT,
         GROUPBY_PAYEE,
         GROUPBY_CATEGORY
     };
-    int getGroupBy() const;
+    int mmGetGroupBy() const;
 
-    int getCategId() const;
-    int getSubCategId() const;
-    const wxArrayInt getAccountsID() const;
-    const wxArrayInt getHideColumnsID() const;
+    const wxArrayInt mmGetAccountsID() const;
+    const wxArrayInt mmGetHideColumnsID() const;
 
-    const wxString getBeginDate() const;
-    const wxString getEndDate() const;
-    int getStartDay() const;
-    bool isFutureIgnored() const;
-    const wxString GetJsonSetings(bool i18n = false) const;
-    const wxString GetTypes() const;
+    const wxString mmGetBeginDate() const;
+    const wxString mmGetEndDate() const;
+    int mmGetStartDay() const;
+    bool mmIsFutureIgnored() const;
+    const wxString mmGetJsonSetings(bool i18n = false) const;
 
 private:
-    void dataToControls(const wxString& json);
-    void BuildPayeeList();
+    const wxString mmGetTypes() const;
+    void mmDoDataToControls(const wxString& json);
 
-    bool is_amountrange_min_cb_active() const;
-    bool is_amount_range_max_cb_active() const;
-    double getAmountMax() const;
-    double getAmountMin() const;
-    const wxString GetLabelString() const;
+    bool mmIsAmountRangeMinChecked() const;
+    bool mmIsAmountRangeMaxChecked() const;
+    double mmGetAmountMax() const;
+    double mmGetAmountMin() const;
 
     template<class MODEL, class DATA = typename MODEL::DATA>
-    bool is_payee_matches(const DATA &tran);
+    bool mmIsPayeeMatches(const DATA &tran);
     template<class MODEL, class DATA = typename MODEL::Data>
-    bool is_category_matches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
+    bool mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
 
-    const wxString getStatus() const;
-
-    const wxString getNumber() const;
-    const wxString getNotes() const;
+    const wxString mmGetStatus() const;
+    const wxString mmGetNumber() const;
+    const wxString mmGetNotes() const;
+    const wxString mmGetLabelString() const;
 
     bool isMultiAccount_;
     int accountID_;
@@ -110,19 +106,19 @@ private:
 private:
     void OnDateChanged(wxDateEvent& event);
     /// Returns true if Status string matches.
-    bool is_status_matches(const wxString& itemStatus) const;
+    bool mmIsStatusMatches(const wxString& itemStatus) const;
 
-    bool is_type_cb_active() const;
-    bool is_type_maches(const wxString& typeState, int accountid, int toaccountid) const;
-    bool is_payee_cb_active() const;
-    bool is_number_cb_active() const;
-    bool is_notes_cb_active() const;
-    bool is_color_cb_active() const;
-    bool is_custom_field_active() const;
-    bool is_custom_field_matches(const Model_Checking::Data& tran) const;
+    bool mmIsTypeChecked() const;
+    bool mmIsTypeMaches(const wxString& typeState, int accountid, int toaccountid) const;
+    bool mmIsPayeeChecked() const;
+    bool mmIsNumberChecked() const;
+    bool mmIsNotesChecked() const;
+    bool mmIsColorChecked() const;
+    bool mmIsCustomFieldChecked() const;
+    bool mmIsCustomFieldMatches(const Model_Checking::Data& tran) const;
 
     /// Creation
-    bool Create(wxWindow* parent
+    bool mmDoCreate(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , const wxString& caption = _("Transaction Filter")
         , const wxPoint& pos = wxDefaultPosition
@@ -130,33 +126,30 @@ private:
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 private:
     /// Creates the controls and sizers
-    void CreateControls();
-    void DoInitVariables();
-    void DoInitSettingNameChoice(wxString sel="") const;
-    void DoUpdateSettings();
+    void mmDoCreateControls();
+    void mmDoInitVariables();
+    void mmDoInitSettingNameChoice(wxString sel="") const;
+    void mmDoUpdateSettings();
+    void mmDoSaveSettings(bool is_user_request = false);
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
 
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
-    void OnComboKey(wxKeyEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
-    void OnPayeeUpdated(wxCommandEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
-    void DoSaveSettings(bool is_user_request = false);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
     void OnMoreFields(wxCommandEvent& event);
     void OnChoice(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
-private:
-    void OnCategs(wxCommandEvent& event);
 
-    bool is_values_correct() const;
+private:
+    bool mmIsValuesCorrect() const;
 
     wxCheckBox* accountCheckBox_;
     wxButton* bSelectedAccounts_;
@@ -166,10 +159,9 @@ private:
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateControl_;
     wxCheckBox* payeeCheckBox_;
-    wxComboBox* cbPayee_;
+    mmComboBoxPayee* cbPayee_;
     wxCheckBox* categoryCheckBox_;
-    wxButton* btnCategory_;
-    wxCheckBox* similarCategCheckBox_;
+    mmComboBoxCategory* categoryComboBox_;
     wxCheckBox* statusCheckBox_;
 private:
     wxChoice* choiceStatus_;
@@ -203,9 +195,6 @@ private:
     int m_startDay;
     bool m_futureIgnored;
     int m_color_value;
-    int m_categ_id;
-    int m_subcateg_id;
-    bool is_similar_category_status;
     wxString m_payee_str;
 
     /* Selected accounts values */
@@ -225,33 +214,30 @@ private:
         ID_DATE_RANGE,
         ID_PERIOD_CB,
         ID_ACCOUNT_CB,
-        ID_DATE_RANGE_CB,
-        ID_SIMILAR_CB
+        ID_DATE_RANGE_CB
     };
 };
 
-inline const wxString mmFilterTransactionsDialog::getBeginDate() const { return m_begin_date; }
-inline const wxString mmFilterTransactionsDialog::getEndDate() const { return m_end_date; }
-inline int mmFilterTransactionsDialog::getStartDay() const { return m_startDay; }
-inline bool mmFilterTransactionsDialog::isFutureIgnored() const { return m_futureIgnored; }
-inline bool mmFilterTransactionsDialog::getSimilarStatus() const { return is_similar_category_status; }
-inline int mmFilterTransactionsDialog::getCategId() const { return m_categ_id; }
-inline int mmFilterTransactionsDialog::getSubCategId() const { return m_subcateg_id; }
-inline const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const { return m_selected_accounts_id; }
-inline const wxArrayInt mmFilterTransactionsDialog::getHideColumnsID() const { return m_selected_columns_id; }
-inline bool mmFilterTransactionsDialog::is_date_range_cb_active() const { return dateRangeCheckBox_->GetValue(); }
-inline bool mmFilterTransactionsDialog::getRangeCheckBox() const { return datesCheckBox_->GetValue(); }
-inline const wxString mmFilterTransactionsDialog::getNumber() const { return transNumberEdit_->GetValue(); }
-inline const wxString mmFilterTransactionsDialog::getNotes() const { return notesEdit_->GetValue(); }
-inline bool mmFilterTransactionsDialog::getHideColumnsCheckBox() const { return showColumnsCheckBox_->GetValue(); }
-inline bool mmFilterTransactionsDialog::is_type_cb_active() const { return typeCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_payee_cb_active() const { return payeeCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_number_cb_active() const { return transNumberCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_notes_cb_active() const { return notesCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_color_cb_active() const { return colorCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_category_cb_active() const { return categoryCheckBox_->IsChecked(); }
-inline bool mmFilterTransactionsDialog::is_status_cb_active() const { return statusCheckBox_->IsChecked(); }
-inline const wxString mmFilterTransactionsDialog::GetLabelString() const { return  m_setting_name->GetStringSelection(); }
+inline const wxString mmFilterTransactionsDialog::mmGetBeginDate() const { return m_begin_date; }
+inline const wxString mmFilterTransactionsDialog::mmGetEndDate() const { return m_end_date; }
+inline int mmFilterTransactionsDialog::mmGetStartDay() const { return m_startDay; }
+inline bool mmFilterTransactionsDialog::mmIsFutureIgnored() const { return m_futureIgnored; }
+inline const wxArrayInt mmFilterTransactionsDialog::mmGetAccountsID() const { return m_selected_accounts_id; }
+inline const wxArrayInt mmFilterTransactionsDialog::mmGetHideColumnsID() const { return m_selected_columns_id; }
+inline bool mmFilterTransactionsDialog::mmIsDateRangeChecked() const { return dateRangeCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::mmIsRangeChecked() const { return datesCheckBox_->IsChecked(); }
+inline const wxString mmFilterTransactionsDialog::mmGetNumber() const { return transNumberEdit_->GetValue(); }
+inline const wxString mmFilterTransactionsDialog::mmGetNotes() const { return notesEdit_->GetValue(); }
+inline bool mmFilterTransactionsDialog::mmIsHideColumnsChecked() const { return showColumnsCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsTypeChecked() const { return typeCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsPayeeChecked() const { return payeeCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsNumberChecked() const { return transNumberCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsNotesChecked() const { return notesCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsColorChecked() const { return colorCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsCategoryChecked() const { return categoryCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsStatusChecked() const { return statusCheckBox_->IsChecked(); }
+inline const wxString mmFilterTransactionsDialog::mmGetLabelString() const { return  m_setting_name->GetStringSelection(); }
+inline const wxString mmFilterTransactionsDialog::mmGetCategoryPattern() const { return categoryComboBox_->GetValue(); }
 
 #endif
 // FILTERTRANSDIALOG_H_

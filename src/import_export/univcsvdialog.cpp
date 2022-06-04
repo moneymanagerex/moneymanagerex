@@ -63,7 +63,7 @@ EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnFileBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
 EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
 EVT_CHECKBOX(wxID_ANY, mmUnivCSVDialog::OnCheckboxClick)
-EVT_MENU(wxID_ANY, mmUnivCSVDialog::OnMenuSelected)
+EVT_MENU(wxID_HIGHEST, mmUnivCSVDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -1081,7 +1081,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         , _("Import")
         , wxOK | (nImportedLines > 0 ? wxCANCEL : 0)
         | (nImportedLines == 0 ? wxICON_ERROR :
-            nImportedLines < linesToImport - countEmptyLines
+            nImportedLines < linesToImport - countEmptyLines - m_spinIgnoreFirstRows_->GetValue() - m_spinIgnoreLastRows_->GetValue()
             ? wxICON_EXCLAMATION
             : wxICON_INFORMATION
             )
@@ -1936,4 +1936,5 @@ void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
 void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
 {
     colorButton_->Enable(false);
+    colorCheckBox_->SetValue(false);
 }

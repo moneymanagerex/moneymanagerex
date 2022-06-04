@@ -287,7 +287,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     for (unsigned long idx = 0; idx < data.size(); idx++)
     {
         this->endTableCell();
-        html_ += tags::TABLE_CELL_RIGHT;
+        html_ += tags::MONEY_CELL;
         html_ += data[idx];
     }
     this->endTableCell();

@@ -481,7 +481,7 @@ void mmBudgetingPanel::initVirtualListControl()
     if (actExpenses < 0.0) actExpenses = -actExpenses;
     est_amount = Model_Currency::toCurrency(estExpenses);
     act_amount = Model_Currency::toCurrency(actExpenses);
-    diff_amount = Model_Currency::toCurrency(actExpenses - estExpenses);
+    diff_amount = Model_Currency::toCurrency(estExpenses - actExpenses);
 
     expenses_estimated_->SetLabelText(est_amount);
     expenses_actual_->SetLabelText(act_amount);

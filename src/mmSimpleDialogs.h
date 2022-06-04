@@ -32,6 +32,91 @@ class wxTextCtrl;
 class wxChoice;
 class wxButton;
 
+class mmComboBox : public wxComboBox
+{
+public:
+    mmComboBox(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    const wxString mmGetPattern(const wxString& value) const;
+};
+
+class mmComboBoxAccount : public mmComboBox
+{
+public:
+    mmComboBoxAccount(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    int mmGetAccountId() const;
+    bool IsAccountValid(wxWindow* w = nullptr) const;
+    const wxString mmGetPattern() const;
+private:
+    void Create();
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+private:
+    int accountID_;
+    std::map<wxString, int> all_accounts_;
+
+    wxDECLARE_EVENT_TABLE();
+};
+inline int mmComboBoxAccount::mmGetAccountId() const { return this->accountID_; }
+
+/* -------------------------------------------- */
+
+class mmComboBoxPayee : public mmComboBox
+{
+public:
+    mmComboBoxPayee(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    int GetPayeeId() const;
+    bool IsPayeeValid(wxWindow* w = nullptr) const;
+    const wxString mmGetPattern() const;
+private:
+    void Create();
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+private:
+    int payeeID_;
+    std::map<wxString, int> all_payees_;
+
+    wxDECLARE_EVENT_TABLE();
+};
+inline int mmComboBoxPayee::GetPayeeId() const { return this->payeeID_; }
+
+/* -------------------------------------------- */
+
+class mmComboBoxCategory : public mmComboBox
+{
+public:
+    mmComboBoxCategory(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+    int GetCategoryId() const;
+    int GetSubcategoryId() const;
+    bool IsCategoryValid(wxWindow* w = nullptr) const;
+    const wxString mmGetPattern() const;
+private:
+    void Create();
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+private:
+    int category_;
+    int subcategory_;
+    std::map<wxString, std::pair<int, int> > all_categories_;
+
+    wxDECLARE_EVENT_TABLE();
+};
+inline int mmComboBoxCategory::GetCategoryId() const { return this->category_; }
+inline int mmComboBoxCategory::GetSubcategoryId() const { return this->subcategory_; }
+
+/* -------------------------------------------- */
+
 class mmColorButton : public wxButton
 {
 public:

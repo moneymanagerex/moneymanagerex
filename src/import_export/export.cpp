@@ -78,7 +78,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
             if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
+            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID, ":");
 
             buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
@@ -176,7 +176,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
+        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID, ":");
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
     }
