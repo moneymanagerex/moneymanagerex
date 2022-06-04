@@ -266,9 +266,7 @@ void mmTransDialog::dataToControls()
         if (acc)
             cbAccount_->SetValue(acc->ACCOUNTNAME);
 
-        const wxArrayString account_list = Model_Account::instance().all_checking_account_names(true);
-        cbAccount_->Enable(account_list.size() > 1);
-
+        //cbAccount_->Enable(m_new_trx);
         skip_account_init_ = true;
     }
 

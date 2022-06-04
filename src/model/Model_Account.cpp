@@ -332,7 +332,9 @@ int Model_Account::money_accounts_num()
         + Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size()
         + Model_Account::instance().find(ACCOUNTTYPE(all_type()[CREDIT_CARD])).size()
         + Model_Account::instance().find(ACCOUNTTYPE(all_type()[LOAN])).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM])).size();
+        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM])).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[ASSET])).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[SHARES])).size();
 }
 
 bool Model_Account::Exist(const wxString& account_name)
