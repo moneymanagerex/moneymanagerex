@@ -314,7 +314,6 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 {
     wxLogDebug("OnListItemFocused: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
