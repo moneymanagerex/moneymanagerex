@@ -211,7 +211,7 @@ void mmTransDialog::dataToControls()
         dpc_->SetFocus();
         //process date change event for set weekday name
         wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
-        GetEventHandler()->ProcessEvent(dateEvent);
+        OnDateChanged(dateEvent);
         skip_date_init_ = true;
     }
 
@@ -911,9 +911,7 @@ void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
 
     //process date change event for set weekday name
     wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
-    GetEventHandler()->ProcessEvent(dateEvent);
-
-    event.Skip();
+    OnDateChanged(dateEvent);
 }
 
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
@@ -1102,12 +1100,15 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
 {
-    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Days(300));
+    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
-    const auto numbers = Model_Checking::instance().find(Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL), Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL));
+    const auto numbers = Model_Checking::instance().find(
+        Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL)
+        , Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL)
+        , Model_Checking::TRANSACTIONNUMBER("", NOT_EQUAL));
     for (const auto &num : numbers)
     {
-        if (num.TRANSACTIONNUMBER.empty() || !num.TRANSACTIONNUMBER.IsNumber()) continue;
+        if (!num.TRANSACTIONNUMBER.IsNumber()) continue;
         if (num.TRANSACTIONNUMBER.ToDouble(&temp_num) && temp_num > next_number)
             next_number = temp_num;
     }
@@ -1185,7 +1186,8 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
         wxMenu menu;
         int id = wxID_LOWEST;
         for (const auto& entry : frequentNotes_) {
-            const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+            wxString label = entry.Mid(0, 36) + (entry.size() > 36 ? "..." : "");
+            label.Replace("\n", " ");
             menu.Append(++id, label);
         }
         PopupMenu(&menu);
@@ -1196,7 +1198,7 @@ void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_LOWEST;
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
-        if (!textNotes_->GetValue().EndsWith("\n"))
+        if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
             textNotes_->AppendText("\n");
         textNotes_->AppendText(frequentNotes_[i - 1]);
     }

@@ -30,6 +30,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+
+mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
+    : wxComboBox(parent, id, "", wxDefaultPosition, size)
+{
+}
+
+
 wxBEGIN_EVENT_TABLE(mmComboBoxAccount, mmComboBox)
 EVT_TEXT(wxID_ANY, mmComboBoxAccount::OnTextUpdated)
 wxEND_EVENT_TABLE()
@@ -52,6 +59,8 @@ void mmComboBoxAccount::Create()
         this->Insert(item.first, i++);
     }
     this->AutoComplete(auto_complite);
+    if (auto_complite.GetCount() == 1)
+        Select(0);
     Bind(wxEVT_CHAR_HOOK, &mmComboBoxAccount::OnKeyPressed, this);
 }
 
@@ -120,11 +129,6 @@ wxBEGIN_EVENT_TABLE(mmComboBoxPayee, mmComboBox)
 EVT_TEXT(wxID_ANY, mmComboBoxPayee::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
-mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
-    : wxComboBox(parent, id, "", wxDefaultPosition, size)
-{
-}
-
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
     , payeeID_(-1)
@@ -143,6 +147,8 @@ void mmComboBoxPayee::Create()
         this->Insert(item.first, i++);
     }
     this->AutoComplete(auto_complite);
+    if (auto_complite.GetCount() == 1)
+        Select(0);
     Bind(wxEVT_CHAR_HOOK, &mmComboBoxPayee::OnKeyPressed, this);
 }
 
