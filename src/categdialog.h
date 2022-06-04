@@ -57,17 +57,18 @@ class mmCategDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
+    ~mmCategDialog();
     mmCategDialog();
     mmCategDialog(wxWindow* parent
         , bool bIsSelection
         , int category_id, int subcategory_id);
 
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("Organize Categories")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER);
 
     int getCategId()
     {
@@ -129,8 +130,7 @@ private:
     {
         MENU_ITEM_HIDE = wxID_HIGHEST + 1500,
         MENU_ITEM_UNHIDE,
-        MENU_ITEM_CLEAR,
-        ID_DIALOG_CATEGORY
+        MENU_ITEM_CLEAR
     };
 };
 
