@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-05-30 14:43+0300\n"
-"PO-Revision-Date: 2022-05-30 11:58\n"
+"PO-Revision-Date: 2022-06-01 11:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1897,11 +1897,11 @@ msgstr "Падрабязнасці"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "Належыць да"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Абярыце, да чаго належыць гэтае карыстальніцкае поле"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -2004,7 +2004,7 @@ msgstr "Уласцівасці"
 
 #: customfieldlistdialog.cpp:66
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Персаналізаваць карыстальніцкія палі"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -4152,15 +4152,15 @@ msgstr "Даведка"
 
 #: mmframe.cpp:1199
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Налада з такой назвай ужо існуе"
 
 #: mmframe.cpp:1201
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Калi ласка, пазначце назву для налады"
 
 #: mmframe.cpp:1203
 msgid "Name in use"
-msgstr ""
+msgstr "Назва ўжо занятая"
 
 #: mmframe.cpp:1260
 msgid "Do you really want to delete the account?"
@@ -4204,15 +4204,15 @@ msgstr "Файлы &JSON"
 
 #: mmframe.cpp:1339
 msgid "&Edit Filter"
-msgstr ""
+msgstr "&Рэдагаваць фільтр"
 
 #: mmframe.cpp:1340
 msgid "&Rename Filter"
-msgstr ""
+msgstr "&Перайменаваць фільтр"
 
 #: mmframe.cpp:1341
 msgid "&Delete Filter"
-msgstr ""
+msgstr "&Выдаліць фільтр"
 
 #: mmframe.cpp:1355 mmframe.cpp:1373 mmframe.cpp:1393 mmframe.cpp:1567
 msgid "&Edit Account"
