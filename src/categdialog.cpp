@@ -631,26 +631,27 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
         m_treeCtrl->SetItemTextColour(m_selectedItemId, wxColour("GREY"));
         if (m_hidden_categs.Index(index) == wxNOT_FOUND)
             m_hidden_categs.Add(index);
+        break;
     case MENU_ITEM_UNHIDE:
         m_treeCtrl->SetItemTextColour(m_selectedItemId, NormalColor_);
         m_hidden_categs.Remove(index);
+        break;
     case MENU_ITEM_CLEAR:
         m_hidden_categs.Clear();
+        break;
     case MENU_ITEM_DELETE:
     {
         mmDoDeleteSelectedCategory();
+        break;
     }
     }
 
     wxString sSettings = "";
-    for (const auto& item : m_hidden_categs)
-    {
-        sSettings.Append(item + ";");
+    for (const auto& item : m_hidden_categs) {
+        sSettings.Append((sSettings.empty() ? "" : ";") + item);
     }
-    sSettings.RemoveLast(1);
 
     Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
-
     fillControls();
 }
 
