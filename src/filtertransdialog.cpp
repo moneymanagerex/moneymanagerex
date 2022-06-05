@@ -213,9 +213,10 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     }
     else
     {
-        accountCheckBox_->SetValue(accountID_ != -1);
         Model_Account::Data* acc = Model_Account::instance().get(accountID_);
-        bSelectedAccounts_->SetLabelText(acc ? acc->ACCOUNTNAME : "");
+        accountCheckBox_->SetValue(acc);
+        bSelectedAccounts_->SetLabelText(acc ? acc->ACCOUNTNAME : _("All"));
+        bSelectedAccounts_->Enable(acc);
         m_selected_accounts_id.Add(accountID_);
     }
 
@@ -739,8 +740,8 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     if (!isMultiAccount_)
     {
         bSelectedAccounts_->Disable();
-        accountCheckBox_->Disable();
         bSelectedAccounts_->Hide();
+        accountCheckBox_->Disable();
         accountCheckBox_->Hide();
         m_setting_name->Disable();
         m_itemButtonClear->Hide();
@@ -788,15 +789,17 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
             cbTypeTransferFrom_->Enable();
             cbTypeTransferTo_->SetLabel(_("Transfer Out"));
             Layout();
+            bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
         }
         else
         {
             m_selected_accounts_id.clear();
-            bSelectedAccounts_->SetLabelText("");
+            bSelectedAccounts_->SetLabelText(_("All"));
             cbTypeTransferFrom_->Hide();
             cbTypeTransferFrom_->Disable();
             cbTypeTransferTo_->SetLabel(_("Transfer"));
             Layout();
+            bSelectedAccounts_->Disable();
         }
         break;
     }
@@ -809,7 +812,6 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
-    bSelectedAccounts_->Enable(accountCheckBox_->IsChecked() && accountCheckBox_->IsEnabled());
     amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
@@ -1774,7 +1776,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
 
     if (m_selected_accounts_id.GetCount() == 0)
     {
-        bSelectedAccounts_->SetLabelText("");
+        bSelectedAccounts_->SetLabelText(_("All"));
         accountCheckBox_->SetValue(false);
         bSelectedAccounts_->Disable();
     }
