@@ -1,7 +1,7 @@
 /*******************************************************
-Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2012 Nikolay Akimov
-Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -40,6 +40,8 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
     EVT_LIST_COL_CLICK(wxID_ANY, mmPayeeDialog::OnSort)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(wxID_ANY, mmPayeeDialog::OnListItemDeselected)
     EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, mmPayeeDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
@@ -61,6 +63,16 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
                                 _("Last Used Category") : _("Default Category");
 
     Create(parent, name);
+
+    const wxAcceleratorEntry entries[] =
+    {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, MENU_EDIT_PAYEE),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_INSERT, MENU_NEW_PAYEE),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_DELETE, MENU_DELETE_PAYEE)
+    };
+
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
 }
 
 int mmPayeeDialog::FindSelectedPayee()
@@ -187,6 +199,11 @@ void mmPayeeDialog::fillControls()
         idx++;
     }
     this->Thaw();
+}
+
+void mmPayeeDialog::OnListItemSelected(wxListEvent& WXUNUSED(event))
+{
+    m_payee_id = FindSelectedPayee();
 }
 
 void mmPayeeDialog::OnListItemActivated(wxListEvent& WXUNUSED(event))
