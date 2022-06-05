@@ -69,18 +69,10 @@ public:
         , const wxSize& size
         , long style);
 
-    int getCategId()
-    {
-        return m_categ_id;
-    }
-    int getSubCategId()
-    {
-        return m_subcateg_id;
-    }
-    bool getRefreshRequested()
-    {
-        return m_refresh_requested;
-    }
+    int getCategId() const;
+    int getSubCategId() const;
+    bool getRefreshRequested() const;
+    bool mmIsUsed() const;
     wxString getFullCategName();
 
 private:
@@ -92,6 +84,7 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnAdd(wxCommandEvent& event);
     void OnDelete(wxCommandEvent& event);
+    void mmDoDeleteSelectedCategory();
     void OnBSelect(wxCommandEvent& event);
     void OnEdit(wxCommandEvent& event);
     void OnSelChanged(wxTreeEvent& event);
@@ -130,8 +123,13 @@ private:
         MENU_ITEM_HIDE = wxID_HIGHEST + 1500,
         MENU_ITEM_UNHIDE,
         MENU_ITEM_CLEAR,
+        MENU_ITEM_DELETE,
         ID_DIALOG_CATEGORY
     };
 };
+
+inline int mmCategDialog::getCategId() const { return m_categ_id; }
+inline int mmCategDialog::getSubCategId() const { return m_subcateg_id; }
+inline bool mmCategDialog::getRefreshRequested() const { return m_refresh_requested; }
 
 #endif
