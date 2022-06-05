@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel, Paulo Lopes
  copyright (C) 2012 - 2021 Nikolay Akimov
- Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 - 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -393,11 +393,13 @@ const wxString mmHTMLBuilder::getRandomColor(bool positive)
     return color;
 }
 
-void mmHTMLBuilder::addTableCellMonth(int month)
+void mmHTMLBuilder::addTableCellMonth(int month, int year)
 {
     if (month >= 0 && month < 12) {
-        wxString f = wxString::Format(" sorttable_customkey = '%i'", static_cast<wxDateTime::Month>(month));
+        wxString f = wxString::Format(" sorttable_customkey = '%i'", year * 100 + month);
         html_ += wxString::Format(tags::TABLE_CELL, f);
+        if (0 != year)
+            html_ += wxString::Format("%d ", year);
         html_ += wxGetTranslation(wxDateTime::GetEnglishMonthName(static_cast<wxDateTime::Month>(month)));
         this->endTableCell();
     }
