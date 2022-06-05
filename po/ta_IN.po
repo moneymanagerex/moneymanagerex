@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-04 13:58+0300\n"
-"PO-Revision-Date: 2022-06-04 11:40\n"
+"PO-Revision-Date: 2022-06-05 14:27\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr ""
 
 #: accountdialog.cpp:111 mmframe.cpp:1567
 msgid "Edit Account"
-msgstr "கணக்கை திருத்து"
+msgstr "கணக்கைத் திருத்து"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
@@ -137,7 +137,7 @@ msgstr "அடிக்கடி பயன்படும் கணக்கா 
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:267
 #: transdialog.cpp:592 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
-msgstr "குறிப்புகள்"
+msgstr "குறிப்பு"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
@@ -147,7 +147,7 @@ msgstr "இக்கணக்கு பற்றி பயனர் குறி
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:149
 #: optiondialog.cpp:37
 msgid "Others"
-msgstr "பிற"
+msgstr "மற்றவை"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
