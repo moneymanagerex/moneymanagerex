@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006-2012 Madhan Kanagavel
 Copyright (C) 2017 James Higley
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021 - 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -236,7 +236,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     }
 
     hb.addDivContainer("shadow"); // Table Container
-    hb.startTable();
+    hb.startSortTable();
     {
         hb.startThead();
         {
@@ -253,31 +253,21 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
         double total_expenses = 0.0;
         double total_income = 0.0;
-        wxString yearPrec;
         hb.startTbody();
         for (const auto &stats : incomeExpensesStats)
         {
             total_expenses += stats.second.second;
             total_income += stats.second.first;
 
-            wxString year = wxString() << stats.first / 100;
-            if (yearPrec != year)
-            {
-                hb.startAltTableRow();
-                    hb.addTableCell(year);
-                    hb.addEmptyTableCell(4);
-                hb.endTableRow();
-            }
             hb.startTableRow();
             {
-                hb.addTableCellMonth(static_cast<wxDateTime::Month>(stats.first % 100));
+                hb.addTableCellMonth(stats.first % 100, stats.first / 100);
                 hb.addMoneyCell(stats.second.first);
                 hb.addMoneyCell(stats.second.second);
                 hb.addMoneyCell(stats.second.first - stats.second.second);
                 hb.addMoneyCell(total_income - total_expenses);
             }
             hb.endTableRow();
-            yearPrec = year;
         }
         hb.endTbody();
 

@@ -308,7 +308,7 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     hb.addDivContainer("shadow");
     {
-        hb.startTable();
+        hb.startSortTable();
         {
             hb.startThead();
             {
@@ -332,23 +332,16 @@ wxString mmReportSummaryByDate::getHTMLText()
 
             hb.startTbody();
             {
-                wxString yearPrec;
                 for (const auto& entry : totBalanceData)
                 {
-                    wxString year = wxString::Format("%d",entry.date.GetYear());
-                    if ((mode_ == MONTHLY) && (yearPrec != year))
-                    {
-                        hb.startAltTableRow();
-                            hb.addTableCell(year);
-                            hb.addEmptyTableCell(10);
-                        hb.endTableRow();
-                    }
                     hb.startTableRow();
-                        (mode_ == MONTHLY) ? hb.addTableCellMonth(entry.date.GetMonth()) : hb.addTableCell(year);
+                        if (mode_ == MONTHLY)
+                            hb.addTableCellMonth(entry.date.GetMonth(), entry.date.GetYear());
+                        else
+                            hb.addTableCell(wxString::Format("%d",entry.date.GetYear()));
                         for (const auto& value : entry.values)
                             hb.addMoneyCell(value);
                     hb.endTableRow();
-                    yearPrec = year;
                 }
             }
             hb.endTbody();
