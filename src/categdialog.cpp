@@ -105,6 +105,16 @@ mmCategDialog::mmCategDialog(wxWindow* parent
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER;
     Create(parent, ID_DIALOG_CATEGORY, _("Organize Categories")
         , wxDefaultPosition, wxDefaultSize, style);
+
+    const wxAcceleratorEntry entries[] =
+    {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, wxID_EDIT),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_INSERT, wxID_ADD),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_DELETE, wxID_DELETE)
+    };
+
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
 }
 
 bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
