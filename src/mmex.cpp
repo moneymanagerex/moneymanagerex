@@ -317,10 +317,11 @@ bool OnInitImpl(mmGUIApp* app)
     if (!(Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001)))
         wxASSERT(false);
 
-    wxRegKey Theme(wxRegKey::HKCU, R"(Software\Microsoft\Windows\CurrentVersion\Themes\Personalize)");
-    if (Theme.Exists()) {
+    wxRegKey theme_key(wxRegKey::HKCU, R"(Software\Microsoft\Windows\CurrentVersion\Themes\Personalize)");
+    if (theme_key.Exists() && theme_key.HasValue("AppsUseLightTheme"))
+    {
         long AppsUseLightTheme;
-        Theme.QueryValue("AppsUseLightTheme", &AppsUseLightTheme);
+        theme_key.QueryValue("AppsUseLightTheme", &AppsUseLightTheme);
         wxLogDebug("App Use Light Theme: %s", AppsUseLightTheme ? "True" : "False");
     }
 
