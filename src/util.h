@@ -96,6 +96,7 @@ public:
         HELP_PAGE_GRM,
         HELP_INVESTMENT,
         HELP_BUDGET,
+        HELP_REPORT,
         BUDGET,
         ACCOUNT,
         STOCK,
