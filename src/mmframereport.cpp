@@ -115,7 +115,7 @@ private:
 
 void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 {
-    wxArrayString hiden_reports = Model_Infotable::instance().GetArrayStringSetting("HIDEN_REPORTS");
+    wxArrayString hiden_reports = Model_Infotable::instance().GetArrayStringSetting("HIDDEN_REPORTS");
 
     if (hiden_reports.Index("Cash Flow") == wxNOT_FOUND)
     {
@@ -295,7 +295,7 @@ void mmGUIFrame::mmDoHideReportsDialog()
         "Stocks Report",
     };
 
-    wxArrayString stored_items = Model_Infotable::instance().GetArrayStringSetting("HIDEN_REPORTS");
+    wxArrayString stored_items = Model_Infotable::instance().GetArrayStringSetting("HIDDEN_REPORTS");
     wxArrayInt hiden_reports;
     wxArrayString reports_name;
     wxArrayString reports_name_i10n;
@@ -323,12 +323,12 @@ void mmGUIFrame::mmDoHideReportsDialog()
     reports.Fit();
     if (reports.ShowModal() == wxID_OK)
     {
-        Model_Infotable::instance().Set("HIDEN_REPORTS", "[]");
+        Model_Infotable::instance().Set("HIDDEN_REPORTS", "[]");
         const auto sel = reports.GetSelections();
         for (const auto& i : sel)
         {
             const auto& report_name = reports_name[i];
-            Model_Infotable::instance().Prepend("HIDEN_REPORTS", report_name, -1);
+            Model_Infotable::instance().Prepend("HIDDEN_REPORTS", report_name, -1);
         }
     }
     DoRecreateNavTreeControl();
