@@ -1049,7 +1049,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::HELP_BUDGET:
         return createHelpPage(mmex::HTML_BUDGET);
     case mmTreeItemData::HELP_REPORT:
-        createHelpPage(mmex::HTML_REPORTS);
+        //createHelpPage(mmex::HTML_REPORTS);
         return;
     case mmTreeItemData::FILTER:
         return OnTransactionReport(e);
