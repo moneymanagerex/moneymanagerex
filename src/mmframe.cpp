@@ -1343,8 +1343,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         break;
     }
     case  mmTreeItemData::GRM:
-    case  mmTreeItemData::HELP_PAGE_GRM:
         return OnGeneralReportManager(e);
+    case  mmTreeItemData::HELP_PAGE_GRM:
+        return mmDoHideReportsDialog();
     case mmTreeItemData::STOCK:
     {
         int data = iData->getData();
