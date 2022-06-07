@@ -92,7 +92,7 @@ void Option::LoadOptions(bool include_infotable)
         }
     }
 
-    m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+    m_language = Option::instance().getLanguageID(true);
 
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
@@ -130,7 +130,27 @@ wxLanguage Option::getLanguageID(bool get_db)
 {
     if (get_db)
     {
-        m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+        auto lang_id = Model_Setting::instance()
+            .GetIntSetting(LANGUAGE_PARAMETER, -1);
+
+        if (lang_id == -1)
+        {
+            auto lang_canonical = Model_Setting::instance()
+                .GetStringSetting(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(wxLANGUAGE_UNKNOWN));
+            int lang_code = wxLANGUAGE_ENGLISH;
+            for (lang_code; lang_code < wxLANGUAGE_USER_DEFINED; lang_code++)
+            {
+                const auto l = wxLocale::GetLanguageCanonicalName(lang_code);
+                if (lang_canonical == l) {
+                    m_language = static_cast<wxLanguage>(lang_code);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            m_language = static_cast<wxLanguage>(lang_id);
+        }
     }
    
     return m_language;
@@ -458,5 +478,5 @@ const wxString Option::getLanguageCode(bool get_db)
 void Option::setLanguage(wxLanguage& language)
 {
     m_language = language;
-    Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
+    Model_Setting::instance().Set(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(language));
 }
