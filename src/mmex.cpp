@@ -316,6 +316,15 @@ bool OnInitImpl(mmGUIApp* app)
     wxRegKey Key(wxRegKey::HKCU, R"(Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION)");
     if (!(Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001)))
         wxASSERT(false);
+
+    wxRegKey theme_key(wxRegKey::HKCU, R"(Software\Microsoft\Windows\CurrentVersion\Themes\Personalize)");
+    if (theme_key.Exists() && theme_key.HasValue("AppsUseLightTheme"))
+    {
+        long AppsUseLightTheme;
+        theme_key.QueryValue("AppsUseLightTheme", &AppsUseLightTheme);
+        wxLogDebug("App Use Light Theme: %s", AppsUseLightTheme ? "True" : "False");
+    }
+
 #endif
 
     /* Initialize CURL */

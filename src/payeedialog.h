@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -85,6 +86,8 @@ private:
     void OnOk(wxCommandEvent& /*event*/);
 
     void OnListItemActivated(wxListEvent& event);
+    void OnListItemSelected(wxListEvent& event);
+    void OnListItemDeselected(wxListEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxListEvent& event);
     void OnTextChanged(wxCommandEvent& event);
@@ -95,5 +98,7 @@ private:
 inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
 inline int mmPayeeDialog::getPayeeId() const { return m_payee_id; }
 inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
+inline void mmPayeeDialog::OnListItemDeselected(wxListEvent& WXUNUSED(event)) { m_payee_id = -1; }
+
 
 #endif // MM_EX_PAYEEDIALOG_H_

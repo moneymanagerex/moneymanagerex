@@ -767,7 +767,7 @@ void mmGUIFrame::DoRecreateNavTreeControl()
 
     wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemBold(reports, true);
-    m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData(mmTreeItemData::HELP_PAGE_GRM, "Reports"));
+    m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData(mmTreeItemData::HELP_REPORT, "Reports"));
     this->DoUpdateReportNavigation(reports);
 
     wxTreeItemId grm = m_nav_tree_ctrl->AppendItem(root, _("General Report Manager"), img::CUSTOMSQL_GRP_PNG, img::CUSTOMSQL_GRP_PNG);
@@ -1048,6 +1048,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         return createHelpPage(mmex::HTML_CUSTOM_SQL);
     case mmTreeItemData::HELP_BUDGET:
         return createHelpPage(mmex::HTML_BUDGET);
+    case mmTreeItemData::HELP_REPORT:
+        //createHelpPage(mmex::HTML_REPORTS);
+        return;
     case mmTreeItemData::FILTER:
         return OnTransactionReport(e);
     case mmTreeItemData::ASSETS:
@@ -1345,6 +1348,8 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case  mmTreeItemData::GRM:
     case  mmTreeItemData::HELP_PAGE_GRM:
         return OnGeneralReportManager(e);
+    case mmTreeItemData::HELP_REPORT:
+        return mmDoHideReportsDialog();
     case mmTreeItemData::STOCK:
     {
         int data = iData->getData();
@@ -2386,8 +2391,8 @@ void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
     mmWebAppDialog dlg(this, false);
     if (dlg.ShowModal() == wxID_HELP) {
         helpFileIndex_ = mmex::HTML_WEBAPP;
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_HELP);
-        GetEventHandler()->AddPendingEvent(evt);
+        createHelpPage(helpFileIndex_);
+        setNavTreeSection(_("Help"));
     }
     if (dlg.getRefreshRequested())
         refreshPanelData();

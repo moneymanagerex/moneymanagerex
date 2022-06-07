@@ -390,7 +390,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         if (full_tran.has_split()) 
         {
             const auto& value = dlg.get()->mmGetCategoryPattern();
-            wxRegEx pattern("^(" + value + ")$");
+            wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
 
             for (const auto& split : full_tran.m_splits)
             {
