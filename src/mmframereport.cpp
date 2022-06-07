@@ -115,9 +115,9 @@ private:
 
 void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 {
-    wxArrayString hiden_reports = Model_Infotable::instance().GetArrayStringSetting("HIDDEN_REPORTS");
+    wxArrayString hidden_reports = Model_Infotable::instance().GetArrayStringSetting("HIDDEN_REPORTS");
 
-    if (hiden_reports.Index("Cash Flow") == wxNOT_FOUND)
+    if (hidden_reports.Index("Cash Flow") == wxNOT_FOUND)
     {
         wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(parent_item, _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData(mmTreeItemData::MENU_REPORT, "Cash Flow"));
@@ -131,7 +131,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     ///////////////////////////////////////////////////////////////////
 
-    if (hiden_reports.Index("Categories") == wxNOT_FOUND)
+    if (hidden_reports.Index("Categories") == wxNOT_FOUND)
     {
         wxTreeItemId categs = m_nav_tree_ctrl->AppendItem(parent_item, _("Categories"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(categs, new mmTreeItemData(mmTreeItemData::MENU_REPORT, "Categories"));
@@ -151,7 +151,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     //////////////////////////////////////////////////////////////////
 
-    if (hiden_reports.Index("Forecast Report") == wxNOT_FOUND)
+    if (hidden_reports.Index("Forecast Report") == wxNOT_FOUND)
     {
         wxTreeItemId forecastReport = m_nav_tree_ctrl->AppendItem(parent_item, _("Forecast Report"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(forecastReport, new mmTreeItemData("Forecast Report", new mmReportForecast()));
@@ -159,7 +159,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     ///////////////////////////////////////////////////////////////////
 
-    if (hiden_reports.Index("Income vs Expenses") == wxNOT_FOUND)
+    if (hidden_reports.Index("Income vs Expenses") == wxNOT_FOUND)
     {
         wxTreeItemId incexpOverTime = m_nav_tree_ctrl->AppendItem(parent_item, _("Income vs Expenses"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses", new mmReportIncomeExpenses()));
@@ -170,7 +170,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     ///////////////////////////////////////////////////////////////////
 
-    if (hiden_reports.Index("My Usage") == wxNOT_FOUND)
+    if (hidden_reports.Index("My Usage") == wxNOT_FOUND)
     {
         wxTreeItemId myusage = m_nav_tree_ctrl->AppendItem(parent_item, _("My Usage"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(myusage, new mmTreeItemData("My Usage", new mmReportMyUsage()));
@@ -178,7 +178,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     //////////////////////////////////////////////////////////////////////
 
-    if (hiden_reports.Index("Payees") == wxNOT_FOUND)
+    if (hidden_reports.Index("Payees") == wxNOT_FOUND)
     {
         wxTreeItemId payeesOverTime = m_nav_tree_ctrl->AppendItem(parent_item, _("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new mmReportPayeeExpenses()));
@@ -186,7 +186,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     //////////////////////////////////////////////////////////////////
 
-    if (hiden_reports.Index("Summary of Accounts") == wxNOT_FOUND)
+    if (hidden_reports.Index("Summary of Accounts") == wxNOT_FOUND)
     {
         wxTreeItemId reportsSummary = m_nav_tree_ctrl->AppendItem(parent_item, _("Summary of Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(reportsSummary, new mmTreeItemData(mmTreeItemData::MENU_REPORT, "Summary of Accounts"));
@@ -203,13 +203,13 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     size_t i = Model_Budgetyear::instance().all().size();
     if (i > 0)
     {
-        if (hiden_reports.Index("Budget Performance") == wxNOT_FOUND)
+        if (hidden_reports.Index("Budget Performance") == wxNOT_FOUND)
         {
             wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(parent_item, _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
         }
 
-        if (hiden_reports.Index("Budget Category Summary") == wxNOT_FOUND)
+        if (hidden_reports.Index("Budget Category Summary") == wxNOT_FOUND)
         {
             wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(parent_item, _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Category Summary", new mmReportBudgetCategorySummary()));
@@ -221,7 +221,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     Model_Account::Data_Set investments_account = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], EQUAL));
     if (!investments_account.empty())
     {
-        if (hiden_reports.Index("Stocks Report") == wxNOT_FOUND)
+        if (hidden_reports.Index("Stocks Report") == wxNOT_FOUND)
         {
             wxTreeItemId stocksReport = m_nav_tree_ctrl->AppendItem(parent_item, _("Stocks Report"), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report", new mmReportChartStocks()));
@@ -296,7 +296,7 @@ void mmGUIFrame::mmDoHideReportsDialog()
     };
 
     wxArrayString stored_items = Model_Infotable::instance().GetArrayStringSetting("HIDDEN_REPORTS");
-    wxArrayInt hiden_reports;
+    wxArrayInt hidden_reports;
     wxArrayString reports_name;
     wxArrayString reports_name_i10n;
 
@@ -304,13 +304,13 @@ void mmGUIFrame::mmDoHideReportsDialog()
         reports_name_i10n.Add(wxGetTranslation(r));
         reports_name.Add(r);
         if (stored_items.Index(r) != wxNOT_FOUND) {
-            hiden_reports.Add(reports_name.Index(r));
+            hidden_reports.Add(reports_name.Index(r));
         }
     }
 
     wxMultiChoiceDialog reports(this, _("Hide")
         , _("Reports"), reports_name_i10n);
-    reports.SetSelections(hiden_reports);
+    reports.SetSelections(hidden_reports);
     reports.SetMinSize(wxSize(220, 384));
     reports.SetIcon(mmex::getProgramIcon());
     reports.SetHelpText("test");
