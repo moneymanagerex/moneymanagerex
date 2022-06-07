@@ -52,6 +52,7 @@ public:
     void Set(const wxString& key, const wxDateTime& date);
     void Set(const wxString& key, const wxString& value);
     void Set(const wxString& key, const wxColour& value);
+    void Set(const wxString& key, const wxSize& size);
     void Prepend(const wxString& key, const wxString& value, int limit);
     void Erase(const wxString& key, int row);
     void Update(const wxString& key, int row, const wxString& value);
@@ -63,6 +64,7 @@ public:
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
     const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
     const wxArrayString GetArrayStringSetting(const wxString& key, bool sort = false);
+    const wxSize GetSizeSetting(const wxString& key, const wxSize& default_value);
 
     /* Returns true if key setting found */
     bool KeyExists(const wxString& key);

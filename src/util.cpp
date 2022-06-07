@@ -1303,9 +1303,23 @@ const wxString getProgramDescription(int type)
         description.Replace("#", "&asymp;");
     }
 
-
-
     return description;
+}
+
+const wxRect GetDefaultMonitorRect()
+{
+    // iterate through each display until the primary is found, default to display 0
+    wxSharedPtr<wxDisplay> display(new wxDisplay(static_cast<unsigned int>(0)));
+    for (unsigned int i = 0; i < wxDisplay::GetCount(); ++i) {
+        if (display->IsPrimary()) {
+            break;
+        }
+
+        display = new wxDisplay(i);
+    }
+
+    // Get a 'sensible' location on the primary display in case we can't fit it into the window
+    return display->GetClientArea();
 }
 
 // ----------------------------------------

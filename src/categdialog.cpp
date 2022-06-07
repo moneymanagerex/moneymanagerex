@@ -56,9 +56,13 @@ mmCategDialogTreeCtrl::mmCategDialogTreeCtrl(wxWindow *parent, const wxWindowID 
 // Only need to override the OnCompareItems sort method to make it case insensitive
 int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)		
 {
-    return ( GetItemText(item1).CmpNoCase(GetItemText(item2)) );
+    return (GetItemText(item1).CmpNoCase(GetItemText(item2)));
 }
 
+mmCategDialog::~mmCategDialog()
+{
+    Model_Infotable::instance().Set("CATEGORIES_DIALOG_SIZE", GetSize());
+}
 
 mmCategDialog::mmCategDialog()
     : m_treeCtrl(nullptr)
@@ -102,11 +106,8 @@ mmCategDialog::mmCategDialog(wxWindow* parent
         m_hidden_categs.Add(token.GetNextToken());
     }
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER;
-    Create(parent, ID_DIALOG_CATEGORY, _("Organize Categories")
-        , wxDefaultPosition, wxDefaultSize, style);
-
-    const wxAcceleratorEntry entries[] =
+    Create(parent);
+      const wxAcceleratorEntry entries[] =
     {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, wxID_EDIT),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_INSERT, wxID_ADD),
@@ -129,11 +130,18 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     fillControls();
     SetEvtHandlerEnabled(true);
 
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
-    SetIcon(mmex::getProgramIcon());
+    wxSize my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE", wxDefaultSize);
+    wxRect rect = GetDefaultMonitorRect();
+    int defValX = rect.GetX() - 50;
+    int defValY = rect.GetY() - 50;
+    if (my_size.GetWidth() > defValX || my_size.GetHeight() > defValY) {
+        this->SetInitialSize(my_size);
+    }
+    else {
+        Fit();
+    }
     SetMinSize(wxSize(316, 316));
+    SetIcon(mmex::getProgramIcon());
     Centre();
     return TRUE;
 }
