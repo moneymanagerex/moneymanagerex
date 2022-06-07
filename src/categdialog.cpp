@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2016 Nikolay Akimov
+ Copyright (C) 2015, 2016, 2020, 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -56,9 +56,13 @@ mmCategDialogTreeCtrl::mmCategDialogTreeCtrl(wxWindow *parent, const wxWindowID 
 // Only need to override the OnCompareItems sort method to make it case insensitive
 int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)		
 {
-    return ( GetItemText(item1).CmpNoCase(GetItemText(item2)) );
+    return (GetItemText(item1).CmpNoCase(GetItemText(item2)));
 }
 
+mmCategDialog::~mmCategDialog()
+{
+    Model_Infotable::instance().Set("CATEGORIES_DIALOG_SIZE", GetSize());
+}
 
 mmCategDialog::mmCategDialog()
     : m_treeCtrl(nullptr)
@@ -102,9 +106,16 @@ mmCategDialog::mmCategDialog(wxWindow* parent
         m_hidden_categs.Add(token.GetNextToken());
     }
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER;
-    Create(parent, ID_DIALOG_CATEGORY, _("Organize Categories")
-        , wxDefaultPosition, wxDefaultSize, style);
+    Create(parent);
+      const wxAcceleratorEntry entries[] =
+    {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, wxID_EDIT),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_INSERT, wxID_ADD),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_DELETE, wxID_DELETE)
+    };
+
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
 }
 
 bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
@@ -119,11 +130,18 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     fillControls();
     SetEvtHandlerEnabled(true);
 
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
-    SetIcon(mmex::getProgramIcon());
+    wxSize my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE", wxDefaultSize);
+    wxRect rect = GetDefaultMonitorRect();
+    int defValX = rect.GetX() - 50;
+    int defValY = rect.GetY() - 50;
+    if (my_size.GetWidth() > defValX || my_size.GetHeight() > defValY) {
+        this->SetInitialSize(my_size);
+    }
+    else {
+        Fit();
+    }
     SetMinSize(wxSize(316, 316));
+    SetIcon(mmex::getProgramIcon());
     Centre();
     return TRUE;
 }
@@ -348,33 +366,34 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
     wxMessageBox(deleteCategoryErrMsg, _("Organise Categories: Delete Error"), wxOK | wxICON_ERROR);
 }
 
-void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
+void mmCategDialog::mmDoDeleteSelectedCategory()
 {
-    if (!m_selectedItemId || m_selectedItemId == root_)
-        return;
-
-    if (m_treeCtrl->ItemHasChildren(m_selectedItemId))
-        return; //TODO: Show error message "Delete childs first"
-
-    mmTreeItemCateg* iData
-        = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(m_selectedItemId));
     wxTreeItemId PreviousItem = m_treeCtrl->GetPrevVisible(m_selectedItemId);
-    int categID = iData->getCategData()->CATEGID;
-    int subcategID = iData->getSubCategData()->SUBCATEGID;
 
-    if (subcategID == -1)
+    if (m_subcateg_id == -1)
     {
-        if (Model_Category::is_used(categID) || categID == m_init_selected_categ_id)
+        if (Model_Category::is_used(m_categ_id) || m_categ_id == m_init_selected_categ_id)
             return showCategDialogDeleteError();
-        else
-            Model_Category::instance().remove(categID);
+        else {
+            Model_Subcategory::Data_Set subcategories = Model_Subcategory::instance().find(Model_Subcategory::CATEGID(m_categ_id));
+            if (!subcategories.empty())
+            {
+                Model_Subcategory::instance().Savepoint();
+                for (const auto& s : subcategories) {
+                    Model_Subcategory::instance().remove(s.SUBCATEGID);
+                }
+                Model_Subcategory::instance().ReleaseSavepoint();
+            }
+            Model_Category::instance().remove(m_categ_id);
+        }
     }
     else
     {
-        if (Model_Category::is_used(categID, subcategID) || ((categID == m_init_selected_categ_id) && (subcategID == m_init_selected_subcateg_id)))
+        if (Model_Category::is_used(m_categ_id, m_subcateg_id)
+            || ((m_categ_id == m_init_selected_categ_id) && (m_subcateg_id == m_init_selected_subcateg_id)))
             return showCategDialogDeleteError(false);
         else
-            Model_Subcategory::instance().remove(subcategID);
+            Model_Subcategory::instance().remove(m_subcateg_id);
     }
 
     m_refresh_requested = true;
@@ -382,9 +401,9 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
     //Clear categories associated with payees
     auto payees = Model_Payee::instance().all();
-    for (auto &payee : payees)
+    for (auto& payee : payees)
     {
-        if (payee.CATEGID == categID || (payee.SUBCATEGID == subcategID && subcategID != -1))
+        if (payee.CATEGID == m_categ_id || (payee.SUBCATEGID == m_subcateg_id && m_subcateg_id != -1))
         {
             payee.CATEGID = -1;
             payee.SUBCATEGID = -1;
@@ -393,13 +412,13 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     Model_Payee::instance().save(payees);
     mmWebApp::MMEX_WebApp_UpdatePayee();
 
-    wxString sIndex = wxString::Format("*%i:%i*", categID, subcategID);
+    wxString sIndex = wxString::Format("*%i:%i*", m_categ_id, m_subcateg_id);
     wxString sSettings = "";
     for (size_t i = 0; i < m_hidden_categs.GetCount(); i++)
     {
-        if (subcategID != -1 && m_hidden_categs[i] == sIndex)
+        if (m_subcateg_id != -1 && m_hidden_categs[i] == sIndex)
             m_hidden_categs.RemoveAt(i, i);
-        else if (subcategID == -1 && m_hidden_categs[i].Contains(wxString::Format("*%i:", categID)))
+        else if (m_subcateg_id == -1 && m_hidden_categs[i].Contains(wxString::Format("*%i:", m_categ_id)))
             m_hidden_categs.RemoveAt(i, i);
         else
             sSettings << m_hidden_categs[i] << ";";
@@ -410,6 +429,13 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
     m_treeCtrl->SelectItem(PreviousItem);
     m_selectedItemId = PreviousItem;
+}
+
+void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
+{
+    if (m_selectedItemId && m_selectedItemId != root_) {
+        mmDoDeleteSelectedCategory();
+    }
 }
 
 void mmCategDialog::OnBSelect(wxCommandEvent& /*event*/)
@@ -446,49 +472,15 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     m_categ_id = -1;
     m_subcateg_id = -1;
     const bool bRootSelected = m_selectedItemId == root_;
-    if (bRootSelected)
+    mmTreeItemCateg* iData =
+        dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(m_selectedItemId));
+    if (!bRootSelected && iData)
     {
-        m_buttonDelete->Disable();
-        mmToolTip(m_buttonDelete, _("Select an unused category to delete."));
-    }
-    else
-    {
-        mmTreeItemCateg* iData =
-            dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(m_selectedItemId));
-        wxASSERT(iData);
+        m_categ_id = iData->getCategData()->CATEGID;
+        m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
 
-        if (iData) {
-            m_categ_id = iData->getCategData()->CATEGID;
-            m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
-        }
-
-        bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
-        if (m_subcateg_id == -1)
-        {
-            Model_Category::Data *category = Model_Category::instance().get(m_categ_id);
-            const auto &subcategories = Model_Category::sub_category(category);
-            for (const auto &s : subcategories)
-                bUsed = (bUsed || Model_Category::is_used(m_categ_id, s.SUBCATEGID));
-        }
-
-        if (bUsed)
-        {
-            m_buttonDelete->Disable();
-            mmToolTip(m_buttonDelete, _("This category cannot be deleted because it's used by transactions."));
-        }
-        else
-        {
-            if (!m_treeCtrl->ItemHasChildren(m_selectedItemId))
-            {
-                m_buttonDelete->Enable();
-                mmToolTip(m_buttonDelete, _("Delete an existing category."));
-            }
-            else
-            {
-                m_buttonDelete->Disable();
-                mmToolTip(m_buttonDelete, _("Subcategories must be deleted before."));
-            }
-        }
+        //bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
+        m_buttonDelete->Enable(!mmIsUsed());
     }
 
     m_buttonAdd->Enable(m_subcateg_id == -1);
@@ -651,48 +643,52 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     int id = event.GetId();
 
     const wxString index = wxString::Format("*%i:%i*", m_categ_id, m_subcateg_id);
-    if (id == MENU_ITEM_HIDE)
+    switch (id)
     {
+    case MENU_ITEM_HIDE:
         m_treeCtrl->SetItemTextColour(m_selectedItemId, wxColour("GREY"));
         if (m_hidden_categs.Index(index) == wxNOT_FOUND)
             m_hidden_categs.Add(index);
-    }
-    else if (id == MENU_ITEM_UNHIDE)
-    {
+        break;
+    case MENU_ITEM_UNHIDE:
         m_treeCtrl->SetItemTextColour(m_selectedItemId, NormalColor_);
         m_hidden_categs.Remove(index);
-    }
-    else if (id == MENU_ITEM_CLEAR)
-    {
+        break;
+    case MENU_ITEM_CLEAR:
         m_hidden_categs.Clear();
+        break;
+    case MENU_ITEM_DELETE:
+    {
+        mmDoDeleteSelectedCategory();
+        break;
+    }
     }
 
     wxString sSettings = "";
-    for (const auto& item : m_hidden_categs)
-    {
-        sSettings.Append(item + ";");
+    for (const auto& item : m_hidden_categs) {
+        sSettings.Append((sSettings.empty() ? "" : ";") + item);
     }
-    sSettings.RemoveLast(1);
 
     Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
-
     fillControls();
 }
 
 void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
 {
-    wxMenu* mainMenu = new wxMenu;
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_HIDE, _("Hide Selected Category")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_UNHIDE, _("Unhide Selected Category")));
-    mainMenu->AppendSeparator();
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_CLEAR, _("Clear Settings")));
+    wxMenu mainMenu;
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _("Hide Selected Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _("Unhide Selected Category")));
+    mainMenu.AppendSeparator();
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_DELETE, _("Remove Category")));
 
+    mainMenu.AppendSeparator();
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_CLEAR, _("Clear Settings")));
     bool bItemHidden = (m_treeCtrl->GetItemTextColour(m_selectedItemId) != NormalColor_);
-    mainMenu->Enable(MENU_ITEM_HIDE, !bItemHidden && (m_selectedItemId != root_));
-    mainMenu->Enable(MENU_ITEM_UNHIDE, bItemHidden && (m_selectedItemId != root_));
+    mainMenu.Enable(MENU_ITEM_HIDE, !bItemHidden && (m_selectedItemId != root_));
+    mainMenu.Enable(MENU_ITEM_UNHIDE, bItemHidden && (m_selectedItemId != root_));
+    mainMenu.Enable(MENU_ITEM_DELETE, !mmIsUsed());
 
-    PopupMenu(mainMenu, event.GetPoint());
-    delete mainMenu;
+    PopupMenu(&mainMenu, event.GetPoint());
     event.Skip();
 }
 
@@ -714,4 +710,15 @@ bool mmCategDialog::categShowStatus(int categId, int subCategId)
 wxString mmCategDialog::getFullCategName()
 {
     return Model_Category::full_name(m_categ_id, m_subcateg_id);
+}
+
+bool mmCategDialog::mmIsUsed() const
+{
+    if (m_subcateg_id == -1) {
+        return (Model_Category::is_used(m_categ_id) || m_categ_id == m_init_selected_categ_id);
+    }
+    else {
+        return (Model_Category::is_used(m_categ_id, m_subcateg_id)
+            || ((m_categ_id == m_init_selected_categ_id) && (m_subcateg_id == m_init_selected_subcateg_id)));
+    }
 }

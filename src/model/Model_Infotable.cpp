@@ -75,6 +75,11 @@ void Model_Infotable::Set(const wxString& key, const wxDateTime& date)
     this->Set(key, date.FormatISODate());
 }
 
+void Model_Infotable::Set(const wxString& key, const wxSize& size)
+{
+    this->Set(key, wxString::Format("%i,%i", size.GetWidth(), size.GetHeight()));
+}
+
 void Model_Infotable::Set(const wxString& key, const wxString& value)
 {
     Data* info = this->get_one(INFONAME(key));
@@ -234,6 +239,21 @@ wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& def
             return items[0].INFOVALUE;
     }
 
+    return default_value;
+}
+const wxSize Model_Infotable::GetSizeSetting(const wxString& key, const wxSize& default_value)
+{
+    const wxString value = this->GetStringInfo(key, "");
+    if (!value.IsEmpty())
+    {
+        wxRegEx pattern("^([0-9]+),([0-9]+)$");
+        if (pattern.Matches(value))
+        {
+            const auto& x = pattern.GetMatch(value, 1);
+            const auto& y = pattern.GetMatch(value, 2);
+            return wxSize(wxAtoi(x), wxAtoi(y));
+        }
+    }
     return default_value;
 }
 

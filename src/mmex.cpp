@@ -316,6 +316,15 @@ bool OnInitImpl(mmGUIApp* app)
     wxRegKey Key(wxRegKey::HKCU, R"(Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION)");
     if (!(Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001)))
         wxASSERT(false);
+
+    wxRegKey theme_key(wxRegKey::HKCU, R"(Software\Microsoft\Windows\CurrentVersion\Themes\Personalize)");
+    if (theme_key.Exists() && theme_key.HasValue("AppsUseLightTheme"))
+    {
+        long AppsUseLightTheme;
+        theme_key.QueryValue("AppsUseLightTheme", &AppsUseLightTheme);
+        wxLogDebug("App Use Light Theme: %s", AppsUseLightTheme ? "True" : "False");
+    }
+
 #endif
 
     /* Initialize CURL */
@@ -327,18 +336,7 @@ bool OnInitImpl(mmGUIApp* app)
     /* set preffered GUI language */
     app->setGUILanguage(Option::instance().getLanguageID());
 
-    // iterate through each display until the primary is found, default to display 0
-    wxSharedPtr<wxDisplay> display(new wxDisplay(static_cast<unsigned int>(0)));
-    for (unsigned int i = 0; i < wxDisplay::GetCount(); ++i) {
-        if (display->IsPrimary()) {
-            break;
-        }
-
-        display = new wxDisplay(i);
-    }
-
-    // Get a 'sensible' location on the primary display in case we can't fit it into the window
-    wxRect rect = display->GetClientArea();
+    wxRect rect = GetDefaultMonitorRect();
     int defValX = rect.GetX() + 50;
     int defValY = rect.GetY() + 50;
     int defValW = rect.GetWidth() / 4 * 3;
@@ -354,13 +352,12 @@ bool OnInitImpl(mmGUIApp* app)
     // -- 'fit' means either an exact fit or at least 20% of application is on a visible window)
     bool itFits = false;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) {
-        display = new wxDisplay(i);
+        wxSharedPtr<wxDisplay> display(new wxDisplay(i));
 
         wxRect displayRect = display->GetGeometry();
         wxRect savedPosition(valX, valY, valW, valH);
 
         // Check for exact fit.
-
         if (displayRect.Contains(savedPosition))
         {
             itFits = true;

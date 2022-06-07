@@ -996,7 +996,7 @@ void mmBDDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_LOWEST;
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
-        if (!textNotes_->GetValue().EndsWith("\n"))
+        if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
             textNotes_->AppendText("\n");
         textNotes_->AppendText(frequentNotes_[i - 1]);
     }

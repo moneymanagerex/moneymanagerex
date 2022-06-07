@@ -118,6 +118,11 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSCODE Model_Checking::TRANSCODE(TYPE type, OP o
     return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op);
 }
 
+DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER Model_Checking::TRANSACTIONNUMBER(const wxString& num, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER(num, op);
+}
+
 DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& date, OP op)
 {
     return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
@@ -483,7 +488,7 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     std::sort(vec.begin(), vec.end(), CompareUsedNotes);
 
     // Pull out top 20 (max)
-    for (const auto & kv : vec)
+    for (const auto& kv : vec)
     {
         if (0 == max--)
             break;

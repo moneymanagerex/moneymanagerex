@@ -211,7 +211,7 @@ void mmTransDialog::dataToControls()
         dpc_->SetFocus();
         //process date change event for set weekday name
         wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
-        GetEventHandler()->ProcessEvent(dateEvent);
+        OnDateChanged(dateEvent);
         skip_date_init_ = true;
     }
 
@@ -262,34 +262,11 @@ void mmTransDialog::dataToControls()
 
     if (!skip_account_init_) //Account
     {
-        cbAccount_->SetEvtHandlerEnabled(false);
-        cbAccount_->Clear();
-        const wxArrayString account_list = Model_Account::instance().all_checking_account_names(true);
-        cbAccount_->Append(account_list);
-        cbAccount_->AutoComplete(account_list);
+        Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
+        if (acc)
+            cbAccount_->SetValue(acc->ACCOUNTNAME);
 
-        bool acc_closed = false;
-        const auto& accounts = Model_Account::instance().find(
-            Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
-        for (const auto &account : accounts)
-        {
-            if (account.ACCOUNTID == m_trx_data.ACCOUNTID)
-            {
-                cbAccount_->ChangeValue(account.ACCOUNTNAME);
-                if (account.STATUS == Model_Account::all_status()[Model_Account::CLOSED])
-                {
-                    cbAccount_->Append(account.ACCOUNTNAME);
-                    acc_closed = true;
-                }
-            }
-        }
-
-        if (account_list.size() == 1 && !acc_closed)
-            cbAccount_->ChangeValue(account_list[0]);
-
-        cbAccount_->Enable(account_list.size() > 1); 
-
-        cbAccount_->SetEvtHandlerEnabled(true);
+        //cbAccount_->Enable(m_new_trx);
         skip_account_init_ = true;
     }
 
@@ -808,26 +785,18 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
-    if (w)
-    {
+    if (w) {
         object_in_focus_ = w->GetId();
     }
 
     m_currency = Model_Currency::GetBaseCurrency();
-    wxString accountName = cbAccount_->GetValue();
     wxString toAccountName = cbPayee_->GetValue();
     for (const auto& acc : Model_Account::instance().all_checking_account_names())
     {
-        if (acc.CmpNoCase(accountName) == 0) accountName = acc;
-        if (acc.CmpNoCase(toAccountName) == 0) toAccountName = acc;
-    }
-
-    const Model_Account::Data* account = Model_Account::instance().get(accountName);
-    if (account)
-    {
-        m_currency = Model_Account::currency(account);
-        if (cbAccount_->GetValue() != accountName) 
-            cbAccount_->SetValue(account->ACCOUNTNAME);
+        if (acc.CmpNoCase(toAccountName) == 0) {
+            toAccountName = acc;
+            break;
+        }
     }
 
     if (!m_transfer)
@@ -942,9 +911,7 @@ void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
 
     //process date change event for set weekday name
     wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
-    GetEventHandler()->ProcessEvent(dateEvent);
-
-    event.Skip();
+    OnDateChanged(dateEvent);
 }
 
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
@@ -1133,12 +1100,15 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
 {
-    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Days(300));
+    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
-    const auto numbers = Model_Checking::instance().find(Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL), Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL));
+    const auto numbers = Model_Checking::instance().find(
+        Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL)
+        , Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL)
+        , Model_Checking::TRANSACTIONNUMBER("", NOT_EQUAL));
     for (const auto &num : numbers)
     {
-        if (num.TRANSACTIONNUMBER.empty() || !num.TRANSACTIONNUMBER.IsNumber()) continue;
+        if (!num.TRANSACTIONNUMBER.IsNumber()) continue;
         if (num.TRANSACTIONNUMBER.ToDouble(&temp_num) && temp_num > next_number)
             next_number = temp_num;
     }
@@ -1216,7 +1186,8 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
         wxMenu menu;
         int id = wxID_LOWEST;
         for (const auto& entry : frequentNotes_) {
-            const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+            wxString label = entry.Mid(0, 36) + (entry.size() > 36 ? "..." : "");
+            label.Replace("\n", " ");
             menu.Append(++id, label);
         }
         PopupMenu(&menu);
@@ -1227,7 +1198,7 @@ void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_LOWEST;
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
-        if (!textNotes_->GetValue().EndsWith("\n"))
+        if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
             textNotes_->AppendText("\n");
         textNotes_->AppendText(frequentNotes_[i - 1]);
     }

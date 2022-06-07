@@ -255,10 +255,11 @@ private:
     void OnTreeItemExpanded(wxTreeEvent& event);
     void OnTreeItemCollapsing(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
-    void navTreeStateToJson();
 
+    void navTreeStateToJson();
     void processPendingEvents();
     void ReallocateAccount(int accountID);
+    void mmDoHideReportsDialog();
 private:
     /* Recent Files */
     wxSharedPtr<mmFileHistory> m_recentFiles;

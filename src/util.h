@@ -96,6 +96,7 @@ public:
         HELP_PAGE_GRM,
         HELP_INVESTMENT,
         HELP_BUDGET,
+        HELP_REPORT,
         BUDGET,
         ACCOUNT,
         STOCK,
@@ -167,6 +168,7 @@ void DoWindowsFreezeThaw(wxWindow* w);
 const wxString md2html(const wxString& md);
 const wxString getVFname4print(const wxString& name, const wxString& data);
 void clearVFprintedFiles(const wxString& name);
+const wxRect GetDefaultMonitorRect();
 
 //* Date Functions----------------------------------------------------------*//
 static const wxString MONTHS[12] =

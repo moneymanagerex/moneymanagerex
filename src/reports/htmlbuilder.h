@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 - 2021 Nikolay Akimov
- Copyright (C) 2021. 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 - 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ public:
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount, int precision = -1);
-    void addTableCellMonth(int month);
+    void addTableCellMonth(int month, int year = 0);
     void addColorMarker(const wxString& color);
     const wxString getColor(int i);
     const wxString getRandomColor(bool positive);
