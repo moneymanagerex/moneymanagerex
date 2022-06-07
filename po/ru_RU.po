@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-07 16:38+0300\n"
-"PO-Revision-Date: 2022-06-07 14:43\n"
+"PO-Revision-Date: 2022-06-07 19:56\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3553,7 +3553,7 @@ msgstr "Ошибка истории валют"
 
 #: maincurrencydialog.cpp:524
 msgid "Set as Base Currency"
-msgstr "Установить основной валютой"
+msgstr "Установить базовой валютой"
 
 #: maincurrencydialog.cpp:525
 msgid "Online Update Currency Rate"
