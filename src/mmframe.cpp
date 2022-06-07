@@ -2748,7 +2748,7 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
     }
     case wxID_SETUP:
     {
-        auto language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+        auto language = Option::instance().getLanguageID(true);
         const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
         break;
     }

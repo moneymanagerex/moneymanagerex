@@ -80,7 +80,7 @@ void OptionSettingsGeneral::Create()
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // Language
-    auto language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+    auto language = Option::instance().getLanguageID(true);
     const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
 
     wxStaticBox* langStaticBox = new wxStaticBox(this, wxID_STATIC, _("Language"));
