@@ -2724,30 +2724,36 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
     }
 
     int end_mod = dlg.ShowModal();
-    if (end_mod == wxID_EXIT)
+    switch (end_mod)
     {
-        Close();
-    }
-    else if (end_mod == wxID_FILE1)
+    case wxID_FILE1:
     {
         wxFileName fname(Model_Setting::instance().getLastDbPath());
         if (fname.IsOk()) {
             SetDatabaseFile(fname.GetFullPath());
         }
+        break;
     }
-    else if (end_mod == wxID_OPEN)
+    case wxID_OPEN:
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_OPEN);
         AddPendingEvent(evt);
+        break;
     }
-    else if (end_mod == wxID_NEW)
+    case wxID_NEW:
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_NEW);
         AddPendingEvent(evt);
-    } else if (end_mod == wxID_SETUP)
+        break;
+    }
+    case wxID_SETUP:
     {
-            auto language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
-            const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
+        auto language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+        const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
+        break;
+    }
+    case wxID_EXIT:
+        Close();
     }
 }
 //----------------------------------------------------------------------------
