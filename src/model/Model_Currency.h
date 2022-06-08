@@ -48,6 +48,7 @@ public:
 
 public:
     const wxArrayString all_currency_names();
+    const std::map<wxString, int>  all_currency();
     const wxArrayString all_currency_symbols();
 
     /** Return the Data record of the base currency.*/

@@ -57,12 +57,12 @@ void mmComboBox::Create()
 
 void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 {
+    this->SetEvtHandlerEnabled(false);
     element_id_ = -1;
     const auto& typedText = event.GetString();
 #if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!
-    this->SetEvtHandlerEnabled(false);
     if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
     {
         this->Clear();
@@ -77,11 +77,16 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
         this->SetInsertionPointEnd();
         this->Popup();
     }
-    this->SetEvtHandlerEnabled(true);
 #endif
-    if (all_elements_.find(typedText) != all_elements_.end()) {
-        element_id_ = all_elements_.at(typedText);
+
+    for (const auto& item : all_elements_) {
+        if (item.first.CmpNoCase(typedText) == 0) {
+            element_id_ = all_elements_.at(item.first);
+            ChangeValue(item.first);
+            break;
+        }
     }
+    this->SetEvtHandlerEnabled(true);
     event.Skip();
 }
 
@@ -141,6 +146,15 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Payee::instance().all_payees();
+    Create();
+}
+
+/* --------------------------------------------------------- */
+
+mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+{
+    all_elements_ = Model_Currency::instance().all_currency();
     Create();
 }
 
