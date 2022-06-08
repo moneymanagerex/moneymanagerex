@@ -45,6 +45,7 @@ public:
     bool mmIsValid() const;
 protected:
     void OnTextUpdated(wxCommandEvent& event);
+    void OnKeyPressed(wxKeyEvent& event);
     std::map<wxString, int> all_elements_;
 private:
     int element_id_;

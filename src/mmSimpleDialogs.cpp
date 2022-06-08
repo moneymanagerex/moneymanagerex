@@ -37,6 +37,7 @@ wxEND_EVENT_TABLE()
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     : wxComboBox(parent, id, "", wxDefaultPosition, size)
 {
+    Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
 void mmComboBox::Create()
@@ -85,6 +86,23 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
         }
     }
     this->SetEvtHandlerEnabled(true);
+    event.Skip();
+}
+
+void mmComboBox::OnKeyPressed(wxKeyEvent& event)
+{
+    auto text = GetValue();
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        for (const auto& item : all_elements_)
+        {
+            if (item.first.CmpNoCase(text) == 0) {
+                SetValue(item.first);
+                Dismiss();
+                break;
+            }
+        }
+    }
     event.Skip();
 }
 
