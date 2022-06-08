@@ -96,7 +96,7 @@ void mmComboBoxAccount::OnTextUpdated(wxCommandEvent& event)
         Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(typedText);
         std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
         for (const auto& acc : filtd)
-            this->Insert(acc.ACCOUNTNAME, 0);
+            this->Append(acc.ACCOUNTNAME);
 
         this->ChangeValue(typedText);
         this->SetInsertionPointEnd();
@@ -126,7 +126,8 @@ bool mmComboBoxAccount::IsAccountValid(wxWindow* w) const
 /* --------------------------------------------------------- */
 
 wxBEGIN_EVENT_TABLE(mmComboBoxPayee, mmComboBox)
-EVT_TEXT(wxID_ANY, mmComboBoxPayee::OnTextUpdated)
+EVT_TEXT(wxID_ANY, mmComboBoxPayee::
+)
 wxEND_EVENT_TABLE()
 
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
@@ -184,7 +185,7 @@ void mmComboBoxPayee::OnTextUpdated(wxCommandEvent& event)
         Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(typedText);
         std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
         for (const auto& payee : filtd)
-            this->Insert(payee.PAYEENAME, 0);
+            this->Append(payee.PAYEENAME);
 
         this->ChangeValue(typedText);
         this->SetInsertionPointEnd();
@@ -272,7 +273,7 @@ void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
         wxArrayString filtd = Model_Category::instance().FilterCategory(typedText);        
         filtd.Sort();
         for (const auto &category : filtd)
-            this->Insert(category, 0);
+            this->Append(category);
 
         this->ChangeValue(typedText);
         this->SetInsertionPointEnd();
