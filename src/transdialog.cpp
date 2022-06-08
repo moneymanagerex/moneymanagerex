@@ -200,8 +200,6 @@ void mmTransDialog::dataToControls()
     Model_Checking::getFrequentUsedNotes(frequentNotes_, m_trx_data.ACCOUNTID);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
-    
-    bColours_->SetBackgroundColor(m_trx_data.FOLLOWUPID);
 
     if (!skip_date_init_) //Date
     {
@@ -558,6 +556,7 @@ void mmTransDialog::CreateControls()
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _("User Colors"));
+    bColours_->SetBackgroundColor(m_trx_data.FOLLOWUPID);
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
