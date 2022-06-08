@@ -137,7 +137,7 @@ wxLanguage Option::getLanguageID(bool get_db)
         {
             auto lang_canonical = Model_Setting::instance()
                 .GetStringSetting(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(wxLANGUAGE_UNKNOWN));
-            int lang_code = wxLANGUAGE_ENGLISH;
+            int lang_code = wxLANGUAGE_DEFAULT;
             for (lang_code; lang_code < wxLANGUAGE_USER_DEFINED; lang_code++)
             {
                 const auto l = wxLocale::GetLanguageCanonicalName(lang_code);
