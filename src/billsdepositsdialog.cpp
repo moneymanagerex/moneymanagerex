@@ -74,7 +74,6 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmBDDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
-    EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
@@ -92,6 +91,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
+    EVT_TEXT(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountUpdated)
     EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -117,7 +117,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
     , textNumRepeats_(nullptr)
     , bCategory_(nullptr)
     , bPayee_(nullptr)
-    , bAccount_(nullptr)
+    , cbAccount_(nullptr)
     , bAttachments_(nullptr)
     , bColours_(nullptr)
     , cSplit_(nullptr)
@@ -283,7 +283,7 @@ void mmBDDialog::dataToControls()
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    bAccount_->SetLabelText(account ? account->ACCOUNTNAME : "");
+    cbAccount_->SetLabelText(account ? account->ACCOUNTNAME : "");
 
     setCategoryLabel();
     cSplit_->SetValue(!m_bill_data.local_splits.empty());
@@ -363,7 +363,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     const auto trx = Model_Checking::instance().get(trx_id);
     Model_Checking::Full_Data t(*trx, split);
     m_bill_data.ACCOUNTID = t.ACCOUNTID;
-    bAccount_->SetLabelText(t.ACCOUNTNAME);
+    cbAccount_->SetLabelText(t.ACCOUNTNAME);
 
     m_bill_data.TRANSCODE = t.TRANSCODE;
     m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(t.TRANSCODE));
@@ -616,9 +616,10 @@ void mmBDDialog::CreateControls()
     wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
-    bAccount_ = new wxButton(this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"));
-    mmToolTip(bAccount_, _("Specify the Account that will own the recurring transaction"));
-    transPanelSizer->Add(bAccount_, g_flagsExpand);
+    cbAccount_ = new mmComboBoxAccount(this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME);
+    mmToolTip(cbAccount_, _("Specify the Account that will own the recurring transaction"));
+    transPanelSizer->Add(cbAccount_, g_flagsExpand);
+
     // Payee ------------------------------------------------
     wxStaticText* payee_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
     payee_label->SetFont(this->GetFont().Bold());
@@ -749,38 +750,6 @@ void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_CANCEL);
 }
 
-void mmBDDialog::OnAccountName(wxCommandEvent& WXUNUSED(event))
-{
-    const auto& accounts = Model_Account::instance().all_checking_account_names(true);
-    mmSingleChoiceDialog scd(this
-        , _("Choose Bank Account or Term Account")
-        , _("Select Account")
-        , accounts);
-
-    if (!accounts.empty())
-    {
-        Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-        const wxString acc_name = acc ? acc->ACCOUNTNAME : "";
-        scd.SetSelection(accounts.Index(acc_name) != wxNOT_FOUND ? accounts.Index(acc_name) : 0);
-    }
-
-    if (scd.ShowModal() == wxID_OK)
-    {
-        wxString acctName = scd.GetStringSelection();
-        Model_Account::Data* account = Model_Account::instance().get(acctName);
-        if (account)
-        {
-            if (textAmount_->Calculate(Model_Currency::precision(account->ACCOUNTID)))
-            {
-                textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
-            }
-
-            m_bill_data.ACCOUNTID = account->ACCOUNTID;
-            bAccount_->SetLabelText(acctName);
-        }
-    }
-}
-
 void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
 {
     if (m_transfer)
@@ -896,7 +865,7 @@ void mmBDDialog::updateControlsForTransType()
         accountLabel->SetLabelText(_("From"));
         if (m_bill_data.ACCOUNTID < 0)
         {
-            bAccount_->SetLabelText(_("Select Account"));
+            cbAccount_->SetLabelText(_("Select Account"));
             m_bill_data.PAYEEID = -1;
             payeeUnknown_ = true;
         }
@@ -1016,10 +985,11 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) != wxYES)
             return;
 
-    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    if (!acc) {
-        return mmErrorDialogs::InvalidAccount(bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
+    if (!cbAccount_->mmIsValid()) {
+        return mmErrorDialogs::InvalidAccount(cbAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
     }
+    m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
+    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
 
     Model_Billsdeposits::Data bill_data;
     bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
@@ -1557,4 +1527,19 @@ void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
+}
+
+void mmBDDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
+{
+    int acc_id = cbAccount_->mmGetId();
+    Model_Account::Data* account = Model_Account::instance().get(acc_id);
+    if (account)
+    {
+        if (textAmount_->Calculate(Model_Currency::precision(account->ACCOUNTID)))
+        {
+            textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
+        }
+
+        m_bill_data.ACCOUNTID = account->ACCOUNTID;
+    }
 }
