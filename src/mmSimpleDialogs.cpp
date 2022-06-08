@@ -30,30 +30,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
+EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
+wxEND_EVENT_TABLE()
 
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     : wxComboBox(parent, id, "", wxDefaultPosition, size)
 {
+    Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
-
-wxBEGIN_EVENT_TABLE(mmComboBoxAccount, mmComboBox)
-EVT_TEXT(wxID_ANY, mmComboBoxAccount::OnTextUpdated)
-wxEND_EVENT_TABLE()
-
-mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
-    , accountID_(-1)
-{
-    Create();
-}
-
-void mmComboBoxAccount::Create()
+void mmComboBox::Create()
 {
     unsigned int i = 0;
     wxArrayString auto_complite;
-    all_accounts_ = Model_Account::instance().all_accounts();
-    for (const auto& item : all_accounts_)
+    for (const auto& item : all_elements_)
     {
         auto_complite.Add(item.first);
         this->Insert(item.first, i++);
@@ -64,12 +55,42 @@ void mmComboBoxAccount::Create()
     Bind(wxEVT_CHAR_HOOK, &mmComboBoxAccount::OnKeyPressed, this);
 }
 
-void mmComboBoxAccount::OnKeyPressed(wxKeyEvent& event)
+void mmComboBox::OnTextUpdated(wxCommandEvent& event)
+{
+    element_id_ = -1;
+    const auto& typedText = event.GetString();
+#if defined (__WXMAC__)
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    this->SetEvtHandlerEnabled(false);
+    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        this->Clear();
+
+        for (auto& entry : all_elements_)
+        {
+            if (entry.first.Lower().Matches(typedText.Lower().Append("*")))
+                this->Insert(entry.first, 0);
+        }
+
+        this->ChangeValue(typedText);
+        this->SetInsertionPointEnd();
+        this->Popup();
+    }
+    this->SetEvtHandlerEnabled(true);
+#endif
+    if (all_elements_.find(typedText) != all_elements_.end()) {
+        element_id_ = all_elements_.at(typedText);
+    }
+    event.Skip();
+}
+
+void mmComboBox::OnKeyPressed(wxKeyEvent& event)
 {
     auto text = GetValue();
     if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
     {
-        for (const auto& item : all_accounts_)
+        for (const auto& item : all_elements_)
         {
             if (item.first.CmpNoCase(text) == 0) {
                 SetValue(item.first);
@@ -81,262 +102,83 @@ void mmComboBoxAccount::OnKeyPressed(wxKeyEvent& event)
     event.Skip();
 }
 
-void mmComboBoxAccount::OnTextUpdated(wxCommandEvent& event)
+const wxString mmComboBox::mmGetPattern() const
 {
-    accountID_ = -1;
-    const auto& typedText = event.GetString();
-#if defined (__WXMAC__)
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!
-    this->SetEvtHandlerEnabled(false);
-    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    auto value = GetValue();
+    if (all_elements_.find(value) != all_elements_.end())
     {
-        this->Clear();
-
-        Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(typedText);
-        std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
-        for (const auto& acc : filtd)
-            this->Insert(acc.ACCOUNTNAME, 0);
-
-        this->ChangeValue(typedText);
-        this->SetInsertionPointEnd();
-        this->Popup();
+        wxString buffer;
+        for (const wxString& c : value) {
+            if (wxString(R"(.^$*+?()[{\|)").Contains(c)) {
+                buffer += R"(\)";
+            }
+            buffer += c;
+        }
+        return buffer;
     }
-    this->SetEvtHandlerEnabled(true);
-#endif
-    if (all_accounts_.find(typedText) != all_accounts_.end()) {
-        accountID_ = all_accounts_.at(typedText);
-    }
-    event.Skip();
+    return value;
 }
 
-bool mmComboBoxAccount::IsAccountValid(wxWindow* w) const
+bool mmComboBox::mmIsValid() const
 {
-    Model_Account::Data* account = Model_Account::instance().get(accountID_);
-    if (account) {
-        return true;
-    }
+    int i = element_id_;
+    auto it = std::find_if(all_elements_.begin(), all_elements_.end(),
+        [&i](const std::pair<wxString, int>& element) { return element.second == i; });
 
-    if (w)
-        mmErrorDialogs::ToolTip4Object(w, _("Invalid value"), _("Account"), wxICON_ERROR);
+    return it != all_elements_.end();
+}
 
-    return false;
+mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+{
+    all_elements_ = Model_Account::instance().all_accounts();
+    Create();
 }
 
 /* --------------------------------------------------------- */
-
-wxBEGIN_EVENT_TABLE(mmComboBoxPayee, mmComboBox)
-EVT_TEXT(wxID_ANY, mmComboBoxPayee::OnTextUpdated)
-wxEND_EVENT_TABLE()
 
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
-    , payeeID_(-1)
 {
+    all_elements_ = Model_Payee::instance().all_payees();
     Create();
 }
 
-void mmComboBoxPayee::Create()
-{
-    unsigned int i = 0;
-    wxArrayString auto_complite;
-    all_payees_ = Model_Payee::instance().all_payees();
-    for (const auto& item : all_payees_)
-    {
-        auto_complite.Add(item.first);
-        this->Insert(item.first, i++);
-    }
-    this->AutoComplete(auto_complite);
-    if (auto_complite.GetCount() == 1)
-        Select(0);
-    Bind(wxEVT_CHAR_HOOK, &mmComboBoxPayee::OnKeyPressed, this);
-}
-
-void mmComboBoxPayee::OnKeyPressed(wxKeyEvent& event)
-{
-    auto text = GetValue();
-    if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
-    {
-        for (const auto& item : all_payees_)
-        {
-            if (item.first.CmpNoCase(text) == 0) {
-                SetValue(item.first);
-                Dismiss();
-                break;
-            }
-        }
-    }
-    event.Skip();
-}
-
-void mmComboBoxPayee::OnTextUpdated(wxCommandEvent& event)
-{
-    payeeID_ = -1;
-    const auto& typedText = event.GetString();
-#if defined (__WXMAC__)
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!
-    this->SetEvtHandlerEnabled(false);
-    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
-    {
-        this->Clear();
-
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(typedText);
-        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
-        for (const auto& payee : filtd)
-            this->Insert(payee.PAYEENAME, 0);
-
-        this->ChangeValue(typedText);
-        this->SetInsertionPointEnd();
-        this->Popup();
-    }
-    this->SetEvtHandlerEnabled(true);
-#endif
-    if (all_payees_.find(typedText) != all_payees_.end()) {
-        payeeID_ = all_payees_.at(typedText);
-    }
-    event.Skip();
-}
-
-bool mmComboBoxPayee::IsPayeeValid(wxWindow* w) const
-{
-    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-    if (payee) {
-        return true;
-    }
-
-    if (w)
-        mmErrorDialogs::ToolTip4Object(w, _("Invalid value"), _("Payee"), wxICON_ERROR);
-
-    return false;
-}
-
 /* --------------------------------------------------------- */
-
-wxBEGIN_EVENT_TABLE(mmComboBoxCategory, mmComboBox)
-EVT_TEXT(wxID_ANY, mmComboBoxCategory::OnTextUpdated)
-wxEND_EVENT_TABLE()
 
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
-    , category_(-1)
-    , subcategory_(-1)
 {
-    Create();
-}
-
-void mmComboBoxCategory::Create()
-{
-    unsigned int i = 0;
-    wxArrayString auto_complite;
+    int i = 0;
     all_categories_ = Model_Category::instance().all_categories();
     for (const auto& item : all_categories_)
     {
-        auto_complite.Add(item.first);
-        this->Insert(item.first, i++);
+        all_elements_[item.first] = i++;
     }
-    this->AutoComplete(auto_complite);
-    Bind(wxEVT_CHAR_HOOK, &mmComboBoxCategory::OnKeyPressed, this);
+    Create();
 }
 
-void mmComboBoxCategory::OnKeyPressed(wxKeyEvent& event)
+int mmComboBoxCategory::mmGetCategoryId() const
 {
-    auto text = GetValue();
-    if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_TAB)
-    {
-        for (const auto& item : all_categories_)
-        {
-            if (item.first.CmpNoCase(text) == 0) {
-                SetValue(item.first);
-                Dismiss();
-                break;
-            }
-        }
-    }
-    event.Skip();
+    int i = mmGetId();
+    auto it = std::find_if(all_elements_.begin(), all_elements_.end(),
+        [&i](const std::pair<wxString, int>& element) { return element.second == i; });
+    if (it != all_elements_.end())
+        return all_categories_.at(it->first).first;
+    return -1;
 }
 
-void mmComboBoxCategory::OnTextUpdated(wxCommandEvent& event)
+int mmComboBoxCategory::mmGetSubcategoryId() const
 {
-    category_ = -1;
-    subcategory_ = -1;
-    const auto& typedText = event.GetString();
-#if defined (__WXMAC__)
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!
-    this->SetEvtHandlerEnabled(false);
-    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
-    {
-        this->Clear();
-
-        wxArrayString filtd = Model_Category::instance().FilterCategory(typedText);        
-        filtd.Sort();
-        for (const auto &category : filtd)
-            this->Insert(category, 0);
-
-        this->ChangeValue(typedText);
-        this->SetInsertionPointEnd();
-        this->Popup();
-    }
-    this->SetEvtHandlerEnabled(true);
-#endif
-    if (all_categories_.find(typedText) != all_categories_.end())
-    {
-        category_ = all_categories_.at(typedText).first;
-        subcategory_ = all_categories_.at(typedText).second;
-    }
-    event.Skip();
+    int i = mmGetId();
+    auto it = std::find_if(all_elements_.begin(), all_elements_.end(),
+        [&i](const std::pair<wxString, int>& element) { return element.second == i; });
+    if (it != all_elements_.end())
+        return all_categories_.at(it->first).second;
+    return -1;
 }
 
-bool mmComboBoxCategory::IsCategoryValid(wxWindow* w) const
-{
-    Model_Category::Data* categ = Model_Category::instance().get(category_);
-    if (categ)
-    {
-        if (subcategory_ != -1) {
-            Model_Subcategory::Data* subcateg = Model_Subcategory::instance().get(subcategory_);
-            if (subcateg)
-                return true;
-        }
-        else
-            return true;
-    }
-
-    if (w)
-        mmErrorDialogs::ToolTip4Object(w, _("Invalid Category"), _("Error"), wxICON_ERROR);
-
-    return false;
-}
-
-const wxString mmComboBoxCategory::mmGetPattern() const
-{
-    auto value = GetValue();
-    if (all_categories_.find(value) != all_categories_.end())
-        return mmComboBox::mmGetPattern(value);
-    return value;
-}
-
-const wxString mmComboBoxPayee::mmGetPattern() const
-{
-    auto value = GetValue();
-    if (all_payees_.find(value) != all_payees_.end())
-        return mmComboBox::mmGetPattern(value);
-    return value;
-}
-
-const wxString mmComboBox::mmGetPattern(const wxString& value) const
-{
-    wxString buffer;
-    for (const wxString& c : value) {
-        if (wxString(R"(.^$*+?()[{\|)").Contains(c)) {
-            buffer += R"(\)";
-        }
-        buffer += c;
-    }
-    return buffer;
-}
-
-/* --------------------------------------------------------- */
+/*/////////////////////////////////////////////////////////////*/
 
 wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
 EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
@@ -404,6 +246,8 @@ void mmColorButton::SetBackgroundColor(int color_id)
     m_color_value = color_id;
 }
 
+/*/////////////////////////////////////////////////////////////*/
+
 mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
     : wxChoice(parent, id)
 {
@@ -434,7 +278,8 @@ void mmChoiceAmountMask::SetDecimalChar(const wxString& str)
         SetSelection(2);
 }
 
-//mmSingleChoiceDialog
+/*/////////////////////////////////////////////////////////////*/
+
 mmSingleChoiceDialog::mmSingleChoiceDialog()
 {
 }
@@ -451,7 +296,8 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
     wxSingleChoiceDialog::Create(parent, message, caption, choices);
 }
 
-//  mmDialogComboBoxAutocomplete
+/* --------------------------------------------------------- */
+
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 {
 }
@@ -502,7 +348,8 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     return true;
 }
 
-// mmMultiChoiceDialog --------------------------------------------
+/* --------------------------------------------------------- */
+
 mmMultiChoiceDialog::mmMultiChoiceDialog()
 {
 }
@@ -514,7 +361,7 @@ mmMultiChoiceDialog::mmMultiChoiceDialog(wxWindow* parent, const wxString& messa
     wxMultiChoiceDialog::Create(parent, message, caption, choices);
 }
 
-// mmDateYearMonth --------------------------------------------
+/*/////////////////////////////////////////////////////////////*/
 
 wxBEGIN_EVENT_TABLE(mmDateYearMonth, wxPanel)
 EVT_BUTTON(wxID_ANY, mmDateYearMonth::OnButtonPress)
@@ -592,8 +439,7 @@ void mmDateYearMonth::OnButtonPress(wxCommandEvent& event)
     m_parent->GetEventHandler()->AddPendingEvent(event);
 }
 
-
-/* Error Messages --------------------------------------------------------*/
+/*////////////////// Error Messages //////////////////////////////////////*/
 
 void mmErrorDialogs::MessageError(wxWindow *parent
     , const wxString &message, const wxString &title)

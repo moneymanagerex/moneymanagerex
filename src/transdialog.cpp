@@ -623,10 +623,12 @@ bool mmTransDialog::ValidateData()
     if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
 
-    if (!cbAccount_->IsAccountValid(cbAccount_))
+    if (!cbAccount_->mmIsValid()) {
+        mmErrorDialogs::ToolTip4Object(cbAccount_, _("Invalid value"), _("Account"), wxICON_ERROR);
         return false;
+    }
 
-    m_trx_data.ACCOUNTID = cbAccount_->mmGetAccountId();
+    m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
 
     if (!m_transfer)
     {
