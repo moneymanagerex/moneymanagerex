@@ -77,6 +77,17 @@ public:
 
 /* -------------------------------------------- */
 
+class mmComboBoxCurrency : public mmComboBox
+{
+public:
+    mmComboBoxCurrency(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+};
+
+/* -------------------------------------------- */
+
 class mmComboBoxCategory : public mmComboBox
 {
 public:
