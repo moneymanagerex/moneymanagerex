@@ -422,24 +422,24 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* mainBoxSizerOuter = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizerOuter);
     wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* repeatTransBoxSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* custom_fields_box_sizer = new wxBoxSizer(wxVERTICAL);
 
     /**********************************************************************************************
      Determining where the controls go
     ***********************************************************************************************/
+
+    /* Bills & Deposits Details */
+
+    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
+    wxStaticBoxSizer* repeatTransBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxVERTICAL);
+
     //mainBoxSizerInner will align contents horizontally
     mainBoxSizerInner->Add(repeatTransBoxSizer, g_flagsV);
     //mainBoxSizerOuter will align contents vertically
     mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsV);
 
-    /* Bills & Deposits Details */
-    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
-    wxStaticBoxSizer* repeatDetailsStaticBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxHORIZONTAL);
-    repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALL, 5);
-
     wxFlexGridSizer* itemFlexGridSizer5 = new wxFlexGridSizer(0, 2, 0, 0);
-    repeatDetailsStaticBoxSizer->Add(itemFlexGridSizer5);
+    repeatTransBoxSizer->Add(itemFlexGridSizer5);
 
     // Date Due --------------------------------------------
 
@@ -477,12 +477,14 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->Add(dueDateDateBoxSizer);
 
     // Repeats --------------------------------------------
-    m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV
-        , mmBitmap(png::LEFTARROW, mmBitmapButtonSize));
-    mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
 
     staticTextRepeats_ = new wxStaticText(this, wxID_STATIC, _("Repeats"));
     itemFlexGridSizer5->Add(staticTextRepeats_, g_flagsH);
+    itemFlexGridSizer5->AddSpacer(1);
+
+    m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV
+        , mmBitmap(png::LEFTARROW, mmBitmapButtonSize));
+    mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
 
     m_choice_repeat = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS);
 
@@ -494,14 +496,17 @@ void mmBDDialog::CreateControls()
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand));
     repeatBoxSizer->Add(m_btn_due_date, g_flagsH);
 
-    itemFlexGridSizer5->Add(repeatBoxSizer);
+    repeatTransBoxSizer->Add(repeatBoxSizer);
+
+    wxFlexGridSizer* itemFlexGridSizer52 = new wxFlexGridSizer(0, 2, 0, 0);
+    repeatTransBoxSizer->Add(itemFlexGridSizer52);
 
     // Repeat Times --------------------------------------------
     staticTimesRepeat_ = new wxStaticText(this, wxID_STATIC, _("Payments Left"));
-    itemFlexGridSizer5->Add(staticTimesRepeat_, g_flagsH);
+    itemFlexGridSizer52->Add(staticTimesRepeat_, g_flagsH);
 
     wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemFlexGridSizer5->Add(repeatTimesBoxSizer);
+    itemFlexGridSizer52->Add(repeatTimesBoxSizer);
 
     textNumRepeats_ = new wxTextCtrl(this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, ""
         , wxDefaultPosition, m_date_due->GetSize(), 0, wxIntegerValidator<int>());
