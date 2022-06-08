@@ -77,7 +77,7 @@ private:
     void dataToControls();
     void updateControlsForTransType();
     //void addPayee(wxString payee, int categID, int subcategID );
-    void OnAccountName(wxCommandEvent& event);
+    void OnAccountUpdated(wxCommandEvent& event);
     void OnSplitChecked(wxCommandEvent& event);
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
@@ -102,7 +102,7 @@ private:
     wxTextCtrl* textNumRepeats_;
     wxButton* bCategory_;
     wxButton* bPayee_;
-    wxButton* bAccount_;
+    mmComboBoxAccount* cbAccount_;
     wxButton* bAttachments_;
     wxButton* m_button_cancel;
     mmColorButton* bColours_;
