@@ -393,7 +393,7 @@ void mmUnivCSVDialog::CreateControls()
         colorCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Color")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         itemBoxSizer111->Add(colorCheckBox_, g_flagsH);
-        colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(m_textDelimiter->GetSize().GetY(), m_textDelimiter->GetSize().GetY()));
+        colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(itemButton_Save->GetSize().GetY(), itemButton_Save->GetSize().GetY()));
         itemBoxSizer111->Add(colorButton_, g_flagsH);
         colorButton_->Enable(false);
 
