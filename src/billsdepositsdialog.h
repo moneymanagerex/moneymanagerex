@@ -75,9 +75,7 @@ private:
 private:
     void dataToControls();
     void updateControlsForTransType();
-    //void addPayee(wxString payee, int categID, int subcategID );
     void OnAccountUpdated(wxCommandEvent& event);
-    void OnSplitChecked(wxCommandEvent& event);
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
@@ -98,13 +96,14 @@ private:
     wxTextCtrl* textCategory_;
     wxTextCtrl* textNumRepeats_;
     wxButton* bCategory_;
+    mmComboBoxCategory* cbCategory_;
+    wxBitmapButton* bSplit_;
     mmComboBoxPayee* cbPayee_;
     mmComboBoxAccount* cbAccount_;
     mmComboBoxAccount* cbToAccount_;
     wxButton* bAttachments_;
     wxButton* m_button_cancel;
     mmColorButton* bColours_;
-    wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     wxChoice* m_choice_status;
     wxChoice* m_choice_transaction_type;
@@ -158,6 +157,9 @@ private:
     {
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
         ID_DIALOG_TRANS_BUTTONCATEGS,
+        ID_DIALOG_TRANS_BUTTONSPLIT,
+        ID_DIALOG_TRANS_CATEGLABEL1,
+        ID_DIALOG_TRANS_CATEGLABEL2,
         ID_DIALOG_TRANS_STATIC_ACCOUNT,
         ID_DIALOG_TRANS_STATIC_TOACCOUNT,
         ID_DIALOG_BD_COMBOBOX_TOACCOUNTNAME,

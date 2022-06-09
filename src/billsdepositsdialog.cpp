@@ -74,6 +74,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmBDDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT, mmBDDialog::OnCategs)
     EVT_TEXT(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmBDDialog::OnMoreFields)
@@ -83,7 +84,6 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_SPIN(ID_DIALOG_BD_REPEAT_DATE_SPINNER, mmBDDialog::OnSpinEventDue)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmBDDialog::OnSpinEventPaid)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmBDDialog::OnAdvanceChecked)
-    EVT_CHECKBOX(ID_DIALOG_TRANS_SPLITCHECKBOX, mmBDDialog::OnSplitChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, mmBDDialog::OnAutoExecutionUserAckChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
     EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
@@ -117,7 +117,6 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
     , cbAccount_(nullptr)
     , bAttachments_(nullptr)
     , bColours_(nullptr)
-    , cSplit_(nullptr)
     , cAdvanced_(nullptr)
     , m_choice_status(nullptr)
     , m_choice_transaction_type(nullptr)
@@ -224,6 +223,7 @@ void mmBDDialog::dataToControls()
     m_choice_transaction_type->SetSelection(0);
 
     SetTransferControls();  // hide appropriate fields
+    setCategoryLabel();
 
     if (!(!m_new_bill || m_enter_occur)) {
         return;
@@ -276,16 +276,12 @@ void mmBDDialog::dataToControls()
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     cbAccount_->SetValue(account ? account->ACCOUNTNAME : "");
 
-    setCategoryLabel();
-    cSplit_->SetValue(!m_bill_data.local_splits.empty());
-
     textNotes_->SetValue(m_bill_data.NOTES);
     textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
 
     if (!m_bill_data.local_splits.empty())
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
-    textAmount_->Enable(m_bill_data.local_splits.empty());
     textAmount_->SetValue(m_bill_data.TRANSAMOUNT, Model_Currency::precision(m_bill_data.ACCOUNTID));
 
     if (m_transfer)
@@ -381,7 +377,6 @@ void mmBDDialog::SetDialogParameters(int trx_id)
             s.SUBCATEGID = split_trans.SUBCATEGID;
             m_bill_data.local_splits.push_back(s);
         }
-        cSplit_->SetValue(true);
     }
     else
     {
@@ -604,7 +599,7 @@ void mmBDDialog::CreateControls()
     to_acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(to_acc_label, g_flagsH);
     cbToAccount_ = new mmComboBoxAccount(this, ID_DIALOG_BD_COMBOBOX_TOACCOUNTNAME);
-    mmToolTip(cbAccount_, payeeTransferTip_);
+    mmToolTip(cbToAccount_, payeeTransferTip_);
     transPanelSizer->Add(cbToAccount_, g_flagsExpand);
 
     // Payee ------------------------------------------------
@@ -617,24 +612,33 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(payee_label, g_flagsH);
     transPanelSizer->Add(cbPayee_, g_flagsExpand);
 
-    // Split Category -------------------------------------------
-    cSplit_ = new wxCheckBox(this, ID_DIALOG_TRANS_SPLITCHECKBOX, _("Split")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cSplit_->SetValue(FALSE);
-    mmToolTip(cSplit_, _("Use split Categories"));
-
-    transPanelSizer->AddSpacer(20); // Fill empty space.
-    transPanelSizer->Add(cSplit_, g_flagsH);
-
     // Category ---------------------------------------------
-    wxStaticText* categ_label = new wxStaticText(this, wxID_STATIC, _("Category"));
+    // Multi category section
+
+    wxStaticText* categ_label = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL1, _("Category"));
     categ_label->SetFont(this->GetFont().Bold());
     bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
         , wxDefaultPosition, wxDefaultSize, 0);
-    //mmToolTip(bCategory_, _("Specify the category for this transaction"));
 
-    transPanelSizer->Add(categ_label, g_flagsExpand);
+    transPanelSizer->Add(categ_label, g_flagsH);
     transPanelSizer->Add(bCategory_, g_flagsExpand);
+
+    // Single category section
+
+    wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
+    categ_label2->SetFont(this->GetFont().Bold());
+    cbCategory_ = new mmComboBoxCategory(this, ID_DIALOG_TRANS_BUTTONCATEGS);
+
+    bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
+    mmToolTip(bSplit_, _("Use split Categories"));
+
+    wxFlexGridSizer* categBoxSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    categBoxSizer->AddGrowableCol(1, 0);
+    categBoxSizer->Add(bSplit_, g_flagsH);
+    categBoxSizer->Add(cbCategory_, g_flagsExpand);
+
+    transPanelSizer->Add(categ_label2, g_flagsH);
+    transPanelSizer->Add(categBoxSizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
     // Number ---------------------------------------------
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER);
@@ -746,35 +750,19 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
         // If this is a Split Transaction, ignore displaying last category for payee
         if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
             && (Option::instance().TransCategorySelection() == Option::LASTUSED ||
-                Option::instance().TransCategorySelection() == Option::DEFAULT)
-            && !categUpdated_ && m_bill_data.BDID == 0)
+                Option::instance().TransCategorySelection() == Option::DEFAULT))
         {
             m_bill_data.CATEGID = payee->CATEGID;
             m_bill_data.SUBCATEGID = payee->SUBCATEGID;
 
-            bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
+                cbCategory_->SetValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
         }
     }
 }
 
 void mmBDDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
-    if (cSplit_->GetValue())
-    {
-        activateSplitTransactionsDlg();
-    }
-    else
-    {
-        mmCategDialog dlg(this, true, m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
-        if (dlg.ShowModal() == wxID_OK)
-        {
-            m_bill_data.CATEGID = dlg.getCategId();
-            m_bill_data.SUBCATEGID = dlg.getSubCategId();
-
-            categUpdated_ = true;
-        }
-    }
-    setCategoryLabel();
+    activateSplitTransactionsDlg();
 }
 
 void mmBDDialog::OnTypeChanged(wxCommandEvent& WXUNUSED(event))
@@ -909,10 +897,13 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_bill_data.PAYEEID = cbPayee_->mmGetId();
     }
 
-    if ((cSplit_->IsChecked() && m_bill_data.local_splits.empty())
-        || (!cSplit_->IsChecked() && Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty()))
+    if (m_bill_data.local_splits.empty())
     {
-        return mmErrorDialogs::InvalidCategory(bCategory_, false);
+        if (!cbCategory_->mmIsValid()) {
+            return mmErrorDialogs::InvalidCategory(cbCategory_);
+        }
+        m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
+        m_bill_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
     }
 
     if (!m_custom_fields->ValidateCustomValues(-m_bill_data.BDID))
@@ -1075,39 +1066,6 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_OK);
 }
 
-void mmBDDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
-{
-    if (cSplit_->IsChecked())
-    {
-        activateSplitTransactionsDlg();
-    }
-    else
-    {
-        wxASSERT(m_bill_data.local_splits.size() > 0);
-        if (m_bill_data.local_splits.size() > 1)
-        {
-            //Delete split items first (data protection)
-            cSplit_->SetValue(true);
-        }
-        else if (m_bill_data.local_splits.size() == 1)
-        {
-            m_bill_data.CATEGID = m_bill_data.local_splits.begin()->CATEGID;
-            m_bill_data.SUBCATEGID = m_bill_data.local_splits.begin()->SUBCATEGID;
-            m_bill_data.TRANSAMOUNT = m_bill_data.local_splits.begin()->SPLITTRANSAMOUNT;
-
-            if (m_bill_data.TRANSAMOUNT < 0)
-            {
-                m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
-                m_choice_transaction_type->SetSelection(Model_Checking::WITHDRAWAL);
-            }
-
-            m_bill_data.local_splits.clear();
-        }
-    }
-    textAmount_->Enable(m_bill_data.local_splits.empty());
-    setCategoryLabel();
-}
-
 void mmBDDialog::SetSplitControls(bool split)
 {
     textAmount_->Enable(!split);
@@ -1158,21 +1116,16 @@ void mmBDDialog::SetTransferControls(bool transfers)
     cAdvanced_->Enable(transfers);
     if (transfers)
     {
-        if (cSplit_->GetValue())
-        {
-            cSplit_->SetValue(false);
-            SetSplitControls();
-        }
-        cSplit_->Disable();
+        SetSplitControls();
     }
     else
     {
         SetAdvancedTransferControls();
-        cSplit_->Enable();
         toTextAmount_->ChangeValue("");
         cAdvanced_->SetValue(false);
     }
 
+    bSplit_->Enable(!transfers);
     cbToAccount_->Show(transfers);
     cbPayee_->Show(!transfers);
     stta->Show(m_transfer);
@@ -1329,7 +1282,14 @@ void mmBDDialog::activateSplitTransactionsDlg()
         }
         textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
     }
-    textAmount_->Enable(m_bill_data.local_splits.empty());
+
+    if (m_bill_data.local_splits.size() == 1)
+    {
+        m_bill_data.CATEGID = m_bill_data.local_splits[0].CATEGID;
+        m_bill_data.SUBCATEGID = m_bill_data.local_splits[0].SUBCATEGID;
+        m_bill_data.local_splits.clear();
+    }
+
     setCategoryLabel();
 }
 
@@ -1379,14 +1339,25 @@ void mmBDDialog::setCategoryLabel()
     else
     {
         fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
-        if (fullCategoryName.IsEmpty())
-        {
-            fullCategoryName = _("Select Category");
-        }
+        cbCategory_->SetValue(fullCategoryName);
     }
 
     bCategory_->SetLabelText(fullCategoryName);
     setTooltips();
+
+    bool is_split = !m_bill_data.local_splits.empty();
+    textAmount_->Enable(!is_split);
+
+    wxStaticText* stl1 = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_CATEGLABEL1));
+    stl1->Show(is_split);
+    bCategory_->Show(is_split);
+
+    wxStaticText* stl2 = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_CATEGLABEL2));
+    stl2->Show(!is_split);
+    wxButton* bSplit = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
+    bSplit->Show(!is_split);
+    cbCategory_->Show(!is_split);
+    Layout();
 }
 
 void mmBDDialog::OnPaidDateChanged(wxDateEvent& event)
