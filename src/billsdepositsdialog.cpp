@@ -283,7 +283,7 @@ void mmBDDialog::dataToControls()
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    cbAccount_->SetLabelText(account ? account->ACCOUNTNAME : "");
+    cbAccount_->SetValue(account ? account->ACCOUNTNAME : "");
 
     setCategoryLabel();
     cSplit_->SetValue(!m_bill_data.local_splits.empty());
@@ -363,7 +363,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     const auto trx = Model_Checking::instance().get(trx_id);
     Model_Checking::Full_Data t(*trx, split);
     m_bill_data.ACCOUNTID = t.ACCOUNTID;
-    cbAccount_->SetLabelText(t.ACCOUNTNAME);
+    cbAccount_->SetValue(t.ACCOUNTNAME);
 
     m_bill_data.TRANSCODE = t.TRANSCODE;
     m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(t.TRANSCODE));
@@ -865,7 +865,7 @@ void mmBDDialog::updateControlsForTransType()
         accountLabel->SetLabelText(_("From"));
         if (m_bill_data.ACCOUNTID < 0)
         {
-            cbAccount_->SetLabelText(_("Select Account"));
+            cbAccount_->SetValue("");
             m_bill_data.PAYEEID = -1;
             payeeUnknown_ = true;
         }
@@ -986,7 +986,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
 
     if (!cbAccount_->mmIsValid()) {
-        return mmErrorDialogs::InvalidAccount(cbAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
+        return mmErrorDialogs::InvalidAccount(cbAccount_, m_transfer, mmErrorDialogs::MESSAGE_DROPDOWN_BOX);
     }
     m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
     Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
