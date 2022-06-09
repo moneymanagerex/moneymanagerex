@@ -96,7 +96,7 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
             + "\n\n"
             + _("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry.")
             , _("Invalid Amount.")
-            , wxICON_WARNING);
+            , wxICON_ERROR);
         //SetFocus();
         return false;
     }
