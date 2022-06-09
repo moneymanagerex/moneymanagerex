@@ -493,7 +493,7 @@ void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
         : _("Please use this button for category selection\n"
             "or use the 'Split' checkbox for multiple categories.");
 
-    ToolTip4Object(win, msg + "\n", _("Invalid Category"));
+    ToolTip4Object(win, msg + "\n", _("Invalid Category"), wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)

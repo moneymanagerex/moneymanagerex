@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include "mmTextCtrl.h"
 #include "model/Model_Splittransaction.h"
+#include "mmSimpleDialogs.h"
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
@@ -65,7 +66,7 @@ private:
 
     wxChoice* m_choice_type;
     mmTextCtrl* m_text_mount;
-    wxButton* m_bcategory;
+    mmComboBoxCategory* cbCategory_;
     wxButton* m_cancel_button;
 };
 

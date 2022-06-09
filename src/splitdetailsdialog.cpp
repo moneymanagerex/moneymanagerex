@@ -56,7 +56,7 @@ SplitDetailDialog::SplitDetailDialog(
     , m_currency(Model_Currency::GetBaseCurrency())
     , m_choice_type(nullptr)
     , m_text_mount(nullptr)
-    , m_bcategory(nullptr)
+    , cbCategory_(nullptr)
     , m_cancel_button(nullptr)
 {
     transType_ = transType;
@@ -88,7 +88,7 @@ void SplitDetailDialog::DataToControls()
 {
     const wxString& category_name = Model_Category::full_name(split_.CATEGID
         , split_.SUBCATEGID);
-    m_bcategory->SetLabelText(category_name);
+    cbCategory_->SetLabelText(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
         m_text_mount->SetValue(fabs(split_.SPLITTRANSAMOUNT), Model_Currency::precision(m_currency));
@@ -144,10 +144,9 @@ void SplitDetailDialog::CreateControls()
     wxStaticText* staticTextCategory = new wxStaticText(itemPanel7
         , wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, g_flagsH);
-    m_bcategory = new wxButton(itemPanel7, ID_BUTTONCATEGORY, ""
-        , wxDefaultPosition, wxSize(200, -1));
-    m_bcategory->SetMinSize(wxSize(180, -1));
-    controlSizer->Add(m_bcategory, g_flagsExpand);
+    cbCategory_ = new mmComboBoxCategory(itemPanel7, ID_BUTTONCATEGORY);
+    cbCategory_->SetMinSize(wxSize(180, -1));
+    controlSizer->Add(cbCategory_, g_flagsExpand);
 
     /**************************************************************************
      Control Buttons
@@ -177,7 +176,7 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& event )
     {
         split_.CATEGID = dlg.getCategId();
         split_.SUBCATEGID = dlg.getSubCategId();
-        m_bcategory->SetLabelText(dlg.getFullCategName());
+        cbCategory_->SetLabelText(dlg.getFullCategName());
     }
     onTextEntered(event);
 }
@@ -196,8 +195,11 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& event )
     if (!m_text_mount->checkValue(split_.SPLITTRANSAMOUNT))
         return;
 
-    if (Model_Category::full_name(split_.CATEGID, split_.SUBCATEGID).empty())
-        return mmErrorDialogs::InvalidCategory(wxDynamicCast(m_bcategory, wxWindow));
+    if (!cbCategory_->mmIsValid()) {
+        return mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
+    }
+    split_.CATEGID = cbCategory_->mmGetCategoryId();
+    split_.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
 
     if (m_choice_type->GetSelection() != transType_)
         split_.SPLITTRANSAMOUNT = -split_.SPLITTRANSAMOUNT;
