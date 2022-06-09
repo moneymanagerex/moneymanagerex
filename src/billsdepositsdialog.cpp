@@ -1307,20 +1307,15 @@ void mmBDDialog::OnTextEntered(wxCommandEvent& event)
 
 void mmBDDialog::setTooltips()
 {
-    if (this->m_bill_data.local_splits.empty())
-    {
-        mmToolTip(bCategory_, _("Specify the category for this transaction"));
-    }
-    else
+    if (!this->m_bill_data.local_splits.empty())
     {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
         const Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-        if (account)
-        {
+        if (account) {
             currency = Model_Account::currency(account);
         }
 
-        mmToolTip(bCategory_, Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
+        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
     }
 }
 
