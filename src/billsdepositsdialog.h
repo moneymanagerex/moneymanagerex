@@ -70,7 +70,6 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnPayee(wxCommandEvent& event);
-    void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
 private:
@@ -84,7 +83,6 @@ private:
     void OnTextEntered(wxCommandEvent& event);
     int m_trans_id;
 
-    bool payeeUnknown_;
     bool m_new_bill;
     bool m_dup_bill;
     bool m_enter_occur;
@@ -92,7 +90,6 @@ private:
     bool autoExecuteSilent_;
     bool m_advanced;
     bool categUpdated_;
-    int prevType_;
 private:
     wxTextCtrl* textNumber_;
     mmTextCtrl* textAmount_;
@@ -101,8 +98,9 @@ private:
     wxTextCtrl* textCategory_;
     wxTextCtrl* textNumRepeats_;
     wxButton* bCategory_;
-    wxButton* bPayee_;
+    mmComboBoxPayee* cbPayee_;
     mmComboBoxAccount* cbAccount_;
+    mmComboBoxAccount* cbToAccount_;
     wxButton* bAttachments_;
     wxButton* m_button_cancel;
     mmColorButton* bColours_;
@@ -133,7 +131,6 @@ private:
     const wxString amountNormalTip_ = _("Specify the amount for this transaction");
     const wxString amountTransferTip_ = _("Specify the amount to be transferred");
 private:
-    void resetPayeeString();
     void setTooltips();
     void setCategoryLabel();
     void OnPaidDateChanged(wxDateEvent& event);
@@ -162,6 +159,8 @@ private:
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
         ID_DIALOG_TRANS_BUTTONCATEGS,
         ID_DIALOG_TRANS_STATIC_ACCOUNT,
+        ID_DIALOG_TRANS_STATIC_TOACCOUNT,
+        ID_DIALOG_BD_COMBOBOX_TOACCOUNTNAME,
         ID_DIALOG_TRANS_TEXTNUMBER,
         ID_DIALOG_TRANS_BUTTON_PAYDATE,
         ID_DIALOG_TRANS_TEXTNOTES,

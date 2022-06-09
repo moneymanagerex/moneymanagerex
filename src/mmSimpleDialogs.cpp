@@ -54,6 +54,18 @@ void mmComboBox::Create()
         Select(0);
 }
 
+void mmComboBox::mmSetId(int id)
+{
+    for (const auto& item : all_elements_)
+    {
+        if (item.second == id) {
+            ChangeValue(item.first);
+            element_id_ = id;
+            break;
+        }
+    }
+}
+
 void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 {
     this->SetEvtHandlerEnabled(false);
