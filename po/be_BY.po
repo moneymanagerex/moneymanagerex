@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-07 16:38+0300\n"
-"PO-Revision-Date: 2022-06-07 14:44\n"
+"PO-Revision-Date: 2022-06-10 18:51\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4747,7 +4747,7 @@ msgstr "Стварыць"
 
 #: mmframe.cpp:1815
 msgid "Show Organize Categories Dialog"
-msgstr "Адчыніць рыдактар катыгорыяў"
+msgstr "Адчыніць дыспетчар катыгорыяў"
 
 #: mmframe.cpp:1816
 msgid "Show Organize Payees Dialog"
