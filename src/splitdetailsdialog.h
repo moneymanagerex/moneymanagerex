@@ -1,7 +1,7 @@
 /*******************************************************
-Copyright (C) 2006-2012 Madhan Kanagavel
-Copyright (C) 2013 Nikolay Akimov
-Copyright (C) 2013 Stefano Giorgio
+ Copyright (C) 2006-2012 Madhan Kanagavel
+ Copyright (C) 2013-2016, 2020 - 2022 Nikolay Akimov
+ Copyright (C) 2013 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -59,10 +59,12 @@ private:
     void OnButtonOKClick( wxCommandEvent& event );
     void onTextEntered(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& WXUNUSED(event));
+    void OnFocusChange(wxChildFocusEvent& event);
 
     Split split_;
     Model_Currency::Data *m_currency;
     int transType_;
+    int object_in_focus_;
 
     wxChoice* m_choice_type;
     mmTextCtrl* m_text_mount;

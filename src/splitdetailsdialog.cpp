@@ -1,6 +1,7 @@
 /*******************************************************
-Copyright (C) 2006-2012 Madhan Kanagavel
-Modified by: Stefano Giorgio, Nikolay Akimov
+ Copyright (C) 2006-2012 Madhan Kanagavel
+ Copyright (C) 2013-2016, 2020 - 2022 Nikolay Akimov
+ Modified by: Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,6 +38,7 @@ enum
 };
 
 wxBEGIN_EVENT_TABLE(SplitDetailDialog, wxDialog)
+    EVT_CHILD_FOCUS(SplitDetailDialog::OnFocusChange)
     EVT_BUTTON(ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick)
     EVT_BUTTON(wxID_OK, SplitDetailDialog::OnButtonOKClick)
     EVT_BUTTON(wxID_CANCEL, SplitDetailDialog::OnCancel)
@@ -58,6 +60,7 @@ SplitDetailDialog::SplitDetailDialog(
     , m_text_mount(nullptr)
     , cbCategory_(nullptr)
     , m_cancel_button(nullptr)
+    , object_in_focus_(-1)
 {
     transType_ = transType;
     Model_Account::Data *account = Model_Account::instance().get(accountID);
@@ -189,11 +192,11 @@ void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
     DataToControls();
 }
 
-void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& event )
+void SplitDetailDialog::OnButtonOKClick(wxCommandEvent& event)
 {
-    onTextEntered(event);
-    if (!m_text_mount->checkValue(split_.SPLITTRANSAMOUNT))
+    if (!m_text_mount->checkValue(split_.SPLITTRANSAMOUNT)) {
         return;
+    }
 
     if (!cbCategory_->mmIsValid()) {
         return mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
@@ -210,4 +213,27 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& event )
 void SplitDetailDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
+}
+
+void SplitDetailDialog::OnFocusChange(wxChildFocusEvent& event)
+{
+    switch (object_in_focus_)
+    {
+    case ID_BUTTONCATEGORY:
+        cbCategory_->SetValue(cbCategory_->GetValue());
+        break;
+    case ID_TEXTCTRLAMOUNT:
+        if (m_text_mount->Calculate(Model_Currency::precision(log10(m_currency->SCALE)))) {
+            m_text_mount->GetDouble(split_.SPLITTRANSAMOUNT);
+        }
+    }
+
+    wxWindow* w = event.GetWindow();
+    if (w) {
+        object_in_focus_ = w->GetId();
+    }
+
+    if (object_in_focus_ == ID_TEXTCTRLAMOUNT) {
+        m_text_mount->SelectAll();
+    }
 }
