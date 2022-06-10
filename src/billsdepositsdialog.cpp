@@ -71,11 +71,12 @@ const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
 wxIMPLEMENT_DYNAMIC_CLASS(mmBDDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
+    EVT_CHILD_FOCUS(mmBDDialog::OnFocusChange)
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmBDDialog::OnCancel)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
+    EVT_BUTTON(mID_CATEGORY, mmBDDialog::OnCategs)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT, mmBDDialog::OnCategs)
-    EVT_TEXT(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
+    EVT_TEXT(mmID_PAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmBDDialog::OnMoreFields)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
@@ -90,7 +91,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
-    EVT_TEXT(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountUpdated)
+    EVT_TEXT(mmID_ACCOUNTNAME, mmBDDialog::OnAccountUpdated)
     EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -590,7 +591,7 @@ void mmBDDialog::CreateControls()
     wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
-    cbAccount_ = new mmComboBoxAccount(this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME);
+    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME);
     mmToolTip(cbAccount_, _("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(cbAccount_, g_flagsExpand);
 
@@ -598,7 +599,7 @@ void mmBDDialog::CreateControls()
     wxStaticText* to_acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_TOACCOUNT, _("To"));
     to_acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(to_acc_label, g_flagsH);
-    cbToAccount_ = new mmComboBoxAccount(this, ID_DIALOG_BD_COMBOBOX_TOACCOUNTNAME);
+    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME);
     mmToolTip(cbToAccount_, payeeTransferTip_);
     transPanelSizer->Add(cbToAccount_, g_flagsExpand);
 
@@ -606,7 +607,7 @@ void mmBDDialog::CreateControls()
     wxStaticText* payee_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
     payee_label->SetFont(this->GetFont().Bold());
 
-    cbPayee_ = new mmComboBoxPayee(this, ID_DIALOG_TRANS_BUTTONPAYEE);
+    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE);
     mmToolTip(cbPayee_, payeeWithdrawalTip_);
 
     transPanelSizer->Add(payee_label, g_flagsH);
@@ -617,7 +618,7 @@ void mmBDDialog::CreateControls()
 
     wxStaticText* categ_label = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL1, _("Category"));
     categ_label->SetFont(this->GetFont().Bold());
-    bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
+    bCategory_ = new wxButton(this, mID_CATEGORY, _("Select Category")
         , wxDefaultPosition, wxDefaultSize, 0);
 
     transPanelSizer->Add(categ_label, g_flagsH);
@@ -627,7 +628,7 @@ void mmBDDialog::CreateControls()
 
     wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label2->SetFont(this->GetFont().Bold());
-    cbCategory_ = new mmComboBoxCategory(this, ID_DIALOG_TRANS_BUTTONCATEGS);
+    cbCategory_ = new mmComboBoxCategory(this, mID_CATEGORY);
 
     bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
@@ -1397,4 +1398,41 @@ void mmBDDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
 
         m_bill_data.ACCOUNTID = account->ACCOUNTID;
     }
+}
+
+void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
+{
+    switch (object_in_focus_)
+    {
+    case mmID_ACCOUNTNAME:
+        cbAccount_->SetValue(cbAccount_->GetValue());
+        if (cbAccount_->mmIsValid())
+            m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
+        break;
+    case mmID_TOACCOUNTNAME:
+        cbToAccount_->SetValue(cbToAccount_->GetValue());
+        if (cbToAccount_->mmIsValid())
+            m_bill_data.TOACCOUNTID = cbToAccount_->mmGetId();
+        break;
+    case mmID_PAYEE:
+        cbPayee_->SetValue(cbPayee_->GetValue());
+        break;
+    case mID_CATEGORY:
+        cbCategory_->SetValue(cbCategory_->GetValue());
+        break;
+
+    }
+
+    wxWindow* w = event.GetWindow();
+    if (w) {
+        object_in_focus_ = w->GetId();
+    }
+
+    if (textAmount_->Calculate(Model_Currency::precision(m_bill_data.ACCOUNTID))) {
+        textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
+    }
+    if (m_advanced && toTextAmount_->Calculate(Model_Currency::precision(m_bill_data.TOACCOUNTID))) {
+        toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
+    }
+
 }

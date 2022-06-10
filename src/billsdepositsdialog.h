@@ -79,6 +79,7 @@ private:
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
     int m_trans_id;
 
     bool m_new_bill;
@@ -120,6 +121,7 @@ private:
     wxBitmapButton* m_btn_due_date;
 
     bool m_transfer;
+    int object_in_focus_;
     Model_Billsdeposits::Bill_Data m_bill_data;
 
     std::vector<wxString> frequentNotes_;
@@ -156,20 +158,20 @@ private:
     enum
     {
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
-        ID_DIALOG_TRANS_BUTTONCATEGS,
+        mID_CATEGORY,
         ID_DIALOG_TRANS_BUTTONSPLIT,
         ID_DIALOG_TRANS_CATEGLABEL1,
         ID_DIALOG_TRANS_CATEGLABEL2,
         ID_DIALOG_TRANS_STATIC_ACCOUNT,
         ID_DIALOG_TRANS_STATIC_TOACCOUNT,
-        ID_DIALOG_BD_COMBOBOX_TOACCOUNTNAME,
+        mmID_TOACCOUNTNAME,
         ID_DIALOG_TRANS_TEXTNUMBER,
         ID_DIALOG_TRANS_BUTTON_PAYDATE,
         ID_DIALOG_TRANS_TEXTNOTES,
         ID_DIALOG_TRANS_TEXTAMOUNT,
         ID_DIALOG_TRANS_TOTEXTAMOUNT,
         ID_DIALOG_TRANS_STATIC_PAYEE,
-        ID_DIALOG_TRANS_BUTTONPAYEE,
+        mmID_PAYEE,
         ID_DIALOG_TRANS_BUTTONTO,
         ID_DIALOG_TRANS_STATUS,
         ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
@@ -182,7 +184,7 @@ private:
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_BD,
-        ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME,
+        mmID_ACCOUNTNAME,
         ID_DIALOG_BD_COMBOBOX_REPEATS,
         ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,

@@ -32,17 +32,17 @@ wxIMPLEMENT_DYNAMIC_CLASS(SplitDetailDialog, wxDialog);
 
 enum
 {
-    ID_DIALOG_SPLTTRANS_TYPE = wxID_HIGHEST + 1800,
-    ID_BUTTONCATEGORY,
-    ID_TEXTCTRLAMOUNT,
+    mmID_TYPE = wxID_HIGHEST + 1800,
+    mmID_CATEGORY,
+    mmID_AMOUNT,
 };
 
 wxBEGIN_EVENT_TABLE(SplitDetailDialog, wxDialog)
     EVT_CHILD_FOCUS(SplitDetailDialog::OnFocusChange)
-    EVT_BUTTON(ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick)
+    EVT_BUTTON(mmID_CATEGORY, SplitDetailDialog::OnButtonCategoryClick)
     EVT_BUTTON(wxID_OK, SplitDetailDialog::OnButtonOKClick)
     EVT_BUTTON(wxID_CANCEL, SplitDetailDialog::OnCancel)
-    EVT_TEXT_ENTER(ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered)
+    EVT_TEXT_ENTER(mmID_AMOUNT, SplitDetailDialog::onTextEntered)
 wxEND_EVENT_TABLE()
 
 SplitDetailDialog::SplitDetailDialog()
@@ -57,7 +57,7 @@ SplitDetailDialog::SplitDetailDialog(
     : split_(split)
     , m_currency(Model_Currency::GetBaseCurrency())
     , m_choice_type(nullptr)
-    , m_text_mount(nullptr)
+    , m_text_amount(nullptr)
     , cbCategory_(nullptr)
     , m_cancel_button(nullptr)
     , object_in_focus_(-1)
@@ -94,12 +94,12 @@ void SplitDetailDialog::DataToControls()
     cbCategory_->SetLabelText(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
-        m_text_mount->SetValue(fabs(split_.SPLITTRANSAMOUNT), Model_Currency::precision(m_currency));
+        m_text_amount->SetValue(fabs(split_.SPLITTRANSAMOUNT), Model_Currency::precision(m_currency));
 
     if (category_name.empty())
     {
-        m_text_mount->SetFocus();
-        m_text_mount->SelectAll();
+        m_text_amount->SetFocus();
+        m_text_amount->SelectAll();
     }
 }
 
@@ -128,7 +128,7 @@ void SplitDetailDialog::CreateControls()
         _("Withdrawal"),
         _("Deposit"),
     };
-    m_choice_type = new wxChoice(itemPanel7, ID_DIALOG_SPLTTRANS_TYPE
+    m_choice_type = new wxChoice(itemPanel7, mmID_TYPE
         , wxDefaultPosition, wxDefaultSize
         , 2, itemChoiceStrings);
     mmToolTip(m_choice_type, _("Specify the type of transactions to be created."));
@@ -139,15 +139,15 @@ void SplitDetailDialog::CreateControls()
         , wxID_STATIC, _("Amount"));
     controlSizer->Add(staticTextAmount, g_flagsH);
 
-    m_text_mount = new mmTextCtrl(itemPanel7, ID_TEXTCTRLAMOUNT, ""
+    m_text_amount = new mmTextCtrl(itemPanel7, mmID_AMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    controlSizer->Add(m_text_mount, g_flagsExpand);
+    controlSizer->Add(m_text_amount, g_flagsExpand);
 
     wxStaticText* staticTextCategory = new wxStaticText(itemPanel7
         , wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, g_flagsH);
-    cbCategory_ = new mmComboBoxCategory(itemPanel7, ID_BUTTONCATEGORY);
+    cbCategory_ = new mmComboBoxCategory(itemPanel7, mmID_CATEGORY);
     cbCategory_->SetMinSize(wxSize(180, -1));
     controlSizer->Add(cbCategory_, g_flagsExpand);
 
@@ -186,15 +186,15 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& event )
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_text_mount->Calculate(Model_Currency::precision(m_currency)))
-        m_text_mount->GetDouble(split_.SPLITTRANSAMOUNT);
+    if (m_text_amount->Calculate(Model_Currency::precision(m_currency)))
+        m_text_amount->GetDouble(split_.SPLITTRANSAMOUNT);
 
     DataToControls();
 }
 
 void SplitDetailDialog::OnButtonOKClick(wxCommandEvent& event)
 {
-    if (!m_text_mount->checkValue(split_.SPLITTRANSAMOUNT)) {
+    if (!m_text_amount->checkValue(split_.SPLITTRANSAMOUNT)) {
         return;
     }
 
@@ -219,12 +219,12 @@ void SplitDetailDialog::OnFocusChange(wxChildFocusEvent& event)
 {
     switch (object_in_focus_)
     {
-    case ID_BUTTONCATEGORY:
+    case mmID_CATEGORY:
         cbCategory_->SetValue(cbCategory_->GetValue());
         break;
-    case ID_TEXTCTRLAMOUNT:
-        if (m_text_mount->Calculate(Model_Currency::precision(log10(m_currency->SCALE)))) {
-            m_text_mount->GetDouble(split_.SPLITTRANSAMOUNT);
+    case mmID_AMOUNT:
+        if (m_text_amount->Calculate(Model_Currency::precision(log10(m_currency->SCALE)))) {
+            m_text_amount->GetDouble(split_.SPLITTRANSAMOUNT);
         }
     }
 
@@ -233,7 +233,7 @@ void SplitDetailDialog::OnFocusChange(wxChildFocusEvent& event)
         object_in_focus_ = w->GetId();
     }
 
-    if (object_in_focus_ == ID_TEXTCTRLAMOUNT) {
-        m_text_mount->SelectAll();
+    if (object_in_focus_ == mmID_AMOUNT) {
+        m_text_amount->SelectAll();
     }
 }

@@ -67,7 +67,7 @@ private:
     int object_in_focus_;
 
     wxChoice* m_choice_type;
-    mmTextCtrl* m_text_mount;
+    mmTextCtrl* m_text_amount;
     mmComboBoxCategory* cbCategory_;
     wxButton* m_cancel_button;
 };
