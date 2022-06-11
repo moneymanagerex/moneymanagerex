@@ -22,6 +22,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 #include <LuaGlue/LuaGlue.h>
 
+wxBEGIN_EVENT_TABLE(mmTextCtrl, wxTextCtrl)
+EVT_TEXT_ENTER(wxID_ANY, mmTextCtrl::OnTextEntered)
+wxEND_EVENT_TABLE()
+
+void mmTextCtrl::OnTextEntered(wxCommandEvent& event)
+{
+    Calculate(Model_Currency::precision(m_currency));
+    event.Skip();
+}
+
 void mmTextCtrl::SetValue(double value)
 {
     this->SetValue(Model_Currency::toString(value, m_currency));

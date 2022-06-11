@@ -743,7 +743,7 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
         , transType
         , m_AccountID);
 
-    splitTransDialog.SetDisplaySplitCategories();
+    //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
 }
 

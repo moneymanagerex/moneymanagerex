@@ -22,6 +22,7 @@
 #include "defs.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
+#include <wx/vscroll.h>
 
 class wxListCtrl;
 class wxStaticText;
@@ -51,17 +52,16 @@ public:
 
     /// Creation
     bool Create(
-        wxWindow* parent,
-        wxWindowID id,
-        const wxString& caption,
-        const wxPoint& pos,
-        const wxSize& size,
-        long style
-        , const wxString& name
+        wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("Split Transaction Dialog")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
+        , const wxString& name = "Split Transaction Dialog"
         );
-    std::vector<Split> getResult() { return m_splits; }
-    bool isItemsChanged(){ return items_changed_; }
-    void SetDisplaySplitCategories();
+    std::vector<Split> getResult();
+    bool isItemsChanged();
 
 private:
     /// Creates the controls and sizers
@@ -69,20 +69,14 @@ private:
 
     void DataToControls();
 
-    /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_NEW
-    void OnButtonAddClick( wxCommandEvent& event );
-
-    /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_DELETE
-    void OnButtonRemoveClick( wxCommandEvent& event );
-
-    /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_EDIT
-    void OnButtonEditClick( wxCommandEvent& event );
     void OnOk( wxCommandEvent& event );
+    void OnTextEntered(wxCommandEvent& event);
+    void OnCheckBox(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
 
+    void mmDoEnableLineById(int id, bool value = true);
+    void mmDoCreateRow(int i);
     void UpdateSplitTotal();
-
-    wxDataViewListCtrl* lcSplit_;
-    wxStaticText* transAmount_;
 
     std::vector<Split> m_splits;
     std::vector<Split> m_local_splits;
@@ -90,17 +84,16 @@ private:
     int accountID_;
     double totalAmount_;
     bool items_changed_;
+    int object_in_focus_;
 
-    wxButton* itemButtonNew_;
-    wxButton* itemButtonEdit_;
-    wxButton* itemButtonDelete_;
     wxButton* itemButtonOK_;
+    wxBoxSizer* mainSizer;
+    wxScrolledWindow* slider;
+    wxStaticText* transAmount_;
+    wxFlexGridSizer* grid_sizer;
 
-    void SetDisplayEditDeleteButtons();
-    void OnListDblClick(wxDataViewEvent& event);
-    void OnListItemSelected(wxDataViewEvent& event);
-    void EditEntry(int id);
-    int selectedIndex_;
 };
+inline std::vector<Split> SplitTransactionDialog::getResult() { return m_splits; }
+inline bool SplitTransactionDialog::isItemsChanged() { return items_changed_; }
 
 #endif
