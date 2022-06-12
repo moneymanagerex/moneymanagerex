@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2013 - 2016, 2020 -2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -34,23 +35,20 @@ class wxStaticText;
 #define wxFIXED_MINSIZE 0
 #endif
 
-class SplitTransactionDialog: public wxDialog
+class mmSplitTransactionDialog: public wxDialog
 {
-    wxDECLARE_DYNAMIC_CLASS(SplitTransactionDialog);
-    wxDECLARE_EVENT_TABLE();
-
 public:
-    /// Constructors
-    SplitTransactionDialog();
-    SplitTransactionDialog(wxWindow* parent
+    mmSplitTransactionDialog();
+    mmSplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
-        , int transType
         , int accountID
         , double totalAmount = 0.0
         , const wxString& name = "SplitTransactionDialog"
         );
+    std::vector<Split> mmGetResult() const;
+    bool mmIsItemsChanged() const;
 
-    /// Creation
+private:
     bool Create(
         wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -60,40 +58,32 @@ public:
         , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
         , const wxString& name = "Split Transaction Dialog"
         );
-    std::vector<Split> getResult();
-    bool isItemsChanged();
 
-private:
-    /// Creates the controls and sizers
     void CreateControls();
-
-    void DataToControls();
+    void mmDoEnableLineById(int id, bool value = true);
+    void UpdateSplitTotal();
 
     void OnOk( wxCommandEvent& event );
     void OnTextEntered(wxCommandEvent& event);
     void OnCheckBox(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
 
-    void mmDoEnableLineById(int id, bool value = true);
-    void mmDoCreateRow(int i);
-    void UpdateSplitTotal();
-
     std::vector<Split> m_splits;
     std::vector<Split> m_local_splits;
-    int transType_;
     int accountID_;
     double totalAmount_;
-    bool items_changed_;
+    bool isItemsChanged_;
     int object_in_focus_;
 
     wxButton* itemButtonOK_;
-    wxBoxSizer* mainSizer;
-    wxScrolledWindow* slider;
+    wxScrolledWindow* slider_;
     wxStaticText* transAmount_;
-    wxFlexGridSizer* grid_sizer;
+    wxFlexGridSizer* flexGridSizer_;
 
+    wxDECLARE_EVENT_TABLE();
 };
-inline std::vector<Split> SplitTransactionDialog::getResult() { return m_splits; }
-inline bool SplitTransactionDialog::isItemsChanged() { return items_changed_; }
+
+inline std::vector<Split> mmSplitTransactionDialog::mmGetResult() const { return m_splits; }
+inline bool mmSplitTransactionDialog::mmIsItemsChanged() const { return isItemsChanged_; }
 
 #endif

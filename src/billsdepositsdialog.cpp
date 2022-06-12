@@ -1269,11 +1269,10 @@ void mmBDDialog::activateSplitTransactionsDlg()
         m_bill_data.local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, m_bill_data.local_splits
-        , m_choice_transaction_type->GetSelection(), m_bill_data.ACCOUNTID);
+    mmSplitTransactionDialog dlg(this, m_bill_data.local_splits, m_bill_data.ACCOUNTID);
     if (dlg.ShowModal() == wxID_OK)
     {
-        m_bill_data.local_splits = dlg.getResult();
+        m_bill_data.local_splits = dlg.mmGetResult();
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;

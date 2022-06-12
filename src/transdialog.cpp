@@ -852,8 +852,6 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 
 void mmTransDialog::ActivateSplitTransactionsDlg()
 {
-    bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
-
     if (!m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT))
         m_trx_data.TRANSAMOUNT = 0;
 
@@ -867,19 +865,18 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
         m_local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, m_local_splits
-        , bDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
+    mmSplitTransactionDialog dlg(this, m_local_splits
         , m_trx_data.ACCOUNTID
         , m_trx_data.TRANSAMOUNT);
 
     if (dlg.ShowModal() == wxID_OK)
     {
-        m_local_splits = dlg.getResult();
+        m_local_splits = dlg.mmGetResult();
     }
     if (!m_local_splits.empty())
     {
         m_trx_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_local_splits);
-        skip_category_init_ = !dlg.isItemsChanged();
+        skip_category_init_ = !dlg.mmIsItemsChanged();
     }
 }
 
