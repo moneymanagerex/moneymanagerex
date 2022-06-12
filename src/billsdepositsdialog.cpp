@@ -74,7 +74,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_CHILD_FOCUS(mmBDDialog::OnFocusChange)
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmBDDialog::OnCancel)
-    EVT_BUTTON(mID_CATEGORY, mmBDDialog::OnCategs)
+    EVT_BUTTON(mmID_CATEGORY, mmBDDialog::OnCategs)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT, mmBDDialog::OnCategs)
     EVT_TEXT(mmID_PAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
@@ -618,7 +618,7 @@ void mmBDDialog::CreateControls()
 
     wxStaticText* categ_label = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL1, _("Category"));
     categ_label->SetFont(this->GetFont().Bold());
-    bCategory_ = new wxButton(this, mID_CATEGORY, _("Select Category")
+    bCategory_ = new wxButton(this, mmID_CATEGORY, _("Select Category")
         , wxDefaultPosition, wxDefaultSize, 0);
 
     transPanelSizer->Add(categ_label, g_flagsH);
@@ -628,15 +628,15 @@ void mmBDDialog::CreateControls()
 
     wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label2->SetFont(this->GetFont().Bold());
-    cbCategory_ = new mmComboBoxCategory(this, mID_CATEGORY);
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
 
     bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
 
     wxFlexGridSizer* categBoxSizer = new wxFlexGridSizer(0, 2, 0, 0);
-    categBoxSizer->AddGrowableCol(1, 0);
-    categBoxSizer->Add(bSplit_, g_flagsH);
+    categBoxSizer->AddGrowableCol(0, 0);
     categBoxSizer->Add(cbCategory_, g_flagsExpand);
+    categBoxSizer->Add(bSplit_, g_flagsH);
 
     transPanelSizer->Add(categ_label2, g_flagsH);
     transPanelSizer->Add(categBoxSizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
@@ -1416,8 +1416,12 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
     case mmID_PAYEE:
         cbPayee_->SetValue(cbPayee_->GetValue());
         break;
-    case mID_CATEGORY:
+    case mmID_CATEGORY:
         cbCategory_->SetValue(cbCategory_->GetValue());
+        if (cbCategory_->mmIsValid()) {
+            m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
+            m_bill_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
+        }
         break;
 
     }

@@ -77,14 +77,12 @@ private:
     bool ValidateData();
     void SetEventHandlers();
 
-    void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnComboKey(wxKeyEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
@@ -104,20 +102,25 @@ private:
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;
+    wxStaticText* categ_label_;
+    wxStaticText* categ_label2_;
     wxButton* bCategory_;
     wxButton* bAttachments_;
     mmColorButton* bColours_;
+    wxStaticText* account_label_;
     mmComboBoxAccount* cbAccount_;
-    wxComboBox* cbPayee_;
-    wxCheckBox* cSplit_;
+    wxStaticText* to_acc_label_;
+    mmComboBoxAccount* cbToAccount_;
+    wxStaticText* payee_label_;
+    mmComboBoxPayee* cbPayee_;
+    mmComboBoxCategory* cbCategory_;
+    wxBitmapButton* bSplit_;
     wxCheckBox* cAdvanced_;
     wxButton* m_button_cancel;
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
     wxDatePickerCtrl* dpc_;
     wxStaticText* itemStaticTextWeek_;
-    wxStaticText* account_label_;
-    wxStaticText* payee_label_;
 
     bool m_transfer;
     bool m_new_trx;
@@ -153,8 +156,8 @@ private:
         ID_DIALOG_TRANS_TEXTNUMBER,
         ID_DIALOG_TRANS_BUTTONDATE,
         ID_DIALOG_TRANS_TEXTNOTES,
-        ID_DIALOG_TRANS_TEXTAMOUNT, //6900
-        ID_DIALOG_TRANS_TOTEXTAMOUNT,
+        mmID_TEXTAMOUNT, //6900
+        mmID_TOTEXTAMOUNT,
         ID_DIALOG_TRANS_STATIC_PAYEE,
         ID_DIALOG_TRANS_BUTTONPAYEE,
         ID_DIALOG_TRANS_BUTTONTO,
@@ -162,10 +165,16 @@ private:
         ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
         ID_DIALOG_TRANS_ADVANCED_FROM,
         ID_DIALOG_TRANS_ADVANCED_TO,
-        ID_DIALOG_TRANS_SPLITCHECKBOX,
+        ID_DIALOG_TRANS_CATEGLABEL1,
+        ID_DIALOG_TRANS_CATEGLABEL2,
         ID_DIALOG_TRANS_BUTTONTRANSNUM,
-        ID_DIALOG_TRANS_PAYEECOMBO,
-        ID_DIALOG_TRANS_FROMACCOUNT,
+        mmID_TOACCOUNT_LABEL,
+        mmID_TOACCOUNTNAME,
+        mmID_PAYEE_LABEL,
+        mmID_PAYEE,
+        mmID_CATEGORY,
+        mmID_CATEGORY_SPLIT,
+        mmID_ACCOUNTNAME,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_TRANS_CUSTOMFIELDS,

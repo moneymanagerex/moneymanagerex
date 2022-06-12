@@ -172,15 +172,6 @@ void mmSplitTransactionDialog::CreateControls()
 
 void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
-    //Check total amount - should be positive
-    double total = 0;
-    for (const auto& entry : m_local_splits)
-        total += entry.SPLITTRANSAMOUNT;
-    if (total < 0)
-    {
-        return mmErrorDialogs::MessageError(this, _("Invalid Total Amount"), _("Error"));
-    }
-
     for (int i = static_cast<int>(m_local_splits.size()) - 1; i >= 0; --i)
     {
         auto name = wxString::Format("check_box%i", i);
@@ -188,6 +179,15 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
         if (cb && !cb->GetValue()) {
             m_local_splits.erase(m_local_splits.begin() + i);
         }
+    }
+
+    //Check total amount - should be positive
+    totalAmount_ = 0;
+    for (const auto& entry : m_local_splits)
+        totalAmount_ += entry.SPLITTRANSAMOUNT;
+    if (totalAmount_ < 0)
+    {
+        return mmErrorDialogs::MessageError(this, _("Invalid Total Amount"), _("Error"));
     }
 
     m_splits.swap(m_local_splits);
@@ -220,7 +220,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id, bool value)
     {
         auto name = wxString::Format("check_box%i", id);
         auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
-        if (cb) cb->Enable(false);
+        if (cb) cb->Enable(true);
 
         name = wxString::Format("category_box%i", id);
         auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
@@ -244,7 +244,6 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id, bool value)
         flexGridSizer_->Add(cb, g_flagsH);
         flexGridSizer_->Add(cbc, g_flagsExpand);
         flexGridSizer_->Add(val, g_flagsH);
-        cb->Disable();
         cbc->SetFocus();
         slider_->FitInside();
         slider_->ScrollLines(cbc->GetSize().GetY() * 2);

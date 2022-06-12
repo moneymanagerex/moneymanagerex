@@ -47,6 +47,7 @@ public:
         );
     std::vector<Split> mmGetResult() const;
     bool mmIsItemsChanged() const;
+    bool mmGetTotalAmount() const;
 
 private:
     bool Create(
@@ -85,5 +86,6 @@ private:
 
 inline std::vector<Split> mmSplitTransactionDialog::mmGetResult() const { return m_splits; }
 inline bool mmSplitTransactionDialog::mmIsItemsChanged() const { return isItemsChanged_; }
+inline bool mmSplitTransactionDialog::mmGetTotalAmount() const { return totalAmount_; }
 
 #endif
