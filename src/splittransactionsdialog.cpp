@@ -29,6 +29,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/statline.h>
 
+#define STATIC_SPLIT_NUM 10
+
  wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
      EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
      EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
@@ -107,7 +109,7 @@ void mmSplitTransactionDialog::CreateControls()
     dialogMainSizerV->Add(flexGridSizer_, g_flagsExpand);
 
     int size = static_cast<int>(m_local_splits.size()) + 1;
-    if (size < 10) size = 10;
+    if (size < STATIC_SPLIT_NUM) size = STATIC_SPLIT_NUM;
     for (int i = 0; i < size; i++)
     {
         wxCheckBox* cb = new wxCheckBox(slider_, wxID_HIGHEST + i, ""
@@ -214,7 +216,7 @@ void mmSplitTransactionDialog::UpdateSplitTotal()
 
 void mmSplitTransactionDialog::mmDoEnableLineById(int id, bool value)
 {
-    if (id < static_cast<int>(m_local_splits.size()) || id < 5)
+    if (id < static_cast<int>(m_local_splits.size()) || id < STATIC_SPLIT_NUM)
     {
         auto name = wxString::Format("check_box%i", id);
         auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
