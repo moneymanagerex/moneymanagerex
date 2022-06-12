@@ -158,7 +158,7 @@ private:
     enum
     {
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
-        mID_CATEGORY,
+        mmID_CATEGORY,
         ID_DIALOG_TRANS_BUTTONSPLIT,
         ID_DIALOG_TRANS_CATEGLABEL1,
         ID_DIALOG_TRANS_CATEGLABEL2,
