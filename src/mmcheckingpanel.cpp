@@ -738,12 +738,12 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
         s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
         splt.push_back(s);
     }
-    SplitTransactionDialog splitTransDialog(this
+    mmSplitTransactionDialog splitTransDialog(this
         , splt
         , transType
         , m_AccountID);
 
-    splitTransDialog.SetDisplaySplitCategories();
+    //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
 }
 

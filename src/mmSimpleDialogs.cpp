@@ -54,6 +54,18 @@ void mmComboBox::Create()
         Select(0);
 }
 
+void mmComboBox::mmSetId(int id)
+{
+    for (const auto& item : all_elements_)
+    {
+        if (item.second == id) {
+            ChangeValue(item.first);
+            element_id_ = id;
+            break;
+        }
+    }
+}
+
 void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 {
     this->SetEvtHandlerEnabled(false);
@@ -481,7 +493,7 @@ void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
         : _("Please use this button for category selection\n"
             "or use the 'Split' checkbox for multiple categories.");
 
-    ToolTip4Object(win, msg + "\n", _("Invalid Category"));
+    ToolTip4Object(win, msg + "\n", _("Invalid Category"), wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)

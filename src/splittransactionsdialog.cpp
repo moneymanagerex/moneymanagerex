@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012 Madhan Kanagavel
-Copyright (C) 2015 Nikolay Akimov
+Copyright (C) 2013 - 2016, 2020 -2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,44 +18,30 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "splittransactionsdialog.h"
-#include "splitdetailsdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "util.h"
 #include "paths.h"
+#include "validators.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 
 #include <wx/statline.h>
 
-/*!
- * SplitTransactionDialog type definition
- */
-
-wxIMPLEMENT_DYNAMIC_CLASS(SplitTransactionDialog, wxDialog);
-
-/*!
- * SplitTransactionDialog event table definition
- */
-
- wxBEGIN_EVENT_TABLE(SplitTransactionDialog, wxDialog)
-     EVT_BUTTON(wxID_ADD, SplitTransactionDialog::OnButtonAddClick)
-     EVT_BUTTON(wxID_REMOVE, SplitTransactionDialog::OnButtonRemoveClick)
-     EVT_BUTTON(wxID_EDIT, SplitTransactionDialog::OnButtonEditClick)
-     EVT_BUTTON(wxID_OK, SplitTransactionDialog::OnOk)
-     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, SplitTransactionDialog::OnListDblClick)
-     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, SplitTransactionDialog::OnListItemSelected)
-     //EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, SplitTransactionDialog::OnItemRightClick)
+ wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
+     EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
+     EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
+     EVT_TEXT_ENTER(wxID_ANY, mmSplitTransactionDialog::OnTextEntered)
+     EVT_CHECKBOX(wxID_ANY, mmSplitTransactionDialog::OnCheckBox)
  wxEND_EVENT_TABLE()
 
-SplitTransactionDialog::SplitTransactionDialog( )
+mmSplitTransactionDialog::mmSplitTransactionDialog( )
 {
 }
 
- SplitTransactionDialog::SplitTransactionDialog(wxWindow* parent
+ mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
-    , int transType
     , int accountID
     , double totalAmount
     , const wxString& name
@@ -63,20 +49,15 @@ SplitTransactionDialog::SplitTransactionDialog( )
     : m_splits(split)
     , totalAmount_(totalAmount)
     , accountID_(accountID)
-    , transType_(transType)
-    , items_changed_(false)
+    , isItemsChanged_(false)
 {
     for (const auto &item : m_splits)
         m_local_splits.push_back(item);
 
-    selectedIndex_ = -1;
-
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Split Transaction Dialog")
-        , wxDefaultPosition, wxSize(400, 400), style, name);
+    Create(parent);
 }
 
-bool SplitTransactionDialog::Create(wxWindow* parent
+bool mmSplitTransactionDialog::Create(wxWindow* parent
     , wxWindowID id
     , const wxString& caption
     , const wxPoint& pos
@@ -85,14 +66,13 @@ bool SplitTransactionDialog::Create(wxWindow* parent
     , const wxString& name
     )
 {
-    lcSplit_ = nullptr;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style, name);
 
     CreateControls();
-    SetIcon(mmex::getProgramIcon());
-    DataToControls();
+    UpdateSplitTotal();
 
+    SetIcon(mmex::getProgramIcon());
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     Centre();
@@ -100,56 +80,74 @@ bool SplitTransactionDialog::Create(wxWindow* parent
     return TRUE;
 }
 
-void SplitTransactionDialog::DataToControls()
+void mmSplitTransactionDialog::CreateControls()
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(accountID_);
-    if (account) { currency = Model_Account::currency(account); }
-
-    lcSplit_->DeleteAllItems();
-    for (const auto& entry : this->m_local_splits)
-    {
-        wxVector<wxVariant> data;
-        data.push_back(wxVariant(Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)));
-        data.push_back(wxVariant(Model_Currency::toString(entry.SPLITTRANSAMOUNT, currency)));
-        lcSplit_->AppendItem(data, static_cast<wxUIntPtr>(lcSplit_->GetItemCount()));
-    }
-    if (lcSplit_->GetItemCount() > selectedIndex_ && selectedIndex_ >= 0)
-        lcSplit_->SelectRow(selectedIndex_);
-    UpdateSplitTotal();
-    SetDisplayEditDeleteButtons();
-    itemButtonNew_->SetFocus();
-}
-
-void SplitTransactionDialog::CreateControls()
-{
-    wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(dialogMainSizerV);
+    wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(mainSizer);
 
     wxStaticText* headingText = new wxStaticText(this, wxID_STATIC, _("Split Category Details"));
-    dialogMainSizerV->Add(headingText, g_flagsV);
+    mainSizer->Add(headingText, g_flagsV);
 
-    wxBoxSizer* listCtrlSizer = new wxBoxSizer(wxHORIZONTAL);
-    dialogMainSizerV->Add(listCtrlSizer, g_flagsExpand);
+    slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
+    mainSizer->Add(slider_, g_flagsExpandBorder1);
+    slider_->SetMinSize(wxSize(412, 412));
 
-    lcSplit_ = new wxDataViewListCtrl(this, wxID_ANY
-        , wxDefaultPosition, wxSize(265, 150));
-    lcSplit_->AppendTextColumn(_("Category"), wxDATAVIEW_CELL_INERT, 180);
-    lcSplit_->AppendTextColumn(_("Amount"), wxDATAVIEW_CELL_INERT, 180);
 
-    listCtrlSizer->Add(lcSplit_, g_flagsExpand);
+    Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    if (account) {
+        currency = Model_Account::currency(account);
+    }
+
+    wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
+    slider_->SetSizer(dialogMainSizerV);
+
+    flexGridSizer_ = new wxFlexGridSizer(0, 3, 0, 0);
+    flexGridSizer_->AddGrowableCol(1, 0);
+    dialogMainSizerV->Add(flexGridSizer_, g_flagsExpand);
+
+    int size = static_cast<int>(m_local_splits.size()) + 1;
+    if (size < 10) size = 10;
+    for (int i = 0; i < size; i++)
+    {
+        wxCheckBox* cb = new wxCheckBox(slider_, wxID_HIGHEST + i, ""
+            , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxDefaultValidator
+            , wxString::Format("check_box%i", i));
+        mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
+        cbc->SetName(wxString::Format("category_box%i", i));
+        mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        val->SetName(wxString::Format("value_box%i", i));
+        flexGridSizer_->Add(cb, g_flagsH);
+        flexGridSizer_->Add(cbc, g_flagsExpand);
+        flexGridSizer_->Add(val, g_flagsH);
+
+        if (i < m_local_splits.size())
+        {
+            cb->SetValue(true);
+            const auto categ = Model_Category::full_name(m_local_splits.at(i).CATEGID, m_local_splits.at(i).SUBCATEGID);
+            cbc->SetValue(categ);
+            val->SetValue(m_local_splits.at(i).SPLITTRANSAMOUNT, currency);
+        }
+
+        cb->Enable(i < m_local_splits.size());
+        cbc->Enable(i <= m_local_splits.size());
+        val->Enable(i <= m_local_splits.size());
+    }
+
+    slider_->SetVirtualSize(wxSize(300, 300));
+    slider_->FitInside();
+    slider_->SetScrollRate(1, 1);
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
-    const wxString& totalMessage = _("Total:");
-
-    wxStaticText* transAmountText = new wxStaticText(this, wxID_STATIC, totalMessage);
+    wxStaticText* transAmountText = new wxStaticText(this, wxID_STATIC, _("Total:"));
     transAmount_ = new wxStaticText(this, wxID_STATIC, wxEmptyString);
     totalAmountSizer->Add(transAmountText, g_flagsH);
-    totalAmountSizer->Add(transAmount_, g_flagsH);
-    dialogMainSizerV->Add(totalAmountSizer, g_flagsV);
+    totalAmountSizer->Add(transAmount_, g_flagsExpand);
+    mainSizer->Add(totalAmountSizer, g_flagsV);
 
+    // OK Cancel buttons
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    dialogMainSizerV->Add(buttons_panel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 5));
+    mainSizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 5));
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
@@ -162,13 +160,6 @@ void SplitTransactionDialog::CreateControls()
     mainButtonSizer->Add(bottomRowButtonSizer, flagsV);
     buttons_sizer->Add(mainButtonSizer);
 
-    itemButtonNew_ = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
-    itemButtonEdit_ = new wxButton(buttons_panel, wxID_EDIT, _("&Edit "));
-    itemButtonDelete_ = new wxButton(buttons_panel, wxID_REMOVE, _("&Remove "));
-    topRowButtonSizer->Add(itemButtonNew_, flagsH);
-    topRowButtonSizer->Add(itemButtonEdit_, flagsH);
-    topRowButtonSizer->Add(itemButtonDelete_, flagsH);
-
     itemButtonOK_ = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemButtonCancel->SetFocus();
@@ -177,28 +168,7 @@ void SplitTransactionDialog::CreateControls()
     bottomRowButtonSizer->Add(itemButtonCancel, g_flagsH);
 }
 
-void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
-{
-    double amount = totalAmount_ - Model_Splittransaction::get_total(m_local_splits);
-    if (amount < 0.0) amount = 0.0;
-    Split split = { -1, -1, amount };
-    SplitDetailDialog sdd(this, split, transType_, accountID_);
-    if (sdd.ShowModal() == wxID_OK)
-    {
-        this->m_local_splits.push_back(sdd.getResult());
-        items_changed_ = true;
-        selectedIndex_ = lcSplit_->GetItemCount();
-    }
-    DataToControls();
-}
-
-void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
-{
-    EditEntry(selectedIndex_);
-    DataToControls();
-}
-
-void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
+void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
     //Check total amount - should be positive
     double total = 0;
@@ -206,72 +176,133 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
         total += entry.SPLITTRANSAMOUNT;
     if (total < 0)
     {
-        mmErrorDialogs::MessageError(this, _("Invalid Total Amount"), _("Error"));
+        return mmErrorDialogs::MessageError(this, _("Invalid Total Amount"), _("Error"));
     }
-    else
+
+    for (int i = static_cast<int>(m_local_splits.size()) - 1; i >= 0; --i)
     {
-        // finally 
-        m_splits.swap(m_local_splits);
-        EndModal(wxID_OK);
+        auto name = wxString::Format("check_box%i", i);
+        auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+        if (cb && !cb->GetValue()) {
+            m_local_splits.erase(m_local_splits.begin() + i);
+        }
     }
+
+    m_splits.swap(m_local_splits);
+    EndModal(wxID_OK);
 }
 
-void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& WXUNUSED(event))
-{
-    if (selectedIndex_ < 0 || selectedIndex_ >= static_cast<int>(this->m_local_splits.size()))
-        return;
-    this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
-    selectedIndex_ = -1;
-    items_changed_ = true;
-    DataToControls();
-}
 
-void SplitTransactionDialog::UpdateSplitTotal()
+void mmSplitTransactionDialog::UpdateSplitTotal()
 {
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     const auto curr = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
     double total = 0;
-    for (const auto& entry : m_local_splits)
-        total += entry.SPLITTRANSAMOUNT;
-    transAmount_->SetLabelText(Model_Currency::toCurrency(total, curr));
+
+    for (int i = static_cast<int>(m_local_splits.size()) - 1; i >= 0; --i)
+    {
+        auto name = wxString::Format("check_box%i", i);
+        auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+        if (cb && cb->GetValue())
+            total += m_local_splits.at(i).SPLITTRANSAMOUNT;
+    }
+    totalAmount_ = total;
+
+    wxString total_text = Model_Currency::toCurrency(total, curr);
+    transAmount_->SetLabelText(total_text);
 }
 
-void SplitTransactionDialog::EditEntry(int index)
+void mmSplitTransactionDialog::mmDoEnableLineById(int id, bool value)
 {
-    if (index < 0 || index >= static_cast<int>(this->m_local_splits.size())) return;
-    SplitDetailDialog sdd(this, m_local_splits[index], transType_, accountID_);
-    if (sdd.ShowModal() == wxID_OK)
+    if (id < static_cast<int>(m_local_splits.size()) || id < 5)
     {
-        m_local_splits[index] = sdd.getResult();
-        items_changed_ = true;
-        DataToControls();
-        UpdateSplitTotal();
+        auto name = wxString::Format("check_box%i", id);
+        auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+        if (cb) cb->Enable(false);
+
+        name = wxString::Format("category_box%i", id);
+        auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+        if (cbc) cbc->Enable(value);
+        if (cbc) cbc->SetFocus();
+
+        name = wxString::Format("value_box%i", id);
+        auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
+        if (val) val->Enable(value);
+    }
+    else
+    {
+        int i = static_cast<int>(m_local_splits.size());
+        wxCheckBox* cb = new wxCheckBox(slider_, wxID_HIGHEST + i, ""
+            , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxDefaultValidator
+            , wxString::Format("check_box%i", i));
+        mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
+        cbc->SetName(wxString::Format("category_box%i", i));
+        mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        val->SetName(wxString::Format("value_box%i", i));
+        flexGridSizer_->Add(cb, g_flagsH);
+        flexGridSizer_->Add(cbc, g_flagsExpand);
+        flexGridSizer_->Add(val, g_flagsH);
+        cb->Disable();
+        cbc->SetFocus();
+        slider_->FitInside();
+        slider_->ScrollLines(cbc->GetSize().GetY() * 2);
     }
 }
 
-void SplitTransactionDialog::OnListItemSelected(wxDataViewEvent& event)
+void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
 {
-    wxDataViewItem item = event.GetItem();
-    selectedIndex_ = lcSplit_->ItemToRow(item);
-    SetDisplayEditDeleteButtons();
+    int i = event.GetId() - wxID_HIGHEST;
+
+    auto name = wxString::Format("value_box%i", i);
+    auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
+
+    double amount = 0;
+    if (val->GetDouble(amount))
+    {
+        name = wxString::Format("category_box%i", i);
+        auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+        if (cbc->mmIsValid()) {
+            name = wxString::Format("check_box%i", i);
+            auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+            if (cb) {
+                cb->SetValue(true);
+                cb->Enable();
+
+                Split s;
+                s.CATEGID = cbc->mmGetCategoryId();
+                s.SUBCATEGID = cbc->mmGetSubcategoryId();
+                s.SPLITTRANSAMOUNT = amount;
+                if (i < static_cast<int>(m_local_splits.size()))
+                    m_local_splits[i] = s;
+                else {
+                    m_local_splits.push_back(s);
+                    mmDoEnableLineById(i + 1);
+                }
+                isItemsChanged_ = true;
+            }
+        }
+        else
+            return mmErrorDialogs::InvalidCategory(cbc, false);
+    }
+    UpdateSplitTotal();
 }
 
-void SplitTransactionDialog::OnListDblClick(wxDataViewEvent& WXUNUSED(event))
+void mmSplitTransactionDialog::OnCheckBox(wxCommandEvent& event)
 {
-    if (itemButtonEdit_->IsShown()) EditEntry(selectedIndex_);
+    UpdateSplitTotal();
 }
 
-void SplitTransactionDialog::SetDisplaySplitCategories()
+void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
 {
-    itemButtonNew_->Hide();
-    itemButtonEdit_->Hide();
-    itemButtonDelete_->Hide();
-    itemButtonOK_->Hide();
-}
+    wxWindow* w = event.GetWindow();
+    if (w) {
+        object_in_focus_ = w->GetId();
+    }
 
-void SplitTransactionDialog::SetDisplayEditDeleteButtons()
-{
-    bool active = selectedIndex_ >= 0 && selectedIndex_ < static_cast<int>(this->m_local_splits.size());
-    itemButtonEdit_->Enable(active);
-    itemButtonDelete_->Enable(active);
+    auto name = wxString::Format("category_box%i", object_in_focus_ - wxID_HIGHEST);
+    auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+    if (cbc)
+        cbc->SetValue(cbc->GetValue());
+
+    UpdateSplitTotal();
 }

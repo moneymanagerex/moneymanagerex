@@ -40,6 +40,7 @@ public:
         , wxSize size = wxDefaultSize
     );
     void Create();
+    void mmSetId(int id);
     const wxString mmGetPattern() const;
     int mmGetId() const;
     bool mmIsValid() const;

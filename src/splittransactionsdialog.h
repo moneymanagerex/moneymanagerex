@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2013 - 2016, 2020 -2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
 #include "defs.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
+#include <wx/vscroll.h>
 
 class wxListCtrl;
 class wxStaticText;
@@ -33,74 +35,55 @@ class wxStaticText;
 #define wxFIXED_MINSIZE 0
 #endif
 
-class SplitTransactionDialog: public wxDialog
+class mmSplitTransactionDialog: public wxDialog
 {
-    wxDECLARE_DYNAMIC_CLASS(SplitTransactionDialog);
-    wxDECLARE_EVENT_TABLE();
-
 public:
-    /// Constructors
-    SplitTransactionDialog();
-    SplitTransactionDialog(wxWindow* parent
+    mmSplitTransactionDialog();
+    mmSplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
-        , int transType
         , int accountID
         , double totalAmount = 0.0
         , const wxString& name = "SplitTransactionDialog"
         );
-
-    /// Creation
-    bool Create(
-        wxWindow* parent,
-        wxWindowID id,
-        const wxString& caption,
-        const wxPoint& pos,
-        const wxSize& size,
-        long style
-        , const wxString& name
-        );
-    std::vector<Split> getResult() { return m_splits; }
-    bool isItemsChanged(){ return items_changed_; }
-    void SetDisplaySplitCategories();
+    std::vector<Split> mmGetResult() const;
+    bool mmIsItemsChanged() const;
 
 private:
-    /// Creates the controls and sizers
+    bool Create(
+        wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("Split Transaction Dialog")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
+        , const wxString& name = "Split Transaction Dialog"
+        );
+
     void CreateControls();
-
-    void DataToControls();
-
-    /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_NEW
-    void OnButtonAddClick( wxCommandEvent& event );
-
-    /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_DELETE
-    void OnButtonRemoveClick( wxCommandEvent& event );
-
-    /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_EDIT
-    void OnButtonEditClick( wxCommandEvent& event );
-    void OnOk( wxCommandEvent& event );
-
+    void mmDoEnableLineById(int id, bool value = true);
     void UpdateSplitTotal();
 
-    wxDataViewListCtrl* lcSplit_;
-    wxStaticText* transAmount_;
+    void OnOk( wxCommandEvent& event );
+    void OnTextEntered(wxCommandEvent& event);
+    void OnCheckBox(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
 
     std::vector<Split> m_splits;
     std::vector<Split> m_local_splits;
-    int transType_;
     int accountID_;
     double totalAmount_;
-    bool items_changed_;
+    bool isItemsChanged_;
+    int object_in_focus_;
 
-    wxButton* itemButtonNew_;
-    wxButton* itemButtonEdit_;
-    wxButton* itemButtonDelete_;
     wxButton* itemButtonOK_;
+    wxScrolledWindow* slider_;
+    wxStaticText* transAmount_;
+    wxFlexGridSizer* flexGridSizer_;
 
-    void SetDisplayEditDeleteButtons();
-    void OnListDblClick(wxDataViewEvent& event);
-    void OnListItemSelected(wxDataViewEvent& event);
-    void EditEntry(int id);
-    int selectedIndex_;
+    wxDECLARE_EVENT_TABLE();
 };
+
+inline std::vector<Split> mmSplitTransactionDialog::mmGetResult() const { return m_splits; }
+inline bool mmSplitTransactionDialog::mmIsItemsChanged() const { return isItemsChanged_; }
 
 #endif

@@ -1025,8 +1025,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     {
         if (!CheckForClosedAccounts()) return;
         transactionsUpdateDialog dlg(this, m_selected_id);
-        if (dlg.ShowModal() == wxID_OK)
-        {
+        if (dlg.ShowModal() == wxID_OK) {
             refreshVisualList();
         }
         return;
