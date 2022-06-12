@@ -240,7 +240,8 @@ void mmTransDialog::dataToControls()
         else
             toTextAmount_->ChangeValue("");
 
-        m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
+        if (!m_new_trx)
+            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
         skip_amount_init_ = true;
     }
 
@@ -596,7 +597,6 @@ bool mmTransDialog::ValidateData()
         mmErrorDialogs::ToolTip4Object(cbAccount_, _("Invalid value"), _("Account"), wxICON_ERROR);
         return false;
     }
-
     m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
 
     if (!m_transfer)
@@ -647,7 +647,7 @@ bool mmTransDialog::ValidateData()
     }
     else //transfer
     {
-        Model_Account::Data *to_account = Model_Account::instance().get(cbPayee_->GetValue());
+        Model_Account::Data *to_account = Model_Account::instance().get(cbToAccount_->GetValue());
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
             || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
