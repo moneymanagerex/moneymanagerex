@@ -117,7 +117,7 @@ void mmSplitTransactionDialog::CreateControls()
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
         cbc->SetName(wxString::Format("category_box%i", i));
-        mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxSize(100,-1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
         val->SetName(wxString::Format("value_box%i", i));
         flexGridSizer_->Add(cb, g_flagsH);
         flexGridSizer_->Add(cbc, g_flagsExpand);
@@ -239,7 +239,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id, bool value)
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
         cbc->SetName(wxString::Format("category_box%i", i));
-        mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxSize(100,-1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
         val->SetName(wxString::Format("value_box%i", i));
         flexGridSizer_->Add(cb, g_flagsH);
         flexGridSizer_->Add(cbc, g_flagsExpand);
