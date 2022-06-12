@@ -140,6 +140,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         if (to_acc) {
             m_to_currency = Model_Account::currency(to_acc);
         }
+
         if (m_to_currency) {
             m_advanced = !m_new_trx
                 && (m_currency->CURRENCYID != m_to_currency->CURRENCYID
@@ -250,6 +251,11 @@ void mmTransDialog::dataToControls()
         Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
         if (acc)
             cbAccount_->SetValue(acc->ACCOUNTNAME);
+
+        Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
+        if (to_acc) {
+            cbToAccount_->SetValue(to_acc->ACCOUNTNAME);
+        }
 
         skip_account_init_ = true;
     }
@@ -651,7 +657,7 @@ bool mmTransDialog::ValidateData()
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
             || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
-            mmErrorDialogs::InvalidAccount(cbPayee_, true);
+            mmErrorDialogs::InvalidAccount(cbToAccount_, true);
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
