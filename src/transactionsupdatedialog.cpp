@@ -206,7 +206,7 @@ void transactionsUpdateDialog::CreateControls()
     m_amount_ctrl->Enable(false);
 
     grid_sizer->Add(m_amount_checkbox, g_flagsH);
-    grid_sizer->Add(m_amount_ctrl, g_flagsH);
+    grid_sizer->Add(m_amount_ctrl, g_flagsExpand);
 
     // Payee --------------------------------------------
     m_payee_checkbox = new wxCheckBox(this, wxID_ANY, _("Payee")

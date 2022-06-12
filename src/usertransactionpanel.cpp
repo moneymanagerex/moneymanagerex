@@ -161,7 +161,7 @@ void UserTransactionPanel::Create()
     entered_amount_sizer->Add(m_trans_currency, g_flagsH);
 
     transPanelSizer->Add(entered_amount_text, g_flagsH);
-    transPanelSizer->Add(entered_amount_sizer);
+    transPanelSizer->Add(entered_amount_sizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Status --------------------------------------------
     m_status_selector = new wxChoice(this, ID_TRANS_STATUS_SELECTOR

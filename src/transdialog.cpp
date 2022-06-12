@@ -492,7 +492,7 @@ void mmTransDialog::CreateControls()
     wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _("Amount"));
     amount_label->SetFont(this->GetFont().Bold());
     flex_sizer->Add(amount_label, g_flagsH);
-    flex_sizer->Add(amountSizer);
+    flex_sizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Account ---------------------------------------------
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
