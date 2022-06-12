@@ -100,7 +100,7 @@ void mmAddAccountNamePage::processPage(wxWizardEvent& event)
 mmAddAccountNamePage::mmAddAccountNamePage(mmAddAccountWizard* parent)
     : wxWizardPageSimple(parent), parent_(parent)
 {
-    textAccountName_ = new wxTextCtrl(this, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(130,-1), 0 );
+    textAccountName_ = new wxTextCtrl(this, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(200,-1), 0 );
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Name of the Account")), 0, wxALL, 5 );
