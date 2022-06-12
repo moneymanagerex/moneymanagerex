@@ -585,7 +585,7 @@ void mmBDDialog::CreateControls()
     amountSizer->Add(toTextAmount_, g_flagsExpand);
 
     transPanelSizer->Add(amount_label, g_flagsH);
-    transPanelSizer->Add(amountSizer);
+    transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Account ------------------------------------------------
     wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
