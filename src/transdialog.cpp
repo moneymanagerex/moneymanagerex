@@ -551,6 +551,7 @@ void mmTransDialog::CreateControls()
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    RightAlign_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Color")), g_flagsH);
     RightAlign_sizer->Add(bColours_, wxSizerFlags());
     flex_sizer->Add(bAttachments_, g_flagsH);
 
@@ -845,8 +846,10 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
         m_local_splits.push_back(s);
     }
 
+    bool isDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
     mmSplitTransactionDialog dlg(this, m_local_splits
         , m_trx_data.ACCOUNTID
+        , isDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
         , m_trx_data.TRANSAMOUNT);
 
     if (dlg.ShowModal() == wxID_OK) {

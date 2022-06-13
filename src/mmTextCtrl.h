@@ -32,7 +32,7 @@ public:
         , const wxString &value = wxEmptyString
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
-        , long style = wxTE_PROCESS_ENTER
+        , long style = wxTE_PROCESS_ENTER | wxALIGN_RIGHT
         , const wxValidator &validator = wxDefaultValidator
         , const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency()
         , const wxString &name = "mmTextCtrl")

@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmSimpleDialogs.h"
 #include "util.h"
 #include "paths.h"
+#include "splitdetailsdialog.h"
 #include "validators.h"
 
 #include "model/Model_Account.h"
@@ -45,12 +46,14 @@ mmSplitTransactionDialog::mmSplitTransactionDialog( )
  mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
     , int accountID
+    , int transType
     , double totalAmount
     , const wxString& name
     )
     : m_splits(split)
     , totalAmount_(totalAmount)
     , accountID_(accountID)
+    , transType_(transType)
     , isItemsChanged_(false)
 {
     for (const auto &item : m_splits)
@@ -132,7 +135,7 @@ void mmSplitTransactionDialog::CreateControls()
             val->SetValue(m_local_splits.at(i).SPLITTRANSAMOUNT, currency);
         }
 
-        cb->Enable(i < m_local_splits.size());
+        cb->Enable(i <= m_local_splits.size());
         cbc->Enable(i <= m_local_splits.size());
         val->Enable(i <= m_local_splits.size());
     }
@@ -292,6 +295,32 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
 
 void mmSplitTransactionDialog::OnCheckBox(wxCommandEvent& event)
 {
+    int i = event.GetId() - wxID_HIGHEST;
+
+    if (i >= static_cast<int>(m_local_splits.size()) && event.IsChecked()) {
+        Split s;
+        s.SPLITTRANSAMOUNT = 0.0;
+        s.CATEGID = -1;
+        s.SUBCATEGID = -1;
+        SplitDetailDialog dlg(this, s, transType_, accountID_);
+        if (dlg.ShowModal() == wxID_OK) {
+            s = dlg.getResult();
+
+            auto categ = Model_Category::full_name(s.CATEGID, s.SUBCATEGID);
+            auto name = wxString::Format("category_box%i", i);
+            auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+            if (cbc) cbc->SetValue(categ);
+
+            name = wxString::Format("value_box%i", i);
+            auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
+            if (val) val->SetValue(s.SPLITTRANSAMOUNT);
+
+            m_local_splits.push_back(s);
+            isItemsChanged_ = true;
+
+            mmDoEnableLineById(i + 1);
+        }
+    }
     UpdateSplitTotal();
 }
 
