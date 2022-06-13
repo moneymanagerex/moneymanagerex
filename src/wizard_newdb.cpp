@@ -107,7 +107,8 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_STATIC, _("User Name"));
     itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-    itemUserName_ = new wxTextCtrl(this, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(200,-1));
+    itemUserName_ = new wxTextCtrl(this, wxID_ANY);
+    itemUserName_->SetMinSize(wxSize(200,-1));
     itemBoxSizer5->Add(itemUserName_, g_flagsExpand);
 
     helpMsg = _("(Optional) Specify a title or your name.") + "\n";
