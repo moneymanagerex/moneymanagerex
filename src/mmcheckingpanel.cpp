@@ -195,7 +195,8 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        m_filteredBalance += transaction_amount;
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+            m_filteredBalance += transaction_amount;
 
         if (custom_fields_data.find(tran.TRANSID) != custom_fields_data.end()) {
             const auto& udfcs = custom_fields_data.at(tran.TRANSID);
