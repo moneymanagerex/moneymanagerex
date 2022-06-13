@@ -51,6 +51,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
+    EVT_CHAR_HOOK(OnComboKey)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
@@ -927,7 +928,10 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
 {
     if (event.GetKeyCode() == WXK_RETURN)
     {
-        if (!m_transfer && object_in_focus_ == mmID_PAYEE)
+        auto id = event.GetId();
+        switch (id)
+        {
+        case mmID_PAYEE:
         {
             const auto payeeName = cbPayee_->GetValue();
             if (payeeName.empty())
@@ -938,18 +942,35 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
 
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
-                if (payee)
-                {
+                if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                     cbPayee_->SetInsertionPointEnd();
                 }
             }
-            else
+            else {
                 cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
+            }
+        }
+        break;
+        case mmID_CATEGORY:
+        {
+            auto category = cbPayee_->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                if (dlg.ShowModal() == wxID_OK) {
+                    category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                    cbCategory_->SetValue(category);
+                }
+            }
+        }
+        break;
+        default:
+            break;
         }
     }
-    else
-        event.Skip();
+
+    event.Skip();
 }
 
 void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
