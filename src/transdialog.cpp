@@ -551,6 +551,7 @@ void mmTransDialog::CreateControls()
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    RightAlign_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Color")), g_flagsH);
     RightAlign_sizer->Add(bColours_, wxSizerFlags());
     flex_sizer->Add(bAttachments_, g_flagsH);
 
