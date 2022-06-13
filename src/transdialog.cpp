@@ -846,8 +846,10 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
         m_local_splits.push_back(s);
     }
 
+    bool isDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
     mmSplitTransactionDialog dlg(this, m_local_splits
         , m_trx_data.ACCOUNTID
+        , isDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
         , m_trx_data.TRANSAMOUNT);
 
     if (dlg.ShowModal() == wxID_OK) {

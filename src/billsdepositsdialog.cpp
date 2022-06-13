@@ -1269,7 +1269,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
         m_bill_data.local_splits.push_back(s);
     }
 
-    mmSplitTransactionDialog dlg(this, m_bill_data.local_splits, m_bill_data.ACCOUNTID);
+    mmSplitTransactionDialog dlg(this, m_bill_data.local_splits, m_bill_data.ACCOUNTID, m_choice_transaction_type->GetSelection());
     if (dlg.ShowModal() == wxID_OK)
     {
         m_bill_data.local_splits = dlg.mmGetResult();

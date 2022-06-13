@@ -54,8 +54,6 @@ private:
     void CreateControls();
     void DataToControls();
 
-    void OnButtonCategoryClick( wxCommandEvent& event );
-
     void OnButtonOKClick( wxCommandEvent& event );
     void onTextEntered(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& WXUNUSED(event));

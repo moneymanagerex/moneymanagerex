@@ -42,6 +42,7 @@ public:
     mmSplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
         , int accountID
+        , int transType
         , double totalAmount = 0.0
         , const wxString& name = "SplitTransactionDialog"
         );
@@ -73,6 +74,7 @@ private:
     std::vector<Split> m_local_splits;
     int accountID_;
     double totalAmount_;
+    int transType_;
     bool isItemsChanged_;
     int object_in_focus_;
 

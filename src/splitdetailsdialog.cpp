@@ -39,7 +39,6 @@ enum
 
 wxBEGIN_EVENT_TABLE(SplitDetailDialog, wxDialog)
     EVT_CHILD_FOCUS(SplitDetailDialog::OnFocusChange)
-    EVT_BUTTON(mmID_CATEGORY, SplitDetailDialog::OnButtonCategoryClick)
     EVT_BUTTON(wxID_OK, SplitDetailDialog::OnButtonOKClick)
     EVT_BUTTON(wxID_CANCEL, SplitDetailDialog::OnCancel)
     EVT_TEXT_ENTER(mmID_AMOUNT, SplitDetailDialog::onTextEntered)
@@ -171,18 +170,6 @@ void SplitDetailDialog::CreateControls()
 /*!
  * wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTONCATEGORY
  */
-
-void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& event )
-{
-    mmCategDialog dlg(this, true, split_.CATEGID, split_.SUBCATEGID);
-    if (dlg.ShowModal() == wxID_OK)
-    {
-        split_.CATEGID = dlg.getCategId();
-        split_.SUBCATEGID = dlg.getSubCategId();
-        cbCategory_->SetLabelText(dlg.getFullCategName());
-    }
-    onTextEntered(event);
-}
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
