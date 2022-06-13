@@ -51,7 +51,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
-    EVT_CHAR_HOOK(OnComboKey)
+    EVT_CHAR_HOOK(mmTransDialog::OnComboKey)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
