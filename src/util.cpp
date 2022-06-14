@@ -1621,3 +1621,26 @@ const wxString __(const char* c)
         mystring.Append("...");
     return mystring;
 }
+
+void mmSetSize(wxWindow* w)
+{
+    auto name = w->GetName();
+    wxSize my_size;
+
+    if (name == "Split Transaction Dialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE", wxDefaultSize);
+    }
+    else if (name == "Organize Categories") {
+        my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE", wxDefaultSize);
+    }
+
+    wxRect rect = GetDefaultMonitorRect();
+    int defValX = rect.GetX() - 50;
+    int defValY = rect.GetY() - 50;
+    if (my_size.GetWidth() > defValX || my_size.GetHeight() > defValY) {
+        w->SetSize(my_size);
+    }
+    else {
+        w->Fit();
+    }
+}

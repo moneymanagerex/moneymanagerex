@@ -38,6 +38,7 @@ class wxStaticText;
 class mmSplitTransactionDialog: public wxDialog
 {
 public:
+    ~mmSplitTransactionDialog();
     mmSplitTransactionDialog();
     mmSplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
