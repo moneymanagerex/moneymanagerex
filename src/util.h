@@ -271,3 +271,5 @@ wxString HTMLEncode(wxString input);
 
 //Use an ellipsis whenever choosing a menu item requires additional input from the user. 
 const wxString __(const char* c);
+
+void mmSetSize(wxWindow* w);

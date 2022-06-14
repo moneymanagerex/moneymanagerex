@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/statline.h>
 
-#define STATIC_SPLIT_NUM 10
+#define STATIC_SPLIT_NUM 7
 
  wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
      EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
@@ -43,20 +43,25 @@ mmSplitTransactionDialog::mmSplitTransactionDialog( )
 {
 }
 
- mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
+mmSplitTransactionDialog::~mmSplitTransactionDialog()
+{
+     Model_Infotable::instance().Set("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
+}
+
+mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
     , int accountID
     , int transType
     , double totalAmount
     , const wxString& name
-    )
+)
     : m_splits(split)
     , totalAmount_(totalAmount)
     , accountID_(accountID)
     , transType_(transType)
     , isItemsChanged_(false)
 {
-    for (const auto &item : m_splits)
+    for (const auto& item : m_splits)
         m_local_splits.push_back(item);
 
     Create(parent);
@@ -77,9 +82,8 @@ bool mmSplitTransactionDialog::Create(wxWindow* parent
     CreateControls();
     UpdateSplitTotal();
 
+    mmSetSize(this);
     SetIcon(mmex::getProgramIcon());
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
     Centre();
 
     return TRUE;
@@ -95,8 +99,7 @@ void mmSplitTransactionDialog::CreateControls()
 
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     mainSizer->Add(slider_, g_flagsExpandBorder1);
-    slider_->SetMinSize(wxSize(412, 412));
-
+    slider_->SetMinSize(wxSize(350, 400));
 
     Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data* account = Model_Account::instance().get(accountID_);
@@ -140,7 +143,7 @@ void mmSplitTransactionDialog::CreateControls()
         val->Enable(i <= m_local_splits.size());
     }
 
-    slider_->SetVirtualSize(wxSize(300, 300));
+    slider_->GetBestVirtualSize();
     slider_->FitInside();
     slider_->SetScrollRate(1, 1);
 

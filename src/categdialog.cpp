@@ -119,27 +119,18 @@ mmCategDialog::mmCategDialog(wxWindow* parent
 }
 
 bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
-    , const wxString& caption, const wxPoint& pos
-    , const wxSize& size, long style)
+    , const wxString& caption, const wxString& name
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     SetEvtHandlerEnabled(false);
     CreateControls();
     fillControls();
     SetEvtHandlerEnabled(true);
 
-    wxSize my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE", wxDefaultSize);
-    wxRect rect = GetDefaultMonitorRect();
-    int defValX = rect.GetX() - 50;
-    int defValY = rect.GetY() - 50;
-    if (my_size.GetWidth() > defValX || my_size.GetHeight() > defValY) {
-        this->SetInitialSize(my_size);
-    }
-    else {
-        Fit();
-    }
+    mmSetSize(this);
     SetMinSize(wxSize(316, 316));
     SetIcon(mmex::getProgramIcon());
     Centre();
