@@ -60,6 +60,7 @@ mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , transType_(transType)
     , isItemsChanged_(false)
     , object_in_focus_name_("")
+    , row_num_(-1)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     m_currency = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
@@ -302,68 +303,73 @@ void mmSplitTransactionDialog::OnCheckBox(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
 
-    if (i >= static_cast<int>(m_local_splits.size()) && event.IsChecked()) {
+    if (event.IsChecked()) {
 
         auto name = wxString::Format("category_box%i", i);
         auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
         name = wxString::Format("value_box%i", i);
         auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
+        name = wxString::Format("check_box%i", i);
+        auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
 
-        Split s;
-        if (val && val->Calculate())
-            val->GetDouble(s.SPLITTRANSAMOUNT);
-        else
-            s.SPLITTRANSAMOUNT = 0.0;
-        s.CATEGID = cbc->mmIsValid() ? cbc->mmGetCategoryId() : -1;
-        s.SUBCATEGID = cbc->mmIsValid() ? cbc->mmGetSubcategoryId() : -1;
-        SplitDetailDialog dlg(this, s, transType_, m_currency);
-        if (dlg.ShowModal() == wxID_OK) {
-            s = dlg.getResult();
-
-            auto categ = Model_Category::full_name(s.CATEGID, s.SUBCATEGID);
-            if (cbc) cbc->SetValue(categ);
-            if (val) val->SetValue(s.SPLITTRANSAMOUNT);
-
-            m_local_splits.push_back(s);
-            isItemsChanged_ = true;
-
-            mmDoEnableLineById(i + 1);
+        if (!cbc->mmIsValid()) {
+            cb->SetValue(false);
+            return mmErrorDialogs::InvalidCategory(cbc, true);
         }
-        else
-            mmDoEnableLineById(i, false);
+
+        double amount = 0.0;
+        if (!val->checkValue(amount, false)) {
+            return cb->SetValue(false);
+        }
+
     }
     UpdateSplitTotal();
 }
 
 void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
 {
-    if (object_in_focus_name_.StartsWith("categ"))
+    auto name = wxString::Format("check_box%i", row_num_);
+    auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+
+
+    bool is_row_ok = true;
+
+    name = wxString::Format("category_box%i", row_num_);
+    auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+    if (cbc)
     {
-        auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(object_in_focus_name_));
-        if (cbc)
-            cbc->SetValue(cbc->GetValue());
-    }
-    if (object_in_focus_name_.StartsWith("value"))
-    {
-        auto val = static_cast<mmTextCtrl*>(FindWindowByName(object_in_focus_name_));
-        if (val)
-        {
-            if (val->Calculate(Model_Currency::precision(m_currency))) {
-                wxLogDebug("entered");
-                wxCommandEvent evt(wxID_ANY, event.GetId());
-                OnTextEntered(evt);
-            }
-            else {
-                double amount = 0.0;
-                val->checkValue(amount, false);
-                //mmErrorDialogs::ToolTip4Object(val, _("Amount"), _("Invalid Value"));
-            }
+        cbc->SetValue(cbc->GetValue());
+        if (!cbc->mmIsValid()) {
+            is_row_ok = false;
+            if (cb && cb->IsChecked())
+                mmErrorDialogs::InvalidCategory(cbc, true);
         }
+    }
+
+    name = wxString::Format("value_box%i", row_num_);
+    auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
+    if (val)
+    {
+        if (!val->Calculate(Model_Currency::precision(m_currency))) {
+            double amount = 0.0;
+            is_row_ok = false;
+            if (cb && cb->IsChecked())
+                val->checkValue(amount, false);
+        }
+    }
+
+    if (is_row_ok) {
+        wxCommandEvent evt(wxID_ANY, row_num_ + wxID_HIGHEST);
+        OnTextEntered(evt);
+    }
+    else {
+        cb->SetValue(false);
     }
 
     wxWindow* w = event.GetWindow();
     if (w) {
         object_in_focus_name_ = w->GetName();
+        row_num_ = w->GetId() - wxID_HIGHEST;
     }
 
     UpdateSplitTotal();

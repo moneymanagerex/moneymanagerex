@@ -77,6 +77,7 @@ private:
     int transType_;
     bool isItemsChanged_;
     wxString object_in_focus_name_;
+    int row_num_;;
     Model_Currency::Data* m_currency;
 
     wxButton* itemButtonOK_;
