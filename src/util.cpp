@@ -1624,6 +1624,7 @@ const wxString __(const char* c)
 void mmSetSize(wxWindow* w)
 {
     auto name = w->GetName();
+    wxRect parent = w->GetParent()->GetRect();
     wxRect my_rect;
 
     if (name == "Split Transaction Dialog") {
@@ -1636,8 +1637,11 @@ void mmSetSize(wxWindow* w)
         my_rect = Model_Infotable::instance().GetRectSetting("TRANSACTION_DIALOG_SIZE");
     }
 
-    wxSharedPtr<wxDisplay> display(new wxDisplay(w));
+    wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();
+
+    my_rect.x = parent.x + parent.width - 15;
+    my_rect.y = parent.y;
 
     if (display_rect.Contains(my_rect))
     {
