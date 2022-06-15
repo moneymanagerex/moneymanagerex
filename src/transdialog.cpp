@@ -240,8 +240,9 @@ void mmTransDialog::dataToControls()
             }
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
         }
-        else
+        else {
             toTextAmount_->ChangeValue("");
+        }
 
         if (!m_new_trx)
             m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
@@ -679,7 +680,7 @@ bool mmTransDialog::ValidateData()
     if (m_local_splits.empty())
     {
         if (!cbCategory_->mmIsValid()) {
-            mmErrorDialogs::ToolTip4Object(cbAccount_, _("Invalid value"), _("Category"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
             return false;
         }
         m_trx_data.CATEGID = cbCategory_->mmGetCategoryId();
@@ -867,6 +868,7 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
     }
 
     m_trx_data.TRANSAMOUNT = dlg.mmGetTotalAmount();
+    m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
     skip_amount_init_ = false;
 }
 
