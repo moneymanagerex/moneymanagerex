@@ -45,11 +45,9 @@ public:
         , int accountID
         , int transType
         , double totalAmount = 0.0
-        , const wxString& name = "SplitTransactionDialog"
+        , bool is_view_only = false
         );
     std::vector<Split> mmGetResult() const;
-    bool mmIsItemsChanged() const;
-    bool mmGetTotalAmount() const;
 
 private:
     bool Create(
@@ -63,22 +61,21 @@ private:
         );
 
     void CreateControls();
-    void mmDoEnableLineById(int id, bool value = false);
+    void mmDoEnableLineById(int id);
     void UpdateSplitTotal();
 
     void OnOk( wxCommandEvent& event );
     void OnTextEntered(wxCommandEvent& event);
     void OnCheckBox(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
+    bool mmDoCheckRow(int i);
 
     std::vector<Split> m_splits;
-    std::vector<Split> m_local_splits;
     double totalAmount_;
     int transType_;
-    bool isItemsChanged_;
-    wxString object_in_focus_name_;
     int row_num_;;
     Model_Currency::Data* m_currency;
+    bool is_view_only_;
 
     wxButton* itemButtonOK_;
     wxScrolledWindow* slider_;
@@ -89,7 +86,5 @@ private:
 };
 
 inline std::vector<Split> mmSplitTransactionDialog::mmGetResult() const { return m_splits; }
-inline bool mmSplitTransactionDialog::mmIsItemsChanged() const { return isItemsChanged_; }
-inline bool mmSplitTransactionDialog::mmGetTotalAmount() const { return totalAmount_; }
 
 #endif
