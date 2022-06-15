@@ -53,7 +53,7 @@ public:
         , double current_balance
         , bool duplicate = false
         , int type = Model_Checking::WITHDRAWAL
-        , const wxString& name = "mmTransDialog"
+        , const wxString& name = "Transactions Dialog"
     );
 
     bool Create(wxWindow* parent
@@ -62,7 +62,7 @@ public:
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
-        , const wxString& name = "mmTransDialog"
+        , const wxString& name = "Transactions Dialog"
     );
 
     void SetDialogTitle(const wxString& title);

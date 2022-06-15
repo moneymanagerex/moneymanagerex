@@ -67,6 +67,11 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CLOSE(mmTransDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
+mmTransDialog::~mmTransDialog()
+{
+    Model_Infotable::instance().Set("TRANSACTION_DIALOG_SIZE", GetRect());
+}
+
 void mmTransDialog::SetEventHandlers()
 {
     m_textAmount->Connect(mmID_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
@@ -166,9 +171,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     Fit();
 }
 
-mmTransDialog::~mmTransDialog()
-{}
-
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
@@ -181,9 +183,7 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_duplicate ? SetDialogTitle(_("Duplicate Transaction")) : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
 
     SetIcon(mmex::getProgramIcon());
-    GetSizer()->SetSizeHints(this);
-    Centre();
-    Fit();
+    mmSetSize(this);
 
     SetEventHandlers();
     SetEvtHandlerEnabled(true);
