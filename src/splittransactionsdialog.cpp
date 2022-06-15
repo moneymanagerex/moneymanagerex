@@ -45,7 +45,7 @@ mmSplitTransactionDialog::mmSplitTransactionDialog( )
 
 mmSplitTransactionDialog::~mmSplitTransactionDialog()
 {
-     Model_Infotable::instance().Set("SPLITTRANSACTION_DIALOG_SIZE", GetRect());
+     Model_Infotable::instance().Set("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
 }
 
 mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
@@ -83,6 +83,7 @@ bool mmSplitTransactionDialog::Create(wxWindow* parent
     UpdateSplitTotal();
 
     mmSetSize(this);
+    Centre();
     SetIcon(mmex::getProgramIcon());
 
     return TRUE;

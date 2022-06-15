@@ -69,7 +69,6 @@ wxEND_EVENT_TABLE()
 
 mmTransDialog::~mmTransDialog()
 {
-    Model_Infotable::instance().Set("TRANSACTION_DIALOG_SIZE", GetRect());
 }
 
 void mmTransDialog::SetEventHandlers()
@@ -183,7 +182,7 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_duplicate ? SetDialogTitle(_("Duplicate Transaction")) : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
 
     SetIcon(mmex::getProgramIcon());
-    mmSetSize(this);
+    Centre();
 
     SetEventHandlers();
     SetEvtHandlerEnabled(true);

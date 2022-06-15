@@ -61,7 +61,7 @@ int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTre
 
 mmCategDialog::~mmCategDialog()
 {
-    Model_Infotable::instance().Set("CATEGORIES_DIALOG_SIZE", GetRect());
+    Model_Infotable::instance().Set("CATEGORIES_DIALOG_SIZE", GetSize());
 }
 
 mmCategDialog::mmCategDialog()
@@ -131,6 +131,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     SetEvtHandlerEnabled(true);
 
     mmSetSize(this);
+    Centre();
     SetMinSize(wxSize(316, 316));
     SetIcon(mmex::getProgramIcon());
     return TRUE;

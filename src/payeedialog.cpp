@@ -46,6 +46,10 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
+mmPayeeDialog::~mmPayeeDialog()
+{
+    Model_Infotable::instance().Set("PAYEES_DIALOG_SIZE", GetSize());
+}
 
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString &name) :
     m_payee_id(-1)
@@ -107,7 +111,7 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
     SetIcon(mmex::getProgramIcon());
 
     fillControls();
-
+    mmSetSize(this);
     Centre();
 }
 
@@ -115,8 +119,9 @@ void mmPayeeDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
-    payeeListBox_ = new wxListView(this, wxID_ANY, wxDefaultPosition, wxSize(450, 500), 
+    payeeListBox_ = new wxListView(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
         wxLC_REPORT | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
+    payeeListBox_->SetMinSize(wxSize(250, 100));
 
     wxListItem col0, col1;
     // Add first column

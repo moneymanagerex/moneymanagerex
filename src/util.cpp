@@ -1624,29 +1624,24 @@ const wxString __(const char* c)
 void mmSetSize(wxWindow* w)
 {
     auto name = w->GetName();
-    wxRect parent = w->GetParent()->GetRect();
-    wxRect my_rect;
+    wxRect my_size;
 
     if (name == "Split Transaction Dialog") {
-        my_rect = Model_Infotable::instance().GetRectSetting("SPLITTRANSACTION_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE");
     }
     else if (name == "Organize Categories") {
-        my_rect = Model_Infotable::instance().GetRectSetting("CATEGORIES_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE");
     }
-    else if (name == "Transactions Dialog") {
-        my_rect = Model_Infotable::instance().GetRectSetting("TRANSACTION_DIALOG_SIZE");
+    else if (name == "mmPayeeDialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("PAYEES_DIALOG_SIZE");
     }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();
 
-    my_rect.x = parent.x + parent.width - 15;
-    my_rect.y = parent.y;
-
-    if (display_rect.Contains(my_rect))
+    if (display_rect.Contains(my_size))
     {
-        w->SetPosition(wxPoint(my_rect.x, my_rect.y));
-        w->SetSize(wxSize(my_rect.width, my_rect.height));
+        w->SetSize(my_size);
     }
     else {
         w->Fit();
