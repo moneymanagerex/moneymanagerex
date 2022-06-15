@@ -32,6 +32,7 @@ class mmPayeeDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
+    ~mmPayeeDialog();
     mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString &name = "mmPayeeDialog");
     void DisableTools();
     int getPayeeId() const;

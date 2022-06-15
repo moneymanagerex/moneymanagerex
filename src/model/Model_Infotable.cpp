@@ -80,11 +80,6 @@ void Model_Infotable::Set(const wxString& key, const wxSize& size)
     this->Set(key, wxString::Format("%i,%i", size.GetWidth(), size.GetHeight()));
 }
 
-void Model_Infotable::Set(const wxString& key, const wxRect& r)
-{
-    this->Set(key, wxString::Format("%i,%i,%i,%i", r.x, r.y, r.width, r.height));
-}
-
 void Model_Infotable::Set(const wxString& key, const wxString& value)
 {
     Data* info = this->get_one(INFONAME(key));
@@ -246,7 +241,7 @@ wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& def
 
     return default_value;
 }
-const wxSize Model_Infotable::GetSizeSetting(const wxString& key, const wxSize& default_value)
+const wxSize Model_Infotable::GetSizeSetting(const wxString& key)
 {
     const wxString value = this->GetStringInfo(key, "");
     if (!value.IsEmpty())
@@ -259,26 +254,7 @@ const wxSize Model_Infotable::GetSizeSetting(const wxString& key, const wxSize& 
             return wxSize(wxAtoi(x), wxAtoi(y));
         }
     }
-    return default_value;
-}
-
-const wxRect Model_Infotable::GetRectSetting(const wxString& key)
-{
-    const wxString value = this->GetStringInfo(key, "");
-    if (!value.IsEmpty())
-    {
-        wxRegEx pattern("^([0-9]+),([0-9]+),([0-9]+),([0-9]+)$");
-        if (pattern.Matches(value))
-        {
-            const auto& x = pattern.GetMatch(value, 1);
-            const auto& y = pattern.GetMatch(value, 2);
-            const auto& w = pattern.GetMatch(value, 3);
-            const auto& h = pattern.GetMatch(value, 4);
-            auto saved_rect =  wxRect(wxAtoi(x), wxAtoi(y), wxAtoi(w), wxAtoi(h));
-            return saved_rect;
-        }
-    }
-    return wxRect(wxDefaultPosition, wxDefaultSize);
+    return wxDefaultSize;
 }
 
 const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxColour& default_value)
