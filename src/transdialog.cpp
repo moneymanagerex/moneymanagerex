@@ -855,18 +855,16 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
 
     if (dlg.ShowModal() == wxID_OK) {
         m_local_splits = dlg.mmGetResult();
+        skip_category_init_ = false;
 
-        skip_category_init_ = !dlg.mmIsItemsChanged();
-
-        if (m_local_splits.size() == 1)
-        {
+        if (m_local_splits.size() == 1) {
             auto categ = Model_Category::full_name(m_local_splits[0].CATEGID, m_local_splits[0].SUBCATEGID);
             cbCategory_->SetValue(categ);
+            m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
             m_local_splits.clear();
             skip_category_init_ = true;
         }
 
-        m_trx_data.TRANSAMOUNT = dlg.mmGetTotalAmount();
         m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
         skip_amount_init_ = false;
     }
