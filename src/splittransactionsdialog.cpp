@@ -57,10 +57,13 @@ mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
 )
     : m_splits(split)
     , totalAmount_(totalAmount)
-    , accountID_(accountID)
     , transType_(transType)
     , isItemsChanged_(false)
+    , object_in_focus_name_("")
 {
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    m_currency = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
+
     for (const auto& item : m_splits)
         m_local_splits.push_back(item);
 
@@ -101,12 +104,6 @@ void mmSplitTransactionDialog::CreateControls()
     mainSizer->Add(slider_, g_flagsExpandBorder1);
     slider_->SetMinSize(wxSize(350, 400));
 
-    Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data* account = Model_Account::instance().get(accountID_);
-    if (account) {
-        currency = Model_Account::currency(account);
-    }
-
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     slider_->SetSizer(dialogMainSizerV);
 
@@ -135,7 +132,7 @@ void mmSplitTransactionDialog::CreateControls()
             cb->SetValue(true);
             const auto categ = Model_Category::full_name(m_local_splits.at(i).CATEGID, m_local_splits.at(i).SUBCATEGID);
             cbc->SetValue(categ);
-            val->SetValue(m_local_splits.at(i).SPLITTRANSAMOUNT, currency);
+            val->SetValue(m_local_splits.at(i).SPLITTRANSAMOUNT, m_currency);
         }
 
         cb->Enable(i <= m_local_splits.size());
@@ -208,8 +205,6 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::UpdateSplitTotal()
 {
-    Model_Account::Data *account = Model_Account::instance().get(accountID_);
-    const auto curr = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
     double total = 0;
 
     for (int i = static_cast<int>(m_local_splits.size()) - 1; i >= 0; --i)
@@ -221,7 +216,7 @@ void mmSplitTransactionDialog::UpdateSplitTotal()
     }
     totalAmount_ = total;
 
-    wxString total_text = Model_Currency::toCurrency(total, curr);
+    wxString total_text = Model_Currency::toCurrency(total, m_currency);
     transAmount_->SetLabelText(total_text);
 }
 
@@ -273,7 +268,7 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
     auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
 
     double amount = 0;
-    if (val && val->GetDouble(amount))
+    if (val && val->checkValue(amount))
     {
         name = wxString::Format("category_box%i", i);
         auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
@@ -321,7 +316,7 @@ void mmSplitTransactionDialog::OnCheckBox(wxCommandEvent& event)
             s.SPLITTRANSAMOUNT = 0.0;
         s.CATEGID = cbc->mmIsValid() ? cbc->mmGetCategoryId() : -1;
         s.SUBCATEGID = cbc->mmIsValid() ? cbc->mmGetSubcategoryId() : -1;
-        SplitDetailDialog dlg(this, s, transType_, accountID_);
+        SplitDetailDialog dlg(this, s, transType_, m_currency);
         if (dlg.ShowModal() == wxID_OK) {
             s = dlg.getResult();
 
@@ -342,21 +337,33 @@ void mmSplitTransactionDialog::OnCheckBox(wxCommandEvent& event)
 
 void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
 {
-    auto name = wxString::Format("category_box%i", object_in_focus_ - wxID_HIGHEST);
-    auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
-    if (cbc)
-        cbc->SetValue(cbc->GetValue());
-
-    name = wxString::Format("value_box%i", object_in_focus_ - wxID_HIGHEST);
-    auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
-    if (val && val->Calculate()) {
-        wxCommandEvent evt(wxID_ANY, object_in_focus_);
-        OnTextEntered(evt);
+    if (object_in_focus_name_.StartsWith("categ"))
+    {
+        auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(object_in_focus_name_));
+        if (cbc)
+            cbc->SetValue(cbc->GetValue());
+    }
+    if (object_in_focus_name_.StartsWith("value"))
+    {
+        auto val = static_cast<mmTextCtrl*>(FindWindowByName(object_in_focus_name_));
+        if (val)
+        {
+            if (val->Calculate(Model_Currency::precision(m_currency))) {
+                wxLogDebug("entered");
+                wxCommandEvent evt(wxID_ANY, event.GetId());
+                OnTextEntered(evt);
+            }
+            else {
+                double amount = 0.0;
+                val->checkValue(amount, false);
+                //mmErrorDialogs::ToolTip4Object(val, _("Amount"), _("Invalid Value"));
+            }
+        }
     }
 
     wxWindow* w = event.GetWindow();
     if (w) {
-        object_in_focus_ = w->GetId();
+        object_in_focus_name_ = w->GetName();
     }
 
     UpdateSplitTotal();

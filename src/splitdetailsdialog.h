@@ -45,7 +45,7 @@ public:
         wxWindow* parent
         , Split &split
         , int transType
-        , int accountID
+        , Model_Currency::Data* currency
     );
     Split getResult() { return split_; }
 
