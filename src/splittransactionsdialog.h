@@ -63,7 +63,7 @@ private:
         );
 
     void CreateControls();
-    void mmDoEnableLineById(int id, bool value = true);
+    void mmDoEnableLineById(int id, bool value = false);
     void UpdateSplitTotal();
 
     void OnOk( wxCommandEvent& event );

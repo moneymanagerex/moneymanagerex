@@ -90,7 +90,7 @@ void SplitDetailDialog::DataToControls()
 {
     const wxString& category_name = Model_Category::full_name(split_.CATEGID
         , split_.SUBCATEGID);
-    cbCategory_->SetLabelText(category_name);
+    cbCategory_->SetValue(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
         m_text_amount->SetValue(fabs(split_.SPLITTRANSAMOUNT), Model_Currency::precision(m_currency));
