@@ -52,19 +52,16 @@ SplitDetailDialog::SplitDetailDialog(
     wxWindow* parent
     , Split &split
     , int transType
-    , int accountID)
+    , Model_Currency::Data* currency)
     : split_(split)
-    , m_currency(Model_Currency::GetBaseCurrency())
+    , transType_(transType)
+    , m_currency(currency)
     , m_choice_type(nullptr)
     , m_text_amount(nullptr)
     , cbCategory_(nullptr)
     , m_cancel_button(nullptr)
     , object_in_focus_(-1)
 {
-    transType_ = transType;
-    Model_Account::Data *account = Model_Account::instance().get(accountID);
-    if (account)
-        m_currency = Model_Account::currency(account);
     Create(parent);
 }
 

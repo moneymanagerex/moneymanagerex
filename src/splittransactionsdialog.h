@@ -73,11 +73,12 @@ private:
 
     std::vector<Split> m_splits;
     std::vector<Split> m_local_splits;
-    int accountID_;
     double totalAmount_;
     int transType_;
     bool isItemsChanged_;
-    int object_in_focus_;
+    wxString object_in_focus_name_;
+    int row_num_;;
+    Model_Currency::Data* m_currency;
 
     wxButton* itemButtonOK_;
     wxScrolledWindow* slider_;
