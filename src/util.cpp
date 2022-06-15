@@ -1309,13 +1309,12 @@ const wxString getProgramDescription(int type)
 const wxRect GetDefaultMonitorRect()
 {
     // iterate through each display until the primary is found, default to display 0
-    wxSharedPtr<wxDisplay> display(new wxDisplay(static_cast<unsigned int>(0)));
+    wxSharedPtr<wxDisplay> display;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); ++i) {
+        display.reset(new wxDisplay(i));
         if (display->IsPrimary()) {
             break;
         }
-
-        display = new wxDisplay(i);
     }
 
     // Get a 'sensible' location on the primary display in case we can't fit it into the window
@@ -1625,20 +1624,25 @@ const wxString __(const char* c)
 void mmSetSize(wxWindow* w)
 {
     auto name = w->GetName();
-    wxSize my_size;
+    wxRect my_rect;
 
     if (name == "Split Transaction Dialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE", wxDefaultSize);
+        my_rect = Model_Infotable::instance().GetRectSetting("SPLITTRANSACTION_DIALOG_SIZE");
     }
     else if (name == "Organize Categories") {
-        my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE", wxDefaultSize);
+        my_rect = Model_Infotable::instance().GetRectSetting("CATEGORIES_DIALOG_SIZE");
+    }
+    else if (name == "Transactions Dialog") {
+        my_rect = Model_Infotable::instance().GetRectSetting("TRANSACTION_DIALOG_SIZE");
     }
 
-    wxRect rect = GetDefaultMonitorRect();
-    int defValX = rect.GetX() - 50;
-    int defValY = rect.GetY() - 50;
-    if (my_size.GetWidth() > defValX || my_size.GetHeight() > defValY) {
-        w->SetSize(my_size);
+    wxSharedPtr<wxDisplay> display(new wxDisplay(w));
+    wxRect display_rect = display.get()->GetGeometry();
+
+    if (display_rect.Contains(my_rect))
+    {
+        w->SetPosition(wxPoint(my_rect.x, my_rect.y));
+        w->SetSize(wxSize(my_rect.width, my_rect.height));
     }
     else {
         w->Fit();
