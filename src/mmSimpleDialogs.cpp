@@ -126,8 +126,7 @@ bool mmComboBoxAccount::IsAccountValid(wxWindow* w) const
 /* --------------------------------------------------------- */
 
 wxBEGIN_EVENT_TABLE(mmComboBoxPayee, mmComboBox)
-EVT_TEXT(wxID_ANY, mmComboBoxPayee::
-)
+EVT_TEXT(wxID_ANY, mmComboBoxPayee::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
