@@ -138,14 +138,13 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
 
 void mmComboBoxPayee::Create()
 {
-    unsigned int i = 0;
     wxArrayString auto_complite;
     all_payees_ = Model_Payee::instance().all_payees();
     for (const auto& item : all_payees_)
     {
         auto_complite.Add(item.first);
-        this->Insert(item.first, i++);
     }
+    this->Insert(auto_complite, 0);
     this->AutoComplete(auto_complite);
     if (auto_complite.GetCount() == 1)
         Select(0);
