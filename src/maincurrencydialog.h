@@ -44,7 +44,7 @@ class mmMainCurrencyDialog: public wxDialog
 public:
     /// Constructors
     mmMainCurrencyDialog( ) {}
-
+    ~mmMainCurrencyDialog();
     mmMainCurrencyDialog(wxWindow* parent
         , int currencyID = -1, bool bEnableSelect = true);
 
@@ -74,6 +74,7 @@ private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , const wxString& caption = wxTRANSLATE("Currency Dialog")
+        , const wxString& name = "Currency Dialog"
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
