@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013 James Higley
  Copyright (C) 2020 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -89,7 +90,7 @@ void mmPrintableBase::setReportSettings()
 
         json_writer.StartObject();
 
-        if (m_parameters & DATE_RANGE)
+        if ((m_parameters & DATE_RANGE) || (m_parameters & BUDGET_DATES))
         {
             json_writer.Key("REPORTPERIOD");
             json_writer.Int(m_date_selection);
