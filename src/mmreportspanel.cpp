@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -319,17 +319,16 @@ void mmReportsPanel::CreateControls()
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET
                 , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
+            int sel_id = rb_->getDateSelection();
+            wxString sel_name;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
                 m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
+                if (sel_id == e.BUDGETYEARID)
+                    sel_name = e.BUDGETYEARNAME;
             }
-
-            int sel_id = rb_->getDateSelection();
-            if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_date_ranges->GetCount()) {
-                sel_id = 0;
-            }
-            m_date_ranges->SetSelection(sel_id);
+            m_date_ranges->SetStringSelection(sel_name);
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
@@ -404,6 +403,7 @@ void mmReportsPanel::OnBudgetChanged(wxCommandEvent& event)
     const auto i = event.GetString();
     wxLogDebug("-------- %s", i);
     saveReportText(false);
+    rb_->setReportSettings();
 }
 
 
@@ -420,8 +420,6 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
         rb_->setSelection(i);
         rb_->setReportSettings();
     }
-
-
     saveReportText(false);
 }
 
