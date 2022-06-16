@@ -66,6 +66,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelection() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
 
+    this->SetFont(parent->GetFont());
     Create(parent, name);
 
     const wxAcceleratorEntry entries[] =

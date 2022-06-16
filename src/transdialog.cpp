@@ -163,6 +163,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         mmAttachmentManage::CloneAllAttachments(RefType, transaction_id, -1);
     }
 
+    this->SetFont(parent->GetFont());
     Create(parent);
     dataToControls();
 

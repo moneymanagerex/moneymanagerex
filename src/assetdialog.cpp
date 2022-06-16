@@ -73,6 +73,7 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asse
         }
     }
 
+    this->SetFont(parent->GetFont());
     Create(parent, wxID_ANY, m_dialog_heading);
 }
 

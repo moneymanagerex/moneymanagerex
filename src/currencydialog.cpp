@@ -80,6 +80,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
         m_currency->GROUP_SEPARATOR = ",";
     }
 
+    this->SetFont(parent->GetFont());
     Create(parent);
     SetMinSize(wxSize(300, 420));
     Fit();

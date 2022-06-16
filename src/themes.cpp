@@ -128,6 +128,7 @@ void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
 
 mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
 {
+    this->SetFont(parent->GetFont());
     Create(parent, name);
 }
 

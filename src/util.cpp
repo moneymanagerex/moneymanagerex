@@ -1649,3 +1649,16 @@ void mmSetSize(wxWindow* w)
         w->Fit();
     }
 }
+
+void mmFontSize(wxWindow* widget)
+{
+    int t[4] = { 16, 24, 32, 48 };
+    int x = Option::instance().getIconSize();
+    for (const auto entry : t)
+    {
+        if (entry < x)
+            widget->SetFont(widget->GetFont().Larger());
+        else
+            break;
+    }
+}

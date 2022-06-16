@@ -64,6 +64,7 @@ mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     m_currency = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
 
+    this->SetFont(parent->GetFont());
     Create(parent);
 }
 
