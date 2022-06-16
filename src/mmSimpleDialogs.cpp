@@ -42,13 +42,11 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
 
 void mmComboBox::Create()
 {
-    unsigned int i = 0;
     wxArrayString auto_complite;
-    for (const auto& item : all_elements_)
-    {
+    for (const auto& item : all_elements_) {
         auto_complite.Add(item.first);
-        this->Insert(item.first, i++);
     }
+    this->Insert(auto_complite, 0);
     this->AutoComplete(auto_complite);
     if (auto_complite.GetCount() == 1)
         Select(0);
