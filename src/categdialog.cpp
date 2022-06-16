@@ -106,6 +106,7 @@ mmCategDialog::mmCategDialog(wxWindow* parent
         m_hidden_categs.Add(token.GetNextToken());
     }
 
+    this->SetFont(parent->GetFont());
     Create(parent);
       const wxAcceleratorEntry entries[] =
     {

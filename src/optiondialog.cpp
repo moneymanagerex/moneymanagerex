@@ -56,6 +56,7 @@ mmOptionsDialog::~mmOptionsDialog( )
 
 mmOptionsDialog::mmOptionsDialog(wxWindow* parent, mmGUIApp* app): m_app(app)
 {
+    this->SetFont(parent->GetFont());
     Create(parent);
     SetMinSize(wxSize(500, 400));
 }

@@ -273,3 +273,4 @@ wxString HTMLEncode(wxString input);
 const wxString __(const char* c);
 
 void mmSetSize(wxWindow* w);
+void mmFontSize(wxWindow* widget);

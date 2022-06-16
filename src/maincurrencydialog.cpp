@@ -81,6 +81,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[BASE_RATE]   = bHistoryEnabled_ ? _("Last Rate") : _("Fixed Rate");
 
     m_currency_id = currencyID == -1 ? Option::instance().getBaseCurrencyID() : currencyID;
+    this->SetFont(parent->GetFont());
     Create(parent);
     bEnableSelect_ ? SetMinSize(wxSize(200, 350)) : SetMinSize(wxSize(500, 350));
     mmSetSize(this);

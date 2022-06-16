@@ -127,7 +127,6 @@ private:
     wxStaticText* m_header_balance;
     wxStaticText* m_info_panel;
     wxStaticText* m_info_panel_mini;
-    wxStaticText* m_statTextTransFilter;
 
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
