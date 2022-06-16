@@ -50,14 +50,13 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize siz
 
 void mmComboBoxAccount::Create()
 {
-    unsigned int i = 0;
     wxArrayString auto_complite;
     all_accounts_ = Model_Account::instance().all_accounts();
     for (const auto& item : all_accounts_)
     {
         auto_complite.Add(item.first);
-        this->Insert(item.first, i++);
     }
+    this->Insert(auto_complite, 0);
     this->AutoComplete(auto_complite);
     if (auto_complite.GetCount() == 1)
         Select(0);
@@ -226,14 +225,13 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
 
 void mmComboBoxCategory::Create()
 {
-    unsigned int i = 0;
     wxArrayString auto_complite;
     all_categories_ = Model_Category::instance().all_categories();
     for (const auto& item : all_categories_)
     {
         auto_complite.Add(item.first);
-        this->Insert(item.first, i++);
     }
+    this->Insert(auto_complite, 0);
     this->AutoComplete(auto_complite);
     Bind(wxEVT_CHAR_HOOK, &mmComboBoxCategory::OnKeyPressed, this);
 }
