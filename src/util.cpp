@@ -1641,6 +1641,8 @@ void mmSetSize(wxWindow* w)
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();
+    display_rect.SetX(0);
+    display_rect.SetY(0);
 
     if (display_rect.Contains(my_size)) {
         w->SetSize(my_size);
