@@ -100,7 +100,6 @@ public:
     );
     int mmGetCategoryId() const;
     int mmGetSubcategoryId() const;
-    bool mmIsCategoryValid() const;
     void mmInitList();
 private:
     std::map<wxString, std::pair<int, int> > all_categories_;

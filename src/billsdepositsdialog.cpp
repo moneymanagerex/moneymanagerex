@@ -900,7 +900,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (m_bill_data.local_splits.empty())
     {
-        if (!cbCategory_->mmIsCategoryValid()) {
+        if (!cbCategory_->mmIsValid()) {
             return mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
         }
         m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
@@ -1418,7 +1418,7 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
         break;
     case mmID_CATEGORY:
         cbCategory_->ChangeValue(cbCategory_->GetValue());
-        if (cbCategory_->mmIsCategoryValid()) {
+        if (cbCategory_->mmIsValid()) {
             m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
             m_bill_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
         }

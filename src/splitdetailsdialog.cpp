@@ -176,7 +176,7 @@ void SplitDetailDialog::OnButtonOKClick(wxCommandEvent& event)
         return;
     }
 
-    if (!cbCategory_->mmIsCategoryValid()) {
+    if (!cbCategory_->mmIsValid()) {
         return mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
     }
     split_.CATEGID = cbCategory_->mmGetCategoryId();

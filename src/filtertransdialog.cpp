@@ -1459,7 +1459,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        if (categoryComboBox_->mmIsCategoryValid())
+        if (categoryComboBox_->mmIsValid())
         {
             int categ = categoryComboBox_->mmGetCategoryId();
             int subcateg = categoryComboBox_->mmGetSubcategoryId();

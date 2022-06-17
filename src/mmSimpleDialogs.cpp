@@ -217,25 +217,25 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
     }
 }
 
-bool mmComboBoxCategory::mmIsCategoryValid() const
-{
-    return (all_categories_.count(GetValue()) == 1);
-}
 
 void mmComboBoxCategory::mmInitList()
 {
     if (!is_initialized_) {
         static wxArrayString auto_complete;
         static std::map<wxString, std::pair<int, int> > all_categories;
+        static std::map<wxString, int> all_categ;
         if (auto_complete.empty())
         {
+            int i = 0;
             all_categories = Model_Category::instance().all_categories();
             for (const auto& item : all_categories) {
                 auto_complete.Add(item.first);
+                all_categ[item.first] = i++;
             }
             auto_complete.Sort(CaseInsensitiveCmp);
         }
 
+        all_elements_ = all_categ;
         all_categories_ = all_categories;
 
         if (!auto_complete.empty()) {
@@ -249,7 +249,7 @@ void mmComboBoxCategory::mmInitList()
 int mmComboBoxCategory::mmGetCategoryId() const
 {
     auto text = GetValue();
-    if (all_categories_.count(text) == 1)
+    if (all_elements_.count(text) == 1)
         return all_categories_.at(text).first;
     else
         return -1;
