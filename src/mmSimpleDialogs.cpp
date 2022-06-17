@@ -97,13 +97,13 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
     }
 #endif
 
-/*    for (const auto& item : all_elements_) {
+    for (const auto& item : all_elements_) {
         if (item.first.CmpNoCase(typedText) == 0) {
             element_id_ = all_elements_.at(item.first);
             ChangeValue(item.first);
             break;
         }
-    }*/
+    }
     this->SetEvtHandlerEnabled(true);
     event.Skip();
 }
