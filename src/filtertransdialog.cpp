@@ -256,7 +256,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     const wxString& s_payee = j_payee.IsString() ? wxString::FromUTF8(j_payee.GetString()) : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
-    cbPayee_->SetValue(s_payee);
+    cbPayee_->ChangeValue(s_payee);
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");

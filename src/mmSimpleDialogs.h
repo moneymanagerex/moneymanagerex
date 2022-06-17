@@ -53,9 +53,6 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-inline int mmComboBox::mmGetId() const { return this->element_id_; }
-
-
 class mmComboBoxAccount : public mmComboBox
 {
 public:

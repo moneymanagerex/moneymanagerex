@@ -275,7 +275,7 @@ void mmBDDialog::dataToControls()
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    cbAccount_->SetValue(account ? account->ACCOUNTNAME : "");
+    cbAccount_->ChangeValue(account ? account->ACCOUNTNAME : "");
 
     textNotes_->SetValue(m_bill_data.NOTES);
     textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
@@ -352,7 +352,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     if (m_transfer)
     {
         m_bill_data.TOACCOUNTID = t.TOACCOUNTID;
-        cbToAccount_->SetValue(t.TOACCOUNTNAME);
+        cbToAccount_->ChangeValue(t.TOACCOUNTNAME);
 
         m_bill_data.TOTRANSAMOUNT = t.TOTRANSAMOUNT;
         toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
@@ -365,7 +365,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     else
     {
         m_bill_data.PAYEEID = t.PAYEEID;
-        cbPayee_->SetValue(t.PAYEENAME);
+        cbPayee_->ChangeValue(t.PAYEENAME);
     }
 
     if (t.has_split())
@@ -756,7 +756,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
             m_bill_data.CATEGID = payee->CATEGID;
             m_bill_data.SUBCATEGID = payee->SUBCATEGID;
 
-                cbCategory_->SetValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
+                cbCategory_->ChangeValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
         }
     }
 }
@@ -1334,7 +1334,7 @@ void mmBDDialog::setCategoryLabel()
     else
     {
         fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
-        cbCategory_->SetValue(fullCategoryName);
+        cbCategory_->ChangeValue(fullCategoryName);
     }
 
     bCategory_->SetLabelText(fullCategoryName);
@@ -1404,20 +1404,20 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
     switch (object_in_focus_)
     {
     case mmID_ACCOUNTNAME:
-        cbAccount_->SetValue(cbAccount_->GetValue());
+        cbAccount_->ChangeValue(cbAccount_->GetValue());
         if (cbAccount_->mmIsValid())
             m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
         break;
     case mmID_TOACCOUNTNAME:
-        cbToAccount_->SetValue(cbToAccount_->GetValue());
+        cbToAccount_->ChangeValue(cbToAccount_->GetValue());
         if (cbToAccount_->mmIsValid())
             m_bill_data.TOACCOUNTID = cbToAccount_->mmGetId();
         break;
     case mmID_PAYEE:
-        cbPayee_->SetValue(cbPayee_->GetValue());
+        cbPayee_->ChangeValue(cbPayee_->GetValue());
         break;
     case mmID_CATEGORY:
-        cbCategory_->SetValue(cbCategory_->GetValue());
+        cbCategory_->ChangeValue(cbCategory_->GetValue());
         if (cbCategory_->mmIsValid()) {
             m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
             m_bill_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();

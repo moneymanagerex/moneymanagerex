@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006-2012 Madhan Kanagavel
  Copyright (C) 2013-2016, 2020 - 2022 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
  Modified by: Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
@@ -87,7 +88,7 @@ void SplitDetailDialog::DataToControls()
 {
     const wxString& category_name = Model_Category::full_name(split_.CATEGID
         , split_.SUBCATEGID);
-    cbCategory_->SetValue(category_name);
+    cbCategory_->ChangeValue(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
         m_text_amount->SetValue(fabs(split_.SPLITTRANSAMOUNT), Model_Currency::precision(m_currency));
@@ -204,7 +205,7 @@ void SplitDetailDialog::OnFocusChange(wxChildFocusEvent& event)
     switch (object_in_focus_)
     {
     case mmID_CATEGORY:
-        cbCategory_->SetValue(cbCategory_->GetValue());
+        cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
     case mmID_AMOUNT:
         if (m_text_amount->Calculate(Model_Currency::precision(log10(m_currency->SCALE)))) {

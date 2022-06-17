@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006-2012 Madhan Kanagavel
 Copyright (C) 2013 - 2016, 2020 - 2022 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -132,7 +133,7 @@ void mmSplitTransactionDialog::CreateControls()
             cb->SetValue(true);
             const auto categ = Model_Category::full_name(m_splits.at(i).CATEGID
                 , m_splits.at(i).SUBCATEGID);
-            cbc->SetValue(categ);
+            cbc->ChangeValue(categ);
             val->SetValue(m_splits.at(i).SPLITTRANSAMOUNT, m_currency);
         }
 
@@ -353,7 +354,7 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     auto name = wxString::Format("category_box%i", row_num_);
     auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
     if (cbc) {
-        cbc->SetValue(cbc->GetValue());
+        cbc->ChangeValue(cbc->GetValue());
     }
 
     name = wxString::Format("value_box%i", row_num_);

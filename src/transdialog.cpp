@@ -253,11 +253,11 @@ void mmTransDialog::dataToControls()
     {
         Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
         if (acc)
-            cbAccount_->SetValue(acc->ACCOUNTNAME);
+            cbAccount_->ChangeValue(acc->ACCOUNTNAME);
 
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         if (to_acc) {
-            cbToAccount_->SetValue(to_acc->ACCOUNTNAME);
+            cbToAccount_->ChangeValue(to_acc->ACCOUNTNAME);
         }
 
         skip_account_init_ = true;
@@ -334,7 +334,7 @@ void mmTransDialog::dataToControls()
         else
         {
             auto fullCategoryName = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
-            cbCategory_->SetValue(fullCategoryName);
+            cbCategory_->ChangeValue(fullCategoryName);
         }
 
         skip_category_init_ = true;
@@ -775,20 +775,20 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     switch (object_in_focus_)
     {
     case mmID_ACCOUNTNAME:
-        cbAccount_->SetValue(cbAccount_->GetValue());
+        cbAccount_->ChangeValue(cbAccount_->GetValue());
         if (cbAccount_->mmIsValid())
             m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
         break;
     case mmID_TOACCOUNTNAME:
-        cbToAccount_->SetValue(cbToAccount_->GetValue());
+        cbToAccount_->ChangeValue(cbToAccount_->GetValue());
         if (cbToAccount_->mmIsValid())
             m_trx_data.TOACCOUNTID = cbToAccount_->mmGetId();
         break;
     case mmID_PAYEE:
-        cbPayee_->SetValue(cbPayee_->GetValue());
+        cbPayee_->ChangeValue(cbPayee_->GetValue());
         break;
     case mmID_CATEGORY:
-        cbCategory_->SetValue(cbCategory_->GetValue());
+        cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
     case mmID_TEXTAMOUNT:
     {
@@ -859,7 +859,7 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
 
         if (m_local_splits.size() == 1) {
             auto categ = Model_Category::full_name(m_local_splits[0].CATEGID, m_local_splits[0].SUBCATEGID);
-            cbCategory_->SetValue(categ);
+            cbCategory_->ChangeValue(categ);
             m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
             m_local_splits.clear();
             skip_category_init_ = true;
@@ -963,7 +963,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 mmCategDialog dlg(this, true, -1, -1);
                 if (dlg.ShowModal() == wxID_OK) {
                     category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
-                    cbCategory_->SetValue(category);
+                    cbCategory_->ChangeValue(category);
                 }
             }
         }

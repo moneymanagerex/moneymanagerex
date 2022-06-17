@@ -1,6 +1,7 @@
 /*******************************************************
-Copyright (C) 2014 Stefano Giorgio
+ Copyright (C) 2014 Stefano Giorgio
  Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -126,7 +127,7 @@ void OptionSettingsGeneral::Create()
     m_currency_id = currency ? currency->CURRENCYID : -1;
     baseCurrencyComboBox_ = new mmComboBoxCurrency(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     baseCurrencyComboBox_->SetMinSize(wxSize(200, -1));
-    baseCurrencyComboBox_->SetValue(currName);
+    baseCurrencyComboBox_->ChangeValue(currName);
     mmToolTip(baseCurrencyComboBox_, _("Sets the database default Currency using the 'Currency Dialog'"));
     currencyBaseSizer->Add(baseCurrencyComboBox_, g_flagsH);
 
