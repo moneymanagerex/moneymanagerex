@@ -1015,14 +1015,14 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
         {
             m_trx_data.CATEGID = payee->CATEGID;
             m_trx_data.SUBCATEGID = payee->SUBCATEGID;
-            bCategory_->SetLabelText(Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID));
+            cbCategory_->ChangeValue(Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID));
             wxLogDebug("Category: %s = %.2f", bCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
         }
         else
         {
-            bCategory_->SetLabelText(_("Select Category"));
             m_trx_data.CATEGID = -1;
             m_trx_data.SUBCATEGID = -1;
+            cbCategory_->ChangeValue("");
         }
     }
 }
