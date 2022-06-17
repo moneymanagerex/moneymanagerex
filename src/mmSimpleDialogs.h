@@ -39,12 +39,12 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    void Create();
     void mmSetId(int id);
     int mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
 protected:
+    void Init();
     void OnTextUpdated(wxCommandEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
     std::map<wxString, int> all_elements_;
