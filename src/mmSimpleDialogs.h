@@ -41,15 +41,14 @@ public:
     );
     void Create();
     void mmSetId(int id);
-    const wxString mmGetPattern() const;
     int mmGetId() const;
+    const wxString mmGetPattern() const;
     bool mmIsValid() const;
 protected:
     void OnTextUpdated(wxCommandEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
     std::map<wxString, int> all_elements_;
 private:
-    int element_id_;
     wxDECLARE_EVENT_TABLE();
 };
 
