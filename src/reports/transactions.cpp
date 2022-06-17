@@ -387,7 +387,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
-        if (full_tran.has_split()) 
+        if (dlg.get()->mmIsCategoryChecked() && full_tran.has_split()) 
         {
             const auto& value = dlg.get()->mmGetCategoryPattern();
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
