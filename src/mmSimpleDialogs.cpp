@@ -40,7 +40,7 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
-void mmComboBox::Create()
+void mmComboBox::Init()
 {
     wxArrayString auto_complete;
     for (const auto& item : all_elements_) {
@@ -151,7 +151,7 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize siz
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Account::instance().all_accounts(true);
-    Create();
+    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -160,7 +160,7 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Payee::instance().all_payees();
-    Create();
+    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -169,7 +169,7 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Currency::instance().all_currency();
-    Create();
+    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -183,7 +183,7 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
     {
         all_elements_[item.first] = i++;
     }
-    Create();
+    Init();
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const
