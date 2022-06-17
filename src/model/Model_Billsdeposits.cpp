@@ -431,3 +431,12 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
 }
+
+wxString Model_Billsdeposits::Full_Data::real_payee_name() const
+{
+    if (TYPE::TRANSFER == type(this->TRANSCODE))
+    {
+            return ("> " + this->ACCOUNTNAME);
+    }
+    return this->PAYEENAME;
+}

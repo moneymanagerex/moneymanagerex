@@ -97,6 +97,7 @@ public:
         wxString PAYEENAME;
         wxString CATEGNAME;
         Model_Budgetsplittransaction::Data_Set m_bill_splits;
+        wxString real_payee_name() const;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
