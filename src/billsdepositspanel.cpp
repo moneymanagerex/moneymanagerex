@@ -461,7 +461,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_ACCOUNT:
         return bill.ACCOUNTNAME;
     case COL_PAYEE:
-        return bill.PAYEENAME;
+        return bill.real_payee_name();
     case COL_STATUS:
         return bill.STATUS;
     case COL_CATEGORY:
