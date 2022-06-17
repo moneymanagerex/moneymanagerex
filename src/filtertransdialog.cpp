@@ -94,6 +94,10 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
         m_settings_json = selected;
 
     mmDoDataToControls(m_settings_json);
+    wxCommandEvent e(wxID_APPLY);
+    OnSettingsSelected(e);
+    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const wxString& json)
@@ -105,6 +109,8 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
     mmDoInitVariables();
     mmDoCreate(parent);
     mmDoDataToControls(json);
+    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 }
 
 void mmFilterTransactionsDialog::mmDoInitVariables()
@@ -256,7 +262,11 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     const wxString& s_payee = j_payee.IsString() ? wxString::FromUTF8(j_payee.GetString()) : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
-    cbPayee_->ChangeValue(s_payee);
+    if (payeeCheckBox_->IsChecked())
+    {
+        cbPayee_->mmInitListPayee();
+        cbPayee_->ChangeValue(s_payee);
+    }
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
@@ -278,7 +288,10 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 
     categoryCheckBox_->SetValue(!s_category.IsEmpty());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
-    categoryComboBox_->SetLabelText(s_category);
+    if (categoryCheckBox_->IsChecked()) {
+        categoryComboBox_->mmInitList();
+        categoryComboBox_->ChangeValue(s_category);
+    }
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
@@ -517,17 +530,16 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Payee
-    payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Payee")
+    payeeCheckBox_ = new wxCheckBox(itemPanel, mmID_PAYEE, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
-    cbPayee_ = new mmComboBoxPayee(itemPanel, wxID_ANY);
+    cbPayee_ = new mmComboBoxPayee(itemPanel, mmID_PAYEE, wxDefaultSize, false);
     cbPayee_->SetMinSize(wxSize(220, -1));
-
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
 
     // Category
-    categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
+    categoryCheckBox_ = new wxCheckBox(itemPanel, mmID_CATEGORY, _("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
@@ -536,9 +548,8 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
     itemPanelSizer->Add(categSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
-    categoryComboBox_ = new mmComboBoxCategory(itemPanel, wxID_ANY);
+    categoryComboBox_ = new mmComboBoxCategory(itemPanel, mmID_CATEGORY, wxDefaultSize, false);
     categSizer->Add(categoryComboBox_, g_flagsExpand);
-
 
     // Status
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
@@ -687,8 +698,6 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     m_setting_name = new wxChoice(this, wxID_APPLY);
     settings_box_sizer->Add(m_setting_name, g_flagsExpand);
     mmDoInitSettingNameChoice();
-    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
-        , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE, mmBitmapButtonSize));
@@ -760,9 +769,6 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     }
     Fit();
 
-    wxCommandEvent e(wxID_APPLY);
-    OnSettingsSelected(e);
-
     Center();
     this->SetSizer(box_sizer);
 
@@ -806,7 +812,13 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     }
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
+    if (event.GetId() == mmID_PAYEE && payeeCheckBox_->IsChecked()) {
+        cbPayee_->mmInitListPayee();
+    }
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
+    if (event.GetId() == mmID_CATEGORY && categoryCheckBox_->IsChecked()) {
+        categoryComboBox_->mmInitList();
+    }
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
@@ -1447,7 +1459,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        if (categoryComboBox_->mmIsValid())
+        if (categoryComboBox_->mmIsCategoryValid())
         {
             int categ = categoryComboBox_->mmGetCategoryId();
             int subcateg = categoryComboBox_->mmGetSubcategoryId();

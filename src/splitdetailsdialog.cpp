@@ -31,13 +31,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 wxIMPLEMENT_DYNAMIC_CLASS(SplitDetailDialog, wxDialog);
 
-enum
-{
-    mmID_TYPE = wxID_HIGHEST + 1800,
-    mmID_CATEGORY,
-    mmID_AMOUNT,
-};
-
 wxBEGIN_EVENT_TABLE(SplitDetailDialog, wxDialog)
     EVT_CHILD_FOCUS(SplitDetailDialog::OnFocusChange)
     EVT_BUTTON(wxID_OK, SplitDetailDialog::OnButtonOKClick)
@@ -183,7 +176,7 @@ void SplitDetailDialog::OnButtonOKClick(wxCommandEvent& event)
         return;
     }
 
-    if (!cbCategory_->mmIsValid()) {
+    if (!cbCategory_->mmIsCategoryValid()) {
         return mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
     }
     split_.CATEGID = cbCategory_->mmGetCategoryId();

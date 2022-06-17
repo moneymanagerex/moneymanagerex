@@ -35,16 +35,17 @@ class wxButton;
 class mmComboBox : public wxComboBox
 {
 public:
+    ~mmComboBox();
     mmComboBox(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    void Create();
     void mmSetId(int id);
     int mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
 protected:
+    void mmInit();
     void OnTextUpdated(wxCommandEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
     std::map<wxString, int> all_elements_;
@@ -69,7 +70,11 @@ public:
     mmComboBoxPayee(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
+        , bool init = true
     );
+    void mmInitListPayee();
+private:
+    bool is_initialized_;
 };
 
 /* -------------------------------------------- */
@@ -91,11 +96,15 @@ public:
     mmComboBoxCategory(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
+        , bool init = true
     );
     int mmGetCategoryId() const;
     int mmGetSubcategoryId() const;
+    bool mmIsCategoryValid() const;
+    void mmInitList();
 private:
     std::map<wxString, std::pair<int, int> > all_categories_;
+    bool is_initialized_;
 };
 
 /* -------------------------------------------- */

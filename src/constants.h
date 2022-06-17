@@ -139,11 +139,15 @@ extern const wxString g_fiat_curr();
 enum id
 {
     mmID_HOMEPAGE = wxID_HIGHEST + 1,
+    mmID_AMOUNT,
     mmID_BILLS,
     mmID_STOCKS,
     mmID_ASSETS,
     mmID_BUDGET,
     mmID_REPORTS,
+    mmID_PAYEE,
+    mmID_TYPE,
+    mmID_CATEGORY,
     mmID_CHECKING,
     mmID_ALLTRANSACTIONS,
     mmID_BROWSER,

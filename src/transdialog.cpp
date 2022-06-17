@@ -679,7 +679,7 @@ bool mmTransDialog::ValidateData()
 
     if (m_local_splits.empty())
     {
-        if (!cbCategory_->mmIsValid()) {
+        if (!cbCategory_->mmIsCategoryValid()) {
             mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
             return false;
         }
@@ -838,7 +838,7 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
         m_trx_data.TRANSAMOUNT = 0;
     }
 
-    if (m_local_splits.empty() && cbCategory_->mmIsValid())
+    if (m_local_splits.empty() && cbCategory_->mmIsCategoryValid())
     {
         Split s;
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;

@@ -40,16 +40,24 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
-void mmComboBox::Create()
+mmComboBox::~mmComboBox()
+{
+    wxLogDebug("Destroyed %i", GetId());
+}
+
+void mmComboBox::mmInit()
 {
     wxArrayString auto_complete;
     for (const auto& item : all_elements_) {
         auto_complete.Add(item.first);
     }
-    auto_complete.Sort(CaseInsensitiveCmp);
 
-    this->Insert(auto_complete, 0);
-    this->AutoComplete(auto_complete);
+    if (!auto_complete.empty()) {
+        auto_complete.Sort(CaseInsensitiveCmp);
+        this->Insert(auto_complete, 0);
+        this->AutoComplete(auto_complete);
+    }
+
     if (auto_complete.GetCount() == 1)
         Select(0);
 }
@@ -151,16 +159,7 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize siz
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Account::instance().all_accounts(true);
-    Create();
-}
-
-/* --------------------------------------------------------- */
-
-mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
-{
-    all_elements_ = Model_Payee::instance().all_payees();
-    Create();
+    mmInit();
 }
 
 /* --------------------------------------------------------- */
@@ -169,21 +168,82 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Currency::instance().all_currency();
-    Create();
+    mmInit();
 }
 
 /* --------------------------------------------------------- */
 
-mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
+mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size, bool init)
     : mmComboBox(parent, id, size)
+    , is_initialized_(false)
 {
-    int i = 0;
-    all_categories_ = Model_Category::instance().all_categories();
-    for (const auto& item : all_categories_)
-    {
-        all_elements_[item.first] = i++;
+    if (init) {
+        mmInitListPayee();
     }
-    Create();
+}
+
+void mmComboBoxPayee::mmInitListPayee()
+{
+    if (!is_initialized_) {
+        static wxArrayString auto_complete;
+        if (auto_complete.empty())
+        {
+            all_elements_ = Model_Payee::instance().all_payees();
+            for (const auto& item : all_elements_) {
+                auto_complete.Add(item.first);
+            }
+            auto_complete.Sort(CaseInsensitiveCmp);
+        }
+
+        if (!auto_complete.empty()) {
+            this->Insert(auto_complete, 0);
+            this->AutoComplete(auto_complete);
+        }
+        is_initialized_ = true;
+
+        if (auto_complete.GetCount() == 1)
+            Select(0);
+    }
+}
+
+/* --------------------------------------------------------- */
+
+mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size, bool init)
+    : mmComboBox(parent, id, size)
+    , is_initialized_(false)
+{
+    if (init) {
+        mmInitList();
+    }
+}
+
+bool mmComboBoxCategory::mmIsCategoryValid() const
+{
+    return (all_categories_.count(GetValue()) == 1);
+}
+
+void mmComboBoxCategory::mmInitList()
+{
+    if (!is_initialized_) {
+        static wxArrayString auto_complete;
+        static std::map<wxString, std::pair<int, int> > all_categories;
+        if (auto_complete.empty())
+        {
+            all_categories = Model_Category::instance().all_categories();
+            for (const auto& item : all_categories) {
+                auto_complete.Add(item.first);
+            }
+            auto_complete.Sort(CaseInsensitiveCmp);
+        }
+
+        all_categories_ = all_categories;
+
+        if (!auto_complete.empty()) {
+            this->Insert(auto_complete, 0);
+            this->AutoComplete(auto_complete);
+        }
+        is_initialized_ = true;
+    }
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const

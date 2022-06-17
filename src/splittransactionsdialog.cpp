@@ -304,7 +304,7 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
     {
         name = wxString::Format("category_box%i", i);
         auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
-        if (cbc->mmIsValid()) {
+        if (cbc->mmIsCategoryValid()) {
             name = wxString::Format("check_box%i", i);
             auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
             if (cb) {
@@ -327,7 +327,7 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int i)
     name = wxString::Format("value_box%i", i);
     auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
 
-    if (!cbc->mmIsValid()) {
+    if (!cbc->mmIsCategoryValid()) {
         mmErrorDialogs::InvalidCategory(cbc, true);
         return false;
     }
