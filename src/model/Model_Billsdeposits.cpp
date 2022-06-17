@@ -436,7 +436,7 @@ wxString Model_Billsdeposits::Full_Data::real_payee_name() const
 {
     if (TYPE::TRANSFER == type(this->TRANSCODE))
     {
-            return ("> " + this->ACCOUNTNAME);
+            return ("> " + this->PAYEENAME);
     }
     return this->PAYEENAME;
 }

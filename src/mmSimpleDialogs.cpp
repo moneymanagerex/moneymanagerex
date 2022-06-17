@@ -60,7 +60,6 @@ void mmComboBox::mmSetId(int id)
     {
         if (item.second == id) {
             ChangeValue(item.first);
-            element_id_ = id;
             break;
         }
     }
@@ -78,7 +77,6 @@ int mmComboBox::mmGetId() const
 void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 {
     this->SetEvtHandlerEnabled(false);
-    /*element_id_ = -1;*/
     const auto& typedText = event.GetString();
 #if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
@@ -146,11 +144,6 @@ const wxString mmComboBox::mmGetPattern() const
 
 bool mmComboBox::mmIsValid() const
 {
-    /*int i = element_id_;
-    auto it = std::find_if(all_elements_.begin(), all_elements_.end(),
-        [&i](const std::pair<wxString, int>& element) { return element.second == i; });
-
-    return it != all_elements_.end();*/
     return (all_elements_.count(GetValue()) == 1);
 }
 
@@ -195,12 +188,6 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
 
 int mmComboBoxCategory::mmGetCategoryId() const
 {
-    /*int i = mmGetId();
-    auto it = std::find_if(all_elements_.begin(), all_elements_.end(),
-        [&i](const std::pair<wxString, int>& element) { return element.second == i; });
-    if (it != all_elements_.end())
-        return all_categories_.at(it->first).first;
-    return -1;*/
     auto text = GetValue();
     if (all_categories_.count(text) == 1)
         return all_categories_.at(text).first;
@@ -210,12 +197,6 @@ int mmComboBoxCategory::mmGetCategoryId() const
 
 int mmComboBoxCategory::mmGetSubcategoryId() const
 {
-    /*int i = mmGetId();
-    auto it = std::find_if(all_elements_.begin(), all_elements_.end(),
-        [&i](const std::pair<wxString, int>& element) { return element.second == i; });
-    if (it != all_elements_.end())
-        return all_categories_.at(it->first).second;
-    return -1;*/
     auto text = GetValue();
     if (all_categories_.count(text) == 1)
         return all_categories_.at(text).second;
