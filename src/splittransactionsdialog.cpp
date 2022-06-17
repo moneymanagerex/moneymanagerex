@@ -344,7 +344,8 @@ void mmSplitTransactionDialog::OnCheckBox(wxCommandEvent& event)
     int i = event.GetId() - wxID_HIGHEST;
 
     if (event.IsChecked()) {
-        mmDoCheckRow(i);
+        if (mmDoCheckRow(i))
+            mmDoEnableLineById(i + 1);
     }
     UpdateSplitTotal();
 }
@@ -361,6 +362,7 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
     if (val) {
         val->Calculate(Model_Currency::precision(m_currency));
+        val->SelectAll();
     }
 
     wxWindow* w = event.GetWindow();
