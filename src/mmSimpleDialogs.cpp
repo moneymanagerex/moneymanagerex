@@ -46,6 +46,8 @@ void mmComboBox::Create()
     for (const auto& item : all_elements_) {
         auto_complete.Add(item.first);
     }
+    auto_complete.Sort(CaseInsensitiveCmp);
+
     this->Insert(auto_complete, 0);
     this->AutoComplete(auto_complete);
     if (auto_complete.GetCount() == 1)
@@ -99,7 +101,6 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 
     for (const auto& item : all_elements_) {
         if (item.first.CmpNoCase(typedText) == 0) {
-            element_id_ = all_elements_.at(item.first);
             ChangeValue(item.first);
             break;
         }
@@ -155,7 +156,7 @@ bool mmComboBox::mmIsValid() const
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
-    all_elements_ = Model_Account::instance().all_accounts();
+    all_elements_ = Model_Account::instance().all_accounts(true);
     Create();
 }
 
