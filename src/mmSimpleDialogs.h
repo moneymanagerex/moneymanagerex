@@ -44,7 +44,6 @@ public:
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
 protected:
-    void Init();
     void OnTextUpdated(wxCommandEvent& event);
     void OnSetFocus(wxFocusEvent& event);
     void OnKeyPressed(wxKeyEvent& event);

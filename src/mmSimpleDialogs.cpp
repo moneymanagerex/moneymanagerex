@@ -69,11 +69,6 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
     event.Skip();
 }
 
-void mmComboBox::Init()
-{
-
-}
-
 void mmComboBox::mmSetId(int id)
 {
     for (const auto& item : all_elements_)
@@ -173,7 +168,6 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize siz
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Account::instance().all_accounts(true);
-    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -182,7 +176,6 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Payee::instance().all_payees();
-    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -191,7 +184,6 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Currency::instance().all_currency();
-    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -205,7 +197,6 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
     {
         all_elements_[item.first] = i++;
     }
-    Init();
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const
