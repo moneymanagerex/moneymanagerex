@@ -46,9 +46,11 @@ public:
 protected:
     void Init();
     void OnTextUpdated(wxCommandEvent& event);
+    void OnSetFocus(wxFocusEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
     std::map<wxString, int> all_elements_;
 private:
+    bool is_initialized_;
     wxDECLARE_EVENT_TABLE();
 };
 

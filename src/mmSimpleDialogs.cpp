@@ -31,27 +31,39 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
+EVT_SET_FOCUS(mmComboBox::OnSetFocus)
 EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     : wxComboBox(parent, id, "", wxDefaultPosition, size)
+    , is_initialized_(false)
 {
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
+void mmComboBox::OnSetFocus(wxFocusEvent& event)
+{
+    if (!is_initialized_)
+    {
+        wxArrayString auto_complete;
+        for (const auto& item : all_elements_) {
+            auto_complete.Add(item.first);
+        }
+        auto_complete.Sort(CaseInsensitiveCmp);
+
+        this->Append(auto_complete);
+        this->AutoComplete(auto_complete);
+        if (auto_complete.GetCount() == 1)
+            Select(0);
+        is_initialized_ = true;
+    }
+    event.Skip();
+}
+
 void mmComboBox::Init()
 {
-    wxArrayString auto_complete;
-    for (const auto& item : all_elements_) {
-        auto_complete.Add(item.first);
-    }
-    auto_complete.Sort(CaseInsensitiveCmp);
 
-    this->Insert(auto_complete, 0);
-    this->AutoComplete(auto_complete);
-    if (auto_complete.GetCount() == 1)
-        Select(0);
 }
 
 void mmComboBox::mmSetId(int id)
@@ -146,6 +158,8 @@ bool mmComboBox::mmIsValid() const
 {
     return (all_elements_.count(GetValue()) == 1);
 }
+
+/* --------------------------------------------------------- */
 
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
