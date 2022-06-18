@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Setting.h"
 
 #include <wx/richtooltip.h>
+#include <thread>
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
 EVT_SET_FOCUS(mmComboBox::OnSetFocus)
@@ -42,6 +43,11 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
+void mmDoAppend(wxComboBox* c, const wxArrayString& a)
+{
+    c->Append(a);
+}
+
 void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
     if (!is_initialized_)
@@ -52,7 +58,9 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
         }
         auto_complete.Sort(CaseInsensitiveCmp);
 
-        this->Append(auto_complete);
+        std::thread thr (mmDoAppend, this, auto_complete);
+        thr.detach();
+        //this->Append(auto_complete);
         this->AutoComplete(auto_complete);
         if (auto_complete.GetCount() == 1)
             Select(0);
