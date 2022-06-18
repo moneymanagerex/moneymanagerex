@@ -98,25 +98,24 @@ void OptionSettingsMisc::Create()
 
     wxChoice* defaultDateChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
-        , wxDefaultPosition, wxSize(140, -1), default_values);
+        , wxDefaultPosition, wxDefaultSize, default_values);
     defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
 
     default_values.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
-        , wxDefaultPosition, wxSize(140, -1), default_values);
+        , wxDefaultPosition, wxDefaultSize, default_values);
     defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
 
     default_values[1] = (_("Last used for payee"));
     default_values.Add(_("Use default for payee"));
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
-        , wxDefaultPosition, defaultPayeeChoice->GetSize(), default_values);
+        , wxDefaultPosition, wxDefaultSize, default_values);
     defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelection());
 
     wxChoice* default_status = new wxChoice(this
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS
-        , wxDefaultPosition, defaultDateChoice->GetSize());
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
 
     for (const auto& i : Model_Checking::all_status())
         default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
@@ -126,24 +125,24 @@ void OptionSettingsMisc::Create()
     wxArrayString true_false;
     true_false.Add(wxTRANSLATE("Yes"));
     true_false.Add(wxTRANSLATE("No"));
-    wxChoice* bulk_enter = new wxChoice(this, ID_DIALOG_OPTIONS_BULK_ENTER
-        , wxDefaultPosition, defaultDateChoice->GetSize());
+    wxChoice* bulk_enter = new wxChoice(this, ID_DIALOG_OPTIONS_BULK_ENTER);
     for (const auto& i : true_false)
         bulk_enter->Append(wxGetTranslation(i), new wxStringClientData(i));
     bulk_enter->SetSelection(Option::instance().get_bulk_transactions() ? 0 : 1);
 
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    newTransflexGridSizer->AddGrowableCol(1, 0);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Date:")), g_flagsH);
-    newTransflexGridSizer->Add(defaultDateChoice, g_flagsH);
+    newTransflexGridSizer->Add(defaultDateChoice, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Payee:")), g_flagsH);
-    newTransflexGridSizer->Add(defaultPayeeChoice, g_flagsH);
+    newTransflexGridSizer->Add(defaultPayeeChoice, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Category:")), g_flagsH);
-    newTransflexGridSizer->Add(defaultCategoryChoice, g_flagsH);
+    newTransflexGridSizer->Add(defaultCategoryChoice, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Status:")), g_flagsH);
-    newTransflexGridSizer->Add(default_status, g_flagsH);
+    newTransflexGridSizer->Add(default_status, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Bulk Transactions:")), g_flagsH);
-    newTransflexGridSizer->Add(bulk_enter, g_flagsH);
+    newTransflexGridSizer->Add(bulk_enter, g_flagsExpand);
 
     //----------------------------------------------
     //a bit more space visual appearance
