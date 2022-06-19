@@ -2624,7 +2624,7 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 {
-    mmThemesDialog dlg(this, _("Theme Manager"));
+    mmThemesDialog dlg(this);
     dlg.ShowModal();
 }
 
