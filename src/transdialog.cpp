@@ -799,7 +799,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     case mmID_TOTEXTAMOUNT:
     {
         if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID))) {
-            toTextAmount_->GetDouble(m_trx_data.TRANSAMOUNT);
+            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
