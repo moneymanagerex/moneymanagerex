@@ -55,6 +55,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
+    EVT_COMBOBOX(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
     EVT_BUTTON(mmID_CATEGORY, mmTransDialog::OnCategs)
     EVT_BUTTON(mmID_CATEGORY_SPLIT, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
@@ -301,7 +302,19 @@ void mmTransDialog::dataToControls()
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                 }
             }
-            else
+            else if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::UNUSED)
+            {
+                Model_Payee::Data *payee = Model_Payee::instance().get(_("Unknown"));
+                if (!payee)
+                {
+                    payee = Model_Payee::instance().create();
+                    payee->PAYEENAME = _("Unknown");
+                    Model_Payee::instance().save(payee);
+                    cbPayee_->reInitialize();
+                }
+
+                cbPayee_->ChangeValue(_("Unknown"));
+            } else
             {
                 Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
                 if (payee) cbPayee_->ChangeValue(payee->PAYEENAME);
@@ -611,6 +624,16 @@ bool mmTransDialog::ValidateData()
     }
     m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
 
+    if (m_local_splits.empty())
+    {
+        if (!cbCategory_->mmIsValid()) {
+            mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
+            return false;
+        }
+        m_trx_data.CATEGID = cbCategory_->mmGetCategoryId();
+        m_trx_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
+    }
+
     if (!m_transfer)
     {
         wxString payee_name = cbPayee_->GetValue();
@@ -632,7 +655,7 @@ bool mmTransDialog::ValidateData()
                 , wxString::Format(_("You have not used this payee name before. Is the name correct?\n%s"), payee_name)
                 , _("Confirm payee name")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
-            if (Option::instance().TransCategorySelection() == Option::UNUSED || msgDlg.ShowModal() == wxID_YES)
+            if (msgDlg.ShowModal() == wxID_YES)
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
@@ -677,15 +700,6 @@ bool mmTransDialog::ValidateData()
     }
 
 
-    if (m_local_splits.empty())
-    {
-        if (!cbCategory_->mmIsValid()) {
-            mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
-            return false;
-        }
-        m_trx_data.CATEGID = cbCategory_->mmGetCategoryId();
-        m_trx_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
-    }
 
     /* Check if transaction is to proceed.*/
     Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
@@ -864,6 +878,14 @@ void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
     OnDateChanged(dateEvent);
 }
 
+void mmTransDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
+{
+    Model_Payee::Data * payee = Model_Payee::instance().get(cbPayee_->GetValue());
+    if (payee)
+    {
+        SetCategoryForPayee(payee);
+    }
+}
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
     const wxString old_type = m_trx_data.TRANSCODE;
@@ -940,7 +962,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
 
 void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
-    // Only for new transactions: if user do not want to use categories.
+    // Only for new transactions: if user does not want to use categories.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (Option::instance().TransCategorySelection() == Option::UNUSED
         && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
@@ -951,10 +973,11 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
             category = Model_Category::instance().create();
             category->CATEGNAME = _("Unknown");
             Model_Category::instance().save(category);
+            cbCategory_->reInitialize();
         }
 
         m_trx_data.CATEGID = category->CATEGID;
-        bCategory_->SetLabelText(_("Unknown"));
+        cbCategory_->ChangeValue(_("Unknown"));
         return;
     }
 
