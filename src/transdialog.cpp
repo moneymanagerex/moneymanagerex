@@ -347,7 +347,7 @@ void mmTransDialog::dataToControls()
     bSplit_->Enable(!m_transfer);
     bSplit_->Show(!has_split);
     cbCategory_->Show(!has_split);
-    Layout();
+    Fit();
 
     if (!skip_notes_init_) //Notes & Transaction Number
     {
@@ -830,44 +830,6 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void mmTransDialog::ActivateSplitTransactionsDlg()
-{
-    if (!m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT)) {
-        m_trx_data.TRANSAMOUNT = 0;
-    }
-
-    if (m_local_splits.empty() && cbCategory_->mmIsValid())
-    {
-        Split s;
-        s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
-        s.CATEGID = cbCategory_->mmGetCategoryId();
-        s.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
-        m_local_splits.push_back(s);
-    }
-
-    bool isDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
-    mmSplitTransactionDialog dlg(this, m_local_splits
-        , m_trx_data.ACCOUNTID
-        , isDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
-        , m_trx_data.TRANSAMOUNT);
-
-    if (dlg.ShowModal() == wxID_OK) {
-        m_local_splits = dlg.mmGetResult();
-        skip_category_init_ = false;
-
-        if (m_local_splits.size() == 1) {
-            auto categ = Model_Category::full_name(m_local_splits[0].CATEGID, m_local_splits[0].SUBCATEGID);
-            cbCategory_->ChangeValue(categ);
-            m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
-            m_local_splits.clear();
-            skip_category_init_ = true;
-        }
-
-        m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
-        skip_amount_init_ = false;
-    }
-}
-
 void mmTransDialog::SetDialogTitle(const wxString& title)
 {
     this->SetTitle(title);
@@ -1053,8 +1015,42 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
-    ActivateSplitTransactionsDlg();
+    if (!m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT)) {
+        m_trx_data.TRANSAMOUNT = 0;
+    }
 
+    if (m_local_splits.empty() && cbCategory_->mmIsValid())
+    {
+        Split s;
+        s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
+        s.CATEGID = cbCategory_->mmGetCategoryId();
+        s.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
+        m_local_splits.push_back(s);
+    }
+
+    bool isDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
+    mmSplitTransactionDialog dlg(this, m_local_splits
+        , m_trx_data.ACCOUNTID
+        , isDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
+        , m_trx_data.TRANSAMOUNT);
+
+    dlg.ShowModal();
+
+    m_local_splits = dlg.mmGetResult();
+
+    if (m_local_splits.size() == 1) {
+        m_trx_data.CATEGID = m_local_splits[0].CATEGID;
+        m_trx_data.SUBCATEGID = m_local_splits[0].SUBCATEGID;
+        m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
+        m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+        m_local_splits.clear();
+    }
+
+    if (!m_local_splits.empty()) {
+        m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+    }
+
+    skip_category_init_ = false;
     skip_amount_init_ = false;
     skip_tooltips_init_ = false;
     dataToControls();
