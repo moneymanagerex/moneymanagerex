@@ -61,6 +61,14 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
     event.Skip();
 }
 
+void mmComboBox::reInitialize()
+{
+    init();
+    is_initialized_ = false; 
+    wxFocusEvent evt(wxEVT_SET_FOCUS);
+    OnSetFocus(evt);
+}
+
 void mmComboBox::mmSetId(int id)
 {
     for (const auto& item : all_elements_)
@@ -105,9 +113,11 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 #endif
 
     for (const auto& item : all_elements_) {
-        if ((item.first.CmpNoCase(typedText) == 0) && (item.first.Cmp(typedText) != 0)) {
+        if ((item.first.CmpNoCase(typedText) == 0) /*&& (item.first.Cmp(typedText) != 0)*/) {
             ChangeValue(item.first);
             SetInsertionPointEnd();
+            wxCommandEvent evt(wxEVT_COMBOBOX, this->GetId());
+            AddPendingEvent(evt);
             break;
         }
     }
@@ -156,32 +166,44 @@ bool mmComboBox::mmIsValid() const
 
 /* --------------------------------------------------------- */
 
-mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
+void mmComboBoxAccount::init()
 {
     all_elements_ = Model_Account::instance().all_accounts(true);
 }
 
+mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+{
+    init();
+}
+
 /* --------------------------------------------------------- */
 
-mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
+void mmComboBoxPayee::init()
 {
     all_elements_ = Model_Payee::instance().all_payees();
 }
 
-/* --------------------------------------------------------- */
-
-mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
+mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
-    all_elements_ = Model_Currency::instance().all_currency();
+    init();
 }
 
 /* --------------------------------------------------------- */
 
-mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
+void mmComboBoxCurrency::init()
+{
+    all_elements_ = Model_Currency::instance().all_currency();
+}
+mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
+{
+    init();
+}
+
+/* --------------------------------------------------------- */
+void mmComboBoxCategory::init()
 {
     int i = 0;
     all_categories_ = Model_Category::instance().all_categories();
@@ -189,6 +211,12 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
     {
         all_elements_[item.first] = i++;
     }
+}
+
+mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+{
+    init();
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const

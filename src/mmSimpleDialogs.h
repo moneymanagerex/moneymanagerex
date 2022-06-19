@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Nikolay Akimov
 Copyright (C) 2014 Gabriele-V
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -43,10 +44,12 @@ public:
     int mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
+    void reInitialize();
 protected:
     void OnTextUpdated(wxCommandEvent& event);
     void OnSetFocus(wxFocusEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
+    virtual void init() = 0;
     std::map<wxString, int> all_elements_;
 private:
     bool is_initialized_;
@@ -60,6 +63,8 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
+protected:
+    void init();
 };
 
 /* -------------------------------------------- */
@@ -71,6 +76,8 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
+protected:
+    void init();
 };
 
 /* -------------------------------------------- */
@@ -82,6 +89,8 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
+protected:
+    void init();
 };
 
 /* -------------------------------------------- */
@@ -95,6 +104,8 @@ public:
     );
     int mmGetCategoryId() const;
     int mmGetSubcategoryId() const;
+protected:
+    void init();
 private:
     std::map<wxString, std::pair<int, int> > all_categories_;
 };
