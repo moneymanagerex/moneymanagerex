@@ -47,8 +47,9 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, mmGUIApp* app, const wxStri
     , m_buttonClose(nullptr)
     , m_buttonExit(nullptr)
 {
+    this->SetFont(parent->GetFont());
     const auto caption = wxString::Format("%s - %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, style, name);
     SetMinSize(wxSize(400, 300));
 }
