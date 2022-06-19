@@ -31,27 +31,34 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
+EVT_SET_FOCUS(mmComboBox::OnSetFocus)
 EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     : wxComboBox(parent, id, "", wxDefaultPosition, size)
+    , is_initialized_(false)
 {
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
 }
 
-void mmComboBox::Init()
+void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
-    wxArrayString auto_complete;
-    for (const auto& item : all_elements_) {
-        auto_complete.Add(item.first);
-    }
-    auto_complete.Sort(CaseInsensitiveCmp);
+    if (!is_initialized_)
+    {
+        wxArrayString auto_complete;
+        for (const auto& item : all_elements_) {
+            auto_complete.Add(item.first);
+        }
+        auto_complete.Sort(CaseInsensitiveCmp);
 
-    this->Insert(auto_complete, 0);
-    this->AutoComplete(auto_complete);
-    if (auto_complete.GetCount() == 1)
-        Select(0);
+        this->Append(auto_complete);
+        this->AutoComplete(auto_complete);
+        if (auto_complete.GetCount() == 1)
+            Select(0);
+        is_initialized_ = true;
+    }
+    event.Skip();
 }
 
 void mmComboBox::mmSetId(int id)
@@ -147,11 +154,12 @@ bool mmComboBox::mmIsValid() const
     return (all_elements_.count(GetValue()) == 1);
 }
 
+/* --------------------------------------------------------- */
+
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Account::instance().all_accounts(true);
-    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -160,7 +168,6 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Payee::instance().all_payees();
-    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -169,7 +176,6 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     : mmComboBox(parent, id, size)
 {
     all_elements_ = Model_Currency::instance().all_currency();
-    Init();
 }
 
 /* --------------------------------------------------------- */
@@ -183,7 +189,6 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize s
     {
         all_elements_[item.first] = i++;
     }
-    Init();
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const
