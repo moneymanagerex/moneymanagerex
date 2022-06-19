@@ -335,7 +335,7 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 
 void OptionSettingsView::OnThemeManagerSelected(wxCommandEvent& event)
 {
-    mmThemesDialog dlg(this, _("Theme Manager"));
+    mmThemesDialog dlg(this);
     dlg.ShowModal();
 }
 

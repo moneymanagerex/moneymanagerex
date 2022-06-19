@@ -29,7 +29,8 @@ class mmThemesDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmThemesDialog(wxWindow* parent, const wxString &name = "mmThemesDialog");
+    ~mmThemesDialog();
+    mmThemesDialog(wxWindow* parent, const wxString& name = "Themes Dialog");
 
 private:
 
