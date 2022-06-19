@@ -1641,6 +1641,9 @@ void mmSetSize(wxWindow* w)
     else if (name == "Themes Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("THEMES_DIALOG_SIZE");
     }
+    else if (name == "General Reports Manager") {
+        my_size = Model_Infotable::instance().GetSizeSetting("GRM_DIALOG_SIZE");
+    }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();
