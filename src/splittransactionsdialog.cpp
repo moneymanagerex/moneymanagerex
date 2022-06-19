@@ -102,7 +102,6 @@ void mmSplitTransactionDialog::CreateControls()
 
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     mainSizer->Add(slider_, g_flagsExpandBorder1);
-    slider_->SetMinSize(wxSize(350, 400));
 
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     slider_->SetSizer(dialogMainSizerV);
@@ -145,8 +144,7 @@ void mmSplitTransactionDialog::CreateControls()
         }
     }
 
-    slider_->GetBestVirtualSize();
-    slider_->FitInside();
+    slider_->SetMinSize(slider_->GetBestVirtualSize());
     slider_->SetScrollRate(1, 1);
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -179,6 +177,8 @@ void mmSplitTransactionDialog::CreateControls()
     itemButtonOK_->Enable(!is_view_only_);
 
     SetEvtHandlerEnabled(true);
+
+    Fit();
 }
 
 void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
