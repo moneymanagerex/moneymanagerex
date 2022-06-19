@@ -46,11 +46,11 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
     , m_changed_records(0)
     , m_info(nullptr)
 {
+    this->SetFont(parent->GetFont());
+
     sourcePayeeID_  = source_payee_id;
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-
-    Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxDefaultSize, style);
+    Create(parent);
     SetMinSize(wxSize(500, 300));
 }
 
@@ -84,44 +84,31 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM
-        , sourcePayeeID_ == -1 ? "" : Model_Payee::get_payee_name(sourcePayeeID_));
-    cbSourcePayee_->Append(Model_Payee::instance().all_payee_names());
-    cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
-    cbSourcePayee_->Enable();
-    cbSourcePayee_->SetMinSize(wxSize(180, -1));
+    cbSourcePayee_ = new mmComboBoxPayee(this, wxID_BOTTOM);
+    cbSourcePayee_->mmSetId(sourcePayeeID_);
+    cbSourcePayee_->SetMinSize(wxSize(200, -1));
 
     cbDelete_ = new wxCheckBox(this, wxID_ANY
         , _("Delete source payee after relocation"));
 
-    cbDestPayee_ = new wxComboBox(this, wxID_NEW, "");
-    cbDestPayee_->Append(Model_Payee::instance().all_payee_names());
-    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
-    cbDestPayee_->SetMinSize(wxSize(180, -1));
+    cbDestPayee_ = new mmComboBoxPayee(this, wxID_NEW);
+    cbDestPayee_->SetMinSize(wxSize(200, -1));
 
-    // Event handlers - Mac handles char by char to support non-native autocomplete
-#if defined (__WXMAC__)
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeTextUpdated), nullptr, this);    
-    cbDestPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeTextUpdated), nullptr, this);    
-#else
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
-    cbDestPayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
-#endif
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
-    topSizer->Add(boxSizer, flagsV);
+    topSizer->Add(boxSizer, flagsExpand);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    request_sizer->AddGrowableCol(0, 1);
+    request_sizer->AddGrowableCol(1, 1);
 
     boxSizer->Add(headerText, flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flagsH);
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
-    request_sizer->Add(cbSourcePayee_, flagsH);
-    request_sizer->Add(cbDestPayee_, flagsH);
+    request_sizer->Add(cbSourcePayee_, flagsExpand);
+    request_sizer->Add(cbDestPayee_, flagsExpand);
 
     wxStaticLine* lineMiddle = new wxStaticLine(this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
@@ -249,31 +236,5 @@ void relocatePayeeDialog::IsOkOk()
 
 void relocatePayeeDialog::OnPayeeChanged(wxCommandEvent& WXUNUSED(event))
 {
-    IsOkOk();
-}
-
-void relocatePayeeDialog::OnPayeeTextUpdated(wxCommandEvent& event)
-{
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!!
-
-    wxComboBox* payeeCombo = (event.GetId() == wxID_BOTTOM) ? cbSourcePayee_ : cbDestPayee_;
-    wxString payeeName = event.GetString();
-
-    if (payeeCombo->GetSelection() == wxNOT_FOUND) // make sure nothing is selected (ex. user presses down arrow)
-    {
-        payeeCombo->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-        payeeCombo->Clear();      
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
-        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
-        for (const auto &payee : filtd) {
-            payeeCombo->Insert(payee.PAYEENAME, 0);
-        }
-        payeeCombo->ChangeValue(payeeName);
-        payeeCombo->SetInsertionPointEnd();
-        if (!payeeName.IsEmpty())
-            payeeCombo->Popup();
-        payeeCombo->SetEvtHandlerEnabled(true);
-    }
     IsOkOk();
 }

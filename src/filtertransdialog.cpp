@@ -88,6 +88,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , m_color_value(-1)
     , m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER")
 {
+    this->SetFont(parent->GetFont());
     mmDoInitVariables();
     mmDoCreate(parent);
     if (!selected.empty())
@@ -102,6 +103,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
     , isReportMode_(true)
     , m_filter_key("TRANSACTIONS_FILTER")
 {
+    this->SetFont(parent->GetFont());
     mmDoInitVariables();
     mmDoCreate(parent);
     mmDoDataToControls(json);

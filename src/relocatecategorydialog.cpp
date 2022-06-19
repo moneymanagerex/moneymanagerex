@@ -41,7 +41,7 @@ relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , m_info(nullptr)
     , m_buttonDest(nullptr)
 {
-
+    this->SetFont(parent->GetFont());
     m_sourceCatID    = sourceCatID;
     m_sourceSubCatID = sourceSubCatID;
 
@@ -49,9 +49,7 @@ relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     m_destSubCatID   = -1;
     m_changedRecords =  0;
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Relocate Category Dialog"), wxDefaultPosition, wxDefaultSize, style);
-    SetMinSize(wxSize(500, 300));
+    Create(parent);
 }
 
 bool relocateCategoryDialog::Create(wxWindow* parent
@@ -66,12 +64,12 @@ bool relocateCategoryDialog::Create(wxWindow* parent
 
     CreateControls();
     IsOkOk();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
 
+    SetMinSize(wxSize(500, 300));
     Centre();
+    Fit();
     return TRUE;
 }
 
@@ -100,17 +98,19 @@ void relocateCategoryDialog::CreateControls()
     this->SetSizer(topSizer);
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    request_sizer->AddGrowableCol(0, 1);
+    request_sizer->AddGrowableCol(1, 1);
 
-    topSizer->Add(boxSizer, g_flagsV);
+    topSizer->Add(boxSizer, flagsExpand);
 
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, g_flagsExpand);
 
     request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), flagsH);
     request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), flagsH);
-    request_sizer->Add(m_buttonSource, flagsH);
-    request_sizer->Add(m_buttonDest, flagsH);
-    boxSizer->Add(request_sizer);
+    request_sizer->Add(m_buttonSource, flagsExpand);
+    request_sizer->Add(m_buttonDest, flagsExpand);
+    boxSizer->Add(request_sizer, flagsExpand);
 
     boxSizer->Add(lineBottom, flagsExpand);
 
@@ -127,8 +127,6 @@ void relocateCategoryDialog::CreateControls()
     buttonBoxSizer->Add(okButton, flagsH);
     buttonBoxSizer->Add(cancelButton, flagsH);
     boxSizer->Add(buttonBoxSizer, flagsV);
-
-    this->Fit();
 }
 
 void relocateCategoryDialog::OnSelectSource(wxCommandEvent& WXUNUSED(event))

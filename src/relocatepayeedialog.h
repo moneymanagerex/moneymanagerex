@@ -22,6 +22,7 @@
 #define MM_EX_RELOCATEPAYEEDIALOG_H_
 
 #include "defs.h"
+#include "mmSimpleDialogs.h"
 
 class relocatePayeeDialog : public wxDialog
 {
@@ -36,11 +37,11 @@ public:
 
 private:
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("Relocate Payee Dialog")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX );
 
     void CreateControls();
     void IsOkOk();
@@ -48,13 +49,12 @@ private:
     void OnCancel(wxCommandEvent& event);
 
     void OnPayeeChanged(wxCommandEvent& event);
-    void OnPayeeTextUpdated(wxCommandEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;
 
-    wxComboBox* cbSourcePayee_;
-    wxComboBox* cbDestPayee_;
+    mmComboBoxPayee* cbSourcePayee_;
+    mmComboBoxPayee* cbDestPayee_;
     int m_changed_records;
     wxStaticText* m_info;
     wxCheckBox* cbDelete_;
