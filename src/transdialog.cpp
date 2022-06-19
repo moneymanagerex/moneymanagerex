@@ -167,8 +167,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     Create(parent);
     dataToControls();
 
-    this->SetMinSize(wxSize(380, 480));
     Fit();
+    Centre();
 }
 
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -183,7 +183,6 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_duplicate ? SetDialogTitle(_("Duplicate Transaction")) : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
 
     SetIcon(mmex::getProgramIcon());
-    Centre();
 
     SetEventHandlers();
     SetEvtHandlerEnabled(true);
@@ -596,7 +595,6 @@ void mmTransDialog::CreateControls()
         this->GetEventHandler()->AddPendingEvent(evt);
     }
 
-    Center();
     this->SetSizer(box_sizer);
 }
 
