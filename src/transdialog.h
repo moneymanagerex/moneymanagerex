@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011-2017 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -89,6 +90,7 @@ private:
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
+    void OnPayeeChanged(wxCommandEvent& event);
     void OnTransDateSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
