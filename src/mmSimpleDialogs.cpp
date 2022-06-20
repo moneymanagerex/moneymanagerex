@@ -193,7 +193,7 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
 
 void mmComboBoxUsedPayee::init()
 {
-    all_elements_ = Model_Payee::instance().all_payees(true);
+    all_elements_ = Model_Payee::instance().used_payee_names();
 }
 
 mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size)

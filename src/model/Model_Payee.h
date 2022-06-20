@@ -59,9 +59,9 @@ public:
 
     bool remove(int id);
 
-    const std::map<wxString, int> all_payees(bool is_used = false);
+    const std::map<wxString, int> all_payees();
     const wxArrayString all_payee_names();
-    const wxArrayString used_payee_names();
+    const std::map<wxString, int> used_payee_names();
 
     static bool is_used(int id);
     static bool is_used(const Data* record);
