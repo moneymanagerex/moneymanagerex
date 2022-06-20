@@ -96,27 +96,32 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::all_payees(bool used_only)
+const std::map<wxString, int> Model_Payee::all_payees()
 {
     std::map<wxString, int> payees;
-    for (const auto& payee : this->all(COL_PAYEENAME))
+    for (const auto& payee : this->all())
     {
-        if (!used_only || is_used(payee.PAYEEID)) {
-            payees[payee.PAYEENAME] = payee.PAYEEID;
-        }
+        payees[payee.PAYEENAME] = payee.PAYEEID;
     }
     return payees;
 }
 
-const wxArrayString Model_Payee::used_payee_names()
+const std::map<wxString, int> Model_Payee::used_payee_names()
 {
-    wxArrayString payees;
-    for (const auto &payee : this->all(COL_PAYEENAME))
+    std::map<int, wxString> cache;
+    for (const auto& p : all())
+        cache[p.PAYEEID] = p.PAYEENAME;
+
+    std::map<wxString, int> payees;
+    for (const auto &t : Model_Checking::instance().all())
     {
-        if (is_used(payee.PAYEEID))
-        {
-            payees.Add(payee.PAYEENAME);
-        }
+        if (cache.find(t.PAYEEID) != cache.end())
+            payees[cache.at(t.PAYEEID)] = t.PAYEEID;
+    }
+    for (const auto& b : Model_Billsdeposits::instance().all())
+    {
+        if (cache.find(b.PAYEEID) != cache.end())
+            payees[cache.at(b.PAYEEID)] = b.PAYEEID;
     }
     return payees;
 }
