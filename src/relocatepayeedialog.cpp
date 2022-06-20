@@ -34,7 +34,7 @@ wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_CHILD_FOCUS(relocatePayeeDialog::OnFocusChange)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, relocatePayeeDialog::OnCancel)
-    EVT_COMBOBOX(wxID_ANY, OnTextUpdated)
+    EVT_COMBOBOX(wxID_ANY, relocatePayeeDialog::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
