@@ -22,42 +22,45 @@
 #define MM_EX_RELOCATEPAYEEDIALOG_H_
 
 #include "defs.h"
+#include "mmSimpleDialogs.h"
 
 class relocatePayeeDialog : public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(relocatePayeeDialog);
-    wxDECLARE_EVENT_TABLE();
 
 public:
     relocatePayeeDialog();
     relocatePayeeDialog(wxWindow* parent, int source_payee_id = -1);
 
-    int updatedPayeesCount();
+    int updatedPayeesCount() const;
 
 private:
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("Relocate Payee Dialog")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX );
 
     void CreateControls();
     void IsOkOk();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
 
-    void OnPayeeChanged(wxCommandEvent& event);
-    void OnPayeeTextUpdated(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;
 
-    wxComboBox* cbSourcePayee_;
-    wxComboBox* cbDestPayee_;
+    mmComboBoxUsedPayee* cbSourcePayee_;
+    mmComboBoxPayee* cbDestPayee_;
     int m_changed_records;
     wxStaticText* m_info;
-    wxCheckBox* cbDelete_;
+    wxCheckBox* cbDeleteSourcePayee_;
+    wxDECLARE_EVENT_TABLE();
 };
+
+inline int relocatePayeeDialog::updatedPayeesCount() const { return m_changed_records; }
 
 #endif

@@ -80,6 +80,16 @@ protected:
     void init();
 };
 
+class mmComboBoxUsedPayee : public mmComboBox
+{
+public:
+    mmComboBoxUsedPayee(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+protected:
+    void init();
+};
 /* -------------------------------------------- */
 
 class mmComboBoxCurrency : public mmComboBox

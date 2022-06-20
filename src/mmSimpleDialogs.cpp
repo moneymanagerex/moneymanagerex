@@ -46,6 +46,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
     if (!is_initialized_)
     {
+        this->Clear();
         wxArrayString auto_complete;
         for (const auto& item : all_elements_) {
             auto_complete.Add(item.first);
@@ -190,12 +191,24 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
     init();
 }
 
+void mmComboBoxUsedPayee::init()
+{
+    all_elements_ = Model_Payee::instance().all_payees(true);
+}
+
+mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+{
+    init();
+}
+
 /* --------------------------------------------------------- */
 
 void mmComboBoxCurrency::init()
 {
     all_elements_ = Model_Currency::instance().all_currency();
 }
+
 mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
     : mmComboBox(parent, id, size)
 {
