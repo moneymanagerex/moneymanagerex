@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-20 19:54+0300\n"
-"PO-Revision-Date: 2022-06-20 17:13\n"
+"PO-Revision-Date: 2022-06-20 18:23\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -531,7 +531,7 @@ msgstr "В&ыдаленне актыва"
 #: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
 #: mmframe.cpp:1365 mmframe.cpp:1385 payeedialog.cpp:411 stocks_list.cpp:146
 msgid "&Organize Attachments"
-msgstr "Рыдактар далучэнняў"
+msgstr "Дыспетчар далучэнняў"
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1483,7 +1483,7 @@ msgstr "Фактычна"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr "Рыдактар бюджэта"
+msgstr "Дыспетчар бюджэта"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
@@ -1689,7 +1689,7 @@ msgstr "Скінуць налады"
 
 #: categdialog.h:69 mmframe.cpp:1598 mmframe.cpp:1816
 msgid "Organize Categories"
-msgstr "Рыдактар катыгорыяў"
+msgstr "Дыспетчар катыгорыяў"
 
 #: constants.cpp:71
 msgid "Cancel"
@@ -4731,7 +4731,7 @@ msgstr "&Налады"
 
 #: mmframe.cpp:1832 mmframe.cpp:2690
 msgid "Register/View Release &Notifications"
-msgstr "Праглядзець інфармацыю пра &новыя вэрсіі"
+msgstr "Праглядзець інфармацыю пра новыя &вэрсіі"
 
 #: mmframe.cpp:1837 optionsettingsnet.cpp:121
 msgid "News"
