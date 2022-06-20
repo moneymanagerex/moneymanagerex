@@ -113,7 +113,6 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
     , textNotes_(nullptr)
     , textCategory_(nullptr)
     , textNumRepeats_(nullptr)
-    , bCategory_(nullptr)
     , cbPayee_(nullptr)
     , cbAccount_(nullptr)
     , bAttachments_(nullptr)
@@ -615,19 +614,8 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(cbPayee_, g_flagsExpand);
 
     // Category ---------------------------------------------
-    // Multi category section
 
-    wxStaticText* categ_label = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL1, _("Category"));
-    categ_label->SetFont(this->GetFont().Bold());
-    bCategory_ = new wxButton(this, mmID_CATEGORY, _("Select Category")
-        , wxDefaultPosition, wxDefaultSize, 0);
-
-    transPanelSizer->Add(categ_label, g_flagsH);
-    transPanelSizer->Add(bCategory_, g_flagsExpand);
-
-    // Single category section
-
-    wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
+    wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL, _("Category"));
     categ_label2->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
 
@@ -1316,43 +1304,38 @@ void mmBDDialog::setTooltips()
             currency = Model_Account::currency(account);
         }
 
-        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
+        bSplit_->SetToolTip(Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
     }
+    else
+        mmToolTip(bSplit_, _("Use split Categories"));
 }
 
 void mmBDDialog::setCategoryLabel()
 {
     bool has_split = !m_bill_data.local_splits.empty();
-    wxString fullCategoryName;
-    bCategory_->UnsetToolTip();
+
+    bSplit_->UnsetToolTip();
     if (has_split)
     {
-        fullCategoryName = _("Categories");
+        cbCategory_->SetLabelText(_("Split Transactions"));
         textAmount_->SetValue(Model_Splittransaction::get_total(m_bill_data.local_splits));
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
     }
     else
     {
-        fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
+        const auto fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
         cbCategory_->ChangeValue(fullCategoryName);
     }
 
-    bCategory_->SetLabelText(fullCategoryName);
     setTooltips();
 
     bool is_split = !m_bill_data.local_splits.empty();
     textAmount_->Enable(!is_split);
 
-    wxStaticText* stl1 = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_CATEGLABEL1));
-    stl1->Show(is_split);
-    bCategory_->Show(is_split);
-
-    wxStaticText* stl2 = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_CATEGLABEL2));
-    stl2->Show(!is_split);
-    wxButton* bSplit = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
-    bSplit->Show(!is_split);
-    cbCategory_->Show(!is_split);
+    wxButton* bSplit = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
+    bSplit->Enable(!m_transfer);
+    cbCategory_->Enable(!is_split);
     Layout();
 }
 

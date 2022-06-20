@@ -96,7 +96,6 @@ private:
     wxTextCtrl* textNotes_;
     wxTextCtrl* textCategory_;
     wxTextCtrl* textNumRepeats_;
-    wxButton* bCategory_;
     mmComboBoxCategory* cbCategory_;
     wxBitmapButton* bSplit_;
     mmComboBoxPayee* cbPayee_;
@@ -160,8 +159,7 @@ private:
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
         mmID_CATEGORY,
         ID_DIALOG_TRANS_BUTTONSPLIT,
-        ID_DIALOG_TRANS_CATEGLABEL1,
-        ID_DIALOG_TRANS_CATEGLABEL2,
+        ID_DIALOG_TRANS_CATEGLABEL,
         ID_DIALOG_TRANS_STATIC_ACCOUNT,
         ID_DIALOG_TRANS_STATIC_TOACCOUNT,
         mmID_TOACCOUNTNAME,
