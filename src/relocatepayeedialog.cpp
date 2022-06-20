@@ -44,8 +44,6 @@ relocatePayeeDialog::relocatePayeeDialog( )
 
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
     : destPayeeID_(-1)
-    , cbSourcePayee_(nullptr)
-    , cbDestPayee_(nullptr)
     , m_changed_records(0)
     , m_info(nullptr)
 {
@@ -53,7 +51,6 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
 
     this->SetFont(parent->GetFont());
     Create(parent);
-    SetMinSize(wxSize(500, 300));
 }
 
 bool relocatePayeeDialog::Create(wxWindow* parent
@@ -65,11 +62,11 @@ bool relocatePayeeDialog::Create(wxWindow* parent
 
     CreateControls();
     IsOkOk();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
 
+    SetMinSize(wxSize(500, 300));
+    Fit();
     Centre();
     return TRUE;
 }
@@ -86,15 +83,15 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new mmComboBoxUsedPayee(this, wxID_BOTTOM);
+    cbSourcePayee_ = new mmComboBoxUsedPayee(this);
     cbSourcePayee_->mmSetId(sourcePayeeID_);
     cbSourcePayee_->SetMinSize(wxSize(200, -1));
 
-    cbDeleteSourcePayee_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source payee after relocation"));
-
     cbDestPayee_ = new mmComboBoxPayee(this, wxID_NEW);
     cbDestPayee_->SetMinSize(wxSize(200, -1));
+
+    cbDeleteSourcePayee_ = new wxCheckBox(this, wxID_ANY
+        , _("Delete source payee after relocation"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -133,6 +130,8 @@ void relocatePayeeDialog::CreateControls()
     buttonBoxSizer->Add(okButton, flagsH);
     buttonBoxSizer->Add(cancelButton, flagsH);
     boxSizer->Add(buttonBoxSizer, flagsV);
+
+    cancelButton->SetFocus();
 }
 
 void relocatePayeeDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
@@ -177,12 +176,10 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), sourcePayeeID_);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
+            cbSourcePayee_->reInitialize();
+            cbDestPayee_->reInitialize();
         }
 
-        cbSourcePayee_->reInitialize();
-        cbSourcePayee_->ChangeValue("");
-        cbSourcePayee_->SetSelection(wxNOT_FOUND);
-        sourcePayeeID_ = -1;
         IsOkOk();
     }
 }

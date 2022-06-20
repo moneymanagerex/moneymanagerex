@@ -41,7 +41,7 @@ private:
         , const wxString& caption = _("Relocate Payee Dialog")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX );
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     void CreateControls();
     void IsOkOk();

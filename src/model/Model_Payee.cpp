@@ -106,7 +106,7 @@ const std::map<wxString, int> Model_Payee::all_payees()
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::used_payee_names()
+const std::map<wxString, int> Model_Payee::used_payee()
 {
     std::map<int, wxString> cache;
     for (const auto& p : all())
