@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-20 17:12+0300\n"
-"PO-Revision-Date: 2022-06-20 14:14\n"
+"PO-Revision-Date: 2022-06-20 15:11\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5611,7 +5611,7 @@ msgstr "Отметьте, использовать ли звуки при вво
 
 #: optionsettingsgeneral.cpp:296
 msgid "Locale"
-msgstr ""
+msgstr "Локаль"
 
 #: optionsettingsgeneral.cpp:324
 #, c-format
