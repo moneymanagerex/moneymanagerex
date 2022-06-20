@@ -347,14 +347,13 @@ void mmTransDialog::dataToControls()
         {
             auto fullCategoryName = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
             cbCategory_->ChangeValue(fullCategoryName);
-            cbCategory_->Enable();
         }
 
         skip_category_init_ = true;
     }
 
     m_textAmount->Enable(m_local_splits.empty());
-
+    cbCategory_->Enable(!has_split);
     bSplit_->Enable(!m_transfer);
     Fit();
 
