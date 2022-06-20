@@ -106,6 +106,7 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
 
     m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS);
 
+    this->SetFont(parent->GetFont());
     Create(parent);
 }
 

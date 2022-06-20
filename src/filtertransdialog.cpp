@@ -90,7 +90,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
 {
     this->SetFont(parent->GetFont());
     mmDoInitVariables();
-    mmDoCreate(parent);
+    Create(parent);
     if (!selected.empty())
         m_settings_json = selected;
 
@@ -105,7 +105,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
 {
     this->SetFont(parent->GetFont());
     mmDoInitVariables();
-    mmDoCreate(parent);
+    Create(parent);
     mmDoDataToControls(json);
 }
 
@@ -143,7 +143,7 @@ void mmFilterTransactionsDialog::mmDoInitVariables()
     m_accounts_name.Sort();
 }
 
-bool mmFilterTransactionsDialog::mmDoCreate(wxWindow* parent
+bool mmFilterTransactionsDialog::Create(wxWindow* parent
     , wxWindowID id
     , const wxString& caption
     , const wxPoint& pos
