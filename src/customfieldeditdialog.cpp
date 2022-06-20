@@ -66,7 +66,6 @@ bool mmCustomFieldEditDialog::Create(wxWindow* parent
     , const wxSize& size
     , long style)
 {
-    this->SetFont(parent->GetFont());
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     if (!wxDialog::Create(parent, id, caption, pos, size, style))
         return false;

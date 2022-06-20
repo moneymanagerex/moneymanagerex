@@ -118,7 +118,7 @@ private:
     bool mmIsCustomFieldMatches(const Model_Checking::Data& tran) const;
 
     /// Creation
-    bool mmDoCreate(wxWindow* parent
+    bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , const wxString& caption = _("Transaction Filter")
         , const wxPoint& pos = wxDefaultPosition

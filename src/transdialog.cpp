@@ -56,7 +56,6 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
     EVT_COMBOBOX(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
-    EVT_BUTTON(mmID_CATEGORY, mmTransDialog::OnCategs)
     EVT_BUTTON(mmID_CATEGORY_SPLIT, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -335,10 +334,11 @@ void mmTransDialog::dataToControls()
     bool has_split = !m_local_splits.empty();
     if (!skip_category_init_)
     {
-        bCategory_->UnsetToolTip();
+        bSplit_->UnsetToolTip();
         if (has_split)
         {
-            bCategory_->SetLabelText(_("Categories"));
+            cbCategory_->SetLabelText(_("Split Transactions"));
+            cbCategory_->Disable();
             m_textAmount->SetValue(Model_Splittransaction::get_total(m_local_splits));
             m_trx_data.CATEGID = -1;
             m_trx_data.SUBCATEGID = -1;
@@ -347,6 +347,7 @@ void mmTransDialog::dataToControls()
         {
             auto fullCategoryName = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
             cbCategory_->ChangeValue(fullCategoryName);
+            cbCategory_->Enable();
         }
 
         skip_category_init_ = true;
@@ -354,12 +355,7 @@ void mmTransDialog::dataToControls()
 
     m_textAmount->Enable(m_local_splits.empty());
 
-    categ_label_->Show(has_split);
-    bCategory_->Show(has_split);
-    categ_label2_->Show(!has_split);
     bSplit_->Enable(!m_transfer);
-    bSplit_->Show(!has_split);
-    cbCategory_->Show(!has_split);
     Fit();
 
     if (!skip_notes_init_) //Notes & Transaction Number
@@ -506,31 +502,21 @@ void mmTransDialog::CreateControls()
 
 
     // Category -------------------------------------------------
-    // Multi category section
 
-    categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL1, _("Category"));
-    bCategory_ = new wxButton(this, mmID_CATEGORY, _("Select Category"));
-
+    categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label_->SetFont(this->GetFont().Bold());
-    flex_sizer->Add(categ_label_, g_flagsH);
-    flex_sizer->Add(bCategory_, g_flagsExpand);
-    flex_sizer->AddSpacer(1);
-
-    // Single category section
-
-    categ_label2_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
-    categ_label2_->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
 
-    flex_sizer->Add(categ_label2_, g_flagsH);
+    flex_sizer->Add(categ_label_, g_flagsH);
     flex_sizer->Add(cbCategory_, g_flagsExpand);
     flex_sizer->Add(bSplit_, g_flagsH);
 
     // Number  ---------------------------------------------
+
     textNumber_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 
     wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM, mmBitmapButtonSize));
@@ -999,7 +985,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
             m_trx_data.CATEGID = payee->CATEGID;
             m_trx_data.SUBCATEGID = payee->SUBCATEGID;
             cbCategory_->ChangeValue(Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID));
-            wxLogDebug("Category: %s = %.2f", bCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
+            wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
         }
         else
         {
@@ -1203,17 +1189,17 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::SetTooltips()
 {
-    bCategory_->UnsetToolTip();
+    bSplit_->UnsetToolTip();
     skip_tooltips_init_ = true;
     if (this->m_local_splits.empty())
-        mmToolTip(bCategory_, _("Specify the category for this transaction"));
+        mmToolTip(bSplit_, _("Use split Categories"));
     else {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
         const Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
         if (account)
             currency = Model_Account::currency(account);
 
-        mmToolTip(bCategory_, Model_Splittransaction::get_tooltip(m_local_splits, currency));
+        bSplit_->SetToolTip(Model_Splittransaction::get_tooltip(m_local_splits, currency));
     }
     if (!m_new_trx) return;
 

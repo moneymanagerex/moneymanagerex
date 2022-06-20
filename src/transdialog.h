@@ -103,12 +103,10 @@ private:
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;
-    wxStaticText* categ_label_;
-    wxStaticText* categ_label2_;
-    wxButton* bCategory_;
     wxButton* bAttachments_;
     mmColorButton* bColours_;
     wxStaticText* account_label_;
+    wxStaticText* categ_label_;
     mmComboBoxAccount* cbAccount_;
     wxStaticText* to_acc_label_;
     mmComboBoxAccount* cbToAccount_;
@@ -166,7 +164,6 @@ private:
         ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
         ID_DIALOG_TRANS_ADVANCED_FROM,
         ID_DIALOG_TRANS_ADVANCED_TO,
-        ID_DIALOG_TRANS_CATEGLABEL1,
         ID_DIALOG_TRANS_CATEGLABEL2,
         ID_DIALOG_TRANS_BUTTONTRANSNUM,
         mmID_TOACCOUNT_LABEL,

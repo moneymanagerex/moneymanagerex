@@ -44,7 +44,6 @@ relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , m_changedRecords(0)
 {
     this->SetFont(parent->GetFont());
-
     Create(parent);
 }
 
