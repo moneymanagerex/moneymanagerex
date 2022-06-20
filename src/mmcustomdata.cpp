@@ -616,7 +616,7 @@ void mmCustomData::ClearSettings()
 {
     for (const auto &field : m_fields)
     {
-        SetStringValue(field.FIELDID, "");
+        SetStringValue(field.FIELDID * 2, "");
         wxWindowID labelID = GetBaseID() + field.FIELDID * 2 + 1;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb)
@@ -778,7 +778,7 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
         const wxString regExStr = Model_CustomField::getRegEx(field.PROPERTIES);
         if (!regExStr.empty())
         {
-            wxWindowID controlID = GetBaseID() + field.FIELDID;
+            wxWindowID controlID = GetBaseID() + field.FIELDID * 2;
             const auto& data = GetWidgetData(controlID);
             wxRegEx regEx(regExStr, wxRE_EXTENDED);
 
