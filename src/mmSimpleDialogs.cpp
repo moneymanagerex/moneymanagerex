@@ -73,7 +73,7 @@ void mmComboBox::reInitialize()
 void mmComboBox::mmSetId(int id)
 {
     auto result = std::find_if(all_elements_.begin(), all_elements_.end(),
-        [id](const auto& mo) {return mo.second == id; });
+        [id](const std::pair<wxString, int>& mo) {return mo.second == id; });
 
     if (result != all_elements_.end())
         ChangeValue(result->first);
