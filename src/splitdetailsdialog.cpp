@@ -34,7 +34,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(SplitDetailDialog, wxDialog);
 enum
 {
     mmID_TYPE = wxID_HIGHEST + 1800,
-    mmID_CATEGORY,
     mmID_AMOUNT,
 };
 

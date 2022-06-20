@@ -145,6 +145,7 @@ enum id
     mmID_BUDGET,
     mmID_REPORTS,
     mmID_CHECKING,
+    mmID_CATEGORY,
     mmID_ALLTRANSACTIONS,
     mmID_BROWSER,
     MENU_REPORT_BUG,
