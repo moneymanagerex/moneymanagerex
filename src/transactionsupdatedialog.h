@@ -87,7 +87,7 @@ private:
     enum
     {
         /* Transaction Dialog */
-        ID_PAYEE = wxID_HIGHEST + 897,
+        ID_PAYEE = wxID_HIGHEST + 997,
         ID_TRANS_TYPE,
         ID_TRANS_ACC,
         ID_BTN_CUSTOMFIELDS,

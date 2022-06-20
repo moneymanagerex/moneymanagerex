@@ -607,7 +607,7 @@ void mmTransDialog::CreateControls()
     m_custom_fields->FillCustomFields(box_sizer3);
     if (m_custom_fields->GetActiveCustomFieldsCount() > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_DIALOG_TRANS_CUSTOMFIELDS);
-        this->GetEventHandler()->AddPendingEvent(evt);
+        OnMoreFields(evt);
     }
 
     this->SetSizer(box_sizer);
@@ -698,8 +698,6 @@ bool mmTransDialog::ValidateData()
         }
         m_trx_data.PAYEEID = -1;
     }
-
-
 
     /* Check if transaction is to proceed.*/
     Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
