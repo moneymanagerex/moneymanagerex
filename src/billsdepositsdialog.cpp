@@ -1317,7 +1317,7 @@ void mmBDDialog::setCategoryLabel()
     bSplit_->UnsetToolTip();
     if (has_split)
     {
-        cbCategory_->SetLabelText(_("Split Transactions"));
+        cbCategory_->SetLabelText(_("Split Transaction"));
         textAmount_->SetValue(Model_Splittransaction::get_total(m_bill_data.local_splits));
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;

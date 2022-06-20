@@ -45,29 +45,24 @@ private:
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     void CreateControls();
-    void SetEventHandlers();
     void OnOk(wxCommandEvent& event);
     void OnCheckboxClick(wxCommandEvent& event);
     void onFocusChange(wxChildFocusEvent& event);
-    void OnCategChange(wxCommandEvent& event);
-    void OnPayeeUpdated(wxCommandEvent& event);
-    void OnAccountUpdated(wxCommandEvent& event);
     void SetPayeeTransferControls();
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
-    void OnComboKey(wxKeyEvent& event);
 
 private:
     wxCheckBox* m_payee_checkbox;
-    wxComboBox* m_payee;
+    mmComboBoxPayee* cbPayee_;
     wxCheckBox* m_transferAcc_checkbox;
-    wxComboBox* m_transferAcc;    
+    mmComboBoxAccount* cbAccount_;    
     wxCheckBox* m_date_checkbox;
     wxDatePickerCtrl* m_dpc;
     wxCheckBox* m_status_checkbox;
     wxChoice* m_status_choice;
     wxCheckBox* m_categ_checkbox;
-    wxButton* m_categ_btn;
+    mmComboBoxCategory* cbCategory_;
     mmColorButton* bColours_;
     wxCheckBox* m_color_checkbox;
     wxCheckBox* m_type_checkbox;
@@ -79,8 +74,6 @@ private:
     wxTextCtrl* m_notes_ctrl;
     std::vector<int> m_transaction_id;
     Model_Currency::Data* m_currency;
-    int m_categ_id;
-    int m_subcateg_id;
     bool m_hasTransfers, m_hasNonTransfers, m_hasSplits;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
