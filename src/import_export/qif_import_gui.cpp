@@ -80,6 +80,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
     if (acc)
         m_accountNameStr = acc->ACCOUNTNAME;
 
+    this->SetFont(parent->GetFont());
     Create(parent);
     SetMinSize(wxSize(500, 300));
 }
