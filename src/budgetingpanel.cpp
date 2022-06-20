@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 Stefano Giorgio
  Copyright (C) 2013 - 2022 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -393,7 +394,7 @@ void mmBudgetingPanel::initVirtualListControl()
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
     Model_Category::instance().getCategoryStats(categoryStats_
-        , nullptr
+        , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
         , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt_ : 0));
 

@@ -98,7 +98,8 @@ protected:
     int m_date_selection;
     wxString m_title;
     const mmDateRange* m_date_range;
-    const wxArrayString* accountArray_;
+    wxSharedPtr<wxArrayString> accountArray_;
+    wxSharedPtr<wxArrayString> selectedAccountArray_;
     bool m_only_active;
 
 private:
@@ -130,17 +131,6 @@ public:
 
 private:
     const Model_Report::Data* m_report;
-};
-
-class mmPrintableBaseSpecificAccounts : public mmPrintableBase
-{
-public:
-    explicit mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column = 0);
-    virtual ~mmPrintableBaseSpecificAccounts();
-
-protected:
-    const wxArrayString* accountArray_;
-    void getSpecificAccounts();
 };
 
 #include "html_template.h"

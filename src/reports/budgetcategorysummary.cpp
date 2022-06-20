@@ -1,7 +1,7 @@
 /*************************************************************************
  Copyright (C) 2012 Stefano Giorgio
  Copyright (C) 2017 James Higley
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -102,7 +102,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
-        , nullptr
+        , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
         , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
