@@ -45,10 +45,7 @@ public:
     std::map<int, wxString> GetActiveCustomFields() const;
     void SetBaseID(wxWindowID id);
     wxWindowID GetBaseID() const;
-    void SetLabelID(wxWindowID id);
-    wxWindowID GetLabelID() const;
     void ResetRefID();
-    // TODO: void SetRefID(int ref_id) { m_ref_id = ref_id; }
     bool IsSomeWidgetChanged() const;
     bool IsDataFound(const Model_Checking::Full_Data &tran);
     void ResetWidgetsChanged();
@@ -79,7 +76,6 @@ private:
     void SetWidgetChanged(wxWindowID id, const wxString& data);
     void ResetWidgetChanged(wxWindowID id);
     wxWindowID m_init_control_id;
-    wxWindowID m_init_label_id;
 
 };
 
@@ -89,10 +85,8 @@ public:
     mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id);
 };
 
-inline void       mmCustomData::SetLabelID(wxWindowID id) { m_init_label_id = id; }
 inline void       mmCustomData::ResetRefID() { m_ref_id = -1; }
 inline void       mmCustomData::SetBaseID(wxWindowID id) { m_init_control_id = id; }
 inline size_t     mmCustomData::GetCustomFieldsCount() const { return m_fields.size(); }
 inline wxWindowID mmCustomData::GetBaseID() const { return m_init_control_id; }
-inline wxWindowID mmCustomData::GetLabelID() const { return m_init_label_id; }
 
