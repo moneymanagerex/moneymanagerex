@@ -49,10 +49,9 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
     , m_changed_records(0)
     , m_info(nullptr)
 {
-    this->SetFont(parent->GetFont());
-
     sourcePayeeID_  = source_payee_id;
 
+    this->SetFont(parent->GetFont());
     Create(parent);
     SetMinSize(wxSize(500, 300));
 }

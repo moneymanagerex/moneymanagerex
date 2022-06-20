@@ -54,6 +54,7 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_itemChoices(nullptr)
     , m_itemDigitScale(nullptr)
 {
+    this->SetFont(parent->GetFont());
     Create(parent);
     Fit();
 }
