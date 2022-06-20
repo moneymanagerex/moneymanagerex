@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2016, 2020, 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #ifndef MM_EX_RELOCATECATEGORYDIALOG_H_
 #define MM_EX_RELOCATECATEGORYDIALOG_H_
 
+#include "mmSimpleDialogs.h"
 #include <wx/dialog.h>
 class wxButton;
 class wxStaticText;
@@ -44,8 +46,8 @@ public:
     void CreateControls();
 
     // utility functions
-    void OnSelectSource(wxCommandEvent& event);
-    void OnSelectDest(wxCommandEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
     void OnOk(wxCommandEvent& event);
 
     int updatedCategoriesCount() const;
@@ -54,14 +56,15 @@ private:
     void IsOkOk();
     int m_sourceCatID;
     int m_sourceSubCatID;
-    wxButton* m_buttonSource;
+    mmComboBoxCategory* cbSourceCategory_;
+    mmComboBoxCategory* cbDestCategory_;
     wxStaticText* m_info;
 
-    int m_destCatID;
-    int m_destSubCatID;
     wxButton* m_buttonDest;
     int m_changedRecords;
 };
+
+inline int relocateCategoryDialog::updatedCategoriesCount() const { return m_changedRecords; }
 
 #endif
 
