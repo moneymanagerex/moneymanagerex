@@ -115,13 +115,13 @@ const std::map<wxString, int> Model_Payee::used_payee_names()
     std::map<wxString, int> payees;
     for (const auto &t : Model_Checking::instance().all())
     {
-        if (cache.find(t.PAYEEID) != cache.end())
-            payees[cache.at(t.PAYEEID)] = t.PAYEEID;
+        if (cache.count(t.PAYEEID) > 0)
+            payees[cache[t.PAYEEID]] = t.PAYEEID;
     }
     for (const auto& b : Model_Billsdeposits::instance().all())
     {
-        if (cache.find(b.PAYEEID) != cache.end())
-            payees[cache.at(b.PAYEEID)] = b.PAYEEID;
+        if (cache.count(b.PAYEEID) > 0)
+            payees[cache[b.PAYEEID]] = b.PAYEEID;
     }
     return payees;
 }
