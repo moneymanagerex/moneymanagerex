@@ -27,13 +27,12 @@
 class relocatePayeeDialog : public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(relocatePayeeDialog);
-    wxDECLARE_EVENT_TABLE();
 
 public:
     relocatePayeeDialog();
     relocatePayeeDialog(wxWindow* parent, int source_payee_id = -1);
 
-    int updatedPayeesCount();
+    int updatedPayeesCount() const;
 
 private:
     bool Create(wxWindow* parent
@@ -47,17 +46,21 @@ private:
     void IsOkOk();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+    void OnTextUpdated(wxCommandEvent& event);
 
-    void OnPayeeChanged(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;
 
-    mmComboBoxPayee* cbSourcePayee_;
+    mmComboBoxUsedPayee* cbSourcePayee_;
     mmComboBoxPayee* cbDestPayee_;
     int m_changed_records;
     wxStaticText* m_info;
-    wxCheckBox* cbDelete_;
+    wxCheckBox* cbDeleteSourcePayee_;
+    wxDECLARE_EVENT_TABLE();
 };
+
+inline int relocatePayeeDialog::updatedPayeesCount() const { return m_changed_records; }
 
 #endif
