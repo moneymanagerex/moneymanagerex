@@ -46,7 +46,6 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
     if (!is_initialized_)
     {
-        this->Clear();
         wxArrayString auto_complete;
         for (const auto& item : all_elements_) {
             auto_complete.Add(item.first);
@@ -64,6 +63,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 
 void mmComboBox::reInitialize()
 {
+    this->Clear();
     init();
     is_initialized_ = false; 
     wxFocusEvent evt(wxEVT_SET_FOCUS);
@@ -72,13 +72,11 @@ void mmComboBox::reInitialize()
 
 void mmComboBox::mmSetId(int id)
 {
-    for (const auto& item : all_elements_)
-    {
-        if (item.second == id) {
-            ChangeValue(item.first);
-            break;
-        }
-    }
+    auto result = std::find_if(all_elements_.begin(), all_elements_.end(),
+        [id](const auto& mo) {return mo.second == id; });
+
+    if (result != all_elements_.end())
+        ChangeValue(result->first);
 }
 
 int mmComboBox::mmGetId() const 
@@ -193,7 +191,7 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
 
 void mmComboBoxUsedPayee::init()
 {
-    all_elements_ = Model_Payee::instance().used_payee_names();
+    all_elements_ = Model_Payee::instance().used_payee();
 }
 
 mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size)
