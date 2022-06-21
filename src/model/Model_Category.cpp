@@ -200,7 +200,7 @@ bool Model_Category::has_income(int id, int sub_id)
 
 void Model_Category::getCategoryStats(
     std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-    , const wxArrayString* accountArray
+    , wxSharedPtr<wxArrayString> accountArray
     , mmDateRange* date_range
     , bool WXUNUSED(ignoreFuture) //TODO: deprecated
     , bool group_by_month

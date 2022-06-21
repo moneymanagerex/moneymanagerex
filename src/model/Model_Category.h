@@ -21,6 +21,7 @@
 #define MODEL_CATEGORY_H
 
 #include "Model.h"
+#include <wx/sharedptr.h>
 #include "db/DB_Table_Category_V1.h"
 #include "Model_Subcategory.h"
 
@@ -64,7 +65,7 @@ public:
     static bool has_income(int id, int sub_id = -1);
     static void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-        , const wxArrayString* accountArray
+        , wxSharedPtr<wxArrayString> accountArray
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
         , std::map<int, std::map<int, double> > *budgetAmt = nullptr

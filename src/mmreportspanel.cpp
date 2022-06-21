@@ -431,7 +431,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
         if ((sel == 1) || (sel != rb_->getAccountSelection()))
         {
             wxString accountSelection;
-            wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_accounts->GetClientObject(m_accounts->GetSelection()));
+            wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_accounts->GetClientObject(sel));
             if (type_obj) {
                 accountSelection = type_obj->GetData();
             }
