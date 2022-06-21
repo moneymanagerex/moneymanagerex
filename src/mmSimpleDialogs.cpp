@@ -418,18 +418,6 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     return true;
 }
 
-/* --------------------------------------------------------- */
-
-mmMultiChoiceDialog::mmMultiChoiceDialog()
-{
-}
-mmMultiChoiceDialog::mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
-    const wxString& caption, const Model_Account::Data_Set& accounts)
-{
-    wxArrayString choices;
-    for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
-    wxMultiChoiceDialog::Create(parent, message, caption, choices);
-}
 
 /*/////////////////////////////////////////////////////////////*/
 
@@ -607,4 +595,29 @@ void mmErrorDialogs::ToolTip4Object(wxWindow *object, const wxString &message, c
     tip.SetIcon(ico);
     tip.SetBackgroundColour(object->GetParent()->GetBackgroundColour());
     tip.ShowFor(object);
+}
+
+// -------------------------------------------------------------------------- //
+
+mmMultiChoiceDialog::mmMultiChoiceDialog()
+{
+}
+
+mmMultiChoiceDialog::mmMultiChoiceDialog(
+      wxWindow* parent
+    , const wxString& message
+    , const wxString& caption
+    , const wxArrayString& items)
+{
+    if (parent) this->SetFont(parent->GetFont());
+
+    wxMultiChoiceDialog::Create(parent, message, caption, items);
+    SetMinSize(wxSize(220, 384));
+    SetIcon(mmex::getProgramIcon());
+
+    wxButton* ok = static_cast<wxButton*>(FindWindow(wxID_OK));
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+    Fit();
 }

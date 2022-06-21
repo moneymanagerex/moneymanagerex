@@ -308,19 +308,9 @@ void mmGUIFrame::mmDoHideReportsDialog()
         }
     }
 
-    wxMultiChoiceDialog reports(this, _("Hide")
-        , _("Reports"), reports_name_i10n);
+    mmMultiChoiceDialog reports(this, _("Hide"), _("Reports"), reports_name_i10n);
     reports.SetSelections(hidden_reports);
-    reports.SetMinSize(wxSize(220, 384));
-    reports.SetIcon(mmex::getProgramIcon());
-    reports.SetHelpText("test");
 
-    wxButton* ok = static_cast<wxButton*>(reports.FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = static_cast<wxButton*>(reports.FindWindow(wxID_CANCEL));
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
-
-    reports.Fit();
     if (reports.ShowModal() == wxID_OK)
     {
         Model_Infotable::instance().Set("HIDDEN_REPORTS", "[]");
