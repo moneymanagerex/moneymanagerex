@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-20 19:54+0300\n"
-"PO-Revision-Date: 2022-06-20 17:13\n"
+"PO-Revision-Date: 2022-06-21 02:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -3637,7 +3637,7 @@ msgstr ""
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "提醒:升級到新版本MMEX前,請先備份您的資料庫檔案(mmb)"
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -5236,7 +5236,7 @@ msgstr ""
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:141
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
