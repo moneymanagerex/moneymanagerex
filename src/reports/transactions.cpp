@@ -97,7 +97,8 @@ table {
 )";
 
     hb.init(false, extra_style);
-    hb.addReportHeader(getReportTitle(), 
+    wxString label = m_transDialog->mmGetLabelString();
+     hb.addReportHeader(wxString::Format("%s %s%s", getReportTitle(), !label.IsEmpty() ? ": " : "", label), 
             ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmGetStartDay() : 1),
             ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false ));
     wxDateTime start,end;
