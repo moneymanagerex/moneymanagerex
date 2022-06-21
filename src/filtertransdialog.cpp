@@ -298,11 +298,12 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     cbTypeDeposit_->SetValue(s_type.Contains("D"));
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferTo_->SetValue(s_type.Contains("T"));
-    cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
+    //cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferFrom_->SetValue(s_type.Contains("F"));
-    cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
+    //cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
-    //Amounts
+    setTransferTypeCheckBoxes();
+
     bool amt1 = (j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsDouble());
     bool amt2 = (j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsDouble());
 
@@ -770,6 +771,28 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
 }
 
+void mmFilterTransactionsDialog::setTransferTypeCheckBoxes()
+{
+    if (accountCheckBox_->IsChecked())
+    {
+        cbTypeTransferFrom_->Show();
+        cbTypeTransferFrom_->Enable();
+        cbTypeTransferTo_->SetLabel(_("Transfer Out"));
+        Layout();
+        bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
+    }
+    else
+    {
+        m_selected_accounts_id.clear();
+        bSelectedAccounts_->SetLabelText(_("All"));
+        cbTypeTransferFrom_->Hide();
+        cbTypeTransferFrom_->Disable();
+        cbTypeTransferTo_->SetLabel(_("Transfer"));
+        Layout();
+        bSelectedAccounts_->Disable();
+    }    
+}
+
 void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     int id = event.GetId();
@@ -785,24 +808,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         break;
     case ID_ACCOUNT_CB:
     {
-        if (accountCheckBox_->IsChecked())
-        {
-            cbTypeTransferFrom_->Show();
-            cbTypeTransferFrom_->Enable();
-            cbTypeTransferTo_->SetLabel(_("Transfer Out"));
-            Layout();
-            bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
-        }
-        else
-        {
-            m_selected_accounts_id.clear();
-            bSelectedAccounts_->SetLabelText(_("All"));
-            cbTypeTransferFrom_->Hide();
-            cbTypeTransferFrom_->Disable();
-            cbTypeTransferTo_->SetLabel(_("Transfer"));
-            Layout();
-            bSelectedAccounts_->Disable();
-        }
+        setTransferTypeCheckBoxes();
         break;
     }
     }

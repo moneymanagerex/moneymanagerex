@@ -94,6 +94,8 @@ private:
     template<class MODEL, class DATA = typename MODEL::Data>
     bool mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
 
+    void setTransferTypeCheckBoxes();
+
     const wxString mmGetStatus() const;
     const wxString mmGetNumber() const;
     const wxString mmGetNotes() const;
