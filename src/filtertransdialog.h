@@ -79,6 +79,7 @@ public:
     int mmGetStartDay() const;
     bool mmIsFutureIgnored() const;
     const wxString mmGetJsonSetings(bool i18n = false) const;
+    const wxString mmGetLabelString() const;
 
 private:
     const wxString mmGetTypes() const;
@@ -99,7 +100,6 @@ private:
     const wxString mmGetStatus() const;
     const wxString mmGetNumber() const;
     const wxString mmGetNotes() const;
-    const wxString mmGetLabelString() const;
 
     bool isMultiAccount_;
     int accountID_;
