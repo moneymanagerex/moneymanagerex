@@ -214,13 +214,17 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
             break;
         case 1: // Select Accounts
         {
-            Model_Account::Data_Set accounts =
-                (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
-                    , Model_Account::STATUS(Model_Account::OPEN))
-                    : Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)));
-            std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
+            wxArrayString accounts;
+            auto a = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
+            std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
+            for (const auto& item : a) {
+                if (m_only_active && item.STATUS != Model_Account::all_status()[Model_Account::OPEN])
+                    continue;
+                accounts.Add(item.ACCOUNTNAME);
+            }
 
-            mmMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
+            auto parent = wxWindow::FindWindowById(mmID_REPORTS);
+            mmMultiChoiceDialog mcd(parent ? parent : 0, _("Choose Accounts"), m_title, accounts);
 
             if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
             {
@@ -228,7 +232,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
                 int i = 0;
                 for (const auto &account : accounts)
                 {
-                    if (wxNOT_FOUND != selectedAccountArray_->Index(account.ACCOUNTNAME))
+                    if (wxNOT_FOUND != selectedAccountArray_->Index(account))
                         selected.Add(i);
                     i++;
                 }
@@ -239,7 +243,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
             {
                 wxArrayString* accountSelections = new wxArrayString();
                 for (const auto &i : mcd.GetSelections()) {
-                    accountSelections->Add(accounts.at(i).ACCOUNTNAME);
+                    accountSelections->Add(accounts[i]);
                 }
                 selectedAccountArray_ = accountArray_ = accountSelections;
             }

@@ -1013,14 +1013,8 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("UDFC05");
 
 
-    wxMultiChoiceDialog s_col(this, _("Hide Report Columns")
-        , "", column_names);
+    mmMultiChoiceDialog s_col(this, _("Hide Report Columns"), "", column_names);
     s_col.SetSelections(m_selected_columns_id);
-
-    wxButton* ok = static_cast<wxButton*>(s_col.FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = static_cast<wxButton*>(s_col.FindWindow(wxID_CANCEL));
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 
     wxString baloon = "";
     wxArrayInt selected_items;
@@ -1747,13 +1741,7 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 
 void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
-    wxMultiChoiceDialog s_acc(this, _("Choose Accounts")
-       , "" , m_accounts_name);
-
-    wxButton* ok = static_cast<wxButton*>(s_acc.FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = static_cast<wxButton*>(s_acc.FindWindow(wxID_CANCEL));
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+    mmMultiChoiceDialog s_acc(this, _("Choose Accounts"), "" , m_accounts_name);
 
     wxString baloon = "";
     wxArrayInt selected_items;

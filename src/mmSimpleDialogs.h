@@ -180,20 +180,6 @@ private:
     wxComboBox* cbText_;
 };
 
-class mmMultiChoiceDialog : public wxMultiChoiceDialog
-{
-public:
-    using wxMultiChoiceDialog::ShowModal;
-
-    mmMultiChoiceDialog();
-    mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
-        const wxString& caption, const Model_Account::Data_Set& accounts);
-    int ShowModal()
-    {
-        return wxMultiChoiceDialog::ShowModal();
-    }
-};
-
 class mmGUIApp;
 class mmErrorDialogs
 {
@@ -229,5 +215,19 @@ private:
     bool Create(wxWindow* parent, wxWindowID id);
     int m_shift;
 };
+
+// -------------------------------------------------------------------------- //
+
+class mmMultiChoiceDialog : public wxMultiChoiceDialog
+{
+public:
+    using wxMultiChoiceDialog::ShowModal;
+
+    mmMultiChoiceDialog();
+    mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
+        const wxString& caption, const wxArrayString& items);
+    int ShowModal();
+};
+inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::ShowModal(); }
 
 #endif // MM_EX_MMSIMPLEDIALOGS_H_
