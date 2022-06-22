@@ -90,6 +90,7 @@ public:
 protected:
     void init();
 };
+
 /* -------------------------------------------- */
 
 class mmComboBoxCurrency : public mmComboBox
@@ -121,6 +122,21 @@ private:
 };
 
 /* -------------------------------------------- */
+
+class mmComboBoxCustom : public mmComboBox
+{
+public:
+    mmComboBoxCustom(wxWindow* parent
+        , wxArrayString& a
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+protected:
+    void init();
+};
+inline void mmComboBoxCustom::init() {}
+
+/* ///////////////////////////////////////////// */
 
 class mmColorButton : public wxButton
 {
@@ -171,13 +187,17 @@ public:
     const wxString getText() const;
 
 private:
-    bool Create(wxWindow* parent, wxWindowID id,
-        const wxString& caption, const wxPoint& pos, const wxSize& size, long style);
+    bool Create(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = ""
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX);
     wxString Default;
     wxArrayString Choices;
     wxString Message;
 
-    wxComboBox* cbText_;
+    mmComboBoxCustom* cbText_;
 };
 
 class mmGUIApp;
