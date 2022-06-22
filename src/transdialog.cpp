@@ -93,7 +93,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , const wxString& name
 ) : m_transfer(false)
     , m_duplicate(duplicate)
-    , categUpdated_(false)
     , m_advanced(false)
     , m_current_balance(current_balance)
     , m_account_id(account_id)
@@ -948,7 +947,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // Only for new transactions: if user does not want to use categories.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (Option::instance().TransCategorySelection() == Option::UNUSED
-        && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
+        && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         Model_Category::Data *category = Model_Category::instance().get(_("Unknown"));
         if (!category)
@@ -975,7 +974,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // If this is a Split Transaction, ignore displaying last category for payee
     if ((Option::instance().TransCategorySelection() == Option::LASTUSED ||
          Option::instance().TransCategorySelection() == Option::DEFAULT)
-        && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
+        && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
