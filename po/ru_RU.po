@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-22 19:25+0300\n"
-"PO-Revision-Date: 2022-06-22 16:33\n"
+"PO-Revision-Date: 2022-06-22 17:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1154,7 +1154,7 @@ msgstr "Ошибка"
 
 #: billsdepositsdialog.cpp:1319 transdialog.cpp:339
 msgid "Split Transaction"
-msgstr ""
+msgstr "Разделить транзакцию"
 
 #: billsdepositsdialog.h:60 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
