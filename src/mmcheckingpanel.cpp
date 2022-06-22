@@ -69,6 +69,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_frame(frame)
 {
     Create(parent, id);
+    Fit();
 }
 //----------------------------------------------------------------------------
 
@@ -81,41 +82,38 @@ mmCheckingPanel::~mmCheckingPanel()
 }
 
 bool mmCheckingPanel::Create(
-    wxWindow *parent,
+    wxWindow* parent,
     wxWindowID winid, const wxPoint& pos,
-    const wxSize& size,long style, const wxString& name
+    const wxSize& size, long style, const wxString& name
 )
 {
-    if (isAllAccounts_)
-    {
+    if (isAllAccounts_) {
         m_currency = Model_Currency::GetBaseCurrency();
-    } else 
-    {
+    }
+    else {
         m_account = Model_Account::instance().get(m_AccountID);
         m_currency = Model_Account::currency(m_account);
     }
 
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    if (! wxPanel::Create(parent, winid, pos, size, style, name)) return false;
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
+    if (!wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
     this->windowsFreezeThaw();
     CreateControls();
     initViewTransactionsHeader();
 
-    m_transFilterActive = false;
-    const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })", Model_Setting::instance().ViewTransactions());
-    wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
-
-    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false, json);
     initFilterSettings();
+    if (m_transFilterActive) {
+        const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })", Model_Setting::instance().ViewTransactions());
+        wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+        m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false, json);
+        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+    }
 
     RefreshList();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
 
     Model_Usage::instance().pageview(this);
-
     return true;
 }
 
@@ -246,7 +244,7 @@ void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
         id++;
     }
     PopupMenu(&menu);
-
+    m_bitmapTransFilter->Layout();
     event.Skip();
 }
 
@@ -258,32 +256,23 @@ void mmCheckingPanel::CreateControls()
     this->SetSizer(itemBoxSizer9);
 
     /* ---------------------- */
-    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
-        , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
 
-    wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
-    headerPanel->SetSizer(itemBoxSizerVHeader);
+    wxFlexGridSizer* itemBoxSizerVHeader = new wxFlexGridSizer(0, 1, 0, 0);
+    itemBoxSizerVHeader->AddGrowableCol(0, 0);
+    itemBoxSizer9->Add(itemBoxSizerVHeader, g_flagsBorder1V);
 
-    m_header_text = new wxStaticText( headerPanel, wxID_STATIC, "");
+    m_header_text = new wxStaticText( this, wxID_STATIC, "");
     m_header_text->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(m_header_text, g_flagsBorder1V);
+    itemBoxSizerVHeader->Add(m_header_text, g_flagsExpandBorder1);
 
-    wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
-
-    m_bitmapTransFilter = new wxButton(headerPanel, ID_TRX_FILTER);
+    m_bitmapTransFilter = new wxButton(this, ID_TRX_FILTER);
     m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
-    m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
-    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
-    itemBoxSizerHHeader2->AddSpacer(20);
-    m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY, "");
-    itemBoxSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
+    itemBoxSizerVHeader->Add(m_bitmapTransFilter, g_flagsBorder1H);
+
+    m_header_balance = new wxStaticText(this, wxID_STATIC, "");
+    itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
 
     m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
-
-    m_header_balance = new wxStaticText(headerPanel, wxID_STATIC, "");
-    itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
 
     /* ---------------------- */
 
@@ -598,7 +587,6 @@ void mmCheckingPanel::initViewTransactionsHeader()
 void mmCheckingPanel::initFilterSettings()
 {
     m_transFilterActive = false;
-    wxString label = "";
     m_bitmapTransFilter->UnsetToolTip();
     wxSharedPtr<mmDateRange> date_range(new mmAllTime);
 
@@ -607,38 +595,27 @@ void mmCheckingPanel::initFilterSettings()
 
     switch (m_currentView) {
     case MENU_VIEW_TODAY:
-        date_range = new mmToday;
-        break;
+        date_range = new mmToday; break;
     case MENU_VIEW_CURRENTMONTH:
-        date_range = new mmCurrentMonth;
-        break;
+        date_range = new mmCurrentMonth; break;
     case MENU_VIEW_LAST30:
-        date_range = new mmLast30Days;
-        break;
+        date_range = new mmLast30Days; break;
     case MENU_VIEW_LAST90:
-        date_range = new mmLast90Days;
-        break;
+        date_range = new mmLast90Days; break;
     case MENU_VIEW_LASTMONTH:
-        date_range = new mmLastMonth;
-        break;
+        date_range = new mmLastMonth; break;
     case MENU_VIEW_LAST3MONTHS:
-        date_range = new mmLast3Months;
-        break;
+        date_range = new mmLast3Months; break;
     case MENU_VIEW_LAST12MONTHS:
-        date_range = new mmLast12Months;
-        break;
+        date_range = new mmLast12Months; break;
     case  MENU_VIEW_CURRENTYEAR:
-        date_range = new mmCurrentYear;
-        break;
+        date_range = new mmCurrentYear; break;
     case  MENU_VIEW_CURRENTFINANCIALYEAR:
-        date_range = new mmCurrentFinancialYear();
-        break;
+        date_range = new mmCurrentFinancialYear(); break;
     case  MENU_VIEW_LASTYEAR:
-        date_range = new mmLastYear;
-        break;
+        date_range = new mmLastYear; break;
     case  MENU_VIEW_LASTFINANCIALYEAR:
-        date_range = new mmLastFinancialYear();
-        break;
+        date_range = new mmLastFinancialYear(); break;
     case  MENU_VIEW_STATEMENTDATE:
         if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
         {
@@ -649,12 +626,9 @@ void mmCheckingPanel::initFilterSettings()
 
             if (!Option::instance().getIgnoreFutureTransactions())
                 date_range->set_end_date(date_range->future_date());
-
-            label = mmGetDateForDisplay(date_range->start_date().FormatISODate());
         }
         break;
     case MENU_VIEW_FILTER_DIALOG:
-        mmToolTip(m_bitmapTransFilter, m_trans_filter_dlg->mmGetDescriptionToolTip());
         m_transFilterActive = true;
         break;
     }
@@ -670,7 +644,11 @@ void mmCheckingPanel::initFilterSettings()
     auto item = menu_labels()[m_currentView];
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
-    m_statTextTransFilter->SetLabelText(label);
+
+    //Text field for name of day of the week
+    wxSize buttonSize(wxDefaultSize);
+    buttonSize.IncTo(GetTextExtent(wxGetTranslation(item)));
+    m_bitmapTransFilter->SetMinSize(wxSize(buttonSize.GetWidth() + Option::instance().getIconSize() * 2, -1));
 
     const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })"
         , Model_Setting::instance().ViewTransactions());
@@ -702,6 +680,12 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
     {
+        if (!m_trans_filter_dlg) {
+            const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })", Model_Setting::instance().ViewTransactions());
+            wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+            m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json));
+        }
+
         const auto json_settings = m_trans_filter_dlg->mmGetJsonSetings();
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
             && m_trans_filter_dlg->mmIsSomethingChecked());
@@ -710,6 +694,9 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     }
 
     initFilterSettings();
+    if (m_transFilterActive)
+        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+
     RefreshList();
 }
 
@@ -739,12 +726,10 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
         s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
         splt.push_back(s);
     }
-    SplitTransactionDialog splitTransDialog(this
-        , splt
-        , transType
-        , m_AccountID);
+    mmSplitTransactionDialog splitTransDialog(this
+        , splt, m_AccountID, transType, 0.0, true);
 
-    splitTransDialog.SetDisplaySplitCategories();
+    //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
 }
 
@@ -770,12 +755,16 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     m_account = Model_Account::instance().get(m_AccountID);
     m_currency = Model_Account::currency(m_account);
 
-    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
-    wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
-    m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json));
-
     initViewTransactionsHeader();
     initFilterSettings();
+
+    if (m_transFilterActive)
+    {
+        const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
+        wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+        m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json));
+        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+    }
 
     RefreshList();
     showTips();

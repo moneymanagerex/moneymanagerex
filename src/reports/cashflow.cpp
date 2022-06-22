@@ -57,11 +57,8 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValuePair>&
         Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
         , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
     {
-        if (accountArray_)
-        {
-            if (wxNOT_FOUND == accountArray_->Index(account.ACCOUNTNAME)) {
-                continue;
-            }
+        if (accountArray_ && accountArray_->Index(account.ACCOUNTNAME) == wxNOT_FOUND) {
+            continue;
         }
 
         double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID

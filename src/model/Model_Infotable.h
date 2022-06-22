@@ -64,7 +64,7 @@ public:
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
     const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
     const wxArrayString GetArrayStringSetting(const wxString& key, bool sort = false);
-    const wxSize GetSizeSetting(const wxString& key, const wxSize& default_value);
+    const wxSize GetSizeSetting(const wxString& key);
 
     /* Returns true if key setting found */
     bool KeyExists(const wxString& key);

@@ -245,6 +245,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         getNewsRSS(websiteNewsArray_);
 
     /* Create the Controls for the frame */
+    mmFontSize(this);
     LoadTheme();
     createMenu();
     createControls();
@@ -2623,7 +2624,7 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 {
-    mmThemesDialog dlg(this, _("Theme Manager"));
+    mmThemesDialog dlg(this);
     dlg.ShowModal();
 }
 

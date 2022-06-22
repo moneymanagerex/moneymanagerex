@@ -88,8 +88,9 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , m_color_value(-1)
     , m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER")
 {
+    this->SetFont(parent->GetFont());
     mmDoInitVariables();
-    mmDoCreate(parent);
+    Create(parent);
     if (!selected.empty())
         m_settings_json = selected;
 
@@ -102,8 +103,9 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
     , isReportMode_(true)
     , m_filter_key("TRANSACTIONS_FILTER")
 {
+    this->SetFont(parent->GetFont());
     mmDoInitVariables();
-    mmDoCreate(parent);
+    Create(parent);
     mmDoDataToControls(json);
 }
 
@@ -141,7 +143,7 @@ void mmFilterTransactionsDialog::mmDoInitVariables()
     m_accounts_name.Sort();
 }
 
-bool mmFilterTransactionsDialog::mmDoCreate(wxWindow* parent
+bool mmFilterTransactionsDialog::Create(wxWindow* parent
     , wxWindowID id
     , const wxString& caption
     , const wxPoint& pos
@@ -256,7 +258,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     const wxString& s_payee = j_payee.IsString() ? wxString::FromUTF8(j_payee.GetString()) : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
-    cbPayee_->SetValue(s_payee);
+    cbPayee_->ChangeValue(s_payee);
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
@@ -296,11 +298,12 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     cbTypeDeposit_->SetValue(s_type.Contains("D"));
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferTo_->SetValue(s_type.Contains("T"));
-    cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
+    //cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferFrom_->SetValue(s_type.Contains("F"));
-    cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
+    //cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
-    //Amounts
+    setTransferTypeCheckBoxes();
+
     bool amt1 = (j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsDouble());
     bool amt2 = (j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsDouble());
 
@@ -768,6 +771,28 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
 }
 
+void mmFilterTransactionsDialog::setTransferTypeCheckBoxes()
+{
+    if (accountCheckBox_->IsChecked())
+    {
+        cbTypeTransferFrom_->Show();
+        cbTypeTransferFrom_->Enable();
+        cbTypeTransferTo_->SetLabel(_("Transfer Out"));
+        Layout();
+        bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
+    }
+    else
+    {
+        m_selected_accounts_id.clear();
+        bSelectedAccounts_->SetLabelText(_("All"));
+        cbTypeTransferFrom_->Hide();
+        cbTypeTransferFrom_->Disable();
+        cbTypeTransferTo_->SetLabel(_("Transfer"));
+        Layout();
+        bSelectedAccounts_->Disable();
+    }    
+}
+
 void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     int id = event.GetId();
@@ -783,24 +808,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         break;
     case ID_ACCOUNT_CB:
     {
-        if (accountCheckBox_->IsChecked())
-        {
-            cbTypeTransferFrom_->Show();
-            cbTypeTransferFrom_->Enable();
-            cbTypeTransferTo_->SetLabel(_("Transfer Out"));
-            Layout();
-            bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
-        }
-        else
-        {
-            m_selected_accounts_id.clear();
-            bSelectedAccounts_->SetLabelText(_("All"));
-            cbTypeTransferFrom_->Hide();
-            cbTypeTransferFrom_->Disable();
-            cbTypeTransferTo_->SetLabel(_("Transfer"));
-            Layout();
-            bSelectedAccounts_->Disable();
-        }
+        setTransferTypeCheckBoxes();
         break;
     }
     }
@@ -1005,14 +1013,8 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("UDFC05");
 
 
-    wxMultiChoiceDialog s_col(this, _("Hide Report Columns")
-        , "", column_names);
+    mmMultiChoiceDialog s_col(this, _("Hide Report Columns"), "", column_names);
     s_col.SetSelections(m_selected_columns_id);
-
-    wxButton* ok = static_cast<wxButton*>(s_col.FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = static_cast<wxButton*>(s_col.FindWindow(wxID_CANCEL));
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 
     wxString baloon = "";
     wxArrayInt selected_items;
@@ -1447,10 +1449,10 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        if (categoryComboBox_->IsCategoryValid())
+        if (categoryComboBox_->mmIsValid())
         {
-            int categ = categoryComboBox_->GetCategoryId();
-            int subcateg = categoryComboBox_->GetSubcategoryId();
+            int categ = categoryComboBox_->mmGetCategoryId();
+            int subcateg = categoryComboBox_->mmGetSubcategoryId();
             const auto& full_name = Model_Category::full_name(categ, subcateg, ":");
             json_writer.String(full_name.utf8_str());
         } else {
@@ -1739,13 +1741,7 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 
 void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
-    wxMultiChoiceDialog s_acc(this, _("Choose Accounts")
-       , "" , m_accounts_name);
-
-    wxButton* ok = static_cast<wxButton*>(s_acc.FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = static_cast<wxButton*>(s_acc.FindWindow(wxID_CANCEL));
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+    mmMultiChoiceDialog s_acc(this, _("Choose Accounts"), "" , m_accounts_name);
 
     wxString baloon = "";
     wxArrayInt selected_items;

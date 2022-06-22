@@ -55,6 +55,7 @@ mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent) :
     ColName_[FIELD_TYPE] = _("Type");
     ColName_[FIELD_PROPERTIES] = _("Properties");
 
+    this->SetFont(parent->GetFont());
     Create(parent);
 }
 

@@ -67,6 +67,17 @@ const wxArrayString Model_Currency::all_currency_names()
     return c;
 }
 
+
+const std::map<wxString, int> Model_Currency::all_currency()
+{
+    std::map<wxString, int> currencies;
+    for (const auto& curr : this->all(COL_CURRENCYNAME))
+    {
+        currencies[curr.CURRENCYNAME] = curr.CURRENCYID;
+    }
+    return currencies;
+}
+
 const wxArrayString Model_Currency::all_currency_symbols()
 {
     wxArrayString c;

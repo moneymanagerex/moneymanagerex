@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -465,11 +466,14 @@ int mmGUIApp::OnExit()
 }
 
 #if defined (__WXMAC__)
-// Handle a closure for OSX dock correctly - just close the window.
+// Handle a closure for OSX dock correctly
 
 bool mmGUIApp::OSXOnShouldTerminate()
 {
     wxLogDebug("Called: OSXOnShouldTerminate");
-    this->GetTopWindow()->Close();
+
+    // Don't allow closure if dialogs are open
+    if (this->m_frame->wxTopLevelWindow::IsActive())
+        this->GetTopWindow()->Close();
 }
 #endif

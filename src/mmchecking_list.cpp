@@ -314,6 +314,7 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 {
     wxLogDebug("OnListItemFocused: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
+    setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
@@ -1025,8 +1026,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     {
         if (!CheckForClosedAccounts()) return;
         transactionsUpdateDialog dlg(this, m_selected_id);
-        if (dlg.ShowModal() == wxID_OK)
-        {
+        if (dlg.ShowModal() == wxID_OK) {
             refreshVisualList();
         }
         return;

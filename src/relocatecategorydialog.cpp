@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2016, 2020, 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,8 +28,8 @@
 wxIMPLEMENT_DYNAMIC_CLASS(relocateCategoryDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocateCategoryDialog, wxDialog)
-    EVT_BUTTON(wxID_CLEAR, relocateCategoryDialog::OnSelectSource)
-    EVT_BUTTON(wxID_NEW, relocateCategoryDialog::OnSelectDest)
+    EVT_CHILD_FOCUS(relocateCategoryDialog::OnFocusChange)
+    EVT_COMBOBOX(wxID_ANY, relocateCategoryDialog::OnTextUpdated)
     EVT_BUTTON(wxID_OK, relocateCategoryDialog::OnOk)
 wxEND_EVENT_TABLE()
 
@@ -37,21 +38,13 @@ relocateCategoryDialog::relocateCategoryDialog( )
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , int sourceCatID, int sourceSubCatID)
-    : m_buttonSource(nullptr)
-    , m_info(nullptr)
-    , m_buttonDest(nullptr)
+    : m_info(nullptr)
+    , m_sourceCatID(sourceCatID)
+    , m_sourceSubCatID(sourceSubCatID)
+    , m_changedRecords(0)
 {
-
-    m_sourceCatID    = sourceCatID;
-    m_sourceSubCatID = sourceSubCatID;
-
-    m_destCatID      = -1;
-    m_destSubCatID   = -1;
-    m_changedRecords =  0;
-
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Relocate Category Dialog"), wxDefaultPosition, wxDefaultSize, style);
-    SetMinSize(wxSize(500, 300));
+    this->SetFont(parent->GetFont());
+    Create(parent);
 }
 
 bool relocateCategoryDialog::Create(wxWindow* parent
@@ -66,12 +59,12 @@ bool relocateCategoryDialog::Create(wxWindow* parent
 
     CreateControls();
     IsOkOk();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
 
+    SetMinSize(wxSize(500, 300));
     Centre();
+    Fit();
     return TRUE;
 }
 
@@ -86,31 +79,33 @@ void relocateCategoryDialog::CreateControls()
         , _("Relocate source category to the destination category"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
-    m_buttonSource = new wxButton(this, wxID_CLEAR, _("Select Source Category"));
-    m_buttonSource->SetMinSize(wxSize(200, -1));
+    cbSourceCategory_ = new mmComboBoxCategory(this);
+    cbSourceCategory_->SetMinSize(wxSize(200, -1));
     Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
     if (category)
-        m_buttonSource->SetLabelText(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
+        cbSourceCategory_->SetValue(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
 
-    m_buttonDest = new wxButton(this, wxID_NEW, _("Select Destination Category"));
-    m_buttonDest->SetMinSize(wxSize(200, -1));
+    cbDestCategory_ = new mmComboBoxCategory(this, wxID_NEW);
+    cbDestCategory_->SetMinSize(wxSize(200, -1));
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    request_sizer->AddGrowableCol(0, 1);
+    request_sizer->AddGrowableCol(1, 1);
 
-    topSizer->Add(boxSizer, g_flagsV);
+    topSizer->Add(boxSizer, flagsExpand);
 
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, g_flagsExpand);
 
     request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), flagsH);
     request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), flagsH);
-    request_sizer->Add(m_buttonSource, flagsH);
-    request_sizer->Add(m_buttonDest, flagsH);
-    boxSizer->Add(request_sizer);
+    request_sizer->Add(cbSourceCategory_, flagsExpand);
+    request_sizer->Add(cbDestCategory_, flagsExpand);
+    boxSizer->Add(request_sizer, flagsExpand);
 
     boxSizer->Add(lineBottom, flagsExpand);
 
@@ -127,43 +122,12 @@ void relocateCategoryDialog::CreateControls()
     buttonBoxSizer->Add(okButton, flagsH);
     buttonBoxSizer->Add(cancelButton, flagsH);
     boxSizer->Add(buttonBoxSizer, flagsV);
-
-    this->Fit();
-}
-
-void relocateCategoryDialog::OnSelectSource(wxCommandEvent& WXUNUSED(event))
-{
-    mmCategDialog sourceCat(this, true, m_sourceCatID, m_sourceSubCatID);
-
-    if (sourceCat.ShowModal() == wxID_OK)
-    {
-        m_sourceCatID    = sourceCat.getCategId();
-        m_sourceSubCatID = sourceCat.getSubCategId();
-        m_buttonSource->SetLabelText(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
-        IsOkOk();
-    }
-}
-
-void relocateCategoryDialog::OnSelectDest(wxCommandEvent& WXUNUSED(event))
-{
-    mmCategDialog destCat(this, true, m_destCatID, m_destSubCatID);
-
-    if (destCat.ShowModal() == wxID_OK)
-    {
-        m_destCatID    = destCat.getCategId();
-        m_destSubCatID = destCat.getSubCategId();
-        m_buttonDest->SetLabelText(Model_Category::full_name(m_destCatID, m_destSubCatID));
-        IsOkOk();
-    }
-}
-
-int relocateCategoryDialog::updatedCategoriesCount() const
-{
-    return m_changedRecords;
 }
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
+    int m_destCatID = cbDestCategory_->mmGetCategoryId();
+    int m_destSubCatID = cbDestCategory_->mmGetSubcategoryId();
 
     if (wxMessageBox(_("Please Confirm:"), _("Category Relocation Confirmation"), wxOK | wxCANCEL) == wxOK)
     {
@@ -234,6 +198,11 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
 void relocateCategoryDialog::IsOkOk()
 {
+    m_sourceCatID = cbSourceCategory_->mmGetCategoryId();
+    m_sourceSubCatID = cbSourceCategory_->mmGetSubcategoryId();
+    int m_destCatID = cbDestCategory_->mmGetCategoryId();
+    int m_destSubCatID = cbDestCategory_->mmGetSubcategoryId();
+
     auto transactions = Model_Checking::instance()
         .find(Model_Checking::CATEGID(m_sourceCatID)
             , Model_Checking::SUBCATEGID(m_sourceSubCatID));
@@ -281,4 +250,17 @@ void relocateCategoryDialog::IsOkOk()
         e = false;
     wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
     ok->Enable(e);
+}
+
+void relocateCategoryDialog::OnFocusChange(wxChildFocusEvent& event)
+{
+    cbDestCategory_->ChangeValue(cbDestCategory_->GetValue());
+    cbSourceCategory_->ChangeValue(cbSourceCategory_->GetValue());
+    IsOkOk();
+    event.Skip();
+}
+
+void relocateCategoryDialog::OnTextUpdated(wxCommandEvent& event)
+{
+    IsOkOk();
 }

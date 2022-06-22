@@ -103,6 +103,8 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
     if (checking_entry) {
         m_checking_entry = checking_entry;
     }
+
+    this->SetFont(parent->GetFont());
     Create(parent);
     this->SetMinSize(wxSize(400, 300));
 }

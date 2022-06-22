@@ -54,6 +54,7 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_itemChoices(nullptr)
     , m_itemDigitScale(nullptr)
 {
+    this->SetFont(parent->GetFont());
     Create(parent);
     Fit();
 }
@@ -66,7 +67,6 @@ bool mmCustomFieldEditDialog::Create(wxWindow* parent
     , long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-
     if (!wxDialog::Create(parent, id, caption, pos, size, style))
         return false;
 

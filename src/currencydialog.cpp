@@ -80,17 +80,18 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
         m_currency->GROUP_SEPARATOR = ",";
     }
 
+    this->SetFont(parent->GetFont());
     Create(parent);
     SetMinSize(wxSize(300, 420));
     Fit();
 }
 
 bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
-    , const wxString& caption, const wxPoint& pos
-    , const wxSize& size, long style)
+    , const wxString& caption, const wxString& name
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     SetEvtHandlerEnabled(false);
 
@@ -115,8 +116,8 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
 
-    Centre();
     Fit();
+    Centre();
     return TRUE;
 }
 

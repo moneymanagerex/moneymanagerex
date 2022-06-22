@@ -241,7 +241,7 @@ wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& def
 
     return default_value;
 }
-const wxSize Model_Infotable::GetSizeSetting(const wxString& key, const wxSize& default_value)
+const wxSize Model_Infotable::GetSizeSetting(const wxString& key)
 {
     const wxString value = this->GetStringInfo(key, "");
     if (!value.IsEmpty())
@@ -254,7 +254,7 @@ const wxSize Model_Infotable::GetSizeSetting(const wxString& key, const wxSize& 
             return wxSize(wxAtoi(x), wxAtoi(y));
         }
     }
-    return default_value;
+    return wxDefaultSize;
 }
 
 const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxColour& default_value)

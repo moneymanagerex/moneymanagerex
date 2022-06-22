@@ -32,7 +32,7 @@ public:
         , const wxString &value = wxEmptyString
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
-        , long style = 0
+        , long style = wxTE_PROCESS_ENTER | wxALIGN_RIGHT
         , const wxValidator &validator = wxDefaultValidator
         , const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency()
         , const wxString &name = "mmTextCtrl")
@@ -52,5 +52,7 @@ public:
     wxChar GetDecimalPoint();
 
 private:
+    void OnTextEntered(wxCommandEvent& event);
     const Model_Currency::Data* m_currency;
+    wxDECLARE_EVENT_TABLE();
 };

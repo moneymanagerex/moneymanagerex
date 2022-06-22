@@ -1309,13 +1309,12 @@ const wxString getProgramDescription(int type)
 const wxRect GetDefaultMonitorRect()
 {
     // iterate through each display until the primary is found, default to display 0
-    wxSharedPtr<wxDisplay> display(new wxDisplay(static_cast<unsigned int>(0)));
+    wxSharedPtr<wxDisplay> display;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); ++i) {
+        display.reset(new wxDisplay(i));
         if (display->IsPrimary()) {
             break;
         }
-
-        display = new wxDisplay(i);
     }
 
     // Get a 'sensible' location on the primary display in case we can't fit it into the window
@@ -1620,4 +1619,54 @@ const wxString __(const char* c)
     else
         mystring.Append("...");
     return mystring;
+}
+
+void mmSetSize(wxWindow* w)
+{
+    auto name = w->GetName();
+    wxSize my_size;
+
+    if (name == "Split Transaction Dialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE");
+    }
+    else if (name == "Organize Categories") {
+        my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE");
+    }
+    else if (name == "mmPayeeDialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("PAYEES_DIALOG_SIZE");
+    }
+    else if (name == "Currency Dialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("CURRENCY_DIALOG_SIZE");
+    }
+    else if (name == "Themes Dialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("THEMES_DIALOG_SIZE");
+    }
+    else if (name == "General Reports Manager") {
+        my_size = Model_Infotable::instance().GetSizeSetting("GRM_DIALOG_SIZE");
+    }
+
+    wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
+    wxRect display_rect = display.get()->GetGeometry();
+    display_rect.SetX(0);
+    display_rect.SetY(0);
+
+    if (display_rect.Contains(my_size)) {
+        w->SetSize(my_size);
+    }
+    else {
+        w->Fit();
+    }
+}
+
+void mmFontSize(wxWindow* widget)
+{
+    int t[4] = { 16, 24, 32, 48 };
+    int x = Option::instance().getIconSize();
+    for (const auto entry : t)
+    {
+        if (entry < x)
+            widget->SetFont(widget->GetFont().Larger());
+        else
+            break;
+    }
 }

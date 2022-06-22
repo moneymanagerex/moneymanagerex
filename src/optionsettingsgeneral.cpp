@@ -1,6 +1,7 @@
 /*******************************************************
-Copyright (C) 2014 Stefano Giorgio
+ Copyright (C) 2014 Stefano Giorgio
  Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,7 +20,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsgeneral.h"
 #include "maincurrencydialog.h"
-#include "mmSimpleDialogs.h"
 #include "util.h"
 
 #include "model/Model_Currency.h"
@@ -30,9 +30,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, OptionSettingsGeneral::OnCurrency)
     EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, OptionSettingsGeneral::OnDateFormatChanged)
-    EVT_COMBOBOX(wxID_ANY, OptionSettingsGeneral::OnLocaleChanged)
+    EVT_COMBOBOX(ID_DIALOG_OPTIONS_LOCALE, OptionSettingsGeneral::OnLocaleChanged)
     EVT_MENU(wxID_ANY, OptionSettingsGeneral::OnChangeGUILanguage)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANG, OptionSettingsGeneral::OnMouseLeftDown)
 wxEND_EVENT_TABLE()
@@ -125,14 +124,12 @@ void OptionSettingsGeneral::Create()
 
     Model_Currency::Data* currency = Model_Currency::instance().get(Option::instance().getBaseCurrencyID());
     wxString currName = currency ? currency->CURRENCYNAME : _("Set Currency");
-    wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-    baseCurrencyButton->SetMinSize(wxSize(200, -1));
-    baseCurrencyButton->SetLabel(currName);
-    mmToolTip(baseCurrencyButton, _("Sets the database default Currency using the 'Currency Dialog'"));
-    currencyBaseSizer->Add(baseCurrencyButton, g_flagsH);
-    m_currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC
-        , _("Right click and select 'Set as Base Currency' in 'Currency Dialog'")),
-        wxSizerFlags(g_flagsV).Border(wxTOP, 0).Border(wxLEFT, 5));
+    m_currency_id = currency ? currency->CURRENCYID : -1;
+    baseCurrencyComboBox_ = new mmComboBoxCurrency(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+    baseCurrencyComboBox_->SetMinSize(wxSize(200, -1));
+    baseCurrencyComboBox_->ChangeValue(currName);
+    mmToolTip(baseCurrencyComboBox_, _("Sets the database default Currency using the 'Currency Dialog'"));
+    currencyBaseSizer->Add(baseCurrencyComboBox_, g_flagsH);
 
     m_currencyStaticBoxSizer->AddSpacer(10);
 
@@ -223,17 +220,6 @@ void OptionSettingsGeneral::Create()
     generalPanelSizer->Add(m_use_sound, g_flagsV);
 }
 
-void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
-{
-    int currencyID = Option::instance().getBaseCurrencyID();
-    mmMainCurrencyDialog::Execute(this, currencyID);
-    currencyID = Option::instance().getBaseCurrencyID();
-    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
-    wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY));
-    bn->SetLabelText(currency->CURRENCYNAME);
-    m_currencyStaticBoxSizer->Layout();
-}
-
 void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
 {
     wxStringClientData* data = static_cast<wxStringClientData*>(m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
@@ -276,6 +262,28 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
 
 bool OptionSettingsGeneral::SaveSettings()
 {
+    int baseCurrencyOLD = Option::instance().getBaseCurrencyID();
+    int currency_id = baseCurrencyComboBox_->mmGetId();
+    if (currency_id != baseCurrencyOLD)
+    {
+        if (!baseCurrencyComboBox_->mmIsValid())
+        {
+            mmErrorDialogs::ToolTip4Object(baseCurrencyComboBox_, _("Invalid value"), _("Currency"), wxICON_ERROR);
+            return false;
+        }
+        m_currency_id = currency_id;
+
+        if (Option::instance().getCurrencyHistoryEnabled())
+        {
+            if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
+                , _("Currency Dialog")
+                , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
+                return false;
+        }
+
+        Option::instance().setBaseCurrency(m_currency_id);
+    }
+
     wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
     Option::instance().UserName(stun->GetValue());
 
@@ -285,7 +293,7 @@ bool OptionSettingsGeneral::SaveSettings()
         Option::instance().LocaleName(cbln->GetValue());
     }
     else {
-        mmErrorDialogs::ToolTip4Object(m_itemListOfLocales, _("Invalid value"), _("Error"));
+        mmErrorDialogs::ToolTip4Object(m_itemListOfLocales, _("Invalid value"), _("Locale"), wxICON_ERROR);
         return false;
     }
 

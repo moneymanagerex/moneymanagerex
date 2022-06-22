@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Nikolay Akimov
 Copyright (C) 2014 Gabriele-V
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,7 +40,20 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    const wxString mmGetPattern(const wxString& value) const;
+    void mmSetId(int id);
+    int mmGetId() const;
+    const wxString mmGetPattern() const;
+    bool mmIsValid() const;
+    void reInitialize();
+protected:
+    void OnTextUpdated(wxCommandEvent& event);
+    void OnSetFocus(wxFocusEvent& event);
+    void OnKeyPressed(wxKeyEvent& event);
+    virtual void init() = 0;
+    std::map<wxString, int> all_elements_;
+private:
+    bool is_initialized_;
+    wxDECLARE_EVENT_TABLE();
 };
 
 class mmComboBoxAccount : public mmComboBox
@@ -49,20 +63,9 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    int mmGetAccountId() const;
-    bool IsAccountValid(wxWindow* w = nullptr) const;
-    const wxString mmGetPattern() const;
-private:
-    void Create();
-    void OnKeyPressed(wxKeyEvent& event);
-    void OnTextUpdated(wxCommandEvent& event);
-private:
-    int accountID_;
-    std::map<wxString, int> all_accounts_;
-
-    wxDECLARE_EVENT_TABLE();
+protected:
+    void init();
 };
-inline int mmComboBoxAccount::mmGetAccountId() const { return this->accountID_; }
 
 /* -------------------------------------------- */
 
@@ -73,20 +76,32 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    int GetPayeeId() const;
-    bool IsPayeeValid(wxWindow* w = nullptr) const;
-    const wxString mmGetPattern() const;
-private:
-    void Create();
-    void OnKeyPressed(wxKeyEvent& event);
-    void OnTextUpdated(wxCommandEvent& event);
-private:
-    int payeeID_;
-    std::map<wxString, int> all_payees_;
-
-    wxDECLARE_EVENT_TABLE();
+protected:
+    void init();
 };
-inline int mmComboBoxPayee::GetPayeeId() const { return this->payeeID_; }
+
+class mmComboBoxUsedPayee : public mmComboBox
+{
+public:
+    mmComboBoxUsedPayee(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+protected:
+    void init();
+};
+/* -------------------------------------------- */
+
+class mmComboBoxCurrency : public mmComboBox
+{
+public:
+    mmComboBoxCurrency(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , wxSize size = wxDefaultSize
+    );
+protected:
+    void init();
+};
 
 /* -------------------------------------------- */
 
@@ -97,23 +112,13 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    int GetCategoryId() const;
-    int GetSubcategoryId() const;
-    bool IsCategoryValid(wxWindow* w = nullptr) const;
-    const wxString mmGetPattern() const;
+    int mmGetCategoryId() const;
+    int mmGetSubcategoryId() const;
+protected:
+    void init();
 private:
-    void Create();
-    void OnKeyPressed(wxKeyEvent& event);
-    void OnTextUpdated(wxCommandEvent& event);
-private:
-    int category_;
-    int subcategory_;
     std::map<wxString, std::pair<int, int> > all_categories_;
-
-    wxDECLARE_EVENT_TABLE();
 };
-inline int mmComboBoxCategory::GetCategoryId() const { return this->category_; }
-inline int mmComboBoxCategory::GetSubcategoryId() const { return this->subcategory_; }
 
 /* -------------------------------------------- */
 
@@ -175,20 +180,6 @@ private:
     wxComboBox* cbText_;
 };
 
-class mmMultiChoiceDialog : public wxMultiChoiceDialog
-{
-public:
-    using wxMultiChoiceDialog::ShowModal;
-
-    mmMultiChoiceDialog();
-    mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
-        const wxString& caption, const Model_Account::Data_Set& accounts);
-    int ShowModal()
-    {
-        return wxMultiChoiceDialog::ShowModal();
-    }
-};
-
 class mmGUIApp;
 class mmErrorDialogs
 {
@@ -224,5 +215,19 @@ private:
     bool Create(wxWindow* parent, wxWindowID id);
     int m_shift;
 };
+
+// -------------------------------------------------------------------------- //
+
+class mmMultiChoiceDialog : public wxMultiChoiceDialog
+{
+public:
+    using wxMultiChoiceDialog::ShowModal;
+
+    mmMultiChoiceDialog();
+    mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
+        const wxString& caption, const wxArrayString& items);
+    int ShowModal();
+};
+inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::ShowModal(); }
 
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

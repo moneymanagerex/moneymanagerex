@@ -97,7 +97,8 @@ table {
 )";
 
     hb.init(false, extra_style);
-    hb.addReportHeader(getReportTitle(), 
+    wxString label = m_transDialog->mmGetLabelString();
+     hb.addReportHeader(wxString::Format("%s %s%s", getReportTitle(), !label.IsEmpty() ? ": " : "", label), 
             ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmGetStartDay() : 1),
             ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false ));
     wxDateTime start,end;
@@ -389,14 +390,15 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split()) 
         {
-            const auto& value = dlg.get()->mmGetCategoryPattern();
+            bool catFilter = dlg.get()->mmIsCategoryChecked();
+            const auto& value = catFilter ? dlg.get()->mmGetCategoryPattern() : "";
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
 
             for (const auto& split : full_tran.m_splits)
             {
                 const auto& categ = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
 
-                if (pattern.Matches(categ)) {
+                if (!catFilter || pattern.Matches(categ)) {
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     trans_.push_back(full_tran);

@@ -59,7 +59,6 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
         , ref_id)
 {
     SetBaseID(base_id);
-    SetLabelID(base_id + 100); //GetCustomFieldsCount());
 }
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
@@ -90,8 +89,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             nonDefaultData = false;
         }
 
-        wxWindowID controlID = GetBaseID() + field.FIELDID;
-        wxWindowID labelID = GetLabelID() + field.FIELDID;
+        wxWindowID controlID = GetBaseID() + field.FIELDID * 2;
+        wxWindowID labelID = controlID + 1;
 
         wxCheckBox* Description = new wxCheckBox(scrolled_window
             , labelID, field.DESCRIPTION
@@ -161,12 +160,13 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
-                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1 / pow10(DigitScale));
+                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1.0 / pow10(DigitScale));
             CustomDecimal->SetDigits(DigitScale);
             mmToolTip(CustomDecimal, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
 
-            CustomDecimal->Connect(controlID, wxEVT_SPINCTRLDOUBLE, wxCommandEventHandler(mmCustomData::OnDoubleChanged), nullptr, this);
+            CustomDecimal->Connect(wxID_ANY, wxEVT_SPINCTRLDOUBLE
+                , wxCommandEventHandler(mmCustomData::OnDoubleChanged), nullptr, this);
 
             break;
         }
@@ -505,7 +505,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
 
     for (const auto &field : m_fields)
     {
-        wxWindowID controlID = GetBaseID() + field.FIELDID;
+        wxWindowID controlID = GetBaseID() + field.FIELDID * 2;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
@@ -542,8 +542,8 @@ void mmCustomData::UpdateCustomValues(int ref_id)
     {
         bool is_changed = false;
 
-        wxWindowID controlID = GetBaseID() + field.FIELDID;
-        auto label_id = controlID - GetBaseID() + GetLabelID();
+        wxWindowID controlID = GetBaseID() + field.FIELDID * 2;
+        auto label_id = controlID + 1;
         wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
         if (Description) {
             is_changed = Description->GetValue();
@@ -589,7 +589,7 @@ void mmCustomData::OnStringChanged(wxCommandEvent& event)
 
 void mmCustomData::ResetWidgetChanged(wxWindowID id)
 {
-    auto label_id = id - GetBaseID() + GetLabelID();
+    auto label_id = id - GetBaseID() + 1;
     wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
     if (check_box) {
         check_box->SetValue(false);
@@ -601,7 +601,7 @@ void mmCustomData::ResetWidgetsChanged()
 {
     for (const auto& entry : m_data_changed)
     {
-        auto label_id = entry.first - GetBaseID() + GetLabelID();
+        auto label_id = entry.first - GetBaseID() + 1;
         wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
         if (check_box) {
             check_box->SetValue(false);
@@ -616,8 +616,8 @@ void mmCustomData::ClearSettings()
 {
     for (const auto &field : m_fields)
     {
-        SetStringValue(field.FIELDID, "");
-        wxWindowID labelID = GetLabelID() + field.FIELDID;
+        SetStringValue(field.FIELDID * 2, "");
+        wxWindowID labelID = GetBaseID() + field.FIELDID * 2 + 1;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb)
             cb->SetValue(false);
@@ -667,7 +667,7 @@ int mmCustomData::GetWidgetType(wxWindowID controlID) const
 void mmCustomData::OnCheckBoxActivated(wxCommandEvent& event)
 {
     auto id = event.GetId();
-    auto widget_id = id - GetLabelID() + GetBaseID();
+    auto widget_id = id - 1;
     auto checked = event.IsChecked();
 
     if (checked) {
@@ -713,7 +713,7 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
 {
     m_data_changed[id] = data;
 
-    auto label_id = id - GetBaseID() + GetLabelID();
+    auto label_id = id + 1;
     wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
     if (check_box) {
         check_box->SetValue(true);
@@ -770,7 +770,7 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
     bool is_valid = true;
     for (const auto &field : m_fields)
     {
-        wxWindowID labelID = GetLabelID() + field.FIELDID;
+        wxWindowID labelID = GetBaseID() + field.FIELDID * 2 + 1;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (!cb || !cb->GetValue())
             continue;
@@ -778,7 +778,7 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
         const wxString regExStr = Model_CustomField::getRegEx(field.PROPERTIES);
         if (!regExStr.empty())
         {
-            wxWindowID controlID = GetBaseID() + field.FIELDID;
+            wxWindowID controlID = GetBaseID() + field.FIELDID * 2;
             const auto& data = GetWidgetData(controlID);
             wxRegEx regEx(regExStr, wxRE_EXTENDED);
 

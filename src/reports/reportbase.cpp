@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013 James Higley
  Copyright (C) 2020 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -42,8 +43,7 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
 
 mmPrintableBase::~mmPrintableBase()
 {
-    if (accountArray_)
-        delete accountArray_;
+
 }
 
 void mmPrintableBase::setReportParameters(int id)
@@ -89,7 +89,7 @@ void mmPrintableBase::setReportSettings()
 
         json_writer.StartObject();
 
-        if (m_parameters & DATE_RANGE)
+        if ((m_parameters & DATE_RANGE) || (m_parameters & BUDGET_DATES))
         {
             json_writer.Key("REPORTPERIOD");
             json_writer.Int(m_date_selection);
@@ -102,12 +102,12 @@ void mmPrintableBase::setReportSettings()
             json_writer.Key("ACCOUNTSELECTION");
             json_writer.Int(m_account_selection);
 
-            if (accountArray_ && !accountArray_->empty())
+            if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
             {
                 json_writer.Key("ACCOUNTS");
 
                 json_writer.StartArray();
-                for (const auto& entry : *accountArray_)
+                for (const auto& entry : *selectedAccountArray_)
                 {
                     json_writer.String(entry.utf8_str());
                 }
@@ -143,26 +143,35 @@ void mmPrintableBase::restoreReportSettings()
         m_date_selection = j_doc["REPORTPERIOD"].GetInt();
     }
 
-    if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
-        m_account_selection = j_doc["ACCOUNTSELECTION"].GetInt();
-    }
-
-    if (accountArray_) {
-        delete accountArray_;
-    }
-
-    if (j_doc.HasMember("ACCOUNTS") && j_doc["ACCOUNTS"].IsArray()) {
-        wxArrayString* accountSelections = new wxArrayString();
-        const Value& a = j_doc["ACCOUNTS"].GetArray();
-        for (const auto& v : a.GetArray()) {
-            accountSelections->Add(v.GetString());
-        }
-        accountArray_ = accountSelections;
-    }
-
     if (j_doc.HasMember("CHART") && j_doc["CHART"].IsInt()) {
         m_chart_selection = j_doc["CHART"].GetInt();
     }
+
+    m_account_selection = -1;
+    int selection = 0;
+    if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
+        selection = j_doc["ACCOUNTSELECTION"].GetInt();
+        if (selection > (Model_Account::all_type().Count() + 2)) selection = 0;
+    }
+    if (selection > (Model_Account::all_type().Count() + 2))
+        selection = 0;
+
+    accountArray_ = selectedAccountArray_ = nullptr;
+    if (selection == 1)
+    {
+        wxArrayString* accountSelections = new wxArrayString();
+        if (j_doc.HasMember("ACCOUNTS") && j_doc["ACCOUNTS"].IsArray()) {
+
+            const Value& a = j_doc["ACCOUNTS"].GetArray();
+            for (const auto& v : a.GetArray()) {
+                accountSelections->Add(v.GetString());
+            }
+        }
+        accountArray_ = selectedAccountArray_ = accountSelections;
+    } else if (selection > 1)
+        setAccounts(selection, Model_Account::all_type()[selection - 2]);
+
+    m_account_selection = selection;
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
@@ -197,35 +206,47 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
     if ((selection == 1) || (m_account_selection != selection))
     {
         m_account_selection = selection;
-        if (accountArray_)
-        {
-            delete accountArray_;
-            accountArray_ = nullptr;
-        }
 
         switch (selection)
         {
         case 0: // All Accounts
+            accountArray_ = nullptr;
             break;
         case 1: // Select Accounts
         {
-            wxArrayString* accountSelections = new wxArrayString();
-            Model_Account::Data_Set accounts =
-                (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
-                    , Model_Account::STATUS(Model_Account::OPEN))
-                    : Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)));
-            std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
+            wxArrayString accounts;
+            auto a = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
+            std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
+            for (const auto& item : a) {
+                if (m_only_active && item.STATUS != Model_Account::all_status()[Model_Account::OPEN])
+                    continue;
+                accounts.Add(item.ACCOUNTNAME);
+            }
 
-            mmMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
+            auto parent = wxWindow::FindWindowById(mmID_REPORTS);
+            mmMultiChoiceDialog mcd(parent ? parent : 0, _("Choose Accounts"), m_title, accounts);
+
+            if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
+            {
+                wxArrayInt selected;
+                int i = 0;
+                for (const auto &account : accounts)
+                {
+                    if (wxNOT_FOUND != selectedAccountArray_->Index(account))
+                        selected.Add(i);
+                    i++;
+                }
+                mcd.SetSelections(selected);
+            }
 
             if (mcd.ShowModal() == wxID_OK)
             {
+                wxArrayString* accountSelections = new wxArrayString();
                 for (const auto &i : mcd.GetSelections()) {
-                    accountSelections->Add(accounts.at(i).ACCOUNTNAME);
+                    accountSelections->Add(accounts[i]);
                 }
+                selectedAccountArray_ = accountArray_ = accountSelections;
             }
-
-            accountArray_ = accountSelections;
         }
         break;
         default: // All of Account type
@@ -241,6 +262,17 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
         }
     }
 }
+
+const wxString mmPrintableBase::getReportTitle(bool translate) const
+{
+    wxString title = translate ? wxGetTranslation(m_title) : m_title;
+    if (m_date_range)
+    {
+        title += " - " + (translate ? m_date_range->local_title() : m_date_range->title());
+    }
+    return title;
+}
+
 
 //----------------------------------------------------------------------
 
@@ -306,51 +338,6 @@ int mmGeneralReport::report_parameters()
     return params;
 }
 
-mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column)
-: mmPrintableBase(report_name)
-, accountArray_(0)
-{
-}
-
-const char * mmPrintableBase::m_template = "";
-
-mmPrintableBaseSpecificAccounts::~mmPrintableBaseSpecificAccounts()
-{
-    if (accountArray_)
-        delete accountArray_;
-}
-
-void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
-{
-    wxArrayString* selections = new wxArrayString();
-    wxArrayString accounts;
-    for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
-    {
-        if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-        accounts.Add(account.ACCOUNTNAME);
-    }
-
-    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
-    wxButton* ok = static_cast<wxButton*>(mcd.FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = static_cast<wxButton*>(mcd.FindWindow(wxID_CANCEL));
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
-
-    if (mcd.ShowModal() == wxID_OK)
-    {
-        wxArrayInt arraySel = mcd.GetSelections();
-
-        for (size_t i = 0; i < arraySel.size(); ++i)
-        {
-            selections->Add(accounts.Item(arraySel[i]));
-        }
-    }
-
-    if (accountArray_)
-        delete accountArray_;
-    accountArray_ = selections;
-}
-
 mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
 {
     this->load_context();
@@ -367,12 +354,3 @@ void mm_html_template::load_context()
     if (currency) currency->to_template(*this);
 }
 
-const wxString mmPrintableBase::getReportTitle(bool translate) const
-{
-    wxString title = translate ? wxGetTranslation(m_title) : m_title;
-    if (m_date_range)
-    {
-        title += " - " + (translate ? m_date_range->local_title() : m_date_range->title());
-    }
-    return title;
-}

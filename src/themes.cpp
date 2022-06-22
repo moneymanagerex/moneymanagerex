@@ -44,7 +44,7 @@ const char HTMLPANEL[] = R"(
 <h1>%s <a href="%s"><img src="%s"></a></h1>
 <h2>%s</h2>
 <p>%s</p>
-<p><img src="%s" width="300" height="150"></p>
+<p><img src="%s"></p>
 )";
 
 bool mmThemesDialog::vfsThemeImageLoaded = false;
@@ -126,8 +126,14 @@ void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
     }
 }
 
+mmThemesDialog::~mmThemesDialog()
+{
+    Model_Infotable::instance().Set("THEMES_DIALOG_SIZE", GetSize());
+}
+
 mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
 {
+    this->SetFont(parent->GetFont());
     Create(parent, name);
 }
 
@@ -147,8 +153,8 @@ void mmThemesDialog::Create(wxWindow* parent, const wxString &name)
     ReadThemes();
     RefreshView();
 
+    mmSetSize(this);
     SetMinSize(wxSize(555, 455));
-    Fit();
     Centre();
 }
 

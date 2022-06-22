@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -31,8 +32,10 @@
 wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
+    EVT_CHILD_FOCUS(relocatePayeeDialog::OnFocusChange)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, relocatePayeeDialog::OnCancel)
+    EVT_COMBOBOX(wxID_ANY, relocatePayeeDialog::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
@@ -41,17 +44,13 @@ relocatePayeeDialog::relocatePayeeDialog( )
 
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
     : destPayeeID_(-1)
-    , cbSourcePayee_(nullptr)
-    , cbDestPayee_(nullptr)
     , m_changed_records(0)
     , m_info(nullptr)
 {
     sourcePayeeID_  = source_payee_id;
 
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-
-    Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxDefaultSize, style);
-    SetMinSize(wxSize(500, 300));
+    this->SetFont(parent->GetFont());
+    Create(parent);
 }
 
 bool relocatePayeeDialog::Create(wxWindow* parent
@@ -63,11 +62,11 @@ bool relocatePayeeDialog::Create(wxWindow* parent
 
     CreateControls();
     IsOkOk();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
 
+    SetMinSize(wxSize(500, 300));
+    Fit();
     Centre();
     return TRUE;
 }
@@ -84,50 +83,37 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM
-        , sourcePayeeID_ == -1 ? "" : Model_Payee::get_payee_name(sourcePayeeID_));
-    cbSourcePayee_->Append(Model_Payee::instance().all_payee_names());
-    cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
-    cbSourcePayee_->Enable();
-    cbSourcePayee_->SetMinSize(wxSize(180, -1));
+    cbSourcePayee_ = new mmComboBoxUsedPayee(this);
+    cbSourcePayee_->mmSetId(sourcePayeeID_);
+    cbSourcePayee_->SetMinSize(wxSize(200, -1));
 
-    cbDelete_ = new wxCheckBox(this, wxID_ANY
+    cbDestPayee_ = new mmComboBoxPayee(this, wxID_NEW);
+    cbDestPayee_->SetMinSize(wxSize(200, -1));
+
+    cbDeleteSourcePayee_ = new wxCheckBox(this, wxID_ANY
         , _("Delete source payee after relocation"));
 
-    cbDestPayee_ = new wxComboBox(this, wxID_NEW, "");
-    cbDestPayee_->Append(Model_Payee::instance().all_payee_names());
-    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
-    cbDestPayee_->SetMinSize(wxSize(180, -1));
-
-    // Event handlers - Mac handles char by char to support non-native autocomplete
-#if defined (__WXMAC__)
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeTextUpdated), nullptr, this);    
-    cbDestPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeTextUpdated), nullptr, this);    
-#else
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
-    cbDestPayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
-#endif
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
-    topSizer->Add(boxSizer, flagsV);
+    topSizer->Add(boxSizer, flagsExpand);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    request_sizer->AddGrowableCol(0, 1);
+    request_sizer->AddGrowableCol(1, 1);
 
     boxSizer->Add(headerText, flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flagsH);
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
-    request_sizer->Add(cbSourcePayee_, flagsH);
-    request_sizer->Add(cbDestPayee_, flagsH);
+    request_sizer->Add(cbSourcePayee_, flagsExpand);
+    request_sizer->Add(cbDestPayee_, flagsExpand);
 
     wxStaticLine* lineMiddle = new wxStaticLine(this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     boxSizer->Add(request_sizer, flagsExpand);
-    boxSizer->Add(cbDelete_, flagsExpand);
+    boxSizer->Add(cbDeleteSourcePayee_, flagsExpand);
     boxSizer->Add(lineMiddle, flagsExpand);
 
     m_info = new wxStaticText(this, wxID_STATIC, "");
@@ -144,23 +130,22 @@ void relocatePayeeDialog::CreateControls()
     buttonBoxSizer->Add(okButton, flagsH);
     buttonBoxSizer->Add(cancelButton, flagsH);
     boxSizer->Add(buttonBoxSizer, flagsV);
-}
 
-int relocatePayeeDialog::updatedPayeesCount()
-{
-    return m_changed_records;
+    cancelButton->SetFocus();
 }
 
 void relocatePayeeDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
-    EndModal(m_changed_records>0 ? wxID_OK : wxID_CANCEL);
+    EndModal(m_changed_records > 0 ? wxID_OK : wxID_CANCEL);
 }
 
 void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
+    const auto& source_payee_name = cbSourcePayee_->GetValue();
+    const auto& destination_payee_name = cbDestPayee_->GetValue();
     const wxString& info = wxString::Format(_("From %s to %s")
-        , Model_Payee::instance().get(sourcePayeeID_)->PAYEENAME
-        , Model_Payee::instance().get(destPayeeID_)->PAYEENAME);
+        , source_payee_name
+        , destination_payee_name);
 
     int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
         , _("Payee Relocation Confirmation")
@@ -168,42 +153,33 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (ans == wxOK)
     {
+        Model_Checking::instance().Savepoint();
         auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
         for (auto &entry : transactions) {
             entry.PAYEEID = destPayeeID_;
         }
         m_changed_records += Model_Checking::instance().save(transactions);
+        Model_Checking::instance().ReleaseSavepoint();
 
+        Model_Billsdeposits::instance().Savepoint();
         auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
         for (auto &entry : billsdeposits) {
             entry.PAYEEID = destPayeeID_;
         }
         m_changed_records += Model_Billsdeposits::instance().save(billsdeposits);
+        Model_Billsdeposits::instance().ReleaseSavepoint();
 
-        if (cbDelete_->IsChecked())
+        if (cbDeleteSourcePayee_->IsChecked())
         {
             if (Model_Payee::instance().remove(sourcePayeeID_))
             {
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), sourcePayeeID_);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
-                int deleted = cbDestPayee_->FindString(cbSourcePayee_->GetValue());
-                if (deleted != wxNOT_FOUND)
-                {
-                    cbDestPayee_->Delete(deleted);
-                    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
-                }
-
             }
+            cbSourcePayee_->reInitialize();
+            cbDestPayee_->reInitialize();
         }
-        int empty = cbSourcePayee_->FindString(cbSourcePayee_->GetValue());
-        if (empty != wxNOT_FOUND)
-        {
-            cbSourcePayee_->Delete(empty);
-            cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
-        }
-        cbSourcePayee_->Clear();
-        cbSourcePayee_->SetSelection(wxNOT_FOUND);
-        sourcePayeeID_ = -1;
+
         IsOkOk();
     }
 }
@@ -211,28 +187,14 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void relocatePayeeDialog::IsOkOk()
 {
     bool e = true;
-    int trxs_size, bills_size;
-    const wxString& destPayeeName = cbDestPayee_->GetValue();
-    const wxString& sourcePayeeName = cbSourcePayee_->GetValue();
 
-    Model_Payee::Data* source_payee = Model_Payee::instance().get(sourcePayeeName);
-    Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
-    if (source_payee) {
-        sourcePayeeID_ = source_payee->PAYEEID;
-        trxs_size = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
-        bills_size = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
-    }
-    else
-    {
-        trxs_size = 0;
-        bills_size = 0;
-    }
-    if (dest_payee) {
-        destPayeeID_ = dest_payee->PAYEEID;
-    }
+    destPayeeID_ = cbDestPayee_->mmGetId();
+    sourcePayeeID_ = cbSourcePayee_->mmGetId();
+    int trxs_size = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
+    int bills_size = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
 
-    if (!dest_payee || !source_payee
-        || dest_payee == source_payee
+    if (destPayeeID_ < 0 || sourcePayeeID_ < 0
+        || destPayeeID_ == sourcePayeeID_
         || trxs_size + bills_size == 0) {
         e = false;
     }
@@ -247,33 +209,15 @@ void relocatePayeeDialog::IsOkOk()
     ok->Enable(e);
 }
 
-void relocatePayeeDialog::OnPayeeChanged(wxCommandEvent& WXUNUSED(event))
+void relocatePayeeDialog::OnFocusChange(wxChildFocusEvent& event)
 {
+    cbDestPayee_->ChangeValue(cbDestPayee_->GetValue());
+    cbSourcePayee_->ChangeValue(cbSourcePayee_->GetValue());
     IsOkOk();
+    event.Skip();
 }
 
-void relocatePayeeDialog::OnPayeeTextUpdated(wxCommandEvent& event)
+void relocatePayeeDialog::OnTextUpdated(wxCommandEvent& event)
 {
-    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!!
-
-    wxComboBox* payeeCombo = (event.GetId() == wxID_BOTTOM) ? cbSourcePayee_ : cbDestPayee_;
-    wxString payeeName = event.GetString();
-
-    if (payeeCombo->GetSelection() == wxNOT_FOUND) // make sure nothing is selected (ex. user presses down arrow)
-    {
-        payeeCombo->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-        payeeCombo->Clear();      
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
-        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
-        for (const auto &payee : filtd) {
-            payeeCombo->Insert(payee.PAYEENAME, 0);
-        }
-        payeeCombo->ChangeValue(payeeName);
-        payeeCombo->SetInsertionPointEnd();
-        if (!payeeName.IsEmpty())
-            payeeCombo->Popup();
-        payeeCombo->SetEvtHandlerEnabled(true);
-    }
     IsOkOk();
 }

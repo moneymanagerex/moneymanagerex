@@ -79,6 +79,7 @@ public:
     int mmGetStartDay() const;
     bool mmIsFutureIgnored() const;
     const wxString mmGetJsonSetings(bool i18n = false) const;
+    const wxString mmGetLabelString() const;
 
 private:
     const wxString mmGetTypes() const;
@@ -94,10 +95,11 @@ private:
     template<class MODEL, class DATA = typename MODEL::Data>
     bool mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
 
+    void setTransferTypeCheckBoxes();
+
     const wxString mmGetStatus() const;
     const wxString mmGetNumber() const;
     const wxString mmGetNotes() const;
-    const wxString mmGetLabelString() const;
 
     bool isMultiAccount_;
     int accountID_;
@@ -118,7 +120,7 @@ private:
     bool mmIsCustomFieldMatches(const Model_Checking::Data& tran) const;
 
     /// Creation
-    bool mmDoCreate(wxWindow* parent
+    bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , const wxString& caption = _("Transaction Filter")
         , const wxPoint& pos = wxDefaultPosition

@@ -244,26 +244,28 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Databa
     , m_sqlListBox(nullptr)
     , m_selectedReportID(0)
 {
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("General Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
-    SetClientSize(wxSize(940, 576));
+    this->SetFont(parent->GetFont());
+    Create(parent);
+    mmSetSize(this);
     Centre();
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
 {
     clearVFprintedFiles("grm");
+    Model_Infotable::instance().Set("GRM_DIALOG_SIZE", GetSize());
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
     , wxWindowID id
     , const wxString& caption
+    , const wxString& name
     , const wxPoint& pos
     , const wxSize& size
     , long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     wxAcceleratorEntry entries[2];
     entries[0].Set(wxACCEL_NORMAL, WXK_F9, wxID_EXECUTE);

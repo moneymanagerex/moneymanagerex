@@ -71,12 +71,12 @@ const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
 wxIMPLEMENT_DYNAMIC_CLASS(mmBDDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
+    EVT_CHILD_FOCUS(mmBDDialog::OnFocusChange)
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmBDDialog::OnCancel)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
-    EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
+    EVT_BUTTON(mmID_CATEGORY, mmBDDialog::OnCategs)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT, mmBDDialog::OnCategs)
+    EVT_TEXT(mmID_PAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmBDDialog::OnMoreFields)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
@@ -85,13 +85,13 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_SPIN(ID_DIALOG_BD_REPEAT_DATE_SPINNER, mmBDDialog::OnSpinEventDue)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmBDDialog::OnSpinEventPaid)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmBDDialog::OnAdvanceChecked)
-    EVT_CHECKBOX(ID_DIALOG_TRANS_SPLITCHECKBOX, mmBDDialog::OnSplitChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, mmBDDialog::OnAutoExecutionUserAckChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
     EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
+    EVT_TEXT(mmID_ACCOUNTNAME, mmBDDialog::OnAccountUpdated)
     EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -101,26 +101,21 @@ mmBDDialog::mmBDDialog()
 }
 
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOccur)
-    : payeeUnknown_(true)
-    , m_dup_bill(duplicate)
+    : m_dup_bill(duplicate)
     , m_enter_occur(enterOccur)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
     , m_advanced(false)
-    , categUpdated_(false)
-    , prevType_(-1)
     , textNumber_(nullptr)
     , textAmount_(nullptr)
     , toTextAmount_(nullptr)
     , textNotes_(nullptr)
     , textCategory_(nullptr)
     , textNumRepeats_(nullptr)
-    , bCategory_(nullptr)
-    , bPayee_(nullptr)
-    , bAccount_(nullptr)
+    , cbPayee_(nullptr)
+    , cbAccount_(nullptr)
     , bAttachments_(nullptr)
     , bColours_(nullptr)
-    , cSplit_(nullptr)
     , cAdvanced_(nullptr)
     , m_choice_status(nullptr)
     , m_choice_transaction_type(nullptr)
@@ -176,6 +171,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
     int ref_id = m_dup_bill ?  -bdID : (m_new_bill ? NULL : -m_bill_data.BDID);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
 
+    this->SetFont(parent->GetFont());
     Create(parent);
 }
 
@@ -227,15 +223,10 @@ void mmBDDialog::dataToControls()
     m_choice_transaction_type->SetSelection(0);
 
     SetTransferControls();  // hide appropriate fields
-
-    resetPayeeString();
+    setCategoryLabel();
 
     if (!(!m_new_bill || m_enter_occur)) {
         return;
-    }
-
-    if (m_bill_data.PAYEEID > 0) {
-        payeeUnknown_ = false;
     }
 
     m_choice_status->SetSelection(Model_Checking::status(m_bill_data.STATUS));
@@ -283,10 +274,7 @@ void mmBDDialog::dataToControls()
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    bAccount_->SetLabelText(account ? account->ACCOUNTNAME : "");
-
-    setCategoryLabel();
-    cSplit_->SetValue(!m_bill_data.local_splits.empty());
+    cbAccount_->ChangeValue(account ? account->ACCOUNTNAME : "");
 
     textNotes_->SetValue(m_bill_data.NOTES);
     textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
@@ -294,18 +282,11 @@ void mmBDDialog::dataToControls()
     if (!m_bill_data.local_splits.empty())
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
-    textAmount_->Enable(m_bill_data.local_splits.empty());
     textAmount_->SetValue(m_bill_data.TRANSAMOUNT, Model_Currency::precision(m_bill_data.ACCOUNTID));
 
     if (m_transfer)
     {
         m_bill_data.PAYEEID = -1;
-        Model_Account::Data* to_account = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
-        if (to_account)
-        {
-            bPayee_->SetLabelText(to_account->ACCOUNTNAME);
-            toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT, to_account);
-        }
 
         // When editing an advanced transaction record, we do not reset the m_bill_data.TOTRANSAMOUNT
         if ((!m_new_bill || m_enter_occur) && (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT))
@@ -313,12 +294,6 @@ void mmBDDialog::dataToControls()
             cAdvanced_->SetValue(true);
             SetAdvancedTransferControls(true);
         }
-    }
-    else
-    {
-        Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
-        if (payee)
-            bPayee_->SetLabelText(payee->PAYEENAME);
     }
 
     if (!m_enter_occur)
@@ -363,7 +338,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     const auto trx = Model_Checking::instance().get(trx_id);
     Model_Checking::Full_Data t(*trx, split);
     m_bill_data.ACCOUNTID = t.ACCOUNTID;
-    bAccount_->SetLabelText(t.ACCOUNTNAME);
+    cbAccount_->SetValue(t.ACCOUNTNAME);
 
     m_bill_data.TRANSCODE = t.TRANSCODE;
     m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(t.TRANSCODE));
@@ -376,7 +351,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     if (m_transfer)
     {
         m_bill_data.TOACCOUNTID = t.TOACCOUNTID;
-        bPayee_->SetLabelText(t.TOACCOUNTNAME);
+        cbToAccount_->ChangeValue(t.TOACCOUNTNAME);
 
         m_bill_data.TOTRANSAMOUNT = t.TOTRANSAMOUNT;
         toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
@@ -389,7 +364,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     else
     {
         m_bill_data.PAYEEID = t.PAYEEID;
-        bPayee_->SetLabelText(t.PAYEENAME);
+        cbPayee_->ChangeValue(t.PAYEENAME);
     }
 
     if (t.has_split())
@@ -402,7 +377,6 @@ void mmBDDialog::SetDialogParameters(int trx_id)
             s.SUBCATEGID = split_trans.SUBCATEGID;
             m_bill_data.local_splits.push_back(s);
         }
-        cSplit_->SetValue(true);
     }
     else
     {
@@ -422,24 +396,24 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* mainBoxSizerOuter = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizerOuter);
     wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* repeatTransBoxSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* custom_fields_box_sizer = new wxBoxSizer(wxVERTICAL);
 
     /**********************************************************************************************
      Determining where the controls go
     ***********************************************************************************************/
+
+    /* Bills & Deposits Details */
+
+    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
+    wxStaticBoxSizer* repeatTransBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxVERTICAL);
+
     //mainBoxSizerInner will align contents horizontally
     mainBoxSizerInner->Add(repeatTransBoxSizer, g_flagsV);
     //mainBoxSizerOuter will align contents vertically
     mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsV);
 
-    /* Bills & Deposits Details */
-    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
-    wxStaticBoxSizer* repeatDetailsStaticBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxHORIZONTAL);
-    repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALL, 5);
-
     wxFlexGridSizer* itemFlexGridSizer5 = new wxFlexGridSizer(0, 2, 0, 0);
-    repeatDetailsStaticBoxSizer->Add(itemFlexGridSizer5);
+    repeatTransBoxSizer->Add(itemFlexGridSizer5);
 
     // Date Due --------------------------------------------
 
@@ -477,12 +451,14 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->Add(dueDateDateBoxSizer);
 
     // Repeats --------------------------------------------
-    m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV
-        , mmBitmap(png::LEFTARROW, mmBitmapButtonSize));
-    mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
 
     staticTextRepeats_ = new wxStaticText(this, wxID_STATIC, _("Repeats"));
     itemFlexGridSizer5->Add(staticTextRepeats_, g_flagsH);
+    itemFlexGridSizer5->AddSpacer(1);
+
+    m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV
+        , mmBitmap(png::LEFTARROW, mmBitmapButtonSize));
+    mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
 
     m_choice_repeat = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS);
 
@@ -494,14 +470,17 @@ void mmBDDialog::CreateControls()
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand));
     repeatBoxSizer->Add(m_btn_due_date, g_flagsH);
 
-    itemFlexGridSizer5->Add(repeatBoxSizer);
+    repeatTransBoxSizer->Add(repeatBoxSizer);
+
+    wxFlexGridSizer* itemFlexGridSizer52 = new wxFlexGridSizer(0, 2, 0, 0);
+    repeatTransBoxSizer->Add(itemFlexGridSizer52);
 
     // Repeat Times --------------------------------------------
     staticTimesRepeat_ = new wxStaticText(this, wxID_STATIC, _("Payments Left"));
-    itemFlexGridSizer5->Add(staticTimesRepeat_, g_flagsH);
+    itemFlexGridSizer52->Add(staticTimesRepeat_, g_flagsH);
 
     wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemFlexGridSizer5->Add(repeatTimesBoxSizer);
+    itemFlexGridSizer52->Add(repeatTimesBoxSizer);
 
     textNumRepeats_ = new wxTextCtrl(this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, ""
         , wxDefaultPosition, m_date_due->GetSize(), 0, wxIntegerValidator<int>());
@@ -605,43 +584,50 @@ void mmBDDialog::CreateControls()
     amountSizer->Add(toTextAmount_, g_flagsExpand);
 
     transPanelSizer->Add(amount_label, g_flagsH);
-    transPanelSizer->Add(amountSizer);
+    transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Account ------------------------------------------------
     wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
-    bAccount_ = new wxButton(this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"));
-    mmToolTip(bAccount_, _("Specify the Account that will own the recurring transaction"));
-    transPanelSizer->Add(bAccount_, g_flagsExpand);
+    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME);
+    mmToolTip(cbAccount_, _("Specify the Account that will own the recurring transaction"));
+    transPanelSizer->Add(cbAccount_, g_flagsExpand);
+
+    // To Account ------------------------------------------------
+    wxStaticText* to_acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_TOACCOUNT, _("To"));
+    to_acc_label->SetFont(this->GetFont().Bold());
+    transPanelSizer->Add(to_acc_label, g_flagsH);
+    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME);
+    mmToolTip(cbToAccount_, payeeTransferTip_);
+    transPanelSizer->Add(cbToAccount_, g_flagsExpand);
+
     // Payee ------------------------------------------------
     wxStaticText* payee_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
     payee_label->SetFont(this->GetFont().Bold());
 
-    bPayee_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee"));
-    mmToolTip(bPayee_, payeeWithdrawalTip_);
+    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE);
+    mmToolTip(cbPayee_, payeeWithdrawalTip_);
 
     transPanelSizer->Add(payee_label, g_flagsH);
-    transPanelSizer->Add(bPayee_, g_flagsExpand);
-
-    // Split Category -------------------------------------------
-    cSplit_ = new wxCheckBox(this, ID_DIALOG_TRANS_SPLITCHECKBOX, _("Split")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cSplit_->SetValue(FALSE);
-    mmToolTip(cSplit_, _("Use split Categories"));
-
-    transPanelSizer->AddSpacer(20); // Fill empty space.
-    transPanelSizer->Add(cSplit_, g_flagsH);
+    transPanelSizer->Add(cbPayee_, g_flagsExpand);
 
     // Category ---------------------------------------------
-    wxStaticText* categ_label = new wxStaticText(this, wxID_STATIC, _("Category"));
-    categ_label->SetFont(this->GetFont().Bold());
-    bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
-        , wxDefaultPosition, wxDefaultSize, 0);
-    //mmToolTip(bCategory_, _("Specify the category for this transaction"));
 
-    transPanelSizer->Add(categ_label, g_flagsExpand);
-    transPanelSizer->Add(bCategory_, g_flagsExpand);
+    wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL, _("Category"));
+    categ_label2->SetFont(this->GetFont().Bold());
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
+
+    bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
+    mmToolTip(bSplit_, _("Use split Categories"));
+
+    wxFlexGridSizer* categBoxSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    categBoxSizer->AddGrowableCol(0, 0);
+    categBoxSizer->Add(cbCategory_, g_flagsExpand);
+    categBoxSizer->Add(bSplit_, g_flagsH);
+
+    transPanelSizer->Add(categ_label2, g_flagsH);
+    transPanelSizer->Add(categBoxSizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
     // Number ---------------------------------------------
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER);
@@ -744,124 +730,28 @@ void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_CANCEL);
 }
 
-void mmBDDialog::OnAccountName(wxCommandEvent& WXUNUSED(event))
-{
-    const auto& accounts = Model_Account::instance().all_checking_account_names(true);
-    mmSingleChoiceDialog scd(this
-        , _("Choose Bank Account or Term Account")
-        , _("Select Account")
-        , accounts);
-
-    if (!accounts.empty())
-    {
-        Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-        const wxString acc_name = acc ? acc->ACCOUNTNAME : "";
-        scd.SetSelection(accounts.Index(acc_name) != wxNOT_FOUND ? accounts.Index(acc_name) : 0);
-    }
-
-    if (scd.ShowModal() == wxID_OK)
-    {
-        wxString acctName = scd.GetStringSelection();
-        Model_Account::Data* account = Model_Account::instance().get(acctName);
-        if (account)
-        {
-            if (textAmount_->Calculate(Model_Currency::precision(account->ACCOUNTID)))
-            {
-                textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
-            }
-
-            m_bill_data.ACCOUNTID = account->ACCOUNTID;
-            bAccount_->SetLabelText(acctName);
-        }
-    }
-}
-
 void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_transfer)
+    Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->mmGetId());
+    if (payee && m_new_bill)
     {
-        m_bill_data.PAYEEID = -1;
-        mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
-            , Model_Account::instance().all_checking_account_names(true));
-        if (scd.ShowModal() == wxID_OK)
+        // Only for new/duplicate transactions: if user want to autofill last category used for payee.
+        // If this is a Split Transaction, ignore displaying last category for payee
+        if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
+            && (Option::instance().TransCategorySelection() == Option::LASTUSED ||
+                Option::instance().TransCategorySelection() == Option::DEFAULT))
         {
-            const wxString& acctName = scd.GetStringSelection();
-            Model_Account::Data *to_acc = Model_Account::instance().get(acctName);
-            if (to_acc) {
-                m_bill_data.TOACCOUNTID = to_acc->id();
-                bPayee_->SetLabelText(to_acc->ACCOUNTNAME);
-            }
-        }
-    }
-    else
-    {
-        m_bill_data.TOACCOUNTID = -1;
-        mmPayeeDialog dlg(this, true);
-        dlg.DisableTools();
-        dlg.ShowModal();
+            m_bill_data.CATEGID = payee->CATEGID;
+            m_bill_data.SUBCATEGID = payee->SUBCATEGID;
 
-        m_bill_data.PAYEEID = dlg.getPayeeId();
-        Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
-        if (payee)
-        {
-            bPayee_->SetLabelText(payee->PAYEENAME);
-            payeeUnknown_ = false;
-            // Only for new/duplicate transactions: if user want to autofill last category used for payee.
-            // If this is a Split Transaction, ignore displaying last category for payee
-            if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
-                && (Option::instance().TransCategorySelection() == Option::LASTUSED || 
-                    Option::instance().TransCategorySelection() == Option::DEFAULT)
-                && !categUpdated_ && m_bill_data.BDID == 0)
-            {
-                m_bill_data.CATEGID = payee->CATEGID;
-                m_bill_data.SUBCATEGID = payee->SUBCATEGID;
-
-                bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
-            }
-        }
-        else
-        {
-            payeeUnknown_ = true;
-            resetPayeeString();
-        }
-    }
-}
-
-void mmBDDialog::OnTo(wxCommandEvent& WXUNUSED(event))
-{
-    // This should only get called if we are in a transfer
-
-    mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
-        , Model_Account::instance().all_checking_account_names());
-    if (scd.ShowModal() == wxID_OK)
-    {
-        const wxString& acctName = scd.GetStringSelection();
-        Model_Account::Data* account = Model_Account::instance().get(acctName);
-        if (account) {
-            m_bill_data.TOACCOUNTID = account->ACCOUNTID;
-            bPayee_->SetLabelText(account->ACCOUNTNAME);
+                cbCategory_->ChangeValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
         }
     }
 }
 
 void mmBDDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
-    if (cSplit_->GetValue())
-    {
-        activateSplitTransactionsDlg();
-    }
-    else
-    {
-        mmCategDialog dlg(this, true, m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
-        if (dlg.ShowModal() == wxID_OK)
-        {
-            m_bill_data.CATEGID = dlg.getCategId();
-            m_bill_data.SUBCATEGID = dlg.getSubCategId();
-
-            categUpdated_ = true;
-        }
-    }
-    setCategoryLabel();
+    activateSplitTransactionsDlg();
 }
 
 void mmBDDialog::OnTypeChanged(wxCommandEvent& WXUNUSED(event))
@@ -889,25 +779,9 @@ void mmBDDialog::updateControlsForTransType()
         m_transfer = true;
         mmToolTip(textAmount_, amountTransferTip_);
         accountLabel->SetLabelText(_("From"));
-        if (m_bill_data.ACCOUNTID < 0)
-        {
-            bAccount_->SetLabelText(_("Select Account"));
-            m_bill_data.PAYEEID = -1;
-            payeeUnknown_ = true;
-        }
-        else
-        {
-            m_bill_data.PAYEEID = m_bill_data.ACCOUNTID;
-        }
 
-        stp->SetLabelText(_("To"));
-        bPayee_->SetLabelText(_("Select To Account"));
-        mmToolTip(bPayee_, payeeTransferTip_);
-        if (prevType_ != -1)
-        {
-            m_bill_data.TOACCOUNTID = -1;
-            payeeUnknown_ = true;
-        }
+        cbToAccount_->mmSetId(m_bill_data.TOACCOUNTID);
+        m_bill_data.PAYEEID = -1;
         break;
     }
     case Model_Billsdeposits::WITHDRAWAL:
@@ -915,13 +789,11 @@ void mmBDDialog::updateControlsForTransType()
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
         stp->SetLabelText(_("Payee"));
-        mmToolTip(bPayee_, payeeWithdrawalTip_);
-        if (payeeUnknown_)
-        {
-            m_bill_data.PAYEEID = -1;
-            m_bill_data.TOACCOUNTID = -1;
-            resetPayeeString();
-        }
+        mmToolTip(cbPayee_, payeeWithdrawalTip_);
+
+        cbPayee_->mmSetId(m_bill_data.PAYEEID);
+        m_bill_data.TOACCOUNTID = -1;
+
         break;
     }
     case Model_Billsdeposits::DEPOSIT:
@@ -929,13 +801,10 @@ void mmBDDialog::updateControlsForTransType()
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
         stp->SetLabelText(_("From"));
-        mmToolTip(bPayee_, payeeDepositTip_);
-        if (payeeUnknown_)
-        {
-            m_bill_data.PAYEEID = -1;
-            m_bill_data.TOACCOUNTID = -1;
-            resetPayeeString();
-        }
+        mmToolTip(cbPayee_, payeeDepositTip_);
+
+        cbPayee_->mmSetId(m_bill_data.PAYEEID);
+        m_bill_data.TOACCOUNTID = -1;
         break;
     }
     }
@@ -945,38 +814,6 @@ void mmBDDialog::updateControlsForTransType()
     if (cAdvanced_->IsChecked()) {
         SetAdvancedTransferControls(true);
     }
-
-    prevType_ = m_choice_transaction_type->GetSelection();
-}
-
-void mmBDDialog::resetPayeeString()
-{
-    wxString payeeStr = _("Select Payee");
-    if (m_bill_data.PAYEEID == -1)
-    {
-        const auto &filtd = Model_Payee::instance().FilterPayees("");
-        if (filtd.size() == 1)
-        {
-            //only one payee present. Choose it
-            payeeStr = filtd[0].PAYEENAME;
-            m_bill_data.PAYEEID = filtd[0].PAYEEID;
-            payeeUnknown_ = false;
-
-            // Only for new/duplicate transactions: if user want to autofill last category used for payee.
-            // If this is a Split Transaction, ignore displaying last category for payee
-            if (filtd[0].CATEGID != -1
-                && m_bill_data.local_splits.empty()
-                && Option::instance().TransCategorySelection() == Option::LASTUSED
-                && !categUpdated_
-                && m_bill_data.BDID == 0)
-            {
-                m_bill_data.CATEGID = filtd[0].CATEGID;
-                m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;
-                bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
-            }
-        }
-    }
-    bPayee_->SetLabelText(payeeStr);
 }
 
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
@@ -1011,10 +848,11 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) != wxYES)
             return;
 
-    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    if (!acc) {
-        return mmErrorDialogs::InvalidAccount(bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
+    if (!cbAccount_->mmIsValid()) {
+        return mmErrorDialogs::InvalidAccount(cbAccount_, m_transfer, mmErrorDialogs::MESSAGE_DROPDOWN_BOX);
     }
+    m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
+    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
 
     Model_Billsdeposits::Data bill_data;
     bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
@@ -1029,27 +867,32 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     if (m_transfer)
     {
-        Model_Account::Data *to_acc = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
-        if (!to_acc || to_acc->ACCOUNTID == acc->ACCOUNTID)
-        {
-            return mmErrorDialogs::InvalidAccount(bPayee_, true);
+        if (!cbToAccount_->mmIsValid()) {
+            return mmErrorDialogs::InvalidAccount(cbToAccount_, m_transfer, mmErrorDialogs::MESSAGE_DROPDOWN_BOX);
+        }
+        m_bill_data.TOACCOUNTID = cbToAccount_->mmGetId();
+
+        if (m_bill_data.TOACCOUNTID == m_bill_data.ACCOUNTID) {
+            return mmErrorDialogs::InvalidAccount(cbPayee_, true);
         }
 
         if (m_advanced && !toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT)) return;
     }
     else
     {
-        Model_Payee::Data *payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
-        if (!payee)
-        {
-            return mmErrorDialogs::InvalidPayee(bPayee_);
+        if (!cbPayee_->mmIsValid()) {
+            return mmErrorDialogs::InvalidPayee(cbPayee_);
         }
+        m_bill_data.PAYEEID = cbPayee_->mmGetId();
     }
 
-    if ((cSplit_->IsChecked() && m_bill_data.local_splits.empty())
-        || (!cSplit_->IsChecked() && Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty()))
+    if (m_bill_data.local_splits.empty())
     {
-        return mmErrorDialogs::InvalidCategory(bCategory_, false);
+        if (!cbCategory_->mmIsValid()) {
+            return mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
+        }
+        m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
+        m_bill_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
     }
 
     if (!m_custom_fields->ValidateCustomValues(-m_bill_data.BDID))
@@ -1212,39 +1055,6 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_OK);
 }
 
-void mmBDDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
-{
-    if (cSplit_->IsChecked())
-    {
-        activateSplitTransactionsDlg();
-    }
-    else
-    {
-        wxASSERT(m_bill_data.local_splits.size() > 0);
-        if (m_bill_data.local_splits.size() > 1)
-        {
-            //Delete split items first (data protection)
-            cSplit_->SetValue(true);
-        }
-        else if (m_bill_data.local_splits.size() == 1)
-        {
-            m_bill_data.CATEGID = m_bill_data.local_splits.begin()->CATEGID;
-            m_bill_data.SUBCATEGID = m_bill_data.local_splits.begin()->SUBCATEGID;
-            m_bill_data.TRANSAMOUNT = m_bill_data.local_splits.begin()->SPLITTRANSAMOUNT;
-
-            if (m_bill_data.TRANSAMOUNT < 0)
-            {
-                m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
-                m_choice_transaction_type->SetSelection(Model_Checking::WITHDRAWAL);
-            }
-
-            m_bill_data.local_splits.clear();
-        }
-    }
-    textAmount_->Enable(m_bill_data.local_splits.empty());
-    setCategoryLabel();
-}
-
 void mmBDDialog::SetSplitControls(bool split)
 {
     textAmount_->Enable(!split);
@@ -1289,29 +1099,27 @@ void mmBDDialog::OnAdvanceChecked(wxCommandEvent& WXUNUSED(event))
 
 void mmBDDialog::SetTransferControls(bool transfers)
 {
+    wxStaticText* stp = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE));
+    wxStaticText* stta = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_TOACCOUNT));
+
     cAdvanced_->Enable(transfers);
     if (transfers)
     {
-        if (prevType_ != Model_Billsdeposits::TRANSFER)
-        {
-            if (cSplit_->GetValue())
-            {
-                cSplit_->SetValue(FALSE);
-                SetSplitControls();
-            }
-            cSplit_->Disable();
-        }
+        SetSplitControls();
     }
     else
     {
-        if (!(prevType_ == Model_Billsdeposits::WITHDRAWAL || prevType_ == Model_Billsdeposits::DEPOSIT))
-        {
-            SetAdvancedTransferControls();
-            cSplit_->Enable();
-            toTextAmount_->ChangeValue("");
-            cAdvanced_->SetValue(false);
-        }
+        SetAdvancedTransferControls();
+        toTextAmount_->ChangeValue("");
+        cAdvanced_->SetValue(false);
     }
+
+    bSplit_->Enable(!transfers);
+    cbToAccount_->Show(transfers);
+    cbPayee_->Show(!transfers);
+    stta->Show(m_transfer);
+    stp->Show(!m_transfer);
+    Layout();
 }
 
 void mmBDDialog::SetAdvancedTransferControls(bool advanced)
@@ -1322,12 +1130,10 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     if (m_advanced)
     {
         // Display the transfer amount in the toTextAmount control.
-        if (m_bill_data.TOTRANSAMOUNT > 0)
-        {
+        if (m_bill_data.TOTRANSAMOUNT > 0) {
             toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
         }
-        else
-        {
+        else {
             toTextAmount_->SetValue(textAmount_->GetValue());
         }
     }
@@ -1451,11 +1257,10 @@ void mmBDDialog::activateSplitTransactionsDlg()
         m_bill_data.local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, m_bill_data.local_splits
-        , m_choice_transaction_type->GetSelection(), m_bill_data.ACCOUNTID);
+    mmSplitTransactionDialog dlg(this, m_bill_data.local_splits, m_bill_data.ACCOUNTID, m_choice_transaction_type->GetSelection());
     if (dlg.ShowModal() == wxID_OK)
     {
-        m_bill_data.local_splits = dlg.getResult();
+        m_bill_data.local_splits = dlg.mmGetResult();
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
@@ -1465,7 +1270,14 @@ void mmBDDialog::activateSplitTransactionsDlg()
         }
         textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
     }
-    textAmount_->Enable(m_bill_data.local_splits.empty());
+
+    if (m_bill_data.local_splits.size() == 1)
+    {
+        m_bill_data.CATEGID = m_bill_data.local_splits[0].CATEGID;
+        m_bill_data.SUBCATEGID = m_bill_data.local_splits[0].SUBCATEGID;
+        m_bill_data.local_splits.clear();
+    }
+
     setCategoryLabel();
 }
 
@@ -1483,46 +1295,47 @@ void mmBDDialog::OnTextEntered(wxCommandEvent& event)
 
 void mmBDDialog::setTooltips()
 {
-    if (this->m_bill_data.local_splits.empty())
-    {
-        mmToolTip(bCategory_, _("Specify the category for this transaction"));
-    }
-    else
+    if (!this->m_bill_data.local_splits.empty())
     {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
         const Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-        if (account)
-        {
+        if (account) {
             currency = Model_Account::currency(account);
         }
 
-        mmToolTip(bCategory_, Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
+        bSplit_->SetToolTip(Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
     }
+    else
+        mmToolTip(bSplit_, _("Use split Categories"));
 }
 
 void mmBDDialog::setCategoryLabel()
 {
     bool has_split = !m_bill_data.local_splits.empty();
-    wxString fullCategoryName;
-    bCategory_->UnsetToolTip();
+
+    bSplit_->UnsetToolTip();
     if (has_split)
     {
-        fullCategoryName = _("Categories");
+        cbCategory_->SetLabelText(_("Split Transaction"));
         textAmount_->SetValue(Model_Splittransaction::get_total(m_bill_data.local_splits));
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
     }
     else
     {
-        fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
-        if (fullCategoryName.IsEmpty())
-        {
-            fullCategoryName = _("Select Category");
-        }
+        const auto fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
+        cbCategory_->ChangeValue(fullCategoryName);
     }
 
-    bCategory_->SetLabelText(fullCategoryName);
     setTooltips();
+
+    bool is_split = !m_bill_data.local_splits.empty();
+    textAmount_->Enable(!is_split);
+
+    wxButton* bSplit = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
+    bSplit->Enable(!m_transfer);
+    cbCategory_->Enable(!is_split);
+    Layout();
 }
 
 void mmBDDialog::OnPaidDateChanged(wxDateEvent& event)
@@ -1552,4 +1365,60 @@ void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
+}
+
+void mmBDDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
+{
+    int acc_id = cbAccount_->mmGetId();
+    Model_Account::Data* account = Model_Account::instance().get(acc_id);
+    if (account)
+    {
+        if (textAmount_->Calculate(Model_Currency::precision(account->ACCOUNTID)))
+        {
+            textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
+        }
+
+        m_bill_data.ACCOUNTID = account->ACCOUNTID;
+    }
+}
+
+void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
+{
+    switch (object_in_focus_)
+    {
+    case mmID_ACCOUNTNAME:
+        cbAccount_->ChangeValue(cbAccount_->GetValue());
+        if (cbAccount_->mmIsValid())
+            m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
+        break;
+    case mmID_TOACCOUNTNAME:
+        cbToAccount_->ChangeValue(cbToAccount_->GetValue());
+        if (cbToAccount_->mmIsValid())
+            m_bill_data.TOACCOUNTID = cbToAccount_->mmGetId();
+        break;
+    case mmID_PAYEE:
+        cbPayee_->ChangeValue(cbPayee_->GetValue());
+        break;
+    case mmID_CATEGORY:
+        cbCategory_->ChangeValue(cbCategory_->GetValue());
+        if (cbCategory_->mmIsValid()) {
+            m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
+            m_bill_data.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
+        }
+        break;
+
+    }
+
+    wxWindow* w = event.GetWindow();
+    if (w) {
+        object_in_focus_ = w->GetId();
+    }
+
+    if (textAmount_->Calculate(Model_Currency::precision(m_bill_data.ACCOUNTID))) {
+        textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
+    }
+    if (m_advanced && toTextAmount_->Calculate(Model_Currency::precision(m_bill_data.TOACCOUNTID))) {
+        toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
+    }
+
 }

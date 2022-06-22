@@ -61,7 +61,7 @@ public:
 
     const std::map<wxString, int> all_payees();
     const wxArrayString all_payee_names();
-    const wxArrayString used_payee_names();
+    const std::map<wxString, int> used_payee();
 
     static bool is_used(int id);
     static bool is_used(const Data* record);
