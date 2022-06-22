@@ -88,7 +88,6 @@ private:
     bool autoExecuteUserAck_;
     bool autoExecuteSilent_;
     bool m_advanced;
-    bool categUpdated_;
 private:
     wxTextCtrl* textNumber_;
     mmTextCtrl* textAmount_;
