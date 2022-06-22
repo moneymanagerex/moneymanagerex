@@ -106,6 +106,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
     , m_advanced(false)
+    , categUpdated_(false)
     , textNumber_(nullptr)
     , textAmount_(nullptr)
     , toTextAmount_(nullptr)
