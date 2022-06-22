@@ -194,7 +194,7 @@ void mmTransDialog::dataToControls()
     Model_Checking::getFrequentUsedNotes(frequentNotes_, m_trx_data.ACCOUNTID);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
- 
+
     if (!skip_date_init_) //Date
     {
         wxDateTime trx_date;

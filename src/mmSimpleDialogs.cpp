@@ -110,7 +110,6 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
         this->Popup();
     }
 #endif
-
     for (const auto& item : all_elements_) {
         if ((item.first.CmpNoCase(typedText) == 0) /*&& (item.first.Cmp(typedText) != 0)*/) {
             ChangeValue(item.first);
