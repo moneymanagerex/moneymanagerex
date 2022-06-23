@@ -247,6 +247,19 @@ int mmComboBoxCategory::mmGetSubcategoryId() const
         return -1;
 }
 
+/* --------------------------------------------------------- */
+
+mmComboBoxCustom::mmComboBoxCustom(wxWindow* parent, wxArrayString& a, wxWindowID id, wxSize size)
+    : mmComboBox(parent, id, size)
+{
+    int i = 0;
+    for (const auto& item : a)
+    {
+        all_elements_[item] = i++;
+    }
+}
+
+
 /*/////////////////////////////////////////////////////////////*/
 
 wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
@@ -383,8 +396,8 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, con
     Message(message),
     cbText_(nullptr)
 {
-    long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX;
-    Create(parent, wxID_STATIC, caption, wxDefaultPosition, wxDefaultSize, style);
+    this->SetFont(parent->GetFont());
+    Create(parent, wxID_ANY, caption);
     SetMinSize(wxSize(300, 100));
 }
 
@@ -401,9 +414,8 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC, Message);
     Sizer->Add(headerText, flags);
     Sizer->AddSpacer(15);
-    cbText_ = new wxComboBox(this, wxID_STATIC, Default, wxDefaultPosition, wxDefaultSize, Choices);
+    cbText_ = new mmComboBoxCustom(this, Choices);
     cbText_->SetMinSize(wxSize(150, -1));
-    cbText_->AutoComplete(Choices);
     Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
     wxSizer* Button = CreateButtonSizer(wxOK | wxCANCEL);
@@ -411,9 +423,8 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->AddSpacer(10);
 
     cbText_->SetFocus();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
     Centre();
+    Fit();
     return true;
 }
 
