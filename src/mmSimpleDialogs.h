@@ -26,8 +26,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 
 #include <wx/choicdlg.h>
+#include <wx/spinbutt.h>
 #include <wx/dialog.h>
 #include <wx/choice.h>
+
 class wxComboBox;
 class wxTextCtrl;
 class wxChoice;
@@ -136,7 +138,32 @@ protected:
 };
 inline void mmComboBoxCustom::init() {}
 
-/* ///////////////////////////////////////////// */
+/* -------------------------------------------- */
+
+class mmDatePickerCtrl : public wxDatePickerCtrl
+{
+    wxDECLARE_EVENT_TABLE();
+
+public: 
+    mmDatePickerCtrl(wxWindow* parent, wxWindowID id
+    , wxDateTime dt=wxDateTime::Today(), wxPoint pos=wxDefaultPosition, wxSize size=wxDefaultSize
+    , long style=wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    ~mmDatePickerCtrl();
+    void SetValue(const wxDateTime &dt);
+    void mmEnable(bool state);
+    wxBoxSizer* mmGetLayout();
+private:
+    wxStaticText* getTextWeek();
+    wxSpinButton* getSpinButton();
+
+    void OnDateChanged(wxDateEvent& event);
+    void OnDateSpin(wxSpinEvent& event);
+
+    wxStaticText* itemStaticTextWeek_;
+    wxSpinButton* spinButton_;
+};
+
+/* -------------------------------------------- */
 
 class mmColorButton : public wxButton
 {

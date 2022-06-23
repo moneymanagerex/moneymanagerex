@@ -53,8 +53,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHAR_HOOK(mmTransDialog::OnComboKey)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
-    EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
-    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
     EVT_COMBOBOX(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
     EVT_BUTTON(mmID_CATEGORY_SPLIT, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
@@ -201,9 +199,6 @@ void mmTransDialog::dataToControls()
         trx_date.ParseDate(m_trx_data.TRANSDATE);
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
-        //process date change event for set weekday name
-        wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
-        OnDateChanged(dateEvent);
         skip_date_init_ = true;
     }
 
@@ -384,36 +379,14 @@ void mmTransDialog::CreateControls()
     box_sizer_left->Add(flex_sizer, g_flagsV);
     box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
-    // Date --------------------------------------------
-    long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-
-    dpc_ = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Today(), wxDefaultPosition, wxDefaultSize, date_style);
-
-    //Text field for name of day of the week
-    wxSize WeekDayNameMaxSize(wxDefaultSize);
-    for (wxDateTime::WeekDay d = wxDateTime::Sun;
-            d != wxDateTime::Inv_WeekDay;
-            d = wxDateTime::WeekDay(d+1))
-        WeekDayNameMaxSize.IncTo(GetTextExtent(
-            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
-
-    itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
-
+    // Date -------------------------------------------
     wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Date"));
     flex_sizer->Add(name_label, g_flagsH);
     name_label->SetFont(this->GetFont().Bold());
-    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(date_sizer);
-    date_sizer->Add(dpc_, g_flagsH);
-#if defined(__WXMSW__) || defined(__WXGTK__)
-    wxSpinButton* spinCtrl = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
-        , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinCtrl->SetRange(-32768, 32768);
-    mmToolTip(spinCtrl, _("Retard or advance the date of the transaction"));
-    date_sizer->Add(spinCtrl, g_flagsH);
-#endif
-    date_sizer->Add(itemStaticTextWeek_, g_flagsH);
+    
+    dpc_ = new mmDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE);
+    flex_sizer->Add(dpc_->mmGetLayout());
+
     flex_sizer->AddSpacer(1);
 
     // Status --------------------------------------------
@@ -831,33 +804,6 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 void mmTransDialog::SetDialogTitle(const wxString& title)
 {
     this->SetTitle(title);
-}
-
-//** --------------=Event handlers=------------------ **//
-void mmTransDialog::OnDateChanged(wxDateEvent& event)
-{
-    //get weekday name
-    wxDateTime date = dpc_->GetValue();
-    if (event.GetDate().IsValid())
-    {
-        itemStaticTextWeek_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
-        m_trx_data.TRANSDATE = date.FormatISODate();
-    }
-}
-
-void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
-{
-    wxDateTime date = dpc_->GetValue();
-    int value = event.GetPosition();
-    wxSpinButton* spinCtrl = static_cast<wxSpinButton*>(event.GetEventObject());
-    if (spinCtrl) spinCtrl->SetValue(0);
-
-    date = date.Add(wxDateSpan::Days(value));
-    dpc_->SetValue(date);
-
-    //process date change event for set weekday name
-    wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
-    OnDateChanged(dateEvent);
 }
 
 void mmTransDialog::OnPayeeChanged(wxCommandEvent& /*event*/)

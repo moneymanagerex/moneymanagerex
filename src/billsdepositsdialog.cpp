@@ -36,7 +36,6 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_CurrencyHistory.h"
-#include <wx/spinbutt.h>
 #include <wx/valnum.h>
 
 enum { NONE, WEEKLY, FORTNIGHTLY, MONTHLY
@@ -80,10 +79,6 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmBDDialog::OnMoreFields)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
-    EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTON_PAYDATE, mmBDDialog::OnPaidDateChanged)
-    EVT_DATE_CHANGED(ID_DIALOG_BD_DUE_DATE, mmBDDialog::OnDueDateChanged)
-    EVT_SPIN(ID_DIALOG_BD_REPEAT_DATE_SPINNER, mmBDDialog::OnSpinEventDue)
-    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmBDDialog::OnSpinEventPaid)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmBDDialog::OnAdvanceChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, mmBDDialog::OnAutoExecutionUserAckChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
@@ -307,10 +302,7 @@ void mmBDDialog::dataToControls()
     else
     {
         SetDialogHeader(_("Enter Recurring Transaction"));
-        m_date_due->Disable();
-        itemStaticTextWeekDue_->Disable();
-        wxSpinButton* spinTransDate = static_cast<wxSpinButton*>(FindWindow(ID_DIALOG_BD_REPEAT_DATE_SPINNER));
-        if (spinTransDate) spinTransDate->Disable();
+        m_date_due->mmEnable(false);
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
         itemCheckBoxAutoExeSilent_->Disable();
@@ -417,38 +409,10 @@ void mmBDDialog::CreateControls()
 
     // Date Due --------------------------------------------
 
-    m_date_due = new wxDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE, wxDefaultDateTime
-        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    m_date_due->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
+    m_date_due = new mmDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE);
     mmToolTip(m_date_due, _("Specify the date when this bill or deposit is due"));
-
-    wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    dueDateDateBoxSizer->Add(m_date_due, g_flagsH);
-
-#ifdef __WXMSW__
-    int interval = 0;
-    int spinCtrlDirection = wxSP_VERTICAL;
-    wxSpinButton* spinNextOccDate = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
-        , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    mmToolTip(spinNextOccDate, _("Retard or advance the date of the 'next occurrence'"));
-    spinNextOccDate->SetRange(-32768, 32768);
-    dueDateDateBoxSizer->Add(spinNextOccDate, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
-#endif
-
-    //Text field for name of day of the week
-    wxSize WeekDayNameMaxSize(wxDefaultSize);
-    for (wxDateTime::WeekDay d = wxDateTime::Sun;
-            d != wxDateTime::Inv_WeekDay;
-            d = wxDateTime::WeekDay(d+1))
-        WeekDayNameMaxSize.IncTo(GetTextExtent(
-            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
-
-    itemStaticTextWeekDue_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
-    dueDateDateBoxSizer->Add(itemStaticTextWeekDue_, g_flagsH);
-
     itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
-    itemFlexGridSizer5->Add(dueDateDateBoxSizer);
+    itemFlexGridSizer5->Add(m_date_due->mmGetLayout());
 
     // Repeats --------------------------------------------
 
@@ -510,28 +474,10 @@ void mmBDDialog::CreateControls()
     mainBoxSizerInner->Add(transDetailsStaticBoxSizer, g_flagsExpand);
 
     // Trans Date --------------------------------------------
-    m_date_paid = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTON_PAYDATE
-        , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    m_date_paid->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
+    m_date_paid = new mmDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTON_PAYDATE);
     mmToolTip(m_date_paid, _("Specify the date the user is requested to enter this transaction"));
-
-    wxBoxSizer* transDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    transDateBoxSizer->Add(m_date_paid, g_flagsH);
-
-#ifdef __WXMSW__
-    wxSpinButton* spinTransDate = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
-        , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    mmToolTip(spinTransDate, _("Advance or retard the user request date of this transaction"));
-    spinTransDate->SetRange(-32768, 32768);
-    transDateBoxSizer->Add(spinTransDate, g_flagsH);
-#endif
-
-    itemStaticTextWeekPaid_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
-    transDateBoxSizer->Add(itemStaticTextWeekPaid_, g_flagsH);
-
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
-    transPanelSizer->Add(transDateBoxSizer);
+    transPanelSizer->Add(m_date_paid->mmGetLayout());
 
     // Status --------------------------------------------
     m_choice_status = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
@@ -1139,30 +1085,6 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     }
 }
 
-void mmBDDialog::OnSpinEventPaid(wxSpinEvent& event)
-{
-    wxSpinButton* spinCtrl = static_cast<wxSpinButton*>(event.GetEventObject());
-    spinCtrl->SetValue(0);
-    int step = event.GetValue();
-    wxDateTime date_paid = m_date_paid->GetValue().Add(wxDateSpan::Days(step));
-    m_date_paid->SetValue(date_paid);
-    wxDateEvent dateEvent(m_date_paid, date_paid, wxEVT_DATE_CHANGED);
-    GetEventHandler()->ProcessEvent(dateEvent);
-    event.Skip();
-}
-
-void mmBDDialog::OnSpinEventDue(wxSpinEvent& event)
-{
-    wxSpinButton* spinCtrl = static_cast<wxSpinButton*>(event.GetEventObject());
-    spinCtrl->SetValue(0);
-    int step = event.GetValue();
-    wxDateTime date_due = m_date_due->GetValue().Add(wxDateSpan::Days(step));
-    m_date_due->SetValue(date_due);
-    wxDateEvent dateEvent(m_date_due, date_due, wxEVT_DATE_CHANGED);
-    GetEventHandler()->ProcessEvent(dateEvent);
-    event.Skip();
-}
-
 void mmBDDialog::setRepeatDetails()
 {
     const wxString& repeatLabelRepeats = _("Repeats");
@@ -1336,22 +1258,6 @@ void mmBDDialog::setCategoryLabel()
     bSplit->Enable(!m_transfer);
     cbCategory_->Enable(!is_split);
     Layout();
-}
-
-void mmBDDialog::OnPaidDateChanged(wxDateEvent& event)
-{
-    //get weekday name
-    wxDateTime date = event.GetDate();
-    if (date.IsValid())
-        itemStaticTextWeekPaid_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
-}
-
-void mmBDDialog::OnDueDateChanged(wxDateEvent& event)
-{
-    //get weekday name
-    wxDateTime date = event.GetDate();
-    if (date.IsValid())
-        itemStaticTextWeekDue_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
 }
 
 void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))

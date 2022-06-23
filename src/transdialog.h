@@ -31,9 +31,6 @@
 #include "Model_CustomFieldData.h"
 #include "Model_Splittransaction.h"
 
-#include <wx/spinbutt.h>
-
-class wxDatePickerCtrl;
 class mmTextCtrl;
 class wxString;
 class mmCustomData;
@@ -91,8 +88,6 @@ private:
     void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnPayeeChanged(wxCommandEvent& event);
-    void OnTransDateSpin(wxSpinEvent&);
-    void OnDateChanged(wxDateEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
@@ -118,8 +113,7 @@ private:
     wxButton* m_button_cancel;
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
-    wxDatePickerCtrl* dpc_;
-    wxStaticText* itemStaticTextWeek_;
+    mmDatePickerCtrl* dpc_;
 
     bool m_transfer;
     bool m_new_trx;
@@ -173,7 +167,6 @@ private:
         mmID_CATEGORY_SPLIT,
         mmID_ACCOUNTNAME,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
-        ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
         ID_CUSTOMFIELD,
     };

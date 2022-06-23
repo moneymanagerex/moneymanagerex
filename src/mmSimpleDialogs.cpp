@@ -259,6 +259,110 @@ mmComboBoxCustom::mmComboBoxCustom(wxWindow* parent, wxArrayString& a, wxWindowI
     }
 }
 
+/* --------------------------------------------------------- */
+
+wxBEGIN_EVENT_TABLE(mmDatePickerCtrl, wxDatePickerCtrl)
+    EVT_DATE_CHANGED(wxID_ANY, mmDatePickerCtrl::OnDateChanged)
+    EVT_SPIN(wxID_ANY, mmDatePickerCtrl::OnDateSpin)
+wxEND_EVENT_TABLE()
+
+mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
+    : wxDatePickerCtrl(parent, id, dt, pos, size, style)
+    , itemStaticTextWeek_(nullptr)
+    , spinButton_(nullptr)
+{
+
+}
+
+mmDatePickerCtrl::~mmDatePickerCtrl()
+{
+    if (!itemStaticTextWeek_)
+        delete itemStaticTextWeek_;
+    if (!spinButton_)
+        delete spinButton_;
+}
+
+wxStaticText* mmDatePickerCtrl::getTextWeek()
+{ 
+    if (!itemStaticTextWeek_)
+    {
+        //Text field for name of day of the week
+        wxSize WeekDayNameMaxSize(wxDefaultSize);
+        for (wxDateTime::WeekDay d = wxDateTime::Sun;
+                d != wxDateTime::Inv_WeekDay;
+                d = wxDateTime::WeekDay(d+1))
+            WeekDayNameMaxSize.IncTo(GetTextExtent(
+                wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
+        itemStaticTextWeek_ = new wxStaticText(this->GetParent(), wxID_ANY, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
+        // Force update
+        wxDateEvent dateEvent(this, this->GetValue(), wxEVT_DATE_CHANGED);
+        OnDateChanged(dateEvent);
+    }
+    return itemStaticTextWeek_; 
+}
+
+wxSpinButton* mmDatePickerCtrl::getSpinButton()
+{ 
+    if (!spinButton_)
+    {
+        spinButton_ = new wxSpinButton(this->GetParent(), wxID_ANY
+            , wxDefaultPosition, wxSize(-1, this->GetSize().GetHeight())
+            , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
+        spinButton_->Connect(wxID_ANY, wxEVT_SPIN
+        , wxSpinEventHandler(mmDatePickerCtrl::OnDateSpin), nullptr, this);
+        spinButton_->SetRange(-32768, 32768);
+        mmToolTip(spinButton_, _("Retard or advance the date"));
+    }
+    return spinButton_; 
+}
+
+void mmDatePickerCtrl::SetValue(const wxDateTime &dt)	
+{
+    wxDatePickerCtrl::SetValue(dt);
+    //trigger date change event
+    wxDateEvent dateEvent(this, dt, wxEVT_DATE_CHANGED);
+    OnDateChanged(dateEvent);
+}
+
+void mmDatePickerCtrl::mmEnable(bool state)
+{
+    this->Enable(state);
+    if (itemStaticTextWeek_) itemStaticTextWeek_->Enable(state);
+    if (spinButton_) spinButton_->Enable(state);
+}
+
+
+wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
+{
+    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL); 
+    date_sizer->Add(this, g_flagsH);
+#if defined(__WXMSW__) || defined(__WXGTK__)
+    date_sizer->Add(this->getSpinButton(), g_flagsH);
+#endif
+    date_sizer->Add(this->getTextWeek(), g_flagsH);
+
+    return date_sizer;
+}
+
+void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
+{
+    if (!itemStaticTextWeek_)
+        return;
+    
+    wxDateTime dt = event.GetDate();
+    itemStaticTextWeek_->SetLabelText(wxGetTranslation(dt.GetEnglishWeekDayName(dt.GetWeekDay())));
+}
+
+void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& WXUNUSED(event))
+{
+    if (!spinButton_)
+        return;
+        
+    wxDateTime date = this->GetValue();
+    date = date.Add(wxDateSpan::Days(spinButton_->GetValue()));
+    this->SetValue(date);
+    spinButton_->SetValue(0);
+}
 
 /*/////////////////////////////////////////////////////////////*/
 
