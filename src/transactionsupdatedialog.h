@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2017 - 2022 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ private:
     wxCheckBox* m_transferAcc_checkbox;
     mmComboBoxAccount* cbAccount_;    
     wxCheckBox* m_date_checkbox;
-    wxDatePickerCtrl* m_dpc;
+    mmDatePickerCtrl* m_dpc;
     wxCheckBox* m_status_checkbox;
     wxChoice* m_status_choice;
     wxCheckBox* m_categ_checkbox;
