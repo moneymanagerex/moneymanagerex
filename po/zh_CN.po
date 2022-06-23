@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-06-22 19:25+0300\n"
-"PO-Revision-Date: 2022-06-23 09:30\n"
+"POT-Creation-Date: 2022-06-23 14:13+0300\n"
+"PO-Revision-Date: 2022-06-23 11:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:718
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:619 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:629 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:273
@@ -786,7 +786,7 @@ msgstr "请验证文件存在且用户有读取权限。"
 msgid "Open attachment failed"
 msgstr "打开附件失败"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:327
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:339
 #: model/Model_Asset.cpp:23 model/Model_Budget.cpp:55 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:198
 msgid "None"
@@ -1825,7 +1825,7 @@ msgstr "未更新以前任何更改都将丢失"
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:519
+#: mmSimpleDialogs.cpp:529
 msgid "Invalid Entry"
 msgstr "输入无效"
 
@@ -2746,7 +2746,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "没有找到可用的主题，安装程序可能已损坏"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1619
-#: mmSimpleDialogs.cpp:534
+#: mmSimpleDialogs.cpp:544
 msgid "Unable to open file."
 msgstr "无法打开文件"
 
@@ -3354,7 +3354,7 @@ msgstr "删除现有文件失败。文件可能会被其他程序锁定。"
 msgid "Destination file error"
 msgstr "目标文件错误"
 
-#: import_export/univcsvdialog.cpp:1159 mmSimpleDialogs.cpp:542
+#: import_export/univcsvdialog.cpp:1159 mmSimpleDialogs.cpp:552
 msgid "Invalid Account"
 msgstr "账户不可用"
 
@@ -3545,97 +3545,97 @@ msgstr "无法下载基本符号 %s 的历史记录。历史记录汇率不可�
 msgid "Could not find base currency symbol!"
 msgstr "无法找到基础的货币符号！"
 
-#: mmSimpleDialogs.cpp:270 mmSimpleDialogs.cpp:282
+#: mmSimpleDialogs.cpp:282 mmSimpleDialogs.cpp:294
 msgid "Clear color"
 msgstr "消除颜色"
 
-#: mmSimpleDialogs.cpp:273 mmSimpleDialogs.cpp:287
+#: mmSimpleDialogs.cpp:285 mmSimpleDialogs.cpp:299
 #, c-format
 msgid "Color #%i"
 msgstr "颜色 #%i"
 
-#: mmSimpleDialogs.cpp:459
+#: mmSimpleDialogs.cpp:469
 msgid "Subtract one year"
 msgstr "减去一年"
 
-#: mmSimpleDialogs.cpp:460
+#: mmSimpleDialogs.cpp:470
 msgid "Subtract one month"
 msgstr "减一个月"
 
-#: mmSimpleDialogs.cpp:461
+#: mmSimpleDialogs.cpp:471
 msgid "Add one month"
 msgstr "加一个月"
 
-#: mmSimpleDialogs.cpp:462
+#: mmSimpleDialogs.cpp:472
 msgid "Add one year"
 msgstr "加一年"
 
-#: mmSimpleDialogs.cpp:518
+#: mmSimpleDialogs.cpp:528
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "条目 %s 无效"
 
-#: mmSimpleDialogs.cpp:525
+#: mmSimpleDialogs.cpp:535
 msgid "Please use this button for category selection."
 msgstr "请使用此按钮来选择类目。"
 
-#: mmSimpleDialogs.cpp:526
+#: mmSimpleDialogs.cpp:536
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "请使用此按钮进行类别选择\n"
 "或对多个类别使用“拆分”复选框。"
 
-#: mmSimpleDialogs.cpp:529
+#: mmSimpleDialogs.cpp:539
 msgid "Invalid Category"
 msgstr "类目无效"
 
-#: mmSimpleDialogs.cpp:534
+#: mmSimpleDialogs.cpp:544
 msgid "File name is empty."
 msgstr "文件名为空。"
 
-#: mmSimpleDialogs.cpp:535
+#: mmSimpleDialogs.cpp:545
 msgid "Please select the file for this operation."
 msgstr "请仅为此操作选择一个文件"
 
-#: mmSimpleDialogs.cpp:545
+#: mmSimpleDialogs.cpp:555
 msgid "Please select the account for this transaction."
 msgstr "请选择此交易的账户。"
 
-#: mmSimpleDialogs.cpp:547
+#: mmSimpleDialogs.cpp:557
 msgid "Please specify which account the transfer is going to."
 msgstr "请指定将转账到哪个账户。"
 
-#: mmSimpleDialogs.cpp:549
+#: mmSimpleDialogs.cpp:559
 msgid "Selection can be made by using the dropdown button."
 msgstr "可以使用下拉按钮进行选择。"
 
-#: mmSimpleDialogs.cpp:552
+#: mmSimpleDialogs.cpp:562
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "激活该按钮将提供一个选择框，可以在其中选择账户。"
 
-#: mmSimpleDialogs.cpp:561
+#: mmSimpleDialogs.cpp:571
 msgid "Invalid Payee"
 msgstr "收款人无效"
 
-#: mmSimpleDialogs.cpp:562
+#: mmSimpleDialogs.cpp:572
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "请输入新的收款人，\n"
 "或使用下拉按钮进行选择。"
 
-#: mmSimpleDialogs.cpp:570 mmSimpleDialogs.cpp:582
+#: mmSimpleDialogs.cpp:580 mmSimpleDialogs.cpp:592
 msgid "Invalid Name"
 msgstr "名称无效"
 
-#: mmSimpleDialogs.cpp:573 mmSimpleDialogs.cpp:585
+#: mmSimpleDialogs.cpp:583 mmSimpleDialogs.cpp:595
 msgid "Already exist!"
 msgstr "已存在！"
 
-#: mmSimpleDialogs.cpp:575
+#: mmSimpleDialogs.cpp:585
 msgid "Please type in a non empty name."
 msgstr "请输入一个非空白名称。"
 
-#: mmSimpleDialogs.cpp:587
+#: mmSimpleDialogs.cpp:597
 msgid "Please type in a non empty symbol."
 msgstr "请输入一个非空白符号。"
 
