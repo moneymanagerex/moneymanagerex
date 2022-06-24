@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-23 14:13+0300\n"
-"PO-Revision-Date: 2022-06-24 20:13\n"
+"PO-Revision-Date: 2022-06-24 21:17\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4467,7 +4467,7 @@ msgstr "&Opcje...\tCtrl-,"
 
 #: mmframe.cpp:1668 mmframe.cpp:1824
 msgid "Show the Options Dialog"
-msgstr "Pokaż dialog opcji"
+msgstr "Pokaż okno opcji"
 
 #: mmframe.cpp:1675
 msgid "Convert Encrypted &DB"
