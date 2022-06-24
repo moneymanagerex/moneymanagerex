@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-23 14:13+0300\n"
-"PO-Revision-Date: 2022-06-24 19:10\n"
+"PO-Revision-Date: 2022-06-24 20:13\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Warunki licencji"
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr "O programie..."
+msgstr "O programie"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
@@ -67,7 +67,7 @@ msgstr "Włącz aby pomóc nam przesyłając anonimowe dane o używaniu MMEX."
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:273
 #: transdialog.cpp:572 wizard_update.cpp:216
 msgid "&OK "
-msgstr "&OK"
+msgstr "&OK "
 
 #: accountdialog.cpp:112 mmframe.cpp:1573
 msgid "Edit Account"
@@ -541,7 +541,7 @@ msgstr "Potwierdź usunięcie aktywów"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX umożliwia śledzenie wartości środków trwałych, takich jak samochody, domy, grunty i inne. Każdy element może mieć wartość obniżaną (amortyzowaną) o określony procent rocznie lub nie zmienianą. Suma wartości aktywów jest dodawana do całkowitej wartości finansowej."
+msgstr "MMEX umożliwia śledzenie wartości środków trwałych, takich jak samochody, domy, grunty i inne. Każdy element może mieć wartość obniżaną (amortyzowaną) o określony procent rocznie lub niezmienianą. Suma wartości aktywów jest dodawana do całkowitej wartości finansowej."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:730
 #: general_report_manager.cpp:1007 mmframe.cpp:485 mmframe.cpp:751
@@ -1849,7 +1849,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr "Szczegóły pola własnego"
+msgstr "Szczegóły własnego pola"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
@@ -1869,7 +1869,7 @@ msgstr "Typ pola"
 
 #: customfieldeditdialog.cpp:154
 msgid "Select type of custom field"
-msgstr "Wybierz typ pola własnego"
+msgstr "Wybierz typ własnego pola"
 
 #: customfieldeditdialog.cpp:157
 msgid "ToolTip"
@@ -1948,7 +1948,7 @@ msgstr "Zmodyfikowano wybór: elementy usunięte zostaną wyczyszczone!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr "Nowe/Edycja pola własnego"
+msgstr "Nowe/Edycja własnego pola"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
@@ -2229,7 +2229,7 @@ msgstr "Przychody z inwestycji"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Aktualizacja bazy danych MMEX do wersji %i nie powiodła się!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2253,7 +2253,7 @@ msgstr "Baza danych wersji %i nie działa z tą wersją MMEX.\n"
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Baza danych MMEX pomyślnie zaktualizowana do wersji %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2343,12 +2343,12 @@ msgstr ""
 #: reports/transactions.cpp:156 transactionsupdatedialog.cpp:239
 #: transactionsupdatedialog.cpp:407 transdialog.cpp:553
 msgid "Color"
-msgstr ""
+msgstr "Kolor"
 
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:419 mmchecking_list.cpp:867
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr ""
+msgstr "Nieuzgodnione"
 
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:421 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
@@ -2376,7 +2376,7 @@ msgstr "Wszystkie, z wyjątkiem uzgodnionych"
 
 #: filtertransdialog.cpp:469 transactionsupdatedialog.cpp:134
 msgid "Specify"
-msgstr "Wybierz"
+msgstr "Określ"
 
 #: filtertransdialog.cpp:495
 msgid "Period Range"
@@ -2419,7 +2419,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:643
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opcje prezentacji"
 
 #: filtertransdialog.cpp:657 filtertransdialog.cpp:953
 #: filtertransdialog.cpp:1556
@@ -2429,15 +2429,15 @@ msgstr "Ukryj kolumny"
 #: filtertransdialog.cpp:668 filtertransdialog.cpp:959
 #: filtertransdialog.cpp:1569
 msgid "Group By"
-msgstr ""
+msgstr "Grupuj według"
 
 #: filtertransdialog.cpp:677
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Określ, jak raport powinien być pogrupowany"
 
 #: filtertransdialog.cpp:685
 msgid "Settings"
-msgstr ""
+msgstr "Ustawienia"
 
 #: filtertransdialog.cpp:699
 msgid "Save active values into current Preset selection"
@@ -2458,7 +2458,9 @@ msgstr "Pusta wartość"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Ta nazwa nie pasuje do żadnych istniejących beneficjentów.\n"
+"Czy na pewno chcesz jej użyć?\n"
+"%s"
 
 #: filtertransdialog.cpp:1016
 msgid "Hide Report Columns"
@@ -2506,11 +2508,11 @@ msgstr "Kwota max"
 
 #: filtertransdialog.cpp:1687 mmframe.cpp:1196
 msgid "Setting Name"
-msgstr ""
+msgstr "Nazwa ustawienia"
 
 #: filtertransdialog.cpp:1687 mmframe.cpp:1196
 msgid "Please Enter"
-msgstr ""
+msgstr "Proszę wprowadź"
 
 #: filtertransdialog.cpp:1710
 msgid "The entered name is already in use"
@@ -3645,7 +3647,7 @@ msgstr "Wpisz nie pustą nazwę."
 
 #: mmSimpleDialogs.cpp:597
 msgid "Please type in a non empty symbol."
-msgstr "Wpisz (nie pusty) symbol."
+msgstr "Wpisz niepusty symbol."
 
 #: mmTextCtrl.cpp:79
 msgid "Invalid Value"
@@ -3755,7 +3757,7 @@ msgstr "Do utworzenia nowego wpisu aktywów należy wprowadzić symbol, ilość 
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr "Przykład brytyjskiej akcji HSBC HLDG: HSBA.L"
+msgstr "Przykład brytyjskiej akcji (HSBC HLDG): HSBA.L"
 
 #: mmTips.h:50
 msgid "If the Stock Name field is empty it will be filed when prices updated"
@@ -3840,7 +3842,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:413
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Usuń wyświetlane transakcje \"Nieuzgodnione\""
 
 #: mmchecking_list.cpp:429
 msgid "Mark as"
@@ -3962,7 +3964,7 @@ msgstr "Bilans konta:"
 
 #: mmcheckingpanel.cpp:410
 msgid "Reconciled Bal: "
-msgstr "Bilans rozliczeń: "
+msgstr "Bilans uzgodnionych:"
 
 #: mmcheckingpanel.cpp:412
 msgid "Diff: "
@@ -3993,7 +3995,7 @@ msgstr ""
 
 #: mmcustomdata.cpp:66
 msgid "Custom fields"
-msgstr "Pola własne"
+msgstr "Własne pola"
 
 #: mmcustomdata.cpp:321
 msgid "Please select"
@@ -4325,7 +4327,7 @@ msgstr "Ignoruj przyszłe transakcje"
 
 #: mmframe.cpp:1512 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Pokaż podpowiedzi"
 
 #: mmframe.cpp:1514 optionsettingsview.cpp:105
 msgid "Show Money Tips"
@@ -4735,11 +4737,12 @@ msgstr "Tryb pełnoekranowy\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Wprowadź hasło dla bazy danych\n\n"
+"%s"
 
 #: mmframe.cpp:1902 mmframe.cpp:2133 mmframe.cpp:2266
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Zaszyfrowana baza danych"
 
 #: mmframe.cpp:1936
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4755,7 +4758,7 @@ msgstr ""
 
 #: mmframe.cpp:1960
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Przepraszamy. Wersja bazy danych jest zbyt stara lub hasło bazy danych jest nieprawidłowe"
 
 #: mmframe.cpp:1990
 msgid "&Next ->"
@@ -4763,11 +4766,11 @@ msgstr "&Następny ->"
 
 #: mmframe.cpp:2003
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Nie można zlokalizować ostatnio otwartej bazy danych.\n"
 
 #: mmframe.cpp:2005
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Hasło nie zostało wprowadzone dla zaszyfrowanej bazy danych.\n"
 
 #: mmframe.cpp:2023
 msgid "portable mode"
@@ -4778,7 +4781,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "Baza danych, którą próbujesz otworzyć, została oznaczona jako otwarta przez inną instancję MMEX.\n"
+"Aby uniknąć utraty danych lub konfliktu, zdecydowanie zaleca się zamknięcie wszystkich innych aplikacji, które mogą korzystać z bazy danych.\n\n"
+"Jeśli nic innego nie jest uruchomione, istnieje możliwość, że baza danych pozostała otwarta w wyniku awarii podczas poprzedniego użycia MMEX.\n\n"
+"Czy chcesz kontynuować otwieranie tej bazy danych?"
 
 #: mmframe.cpp:2063
 msgid "MMEX Instance Check"
@@ -4794,11 +4800,11 @@ msgstr "Wybierz plik bazy do otwarcia"
 
 #: mmframe.cpp:2123
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Wybierz zaszyfrowany plik bazy danych do otwarcia"
 
 #: mmframe.cpp:2133
 msgid "Enter password for database"
-msgstr ""
+msgstr "Wprowadź hasło do bazy danych"
 
 #: mmframe.cpp:2138
 msgid "Choose database file to Save As"
@@ -4820,7 +4826,8 @@ msgstr ""
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nowe hasło do bazy danych\n\n"
+"%s"
 
 #: mmframe.cpp:2172
 msgid "New password must not be empty."
@@ -5141,7 +5148,7 @@ msgstr ""
 
 #: mmhomepage.cpp:778
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Kursy wymiany walut"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5165,7 +5172,7 @@ msgstr "Resetuj kolumny"
 
 #: mmreportspanel.cpp:142
 msgid "Report"
-msgstr ""
+msgstr "Raport"
 
 #: mmreportspanel.cpp:199
 msgid "Period:"
@@ -5411,7 +5418,7 @@ msgstr "%s -> Folder profilu użytkownika"
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Folder pliku bazy danych .MMB"
 
 #: optionsettingsattachment.cpp:106
 #, c-format
@@ -5476,7 +5483,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:220
 msgid "Attachments folder"
-msgstr ""
+msgstr "Folder załączników"
 
 #: optionsettingsattachment.cpp:228
 msgid "Attachments path has been changed!"
@@ -5874,7 +5881,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Współczynnik skali HTML"
 
 #: optionsettingsview.cpp:248
 msgid "Specify which scale factor is used for the report pages"
@@ -5882,19 +5889,19 @@ msgstr "Określ współczynnik skali dla stron raportów"
 
 #: optionsettingsview.cpp:253
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Mały (16 px)"
 
 #: optionsettingsview.cpp:254
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Średni (24 px)"
 
 #: optionsettingsview.cpp:255
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Duży (32 px)"
 
 #: optionsettingsview.cpp:256
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Ogromny (48 px)"
 
 #: optionsettingsview.cpp:270
 msgid "Toolbar Icon Size"
@@ -5906,7 +5913,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:276
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Rozmiar innych ikon"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
@@ -6845,7 +6852,7 @@ msgstr "Coś poszło nie tak podczas próby usunięcia motywu"
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr "Czy na pewno chcesz użyć tego motywu? Pamiętaj, że efekt będzie to widoczny tylko po ponownym uruchomieniu MMEX."
+msgstr "Czy na pewno chcesz użyć tego motywu? Pamiętaj, że efekt będzie widoczny tylko po ponownym uruchomieniu MMEX."
 
 #: transactionsupdatedialog.cpp:213
 msgid "Transfer To"
