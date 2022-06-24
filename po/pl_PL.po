@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-23 14:13+0300\n"
-"PO-Revision-Date: 2022-06-24 10:41\n"
+"PO-Revision-Date: 2022-06-24 15:43\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2883,7 +2883,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:305
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Pliki JSON (*.json)"
 
 #: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1603
 msgid "CSV Files (*.csv)"
@@ -4117,11 +4117,11 @@ msgstr "MMEX: Błąd menu podręcznego"
 
 #: mmframe.cpp:1308 mmframe.cpp:1313 mmframe.cpp:1467 mmframe.cpp:1474
 msgid "&CSV Files"
-msgstr ""
+msgstr "Pliki &CSV"
 
 #: mmframe.cpp:1309 mmframe.cpp:1315 mmframe.cpp:1468 mmframe.cpp:1476
 msgid "&XML Files"
-msgstr ""
+msgstr "Pliki &XML"
 
 #: mmframe.cpp:1309 mmframe.cpp:1468
 msgid "Import from XML (Excel format)"
@@ -4129,15 +4129,15 @@ msgstr "Import z XML (format Excel)"
 
 #: mmframe.cpp:1310 mmframe.cpp:1316 mmframe.cpp:1469 mmframe.cpp:1477
 msgid "&QIF Files"
-msgstr ""
+msgstr "Pliki &QIF"
 
 #: mmframe.cpp:1314 mmframe.cpp:1475
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "Pliki &MMEX CSV"
 
 #: mmframe.cpp:1317 mmframe.cpp:1478
 msgid "&JSON Files"
-msgstr ""
+msgstr "Pliki &JSON"
 
 #: mmframe.cpp:1343
 msgid "&Edit Filter"
@@ -4165,11 +4165,11 @@ msgstr "&Otwórz stronę www konta"
 
 #: mmframe.cpp:1380 mmframe.cpp:1576
 msgid "&Reallocate Account"
-msgstr "Zmień typ konta"
+msgstr "&Zmień typ konta"
 
 #: mmframe.cpp:1398 mmframe.cpp:1570
 msgid "New &Account"
-msgstr "Nowe konto"
+msgstr "&Nowe konto"
 
 #: mmframe.cpp:1400
 msgid "Account &List (Home)"
@@ -4245,7 +4245,7 @@ msgstr ""
 
 #: mmframe.cpp:1479
 msgid "&HTML Files"
-msgstr ""
+msgstr "Pliki &HTML"
 
 #: mmframe.cpp:1479
 msgid "Export to HTML"
@@ -4253,7 +4253,7 @@ msgstr "Eksport do HTML"
 
 #: mmframe.cpp:1485 mmframe.cpp:1845
 msgid "&Print"
-msgstr ""
+msgstr "&Drukuj"
 
 #: mmframe.cpp:1485 mmframe.cpp:1845
 msgid "Print current view"
@@ -4261,7 +4261,7 @@ msgstr "Drukuj aktualny widok"
 
 #: mmframe.cpp:1491
 msgid "E&xit\tAlt-X"
-msgstr "&Zakończ Alt-X"
+msgstr "&Zakończ\tAlt-X"
 
 #: mmframe.cpp:1491
 msgid "Quit this program"
@@ -4345,7 +4345,7 @@ msgstr "Zmień język programu"
 
 #: mmframe.cpp:1567
 msgid "&Home Page"
-msgstr ""
+msgstr "&Strona główna"
 
 #: mmframe.cpp:1567 mmframe.cpp:1812
 msgid "Show Home Page"
