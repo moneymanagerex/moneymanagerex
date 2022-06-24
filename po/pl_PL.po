@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-23 14:13+0300\n"
-"PO-Revision-Date: 2022-06-24 09:24\n"
+"PO-Revision-Date: 2022-06-24 10:41\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4205,7 +4205,7 @@ msgstr "Zapisz bazę danych jako"
 
 #: mmframe.cpp:1461
 msgid "&Recent Files"
-msgstr ""
+msgstr "Ostatnie pliki"
 
 #: mmframe.cpp:1462
 msgid "&Clear Recent Files"
