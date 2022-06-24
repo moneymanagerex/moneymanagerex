@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-23 14:13+0300\n"
-"PO-Revision-Date: 2022-06-23 11:23\n"
+"PO-Revision-Date: 2022-06-24 09:24\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -306,7 +306,7 @@ msgstr "Otwórz istniejącą bazę danych z rozszerzeniem (*.mmb)"
 
 #: appstartdialog.cpp:115
 msgid "Change Language"
-msgstr ""
+msgstr "Zmień język"
 
 #: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1542
 #: optionsettingsgeneral.cpp:93
@@ -1155,7 +1155,7 @@ msgstr "Błąd"
 
 #: billsdepositsdialog.cpp:1319 transdialog.cpp:339
 msgid "Split Transaction"
-msgstr ""
+msgstr "Podziel transakcję"
 
 #: billsdepositsdialog.h:60 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
@@ -4068,7 +4068,7 @@ msgstr "Strona główna"
 
 #: mmframe.cpp:715
 msgid "All Transactions"
-msgstr ""
+msgstr "Wszystkie transakcje"
 
 #: mmframe.cpp:747 mmhomepage.cpp:638 reports/summary.cpp:292
 #: reports/summary.cpp:324
@@ -4181,7 +4181,7 @@ msgstr "Widoczne konta"
 
 #: mmframe.cpp:1452
 msgid "&New Database"
-msgstr ""
+msgstr "&Nowa baza danych"
 
 #: mmframe.cpp:1452 mmframe.cpp:1808 wizard_newdb.cpp:126
 msgid "New Database"
