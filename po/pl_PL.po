@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-23 14:13+0300\n"
-"PO-Revision-Date: 2022-06-24 18:02\n"
+"PO-Revision-Date: 2022-06-24 19:10\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -605,19 +605,19 @@ msgstr "Wprowadź ciąg aby znaleźć odpowiadające aktywa"
 
 #: assetspanel.cpp:511 filtertransdialog.cpp:623 mmcheckingpanel.cpp:367
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Wskazówka: Możesz używać znaków wieloznacznych - znak zapytania (?), gwiazdkę (*) - w kryteriach wyszukiwania."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:624 mmcheckingpanel.cpp:368
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Użyj znaku zapytania (?), aby znaleźć dowolny znak — na przykład 'b?t' znajdzie 'but' i 'bit'."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:625 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Użyj gwiazdki (*), aby znaleźć dowolną liczbę znaków — na przykład 's*d' znajdzie 'slajd' i 'szyld'."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:626 mmcheckingpanel.cpp:370
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Użyj gwiazdki (*) na początku, żeby znaleźć dowolny ciąg w środku zdania."
 
 #: assetspanel.cpp:585 stockspanel.cpp:276 stockspanel.cpp:463
 #, c-format
@@ -867,7 +867,7 @@ msgstr "Miesięcznie (ostatni dzień roboczy)"
 
 #: billsdepositsdialog.cpp:302 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Duplikuj transakcję cykliczną"
 
 #: billsdepositsdialog.cpp:304 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1066,7 +1066,7 @@ msgstr "Organizuj załączniki dla tej transakcji powtarzanej"
 #: billsdepositsdialog.cpp:668 transdialog.cpp:560 transdialog.cpp:1234
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Określ dowolny tekst notatki jaki chcesz dodać do tej transakcji."
+msgstr "Określ dowolny tekst notatki, jaki chcesz dodać do tej transakcji."
 
 #: billsdepositsdialog.cpp:685 filtertransdialog.cpp:725
 #: transactionsupdatedialog.cpp:280 transdialog.cpp:576
@@ -1680,7 +1680,7 @@ msgstr "Odkryj wybraną kategorię"
 
 #: categdialog.cpp:674 payeedialog.cpp:400
 msgid "Remove Category"
-msgstr ""
+msgstr "Usuń kategorię"
 
 #: categdialog.cpp:677 import_export/univcsvdialog.cpp:461
 msgid "Clear Settings"
@@ -1960,7 +1960,7 @@ msgstr "Własności"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Dostosuj pola niestandardowe"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2265,7 +2265,7 @@ msgstr "Załaduj plik debugowania"
 
 #: dbupgrade.cpp:189
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Nieprawidłowy typ pliku!"
 
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
@@ -2278,7 +2278,7 @@ msgstr "Błąd zapytania, skontaktuj się ze wsparciem MMEX!"
 
 #: dbupgrade.cpp:233 dbupgrade.cpp:288
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Nieprawidłowa zawartość pliku, skontaktuj się ze wsparciem MMEX!"
 
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
@@ -2300,7 +2300,7 @@ msgstr "Konserwacja DB zakończona, należy zamknąć i ponownie otworzyć MMEX!
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Podczas otwierania pliku bazy danych:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2424,7 +2424,7 @@ msgstr ""
 #: filtertransdialog.cpp:657 filtertransdialog.cpp:953
 #: filtertransdialog.cpp:1556
 msgid "Hide Columns"
-msgstr ""
+msgstr "Ukryj kolumny"
 
 #: filtertransdialog.cpp:668 filtertransdialog.cpp:959
 #: filtertransdialog.cpp:1569
@@ -3267,7 +3267,7 @@ msgstr "Pole kwoty lub oba pola wpłata i wypłata są wymagane."
 #: import_export/univcsvdialog.cpp:947 import_export/univcsvdialog.cpp:1081
 #: themes.cpp:189 webappdialog.cpp:417
 msgid "Import"
-msgstr "Import"
+msgstr "Importuj"
 
 #: import_export/univcsvdialog.cpp:1003
 #, c-format
@@ -4205,11 +4205,11 @@ msgstr "Zapisz bazę danych jako"
 
 #: mmframe.cpp:1461
 msgid "&Recent Files"
-msgstr "Ostatnie pliki"
+msgstr "O&statnie pliki"
 
 #: mmframe.cpp:1462
 msgid "&Clear Recent Files"
-msgstr "Wyczyść listę ostatnio używanych"
+msgstr "&Wyczyść listę ostatnio używanych"
 
 #: mmframe.cpp:1467
 msgid "Import from any CSV file"
@@ -4429,7 +4429,7 @@ msgstr ""
 
 #: mmframe.cpp:1641 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "Menedżer motywów"
 
 #: mmframe.cpp:1647
 msgid "Transaction Report &Filter"
@@ -5460,7 +5460,7 @@ msgstr "Zaznacz aby nie kasować pliku kiedy załącznik jest usuwany, a zamiast
 
 #: optionsettingsattachment.cpp:169
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "Podczas duplikowania transakcji duplikuj również załączniki"
 
 #: optionsettingsattachment.cpp:171
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
@@ -5850,7 +5850,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Otwórz Menedżera motywów"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
@@ -6817,7 +6817,7 @@ msgstr "Usuń"
 
 #: themes.cpp:193
 msgid "Use"
-msgstr ""
+msgstr "Użyj"
 
 #: themes.cpp:239
 msgid "No description available"
@@ -6825,15 +6825,15 @@ msgstr ""
 
 #: themes.cpp:285
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Wybierz plik motywu do zaimportowania"
 
 #: themes.cpp:305
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Motyw już istnieje. Czy nadal chcesz zaimportować i nadpisać istniejący motyw?"
 
 #: themes.cpp:315
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Coś poszło nie tak podczas importowania motywu"
 
 #: themes.cpp:327
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
