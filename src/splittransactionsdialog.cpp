@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "splittransactionsdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmSimpleDialogs.h"
 #include "util.h"
 #include "paths.h"
@@ -36,6 +37,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
      EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
      EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
+     EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
      EVT_TEXT_ENTER(wxID_ANY, mmSplitTransactionDialog::OnTextEntered)
  wxEND_EVENT_TABLE()
 
@@ -149,15 +151,22 @@ void mmSplitTransactionDialog::CreateControls()
     slider_->SetMinSize(slider_->GetBestVirtualSize());
     slider_->SetScrollRate(1, 1);
 
-    wxPanel* p = new wxPanel(this);
-    //p->SetBackgroundColour(wxColor(155, 66, 44));
+    wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
+    bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5).Proportion(1));
+
+    wxBitmapButton* bAdd = new wxBitmapButton(this, mmID_SPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
+    plusAmountSizer->AddSpacer(mmBitmapButtonSize + 10);
+    plusAmountSizer->Add(bAdd);
+
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
-    p->SetSizer(totalAmountSizer);
-    wxStaticText* transAmountText = new wxStaticText(p, wxID_STATIC, _("Total:"));
-    transAmount_ = new wxStaticText(p, wxID_STATIC, wxEmptyString);
-    totalAmountSizer->Add(transAmountText, g_flagsExpand);
-    totalAmountSizer->Add(transAmount_, g_flagsExpand);
-    mainSizer->Add(p, wxSizerFlags().Align(wxALIGN_RIGHT | wxALIGN_TOP).Border(wxALL, 5).Proportion(1));
+
+    wxStaticText* transAmountText = new wxStaticText(this, wxID_STATIC, _("Total:"));
+    transAmount_ = new wxStaticText(this, wxID_STATIC, wxEmptyString);
+    totalAmountSizer->Add(transAmountText, wxSizerFlags());
+    totalAmountSizer->Add(transAmount_, wxSizerFlags().Border(wxLEFT, 5));
+    bottomSizer->Add(totalAmountSizer, wxSizerFlags().Border(wxALL, 5));
+    mainSizer->Add(bottomSizer, g_flagsExpand);
 
     // OK Cancel buttons
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -165,7 +174,6 @@ void mmSplitTransactionDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxSizerFlags flagsH = wxSizerFlags(g_flagsH).Border(wxLEFT | wxRIGHT | wxBOTTOM, 5).Center();
     wxSizerFlags flagsV = wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 5).Center();
     wxBoxSizer* mainButtonSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* topRowButtonSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -229,6 +237,23 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
     EndModal(wxID_OK);
 }
 
+void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
+{
+    int i = 0;
+    m_splits.clear();
+    while (true)
+    {
+        auto name = wxString::Format("check_box%i", i);
+        auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+        if (cb) {
+            i++;
+        }
+        else
+            break;
+    }
+    mmDoEnableLineById(i);
+    event.Skip();
+}
 
 void mmSplitTransactionDialog::UpdateSplitTotal()
 {
