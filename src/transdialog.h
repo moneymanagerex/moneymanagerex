@@ -127,8 +127,6 @@ private:
 
     DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
     std::vector<Split> m_local_splits;
-    Model_Currency::Data *m_currency;
-    Model_Currency::Data *m_to_currency;
 
     std::vector<wxString> frequentNotes_;
 

@@ -94,8 +94,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , m_advanced(false)
     , m_current_balance(current_balance)
     , m_account_id(account_id)
-    , m_currency(nullptr)
-    , m_to_currency(nullptr)
     , skip_date_init_(false)
     , skip_account_init_(false)
     , skip_amount_init_(false)
@@ -130,25 +128,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         }
     }
 
-    Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
-    if (acc)
-        m_currency = Model_Account::currency(acc);
-    else
-        m_currency = Model_Currency::GetBaseCurrency();
-
-    if (m_transfer)
-    {
-        Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
-        if (to_acc) {
-            m_to_currency = Model_Account::currency(to_acc);
-        }
-
-        if (m_to_currency) {
-            m_advanced = !m_new_trx
-                && (m_currency->CURRENCYID != m_to_currency->CURRENCYID
-                    || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
-        }
-    }
+    m_advanced = m_transfer && !m_new_trx && (m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
 
     int ref_id = (m_new_trx) ? NULL : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
@@ -219,23 +199,10 @@ void mmTransDialog::dataToControls()
 
     if (!skip_amount_init_) //Amounts
     {
-        if (m_transfer) {
-            if (!m_advanced) {
-                double exch = 1;
-                if (m_to_currency) {
-                    const double convRateTo = Model_CurrencyHistory::getDayRate(m_to_currency->CURRENCYID, m_trx_data.TRANSDATE);
-                    if (convRateTo > 0) {
-                        const double convRate = Model_CurrencyHistory::getDayRate(m_currency->CURRENCYID, m_trx_data.TRANSDATE);
-                        exch = convRate / convRateTo;
-                    }
-                }
-                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT * exch;
-            }
+        if (m_transfer & m_advanced)
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
-        }
-        else {
+        else
             toTextAmount_->ChangeValue("");
-        }
 
         if (!m_new_trx)
             m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
@@ -740,7 +707,6 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 
 void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 {
-    m_currency = Model_Currency::GetBaseCurrency();
     switch (object_in_focus_)
     {
     case mmID_ACCOUNTNAME:
@@ -791,10 +757,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     {
         const Model_Account::Data* to_account = Model_Account::instance().get(cbToAccount_->mmGetId());
         if (to_account)
-        {
-            m_to_currency = Model_Account::currency(to_account);
             m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
-        }
     }
 
     dataToControls();
@@ -1072,6 +1035,20 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (!ValidateData()) return;
     if (!m_custom_fields->ValidateCustomValues(m_trx_data.TRANSID)) return;
+
+    if (!m_advanced)
+        m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
+
+    if (m_transfer && !m_advanced && (Model_Account::currency(Model_Account::instance().get(m_trx_data.ACCOUNTID))
+            != Model_Account::currency(Model_Account::instance().get(m_trx_data.TOACCOUNTID))))
+    {
+        wxMessageDialog msgDlg( this
+            , _("The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?")
+            , _("Currencies are different")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        if (msgDlg.ShowModal() == wxID_NO)
+            return;
+    }
 
     Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
     if (m_new_trx || m_duplicate)
