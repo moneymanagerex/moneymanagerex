@@ -64,7 +64,8 @@ private:
     void mmDoEnableLineById(int id);
     void UpdateSplitTotal();
 
-    void OnOk( wxCommandEvent& event );
+    void OnOk(wxCommandEvent& event);
+    void OnAddRow(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     bool mmDoCheckRow(int i, bool silent = false);
