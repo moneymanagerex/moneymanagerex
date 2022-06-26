@@ -53,7 +53,7 @@ private:
     bool Create(
         wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Split Transaction Dialog")
+        , const wxString& caption = _("Split Transaction")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
@@ -66,9 +66,8 @@ private:
 
     void OnOk( wxCommandEvent& event );
     void OnTextEntered(wxCommandEvent& event);
-    void OnCheckBox(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    bool mmDoCheckRow(int i);
+    bool mmDoCheckRow(int i, bool silent = false);
 
     std::vector<Split> m_splits;
     double totalAmount_;
