@@ -97,7 +97,7 @@ void mmSplitTransactionDialog::CreateControls()
     this->SetSizer(mainSizer);
 
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
-    mainSizer->Add(slider_, g_flagsExpandBorder1);
+    mainSizer->Add(slider_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
 
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     slider_->SetSizer(dialogMainSizerV);
