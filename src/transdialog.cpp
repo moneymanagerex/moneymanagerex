@@ -985,11 +985,17 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == m_textAmount->GetId())
     {
-        m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
+        {
+            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        }
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
+        {
+            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        }
     }
     skip_amount_init_ = false;
     dataToControls();
