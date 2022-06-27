@@ -62,6 +62,7 @@ private:
     
     wxButton* m_theme_manager;
     wxChoice* m_theme_mode;
+    wxChoice* m_font_size;
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
     int htmlScaleMin, htmlScaleMax;
