@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-27 15:14+0300\n"
-"PO-Revision-Date: 2022-06-27 12:19\n"
+"PO-Revision-Date: 2022-06-27 16:28\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5887,23 +5887,23 @@ msgstr "Określ współczynnik skali dla stron raportów"
 
 #: optionsettingsview.cpp:253
 msgid "Normal"
-msgstr ""
+msgstr "Normalny"
 
 #: optionsettingsview.cpp:254
 msgid "Enlarged"
-msgstr ""
+msgstr "Powiększony"
 
 #: optionsettingsview.cpp:255
 msgid "Large"
-msgstr ""
+msgstr "Duży"
 
 #: optionsettingsview.cpp:256
 msgid "Huge"
-msgstr ""
+msgstr "Ogromny"
 
 #: optionsettingsview.cpp:258
 msgid "Font size"
-msgstr ""
+msgstr "Rozmiar czcionki"
 
 #: optionsettingsview.cpp:270
 msgid "Small (16 px)"
@@ -6911,11 +6911,11 @@ msgstr "Ta transakcja spowoduje przekroczenie limitu konta.\n\n"
 
 #: transdialog.cpp:1048
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "Te dwa konta mają różne waluty, ale nie zdefiniowałeś zaawansowanej transakcji. Czy to jest poprawne?"
 
 #: transdialog.cpp:1049
 msgid "Currencies are different"
-msgstr ""
+msgstr "Waluty są różne"
 
 #: transdialog.cpp:1136
 msgid "Specify account the money is taken from"
