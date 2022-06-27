@@ -325,13 +325,13 @@ void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
     OnDateChanged(dateEvent);
 }
 
-void mmDatePickerCtrl::mmEnable(bool state)
+bool mmDatePickerCtrl::Enable(bool state)
 {
-    this->Enable(state);
+    bool response = wxDatePickerCtrl::Enable(state);
     if (itemStaticTextWeek_) itemStaticTextWeek_->Enable(state);
     if (spinButton_) spinButton_->Enable(state);
+    return response;
 }
-
 
 wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
 {

@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "Model_Checking.h"
 
 
-class wxDatePickerCtrl;
+class mmDatePickerCtrl;
 class mmTextCtrl;
 class wxDialog;
 

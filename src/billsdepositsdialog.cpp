@@ -302,7 +302,7 @@ void mmBDDialog::dataToControls()
     else
     {
         SetDialogHeader(_("Enter Recurring Transaction"));
-        m_date_due->mmEnable(false);
+        m_date_due->Enable(false);
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
         itemCheckBoxAutoExeSilent_->Disable();

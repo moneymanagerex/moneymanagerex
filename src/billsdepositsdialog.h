@@ -28,9 +28,6 @@
 #include "model/Model_Checking.h"
 #include "mmcustomdata.h"
 
-class wxDatePickerCtrl;
-class wxSpinButton;
-class wxSpinEvent;
 class wxStaticText;
 class mmTextCtrl;
 class wxCalendarCtrl;
