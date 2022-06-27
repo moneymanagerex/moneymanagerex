@@ -176,8 +176,8 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), sourcePayeeID_);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
-            cbSourcePayee_->reInitialize();
-            cbDestPayee_->reInitialize();
+            cbSourcePayee_->mmDoReInitialize();
+            cbDestPayee_->mmDoReInitialize();
         }
 
         IsOkOk();

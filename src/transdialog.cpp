@@ -270,7 +270,7 @@ void mmTransDialog::dataToControls()
                     payee = Model_Payee::instance().create();
                     payee->PAYEENAME = _("Unknown");
                     Model_Payee::instance().save(payee);
-                    cbPayee_->reInitialize();
+                    cbPayee_->mmDoReInitialize();
                 }
 
                 cbPayee_->ChangeValue(_("Unknown"));
@@ -815,9 +815,8 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
             if (payeeName.empty())
             {
                 mmPayeeDialog dlg(this, true);
-                dlg.DisableTools();
                 dlg.ShowModal();
-
+                cbPayee_->mmDoReInitialize();
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
@@ -825,21 +824,18 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                     cbPayee_->SetInsertionPointEnd();
                 }
             }
-            else {
-                cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
-            }
         }
         break;
         case mmID_CATEGORY:
         {
-            auto category = cbPayee_->GetValue();
+            auto category = cbCategory_->GetValue();
             if (category.empty())
             {
                 mmCategDialog dlg(this, true, -1, -1);
-                if (dlg.ShowModal() == wxID_OK) {
-                    category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
-                    cbCategory_->ChangeValue(category);
-                }
+                dlg.ShowModal();
+                cbCategory_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbCategory_->ChangeValue(category);
             }
         }
         break;
@@ -864,7 +860,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
             category = Model_Category::instance().create();
             category->CATEGNAME = _("Unknown");
             Model_Category::instance().save(category);
-            cbCategory_->reInitialize();
+            cbCategory_->mmDoReInitialize();
         }
 
         m_trx_data.CATEGID = category->CATEGID;
