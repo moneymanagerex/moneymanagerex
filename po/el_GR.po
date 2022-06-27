@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-27 15:14+0300\n"
-"PO-Revision-Date: 2022-06-27 12:19\n"
+"PO-Revision-Date: 2022-06-27 13:31\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5863,23 +5863,23 @@ msgstr "Καθορίστε τον συντελεστή κλίμακας που �
 
 #: optionsettingsview.cpp:253
 msgid "Normal"
-msgstr ""
+msgstr "Κανονικό"
 
 #: optionsettingsview.cpp:254
 msgid "Enlarged"
-msgstr ""
+msgstr "Διευρυμένο"
 
 #: optionsettingsview.cpp:255
 msgid "Large"
-msgstr ""
+msgstr "Μεγάλο"
 
 #: optionsettingsview.cpp:256
 msgid "Huge"
-msgstr ""
+msgstr "Τεράστιο"
 
 #: optionsettingsview.cpp:258
 msgid "Font size"
-msgstr ""
+msgstr "Μέγεθος γραμματοσειράς"
 
 #: optionsettingsview.cpp:270
 msgid "Small (16 px)"
@@ -6890,11 +6890,11 @@ msgstr "Αυτή η συναλλαγή θα υπερβαίνει το όριο �
 
 #: transdialog.cpp:1048
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "Οι δύο λογαριασμοί έχουν διαφορετικά νομίσματα, αλλά δεν έχετε ορίσει μια προηγμένη συναλλαγή. Είναι αυτό το σωστό;"
 
 #: transdialog.cpp:1049
 msgid "Currencies are different"
-msgstr ""
+msgstr "Τα νομίσματα είναι διαφορετικά"
 
 #: transdialog.cpp:1136
 msgid "Specify account the money is taken from"
