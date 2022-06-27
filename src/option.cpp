@@ -52,6 +52,7 @@ Option::Option()
     , m_theme_mode(Option::AUTO)
     , m_html_font_size(100)
     , m_ico_size(16)
+    , m_font_size(0)
     , m_toolbar_ico_size(32)
     , m_navigation_ico_size(24)
     , m_budget_days_offset(0)
@@ -118,6 +119,7 @@ void Option::LoadOptions(bool include_infotable)
     m_toolbar_ico_size = Model_Setting::instance().GetIntSetting("TOOLBARICONSIZE", 32);
     m_navigation_ico_size = Model_Setting::instance().GetIntSetting("NAVIGATIONICONSIZE", 24);
     m_bulk_enter = Model_Setting::instance().GetBoolSetting("BULK_TRX", false);
+    m_font_size = Model_Setting::instance().GetIntSetting("UI_FONT_SIZE", 0);
 }
 
 void Option::setDateFormat(const wxString& date_format)
@@ -349,15 +351,16 @@ void Option::setThemeMode(int value)
     m_theme_mode = value;
 }
 
-int Option::getThemeMode()
-{
-    return m_theme_mode;
-}
-
 void Option::setHTMLFontSizes(int value)
 {
     Model_Setting::instance().Set("HTMLSCALE", value);
     m_html_font_size = value;
+}
+
+void Option::setFontSize(int value)
+{
+    Model_Setting::instance().Set("UI_FONT_SIZE", value);
+    m_font_size = value;
 }
 
 void Option::setIconSize(int value)

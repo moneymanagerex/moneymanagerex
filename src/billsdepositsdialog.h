@@ -106,10 +106,8 @@ private:
     wxCheckBox* cAdvanced_;
     wxChoice* m_choice_status;
     wxChoice* m_choice_transaction_type;
-    wxDatePickerCtrl* m_date_paid;      // Stored in ::TRANSDATE
-    wxStaticText* itemStaticTextWeekDue_;
-    wxDatePickerCtrl* m_date_due;       // Stored in ::NEXTOCCURRENCEDATE
-    wxStaticText* itemStaticTextWeekPaid_;
+    mmDatePickerCtrl* m_date_paid;      // Stored in ::TRANSDATE
+    mmDatePickerCtrl* m_date_due;       // Stored in ::NEXTOCCURRENCEDATE
     wxChoice* m_choice_repeat;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
@@ -132,14 +130,10 @@ private:
 private:
     void setTooltips();
     void setCategoryLabel();
-    void OnPaidDateChanged(wxDateEvent& event);
-    void OnDueDateChanged(wxDateEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);
     void SetSplitControls(bool split = false);
-    void OnSpinEventPaid(wxSpinEvent& event);
-    void OnSpinEventDue(wxSpinEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void OnNoteSelected(wxCommandEvent& event);
 
@@ -179,7 +173,6 @@ private:
         ID_DIALOG_TRANS_BUTTONTRANSNUM,
         ID_DIALOG_TRANS_PAYEECOMBO,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
-        ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_BD,
         mmID_ACCOUNTNAME,
         ID_DIALOG_BD_COMBOBOX_REPEATS,
@@ -188,7 +181,6 @@ private:
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT,
         ID_DIALOG_BD_CALENDAR,
         ID_DIALOG_BD_DUE_DATE,
-        ID_DIALOG_BD_REPEAT_DATE_SPINNER,
         ID_PANEL_REPORTS_HTMLWINDOW,
         ID_PANEL_REPORTS_HEADER_PANEL,
         ID_PANEL_REPORTS_STATIC_HEADER,

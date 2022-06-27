@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2017 - 2022 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -141,15 +141,10 @@ void transactionsUpdateDialog::CreateControls()
     // Date --------------------------------------------
     m_date_checkbox = new wxCheckBox(this, wxID_ANY, _("Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-
-    long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-    m_dpc = new wxDatePickerCtrl(this
-        , wxID_ANY, wxDateTime::Today()
-        , wxDefaultPosition, wxDefaultSize, date_style);
-    m_dpc->Enable(false);
-
+    m_dpc = new mmDatePickerCtrl(this, wxID_ANY);
     grid_sizer->Add(m_date_checkbox, g_flagsH);
-    grid_sizer->Add(m_dpc, g_flagsH);
+    grid_sizer->Add(m_dpc->mmGetLayout(), g_flagsH);
+    m_dpc->mmEnable(false);
 
     // Status --------------------------------------------
     m_status_checkbox = new wxCheckBox(this, wxID_ANY, _("Status")
@@ -498,7 +493,7 @@ void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
 
 void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
 {
-    m_dpc->Enable(m_date_checkbox->IsChecked());
+    m_dpc->mmEnable(m_date_checkbox->IsChecked());
     m_status_choice->Enable(m_status_checkbox->IsChecked());
     m_type_choice->Enable(m_type_checkbox->IsChecked());
     cbPayee_->Enable(m_payee_checkbox->IsChecked());

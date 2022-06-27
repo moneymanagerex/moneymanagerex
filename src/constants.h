@@ -146,6 +146,7 @@ enum id
     mmID_REPORTS,
     mmID_CHECKING,
     mmID_CATEGORY,
+    mmID_SPLIT,
     mmID_ALLTRANSACTIONS,
     mmID_BROWSER,
     MENU_REPORT_BUG,

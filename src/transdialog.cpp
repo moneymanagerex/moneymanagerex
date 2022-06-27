@@ -53,8 +53,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHAR_HOOK(mmTransDialog::OnComboKey)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
-    EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
-    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
     EVT_COMBOBOX(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
     EVT_BUTTON(mmID_CATEGORY_SPLIT, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
@@ -96,8 +94,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , m_advanced(false)
     , m_current_balance(current_balance)
     , m_account_id(account_id)
-    , m_currency(nullptr)
-    , m_to_currency(nullptr)
     , skip_date_init_(false)
     , skip_account_init_(false)
     , skip_amount_init_(false)
@@ -132,25 +128,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         }
     }
 
-    Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
-    if (acc)
-        m_currency = Model_Account::currency(acc);
-    else
-        m_currency = Model_Currency::GetBaseCurrency();
-
-    if (m_transfer)
-    {
-        Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
-        if (to_acc) {
-            m_to_currency = Model_Account::currency(to_acc);
-        }
-
-        if (m_to_currency) {
-            m_advanced = !m_new_trx
-                && (m_currency->CURRENCYID != m_to_currency->CURRENCYID
-                    || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
-        }
-    }
+    m_advanced = m_transfer && !m_new_trx && (m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
 
     int ref_id = (m_new_trx) ? NULL : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
@@ -201,9 +179,6 @@ void mmTransDialog::dataToControls()
         trx_date.ParseDate(m_trx_data.TRANSDATE);
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
-        //process date change event for set weekday name
-        wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
-        OnDateChanged(dateEvent);
         skip_date_init_ = true;
     }
 
@@ -224,23 +199,10 @@ void mmTransDialog::dataToControls()
 
     if (!skip_amount_init_) //Amounts
     {
-        if (m_transfer) {
-            if (!m_advanced) {
-                double exch = 1;
-                if (m_to_currency) {
-                    const double convRateTo = Model_CurrencyHistory::getDayRate(m_to_currency->CURRENCYID, m_trx_data.TRANSDATE);
-                    if (convRateTo > 0) {
-                        const double convRate = Model_CurrencyHistory::getDayRate(m_currency->CURRENCYID, m_trx_data.TRANSDATE);
-                        exch = convRate / convRateTo;
-                    }
-                }
-                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT * exch;
-            }
+        if (m_transfer & m_advanced)
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
-        }
-        else {
+        else
             toTextAmount_->ChangeValue("");
-        }
 
         if (!m_new_trx)
             m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
@@ -308,7 +270,7 @@ void mmTransDialog::dataToControls()
                     payee = Model_Payee::instance().create();
                     payee->PAYEENAME = _("Unknown");
                     Model_Payee::instance().save(payee);
-                    cbPayee_->reInitialize();
+                    cbPayee_->mmDoReInitialize();
                 }
 
                 cbPayee_->ChangeValue(_("Unknown"));
@@ -384,36 +346,14 @@ void mmTransDialog::CreateControls()
     box_sizer_left->Add(flex_sizer, g_flagsV);
     box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
-    // Date --------------------------------------------
-    long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-
-    dpc_ = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Today(), wxDefaultPosition, wxDefaultSize, date_style);
-
-    //Text field for name of day of the week
-    wxSize WeekDayNameMaxSize(wxDefaultSize);
-    for (wxDateTime::WeekDay d = wxDateTime::Sun;
-            d != wxDateTime::Inv_WeekDay;
-            d = wxDateTime::WeekDay(d+1))
-        WeekDayNameMaxSize.IncTo(GetTextExtent(
-            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
-
-    itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
-
+    // Date -------------------------------------------
     wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Date"));
     flex_sizer->Add(name_label, g_flagsH);
     name_label->SetFont(this->GetFont().Bold());
-    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(date_sizer);
-    date_sizer->Add(dpc_, g_flagsH);
-#if defined(__WXMSW__) || defined(__WXGTK__)
-    wxSpinButton* spinCtrl = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
-        , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinCtrl->SetRange(-32768, 32768);
-    mmToolTip(spinCtrl, _("Retard or advance the date of the transaction"));
-    date_sizer->Add(spinCtrl, g_flagsH);
-#endif
-    date_sizer->Add(itemStaticTextWeek_, g_flagsH);
+    
+    dpc_ = new mmDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE);
+    flex_sizer->Add(dpc_->mmGetLayout());
+
     flex_sizer->AddSpacer(1);
 
     // Status --------------------------------------------
@@ -767,7 +707,6 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 
 void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 {
-    m_currency = Model_Currency::GetBaseCurrency();
     switch (object_in_focus_)
     {
     case mmID_ACCOUNTNAME:
@@ -818,10 +757,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     {
         const Model_Account::Data* to_account = Model_Account::instance().get(cbToAccount_->mmGetId());
         if (to_account)
-        {
-            m_to_currency = Model_Account::currency(to_account);
             m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
-        }
     }
 
     dataToControls();
@@ -831,33 +767,6 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 void mmTransDialog::SetDialogTitle(const wxString& title)
 {
     this->SetTitle(title);
-}
-
-//** --------------=Event handlers=------------------ **//
-void mmTransDialog::OnDateChanged(wxDateEvent& event)
-{
-    //get weekday name
-    wxDateTime date = dpc_->GetValue();
-    if (event.GetDate().IsValid())
-    {
-        itemStaticTextWeek_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
-        m_trx_data.TRANSDATE = date.FormatISODate();
-    }
-}
-
-void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
-{
-    wxDateTime date = dpc_->GetValue();
-    int value = event.GetPosition();
-    wxSpinButton* spinCtrl = static_cast<wxSpinButton*>(event.GetEventObject());
-    if (spinCtrl) spinCtrl->SetValue(0);
-
-    date = date.Add(wxDateSpan::Days(value));
-    dpc_->SetValue(date);
-
-    //process date change event for set weekday name
-    wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
-    OnDateChanged(dateEvent);
 }
 
 void mmTransDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
@@ -906,9 +815,8 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
             if (payeeName.empty())
             {
                 mmPayeeDialog dlg(this, true);
-                dlg.DisableTools();
                 dlg.ShowModal();
-
+                cbPayee_->mmDoReInitialize();
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
@@ -916,21 +824,18 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                     cbPayee_->SetInsertionPointEnd();
                 }
             }
-            else {
-                cbPayee_->Navigate(wxNavigationKeyEvent::IsForward);
-            }
         }
         break;
         case mmID_CATEGORY:
         {
-            auto category = cbPayee_->GetValue();
+            auto category = cbCategory_->GetValue();
             if (category.empty())
             {
                 mmCategDialog dlg(this, true, -1, -1);
-                if (dlg.ShowModal() == wxID_OK) {
-                    category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
-                    cbCategory_->ChangeValue(category);
-                }
+                dlg.ShowModal();
+                cbCategory_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbCategory_->ChangeValue(category);
             }
         }
         break;
@@ -955,7 +860,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
             category = Model_Category::instance().create();
             category->CATEGNAME = _("Unknown");
             Model_Category::instance().save(category);
-            cbCategory_->reInitialize();
+            cbCategory_->mmDoReInitialize();
         }
 
         m_trx_data.CATEGID = category->CATEGID;
@@ -1076,11 +981,17 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == m_textAmount->GetId())
     {
-        m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
+        {
+            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        }
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
+        {
+            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        }
     }
     skip_amount_init_ = false;
     dataToControls();
@@ -1126,6 +1037,20 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (!ValidateData()) return;
     if (!m_custom_fields->ValidateCustomValues(m_trx_data.TRANSID)) return;
+
+    if (!m_advanced)
+        m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
+
+    if (m_transfer && !m_advanced && (Model_Account::currency(Model_Account::instance().get(m_trx_data.ACCOUNTID))
+            != Model_Account::currency(Model_Account::instance().get(m_trx_data.TOACCOUNTID))))
+    {
+        wxMessageDialog msgDlg( this
+            , _("The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?")
+            , _("Currencies are different")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        if (msgDlg.ShowModal() == wxID_NO)
+            return;
+    }
 
     Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
     if (m_new_trx || m_duplicate)

@@ -248,7 +248,24 @@ void OptionSettingsView::Create()
     mmToolTip(m_scale_factor, _("Specify which scale factor is used for the report pages"));
     view_sizer2->Add(m_scale_factor, g_flagsH);
 
-    //
+    // Font size
+    wxArrayString font_choice;
+    font_choice.Add(wxTRANSLATE("Normal"));
+    font_choice.Add(wxTRANSLATE("Enlarged"));
+    font_choice.Add(wxTRANSLATE("Large"));
+    font_choice.Add(wxTRANSLATE("Huge"));
+
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Font size")), g_flagsH);
+    m_font_size = new wxChoice(this, wxID_RESIZE_FRAME, wxDefaultPosition
+        , wxDefaultSize, font_choice);
+    m_font_size->SetSelection(Option::instance().getFontSize());
+    view_sizer2->Add(m_font_size, g_flagsH);
+
+    // Icons
+
+    wxFlexGridSizer* view_sizer3 = new wxFlexGridSizer(0, 3, 0, 5);
+    iconStaticBoxSizer->Add(view_sizer3);
+
     const wxString settings_choice[] = {
         wxTRANSLATE("Small (16 px)"),
         wxTRANSLATE("Normal (24 px)"),
@@ -267,14 +284,13 @@ void OptionSettingsView::Create()
         m_others_icon_size->Append(wxGetTranslation(entry), new wxStringClientData(entry));
     }
 
-    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Toolbar Icon Size")), g_flagsH);
-    view_sizer2->Add(m_toolbar_icon_size, g_flagsH);
+    view_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Toolbar Icon Size")), g_flagsH);
+    view_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Navigation Icon Size")), g_flagsH);
+    view_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Others Icon Size")), g_flagsH);
 
-    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Navigation Icon Size")), g_flagsH);
-    view_sizer2->Add(m_navigation_icon_size, g_flagsH);
-
-    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Others Icon Size")), g_flagsH);
-    view_sizer2->Add(m_others_icon_size, g_flagsH);
+    view_sizer3->Add(m_toolbar_icon_size, g_flagsH);
+    view_sizer3->Add(m_navigation_icon_size, g_flagsH);
+    view_sizer3->Add(m_others_icon_size, g_flagsH);
 
     int vIconSize = Option::instance().getToolbarIconSize();
     int selection = vIconSize / 8 - (vIconSize > 32 ? 3 : 2);
@@ -360,6 +376,9 @@ bool OptionSettingsView::SaveSettings()
     size = m_others_icon_size->GetSelection();
     size = i[size];
     Option::instance().setIconSize(size);
+
+    size = m_font_size->GetSelection();
+    Option::instance().setFontSize(size);
 
     size = m_navigation_icon_size->GetSelection();
     size = i[size];
