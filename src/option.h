@@ -120,7 +120,10 @@ public:
     int getHtmlFontSize();
 
     void setThemeMode(int value);
-    int getThemeMode();
+    int getThemeMode() const;
+
+    void setFontSize(int value);
+    int getFontSize() const;
 
     void setIconSize(int value);
     void setToolbarIconSize(int value);
@@ -179,6 +182,7 @@ private:
     int m_theme_mode;
     int m_html_font_size;
     int m_ico_size;
+    int m_font_size;
     int m_toolbar_ico_size;
     int m_navigation_ico_size;
 
@@ -196,6 +200,8 @@ inline const wxString Option::UserName() const { return m_userNameString; }
 inline const wxString Option::FinancialYearStartDay() const { return m_financialYearStartDayString; }
 inline int Option::TransCategorySelection() const { return m_transCategorySelection; }
 inline bool Option::get_bulk_transactions() const { return m_bulk_enter; }
+inline int Option::getThemeMode() const { return m_theme_mode; }
+inline int Option::getFontSize() const { return m_font_size; }
 
 inline const wxString Option::getDateFormat() const
 {
