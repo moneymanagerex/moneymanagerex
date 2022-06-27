@@ -68,6 +68,7 @@ private:
     void OnAddRow(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
+    void OnComboKey(wxKeyEvent& event);
     bool mmDoCheckRow(int i, bool silent = false);
 
     std::vector<Split> m_splits;

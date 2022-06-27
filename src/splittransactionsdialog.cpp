@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "splittransactionsdialog.h"
+#include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"
 #include "mmSimpleDialogs.h"
@@ -123,6 +124,8 @@ void mmSplitTransactionDialog::CreateControls()
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
         cbc->SetName(wxString::Format("category_box%i", i));
+        cbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
+
         mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, ""
             , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
         val->SetMinSize(wxSize(100,-1));
@@ -412,4 +415,24 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     }
 
     UpdateSplitTotal();
+}
+
+void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        auto cbc = static_cast<mmComboBoxCategory*>(event.GetEventObject());
+        if (cbc) {
+            auto category = cbc->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                dlg.ShowModal();
+                cbc->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbc->ChangeValue(category);
+            }
+        }
+    }
+    event.Skip();
 }
