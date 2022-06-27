@@ -53,7 +53,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
         auto_complete.Sort(CaseInsensitiveCmp);
 
         this->Insert(auto_complete, 0);
-        this->AutoComplete(auto_complete);
+        //this->AutoComplete(auto_complete);
         if (auto_complete.GetCount() == 1)
             Select(0);
         is_initialized_ = true;
@@ -92,7 +92,7 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 {
     this->SetEvtHandlerEnabled(false);
     const auto& typedText = event.GetString();
-#if defined (__WXMAC__)
+//#if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!
     if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
@@ -109,7 +109,7 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
         this->SetInsertionPointEnd();
         this->Popup();
     }
-#endif
+//#endif
     for (const auto& item : all_elements_) {
         if ((item.first.CmpNoCase(typedText) == 0) /*&& (item.first.Cmp(typedText) != 0)*/) {
             ChangeValue(item.first);
