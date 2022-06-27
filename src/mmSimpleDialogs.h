@@ -149,8 +149,8 @@ public:
     , wxDateTime dt=wxDateTime::Today(), wxPoint pos=wxDefaultPosition, wxSize size=wxDefaultSize
     , long style=wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     ~mmDatePickerCtrl();
-    void SetValue(const wxDateTime &dt);
-    void mmEnable(bool state);
+    void SetValue(const wxDateTime &dt);    // Override
+    bool Enable(bool state);                // Override
     wxBoxSizer* mmGetLayout();
 private:
     wxStaticText* getTextWeek();

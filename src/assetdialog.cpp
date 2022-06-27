@@ -191,7 +191,7 @@ void mmAssetDialog::CreateControls()
     asset_details_panel->SetSizer(itemFlexGridSizer6);
 
     wxStaticText* n = new wxStaticText(asset_details_panel, wxID_STATIC, _("Name"));
-    itemFlexGridSizer6->Add(n, g_flagsV);
+    itemFlexGridSizer6->Add(n, g_flagsH);
     n->SetFont(this->GetFont().Bold());
 
     m_assetName = new mmTextCtrl(asset_details_panel, wxID_ANY, wxGetEmptyString());
@@ -199,58 +199,55 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(m_assetName, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Date")), g_flagsH);
-
-    m_dpc = new wxDatePickerCtrl( asset_details_panel, wxID_ANY, wxDefaultDateTime,
-              wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN|wxDP_SHOWCENTURY);
-    itemFlexGridSizer6->Add(m_dpc, g_flagsV);
+    m_dpc = new mmDatePickerCtrl(asset_details_panel, wxID_ANY);
+    itemFlexGridSizer6->Add(m_dpc->mmGetLayout());
     mmToolTip(m_dpc, _("Specify the date of purchase of asset"));
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Asset Type")), g_flagsH);
 
-    m_assetType = new wxChoice(asset_details_panel, wxID_STATIC, wxDefaultPosition, wxSize(150, -1));
+    m_assetType = new wxChoice(asset_details_panel, wxID_STATIC);
     for (const auto& a : Model_Asset::all_type())
         m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
 
     mmToolTip(m_assetType, _("Select type of asset"));
     m_assetType->SetSelection(Model_Asset::TYPE_PROPERTY);
-    itemFlexGridSizer6->Add(m_assetType, 0,
-        wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemFlexGridSizer6->Add(m_assetType, g_flagsExpand);
 
     wxStaticText* v = new wxStaticText(asset_details_panel, wxID_STATIC, _("Value"));
-    itemFlexGridSizer6->Add(v, g_flagsV);
+    itemFlexGridSizer6->Add(v, g_flagsH);
     v->SetFont(this->GetFont().Bold());
 
     m_value = new mmTextCtrl(asset_details_panel, IDC_VALUE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator() );
     mmToolTip(m_value, _("Enter the current value of the asset"));
-    itemFlexGridSizer6->Add(m_value, g_flagsV);
+    itemFlexGridSizer6->Add(m_value, g_flagsExpand);
     m_value->Connect(IDC_VALUE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Change in Value")), g_flagsH);
 
-    m_valueChange = new wxChoice(asset_details_panel, IDC_COMBO_TYPE, wxDefaultPosition, wxSize(150, -1));
+    m_valueChange = new wxChoice(asset_details_panel, IDC_COMBO_TYPE);
     for(const auto& a : Model_Asset::all_rate())
         m_valueChange->Append(wxGetTranslation(a));
 
     mmToolTip(m_valueChange, _("Specify if the value of the asset changes over time"));
     m_valueChange->SetSelection(Model_Asset::RATE_NONE);
-    itemFlexGridSizer6->Add(m_valueChange, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemFlexGridSizer6->Add(m_valueChange, g_flagsExpand);
 
     m_valueChangeRateLabel = new wxStaticText(asset_details_panel, wxID_STATIC, _("% Rate"));
-    itemFlexGridSizer6->Add(m_valueChangeRateLabel, g_flagsV);
+    itemFlexGridSizer6->Add(m_valueChangeRateLabel, g_flagsH);
 
     m_valueChangeRate = new mmTextCtrl(asset_details_panel, IDC_RATE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     mmToolTip(m_valueChangeRate, _("Enter the rate at which the asset changes its value in percentage per year"));
-    itemFlexGridSizer6->Add(m_valueChangeRate, g_flagsV);
+    itemFlexGridSizer6->Add(m_valueChangeRate, g_flagsExpand);
     m_valueChangeRate->Connect(IDC_RATE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
     enableDisableRate(false);
 
-    itemFlexGridSizer6->Add(new wxStaticText( asset_details_panel, wxID_STATIC, _("Notes")), g_flagsV);
+    itemFlexGridSizer6->Add(new wxStaticText( asset_details_panel, wxID_STATIC, _("Notes")), g_flagsH);
 
     bAttachments_ = new wxBitmapButton(asset_details_panel, wxID_FILE
         , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition

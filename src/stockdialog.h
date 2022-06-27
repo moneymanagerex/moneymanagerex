@@ -21,6 +21,7 @@
 
 #include "defs.h"
 #include "model/Model_Stock.h"
+#include "mmSimpleDialogs.h"
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -72,7 +73,7 @@ private:
 
     mmTextCtrl* m_stock_name_ctrl;
     mmTextCtrl* m_stock_symbol_ctrl;
-    wxDatePickerCtrl* m_purchase_date_ctrl;
+    mmDatePickerCtrl* m_purchase_date_ctrl;
     mmTextCtrl* m_num_shares_ctrl;
     mmTextCtrl* m_purchase_price_ctrl;
     mmTextCtrl* m_notes_ctrl;
