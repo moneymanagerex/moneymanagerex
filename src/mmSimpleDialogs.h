@@ -46,7 +46,7 @@ public:
     int mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
-    void reInitialize();
+    void mmDoReInitialize();
 protected:
     void OnTextUpdated(wxCommandEvent& event);
     void OnSetFocus(wxFocusEvent& event);

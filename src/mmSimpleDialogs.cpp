@@ -52,7 +52,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
         }
         auto_complete.Sort(CaseInsensitiveCmp);
 
-        this->Append(auto_complete);
+        this->Insert(auto_complete, 0);
         this->AutoComplete(auto_complete);
         if (auto_complete.GetCount() == 1)
             Select(0);
@@ -61,7 +61,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
     event.Skip();
 }
 
-void mmComboBox::reInitialize()
+void mmComboBox::mmDoReInitialize()
 {
     this->Clear();
     init();
@@ -216,6 +216,7 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
 void mmComboBoxCategory::init()
 {
     int i = 0;
+    all_elements_.clear();
     all_categories_ = Model_Category::instance().all_categories();
     for (const auto& item : all_categories_)
     {
