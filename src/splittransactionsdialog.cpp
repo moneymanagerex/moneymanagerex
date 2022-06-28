@@ -360,6 +360,8 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         slider_->FitInside();
         slider_->ScrollLines(ncbc->GetSize().GetY() * 2);
     }
+    slider_->SetMinSize(slider_->GetBestVirtualSize());
+    Layout();
 }
 
 void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
