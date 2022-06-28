@@ -1790,11 +1790,13 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     // A number of type options are supported to make amount positive 
     // ('debit' seems odd but is there for backwards compatability!)
     case UNIV_CSV_TYPE:
-        if ( wxString("Debit|debit|Deposit|deposit|+").Contains(token)) {
-            holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        for (const wxString& entry : { "debit", "deposit", "+" }) {
+            if (entry.CmpNoCase(token) == 0) {
+                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                break;
+            }
         }
         break;
-
     default:
         break;
     }
