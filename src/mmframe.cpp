@@ -3008,7 +3008,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     bool newCreditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
 
-    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed))
+    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_))
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
         checkingAccountPage->DisplayAccountDetails(accountID);
@@ -3016,7 +3016,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     else
     {
         DoWindowsFreezeThaw(homePanel_);
-        creditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
+        creditDisplayed_ = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
