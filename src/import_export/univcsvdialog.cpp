@@ -496,7 +496,7 @@ void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
 const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 {
     if (id < 0) id = 0;
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix() + "%d", id);
+    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
     const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
     wxLogDebug("%s \n %s", setting_id, settings_string);
     return settings_string;
@@ -796,8 +796,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
     wxRadioBox* c = static_cast<wxRadioBox*>(FindWindow(wxID_APPLY));
     int id = c->GetSelection();
-    const wxString& settingsPrefix = GetSettingsPrfix();
-    const wxString& setting_id = wxString::Format(settingsPrefix + "%d", id);
+    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
 
     const auto fileName = m_text_ctrl_->GetValue();
     if (!fileName.empty())
@@ -1262,7 +1261,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     itemType = ITransactionsFile::TYPE_NUMBER;
                     break;
                 case UNIV_CSV_TYPE:
-                    entry = depositType_;
+                    entry = Model_Checking::all_type()[Model_Checking::type(pBankTransaction)];
                     break;
                 case UNIV_CSV_ID:
                     entry = wxString::Format("%i", tran.TRANSID);
