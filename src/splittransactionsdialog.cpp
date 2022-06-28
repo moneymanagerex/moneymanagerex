@@ -158,7 +158,7 @@ void mmSplitTransactionDialog::CreateControls()
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
     bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5).Proportion(1));
 
-    wxBitmapButton* bAdd = new wxBitmapButton(this, mmID_SPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
+    wxButton* bAdd = new wxButton(this, mmID_SPLIT, _("Add Split"));
     plusAmountSizer->AddSpacer(mmBitmapButtonSize + 10);
     plusAmountSizer->Add(bAdd);
 
@@ -243,12 +243,11 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
     int i = 0;
-    m_splits.clear();
     while (true)
     {
         auto name = wxString::Format("check_box%i", i);
         auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
-        if (cb) {
+        if (cb && cb->IsChecked()) {
             i++;
         }
         else
