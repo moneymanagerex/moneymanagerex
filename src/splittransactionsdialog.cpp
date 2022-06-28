@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
      EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
      EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
      EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
+     EVT_BUTTON(mmID_REMOVE, mmSplitTransactionDialog::OnRemoveRow)
      EVT_TEXT_ENTER(wxID_ANY, mmSplitTransactionDialog::OnTextEntered)
  wxEND_EVENT_TABLE()
 
@@ -159,8 +160,14 @@ void mmSplitTransactionDialog::CreateControls()
     bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5).Proportion(1));
 
     wxButton* bAdd = new wxButton(this, mmID_SPLIT, _("Add Split"));
+    bAdd->SetName("");
     plusAmountSizer->AddSpacer(mmBitmapButtonSize + 10);
     plusAmountSizer->Add(bAdd);
+
+    wxButton* bRemove = new wxButton(this, mmID_REMOVE, _("Remove Split"));
+    bRemove->SetName("");
+    plusAmountSizer->AddSpacer(5);
+    plusAmountSizer->Add(bRemove);
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -243,18 +250,42 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
     int i = 0;
+    bool is_last_row_complited = false;
     while (true)
     {
         auto name = wxString::Format("check_box%i", i);
         auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
-        if (cb && cb->IsChecked()) {
-            i++;
+        if (cb) {
+            i ++;
+            is_last_row_complited = cb->IsChecked();
         }
         else
             break;
     }
+
+    if (!is_last_row_complited)
+        i--;
+
     mmDoEnableLineById(i);
     event.Skip();
+}
+
+void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
+{
+    auto name = wxString::Format("category_box%i", row_num_);
+    auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+    name = wxString::Format("value_box%i", row_num_);
+    auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
+    name = wxString::Format("check_box%i", row_num_);
+    auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
+
+    if (cb && cbc && val)
+    {
+        cb->SetValue(false);
+        cbc->Clear();
+        val->Clear();
+        UpdateSplitTotal();
+    }
 }
 
 void mmSplitTransactionDialog::UpdateSplitTotal()
@@ -393,8 +424,6 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int i, bool silent)
 
 void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
 {
-    mmDoCheckRow(row_num_, true);
-
     auto name = wxString::Format("category_box%i", row_num_);
     auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
     if (cbc) {
@@ -408,12 +437,14 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
         val->SelectAll();
     }
 
+    mmDoCheckRow(row_num_, true);
+    UpdateSplitTotal();
+
     wxWindow* w = event.GetWindow();
-    if (w) {
+    ;
+    if (w && !w->GetName().empty()) {
         row_num_ = w->GetId() - wxID_HIGHEST;
     }
-
-    UpdateSplitTotal();
 }
 
 void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
