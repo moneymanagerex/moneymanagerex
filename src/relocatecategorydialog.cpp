@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2016, 2020, 2022 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -31,6 +32,7 @@ wxBEGIN_EVENT_TABLE(relocateCategoryDialog, wxDialog)
     EVT_CHILD_FOCUS(relocateCategoryDialog::OnFocusChange)
     EVT_COMBOBOX(wxID_ANY, relocateCategoryDialog::OnTextUpdated)
     EVT_BUTTON(wxID_OK, relocateCategoryDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL, relocateCategoryDialog::OnCancel)
 wxEND_EVENT_TABLE()
 
 relocateCategoryDialog::relocateCategoryDialog( )
@@ -87,6 +89,10 @@ void relocateCategoryDialog::CreateControls()
 
     cbDestCategory_ = new mmComboBoxCategory(this, wxID_NEW);
     cbDestCategory_->SetMinSize(wxSize(200, -1));
+
+    cbDeleteSourceCategory_ = new wxCheckBox(this, wxID_ANY
+        , _("Delete source category after relocation (if it has no sub-categories)"));
+
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
@@ -105,8 +111,9 @@ void relocateCategoryDialog::CreateControls()
     request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), flagsH);
     request_sizer->Add(cbSourceCategory_, flagsExpand);
     request_sizer->Add(cbDestCategory_, flagsExpand);
+    
     boxSizer->Add(request_sizer, flagsExpand);
-
+    boxSizer->Add(cbDeleteSourceCategory_, flagsExpand);
     boxSizer->Add(lineBottom, flagsExpand);
 
     m_info = new wxStaticText(this, wxID_STATIC, "");
@@ -124,12 +131,24 @@ void relocateCategoryDialog::CreateControls()
     boxSizer->Add(buttonBoxSizer, flagsV);
 }
 
+void relocateCategoryDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
+{
+    EndModal(m_changedRecords > 0 ? wxID_OK : wxID_CANCEL);
+}
+
 void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     int m_destCatID = cbDestCategory_->mmGetCategoryId();
     int m_destSubCatID = cbDestCategory_->mmGetSubcategoryId();
 
-    if (wxMessageBox(_("Please Confirm:"), _("Category Relocation Confirmation"), wxOK | wxCANCEL) == wxOK)
+    const auto& source_category_name = cbSourceCategory_->GetValue();
+    const auto& destination_category_name = cbDestCategory_->GetValue();
+    const wxString& info = wxString::Format(_("From %s to %s")
+        , source_category_name
+        , destination_category_name);
+
+    if (wxMessageBox(_("Please Confirm:") + "\n" + info
+            , _("Category Relocation Confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
     {
         auto transactions = Model_Checking::instance()
             .find(Model_Checking::CATEGID(m_sourceCatID)
@@ -192,7 +211,22 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             m_changedRecords++;
         }
 
-        EndModal(wxID_OK);
+        if (cbDeleteSourceCategory_->IsChecked())
+        {
+            if (m_sourceSubCatID == -1)
+            {
+                Model_Subcategory::Data_Set subcategories = Model_Subcategory::instance().find(Model_Subcategory::CATEGID(m_sourceCatID));
+                if (subcategories.empty())
+                    Model_Category::instance().remove(m_sourceCatID);
+            } else
+                Model_Subcategory::instance().remove(m_sourceSubCatID);
+
+            cbSourceCategory_->mmDoReInitialize();
+            cbDestCategory_->mmDoReInitialize();
+            mmWebApp::MMEX_WebApp_UpdateCategory();
+        }
+
+        IsOkOk();
     }
 }
 
@@ -224,7 +258,7 @@ void relocateCategoryDialog::IsOkOk()
 
     int trxs_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(transactions.size());
     int checks_size = int(checking_split.size());
-    int bills_size = int(billsdeposits.size());
+    int bills_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(billsdeposits.size());
     int budget_split_size = int(budget_split.size());
     int payees_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(payees.size());
     int budget_size = int(budget.size());
