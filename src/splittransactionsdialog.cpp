@@ -288,10 +288,10 @@ void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
     if (cb && cbc && val)
     {
         cb->SetValue(false);
-        cbc->SetValue("");
         cbc->Disable();
-        val->Clear();
+        cbc->SetValue("");
         val->Disable();
+        val->Clear();
         UpdateSplitTotal();
     }
 }
