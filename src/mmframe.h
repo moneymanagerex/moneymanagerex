@@ -124,7 +124,7 @@ private:
     wxAuiManager m_mgr;
 
     /* Homepage panel logic */
-    bool creditDisplayed;
+    bool creditDisplayed_;
 
     void cleanup();
     void resetNavTreeControl();

@@ -641,7 +641,7 @@ void mmCheckingPanel::initFilterSettings()
         m_end_date = date_range->end_date().FormatISODate();
     }
 
-    auto item = menu_labels()[m_currentView];
+    auto item = m_transFilterActive ? menu_labels()[MENU_VIEW_FILTER_DIALOG] : menu_labels()[m_currentView];
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
 
