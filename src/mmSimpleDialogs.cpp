@@ -52,10 +52,13 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
         }
         auto_complete.Sort(CaseInsensitiveCmp);
 
-        this->Insert(auto_complete, 0);
         this->AutoComplete(auto_complete);
-        if (auto_complete.GetCount() == 1)
+        if (!auto_complete.empty()) {
+            this->Insert(auto_complete, 0);
+        }
+        if (auto_complete.GetCount() == 1) {
             Select(0);
+        }
         is_initialized_ = true;
     }
     event.Skip();
