@@ -161,11 +161,13 @@ void mmSplitTransactionDialog::CreateControls()
 
     wxButton* bAdd = new wxButton(this, mmID_SPLIT, _("Add Split"));
     bAdd->SetName("");
+    bAdd->Enable(!is_view_only_);
     plusAmountSizer->AddSpacer(mmBitmapButtonSize + 10);
     plusAmountSizer->Add(bAdd);
 
     wxButton* bRemove = new wxButton(this, mmID_REMOVE, _("Remove Split"));
     bRemove->SetName("");
+    bRemove->Enable(!is_view_only_);
     plusAmountSizer->AddSpacer(5);
     plusAmountSizer->Add(bRemove);
 
@@ -267,7 +269,9 @@ void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
     if (!is_last_row_complited)
         i--;
 
-    mmDoEnableLineById(i);
+    if (mmDoCheckRow(i, false)) {
+        mmDoEnableLineById(i);
+    }
     event.Skip();
 }
 
@@ -408,12 +412,12 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int i, bool silent)
     double amount = 0.0;
     if (!silent)
     {
-        if (!cbc->mmIsValid()) {
+        if (cbc &&!cbc->mmIsValid()) {
             mmErrorDialogs::InvalidCategory(cbc, true);
             return false;
         }
 
-        if (!val->checkValue(amount, false)) {
+        if (val && !val->checkValue(amount, false)) {
             return false;
         }
     }
