@@ -207,18 +207,18 @@ void mmSplitTransactionDialog::CreateControls()
 void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
     int i = 0;
-    m_splits.clear();
+    std::vector<Split> split;
     while (true)
     {
         auto name = wxString::Format("check_box%i", i);
         auto cb = static_cast<wxCheckBox*>(FindWindowByName(name));
         if (cb)
         {
+            if (!mmDoCheckRow(i))
+                return;
+
             if (cb->IsChecked())
             {
-                if (!mmDoCheckRow(i))
-                    return;
-
                 Split s;
                 name = wxString::Format("category_box%i", i);
                 auto cbc = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
@@ -228,7 +228,7 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
                 name = wxString::Format("value_box%i", i);
                 auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
                 val->GetDouble(s.SPLITTRANSAMOUNT);
-                m_splits.push_back(s);
+                split.push_back(s);
             }
             i++;
         }
@@ -238,12 +238,13 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
     //Check total amount - should be positive
     totalAmount_ = 0;
-    for (const auto& entry : m_splits)
+    for (const auto& entry : split)
         totalAmount_ += entry.SPLITTRANSAMOUNT;
     if (totalAmount_ < 0) {
         return mmErrorDialogs::MessageError(this, _("Invalid Total Amount"), _("Error"));
     }
 
+    m_splits = split;
     EndModal(wxID_OK);
 }
 
