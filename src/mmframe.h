@@ -281,7 +281,7 @@ private:
     enum
     {
         /* Main Menu  */
-        MENU_NEW = ID_MMEX_MAX + 1,
+        MENU_NEW = mmID_MAX + 1,
         MENU_OPEN,
         MENU_SAVE,
         MENU_SAVE_AS,

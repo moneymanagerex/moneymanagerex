@@ -66,6 +66,7 @@ private:
 
     void OnOk(wxCommandEvent& event);
     void OnAddRow(wxCommandEvent& event);
+    void OnRemoveRow(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnComboKey(wxKeyEvent& event);
