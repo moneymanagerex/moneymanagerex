@@ -145,6 +145,7 @@ void mmSplitTransactionDialog::CreateControls()
         }
 
         cb->Enable(false);
+        cb->Hide();
         cbc->Enable(i <= m_splits.size() && !is_view_only_);
         val->Enable(i <= m_splits.size() && !is_view_only_);
         if (i == static_cast<int>(m_splits.size())) {
@@ -347,6 +348,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
         ncb->Disable();
+        ncb->Hide();
         ncbc->SetName(wxString::Format("category_box%i", i));
         mmTextCtrl* nval = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
         nval->SetMinSize(wxSize(100,-1));
