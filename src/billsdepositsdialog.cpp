@@ -536,7 +536,7 @@ void mmBDDialog::CreateControls()
     wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
-    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME);
+    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_bill_data.ACCOUNTID);
     mmToolTip(cbAccount_, _("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(cbAccount_, g_flagsExpand);
 
@@ -544,7 +544,7 @@ void mmBDDialog::CreateControls()
     wxStaticText* to_acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_TOACCOUNT, _("To"));
     to_acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(to_acc_label, g_flagsH);
-    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME);
+    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME, wxDefaultSize, m_bill_data.TOACCOUNTID);
     mmToolTip(cbToAccount_, payeeTransferTip_);
     transPanelSizer->Add(cbToAccount_, g_flagsExpand);
 

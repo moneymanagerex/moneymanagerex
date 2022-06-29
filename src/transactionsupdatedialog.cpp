@@ -211,9 +211,6 @@ void transactionsUpdateDialog::CreateControls()
 
     cbAccount_ = new mmComboBoxAccount(this, ID_TRANS_ACC);
     cbAccount_->SetMaxSize(cbPayee_->GetSize());
-    wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
-    cbAccount_->Insert(account_names, 0);
-    cbAccount_->AutoComplete(account_names);
     cbAccount_->Enable(false);
 
     grid_sizer->Add(m_transferAcc_checkbox, g_flagsH);

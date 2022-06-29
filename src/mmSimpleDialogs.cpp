@@ -170,11 +170,18 @@ bool mmComboBox::mmIsValid() const
 
 void mmComboBoxAccount::init()
 {
-    all_elements_ = Model_Account::instance().all_accounts(true);
+    all_elements_ = Model_Account::instance().all_accounts(excludeClosed_);
+    if (accountID_ > -1)
+        all_elements_[Model_Account::get_account_name(accountID_)] = accountID_;
 }
 
-mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
+// accountID = always include this account even if it would have been excluded as closed
+// excludeClosed = set to true if closed accounts should be excluded
+mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
+                    , wxSize size, int accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
+    , excludeClosed_(excludeClosed)
+    , accountID_(accountID)
 {
     init();
 }

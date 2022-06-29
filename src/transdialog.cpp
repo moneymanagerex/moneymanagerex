@@ -411,7 +411,7 @@ void mmTransDialog::CreateControls()
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
 
-    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME);
+    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_trx_data.ACCOUNTID);
     cbAccount_->SetMinSize(cbAccount_->GetSize());
 
     flex_sizer->Add(account_label_, g_flagsH);
@@ -422,7 +422,7 @@ void mmTransDialog::CreateControls()
     to_acc_label_ = new wxStaticText(this, mmID_TOACCOUNT_LABEL, _("To"));
     to_acc_label_->SetFont(this->GetFont().Bold());
     flex_sizer->Add(to_acc_label_, g_flagsH);
-    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME);
+    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME, wxDefaultSize, m_trx_data.TOACCOUNTID);
     cbToAccount_->SetMinSize(cbToAccount_->GetSize());
     flex_sizer->Add(cbToAccount_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
