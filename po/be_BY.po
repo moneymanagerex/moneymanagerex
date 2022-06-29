@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-29 11:37+0300\n"
-"PO-Revision-Date: 2022-06-29 21:47\n"
+"PO-Revision-Date: 2022-06-29 22:44\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3551,7 +3551,7 @@ msgstr "Немагчыма знайсці сымбаль асноўнай вал
 
 #: mmSimpleDialogs.cpp:319
 msgid "Retard or advance the date"
-msgstr ""
+msgstr "Адтэрмінаваць або перасунуць дату"
 
 #: mmSimpleDialogs.cpp:391 mmSimpleDialogs.cpp:403
 msgid "Clear color"
@@ -5894,23 +5894,23 @@ msgstr "Пазначце, які маштаб выкарыстоўваць дл�
 
 #: optionsettingsview.cpp:253
 msgid "Normal"
-msgstr ""
+msgstr "Звычайны"
 
 #: optionsettingsview.cpp:254
 msgid "Enlarged"
-msgstr ""
+msgstr "Павялічаны"
 
 #: optionsettingsview.cpp:255
 msgid "Large"
-msgstr ""
+msgstr "Вялікі"
 
 #: optionsettingsview.cpp:256
 msgid "Huge"
-msgstr ""
+msgstr "Буйны"
 
 #: optionsettingsview.cpp:258
 msgid "Font size"
-msgstr ""
+msgstr "Памер шрыфта"
 
 #: optionsettingsview.cpp:270
 msgid "Small (16 px)"
@@ -5998,7 +5998,7 @@ msgstr "Перасунуць катыгорыю крыніцы ў катыгор
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Выдаліць катыгорыю пасля перасоўвання аперацыяў (калі ў яе няма падкатыгорыяў)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6935,11 +6935,11 @@ msgstr "Гэтая аперацыя перавысіць ліміт рахунк
 
 #: transdialog.cpp:1048
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "У абодвух рахунках розныя валюты, але вы не вызначылі суму пераказа. Ці гэта слушна?"
 
 #: transdialog.cpp:1049
 msgid "Currencies are different"
-msgstr ""
+msgstr "Валюты не супадаюць"
 
 #: transdialog.cpp:1136
 msgid "Specify account the money is taken from"
