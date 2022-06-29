@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-29 11:37+0300\n"
-"PO-Revision-Date: 2022-06-29 09:50\n"
+"PO-Revision-Date: 2022-06-29 14:10\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5974,7 +5974,7 @@ msgstr "Déplacer la catégorie source vers la catégorie destination"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Supprimer la catégorie source après réaffectation (si elle n'a pas de sous-catégorie)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
