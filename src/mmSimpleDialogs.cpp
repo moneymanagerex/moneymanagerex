@@ -110,11 +110,12 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 
         this->ChangeValue(typedText);
         this->SetInsertionPointEnd();
-        this->Popup();
+        if (!typedText.IsEmpty())
+            this->Popup();
     }
 #endif
     for (const auto& item : all_elements_) {
-        if ((item.first.CmpNoCase(typedText) == 0) /*&& (item.first.Cmp(typedText) != 0)*/) {
+        if ((item.first.CmpNoCase(typedText) == 0) && (item.first.Cmp(typedText) != 0)) {
             ChangeValue(item.first);
             SetInsertionPointEnd();
             wxCommandEvent evt(wxEVT_COMBOBOX, this->GetId());

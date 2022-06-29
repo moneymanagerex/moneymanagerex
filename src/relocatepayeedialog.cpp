@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 - 2022 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
@@ -190,8 +190,8 @@ void relocatePayeeDialog::IsOkOk()
 
     destPayeeID_ = cbDestPayee_->mmGetId();
     sourcePayeeID_ = cbSourcePayee_->mmGetId();
-    int trxs_size = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
-    int bills_size = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
+    int trxs_size = (sourcePayeeID_ < 0) ? 0 : Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
+    int bills_size = (sourcePayeeID_ < 0) ? 0 : Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
 
     if (destPayeeID_ < 0 || sourcePayeeID_ < 0
         || destPayeeID_ == sourcePayeeID_
