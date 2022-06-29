@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-29 11:37+0300\n"
-"PO-Revision-Date: 2022-06-29 09:49\n"
+"PO-Revision-Date: 2022-06-29 10:57\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -306,7 +306,7 @@ msgstr "Önceden oluşturulmuş (*.mmb) bir veritabanı dosyası aç"
 
 #: appstartdialog.cpp:115
 msgid "Change Language"
-msgstr ""
+msgstr "Dili Değiştir"
 
 #: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1542
 #: optionsettingsgeneral.cpp:93
@@ -351,7 +351,7 @@ msgstr "Sistem varsayılanları"
 
 #: appstartdialog.cpp:219 optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: appstartdialog.cpp:226 mmframe.cpp:3482 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
