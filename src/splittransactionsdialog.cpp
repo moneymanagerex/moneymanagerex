@@ -62,7 +62,7 @@ mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     : m_splits(split)
     , totalAmount_(totalAmount)
     , transType_(transType)
-    , row_num_(-1)
+    , row_num_(static_cast<int>(split.size()))
     , is_view_only_(is_view_only)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID);

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-27 15:14+0300\n"
-"PO-Revision-Date: 2022-06-27 12:19\n"
+"PO-Revision-Date: 2022-06-27 14:34\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3546,7 +3546,7 @@ msgstr "Impossibile trovare il simbolo della Valuta base!"
 
 #: mmSimpleDialogs.cpp:315
 msgid "Retard or advance the date"
-msgstr ""
+msgstr "Ritarda o anticipa la data"
 
 #: mmSimpleDialogs.cpp:387 mmSimpleDialogs.cpp:399
 msgid "Clear color"
@@ -5872,23 +5872,23 @@ msgstr "Specificare quale scala deve essere utilizzata per le pagine dei report"
 
 #: optionsettingsview.cpp:253
 msgid "Normal"
-msgstr ""
+msgstr "Normale"
 
 #: optionsettingsview.cpp:254
 msgid "Enlarged"
-msgstr ""
+msgstr "Ingrandito"
 
 #: optionsettingsview.cpp:255
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: optionsettingsview.cpp:256
 msgid "Huge"
-msgstr ""
+msgstr "Enorme"
 
 #: optionsettingsview.cpp:258
 msgid "Font size"
-msgstr ""
+msgstr "Dimensione carattere"
 
 #: optionsettingsview.cpp:270
 msgid "Small (16 px)"
@@ -6899,11 +6899,11 @@ msgstr "Questa operazione supererà il limite del conto.\n\n"
 
 #: transdialog.cpp:1048
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "I due conti hanno valute diverse ma non hai definito una transazione avanzata. È corretto?"
 
 #: transdialog.cpp:1049
 msgid "Currencies are different"
-msgstr ""
+msgstr "Le valute sono diverse"
 
 #: transdialog.cpp:1136
 msgid "Specify account the money is taken from"
