@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-29 11:37+0300\n"
-"PO-Revision-Date: 2022-06-29 09:50\n"
+"PO-Revision-Date: 2022-06-29 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5970,7 +5970,7 @@ msgstr "Reordenar categoría de origen a la categoría de destino"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Eliminar categoría de origen después de la reubicación (si no tiene subcategorías)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6489,11 +6489,11 @@ msgstr "Detalles de transacción dividida"
 
 #: splittransactionsdialog.cpp:163
 msgid "Add Split"
-msgstr ""
+msgstr "Añadir desglose"
 
 #: splittransactionsdialog.cpp:169
 msgid "Remove Split"
-msgstr ""
+msgstr "Eliminar desglose"
 
 #: splittransactionsdialog.cpp:247
 msgid "Invalid Total Amount"
