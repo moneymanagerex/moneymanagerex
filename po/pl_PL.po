@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-27 15:14+0300\n"
-"PO-Revision-Date: 2022-06-27 12:19\n"
+"PO-Revision-Date: 2022-06-27 17:35\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -3427,7 +3427,7 @@ msgstr "Uaktualnienie online"
 
 #: maincurrencydialog.cpp:185
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Pokaż wszystkie, nawet nieużywane waluty"
 
 #: maincurrencydialog.cpp:215 payeedialog.cpp:158
 msgid "Search:"
@@ -3456,7 +3456,7 @@ msgstr "Pobierz historię kursów walut"
 
 #: maincurrencydialog.cpp:297
 msgid "&Add / Update "
-msgstr "&Dodaj / Uaktualnij"
+msgstr "&Dodaj / Uaktualnij "
 
 #: maincurrencydialog.cpp:298
 msgid "Add Currency Values to history"
@@ -3468,7 +3468,7 @@ msgstr "Usuń wybrane wartości Waluty"
 
 #: maincurrencydialog.cpp:306
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Usuń historię kursów walut dla niewykorzystanych walut i dni"
 
 #: maincurrencydialog.cpp:362
 msgid "Do you really want to delete the selected Currency?"
@@ -3512,7 +3512,7 @@ msgstr "Ustaw jako walutę bazową"
 
 #: maincurrencydialog.cpp:533
 msgid "Online Update Currency Rate"
-msgstr "Uaktualnij kursy walut online"
+msgstr "Aktualizuj kursy walut online"
 
 #: maincurrencydialog.cpp:652
 msgid "No currency selected!"
@@ -3534,7 +3534,7 @@ msgstr "Nie można pobrać historii dla symbolu %s. Historia notowań niedostęp
 
 #: maincurrencydialog.cpp:783 optionsettingsgeneral.cpp:278
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Zmiana waluty bazowej usunie wszystkie historyczne kursy, kontynuować?"
 
 #: maincurrencydialog.cpp:807
 msgid "Do you want to update today currency rates?"
@@ -3551,7 +3551,7 @@ msgstr "Nie można ustalić symbolu podstawowej waluty"
 
 #: mmSimpleDialogs.cpp:315
 msgid "Retard or advance the date"
-msgstr ""
+msgstr "Cofnij lub opóźnij datę"
 
 #: mmSimpleDialogs.cpp:387 mmSimpleDialogs.cpp:399
 msgid "Clear color"
@@ -3848,7 +3848,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:845
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć wszystkie wyświetlane transakcje?"
 
 #: mmchecking_list.cpp:846 mmchecking_list.cpp:857 mmchecking_list.cpp:868
 #: mmchecking_list.cpp:915
@@ -3858,7 +3858,7 @@ msgstr "Potwierdź usunięcie transakcji"
 #: mmchecking_list.cpp:856 mmchecking_list.cpp:867
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć wszystkie wyświetlane transakcje \"%s\"?"
 
 #: mmchecking_list.cpp:910
 #, c-format
@@ -4329,7 +4329,7 @@ msgstr "Pokaż podpowiedzi"
 
 #: mmframe.cpp:1514 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Pokazuj porady finansowe"
 
 #: mmframe.cpp:1534
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -5887,23 +5887,23 @@ msgstr "Określ współczynnik skali dla stron raportów"
 
 #: optionsettingsview.cpp:253
 msgid "Normal"
-msgstr ""
+msgstr "Normalny"
 
 #: optionsettingsview.cpp:254
 msgid "Enlarged"
-msgstr ""
+msgstr "Powiększony"
 
 #: optionsettingsview.cpp:255
 msgid "Large"
-msgstr ""
+msgstr "Duży"
 
 #: optionsettingsview.cpp:256
 msgid "Huge"
-msgstr ""
+msgstr "Ogromny"
 
 #: optionsettingsview.cpp:258
 msgid "Font size"
-msgstr ""
+msgstr "Rozmiar czcionki"
 
 #: optionsettingsview.cpp:270
 msgid "Small (16 px)"
@@ -6911,11 +6911,11 @@ msgstr "Ta transakcja spowoduje przekroczenie limitu konta.\n\n"
 
 #: transdialog.cpp:1048
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "Te dwa konta mają różne waluty, ale nie zdefiniowałeś zaawansowanej transakcji. Czy to jest poprawne?"
 
 #: transdialog.cpp:1049
 msgid "Currencies are different"
-msgstr ""
+msgstr "Waluty są różne"
 
 #: transdialog.cpp:1136
 msgid "Specify account the money is taken from"
