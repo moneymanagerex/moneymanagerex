@@ -31,7 +31,7 @@ environment:
   curlStatic: ON
   # wxWidgets config
   wxVer: 3.1.5
-  wxwin: C:\wxWidgets-$(wxver)-$(configuration)
+  wxwin: C:\wxWidgets-$(wxVer)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
   # Microsoft compiler options
