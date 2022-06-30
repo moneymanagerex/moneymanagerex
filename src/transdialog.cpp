@@ -823,6 +823,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                     cbPayee_->SetInsertionPointEnd();
                 }
+                return;
             }
         }
         break;
@@ -836,6 +837,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 cbCategory_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 cbCategory_->ChangeValue(category);
+                return;
             }
         }
         break;
