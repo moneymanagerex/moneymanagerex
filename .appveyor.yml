@@ -30,10 +30,12 @@ environment:
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
-  wxVer: 3.1.5
+  # DownloadVer and Ver will differ if release candidiate used e.g. wxDownloadVer=3.2.0-rc1 and wxVer=3.2.0
+  wxVer: 3.2.0
+  wxDownloadVer: 3.2.0-rc1
   wxwin: C:\wxWidgets-$(wxVer)-$(configuration)
   wxShared: 0
-  wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
+  wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxDownloadVer)
   # Microsoft compiler options
   CL: /MP
   # Python version to use
@@ -111,14 +113,14 @@ install:
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early
-      -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
-      -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
+      -O %wxURL%/wxMSW-%wxDownloadVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+      -O %wxURL%/wxWidgets-%wxDownloadVer%-headers.7z &&
     if %configuration%==Release
-      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
+      curl -fsL -O %wxURL%/wxMSW-%wxDownloadVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
   ) || exit 0
-- if not exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
-    curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
-- 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
+- if not exist wxMSW-%wxDownloadVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+    curl -fsSL -O %wxDownloadVer%/wxWidgets-%wxVer%.7z
+- 7z x -y "-o%wxwin%" wx*-%wxDownloadVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
 - if %configuration%==Release set "wxConf=BUILD=release"
 - if not %platform:~-2%==64 set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE"
@@ -186,7 +188,7 @@ test: off
 on_success:
 # don't cache downloaded wxWidgets binaries
 - if %wxShared%==1 (
-    if exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+    if exist wxMSW-%wxDownloadVer%_vc%comp%%xp%%wxSuff%_Dev.7z
       rmdir /s /q "%wxLibFolder%"
   )
 
