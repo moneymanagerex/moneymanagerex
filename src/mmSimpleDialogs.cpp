@@ -31,8 +31,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/richtooltip.h>
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
-EVT_SET_FOCUS(mmComboBox::OnSetFocus)
-EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
+    EVT_SET_FOCUS(mmComboBox::OnSetFocus)
+    EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
@@ -98,7 +98,7 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 #if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!
-    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    if (typedText.IsEmpty() || (this->GetSelection() == -1))
     {
         this->Clear();
 
@@ -112,6 +112,8 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
         this->SetInsertionPointEnd();
         if (!typedText.IsEmpty())
             this->Popup();
+        else
+            this->Dismiss();
     }
 #endif
     for (const auto& item : all_elements_) {
