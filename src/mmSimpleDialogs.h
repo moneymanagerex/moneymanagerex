@@ -64,9 +64,14 @@ public:
     mmComboBoxAccount(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
+        , int accountID = -1
+        , bool excludeClosed = true
     );
 protected:
     void init();
+private:
+    int accountID_;
+    bool excludeClosed_;
 };
 
 /* -------------------------------------------- */
