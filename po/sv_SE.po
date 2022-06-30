@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-29 11:37+0300\n"
-"PO-Revision-Date: 2022-06-29 09:49\n"
+"PO-Revision-Date: 2022-06-30 18:36\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5937,7 +5937,7 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Ta bort källkategori efter flytt (om den inte har några underkategorier)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6456,7 +6456,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:163
 msgid "Add Split"
-msgstr ""
+msgstr "Lägg till delning"
 
 #: splittransactionsdialog.cpp:169
 msgid "Remove Split"
