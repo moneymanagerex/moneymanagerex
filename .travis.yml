@@ -118,9 +118,9 @@ install: |-
       make
       make install
       cd $HOME
-      curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.6/wxWidgets-3.1.5.tar.bz2
+      curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.0-rc1/wxWidgets-3.2.0-rc1.tar.bz2
       tar xzf wxWidgets-*.tar.bz2
-      cd wxWidgets-3.1.5
+      cd wxWidgets-3.2.0-rc1
       ./configure --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
         --without-libtiff
