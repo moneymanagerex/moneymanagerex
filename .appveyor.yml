@@ -119,7 +119,7 @@ install:
       curl -fsL -O %wxURL%/wxMSW-%wxDownloadVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
   ) || exit 0
 - if not exist wxMSW-%wxDownloadVer%_vc%comp%%xp%%wxSuff%_Dev.7z
-    curl -fsSL -O %wxDownloadVer%/wxWidgets-%wxVer%.7z
+    curl -fsSL -O %wxURL%/wxWidgets-%wxDownloadVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxDownloadVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
 - if %configuration%==Release set "wxConf=BUILD=release"
