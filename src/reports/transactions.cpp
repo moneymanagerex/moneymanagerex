@@ -228,7 +228,11 @@ table {
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                    if (showColumnById(9)) hb.addCurrencyCell(amount, curr);
+                    if (showColumnById(9)) 
+                        if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
+                            hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
+                        else 
+                            hb.addCurrencyCell(amount, curr);
                     total[curr->CURRENCYID] += amount;
                     grand_total[curr->CURRENCYID] += amount;
                     total_in_base_curr[curr->CURRENCYID] += amount * convRate;
