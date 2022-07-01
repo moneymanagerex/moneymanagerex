@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-06-29 11:37+0300\n"
-"PO-Revision-Date: 2022-06-29 09:49\n"
+"PO-Revision-Date: 2022-07-01 10:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5956,7 +5956,7 @@ msgstr "将类目从原位置移动到目标位置"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "重定位后删除源类别（如果没有子类别）"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6474,11 +6474,11 @@ msgstr "交易明细"
 
 #: splittransactionsdialog.cpp:163
 msgid "Add Split"
-msgstr ""
+msgstr "添加拆分"
 
 #: splittransactionsdialog.cpp:169
 msgid "Remove Split"
-msgstr ""
+msgstr "移除拆分"
 
 #: splittransactionsdialog.cpp:247
 msgid "Invalid Total Amount"
