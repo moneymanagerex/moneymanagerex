@@ -973,7 +973,7 @@ DBG_MSG("wxWidgets_USE_FILE        : ${wxWidgets_USE_FILE}")
 #=====================================================================
 #=====================================================================
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(${CMAKE_ROOT}/Modules/FindPackageHandleStandardArgs.cmake)
 
 # FIXME: set wxWidgets_<comp>_FOUND for wx-config branch
 #        and use HANDLE_COMPONENTS on Unix too
