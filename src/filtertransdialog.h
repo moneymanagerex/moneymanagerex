@@ -158,8 +158,8 @@ private:
     wxCheckBox* datesCheckBox_;
     wxChoice* rangeChoice_;
     wxCheckBox* dateRangeCheckBox_;
-    wxDatePickerCtrl* fromDateCtrl_;
-    wxDatePickerCtrl* toDateControl_;
+    mmDatePickerCtrl* fromDateCtrl_;
+    mmDatePickerCtrl* toDateControl_;
     wxCheckBox* payeeCheckBox_;
     mmComboBoxPayee* cbPayee_;
     wxCheckBox* categoryCheckBox_;

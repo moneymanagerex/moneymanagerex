@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 
-class wxDatePickerCtrl;
+class mmDatePickerCtrl;
 
 class mmQIFExportDialog : public wxDialog
 {
@@ -65,8 +65,8 @@ private:
     wxButton* bSelectedAccounts_;
     wxCheckBox* dateFromCheckBox_;
     wxCheckBox* dateToCheckBox_;
-    wxDatePickerCtrl* fromDateCtrl_;
-    wxDatePickerCtrl* toDateCtrl_;
+    mmDatePickerCtrl* fromDateCtrl_;
+    mmDatePickerCtrl* toDateCtrl_;
     wxStaticText* choiceDateFormat_label_;
     wxComboBox* m_choiceDateFormat;
     wxCheckBox* toFileCheckBox_;

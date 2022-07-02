@@ -155,15 +155,17 @@ public:
     , long style=wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     ~mmDatePickerCtrl();
     void SetValue(const wxDateTime &dt);    // Override
-    bool Enable(bool state);                // Override
+    bool Enable(bool state=true);           // Override
     wxBoxSizer* mmGetLayout();
 private:
     wxStaticText* getTextWeek();
     wxSpinButton* getSpinButton();
 
+    void OnCalendar(wxMouseEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnDateSpin(wxSpinEvent& event);
 
+    wxWindow* parent_;
     wxStaticText* itemStaticTextWeek_;
     wxSpinButton* spinButton_;
 };

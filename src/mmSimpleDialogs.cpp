@@ -30,6 +30,60 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+//------- Pop-up calendar, currently only used for MacOS only
+// See: https://github.com/moneymanagerex/moneymanagerex/issues/3139
+
+#include "wx/popupwin.h"
+#include "wx/spinctrl.h"
+
+//----------------------------------------------------------------------------
+// mmCalendarPopup
+//----------------------------------------------------------------------------
+class mmCalendarPopup: public wxPopupTransientWindow
+{
+public:
+    mmCalendarPopup(wxWindow *parent, mmDatePickerCtrl* datePicker);
+    virtual ~mmCalendarPopup();
+
+private:
+    mmDatePickerCtrl* m_datePicker;
+    void OnDateSelected( wxCalendarEvent& event);
+    wxDECLARE_ABSTRACT_CLASS(mmCalendarPopup);
+};
+
+wxIMPLEMENT_CLASS(mmCalendarPopup,wxPopupTransientWindow);
+
+mmCalendarPopup::mmCalendarPopup( wxWindow *parent, mmDatePickerCtrl* datePicker)
+                     : wxPopupTransientWindow(parent,
+                                              wxBORDER_NONE)
+                    , m_datePicker(datePicker)
+{
+    wxWindow* panel = new wxWindow(this, wxID_ANY);
+
+    wxCalendarCtrl* m_calendarCtrl = new wxCalendarCtrl(panel, wxID_ANY, datePicker->GetValue());
+    m_calendarCtrl->Bind(wxEVT_CALENDAR_DOUBLECLICKED, &mmCalendarPopup::OnDateSelected, this);
+
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(m_calendarCtrl, 0, wxALL, 5);
+    panel->SetSizer(sizer);
+
+    sizer->Fit(panel);
+    SetClientSize(panel->GetSize());
+}
+
+mmCalendarPopup::~mmCalendarPopup()
+{
+
+}
+
+void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
+{
+    m_datePicker->SetValue(event.GetDate());
+    wxPopupTransientWindow::Dismiss();
+}
+
+//------------
+
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
     EVT_SET_FOCUS(mmComboBox::OnSetFocus)
     EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
@@ -282,10 +336,15 @@ wxEND_EVENT_TABLE()
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
     : wxDatePickerCtrl(parent, id, dt, pos, size, style)
+    , parent_(parent)
     , itemStaticTextWeek_(nullptr)
     , spinButton_(nullptr)
 {
-
+// The standard date control for MacOS does not have a date picker so make one available when right-click
+// over the date field.
+#if defined (__WXMAC__)
+    Bind(wxEVT_RIGHT_DOWN, &mmDatePickerCtrl::OnCalendar, this);
+#endif
 }
 
 mmDatePickerCtrl::~mmDatePickerCtrl()
@@ -356,6 +415,18 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
     date_sizer->Add(this->getTextWeek(), g_flagsH);
 
     return date_sizer;
+}
+
+void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
+{  
+    mmCalendarPopup* m_simplePopup = new mmCalendarPopup( parent_, this );
+
+    // make sure we correctly position the popup over the date
+    wxWindow *dateCtrl = (wxWindow*) event.GetEventObject();
+    wxPoint pos = dateCtrl->ClientToScreen(wxPoint(0,0));
+    m_simplePopup->SetPosition(pos);
+
+    m_simplePopup->Popup();
 }
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)

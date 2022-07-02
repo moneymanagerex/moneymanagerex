@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "Model_Checking.h"
 #include "mmSimpleDialogs.h"
 
-class wxDatePickerCtrl;
+class mmDatePickerCtrl;
 class wxDataViewListCtrl;
 class mmQIFImport;
 class wxButton;
@@ -105,8 +105,8 @@ private:
     wxTextCtrl* log_field_;
     wxCheckBox* dateFromCheckBox_;
     wxCheckBox* dateToCheckBox_;
-    wxDatePickerCtrl* fromDateCtrl_;
-    wxDatePickerCtrl* toDateCtrl_;
+    mmDatePickerCtrl* fromDateCtrl_;
+    mmDatePickerCtrl* toDateCtrl_;
     wxComboBox* choiceDateFormat_;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
