@@ -61,7 +61,7 @@ mmCalendarPopup::mmCalendarPopup( wxWindow *parent, mmDatePickerCtrl* datePicker
     wxWindow* panel = new wxWindow(this, wxID_ANY);
 
     wxCalendarCtrl* m_calendarCtrl = new wxCalendarCtrl(panel, wxID_ANY, datePicker->GetValue());
-    m_calendarCtrl->Bind(wxEVT_CALENDAR_DOUBLECLICKED, &mmCalendarPopup::OnDateSelected, this);
+    m_calendarCtrl->Bind(wxEVT_CALENDAR_SEL_CHANGED, &mmCalendarPopup::OnDateSelected, this);
 
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(m_calendarCtrl, 0, wxALL, 5);
@@ -79,7 +79,6 @@ mmCalendarPopup::~mmCalendarPopup()
 void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
 {
     m_datePicker->SetValue(event.GetDate());
-    wxPopupTransientWindow::Dismiss();
 }
 
 //------------
@@ -421,9 +420,10 @@ void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
 {  
     mmCalendarPopup* m_simplePopup = new mmCalendarPopup( parent_, this );
 
-    // make sure we correctly position the popup over the date
+    // make sure we correctly position the popup below the date
     wxWindow *dateCtrl = (wxWindow*) event.GetEventObject();
-    wxPoint pos = dateCtrl->ClientToScreen(wxPoint(0,0));
+    wxSize dimensions = dateCtrl->GetSize();
+    wxPoint pos = dateCtrl->ClientToScreen(wxPoint(0, dimensions.GetHeight()));
     m_simplePopup->SetPosition(pos);
 
     m_simplePopup->Popup();
