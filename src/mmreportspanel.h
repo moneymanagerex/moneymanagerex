@@ -70,7 +70,7 @@ private:
     void OnNewWindow(wxWebViewEvent& evt);
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     wxChoice* m_date_ranges;
-    wxDatePickerCtrl *m_start_date, *m_end_date;
+    mmDatePickerCtrl *m_start_date, *m_end_date;
     wxWebView * browser_;
     mmPrintableBase* rb_;
     wxChoice* m_accounts;

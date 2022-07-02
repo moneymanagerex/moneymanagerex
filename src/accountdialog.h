@@ -20,6 +20,7 @@
 #define MM_EX_NEWACCTDIALOG_H_
 
 #include "model/Model_Account.h"
+#include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
 
 class mmNewAcctDialog : public wxDialog
@@ -68,12 +69,12 @@ private:
     wxString m_accessInfo;
 
     wxCheckBox* m_statement_lock_ctrl;
-    wxDatePickerCtrl* m_statement_date_ctrl;
+    mmDatePickerCtrl* m_statement_date_ctrl;
     mmTextCtrl* m_minimum_balance_ctrl;
 
     mmTextCtrl* m_credit_limit_ctrl;
     mmTextCtrl* m_interest_rate_ctrl;
-    wxDatePickerCtrl* m_payment_due_date_ctrl;
+    mmDatePickerCtrl* m_payment_due_date_ctrl;
     mmTextCtrl* m_minimum_payment_ctrl;
 
     int m_currencyID;

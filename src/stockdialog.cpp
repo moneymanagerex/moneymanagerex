@@ -313,7 +313,7 @@ void mmStockDialog::CreateControls()
     //
     wxFlexGridSizer* date_price = new wxFlexGridSizer(0, 2, 0, 0);
     date_price->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Price Date")), g_flagsH);
-    m_history_date_ctrl = new wxDatePickerCtrl(buttons_panel, ID_DPC_CP_PDATE
+    m_history_date_ctrl = new mmDatePickerCtrl(buttons_panel, ID_DPC_CP_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     date_price->Add(m_history_date_ctrl, g_flagsH);
     mmToolTip(m_history_date_ctrl, _("Specify the stock/share price date."));
