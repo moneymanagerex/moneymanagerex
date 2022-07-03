@@ -421,7 +421,7 @@ void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
     mmCalendarPopup* m_simplePopup = new mmCalendarPopup( parent_, this );
 
     // make sure we correctly position the popup below the date
-    wxWindow *dateCtrl = static_cast<wxWindow*>(event.GetEventObject());
+    wxWindow *dateCtrl = (wxWindow*) event.GetEventObject();
     wxSize dimensions = dateCtrl->GetSize();
     wxPoint pos = dateCtrl->ClientToScreen(wxPoint(0, dimensions.GetHeight()));
     m_simplePopup->SetPosition(pos);
