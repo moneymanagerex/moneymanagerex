@@ -411,7 +411,7 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
 #if defined(__WXMSW__) || defined(__WXGTK__)
     date_sizer->Add(this->getSpinButton(), g_flagsH);
 #endif
-    date_sizer->Add(this->getTextWeek(), g_flagsH);
+    date_sizer->Add(this->getTextWeek(), g_flagsExpand);
 
     return date_sizer;
 }
