@@ -69,6 +69,7 @@ private:
     void OnPayee(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
 private:
     void dataToControls();
     void updateControlsForTransType();
