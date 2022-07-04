@@ -96,6 +96,11 @@ void OptionSettingsMisc::Create()
     default_values.Add(_("None"));
     default_values.Add(_("Last Used"));
 
+    wxChoice* defaultCategoryTransferChoice = new wxChoice(this
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_TRANSFER
+        , wxDefaultPosition, wxDefaultSize, default_values);
+    defaultCategoryTransferChoice->SetSelection(Option::instance().TransCategorySelectionTransfer());
+
     wxChoice* defaultDateChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
         , wxDefaultPosition, wxDefaultSize, default_values);
@@ -109,10 +114,10 @@ void OptionSettingsMisc::Create()
 
     default_values[1] = (_("Last used for payee"));
     default_values.Add(_("Use default for payee"));
-    wxChoice* defaultCategoryChoice = new wxChoice(this
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
+    wxChoice* defaultCategoryNonTransferChoice = new wxChoice(this
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_NONTRANSFER
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelection());
+    defaultCategoryNonTransferChoice->SetSelection(Option::instance().TransCategorySelectionNonTransfer());
 
     wxChoice* default_status = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
@@ -137,8 +142,10 @@ void OptionSettingsMisc::Create()
     newTransflexGridSizer->Add(defaultDateChoice, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Payee:")), g_flagsH);
     newTransflexGridSizer->Add(defaultPayeeChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Category:")), g_flagsH);
-    newTransflexGridSizer->Add(defaultCategoryChoice, g_flagsExpand);
+    newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Deposit/Withdrawal Category:")), g_flagsH);
+    newTransflexGridSizer->Add(defaultCategoryNonTransferChoice, g_flagsExpand);
+    newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Transfer Category:")), g_flagsH);
+    newTransflexGridSizer->Add(defaultCategoryTransferChoice, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Status:")), g_flagsH);
     newTransflexGridSizer->Add(default_status, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Bulk Transactions:")), g_flagsH);
@@ -233,8 +240,11 @@ bool OptionSettingsMisc::SaveSettings()
     wxChoice* itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE));
     Option::instance().TransPayeeSelection(itemChoice->GetSelection());
 
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY));
-    Option::instance().TransCategorySelection(itemChoice->GetSelection());
+    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_NONTRANSFER));
+    Option::instance().TransCategorySelectionNonTransfer(itemChoice->GetSelection());
+
+    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_TRANSFER));
+    Option::instance().TransCategorySelectionTransfer(itemChoice->GetSelection());
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS));
     Option::instance().TransStatusReconciled(itemChoice->GetSelection());

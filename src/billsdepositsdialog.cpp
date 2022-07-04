@@ -693,8 +693,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
         // Only for new/duplicate transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
         if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
-            && (Option::instance().TransCategorySelection() == Option::LASTUSED ||
-                Option::instance().TransCategorySelection() == Option::DEFAULT))
+            && (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
+                Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT))
         {
             m_bill_data.CATEGID = payee->CATEGID;
             m_bill_data.SUBCATEGID = payee->SUBCATEGID;
@@ -795,7 +795,8 @@ void mmBDDialog::updateControlsForTransType()
 
         cbPayee_->mmSetId(m_bill_data.PAYEEID);
         m_bill_data.TOACCOUNTID = -1;
-
+        wxCommandEvent evt;
+        OnPayee(evt);
         break;
     }
     case Model_Billsdeposits::DEPOSIT:
@@ -807,6 +808,8 @@ void mmBDDialog::updateControlsForTransType()
 
         cbPayee_->mmSetId(m_bill_data.PAYEEID);
         m_bill_data.TOACCOUNTID = -1;
+        wxCommandEvent evt;
+        OnPayee(evt);
         break;
     }
     }
@@ -1325,7 +1328,20 @@ void mmBDDialog::setCategoryLabel()
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
     }
-    else
+    else if (m_transfer && m_new_bill 
+                    && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
+    {
+        Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+            Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
+            , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
+
+        if (!transactions.empty()) 
+        {
+            const int cat = transactions.back().CATEGID;
+            const int subcat = transactions.back().SUBCATEGID;
+            cbCategory_->ChangeValue(Model_Category::full_name(cat, subcat));
+        }
+    } else
     {
         const auto fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
         cbCategory_->ChangeValue(fullCategoryName);
