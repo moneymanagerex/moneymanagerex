@@ -365,6 +365,7 @@ wxStaticText* mmDatePickerCtrl::getTextWeek()
                 d = wxDateTime::WeekDay(d+1))
             WeekDayNameMaxSize.IncTo(GetTextExtent(
                 wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
+        WeekDayNameMaxSize.SetHeight(-1);
         itemStaticTextWeek_ = new wxStaticText(this->GetParent(), wxID_ANY, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
         // Force update
         wxDateEvent dateEvent(this, this->GetValue(), wxEVT_DATE_CHANGED);
@@ -411,7 +412,7 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
 #if defined(__WXMSW__) || defined(__WXGTK__)
     date_sizer->Add(this->getSpinButton(), g_flagsH);
 #endif
-    date_sizer->Add(this->getTextWeek(), g_flagsExpand);
+    date_sizer->Add(this->getTextWeek(), g_flagsH);
 
     return date_sizer;
 }
