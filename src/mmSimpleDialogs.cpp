@@ -103,7 +103,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
         for (const auto& item : all_elements_) {
             auto_complete.Add(item.first);
         }
-        auto_complete.Sort(CaseInsensitiveCmp);
+        auto_complete.Sort(CaseInsensitiveLocaleCmp);
 
         this->AutoComplete(auto_complete);
         if (!auto_complete.empty()) {

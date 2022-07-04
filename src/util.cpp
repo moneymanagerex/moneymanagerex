@@ -42,6 +42,7 @@
 #include <lua.hpp>
 #include <wx/fs_mem.h>
 #include <fmt/core.h>
+#include <cwchar>
 
 using namespace rapidjson;
 
@@ -100,6 +101,11 @@ mmTreeItemData::mmTreeItemData(int type, const wxString& data)
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 {
     return s1.CmpNoCase(s2);
+}
+
+int CaseInsensitiveLocaleCmp(const wxString &s1, const wxString &s2)
+{
+    return std::wcscoll(s1.Lower(),s2.Lower());
 }
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName)
