@@ -304,12 +304,24 @@ void mmTransDialog::dataToControls()
             m_trx_data.CATEGID = -1;
             m_trx_data.SUBCATEGID = -1;
         }
-        else
+        else if (m_transfer && m_new_trx && !m_duplicate 
+                    && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
+        {
+            Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+                Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
+                , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
+
+            if (!transactions.empty()) 
+            {
+                const int cat = transactions.back().CATEGID;
+                const int subcat = transactions.back().SUBCATEGID;
+                cbCategory_->ChangeValue(Model_Category::full_name(cat, subcat));
+            }
+        } else
         {
             auto fullCategoryName = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
             cbCategory_->ChangeValue(fullCategoryName);
         }
-
         skip_category_init_ = true;
     }
 
@@ -596,7 +608,7 @@ bool mmTransDialog::ValidateData()
             m_trx_data.TOACCOUNTID = -1;
         }
 
-        if (Option::instance().TransCategorySelection() == Option::LASTUSED)
+        if (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
         {
             payee->CATEGID = m_trx_data.CATEGID;
             payee->SUBCATEGID = m_trx_data.SUBCATEGID;
@@ -794,6 +806,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 
         if (m_transfer) {
             m_trx_data.PAYEEID = -1;
+            skip_category_init_ = false;
         } else {
             m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
             m_trx_data.TOACCOUNTID = -1;
@@ -853,7 +866,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user does not want to use categories.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (Option::instance().TransCategorySelection() == Option::UNUSED
+    if (Option::instance().TransCategorySelectionNonTransfer() == Option::UNUSED
         && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         Model_Category::Data *category = Model_Category::instance().get(_("Unknown"));
@@ -879,8 +892,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if ((Option::instance().TransCategorySelection() == Option::LASTUSED ||
-         Option::instance().TransCategorySelection() == Option::DEFAULT)
+    if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
+         Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
         && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee

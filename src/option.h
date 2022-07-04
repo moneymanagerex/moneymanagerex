@@ -84,8 +84,11 @@ public:
     void TransPayeeSelection(int value);
     int TransPayeeSelection();
 
-    void TransCategorySelection(int value);
-    int TransCategorySelection() const;
+    void TransCategorySelectionNonTransfer(int value);
+    int TransCategorySelectionNonTransfer() const;
+
+    void TransCategorySelectionTransfer(int value);
+    int TransCategorySelectionTransfer() const;
 
     void set_bulk_transactions(bool value);
     bool get_bulk_transactions() const;
@@ -172,7 +175,8 @@ private:
     bool m_showMoneyTips;                   //INIDB_SHOW_MONEYTIPS
 
     int m_transPayeeSelection;
-    int m_transCategorySelection;
+    int m_transCategorySelectionNonTransfer;
+    int m_transCategorySelectionTransfer;
     int m_transStatusReconciled;
     int m_transDateDefault;
     bool m_usageStatistics;
@@ -198,7 +202,8 @@ inline int Option::getToolbarIconSize() { return m_toolbar_ico_size; }
 inline const wxString Option::LocaleName() const { return m_localeNameString; }
 inline const wxString Option::UserName() const { return m_userNameString; }
 inline const wxString Option::FinancialYearStartDay() const { return m_financialYearStartDayString; }
-inline int Option::TransCategorySelection() const { return m_transCategorySelection; }
+inline int Option::TransCategorySelectionNonTransfer() const { return m_transCategorySelectionNonTransfer; }
+inline int Option::TransCategorySelectionTransfer() const { return m_transCategorySelectionTransfer; }
 inline bool Option::get_bulk_transactions() const { return m_bulk_enter; }
 inline int Option::getThemeMode() const { return m_theme_mode; }
 inline int Option::getFontSize() const { return m_font_size; }
