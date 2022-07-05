@@ -816,6 +816,7 @@ def generate_base_class(header, fields=set):
 #include <map>
 #include <algorithm>
 #include <functional>
+#include <cwchar>
 #include <wx/wxsqlite3.h>
 #include <wx/intl.h>
 
@@ -960,7 +961,7 @@ struct SorterBy%s
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (x.%s.CmpNoCase(y.%s) < 0);
+        return (std::wcscoll(x.%s.Lower(),y.%s.Lower()) < 0);  // Locale case-insensitive
     }
 };
 ''' % ( field, field, field)
