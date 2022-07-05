@@ -248,12 +248,13 @@ void mmTransDialog::dataToControls()
                 m_trx_data.TOACCOUNTID = -1;
             }
 
+            int accountID = cbAccount_->mmGetId();
             if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::LASTUSED
-                && (-1 != m_account_id))
+                && (-1 != accountID))
             {
                 Model_Checking::Data_Set transactions = Model_Checking::instance().find(
                     Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
-                    , Model_Checking::ACCOUNTID(m_account_id, EQUAL)
+                    , Model_Checking::ACCOUNTID(accountID, EQUAL)
                     , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
 
                 if (!transactions.empty()) {
