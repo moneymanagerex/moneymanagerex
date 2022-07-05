@@ -30,7 +30,7 @@ environment:
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
-  wxVer: 3.2.0-rc1
+  wxVer: 3.2.0-rc2
   wxwin: C:\wxWidgets-$(wxVer)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
