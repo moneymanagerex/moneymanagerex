@@ -242,10 +242,10 @@ void OptionSettingsView::Create()
 
     m_scale_factor = new wxSpinCtrl(view_panel, ID_DIALOG_HTML_SCALE
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, htmlScaleMin, htmlScaleMax);
-#ifdef __WXMAC__ // Workaround for bug https://trac.wxwidgets.org/ticket/12968
+#ifdef __WXMAC__ // Workaround for bug https://github.com/wxWidgets/wxWidgets/issues/12968
     m_scale_factor->SetRange(0, htmlScaleMax);
     m_scale_factor->Connect(ID_DIALOG_HTML_SCALE, wxEVT_SPINCTRL
-        , wxSpinEventHandler(OptionSettingsView::OnHTMLScaleSpin), nullptr, view_panel);
+        , wxSpinEventHandler(OptionSettingsView::OnHTMLScaleSpin), nullptr, this);
 #endif
 
     int vFontSize = Option::instance().getHtmlFontSize();
@@ -318,7 +318,7 @@ void OptionSettingsView::Create()
 }
 
 //----------------------------------------------------------------------------
-// Workaround for bug https://trac.wxwidgets.org/ticket/12968
+// Workaround for bug https://github.com/wxWidgets/wxWidgets/issues/12968
 void OptionSettingsView::OnHTMLScaleSpin(wxSpinEvent& event)
 {
     if (m_scale_factor->GetValue() < htmlScaleMin)
