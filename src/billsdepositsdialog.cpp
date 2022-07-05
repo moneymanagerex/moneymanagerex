@@ -1097,7 +1097,6 @@ void mmBDDialog::SetSplitControls(bool split)
     }
     else
     {
-        textAmount_->Clear();
         m_bill_data.local_splits.clear();
     }
     setCategoryLabel();
