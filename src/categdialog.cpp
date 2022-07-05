@@ -53,10 +53,10 @@ mmCategDialogTreeCtrl::mmCategDialogTreeCtrl(wxWindow *parent, const wxWindowID 
 {
 }
 
-// Only need to override the OnCompareItems sort method to make it case insensitive
+// Only need to override the OnCompareItems sort method to make it case insensitive, locale
 int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)		
 {
-    return (GetItemText(item1).CmpNoCase(GetItemText(item2)));
+    return CaseInsensitiveLocaleCmp(GetItemText(item1).Lower(),GetItemText(item2).Lower());
 }
 
 mmCategDialog::~mmCategDialog()

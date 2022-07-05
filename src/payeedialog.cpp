@@ -184,8 +184,9 @@ void mmPayeeDialog::fillControls()
         std::stable_sort(payees.begin(), payees.end(), [] (Model_Payee::Data x, Model_Payee::Data y)
         {
             return(
-                Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID).
-                    CmpNoCase(Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)) < 0
+                CaseInsensitiveLocaleCmp(
+                    Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID)
+                    , Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)) < 0
             ); 
         });
     }
