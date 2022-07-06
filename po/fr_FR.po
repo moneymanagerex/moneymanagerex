@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-06 19:32\n"
+"PO-Revision-Date: 2022-07-06 20:29\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2505,7 +2505,7 @@ msgstr "Période"
 
 #: filtertransdialog.cpp:1478
 msgid "SubCategoryInclude"
-msgstr "Inclusion sous-categorie"
+msgstr "SousCatégorieIncluse"
 
 #: filtertransdialog.cpp:1516
 msgid "Amount Min."
@@ -7402,19 +7402,19 @@ msgstr "Préciser le type de compte à créer:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr "Les comptes bancaires génériques couvrent une grande variété de comptes tels que liquidités, comptes courants, emprunts et cartes bancaires."
+msgstr "Les comptes bancaires généraux couvrent une grande variété de types de comptes tels que compte d'espèces, comptes courants, prêts et cartes bancaires."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Les comptes d'investissement sont spécialisés dans la gestion des actions et des obligations qui leur sont associés."
+msgstr "Les comptes d'investissement ou comptes-titres sont spécialisés dans la gestion des valeurs mobilières qui leur sont associées, telles que actions, obligations, SICAV, FCP..."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr "Les comptes à terme et d'actifs sont des comptes bancaires spécialisés. Ils ont pour objet de suivre les dépôts et obligations à terme où il existe des mouvements réguliers d'argent, en plus et en moins, en dehors du flux des revenus."
+msgstr "Les comptes à terme et d'actifs sont des comptes bancaires spécialisés. Ils ont pour objet de surveiller les capitaux et dépôts à terme sur lesquels on peut typiquement avoir des entrées et sorties régulières d'argent, en dehors du flux général des revenus."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
