@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-06 17:32\n"
+"PO-Revision-Date: 2022-07-06 21:58\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2376,7 +2376,7 @@ msgstr "Datumintervall"
 
 #: filtertransdialog.cpp:548
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Inkludera alla underkategorier"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -5628,11 +5628,11 @@ msgstr "Förvald betalningsmottagare:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "Standardinsättning/uttagskategori:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "Standard överföringskategori:"
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
@@ -7357,12 +7357,14 @@ msgstr "Välj vilken typ av konto du vill skapa:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Allmänna bankkonton täcker en mängd olika typer av konton\n"
+"typer som kontanter, check, lån och kreditkort."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Investerings- och Aktiekonton är specialiserade konton som\n"
+"är associerade med aktie- och fondplaceringar."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
