@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-06 17:33\n"
+"PO-Revision-Date: 2022-07-06 18:29\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2386,7 +2386,7 @@ msgstr "Rango de fechas"
 
 #: filtertransdialog.cpp:548
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Incluir todas las subcategorías"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -2502,7 +2502,7 @@ msgstr "Período"
 
 #: filtertransdialog.cpp:1478
 msgid "SubCategoryInclude"
-msgstr ""
+msgstr "SubcategoríaIncluida"
 
 #: filtertransdialog.cpp:1516
 msgid "Amount Min."
@@ -5660,11 +5660,11 @@ msgstr "Beneficiario por defecto:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "Categoría por defecto para abonos/cargos:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "Categoría por defecto para transferencias:"
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
@@ -7401,19 +7401,24 @@ msgstr "Seleccione el tipo de cuenta que desea crear:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Las cuentas bancarias generales cubren una amplia variedad de tipos de cuentas\n"
+"como las cuentas de cheque, de ahorros y de tarjetas de crédito."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Las cuentas de inversión son cuentas especializadas que solo\n"
+"tienen asociadas acciones y fondos de inversión."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Las cuentas de activos y a plazo fijo son cuentas bancarias especializadas.\n"
+"Están destinados a monitorear activos o depósitos a plazo fijo\n"
+"donde normalmente tiene dinero entrando y saliendo regularmente, independientemente\n"
+"del flujo general de ingresos."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
