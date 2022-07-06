@@ -282,6 +282,11 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
     categoryComboBox_->SetLabelText(s_category);
 
+    // Sub Category inclusion
+    Value& j_categorySubCat = GetValueByPointerWithDefault(j_doc, "/SUBCATEGORYINCLUDE", "");
+    bool subCatCheck = j_categorySubCat.IsBool() ? j_categorySubCat.GetBool() : false;
+    categorySubCatCheckBox_->SetValue(subCatCheck);
+
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
     const wxString& s_status = j_status.IsString() ? wxString::FromUTF8(j_status.GetString()) : "";
@@ -532,16 +537,19 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     // Category
     categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-
-    wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
-    categSizer->AddGrowableCol(0, 1);
-
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
-    itemPanelSizer->Add(categSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     categoryComboBox_ = new mmComboBoxCategory(itemPanel, wxID_ANY);
-    categSizer->Add(categoryComboBox_, g_flagsExpand);
+    categoryComboBox_->Bind(wxEVT_COMBOBOX, &mmFilterTransactionsDialog::OnCategoryChange, this);
+    categoryComboBox_->Bind(wxEVT_KILL_FOCUS, &mmFilterTransactionsDialog::OnCategoryChange, this);
+    itemPanelSizer->Add(categoryComboBox_, g_flagsExpand);
 
+    // Category sub-category checkbox
+    categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include all sub-categories")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+
+    itemPanelSizer->AddSpacer(1);
+    itemPanelSizer->Add(categorySubCatCheckBox_, g_flagsExpand);
 
     // Status
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
@@ -815,6 +823,8 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
+    categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
+            && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
@@ -1201,6 +1211,7 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std
     auto value = categoryComboBox_->mmGetPattern();
 
     if (!value.empty()) {
+        if (mmIsCategorySubCatChecked()) value = value + ".*";
         for (const auto& item : trx_categories)
         {
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
@@ -1460,6 +1471,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         }
     }
 
+    // Sub Category inclusion
+    if (categoryCheckBox_->IsChecked() 
+        && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1))
+    {
+        json_writer.Key((i18n ? _("SubCategoryInclude") : "SUBCATEGORYINCLUDE").utf8_str());
+        json_writer.Bool(categoryCheckBox_->GetValue());
+    }
+
     //Status
     if (statusCheckBox_->IsChecked())
     {
@@ -1574,6 +1593,13 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     json_writer.EndObject();
 
     return wxString::FromUTF8(json_buffer.GetString());
+}
+
+void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
+{
+    categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
+            && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+    event.Skip();  
 }
 
 void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
