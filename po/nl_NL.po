@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"PO-Revision-Date: 2022-07-07 20:51\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2388,7 +2388,7 @@ msgstr "Datum-bereik"
 
 #: filtertransdialog.cpp:548 filtertransdialog.cpp:1478
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Alle subcategorieën opnemen"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -5658,11 +5658,11 @@ msgstr "Standaard begunstigde:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "Standaard storting/opname categorie:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "Standaard overdrachtscategorie:"
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
