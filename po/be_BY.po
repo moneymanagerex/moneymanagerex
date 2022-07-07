@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 16:17\n"
+"PO-Revision-Date: 2022-07-07 17:19\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7424,20 +7424,21 @@ msgstr "Абярыце тып рахунка, што вы жадаеце ств�
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr "У асноўным банкаўскія рахункі выкарыстоўваюцца для \n"
+msgstr "Звычайныя банкаўскія рахункі выкарыстоўваюцца для \n"
 "вядзення уліка наяўных, дыпазітаў, пазыкаў, заашчаджань і крыдытнага баланса."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Інвестыцыйныя і Паявыя рахункі ствараюцца адмыслова для\n"
+"адсочвання толькі інвестыцыяў — такіх як акцыі, аблігацыі і да т.п."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Тырміновыя рахункі і рахункі Актываў — гэта спецыяльныя банкаўскія разункі. Іхняя мэта — адсочваць актывы або тырміновыя ўнёскі і аблігацыі, на якія грошы надыходзяць і спісваюцца асобна ад звычайнага грашовага патока."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
