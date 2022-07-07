@@ -188,7 +188,6 @@ void mmStocksPanel::AddStockTransaction(int selectedIndex)
     {
         listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
         updateExtraStocksData(selectedIndex);
-        m_frame->RefreshNavigationTree();
     }
 }
 
