@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"PO-Revision-Date: 2022-07-07 16:17\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2395,7 +2395,7 @@ msgstr "Прамежак часу"
 
 #: filtertransdialog.cpp:548 filtertransdialog.cpp:1478
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Улічваць усе падкатыгорыі"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -5684,11 +5684,11 @@ msgstr "Платнік па змаўчанні:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "Катыгорыя па змаўчанні для спісанняў і ўнескаў:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "Катыгорыя па змаўчанні для пераказаў:"
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
@@ -7424,7 +7424,8 @@ msgstr "Абярыце тып рахунка, што вы жадаеце ств�
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "У асноўным банкаўскія рахункі выкарыстоўваюцца для \n"
+"вядзення уліка наяўных, дыпазітаў, пазыкаў, заашчаджань і крыдытнага баланса."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
