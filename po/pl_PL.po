@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-06 17:33\n"
+"PO-Revision-Date: 2022-07-07 06:05\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5677,7 +5677,7 @@ msgstr "Domyślny beneficjent:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "Domyślna kategoria wpłaty/wypłaty:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
