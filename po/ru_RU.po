@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-06 17:32\n"
+"PO-Revision-Date: 2022-07-07 09:56\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2395,7 +2395,7 @@ msgstr "Диапазон дат"
 
 #: filtertransdialog.cpp:548
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Включая подкатегории"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
