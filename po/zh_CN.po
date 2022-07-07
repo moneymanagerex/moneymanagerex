@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-06 17:32\n"
+"PO-Revision-Date: 2022-07-07 02:28\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2384,7 +2384,7 @@ msgstr "选择日期区间"
 
 #: filtertransdialog.cpp:548
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "包含所有子类别"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -2500,7 +2500,7 @@ msgstr "周期"
 
 #: filtertransdialog.cpp:1478
 msgid "SubCategoryInclude"
-msgstr ""
+msgstr "子类别包括"
 
 #: filtertransdialog.cpp:1516
 msgid "Amount Min."
@@ -5646,11 +5646,11 @@ msgstr "默认收款人"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "默认存款/底层类别："
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "默认传输类别："
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
@@ -7383,19 +7383,21 @@ msgstr "选择您想要创建哪种类型的账户："
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "一般银行账户涵盖多种账户类型，如现金、支票、贷款和信用卡。"
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "投资和股票账户是与股票/共同基金投资相关的专业账户。"
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "定期账户和资产账户是专门的银行账户。\n"
+"它们用于监控资产或定期存款和债券，通常您有定期资金进出，外部\n"
+"一般收入流。"
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
