@@ -1475,7 +1475,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     if (categoryCheckBox_->IsChecked() 
         && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1))
     {
-        json_writer.Key((i18n ? _("SubCategoryInclude") : "SUBCATEGORYINCLUDE").utf8_str());
+        json_writer.Key((i18n ? _("Include all sub-categories") : "SUBCATEGORYINCLUDE").utf8_str());
         json_writer.Bool(categoryCheckBox_->GetValue());
     }
 
