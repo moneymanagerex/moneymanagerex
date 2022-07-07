@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-06 19:56+0300\n"
-"PO-Revision-Date: 2022-07-07 06:05\n"
+"PO-Revision-Date: 2022-07-07 07:04\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2508,7 +2508,7 @@ msgstr "Okres"
 
 #: filtertransdialog.cpp:1478
 msgid "SubCategoryInclude"
-msgstr ""
+msgstr "Włączona podkategoria"
 
 #: filtertransdialog.cpp:1516
 msgid "Amount Min."
@@ -3701,7 +3701,7 @@ msgstr "Porada: Pamiętaj o wykonywaniu kopii swojego pliku .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Porada: Plik .mmb nie jest zaszyfrowany. Oznacza to, że każdy, kto wie jak to zrobić, może odczytać jego zawartość. Upewnij się więc, że plik z Twoimi poufnymi danymi finansowymi jest dobrze zabezpieczony."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -5226,7 +5226,7 @@ msgstr "gotówka"
 
 #: model/Model_Account.cpp:34
 msgid "Checking"
-msgstr "rozliczeniowe (osobiste)"
+msgstr "rozliczeniowe"
 
 #: model/Model_Account.cpp:35
 msgid "Credit Card"
@@ -7413,19 +7413,24 @@ msgstr "Wybierz typ konta jakie chcesz utworzyć:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Ogólne konta bankowe obejmują różne rodzaje typowych kont\n"
+"bankowych, np. gotówkę, rozliczeniowe, pożyczki, karty kredytowe itp."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Konta inwestycyjne i akcyjne to wyspecjalizowane konta, które mogą mieć\n"
+"skojarzone ze sobą inwestycje w akcje i fundusze inwestycyjne."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Konta terminowe i aktywów to wyspecjalizowane konta bankowe.\n"
+"Są one przeznaczone do monitorowania aktywów i depozytów terminowych\n"
+"lub obligacji, gdzie zazwyczaj pieniądze napływają i wychodzą\n"
+"poza ogólnym strumieniem dochodów."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
