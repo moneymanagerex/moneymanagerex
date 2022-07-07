@@ -396,11 +396,10 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
                 }
             }
 
-            regex = R"(\b\w{3}\b)";
+            regex = R"([^\d\s\'\-]{3})";
             pattern.Compile(regex);
             wxString month;
-            if (pattern.Matches(date_str))
-            {
+            if (pattern.Matches(date_str)) {
                 month = pattern.GetMatch(date_str);
             }
 
