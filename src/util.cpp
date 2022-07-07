@@ -376,31 +376,63 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
 
     if (pattern.Matches(str_date))
     {
-        if (mask_str.Contains("Mon")) {
-            int i = 1;
-            for (const auto& m : MONTHS_SHORT) {
-                if (date_str.Replace(m, wxString::Format("%02d", i)) != 0
-                    || date_str.Replace(wxGetTranslation(m), wxString::Format("%02d", i)) != 0)
-                {
-                    mask_str.Replace("%Mon", "%m");
-                    break;
-                }
-                i++;
-            }
+        if (mask_str.Contains("%w")) {
             mask_str.Replace("%w ", "");
-            wxRegEx pattern2(R"([^%dmyY])");
-            pattern2.ReplaceAll(&mask_str, " ");
-            regex = date_formats_regex().at(mask_str);
-
-            wxRegEx pattern3(R"([^0-9 ])");
-            pattern3.ReplaceAll(&date_str, " ");
-
+            regex = R"(^(\D*))";
+            pattern.Compile(regex);
+            pattern.ReplaceAll(&date_str, "");
         }
 
-        wxRegEx pattern2(regex);
-        if (pattern2.Matches(date_str))
+        if (mask_str.Contains("Mon")) {
+
+            static std::map<wxString, wxString> monCache;
+            if (monCache.empty())
+            {
+                int i = 1;
+                for (const auto& m : MONTHS_SHORT) {
+                    monCache[m] = wxString::Format("%02d", i);
+                    monCache[wxGetTranslation(m)] = wxString::Format("%02d", i);
+                    i++;
+                }
+            }
+
+            regex = R"(\b\w{3}\b)";
+            pattern.Compile(regex);
+            wxString month;
+            if (pattern.Matches(date_str))
+            {
+                month = pattern.GetMatch(date_str);
+            }
+
+            bool is_month_ok = false;
+            for (const auto& i : monCache)
+            {
+                if (month.CmpNoCase(i.first) == 0) {
+                    date_str.Replace(month, i.second);
+                    mask_str.Replace("%Mon", "%m");
+                    is_month_ok = true;
+                    break;
+                }
+            }
+
+            if (!is_month_ok)
+                return false;
+
+            wxRegEx pattern2(R"([^%dmyY])");
+            pattern2.ReplaceAll(&mask_str, " ");
+            if (date_formats_regex().find(mask_str) != date_formats_regex().end())
+                regex = date_formats_regex().at(mask_str);
+            else
+                return false;
+
+            wxRegEx pattern3(R"([^0-9])");
+            pattern3.ReplaceAll(&date_str, " ");
+        }
+
+        pattern.Compile(regex);
+        if (pattern.Matches(date_str))
         {
-            date_str = pattern2.GetMatch(date_str);
+            date_str = pattern.GetMatch(date_str);
             date_str.Trim(false);
             const auto& date_formats = g_date_formats_map();
             const auto it2 = std::find_if(date_formats.begin(), date_formats.end(),
