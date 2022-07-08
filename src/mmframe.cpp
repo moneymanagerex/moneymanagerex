@@ -897,6 +897,12 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     m_nav_tree_ctrl->EnsureVisible(root);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
+
+    /* issue #4778 */
+#if !defined(__WXMSW__) 
+    m_nav_tree_ctrl->SetFocus();
+#endif
+
     DoWindowsFreezeThaw(m_nav_tree_ctrl);
 }
 
