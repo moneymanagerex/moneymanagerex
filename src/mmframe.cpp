@@ -1807,6 +1807,7 @@ void mmGUIFrame::CreateToolBar()
     long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL;
 
     toolBar_ = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
+    toolBar_->SetToolBorderPadding(1);
     mmThemeMetaColour(toolBar_, meta::COLOR_LISTPANEL);
     toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
 
