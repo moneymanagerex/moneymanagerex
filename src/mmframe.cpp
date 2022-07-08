@@ -1804,9 +1804,9 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
-    long style = wxTB_FLAT | wxTB_NODIVIDER;
+    long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL;
 
-    toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
+    toolBar_ = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
     mmThemeMetaColour(toolBar_, meta::COLOR_LISTPANEL);
     toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
 
@@ -2689,9 +2689,9 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
     toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
-    toolBar_->SetToolNormalBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
+    toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
 
-    const auto b = toolBar_->FindById(MENU_ANNOUNCEMENTMAILING);
+    const auto b = toolBar_->FindTool(MENU_ANNOUNCEMENTMAILING);
     if (b) b->SetShortHelp(_("Register/View Release &Notifications"));
 }
 //----------------------------------------------------------------------------
