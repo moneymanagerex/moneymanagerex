@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-08 11:40\n"
+"PO-Revision-Date: 2022-07-08 12:39\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1274,7 +1274,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
-msgstr ""
+msgstr "Ange nästa tillfälle"
 
 #: billsdepositspanel.cpp:429
 msgid "Skip next Occurrence"
@@ -1282,19 +1282,19 @@ msgstr "Hoppa över nästa tillfälle"
 
 #: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&Ny återkommande transaktion"
 
 #: billsdepositspanel.cpp:432
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&Ändra återkommande transaktion"
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "D&uplicera återkommande transaktion"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "&Radera återkommande transaktion"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -3324,7 +3324,7 @@ msgstr "Loggfil skriven till: %s"
 
 #: import_export/univcsvdialog.cpp:1079 stockdialog.cpp:679
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Bekräfta sparande"
 
 #: import_export/univcsvdialog.cpp:1112
 msgid "No imported transactions!"
@@ -4097,11 +4097,11 @@ msgstr ""
 
 #: mmframe.cpp:1307 mmframe.cpp:1312 mmframe.cpp:1466 mmframe.cpp:1473
 msgid "&CSV Files"
-msgstr ""
+msgstr "&CSV-filer"
 
 #: mmframe.cpp:1308 mmframe.cpp:1314 mmframe.cpp:1467 mmframe.cpp:1475
 msgid "&XML Files"
-msgstr ""
+msgstr "&XML-filer"
 
 #: mmframe.cpp:1308 mmframe.cpp:1467
 msgid "Import from XML (Excel format)"
@@ -4109,15 +4109,15 @@ msgstr "Importera från XML (Excel-format)"
 
 #: mmframe.cpp:1309 mmframe.cpp:1315 mmframe.cpp:1468 mmframe.cpp:1476
 msgid "&QIF Files"
-msgstr ""
+msgstr "&QIF-filer"
 
 #: mmframe.cpp:1313 mmframe.cpp:1474
 msgid "&MMEX CSV Files"
-msgstr ""
+msgstr "&MMEX CSV-filer"
 
 #: mmframe.cpp:1316 mmframe.cpp:1477
 msgid "&JSON Files"
-msgstr ""
+msgstr "&JSON-filer"
 
 #: mmframe.cpp:1342
 msgid "&Edit Filter"
@@ -4185,7 +4185,7 @@ msgstr "Spara databas som"
 
 #: mmframe.cpp:1460
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Senaste filer"
 
 #: mmframe.cpp:1461
 msgid "&Clear Recent Files"
@@ -4201,7 +4201,7 @@ msgstr "Importera från QIF"
 
 #: mmframe.cpp:1469
 msgid "&WebApp"
-msgstr ""
+msgstr "&WebApp"
 
 #: mmframe.cpp:1469
 msgid "Import from WebApp"
@@ -4225,7 +4225,7 @@ msgstr "Exportera till JSON"
 
 #: mmframe.cpp:1478
 msgid "&HTML Files"
-msgstr ""
+msgstr "&HTML-filer"
 
 #: mmframe.cpp:1478
 msgid "Export to HTML"
@@ -4233,7 +4233,7 @@ msgstr "Exportera till HTML"
 
 #: mmframe.cpp:1484 mmframe.cpp:1844
 msgid "&Print"
-msgstr ""
+msgstr "&Skriv ut"
 
 #: mmframe.cpp:1484 mmframe.cpp:1844
 msgid "Print current view"
@@ -4349,11 +4349,11 @@ msgstr ""
 
 #: mmframe.cpp:1597
 msgid "Organize &Categories"
-msgstr ""
+msgstr "Organisera &kategorier"
 
 #: mmframe.cpp:1601
 msgid "Organize &Payees"
-msgstr ""
+msgstr "Organisera &betalningsmottagare"
 
 #: mmframe.cpp:1601 mmframe.cpp:1816 payeedialog.cpp:101
 msgid "Organize Payees"
@@ -4361,7 +4361,7 @@ msgstr "Oraganisera betalningsmottagare"
 
 #: mmframe.cpp:1605
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "Organisera va&lutor"
 
 #: mmframe.cpp:1605 mmframe.cpp:1817
 msgid "Organize Currency"
@@ -4369,11 +4369,11 @@ msgstr "Organisera valutor"
 
 #: mmframe.cpp:1609
 msgid "&Categories"
-msgstr ""
+msgstr "&Kategorier"
 
 #: mmframe.cpp:1612
 msgid "&Payees"
-msgstr ""
+msgstr "&Betalningsmottagare"
 
 #: mmframe.cpp:1613
 msgid "Reassign all payees to another payee"
@@ -4381,7 +4381,7 @@ msgstr "Omlokalisera alla betalningsmottagare till en annan betalningsmottagare"
 
 #: mmframe.cpp:1615
 msgid "Re&location of"
-msgstr ""
+msgstr "&Omlokalisering av"
 
 #: mmframe.cpp:1616
 msgid "Relocate Categories && Payees"
@@ -4413,7 +4413,7 @@ msgstr ""
 
 #: mmframe.cpp:1646
 msgid "Transaction Report &Filter"
-msgstr ""
+msgstr "Transaktionsrapport &filter"
 
 #: mmframe.cpp:1646 mmframe.cpp:1819
 msgid "Transaction Report Filter"
@@ -4421,11 +4421,11 @@ msgstr ""
 
 #: mmframe.cpp:1652
 msgid "General Report &Manager"
-msgstr ""
+msgstr "Allmän rapport&hanterare"
 
 #: mmframe.cpp:1656
 msgid "C&ustom Fields Manager"
-msgstr ""
+msgstr "Hanteraren av anpassade &fält"
 
 #: mmframe.cpp:1656
 msgid "Custom Fields Manager"
@@ -4649,7 +4649,7 @@ msgstr "Leta efter uppdateringar"
 
 #: mmframe.cpp:1778 mmframe.cpp:1847
 msgid "&About"
-msgstr ""
+msgstr "&Om"
 
 #: mmframe.cpp:1778 mmframe.cpp:1847
 msgid "Show about dialog"
@@ -4693,7 +4693,7 @@ msgstr "Visa organisera valutor"
 
 #: mmframe.cpp:1823
 msgid "&Options"
-msgstr ""
+msgstr "&Alternativ"
 
 #: mmframe.cpp:1831 mmframe.cpp:2689
 msgid "Register/View Release &Notifications"
@@ -6719,7 +6719,7 @@ msgstr ""
 #: stocks_list.cpp:290
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Flyttar transaktionen från %s till"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7269,7 +7269,7 @@ msgstr "Nätverksstatus (klicka för att uppdatera)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Söker efter nya transaktioner"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
