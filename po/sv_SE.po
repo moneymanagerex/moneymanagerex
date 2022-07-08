@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"PO-Revision-Date: 2022-07-08 11:40\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5854,23 +5854,23 @@ msgstr ""
 
 #: optionsettingsview.cpp:258
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: optionsettingsview.cpp:259
 msgid "Enlarged"
-msgstr ""
+msgstr "Förstorad"
 
 #: optionsettingsview.cpp:260
 msgid "Large"
-msgstr ""
+msgstr "Stor"
 
 #: optionsettingsview.cpp:261
 msgid "Huge"
-msgstr ""
+msgstr "Jättestor"
 
 #: optionsettingsview.cpp:263
 msgid "Font size"
-msgstr ""
+msgstr "Teckenstorlek"
 
 #: optionsettingsview.cpp:275
 msgid "Small (16 px)"
@@ -6481,7 +6481,7 @@ msgstr "Lägg till delning"
 
 #: splittransactionsdialog.cpp:169
 msgid "Remove Split"
-msgstr ""
+msgstr "Ta bort delning"
 
 #: splittransactionsdialog.cpp:247
 msgid "Invalid Total Amount"
@@ -6874,11 +6874,11 @@ msgstr "Denna transaktion kommer att överskrida din kontogräns.\n\n"
 
 #: transdialog.cpp:1063
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "De två kontona har olika valutor, men du har inte definierat en avancerad transaktion. Är detta korrekt?"
 
 #: transdialog.cpp:1064
 msgid "Currencies are different"
-msgstr ""
+msgstr "Valutorna är olika"
 
 #: transdialog.cpp:1151
 msgid "Specify account the money is taken from"
