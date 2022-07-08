@@ -110,7 +110,7 @@ private:
     wxPanel* homePanel_;
     wxTreeCtrl* m_nav_tree_ctrl;
     wxMenuBar *menuBar_;
-    wxToolBar* toolBar_;
+    wxAuiToolBar* toolBar_;
 private:
     mmTreeItemData* selectedItemData_;
 
