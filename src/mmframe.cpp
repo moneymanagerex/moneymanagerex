@@ -266,7 +266,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     // add the toolbars to the manager
     m_mgr.AddPane(toolBar_, wxAuiPaneInfo().
         Name("toolbar").ToolbarPane().Top()
-        .LeftDockable(false).RightDockable(false).MinSize(1000, -1)
+        .LeftDockable(false).RightDockable(false)
         .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true)));
 
     // change look and feel of wxAuiManager
