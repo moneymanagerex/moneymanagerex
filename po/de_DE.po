@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"PO-Revision-Date: 2022-07-08 19:37\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2386,7 +2386,7 @@ msgstr "Zeitraum"
 
 #: filtertransdialog.cpp:548 filtertransdialog.cpp:1478
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Unterkategorien einschließen"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -5588,7 +5588,7 @@ msgstr "Wählen Sie, ob ein Ton bei einer Buchung abgespielt werden soll."
 
 #: optionsettingsgeneral.cpp:296
 msgid "Locale"
-msgstr ""
+msgstr "Lokal"
 
 #: optionsettingsgeneral.cpp:324
 #, c-format
@@ -5653,11 +5653,11 @@ msgstr "Standard Zahlungsempfänger:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "Standard Einzahlung/Auszahlungskategorie:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "Standard-Überweisungskategorie:"
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
@@ -5990,7 +5990,7 @@ msgstr "Quellkategorie zur Zielkategorie verschieben"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Quellkategorie nach Umzug löschen (wenn es keine Unterkategorien gibt)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6509,11 +6509,11 @@ msgstr "Details der Splitbuchung"
 
 #: splittransactionsdialog.cpp:163
 msgid "Add Split"
-msgstr ""
+msgstr "Split hinzufügen"
 
 #: splittransactionsdialog.cpp:169
 msgid "Remove Split"
-msgstr ""
+msgstr "Split entfernen"
 
 #: splittransactionsdialog.cpp:247
 msgid "Invalid Total Amount"
@@ -7393,19 +7393,24 @@ msgstr "Geben Sie den Typ des zu erstellenden Kontos an:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Allgemeine Bankkonten decken eine Vielzahl von Konten\n"
+"Typen wie Checking, Sparguthaben und Kreditkartenkonten ab."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Geldanlage sind spezielle Konten, die nur\n"
+"Wertpapiere oder Investmentfonds beinhalten."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Termin- und Anlagekonten sind spezielle Bankkonten.\n"
+"Sie sind für die Überwachung von Vermögenswerten oder Termineinlagen und Anleihen gedacht\n"
+"bei denen in der Regel regelmäßig Geld ein- und ausgeht, außerhalb\n"
+"des allgemeinen Einkommensflusses."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
