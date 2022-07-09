@@ -1,6 +1,6 @@
 /*******************************************************
- Copyright (C) 2014 Stefano Giorgio
- Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
+Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
 Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -60,15 +60,15 @@ OptionSettingsGeneral::~OptionSettingsGeneral()
 
 void OptionSettingsGeneral::Create()
 {
-    wxBoxSizer* viewsPanelSizer0 = new wxBoxSizer(wxVERTICAL);
-    SetSizer(viewsPanelSizer0);
+    wxBoxSizer* generalPanelSizer0 = new wxBoxSizer(wxVERTICAL);
+    SetSizer(generalPanelSizer0);
 
     wxScrolledWindow* general_panel = new wxScrolledWindow(this, wxID_ANY);
 
     wxBoxSizer* generalPanelSizer = new wxBoxSizer(wxVERTICAL);
 
     general_panel->SetSizer(generalPanelSizer);
-    viewsPanelSizer0->Add(general_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
+    generalPanelSizer0->Add(general_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // Display Header Settings
     wxStaticBox* headerStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _("Display Heading"));

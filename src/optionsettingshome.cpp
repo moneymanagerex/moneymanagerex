@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2021 Nikolay Akimov
+Copyright (C) 2021, 2022 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,10 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "option.h"
 #include "util.h"
 
-
 /*******************************************************/
-/*******************************************************/
-
 
 OptionSettingsHome::OptionSettingsHome()
 {
@@ -66,15 +63,20 @@ OptionSettingsHome::~OptionSettingsHome()
 
 void OptionSettingsHome::Create()
 {
+    wxBoxSizer* homePanelSizer0 = new wxBoxSizer(wxVERTICAL);
+    SetSizer(homePanelSizer0);
+
+    wxScrolledWindow* home_panel = new wxScrolledWindow(this, wxID_ANY);
     wxBoxSizer* homePanelSizer = new wxBoxSizer(wxVERTICAL);
-    SetSizer(homePanelSizer);
+    home_panel->SetSizer(homePanelSizer);
+    homePanelSizer0->Add(home_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // Income vs Expense
-    wxStaticBox* totalsStaticBox = new wxStaticBox(this, wxID_STATIC, _("Income vs Expenses"));
+    wxStaticBox* totalsStaticBox = new wxStaticBox(home_panel, wxID_STATIC, _("Income vs Expenses"));
     SetBoldFont(totalsStaticBox);
     wxStaticBoxSizer* totalsStaticBoxSizer = new wxStaticBoxSizer(totalsStaticBox, wxVERTICAL);
     homePanelSizer->Add(totalsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-    m_incExpChoice = new wxChoice(this, wxID_ANY);
+    m_incExpChoice = new wxChoice(home_panel, wxID_ANY);
 
     for (const auto & date_range : m_all_date_ranges) {
         m_incExpChoice->Append(date_range.get()->local_title());
@@ -88,6 +90,9 @@ void OptionSettingsHome::Create()
 
     m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
 
+    Fit();
+    home_panel->SetMinSize(home_panel->GetBestVirtualSize());
+    home_panel->SetScrollRate(1, 1);
 }
 
 
