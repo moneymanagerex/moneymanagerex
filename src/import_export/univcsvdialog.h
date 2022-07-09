@@ -251,7 +251,7 @@ inline bool mmUnivCSVDialog::IsCSV() const
 }
 inline wxString mmUnivCSVDialog::GetSettingsPrfix() const
 {
-    return IsXML() ? "XML_SETTINGS_" : "CSV_SETTINGS_";
+    return IsXML() ? "XML_SETTINGS_%d" : "CSV_SETTINGS_%d";
 }
 
 #endif

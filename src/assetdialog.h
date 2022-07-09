@@ -22,7 +22,7 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Translink.h"
 
-class wxDatePickerCtrl;
+class mmDatePickerCtrl;
 class mmTextCtrl;
 class UserTransactionPanel;
 class mmGUIFrame;
@@ -64,7 +64,7 @@ private:
     mmGUIFrame* m_gui_frame;
     wxChoice*  m_assetType;
     mmTextCtrl* m_assetName;
-    wxDatePickerCtrl* m_dpc;
+    mmDatePickerCtrl* m_dpc;
     mmTextCtrl* m_notes;
     mmTextCtrl* m_value;
     mmTextCtrl* m_valueChangeRate;

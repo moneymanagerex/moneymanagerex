@@ -110,7 +110,7 @@ private:
     wxPanel* homePanel_;
     wxTreeCtrl* m_nav_tree_ctrl;
     wxMenuBar *menuBar_;
-    wxToolBar* toolBar_;
+    wxAuiToolBar* toolBar_;
 private:
     mmTreeItemData* selectedItemData_;
 
@@ -124,7 +124,7 @@ private:
     wxAuiManager m_mgr;
 
     /* Homepage panel logic */
-    bool creditDisplayed;
+    bool creditDisplayed_;
 
     void cleanup();
     void resetNavTreeControl();
@@ -281,7 +281,7 @@ private:
     enum
     {
         /* Main Menu  */
-        MENU_NEW = ID_MMEX_MAX + 1,
+        MENU_NEW = mmID_MAX + 1,
         MENU_OPEN,
         MENU_SAVE,
         MENU_SAVE_AS,

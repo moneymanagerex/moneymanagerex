@@ -30,9 +30,62 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+//------- Pop-up calendar, currently only used for MacOS only
+// See: https://github.com/moneymanagerex/moneymanagerex/issues/3139
+
+#include "wx/popupwin.h"
+#include "wx/spinctrl.h"
+
+//----------------------------------------------------------------------------
+// mmCalendarPopup
+//----------------------------------------------------------------------------
+class mmCalendarPopup: public wxPopupTransientWindow
+{
+public:
+    mmCalendarPopup(wxWindow *parent, mmDatePickerCtrl* datePicker);
+    virtual ~mmCalendarPopup();
+
+private:
+    mmDatePickerCtrl* m_datePicker;
+    void OnDateSelected( wxCalendarEvent& event);
+    wxDECLARE_ABSTRACT_CLASS(mmCalendarPopup);
+};
+
+wxIMPLEMENT_CLASS(mmCalendarPopup,wxPopupTransientWindow);
+
+mmCalendarPopup::mmCalendarPopup( wxWindow *parent, mmDatePickerCtrl* datePicker)
+                     : wxPopupTransientWindow(parent,
+                                              wxBORDER_NONE)
+                    , m_datePicker(datePicker)
+{
+    wxWindow* panel = new wxWindow(this, wxID_ANY);
+
+    wxCalendarCtrl* m_calendarCtrl = new wxCalendarCtrl(panel, wxID_ANY, datePicker->GetValue());
+    m_calendarCtrl->Bind(wxEVT_CALENDAR_SEL_CHANGED, &mmCalendarPopup::OnDateSelected, this);
+
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(m_calendarCtrl, 0, wxALL, 5);
+    panel->SetSizer(sizer);
+
+    sizer->Fit(panel);
+    SetClientSize(panel->GetSize());
+}
+
+mmCalendarPopup::~mmCalendarPopup()
+{
+
+}
+
+void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
+{
+    m_datePicker->SetValue(event.GetDate());
+}
+
+//------------
+
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
-EVT_SET_FOCUS(mmComboBox::OnSetFocus)
-EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
+    EVT_SET_FOCUS(mmComboBox::OnSetFocus)
+    EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
@@ -50,12 +103,15 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
         for (const auto& item : all_elements_) {
             auto_complete.Add(item.first);
         }
-        auto_complete.Sort(CaseInsensitiveCmp);
+        auto_complete.Sort(CaseInsensitiveLocaleCmp);
 
-        this->Insert(auto_complete, 0);
         this->AutoComplete(auto_complete);
-        if (auto_complete.GetCount() == 1)
+        if (!auto_complete.empty()) {
+            this->Insert(auto_complete, 0);
+        }
+        if (auto_complete.GetCount() == 1) {
             Select(0);
+        }
         is_initialized_ = true;
     }
     event.Skip();
@@ -95,7 +151,7 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 #if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!
-    if (this->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    if (typedText.IsEmpty() || (this->GetSelection() == -1))
     {
         this->Clear();
 
@@ -107,11 +163,14 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 
         this->ChangeValue(typedText);
         this->SetInsertionPointEnd();
-        this->Popup();
+        if (!typedText.IsEmpty())
+            this->Popup();
+        else
+            this->Dismiss();
     }
 #endif
     for (const auto& item : all_elements_) {
-        if ((item.first.CmpNoCase(typedText) == 0) /*&& (item.first.Cmp(typedText) != 0)*/) {
+        if ((item.first.CmpNoCase(typedText) == 0) && (item.first.Cmp(typedText) != 0)) {
             ChangeValue(item.first);
             SetInsertionPointEnd();
             wxCommandEvent evt(wxEVT_COMBOBOX, this->GetId());
@@ -166,11 +225,18 @@ bool mmComboBox::mmIsValid() const
 
 void mmComboBoxAccount::init()
 {
-    all_elements_ = Model_Account::instance().all_accounts(true);
+    all_elements_ = Model_Account::instance().all_accounts(excludeClosed_);
+    if (accountID_ > -1)
+        all_elements_[Model_Account::get_account_name(accountID_)] = accountID_;
 }
 
-mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id, wxSize size)
+// accountID = always include this account even if it would have been excluded as closed
+// excludeClosed = set to true if closed accounts should be excluded
+mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
+                    , wxSize size, int accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
+    , excludeClosed_(excludeClosed)
+    , accountID_(accountID)
 {
     init();
 }
@@ -269,10 +335,15 @@ wxEND_EVENT_TABLE()
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
     : wxDatePickerCtrl(parent, id, dt, pos, size, style)
+    , parent_(parent)
     , itemStaticTextWeek_(nullptr)
     , spinButton_(nullptr)
 {
-
+// The standard date control for MacOS does not have a date picker so make one available when right-click
+// over the date field.
+#if defined (__WXMAC__)
+    Bind(wxEVT_RIGHT_DOWN, &mmDatePickerCtrl::OnCalendar, this);
+#endif
 }
 
 mmDatePickerCtrl::~mmDatePickerCtrl()
@@ -294,6 +365,7 @@ wxStaticText* mmDatePickerCtrl::getTextWeek()
                 d = wxDateTime::WeekDay(d+1))
             WeekDayNameMaxSize.IncTo(GetTextExtent(
                 wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
+        WeekDayNameMaxSize.SetHeight(-1);
         itemStaticTextWeek_ = new wxStaticText(this->GetParent(), wxID_ANY, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
         // Force update
         wxDateEvent dateEvent(this, this->GetValue(), wxEVT_DATE_CHANGED);
@@ -325,13 +397,13 @@ void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
     OnDateChanged(dateEvent);
 }
 
-void mmDatePickerCtrl::mmEnable(bool state)
+bool mmDatePickerCtrl::Enable(bool state)
 {
-    this->Enable(state);
+    bool response = wxDatePickerCtrl::Enable(state);
     if (itemStaticTextWeek_) itemStaticTextWeek_->Enable(state);
     if (spinButton_) spinButton_->Enable(state);
+    return response;
 }
-
 
 wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
 {
@@ -343,6 +415,19 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
     date_sizer->Add(this->getTextWeek(), g_flagsH);
 
     return date_sizer;
+}
+
+void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
+{  
+    mmCalendarPopup* m_simplePopup = new mmCalendarPopup( parent_, this );
+
+    // make sure we correctly position the popup below the date
+    wxWindow *dateCtrl = static_cast<wxWindow*>(event.GetEventObject());
+    wxSize dimensions = dateCtrl->GetSize();
+    wxPoint pos = dateCtrl->ClientToScreen(wxPoint(0, dimensions.GetHeight()));
+    m_simplePopup->SetPosition(pos);
+
+    m_simplePopup->Popup();
 }
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)

@@ -234,12 +234,12 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(5);
             wxSharedPtr<mmDateRange> date_range = m_all_date_ranges.at(sel_id);
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-            m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
+            m_start_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_start_date->SetValue(date_range.get()->start_date());
             m_start_date->Enable(false);
 
-            m_end_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE
+            m_end_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_end_date->SetValue(date_range.get()->end_date());
             m_end_date->Enable(false);
@@ -257,7 +257,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-            m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
+            m_start_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_start_date->SetValue(wxDateTime::Today());
             m_start_date->Enable(true);

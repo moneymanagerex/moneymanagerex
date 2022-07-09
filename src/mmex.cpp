@@ -468,23 +468,27 @@ int mmGUIApp::OnExit()
 #if defined (__WXMAC__)
 // Handle a closure for OSX dock correctly
 
+bool findModal(wxWindow *w)
+{
+    wxWindowList& children = w->GetChildren();
+    for (wxWindowList::Node *node=children.GetFirst(); node; node = node->GetNext())
+    {
+        wxWindow *current = (wxWindow *)node->GetData();
+        wxLogDebug("  Name [%s]", current->GetName());
+        if (current->IsKindOf(CLASSINFO(wxDialog)))
+            return true;
+        else
+            if (findModal(current))
+                return true;
+    }   
+    return false;
+}
 bool mmGUIApp::OSXOnShouldTerminate()
 {
     wxLogDebug("Called: OSXOnShouldTerminate");
 
     // Don't allow closure if dialogs are open
-    bool modalExists = false;
-    wxWindowList& children = GetTopWindow()->GetChildren();
-    for (wxWindowList::Node *node=children.GetFirst(); node; node = node->GetNext())
-    {
-        wxWindow *current = (wxWindow *)node->GetData();
-        if (current->IsKindOf(CLASSINFO(wxDialog)))
-        {
-            modalExists = true;
-            break;
-        }
-    }
-
+    bool modalExists = findModal(GetTopWindow());
     if (!modalExists)
         this->GetTopWindow()->Close();
 }

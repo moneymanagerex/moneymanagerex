@@ -64,9 +64,14 @@ public:
     mmComboBoxAccount(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
+        , int accountID = -1
+        , bool excludeClosed = true
     );
 protected:
     void init();
+private:
+    int accountID_;
+    bool excludeClosed_;
 };
 
 /* -------------------------------------------- */
@@ -149,16 +154,18 @@ public:
     , wxDateTime dt=wxDateTime::Today(), wxPoint pos=wxDefaultPosition, wxSize size=wxDefaultSize
     , long style=wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     ~mmDatePickerCtrl();
-    void SetValue(const wxDateTime &dt);
-    void mmEnable(bool state);
+    void SetValue(const wxDateTime &dt);    // Override
+    bool Enable(bool state=true);           // Override
     wxBoxSizer* mmGetLayout();
 private:
     wxStaticText* getTextWeek();
     wxSpinButton* getSpinButton();
 
+    void OnCalendar(wxMouseEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnDateSpin(wxSpinEvent& event);
 
+    wxWindow* parent_;
     wxStaticText* itemStaticTextWeek_;
     wxSpinButton* spinButton_;
 };

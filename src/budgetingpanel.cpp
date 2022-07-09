@@ -225,7 +225,7 @@ void mmBudgetingPanel::CreateControls()
 
     m_bitmapTransFilter = new wxButton(itemPanel3, wxID_FILE2);
     m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
-    m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
+    m_bitmapTransFilter->SetMinSize(wxSize(300, -1));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
     wxFlexGridSizer* itemIncomeSizer = new wxFlexGridSizer(0, 7, 5, 10);

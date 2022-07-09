@@ -30,8 +30,8 @@ environment:
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
-  wxVer: 3.1.5
-  wxwin: C:\wxWidgets-$(wxver)-$(configuration)
+  wxVer: 3.2.0
+  wxwin: C:\wxWidgets-$(wxVer)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
   # Microsoft compiler options

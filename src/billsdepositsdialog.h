@@ -28,9 +28,6 @@
 #include "model/Model_Checking.h"
 #include "mmcustomdata.h"
 
-class wxDatePickerCtrl;
-class wxSpinButton;
-class wxSpinEvent;
 class wxStaticText;
 class mmTextCtrl;
 class wxCalendarCtrl;
@@ -72,6 +69,7 @@ private:
     void OnPayee(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
 private:
     void dataToControls();
     void updateControlsForTransType();

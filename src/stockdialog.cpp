@@ -201,16 +201,15 @@ void mmStockDialog::CreateControls()
 
     m_stock_symbol_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
-    itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsExpand);
     mmToolTip(m_stock_symbol_ctrl, _("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Date
     wxStaticText* date_label = new wxStaticText(itemPanel5, wxID_STATIC, _("*Date"));
     itemFlexGridSizer6->Add(date_label, g_flagsH);
     date_label->SetFont(this->GetFont().Bold());
-    m_purchase_date_ctrl = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
-        , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    itemFlexGridSizer6->Add(m_purchase_date_ctrl, g_flagsH);
+    m_purchase_date_ctrl = new mmDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE);
+    itemFlexGridSizer6->Add(m_purchase_date_ctrl->mmGetLayout());
     mmToolTip(m_purchase_date_ctrl, _("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
     m_purchase_date_ctrl->Enable(initial_stock_transaction);
 
@@ -220,7 +219,7 @@ void mmStockDialog::CreateControls()
     number->SetFont(this->GetFont().Bold());
     m_num_shares_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsExpand);
     mmToolTip(m_num_shares_ctrl, _("Enter number of shares.\nUsed when creating the initial Share transaction."));
     m_num_shares_ctrl->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
@@ -232,7 +231,7 @@ void mmStockDialog::CreateControls()
     pprice->SetFont(this->GetFont().Bold());
     m_purchase_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_purchase_price_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_purchase_price_ctrl, g_flagsExpand);
     mmToolTip(m_purchase_price_ctrl, _("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
     m_purchase_price_ctrl->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
@@ -241,7 +240,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("*Commission")), g_flagsH);
     m_commission_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsExpand);
     mmToolTip(m_commission_ctrl, _("Enter any commission paid.\nUsed when creating the initial Share transaction."));
     m_commission_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
@@ -251,7 +250,7 @@ void mmStockDialog::CreateControls()
     m_current_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_CURR_PRICE, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     mmToolTip(m_current_price_ctrl, _("Enter current stock/share price."));
-    itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsExpand);
     m_current_price_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
@@ -314,7 +313,7 @@ void mmStockDialog::CreateControls()
     //
     wxFlexGridSizer* date_price = new wxFlexGridSizer(0, 2, 0, 0);
     date_price->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Price Date")), g_flagsH);
-    m_history_date_ctrl = new wxDatePickerCtrl(buttons_panel, ID_DPC_CP_PDATE
+    m_history_date_ctrl = new mmDatePickerCtrl(buttons_panel, ID_DPC_CP_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     date_price->Add(m_history_date_ctrl, g_flagsH);
     mmToolTip(m_history_date_ctrl, _("Specify the stock/share price date."));

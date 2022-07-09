@@ -390,7 +390,7 @@ void mmUnivCSVDialog::CreateControls()
         rowSelectionStaticBoxSizer->AddSpacer(30);
 
         // Colour
-        colorCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Color")
+        colorCheckBox_ = new wxCheckBox(this, mmID_COLOR, _("Color")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         itemBoxSizer111->Add(colorCheckBox_, g_flagsH);
         colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(itemButton_Save->GetSize().GetY(), itemButton_Save->GetSize().GetY()));
@@ -496,7 +496,7 @@ void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
 const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 {
     if (id < 0) id = 0;
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix() + "%d", id);
+    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
     const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
     wxLogDebug("%s \n %s", setting_id, settings_string);
     return settings_string;
@@ -796,8 +796,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
     wxRadioBox* c = static_cast<wxRadioBox*>(FindWindow(wxID_APPLY));
     int id = c->GetSelection();
-    const wxString& settingsPrefix = GetSettingsPrfix();
-    const wxString& setting_id = wxString::Format(settingsPrefix + "%d", id);
+    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
 
     const auto fileName = m_text_ctrl_->GetValue();
     if (!fileName.empty())
@@ -1262,7 +1261,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     itemType = ITransactionsFile::TYPE_NUMBER;
                     break;
                 case UNIV_CSV_TYPE:
-                    entry = depositType_;
+                    entry = Model_Checking::all_type()[Model_Checking::type(pBankTransaction)];
                     break;
                 case UNIV_CSV_ID:
                     entry = wxString::Format("%i", tran.TRANSID);
@@ -1493,12 +1492,7 @@ void mmUnivCSVDialog::update_preview()
                         if (col >= m_list_ctrl_->GetColumnCount())
                             break;
 
-                        if (col++ == date_col)
-                        {
-                            wxDateTime dtdt;
-                            mmParseDisplayStringToDate(dtdt, text, date_format_);
-                            text = dtdt.Format(date_format_);
-                        }
+                        col++;
                         m_list_ctrl_->SetItem(itemIndex, col, text);
                     }
                 }
@@ -1552,7 +1546,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
     csvListBox_->Clear();
     csvFieldOrder_.clear();
     int standard[] = { UNIV_CSV_ID, UNIV_CSV_DATE, UNIV_CSV_STATUS, UNIV_CSV_TYPE, UNIV_CSV_ACCOUNT, UNIV_CSV_PAYEE
-                     , UNIV_CSV_CATEGORY, UNIV_CSV_AMOUNT, UNIV_CSV_CURRENCY, UNIV_CSV_TRANSNUM, UNIV_CSV_NOTES };
+                     , UNIV_CSV_CATEGORY, UNIV_CSV_SUBCATEGORY, UNIV_CSV_AMOUNT, UNIV_CSV_CURRENCY, UNIV_CSV_TRANSNUM, UNIV_CSV_NOTES };
     for (const auto i : standard)
     {
         csvListBox_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
@@ -1796,11 +1790,13 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     // A number of type options are supported to make amount positive 
     // ('debit' seems odd but is there for backwards compatability!)
     case UNIV_CSV_TYPE:
-        if ( wxString("Debit|debit|Deposit|deposit|+").Contains(token)) {
-            holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        for (const wxString& entry : { "debit", "deposit", "+" }) {
+            if (entry.CmpNoCase(token) == 0) {
+                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                break;
+            }
         }
         break;
-
     default:
         break;
     }
@@ -1850,7 +1846,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     int i = event.GetId();
     if (i == ID_DATE_FORMAT)
     {
-        wxStringClientData* data = static_cast<wxStringClientData*>(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+        wxStringClientData* data = static_cast<wxStringClientData*>(event.GetClientObject());
         if (data) date_format_ = data->GetData();
         *log_field_ << date_format_ << "\n";
     }
@@ -1930,7 +1926,10 @@ ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()
 
 void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
 {
-    colorButton_->Enable(colorCheckBox_->IsChecked());
+    auto id = event.GetId();
+    if (IsImporter() && id == mmID_COLOR && colorButton_) {
+        colorButton_->Enable(colorCheckBox_->IsChecked());
+    }
 }
 
 void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)

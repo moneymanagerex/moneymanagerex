@@ -201,10 +201,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                     SetWidgetChanged(controlID, value.FormatISODate());
             }
 
-            wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(scrolled_window, controlID
-                , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+            mmDatePickerCtrl* CustomDate = new mmDatePickerCtrl(scrolled_window, controlID, value);
             mmToolTip(CustomDate, Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer_custom->Add(CustomDate, g_flagsExpand);
+            grid_sizer_custom->Add(CustomDate->mmGetLayout());
 
             CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, this);
 
@@ -369,9 +368,9 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
 
     const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
 
-    if (class_name == "wxDatePickerCtrl")
+    if (class_name == "mmDatePickerCtrl")
     {
-        wxDatePickerCtrl* d = static_cast<wxDatePickerCtrl*>(w);
+        mmDatePickerCtrl* d = static_cast<mmDatePickerCtrl*>(w);
         wxDateTime date;
         date.ParseDate(value);
         d->SetValue(date);
@@ -454,9 +453,9 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
         if (w)
         {
             const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
-            if (class_name == "wxDatePickerCtrl")
+            if (class_name == "mmDatePickerCtrl")
             {
-                wxDatePickerCtrl* d = static_cast<wxDatePickerCtrl*>(w);
+                mmDatePickerCtrl* d = static_cast<mmDatePickerCtrl*>(w);
                 data = d->GetValue().FormatISODate();
             }
             else if (class_name == "wxTimePickerCtrl")
@@ -685,6 +684,7 @@ void mmCustomData::OnDateChanged(wxDateEvent& event)
 {
     const auto data = event.GetDate();
     SetWidgetChanged(event.GetId(), data.FormatISODate());
+    event.Skip();
 }
 
 void mmCustomData::OnTimeChanged(wxDateEvent& event)

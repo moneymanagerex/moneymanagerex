@@ -144,7 +144,7 @@ void transactionsUpdateDialog::CreateControls()
     m_dpc = new mmDatePickerCtrl(this, wxID_ANY);
     grid_sizer->Add(m_date_checkbox, g_flagsH);
     grid_sizer->Add(m_dpc->mmGetLayout(), g_flagsH);
-    m_dpc->mmEnable(false);
+    m_dpc->Enable(false);
 
     // Status --------------------------------------------
     m_status_checkbox = new wxCheckBox(this, wxID_ANY, _("Status")
@@ -211,9 +211,6 @@ void transactionsUpdateDialog::CreateControls()
 
     cbAccount_ = new mmComboBoxAccount(this, ID_TRANS_ACC);
     cbAccount_->SetMaxSize(cbPayee_->GetSize());
-    wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
-    cbAccount_->Insert(account_names, 0);
-    cbAccount_->AutoComplete(account_names);
     cbAccount_->Enable(false);
 
     grid_sizer->Add(m_transferAcc_checkbox, g_flagsH);
@@ -493,7 +490,7 @@ void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
 
 void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
 {
-    m_dpc->mmEnable(m_date_checkbox->IsChecked());
+    m_dpc->Enable(m_date_checkbox->IsChecked());
     m_status_choice->Enable(m_status_checkbox->IsChecked());
     m_type_choice->Enable(m_type_checkbox->IsChecked());
     cbPayee_->Enable(m_payee_checkbox->IsChecked());

@@ -44,7 +44,8 @@ Option::Option()
     , m_currencyHistoryEnabled(false)
     , m_bulk_enter(false)
     , m_transPayeeSelection(Option::NONE)
-    , m_transCategorySelection(Option::NONE)
+    , m_transCategorySelectionNonTransfer(Option::NONE)
+    , m_transCategorySelectionTransfer(Option::NONE)
     , m_transStatusReconciled(Option::NONE)
     , m_usageStatistics(true)
     , m_transDateDefault(0)
@@ -107,7 +108,8 @@ void Option::LoadOptions(bool include_infotable)
 
     // For the category selection, default behavior should remain that the last category used for the payee is selected.
     //  This is item 1 (0-indexed) in the list.
-    m_transCategorySelection = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", Option::LASTUSED);
+    m_transCategorySelectionNonTransfer = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", Option::LASTUSED);
+    m_transCategorySelectionTransfer = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_TRANSFER_NONE", Option::LASTUSED);
     m_transStatusReconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", Option::NONE);
     m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
@@ -278,10 +280,16 @@ int Option::TransPayeeSelection()
     return m_transPayeeSelection;
 }
 
-void Option::TransCategorySelection(int value)
+void Option::TransCategorySelectionNonTransfer(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", value);
-    m_transCategorySelection = value;
+    m_transCategorySelectionNonTransfer = value;
+}
+
+void Option::TransCategorySelectionTransfer(int value)
+{
+    Model_Setting::instance().Set("TRANSACTION_CATEGORY_TRANSFER_NONE", value);
+    m_transCategorySelectionTransfer = value;
 }
 
 void Option::set_bulk_transactions(bool value)

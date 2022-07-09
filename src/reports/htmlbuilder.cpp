@@ -323,11 +323,13 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const wxString& cs
     html_ += tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision)
+void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision, bool isVoid)
 {
     if (precision == -1)
         precision = Model_Currency::precision(currency);
-    const wxString s = Model_Currency::toCurrency(amount, currency, precision);
+    wxString s = Model_Currency::toCurrency(amount, currency, precision);
+    if (isVoid)
+        s = wxString::Format("<s>%s</s>", s);
     const wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;

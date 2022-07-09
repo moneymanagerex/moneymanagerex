@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "constants.h"
 #include "defs.h"
-#include <wx/spinbutt.h>
+#include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
 #include "model/Model_Translink.h"
 
@@ -76,17 +76,13 @@ private:
     void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));
     void OnTransCategoryButton(wxCommandEvent& WXUNUSED(event));
 
-    void OnDateSelectorForward(wxSpinEvent& WXUNUSED(event));
-    void OnDateSelectorBackward(wxSpinEvent& WXUNUSED(event));
-    void SetNewDate(wxDatePickerCtrl* dpc, bool forward = true);
-
     void OnEnteredText(wxCommandEvent& event);
     void OnFrequentNotes(wxCommandEvent& event);
     void onSelectedNote(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& WXUNUSED(event));
 
 private:
-    wxDatePickerCtrl* m_date_selector;
+    mmDatePickerCtrl* m_date_selector;
 
     wxButton* m_account;
     wxChoice* m_status_selector;

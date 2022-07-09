@@ -266,7 +266,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     // add the toolbars to the manager
     m_mgr.AddPane(toolBar_, wxAuiPaneInfo().
         Name("toolbar").ToolbarPane().Top()
-        .LeftDockable(false).RightDockable(false).MinSize(1000, -1)
+        .LeftDockable(false).RightDockable(false)
         .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true)));
 
     // change look and feel of wxAuiManager
@@ -710,7 +710,6 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
     m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Home Page"));
     m_nav_tree_ctrl->SetItemBold(root, true);
-    m_nav_tree_ctrl->SetFocus();
 
     wxTreeItemId alltransactions = m_nav_tree_ctrl->AppendItem(root, _("All Transactions"), img::ALLTRANSACTIONS_PNG, img::ALLTRANSACTIONS_PNG);
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
@@ -898,6 +897,12 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     m_nav_tree_ctrl->EnsureVisible(root);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
+
+    /* issue #4778 */
+#if !defined(__WXMSW__) 
+    m_nav_tree_ctrl->SetFocus();
+#endif
+
     DoWindowsFreezeThaw(m_nav_tree_ctrl);
 }
 
@@ -1799,9 +1804,10 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
-    long style = wxTB_FLAT | wxTB_NODIVIDER;
+    long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL;
 
-    toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
+    toolBar_ = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
+    toolBar_->SetToolBorderPadding(1);
     mmThemeMetaColour(toolBar_, meta::COLOR_LISTPANEL);
     toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
 
@@ -2684,9 +2690,9 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
     toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
-    toolBar_->SetToolNormalBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
+    toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
 
-    const auto b = toolBar_->FindById(MENU_ANNOUNCEMENTMAILING);
+    const auto b = toolBar_->FindTool(MENU_ANNOUNCEMENTMAILING);
     if (b) b->SetShortHelp(_("Register/View Release &Notifications"));
 }
 //----------------------------------------------------------------------------
@@ -3008,7 +3014,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     bool newCreditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
 
-    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed))
+    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_))
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
         checkingAccountPage->DisplayAccountDetails(accountID);
@@ -3016,7 +3022,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     else
     {
         DoWindowsFreezeThaw(homePanel_);
-        creditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
+        creditDisplayed_ = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);

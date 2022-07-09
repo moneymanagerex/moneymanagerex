@@ -63,7 +63,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     , m_sortReverse (false)
 {
     ColName_[PAYEE_NAME] = _("Name");
-    ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelection() == Option::LASTUSED) ?
+    ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
 
     this->SetFont(parent->GetFont());
@@ -184,8 +184,9 @@ void mmPayeeDialog::fillControls()
         std::stable_sort(payees.begin(), payees.end(), [] (Model_Payee::Data x, Model_Payee::Data y)
         {
             return(
-                Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID).
-                    CmpNoCase(Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)) < 0
+                CaseInsensitiveLocaleCmp(
+                    Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID)
+                    , Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)) < 0
             ); 
         });
     }

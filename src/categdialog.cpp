@@ -53,10 +53,10 @@ mmCategDialogTreeCtrl::mmCategDialogTreeCtrl(wxWindow *parent, const wxWindowID 
 {
 }
 
-// Only need to override the OnCompareItems sort method to make it case insensitive
+// Only need to override the OnCompareItems sort method to make it case insensitive, locale
 int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)		
 {
-    return (GetItemText(item1).CmpNoCase(GetItemText(item2)));
+    return CaseInsensitiveLocaleCmp(GetItemText(item1).Lower(),GetItemText(item2).Lower());
 }
 
 mmCategDialog::~mmCategDialog()
@@ -280,11 +280,6 @@ void mmCategDialog::CreateControls()
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
     wxString prompt_msg = _("Enter the name for the new category:");
-    if (m_selectedItemId == root_)
-    {
-        prompt_msg << "\n\n" << _("Tip: If category added now, check bottom of list.");
-    }
-
     const wxString& text = wxGetTextFromUser(prompt_msg, _("Add Category"), "");
     if (text.IsEmpty())
         return;
@@ -309,6 +304,11 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         Model_Subcategory::Data subcat;
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
         m_treeCtrl->Expand(m_selectedItemId);
+        m_refresh_requested = true;
+        m_categ_id = category->CATEGID;
+        m_subcateg_id = -1;
+        fillControls();
+        return;
     }
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(m_selectedItemId));
@@ -335,6 +335,9 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
         m_treeCtrl->Expand(m_selectedItemId);
         m_refresh_requested = true;
+        m_categ_id = subcategory->CATEGID;
+        m_subcateg_id = subcategory->SUBCATEGID;
+        fillControls();
         return;
     }
 

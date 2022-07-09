@@ -60,6 +60,7 @@ public:
     bool mmIsStatusChecked() const;
     bool mmIsAccountChecked() const;
     bool mmIsCategoryChecked() const;
+    bool mmIsCategorySubCatChecked() const;
     bool mmIsRangeChecked() const;
     bool mmIsDateRangeChecked() const;
     bool mmIsHideColumnsChecked() const;
@@ -136,7 +137,7 @@ private:
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
-
+    void OnCategoryChange(wxEvent& event);
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
@@ -158,12 +159,13 @@ private:
     wxCheckBox* datesCheckBox_;
     wxChoice* rangeChoice_;
     wxCheckBox* dateRangeCheckBox_;
-    wxDatePickerCtrl* fromDateCtrl_;
-    wxDatePickerCtrl* toDateControl_;
+    mmDatePickerCtrl* fromDateCtrl_;
+    mmDatePickerCtrl* toDateControl_;
     wxCheckBox* payeeCheckBox_;
     mmComboBoxPayee* cbPayee_;
     wxCheckBox* categoryCheckBox_;
     mmComboBoxCategory* categoryComboBox_;
+    wxCheckBox* categorySubCatCheckBox_;
     wxCheckBox* statusCheckBox_;
 private:
     wxChoice* choiceStatus_;
@@ -237,6 +239,7 @@ inline bool mmFilterTransactionsDialog::mmIsNumberChecked() const { return trans
 inline bool mmFilterTransactionsDialog::mmIsNotesChecked() const { return notesCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::mmIsColorChecked() const { return colorCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::mmIsCategoryChecked() const { return categoryCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsCategorySubCatChecked() const { return categorySubCatCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::mmIsStatusChecked() const { return statusCheckBox_->IsChecked(); }
 inline const wxString mmFilterTransactionsDialog::mmGetLabelString() const { return  m_setting_name->GetStringSelection(); }
 inline const wxString mmFilterTransactionsDialog::mmGetCategoryPattern() const { return categoryComboBox_->GetValue(); }

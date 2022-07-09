@@ -25,7 +25,7 @@
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 
-class wxDatePickerCtrl;
+class mmDatePickerCtrl;
 class mmTextCtrl;
 
 struct CurrencyHistoryRate
@@ -116,7 +116,7 @@ private:
     wxSearchCtrl* m_maskTextCtrl;
     wxCheckBox* cbShowAll_;
     wxListCtrl* valueListBox_;
-    wxDatePickerCtrl* valueDatePicker_;
+    mmDatePickerCtrl* valueDatePicker_;
     mmTextCtrl* valueTextBox_;
     wxStaticBox* historyStaticBox_;
     wxButton* historyButtonAdd_;

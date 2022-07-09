@@ -22,7 +22,7 @@
 #include "model/Model_Translink.h"
 #include "model/Model_Shareinfo.h"
 
-class wxDatePickerCtrl;
+class mmDatePickerCtrl;
 class mmTextCtrl;
 class UserTransactionPanel;
 

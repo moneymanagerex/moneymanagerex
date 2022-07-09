@@ -82,9 +82,9 @@ const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
     const wxString def_date = wxDateTime::Today().FormatISODate();
 
     const std::vector<Model_Report::Values> v = {
-    {"&begin_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date: ")},
-    {"&single_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Date: ")},
-    {"&end_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _("End date: ")},
+    {"&begin_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date: ")},
+    {"&single_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Date: ")},
+    {"&end_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _("End date: ")},
     {"&only_years", "wxChoice", def_date, mmReportsPanel::RepPanel::ID_CHOICE_YEAR, _("Year: ")},
     };
     return v;
@@ -201,9 +201,9 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
 
             const auto w = wxWindow::FindWindowById(entry.ID);
             //const auto name = w->GetClassInfo()->GetClassName();
-            if (w && entry.type == "wxDatePickerCtrl")
+            if (w && entry.type == "mmDatePickerCtrl")
             {
-                wxDatePickerCtrl* date = static_cast<wxDatePickerCtrl*>(w);
+                mmDatePickerCtrl* date = static_cast<mmDatePickerCtrl*>(w);
                 value = date->GetValue().FormatISODate();
             }
             if (w && entry.type == "wxChoice")
