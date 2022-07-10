@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 20:51\n"
+"PO-Revision-Date: 2022-07-09 10:16\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -7397,19 +7397,24 @@ msgstr "Geef aan welk type rekening u wilt aanmaken:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Algemene bankrekeningen dekken een breed scala aan rekeningen\n"
+"types zoals contant, betaal-, lening- en creditcard."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Investeringsrekeningen zijn speciale rekeningen die \n"
+"alleen gekoppeld zijn aan beleggingen in effecten."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Termijn- en activarekeningen zijn gespecialiseerde bankrekeningen.\n"
+"Ze zijn bedoeld voor het beheren van Activa of Termijndeposito's en Obligaties\n"
+"waar normaal gesproken geld binnenkomt en uitgaat, buiten\n"
+"de algemene inkomstenstroom."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
