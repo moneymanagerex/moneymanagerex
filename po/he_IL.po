@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"PO-Revision-Date: 2022-07-13 13:41\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5914,7 +5914,7 @@ msgstr "הגדרת גודל הגופן לתצוגה בדוחות"
 
 #: optionsettingsview.cpp:258
 msgid "Normal"
-msgstr ""
+msgstr "רגיל"
 
 #: optionsettingsview.cpp:259
 msgid "Enlarged"
@@ -5930,7 +5930,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:263
 msgid "Font size"
-msgstr ""
+msgstr "גודל גופן"
 
 #: optionsettingsview.cpp:275
 msgid "Small (16 px)"
