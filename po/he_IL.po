@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-13 13:41\n"
+"PO-Revision-Date: 2022-07-13 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1170,7 +1170,7 @@ msgstr "שגיאה"
 #: billsdepositsdialog.cpp:1325 splittransactionsdialog.h:56
 #: transdialog.cpp:301
 msgid "Split Transaction"
-msgstr ""
+msgstr "פיצול תנועה"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
@@ -2394,7 +2394,7 @@ msgstr "טווח תאריכים"
 
 #: filtertransdialog.cpp:548 filtertransdialog.cpp:1478
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "הכללת כל תתי סוג־אב"
 
 #: filtertransdialog.cpp:574 filtertransdialog.cpp:1346
 #: import_export/univcsvdialog.cpp:119 mmchecking_list.cpp:225
@@ -3569,7 +3569,7 @@ msgstr "סמל מטבע בסיס לא נמצא!"
 
 #: mmSimpleDialogs.cpp:387
 msgid "Retard or advance the date"
-msgstr ""
+msgstr "קידום או איחור התאריך"
 
 #: mmSimpleDialogs.cpp:472 mmSimpleDialogs.cpp:484
 msgid "Clear color"
@@ -5617,7 +5617,7 @@ msgstr "הגדרה באם להשתמש בצליל בעת קליטת תנועה"
 
 #: optionsettingsgeneral.cpp:296
 msgid "Locale"
-msgstr ""
+msgstr "מיקום"
 
 #: optionsettingsgeneral.cpp:324
 #, c-format
@@ -5682,11 +5682,11 @@ msgstr "מוטב ברירת מחד:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgstr "סוגי־אב 'משיכה/הפקדה' בררת מחדל:"
 
 #: optionsettingsmisc.cpp:147
 msgid "Default Transfer Category:"
-msgstr ""
+msgstr "סוג־אב 'העברה' ברירת מחדל:"
 
 #: optionsettingsmisc.cpp:149
 msgid "Default Status:"
@@ -5918,15 +5918,15 @@ msgstr "רגיל"
 
 #: optionsettingsview.cpp:259
 msgid "Enlarged"
-msgstr ""
+msgstr "מוגדל"
 
 #: optionsettingsview.cpp:260
 msgid "Large"
-msgstr ""
+msgstr "גדול"
 
 #: optionsettingsview.cpp:261
 msgid "Huge"
-msgstr ""
+msgstr "עצום"
 
 #: optionsettingsview.cpp:263
 msgid "Font size"
@@ -6018,7 +6018,7 @@ msgstr "העברת כל סוג־אב המקור לסוג־אב היעד"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "מחיקת סוג־אב מקור לאחר ההגירה (ככול שלא קיימים תתי־סוג)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6539,11 +6539,11 @@ msgstr "פרטי תנועה מפוצלת"
 
 #: splittransactionsdialog.cpp:163
 msgid "Add Split"
-msgstr ""
+msgstr "הוספת פיצול"
 
 #: splittransactionsdialog.cpp:169
 msgid "Remove Split"
-msgstr ""
+msgstr "הסרת פיצול"
 
 #: splittransactionsdialog.cpp:247
 msgid "Invalid Total Amount"
@@ -6945,11 +6945,11 @@ msgstr "רישום התנועה תגרום לחריגה ממגבלת יתרת ה
 
 #: transdialog.cpp:1063
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "לשני החשבונות הללו מטבעות שונים אך האפשרות 'תנועה מתקדמת' לא סומנה. האם תקין?"
 
 #: transdialog.cpp:1064
 msgid "Currencies are different"
-msgstr ""
+msgstr "שוני במטבעות"
 
 #: transdialog.cpp:1151
 msgid "Specify account the money is taken from"
@@ -7424,19 +7424,23 @@ msgstr "בחירת סוג החשבון שברצונך ליצור:"
 #: wizard_newaccount.cpp:137
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "חשבונות בנק כלליים מכסים מגוון רחב של סוגי חשבון\n"
+"כגון חשבונות עובר ושב, הלוואה, חיסכון וכרטיסי אשראי."
 
 #: wizard_newaccount.cpp:142
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "חשבון השקעות הם חשבונות יעודיים לניהול תיקי ניירות ערך\n"
+"אליהם משויכים קרנות נאמנות, ניירות ערך, אגרות חוב ותכניות חיסכון."
 
 #: wizard_newaccount.cpp:147
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "חשבונות מנוהלים ותיקי השקעה הם חשבונות בנק יעודיים.\n"
+"הם מיועדים לניטור נכסים, פיקדונות לתקופה ארוכה או בינונית ואיגרות חוב.\n"
+"בחשבונות אלו תהיה תנועת כספים יוצאת ונכנסת (העברות בין חשבונות), להן אין כוונה לתת ביטוי בדוח הכנסות/הוצאות כללי."
 
 #: wizard_newaccount.cpp:163
 msgid "Base Account Currency Not set."
