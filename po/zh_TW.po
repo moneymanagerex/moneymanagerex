@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-14 03:35\n"
+"PO-Revision-Date: 2022-07-14 04:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1237,7 +1237,7 @@ msgstr ""
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:975 mmframe.cpp:754
 #: mmframe.cpp:2910 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "循環性交易"
 
 #: billsdepositspanel.cpp:254 filtertransdialog.h:126
 msgid "Transaction Filter"
@@ -2172,7 +2172,7 @@ msgstr "生活"
 
 #: db/DB_Table_Subcategory_V1.h:141 optiondialog.cpp:37
 msgid "Home"
-msgstr ""
+msgstr "首頁"
 
 #: db/DB_Table_Subcategory_V1.h:143
 msgid "Travel"
@@ -2322,7 +2322,7 @@ msgstr ""
 #: filtertransdialog.cpp:46 mmchecking_list.cpp:419 mmchecking_list.cpp:867
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr ""
+msgstr "未核實"
 
 #: filtertransdialog.cpp:47 mmchecking_list.cpp:421 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
@@ -2337,12 +2337,12 @@ msgstr "作廢"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:425 mmchecking_list.cpp:856
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
-msgstr ""
+msgstr "再追蹤"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:427
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
-msgstr "重複"
+msgstr "複製"
 
 #: filtertransdialog.cpp:51 filtertransdialog.cpp:1486
 msgid "All Except Reconciled"
@@ -2647,7 +2647,7 @@ msgstr ""
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
 #: mmframe.cpp:773 mmframe.cpp:1652 mmframe.cpp:1821
 msgid "General Report Manager"
-msgstr ""
+msgstr "報告管理工具"
 
 #: general_report_manager.cpp:857
 msgid "Delete the Report Title:"
@@ -3641,11 +3641,11 @@ msgstr ""
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "注意:定期備份您的資料庫mmb檔案"
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr "提醒:升級到新版本MMEX前,請先備份您的資料庫檔案(mmb)"
+msgstr "注意:升級到新版本MMEX前,請先備份您的資料庫mmb檔案"
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -3899,7 +3899,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:388
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "全部交易資料"
 
 #: mmcheckingpanel.cpp:390
 #, c-format
@@ -3978,7 +3978,7 @@ msgstr ""
 
 #: mmframe.cpp:478 mmframe.cpp:718
 msgid "Favourites"
-msgstr ""
+msgstr "我的最愛"
 
 #: mmframe.cpp:479 mmframe.cpp:722 mmhomepage.cpp:632 reports/summary.cpp:287
 #: reports/summary.cpp:319
@@ -3997,11 +3997,11 @@ msgstr ""
 
 #: mmframe.cpp:482 mmframe.cpp:742
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "股票投資組合"
 
 #: mmframe.cpp:483 mmframe.cpp:730 mmhomepage.cpp:631
 msgid "Cash Accounts"
-msgstr ""
+msgstr "現金帳戶"
 
 #: mmframe.cpp:484 mmframe.cpp:734 mmhomepage.cpp:634 reports/summary.cpp:289
 #: reports/summary.cpp:321
@@ -4018,7 +4018,7 @@ msgstr "首頁"
 
 #: mmframe.cpp:714
 msgid "All Transactions"
-msgstr ""
+msgstr "所有交易"
 
 #: mmframe.cpp:746 mmhomepage.cpp:638 reports/summary.cpp:292
 #: reports/summary.cpp:324
@@ -4963,7 +4963,7 @@ msgstr "依類別查看收入"
 
 #: mmframereport.cpp:156
 msgid "Forecast Report"
-msgstr ""
+msgstr "預算報表"
 
 #: mmframereport.cpp:164 optionsettingshome.cpp:73
 msgid "Income vs Expenses"
@@ -4971,11 +4971,11 @@ msgstr "損益表"
 
 #: mmframereport.cpp:175
 msgid "My Usage"
-msgstr ""
+msgstr "我的花費"
 
 #: mmframereport.cpp:183 reports/payee.cpp:118
 msgid "Payees"
-msgstr ""
+msgstr "收款人"
 
 #: mmframereport.cpp:191
 msgid "Summary of Accounts"
@@ -4991,7 +4991,7 @@ msgstr ""
 
 #: mmframereport.cpp:226
 msgid "Stocks Report"
-msgstr ""
+msgstr "股票報表"
 
 #: mmframereport.cpp:311 mmreportspanel.cpp:367
 msgid "Hide"
@@ -6233,7 +6233,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:100
 msgid "Last Month"
-msgstr ""
+msgstr "上個月"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
@@ -6245,11 +6245,11 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:134
 msgid "Last 3 Months"
-msgstr ""
+msgstr "最近3個月"
 
 #: reports/mmDateRange.cpp:148
 msgid "Last 12 Months"
-msgstr ""
+msgstr "最近12個月"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
