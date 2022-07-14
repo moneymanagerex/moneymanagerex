@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"PO-Revision-Date: 2022-07-14 03:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -306,7 +306,7 @@ msgstr "開啟一個已建立的 Money Manager Ex 資料庫 (*.mmb檔案)"
 
 #: appstartdialog.cpp:115
 msgid "Change Language"
-msgstr ""
+msgstr "變更語言"
 
 #: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1541
 #: optionsettingsgeneral.cpp:93
