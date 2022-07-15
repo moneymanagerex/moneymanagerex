@@ -85,6 +85,7 @@ void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
     EVT_SET_FOCUS(mmComboBox::OnSetFocus)
+    EVT_COMBOBOX_DROPDOWN(wxID_ANY, mmComboBox::OnDropDown)
     EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
@@ -93,6 +94,12 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     , is_initialized_(false)
 {
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
+}
+
+void mmComboBox::OnDropDown(wxCommandEvent& event)
+{
+    wxFocusEvent evt;
+    OnSetFocus(evt);
 }
 
 void mmComboBox::OnSetFocus(wxFocusEvent& event)

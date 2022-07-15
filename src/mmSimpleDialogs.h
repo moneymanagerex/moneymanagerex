@@ -50,6 +50,7 @@ public:
 protected:
     void OnTextUpdated(wxCommandEvent& event);
     void OnSetFocus(wxFocusEvent& event);
+    void OnDropDown(wxCommandEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
     virtual void init() = 0;
     std::map<wxString, int> all_elements_;
