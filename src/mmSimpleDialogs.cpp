@@ -581,9 +581,9 @@ const wxString mmDialogComboBoxAutocomplete::getText() const
 
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
     const wxString& defaultText, const wxArrayString& choices)
-    : Default(defaultText),
-    Choices(choices),
-    Message(message),
+    : m_default_str(defaultText),
+    m_choices(choices),
+    m_message(message),
     cbText_(nullptr)
 {
     this->SetFont(parent->GetFont());
@@ -601,10 +601,10 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     this->SetSizer(Sizer);
 
     Sizer->AddSpacer(10);
-    wxStaticText* headerText = new wxStaticText(this, wxID_STATIC, Message);
+    wxStaticText* headerText = new wxStaticText(this, wxID_STATIC, m_message);
     Sizer->Add(headerText, flags);
     Sizer->AddSpacer(15);
-    cbText_ = new mmComboBoxCustom(this, Choices);
+    cbText_ = new mmComboBoxCustom(this, m_choices);
     cbText_->SetMinSize(wxSize(150, -1));
     Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
@@ -613,6 +613,7 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->AddSpacer(10);
 
     cbText_->SetFocus();
+    cbText_->ChangeValue(m_default_str);
     Centre();
     Fit();
     return true;
