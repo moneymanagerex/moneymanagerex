@@ -47,6 +47,7 @@ private:
     void CreateControls();
     void OnOk(wxCommandEvent& event);
     void OnCheckboxClick(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
     void onFocusChange(wxChildFocusEvent& event);
     void SetPayeeTransferControls();
     void OnTransTypeChanged(wxCommandEvent& event);

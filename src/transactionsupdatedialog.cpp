@@ -38,6 +38,7 @@ wxBEGIN_EVENT_TABLE(transactionsUpdateDialog, wxDialog)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, transactionsUpdateDialog::OnMoreFields)
     EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
     EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
+    EVT_CHAR_HOOK(transactionsUpdateDialog::OnComboKey)
     EVT_CHOICE(ID_TRANS_TYPE, transactionsUpdateDialog::OnTransTypeChanged)
 wxEND_EVENT_TABLE()
 
@@ -197,7 +198,7 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_payee_checkbox->Enable(!m_hasTransfers);
 
-    cbPayee_ = new mmComboBoxPayee(this, ID_PAYEE);
+    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE);
     cbPayee_->Enable(false);
     cbPayee_->SetMinSize(wxSize(200, -1));
 
@@ -345,6 +346,8 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             else
                 return;
         }
+        else
+            payee_id = cbPayee_->mmGetId();
     }
 
     if (m_transferAcc_checkbox->IsChecked())
@@ -546,4 +549,51 @@ void transactionsUpdateDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
+}
+
+void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        auto id = event.GetId();
+        switch (id)
+        {
+        case mmID_PAYEE:
+        {
+            const auto payeeName = cbPayee_->GetValue();
+            if (payeeName.empty())
+            {
+                mmPayeeDialog dlg(this, true);
+                dlg.ShowModal();
+                cbPayee_->mmDoReInitialize();
+                int payee_id = dlg.getPayeeId();
+                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                if (payee) {
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
+                    cbPayee_->SetInsertionPointEnd();
+                }
+                return;
+            }
+        }
+        break;
+        case mmID_CATEGORY:
+        {
+            auto category = cbCategory_->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                dlg.ShowModal();
+                cbCategory_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbCategory_->ChangeValue(category);
+                return;
+            }
+        }
+        break;
+        default:
+            break;
+        }
+    }
+
+    event.Skip();
 }
