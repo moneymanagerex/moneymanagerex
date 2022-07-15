@@ -227,9 +227,9 @@ private:
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX);
-    wxString Default;
-    wxArrayString Choices;
-    wxString Message;
+    wxString m_default_str;
+    wxArrayString m_choices;
+    wxString m_message;
 
     mmComboBoxCustom* cbText_;
 };
