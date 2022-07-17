@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-07-15 16:50+0300\n"
-"PO-Revision-Date: 2022-07-15 14:34\n"
+"POT-Creation-Date: 2022-07-17 14:51+0300\n"
+"PO-Revision-Date: 2022-07-17 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Povolením nám umožníte sbírat anonymní data o způsobu využíván
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:726
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:827 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:832 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:266
@@ -1845,7 +1845,7 @@ msgstr "Bez aktualizace budou ztraceny všechny změny"
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:727
+#: mmSimpleDialogs.cpp:732
 msgid "Invalid Entry"
 msgstr "Neplatný záznam"
 
@@ -2764,7 +2764,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:747
 msgid "Unable to open file."
 msgstr "Nelze otevřít soubor."
 
@@ -3372,7 +3372,7 @@ msgstr "Odstranění existujícího souboru selhalo. Soubor může být použív
 msgid "Destination file error"
 msgstr "Chyba cíle souboru"
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:750
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:755
 msgid "Invalid Account"
 msgstr "Neplatný účet"
 
@@ -3576,88 +3576,88 @@ msgstr ""
 msgid "Color #%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:667
+#: mmSimpleDialogs.cpp:672
 msgid "Subtract one year"
 msgstr "Odečíst jeden rok"
 
-#: mmSimpleDialogs.cpp:668
+#: mmSimpleDialogs.cpp:673
 msgid "Subtract one month"
 msgstr "Odečíst jeden měsíc"
 
-#: mmSimpleDialogs.cpp:669
+#: mmSimpleDialogs.cpp:674
 msgid "Add one month"
 msgstr "Přidat jeden měsíc"
 
-#: mmSimpleDialogs.cpp:670
+#: mmSimpleDialogs.cpp:675
 msgid "Add one year"
 msgstr "Přidat jeden rok"
 
-#: mmSimpleDialogs.cpp:726
+#: mmSimpleDialogs.cpp:731
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Záznam %s je neplatný"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:738
 msgid "Please use this button for category selection."
 msgstr "Použijte prosím toto tlačítko pro výběr kategorie."
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:739
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Použijte prosím toto tlačítko pro výběr kategorie\n"
 "nebo označte 'Rozdělit' pro více kategorií."
 
-#: mmSimpleDialogs.cpp:737
+#: mmSimpleDialogs.cpp:742
 msgid "Invalid Category"
 msgstr "Neplatná kategorie"
 
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:747
 msgid "File name is empty."
 msgstr "Název souboru je prázdný."
 
-#: mmSimpleDialogs.cpp:743
+#: mmSimpleDialogs.cpp:748
 msgid "Please select the file for this operation."
 msgstr "Vyberte prosím soubor pro tuto operaci."
 
-#: mmSimpleDialogs.cpp:753
+#: mmSimpleDialogs.cpp:758
 msgid "Please select the account for this transaction."
 msgstr "Vyberte účet pro tuto transakci."
 
-#: mmSimpleDialogs.cpp:755
+#: mmSimpleDialogs.cpp:760
 msgid "Please specify which account the transfer is going to."
 msgstr "Zadejte účet kam transakce odchází."
 
-#: mmSimpleDialogs.cpp:757
+#: mmSimpleDialogs.cpp:762
 msgid "Selection can be made by using the dropdown button."
 msgstr "Výběr lze provést pomocí tlačítka místní nabídky."
 
-#: mmSimpleDialogs.cpp:760
+#: mmSimpleDialogs.cpp:765
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Aktivací tlačítka se nabídne výběrové pole, kde můžete vybrat účet."
 
-#: mmSimpleDialogs.cpp:769
+#: mmSimpleDialogs.cpp:774
 msgid "Invalid Payee"
 msgstr "Neplatný příjemce"
 
-#: mmSimpleDialogs.cpp:770
+#: mmSimpleDialogs.cpp:775
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Zadejte prosím nového příjemce,\n"
 "nebo jej vyberte ze seznamu."
 
-#: mmSimpleDialogs.cpp:778 mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:783 mmSimpleDialogs.cpp:795
 msgid "Invalid Name"
 msgstr "Neplatný název"
 
-#: mmSimpleDialogs.cpp:781 mmSimpleDialogs.cpp:793
+#: mmSimpleDialogs.cpp:786 mmSimpleDialogs.cpp:798
 msgid "Already exist!"
 msgstr "Již existuje!"
 
-#: mmSimpleDialogs.cpp:783
+#: mmSimpleDialogs.cpp:788
 msgid "Please type in a non empty name."
 msgstr "Zadejte prosím jméno příjemce (pole nemůže být prázdné)."
 
-#: mmSimpleDialogs.cpp:795
+#: mmSimpleDialogs.cpp:800
 msgid "Please type in a non empty symbol."
 msgstr "Zadejte prosím symbol (pole nemůže být prázdné)."
 
