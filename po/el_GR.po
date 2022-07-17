@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-07-07 12:59+0300\n"
-"PO-Revision-Date: 2022-07-07 11:03\n"
+"POT-Creation-Date: 2022-07-15 16:50+0300\n"
+"PO-Revision-Date: 2022-07-15 14:34\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -47,11 +47,11 @@ msgstr "Άδεια"
 msgid "Privacy"
 msgstr "Ιδιωτικό απόρρητο"
 
-#: aboutdialog.cpp:245 optionsettingsnet.cpp:114
+#: aboutdialog.cpp:245 optionsettingsnet.cpp:121
 msgid "Send anonymous statistics usage data"
 msgstr "Αποστολή ανώνυμα στατιστικών δεδομένων χρήσης"
 
-#: aboutdialog.cpp:246 optionsettingsnet.cpp:116
+#: aboutdialog.cpp:246 optionsettingsnet.cpp:123
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Ενεργοποιήστε για να μας βοηθήσετε να στέλνουμε ανώνυμα δεδομένα σχετικά με τη χρήση MMEX."
 
@@ -61,15 +61,15 @@ msgstr "Ενεργοποιήστε για να μας βοηθήσετε να σ
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:726
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:819 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:827 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
-#: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:265
+#: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:266
 #: transdialog.cpp:524 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&Εντάξει "
 
-#: accountdialog.cpp:112 mmframe.cpp:1572
+#: accountdialog.cpp:112 mmframe.cpp:1578
 msgid "Edit Account"
 msgstr "Επεξεργασία λογαριασμού"
 
@@ -132,7 +132,7 @@ msgstr "Δηλώστε εάν αυτός ο λογαριασμός χρησιμ�
 #: import_export/qif_export.cpp:591 import_export/qif_import_gui.cpp:107
 #: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:240
 #: reports/transactions.cpp:165 sharetransactiondialog.cpp:272
-#: stockdialog.cpp:263 stocks_list.cpp:100 transactionsupdatedialog.cpp:240
+#: stockdialog.cpp:263 stocks_list.cpp:100 transactionsupdatedialog.cpp:241
 #: transdialog.cpp:500 usertransactionpanel.cpp:196 webappdialog.cpp:154
 msgid "Notes"
 msgstr "Σημειώσεις"
@@ -266,7 +266,7 @@ msgstr "Όνομα λογαριασμού"
 
 #: accountdialog.cpp:510 import_export/qif_export.cpp:589
 #: import_export/qif_import_gui.cpp:260 import_export/univcsvdialog.cpp:113
-#: optionsettingsgeneral.cpp:116 optionsettingsgeneral.cpp:271
+#: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:282
 #: reports/htmlbuilder.cpp:218
 msgid "Currency"
 msgstr "Νόμισμα"
@@ -279,7 +279,7 @@ msgstr "Παρακαλώ εισάγετε ένα έγκυρο URL"
 msgid "Invalid URL"
 msgstr "Λανθασμένο URL"
 
-#: accountdialog.h:38 mmframe.cpp:1569 mmframe.cpp:1810
+#: accountdialog.h:38 mmframe.cpp:1575 mmframe.cpp:1817
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:165
 msgid "New Account"
 msgstr "Νέος λογαριασμός"
@@ -308,8 +308,8 @@ msgstr "Άνοιγμα μιας ήδη δημιουργημένης βάσης �
 msgid "Change Language"
 msgstr "Αλλαγή γλώσσας"
 
-#: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1541
-#: optionsettingsgeneral.cpp:93
+#: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1547
+#: optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
 msgstr "Αλλαγή γλώσσας που χρησιμοποιείται για το γραφικό περιβάλλον MMEX"
 
@@ -344,20 +344,20 @@ msgstr "&Έξοδος "
 msgid "Open the previously opened database : %s"
 msgstr "Ανοίξτε την τελευταία ανοιγμένη βάση δεδομένων: %s"
 
-#: appstartdialog.cpp:206 mmframe.cpp:1546 mmframe.cpp:2752
-#: optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:349
+#: appstartdialog.cpp:206 mmframe.cpp:1552 mmframe.cpp:2759
+#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
 msgid "system default"
 msgstr "προεπιλογή συστήματος"
 
-#: appstartdialog.cpp:219 optionsettingsgeneral.cpp:85
+#: appstartdialog.cpp:219 optionsettingsgeneral.cpp:92
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: appstartdialog.cpp:226 mmframe.cpp:3481 optionsettingsgeneral.cpp:339
+#: appstartdialog.cpp:226 mmframe.cpp:3488 optionsettingsgeneral.cpp:350
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Η γλώσσα αυτής της εφαρμογής έχει αλλάξει. Η αλλαγή θα τεθεί σε ισχύ την επόμενη φορά που θα ξεκινήσει η εφαρμογή."
 
-#: appstartdialog.cpp:228 mmframe.cpp:3483 optionsettingsgeneral.cpp:341
+#: appstartdialog.cpp:228 mmframe.cpp:3490 optionsettingsgeneral.cpp:352
 msgid "Language change"
 msgstr "Αλλαγή γλώσσας"
 
@@ -400,7 +400,7 @@ msgstr "Εισάγετε το όνομα του περιουσιακού στο�
 #: mmreportspanel.cpp:273 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:239 reports/incexpenses.cpp:244 reports/summary.cpp:317
 #: reports/transactions.cpp:157 stockdialog.cpp:296 stockdialog.cpp:675
-#: transactionsupdatedialog.cpp:142 transdialog.cpp:362
+#: transactionsupdatedialog.cpp:143 transdialog.cpp:362
 #: usertransactionpanel.cpp:98 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
 msgstr "Ημερομηνία"
@@ -485,7 +485,7 @@ msgstr "Ταυτότητα"
 #: import_export/qif_import_gui.cpp:104 import_export/qif_import_gui.cpp:259
 #: import_export/univcsvdialog.cpp:109 maincurrencydialog.cpp:260
 #: mmhomepage.cpp:435 reports/incexpenses.cpp:108 reports/transactions.cpp:163
-#: splitdetailsdialog.cpp:119 transactionsupdatedialog.cpp:165
+#: splitdetailsdialog.cpp:119 transactionsupdatedialog.cpp:166
 #: transdialog.cpp:399 usertransactionpanel.cpp:128 webappdialog.cpp:150
 msgid "Type"
 msgstr "Τύπος"
@@ -527,7 +527,7 @@ msgid "&Delete Asset"
 msgstr "&Διαγραφή περιουσιακού στοιχείου"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
-#: mmframe.cpp:1364 mmframe.cpp:1384 payeedialog.cpp:412 stocks_list.cpp:146
+#: mmframe.cpp:1370 mmframe.cpp:1390 payeedialog.cpp:412 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr "&Οργάνωση Συνημμένων"
 
@@ -545,7 +545,7 @@ msgstr "Το MMEX σας επιτρέπει να παρακολουθείτε σ
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:730
 #: general_report_manager.cpp:1007 mmframe.cpp:485 mmframe.cpp:750
-#: mmframe.cpp:1634 mmframe.cpp:3119 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
+#: mmframe.cpp:1640 mmframe.cpp:3126 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "Περιουσιακά στοιχεία"
 
@@ -553,7 +553,7 @@ msgstr "Περιουσιακά στοιχεία"
 #: filtertransdialog.cpp:220 filtertransdialog.cpp:493
 #: filtertransdialog.cpp:795 filtertransdialog.cpp:1801
 #: import_export/qif_export.cpp:74 import_export/qif_export.cpp:75
-#: import_export/qif_export.cpp:145 mmframe.cpp:1408
+#: import_export/qif_export.cpp:145 mmframe.cpp:1414
 msgid "All"
 msgstr "Όλοι"
 
@@ -786,9 +786,9 @@ msgstr "Παρακαλώ επιβεβαιώστε ότι το αρχείο υπ�
 msgid "Open attachment failed"
 msgstr "Αποτυχία ανοίγματος συνημμένου"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:529
-#: model/Model_Asset.cpp:23 model/Model_Budget.cpp:55 optionsettingsmisc.cpp:96
-#: reports/reportbase.cpp:198
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:536
+#: model/Model_Asset.cpp:23 model/Model_Budget.cpp:55
+#: optionsettingsmisc.cpp:103 reports/reportbase.cpp:198
 msgid "None"
 msgstr "Κανένα"
 
@@ -943,7 +943,7 @@ msgstr "Δηλώστε την κατάσταση της συναλλαγής"
 #: import_export/qif_import_gui.cpp:261 import_export/qif_import_gui.cpp:272
 #: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:108
 #: mmchecking_list.cpp:221 reports/transactions.cpp:161
-#: transactionsupdatedialog.cpp:150 transdialog.cpp:378
+#: transactionsupdatedialog.cpp:151 transdialog.cpp:378
 #: usertransactionpanel.cpp:168 webappdialog.cpp:149 wizard_update.cpp:141
 msgid "Status"
 msgstr "Κατάσταση"
@@ -967,7 +967,7 @@ msgstr "Επιτρέπει την ρύθμιση διαφορετικών ποσ
 #: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/budgetcategorysummary.cpp:189
 #: reports/categexp.cpp:179 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:164 splitdetailsdialog.cpp:135
-#: splittransactionsdialog.cpp:114 transactionsupdatedialog.cpp:183
+#: splittransactionsdialog.cpp:114 transactionsupdatedialog.cpp:184
 #: transdialog.cpp:416 usertransactionpanel.cpp:132 webappdialog.cpp:153
 msgid "Amount"
 msgstr "Ποσό"
@@ -1003,7 +1003,7 @@ msgstr "Προς"
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:266
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:219
 #: model/Model_Attachment.cpp:29 reports/payee.cpp:135
-#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:196
+#: reports/transactions.cpp:160 transactionsupdatedialog.cpp:197
 #: transdialog.cpp:232 transdialog.cpp:443 usertransactionpanel.cpp:172
 #: webappdialog.cpp:151
 msgid "Payee"
@@ -1019,7 +1019,7 @@ msgstr "Δικαιούχος"
 #: reports/budgetingperf.cpp:220 reports/categexp.cpp:178
 #: reports/categexp.cpp:428 reports/transactions.cpp:162
 #: splitdetailsdialog.cpp:144 splitdetailsdialog.cpp:186
-#: splittransactionsdialog.cpp:113 transactionsupdatedialog.cpp:220
+#: splittransactionsdialog.cpp:113 transactionsupdatedialog.cpp:221
 #: transdialog.cpp:456 transdialog.cpp:566 usertransactionpanel.cpp:179
 #: webappdialog.cpp:152
 msgid "Category"
@@ -1047,7 +1047,7 @@ msgstr "Αριθμός"
 msgid "Select one of the frequently used notes"
 msgstr "Επιλέξτε μια από τις συχνότερα χρησιμοποιούμενες σημειώσεις"
 
-#: billsdepositsdialog.cpp:602 transactionsupdatedialog.cpp:234
+#: billsdepositsdialog.cpp:602 transactionsupdatedialog.cpp:235
 #: transdialog.cpp:490
 msgid "User Colors"
 msgstr "Χρώματα Χρήστη"
@@ -1060,7 +1060,7 @@ msgstr "Οργάνωση συνημμένων αυτής της επαναλαμ
 #: filtertransdialog.cpp:955 filtertransdialog.cpp:1548
 #: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:393
 #: import_export/univcsvdialog.cpp:986 reports/transactions.cpp:156
-#: transactionsupdatedialog.cpp:231 transactionsupdatedialog.cpp:399
+#: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:402
 #: transdialog.cpp:505
 msgid "Color"
 msgstr "Χρώμα"
@@ -1071,7 +1071,7 @@ msgid "Specify any text notes you want to add to this transaction."
 msgstr "Δηλώστε τυχόν σημειώσεις που θέλετε να προσθέσετε σε αυτήν τη συναλλαγή."
 
 #: billsdepositsdialog.cpp:640 filtertransdialog.cpp:733
-#: transactionsupdatedialog.cpp:272 transdialog.cpp:528
+#: transactionsupdatedialog.cpp:273 transdialog.cpp:528
 msgid "Show/Hide custom fields window"
 msgstr "Εμφάνιση/Απόκρυψη προσαρμοσμένου παραθύρου πεδίων"
 
@@ -1088,7 +1088,7 @@ msgstr "Η ημερομηνία πληρωμής είναι μετά την ημ
 msgid "Looks like a late payment"
 msgstr "Φαίνεται σαν μια καθυστερημένη πληρωμή"
 
-#: billsdepositsdialog.cpp:904 transactionsupdatedialog.cpp:334
+#: billsdepositsdialog.cpp:904 transactionsupdatedialog.cpp:335
 #: transdialog.cpp:591
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
@@ -1096,7 +1096,7 @@ msgid "You have not used this payee name before. Is the name correct?\n"
 msgstr "Δεν έχετε χρησιμοποιήσει αυτό το όνομα δικαιούχου πριν. Είναι το όνομα σωστό?\n"
 "%s"
 
-#: billsdepositsdialog.cpp:905 transactionsupdatedialog.cpp:335
+#: billsdepositsdialog.cpp:905 transactionsupdatedialog.cpp:336
 #: transdialog.cpp:592
 msgid "Confirm payee name"
 msgstr "Επιβεβαίωση ονόματος δικαιούχου"
@@ -1108,9 +1108,9 @@ msgstr "Επιβεβαίωση ονόματος δικαιούχου"
 #: filtertransdialog.cpp:937 filtertransdialog.cpp:946
 #: filtertransdialog.cpp:955 filtertransdialog.cpp:963
 #: filtertransdialog.cpp:969 import_export/univcsvdialog.cpp:986
-#: optionsettingsgeneral.cpp:271 optionsettingsgeneral.cpp:296
-#: splitdetailsdialog.cpp:186 transactionsupdatedialog.cpp:399
-#: transdialog.cpp:558 transdialog.cpp:566 util.cpp:690
+#: optionsettingsgeneral.cpp:282 optionsettingsgeneral.cpp:307
+#: splitdetailsdialog.cpp:186 transactionsupdatedialog.cpp:402
+#: transdialog.cpp:558 transdialog.cpp:566 util.cpp:721
 msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
@@ -1162,7 +1162,7 @@ msgstr "Καθορίστε τον αριθμό των πληρωμών που π
 
 #: billsdepositsdialog.cpp:1242 images_list.cpp:512
 #: import_export/univcsvdialog.cpp:1158 maincurrencydialog.cpp:478
-#: mmframe.cpp:3446 splittransactionsdialog.cpp:247 stockspanel.cpp:326
+#: mmframe.cpp:3453 splittransactionsdialog.cpp:247 stockspanel.cpp:326
 #: stockspanel.cpp:327 themes.cpp:316 themes.cpp:335 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Error"
@@ -1243,7 +1243,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Συμβουλή: Αυτές οι συναλλαγές μπορούν να ρυθμιστούν για να ενεργοποιηθούν - επιτρέποντας στο χρήστη να προσαρμόσει τυχόν τιμές κατά την ημερομηνία λήξης."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:975 mmframe.cpp:754
-#: mmframe.cpp:2910 mmhomepagepanel.cpp:230
+#: mmframe.cpp:2917 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
 msgstr "Επαναλαμβανόμενες Συναλλαγές"
 
@@ -1557,7 +1557,7 @@ msgstr "Το έτος προϋπολογισμού ήδη υπάρχει"
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#: categdialog.cpp:217 mmframe.cpp:1610
+#: categdialog.cpp:217 mmframe.cpp:1616
 msgid "Reassign all categories to another category"
 msgstr "Εκχώρηση όλων των κατηγοριών σε μια άλλη κατηγορία"
 
@@ -1664,16 +1664,16 @@ msgstr "Επεξεργασία Κατηγορίας"
 msgid "Organise Categories: Editing Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα Επεξεργασίας"
 
-#: categdialog.cpp:604 mmframe.cpp:3377
+#: categdialog.cpp:604 mmframe.cpp:3384
 msgid "Category Relocation Completed."
 msgstr "Η Μετατόπιση Κατηγορίας Ολοκληρώθηκε."
 
-#: categdialog.cpp:605 mmframe.cpp:3378 mmframe.cpp:3393 payeedialog.cpp:357
+#: categdialog.cpp:605 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Οι εγγραφές έχουν ενημερωθεί στη βάση δεδομένων: %i"
 
-#: categdialog.cpp:607 mmframe.cpp:3380
+#: categdialog.cpp:607 mmframe.cpp:3387
 msgid "Category Relocation Result"
 msgstr "Αποτέλεσμα μετατόπισης κατηγορίας"
 
@@ -1693,7 +1693,7 @@ msgstr "Αφαίρεση κατηγορίας"
 msgid "Clear Settings"
 msgstr "Καθαρισμός Ρυθμίσεων"
 
-#: categdialog.h:69 mmframe.cpp:1597 mmframe.cpp:1815
+#: categdialog.h:69 mmframe.cpp:1603 mmframe.cpp:1822
 msgid "Organize Categories"
 msgstr "Οργάνωση των κατηγοριών"
 
@@ -1769,16 +1769,16 @@ msgstr "Προβολή Από Ημερομηνία Δήλωσης"
 msgid "ALL"
 msgstr "ΟΛΑ"
 
-#: constants.cpp:192 mmframe.cpp:1410 mmframe.cpp:1808
+#: constants.cpp:192 mmframe.cpp:1416 mmframe.cpp:1815
 #: model/Model_Account.cpp:27
 msgid "Open"
 msgstr "Ανοικτοί"
 
-#: constants.cpp:193 mmframe.cpp:1411 model/Model_Account.cpp:28
+#: constants.cpp:193 mmframe.cpp:1417 model/Model_Account.cpp:28
 msgid "Closed"
 msgstr "Κλειστός"
 
-#: constants.cpp:194 mmframe.cpp:1409
+#: constants.cpp:194 mmframe.cpp:1415
 msgid "Favorites"
 msgstr "Αγαπημένοι"
 
@@ -1841,7 +1841,7 @@ msgstr "Τυχόν αλλαγές θα χαθούν χωρίς ενημέρωσ�
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:719
+#: mmSimpleDialogs.cpp:727
 msgid "Invalid Entry"
 msgstr "Μη έγκυρη εισαγωγή"
 
@@ -1902,7 +1902,7 @@ msgstr "Αυτόματη Συμπλήρωση"
 msgid "Enables autocomplete on custom field"
 msgstr "Ενεργοποιεί την αυτόματη συμπλήρωση σε προσαρμοσμένο πεδίο"
 
-#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:203 util.cpp:573
+#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:203 util.cpp:604
 msgid "Default"
 msgstr "Προεπιλογή"
 
@@ -1940,8 +1940,8 @@ msgstr "Επιλέξτε μια τιμή για την απεικόνιση το
 msgid "Changing field type will delete all content!"
 msgstr "Η αλλαγή τύπου πεδίου θα διαγράψει όλο το περιεχόμενο!"
 
-#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2192
-#: mmframe.cpp:2211
+#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2199
+#: mmframe.cpp:2218
 msgid "Do you want to proceed?"
 msgstr "Θέλετε να προχωρήσετε;"
 
@@ -2330,7 +2330,7 @@ msgstr "Ο κωδικός πρόσβασης που δόθηκε για ένα �
 msgid "Error: %s"
 msgstr "Σφάλμα: %s"
 
-#: dbwrapper.cpp:85 mmframe.cpp:1906
+#: dbwrapper.cpp:85 mmframe.cpp:1913
 msgid "Opening MMEX Database - Error"
 msgstr "Άνοιγμα βάσης δεδομένων MMEX - Σφάλμα"
 
@@ -2375,7 +2375,7 @@ msgstr "Διπλότυπο"
 msgid "All Except Reconciled"
 msgstr "Όλα Εκτός Επανασύνδεσης"
 
-#: filtertransdialog.cpp:474 transactionsupdatedialog.cpp:134
+#: filtertransdialog.cpp:474 transactionsupdatedialog.cpp:135
 msgid "Specify"
 msgstr "Καθορισμός"
 
@@ -2469,15 +2469,15 @@ msgstr ""
 msgid "Hide Report Columns"
 msgstr ""
 
-#: filtertransdialog.cpp:1160 mmframe.cpp:1166
+#: filtertransdialog.cpp:1160 mmframe.cpp:1172
 msgid "The selected item will be deleted"
 msgstr "Το επιλεγμένο στοιχείο θα διαγραφεί"
 
-#: filtertransdialog.cpp:1161 mmframe.cpp:1167
+#: filtertransdialog.cpp:1161 mmframe.cpp:1173
 msgid "Do you wish to continue?"
 msgstr "Θέλετε να συνεχίσετε;"
 
-#: filtertransdialog.cpp:1162 mmframe.cpp:1168
+#: filtertransdialog.cpp:1162 mmframe.cpp:1174
 msgid "Settings item deletion"
 msgstr "Διαγραφή ρυθμίσεων στοιχείου"
 
@@ -2509,11 +2509,11 @@ msgstr "Ελάχιστο Ποσό"
 msgid "Amount Max."
 msgstr "Μέγιστο Ποσό"
 
-#: filtertransdialog.cpp:1713 mmframe.cpp:1195
+#: filtertransdialog.cpp:1713 mmframe.cpp:1201
 msgid "Setting Name"
 msgstr "Όνομα Ρύθμισης"
 
-#: filtertransdialog.cpp:1713 mmframe.cpp:1195
+#: filtertransdialog.cpp:1713 mmframe.cpp:1201
 msgid "Please Enter"
 msgstr "Παρακαλούμε εισάγετε"
 
@@ -2544,13 +2544,13 @@ msgstr "Παρακαλώ επιβεβαιώστε"
 msgid "Choose Accounts"
 msgstr "Επιλέξτε λογαριασμούς"
 
-#: general_report_manager.cpp:293 mmframe.cpp:768 mmframe.cpp:2696
+#: general_report_manager.cpp:293 mmframe.cpp:768 mmframe.cpp:2703
 #: mmframereport.cpp:311 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr "Αναφορές"
 
 #: general_report_manager.cpp:388 import_export/univcsvdialog.cpp:430
-#: mmframe.cpp:1310 mmframe.cpp:1470
+#: mmframe.cpp:1316 mmframe.cpp:1476
 msgid "&Import"
 msgstr "&Εισαγωγή"
 
@@ -2559,7 +2559,7 @@ msgid "Locate and load a report file."
 msgstr "Εντοπίστε και φορτώστε ένα αρχείο αναφοράς."
 
 #: general_report_manager.cpp:392 import_export/univcsvdialog.cpp:432
-#: mmframe.cpp:1317 mmframe.cpp:1479
+#: mmframe.cpp:1323 mmframe.cpp:1485
 msgid "&Export"
 msgstr "&Εξαγωγή"
 
@@ -2673,7 +2673,7 @@ msgid "Enter the name for the report"
 msgstr "Εισάγετε το όνομα της αναφοράς"
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
-#: mmframe.cpp:773 mmframe.cpp:1652 mmframe.cpp:1821
+#: mmframe.cpp:773 mmframe.cpp:1658 mmframe.cpp:1828
 msgid "General Report Manager"
 msgstr "Διαχείριση Γενικών Αναφορών"
 
@@ -2757,12 +2757,12 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Δεν βρέθηκε λειτουργικό θέμα, η εγκατάσταση μπορεί να είναι κατεστραμμένη"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:742
 msgid "Unable to open file."
 msgstr "Αδυναμία ανοίγματος αρχείου."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:992 mmframe.cpp:2354 mmframe.cpp:2373
+#: import_export/univcsvdialog.cpp:992 mmframe.cpp:2361 mmframe.cpp:2380
 msgid "Universal CSV Import"
 msgstr "Εισαγωγή γενικής μορφής CSV"
 
@@ -2836,8 +2836,8 @@ msgstr "JSON"
 msgid "CSV"
 msgstr "CSV"
 
-#: import_export/qif_export.cpp:143 mmframe.cpp:3210 mmframe.cpp:3214
-#: mmframe.cpp:3233 mmframe.cpp:3237
+#: import_export/qif_export.cpp:143 mmframe.cpp:3217 mmframe.cpp:3221
+#: mmframe.cpp:3240 mmframe.cpp:3244
 msgid "Accounts"
 msgstr "Λογαριασμοί"
 
@@ -2850,7 +2850,7 @@ msgid "To Date"
 msgstr "Έως ημερομηνία"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:303
-#: optionsettingsgeneral.cpp:96
+#: optionsettingsgeneral.cpp:103
 msgid "Date Format"
 msgstr "Μορφή ημερομηνίας"
 
@@ -2936,7 +2936,7 @@ msgstr "Αριθμός συναλλαγών που εξήχθησαν: %zu\n"
 msgid "Number of accounts exported: %zu"
 msgstr "Αριθμός λογαριασμών που εξήχθησαν: %zu"
 
-#: import_export/qif_export.cpp:636 mmframe.cpp:1476
+#: import_export/qif_export.cpp:636 mmframe.cpp:1482
 msgid "Export to QIF"
 msgstr "Εξαγωγή σε QIF"
 
@@ -3225,7 +3225,7 @@ msgstr "Μετακίνηση επάνω"
 msgid "Move &Down"
 msgstr "Μετακίνηση &κάτω"
 
-#: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:207
+#: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:214
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Καθορίστε το διαχωριστικό προς χρήση κατά την εισαγωγή/εξαγωγή αρχείων CSV"
 
@@ -3364,7 +3364,7 @@ msgstr "Αποτυχία διαγραφής υπάρχοντος αρχείου.
 msgid "Destination file error"
 msgstr "Σφάλμα αρχείου προορισμού"
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:742
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:750
 msgid "Invalid Account"
 msgstr "Μη Έγκυρος Λογαριασμός"
 
@@ -3482,7 +3482,7 @@ msgstr "Θέλετε πραγματικά να διαγράψετε το επι�
 #: maincurrencydialog.cpp:363 maincurrencydialog.cpp:433
 #: maincurrencydialog.cpp:659 maincurrencydialog.cpp:784
 #: maincurrencydialog.cpp:808 maincurrencydialog.h:76
-#: optionsettingsgeneral.cpp:279
+#: optionsettingsgeneral.cpp:290
 msgid "Currency Dialog"
 msgstr "Παράθυρο νομισμάτων"
 
@@ -3538,7 +3538,7 @@ msgstr "Δεν είναι δυνατή η λήψη %s ισοτιμίας συν�
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr "Δεν είναι δυνατή η λήψη του ιστορικού για το σύμβολο %s. Οι τιμές ιστορικού δεν είναι διαθέσιμες!"
 
-#: maincurrencydialog.cpp:783 optionsettingsgeneral.cpp:278
+#: maincurrencydialog.cpp:783 optionsettingsgeneral.cpp:289
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr "Η αλλαγή του βασικού νομίσματος θα διαγράψει όλες τις τιμές ιστορικού, θα προχωρήσει;"
 
@@ -3551,105 +3551,105 @@ msgstr "Θέλετε να ενημερώσετε σήμερα τις συναλ�
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Δεν είναι δυνατή η λήψη του ιστορικού για το σύμβολο βάσης %s. Οι τιμές ιστορικού δεν είναι διαθέσιμες!"
 
-#: maincurrencydialog.cpp:871 stockspanel.cpp:337 util.cpp:618
+#: maincurrencydialog.cpp:871 stockspanel.cpp:337 util.cpp:649
 msgid "Could not find base currency symbol!"
 msgstr "Αδυναμία εύρεσης του συμβόλου του βασικού νομίσματος!"
 
-#: mmSimpleDialogs.cpp:387
+#: mmSimpleDialogs.cpp:394
 msgid "Retard or advance the date"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:472 mmSimpleDialogs.cpp:484
+#: mmSimpleDialogs.cpp:479 mmSimpleDialogs.cpp:491
 msgid "Clear color"
 msgstr "Καθαρισμός χρώματος"
 
-#: mmSimpleDialogs.cpp:475 mmSimpleDialogs.cpp:489
+#: mmSimpleDialogs.cpp:482 mmSimpleDialogs.cpp:496
 #, c-format
 msgid "Color #%i"
 msgstr "Χρώμα #%i"
 
-#: mmSimpleDialogs.cpp:659
+#: mmSimpleDialogs.cpp:667
 msgid "Subtract one year"
 msgstr "Αφαιρέστε ένα χρόνο"
 
-#: mmSimpleDialogs.cpp:660
+#: mmSimpleDialogs.cpp:668
 msgid "Subtract one month"
 msgstr "Αφαιρέστε ένα μήνα"
 
-#: mmSimpleDialogs.cpp:661
+#: mmSimpleDialogs.cpp:669
 msgid "Add one month"
 msgstr "Προσθέστε ένα μήνα"
 
-#: mmSimpleDialogs.cpp:662
+#: mmSimpleDialogs.cpp:670
 msgid "Add one year"
 msgstr "Προσθέστε ένα χρόνο"
 
-#: mmSimpleDialogs.cpp:718
+#: mmSimpleDialogs.cpp:726
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Η καταχώρηση %s δεν είναι έγκυρη"
 
-#: mmSimpleDialogs.cpp:725
+#: mmSimpleDialogs.cpp:733
 msgid "Please use this button for category selection."
 msgstr "Παρακαλώ χρησιμοποιήστε αυτό το κουμπί για την επιλογή κατηγορίας."
 
-#: mmSimpleDialogs.cpp:726
+#: mmSimpleDialogs.cpp:734
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Παρακαλούμε χρησιμοποιήστε αυτό το κουμπί για την επιλογή κατηγορίας\n"
 "ή χρησιμοποιήστε το πλαίσιο ελέγχου 'Διαχωρισμός' για πολλαπλές κατηγορίες."
 
-#: mmSimpleDialogs.cpp:729
+#: mmSimpleDialogs.cpp:737
 msgid "Invalid Category"
 msgstr "Μη Έγκυρη Κατηγορία"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:742
 msgid "File name is empty."
 msgstr "Το όνομα αρχείου είναι κενό."
 
-#: mmSimpleDialogs.cpp:735
+#: mmSimpleDialogs.cpp:743
 msgid "Please select the file for this operation."
 msgstr "Παρακαλώ επιλέξτε το αρχείο για αυτήν τη λειτουργία."
 
-#: mmSimpleDialogs.cpp:745
+#: mmSimpleDialogs.cpp:753
 msgid "Please select the account for this transaction."
 msgstr "Παρακαλώ επιλέξτε το λογαριασμό για αυτή τη συναλλαγή."
 
-#: mmSimpleDialogs.cpp:747
+#: mmSimpleDialogs.cpp:755
 msgid "Please specify which account the transfer is going to."
 msgstr "Παρακαλείστε να προσδιορίσετε σε ποιο λογαριασμό θα γίνει η μεταφορά."
 
-#: mmSimpleDialogs.cpp:749
+#: mmSimpleDialogs.cpp:757
 msgid "Selection can be made by using the dropdown button."
 msgstr "Η επιλογή μπορεί να γίνει με τη χρήση του αναδιπλούμενου κουμπιού."
 
-#: mmSimpleDialogs.cpp:752
+#: mmSimpleDialogs.cpp:760
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Η ενεργοποίηση του κουμπιού θα παρέχει ένα πλαίσιο επιλογής όπου μπορεί να επιλεγεί ο λογαριασμός."
 
-#: mmSimpleDialogs.cpp:761
+#: mmSimpleDialogs.cpp:769
 msgid "Invalid Payee"
 msgstr "Μη έγκυρος δικαιούχος"
 
-#: mmSimpleDialogs.cpp:762
+#: mmSimpleDialogs.cpp:770
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Παρακαλώ πληκτρολογήστε ένα νέο δικαιούχο πληρωμής,\n"
 "ή κάντε μια επιλογή χρησιμοποιώντας το αναδιπλούμενο κουμπί."
 
-#: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:782
+#: mmSimpleDialogs.cpp:778 mmSimpleDialogs.cpp:790
 msgid "Invalid Name"
 msgstr "Μη Έγκυρο Όνομα"
 
-#: mmSimpleDialogs.cpp:773 mmSimpleDialogs.cpp:785
+#: mmSimpleDialogs.cpp:781 mmSimpleDialogs.cpp:793
 msgid "Already exist!"
 msgstr "Υπάρχουν ήδη!"
 
-#: mmSimpleDialogs.cpp:775
+#: mmSimpleDialogs.cpp:783
 msgid "Please type in a non empty name."
 msgstr "Παρακαλώ πληκτρολογήστε ένα μη κενό όνομα."
 
-#: mmSimpleDialogs.cpp:787
+#: mmSimpleDialogs.cpp:795
 msgid "Please type in a non empty symbol."
 msgstr "Παρακαλώ πληκτρολογήστε ένα μη κενό σύμβολο."
 
@@ -3920,7 +3920,7 @@ msgstr "Επιλέξτε λογαριασμό προορισμού "
 msgid "Recurring Transaction saved."
 msgstr "Η επαναλαμβανόμενη συναλλαγή αποθηκεύτηκε."
 
-#: mmcheckingpanel.cpp:334 mmframe.cpp:1813 transdialog.cpp:160
+#: mmcheckingpanel.cpp:334 mmframe.cpp:1820 transdialog.cpp:160
 msgid "New Transaction"
 msgstr "Νέα συναλλαγή"
 
@@ -4056,7 +4056,7 @@ msgstr "Δανειακοί Λογαριασμοί"
 msgid "Auto Repeat Transactions"
 msgstr "Συναλλαγές Αυτόματης Επανάληψης"
 
-#: mmframe.cpp:710 mmframe.cpp:1811
+#: mmframe.cpp:710 mmframe.cpp:1818
 msgid "Home Page"
 msgstr "Αρχική σελίδα"
 
@@ -4069,705 +4069,705 @@ msgstr "Όλες οι συναλλαγές"
 msgid "Share Accounts"
 msgstr "Κοινόχρηστοι λογαριασμοί"
 
-#: mmframe.cpp:758 mmframe.cpp:1626 mmframe.cpp:2575
+#: mmframe.cpp:758 mmframe.cpp:1632 mmframe.cpp:2582
 msgid "Budget Setup"
 msgstr "Διαμόρφωση προϋπολογισμού"
 
-#: mmframe.cpp:763 mmframe.cpp:1228 mmframe.cpp:1245 mmframe.cpp:2556
+#: mmframe.cpp:763 mmframe.cpp:1234 mmframe.cpp:1251 mmframe.cpp:2563
 msgid "Transaction Report"
 msgstr "Έκθεση των συναλλαγών"
 
-#: mmframe.cpp:780 mmframe.cpp:2395 mmframe.cpp:2646 mmhelppanel.cpp:69
+#: mmframe.cpp:780 mmframe.cpp:2402 mmframe.cpp:2653 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Βοήθεια"
 
-#: mmframe.cpp:1202
+#: mmframe.cpp:1208
 msgid "A setting with this name already exists"
 msgstr "Υπάρχει ήδη μια ρύθμιση με αυτό το όνομα"
 
-#: mmframe.cpp:1204
+#: mmframe.cpp:1210
 msgid "Please specify a new name for the setting"
 msgstr "Παρακαλώ ορίστε ένα νέο όνομα για την ρύθμιση"
 
-#: mmframe.cpp:1206
+#: mmframe.cpp:1212
 msgid "Name in use"
 msgstr "Όνομα σε χρήση"
 
-#: mmframe.cpp:1263
+#: mmframe.cpp:1269
 msgid "Do you really want to delete the account?"
 msgstr "Θέλετε πραγματικά να διαγράψετε το λογαριασμό;"
 
-#: mmframe.cpp:1270 mmframe.cpp:3245
+#: mmframe.cpp:1276 mmframe.cpp:3252
 msgid "Confirm Account Deletion"
 msgstr "Επιβεβαιώστε τη διαγραφή του λογαριασμού"
 
-#: mmframe.cpp:1290
+#: mmframe.cpp:1296
 msgid "MMEX has been opened without an active database."
 msgstr "Το ΜΜΕΧ έχει ανοιχτεί χωρίς ενεργή βάση δεδομένων."
 
-#: mmframe.cpp:1291
+#: mmframe.cpp:1297
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: Σφάλμα ανάδυσης μενού"
 
-#: mmframe.cpp:1307 mmframe.cpp:1312 mmframe.cpp:1466 mmframe.cpp:1473
+#: mmframe.cpp:1313 mmframe.cpp:1318 mmframe.cpp:1472 mmframe.cpp:1479
 msgid "&CSV Files"
 msgstr "&CSV Αρχεία"
 
-#: mmframe.cpp:1308 mmframe.cpp:1314 mmframe.cpp:1467 mmframe.cpp:1475
+#: mmframe.cpp:1314 mmframe.cpp:1320 mmframe.cpp:1473 mmframe.cpp:1481
 msgid "&XML Files"
 msgstr "&XML Αρχεία"
 
-#: mmframe.cpp:1308 mmframe.cpp:1467
+#: mmframe.cpp:1314 mmframe.cpp:1473
 msgid "Import from XML (Excel format)"
 msgstr "Εισαγωγή από XML (μορφή Excel)"
 
-#: mmframe.cpp:1309 mmframe.cpp:1315 mmframe.cpp:1468 mmframe.cpp:1476
+#: mmframe.cpp:1315 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1482
 msgid "&QIF Files"
 msgstr "&QIF Αρχεία"
 
-#: mmframe.cpp:1313 mmframe.cpp:1474
+#: mmframe.cpp:1319 mmframe.cpp:1480
 msgid "&MMEX CSV Files"
 msgstr "&MMEX CSV Αρχεία"
 
-#: mmframe.cpp:1316 mmframe.cpp:1477
+#: mmframe.cpp:1322 mmframe.cpp:1483
 msgid "&JSON Files"
 msgstr "&JSON Αρχεία"
 
-#: mmframe.cpp:1342
+#: mmframe.cpp:1348
 msgid "&Edit Filter"
 msgstr "&Επεξεργασία Φίλτρου"
 
-#: mmframe.cpp:1343
+#: mmframe.cpp:1349
 msgid "&Rename Filter"
 msgstr "&Μετονομασία Φίλτρου"
 
-#: mmframe.cpp:1344
+#: mmframe.cpp:1350
 msgid "&Delete Filter"
 msgstr "&Διαγραφή Φίλτρου"
 
-#: mmframe.cpp:1360 mmframe.cpp:1378 mmframe.cpp:1398 mmframe.cpp:1572
+#: mmframe.cpp:1366 mmframe.cpp:1384 mmframe.cpp:1404 mmframe.cpp:1578
 msgid "&Edit Account"
 msgstr "&Επεξεργασία λογαριασμού"
 
-#: mmframe.cpp:1361 mmframe.cpp:1381 mmframe.cpp:1401 mmframe.cpp:1578
+#: mmframe.cpp:1367 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1584
 msgid "&Delete Account"
 msgstr "&Διαγραφή λογαριασμού"
 
-#: mmframe.cpp:1363 mmframe.cpp:1383
+#: mmframe.cpp:1369 mmframe.cpp:1389
 msgid "&Launch Account Website"
 msgstr "&Εκκίνηση ιστοσελίδας του λογαριασμού"
 
-#: mmframe.cpp:1379 mmframe.cpp:1575
+#: mmframe.cpp:1385 mmframe.cpp:1581
 msgid "&Reallocate Account"
 msgstr "&Ανακατανομή Λογαριασμού"
 
-#: mmframe.cpp:1397 mmframe.cpp:1569
+#: mmframe.cpp:1403 mmframe.cpp:1575
 msgid "New &Account"
 msgstr "Νέος &λογαριασμός"
 
-#: mmframe.cpp:1399
+#: mmframe.cpp:1405
 msgid "Account &List (Home)"
 msgstr "&Λίστα Λογαριασμών (Αρχική σελίδα)"
 
-#: mmframe.cpp:1412 optionsettingsview.cpp:69
+#: mmframe.cpp:1418 optionsettingsview.cpp:69
 msgid "Accounts Visible"
 msgstr "Λογαριασμοί ορατοί"
 
-#: mmframe.cpp:1451
+#: mmframe.cpp:1457
 msgid "&New Database"
 msgstr "&Νέα Βάση Δεδομένων"
 
-#: mmframe.cpp:1451 mmframe.cpp:1807 wizard_newdb.cpp:126
+#: mmframe.cpp:1457 mmframe.cpp:1814 wizard_newdb.cpp:126
 msgid "New Database"
 msgstr "Νέα βάση δεδομένων"
 
-#: mmframe.cpp:1452
+#: mmframe.cpp:1458
 msgid "&Open Database\tCtrl-O"
 msgstr "&Άνοιγμα βάσης δεδομένων\tCtrl-O"
 
-#: mmframe.cpp:1452 mmframe.cpp:1808
+#: mmframe.cpp:1458 mmframe.cpp:1815
 msgid "Open Database"
 msgstr "Άνοιγμα  βάσης δεδομένων"
 
-#: mmframe.cpp:1453
+#: mmframe.cpp:1459
 msgid "Save Database &As"
 msgstr "Αποθήκευση βάσης δεδομένων &ως"
 
-#: mmframe.cpp:1453
+#: mmframe.cpp:1459
 msgid "Save Database As"
 msgstr "Αποθήκευση βάσης δεδομένων ως"
 
-#: mmframe.cpp:1460
+#: mmframe.cpp:1466
 msgid "&Recent Files"
 msgstr "&Πρόσφατα Αρχεία"
 
-#: mmframe.cpp:1461
+#: mmframe.cpp:1467
 msgid "&Clear Recent Files"
 msgstr "&Καθαρισμός πρόσφατων αρχείων"
 
-#: mmframe.cpp:1466
+#: mmframe.cpp:1472
 msgid "Import from any CSV file"
 msgstr "Εισαγωγή από οποιοδήποτε αρχείο CSV"
 
-#: mmframe.cpp:1468
+#: mmframe.cpp:1474
 msgid "Import from QIF"
 msgstr "Εισαγωγή από QIF"
 
-#: mmframe.cpp:1469
+#: mmframe.cpp:1475
 msgid "&WebApp"
 msgstr "&WebApp"
 
-#: mmframe.cpp:1469
+#: mmframe.cpp:1475
 msgid "Import from WebApp"
 msgstr "Εισαγωγή από WebApp"
 
-#: mmframe.cpp:1473
+#: mmframe.cpp:1479
 msgid "Export to CSV"
 msgstr "Εξαγωγή σε CSV"
 
-#: mmframe.cpp:1474
+#: mmframe.cpp:1480
 msgid "Export to fixed CSV"
 msgstr ""
 
-#: mmframe.cpp:1475
+#: mmframe.cpp:1481
 msgid "Export to XML"
 msgstr "Εξαγωγή σε XML"
 
-#: mmframe.cpp:1477
+#: mmframe.cpp:1483
 msgid "Export to JSON"
 msgstr "Εξαγωγή σε JSON"
 
-#: mmframe.cpp:1478
+#: mmframe.cpp:1484
 msgid "&HTML Files"
 msgstr "&HTML Αρχεία"
 
-#: mmframe.cpp:1478
+#: mmframe.cpp:1484
 msgid "Export to HTML"
 msgstr "Εξαγωγή σε HTML"
 
-#: mmframe.cpp:1484 mmframe.cpp:1844
+#: mmframe.cpp:1490 mmframe.cpp:1851
 msgid "&Print"
 msgstr "&Εκτύπωση"
 
-#: mmframe.cpp:1484 mmframe.cpp:1844
+#: mmframe.cpp:1490 mmframe.cpp:1851
 msgid "Print current view"
 msgstr "Εκτύπωση τρέχουσας προβολής"
 
-#: mmframe.cpp:1490
+#: mmframe.cpp:1496
 msgid "E&xit\tAlt-X"
 msgstr "Έξοδος Alt-X"
 
-#: mmframe.cpp:1490
+#: mmframe.cpp:1496
 msgid "Quit this program"
 msgstr "Κλείστε αυτό το πρόγραμμα"
 
-#: mmframe.cpp:1496
+#: mmframe.cpp:1502
 msgid "&Toolbar"
 msgstr "&Γραμμή εργαλείων"
 
-#: mmframe.cpp:1496
+#: mmframe.cpp:1502
 msgid "Show/Hide the toolbar"
 msgstr "Εμφάνιση/Απόκρυψη γραμμής εργαλείων"
 
-#: mmframe.cpp:1498
+#: mmframe.cpp:1504
 msgid "&Navigation"
 msgstr "&Πλοήγηση"
 
-#: mmframe.cpp:1498
+#: mmframe.cpp:1504
 msgid "Show/Hide the Navigation tree control"
 msgstr "Εμφάνιση/Απόκρυψη του δέντρου πλοήγησης"
 
-#: mmframe.cpp:1500
+#: mmframe.cpp:1506
 msgid "&Display Share Accounts"
 msgstr "&Εμφάνιση Κοινόχρηστων Λογαριασμών"
 
-#: mmframe.cpp:1500
+#: mmframe.cpp:1506
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr "Εμφάνιση/Απόκρυψη κοινόχρηστων λογαριασμών στο δέντρο πλοήγησης"
 
-#: mmframe.cpp:1503
+#: mmframe.cpp:1509
 msgid "Budgets: As Financial &Years"
 msgstr "Προϋπολογισμοί: Κατά &Οικονομικά Έτη"
 
-#: mmframe.cpp:1503
+#: mmframe.cpp:1509
 msgid "Display Budgets in Financial Year Format"
 msgstr "Εμφάνιση των προϋπολογισμών σε μορφή οικονομικού έτους"
 
-#: mmframe.cpp:1505
+#: mmframe.cpp:1511
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "Προϋπολογισμοί: &Να συμπεριλαμβάνονται οι μεταφορές στα σύνολα"
 
-#: mmframe.cpp:1505
+#: mmframe.cpp:1511
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "Συμπεριλάβετε τις συναλλαγές μεταφοράς στα σύνολα των προϋπολογισμών"
 
-#: mmframe.cpp:1507
+#: mmframe.cpp:1513
 msgid "Budget Category Report: with &Summaries"
 msgstr "Έκθεση κατηγορίας προϋπολογισμού: με &περιλήψεις"
 
-#: mmframe.cpp:1507
+#: mmframe.cpp:1513
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "Συμπεριλάβετε τις περιλήψεις κατηγοριών στη Περίληψη της Κατηγορίας Προϋπολογισμού"
 
-#: mmframe.cpp:1509
+#: mmframe.cpp:1515
 msgid "Ignore F&uture Transactions"
 msgstr "Αγνόηση &μελλοντικών συναλλαγών"
 
-#: mmframe.cpp:1509
+#: mmframe.cpp:1515
 msgid "Ignore Future transactions"
 msgstr "Να αγνοηθούν μελλοντικές συναλλαγές"
 
-#: mmframe.cpp:1511 optionsettingsview.cpp:104
+#: mmframe.cpp:1517 optionsettingsview.cpp:104
 msgid "Show Tooltips"
 msgstr "Εμφάνιση Υποδείξεων"
 
-#: mmframe.cpp:1513 optionsettingsview.cpp:110
+#: mmframe.cpp:1519 optionsettingsview.cpp:110
 msgid "Show Money Tips"
 msgstr "Εμφάνιση Συμβουλών Χρημάτων"
 
-#: mmframe.cpp:1533
+#: mmframe.cpp:1539
 msgid "Toggle &Fullscreen\tShift+F11"
 msgstr "Εναλλαγή σε πλήρη οθόνη\tShift+F11"
 
-#: mmframe.cpp:1534 mmframe.cpp:1841
+#: mmframe.cpp:1540 mmframe.cpp:1848
 msgid "Toggle Fullscreen"
 msgstr "Εναλλαγή Πλήρους Οθόνης"
 
-#: mmframe.cpp:1540
+#: mmframe.cpp:1546
 msgid "Switch Application &Language"
 msgstr "Εναλλαγή Γλώσσας Εφαρμογής"
 
-#: mmframe.cpp:1566
+#: mmframe.cpp:1572
 msgid "&Home Page"
 msgstr ""
 
-#: mmframe.cpp:1566 mmframe.cpp:1811
+#: mmframe.cpp:1572 mmframe.cpp:1818
 msgid "Show Home Page"
 msgstr ""
 
-#: mmframe.cpp:1575
+#: mmframe.cpp:1581
 msgid "Change the account type of an account."
 msgstr "Αλλάξτε τον τύπο λογαριασμού ενός λογαριασμού."
 
-#: mmframe.cpp:1578
+#: mmframe.cpp:1584
 msgid "Delete Account from database"
 msgstr "Διαγραφή λογαριασμού από τη βάση δεδομένων"
 
-#: mmframe.cpp:1591
+#: mmframe.cpp:1597
 msgid "Download Ra&tes"
 msgstr "Κατεβάστε τις Ισο&τιμίες"
 
-#: mmframe.cpp:1591 mmframe.cpp:1838
+#: mmframe.cpp:1597 mmframe.cpp:1845
 msgid "Download Currency and Stock rates"
 msgstr "Κατεβάστε το νόμισμα και τις ισοτιμίες αποθεμάτων"
 
-#: mmframe.cpp:1597
+#: mmframe.cpp:1603
 msgid "Organize &Categories"
 msgstr "Οργάνωση &Κατηγοριών"
 
-#: mmframe.cpp:1601
+#: mmframe.cpp:1607
 msgid "Organize &Payees"
 msgstr "Οργάνωση &Δικαιούχων"
 
-#: mmframe.cpp:1601 mmframe.cpp:1816 payeedialog.cpp:101
+#: mmframe.cpp:1607 mmframe.cpp:1823 payeedialog.cpp:101
 msgid "Organize Payees"
 msgstr "Οργάνωση δικαιούχων"
 
-#: mmframe.cpp:1605
+#: mmframe.cpp:1611
 msgid "Organize Curre&ncy"
 msgstr "Οργάνωση Νομισμά&των"
 
-#: mmframe.cpp:1605 mmframe.cpp:1817
+#: mmframe.cpp:1611 mmframe.cpp:1824
 msgid "Organize Currency"
 msgstr "Οργάνωση των νομισμάτων"
 
-#: mmframe.cpp:1609
+#: mmframe.cpp:1615
 msgid "&Categories"
 msgstr "&Κατηγορίες"
 
-#: mmframe.cpp:1612
+#: mmframe.cpp:1618
 msgid "&Payees"
 msgstr "&Δικαιούχοι"
 
-#: mmframe.cpp:1613
+#: mmframe.cpp:1619
 msgid "Reassign all payees to another payee"
 msgstr "Εκχώρηση όλων των δικαιούχων σε έναν άλλο δικαιούχο"
 
-#: mmframe.cpp:1615
+#: mmframe.cpp:1621
 msgid "Re&location of"
 msgstr "Με&τατόπιση των"
 
-#: mmframe.cpp:1616
+#: mmframe.cpp:1622
 msgid "Relocate Categories && Payees"
 msgstr "Μετατόπιση κατηγοριών && δικαιούχων"
 
-#: mmframe.cpp:1626
+#: mmframe.cpp:1632
 msgid "&Budget Setup"
 msgstr "&Διαμόρφωση προϋπολογισμού"
 
-#: mmframe.cpp:1630
+#: mmframe.cpp:1636
 msgid "&Recurring Transactions"
 msgstr "&Επαναλαμβανόμενες Συναλλαγές"
 
-#: mmframe.cpp:1630
+#: mmframe.cpp:1636
 msgid "Bills && Deposits"
 msgstr "Πληρωμές && καταθέσεις"
 
-#: mmframe.cpp:1634
+#: mmframe.cpp:1640
 msgid "&Assets"
 msgstr "&Περιουσιακά στοιχεία"
 
-#: mmframe.cpp:1640
+#: mmframe.cpp:1646
 msgid "T&heme Manager"
 msgstr "Διαχειριστής Θεμάτων"
 
-#: mmframe.cpp:1640 themes.cpp:143
+#: mmframe.cpp:1646 themes.cpp:143
 msgid "Theme Manager"
 msgstr "Διαχειριστής Θεμάτων"
 
-#: mmframe.cpp:1646
+#: mmframe.cpp:1652
 msgid "Transaction Report &Filter"
 msgstr "&Φίλτρο Εκθέσεων Συναλλαγών"
 
-#: mmframe.cpp:1646 mmframe.cpp:1819
+#: mmframe.cpp:1652 mmframe.cpp:1826
 msgid "Transaction Report Filter"
 msgstr "Φίλτρο εκθέσεων συναλλαγών"
 
-#: mmframe.cpp:1652
+#: mmframe.cpp:1658
 msgid "General Report &Manager"
 msgstr "&Διαχείριση Γενικών Αναφορών"
 
-#: mmframe.cpp:1656
+#: mmframe.cpp:1662
 msgid "C&ustom Fields Manager"
 msgstr "Διαχειριστής Π&ροσαρμοσμένων Πεδίων"
 
-#: mmframe.cpp:1656
+#: mmframe.cpp:1662
 msgid "Custom Fields Manager"
 msgstr "Διαχειριστής Προσαρμοσμένων Πεδίων"
 
-#: mmframe.cpp:1662
+#: mmframe.cpp:1668
 msgid "Refresh &WebApp"
 msgstr "Ανανέωση του &WebApp"
 
-#: mmframe.cpp:1662 mmframe.cpp:2635 mmframe.cpp:2638
+#: mmframe.cpp:1668 mmframe.cpp:2642 mmframe.cpp:2645
 msgid "Refresh WebApp"
 msgstr "Ανανέωση του WebApp"
 
-#: mmframe.cpp:1667
+#: mmframe.cpp:1673
 msgid "&Options...\tCtrl-,"
 msgstr "&Επιλογές Ctrl-,"
 
-#: mmframe.cpp:1667 mmframe.cpp:1823
+#: mmframe.cpp:1673 mmframe.cpp:1830
 msgid "Show the Options Dialog"
 msgstr "Εμφάνιση παραθύρου επιλογών"
 
-#: mmframe.cpp:1674
+#: mmframe.cpp:1680
 msgid "Convert Encrypted &DB"
 msgstr "Μετατροπή Κρυπτογραφημένης &DB"
 
-#: mmframe.cpp:1675
+#: mmframe.cpp:1681
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "Μετατροπή Κρυπτογραφημένης Βάσης Δεδομένων σε Μη Κρυπτογραφημένη Βάση Δεδομένων"
 
-#: mmframe.cpp:1677
+#: mmframe.cpp:1683
 msgid "Change Encrypted &Password"
 msgstr "Αλλαγή κωδικού πρόσβασης κρυπτογράφησης"
 
-#: mmframe.cpp:1678
+#: mmframe.cpp:1684
 msgid "Change the password of an encrypted database"
 msgstr "Αλλάξτε τον κωδικό πρόσβασης μιας κρυπτογραφημένης βάσης δεδομένων"
 
-#: mmframe.cpp:1680
+#: mmframe.cpp:1686
 msgid "&Optimize Database"
 msgstr "&Βελτιστοποίηση Βάσης Δεδομένων"
 
-#: mmframe.cpp:1681
+#: mmframe.cpp:1687
 msgid "Optimize database space and performance"
 msgstr "Βελτιστοποίηση χώρου και επιδόσεων της βάσης δεδομένων"
 
-#: mmframe.cpp:1683
+#: mmframe.cpp:1689
 msgid "Database De&bug"
 msgstr "Αποσφαλμάτωση Βάσης Δεδομένων"
 
-#: mmframe.cpp:1684
+#: mmframe.cpp:1690
 msgid "Generate database report or fix errors"
 msgstr "Δημιουργία αναφοράς βάσης δεδομένων ή σφάλματα διόρθωσης"
 
-#: mmframe.cpp:1689
+#: mmframe.cpp:1695
 msgid "Databa&se"
 msgstr "Βάση Δεδομένων"
 
-#: mmframe.cpp:1690
+#: mmframe.cpp:1696
 msgid "Database management"
 msgstr "Διαχείριση βάσεων δεδομένων"
 
-#: mmframe.cpp:1697 mmframe.cpp:1848
+#: mmframe.cpp:1703 mmframe.cpp:1855
 msgid "&Help\tF1"
 msgstr "&Βοήθεια F1"
 
-#: mmframe.cpp:1697 mmframe.cpp:1848
+#: mmframe.cpp:1703 mmframe.cpp:1855
 msgid "Show the Help file"
 msgstr "Εμφάνιση του αρχείου βοήθειας"
 
-#: mmframe.cpp:1702
+#: mmframe.cpp:1708
 msgid "&Website"
 msgstr "&Ιστοσελίδα"
 
-#: mmframe.cpp:1703
+#: mmframe.cpp:1709
 msgid "Open the Money Manager EX website for latest news, updates etc"
 msgstr "Ανοίξτε την ιστοσελίδα Money Manager EX για τα τελευταία νέα, ενημερώσεις κ. λ. π"
 
-#: mmframe.cpp:1705
+#: mmframe.cpp:1711
 msgid "&Facebook"
 msgstr "&Facebook"
 
-#: mmframe.cpp:1705
+#: mmframe.cpp:1711
 msgid "Visit us on Facebook"
 msgstr "Επισκεφθείτε μας στο Facebook"
 
-#: mmframe.cpp:1707
+#: mmframe.cpp:1713
 msgid "&Crowdin"
 msgstr "&Crowdin"
 
-#: mmframe.cpp:1707
+#: mmframe.cpp:1713
 msgid "We use Crowdin to translate MMEX"
 msgstr "Χρησιμοποιούμε το Crowdin για να μεταφράσουμε το MMEX"
 
-#: mmframe.cpp:1709
+#: mmframe.cpp:1715
 msgid "&Twitter"
 msgstr "&Twitter"
 
-#: mmframe.cpp:1709
+#: mmframe.cpp:1715
 msgid "Follow us on Twitter"
 msgstr "Ακολουθήστε μας στο Twitter"
 
-#: mmframe.cpp:1711
+#: mmframe.cpp:1717
 msgid "&YouTube"
 msgstr "&YouTube"
 
-#: mmframe.cpp:1711
+#: mmframe.cpp:1717
 msgid "Watch free video materials about MMEX"
 msgstr "Παρακολουθήστε δωρεάν βίντεο για MMEX"
 
-#: mmframe.cpp:1713
+#: mmframe.cpp:1719
 msgid "&Slack"
 msgstr "&Slack"
 
-#: mmframe.cpp:1713
+#: mmframe.cpp:1719
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr "Επικοινωνήστε online με την ομάδα MMEX από την επιφάνεια εργασίας ή την κινητή συσκευή σας"
 
-#: mmframe.cpp:1715
+#: mmframe.cpp:1721
 msgid "&GitHub"
 msgstr "&GitHub"
 
-#: mmframe.cpp:1715
+#: mmframe.cpp:1721
 msgid "Access open source code repository and track reported bug statuses"
 msgstr "Πρόσβαση στο ανοικτού κώδικα αποθετήριο και παρακολουθείτε καταστάσεις αναφερόμενων σφαλμάτων"
 
-#: mmframe.cpp:1717
+#: mmframe.cpp:1723
 msgid "W&iki pages"
 msgstr "Σελίδες Wiki"
 
-#: mmframe.cpp:1717
+#: mmframe.cpp:1723
 msgid "Read and update wiki pages"
 msgstr "Ανάγνωση και ενημέρωση σελίδων wiki"
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1725
 msgid "F&orum"
 msgstr "Forum"
 
-#: mmframe.cpp:1720
+#: mmframe.cpp:1726
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr "Επισκεφθείτε το φόρουμ MMEX για να δείτε υπάρχοντα σχόλια χρηστών ή να αναφέρετε νέα ζητήματα με το λογισμικό"
 
-#: mmframe.cpp:1722
+#: mmframe.cpp:1728
 msgid "Money Manager Ex for &Android"
 msgstr "MoneyManagerEx για το Android"
 
-#: mmframe.cpp:1723
+#: mmframe.cpp:1729
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr "Αποκτήστε δωρεάν έκδοση Android και εκτελέστε MMEX στο έξυπνο τηλέφωνο ή το tablet σας"
 
-#: mmframe.cpp:1725
+#: mmframe.cpp:1731
 msgid "&Newsletter"
 msgstr "&Ενημερωτικό Δελτίο"
 
-#: mmframe.cpp:1726
+#: mmframe.cpp:1732
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr "Εγγραφείτε στο ενημερωτικό δελτίο ηλεκτρονικού ταχυδρομείου ή δείτε υπάρχουσες ανακοινώσεις"
 
-#: mmframe.cpp:1728
+#: mmframe.cpp:1734
 msgid "&RSS Feed"
 msgstr "&Ροή RSS"
 
-#: mmframe.cpp:1728
+#: mmframe.cpp:1734
 msgid "Connect RSS web feed to news aggregator"
 msgstr "Συνδέστε την τροφοδοσία ιστού RSS με τον συγκεντρωτή ειδήσεων"
 
-#: mmframe.cpp:1730
+#: mmframe.cpp:1736
 msgid "&Donate via PayPal"
 msgstr "Δωρεά μέσω PayPal"
 
-#: mmframe.cpp:1731
+#: mmframe.cpp:1737
 msgid "Donate the team to support infrastructure etc"
 msgstr "Δωρεά στην ομάδα για την υποστήριξη της υποδομής κ. λ. π"
 
-#: mmframe.cpp:1733
+#: mmframe.cpp:1739
 msgid "&Buy us a Coffee"
 msgstr "&Αγοράστε μας έναν καφέ"
 
-#: mmframe.cpp:1734
+#: mmframe.cpp:1740
 msgid "Buy key developer a coffee"
 msgstr "Αγοράστε το κλειδί προγραμματιστής έναν καφέ"
 
-#: mmframe.cpp:1737
+#: mmframe.cpp:1743
 msgid "&Community"
 msgstr "&Κοινότητα"
 
-#: mmframe.cpp:1738
+#: mmframe.cpp:1744
 msgid "Stay in touch with MMEX community"
 msgstr "Μείνετε σε επαφή με την κοινότητα MMEX"
 
-#: mmframe.cpp:1760
+#: mmframe.cpp:1766
 msgid "Report a &Bug"
 msgstr "Αναφορά σφάλματος"
 
-#: mmframe.cpp:1761
+#: mmframe.cpp:1767
 msgid "Report an error in application to the developers"
 msgstr "Αναφέρετε ένα σφάλμα στην εφαρμογή στους προγραμματιστές"
 
-#: mmframe.cpp:1765
+#: mmframe.cpp:1771
 msgid "View Diagnostics"
 msgstr "Προβολή Διαγνωστικών"
 
-#: mmframe.cpp:1766
+#: mmframe.cpp:1772
 msgid "Help provide information to the developers"
 msgstr "Βοήθεια για την παροχή πληροφοριών στους προγραμματιστές"
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:1776
 msgid "&Show App Start Dialog"
 msgstr "&Εμφάνιση Παραθύρου Εκκίνησης Εφαρμογών"
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:1776
 msgid "App Start Dialog"
 msgstr "Εκκίνηση Διαλόγου Εφαρμογής"
 
-#: mmframe.cpp:1774
+#: mmframe.cpp:1780
 msgid "Check for &Updates"
 msgstr "Έλεγχος για &ενημερώσεις"
 
-#: mmframe.cpp:1774
+#: mmframe.cpp:1780
 msgid "Check For Updates"
 msgstr "Ελέγχος Για Ενημερώσεις"
 
-#: mmframe.cpp:1778 mmframe.cpp:1847
+#: mmframe.cpp:1784 mmframe.cpp:1854
 msgid "&About"
 msgstr "&Σχετικά"
 
-#: mmframe.cpp:1778 mmframe.cpp:1847
+#: mmframe.cpp:1784 mmframe.cpp:1854
 msgid "Show about dialog"
 msgstr "Εμφάνιση παραθύρου πληροφοριών"
 
-#: mmframe.cpp:1782
+#: mmframe.cpp:1788
 msgid "&File"
 msgstr "&Αρχείο"
 
-#: mmframe.cpp:1783
+#: mmframe.cpp:1789
 msgid "&Accounts"
 msgstr "&Λογαριασμοί"
 
-#: mmframe.cpp:1784
+#: mmframe.cpp:1790
 msgid "&Tools"
 msgstr "&Εργαλεία"
 
-#: mmframe.cpp:1785
+#: mmframe.cpp:1791
 msgid "&View"
 msgstr "&Προβολή"
 
-#: mmframe.cpp:1786
+#: mmframe.cpp:1792
 msgid "&Help"
 msgstr "&Βοήθεια"
 
-#: mmframe.cpp:1807 mmframe.cpp:1813
+#: mmframe.cpp:1814 mmframe.cpp:1820
 msgid "New"
 msgstr "Νέος"
 
-#: mmframe.cpp:1815
+#: mmframe.cpp:1822
 msgid "Show Organize Categories Dialog"
 msgstr "Εμφάνιση του παραθύρου οργάνωσης των κατηγοριών"
 
-#: mmframe.cpp:1816
+#: mmframe.cpp:1823
 msgid "Show Organize Payees Dialog"
 msgstr "Εμφάνιση του παραθύρου οργάνωσης των δικαιούχων"
 
-#: mmframe.cpp:1817
+#: mmframe.cpp:1824
 msgid "Show Organize Currency Dialog"
 msgstr "Εμφάνιση του παραθύρου οργάνωσης των νομισμάτων"
 
-#: mmframe.cpp:1823
+#: mmframe.cpp:1830
 msgid "&Options"
 msgstr "&Επιλογές"
 
-#: mmframe.cpp:1831 mmframe.cpp:2689
+#: mmframe.cpp:1838 mmframe.cpp:2696
 msgid "Register/View Release &Notifications"
 msgstr "Εγγραφή/Προβολή Ειδοποιήσεων Απελευθέρωσης"
 
-#: mmframe.cpp:1836 optionsettingsnet.cpp:121
+#: mmframe.cpp:1843 optionsettingsnet.cpp:128
 msgid "News"
 msgstr "Νέα"
 
-#: mmframe.cpp:1838
+#: mmframe.cpp:1845
 msgid "Download rates"
 msgstr "Κατεβάστε τις Ισοτιμίες"
 
-#: mmframe.cpp:1841
+#: mmframe.cpp:1848
 msgid "Toggle Fullscreen\tF11"
 msgstr "Εναλλαγή Πλήρους Οθόνης F11"
 
-#: mmframe.cpp:1900
+#: mmframe.cpp:1907
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr "Παρακαλώ εισάγετε τον κωδικό πρόσβασης για τη βάση δεδομένων %s"
 
-#: mmframe.cpp:1901 mmframe.cpp:2132 mmframe.cpp:2265
+#: mmframe.cpp:1908 mmframe.cpp:2139 mmframe.cpp:2272
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: Κρυπτογραφημένη Βάση Δεδομένων"
 
-#: mmframe.cpp:1935
+#: mmframe.cpp:1942
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr "Σας παρέχετε υποστήριξη MMEX ενός αρχείου debug/patch;"
 
-#: mmframe.cpp:1935
+#: mmframe.cpp:1942
 msgid "MMEX upgrade"
 msgstr "Αναβάθμιση MMEX"
 
-#: mmframe.cpp:1957 mmframe.cpp:1999
+#: mmframe.cpp:1964 mmframe.cpp:2006
 msgid "No File opened"
 msgstr "Κανένα αρχείο δεν έχει ανοίξει"
 
-#: mmframe.cpp:1959
+#: mmframe.cpp:1966
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr "Λυπούμαστε. Η έκδοση της βάσης δεδομένων είναι πολύ παλιά ή ο κωδικός πρόσβασης της βάσης δεδομένων είναι εσφαλμένος"
 
-#: mmframe.cpp:1989
+#: mmframe.cpp:1996
 msgid "&Next ->"
 msgstr "&Επόμενο ->"
 
-#: mmframe.cpp:2002
+#: mmframe.cpp:2009
 msgid "Cannot locate previously opened database.\n"
 msgstr "Αδυναμία εντοπισμού προηγουμένως ανοιγμένης βάσης δεδομένων.\n"
 
-#: mmframe.cpp:2004
+#: mmframe.cpp:2011
 msgid "Password not entered for encrypted Database.\n"
 msgstr "Ο κωδικός πρόσβασης δεν έχει εισαχθεί για κρυπτογραφημένη βάση δεδομένων.\n"
 
-#: mmframe.cpp:2022
+#: mmframe.cpp:2029
 msgid "portable mode"
 msgstr "φορητή λειτουργία"
 
-#: mmframe.cpp:2058
+#: mmframe.cpp:2065
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
@@ -4777,105 +4777,105 @@ msgstr "Η Βάση Δεδομένων που προσπαθείτε να ανο
 "Αν καμία εφαρμογή δεν την χρησιμοποιεί, είναι πιθανό η ΒΔ να έχει παραμείνει ανοιχτή ως αποτέλεσμα σφάλματος από προηγούμενη χρήση της εφαρμογής.\n\n"
 "Θα θέλατε να συνεχίσετε ανοίγοντας αυτή τη ΒΔ;"
 
-#: mmframe.cpp:2062
+#: mmframe.cpp:2069
 msgid "MMEX Instance Check"
 msgstr "Έλεγχος Παρουσίας MMEX"
 
-#: mmframe.cpp:2082
+#: mmframe.cpp:2089
 msgid "Choose database file to create"
 msgstr "Επιλέξτε αρχείο βάσης δεδομένων για δημιουργία"
 
-#: mmframe.cpp:2105
+#: mmframe.cpp:2112
 msgid "Choose database file to open"
 msgstr "Επιλέξτε βάση δεδομένων για άνοιγμα"
 
-#: mmframe.cpp:2122
+#: mmframe.cpp:2129
 msgid "Choose Encrypted database file to open"
 msgstr "Επιλογή κρυπτογραφημένης βάσης δεδομένων για άνοιγμα"
 
-#: mmframe.cpp:2132
+#: mmframe.cpp:2139
 msgid "Enter password for database"
 msgstr "Εισάγετε το κωδικό πρόσβασης για τη βάση δεδομένων"
 
-#: mmframe.cpp:2137
+#: mmframe.cpp:2144
 msgid "Choose database file to Save As"
 msgstr "Επιλέξτε αρχείο βάσης δεδομένων για Αποθήκευση Ως"
 
-#: mmframe.cpp:2159
+#: mmframe.cpp:2166
 msgid "Converted DB!"
 msgstr "Μετατραπείσα ΒΔ!"
 
-#: mmframe.cpp:2159
+#: mmframe.cpp:2166
 msgid "MMEX message"
 msgstr "Μήνυμα MMEX"
 
-#: mmframe.cpp:2165
+#: mmframe.cpp:2172
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: Έγινε αλλαγή του κωδικού πρόσβασης κρυπτογράφησης"
 
-#: mmframe.cpp:2166
+#: mmframe.cpp:2173
 #, c-format
 msgid "New password for database\n\n"
 "%s"
 msgstr "Νέος κωδικός πρόσβασης για τη βάση δεδομένων\n\n"
 "%s"
 
-#: mmframe.cpp:2171
+#: mmframe.cpp:2178
 msgid "New password must not be empty."
 msgstr "Ο νέος κωδικός πρόσβασης δεν μπορεί να είναι κενός."
 
-#: mmframe.cpp:2175
+#: mmframe.cpp:2182
 msgid "Please confirm new password"
 msgstr "Παρακαλώ επιβεβαιώστε το νέο κωδικό πρόσβασης"
 
-#: mmframe.cpp:2179
+#: mmframe.cpp:2186
 msgid "Password change completed."
 msgstr "Η αλλαγή κωδικού πρόσβασης ολοκληρώθηκε."
 
-#: mmframe.cpp:2183
+#: mmframe.cpp:2190
 msgid "Confirm password failed."
 msgstr "Αποτυχία επιβεβαίωσης κωδικού πρόσβασης."
 
-#: mmframe.cpp:2192
+#: mmframe.cpp:2199
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr "Βεβαιωθείτε ότι έχετε ένα αντίγραφο ασφαλείας του DB πριν το βελτιστοποιήσετε"
 
-#: mmframe.cpp:2193 mmframe.cpp:2203
+#: mmframe.cpp:2200 mmframe.cpp:2210
 msgid "DB Optimization"
 msgstr "Βελτιστοποίηση Βάσης Δεδομένων"
 
-#: mmframe.cpp:2200
+#: mmframe.cpp:2207
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
 msgstr "Η βελτιστοποίηση της βάσης δεδομένων ολοκληρώθηκε! Μέγεθος πριν: %s Μέγεθος μετά: %s\n"
 
-#: mmframe.cpp:2211
+#: mmframe.cpp:2218
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr "Παρακαλώ χρησιμοποιήστε αυτή τη λειτουργία μόνο εάν ζητηθεί ρητά από την υποστήριξη MMEX"
 
-#: mmframe.cpp:2212
+#: mmframe.cpp:2219
 msgid "DB Debug"
 msgstr "DB Debug"
 
-#: mmframe.cpp:2231 mmframe.cpp:2252
+#: mmframe.cpp:2238 mmframe.cpp:2259
 msgid "Save database file as"
 msgstr "Αποθήκευση βάσης δεδομένων ως"
 
-#: mmframe.cpp:2252
+#: mmframe.cpp:2259
 msgid "Can't copy file to itself"
 msgstr "Αδυναμια αντιγραφής αρχείου στον εαυτό του"
 
-#: mmframe.cpp:2265
+#: mmframe.cpp:2272
 msgid "Enter password for new database"
 msgstr "Εισάγετε το κωδικό πρόσβασης για τη νέα βάση δεδομένων"
 
-#: mmframe.cpp:2354 mmframe.cpp:2373
+#: mmframe.cpp:2361 mmframe.cpp:2380
 msgid "No account available to import"
 msgstr "Κανένας λογαριασμός διαθέσιμος για εισαγωγή"
 
-#: mmframe.cpp:2422
+#: mmframe.cpp:2429
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -4885,11 +4885,11 @@ msgstr "Οι λογαριασμοί περιουσιακών στοιχείων 
 "μετά την επιλογή του περιουσιακού στοιχείου μέσα σε αυτή την άποψη.\n"
 "Οι Ενεργητικοί Λογαριασμοί μπορούν επίσης να διατηρούν κανονικές συναλλαγές σε τακτικούς λογαριασμούς."
 
-#: mmframe.cpp:2426
+#: mmframe.cpp:2433
 msgid "Asset Account Creation"
 msgstr "Δημιουργία Ενεργητικού Λογαριασμού"
 
-#: mmframe.cpp:2432
+#: mmframe.cpp:2439
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -4903,91 +4903,91 @@ msgstr "Λογαριασμοί μετοχών κατέχουν συναλλαγ�
 "Ή χρησιμοποιώντας το μενού Προβολή --> 'Προβολή Λογαριασμών'\n"
 "Οι λογαριασμοί κοινής χρήσης μπορούν επίσης να κρατήσουν κανονικές συναλλαγές σε κανονικό λογαριασμό."
 
-#: mmframe.cpp:2438
+#: mmframe.cpp:2445
 msgid "Share Account Creation"
 msgstr "Διαμοιρασμός Δημιουργίας Λογαριασμού"
 
-#: mmframe.cpp:2609
+#: mmframe.cpp:2616
 msgid "MMEX Options have been updated."
 msgstr "Οι επιλογές του MMEX έχουν ενημερωθεί."
 
-#: mmframe.cpp:2610
+#: mmframe.cpp:2617
 msgid "Some settings take effect only after an application restart."
 msgstr "Ορισμένες ρυθμίσεις εφαρμόζονται μόνο μετά την επανεκκίνηση της εφαρμογής."
 
-#: mmframe.cpp:2611 optiondialog.cpp:224 optiondialog.h:49
+#: mmframe.cpp:2618 optiondialog.cpp:224 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "Επιλογές MMEX"
 
-#: mmframe.cpp:2635
+#: mmframe.cpp:2642
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "Οι Λογαριασμοί, Δικαιούχοι και Κατηγορίες Ενημερώθηκαν"
 
-#: mmframe.cpp:2637
+#: mmframe.cpp:2644
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "Εμφανίστηκε ένα πρόβλημα κατά την ενημέρωση του WebApp, ελέγξτε τον Web Server και τις ρυθμίσεις του WebApp"
 
-#: mmframe.cpp:2769
+#: mmframe.cpp:2776
 msgid "Choose HTML file to Export"
 msgstr "Επιλέξτε αρχείο HTML για εξαγωγή"
 
-#: mmframe.cpp:3143 mmframe.cpp:3150
+#: mmframe.cpp:3150 mmframe.cpp:3157
 msgid "Downloading stock prices from Yahoo"
 msgstr "Λήψη τιμών αποθέματος από το Yahoo"
 
-#: mmframe.cpp:3144
+#: mmframe.cpp:3151
 msgid "Please wait..."
 msgstr "Παρακαλώ περιμένετε..."
 
-#: mmframe.cpp:3193 stockspanel.cpp:401
+#: mmframe.cpp:3200 stockspanel.cpp:401
 #, c-format
 msgid "%s on %s"
 msgstr "%s σε %s"
 
-#: mmframe.cpp:3210
+#: mmframe.cpp:3217
 msgid "No account available to edit!"
 msgstr "Κανείς λογαριασμός διαθέσιμος για επεξεργασία!"
 
-#: mmframe.cpp:3214
+#: mmframe.cpp:3221
 msgid "Choose Account to Edit"
 msgstr "Επιλέξτε λογαριασμό για επεξεργασία"
 
-#: mmframe.cpp:3233
+#: mmframe.cpp:3240
 msgid "No account available to delete!"
 msgstr "Κανείς λογαριασμός διαθέσιμος προς διαγραφή!"
 
-#: mmframe.cpp:3237
+#: mmframe.cpp:3244
 msgid "Choose Account to Delete"
 msgstr "Επέλεξε λογαριασμό για διαγραφή"
 
-#: mmframe.cpp:3242
+#: mmframe.cpp:3249
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε %s λογαριασμό: %s;"
 
-#: mmframe.cpp:3261
+#: mmframe.cpp:3268
 msgid "Select the account to reallocate"
 msgstr "Επιλέξτε το λογαριασμό για ανακατανομή"
 
-#: mmframe.cpp:3261 mmframe.cpp:3284
+#: mmframe.cpp:3268 mmframe.cpp:3291
 msgid "Account Reallocation"
 msgstr "Ανακατανομή Λογαριασμού"
 
-#: mmframe.cpp:3283
+#: mmframe.cpp:3290
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "Λογαριασμός: %s - Επιλέξτε νέο τύπο."
 
-#: mmframe.cpp:3392 payeedialog.cpp:356
+#: mmframe.cpp:3399 payeedialog.cpp:356
 msgid "Payee Relocation Completed."
 msgstr "Η μετατόπιση δικαιούχου ολοκληρώθηκε."
 
-#: mmframe.cpp:3396 payeedialog.cpp:360
+#: mmframe.cpp:3403 payeedialog.cpp:360
 msgid "Payee Relocation Result"
 msgstr "Αποτέλεσμα μετατόπισης δικαιούχου"
 
-#: mmframe.cpp:3446
+#: mmframe.cpp:3453
 #, c-format
 msgid "File %s not found"
 msgstr "Το αρχείο %s δεν βρέθηκε"
@@ -5021,7 +5021,7 @@ msgstr "Από πού έρχονται τα χρήματα"
 msgid "Forecast Report"
 msgstr "Έκθεση Προβλέψεων"
 
-#: mmframereport.cpp:164 optionsettingshome.cpp:73
+#: mmframereport.cpp:164 optionsettingshome.cpp:75
 msgid "Income vs Expenses"
 msgstr "Έσοδα προς έξοδα"
 
@@ -5367,431 +5367,431 @@ msgstr "&Εφαρμογή"
 msgid "%s page has been saved."
 msgstr "%s σελίδα έχει αποθηκευτεί."
 
-#: optionsettingsattachment.cpp:58
+#: optionsettingsattachment.cpp:65
 msgid "Attachments Settings"
 msgstr "Ρυθμίσεις Συνημμένων"
 
-#: optionsettingsattachment.cpp:65
+#: optionsettingsattachment.cpp:72
 #, c-format
 msgid "Attachment archive folder for %s only:"
 msgstr "Φάκελος συμπιεσμένων αρχείων για %s μόνο:"
 
-#: optionsettingsattachment.cpp:69
+#: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
 msgstr "Κάθε τύπος OS (Win, Mac, Unix) έχει το φάκελο συνημμένων"
 
-#: optionsettingsattachment.cpp:88
+#: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
 msgstr "Αναζήτηση φακέλου"
 
-#: optionsettingsattachment.cpp:93 optionsettingsattachment.cpp:195
+#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:208
 msgid "Real path:"
 msgstr "Πραγματική διαδρομή:"
 
-#: optionsettingsattachment.cpp:98
+#: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
 msgstr "Υπόμνημα (μπορεί να χρησιμοποιηθεί ως μεταβλητές στην αρχή της παραπάνω διαδρομής)"
 
-#: optionsettingsattachment.cpp:103
+#: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s -> User document directory"
 msgstr "%s -> Κατάλογος εγγράφου χρήστη"
 
-#: optionsettingsattachment.cpp:104
+#: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s -> User profile folder"
 msgstr "%s -> Φάκελος προφίλ χρήστη"
 
-#: optionsettingsattachment.cpp:105
+#: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s -> Folder of .MMB database file"
 msgstr "%s -> Φάκελος του αρχείου βάσης δεδομένων .MMB"
 
-#: optionsettingsattachment.cpp:106
+#: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s -> MMEX Application data folder"
 msgstr "%s -> Φάκελος δεδομένων εφαρμογής MMEX"
 
-#: optionsettingsattachment.cpp:112
+#: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
 msgstr "Άλλοι φάκελοι OS "
 
-#: optionsettingsattachment.cpp:117
+#: optionsettingsattachment.cpp:126
 msgid "Not set yet"
 msgstr "Δεν έχει οριστεί ακόμα"
 
-#: optionsettingsattachment.cpp:124
+#: optionsettingsattachment.cpp:133
 msgid "Windows folder -> "
 msgstr "Φάκελος των Windows -> "
 
-#: optionsettingsattachment.cpp:131
+#: optionsettingsattachment.cpp:140
 msgid "Mac folder -> "
 msgstr "Φάκελος του Mac -> "
 
-#: optionsettingsattachment.cpp:138
+#: optionsettingsattachment.cpp:147
 msgid "Unix folder -> "
 msgstr "Φάκελος του Unix -> "
 
-#: optionsettingsattachment.cpp:146
+#: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
 msgstr "Δημιουργία και χρήση υποφακέλου Συνημμένων"
 
-#: optionsettingsattachment.cpp:157
+#: optionsettingsattachment.cpp:166
 msgid "Delete file after import"
 msgstr "Διαγραφή αρχείου μετά την εισαγωγή"
 
-#: optionsettingsattachment.cpp:159
+#: optionsettingsattachment.cpp:168
 msgid "Select to delete file after import in attachments archive"
 msgstr "Επιλέξτε για διαγραφή αρχείου μετά την εισαγωγή στην αρχειοθήκη συνημμένων"
 
-#: optionsettingsattachment.cpp:163
+#: optionsettingsattachment.cpp:172
 msgid "When remove attachment, move file instead of delete"
 msgstr "Όταν καταργήσετε το συνημμένο, μετακινήστε το αρχείο αντί για διαγραφή"
 
-#: optionsettingsattachment.cpp:165
+#: optionsettingsattachment.cpp:174
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr "Επιλέξτε για να μην διαγράψετε το αρχείο όταν καταργηθεί το συνημμένο, αλλά αντ' αυτού μετακινήστε το στον υποφάκελο 'Διαγραφή'"
 
-#: optionsettingsattachment.cpp:169
+#: optionsettingsattachment.cpp:178
 msgid "When duplicating transactions duplicate the attachments also"
 msgstr "Κατά την δημιουργία αντιγράφων των συναλλαγών αντιγράφονται επίσης τα συνημμένα"
 
-#: optionsettingsattachment.cpp:171
+#: optionsettingsattachment.cpp:180
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
 msgstr "Επιλέξτε αν θέλετε να αντιγράψετε τα συνημμένα σε νέες συναλλαγές όταν είναι διπλότυπες ή επικολλημένες"
 
-#: optionsettingsattachment.cpp:180
+#: optionsettingsattachment.cpp:193
 msgid "Choose folder to set as attachments archive"
 msgstr "Επιλογή φακέλου για ορισμό αρχείου συνημμένων"
 
-#: optionsettingsattachment.cpp:220
+#: optionsettingsattachment.cpp:234
 msgid "Attachments folder it's not writable!"
 msgstr "Ο φάκελος συνημμένων δεν είναι εγγράψιμος!"
 
-#: optionsettingsattachment.cpp:220
+#: optionsettingsattachment.cpp:234
 msgid "Attachments folder"
 msgstr "Φάκελος συνημμένων"
 
-#: optionsettingsattachment.cpp:228
+#: optionsettingsattachment.cpp:242
 msgid "Attachments path has been changed!"
 msgstr "Η διαδρομή συνημμένων έχει αλλάξει!"
 
-#: optionsettingsattachment.cpp:230 optionsettingsattachment.cpp:239
+#: optionsettingsattachment.cpp:244 optionsettingsattachment.cpp:253
 msgid "Attachments folder migration"
 msgstr "Μεταφορά φακέλου συνημμένων"
 
-#: optionsettingsattachment.cpp:236
+#: optionsettingsattachment.cpp:250
 msgid "Error moving attachments folder: please move it manually!"
 msgstr "Σφάλμα κατά τη μετακίνηση του φακέλου συνημμένων: παρακαλώ μετακινήστε τον χειροκίνητα!"
 
-#: optionsettingsattachment.cpp:237
+#: optionsettingsattachment.cpp:251
 msgid "Origin"
 msgstr "Καταγωγή"
 
-#: optionsettingsattachment.cpp:238
+#: optionsettingsattachment.cpp:252
 msgid "Destination"
 msgstr "Προορισμός"
 
-#: optionsettingsgeneral.cpp:67
+#: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
 msgstr "Τίτλος της εμφάνισης"
 
-#: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:107
+#: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:107
 msgid "User Name"
 msgstr "Όνομα χρήστη"
 
-#: optionsettingsgeneral.cpp:77
+#: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
 msgstr "Το όνομα χρήστη χρησιμοποιήθηκε ως τίτλος της βάσης δεδομένων."
 
-#: optionsettingsgeneral.cpp:107
+#: optionsettingsgeneral.cpp:114
 msgid "Specify the date format for display"
 msgstr "Καθορίστε τη μορφή εμφάνισης της ημερομηνίας"
 
-#: optionsettingsgeneral.cpp:110
+#: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
 msgstr "Δείγμα μορφής ημερομηνίας:"
 
-#: optionsettingsgeneral.cpp:123
+#: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
 msgstr "Βασικό νόμισμα"
 
-#: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:80
+#: optionsettingsgeneral.cpp:133 wizard_newdb.cpp:80
 msgid "Set Currency"
 msgstr "Ορίστε νόμισμα"
 
-#: optionsettingsgeneral.cpp:131
+#: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr "Ορίζει το προεπιλεγμένο νόμισμα της βάσης δεδομένων χρησιμοποιώντας το 'διάλογο νομίσματος'"
 
-#: optionsettingsgeneral.cpp:156
+#: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr "Μορφή που προέρχεται από τις τοπικές ρυθμίσεις.\n"
 "Αφήστε κενό για να ορίσετε χειροκίνητα τη μορφή μέσω του 'Διάλογος Συναλλάγματος |Επεξεργασία'"
 
-#: optionsettingsgeneral.cpp:167
+#: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
 msgstr "Χρησιμοποιήστε το ιστορικό ισοτιμίας"
 
-#: optionsettingsgeneral.cpp:169
+#: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr "Επιλέξτε για να χρησιμοποιήσετε το ιστορικό νομισμάτων (μία ισοτιμία για κάθε ημέρα), αποεπιλέξτε για να χρησιμοποιήσετε μια σταθερή ισοτιμία"
 
-#: optionsettingsgeneral.cpp:173
+#: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
 msgstr "Οικονομικό έτος"
 
-#: optionsettingsgeneral.cpp:180
+#: optionsettingsgeneral.cpp:187
 msgid "Start Day"
 msgstr "Ημέρα εκκίνησης"
 
-#: optionsettingsgeneral.cpp:186
+#: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
 msgstr "Καθορίστε την ημέρα έναρξης του οικονομικού έτους"
 
-#: optionsettingsgeneral.cpp:190
+#: optionsettingsgeneral.cpp:197
 msgid "Start Month"
 msgstr "Μήνας εκκίνησης"
 
-#: optionsettingsgeneral.cpp:202
+#: optionsettingsgeneral.cpp:209
 msgid "Specify month for start of financial year"
 msgstr "Καθορίστε τον μήνα έναρξης του οικονομικού έτους"
 
-#: optionsettingsgeneral.cpp:207
+#: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Να χρησιμοποιείται η αρχική ημερομηνία όταν επικολλώνται συναλλαγές"
 
-#: optionsettingsgeneral.cpp:209
+#: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιείτε την αρχική ημερομηνία της συναλλαγής ή την τρέχουσα ημερομηνία όταν αντιγράφετε/επικολλάτε συναλλαγές"
 
-#: optionsettingsgeneral.cpp:212
+#: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
 msgstr "Χρησιμοποιήστε την αρχική ημερομηνία όταν δημιουργείτε διπλότυπες συναλλαγές"
 
-#: optionsettingsgeneral.cpp:214
+#: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιηθεί η αρχική ημερομηνία της συναλλαγής ή η τρέχουσα ημερομηνία όταν δημιουργείτε διπλότυπες συναλλαγές"
 
-#: optionsettingsgeneral.cpp:217
+#: optionsettingsgeneral.cpp:224
 msgid "Use Transaction Sound"
 msgstr "Χρήση ήχων συναλλαγής"
 
-#: optionsettingsgeneral.cpp:219
+#: optionsettingsgeneral.cpp:226
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιούνται ήχοι κατά την εισαγωγή συναλλαγών"
 
-#: optionsettingsgeneral.cpp:296
+#: optionsettingsgeneral.cpp:307
 msgid "Locale"
 msgstr "Γλωσσικές Ρυθμίσεις"
 
-#: optionsettingsgeneral.cpp:324
+#: optionsettingsgeneral.cpp:335
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Δείγμα αξίας νομίσματος: %s"
 
-#: optionsettingsgeneral.cpp:328
+#: optionsettingsgeneral.cpp:339
 msgid "bad locale name"
 msgstr "εσφαλμένο όνομα γλώσσας"
 
-#: optionsettingsmisc.cpp:57
+#: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
 msgstr "Ιστοσελίδα τιμών μετοχής"
 
-#: optionsettingsmisc.cpp:74
+#: optionsettingsmisc.cpp:81
 msgid "Clear the field to Reset the value to system default."
 msgstr "Σβήστε το πεδίο για επαναφορά της τιμής στην προεπιλεγμένη από το σύστημα."
 
-#: optionsettingsmisc.cpp:78
+#: optionsettingsmisc.cpp:85
 msgid "Share Precision"
 msgstr "Κοινή Χρήση Ακρίβειας"
 
-#: optionsettingsmisc.cpp:83
+#: optionsettingsmisc.cpp:90
 msgid "Set the precision for Share prices"
 msgstr "Ορίστε την ακρίβεια για τις τιμές Share"
 
-#: optionsettingsmisc.cpp:89
+#: optionsettingsmisc.cpp:96
 msgid "New Transaction Dialog Settings"
 msgstr "Ρυθμίσεις παραθύρου νέας συναλλαγής"
 
-#: optionsettingsmisc.cpp:97
+#: optionsettingsmisc.cpp:104
 msgid "Last Used"
 msgstr "Χρησιμοποιήθηκε τελευταία"
 
-#: optionsettingsmisc.cpp:109
+#: optionsettingsmisc.cpp:116
 msgid "Unused"
 msgstr "Αχρησιμοποίητο"
 
-#: optionsettingsmisc.cpp:115
+#: optionsettingsmisc.cpp:122
 msgid "Last used for payee"
 msgstr "Τελευταία χρησιμοποιημένος ως δικαιούχος"
 
-#: optionsettingsmisc.cpp:116
+#: optionsettingsmisc.cpp:123
 msgid "Use default for payee"
 msgstr "Χρήση προεπιλογής για τον δικαιούχο"
 
-#: optionsettingsmisc.cpp:131
+#: optionsettingsmisc.cpp:138
 msgid "Yes"
 msgstr "Ναι"
 
-#: optionsettingsmisc.cpp:132
+#: optionsettingsmisc.cpp:139
 msgid "No"
 msgstr "Όχι"
 
-#: optionsettingsmisc.cpp:141
+#: optionsettingsmisc.cpp:148
 msgid "Default Date:"
 msgstr "Προεπιλεγμένη ημερομηνία:"
 
-#: optionsettingsmisc.cpp:143
+#: optionsettingsmisc.cpp:150
 msgid "Default Payee:"
 msgstr "Προεπιλεγμένος δικαιούχος:"
 
-#: optionsettingsmisc.cpp:145
+#: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category:"
 msgstr "Προεπιλεγμένη Κατηγορία Κατάθεσης/Ανάληψης:"
 
-#: optionsettingsmisc.cpp:147
+#: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category:"
 msgstr "Προεπιλεγμένη Κατηγορία Μεταφοράς:"
 
-#: optionsettingsmisc.cpp:149
+#: optionsettingsmisc.cpp:156
 msgid "Default Status:"
 msgstr "Προεπιλεγμένη κατάσταση:"
 
-#: optionsettingsmisc.cpp:151
+#: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions:"
 msgstr ""
 
-#: optionsettingsmisc.cpp:162
+#: optionsettingsmisc.cpp:169
 msgid "Database Backup"
 msgstr "Αντίγραφο ασφαλείας της βάσης δεδομένων"
 
-#: optionsettingsmisc.cpp:169
+#: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
 msgstr "Δημιουργία νέου αντιγράφου ασφαλείας όταν ξεκινά το MMEX"
 
-#: optionsettingsmisc.cpp:171
+#: optionsettingsmisc.cpp:178
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
 msgstr "Όταν ξεκινάει το MMEX,\n"
 "δημιουργεί ένα αντίγραφο ασφαλείας της βάσης δεδομένων: αρχείοΒΔ_start_ΕΕΕΕ-MM-ΗΗ.ext."
 
-#: optionsettingsmisc.cpp:176
+#: optionsettingsmisc.cpp:183
 msgid "Backup database on exit."
 msgstr "Αντίγραφο ασφαλείας βάσης δεδομένων κατά την έξοδο."
 
-#: optionsettingsmisc.cpp:178
+#: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr "Όταν το MMEX τερματίζει και οι αλλαγές που έγιναν στη βάση δεδομένων,\n"
 "δημιουργεί ή ενημερώνει την εφεδρική βάση δεδομένων: dbFile_update_YYYY-MM-DD.ext."
 
-#: optionsettingsmisc.cpp:186
+#: optionsettingsmisc.cpp:193
 msgid "Specify max number of backup files"
 msgstr "Καθορίστε μέγιστο αριθμό αρχείων αντιγράφων ασφαλείας"
 
-#: optionsettingsmisc.cpp:189
+#: optionsettingsmisc.cpp:196
 msgid "Max Files"
 msgstr "Μέγιστος Αριθμός Αρχείων"
 
-#: optionsettingsmisc.cpp:196
+#: optionsettingsmisc.cpp:203
 msgid "CSV Settings"
 msgstr "Ρυθμίσεις CSV"
 
-#: optionsettingsmisc.cpp:204
+#: optionsettingsmisc.cpp:211
 msgid "Delimiter"
 msgstr "Οριοθέτης"
 
-#: optionsettingsnet.cpp:58
+#: optionsettingsnet.cpp:65
 msgid "WebApp Settings"
 msgstr "Ρυθμίσεις WebApp"
 
-#: optionsettingsnet.cpp:65 webappdialog.cpp:103
+#: optionsettingsnet.cpp:72 webappdialog.cpp:103
 msgid "Url"
 msgstr "Url"
 
-#: optionsettingsnet.cpp:69
+#: optionsettingsnet.cpp:76
 msgid "Specify the Web App URL without final slash"
 msgstr "Καθορίστε το URL της εφαρμογής Web χωρίς τελική κάθετο"
 
-#: optionsettingsnet.cpp:72 webappdialog.cpp:110
+#: optionsettingsnet.cpp:79 webappdialog.cpp:110
 msgid "GUID"
 msgstr "GUID"
 
-#: optionsettingsnet.cpp:76
+#: optionsettingsnet.cpp:83
 msgid "Specify the Web App GUID"
 msgstr "Καθορίστε το GUID της εφαρμογής Web"
 
-#: optionsettingsnet.cpp:79
+#: optionsettingsnet.cpp:86
 msgid "More information about WebApp"
 msgstr "Περισσότερες πληροφορίες σχετικά με το WebApp"
 
-#: optionsettingsnet.cpp:83
+#: optionsettingsnet.cpp:90
 msgid "Proxy Settings"
 msgstr "Ρυθμίσεις Διαμεσολαβητή"
 
-#: optionsettingsnet.cpp:91
+#: optionsettingsnet.cpp:98
 msgid "Specify the proxy IP address"
 msgstr "Καθορίστε τη διεύθυνση IP του διαμεσολαβητή"
 
-#: optionsettingsnet.cpp:97
+#: optionsettingsnet.cpp:104
 msgid "Specify proxy port number"
 msgstr "Καθορισμός αριθμού θύρας διαμεσολαβητή"
 
-#: optionsettingsnet.cpp:100
+#: optionsettingsnet.cpp:107
 msgid "Proxy"
 msgstr "Διαμεσολαβητής"
 
-#: optionsettingsnet.cpp:102
+#: optionsettingsnet.cpp:109
 msgid "Port"
 msgstr "Θύρα"
 
-#: optionsettingsnet.cpp:108
+#: optionsettingsnet.cpp:115
 msgid "Usage statistics"
 msgstr "Στατιστικά χρήσης"
 
-#: optionsettingsnet.cpp:127
+#: optionsettingsnet.cpp:134
 msgid "Check for latest news on startup"
 msgstr "Έλεγχος για τα τελευταία νέα κατά την εκκίνηση"
 
-#: optionsettingsnet.cpp:129
+#: optionsettingsnet.cpp:136
 msgid "Enable to allow news to be checked on application start"
 msgstr "Ενεργοποιήστε για να επιτρέψετε τον έλεγχο των ειδήσεων κατά την έναρξη της εφαρμογής"
 
-#: optionsettingsnet.cpp:134
+#: optionsettingsnet.cpp:141
 msgid "Timeout"
 msgstr "Χρονικό όριο"
 
-#: optionsettingsnet.cpp:143
+#: optionsettingsnet.cpp:150
 msgid "Specify a network communication timeout value to use."
 msgstr "Καθορίστε μια τιμή χρονικού ορίου επικοινωνίας δικτύου που θα χρησιμοποιηθεί."
 
-#: optionsettingsnet.cpp:146
+#: optionsettingsnet.cpp:153
 msgid "Seconds"
 msgstr "Δευτερόλεπτα"
 
-#: optionsettingsnet.cpp:152
+#: optionsettingsnet.cpp:159
 msgid "Updates"
 msgstr "Ενημερώσεις"
 
-#: optionsettingsnet.cpp:158
+#: optionsettingsnet.cpp:165
 msgid "Check for updates at StartUp"
 msgstr "Έλεγχος για ενημερώσεις κατά την εκκίνηση"
 
-#: optionsettingsnet.cpp:160
+#: optionsettingsnet.cpp:167
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "Ενεργοποιήστε για να ελέγξετε αυτόματα αν η νέα έκδοση MMEX είναι διαθέσιμη στο StartUp"
 
-#: optionsettingsnet.cpp:163 wizard_update.cpp:114
+#: optionsettingsnet.cpp:170 wizard_update.cpp:114
 msgid "Stable"
 msgstr "Σταθερό"
 
-#: optionsettingsnet.cpp:164 wizard_update.cpp:114
+#: optionsettingsnet.cpp:171 wizard_update.cpp:114
 msgid "Unstable"
 msgstr "Ασταθής"
 
-#: optionsettingsnet.cpp:168
+#: optionsettingsnet.cpp:176
 msgid "Updates source"
 msgstr "Πηγή ενημερώσεων"
 
@@ -6824,7 +6824,7 @@ msgstr "Οι τιμές των μετοχών ενημερώθηκαν επιτ�
 msgid "Last updated %s"
 msgstr "Τελευταία ενημέρωση %s"
 
-#: stockspanel.cpp:343 util.cpp:642 util.cpp:798
+#: stockspanel.cpp:343 util.cpp:673 util.cpp:829
 msgid "Nothing to update"
 msgstr "Τίποτα για ενημέρωση"
 
@@ -6873,11 +6873,11 @@ msgstr "Κάτι πήγε στραβά κατά την προσπάθεια δι
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
 msgstr "Είστε βέβαιοι ότι θέλετε να χρησιμοποιήσετε αυτό το θέμα? Παρακαλώ σημειώστε ότι αυτό θα τεθεί σε ισχύ μόνο όταν επανεκκινήσετε το MMEX."
 
-#: transactionsupdatedialog.cpp:208
+#: transactionsupdatedialog.cpp:209
 msgid "Transfer To"
 msgstr "Μεταφορά Σε"
 
-#: transactionsupdatedialog.cpp:242
+#: transactionsupdatedialog.cpp:243
 msgid "Append"
 msgstr "Προσθήκη"
 
@@ -7099,68 +7099,68 @@ msgstr "Παρ"
 msgid "Sat"
 msgstr "Σαβ"
 
-#: util.cpp:675
+#: util.cpp:706
 msgid "Currency rates have been updated"
 msgstr "Οι ισοτιμίες συναλλάγματος έχουν ενημερωθεί"
 
-#: util.cpp:774 util.cpp:890 util.cpp:949
+#: util.cpp:805 util.cpp:921 util.cpp:980
 msgid "JSON Parse Error"
 msgstr "Σφάλμα Ανάλυσης Json"
 
-#: util.cpp:898 util.cpp:957
+#: util.cpp:929 util.cpp:988
 msgid "Expected response to contain a data or error string"
 msgstr "Η Αναμενόμενη απάντηση να περιέχει δεδομένα ή συμβολοσειρά σφάλματος"
 
-#: util.cpp:929
+#: util.cpp:960
 msgid "Could not find asset for symbol"
 msgstr "Αδυναμία εύρεσης περιουσιακού στοιχείου για το σύμβολο"
 
-#: util.cpp:964
+#: util.cpp:995
 msgid "Could not get base currency!"
 msgstr "Αδυναμία λήψης του βασικού νομίσματος!"
 
-#: util.cpp:970
+#: util.cpp:1001
 msgid "USD"
 msgstr "Δολάριο ΗΠΑ"
 
-#: util.cpp:973
+#: util.cpp:1004
 msgid "Could not find currency 'USD', needed for converting history prices"
 msgstr "Αδυναμία εύρεσης του νομίσματος 'USD', που απαιτείται για τη μετατροπή των τιμών ιστορικού"
 
-#: util.cpp:994
+#: util.cpp:1025
 msgid "Could not parse price in asset history"
 msgstr "Αδύνατη η ανάλυση της τιμής στο ιστορικό περιουσιακών στοιχείων"
 
-#: util.cpp:1224
+#: util.cpp:1255
 #, c-format
 msgid "Version: %s"
 msgstr "Έκδοση: %s"
 
-#: util.cpp:1225
+#: util.cpp:1256
 msgid "Build on"
 msgstr "Τοποθέτηση σε"
 
-#: util.cpp:1226
+#: util.cpp:1257
 msgid "Database version: "
 msgstr "Έκδοση βάσης δεδομένων: "
 
-#: util.cpp:1233
+#: util.cpp:1264
 msgid "Git commit: "
 msgstr "Υποβολή git: "
 
-#: util.cpp:1237
+#: util.cpp:1268
 msgid "Git branch: "
 msgstr "Κλάδος Git: "
 
-#: util.cpp:1241
+#: util.cpp:1272
 msgid "MMEX is using the following support products:"
 msgstr "Το MMEX χρησιμοποιεί τα ακόλουθα προϊόντα υποστήριξης:"
 
-#: util.cpp:1259
+#: util.cpp:1290
 msgid "Build using:"
 msgstr ""
 
-#: util.cpp:1280
+#: util.cpp:1311
 msgid "Running on:"
 msgstr "Εκτελείται στις:"
 
