@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-15 16:50+0300\n"
-"PO-Revision-Date: 2022-07-15 14:34\n"
+"PO-Revision-Date: 2022-07-17 08:08\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Privatsphäre"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:121
 msgid "Send anonymous statistics usage data"
-msgstr "anonyme Statistiken / Nutzungsdaten senden"
+msgstr "Anonyme Statistiken / Nutzungsdaten senden"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:123
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -104,7 +104,7 @@ msgstr "Kontostand zu Beginn: %s"
 
 #: accountdialog.cpp:170
 msgid "Enter the initial balance in this account."
-msgstr "Mit welchem Guthaben startet dieses Konto."
+msgstr "Geben Sie den Anfangssaldo dieses Kontos ein."
 
 #: accountdialog.cpp:172 import_export/univcsvdialog.cpp:1858
 msgid "Currency:"
@@ -181,7 +181,7 @@ msgstr "Kontakt:"
 
 #: accountdialog.cpp:227
 msgid "Enter any contact information for the financial institution."
-msgstr "Hier können Sie Kontaktdaten wie z.B. einen Ansprechpartner vermerken."
+msgstr "Hier können Sie Kontaktdaten, wie z.B. einen Ansprechpartner vermerken."
 
 #: accountdialog.cpp:230
 msgid "Access Info:"
@@ -1313,7 +1313,7 @@ msgstr "Automatisiert"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] "%d Tag(e) verbleiben"
+msgstr[0] "%d Tag/e verbleiben"
 msgstr[1] "%d Tage verbleibend"
 
 #: billsdepositspanel.cpp:542 billsdepositspanel.cpp:549
