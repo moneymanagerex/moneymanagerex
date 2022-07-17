@@ -593,6 +593,11 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, con
     m_message(message),
     cbText_(nullptr)
 {
+    if (m_choices.Index(m_default_str) == wxNOT_FOUND)
+    {
+        m_choices.Add(m_default_str);
+        m_choices.Sort(CaseInsensitiveLocaleCmp);
+    }
     this->SetFont(parent->GetFont());
     Create(parent, wxID_ANY, caption);
     SetMinSize(wxSize(300, 100));
@@ -612,6 +617,8 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(headerText, flags);
     Sizer->AddSpacer(15);
     cbText_ = new mmComboBoxCustom(this, m_choices);
+    cbText_->SetFocus();
+    cbText_->ChangeValue(m_default_str);
     cbText_->SetMinSize(wxSize(150, -1));
     Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
@@ -619,8 +626,6 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(Button, flags);
     Sizer->AddSpacer(10);
 
-    cbText_->SetFocus();
-    cbText_->ChangeValue(m_default_str);
     Centre();
     Fit();
     return true;
