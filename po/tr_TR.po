@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-07-15 16:50+0300\n"
-"PO-Revision-Date: 2022-07-15 14:33\n"
+"POT-Creation-Date: 2022-07-17 14:51+0300\n"
+"PO-Revision-Date: 2022-07-17 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "MMEX kullanımı hakkında genel veriler göndererek bize yardımcı olu
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:726
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:827 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:832 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:266
@@ -1839,7 +1839,7 @@ msgstr "Güncellenmezse tüm değişiklikler kaybolacaktır."
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:727
+#: mmSimpleDialogs.cpp:732
 msgid "Invalid Entry"
 msgstr "Geçersiz Giriş"
 
@@ -2752,7 +2752,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:747
 msgid "Unable to open file."
 msgstr "Dosya açılamadı."
 
@@ -3360,7 +3360,7 @@ msgstr "Var olan dosya silinemedi. Dosya başka bir program tarafından kilitlen
 msgid "Destination file error"
 msgstr "Hedef dosya hatası"
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:750
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:755
 msgid "Invalid Account"
 msgstr "Geçersiz Hesap"
 
@@ -3564,88 +3564,88 @@ msgstr ""
 msgid "Color #%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:667
+#: mmSimpleDialogs.cpp:672
 msgid "Subtract one year"
 msgstr "Bir yıl çıkar"
 
-#: mmSimpleDialogs.cpp:668
+#: mmSimpleDialogs.cpp:673
 msgid "Subtract one month"
 msgstr "Bir ay çıkar"
 
-#: mmSimpleDialogs.cpp:669
+#: mmSimpleDialogs.cpp:674
 msgid "Add one month"
 msgstr "Bir ay ekle"
 
-#: mmSimpleDialogs.cpp:670
+#: mmSimpleDialogs.cpp:675
 msgid "Add one year"
 msgstr "Bir yıl ekle"
 
-#: mmSimpleDialogs.cpp:726
+#: mmSimpleDialogs.cpp:731
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "%s girişi geçersiz"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:738
 msgid "Please use this button for category selection."
 msgstr "Lütfen bu düğmeyi kategori seçimi için kullanın."
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:739
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Kategori seçimi için bu düğmeyi veya çoklu\n"
 "kategoriler için  \"Parçalı\" kontrol kutusunu kullanın."
 
-#: mmSimpleDialogs.cpp:737
+#: mmSimpleDialogs.cpp:742
 msgid "Invalid Category"
 msgstr "Geçersiz Kategori"
 
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:747
 msgid "File name is empty."
 msgstr "Dosya adı boş. "
 
-#: mmSimpleDialogs.cpp:743
+#: mmSimpleDialogs.cpp:748
 msgid "Please select the file for this operation."
 msgstr "Lütfen bu işlem için dosya seçin."
 
-#: mmSimpleDialogs.cpp:753
+#: mmSimpleDialogs.cpp:758
 msgid "Please select the account for this transaction."
 msgstr "Lütfen bu işlem için hesap seçin."
 
-#: mmSimpleDialogs.cpp:755
+#: mmSimpleDialogs.cpp:760
 msgid "Please specify which account the transfer is going to."
 msgstr "Lütfen aktarımın hangi hesaba gideceğini belirtin."
 
-#: mmSimpleDialogs.cpp:757
+#: mmSimpleDialogs.cpp:762
 msgid "Selection can be made by using the dropdown button."
 msgstr "Seçim açılır düğme kullanılarak yapılabilir."
 
-#: mmSimpleDialogs.cpp:760
+#: mmSimpleDialogs.cpp:765
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Düğmeyi etkinleştirmek hesabın seçilebileceği bir seçim kutusu sağlayacak."
 
-#: mmSimpleDialogs.cpp:769
+#: mmSimpleDialogs.cpp:774
 msgid "Invalid Payee"
 msgstr "Geçersiz Alacaklı/Satıcı"
 
-#: mmSimpleDialogs.cpp:770
+#: mmSimpleDialogs.cpp:775
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Lütfen yeni bir alacaklı yazın veya\n"
 "açılır düğmeyi kullanarak bir seçim yapın.."
 
-#: mmSimpleDialogs.cpp:778 mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:783 mmSimpleDialogs.cpp:795
 msgid "Invalid Name"
 msgstr "Geçersiz İsim"
 
-#: mmSimpleDialogs.cpp:781 mmSimpleDialogs.cpp:793
+#: mmSimpleDialogs.cpp:786 mmSimpleDialogs.cpp:798
 msgid "Already exist!"
 msgstr "Zaten var!"
 
-#: mmSimpleDialogs.cpp:783
+#: mmSimpleDialogs.cpp:788
 msgid "Please type in a non empty name."
 msgstr "Lütfen boş olmayan bir isim yazın."
 
-#: mmSimpleDialogs.cpp:795
+#: mmSimpleDialogs.cpp:800
 msgid "Please type in a non empty symbol."
 msgstr "Lütfen boş olmayan bir sembol yazın."
 
