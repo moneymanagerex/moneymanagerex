@@ -617,8 +617,6 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(headerText, flags);
     Sizer->AddSpacer(15);
     cbText_ = new mmComboBoxCustom(this, m_choices);
-    cbText_->SetFocus();
-    cbText_->ChangeValue(m_default_str);
     cbText_->SetMinSize(wxSize(150, -1));
     Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
@@ -626,6 +624,9 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(Button, flags);
     Sizer->AddSpacer(10);
 
+    cbText_->SetFocus();
+    cbText_->ChangeValue(m_default_str);
+    cbText_->SelectAll();
     Centre();
     Fit();
     return true;
