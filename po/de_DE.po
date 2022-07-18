@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-17 14:51+0300\n"
-"PO-Revision-Date: 2022-07-17 11:57\n"
+"PO-Revision-Date: 2022-07-18 18:22\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -221,7 +221,7 @@ msgstr "Mindestsaldo:"
 
 #: accountdialog.cpp:257
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Untere Kontostand Grenze. Null zum Deaktivieren"
+msgstr "Untere Grenze Kontostand. Null zum Deaktivieren"
 
 #: accountdialog.cpp:262 mmchecking_list.cpp:236
 msgid "Credit"
@@ -328,7 +328,7 @@ msgstr "Webseite besuchen"
 #: appstartdialog.cpp:124
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr "Öffne die %s Webseite für Neuigkeiten, Updates etc"
+msgstr "Öffne die %s Webseite für Neuigkeiten, Updates etc."
 
 #: appstartdialog.cpp:132 wizard_update.cpp:209
 #, c-format
@@ -375,7 +375,7 @@ msgstr "Anlagenbuchung hinzufügen"
 
 #: assetdialog.cpp:98
 msgid "Edit Asset Transaction"
-msgstr "Anagenbuchung bearbeiten"
+msgstr "Anlagenbuchung bearbeiten"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -407,7 +407,7 @@ msgstr "Datum"
 
 #: assetdialog.cpp:204
 msgid "Specify the date of purchase of asset"
-msgstr "Datum des Erwerb des Vermögens angeben"
+msgstr "Datum des Erwerbs des Vermögens angeben"
 
 #: assetdialog.cpp:206
 msgid "Asset Type"
@@ -424,7 +424,7 @@ msgstr "Wert"
 
 #: assetdialog.cpp:223
 msgid "Enter the current value of the asset"
-msgstr "Wert dieses Vermögengegenstandes beziffern"
+msgstr "Wert dieses Vermögensgegenstandes beziffern"
 
 #: assetdialog.cpp:228
 msgid "Change in Value"
