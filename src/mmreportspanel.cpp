@@ -31,6 +31,7 @@
 #include "util.h"
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
+#include <wx/spinctrl.h>
 #include <wx/wrapsizer.h>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
@@ -40,6 +41,8 @@ EVT_CHOICE(ID_CHOICE_BUDGET, mmReportsPanel::OnBudgetChanged)
 EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
 EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
 EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
+EVT_SPINCTRL(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedSpin)
+EVT_TEXT_ENTER(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedText)
 EVT_BUTTON(wxID_ANY, mmReportsPanel::OnShiftPressed)
 wxEND_EVENT_TABLE()
 
@@ -370,6 +373,21 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_chart, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
+
+        if (rp & rb_->RepParams::FORWARD_MONTHS)
+        {
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
+                , wxID_ANY, _("Future Months:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+            m_forwardMonths = new wxSpinCtrl(itemPanel3, ID_CHOICE_FORWARD_MONTHS
+                                    ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER);
+            m_forwardMonths->SetRange(1, 60);
+            m_forwardMonths->SetValue(rb_->getForwardMonths());
+            itemBoxSizerHeader->Add(m_forwardMonths, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
     }
 
     browser_ = wxWebView::New();
@@ -465,6 +483,28 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
         }
     }
 }
+
+void mmReportsPanel::OnForwardMonthsChangedSpin(wxSpinEvent& WXUNUSED(event))
+{
+    if (rb_)
+    {
+        int sel = m_forwardMonths->GetValue();
+        if (sel != rb_->getForwardMonths())
+        {
+            rb_->setForwardMonths(sel);
+            saveReportText(false);
+            rb_->setReportSettings();
+        }
+    }
+}
+
+void mmReportsPanel::OnForwardMonthsChangedText(wxCommandEvent& event)
+{
+    m_forwardMonths->SetValue(event.GetString());
+    wxSpinEvent evt;
+    OnForwardMonthsChangedSpin(evt);
+}
+
 
 void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
 {

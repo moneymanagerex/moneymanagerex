@@ -4,6 +4,7 @@
  Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -127,6 +128,9 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
         wxTreeItemId cashflowWithTermAccounts = m_nav_tree_ctrl->AppendItem(cashFlow, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(cashflowWithTermAccounts, new mmTreeItemData("Cash Flow - Monthly", new mmReportCashFlowMonthly()));
+
+        wxTreeItemId cashflowWithTransactions = m_nav_tree_ctrl->AppendItem(cashFlow, _("Transactions"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(cashflowWithTransactions, new mmTreeItemData("Cash Flow - Transactions", new mmReportCashFlowTransactions()));
     }
 
     ///////////////////////////////////////////////////////////////////
