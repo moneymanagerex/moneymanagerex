@@ -326,7 +326,7 @@ double mmReportCashFlowTransactions::trueAmount(const Model_Checking::Data& trx)
             else
             {
                 const double toConvRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.TOACCOUNTID)->CURRENCYID, trx.TRANSDATE);
-                amount = +trx.TRANSAMOUNT * convRate;
+                amount = +trx.TRANSAMOUNT * toConvRate;
             }
         }
     }
@@ -344,7 +344,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 
-    double balance;
+    double balance = 0.0;
     forecastVec fvec;
     account_id.clear();
     wxDateTime today = wxDateTime::Today();
