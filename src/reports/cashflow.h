@@ -65,4 +65,15 @@ public:
     mmReportCashFlowMonthly();
 };
 
+class mmReportCashFlowTransactions : public mmPrintableBase
+{
+public:
+    mmReportCashFlowTransactions();
+    virtual ~mmReportCashFlowTransactions();
+    virtual wxString getHTMLText();
+private:
+    double trueAmount(const Model_Checking::Data& trx);
+    wxArrayInt account_id;
+};
+
 #endif // MM_EX_REPORTCASHFLOW_H_

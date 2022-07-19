@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2012 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2017 James Higley
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -291,16 +292,272 @@ wxString mmReportCashFlow::getHTMLText_i()
 }
 
 mmReportCashFlowDaily::mmReportCashFlowDaily()
-    : mmReportCashFlow("Cash Flow - Daily")
+    : mmReportCashFlow(wxTRANSLATE("Cash Flow - Daily"))
 {
     cashFlowReportType_ = TYPE::DAILY;
     setReportParameters(Reports::DailyCashFlow);
 }
 
 mmReportCashFlowMonthly::mmReportCashFlowMonthly()
-    : mmReportCashFlow("Cash Flow - Monthly")
+    : mmReportCashFlow(wxTRANSLATE("Cash Flow - Monthly"))
 {
     cashFlowReportType_ = TYPE::MONTHLY;
     setReportParameters(Reports::MonthlyCashFlow);
+}
+
+double mmReportCashFlowTransactions::trueAmount(const Model_Checking::Data& trx)
+{
+    double amount = 0.0;
+    bool isAccountFound = account_id.Index(trx.ACCOUNTID) != wxNOT_FOUND;
+    bool isToAccountFound = account_id.Index(trx.TOACCOUNTID) != wxNOT_FOUND;
+    if (!(isAccountFound && isToAccountFound))
+    {
+        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+        switch (Model_Checking::type(trx.TRANSCODE)) {
+        case Model_Checking::WITHDRAWAL:
+            amount = -trx.TRANSAMOUNT * convRate;
+            break;
+        case Model_Checking::DEPOSIT:
+            amount = +trx.TRANSAMOUNT * convRate;
+            break;
+        case Model_Checking::TRANSFER:
+            if (isAccountFound)
+                amount = -trx.TRANSAMOUNT * convRate;
+            else
+            {
+                const double toConvRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.TOACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+                amount = +trx.TRANSAMOUNT * toConvRate;
+            }
+        }
+    }
+    return amount;
+}
+
+wxString mmReportCashFlowTransactions::getHTMLText()
+{
+    const int spanMonths = getForwardMonths();
+    typedef std::vector<Model_Checking::Data> forecastVec;
+
+    mmHTMLBuilder hb;
+    hb.init();
+    const wxString& headingStr = wxString::Format(_("Cash Flow Transactions for %i Months Ahead"), spanMonths);
+    hb.addReportHeader(headingStr, 1, false);
+    hb.DisplayFooter(getAccountNames());
+
+    double balance = 0.0;
+    forecastVec fvec;
+    account_id.clear();
+    wxDateTime today = wxDateTime::Today();
+    wxString todayString = today.FormatISODate();
+    wxDateTime endDate = today.Add(wxDateSpan::Months(spanMonths));
+
+    // Get initial Balance as of today
+
+    for (const auto& account : Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
+        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
+    {
+        if (accountArray_ && accountArray_->Index(account.ACCOUNTNAME) == wxNOT_FOUND) {
+            continue;
+        }
+
+        double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID
+            , todayString);
+        balance += account.INITIALBAL * convRate;
+
+        account_id.Add(account.ACCOUNTID);
+
+        for (const auto& tran : Model_Account::transaction(account))
+        {
+            // Do not include asset or stock transfers in income expense calculations.
+            if (Model_Checking::foreignTransactionAsTransfer(tran)
+                || (tran.TRANSDATE > todayString))
+                continue;
+            balance += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
+        }
+    }
+
+    // Now gather all transations posted after today
+    Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+                    Model_Checking::TRANSDATE(today, GREATER),
+                    Model_Checking::TRANSDATE(endDate, LESS));
+    for (auto& tran : transactions)
+    {
+        Model_Checking::Data trx;
+        bool isAccountFound = account_id.Index(tran.ACCOUNTID) != wxNOT_FOUND;
+        bool isToAccountFound = account_id.Index(tran.TOACCOUNTID) != wxNOT_FOUND;
+        if (!isAccountFound && !isToAccountFound)
+            continue; // skip account
+        if (tran.CATEGID == -1)
+        {
+            Model_Checking::Data *transaction = Model_Checking::instance().get(tran.TRANSID);
+            for (const auto& split_item : Model_Checking::splittransaction(transaction))
+            {
+                tran.CATEGID = split_item.CATEGID;
+                tran.SUBCATEGID = split_item.SUBCATEGID;
+                tran.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
+                fvec.push_back(tran);
+            }
+        } else
+            fvec.push_back(tran);
+    }
+    // Now we gather the recurring transaction list
+
+    for (const auto& entry : Model_Billsdeposits::instance().all())
+    {
+        wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
+        if (nextOccurDate > endDate) continue;
+
+        int repeatsType = entry.REPEATS;
+        int numRepeats = entry.NUMOCCURRENCES;
+        double amt = entry.TRANSAMOUNT;
+        double toAmt = entry.TOTRANSAMOUNT;
+
+        // DeMultiplex the Auto Executable fields from the db entry: REPEATS
+        repeatsType %= BD_REPEATS_MULTIPLEX_BASE;
+
+        bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
+        if (repeatsType == 0)
+        {
+            numRepeats = 1;
+            processNumRepeats = true;
+        }
+
+        bool isAccountFound = account_id.Index(entry.ACCOUNTID) != wxNOT_FOUND;
+        bool isToAccountFound = account_id.Index(entry.TOACCOUNTID) != wxNOT_FOUND;
+        if (!isAccountFound && !isToAccountFound)
+            continue; // skip account
+
+        // Process all possible recurring transactions for this BD
+        while (1)
+        {
+            if (nextOccurDate > endDate) break;
+            if (processNumRepeats) numRepeats--;
+
+            Model_Checking::Data trx;
+            trx.TRANSDATE = nextOccurDate.FormatISODate();
+            trx.ACCOUNTID = entry.ACCOUNTID;
+            trx.TOACCOUNTID = entry.TOACCOUNTID;
+            trx.PAYEEID =  entry.PAYEEID;
+            trx.TRANSCODE = entry.TRANSCODE;
+            trx.TRANSAMOUNT = entry.TRANSAMOUNT;
+            trx.TOTRANSAMOUNT = entry.TOTRANSAMOUNT;
+            if (entry.CATEGID == -1)
+            {
+                for (const auto& split_item : Model_Billsdeposits::splittransaction(entry))
+                {
+                    trx.CATEGID = split_item.CATEGID;
+                    trx.SUBCATEGID = split_item.SUBCATEGID;
+                    trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
+                    fvec.push_back(trx);
+                }
+            } else 
+            {
+                trx.CATEGID = entry.CATEGID;
+                trx.SUBCATEGID = entry.SUBCATEGID;
+                fvec.push_back(trx);
+            }
+
+            if (processNumRepeats && (numRepeats <= 0))
+                break;
+
+            nextOccurDate = Model_Billsdeposits::nextOccurDate(repeatsType, numRepeats, nextOccurDate);
+
+            if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
+            {
+                if (numRepeats > 0)
+                    numRepeats = -1;
+                else
+                    break;
+            }
+            else if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
+            {
+                if (numRepeats > 0)
+                    numRepeats = -1;
+                else
+                    break;
+            }
+            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
+                numRepeats = entry.NUMOCCURRENCES;
+            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
+                numRepeats = entry.NUMOCCURRENCES;
+        }
+    }
+
+    // Sort by transaction date
+    sort(fvec.begin(), fvec.end(), 
+        [] (Model_Checking::Data const& a, Model_Checking::Data const& b) { return a.TRANSDATE < b.TRANSDATE; });
+    
+    // Display graph
+    GraphData gd;
+    GraphSeries gs;
+
+    double runningBalance = balance;
+    for (const auto& entry : fvec)
+    {
+        runningBalance += trueAmount(entry);
+        gs.values.push_back(runningBalance);
+        gd.labels.push_back(entry.TRANSDATE);
+    }
+    gd.series.push_back(gs);
+
+    if (getChartSelection() == 0 && !gd.series.empty())
+    {
+        gd.type = GraphData::LINE_DATETIME;
+        hb.addChart(gd);
+    }
+
+    // Now display the  transaction detail
+
+    hb.addDivContainer("shadow");
+    hb.startTable();
+    hb.startThead();
+    hb.startTableRow();
+    hb.addTableHeaderCell(_("Date"));
+    hb.addTableHeaderCell(_("Account"));
+    hb.addTableHeaderCell(_("Payee"));
+    hb.addTableHeaderCell(_("Category"));
+    hb.addTableHeaderCell(_("Amount"), "text-right");
+    hb.addTableHeaderCell(_("Balance"), "text-right");
+    hb.addTableHeaderCell(_("Difference"), "text-right");
+    hb.endTableRow();
+    hb.endThead();
+    hb.startTbody();
+
+    const double startingBalance = balance;
+    for (const auto& trx : fvec)
+    {
+        hb.startTableRow();
+        hb.addTableCellDate(trx.TRANSDATE);
+        hb.addTableCell(Model_Account::get_account_name(trx.ACCOUNTID));
+        hb.addTableCell((trx.TOACCOUNTID == -1) ? Model_Payee::get_payee_name(trx.PAYEEID)
+                            : "> " + Model_Account::get_account_name(trx.TOACCOUNTID));
+        hb.addTableCell(Model_Category::full_name(trx.CATEGID, trx.SUBCATEGID));
+        double amount = trueAmount(trx);
+        hb.addMoneyCell(amount);
+        balance += amount;
+        hb.addMoneyCell(balance);
+        hb.addMoneyCell(balance - startingBalance);
+        hb.endTableRow();
+    }
+
+    hb.endTbody();
+    hb.endTable();
+    hb.endDiv();
+    hb.end();
+
+    wxLogDebug("======= mmReportCashFlowTransactions:getHTMLText =======");
+    wxLogDebug("%s", hb.getHTMLText());
+    return hb.getHTMLText();
+}
+
+mmReportCashFlowTransactions::mmReportCashFlowTransactions()
+    : mmPrintableBase(wxTRANSLATE("Cash Flow - Transactions"))
+{
+    setReportParameters(Reports::TransactionsCashFlow);
+}
+
+mmReportCashFlowTransactions::~mmReportCashFlowTransactions()
+{
 }
 

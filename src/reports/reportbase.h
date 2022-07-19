@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -45,10 +45,12 @@ public:
     int getDateSelection() const;
     int getAccountSelection() const;
     int getChartSelection() const;
+    int getForwardMonths() const;   
     const wxString getAccountNames() const;
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
     void setSelection(int sel);
+    void setForwardMonths(int sel);
     void setReportSettings();
     void setReportParameters(int id);
     const wxString getReportSettings() const;
@@ -68,6 +70,7 @@ public:
         , ONLY_YEARS = 16
         , ACCOUNTS_LIST = 32
         , CHART = 64
+        , FORWARD_MONTHS = 128
     };
 
     enum Reports {
@@ -85,6 +88,7 @@ public:
         BudgetCategorySummary,
         MonthlyCashFlow,
         DailyCashFlow,
+        TransactionsCashFlow,
         StocksReportPerformance,
         StocksReportSummary,
         ForecastReport,
@@ -96,6 +100,7 @@ public:
 protected:
     int m_chart_selection;
     int m_date_selection;
+    int m_forward_months;
     wxString m_title;
     const mmDateRange* m_date_range;
     wxSharedPtr<wxArrayString> accountArray_;
@@ -112,6 +117,8 @@ private:
 
 inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }
 inline int mmPrintableBase::getDateSelection() const { return this->m_date_selection; }
+inline void mmPrintableBase::setForwardMonths(int sel) { m_forward_months = sel; }
+inline int mmPrintableBase::getForwardMonths() const { return this->m_forward_months; }
 inline int mmPrintableBase::getAccountSelection() const { return this->m_account_selection; }
 inline int mmPrintableBase::getChartSelection() const { return this->m_chart_selection; }
 inline void mmPrintableBase::chart(int selection) { m_chart_selection = selection; }
