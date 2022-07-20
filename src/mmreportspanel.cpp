@@ -358,6 +358,21 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(30);
         }
 
+        if (rp & rb_->RepParams::FORWARD_MONTHS)
+        {
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
+                , wxID_ANY, _("Future Months:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+            m_forwardMonths = new wxSpinCtrl(itemPanel3, ID_CHOICE_FORWARD_MONTHS
+                                    ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER);
+            m_forwardMonths->SetRange(1, 120);
+            m_forwardMonths->SetValue(rb_->getForwardMonths());
+            itemBoxSizerHeader->Add(m_forwardMonths, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
+
         if (rp & rb_->RepParams::CHART)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
@@ -371,21 +386,6 @@ void mmReportsPanel::CreateControls()
             m_chart->SetSelection(rb_->getChartSelection());
 
             itemBoxSizerHeader->Add(m_chart, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
-            itemBoxSizerHeader->AddSpacer(30);
-        }
-
-        if (rp & rb_->RepParams::FORWARD_MONTHS)
-        {
-            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Future Months:"));
-            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
-            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
-            itemBoxSizerHeader->AddSpacer(5);
-            m_forwardMonths = new wxSpinCtrl(itemPanel3, ID_CHOICE_FORWARD_MONTHS
-                                    ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER);
-            m_forwardMonths->SetRange(1, 60);
-            m_forwardMonths->SetValue(rb_->getForwardMonths());
-            itemBoxSizerHeader->Add(m_forwardMonths, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
     }
