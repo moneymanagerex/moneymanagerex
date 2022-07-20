@@ -23,6 +23,8 @@
 #include "mmpanelbase.h"
 #include "mmSimpleDialogs.h"
 #include "reports/reportbase.h"
+#include <wx/spinctrl.h>
+
 class mmGUIFrame;
 class mmDateRange;
 class mmReportsPanel : public mmPanelBase

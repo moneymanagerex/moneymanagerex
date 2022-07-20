@@ -31,7 +31,6 @@
 #include "util.h"
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
-#include <wx/spinctrl.h>
 #include <wx/wrapsizer.h>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)

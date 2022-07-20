@@ -105,7 +105,7 @@ int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 
 int CaseInsensitiveLocaleCmp(const wxString &s1, const wxString &s2)
 {
-    return std::wcscoll(s1.Lower(),s2.Lower());
+    return std::wcscoll(s1.Lower().wc_str(),s2.Lower().wc_str());
 }
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName)
