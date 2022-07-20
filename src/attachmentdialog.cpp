@@ -42,10 +42,11 @@ wxBEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
 wxEND_EVENT_TABLE()
 
 
-mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int RefId, const wxString& name) :
+mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int RefId, const wxString& RefName, const wxString& name) :
     m_attachment_id(-1)
     , m_RefType(RefType)
     , m_RefId(RefId)
+    , m_RefName(RefName)
     #ifdef _DEBUG
         , debug_(true)
     #else
@@ -83,7 +84,10 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
 
     wxString WindowTitle;
     if (m_RefId > 0)
-        WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), wxGetTranslation(m_RefType), m_RefId);
+        if (m_RefName.IsEmpty())
+            WindowTitle = wxString::Format(_("Organize Attachments | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
+        else
+            WindowTitle = wxString::Format(_("Organize Attachments | %s | %s"), wxGetTranslation(m_RefType), m_RefName);           
     else
         WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(m_RefType));
 
