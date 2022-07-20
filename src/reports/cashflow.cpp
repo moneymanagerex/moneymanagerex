@@ -431,12 +431,12 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     hb.startTbody();
 
     int lastRowDate = -1;
-    int rowDate;
     bool rowType = false;
     runningBalance = m_balance;
     for (const auto& trx : m_forecastVector)
     {
         wxDateTime dt;
+        int rowDate;
         dt.ParseDate(trx.TRANSDATE);
         rowDate = dt.GetMonth();
         if (rowDate != lastRowDate)
