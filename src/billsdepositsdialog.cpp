@@ -734,6 +734,8 @@ void mmBDDialog::OnComboKey(wxKeyEvent& event)
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                     cbPayee_->SetInsertionPointEnd();
+                    wxCommandEvent evt;
+                    OnPayee(evt);
                 }
                 return;
             }

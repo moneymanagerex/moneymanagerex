@@ -835,6 +835,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                     cbPayee_->SetInsertionPointEnd();
+                    SetCategoryForPayee(payee);
                 }
                 return;
             }
