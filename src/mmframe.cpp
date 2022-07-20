@@ -1121,7 +1121,7 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
         int RefId = selectedItemData_->getData();
         wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
 
-        mmAttachmentDialog dlg(this, RefType, RefId);
+        mmAttachmentDialog dlg(this, RefType, RefId, Model_Account::get_account_name(RefId));
         dlg.ShowModal();
     }
 }

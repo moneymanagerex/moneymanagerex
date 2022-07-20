@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013 - 2016, 2020, 2022 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
   This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -469,13 +470,17 @@ void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
     int RefId;
+    wxString RefName = "";
     
     if (!this->m_asset)
         RefId = 0;
     else
+    {
         RefId= m_asset->ASSETID;
+        RefName = m_asset->ASSETNAME;
+    }
 
-    mmAttachmentDialog dlg(this, RefType, RefId);
+    mmAttachmentDialog dlg(this, RefType, RefId, RefName);
     dlg.ShowModal();
 }
 

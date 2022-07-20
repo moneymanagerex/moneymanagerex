@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -410,7 +411,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
-    mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID);
+    mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID, m_account->ACCOUNTNAME);
     dlg.ShowModal();
 }
 

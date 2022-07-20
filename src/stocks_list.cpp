@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -328,7 +329,7 @@ void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     int RefId = m_stocks[m_selected_row].STOCKID;
 
-    mmAttachmentDialog dlg(this, RefType, RefId);
+    mmAttachmentDialog dlg(this, RefType, RefId, m_stocks[m_selected_row].STOCKNAME);
     dlg.ShowModal();
 
     doRefreshItems(RefId);

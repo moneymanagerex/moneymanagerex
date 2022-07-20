@@ -30,7 +30,7 @@ class mmAttachmentDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int RefId, const wxString& name = "mmAttachmentDialog");
+    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int RefId, const wxString& RefName = "", const wxString& name = "mmAttachmentDialog");
 
 private:
     enum cols
@@ -58,6 +58,7 @@ private:
 
     wxString m_RefType;
     int m_RefId;
+    wxString m_RefName;
 
     mmAttachmentDialog() : m_attachment_id(-1) {}
 
