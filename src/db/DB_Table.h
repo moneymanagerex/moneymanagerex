@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-07-05 12:16:41.553818.
+ *          AUTO GENERATED at 2022-07-20 15:29:27.776453.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -182,7 +182,7 @@ struct SorterByACCOUNTNAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (std::wcscoll(x.ACCOUNTNAME.Lower(),y.ACCOUNTNAME.Lower()) < 0);  // Locale case-insensitive
+        return (std::wcscoll(x.ACCOUNTNAME.Lower().wc_str(),y.ACCOUNTNAME.Lower().wc_str()) < 0);  // Locale case-insensitive
     }
 };
 
@@ -326,7 +326,7 @@ struct SorterByCATEGNAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (std::wcscoll(x.CATEGNAME.Lower(),y.CATEGNAME.Lower()) < 0);  // Locale case-insensitive
+        return (std::wcscoll(x.CATEGNAME.Lower().wc_str(),y.CATEGNAME.Lower().wc_str()) < 0);  // Locale case-insensitive
     }
 };
 
@@ -740,7 +740,7 @@ struct SorterByPAYEENAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (std::wcscoll(x.PAYEENAME.Lower(),y.PAYEENAME.Lower()) < 0);  // Locale case-insensitive
+        return (std::wcscoll(x.PAYEENAME.Lower().wc_str(),y.PAYEENAME.Lower().wc_str()) < 0);  // Locale case-insensitive
     }
 };
 
@@ -1046,7 +1046,7 @@ struct SorterBySUBCATEGNAME
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (std::wcscoll(x.SUBCATEGNAME.Lower(),y.SUBCATEGNAME.Lower()) < 0);  // Locale case-insensitive
+        return (std::wcscoll(x.SUBCATEGNAME.Lower().wc_str(),y.SUBCATEGNAME.Lower().wc_str()) < 0);  // Locale case-insensitive
     }
 };
 
