@@ -341,7 +341,7 @@ void mmPayeeDialog::OnOrganizeAttachments()
 {
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::PAYEE);
 
-    mmAttachmentDialog dlg(this, RefType, m_payee_id, Model_Payee::get_payee_name(m_payee_id));
+    mmAttachmentDialog dlg(this, RefType, m_payee_id);
     dlg.ShowModal();
     refreshRequested_ = true;
 }
