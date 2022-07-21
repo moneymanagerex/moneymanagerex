@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -40,6 +41,15 @@ Model_Stock& Model_Stock::instance(wxSQLite3Database* db)
     ins.ensure(db);
 
     return ins;
+}
+
+wxString Model_Stock::get_stock_name(int stock_id)
+{
+    Data* stock = instance().get(stock_id);
+    if (stock)
+        return stock->STOCKNAME;
+    else
+        return _("Stock Error");
 }
 
 /** Return the static instance of Model_Stock table */

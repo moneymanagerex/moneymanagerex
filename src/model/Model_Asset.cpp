@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -63,6 +64,15 @@ Model_Asset& Model_Asset::instance(wxSQLite3Database* db)
 Model_Asset& Model_Asset::instance()
 {
     return Singleton<Model_Asset>::instance();
+}
+
+wxString Model_Asset::get_asset_name(int asset_id)
+{
+    Data* asset = instance().get(asset_id);
+    if (asset)
+        return asset->ASSETNAME;
+    else
+        return _("Asset Error");
 }
 
 wxArrayString Model_Asset::all_rate()
