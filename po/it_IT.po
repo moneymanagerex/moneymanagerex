@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-22 10:57\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgstr "Cartella allegati non trovata"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organizza Allegati | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organizza Allegati | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5201,7 +5201,7 @@ msgstr "Conti specifici"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Mesi Futuri:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -6216,7 +6216,7 @@ msgstr "Per favore, segui queste istruzioni prima di inviare un nuovo report di 
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "mesi"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6226,19 +6226,19 @@ msgstr "Differenza"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Differenza Complessiva"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Flusso Di Cassa - Giornaliero"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Flusso Di Cassa - Mensile"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Flusso Di Cassa - Transazioni"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
