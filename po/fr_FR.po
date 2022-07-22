@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-22 12:18\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -680,7 +680,7 @@ msgstr "Répertoire des pièces jointes non trouvé"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organiser les pièces jointes | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
@@ -5202,7 +5202,7 @@ msgstr "Comptes spécifiques"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Mois à venir:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5279,7 +5279,7 @@ msgstr "Autre"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "Erreur d'actif"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5370,7 +5370,7 @@ msgstr "le script SQL: \n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "Erreur d'action"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6218,7 +6218,7 @@ msgstr "Veuillez suivre ces instructions avant de soumettre un nouveau rapport d
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "mois"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6228,19 +6228,19 @@ msgstr "Différence"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Différence cumulative"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Flux de trésorerie - Quotidien"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Flux de trésorerie - mensuel"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Flux de trésorerie - Transactions"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
