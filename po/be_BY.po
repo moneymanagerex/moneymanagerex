@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:16\n"
+"PO-Revision-Date: 2022-07-22 09:52\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -682,12 +682,12 @@ msgstr "Тэчка для далучэнняў ня вызначаная"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Уладкаваць далучэнні | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Уладкаваць далучэнні | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5227,7 +5227,7 @@ msgstr "Пазначаныя рахункі"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Будучыя месяцы:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5304,7 +5304,7 @@ msgstr "Iншае"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "Памылка ў актыве"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5395,7 +5395,7 @@ msgstr "SQL скрыпт:\n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "Памылка ў каштоўнай паперы"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6242,7 +6242,7 @@ msgstr "Перад адпраўкай новай памылкі, калі лас
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "месяцы"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6252,19 +6252,19 @@ msgstr "Розніца"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Накопленая розніца"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Рух сродкаў — штодзённа"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Рух сродкаў — штомесяц"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Рух сродкаў — аперацыі"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
@@ -6459,7 +6459,7 @@ msgstr "Штогадовая справаздача"
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
-msgstr "Зводка па інвестыцыях"
+msgstr "Зводка па каштоўных паперах"
 
 #: reports/summarystocks.cpp:108
 msgid "Purchase Date"
