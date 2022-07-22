@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-22 14:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "הסכם רישיון"
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr "אודות"
+msgstr "על אודות"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
@@ -680,12 +680,12 @@ msgstr "לא נמצאה ספרית צרופות"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "ניהול צרופות | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "ניהול צרופות | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5225,7 +5225,7 @@ msgstr "חשבונות מסוימים"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "חודשים עתידיים:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5302,7 +5302,7 @@ msgstr "אחר"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "שגיאת נכס"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5393,7 +5393,7 @@ msgstr "תסריט ה־SQL:\n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "שגיאת ניר־ערך"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6240,7 +6240,7 @@ msgstr "השלמת השלבים הבאים לפני יצירת תקלה חדשה
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "חודשים"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6250,19 +6250,19 @@ msgstr "הפרש"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "הפרש מצטבר"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "תזרים מזומנים – יומי"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "תזרים מזומנים – חודשי"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "תזרים מזומנים – תנועות"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
