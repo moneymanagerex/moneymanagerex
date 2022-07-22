@@ -66,6 +66,8 @@ void OptionSettingsNet::Create()
     SetBoldFont(WebAppStaticBox);
     wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
     wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
+    WebAppStaticBoxSizerGrid->AddGrowableCol(1);
+
     networkPanelSizer->Add(WebAppStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -104,12 +106,13 @@ void OptionSettingsNet::Create()
     mmToolTip(m_proxy_port, _("Specify proxy port number"));
 
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
+    flex_sizer3->AddGrowableCol(1);
     flex_sizer3->Add(new wxStaticText(network_panel, wxID_STATIC, _("Proxy")), g_flagsH);
-    flex_sizer3->Add(m_proxy_address, g_flagsH);
+    flex_sizer3->Add(m_proxy_address, 1, wxEXPAND | wxALL, 5);
     flex_sizer3->Add(new wxStaticText(network_panel, wxID_STATIC, _("Port")), g_flagsH);
-    flex_sizer3->Add(m_proxy_port, g_flagsH);
+    flex_sizer3->Add(m_proxy_port, 1, wxEXPAND | wxALL, 5);
 
-    proxyStaticBoxSizer->Add(flex_sizer3, g_flagsV);
+    proxyStaticBoxSizer->Add(flex_sizer3, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     //Usage data send
     wxStaticBox* usageStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("Usage statistics"));
