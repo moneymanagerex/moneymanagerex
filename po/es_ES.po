@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:16\n"
+"PO-Revision-Date: 2022-07-22 09:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgstr "Carpeta de adjuntos no encontrada"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organizar adjuntos | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organizar adjuntos | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5199,7 +5199,7 @@ msgstr "Cuentas específicas"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Meses futuros:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5276,7 +5276,7 @@ msgstr "Otros"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "Error de activos"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5367,7 +5367,7 @@ msgstr "¡La consuta SQL:\n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "Error en valores"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6214,7 +6214,7 @@ msgstr "Por favor, sigue estas instrucciones antes de enviar un nuevo informe de
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "meses"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6224,19 +6224,19 @@ msgstr "Diferencia"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Diferencia acumulada"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Flujo de caja - Diario"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Flujo de caja - Mensual"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Flujo de caja - Transacciones"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
