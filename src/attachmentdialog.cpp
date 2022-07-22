@@ -83,8 +83,39 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
 
     wxString WindowTitle;
     if (m_RefId > 0)
-        WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), wxGetTranslation(m_RefType), m_RefId);
-    else
+    {
+        int refEnum = 0;
+        for(const auto& pair : Model_Attachment::REFTYPE_CHOICES)
+        {
+            if(pair.second == m_RefType)
+                break;
+            refEnum++;
+        }
+        wxString RefName;
+        switch (refEnum)
+        {
+        case Model_Attachment::STOCK:
+            RefName = Model_Stock::get_stock_name(m_RefId);
+            break;
+        case Model_Attachment::ASSET:
+            RefName = Model_Asset::get_asset_name(m_RefId);
+            break;
+        case Model_Attachment::BANKACCOUNT:
+            RefName = Model_Account::get_account_name(m_RefId);
+            break;
+        case Model_Attachment::PAYEE:
+            RefName = Model_Payee::get_payee_name(m_RefId);
+            break;
+        case Model_Attachment::TRANSACTION:
+        case Model_Attachment::BILLSDEPOSIT:
+        default:
+            RefName = "";
+        }       
+        if (RefName.IsEmpty())
+            WindowTitle = wxString::Format(_("Organize Attachments | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
+        else
+            WindowTitle = wxString::Format(_("Organize Attachments | %s | %s"), wxGetTranslation(m_RefType), RefName);
+    } else
         WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(m_RefType));
 
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style, name))

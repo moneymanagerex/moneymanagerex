@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -46,6 +47,8 @@ public:
     static Model_Stock& instance();
 
 public:
+    static wxString get_stock_name(int stock_id);
+
     static wxDate PURCHASEDATE(const Data* stock);
     static wxDate PURCHASEDATE(const Data& stock);
 

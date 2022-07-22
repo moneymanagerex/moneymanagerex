@@ -27,42 +27,41 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class mmReportCashFlow : public mmPrintableBase
 {
 public:
-    enum TYPE { MONTHLY = 0, DAILY };
     explicit mmReportCashFlow(const wxString& name);
     virtual ~mmReportCashFlow();
 
-    virtual wxString getHTMLText();
-
 protected:
-    wxString getHTMLText_i();
-    void getStats(double& tInitialBalance, std::vector<ValuePair>& forecastVector);
+    wxString getHTMLText_DayOrMonth(bool monthly = false);
+    void getTransactions();
+    double m_balance;
+    std::vector<Model_Checking::Data> m_forecastVector;
 
-protected:
-    struct mmRepeatForecast
-    {
-        wxDateTime date;
-        double amount;
-    };
+private:
+    double trueAmount(const Model_Checking::Data& trx);
+    wxArrayInt m_account_id;
+    const wxDateTime m_today;
 
-    typedef std::vector<mmRepeatForecast> forecastVec;
-    std::vector<forecastVec> bdForecastVec;
-
-    TYPE cashFlowReportType_;
-
-    static const int yearsNum_ = 10;
-    const wxDateTime today_;
 };
 
 class mmReportCashFlowDaily : public mmReportCashFlow
 {
 public:
     mmReportCashFlowDaily();
+    virtual wxString getHTMLText();
 };
 
 class mmReportCashFlowMonthly : public mmReportCashFlow
 {
 public:
     mmReportCashFlowMonthly();
+    virtual wxString getHTMLText();
+};
+
+class mmReportCashFlowTransactions : public mmReportCashFlow
+{
+public:
+    mmReportCashFlowTransactions();
+    virtual wxString getHTMLText();
 };
 
 #endif // MM_EX_REPORTCASHFLOW_H_

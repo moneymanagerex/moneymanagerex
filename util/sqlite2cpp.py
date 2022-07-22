@@ -961,7 +961,7 @@ struct SorterBy%s
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return (std::wcscoll(x.%s.Lower(),y.%s.Lower()) < 0);  // Locale case-insensitive
+        return (std::wcscoll(x.%s.Lower().wc_str(),y.%s.Lower().wc_str()) < 0);  // Locale case-insensitive
     }
 };
 ''' % ( field, field, field)

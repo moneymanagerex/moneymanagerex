@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,8 @@
 #include "mmpanelbase.h"
 #include "mmSimpleDialogs.h"
 #include "reports/reportbase.h"
+#include <wx/spinctrl.h>
+
 class mmGUIFrame;
 class mmDateRange;
 class mmReportsPanel : public mmPanelBase
@@ -64,6 +67,7 @@ public:
         ID_CHOICE_YEAR,
         ID_CHOICE_BUDGET,
         ID_CHOICE_CHART,
+        ID_CHOICE_FORWARD_MONTHS
     };
 
 private:
@@ -75,6 +79,7 @@ private:
     mmPrintableBase* rb_;
     wxChoice* m_accounts;
     wxChoice* m_chart;
+    wxSpinCtrl *m_forwardMonths;
 
 private:
     void OnDateRangeChanged(wxCommandEvent& event);
@@ -83,6 +88,8 @@ private:
     void OnStartEndDateChanged(wxDateEvent& event);
     void OnAccountChanged(wxCommandEvent& event);
     void OnChartChanged(wxCommandEvent& event);
+    void OnForwardMonthsChangedSpin(wxSpinEvent& event);
+    void OnForwardMonthsChangedText(wxCommandEvent& event);
     void OnShiftPressed(wxCommandEvent& event);
 
     bool cleanup_;

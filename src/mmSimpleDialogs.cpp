@@ -439,22 +439,24 @@ void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
 {
-    if (!itemStaticTextWeek_)
-        return;
-    
-    wxDateTime dt = event.GetDate();
-    itemStaticTextWeek_->SetLabelText(wxGetTranslation(dt.GetEnglishWeekDayName(dt.GetWeekDay())));
+    if (itemStaticTextWeek_)
+    {
+        wxDateTime dt = event.GetDate();
+        itemStaticTextWeek_->SetLabelText(wxGetTranslation(dt.GetEnglishWeekDayName(dt.GetWeekDay())));
+    }
+    event.Skip();
 }
 
-void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& WXUNUSED(event))
+void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& event)
 {
-    if (!spinButton_)
-        return;
-        
-    wxDateTime date = this->GetValue();
-    date = date.Add(wxDateSpan::Days(spinButton_->GetValue()));
-    this->SetValue(date);
-    spinButton_->SetValue(0);
+    if (spinButton_)
+    {
+        wxDateTime date = this->GetValue();
+        date = date.Add(wxDateSpan::Days(spinButton_->GetValue()));
+        this->SetValue(date);
+        spinButton_->SetValue(0);
+    }
+    event.Skip();
 }
 
 /*/////////////////////////////////////////////////////////////*/
@@ -617,8 +619,6 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(headerText, flags);
     Sizer->AddSpacer(15);
     cbText_ = new mmComboBoxCustom(this, m_choices);
-    cbText_->SetFocus();
-    cbText_->ChangeValue(m_default_str);
     cbText_->SetMinSize(wxSize(150, -1));
     Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
@@ -626,6 +626,9 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(Button, flags);
     Sizer->AddSpacer(10);
 
+    cbText_->SetFocus();
+    cbText_->ChangeValue(m_default_str);
+    cbText_->SelectAll();
     Centre();
     Fit();
     return true;

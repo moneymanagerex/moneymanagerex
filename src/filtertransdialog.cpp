@@ -233,13 +233,16 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     fromDateCtrl_->SetValue(begin_date);
     toDateControl_->SetValue(end_date);
-    wxDateEvent date_event;
-    date_event.SetId(wxID_FIRST);
-    date_event.SetDate(begin_date);
-    OnDateChanged(date_event);
-    date_event.SetId(wxID_LAST);
-    date_event.SetDate(end_date);
-    OnDateChanged(date_event);
+    if (dateRangeCheckBox_->IsChecked())
+    {
+        wxDateEvent date_event;
+        date_event.SetId(wxID_FIRST);
+        date_event.SetDate(begin_date);
+        OnDateChanged(date_event);
+        date_event.SetId(wxID_LAST);
+        date_event.SetDate(end_date);
+        OnDateChanged(date_event);
+    }
 
     //Date Period Range
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
@@ -247,6 +250,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
     datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND && !s_range.empty());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
+    if (datesCheckBox_->IsChecked())
     {
         wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
         evt.SetInt(rangeChoice_->GetSelection());

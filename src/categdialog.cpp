@@ -505,7 +505,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
-        if (!categories.empty() && (old_name == text))
+        if (!categories.empty())
         {
             wxString errMsg = _("Category with same name exists");
             wxMessageBox(errMsg, _("Organise Categories: Editing Error"), wxOK | wxICON_ERROR);
