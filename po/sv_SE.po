@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-22 17:38\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -678,12 +678,12 @@ msgstr "Mapp för bilagor kunde inte hittas"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organisera bilagor | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organisera bilagor | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5170,7 +5170,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Framtida månader:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -6180,7 +6180,7 @@ msgstr ""
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "månader"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
