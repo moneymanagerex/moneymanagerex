@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-24 15:16\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgstr "Nie znaleziono katalogu załączników"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organizuj załączniki | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organizuj załączniki | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5217,7 +5217,7 @@ msgstr "wybrane konta"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Przyszłe miesiące:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -6241,7 +6241,7 @@ msgstr "Różnica"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Skumulowana różnica"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
