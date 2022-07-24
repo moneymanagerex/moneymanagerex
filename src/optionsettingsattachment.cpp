@@ -76,7 +76,7 @@ void OptionSettingsAttachment::Create()
     mmToolTip(attachmentStaticText, _("Every OS type (Win,Mac,Unix) has its attachment folder"));
 
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
-    attachmentStaticBoxSizer->Add(attachDefinedSizer);
+    attachmentStaticBoxSizer->Add(attachDefinedSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
     m_old_path = mmex::getPathAttachment(attachmentFolder);
@@ -95,7 +95,7 @@ void OptionSettingsAttachment::Create()
         , wxDefaultPosition, wxSize(Option::instance().getIconSize(), -1), 0);
     mmToolTip(AttachmentsFolderButton, _("Browse for folder"));
 
-    attachDefinedSizer->Add(m_attachments_path, g_flagsH);
+    attachDefinedSizer->Add(m_attachments_path, g_flagsExpand);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flagsH);
 
     m_attachments_preview = new wxStaticText(attachment_panel, wxID_STATIC
