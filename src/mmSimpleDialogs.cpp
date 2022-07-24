@@ -48,10 +48,11 @@ public:
 private:
     mmDatePickerCtrl* m_datePicker;
     void OnDateSelected( wxCalendarEvent& event);
+    void OnEndSelection( wxCalendarEvent& event);
     wxDECLARE_ABSTRACT_CLASS(mmCalendarPopup);
 };
 
-wxIMPLEMENT_CLASS(mmCalendarPopup,wxPopupTransientWindow);
+wxIMPLEMENT_CLASS(mmCalendarPopup, wxPopupTransientWindow);
 
 mmCalendarPopup::mmCalendarPopup( wxWindow *parent, mmDatePickerCtrl* datePicker)
                      : wxPopupTransientWindow(parent,
@@ -60,8 +61,11 @@ mmCalendarPopup::mmCalendarPopup( wxWindow *parent, mmDatePickerCtrl* datePicker
 {
     wxWindow* panel = new wxWindow(this, wxID_ANY);
 
-    wxCalendarCtrl* m_calendarCtrl = new wxCalendarCtrl(panel, wxID_ANY, datePicker->GetValue());
+    wxCalendarCtrl* m_calendarCtrl = new wxCalendarCtrl(panel, wxID_ANY, datePicker->GetValue()
+                        , wxDefaultPosition, wxDefaultSize
+                        , wxCAL_SEQUENTIAL_MONTH_SELECTION | wxCAL_SHOW_HOLIDAYS | wxCAL_SHOW_SURROUNDING_WEEKS);
     m_calendarCtrl->Bind(wxEVT_CALENDAR_SEL_CHANGED, &mmCalendarPopup::OnDateSelected, this);
+    m_calendarCtrl->Bind(wxEVT_CALENDAR_DOUBLECLICKED, &mmCalendarPopup::OnEndSelection, this);
 
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(m_calendarCtrl, 0, wxALL, 5);
@@ -79,6 +83,12 @@ mmCalendarPopup::~mmCalendarPopup()
 void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
 {
     m_datePicker->SetValue(event.GetDate());
+}
+
+void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
+{
+    m_datePicker->SetValue(event.GetDate());
+    this->Dismiss();
 }
 
 //------------
