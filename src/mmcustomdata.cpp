@@ -149,15 +149,15 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         case Model_CustomField::DECIMAL:
         {
             double value;
+            int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
             if (!fieldData->CONTENT.ToDouble(&value)) {
                 value = 0;
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, wxString::Format("%f", value));
+                    SetWidgetChanged(controlID, wxString::Format("%.*f", DigitScale, value));
             }
-
-            int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
+            
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
                 , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1.0 / pow10(DigitScale));
