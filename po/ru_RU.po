@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-24 20:08\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgstr "Папка для вложений не найдена"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Редактор вложений | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Редактор вложений | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5226,7 +5226,7 @@ msgstr "Конкретные Счета"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Будущие месяцы:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5303,7 +5303,7 @@ msgstr "Прочий"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "Ошибка актива"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5394,7 +5394,7 @@ msgstr "SQL скрипт:\n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "Ошибка инвестиции"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6241,7 +6241,7 @@ msgstr "Перед отправкой новой ошибки, пожалуйс�
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "месяцы"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6251,19 +6251,19 @@ msgstr "Разница"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Общая разница"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Денежный поток - Ежедневно"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Денежный поток - Ежемесячно"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Денежный поток - Транзакции"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
