@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-25 10:01\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgstr "未定义附件文件夹"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "管理附件 | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "管理附件 | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5185,7 +5185,7 @@ msgstr "特定账户"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "未来月份："
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5262,7 +5262,7 @@ msgstr "其他"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "资产错误"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5353,7 +5353,7 @@ msgstr "SQL 脚本：\n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "库存错误"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6200,7 +6200,7 @@ msgstr "请在提交新的 bug 报告之前遵循这些说明:"
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "月份"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6210,19 +6210,19 @@ msgstr "差额"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "累积差异"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "现金流量 - 每日金额"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "现金流量 - 月份"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "现金流量 - 交易"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
