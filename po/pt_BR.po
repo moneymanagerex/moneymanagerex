@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"PO-Revision-Date: 2022-07-26 12:16\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgstr "Pasta de anexos não encontrada"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organizar Anexos | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organizar Anexos | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -5201,7 +5201,7 @@ msgstr "Contas Específicas"
 
 #: mmreportspanel.cpp:363
 msgid "Future Months:"
-msgstr ""
+msgstr "Meses Futuros:"
 
 #: mmreportspanel.cpp:378
 msgid "Chart:"
@@ -5278,7 +5278,7 @@ msgstr "Outro"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "Erro de Ativo"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5369,7 +5369,7 @@ msgstr "O script SQL:\n"
 
 #: model/Model_Stock.cpp:52
 msgid "Stock Error"
-msgstr ""
+msgstr "Erro de Ação"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6216,7 +6216,7 @@ msgstr "Por favor, siga estas etapas antes de enviar um novo bug:"
 
 #: reports/cashflow.cpp:264 reports/cashflow.cpp:393
 msgid "months"
-msgstr ""
+msgstr "meses"
 
 #: reports/cashflow.cpp:295 reports/categexp.cpp:396
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6226,19 +6226,19 @@ msgstr "Diferença"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Diferença Cumulativa"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Fluxo de caixa - Diário"
 
 #: reports/cashflow.cpp:366
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Fluxo de caixa - Mensal"
 
 #: reports/cashflow.cpp:380
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Fluxo de caixa - Transações"
 
 #: reports/categexp.cpp:168
 msgid "Collapse All"
