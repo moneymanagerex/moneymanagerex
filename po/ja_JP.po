@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 08:15\n"
+"POT-Creation-Date: 2022-07-26 23:13+0300\n"
+"PO-Revision-Date: 2022-07-26 20:19\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "有効にすると、MMEX の使用状況に関する匿名のデータ�
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:730
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:835 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:842 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:266
@@ -790,7 +790,7 @@ msgstr "ファイルが存在すること、およびユーザーが読む権限
 msgid "Open attachment failed"
 msgstr "添付を開くことに失敗しました"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:538
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:545
 #: model/Model_Asset.cpp:24 model/Model_Budget.cpp:55
 #: optionsettingsmisc.cpp:103 reports/reportbase.cpp:212
 msgid "None"
@@ -1837,7 +1837,7 @@ msgstr "更新しません。すべての変更を保存しません"
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:735
+#: mmSimpleDialogs.cpp:742
 msgid "Invalid Entry"
 msgstr "エントリーが正しくありません"
 
@@ -2743,7 +2743,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:750
+#: mmSimpleDialogs.cpp:757
 msgid "Unable to open file."
 msgstr "ファイルを開くことができません。"
 
@@ -3350,7 +3350,7 @@ msgstr ""
 msgid "Destination file error"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:758
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:765
 msgid "Invalid Account"
 msgstr "アカウントが正しくありません"
 
@@ -3540,101 +3540,101 @@ msgstr ""
 msgid "Could not find base currency symbol!"
 msgstr "基本通貨シンボルが見つかりませんでした!"
 
-#: mmSimpleDialogs.cpp:394
+#: mmSimpleDialogs.cpp:401
 msgid "Retard or advance the date"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:481 mmSimpleDialogs.cpp:493
+#: mmSimpleDialogs.cpp:488 mmSimpleDialogs.cpp:500
 msgid "Clear color"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:484 mmSimpleDialogs.cpp:498
+#: mmSimpleDialogs.cpp:491 mmSimpleDialogs.cpp:505
 #, c-format
 msgid "Color #%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:675
+#: mmSimpleDialogs.cpp:682
 msgid "Subtract one year"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:676
+#: mmSimpleDialogs.cpp:683
 msgid "Subtract one month"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:677
+#: mmSimpleDialogs.cpp:684
 msgid "Add one month"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:678
+#: mmSimpleDialogs.cpp:685
 msgid "Add one year"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:741
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "エントリー %s が正しくありません"
 
-#: mmSimpleDialogs.cpp:741
+#: mmSimpleDialogs.cpp:748
 msgid "Please use this button for category selection."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:749
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "このボタンを使用してカテゴリーを選択してください\n"
 "または複数のカテゴリーは '分割' チェックボックスを使用します。"
 
-#: mmSimpleDialogs.cpp:745
+#: mmSimpleDialogs.cpp:752
 msgid "Invalid Category"
 msgstr "カテゴリーが正しくありません"
 
-#: mmSimpleDialogs.cpp:750
+#: mmSimpleDialogs.cpp:757
 msgid "File name is empty."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:751
+#: mmSimpleDialogs.cpp:758
 msgid "Please select the file for this operation."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:761
+#: mmSimpleDialogs.cpp:768
 msgid "Please select the account for this transaction."
 msgstr "この取引のアカウントを選択してください"
 
-#: mmSimpleDialogs.cpp:763
+#: mmSimpleDialogs.cpp:770
 msgid "Please specify which account the transfer is going to."
 msgstr "取引の相手先のアカウントを指定してください"
 
-#: mmSimpleDialogs.cpp:765
+#: mmSimpleDialogs.cpp:772
 msgid "Selection can be made by using the dropdown button."
 msgstr "ドロップダウンボタンを使用して選択できます。"
 
-#: mmSimpleDialogs.cpp:768
+#: mmSimpleDialogs.cpp:775
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:777
+#: mmSimpleDialogs.cpp:784
 msgid "Invalid Payee"
 msgstr "支払先が正しくありません"
 
-#: mmSimpleDialogs.cpp:778
+#: mmSimpleDialogs.cpp:785
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "新しい支払先を入力してください、\n"
 "またはドロップダウンボタンを使用して選択します。"
 
-#: mmSimpleDialogs.cpp:786 mmSimpleDialogs.cpp:798
+#: mmSimpleDialogs.cpp:793 mmSimpleDialogs.cpp:805
 msgid "Invalid Name"
 msgstr "名前が正しくありません"
 
-#: mmSimpleDialogs.cpp:789 mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:796 mmSimpleDialogs.cpp:808
 msgid "Already exist!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:798
 msgid "Please type in a non empty name."
 msgstr "名前を入力してください。"
 
-#: mmSimpleDialogs.cpp:803
+#: mmSimpleDialogs.cpp:810
 msgid "Please type in a non empty symbol."
 msgstr ""
 

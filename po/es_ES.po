@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 09:52\n"
+"POT-Creation-Date: 2022-07-26 23:13+0300\n"
+"PO-Revision-Date: 2022-07-26 20:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Nos ayuda enviando datos anónimos sobre el uso de MMEX."
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:730
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:835 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:842 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:266
@@ -792,7 +792,7 @@ msgstr "Por favor, compruebe que el archivo existe y el usuario tiene permisos d
 msgid "Open attachment failed"
 msgstr "La apertura del adjunto ha fallado"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:538
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:545
 #: model/Model_Asset.cpp:24 model/Model_Budget.cpp:55
 #: optionsettingsmisc.cpp:103 reports/reportbase.cpp:212
 msgid "None"
@@ -1846,7 +1846,7 @@ msgstr "Los cambios se perderán si no actualiza"
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:735
+#: mmSimpleDialogs.cpp:742
 msgid "Invalid Entry"
 msgstr "Entrada no válida"
 
@@ -2765,7 +2765,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "No se ha encontrado ningún tema funcional, la instalación puede estar corrupta"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:750
+#: mmSimpleDialogs.cpp:757
 msgid "Unable to open file."
 msgstr "No se puede abrir el archivo."
 
@@ -3373,7 +3373,7 @@ msgstr "Error al borrar el fichero existente. Debe estar bloqueado por otro prog
 msgid "Destination file error"
 msgstr "Error de archivo de destino"
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:758
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:765
 msgid "Invalid Account"
 msgstr "Cuenta no válida"
 
@@ -3564,101 +3564,101 @@ msgstr "No se puede descargar el histórico del símbolo base %s. ¡El históric
 msgid "Could not find base currency symbol!"
 msgstr "¡No se puede encontrar el símbolo de la divisa base!"
 
-#: mmSimpleDialogs.cpp:394
+#: mmSimpleDialogs.cpp:401
 msgid "Retard or advance the date"
 msgstr "Retrasar o adelantar la fecha"
 
-#: mmSimpleDialogs.cpp:481 mmSimpleDialogs.cpp:493
+#: mmSimpleDialogs.cpp:488 mmSimpleDialogs.cpp:500
 msgid "Clear color"
 msgstr "Borrar color"
 
-#: mmSimpleDialogs.cpp:484 mmSimpleDialogs.cpp:498
+#: mmSimpleDialogs.cpp:491 mmSimpleDialogs.cpp:505
 #, c-format
 msgid "Color #%i"
 msgstr "Color #%i"
 
-#: mmSimpleDialogs.cpp:675
+#: mmSimpleDialogs.cpp:682
 msgid "Subtract one year"
 msgstr "Restar un año"
 
-#: mmSimpleDialogs.cpp:676
+#: mmSimpleDialogs.cpp:683
 msgid "Subtract one month"
 msgstr "Restar un mes"
 
-#: mmSimpleDialogs.cpp:677
+#: mmSimpleDialogs.cpp:684
 msgid "Add one month"
 msgstr "Añadir un mes"
 
-#: mmSimpleDialogs.cpp:678
+#: mmSimpleDialogs.cpp:685
 msgid "Add one year"
 msgstr "Añadir un año"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:741
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "La entrada %s es incorrecta"
 
-#: mmSimpleDialogs.cpp:741
+#: mmSimpleDialogs.cpp:748
 msgid "Please use this button for category selection."
 msgstr "Por favor, use este botón para seleccionar la categoría."
 
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:749
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Por favor, use este botón para seleccionar la categoría\n"
 "o use la casilla de verificación 'Dividir' para múltiples categorías."
 
-#: mmSimpleDialogs.cpp:745
+#: mmSimpleDialogs.cpp:752
 msgid "Invalid Category"
 msgstr "Categoría no válida"
 
-#: mmSimpleDialogs.cpp:750
+#: mmSimpleDialogs.cpp:757
 msgid "File name is empty."
 msgstr "Nombre del fichero vacío."
 
-#: mmSimpleDialogs.cpp:751
+#: mmSimpleDialogs.cpp:758
 msgid "Please select the file for this operation."
 msgstr "Por favor, seleccione el fichero para esta operación."
 
-#: mmSimpleDialogs.cpp:761
+#: mmSimpleDialogs.cpp:768
 msgid "Please select the account for this transaction."
 msgstr "Por favor, seleccione la cuenta para esta transacción."
 
-#: mmSimpleDialogs.cpp:763
+#: mmSimpleDialogs.cpp:770
 msgid "Please specify which account the transfer is going to."
 msgstr "Por favor, especifique la cuenta a la que va la transferencia."
 
-#: mmSimpleDialogs.cpp:765
+#: mmSimpleDialogs.cpp:772
 msgid "Selection can be made by using the dropdown button."
 msgstr "La selección se puede hacer usando el botón de desplazamiento."
 
-#: mmSimpleDialogs.cpp:768
+#: mmSimpleDialogs.cpp:775
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Activando el botón se mostrará un cuadro de diálogo donde la cuenta puede ser seleccionada."
 
-#: mmSimpleDialogs.cpp:777
+#: mmSimpleDialogs.cpp:784
 msgid "Invalid Payee"
 msgstr "Beneficiario incorrecto"
 
-#: mmSimpleDialogs.cpp:778
+#: mmSimpleDialogs.cpp:785
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Por favor, escriba un nuevo beneficiario,\n"
 "o selecciónelo usando el botón de desplazamiento."
 
-#: mmSimpleDialogs.cpp:786 mmSimpleDialogs.cpp:798
+#: mmSimpleDialogs.cpp:793 mmSimpleDialogs.cpp:805
 msgid "Invalid Name"
 msgstr "Nombre incorrecto"
 
-#: mmSimpleDialogs.cpp:789 mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:796 mmSimpleDialogs.cpp:808
 msgid "Already exist!"
 msgstr "¡Ya existe!"
 
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:798
 msgid "Please type in a non empty name."
 msgstr "Por favor, escriba un nombre no vacío."
 
-#: mmSimpleDialogs.cpp:803
+#: mmSimpleDialogs.cpp:810
 msgid "Please type in a non empty symbol."
 msgstr "Por favor, escriba un símbolo no vacío."
 

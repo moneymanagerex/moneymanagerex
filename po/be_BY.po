@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-07-22 10:58+0300\n"
-"PO-Revision-Date: 2022-07-22 09:52\n"
+"POT-Creation-Date: 2022-07-26 23:13+0300\n"
+"PO-Revision-Date: 2022-07-26 20:20\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Уключыць, каб дапамагчы нам праз дасыла
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:243
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:730
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:835 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:842 optiondialog.cpp:164 payeedialog.cpp:162
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 #: sharetransactiondialog.cpp:327 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:198 transactionsupdatedialog.cpp:266
@@ -794,7 +794,7 @@ msgstr "Калі ласка, праверце, што файл існуе і ў 
 msgid "Open attachment failed"
 msgstr "Немагчыма адчыніць далучэнне"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:538
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:545
 #: model/Model_Asset.cpp:24 model/Model_Budget.cpp:55
 #: optionsettingsmisc.cpp:103 reports/reportbase.cpp:212
 msgid "None"
@@ -1853,7 +1853,7 @@ msgstr "Без абнаўлення усе змены будуць страча�
 
 #: currencydialog.cpp:269 currencydialog.cpp:273 currencydialog.cpp:280
 #: currencydialog.cpp:298 currencydialog.cpp:302 maincurrencydialog.cpp:621
-#: mmSimpleDialogs.cpp:735
+#: mmSimpleDialogs.cpp:742
 msgid "Invalid Entry"
 msgstr "Хібны запіс"
 
@@ -2776,7 +2776,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Нямае тэмы, што падтрымліваецца. Магчыма, пашкоджаны пакет усталёўкі"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:750
+#: mmSimpleDialogs.cpp:757
 msgid "Unable to open file."
 msgstr "Немагчыма адчыніць файл."
 
@@ -3384,7 +3384,7 @@ msgstr "Не атрымалася выдаліць існуючы файл. Фа
 msgid "Destination file error"
 msgstr "Памылка файла прызначэння"
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:758
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:765
 msgid "Invalid Account"
 msgstr "Хібны рахунак"
 
@@ -3575,101 +3575,101 @@ msgstr "Немагчыма спампаваць гісторыю асноўна�
 msgid "Could not find base currency symbol!"
 msgstr "Немагчыма знайсці сымбаль асноўнай валюты"
 
-#: mmSimpleDialogs.cpp:394
+#: mmSimpleDialogs.cpp:401
 msgid "Retard or advance the date"
 msgstr "Адтэрмінаваць або перасунуць дату"
 
-#: mmSimpleDialogs.cpp:481 mmSimpleDialogs.cpp:493
+#: mmSimpleDialogs.cpp:488 mmSimpleDialogs.cpp:500
 msgid "Clear color"
 msgstr "Ачысціць колер"
 
-#: mmSimpleDialogs.cpp:484 mmSimpleDialogs.cpp:498
+#: mmSimpleDialogs.cpp:491 mmSimpleDialogs.cpp:505
 #, c-format
 msgid "Color #%i"
 msgstr "Колер #%i"
 
-#: mmSimpleDialogs.cpp:675
+#: mmSimpleDialogs.cpp:682
 msgid "Subtract one year"
 msgstr "Адняць адзін год"
 
-#: mmSimpleDialogs.cpp:676
+#: mmSimpleDialogs.cpp:683
 msgid "Subtract one month"
 msgstr "Адняць адзін месяц"
 
-#: mmSimpleDialogs.cpp:677
+#: mmSimpleDialogs.cpp:684
 msgid "Add one month"
 msgstr "Дадаць адзін месяц"
 
-#: mmSimpleDialogs.cpp:678
+#: mmSimpleDialogs.cpp:685
 msgid "Add one year"
 msgstr "Дадаць адзін год"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:741
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Хібны запіс %s"
 
-#: mmSimpleDialogs.cpp:741
+#: mmSimpleDialogs.cpp:748
 msgid "Please use this button for category selection."
 msgstr "Калі ласка, выкарыстоўвайце гэтую кнопку, каб абраць катыгорыю."
 
-#: mmSimpleDialogs.cpp:742
+#: mmSimpleDialogs.cpp:749
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Калі ласка, выкарыстоўвайце гэтую кнопку, каб абраць катыгорыю,\n"
 "або выкарыстоўвайце птушку «Некалькі катыгорыяў», каб абраць больш за адну."
 
-#: mmSimpleDialogs.cpp:745
+#: mmSimpleDialogs.cpp:752
 msgid "Invalid Category"
 msgstr "Хібная катыгорыя"
 
-#: mmSimpleDialogs.cpp:750
+#: mmSimpleDialogs.cpp:757
 msgid "File name is empty."
 msgstr "Вы не пазначылі назву файла."
 
-#: mmSimpleDialogs.cpp:751
+#: mmSimpleDialogs.cpp:758
 msgid "Please select the file for this operation."
 msgstr "Калі ласка, абярыце файл для гэтага дзеяння."
 
-#: mmSimpleDialogs.cpp:761
+#: mmSimpleDialogs.cpp:768
 msgid "Please select the account for this transaction."
 msgstr "Калі ласка, абярыце рахунак для гэтай аперацыі."
 
-#: mmSimpleDialogs.cpp:763
+#: mmSimpleDialogs.cpp:770
 msgid "Please specify which account the transfer is going to."
 msgstr "Пакажыце рахунак, куды накіроўваецца пераказ."
 
-#: mmSimpleDialogs.cpp:765
+#: mmSimpleDialogs.cpp:772
 msgid "Selection can be made by using the dropdown button."
 msgstr "Выбар робіцца праз меню, што выпадае."
 
-#: mmSimpleDialogs.cpp:768
+#: mmSimpleDialogs.cpp:775
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Актывацыя кнопкі адчыніць спіс, у якім можна абраць рахунак."
 
-#: mmSimpleDialogs.cpp:777
+#: mmSimpleDialogs.cpp:784
 msgid "Invalid Payee"
 msgstr "Хібны платнік"
 
-#: mmSimpleDialogs.cpp:778
+#: mmSimpleDialogs.cpp:785
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Калі ласка, пакажыце імя новага платніка\n"
 "або абярыце са спіса, што выпадае."
 
-#: mmSimpleDialogs.cpp:786 mmSimpleDialogs.cpp:798
+#: mmSimpleDialogs.cpp:793 mmSimpleDialogs.cpp:805
 msgid "Invalid Name"
 msgstr "Хібная назва"
 
-#: mmSimpleDialogs.cpp:789 mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:796 mmSimpleDialogs.cpp:808
 msgid "Already exist!"
 msgstr "Ужо існуе"
 
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:798
 msgid "Please type in a non empty name."
 msgstr "Калі ласка, пакажыце не пустое значэнне."
 
-#: mmSimpleDialogs.cpp:803
+#: mmSimpleDialogs.cpp:810
 msgid "Please type in a non empty symbol."
 msgstr "Калі ласка, пакажыце не пусты сымбаль."
 
