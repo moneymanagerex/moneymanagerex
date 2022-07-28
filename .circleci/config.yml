@@ -16,27 +16,25 @@ jobs:
             rm -f sql*.sql *.mmdbg && \
             python ../../util/sqliteupgrade2cpp.py ../../database && \
             cd ../.. && \
-            mkdir build
+            mkdir build && \
+            mkdir -p /tmp/artifacts
       - run: 
           name: Build MoneyManagerEx (Ubuntu Jammy Jellyfish)
           command: |
-            rm -rf $CIRCLE_WORKING_DIRECTORY/build && \
+            rm -rf $CIRCLE_WORKING_DIRECTORY/build/* && \
             docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-jammy bash -c "cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            mkdir -p /tmp/artifacts && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
       - run: 
           name: Build MoneyManagerEx (Ubuntu Focal Fossa)
           command: |
-            rm -rf $CIRCLE_WORKING_DIRECTORY/build && \
+            rm -rf $CIRCLE_WORKING_DIRECTORY/build/* && \
             docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-focal bash -c "cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            mkdir -p /tmp/artifacts && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
       - run: 
           name: Build MoneyManagerEx (Ubuntu Bionic)
           command: |
-            rm -rf $CIRCLE_WORKING_DIRECTORY/build && \
+            rm -rf $CIRCLE_WORKING_DIRECTORY/build/* && \
             docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-bionic bash -c "cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            mkdir -p /tmp/artifacts && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
