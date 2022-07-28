@@ -1,0 +1,40 @@
+version: 2.1
+jobs:
+  build:
+    machine: true
+    steps: 
+      - run:
+          name: Checkout code
+          command: |
+            cd $CIRCLE_WORKING_DIRECTORY && \
+            git clone --recurse "$CIRCLE_REPOSITORY_URL" .
+      - run:
+          name: Build DB headers
+          command: |
+            cd $CIRCLE_WORKING_DIRECTORY/src/db && \
+            python ../../util/sqlite2cpp.py ../../database/tables_v1.sql && \
+            rm -f sql*.sql *.mmdbg && \
+            python ../../util/sqliteupgrade2cpp.py ../../database && \
+            cd ../.. && \
+            mkdir build && \
+            cd build
+      - run: 
+          name: Build MoneyManagerEx (Ubuntu Jammy Jellyfish)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-jammy bash -c "cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            mkdir -p /tmp/artifacts && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
+      - run: 
+          name: Build MoneyManagerEx (Ubuntu Focal Fossa)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-focal bash -c "cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            mkdir -p /tmp/artifacts && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
+      - run: 
+          name: Build MoneyManagerEx (Ubuntu Bionic)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-bionic bash -c "cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            mkdir -p /tmp/artifacts && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
