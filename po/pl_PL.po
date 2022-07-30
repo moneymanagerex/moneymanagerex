@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-07-26 20:19\n"
+"PO-Revision-Date: 2022-07-30 09:28\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4219,7 +4219,7 @@ msgstr "Otwórz bazę danych"
 
 #: mmframe.cpp:1459
 msgid "Save Database &As"
-msgstr "Z&apisz bazę danych jako"
+msgstr "Zapi&sz bazę danych jako"
 
 #: mmframe.cpp:1459
 msgid "Save Database As"
@@ -4227,7 +4227,7 @@ msgstr "Zapisz bazę danych jako"
 
 #: mmframe.cpp:1466
 msgid "&Recent Files"
-msgstr "O&statnie pliki"
+msgstr "Ostatnie &pliki"
 
 #: mmframe.cpp:1467
 msgid "&Clear Recent Files"
