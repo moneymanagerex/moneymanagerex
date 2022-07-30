@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-07-30 10:37\n"
+"PO-Revision-Date: 2022-07-30 12:02\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5887,11 +5887,11 @@ msgstr "Ignoruj przyszłe transakcje"
 
 #: optionsettingsview.cpp:169
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Kolory transakcji"
 
 #: optionsettingsview.cpp:208
 msgid "UI Appearance"
-msgstr ""
+msgstr "Wygląd interfejsu użytkownika"
 
 #: optionsettingsview.cpp:219
 msgid "Open Theme Manager"
@@ -5899,7 +5899,7 @@ msgstr "Otwórz Menedżera motywów"
 
 #: optionsettingsview.cpp:221
 msgid "Style Template"
-msgstr ""
+msgstr "Szablon wyglądu"
 
 #: optionsettingsview.cpp:227
 msgid "Light"
@@ -5915,7 +5915,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:234
 msgid "Theme Mode"
-msgstr ""
+msgstr "Tryb motywu"
 
 #: optionsettingsview.cpp:238
 msgid "HTML Scale Factor"
@@ -5963,11 +5963,11 @@ msgstr "Ogromny (48 px)"
 
 #: optionsettingsview.cpp:292
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Rozmiar ikony paska narzędzi"
 
 #: optionsettingsview.cpp:293
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Rozmiar ikony drzewa nawigacji"
 
 #: optionsettingsview.cpp:294
 msgid "Others Icon Size"
