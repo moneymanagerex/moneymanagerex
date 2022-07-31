@@ -829,6 +829,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
             && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+    if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
@@ -1480,7 +1481,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1))
     {
         json_writer.Key((i18n ? _("Include all sub-categories") : "SUBCATEGORYINCLUDE").utf8_str());
-        json_writer.Bool(categoryCheckBox_->GetValue());
+        json_writer.Bool(categorySubCatCheckBox_->GetValue());
     }
 
     //Status
@@ -1603,6 +1604,7 @@ void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
 {
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
             && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+    if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
     event.Skip();  
 }
 
@@ -1744,21 +1746,21 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
     }
     else
     {
-        const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
-        const auto l = mmGetLabelString();
+        const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
+        const auto& l = mmGetLabelString();
         int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
-        const auto json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
-        if (isMultiAccount_ && json != mmGetJsonSetings() && !label.empty())
+        const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
+        const auto& test = mmGetJsonSetings();
+        if (isMultiAccount_ && json != test && !label.empty())
         {
             if (wxMessageBox(
                 _("Filter settings have changed") + "\n" +
                 _("Do you want to save them before continuing?") + "\n\n"
-                , _("Please confirm"), wxYES_NO | wxICON_WARNING) == wxNO)
+                , _("Please confirm"), wxYES_NO | wxICON_WARNING) == wxYES)
             {
-                return;
+                mmDoUpdateSettings();
             }
         }
-       mmDoUpdateSettings();
     }
 }
 
