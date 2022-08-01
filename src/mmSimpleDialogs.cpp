@@ -174,7 +174,7 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 
         for (auto& entry : all_elements_)
         {
-            if (entry.first.Lower().Matches(typedText.Lower().Append("*")))
+            if (entry.first.Lower().Matches(typedText.Lower().Prepend("*").Append("*")))
                 this->Append(entry.first);
         }
 
