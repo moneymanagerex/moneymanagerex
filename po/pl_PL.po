@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-08-02 19:21\n"
+"PO-Revision-Date: 2022-08-02 20:31\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Wysyłaj anonimowe statystyki korzystania z programu"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:123
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr "Włącz aby pomóc nam przesyłając anonimowe dane o używaniu MMEX."
+msgstr "Zaznacz, aby nam pomóc, przesyłając anonimowe dane o używaniu MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:307 appstartdialog.cpp:145
 #: assetdialog.cpp:302 attachmentdialog.cpp:152 billsdepositsdialog.cpp:633
@@ -1297,7 +1297,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:432
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "&Edytuj transakcję cykliczną"
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction"
@@ -1648,13 +1648,13 @@ msgstr "Podkategoria jest używana."
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr "Porada: Zmień wszystkie transakcje używające tej kategorii na\n"
-"inną kategorię za pomocą polecenia Przenoszenie:"
+"inną kategorię za pomocą polecenia Przenieś:"
 
 #: categdialog.cpp:356
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr "Porada: Zmień wszystkie transakcje używające tej podkategorii na\n"
-"inną podkategorię za pomocą polecenia Przenoszenie:"
+"inną podkategorię za pomocą polecenia Przenieś:"
 
 #: categdialog.cpp:359
 msgid "Tools -> Relocation of -> Categories"
@@ -1877,7 +1877,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Wybierz element, z którym pole własne jest skojarzone"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -2375,7 +2375,7 @@ msgstr "Pominięte"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:425 mmchecking_list.cpp:856
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
-msgstr ""
+msgstr "Do wyjaśnienia"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:427
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
@@ -2484,7 +2484,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1164 mmframe.cpp:1172
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Wybrany element zostanie usunięty"
 
 #: filtertransdialog.cpp:1165 mmframe.cpp:1173
 msgid "Do you wish to continue?"
@@ -3243,7 +3243,7 @@ msgstr "Przenieś w &dół"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:214
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Ustaw separator jaki ma być użyty podczas importu/eksportu plików CSV"
+msgstr "Ustaw domyślny separator, jaki ma być użyty podczas importu/eksportu plików CSV"
 
 #: import_export/univcsvdialog.cpp:466
 msgid "Import File"
@@ -3799,10 +3799,10 @@ msgstr "&Nowy przelew"
 #: mmchecking_list.cpp:366
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Edytuj transakcję..."
+msgstr[1] "&Edytuj transakcje..."
+msgstr[2] "&Edytuj transakcje..."
+msgstr[3] "&Edytuj transakcje..."
 
 #: mmchecking_list.cpp:371
 msgid "&Copy Transaction"
@@ -3828,14 +3828,14 @@ msgstr "D&uplikuj transakcję"
 #: mmchecking_list.cpp:384
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Przenieś transakcję..."
+msgstr[1] "&Przenieś transakcje..."
+msgstr[2] "&Przenieś transakcje..."
+msgstr[3] "&Przenieś transakcje..."
 
 #: mmchecking_list.cpp:390
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Zobacz na innym koncie"
 
 #: mmchecking_list.cpp:394
 msgid "&View Split Categories"
@@ -3843,15 +3843,15 @@ msgstr "Pokaż podział kategorii"
 
 #: mmchecking_list.cpp:402
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Utwórz t&ransakcję powtarzaną"
 
 #: mmchecking_list.cpp:408
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Usuń wybraną transakcję..."
+msgstr[1] "&Usuń wybrane transakcje..."
+msgstr[2] "&Usuń wybrane transakcje..."
+msgstr[3] "&Usuń wybrane transakcje..."
 
 #: mmchecking_list.cpp:411
 msgid "Delete all transactions in current view"
@@ -3859,7 +3859,7 @@ msgstr "Usuń wszystkie transakcje w bieżącym widoku"
 
 #: mmchecking_list.cpp:412
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Usuń widoczne transakcje do wyjaśnienia"
 
 #: mmchecking_list.cpp:413
 msgid "Delete Viewed \"Unreconciled\" Transactions"
@@ -3887,10 +3887,10 @@ msgstr "Czy na pewno chcesz usunąć wszystkie wyświetlane transakcje \"%s\"?"
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Czy na pewno chcesz usunąć wybraną transakcję?"
+msgstr[1] "Czy na pewno chcesz usunąć %i wybrane transakcje?"
+msgstr[2] "Czy na pewno chcesz usunąć %i wybranych transakcji?"
+msgstr[3] "Czy na pewno chcesz usunąć %i wybranych transakcji?"
 
 #: mmchecking_list.cpp:972
 #, c-format
@@ -3924,14 +3924,14 @@ msgstr ""
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Czy na pewno chcesz przenieść wybraną transakcję?"
+msgstr[1] "Czy na pewno chcesz przenieść %i wybrane transakcje?"
+msgstr[2] "Czy na pewno chcesz przenieść %i wybranych transakcji?"
+msgstr[3] "Czy na pewno chcesz przenieść %i wybranych transakcji?"
 
 #: mmchecking_list.cpp:1204
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Potwierdź przenoszenie transakcji"
 
 #: mmchecking_list.cpp:1210
 #, c-format
@@ -4039,7 +4039,8 @@ msgstr ""
 #: mmex.cpp:173
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Wystąpił błąd krytyczny.\n"
+"Aplikacja zostanie zamknięta."
 
 #: mmframe.cpp:277
 msgid "Navigation"
@@ -4164,7 +4165,7 @@ msgstr "Pliki &JSON"
 
 #: mmframe.cpp:1348
 msgid "&Edit Filter"
-msgstr ""
+msgstr "&Edytuj filtr"
 
 #: mmframe.cpp:1349
 msgid "&Rename Filter"
@@ -5424,7 +5425,7 @@ msgstr "Katalog archiwum załączników tylko dla %s:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Każdy typ systemu operacyjnego (Win, Mac, Unix) ma swój folder załączników"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
@@ -5436,12 +5437,12 @@ msgstr "Rzeczywista ścieżka:"
 
 #: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legenda (może być użyta jako zmienna na początku powyższej ścieżki)"
 
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Katalog dokumentów użytkownika"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
@@ -5456,7 +5457,7 @@ msgstr "%s -> Folder pliku bazy danych .MMB"
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Folder danych aplikacji MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5488,15 +5489,15 @@ msgstr "Usuń plik po zaimportowaniu"
 
 #: optionsettingsattachment.cpp:168
 msgid "Select to delete file after import in attachments archive"
-msgstr "Wybierz aby usunąć plik z archiwum załączników po zaimportowaniu"
+msgstr "Zaznacz, aby usunąć plik po zaimportowaniu do archiwum załączników"
 
 #: optionsettingsattachment.cpp:172
 msgid "When remove attachment, move file instead of delete"
-msgstr "Przy usuwaniu załączników, przenieś plik zamiast kasować"
+msgstr "Przy usuwaniu załączników przenieś plik zamiast kasować"
 
 #: optionsettingsattachment.cpp:174
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Zaznacz aby nie kasować pliku kiedy załącznik jest usuwany, a zamiast tego przenieść go do katalogu 'Deleted'"
+msgstr "Zaznacz, aby nie kasować pliku, kiedy załącznik jest usuwany, a zamiast tego przenieść go do katalogu 'Deleted'"
 
 #: optionsettingsattachment.cpp:178
 msgid "When duplicating transactions duplicate the attachments also"
@@ -5504,7 +5505,7 @@ msgstr "Podczas duplikowania transakcji duplikuj również załączniki"
 
 #: optionsettingsattachment.cpp:180
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Zaznacz, jeśli chcesz skopiować załączniki do nowych transakcji po ich zduplikowaniu lub wklejaniu"
 
 #: optionsettingsattachment.cpp:193
 msgid "Choose folder to set as attachments archive"
@@ -5647,7 +5648,7 @@ msgstr "Strona WWW notowań"
 
 #: optionsettingsmisc.cpp:81
 msgid "Clear the field to Reset the value to system default."
-msgstr "Wyczyść pole aby zresetować wartość do domyślnej w systemie."
+msgstr "Wyczyść pole, aby zresetować wartość do domyślnej."
 
 #: optionsettingsmisc.cpp:85
 msgid "Share Precision"
@@ -5663,7 +5664,7 @@ msgstr "Okno ustawień nowej transakcji"
 
 #: optionsettingsmisc.cpp:104
 msgid "Last Used"
-msgstr "Ostatnio użyty"
+msgstr "Z ostatniego użycia"
 
 #: optionsettingsmisc.cpp:116
 msgid "Unused"
@@ -5671,7 +5672,7 @@ msgstr "Nieużywana"
 
 #: optionsettingsmisc.cpp:122
 msgid "Last used for payee"
-msgstr "Ostatnio użyta dla beneficjenta"
+msgstr "Z ostatniego użycia dla beneficjenta"
 
 #: optionsettingsmisc.cpp:123
 msgid "Use default for payee"
@@ -5707,7 +5708,7 @@ msgstr "Domyślny status:"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Transakcje zbiorcze:"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Backup"
@@ -5823,11 +5824,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:165
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Sprawdzaj aktualizacje przy starcie"
 
 #: optionsettingsnet.cpp:167
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Zaznacz, aby sprawdzać dostępność nowej wersji MMWX w czasie uruchomienia"
+msgstr "Zaznacz, aby sprawdzać dostępność nowej wersji MMEX podczas uruchomienia"
 
 #: optionsettingsnet.cpp:170 wizard_update.cpp:114
 msgid "Stable"
@@ -5975,7 +5976,7 @@ msgstr "Rozmiar innych ikon"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Ostatnio użyta kategoria"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -6011,7 +6012,7 @@ msgstr "Porada: Zmień wszystkie transakcje z typ beneficjentem na innego benefi
 
 #: payeedialog.cpp:295
 msgid "Tools -> Relocation of -> Payees"
-msgstr "Narzędzia -> Przenoszenie -> Beneficjenci"
+msgstr "Narzędzia -> Przenieś -> Beneficjenci"
 
 #: payeedialog.cpp:296
 msgid "Organize Payees: Delete Error"
@@ -6019,15 +6020,15 @@ msgstr "Organizuj beneficjentów: Błąd usuwania"
 
 #: payeedialog.cpp:399
 msgid "Define Category"
-msgstr ""
+msgstr "Domyślna kategoria"
 
 #: payeedialog.cpp:416
 msgid "Relocate Payee"
-msgstr "Przenoszenie beneficjentów"
+msgstr "Przenieś beneficjentów"
 
 #: relocatecategorydialog.cpp:81
 msgid "Relocate source category to the destination category"
-msgstr "Przenoszenie kategorii źródłowej do kategorii docelowej"
+msgstr "Przenieś transakcje z kategorii źródłowej do kategorii docelowej"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
@@ -6035,7 +6036,7 @@ msgstr "Usuń kategorię źródłową po przeniesieniu (jeśli nie ma podkategor
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
-msgstr "Przenoszenie:"
+msgstr "Przenieś:"
 
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:108
 msgid "to:"
@@ -6090,7 +6091,7 @@ msgstr "Okno przenoszenia kategorii"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr "Przenoszenie beneficjenta źródłowego do beneficjenta docelowego"
+msgstr "Przenieś transakcje z beneficjenta źródłowego do beneficjenta docelowego"
 
 #: relocatepayeedialog.cpp:94
 msgid "Delete source payee after relocation"
@@ -6651,7 +6652,7 @@ msgstr "Importuj historię cen akcji (format CSV)"
 
 #: stockdialog.cpp:339
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Usuń wybraną cenę akcji"
 
 #: stockdialog.cpp:341
 msgid "Add Stock Price to history"
@@ -6827,7 +6828,7 @@ msgstr "Przenieś"
 
 #: stockspanel.cpp:155
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Przenieś wybraną transakcję na inne konto"
 
 #: stockspanel.cpp:168
 msgid "Refresh"
