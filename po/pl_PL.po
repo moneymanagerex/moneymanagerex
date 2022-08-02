@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-07-30 12:02\n"
+"PO-Revision-Date: 2022-08-02 19:21\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -3972,20 +3972,20 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:388
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Raport wszystkich transakcji"
 
 #: mmcheckingpanel.cpp:390
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Widok konta: %s"
 
 #: mmcheckingpanel.cpp:408
 msgid "Account Bal: "
-msgstr "Bilans konta:"
+msgstr "Bilans konta: "
 
 #: mmcheckingpanel.cpp:410
 msgid "Reconciled Bal: "
-msgstr "Bilans uzgodnionych:"
+msgstr "Bilans uzgodnionych: "
 
 #: mmcheckingpanel.cpp:412
 msgid "Diff: "
