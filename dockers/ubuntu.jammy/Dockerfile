@@ -7,7 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime && echo "Europe/Lon
       libgtk-3-dev liblua5.3-dev libcurl4-openssl-dev libwebkit2gtk-4.0-dev wget unzip && \
     apt clean && \
     cd / && \
-    wget --no-check-certificate https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.0/wxWidgets-3.2.0.zip && \
+    wget --no-check-certificate https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.7/wxWidgets-3.1.7.zip && \
     unzip -d wxWidgets wxWidgets-*.zip && \
     rm wxWidgets-*.zip && \
     cd wxWidgets && \
