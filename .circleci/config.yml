@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  build-linux:
     machine: true
     steps: 
       - run:
@@ -35,3 +35,30 @@ jobs:
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex_*.deb /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
+  build-macos:
+    macos:
+      xcode: 13.4.1
+    steps: 
+      - run:
+          name: Checkout code
+          command: |
+            pwd && \
+            git clone --recurse "$CIRCLE_REPOSITORY_URL" .
+            mkdir -p /tmp/artifacts
+      - run:
+          name: Build MoneyManagerEx (MacOS) - Just build x86_64 architecture as part of CI
+          command: |
+            pwd && \
+            brew install ccache gettext cmake curl pkg-config wxwidgets@3.2 && \
+            mkdir build-cocoa && \
+            cd build-cocoa && \
+            cmake -DCMAKE_CXX_FLAGS="-w" -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10  .. && \
+            cmake --build . --target package && \
+            cp *.dmg /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+workflows:
+  mmex-builds:
+    jobs:
+      - build-linux
+      - build-macos
