@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-08-02 03:32\n"
+"PO-Revision-Date: 2022-08-02 04:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4327,11 +4327,11 @@ msgstr ""
 
 #: mmframe.cpp:1603
 msgid "Organize &Categories"
-msgstr ""
+msgstr "管理類型(&C)"
 
 #: mmframe.cpp:1607
 msgid "Organize &Payees"
-msgstr ""
+msgstr "管理受帳人(&P)"
 
 #: mmframe.cpp:1607 mmframe.cpp:1823 payeedialog.cpp:101
 msgid "Organize Payees"
@@ -4339,7 +4339,7 @@ msgstr "管理受帳人"
 
 #: mmframe.cpp:1611
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "管理貨幣(&N)"
 
 #: mmframe.cpp:1611 mmframe.cpp:1824
 msgid "Organize Currency"
