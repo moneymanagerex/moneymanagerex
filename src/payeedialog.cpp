@@ -223,7 +223,7 @@ void mmPayeeDialog::OnListItemActivated(wxListEvent& WXUNUSED(event))
 }
 void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
 {
-    m_maskStr = event.GetString();
+    m_maskStr = event.GetString().Prepend("*");
     fillControls();
 }
 
