@@ -1891,7 +1891,6 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
-                    cbPayee_->SetInsertionPointEnd();
                     cbPayee_->SelectAll();
                 }
                 return;
