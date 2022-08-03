@@ -87,7 +87,6 @@ private:
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
-    void OnPayeeChanged(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
@@ -160,8 +159,6 @@ private:
         mmID_TOACCOUNT_LABEL,
         mmID_TOACCOUNTNAME,
         mmID_PAYEE_LABEL,
-        mmID_PAYEE,
-        mmID_CATEGORY,
         mmID_CATEGORY_SPLIT,
         mmID_ACCOUNTNAME,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,

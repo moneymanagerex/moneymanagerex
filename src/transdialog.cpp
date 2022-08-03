@@ -53,7 +53,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHAR_HOOK(mmTransDialog::OnComboKey)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
-    EVT_COMBOBOX(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
     EVT_BUTTON(mmID_CATEGORY_SPLIT, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -719,46 +718,47 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 
 void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 {
+    wxWindow* w = event.GetWindow();
+    if (w && object_in_focus_ == w->GetId()) {
+         return;
+    }
+
     switch (object_in_focus_)
     {
     case mmID_ACCOUNTNAME:
         cbAccount_->ChangeValue(cbAccount_->GetValue());
-        if (cbAccount_->mmIsValid())
+        if (cbAccount_->mmIsValid()) {
             m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
+        }
         break;
     case mmID_TOACCOUNTNAME:
         cbToAccount_->ChangeValue(cbToAccount_->GetValue());
-        if (cbToAccount_->mmIsValid())
+        if (cbToAccount_->mmIsValid()) {
             m_trx_data.TOACCOUNTID = cbToAccount_->mmGetId();
+        }
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
+        skip_payee_init_ = false;
         break;
     case mmID_CATEGORY:
         cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
     case mmID_TEXTAMOUNT:
-    {
         if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID))) {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
-    }
     case mmID_TOTEXTAMOUNT:
-    {
         if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID))) {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
     }
-    }
 
-    wxWindow *w = event.GetWindow();
-    if (w) {
-        object_in_focus_ = w->GetId();
-    }
+    object_in_focus_ = w ? w->GetId() : -1;
 
     if (!m_transfer)
     {
@@ -781,14 +781,6 @@ void mmTransDialog::SetDialogTitle(const wxString& title)
     this->SetTitle(title);
 }
 
-void mmTransDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
-{
-    Model_Payee::Data * payee = Model_Payee::instance().get(cbPayee_->GetValue());
-    if (payee)
-    {
-        SetCategoryForPayee(payee);
-    }
-}
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
     const wxString old_type = m_trx_data.TRANSCODE;
@@ -901,10 +893,11 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
         if (category)
         {
-            m_trx_data.CATEGID = payee->CATEGID;
-            m_trx_data.SUBCATEGID = payee->SUBCATEGID;
-            cbCategory_->ChangeValue(Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID));
-            wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
+            if (cbCategory_->GetValue().empty()) {
+                m_trx_data.CATEGID = payee->CATEGID;
+                m_trx_data.SUBCATEGID = payee->SUBCATEGID;
+                cbCategory_->ChangeValue(Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID));
+            }
         }
         else
         {
