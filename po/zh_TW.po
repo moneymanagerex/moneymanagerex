@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-07-26 20:19\n"
+"PO-Revision-Date: 2022-08-02 04:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -306,7 +306,7 @@ msgstr "開啟一個已建立的 Money Manager Ex 資料庫 (*.mmb檔案)"
 
 #: appstartdialog.cpp:115
 msgid "Change Language"
-msgstr "變更語言"
+msgstr "切換語系"
 
 #: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1547
 #: optionsettingsgeneral.cpp:100
@@ -355,11 +355,11 @@ msgstr ""
 
 #: appstartdialog.cpp:226 mmframe.cpp:3488 optionsettingsgeneral.cpp:350
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "此應用程式的語言已變更。將在下次啟動時生效。"
 
 #: appstartdialog.cpp:228 mmframe.cpp:3490 optionsettingsgeneral.cpp:352
 msgid "Language change"
-msgstr ""
+msgstr "變更語系"
 
 #: assetdialog.cpp:63 assetdialog.cpp:407 assetspanel.cpp:473
 msgid "New Asset"
@@ -4123,7 +4123,7 @@ msgstr "開啟帳目網頁(&L)"
 
 #: mmframe.cpp:1385 mmframe.cpp:1581
 msgid "&Reallocate Account"
-msgstr "更改類型&R"
+msgstr "更改類型(&R)"
 
 #: mmframe.cpp:1403 mmframe.cpp:1575
 msgid "New &Account"
@@ -4139,7 +4139,7 @@ msgstr "顯示帳目"
 
 #: mmframe.cpp:1457
 msgid "&New Database"
-msgstr "&新增資料庫"
+msgstr "新增資料庫(&N)"
 
 #: mmframe.cpp:1457 mmframe.cpp:1814 wizard_newdb.cpp:126
 msgid "New Database"
@@ -4163,7 +4163,7 @@ msgstr "另存新資料庫"
 
 #: mmframe.cpp:1466
 msgid "&Recent Files"
-msgstr ""
+msgstr "最近使用"
 
 #: mmframe.cpp:1467
 msgid "&Clear Recent Files"
@@ -4211,7 +4211,7 @@ msgstr "匯出HTML檔案"
 
 #: mmframe.cpp:1490 mmframe.cpp:1851
 msgid "&Print"
-msgstr ""
+msgstr "列印"
 
 #: mmframe.cpp:1490 mmframe.cpp:1851
 msgid "Print current view"
@@ -4299,11 +4299,11 @@ msgstr ""
 
 #: mmframe.cpp:1546
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "切換應用程式語言(&L)"
 
 #: mmframe.cpp:1572
 msgid "&Home Page"
-msgstr "主頁面&H"
+msgstr "主頁面(&H)"
 
 #: mmframe.cpp:1572 mmframe.cpp:1818
 msgid "Show Home Page"
@@ -4327,11 +4327,11 @@ msgstr ""
 
 #: mmframe.cpp:1603
 msgid "Organize &Categories"
-msgstr ""
+msgstr "管理類型(&C)"
 
 #: mmframe.cpp:1607
 msgid "Organize &Payees"
-msgstr ""
+msgstr "管理受帳人(&P)"
 
 #: mmframe.cpp:1607 mmframe.cpp:1823 payeedialog.cpp:101
 msgid "Organize Payees"
@@ -4339,7 +4339,7 @@ msgstr "管理受帳人"
 
 #: mmframe.cpp:1611
 msgid "Organize Curre&ncy"
-msgstr ""
+msgstr "管理貨幣(&N)"
 
 #: mmframe.cpp:1611 mmframe.cpp:1824
 msgid "Organize Currency"
@@ -4683,7 +4683,7 @@ msgstr ""
 
 #: mmframe.cpp:1845
 msgid "Download rates"
-msgstr ""
+msgstr "下載匯率"
 
 #: mmframe.cpp:1848
 msgid "Toggle Fullscreen\tF11"
@@ -4744,11 +4744,11 @@ msgstr ""
 
 #: mmframe.cpp:2089
 msgid "Choose database file to create"
-msgstr ""
+msgstr "建立選擇的資料庫檔案"
 
 #: mmframe.cpp:2112
 msgid "Choose database file to open"
-msgstr ""
+msgstr "選擇開啟檔案"
 
 #: mmframe.cpp:2129
 msgid "Choose Encrypted database file to open"
@@ -4821,7 +4821,7 @@ msgstr ""
 
 #: mmframe.cpp:2238 mmframe.cpp:2259
 msgid "Save database file as"
-msgstr ""
+msgstr "另存檔案"
 
 #: mmframe.cpp:2259
 msgid "Can't copy file to itself"
@@ -7427,12 +7427,12 @@ msgstr "您目前擁有的是最新版本。"
 
 #: wizard_update.cpp:149
 msgid "A new version of MMEX is available!"
-msgstr "已有新版本的 %s 可供下載！"
+msgstr "已有新版本可供下載！"
 
 #: wizard_update.cpp:181
 #, c-format
 msgid "Your version is %s"
-msgstr "您的版本是："
+msgstr "您的版本是：%s"
 
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "Unable to check for updates!"
