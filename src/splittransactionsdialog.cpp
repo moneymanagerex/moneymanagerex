@@ -349,6 +349,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxDefaultValidator
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
+        ncbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
         ncb->Disable();
         ncb->Hide();
         ncbc->SetName(wxString::Format("category_box%i", i));

@@ -26,12 +26,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma hdrstop
 #endif
 
+#include "categdialog.h"
 #include "filtertransdialog.h"
 #include "images_list.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
+#include "payeedialog.h"
 #include "util.h"
 #include "validators.h"
 
@@ -62,6 +64,7 @@ static const wxString GROUPBY_OPTIONS[] =
 wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmFilterTransactionsDialog, wxDialog)
+EVT_CHAR_HOOK(mmFilterTransactionsDialog::OnComboKey)
 EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
 EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
 EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
@@ -533,7 +536,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
-    cbPayee_ = new mmComboBoxPayee(itemPanel, wxID_ANY);
+    cbPayee_ = new mmComboBoxPayee(itemPanel, mmID_PAYEE);
     cbPayee_->SetMinSize(wxSize(220, -1));
 
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
@@ -543,7 +546,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
 
-    categoryComboBox_ = new mmComboBoxCategory(itemPanel, wxID_ANY);
+    categoryComboBox_ = new mmComboBoxCategory(itemPanel, mmID_CATEGORY);
     categoryComboBox_->Bind(wxEVT_COMBOBOX, &mmFilterTransactionsDialog::OnCategoryChange, this);
     categoryComboBox_->Bind(wxEVT_KILL_FOCUS, &mmFilterTransactionsDialog::OnCategoryChange, this);
     itemPanelSizer->Add(categoryComboBox_, g_flagsExpand);
@@ -1867,4 +1870,53 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
         colorCheckBox_->SetValue(false);
         colorButton_->SetLabel("");
     }
+}
+
+void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        auto id = event.GetId();
+        switch (id)
+        {
+        case mmID_PAYEE:
+        {
+            const auto payeeName = cbPayee_->GetValue();
+            if (payeeName.empty())
+            {
+                mmPayeeDialog dlg(this, true);
+                dlg.ShowModal();
+                cbPayee_->mmDoReInitialize();
+                int payee_id = dlg.getPayeeId();
+                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                if (payee) {
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
+                    cbPayee_->SetInsertionPointEnd();
+                    cbPayee_->SelectAll();
+                }
+                return;
+            }
+        }
+        break;
+        case mmID_CATEGORY:
+        {
+            auto category = categoryComboBox_->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                dlg.ShowModal();
+                categoryComboBox_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                categoryComboBox_->ChangeValue(category);
+                categoryComboBox_->SelectAll();
+                return;
+            }
+        }
+        break;
+        default:
+            break;
+        }
+    }
+
+    event.Skip();
 }
