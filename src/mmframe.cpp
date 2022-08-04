@@ -1804,7 +1804,7 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
-    long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL;
+    long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_PLAIN_BACKGROUND;
 
     toolBar_ = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
     toolBar_->SetToolBorderPadding(1);
