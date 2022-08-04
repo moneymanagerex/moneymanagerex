@@ -39,6 +39,7 @@ EVT_BUTTON(wxID_CANCEL, mmCategDialog::OnCancel)
 EVT_BUTTON(wxID_ADD, mmCategDialog::OnAdd)
 EVT_BUTTON(wxID_REMOVE, mmCategDialog::OnDelete)
 EVT_BUTTON(wxID_EDIT, mmCategDialog::OnEdit)
+EVT_TEXT(wxID_FIND, mmCategDialog::OnTextChanged)
 EVT_TREE_SEL_CHANGED(wxID_ANY, mmCategDialog::OnSelChanged)
 EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmCategDialog::OnSelChanged)
 EVT_TREE_ITEM_ACTIVATED(wxID_ANY, mmCategDialog::OnDoubleClicked)
@@ -152,33 +153,54 @@ void mmCategDialog::fillControls()
     const auto &categories = Model_Category::instance().all();
     for (const Model_Category::Data& category : categories)
     {
+
         wxTreeItemId maincat;
-        bool bShow = categShowStatus(category.CATEGID, -1);
-        if (m_cbShowAll->IsChecked() || bShow || category.CATEGID == m_init_selected_categ_id)
+        bool cat_bShow = categShowStatus(category.CATEGID, -1);
+        if (m_cbShowAll->IsChecked() || cat_bShow || category.CATEGID == m_init_selected_categ_id)
         {
-            maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
             Model_Subcategory::Data subcat;
-            m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
-            if (!bShow)
-                m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
-            if (m_categ_id == category.CATEGID)
-                m_selectedItemId = maincat;
+            bool catDisplayed = true;
+            if (category.CATEGNAME.Lower().Matches(m_maskStr.Append("*")))
+            {
+                maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
+                m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
+                if (!cat_bShow)
+                    m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
+                if (m_categ_id == category.CATEGID)
+                    m_selectedItemId = maincat;
+            } else
+                catDisplayed = false;
 
             for (const auto &sub_category : Model_Category::sub_category(category))
             {
-                bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
-                if (m_cbShowAll->IsChecked() || bShow || sub_category.SUBCATEGID == m_init_selected_subcateg_id)
+                bool subcat_bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
+                if (m_cbShowAll->IsChecked() || subcat_bShow || sub_category.SUBCATEGID == m_init_selected_subcateg_id)
                 {
-                    wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
-                    m_treeCtrl->SetItemData(subcateg, new mmTreeItemCateg(category, sub_category));
-                    if (!bShow)
-                        m_treeCtrl->SetItemTextColour(subcateg, wxColour("GREY"));
+                    const wxString fullName = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
+                    if (fullName.Lower().Matches(m_maskStr.Append("*")))
+                    {
+                        if (!catDisplayed)
+                        {
+                            maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
+                            m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
+                            if (!cat_bShow)
+                                m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
+                            if (m_categ_id == category.CATEGID)
+                                m_selectedItemId = maincat;
+                            catDisplayed = true;
+                        }
+                        wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
+                        m_treeCtrl->SetItemData(subcateg, new mmTreeItemCateg(category, sub_category));
+                        if (!subcat_bShow)
+                            m_treeCtrl->SetItemTextColour(subcateg, wxColour("GREY"));
 
-                    if (m_categ_id == category.CATEGID && m_subcateg_id == sub_category.SUBCATEGID)
-                        m_selectedItemId = subcateg;
+                        if (m_categ_id == category.CATEGID && m_subcateg_id == sub_category.SUBCATEGID)
+                            m_selectedItemId = subcateg;
+                    }
                 }
             }
-            m_treeCtrl->SortChildren(maincat);
+            if (maincat)
+                m_treeCtrl->SortChildren(maincat);
         }
     }
     m_treeCtrl->Expand(root_);
@@ -244,6 +266,17 @@ void mmCategDialog::CreateControls()
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
     itemBoxSizer3->Add(m_treeCtrl, g_flagsExpand);
+
+    wxPanel* searchPanel = new wxPanel(this, wxID_ANY);
+    mainSizerVertical->Add(searchPanel, wxSizerFlags(g_flagsExpand).Proportion(0));
+    wxBoxSizer* search_sizer = new wxBoxSizer(wxHORIZONTAL);
+    searchPanel->SetSizer(search_sizer);
+
+    m_maskTextCtrl = new wxSearchCtrl(searchPanel, wxID_FIND);
+    m_maskTextCtrl->SetFocus();
+    search_sizer->Add(new wxStaticText(searchPanel, wxID_STATIC, _("Search:")), g_flagsH);
+    search_sizer->Add(m_maskTextCtrl, g_flagsExpand);
+
 
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
     mainSizerVertical->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center());
@@ -631,6 +664,14 @@ void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
 {
     Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", m_cbShowAll->IsChecked());
     fillControls();
+}
+
+void mmCategDialog::OnTextChanged(wxCommandEvent& event)
+{
+    m_maskStr = event.GetString().Lower().Prepend("*");
+    fillControls();
+    m_maskTextCtrl->SetFocus();
+    m_maskTextCtrl->SetInsertionPointEnd();
 }
 
 void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
