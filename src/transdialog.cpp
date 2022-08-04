@@ -274,10 +274,12 @@ void mmTransDialog::dataToControls()
                 }
 
                 cbPayee_->ChangeValue(_("Unknown"));
-            } else
+            }
+            else
             {
                 Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
-                if (payee) cbPayee_->ChangeValue(payee->PAYEENAME);
+                if (payee)
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
             }
 
             SetCategoryForPayee();
@@ -719,6 +721,11 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 
 void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 {
+    wxWindow* w = event.GetWindow();
+    if (!w || object_in_focus_ == w->GetId()) {
+        return;
+    }
+
     switch (object_in_focus_)
     {
     case mmID_ACCOUNTNAME:
@@ -733,33 +740,28 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
+        m_trx_data.PAYEEID = cbPayee_->mmGetId();
+        skip_payee_init_ = false;
         break;
     case mmID_CATEGORY:
         cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
     case mmID_TEXTAMOUNT:
-    {
         if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID))) {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
-    }
     case mmID_TOTEXTAMOUNT:
-    {
         if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID))) {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
     }
-    }
 
-    wxWindow *w = event.GetWindow();
-    if (w) {
-        object_in_focus_ = w->GetId();
-    }
-
+    object_in_focus_ = w->GetId();
+    
     if (!m_transfer)
     {
         toTextAmount_->ChangeValue("");
