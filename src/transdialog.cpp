@@ -741,7 +741,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
         m_trx_data.PAYEEID = cbPayee_->mmGetId();
-        skip_payee_init_ = false;
+        SetCategoryForPayee();
         break;
     case mmID_CATEGORY:
         cbCategory_->ChangeValue(cbCategory_->GetValue());
