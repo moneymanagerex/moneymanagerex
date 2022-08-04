@@ -274,10 +274,12 @@ void mmTransDialog::dataToControls()
                 }
 
                 cbPayee_->ChangeValue(_("Unknown"));
-            } else
+            }
+            else
             {
                 Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
-                if (payee) cbPayee_->ChangeValue(payee->PAYEENAME);
+                if (payee)
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
             }
 
             SetCategoryForPayee();
@@ -738,6 +740,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
+        m_trx_data.PAYEEID = cbPayee_->mmGetId();
         skip_payee_init_ = false;
         break;
     case mmID_CATEGORY:
