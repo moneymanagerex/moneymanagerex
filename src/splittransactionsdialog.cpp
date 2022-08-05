@@ -153,8 +153,10 @@ void mmSplitTransactionDialog::CreateControls()
         }
     }
 
+    slider_->Fit();
     slider_->SetMinSize(slider_->GetBestVirtualSize());
     slider_->SetScrollRate(1, 1);
+    SetMinSize(wxSize(384, 432));
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -364,7 +366,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         slider_->ScrollLines(ncbc->GetSize().GetY() * 2);
     }
     slider_->SetMinSize(slider_->GetBestVirtualSize());
-    Layout();
+    Fit();
 }
 
 void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
