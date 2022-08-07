@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-08-07 10:48\n"
+"PO-Revision-Date: 2022-08-07 11:44\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1939,7 +1939,7 @@ msgstr "Miejsca dziesiętne"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Wprowadź dopuszczalną liczbę cyfr po przecinku"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
@@ -1947,7 +1947,7 @@ msgstr "Kolumna panelu"
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Wybierz wartość by wyświetlić na panelu"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
@@ -2031,10 +2031,10 @@ msgstr "Czy chcesz zaktualizować do pustych? \n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "Znaleziono i zastąpiono %zu wystąpienie!"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "Znaleziono i zastąpiono %zu wystąpień!"
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
@@ -2739,12 +2739,12 @@ msgstr "Parametry:"
 #: images_list.cpp:328
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Struktura informacji JSON w szablonie '%s' nie może zostać przekształcona ponieważ wygląda na źle skontruowaną lub ustawioną. Proszę poprawić."
 
 #: images_list.cpp:424
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Plik '%s' jest nieprawidłowy lub go brakuje w wybranym szablonie '%s'"
 
 #: images_list.cpp:435
 #, c-format
