@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-08-07 11:44\n"
+"PO-Revision-Date: 2022-08-07 12:49\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2758,17 +2758,17 @@ msgstr "i wiecej..."
 #: images_list.cpp:470
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "W wybranym szablonie brakuje lub jest niepoprawnych %d ikon '%s':%s"
 
 #: images_list.cpp:499
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Motyw %s nie został odnaleziony, możliwe że nie jest już dłużej obsługiwany. Przywracanie motywu domyślnego"
 
 #: images_list.cpp:506
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Motyw %s ma brakujące elementy i jest niekompatybilny. Przywracanie domyślnego motywu"
 
 #: images_list.cpp:511
 msgid "No workable theme found, the installation may be corrupt"
@@ -3009,7 +3009,7 @@ msgstr "Linia %zu \t %s\n"
 #: import_export/qif_import_gui.cpp:516
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Liczba lini odczytanych z pliku QIF: %zu w %lld ms"
 
 #: import_export/qif_import_gui.cpp:521 mmreportspanel.cpp:341
 msgid "Accounts:"
@@ -4015,7 +4015,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:508
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Liczba dni pomiędzy wybranymi transakcjami: %d"
 
 #: mmcustomdata.cpp:66
 msgid "Custom fields"
@@ -4116,11 +4116,11 @@ msgstr "Pomoc"
 
 #: mmframe.cpp:1208
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Ustawienie o tej nazwie już istnieje"
 
 #: mmframe.cpp:1210
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Proszę podać nową nazwę dla tego ustawienia"
 
 #: mmframe.cpp:1212
 msgid "Name in use"
@@ -4268,7 +4268,7 @@ msgstr "Eksport do XML"
 
 #: mmframe.cpp:1483
 msgid "Export to JSON"
-msgstr ""
+msgstr "Eksportuj do JSON"
 
 #: mmframe.cpp:1484
 msgid "&HTML Files"
