@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-08-06 22:56\n"
+"PO-Revision-Date: 2022-08-07 10:48\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1935,7 +1935,7 @@ msgstr "Wprowadź dopuszczalne wartości dla tego pola rozdzielając średnikiem
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
-msgstr ""
+msgstr "Miejsca dziesiętne"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
