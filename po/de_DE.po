@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-07-26 23:13+0300\n"
-"PO-Revision-Date: 2022-07-26 20:19\n"
+"PO-Revision-Date: 2022-08-07 20:44\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1816,7 +1816,7 @@ msgstr "Gruppierungszeichen"
 
 #: currencydialog.cpp:214
 msgid "Scale"
-msgstr "Maßstab"
+msgstr "Dezimalstellen"
 
 #: currencydialog.cpp:218 currencydialog.cpp:280
 msgid "Conversion to Base Rate"
