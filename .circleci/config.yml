@@ -1,0 +1,69 @@
+version: 2.1
+jobs:
+  build-linux:
+    machine: true
+    steps: 
+      - run:
+          name: Checkout code
+          command: |
+            cd $CIRCLE_WORKING_DIRECTORY && \
+            git clone --recurse "$CIRCLE_REPOSITORY_URL" .
+      - run:
+          name: Build DB headers and prepare to build
+          command: |
+            cd $CIRCLE_WORKING_DIRECTORY/src/db && \
+            python ../../util/sqlite2cpp.py ../../database/tables_v1.sql && \
+            rm -f sql*.sql *.mmdbg && \
+            python ../../util/sqliteupgrade2cpp.py ../../database && \
+            cd ../.. && \
+            mkdir build && \
+            mkdir -p /tmp/artifacts
+      - run: 
+          name: Build MoneyManagerEx (Ubuntu Jammy Jellyfish)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-jammy bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
+      - run:
+          name: Build MoneyManagerEx (Ubuntu Focal Fossa)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-focal bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
+      - run: 
+          name: Build MoneyManagerEx (Ubuntu Bionic)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-bionic bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
+      - run: 
+          name: Build MoneyManagerEx (Fedora 36)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:fedora-36 bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.rpm /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+  build-macos:
+    macos:
+      xcode: 13.4.1
+    steps: 
+      - run:
+          name: Checkout code
+          command: |
+            pwd && \
+            git clone --recurse "$CIRCLE_REPOSITORY_URL" .
+            mkdir -p /tmp/artifacts
+      - run:
+          name: Build MoneyManagerEx (MacOS) - Just build x86_64 architecture as part of CI
+          command: |
+            pwd && \
+            brew install ccache gettext cmake curl pkg-config wxwidgets@3.2 && \
+            mkdir build-cocoa && \
+            cd build-cocoa && \
+            cmake -DCMAKE_CXX_FLAGS="-w" -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10  .. && \
+            cmake --build . --target package && \
+            cp *.dmg /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+workflows:
+  mmex-builds:
+    jobs:
+      - build-linux
+      - build-macos

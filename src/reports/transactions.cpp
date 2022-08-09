@@ -392,26 +392,27 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
-        if (full_tran.has_split()) 
+        if (full_tran.has_split())
         {
-            bool catFilter = dlg.get()->mmIsCategoryChecked();
-            const auto& value = catFilter ? dlg.get()->mmGetCategoryPattern() : "";
+            bool catFilter = dlg.get()->mmIsCategorySubCatChecked();
+            const auto& value = dlg.get()->mmGetCategoryPattern();
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
 
             for (const auto& split : full_tran.m_splits)
             {
-                const auto& categ = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
+                const auto& categ = Model_Category::full_name(split.CATEGID, (!catFilter ? split.SUBCATEGID : -1));
 
-                if (!catFilter || pattern.Matches(categ)) {
+                if (pattern.Matches(categ)) {
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     trans_.push_back(full_tran);
                 }
             }
-        } else
+        }
+        else
             trans_.push_back(full_tran);
     }
-    
+
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
     switch (dlg.get()->mmGetGroupBy())
     {

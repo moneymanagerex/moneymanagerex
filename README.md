@@ -137,7 +137,8 @@ Tips
 [w]: https://img.shields.io/website-up-down-brightgreen-red/https/moneymanagerex.org/.svg
 [p]: https://img.shields.io/website-up-down-brightgreen-red/https/packagecloud.io/moneymanagerex/.svg?label=deb%20rpm%20repo
 [stable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex.svg?label=stable
-[unstable]: https://img.shields.io/badge/unstable-v1.5.18--beta-yellow
+
+[unstable]: https://img.shields.io/badge/unstable-beta-yellow
 [st]: https://img.shields.io/github/stars/moneymanagerex/moneymanagerex.svg?&label=GitHub&style=social&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA50lEQVQoz5XSr0oFQRzF8c%2FuBd0iiCYviHi1GXwABYMugiaLmKw3iF18AetF8B1MNouDb6AICgbfwCqGKf4JrjIse132lGHOnC%2FMnN%2FQoBjMxyDEYN8Y5WP8IbYwisFMF%2FCkWuew2QrGYCIGI%2FQS%2BzQGs3Uwi8EOjrFReZMNN4nIcI9bnGUxeMOUblrJsYevDtAlXrLqbUc4%2F6esX90Upe2%2FcorSBQ5boGvsNrX63AK%2B4rMJXG8Bl9IxpeBaLfhY2y%2Bm%2Bbx2AA84KEqrWMYVPtBP81nya%2FpYwFNRek%2F8HgaYxl1R%2FozuGyXRMhoIJiaoAAAAAElFTkSuQmCC
 [tw]: https://img.shields.io/twitter/follow/MoneyManagerEx.svg?style=social&label=follow
 [Buy us a Cofee]: https://cash.me/$guanlisheng/1

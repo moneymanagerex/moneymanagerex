@@ -23,6 +23,7 @@
 
 
 #include "defs.h"
+#include <wx/srchctrl.h>
 #include "model/Model_Category.h"
 
 class mmCategDialogTreeCtrl : public wxTreeCtrl
@@ -96,12 +97,14 @@ private:
     void OnCategoryRelocation(wxCommandEvent& /*event*/);
     void OnExpandChbClick(wxCommandEvent& /*event*/);
     void OnShowHiddenChbClick(wxCommandEvent& /*event*/);
+    void OnTextChanged(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
 
     mmCategDialogTreeCtrl* m_treeCtrl;
+    wxSearchCtrl* m_maskTextCtrl;
     wxButton* m_buttonAdd;
     wxButton* m_buttonEdit;
     wxButton* m_buttonSelect;
@@ -120,6 +123,7 @@ private:
     wxColour NormalColor_;
     wxArrayString m_hidden_categs;
     bool m_refresh_requested;
+    wxString m_maskStr;
 
     enum
     {

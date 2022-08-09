@@ -570,7 +570,7 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
-                    cbPayee_->SetInsertionPointEnd();
+                    cbPayee_->SelectAll();
                 }
                 return;
             }
@@ -586,6 +586,7 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
                 cbCategory_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 cbCategory_->ChangeValue(category);
+                cbCategory_->SelectAll();
                 return;
             }
         }

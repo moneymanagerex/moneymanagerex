@@ -511,7 +511,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxTextCtrl* textCtrlWebsite = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE));
     wxString uri = textCtrlWebsite->GetValue().Lower().Trim();
-    wxRegEx pattern(R"(^(https?:\/\/)?([0-9a-z_\.]+)\.([a-z]{2,6}\.?)(\/[0-9a-z_\.]*)*\/?$)");
+    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
     if (!uri.empty() && !pattern.Matches(uri))
     {
         m_notebook->SetSelection(1);

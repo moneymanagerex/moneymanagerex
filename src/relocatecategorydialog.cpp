@@ -122,8 +122,8 @@ void relocateCategoryDialog::CreateControls()
     wxStaticLine* lineBottom2 = new wxStaticLine(this, wxID_STATIC);
     boxSizer->Add(lineBottom2, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("&OK "));
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("Relocate"));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("Close"));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);

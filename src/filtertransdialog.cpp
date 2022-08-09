@@ -26,12 +26,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma hdrstop
 #endif
 
+#include "categdialog.h"
 #include "filtertransdialog.h"
 #include "images_list.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
+#include "payeedialog.h"
 #include "util.h"
 #include "validators.h"
 
@@ -62,6 +64,7 @@ static const wxString GROUPBY_OPTIONS[] =
 wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmFilterTransactionsDialog, wxDialog)
+EVT_CHAR_HOOK(mmFilterTransactionsDialog::OnComboKey)
 EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
 EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
 EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
@@ -533,7 +536,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
-    cbPayee_ = new mmComboBoxPayee(itemPanel, wxID_ANY);
+    cbPayee_ = new mmComboBoxPayee(itemPanel, mmID_PAYEE);
     cbPayee_->SetMinSize(wxSize(220, -1));
 
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
@@ -543,7 +546,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
 
-    categoryComboBox_ = new mmComboBoxCategory(itemPanel, wxID_ANY);
+    categoryComboBox_ = new mmComboBoxCategory(itemPanel, mmID_CATEGORY);
     categoryComboBox_->Bind(wxEVT_COMBOBOX, &mmFilterTransactionsDialog::OnCategoryChange, this);
     categoryComboBox_->Bind(wxEVT_KILL_FOCUS, &mmFilterTransactionsDialog::OnCategoryChange, this);
     itemPanelSizer->Add(categoryComboBox_, g_flagsExpand);
@@ -610,7 +613,6 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, g_flagsExpand);
-    amountSizer->AddSpacer(5);
     amountSizer->Add(amountMaxEdit_, g_flagsExpand);
     itemPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
@@ -829,6 +831,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
             && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+    if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
@@ -1480,7 +1483,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1))
     {
         json_writer.Key((i18n ? _("Include all sub-categories") : "SUBCATEGORYINCLUDE").utf8_str());
-        json_writer.Bool(categoryCheckBox_->GetValue());
+        json_writer.Bool(categorySubCatCheckBox_->GetValue());
     }
 
     //Status
@@ -1603,6 +1606,7 @@ void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
 {
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
             && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+    if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
     event.Skip();  
 }
 
@@ -1744,21 +1748,21 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
     }
     else
     {
-        const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
-        const auto l = mmGetLabelString();
+        const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
+        const auto& l = mmGetLabelString();
         int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
-        const auto json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
-        if (isMultiAccount_ && json != mmGetJsonSetings() && !label.empty())
+        const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
+        const auto& test = mmGetJsonSetings();
+        if (isMultiAccount_ && json != test && !label.empty())
         {
             if (wxMessageBox(
                 _("Filter settings have changed") + "\n" +
                 _("Do you want to save them before continuing?") + "\n\n"
-                , _("Please confirm"), wxYES_NO | wxICON_WARNING) == wxNO)
+                , _("Please confirm"), wxYES_NO | wxICON_WARNING) == wxYES)
             {
-                return;
+                mmDoUpdateSettings();
             }
         }
-       mmDoUpdateSettings();
     }
 }
 
@@ -1865,4 +1869,52 @@ void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
         colorCheckBox_->SetValue(false);
         colorButton_->SetLabel("");
     }
+}
+
+void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        auto id = event.GetId();
+        switch (id)
+        {
+        case mmID_PAYEE:
+        {
+            const auto payeeName = cbPayee_->GetValue();
+            if (payeeName.empty())
+            {
+                mmPayeeDialog dlg(this, true);
+                dlg.ShowModal();
+                cbPayee_->mmDoReInitialize();
+                int payee_id = dlg.getPayeeId();
+                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                if (payee) {
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
+                    cbPayee_->SelectAll();
+                }
+                return;
+            }
+        }
+        break;
+        case mmID_CATEGORY:
+        {
+            auto category = categoryComboBox_->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                dlg.ShowModal();
+                categoryComboBox_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                categoryComboBox_->ChangeValue(category);
+                categoryComboBox_->SelectAll();
+                return;
+            }
+        }
+        break;
+        default:
+            break;
+        }
+    }
+
+    event.Skip();
 }

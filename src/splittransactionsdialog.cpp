@@ -153,8 +153,10 @@ void mmSplitTransactionDialog::CreateControls()
         }
     }
 
+    slider_->Fit();
     slider_->SetMinSize(slider_->GetBestVirtualSize());
     slider_->SetScrollRate(1, 1);
+    SetMinSize(wxSize(384, 432));
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -349,6 +351,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxDefaultValidator
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
+        ncbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
         ncb->Disable();
         ncb->Hide();
         ncbc->SetName(wxString::Format("category_box%i", i));
@@ -363,7 +366,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         slider_->ScrollLines(ncbc->GetSize().GetY() * 2);
     }
     slider_->SetMinSize(slider_->GetBestVirtualSize());
-    Layout();
+    Fit();
 }
 
 void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
