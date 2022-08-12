@@ -344,7 +344,7 @@ std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
     std::map<int, wxString> values;
     for (const auto& entry : m_data_changed)
     {
-        int id = entry.first - GetBaseID();
+        int id = (entry.first - GetBaseID()) / 2;
         Model_CustomField::Data *item = Model_CustomField::instance().get(id);
         if (item) {
             values[item->FIELDID] = entry.second;
