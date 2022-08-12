@@ -310,11 +310,24 @@ void mmCategDialog::CreateControls()
     itemBoxSizer9->Add(itemCancelButton, g_flagsH);
 }
 
+bool mmCategDialog::validateName(wxString name)
+{
+    if (wxNOT_FOUND != name.Find(':'))
+    {
+        wxString errMsg = _("Name contains category delimiter. ");
+            errMsg << "\n\n" << _("The colon (:) character is used to seperate categories and sub-categories"
+                " and therefore should not be used in the name");
+        wxMessageBox(errMsg, _("Organise Categories: Invalid Name"), wxOK | wxICON_ERROR);
+        return false;
+    } 
+    return true;
+}
+
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
     wxString prompt_msg = _("Enter the name for the new category:");
     const wxString& text = wxGetTextFromUser(prompt_msg, _("Add Category"), "");
-    if (text.IsEmpty())
+    if (text.IsEmpty() || !validateName(text))
         return;
 
     if (m_selectedItemId == root_)
@@ -524,12 +537,8 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     const wxString old_name = m_treeCtrl->GetItemText(m_selectedItemId);
     const wxString msg = wxString::Format(_("Enter a new name for '%s'"), old_name);
     wxString text = wxGetTextFromUser(msg, _("Edit Category"), old_name);
-    if (text.IsEmpty() || old_name == text) {
+    if (text.IsEmpty() || old_name == text || !validateName(text)) {
         return;
-    }
-
-    if (text.Contains(":")) {
-        text.Replace(":", "|");
     }
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>

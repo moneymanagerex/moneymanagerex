@@ -102,6 +102,7 @@ private:
     void OnItemRightClick(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
+    bool validateName(wxString name);
 
     mmCategDialogTreeCtrl* m_treeCtrl;
     wxSearchCtrl* m_maskTextCtrl;
