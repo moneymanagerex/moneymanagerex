@@ -212,14 +212,14 @@ private:
 
     enum
     {
-        /* FIlter Dialog */
+        /* Filter Dialog */
         ID_DIALOG_COLUMNS = wxID_HIGHEST + 897,
         ID_BTN_CUSTOMFIELDS,
-        ID_CUSTOMFIELDS,
         ID_DATE_RANGE,
         ID_PERIOD_CB,
         ID_ACCOUNT_CB,
-        ID_DATE_RANGE_CB
+        ID_DATE_RANGE_CB,
+        ID_CUSTOMFIELDS
     };
 };
 
