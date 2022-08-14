@@ -315,9 +315,9 @@ bool mmCategDialog::validateName(wxString name)
     if (wxNOT_FOUND != name.Find(':'))
     {
         wxString errMsg = _("Name contains category delimiter. ");
-            errMsg << "\n\n" << _("The colon (:) character is used to seperate categories and sub-categories"
+            errMsg << "\n\n" << _("The colon (:) character is used to separate categories and sub-categories"
                 " and therefore should not be used in the name");
-        wxMessageBox(errMsg, _("Organise Categories: Invalid Name"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Organize Categories: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     } 
     return true;
