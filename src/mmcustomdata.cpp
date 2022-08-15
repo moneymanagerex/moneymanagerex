@@ -150,7 +150,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         {
             // Strip any thousands separators and macke sure decimal is "."
             wxString content = fieldData->CONTENT;
-            wxRegEx pattern(R"([\.,](?=\d*[\.,]))");
+            wxRegEx pattern(R"([\., ](?=\d*[\., ]))");
             pattern.ReplaceAll(&content, wxEmptyString);
             content.Replace(",",".");
             double value;
