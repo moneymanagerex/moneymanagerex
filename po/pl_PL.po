@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-15 13:55+0300\n"
-"PO-Revision-Date: 2022-08-15 11:16\n"
+"PO-Revision-Date: 2022-08-15 12:23\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1611,15 +1611,15 @@ msgstr "Wybierz obecnie zaznaczoną kategorię jako kategorię dla transakcji"
 
 #: categdialog.cpp:317
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "Nazwa zawiera separator kategorii. "
 
 #: categdialog.cpp:318
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "Znak dwukropka (:) jest używany do oddzielania kategorii i podkategorii i dlatego nie powinien być używany w nazwie"
 
 #: categdialog.cpp:320
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Organizuj kategorie: Nieprawidłowa nazwa"
 
 #: categdialog.cpp:328
 msgid "Enter the name for the new category:"
@@ -6059,7 +6059,7 @@ msgstr "do:"
 
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 msgid "Relocate"
-msgstr ""
+msgstr "Przenieś"
 
 #: relocatecategorydialog.cpp:146 relocatepayeedialog.cpp:146
 #, c-format
