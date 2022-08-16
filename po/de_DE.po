@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-15 13:55+0300\n"
-"PO-Revision-Date: 2022-08-15 11:16\n"
+"PO-Revision-Date: 2022-08-16 14:12\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1603,15 +1603,15 @@ msgstr "Ausgewählte Kategorie für diese Buchung benutzen"
 
 #: categdialog.cpp:317
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "Name enthält Kategorie-Trennzeichen. "
 
 #: categdialog.cpp:318
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "Der Doppelpunkt (:) wird verwendet, um Kategorien und Unterkategorien zu trennen und sollte daher nicht im Namen verwendet werden"
 
 #: categdialog.cpp:320
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Kategorien organisieren: Ungültiger Name"
 
 #: categdialog.cpp:328
 msgid "Enter the name for the new category:"
