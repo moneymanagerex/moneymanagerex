@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-15 13:55+0300\n"
-"PO-Revision-Date: 2022-08-16 15:23\n"
+"PO-Revision-Date: 2022-08-16 16:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4448,7 +4448,7 @@ msgstr "Пера&соўванне"
 
 #: mmframe.cpp:1622
 msgid "Relocate Categories && Payees"
-msgstr "Замена катыгорыяў і платнікоў"
+msgstr "Перасоўванне катыгорыяў і платнікоў"
 
 #: mmframe.cpp:1632
 msgid "&Budget Setup"
@@ -6044,7 +6044,7 @@ msgstr "Вызначыць катыгорыю"
 
 #: payeedialog.cpp:416
 msgid "Relocate Payee"
-msgstr "Замена платніка"
+msgstr "Перасоўванне платніка"
 
 #: relocatecategorydialog.cpp:81
 msgid "Relocate source category to the destination category"
@@ -6077,7 +6077,7 @@ msgstr "Калі ласка, спраўдзіце:"
 
 #: relocatecategorydialog.cpp:151
 msgid "Category Relocation Confirmation"
-msgstr "Спраўдзіце замену катыгорыі"
+msgstr "Спраўдзіце перасоўванне катыгорыі"
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:203
 #, c-format
@@ -6111,11 +6111,11 @@ msgstr "Знойдзена запісаў у бюджэце: %i"
 
 #: relocatecategorydialog.h:42
 msgid "Relocate Category Dialog"
-msgstr "Замена катыгорыяў"
+msgstr "Перасоўванне катыгорыяў"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr "Замяніць абранага платніка ва ўсіх аперацыях"
+msgstr "Перасунуць платніка крыніцы ў платніка прызначэння"
 
 #: relocatepayeedialog.cpp:94
 msgid "Delete source payee after relocation"
@@ -6123,11 +6123,11 @@ msgstr "Выдаліць абранага платніка пасля замен
 
 #: relocatepayeedialog.cpp:151
 msgid "Payee Relocation Confirmation"
-msgstr "Спраўджанне замены платніка"
+msgstr "Спраўдзіце перасоўванне платніка"
 
 #: relocatepayeedialog.h:41
 msgid "Relocate Payee Dialog"
-msgstr "Замена платніка"
+msgstr "Перасоўванне платнікоў"
 
 #: reports/budget.cpp:88
 #, c-format
