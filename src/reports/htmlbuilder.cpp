@@ -575,6 +575,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             chartWidth = 70;
             break;
         case GraphData::BARLINE:
+        case GraphData::STACKEDBARLINE:
             gtype = "line";
             if (gd.labels.size() < 5)
                 chartWidth = 70;
@@ -584,7 +585,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
 
     htmlChart += wxString::Format("chart: { animations: { enabled: false }, type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
                     , gtype
-                    , (gd.type == GraphData::STACKEDAREA) ? "stacked: true," : ""
+                    , (gd.type == GraphData::STACKEDAREA || 
+                       gd.type == GraphData::STACKEDBARLINE) ? "stacked: true," : ""
                     , mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR)
                     , chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
@@ -636,7 +638,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     }
 
     // Pie/donut charts just have a single series / data, and mixed have a single set of labels
-    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT || gd.type == GraphData::BARLINE)
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT || gd.type == GraphData::BARLINE
+        || gd.type == GraphData::STACKEDBARLINE)
        htmlChart += wxString::Format(",labels: [%s]", categories);
     else
         htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }\n", gSeriesType, categories);
@@ -677,14 +680,16 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             seriesList = seriesEntries;
         else
         {
-            const wxString typeString = (gd.type == GraphData::BARLINE) ? wxString::Format("type: '%s',", entry.type) : "";
+            const wxString typeString = (gd.type == GraphData::BARLINE || gd.type == GraphData::STACKEDBARLINE)
+                                ? wxString::Format("type: '%s',", entry.type) : "";
             seriesList += wxString::Format("%s{ name: '%s', %s data: [%s] }", firstList ? "":",", entry.name, typeString, seriesEntries);
         }
         firstList = false;
     }
     htmlChart += wxString::Format(", series: [%s]", seriesList);
 
-    if (gd.type == GraphData::BARLINE) {
+    if (gd.type == GraphData::BARLINE || gd.type == GraphData::STACKEDBARLINE)
+    {
         htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [";   // Always label the lines
         int seriesNo = 0;
         first = true;

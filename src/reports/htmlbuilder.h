@@ -37,7 +37,7 @@ struct GraphSeries
 struct GraphData
 {
     wxString title;
-    enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR, BARLINE, STACKEDAREA } type;
+    enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR, BARLINE, STACKEDBARLINE, STACKEDAREA } type;
     std::vector<wxString> labels;
     std::vector<GraphSeries> series;
     std::vector<wxColour> colors;

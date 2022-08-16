@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2017 James Higley
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 - 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -143,7 +143,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     std::vector<BalanceEntry> totBalanceData;
     
     GraphData gd;
-    GraphSeries gs_data[Model_Account::MAX];
+    GraphSeries gs_data[Model_Account::MAX + 1];    // +1 as we add balance to the end
 
     std::vector<wxDate> arDates;
 
@@ -277,6 +277,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         gs_data[7].values.push_back(balancePerDay[Model_Account::INVESTMENT]);
         total += balancePerDay[Model_Account::INVESTMENT];
         totBalanceEntry.values.push_back(total);
+        gs_data[8].values.push_back(total);
         totBalanceData.push_back(totBalanceEntry);
     }
 
@@ -284,13 +285,23 @@ wxString mmReportSummaryByDate::getHTMLText()
     if (getChartSelection() == 0)
     {
         gs_data[0].name = _("Cash");
+        gs_data[0].type = "column";
         gs_data[1].name = _("Bank Accounts");
+        gs_data[1].type = "column";        
         gs_data[2].name = _("Credit Card Accounts");
+        gs_data[2].type = "column";   
         gs_data[3].name = _("Loan Accounts");
+        gs_data[3].type = "column";   
         gs_data[4].name = _("Term Accounts");
+        gs_data[4].type = "column";   
         gs_data[5].name = _("Asset Accounts");
+        gs_data[5].type = "column";   
         gs_data[6].name = _("Share Accounts");
+        gs_data[6].type = "column";   
         gs_data[7].name = _("Stocks");
+        gs_data[7].type = "column";   
+        gs_data[8].name = _("Balance");
+        gs_data[8].type = "line";  
 
         for (const auto& entry : totBalanceData)
         {
@@ -302,7 +313,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         for (const auto& gs : gs_data)
             gd.series.push_back(gs);
 
-        gd.type = GraphData::STACKEDAREA; 
+        gd.type = GraphData::STACKEDBARLINE; 
         hb.addChart(gd);
     }
 

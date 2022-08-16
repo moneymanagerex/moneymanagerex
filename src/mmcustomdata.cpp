@@ -148,14 +148,19 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::DECIMAL:
         {
+            // Strip any thousands separators and macke sure decimal is "."
+            wxString content = fieldData->CONTENT;
+            wxRegEx pattern(R"([\., ](?=\d*[\., ]))");
+            pattern.ReplaceAll(&content, wxEmptyString);
+            content.Replace(",",".");
             double value;
             int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
-            if (!fieldData->CONTENT.ToDouble(&value)) {
+            if (!content.ToCDouble(&value)) {
                 value = 0;
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, wxString::Format("%.*f", DigitScale, value));
+                    SetWidgetChanged(controlID, wxNumberFormatter::ToString(value, DigitScale));
             }
             
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
@@ -344,7 +349,7 @@ std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
     std::map<int, wxString> values;
     for (const auto& entry : m_data_changed)
     {
-        int id = entry.first - GetBaseID();
+        int id = (entry.first - GetBaseID()) / 2;
         Model_CustomField::Data *item = Model_CustomField::instance().get(id);
         if (item) {
             values[item->FIELDID] = entry.second;
@@ -466,7 +471,7 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
             else if (class_name == "wxSpinCtrlDouble")
             {
                 wxSpinCtrlDouble* d = static_cast<wxSpinCtrlDouble*>(w);
-                data = wxString::Format("%f", d->GetValue());
+                data = wxNumberFormatter::ToString(d->GetValue(), d->GetDigits());
             }
             else if (class_name == "wxSpinCtrl")
             {
