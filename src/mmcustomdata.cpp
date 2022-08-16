@@ -22,10 +22,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include "util.h"
 #include "mmSimpleDialogs.h"
+#include "Model_Currency.h"
 #include "Model_CustomFieldData.h"
 #include "Model_Attachment.h"
 
-#include <wx/numformatter.h>
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
 #include <wx/spinctrl.h>
@@ -160,7 +160,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, wxNumberFormatter::ToString(value, DigitScale));
+                    SetWidgetChanged(controlID, Model_Currency::toString(value, NULL, DigitScale));
             }
             
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
@@ -471,7 +471,7 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
             else if (class_name == "wxSpinCtrlDouble")
             {
                 wxSpinCtrlDouble* d = static_cast<wxSpinCtrlDouble*>(w);
-                data = wxNumberFormatter::ToString(d->GetValue(), d->GetDigits());
+                data = Model_Currency::toString(d->GetValue(), NULL, d->GetDigits());
             }
             else if (class_name == "wxSpinCtrl")
             {
