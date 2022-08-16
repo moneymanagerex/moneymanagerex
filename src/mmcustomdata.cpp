@@ -150,7 +150,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         {
             // Strip any thousands separators and macke sure decimal is "."
             wxString content = fieldData->CONTENT;
-            wxRegEx pattern(R"([\.,](?=\d*[\.,]))");
+            wxRegEx pattern(R"([\., ](?=\d*[\., ]))");
             pattern.ReplaceAll(&content, wxEmptyString);
             content.Replace(",",".");
             double value;
@@ -160,7 +160,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, wxString::Format("%.*f", DigitScale, value));
+                    SetWidgetChanged(controlID, wxNumberFormatter::ToString(value, DigitScale));
             }
             
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
@@ -471,7 +471,7 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
             else if (class_name == "wxSpinCtrlDouble")
             {
                 wxSpinCtrlDouble* d = static_cast<wxSpinCtrlDouble*>(w);
-                data = wxString::Format("%f", d->GetValue());
+                data = wxNumberFormatter::ToString(d->GetValue(), d->GetDigits());
             }
             else if (class_name == "wxSpinCtrl")
             {
