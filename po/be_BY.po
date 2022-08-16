@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-15 13:55+0300\n"
-"PO-Revision-Date: 2022-08-15 11:16\n"
+"PO-Revision-Date: 2022-08-16 15:23\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1612,15 +1612,15 @@ msgstr "Выбар выдзеленай катыгорыі для бягучай
 
 #: categdialog.cpp:317
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "Назва ўтрымлівае падзяляльнік катыгорыяў. "
 
 #: categdialog.cpp:318
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "Двухкроп'е (:) выкарыстоўваецца для падзялення катыгорыяў і падкатыгорыяў. З гэтай нагоды яго няможна выкарыстоўваць у назве"
 
 #: categdialog.cpp:320
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Дыспетчар катыгорыяў: Хібнае імя"
 
 #: categdialog.cpp:328
 msgid "Enter the name for the new category:"
@@ -6056,7 +6056,7 @@ msgstr "Выдаліць катыгорыю пасля перасоўвання 
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
-msgstr "Замяніць:"
+msgstr "Перасунуць:"
 
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:108
 msgid "to:"
@@ -6064,7 +6064,7 @@ msgstr "у:"
 
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 msgid "Relocate"
-msgstr ""
+msgstr "Перасунуць"
 
 #: relocatecategorydialog.cpp:146 relocatepayeedialog.cpp:146
 #, c-format
