@@ -626,14 +626,13 @@ void mmCustomData::OnDoubleTextEntered(wxCommandEvent& event)
     int id = event.GetId();
     wxWindow* w = FindWindowById(id, m_dialog);
     mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
-    double value = 0;
     int digitScale = GetPrecision(id);
     if (d->Calculate(digitScale))
     {
+        double value;
         d->GetDouble(value);
         d->SetValue(value, digitScale);
         SetWidgetChanged(event.GetId(), d->GetValue());
-
     }
 }
 

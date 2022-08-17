@@ -72,6 +72,9 @@ public:
     void DatabaseUpdated(bool value);
     bool DatabaseUpdated();
 
+    void HideShareAccounts(bool value);
+    bool HideShareAccounts();
+
     void BudgetFinancialYears(bool value);
     bool BudgetFinancialYears();
 
@@ -167,6 +170,7 @@ private:
     bool m_bulk_enter;
 
     bool m_databaseUpdated;
+    bool m_hideShareAccounts;               //INIDB_HIDE_SHARE_ACCOUNTS
     bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
     bool m_budgetIncludeTransfers;          //INIDB_BUDGET_INCLUDE_TRANSFERS
     bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG

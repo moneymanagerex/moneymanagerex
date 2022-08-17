@@ -119,6 +119,7 @@ extern const wxString INIDB_USE_ORG_DATE_DUPLICATE;
 extern const wxString INIDB_SEND_USAGE_STATS;
 extern const wxString INIDB_CHECK_NEWS;
 
+extern const wxString INIDB_HIDE_SHARE_ACCOUNTS;
 extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
 extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
 extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
