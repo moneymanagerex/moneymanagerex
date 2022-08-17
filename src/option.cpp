@@ -96,6 +96,7 @@ void Option::LoadOptions(bool include_infotable)
 
     m_language = Option::instance().getLanguageID(true);
 
+    m_hideShareAccounts = Model_Setting::instance().GetBoolSetting(INIDB_HIDE_SHARE_ACCOUNTS, true);
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
     m_budgetReportWithSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
@@ -214,6 +215,17 @@ void Option::DatabaseUpdated(bool value)
 bool Option::DatabaseUpdated()
 {
     return m_databaseUpdated;
+}
+
+void Option::HideShareAccounts(bool value)
+{
+    Model_Setting::instance().Set(INIDB_HIDE_SHARE_ACCOUNTS, value);
+    m_hideShareAccounts = value;
+}
+
+bool Option::HideShareAccounts()
+{
+    return m_hideShareAccounts;
 }
 
 void Option::BudgetFinancialYears(bool value)
