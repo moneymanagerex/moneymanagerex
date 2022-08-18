@@ -38,6 +38,7 @@ public:
         , const wxString &name = "mmTextCtrl")
     : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
         , m_currency(currency)
+        , m_alt_precision(-1)
     {}
 
     void SetValue(double value);
@@ -50,9 +51,14 @@ public:
     bool GetDouble(double &amount) const;
     bool checkValue(double &amount, bool positive_value = true);
     wxChar GetDecimalPoint();
+    void SetAltPrecision(int precision);
 
 private:
+    int m_alt_precision;
     void OnTextEntered(wxCommandEvent& event);
+    void OnKillFocus(wxFocusEvent& event);
     const Model_Currency::Data* m_currency;
     wxDECLARE_EVENT_TABLE();
 };
+
+inline void mmTextCtrl::SetAltPrecision(int precision) { m_alt_precision = precision; }
