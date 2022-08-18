@@ -170,6 +170,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
             CustomDecimal->SetAltPrecision(digitScale);
             CustomDecimal->SetValue(value, digitScale);
+            CustomDecimal->Connect(wxID_ANY, wxEVT_TEXT
+                , wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
 
             mmToolTip(CustomDecimal, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
@@ -670,7 +672,6 @@ void mmCustomData::OnCheckBoxActivated(wxCommandEvent& event)
     else {
         this->ResetWidgetChanged(widget_id);
     }
-
 }
 
 void mmCustomData::OnDateChanged(wxDateEvent& event)
