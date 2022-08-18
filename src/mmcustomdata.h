@@ -72,7 +72,6 @@ private:
     void OnSingleChoice(wxCommandEvent& event);
     void OnCheckBoxChanged(wxCommandEvent& event);
     void OnCheckBoxActivated(wxCommandEvent& event);
-    void OnDoubleTextEntered(wxCommandEvent& event);
     void OnIntegerChanged(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id, const wxString& data);

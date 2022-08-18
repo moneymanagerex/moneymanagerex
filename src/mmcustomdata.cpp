@@ -168,13 +168,11 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             mmTextCtrl* CustomDecimal = new mmTextCtrl(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
                 , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+            CustomDecimal->SetAltPrecision(digitScale);
             CustomDecimal->SetValue(value, digitScale);
 
             mmToolTip(CustomDecimal, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
-
-            CustomDecimal->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
-                , wxCommandEventHandler(mmCustomData::OnDoubleTextEntered), nullptr, this);
 
             break;
         }
@@ -621,21 +619,6 @@ void mmCustomData::OnSingleChoice(wxCommandEvent& event)
     SetWidgetChanged(event.GetId(), data);
 }
 
-void mmCustomData::OnDoubleTextEntered(wxCommandEvent& event)
-{
-    int id = event.GetId();
-    wxWindow* w = FindWindowById(id, m_dialog);
-    mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
-    int digitScale = GetPrecision(id);
-    if (d->Calculate(digitScale))
-    {
-        double value;
-        d->GetDouble(value);
-        d->SetValue(value, digitScale);
-        SetWidgetChanged(event.GetId(), d->GetValue());
-    }
-}
-
 void mmCustomData::OnIntegerChanged(wxCommandEvent& event)
 {
     auto data = event.GetInt();
@@ -811,7 +794,7 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
             {
                 mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
                 double value;
-                if (d->checkValue(value))
+                if (d->checkValue(value, false))
                     SetWidgetChanged(controlID, Model_Currency::toString(value, NULL
                                                 , Model_CustomField::getDigitScale(field.PROPERTIES)));
                 else
