@@ -24,12 +24,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 wxBEGIN_EVENT_TABLE(mmTextCtrl, wxTextCtrl)
 EVT_TEXT_ENTER(wxID_ANY, mmTextCtrl::OnTextEntered)
+EVT_KILL_FOCUS(mmTextCtrl::OnKillFocus)
 wxEND_EVENT_TABLE()
 
 void mmTextCtrl::OnTextEntered(wxCommandEvent& event)
 {
-    Calculate(Model_Currency::precision(m_currency));
+    Calculate( (m_alt_precision != -1) ? m_alt_precision 
+                            : Model_Currency::precision(m_currency));
     event.Skip();
+}
+
+void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
+{
+    Calculate( (m_alt_precision != -1) ? m_alt_precision 
+                            : Model_Currency::precision(m_currency));
+    event.Skip(); 
 }
 
 void mmTextCtrl::SetValue(double value)

@@ -215,7 +215,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , toolBar_(nullptr)
     , selectedItemData_(nullptr)
     , helpFileIndex_(-1)
-    , m_hide_share_accounts(true)
     , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 {
     // tell wxAuiManager to manage this frame
@@ -888,7 +887,7 @@ void mmGUIFrame::DoRecreateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) {
             m_nav_tree_ctrl->Delete(loanAccounts);
         }
-        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
+        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || Option::instance().HideShareAccounts())
         {
             m_nav_tree_ctrl->Delete(shareAccounts);
         }
@@ -1792,6 +1791,7 @@ void mmGUIFrame::createMenu()
     menuBar_->Append(menuHelp, _("&Help"));
     SetMenuBar(menuBar_);
 
+    menuBar_->Check(MENU_VIEW_HIDE_SHARE_ACCOUNTS, !Option::instance().HideShareAccounts());
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().BudgetFinancialYears());
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, Option::instance().BudgetIncludeTransfers());
     menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, Option::instance().BudgetReportWithSummaries());
@@ -3326,7 +3326,7 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 
 void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &WXUNUSED(event))
 {
-    m_hide_share_accounts = !m_hide_share_accounts;
+    Option::instance().HideShareAccounts(!Option::instance().HideShareAccounts());
     DoRecreateNavTreeControl();
 }
 
