@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-08-15 13:55+0300\n"
-"PO-Revision-Date: 2022-08-15 11:15\n"
+"POT-Creation-Date: 2022-08-18 21:07+0300\n"
+"PO-Revision-Date: 2022-08-18 18:11\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 msgid "&OK "
 msgstr ""
 
-#: accountdialog.cpp:112 mmframe.cpp:1578
+#: accountdialog.cpp:112 mmframe.cpp:1577
 msgid "Edit Account"
 msgstr "கணக்கைத் திருத்து"
 
@@ -278,7 +278,7 @@ msgstr ""
 msgid "Invalid URL"
 msgstr ""
 
-#: accountdialog.h:38 mmframe.cpp:1575 mmframe.cpp:1817
+#: accountdialog.h:38 mmframe.cpp:1574 mmframe.cpp:1817
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:165
 msgid "New Account"
 msgstr "புது கணக்கு"
@@ -307,7 +307,7 @@ msgstr "ஏற்கனவே (*.mmb) நீட்சியுடன் உர�
 msgid "Change Language"
 msgstr ""
 
-#: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1547
+#: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1546
 #: optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
 msgstr ""
@@ -343,7 +343,7 @@ msgstr ""
 msgid "Open the previously opened database : %s"
 msgstr ""
 
-#: appstartdialog.cpp:206 mmframe.cpp:1552 mmframe.cpp:2759
+#: appstartdialog.cpp:206 mmframe.cpp:1551 mmframe.cpp:2759
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
 msgid "system default"
 msgstr ""
@@ -398,7 +398,7 @@ msgstr "சொத்தின் பெயரை இடு"
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:210 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:293 reports/cashflow.cpp:422
-#: reports/incexpenses.cpp:244 reports/summary.cpp:317
+#: reports/incexpenses.cpp:244 reports/summary.cpp:328
 #: reports/transactions.cpp:157 stockdialog.cpp:296 stockdialog.cpp:675
 #: transactionsupdatedialog.cpp:143 transdialog.cpp:364
 #: usertransactionpanel.cpp:98 webappdialog.cpp:147 wizard_update.cpp:141
@@ -526,7 +526,7 @@ msgid "&Delete Asset"
 msgstr "சொத்து விவரம் &அழி"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:398
-#: mmframe.cpp:1370 mmframe.cpp:1390 payeedialog.cpp:412 stocks_list.cpp:146
+#: mmframe.cpp:1369 mmframe.cpp:1389 payeedialog.cpp:412 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr ""
 
@@ -543,8 +543,8 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr ""
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:730
-#: general_report_manager.cpp:1007 mmframe.cpp:485 mmframe.cpp:750
-#: mmframe.cpp:1640 mmframe.cpp:3126 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
+#: general_report_manager.cpp:1007 mmframe.cpp:484 mmframe.cpp:749
+#: mmframe.cpp:1639 mmframe.cpp:3126 mmhomepage.cpp:567 mmhomepagepanel.cpp:224
 msgid "Assets"
 msgstr "சொத்துக்கள்"
 
@@ -552,7 +552,7 @@ msgstr "சொத்துக்கள்"
 #: filtertransdialog.cpp:223 filtertransdialog.cpp:500
 #: filtertransdialog.cpp:801 filtertransdialog.cpp:1809
 #: import_export/qif_export.cpp:74 import_export/qif_export.cpp:75
-#: import_export/qif_export.cpp:145 mmframe.cpp:1414
+#: import_export/qif_export.cpp:145 mmframe.cpp:1413
 msgid "All"
 msgstr "எல்லாம்"
 
@@ -1241,7 +1241,7 @@ msgstr ""
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
-#: billsdepositspanel.cpp:245 billsdepositspanel.cpp:975 mmframe.cpp:754
+#: billsdepositspanel.cpp:245 billsdepositspanel.cpp:975 mmframe.cpp:753
 #: mmframe.cpp:2917 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
 msgstr ""
@@ -1553,7 +1553,7 @@ msgstr "பட்ஜெட் ஆண்டு ஏற்கனவே உள்ள
 msgid "Categories"
 msgstr "வகை"
 
-#: categdialog.cpp:239 mmframe.cpp:1616
+#: categdialog.cpp:239 mmframe.cpp:1615
 msgid "Reassign all categories to another category"
 msgstr ""
 
@@ -1702,7 +1702,7 @@ msgstr ""
 msgid "Clear Settings"
 msgstr ""
 
-#: categdialog.h:70 mmframe.cpp:1603 mmframe.cpp:1822
+#: categdialog.h:70 mmframe.cpp:1602 mmframe.cpp:1822
 msgid "Organize Categories"
 msgstr "வகை ஒழுங்கிடு"
 
@@ -1779,16 +1779,16 @@ msgstr ""
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:192 mmframe.cpp:1416 mmframe.cpp:1815
+#: constants.cpp:192 mmframe.cpp:1415 mmframe.cpp:1815
 #: model/Model_Account.cpp:27
 msgid "Open"
 msgstr "திற"
 
-#: constants.cpp:193 mmframe.cpp:1417 model/Model_Account.cpp:28
+#: constants.cpp:193 mmframe.cpp:1416 model/Model_Account.cpp:28
 msgid "Closed"
 msgstr "மூடப்பட்டது"
 
-#: constants.cpp:194 mmframe.cpp:1415
+#: constants.cpp:194 mmframe.cpp:1414
 msgid "Favorites"
 msgstr "விருப்பங்கள்"
 
@@ -2470,15 +2470,15 @@ msgstr ""
 msgid "Hide Report Columns"
 msgstr ""
 
-#: filtertransdialog.cpp:1167 mmframe.cpp:1172
+#: filtertransdialog.cpp:1167 mmframe.cpp:1171
 msgid "The selected item will be deleted"
 msgstr ""
 
-#: filtertransdialog.cpp:1168 mmframe.cpp:1173
+#: filtertransdialog.cpp:1168 mmframe.cpp:1172
 msgid "Do you wish to continue?"
 msgstr ""
 
-#: filtertransdialog.cpp:1169 mmframe.cpp:1174
+#: filtertransdialog.cpp:1169 mmframe.cpp:1173
 msgid "Settings item deletion"
 msgstr ""
 
@@ -2510,11 +2510,11 @@ msgstr ""
 msgid "Amount Max."
 msgstr ""
 
-#: filtertransdialog.cpp:1721 mmframe.cpp:1201
+#: filtertransdialog.cpp:1721 mmframe.cpp:1200
 msgid "Setting Name"
 msgstr ""
 
-#: filtertransdialog.cpp:1721 mmframe.cpp:1201
+#: filtertransdialog.cpp:1721 mmframe.cpp:1200
 msgid "Please Enter"
 msgstr ""
 
@@ -2545,13 +2545,13 @@ msgstr ""
 msgid "Choose Accounts"
 msgstr "கணக்கை தேர்ந்தெடு"
 
-#: general_report_manager.cpp:293 mmframe.cpp:768 mmframe.cpp:2703
+#: general_report_manager.cpp:293 mmframe.cpp:767 mmframe.cpp:2703
 #: mmframereport.cpp:315 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr "அறிக்கை"
 
 #: general_report_manager.cpp:388 import_export/univcsvdialog.cpp:430
-#: mmframe.cpp:1316 mmframe.cpp:1476
+#: mmframe.cpp:1315 mmframe.cpp:1475
 msgid "&Import"
 msgstr ""
 
@@ -2560,7 +2560,7 @@ msgid "Locate and load a report file."
 msgstr ""
 
 #: general_report_manager.cpp:392 import_export/univcsvdialog.cpp:432
-#: mmframe.cpp:1323 mmframe.cpp:1485
+#: mmframe.cpp:1322 mmframe.cpp:1484
 msgid "&Export"
 msgstr "&ஏற்று"
 
@@ -2674,7 +2674,7 @@ msgid "Enter the name for the report"
 msgstr ""
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
-#: mmframe.cpp:773 mmframe.cpp:1658 mmframe.cpp:1828
+#: mmframe.cpp:772 mmframe.cpp:1657 mmframe.cpp:1828
 msgid "General Report Manager"
 msgstr ""
 
@@ -2937,7 +2937,7 @@ msgstr ""
 msgid "Number of accounts exported: %zu"
 msgstr ""
 
-#: import_export/qif_export.cpp:636 mmframe.cpp:1482
+#: import_export/qif_export.cpp:636 mmframe.cpp:1481
 msgid "Export to QIF"
 msgstr ""
 
@@ -3126,7 +3126,8 @@ msgid "Don't Care"
 msgstr "கவலையில்லை"
 
 #: import_export/univcsvdialog.cpp:121 mmchecking_list.cpp:231
-#: mmhomepage.cpp:648 reports/cashflow.cpp:427 reports/summary.cpp:327
+#: mmhomepage.cpp:648 reports/cashflow.cpp:427 reports/summary.cpp:303
+#: reports/summary.cpp:338
 msgid "Balance"
 msgstr "இருப்பு"
 
@@ -3290,7 +3291,7 @@ msgstr ""
 msgid "Invalid Date."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1030 mmTextCtrl.cpp:108
+#: import_export/univcsvdialog.cpp:1030 mmTextCtrl.cpp:117
 msgid "Invalid Amount."
 msgstr ""
 
@@ -3647,19 +3648,19 @@ msgstr ""
 msgid "Please type in a non empty symbol."
 msgstr ""
 
-#: mmTextCtrl.cpp:79
+#: mmTextCtrl.cpp:88
 msgid "Invalid Value"
 msgstr ""
 
-#: mmTextCtrl.cpp:105
+#: mmTextCtrl.cpp:114
 msgid "Please enter a positive or calculated value."
 msgstr ""
 
-#: mmTextCtrl.cpp:105
+#: mmTextCtrl.cpp:114
 msgid "Please enter a calculated value."
 msgstr ""
 
-#: mmTextCtrl.cpp:107
+#: mmTextCtrl.cpp:116
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
 msgstr ""
@@ -3974,25 +3975,25 @@ msgstr ""
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcustomdata.cpp:66
+#: mmcustomdata.cpp:67
 msgid "Custom fields"
 msgstr ""
 
-#: mmcustomdata.cpp:325
+#: mmcustomdata.cpp:328
 msgid "Please select"
 msgstr ""
 
-#: mmcustomdata.cpp:325
+#: mmcustomdata.cpp:328
 msgid "Multi Choice"
 msgstr ""
 
-#: mmcustomdata.cpp:792
+#: mmcustomdata.cpp:782
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
 msgstr ""
 
-#: mmcustomdata.cpp:795
+#: mmcustomdata.cpp:785
 msgid "CustomField validation error"
 msgstr ""
 
@@ -4001,680 +4002,680 @@ msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
 
-#: mmframe.cpp:277
+#: mmframe.cpp:276
 msgid "Navigation"
 msgstr "உலாவல்"
 
-#: mmframe.cpp:278
+#: mmframe.cpp:277
 msgid "Toolbar"
 msgstr ""
 
-#: mmframe.cpp:478 mmframe.cpp:718
+#: mmframe.cpp:477 mmframe.cpp:717
 msgid "Favourites"
 msgstr ""
 
-#: mmframe.cpp:479 mmframe.cpp:722 mmhomepage.cpp:632 reports/summary.cpp:287
-#: reports/summary.cpp:319
+#: mmframe.cpp:478 mmframe.cpp:721 mmhomepage.cpp:632 reports/summary.cpp:289
+#: reports/summary.cpp:330
 msgid "Bank Accounts"
 msgstr "வங்கிக் கணக்குகள்"
 
-#: mmframe.cpp:480 mmframe.cpp:726 mmhomepage.cpp:633 reports/summary.cpp:288
-#: reports/summary.cpp:320
+#: mmframe.cpp:479 mmframe.cpp:725 mmhomepage.cpp:633 reports/summary.cpp:291
+#: reports/summary.cpp:331
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:481 mmframe.cpp:738 mmhomepage.cpp:635 reports/summary.cpp:290
-#: reports/summary.cpp:322
+#: mmframe.cpp:480 mmframe.cpp:737 mmhomepage.cpp:635 reports/summary.cpp:295
+#: reports/summary.cpp:333
 msgid "Term Accounts"
 msgstr ""
 
-#: mmframe.cpp:482 mmframe.cpp:742
+#: mmframe.cpp:481 mmframe.cpp:741
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:483 mmframe.cpp:730 mmhomepage.cpp:631
+#: mmframe.cpp:482 mmframe.cpp:729 mmhomepage.cpp:631
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:484 mmframe.cpp:734 mmhomepage.cpp:634 reports/summary.cpp:289
-#: reports/summary.cpp:321
+#: mmframe.cpp:483 mmframe.cpp:733 mmhomepage.cpp:634 reports/summary.cpp:293
+#: reports/summary.cpp:332
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:516
+#: mmframe.cpp:515
 msgid "Auto Repeat Transactions"
 msgstr ""
 
-#: mmframe.cpp:710 mmframe.cpp:1818
+#: mmframe.cpp:709 mmframe.cpp:1818
 msgid "Home Page"
 msgstr "இல்லப்பக்கம்"
 
-#: mmframe.cpp:714
+#: mmframe.cpp:713
 msgid "All Transactions"
 msgstr ""
 
-#: mmframe.cpp:746 mmhomepage.cpp:638 reports/summary.cpp:292
-#: reports/summary.cpp:324
+#: mmframe.cpp:745 mmhomepage.cpp:638 reports/summary.cpp:299
+#: reports/summary.cpp:335
 msgid "Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:758 mmframe.cpp:1632 mmframe.cpp:2582
+#: mmframe.cpp:757 mmframe.cpp:1631 mmframe.cpp:2582
 msgid "Budget Setup"
 msgstr "பட்ஜெட் அமைப்பு"
 
-#: mmframe.cpp:763 mmframe.cpp:1234 mmframe.cpp:1251 mmframe.cpp:2563
+#: mmframe.cpp:762 mmframe.cpp:1233 mmframe.cpp:1250 mmframe.cpp:2563
 msgid "Transaction Report"
 msgstr "பரிமாற்ற அறிக்கை"
 
-#: mmframe.cpp:780 mmframe.cpp:2402 mmframe.cpp:2653 mmhelppanel.cpp:69
+#: mmframe.cpp:779 mmframe.cpp:2402 mmframe.cpp:2653 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "உதவி"
 
-#: mmframe.cpp:1208
+#: mmframe.cpp:1207
 msgid "A setting with this name already exists"
 msgstr ""
 
-#: mmframe.cpp:1210
+#: mmframe.cpp:1209
 msgid "Please specify a new name for the setting"
 msgstr ""
 
-#: mmframe.cpp:1212
+#: mmframe.cpp:1211
 msgid "Name in use"
 msgstr ""
 
-#: mmframe.cpp:1269
+#: mmframe.cpp:1268
 msgid "Do you really want to delete the account?"
 msgstr "நிஜமாய் இந்தக் கணக்கை அழிக்க விருப்பமா?"
 
-#: mmframe.cpp:1276 mmframe.cpp:3252
+#: mmframe.cpp:1275 mmframe.cpp:3252
 msgid "Confirm Account Deletion"
 msgstr "கணக்கு அழிப்பை உறுதி செய்"
 
-#: mmframe.cpp:1296
+#: mmframe.cpp:1295
 msgid "MMEX has been opened without an active database."
 msgstr ""
 
-#: mmframe.cpp:1297
+#: mmframe.cpp:1296
 msgid "MMEX: Menu Popup Error"
 msgstr ""
 
-#: mmframe.cpp:1313 mmframe.cpp:1318 mmframe.cpp:1472 mmframe.cpp:1479
+#: mmframe.cpp:1312 mmframe.cpp:1317 mmframe.cpp:1471 mmframe.cpp:1478
 msgid "&CSV Files"
 msgstr ""
 
-#: mmframe.cpp:1314 mmframe.cpp:1320 mmframe.cpp:1473 mmframe.cpp:1481
+#: mmframe.cpp:1313 mmframe.cpp:1319 mmframe.cpp:1472 mmframe.cpp:1480
 msgid "&XML Files"
 msgstr ""
 
-#: mmframe.cpp:1314 mmframe.cpp:1473
+#: mmframe.cpp:1313 mmframe.cpp:1472
 msgid "Import from XML (Excel format)"
 msgstr ""
 
-#: mmframe.cpp:1315 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1482
+#: mmframe.cpp:1314 mmframe.cpp:1320 mmframe.cpp:1473 mmframe.cpp:1481
 msgid "&QIF Files"
 msgstr ""
 
-#: mmframe.cpp:1319 mmframe.cpp:1480
+#: mmframe.cpp:1318 mmframe.cpp:1479
 msgid "&MMEX CSV Files"
 msgstr ""
 
-#: mmframe.cpp:1322 mmframe.cpp:1483
+#: mmframe.cpp:1321 mmframe.cpp:1482
 msgid "&JSON Files"
 msgstr ""
 
-#: mmframe.cpp:1348
+#: mmframe.cpp:1347
 msgid "&Edit Filter"
 msgstr ""
 
-#: mmframe.cpp:1349
+#: mmframe.cpp:1348
 msgid "&Rename Filter"
 msgstr ""
 
-#: mmframe.cpp:1350
+#: mmframe.cpp:1349
 msgid "&Delete Filter"
 msgstr ""
 
-#: mmframe.cpp:1366 mmframe.cpp:1384 mmframe.cpp:1404 mmframe.cpp:1578
+#: mmframe.cpp:1365 mmframe.cpp:1383 mmframe.cpp:1403 mmframe.cpp:1577
 msgid "&Edit Account"
 msgstr "கணக்கை &மாற்று"
 
-#: mmframe.cpp:1367 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1584
+#: mmframe.cpp:1366 mmframe.cpp:1386 mmframe.cpp:1406 mmframe.cpp:1583
 msgid "&Delete Account"
 msgstr "கணக்கை &அழி"
 
-#: mmframe.cpp:1369 mmframe.cpp:1389
+#: mmframe.cpp:1368 mmframe.cpp:1388
 msgid "&Launch Account Website"
 msgstr "கணக்கு வலைத்தளத்தில் உலாவு"
 
-#: mmframe.cpp:1385 mmframe.cpp:1581
+#: mmframe.cpp:1384 mmframe.cpp:1580
 msgid "&Reallocate Account"
 msgstr ""
 
-#: mmframe.cpp:1403 mmframe.cpp:1575
+#: mmframe.cpp:1402 mmframe.cpp:1574
 msgid "New &Account"
 msgstr "புது &கணக்கு"
 
-#: mmframe.cpp:1405
+#: mmframe.cpp:1404
 msgid "Account &List (Home)"
 msgstr ""
 
-#: mmframe.cpp:1418 optionsettingsview.cpp:69
+#: mmframe.cpp:1417 optionsettingsview.cpp:69
 msgid "Accounts Visible"
 msgstr "தெரியும் கணக்குகள்"
 
-#: mmframe.cpp:1457
+#: mmframe.cpp:1456
 msgid "&New Database"
 msgstr ""
 
-#: mmframe.cpp:1457 mmframe.cpp:1814 wizard_newdb.cpp:126
+#: mmframe.cpp:1456 mmframe.cpp:1814 wizard_newdb.cpp:126
 msgid "New Database"
 msgstr "எளிய முறையில் புதிய தகவல்தளம்"
 
-#: mmframe.cpp:1458
+#: mmframe.cpp:1457
 msgid "&Open Database\tCtrl-O"
 msgstr "தகவல்தளத்தை &திற\tCtrl-O"
 
-#: mmframe.cpp:1458 mmframe.cpp:1815
+#: mmframe.cpp:1457 mmframe.cpp:1815
 msgid "Open Database"
 msgstr "தகவல்தளத்தை &திற\tCtrl-O"
 
-#: mmframe.cpp:1459
+#: mmframe.cpp:1458
 msgid "Save Database &As"
 msgstr "தகவல்தளத்தை &வேறாக சேமி "
 
-#: mmframe.cpp:1459
+#: mmframe.cpp:1458
 msgid "Save Database As"
 msgstr "தகவல்தளத்தை &வேறாக சேமி "
 
-#: mmframe.cpp:1466
+#: mmframe.cpp:1465
 msgid "&Recent Files"
 msgstr ""
 
-#: mmframe.cpp:1467
+#: mmframe.cpp:1466
 msgid "&Clear Recent Files"
 msgstr ""
 
-#: mmframe.cpp:1472
+#: mmframe.cpp:1471
 msgid "Import from any CSV file"
 msgstr "ஏதாவது CSVலிருந்து இறக்கு"
 
-#: mmframe.cpp:1474
+#: mmframe.cpp:1473
 msgid "Import from QIF"
 msgstr "QIFலிருந்து இறக்கு"
 
-#: mmframe.cpp:1475
+#: mmframe.cpp:1474
 msgid "&WebApp"
 msgstr ""
 
-#: mmframe.cpp:1475
+#: mmframe.cpp:1474
 msgid "Import from WebApp"
 msgstr ""
 
-#: mmframe.cpp:1479
+#: mmframe.cpp:1478
 msgid "Export to CSV"
 msgstr "CSVக்கு ஏற்று"
 
-#: mmframe.cpp:1480
+#: mmframe.cpp:1479
 msgid "Export to fixed CSV"
 msgstr ""
 
-#: mmframe.cpp:1481
+#: mmframe.cpp:1480
 msgid "Export to XML"
 msgstr ""
 
-#: mmframe.cpp:1483
+#: mmframe.cpp:1482
 msgid "Export to JSON"
 msgstr ""
 
-#: mmframe.cpp:1484
+#: mmframe.cpp:1483
 msgid "&HTML Files"
 msgstr ""
 
-#: mmframe.cpp:1484
+#: mmframe.cpp:1483
 msgid "Export to HTML"
 msgstr "HTMLக்கு ஏற்று"
 
-#: mmframe.cpp:1490 mmframe.cpp:1851
+#: mmframe.cpp:1489 mmframe.cpp:1851
 msgid "&Print"
 msgstr ""
 
-#: mmframe.cpp:1490 mmframe.cpp:1851
+#: mmframe.cpp:1489 mmframe.cpp:1851
 msgid "Print current view"
 msgstr ""
 
-#: mmframe.cpp:1496
+#: mmframe.cpp:1495
 msgid "E&xit\tAlt-X"
 msgstr ""
 
-#: mmframe.cpp:1496
+#: mmframe.cpp:1495
 msgid "Quit this program"
 msgstr ""
 
-#: mmframe.cpp:1502
+#: mmframe.cpp:1501
 msgid "&Toolbar"
 msgstr "&கருவிகள்"
 
-#: mmframe.cpp:1502
+#: mmframe.cpp:1501
 msgid "Show/Hide the toolbar"
 msgstr "கருவிப்பட்டையை காட்டு/மறை"
 
-#: mmframe.cpp:1504
+#: mmframe.cpp:1503
 msgid "&Navigation"
 msgstr ""
 
-#: mmframe.cpp:1504
+#: mmframe.cpp:1503
 msgid "Show/Hide the Navigation tree control"
 msgstr "உலாவும் வழியை காட்டு/மறை"
 
-#: mmframe.cpp:1506
+#: mmframe.cpp:1505
 msgid "&Display Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:1506
+#: mmframe.cpp:1505
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr ""
 
-#: mmframe.cpp:1509
+#: mmframe.cpp:1508
 msgid "Budgets: As Financial &Years"
 msgstr ""
 
-#: mmframe.cpp:1509
+#: mmframe.cpp:1508
 msgid "Display Budgets in Financial Year Format"
 msgstr ""
 
-#: mmframe.cpp:1511
+#: mmframe.cpp:1510
 msgid "Budgets: &Include Transfers in Totals"
 msgstr ""
 
-#: mmframe.cpp:1511
+#: mmframe.cpp:1510
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr ""
 
-#: mmframe.cpp:1513
+#: mmframe.cpp:1512
 msgid "Budget Category Report: with &Summaries"
 msgstr ""
 
-#: mmframe.cpp:1513
+#: mmframe.cpp:1512
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr ""
 
-#: mmframe.cpp:1515
+#: mmframe.cpp:1514
 msgid "Ignore F&uture Transactions"
 msgstr ""
 
-#: mmframe.cpp:1515
+#: mmframe.cpp:1514
 msgid "Ignore Future transactions"
 msgstr ""
 
-#: mmframe.cpp:1517 optionsettingsview.cpp:104
+#: mmframe.cpp:1516 optionsettingsview.cpp:104
 msgid "Show Tooltips"
 msgstr ""
 
-#: mmframe.cpp:1519 optionsettingsview.cpp:110
+#: mmframe.cpp:1518 optionsettingsview.cpp:110
 msgid "Show Money Tips"
 msgstr ""
 
-#: mmframe.cpp:1539
+#: mmframe.cpp:1538
 msgid "Toggle &Fullscreen\tShift+F11"
 msgstr ""
 
-#: mmframe.cpp:1540 mmframe.cpp:1848
+#: mmframe.cpp:1539 mmframe.cpp:1848
 msgid "Toggle Fullscreen"
 msgstr ""
 
-#: mmframe.cpp:1546
+#: mmframe.cpp:1545
 msgid "Switch Application &Language"
 msgstr ""
 
-#: mmframe.cpp:1572
+#: mmframe.cpp:1571
 msgid "&Home Page"
 msgstr ""
 
-#: mmframe.cpp:1572 mmframe.cpp:1818
+#: mmframe.cpp:1571 mmframe.cpp:1818
 msgid "Show Home Page"
 msgstr ""
 
-#: mmframe.cpp:1581
+#: mmframe.cpp:1580
 msgid "Change the account type of an account."
 msgstr ""
 
-#: mmframe.cpp:1584
+#: mmframe.cpp:1583
 msgid "Delete Account from database"
 msgstr "தகவல்தளத்திலிருந்து கணக்கை அழி"
 
-#: mmframe.cpp:1597
+#: mmframe.cpp:1596
 msgid "Download Ra&tes"
 msgstr ""
 
-#: mmframe.cpp:1597 mmframe.cpp:1845
+#: mmframe.cpp:1596 mmframe.cpp:1845
 msgid "Download Currency and Stock rates"
 msgstr ""
 
-#: mmframe.cpp:1603
+#: mmframe.cpp:1602
 msgid "Organize &Categories"
 msgstr ""
 
-#: mmframe.cpp:1607
+#: mmframe.cpp:1606
 msgid "Organize &Payees"
 msgstr ""
 
-#: mmframe.cpp:1607 mmframe.cpp:1823 payeedialog.cpp:101
+#: mmframe.cpp:1606 mmframe.cpp:1823 payeedialog.cpp:101
 msgid "Organize Payees"
 msgstr "பெறுநர் ஒழுங்கிடு"
 
-#: mmframe.cpp:1611
+#: mmframe.cpp:1610
 msgid "Organize Curre&ncy"
 msgstr ""
 
-#: mmframe.cpp:1611 mmframe.cpp:1824
+#: mmframe.cpp:1610 mmframe.cpp:1824
 msgid "Organize Currency"
 msgstr "நாணய ஒழுங்கிடு"
 
-#: mmframe.cpp:1615
+#: mmframe.cpp:1614
 msgid "&Categories"
 msgstr ""
 
-#: mmframe.cpp:1618
+#: mmframe.cpp:1617
 msgid "&Payees"
 msgstr ""
 
-#: mmframe.cpp:1619
+#: mmframe.cpp:1618
 msgid "Reassign all payees to another payee"
 msgstr ""
 
-#: mmframe.cpp:1621
+#: mmframe.cpp:1620
 msgid "Re&location of"
 msgstr ""
 
-#: mmframe.cpp:1622
+#: mmframe.cpp:1621
 msgid "Relocate Categories && Payees"
 msgstr ""
 
-#: mmframe.cpp:1632
+#: mmframe.cpp:1631
 msgid "&Budget Setup"
 msgstr ""
 
-#: mmframe.cpp:1636
+#: mmframe.cpp:1635
 msgid "&Recurring Transactions"
 msgstr ""
 
-#: mmframe.cpp:1636
+#: mmframe.cpp:1635
 msgid "Bills && Deposits"
 msgstr "ரசீது && வைப்புகள்"
 
-#: mmframe.cpp:1640
+#: mmframe.cpp:1639
 msgid "&Assets"
 msgstr ""
 
-#: mmframe.cpp:1646
+#: mmframe.cpp:1645
 msgid "T&heme Manager"
 msgstr ""
 
-#: mmframe.cpp:1646 themes.cpp:143
+#: mmframe.cpp:1645 themes.cpp:143
 msgid "Theme Manager"
 msgstr ""
 
-#: mmframe.cpp:1652
+#: mmframe.cpp:1651
 msgid "Transaction Report &Filter"
 msgstr ""
 
-#: mmframe.cpp:1652 mmframe.cpp:1826
+#: mmframe.cpp:1651 mmframe.cpp:1826
 msgid "Transaction Report Filter"
 msgstr ""
 
-#: mmframe.cpp:1658
+#: mmframe.cpp:1657
 msgid "General Report &Manager"
 msgstr ""
 
-#: mmframe.cpp:1662
+#: mmframe.cpp:1661
 msgid "C&ustom Fields Manager"
 msgstr ""
 
-#: mmframe.cpp:1662
+#: mmframe.cpp:1661
 msgid "Custom Fields Manager"
 msgstr ""
 
-#: mmframe.cpp:1668
+#: mmframe.cpp:1667
 msgid "Refresh &WebApp"
 msgstr ""
 
-#: mmframe.cpp:1668 mmframe.cpp:2642 mmframe.cpp:2645
+#: mmframe.cpp:1667 mmframe.cpp:2642 mmframe.cpp:2645
 msgid "Refresh WebApp"
 msgstr ""
 
-#: mmframe.cpp:1673
+#: mmframe.cpp:1672
 msgid "&Options...\tCtrl-,"
 msgstr ""
 
-#: mmframe.cpp:1673 mmframe.cpp:1830
+#: mmframe.cpp:1672 mmframe.cpp:1830
 msgid "Show the Options Dialog"
 msgstr "தெரிவுகள் சாளரம்"
 
-#: mmframe.cpp:1680
+#: mmframe.cpp:1679
 msgid "Convert Encrypted &DB"
 msgstr ""
 
-#: mmframe.cpp:1681
+#: mmframe.cpp:1680
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr ""
 
-#: mmframe.cpp:1683
+#: mmframe.cpp:1682
 msgid "Change Encrypted &Password"
 msgstr ""
 
-#: mmframe.cpp:1684
+#: mmframe.cpp:1683
 msgid "Change the password of an encrypted database"
 msgstr ""
 
-#: mmframe.cpp:1686
+#: mmframe.cpp:1685
 msgid "&Optimize Database"
 msgstr ""
 
-#: mmframe.cpp:1687
+#: mmframe.cpp:1686
 msgid "Optimize database space and performance"
 msgstr ""
 
-#: mmframe.cpp:1689
+#: mmframe.cpp:1688
 msgid "Database De&bug"
 msgstr ""
 
-#: mmframe.cpp:1690
+#: mmframe.cpp:1689
 msgid "Generate database report or fix errors"
 msgstr ""
 
-#: mmframe.cpp:1695
+#: mmframe.cpp:1694
 msgid "Databa&se"
 msgstr ""
 
-#: mmframe.cpp:1696
+#: mmframe.cpp:1695
 msgid "Database management"
 msgstr ""
 
-#: mmframe.cpp:1703 mmframe.cpp:1855
+#: mmframe.cpp:1702 mmframe.cpp:1855
 msgid "&Help\tF1"
 msgstr ""
 
-#: mmframe.cpp:1703 mmframe.cpp:1855
+#: mmframe.cpp:1702 mmframe.cpp:1855
 msgid "Show the Help file"
 msgstr "உதவிக் கோப்பினைக் காட்டு"
 
-#: mmframe.cpp:1708
+#: mmframe.cpp:1707
 msgid "&Website"
 msgstr ""
 
-#: mmframe.cpp:1709
+#: mmframe.cpp:1708
 msgid "Open the Money Manager EX website for latest news, updates etc"
 msgstr ""
 
-#: mmframe.cpp:1711
+#: mmframe.cpp:1710
 msgid "&Facebook"
 msgstr ""
 
-#: mmframe.cpp:1711
+#: mmframe.cpp:1710
 msgid "Visit us on Facebook"
 msgstr ""
 
-#: mmframe.cpp:1713
+#: mmframe.cpp:1712
 msgid "&Crowdin"
 msgstr ""
 
-#: mmframe.cpp:1713
+#: mmframe.cpp:1712
 msgid "We use Crowdin to translate MMEX"
 msgstr ""
 
-#: mmframe.cpp:1715
+#: mmframe.cpp:1714
 msgid "&Twitter"
 msgstr ""
 
-#: mmframe.cpp:1715
+#: mmframe.cpp:1714
 msgid "Follow us on Twitter"
 msgstr ""
 
-#: mmframe.cpp:1717
+#: mmframe.cpp:1716
 msgid "&YouTube"
 msgstr ""
 
-#: mmframe.cpp:1717
+#: mmframe.cpp:1716
 msgid "Watch free video materials about MMEX"
 msgstr ""
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1718
 msgid "&Slack"
 msgstr ""
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1718
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr ""
 
-#: mmframe.cpp:1721
+#: mmframe.cpp:1720
 msgid "&GitHub"
 msgstr ""
 
-#: mmframe.cpp:1721
+#: mmframe.cpp:1720
 msgid "Access open source code repository and track reported bug statuses"
 msgstr ""
 
-#: mmframe.cpp:1723
+#: mmframe.cpp:1722
 msgid "W&iki pages"
 msgstr ""
 
-#: mmframe.cpp:1723
+#: mmframe.cpp:1722
 msgid "Read and update wiki pages"
 msgstr ""
 
-#: mmframe.cpp:1725
+#: mmframe.cpp:1724
 msgid "F&orum"
 msgstr ""
 
-#: mmframe.cpp:1726
+#: mmframe.cpp:1725
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr ""
 
-#: mmframe.cpp:1728
+#: mmframe.cpp:1727
 msgid "Money Manager Ex for &Android"
 msgstr ""
 
-#: mmframe.cpp:1729
+#: mmframe.cpp:1728
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr ""
 
-#: mmframe.cpp:1731
+#: mmframe.cpp:1730
 msgid "&Newsletter"
 msgstr ""
 
-#: mmframe.cpp:1732
+#: mmframe.cpp:1731
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr ""
 
-#: mmframe.cpp:1734
+#: mmframe.cpp:1733
 msgid "&RSS Feed"
 msgstr ""
 
-#: mmframe.cpp:1734
+#: mmframe.cpp:1733
 msgid "Connect RSS web feed to news aggregator"
 msgstr ""
 
-#: mmframe.cpp:1736
+#: mmframe.cpp:1735
 msgid "&Donate via PayPal"
 msgstr ""
 
-#: mmframe.cpp:1737
+#: mmframe.cpp:1736
 msgid "Donate the team to support infrastructure etc"
 msgstr ""
 
-#: mmframe.cpp:1739
+#: mmframe.cpp:1738
 msgid "&Buy us a Coffee"
 msgstr ""
 
-#: mmframe.cpp:1740
+#: mmframe.cpp:1739
 msgid "Buy key developer a coffee"
 msgstr ""
 
-#: mmframe.cpp:1743
+#: mmframe.cpp:1742
 msgid "&Community"
 msgstr ""
 
-#: mmframe.cpp:1744
+#: mmframe.cpp:1743
 msgid "Stay in touch with MMEX community"
 msgstr ""
 
-#: mmframe.cpp:1766
+#: mmframe.cpp:1765
 msgid "Report a &Bug"
 msgstr ""
 
-#: mmframe.cpp:1767
+#: mmframe.cpp:1766
 msgid "Report an error in application to the developers"
 msgstr ""
 
-#: mmframe.cpp:1771
+#: mmframe.cpp:1770
 msgid "View Diagnostics"
 msgstr ""
 
-#: mmframe.cpp:1772
+#: mmframe.cpp:1771
 msgid "Help provide information to the developers"
 msgstr ""
 
-#: mmframe.cpp:1776
+#: mmframe.cpp:1775
 msgid "&Show App Start Dialog"
 msgstr ""
 
-#: mmframe.cpp:1776
+#: mmframe.cpp:1775
 msgid "App Start Dialog"
 msgstr ""
 
-#: mmframe.cpp:1780
+#: mmframe.cpp:1779
 msgid "Check for &Updates"
 msgstr "&புதுப்பிக்க சோதி"
 
-#: mmframe.cpp:1780
+#: mmframe.cpp:1779
 msgid "Check For Updates"
 msgstr ""
 
-#: mmframe.cpp:1784 mmframe.cpp:1854
+#: mmframe.cpp:1783 mmframe.cpp:1854
 msgid "&About"
 msgstr ""
 
-#: mmframe.cpp:1784 mmframe.cpp:1854
+#: mmframe.cpp:1783 mmframe.cpp:1854
 msgid "Show about dialog"
 msgstr "பற்றி சாளரத்தை காட்டு"
 
-#: mmframe.cpp:1788
+#: mmframe.cpp:1787
 msgid "&File"
 msgstr "&கோப்பு"
 
-#: mmframe.cpp:1789
+#: mmframe.cpp:1788
 msgid "&Accounts"
 msgstr "&கணக்குகள்"
 
-#: mmframe.cpp:1790
+#: mmframe.cpp:1789
 msgid "&Tools"
 msgstr "&கருவிகள்"
 
-#: mmframe.cpp:1791
+#: mmframe.cpp:1790
 msgid "&View"
 msgstr "&காட்டு"
 
-#: mmframe.cpp:1792
+#: mmframe.cpp:1791
 msgid "&Help"
 msgstr "&உதவி"
 
@@ -5038,8 +5039,8 @@ msgstr ""
 msgid "&Forward"
 msgstr ""
 
-#: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:293
-#: reports/summary.cpp:326
+#: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:301
+#: reports/summary.cpp:337
 msgid "Stocks"
 msgstr "பங்குகள்"
 
@@ -5048,7 +5049,7 @@ msgid "Gain/Loss"
 msgstr "லாப/நட்டம்"
 
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:294
-#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:325
+#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:336
 msgid "Total"
 msgstr "மொத்தம்"
 
@@ -5108,7 +5109,7 @@ msgstr ""
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:637 reports/summary.cpp:291 reports/summary.cpp:323
+#: mmhomepage.cpp:637 reports/summary.cpp:297 reports/summary.cpp:334
 msgid "Asset Accounts"
 msgstr ""
 
@@ -5173,8 +5174,8 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: model/Model_Account.cpp:33 model/Model_Asset.cpp:36 reports/summary.cpp:286
-#: reports/summary.cpp:318
+#: model/Model_Account.cpp:33 model/Model_Asset.cpp:36 reports/summary.cpp:287
+#: reports/summary.cpp:329
 msgid "Cash"
 msgstr "காசு"
 
