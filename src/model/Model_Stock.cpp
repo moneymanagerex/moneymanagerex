@@ -19,6 +19,8 @@
 
 #include "Model_Stock.h"
 #include "Model_StockHistory.h"
+#include "Model_Translink.h"
+#include "Model_Shareinfo.h"
 
 Model_Stock::Model_Stock()
 : Model<DB_Table_STOCK_V1>()
@@ -71,7 +73,15 @@ wxDate Model_Stock::PURCHASEDATE(const Data& stock)
 /** Original value of Stocks */
 double Model_Stock::InvestmentValue(const Data* r)
 {
-    return r->VALUE;
+    double investmentValue = 0;
+    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, r->STOCKID);
+
+    for (const auto stock_link : stock_list)
+    {
+        Model_Shareinfo::Data * share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
+        investmentValue += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+        }
+    return investmentValue;
 }
 
 /** Original value of Stocks */
