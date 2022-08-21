@@ -51,6 +51,7 @@ public:
     bool GetDouble(double &amount) const;
     bool checkValue(double &amount, bool positive_value = true);
     wxChar GetDecimalPoint();
+    void SetCurrency(const Model_Currency::Data* currency);
     void SetAltPrecision(int precision);
 
 private:
@@ -62,3 +63,4 @@ private:
 };
 
 inline void mmTextCtrl::SetAltPrecision(int precision) { m_alt_precision = precision; }
+inline void mmTextCtrl::SetCurrency(const Model_Currency::Data* currency) { m_currency = currency; }

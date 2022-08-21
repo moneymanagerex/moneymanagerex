@@ -89,12 +89,11 @@ private:
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnPayeeChanged(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee = nullptr);
 private:
-    mmTextCtrl* textNumber_;
+    wxTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;

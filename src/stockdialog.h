@@ -71,12 +71,12 @@ private:
     void ShowStockHistory();
     void CreateShareAccount(Model_Account::Data* stock_account, const wxString& name);
 
-    mmTextCtrl* m_stock_name_ctrl;
-    mmTextCtrl* m_stock_symbol_ctrl;
+    wxTextCtrl* m_stock_name_ctrl;
+    wxTextCtrl* m_stock_symbol_ctrl;
     mmDatePickerCtrl* m_purchase_date_ctrl;
     mmTextCtrl* m_num_shares_ctrl;
     mmTextCtrl* m_purchase_price_ctrl;
-    mmTextCtrl* m_notes_ctrl;
+    wxTextCtrl* m_notes_ctrl;
     mmTextCtrl* m_history_price_ctrl;
     mmDatePickerCtrl* m_history_date_ctrl;
     wxStaticText* m_value_investment;

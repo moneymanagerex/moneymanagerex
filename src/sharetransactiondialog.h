@@ -57,13 +57,13 @@ private:
 
 private:
     Model_Stock::Data* m_stock;
-    mmTextCtrl* m_stock_name_ctrl;
+    wxTextCtrl* m_stock_name_ctrl;
     mmTextCtrl* m_share_num_ctrl;
-    mmTextCtrl* m_stock_symbol_ctrl;
+    wxTextCtrl* m_stock_symbol_ctrl;
     mmTextCtrl* m_share_price_ctrl;
-    mmTextCtrl* m_share_lot_ctrl;
+    wxTextCtrl* m_share_lot_ctrl;
     mmTextCtrl* m_share_commission_ctrl;
-    mmTextCtrl* m_notes_ctrl;
+    wxTextCtrl* m_notes_ctrl;
     wxBitmapButton* m_attachments_btn;
 
     UserTransactionPanel* m_transaction_panel;

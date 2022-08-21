@@ -190,7 +190,7 @@ void mmStockDialog::CreateControls()
 
     // Name
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name")), g_flagsH);
-    m_stock_name_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
+    m_stock_name_ctrl = new wxTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
     mmToolTip(m_stock_name_ctrl, _("Enter the stock company name"));
 
@@ -199,7 +199,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(symbol, g_flagsH);
     symbol->SetFont(this->GetFont().Bold());
 
-    m_stock_symbol_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
+    m_stock_symbol_ctrl = new wxTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsExpand);
     mmToolTip(m_stock_symbol_ctrl, _("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
@@ -270,7 +270,7 @@ void mmStockDialog::CreateControls()
     iconsSizer->Add(m_bAttachments, g_flagsH);
     iconsSizer->Add(itemButton31, g_flagsH);
 
-    m_notes_ctrl = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
+    m_notes_ctrl = new wxTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
     itemStaticBoxSizer4->Add(m_notes_ctrl, g_flagsExpand);
     itemStaticBoxSizer4->AddSpacer(1);
     mmToolTip(m_notes_ctrl, _("Enter notes associated with this investment"));
