@@ -172,12 +172,12 @@ void mmCurrencyDialog::CreateControls()
 
     //--------------------------
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Currency Name")), g_flagsH);
-    m_currencyName = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
+    m_currencyName = new wxTextCtrl(this, ID_DIALOG_CURRENCY);
     m_currencyName->SetMinSize(wxSize(220, -1));
     itemFlexGridSizer3->Add(m_currencyName, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Currency Symbol")), g_flagsH);
-    m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
+    m_currencySymbol = new wxTextCtrl(this, ID_DIALOG_CURRENCY);
     m_currencySymbol->SetMaxLength(12);
     itemFlexGridSizer3->Add(m_currencySymbol, g_flagsExpand);
 

@@ -63,9 +63,9 @@ private:
 private:
     mmGUIFrame* m_gui_frame;
     wxChoice*  m_assetType;
-    mmTextCtrl* m_assetName;
+    wxTextCtrl* m_assetName;
     mmDatePickerCtrl* m_dpc;
-    mmTextCtrl* m_notes;
+    wxTextCtrl* m_notes;
     mmTextCtrl* m_value;
     mmTextCtrl* m_valueChangeRate;
     wxChoice*  m_valueChange;
