@@ -58,7 +58,6 @@ EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
 EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
 EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
 EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + acc_img::MAX_ACC_ICON, mmNewAcctDialog::OnCustonImage)
-EVT_TEXT_ENTER(wxID_ANY, mmNewAcctDialog::OnTextEntered)
 EVT_CHOICE(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, mmNewAcctDialog::OnAccountStatus)
 wxEND_EVENT_TABLE()
 
@@ -274,6 +273,7 @@ void mmNewAcctDialog::CreateControls()
 
     credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Interest Rate:")), g_flagsH);
     m_interest_rate_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "");
+    m_interest_rate_ctrl->SetAltPrecision(2);
     credit_grid_sizer->Add(m_interest_rate_ctrl, g_flagsExpand);
 
     credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Payment Due Date:")), g_flagsH);
@@ -346,20 +346,25 @@ void mmNewAcctDialog::fillControls()
     bn->SetLabelText(Model_Account::currency(m_account)->CURRENCYNAME);
 
     double initBal = m_account->INITIALBAL;
-    m_initbalance_ctrl->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
+    m_initbalance_ctrl->SetCurrency(Model_Account::currency(m_account));
+    m_initbalance_ctrl->SetValue(initBal);
 
     int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID, false, true);
     m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
 
     m_accessInfo = m_account->ACCESSINFO;
 
-    m_credit_limit_ctrl->SetValue(m_account->CREDITLIMIT, 2);
+    m_credit_limit_ctrl->SetCurrency(Model_Account::currency(m_account));
+    m_credit_limit_ctrl->SetValue(m_account->CREDITLIMIT);
+    
     m_interest_rate_ctrl->SetValue(m_account->INTERESTRATE, 2);
 
     if (!m_account->PAYMENTDUEDATE.empty())
     {
         m_payment_due_date_ctrl->SetValue(Model_Account::DateOf(m_account->PAYMENTDUEDATE));
     }
+    
+    m_minimum_payment_ctrl->SetCurrency(Model_Account::currency(m_account));
     m_minimum_payment_ctrl->SetValue(m_account->MINIMUMPAYMENT, 2);
 
     m_statement_lock_ctrl->SetValue(Model_Account::BoolOf(m_account->STATEMENTLOCKED));
@@ -368,7 +373,8 @@ void mmNewAcctDialog::fillControls()
     {
         m_statement_date_ctrl->SetValue(Model_Account::DateOf(m_account->STATEMENTDATE));
     }
-    m_minimum_balance_ctrl->SetValue(m_account->MINIMUMBALANCE, 2);
+    m_minimum_balance_ctrl->SetCurrency(Model_Account::currency(m_account));
+    m_minimum_balance_ctrl->SetValue(m_account->MINIMUMBALANCE);
 }
 
 void mmNewAcctDialog::OnAccountStatus()
@@ -394,11 +400,23 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
         wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY));
         bn->SetLabelText(currency->CURRENCYNAME);
 
-        double init_balance;
-        if (m_initbalance_ctrl->checkValue(init_balance, false))
-        {
-            m_initbalance_ctrl->SetValue(Model_Currency::toString(init_balance, currency));
-        }
+        double value;
+        
+        m_initbalance_ctrl->SetCurrency(currency);
+        if (m_initbalance_ctrl->checkValue(value, false))
+            m_initbalance_ctrl->SetValue(value);
+
+        m_credit_limit_ctrl->SetCurrency(currency);
+        if (m_credit_limit_ctrl->checkValue(value, false))
+            m_credit_limit_ctrl->SetValue(value);
+        
+        m_minimum_balance_ctrl->SetCurrency(currency);
+        if (m_minimum_balance_ctrl->checkValue(value, false))
+            m_minimum_balance_ctrl->SetValue(value);
+
+        m_minimum_payment_ctrl->SetCurrency(currency);
+        if (m_minimum_payment_ctrl->checkValue(value, false))
+            m_minimum_payment_ctrl->SetValue(value);
 
         if (this->m_account)
         {
@@ -478,19 +496,6 @@ void mmNewAcctDialog::OnChangeFocus(wxChildFocusEvent& event)
     }
 }
 
-void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)
-{
-    if (event.GetId() == m_initbalance_ctrl->GetId())
-    {
-        Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
-        if (!currency)
-        {
-            currency = Model_Currency::GetBaseCurrency();
-        }
-        m_initbalance_ctrl->Calculate(Model_Currency::precision(currency));
-    }
-}
-
 void mmNewAcctDialog::OnCancel(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_CANCEL);
@@ -518,7 +523,6 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         return mmErrorDialogs::ToolTip4Object(textCtrlWebsite, _("Please insert a valid URL"), _("Invalid URL"));
     }
 
-    m_initbalance_ctrl->Calculate(Model_Currency::precision(currency));
     if (!m_initbalance_ctrl->checkValue(m_account->INITIALBAL, false))
         return;
 

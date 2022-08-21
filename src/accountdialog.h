@@ -49,7 +49,6 @@ private:
     void OnCurrency(wxCommandEvent& event);
     void fillControls(void);
     void OnCustonImage(wxCommandEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
     void OnAccountStatus(void);
     void OnAccountStatus(wxCommandEvent& event);

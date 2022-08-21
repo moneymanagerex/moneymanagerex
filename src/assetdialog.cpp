@@ -194,7 +194,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(n, g_flagsH);
     n->SetFont(this->GetFont().Bold());
 
-    m_assetName = new mmTextCtrl(asset_details_panel, wxID_ANY, wxGetEmptyString());
+    m_assetName = new wxTextCtrl(asset_details_panel, wxID_ANY, wxGetEmptyString());
     mmToolTip(m_assetName, _("Enter the name of the asset"));
     itemFlexGridSizer6->Add(m_assetName, g_flagsExpand);
 
@@ -241,6 +241,7 @@ void mmAssetDialog::CreateControls()
     m_valueChangeRate = new mmTextCtrl(asset_details_panel, IDC_RATE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
+    m_valueChangeRate->SetAltPrecision(3);
     mmToolTip(m_valueChangeRate, _("Enter the rate at which the asset changes its value in percentage per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flagsExpand);
     m_valueChangeRate->Connect(IDC_RATE, wxEVT_COMMAND_TEXT_ENTER
@@ -255,7 +256,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flagsV).Align(wxALIGN_RIGHT));
     mmToolTip(bAttachments_, _("Organize attachments of this asset"));
 
-    m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
+    m_notes = new wxTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
     mmToolTip(m_notes, _("Enter notes associated with this asset"));
     details_frame_sizer->Add(m_notes, 0, wxGROW | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 

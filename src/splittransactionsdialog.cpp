@@ -128,7 +128,7 @@ void mmSplitTransactionDialog::CreateControls()
         cbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
 
         mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, ""
-            , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+            , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
         val->SetMinSize(wxSize(100,-1));
         val->SetName(wxString::Format("value_box%i", i));
         flexGridSizer_->Add(cb, g_flagsH);
@@ -141,7 +141,7 @@ void mmSplitTransactionDialog::CreateControls()
             const auto categ = Model_Category::full_name(m_splits.at(i).CATEGID
                 , m_splits.at(i).SUBCATEGID);
             cbc->ChangeValue(categ);
-            val->SetValue(m_splits.at(i).SPLITTRANSAMOUNT, m_currency);
+            val->SetValue(m_splits.at(i).SPLITTRANSAMOUNT);
         }
 
         cb->Enable(false);
@@ -355,7 +355,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         ncb->Disable();
         ncb->Hide();
         ncbc->SetName(wxString::Format("category_box%i", i));
-        mmTextCtrl* nval = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        mmTextCtrl* nval = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
         nval->SetMinSize(wxSize(100,-1));
         nval->SetName(wxString::Format("value_box%i", i));
         flexGridSizer_->Add(ncb, g_flagsH);
@@ -444,12 +444,12 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
         cbc->ChangeValue(cbc->GetValue());
     }
 
-    name = wxString::Format("value_box%i", row_num_);
+    /*name = wxString::Format("value_box%i", row_num_);
     auto val = static_cast<mmTextCtrl*>(FindWindowByName(name));
     if (val) {
         val->Calculate(Model_Currency::precision(m_currency));
         val->SelectAll();
-    }
+    }*/
 
     mmDoCheckRow(row_num_, true);
     UpdateSplitTotal();
