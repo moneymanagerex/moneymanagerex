@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-18 21:07+0300\n"
-"PO-Revision-Date: 2022-08-18 18:12\n"
+"PO-Revision-Date: 2022-08-22 20:26\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2389,7 +2389,7 @@ msgstr "Узгоднены"
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:423
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
 msgid "Void"
-msgstr "Скасаваны"
+msgstr "Скасаваная"
 
 #: filtertransdialog.cpp:51 mmchecking_list.cpp:425 mmchecking_list.cpp:856
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
