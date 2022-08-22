@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-18 21:07+0300\n"
-"PO-Revision-Date: 2022-08-22 20:26\n"
+"PO-Revision-Date: 2022-08-22 21:23\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2384,7 +2384,7 @@ msgstr "Няўзгодненая"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:421 mmhomepage.cpp:647
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:38
 msgid "Reconciled"
-msgstr "Узгоднены"
+msgstr "Узгодненая"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:423
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
@@ -2399,7 +2399,7 @@ msgstr "Дапрацаваць"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:427
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
-msgstr "Зрабіць дублікат"
+msgstr "Дублікат"
 
 #: filtertransdialog.cpp:53 filtertransdialog.cpp:1493
 msgid "All Except Reconciled"
