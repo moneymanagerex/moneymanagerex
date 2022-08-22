@@ -228,6 +228,7 @@ void ShareTransactionDialog::CreateControls()
     number->SetFont(this->GetFont().Bold());
     m_share_num_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_share_num_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
     mmToolTip(m_share_num_ctrl, _("Enter number of shares held"));
 
@@ -239,6 +240,7 @@ void ShareTransactionDialog::CreateControls()
     pprice->SetFont(this->GetFont().Bold());
     m_share_price_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_PRICE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_share_price_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     m_share_price_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(pprice, g_flagsH);
     itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
@@ -251,6 +253,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Commission")), g_flagsH);
     m_share_commission_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_COMMISSION, "0"
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_share_commission_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     m_share_commission_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(m_share_commission_ctrl, g_flagsH);
     mmToolTip(m_share_commission_ctrl, _("Enter any commission paid"));

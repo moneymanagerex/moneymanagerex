@@ -280,6 +280,7 @@ void mmMainCurrencyDialog::CreateControls()
     values_sizer->Add(textBoxLabel, g_flagsH);
 
     valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    valueTextBox_->SetAltPrecision(6);
     valueTextBox_->SetMinSize(wxSize(120, -1));
     mmToolTip(valueTextBox_, _("Enter the currency value"));
     values_sizer->Add(valueTextBox_, g_flagsH);

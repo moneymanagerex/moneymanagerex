@@ -222,8 +222,6 @@ void mmAssetDialog::CreateControls()
         , mmCalcValidator() );
     mmToolTip(m_value, _("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, g_flagsExpand);
-    m_value->Connect(IDC_VALUE, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Change in Value")), g_flagsH);
 
@@ -244,8 +242,6 @@ void mmAssetDialog::CreateControls()
     m_valueChangeRate->SetAltPrecision(3);
     mmToolTip(m_valueChangeRate, _("Enter the rate at which the asset changes its value in percentage per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flagsExpand);
-    m_valueChangeRate->Connect(IDC_RATE, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
     enableDisableRate(false);
 
     itemFlexGridSizer6->Add(new wxStaticText( asset_details_panel, wxID_STATIC, _("Notes")), g_flagsH);
@@ -484,18 +480,4 @@ void mmAssetDialog::changeFocus(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
     if (w) assetRichText = (w->GetId() == IDC_NOTES ? true : false);
-}
-
-void mmAssetDialog::onTextEntered(wxCommandEvent& event)
-{
-    if (event.GetId() == m_value->GetId())
-    {
-        m_value->Calculate();
-    }
-    else if (event.GetId() == m_valueChangeRate->GetId())
-    {
-        m_valueChangeRate->Calculate(3);
-    }
-
-    event.Skip();
 }
