@@ -71,6 +71,11 @@ mmTransDialog::~mmTransDialog()
 
 void mmTransDialog::SetEventHandlers()
 {
+    m_textAmount->Connect(mmID_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
+    toTextAmount_->Connect(mmID_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
+
 #ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
     dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
         , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), nullptr, this);
@@ -753,6 +758,18 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     case mmID_CATEGORY:
         cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
+    case mmID_TEXTAMOUNT:
+        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID))) {
+            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        }
+        skip_amount_init_ = false;
+        break;
+    case mmID_TOTEXTAMOUNT:
+        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID))) {
+            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        }
+        skip_amount_init_ = false;
+        break;
     }
 
     object_in_focus_ = w->GetId();
@@ -990,6 +1007,25 @@ void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
     dlg.ShowModal();
 }
 
+void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
+{
+    if (object_in_focus_ == m_textAmount->GetId())
+    {
+        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
+        {
+            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        }
+    }
+    else if (object_in_focus_ == toTextAmount_->GetId())
+    {
+        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
+        {
+            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        }
+    }
+    skip_amount_init_ = false;
+    dataToControls();
+}
 
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
