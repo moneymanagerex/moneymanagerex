@@ -132,7 +132,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
         }
         std::pair<double, double>& values = stockStats[stock.HELDAT];
         double current_value = Model_Stock::CurrentValue(stock);
-        double gain_lost = (current_value - stock.VALUE - stock.COMMISSION);
+        double gain_lost = current_value - Model_Stock::InvestmentValue(stock);
         values.first += gain_lost;
         values.second += current_value;
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)

@@ -193,12 +193,7 @@ double StocksListCtrl::GetGainLoss(long item) const
 
 double StocksListCtrl::getGainLoss(const Model_Stock::Data& stock)
 {
-    if (stock.PURCHASEPRICE == 0) {
-        return stock.NUMSHARES * stock.CURRENTPRICE - (stock.VALUE + stock.COMMISSION);
-    }
-    else {
-        return stock.NUMSHARES * stock.CURRENTPRICE - ((stock.NUMSHARES * stock.PURCHASEPRICE) + stock.COMMISSION);
-    }
+    return Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
 }
 
 void StocksListCtrl::OnListItemSelected(wxListEvent& event)
