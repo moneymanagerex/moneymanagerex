@@ -63,7 +63,6 @@ private:
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
 
     void CreateControls();
     void UpdateControls();

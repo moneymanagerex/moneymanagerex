@@ -38,7 +38,6 @@ wxBEGIN_EVENT_TABLE(mmCurrencyDialog, wxDialog)
 EVT_BUTTON(wxID_OK, mmCurrencyDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmCurrencyDialog::OnCancel)
 EVT_TEXT(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
-EVT_CHECKBOX(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
 EVT_TEXT_ENTER(ID_DIALOG_CURRENCY_RATE, mmCurrencyDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
@@ -219,6 +218,7 @@ void mmCurrencyDialog::CreateControls()
     baseConvRate_ = new mmTextCtrl(this, ID_DIALOG_CURRENCY_RATE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
+    baseConvRate_->SetAltPrecision(SCALE);
     wxString ConvRateTooltip = wxEmptyString;
     if (Option::instance().getCurrencyHistoryEnabled())
         ConvRateTooltip = _("Conversion rate will be used in case no currency history has been found for the currency");
