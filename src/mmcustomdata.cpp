@@ -580,7 +580,7 @@ void mmCustomData::OnStringChanged(wxCommandEvent& event)
 
 void mmCustomData::ResetWidgetChanged(wxWindowID id)
 {
-    auto label_id = id - GetBaseID() + 1;
+    auto label_id =id + 1;
     wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
     if (check_box) {
         check_box->SetValue(false);
@@ -592,7 +592,7 @@ void mmCustomData::ResetWidgetsChanged()
 {
     for (const auto& entry : m_data_changed)
     {
-        auto label_id = entry.first - GetBaseID() + 1;
+        auto label_id = entry.first + 1;
         wxCheckBox* check_box = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
         if (check_box) {
             check_box->SetValue(false);
