@@ -29,14 +29,12 @@ wxEND_EVENT_TABLE()
 
 void mmTextCtrl::OnTextEntered(wxCommandEvent& event)
 {
-    wxLogDebug("mmTextCtrl::OnTextEntered: Called");
     Calculate( (m_alt_precision != -1) ? m_alt_precision 
                             : Model_Currency::precision(m_currency));
 }
 
 void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
-    wxLogDebug("mmTextCtrl::OnKillFocus: Called");
     Calculate( (m_alt_precision != -1) ? m_alt_precision 
                             : Model_Currency::precision(m_currency));
 }
