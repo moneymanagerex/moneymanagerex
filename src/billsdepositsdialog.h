@@ -76,8 +76,8 @@ private:
     void OnAccountUpdated(wxCommandEvent& event);
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
+    void SetAmountCurrencies(int accountID, int toAccountID);
     int m_trans_id;
 
     bool m_new_bill;

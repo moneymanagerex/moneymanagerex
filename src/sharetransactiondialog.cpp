@@ -208,7 +208,7 @@ void ShareTransactionDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Company Name")), g_flagsH);
 
-    m_stock_name_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NAME, "");
+    m_stock_name_ctrl = new wxTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NAME, "");
     itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
     mmToolTip(m_stock_name_ctrl, _("Enter the stock company name"));
 
@@ -217,7 +217,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(symbol, g_flagsH);
     symbol->SetFont(this->GetFont().Bold());
 
-    m_stock_symbol_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_SYMBOL
+    m_stock_symbol_ctrl = new wxTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
     mmToolTip(m_stock_symbol_ctrl, _("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
@@ -228,6 +228,7 @@ void ShareTransactionDialog::CreateControls()
     number->SetFont(this->GetFont().Bold());
     m_share_num_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_share_num_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
     mmToolTip(m_share_num_ctrl, _("Enter number of shares held"));
 
@@ -239,6 +240,7 @@ void ShareTransactionDialog::CreateControls()
     pprice->SetFont(this->GetFont().Bold());
     m_share_price_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_PRICE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_share_price_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     m_share_price_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(pprice, g_flagsH);
     itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
@@ -251,6 +253,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Commission")), g_flagsH);
     m_share_commission_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_COMMISSION, "0"
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_share_commission_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     m_share_commission_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(m_share_commission_ctrl, g_flagsH);
     mmToolTip(m_share_commission_ctrl, _("Enter any commission paid"));
@@ -263,7 +266,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(lot_text, g_flagsH);
     lot_text->SetFont(this->GetFont().Bold());
 
-    m_share_lot_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
+    m_share_lot_ctrl = new wxTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_share_lot_ctrl, g_flagsH);
     mmToolTip(m_share_lot_ctrl, _("Enter the LOT that this parcel os shares belong to"));
@@ -285,7 +288,7 @@ void ShareTransactionDialog::CreateControls()
     icon_sizer->Add(web_button, g_flagsH);
     itemFlexGridSizer6->Add(icon_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
 
-    m_notes_ctrl = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 162), wxTE_MULTILINE);
+    m_notes_ctrl = new wxTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 162), wxTE_MULTILINE);
     details_frame_sizer->Add(m_notes_ctrl, g_flagsExpand);
     details_frame_sizer->AddSpacer(1);
     mmToolTip(m_notes_ctrl, _("Enter notes associated with this investment"));

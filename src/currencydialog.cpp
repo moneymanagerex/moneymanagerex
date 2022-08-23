@@ -38,7 +38,6 @@ wxBEGIN_EVENT_TABLE(mmCurrencyDialog, wxDialog)
 EVT_BUTTON(wxID_OK, mmCurrencyDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmCurrencyDialog::OnCancel)
 EVT_TEXT(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
-EVT_CHECKBOX(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
 EVT_TEXT_ENTER(ID_DIALOG_CURRENCY_RATE, mmCurrencyDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
@@ -172,12 +171,12 @@ void mmCurrencyDialog::CreateControls()
 
     //--------------------------
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Currency Name")), g_flagsH);
-    m_currencyName = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
+    m_currencyName = new wxTextCtrl(this, ID_DIALOG_CURRENCY);
     m_currencyName->SetMinSize(wxSize(220, -1));
     itemFlexGridSizer3->Add(m_currencyName, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Currency Symbol")), g_flagsH);
-    m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
+    m_currencySymbol = new wxTextCtrl(this, ID_DIALOG_CURRENCY);
     m_currencySymbol->SetMaxLength(12);
     itemFlexGridSizer3->Add(m_currencySymbol, g_flagsExpand);
 
@@ -219,6 +218,7 @@ void mmCurrencyDialog::CreateControls()
     baseConvRate_ = new mmTextCtrl(this, ID_DIALOG_CURRENCY_RATE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
+    baseConvRate_->SetAltPrecision(SCALE);
     wxString ConvRateTooltip = wxEmptyString;
     if (Option::instance().getCurrencyHistoryEnabled())
         ConvRateTooltip = _("Conversion rate will be used in case no currency history has been found for the currency");

@@ -192,35 +192,23 @@ void mmTransDialog::dataToControls()
     //Type
     transaction_type_->SetSelection(Model_Checking::type(m_trx_data.TRANSCODE));
 
-    //Advanced
-    cAdvanced_->Enable(m_transfer);
-    cAdvanced_->SetValue(m_advanced && m_transfer);
-    toTextAmount_->Enable(m_advanced && m_transfer);
-
-    if (!skip_amount_init_) //Amounts
-    {
-        if (m_transfer & m_advanced)
-            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
-        else
-            toTextAmount_->ChangeValue("");
-
-        if (!m_new_trx)
-            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
-        skip_amount_init_ = true;
-    }
-
-    if (!skip_account_init_) //Account
+    //Account
+    if (!skip_account_init_)
     {
         Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
         if (acc)
+        {
             cbAccount_->ChangeValue(acc->ACCOUNTNAME);
-
+            m_textAmount->SetCurrency(Model_Currency::instance().get(acc->CURRENCYID));
+        }
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         if (to_acc) {
             cbToAccount_->ChangeValue(to_acc->ACCOUNTNAME);
+            toTextAmount_->SetCurrency(Model_Currency::instance().get(to_acc->CURRENCYID));
         }
 
         skip_account_init_ = true;
+        skip_amount_init_ = false; // Force amount format update in case account currencies change
     }
 
     if (m_transfer) {
@@ -235,7 +223,25 @@ void mmTransDialog::dataToControls()
         account_label_->SetLabelText(_("Account"));
         payee_label_->SetLabelText(_("From"));
     }
-    
+
+    //Advanced
+    cAdvanced_->Enable(m_transfer);
+    cAdvanced_->SetValue(m_advanced && m_transfer);
+    toTextAmount_->Enable(m_advanced && m_transfer);
+
+    //Amounts
+    if (!skip_amount_init_)
+    {
+        if (m_transfer & m_advanced)
+            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT);
+        else
+            toTextAmount_->ChangeValue("");
+
+        if (!m_new_trx)
+            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+        skip_amount_init_ = true;
+    }
+
     if (!skip_payee_init_) //Payee
     {
         cbPayee_->SetEvtHandlerEnabled(false);
@@ -469,7 +475,7 @@ void mmTransDialog::CreateControls()
 
     // Number  ---------------------------------------------
 
-    textNumber_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+    textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 
     wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
@@ -731,12 +737,18 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     case mmID_ACCOUNTNAME:
         cbAccount_->ChangeValue(cbAccount_->GetValue());
         if (cbAccount_->mmIsValid())
+        {
             m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
+            skip_account_init_ = false;
+        }
         break;
     case mmID_TOACCOUNTNAME:
         cbToAccount_->ChangeValue(cbToAccount_->GetValue());
         if (cbToAccount_->mmIsValid())
+        {
             m_trx_data.TOACCOUNTID = cbToAccount_->mmGetId();
+            skip_account_init_ = false;
+        }
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());

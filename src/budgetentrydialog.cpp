@@ -147,8 +147,6 @@ void mmBudgetEntryDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemGridSizer2->Add(m_textAmount, g_flagsExpand);
     mmToolTip(m_textAmount, _("Enter the amount budgeted for this category."));
-    m_textAmount->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), nullptr, this);
     m_textAmount->SetFocus();
     
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
@@ -207,12 +205,4 @@ void mmBudgetEntryDialog::onChoiceChar(wxKeyEvent& event) {
     else 
         event.Skip();
 
-}
-
-void mmBudgetEntryDialog::OnTextEntered(wxCommandEvent& event)
-{
-    if (event.GetId() == m_textAmount->GetId())
-    {
-        m_textAmount->Calculate();
-    }
 }

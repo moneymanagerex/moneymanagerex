@@ -26,6 +26,26 @@
 #include "model/Model_Account.h"
 
 
+class mmHistoryItem
+{
+public:
+    mmHistoryItem();
+
+    int         acctId;
+    int         stockId;
+    wxDate      purchaseDate;
+    wxString    purchaseDateStr;
+    double      purchasePrice;
+    double      numShares;
+    Model_StockHistory::Data_Set stockHist;
+};
+
+class mmHistoryData : public std::vector<mmHistoryItem>
+{
+public:
+    double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+};
+
 class mmReportSummaryByDate : public mmPrintableBase
 {
 public:
@@ -35,8 +55,16 @@ protected:
     enum TYPE { MONTHLY = 0, YEARLY };
 private:
     int mode_;
+    wxDate earliestDate;
+    std::map<int, std::map<wxDate, double>> accountsBalanceMap;
+    mmHistoryData   arHistory;
+    std::map<wxString, double> currencyDateRateCache;
 
-    typedef std::map<wxDate, double> balanceMap;
+    std::map<wxDate, double> createCheckingBalanceMap(const Model_Account::Data& account);
+    double getCheckingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+    double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+    double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+    double getDayRate(int currencyid, const wxDate& date);
 };
 
 class mmReportSummaryByDateMontly : public mmReportSummaryByDate

@@ -94,7 +94,7 @@ private:
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee = nullptr);
 private:
-    mmTextCtrl* textNumber_;
+    wxTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;

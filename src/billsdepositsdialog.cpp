@@ -279,7 +279,8 @@ void mmBDDialog::dataToControls()
     if (!m_bill_data.local_splits.empty())
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
-    textAmount_->SetValue(m_bill_data.TRANSAMOUNT, Model_Currency::precision(m_bill_data.ACCOUNTID));
+    SetAmountCurrencies(m_bill_data.ACCOUNTID, m_bill_data.TOACCOUNTID);
+    textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
 
     if (m_transfer)
     {
@@ -340,6 +341,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     updateControlsForTransType();
 
     m_bill_data.TRANSAMOUNT = t.TRANSAMOUNT;
+    SetAmountCurrencies(t.ACCOUNTID, t.TOACCOUNTID);
     textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
 
     if (m_transfer)
@@ -521,15 +523,11 @@ void mmBDDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
     mmToolTip(textAmount_, amountNormalTip_);
-    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
     toTextAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
     mmToolTip(toTextAmount_, _("Specify the transfer amount in the To Account"));
-    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(textAmount_, g_flagsExpand);
@@ -702,6 +700,18 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
                 cbCategory_->ChangeValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
         }
     }
+}
+
+void mmBDDialog::SetAmountCurrencies(int accountID, int toAccountID)
+{
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    if (account)
+        textAmount_->SetCurrency(Model_Currency::instance().get(account->CURRENCYID));
+
+    account = Model_Account::instance().get(toAccountID);
+    if (account)
+        toTextAmount_->SetCurrency(Model_Currency::instance().get(account->CURRENCYID));
+
 }
 
 void mmBDDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
@@ -1290,18 +1300,6 @@ void mmBDDialog::activateSplitTransactionsDlg()
     setCategoryLabel();
 }
 
-void mmBDDialog::OnTextEntered(wxCommandEvent& event)
-{
-    if (event.GetId() == textAmount_->GetId())
-    {
-        textAmount_->Calculate(Model_Currency::precision(m_bill_data.ACCOUNTID));
-    }
-    else if (event.GetId() == toTextAmount_->GetId())
-    {
-        toTextAmount_->Calculate(Model_Currency::precision(m_bill_data.TOACCOUNTID));
-    }
-}
-
 void mmBDDialog::setTooltips()
 {
     if (!this->m_bill_data.local_splits.empty())
@@ -1379,7 +1377,8 @@ void mmBDDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
     Model_Account::Data* account = Model_Account::instance().get(acc_id);
     if (account)
     {
-        if (textAmount_->Calculate(Model_Currency::precision(account->ACCOUNTID)))
+        SetAmountCurrencies(acc_id, -1);
+        if (textAmount_->Calculate())
         {
             textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
         }
@@ -1395,12 +1394,18 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
     case mmID_ACCOUNTNAME:
         cbAccount_->ChangeValue(cbAccount_->GetValue());
         if (cbAccount_->mmIsValid())
+        {
             m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
+            SetAmountCurrencies(m_bill_data.ACCOUNTID, -1);
+        }
         break;
     case mmID_TOACCOUNTNAME:
         cbToAccount_->ChangeValue(cbToAccount_->GetValue());
         if (cbToAccount_->mmIsValid())
+        {
             m_bill_data.TOACCOUNTID = cbToAccount_->mmGetId();
+            SetAmountCurrencies(-1, m_bill_data.TOACCOUNTID);
+        }
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
@@ -1426,5 +1431,4 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
     if (m_advanced && toTextAmount_->Calculate(Model_Currency::precision(m_bill_data.TOACCOUNTID))) {
         toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
     }
-
 }

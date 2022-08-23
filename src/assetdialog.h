@@ -54,7 +54,6 @@ private:
     void OnAttachments(wxCommandEvent& event);
     void OnChangeAppreciationType(wxCommandEvent& event);
     void enableDisableRate(bool en);
-    void onTextEntered(wxCommandEvent& event);
     void dataToControls();
     void changeFocus(wxChildFocusEvent& event);
     void OnQuit(wxCloseEvent& event);
@@ -63,9 +62,9 @@ private:
 private:
     mmGUIFrame* m_gui_frame;
     wxChoice*  m_assetType;
-    mmTextCtrl* m_assetName;
+    wxTextCtrl* m_assetName;
     mmDatePickerCtrl* m_dpc;
-    mmTextCtrl* m_notes;
+    wxTextCtrl* m_notes;
     mmTextCtrl* m_value;
     mmTextCtrl* m_valueChangeRate;
     wxChoice*  m_valueChange;

@@ -190,7 +190,7 @@ void mmStockDialog::CreateControls()
 
     // Name
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name")), g_flagsH);
-    m_stock_name_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
+    m_stock_name_ctrl = new wxTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
     mmToolTip(m_stock_name_ctrl, _("Enter the stock company name"));
 
@@ -199,7 +199,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(symbol, g_flagsH);
     symbol->SetFont(this->GetFont().Bold());
 
-    m_stock_symbol_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
+    m_stock_symbol_ctrl = new wxTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsExpand);
     mmToolTip(m_stock_symbol_ctrl, _("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
@@ -220,9 +220,8 @@ void mmStockDialog::CreateControls()
     m_num_shares_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsExpand);
+    m_num_shares_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     mmToolTip(m_num_shares_ctrl, _("Enter number of shares.\nUsed when creating the initial Share transaction."));
-    m_num_shares_ctrl->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     m_num_shares_ctrl->Enable(initial_stock_transaction);
 
     //Purchase Price
@@ -232,27 +231,24 @@ void mmStockDialog::CreateControls()
     m_purchase_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_purchase_price_ctrl, g_flagsExpand);
+    m_purchase_price_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     mmToolTip(m_purchase_price_ctrl, _("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
-    m_purchase_price_ctrl->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     m_purchase_price_ctrl->Enable(initial_stock_transaction);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("*Commission")), g_flagsH);
     m_commission_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsExpand);
+    m_commission_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     mmToolTip(m_commission_ctrl, _("Enter any commission paid.\nUsed when creating the initial Share transaction."));
-    m_commission_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     m_commission_ctrl->Enable(initial_stock_transaction);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Curr. Share Price")), g_flagsH);
     m_current_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_CURR_PRICE, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_current_price_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     mmToolTip(m_current_price_ctrl, _("Enter current stock/share price."));
     itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsExpand);
-    m_current_price_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Value")), g_flagsH);
@@ -270,7 +266,7 @@ void mmStockDialog::CreateControls()
     iconsSizer->Add(m_bAttachments, g_flagsH);
     iconsSizer->Add(itemButton31, g_flagsH);
 
-    m_notes_ctrl = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
+    m_notes_ctrl = new wxTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
     itemStaticBoxSizer4->Add(m_notes_ctrl, g_flagsExpand);
     itemStaticBoxSizer4->AddSpacer(1);
     mmToolTip(m_notes_ctrl, _("Enter notes associated with this investment"));
@@ -322,9 +318,8 @@ void mmStockDialog::CreateControls()
     date_price->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Price")), g_flagsH);
     m_history_price_ctrl = new mmTextCtrl(buttons_panel, ID_TEXTCTRL_STOCK_CP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_history_price_ctrl->SetAltPrecision(Option::instance().SharePrecision());
     date_price->Add(m_history_price_ctrl, g_flagsH);
-    m_history_price_ctrl->Connect(ID_TEXTCTRL_STOCK_CP, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     buttons_sizer->Add(date_price);
 
     m_history_date_ctrl->Enable(false);
@@ -536,32 +531,6 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     m_gui_frame->RefreshNavigationTree();
 }
 
-void mmStockDialog::OnTextEntered(wxCommandEvent& event)
-{
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account) currency = Model_Account::currency(account);
-    int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < Option::instance().SharePrecision())
-        currency_precision = Option::instance().SharePrecision();
-
-    if (event.GetId() == m_num_shares_ctrl->GetId())
-    {
-        m_num_shares_ctrl->Calculate(Option::instance().SharePrecision());
-    }
-    else if (event.GetId() == m_purchase_price_ctrl->GetId())
-    {
-        m_purchase_price_ctrl->Calculate(currency_precision);
-    }
-    else if (event.GetId() == m_history_price_ctrl->GetId())
-    {
-        m_history_price_ctrl->Calculate(currency_precision);
-    }
-    else if (event.GetId() == m_commission_ctrl->GetId())
-    {
-        m_commission_ctrl->Calculate(currency_precision);
-    }
-}
 
 void mmStockDialog::OnListItemSelected(wxListEvent& event)
 {

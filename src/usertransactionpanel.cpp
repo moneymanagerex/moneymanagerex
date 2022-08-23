@@ -134,8 +134,6 @@ void UserTransactionPanel::Create()
         , wxDefaultPosition, std_half_size, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
     mmToolTip(m_entered_amount, _("Specify the amount for this transaction"));
-    m_entered_amount->Connect(ID_TRANS_ENTERED_AMOUNT
-        , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(UserTransactionPanel::OnEnteredText), nullptr, this);
 
     Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (m_account_id > 0)
@@ -232,6 +230,13 @@ void UserTransactionPanel::DataToControls()
     m_account->SetLabelText(Model_Account::get_account_name(m_account_id));
     m_type_selector->SetSelection(Model_Checking::type(m_checking_entry->TRANSCODE));
 
+    if (m_account_id > 0)
+    {
+        Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(m_account_id));
+        m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
+        m_entered_amount->SetCurrency(currency);
+    }
+
     SetTransactionValue(m_checking_entry->TRANSAMOUNT);
     m_status_selector->SetSelection(Model_Checking::status(m_checking_entry->STATUS));
 
@@ -244,12 +249,6 @@ void UserTransactionPanel::DataToControls()
 
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
-
-    if (m_account_id > 0)
-    {
-        Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(m_account_id));
-        m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
-    }
 }
 
 void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
@@ -327,21 +326,6 @@ void UserTransactionPanel::OnTransCategoryButton(wxCommandEvent& WXUNUSED(event)
     }
 }
 
-void UserTransactionPanel::OnEnteredText(wxCommandEvent& event)
-{
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    int currency_precision = Model_Currency::precision(currency);
-
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account) {
-        currency = Model_Account::currency(account);
-    }
-
-    if (event.GetId() == m_entered_amount->GetId()) {
-        m_entered_amount->Calculate(currency_precision);
-    }
-}
-
 void UserTransactionPanel::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
 {
     Model_Checking::getFrequentUsedNotes(m_frequent_notes);
@@ -393,7 +377,7 @@ void UserTransactionPanel::TransactionDate(const wxDateTime& trans_date)
 
 void UserTransactionPanel::SetTransactionValue(const double& trans_value, bool fixed_value)
 {
-    m_entered_amount->SetValue(trans_value, 2);
+    m_entered_amount->SetValue(trans_value);
     if (fixed_value) {
         m_entered_amount->Enable(false);
     }
@@ -413,6 +397,7 @@ void UserTransactionPanel::SetTransactionAccount(const wxString& trans_account)
         m_account_id = account->ACCOUNTID;
         SetLastPayeeAndCategory(m_account_id);
         Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+        m_entered_amount->SetCurrency(currency);
         m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
     }
 }
