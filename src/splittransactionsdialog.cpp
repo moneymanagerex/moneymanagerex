@@ -40,7 +40,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
      EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
      EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
      EVT_BUTTON(mmID_REMOVE, mmSplitTransactionDialog::OnRemoveRow)
-     EVT_TEXT_ENTER(wxID_ANY, mmSplitTransactionDialog::OnTextEntered)
  wxEND_EVENT_TABLE()
 
 mmSplitTransactionDialog::mmSplitTransactionDialog( )
@@ -129,6 +128,8 @@ void mmSplitTransactionDialog::CreateControls()
 
         mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, ""
             , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
+        val->Connect(wxID_HIGHEST + i, wxEVT_COMMAND_TEXT_ENTER
+                , wxCommandEventHandler(mmSplitTransactionDialog::OnTextEntered), nullptr, this);
         val->SetMinSize(wxSize(100,-1));
         val->SetName(wxString::Format("value_box%i", i));
         flexGridSizer_->Add(cb, g_flagsH);
@@ -356,6 +357,8 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         ncb->Hide();
         ncbc->SetName(wxString::Format("category_box%i", i));
         mmTextCtrl* nval = new mmTextCtrl(slider_, wxID_HIGHEST + i, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
+        nval->Connect(wxID_HIGHEST + i, wxEVT_COMMAND_TEXT_ENTER
+                , wxCommandEventHandler(mmSplitTransactionDialog::OnTextEntered), nullptr, this);
         nval->SetMinSize(wxSize(100,-1));
         nval->SetName(wxString::Format("value_box%i", i));
         flexGridSizer_->Add(ncb, g_flagsH);
@@ -388,6 +391,9 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
     }
 
     double amount = 0;
+    if (val->Calculate())
+        val->GetDouble(amount);
+
     if (val && val->checkValue(amount, false))
     {
         if (cb && cbc->mmIsValid()) {

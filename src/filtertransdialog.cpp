@@ -603,13 +603,9 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     amountMinEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    amountMinEdit_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), nullptr, this);
     amountMaxEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    amountMaxEdit_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), nullptr, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, g_flagsExpand);
@@ -1284,14 +1280,6 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Da
         : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(mmGetNotes().Lower())))
         ok = false;
     return ok;
-}
-
-void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
-{
-    if (event.GetId() == amountMinEdit_->GetId())
-        amountMinEdit_->Calculate();
-    else if (event.GetId() == amountMaxEdit_->GetId())
-        amountMaxEdit_->Calculate();
 }
 
 const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
