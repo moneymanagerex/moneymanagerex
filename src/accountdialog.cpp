@@ -164,7 +164,7 @@ void mmNewAcctDialog::CreateControls()
 
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, wxString::Format(_("Initial Balance: %s"), "")), g_flagsH);
 
-    m_initbalance_ctrl = new mmTextCtrl(this, ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_initbalance_ctrl = new mmTextCtrl(this, ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     grid_sizer->Add(m_initbalance_ctrl, g_flagsExpand);
     mmToolTip(m_initbalance_ctrl, _("Enter the initial balance in this account."));
 
@@ -252,7 +252,7 @@ void mmNewAcctDialog::CreateControls()
     statement_grid_sizer->Add(m_statement_date_ctrl, g_flagsExpand);
 
     statement_grid_sizer->Add(new wxStaticText(statement_tab, wxID_STATIC, _("Minimum Bal:")), g_flagsH);
-    m_minimum_balance_ctrl = new mmTextCtrl(statement_tab, wxID_ANY, "0.00", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_minimum_balance_ctrl = new mmTextCtrl(statement_tab, wxID_ANY, "0.00", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     mmToolTip(m_minimum_balance_ctrl, _("Account balance lower limit. Zero to disable"));
     statement_grid_sizer->Add(m_minimum_balance_ctrl, g_flagsExpand);
 
@@ -267,12 +267,12 @@ void mmNewAcctDialog::CreateControls()
     credit_sizer->Add(credit_grid_sizer, g_flagsExpand);
 
     credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Credit Limit:")), g_flagsH);
-    m_credit_limit_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_credit_limit_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     mmToolTip(m_credit_limit_ctrl, _("Credit limit for the Account. Zero to disable"));
     credit_grid_sizer->Add(m_credit_limit_ctrl, g_flagsExpand);
 
     credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Interest Rate:")), g_flagsH);
-    m_interest_rate_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "");
+    m_interest_rate_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     m_interest_rate_ctrl->SetAltPrecision(2);
     credit_grid_sizer->Add(m_interest_rate_ctrl, g_flagsExpand);
 
@@ -281,7 +281,7 @@ void mmNewAcctDialog::CreateControls()
     credit_grid_sizer->Add(m_payment_due_date_ctrl, g_flagsExpand);
 
     credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Minimum Payment:")), g_flagsH);
-    m_minimum_payment_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "");
+    m_minimum_payment_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     credit_grid_sizer->Add(m_minimum_payment_ctrl, g_flagsExpand);
     //-------------------------------------------------------------------------------------
 
@@ -365,7 +365,7 @@ void mmNewAcctDialog::fillControls()
     }
     
     m_minimum_payment_ctrl->SetCurrency(Model_Account::currency(m_account));
-    m_minimum_payment_ctrl->SetValue(m_account->MINIMUMPAYMENT, 2);
+    m_minimum_payment_ctrl->SetValue(m_account->MINIMUMPAYMENT);
 
     m_statement_lock_ctrl->SetValue(Model_Account::BoolOf(m_account->STATEMENTLOCKED));
 

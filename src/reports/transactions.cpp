@@ -130,6 +130,8 @@ table {
             sortLabel = transaction.PAYEENAME;
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_CATEGORY)
             sortLabel = transaction.CATEGNAME;
+        else if (groupBy == mmFilterTransactionsDialog::GROUPBY_TYPE)
+            sortLabel = wxGetTranslation(transaction.TRANSCODE);
 
         if (sortLabel != lastSortLabel)
         {
@@ -424,6 +426,9 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
             break;   
         case mmFilterTransactionsDialog::GROUPBY_CATEGORY:
             std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
+            break;   
+        case mmFilterTransactionsDialog::GROUPBY_TYPE:
+            std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
             break;   
     }
 }
