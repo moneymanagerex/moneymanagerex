@@ -1171,15 +1171,9 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     toTextAmount_->Enable(m_advanced);
     mmToolTip(textAmount_, m_advanced ? amountTransferTip_ : _("Specify the transfer amount in the From Account"));
     if (m_advanced)
-    {
-        // Display the transfer amount in the toTextAmount control.
-        if (m_bill_data.TOTRANSAMOUNT > 0) {
-            toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
-        }
-        else {
-            toTextAmount_->SetValue(textAmount_->GetValue());
-        }
-    }
+        toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
+    else
+        toTextAmount_->ChangeValue("");
 }
 
 void mmBDDialog::setRepeatDetails()

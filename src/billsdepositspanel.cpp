@@ -498,9 +498,13 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_NUMBER:
         return bill.TRANSACTIONNUMBER;
     case COL_NOTES:
+    {
+        wxString value = bill.NOTES;
+        value.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bill.BDID))
-            return mmAttachmentManage::GetAttachmentNoteSign() + bill.NOTES;
-        return bill.NOTES;
+            value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+        return value;
+    }
     default:
         return wxEmptyString;
     }

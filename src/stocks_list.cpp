@@ -178,6 +178,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_NOTES)
     {
         wxString full_notes = m_stocks[item].NOTES;
+        full_notes.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::STOCK), m_stocks[item].STOCKID))
             full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
