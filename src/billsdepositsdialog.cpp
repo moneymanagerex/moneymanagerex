@@ -1425,10 +1425,10 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
         object_in_focus_ = w->GetId();
     }
 
-    if (textAmount_->Calculate(Model_Currency::precision(m_bill_data.ACCOUNTID))) {
+    if (textAmount_->Calculate()) {
         textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
     }
-    if (m_advanced && toTextAmount_->Calculate(Model_Currency::precision(m_bill_data.TOACCOUNTID))) {
+    if (m_advanced && toTextAmount_->Calculate()) {
         toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
     }
 }

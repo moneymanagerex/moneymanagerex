@@ -759,13 +759,13 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
     case mmID_TEXTAMOUNT:
-        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID))) {
+        if (m_textAmount->Calculate()) {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
     case mmID_TOTEXTAMOUNT:
-        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID))) {
+        if (toTextAmount_->Calculate()) {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
@@ -1011,14 +1011,14 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == m_textAmount->GetId())
     {
-        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
+        if (m_textAmount->Calculate())
         {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
+        if (toTextAmount_->Calculate())
         {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
