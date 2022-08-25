@@ -125,28 +125,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             break;
         }
         case Model_CustomField::INTEGER:
-        {
-            int value;
-            double test;
-            if (!fieldData->CONTENT.ToDouble(&test)) {
-                value = 0;
-            }
-            else {
-                value = trunc(test);
-                if (nonDefaultData) 
-                    SetWidgetChanged(controlID, wxString::Format("%i", value));
-            }
-
-            wxSpinCtrl* CustomInteger = new wxSpinCtrl(scrolled_window, controlID,
-                wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
-            mmToolTip(CustomInteger, Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer_custom->Add(CustomInteger, g_flagsExpand);
-
-            CustomInteger->Connect(controlID, wxEVT_SPINCTRL, wxCommandEventHandler(mmCustomData::OnIntegerChanged), nullptr, this);
-
-            break;
-        }
         case Model_CustomField::DECIMAL:
+
         {
             // Strip any thousands separators and make sure decimal is "."
             // earlier implementations may have different formats so we need to cleanse
@@ -394,15 +374,6 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         wxDateEvent evt(d, time, wxEVT_TIME_CHANGED);
         d->GetEventHandler()->AddPendingEvent(evt);
     }  
-    else if (class_name == "wxSpinCtrl")
-    {
-        wxSpinCtrl* d = static_cast<wxSpinCtrl*>(w);
-        int v = wxAtoi(value);
-        d->SetValue(v);
-        wxCommandEvent evt(wxEVT_SPINCTRL, controlID);
-        evt.SetInt(v);
-        d->GetEventHandler()->AddPendingEvent(evt);
-    }
     else if (class_name == "wxChoice")
     {
         wxChoice* d = static_cast<wxChoice*>(w);
@@ -459,11 +430,6 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
             {
                 wxTimePickerCtrl* d = static_cast<wxTimePickerCtrl*>(w);
                 data = d->GetValue().FormatISOTime();
-            }
-            else if (class_name == "wxSpinCtrl")
-            {
-                wxSpinCtrl* d = static_cast<wxSpinCtrl*>(w);
-                data = wxString::Format("%i", d->GetValue());
             }
             else if (class_name == "wxChoice")
             {
@@ -619,12 +585,6 @@ void mmCustomData::OnSingleChoice(wxCommandEvent& event)
 {
     const wxString& data = event.GetString();
     SetWidgetChanged(event.GetId(), data);
-}
-
-void mmCustomData::OnIntegerChanged(wxCommandEvent& event)
-{
-    auto data = event.GetInt();
-    SetWidgetChanged(event.GetId(), wxString::Format("%i", data));
 }
 
 void mmCustomData::OnCheckBoxChanged(wxCommandEvent& event)
