@@ -126,17 +126,25 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::INTEGER:
         case Model_CustomField::DECIMAL:
-
         {
-            // Strip any thousands separators and make sure decimal is "."
+            int digitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
+            // Strip any thousands separators and make sure decimal is "." (if present)
             // earlier implementations may have different formats so we need to cleanse
             wxString content = fieldData->CONTENT;
-            wxRegEx pattern(R"([\., ](?=\d*[\., ]))");
-            pattern.ReplaceAll(&content, wxEmptyString);
-            content.Replace(",",".");
+            wxRegEx pattern;
+            if (digitScale > 0)
+            {
+                wxRegEx pattern(R"([\., ](?=\d*[\., ]))");  // Leave the decimal seperator
+                pattern.ReplaceAll(&content, wxEmptyString);
+                content.Replace(",",".");
+            } else
+            {
+                wxRegEx pattern(R"([\., ])");
+                pattern.ReplaceAll(&content, wxEmptyString);             
+            }
 
             double value;
-            int digitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
+
             if (!content.ToCDouble(&value)) {
                 value = 0;
             }
@@ -748,7 +756,8 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
             }
         }
 
-        if (GetWidgetType(controlID) == Model_CustomField::DECIMAL)
+        if (GetWidgetType(controlID) == Model_CustomField::DECIMAL 
+                || GetWidgetType(controlID) == Model_CustomField::INTEGER)
         {
             wxWindow* w = FindWindowById(controlID, m_dialog);
             if (w)
