@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -427,10 +428,13 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     /* Clear all the records */
     DeleteAllItems();
 
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? static_cast<int>(ico::ARROW_DOWN) : static_cast<int>(ico::ARROW_UP));
-    SetColumn(col, item);
+    if (col > 0)
+    {
+        wxListItem item;
+        item.SetMask(wxLIST_MASK_IMAGE);
+        item.SetImage(asc ? static_cast<int>(ico::ARROW_DOWN) : static_cast<int>(ico::ARROW_UP));
+        SetColumn(col, item);
+    }
 
     m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
     sortTable();
