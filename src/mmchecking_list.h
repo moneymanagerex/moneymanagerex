@@ -226,3 +226,9 @@ inline static bool SorterByUDFC02(const Model_Checking::Full_Data& i, const Mode
 inline static bool SorterByUDFC03(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03 < j.UDFC03); }
 inline static bool SorterByUDFC04(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04 < j.UDFC04); }
 inline static bool SorterByUDFC05(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05 < j.UDFC05); }
+
+inline static bool SorterByUDFC01_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC01_val < j.UDFC01_val); }
+inline static bool SorterByUDFC02_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC02_val < j.UDFC02_val); }
+inline static bool SorterByUDFC03_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03_val < j.UDFC03_val); }
+inline static bool SorterByUDFC04_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04_val < j.UDFC04_val); }
+inline static bool SorterByUDFC05_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05_val < j.UDFC05_val); }

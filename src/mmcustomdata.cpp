@@ -128,23 +128,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         case Model_CustomField::DECIMAL:
         {
             int digitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
-            // Strip any thousands separators and make sure decimal is "." (if present)
-            // earlier implementations may have different formats so we need to cleanse
-            wxString content = fieldData->CONTENT;
-            wxRegEx pattern;
-            if (digitScale > 0)
-            {
-                wxRegEx pattern(R"([\., ](?=\d*[\., ]))");  // Leave the decimal seperator
-                pattern.ReplaceAll(&content, wxEmptyString);
-                content.Replace(",",".");
-            } else
-            {
-                wxRegEx pattern(R"([\., ])");
-                pattern.ReplaceAll(&content, wxEmptyString);             
-            }
+            wxString content = cleanseNumberString(fieldData->CONTENT, digitScale > 0);
 
             double value;
-
             if (!content.ToCDouble(&value)) {
                 value = 0;
             }

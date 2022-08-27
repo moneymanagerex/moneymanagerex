@@ -39,6 +39,7 @@
 #include "assetdialog.h"
 #include "billsdepositsdialog.h"
 #include <wx/clipbrd.h>
+#include <float.h>
 
 //----------------------------------------------------------------------------
 
@@ -129,15 +130,18 @@ void mmCheckingPanel::filterTable()
     m_account_balance = !isAllAccounts_ && m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
-
-    std::map<int, int> custom_field_type;
+    
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
-    for (const auto& entry : custom_fields)
-    {
-        if (entry.REFTYPE != RefType) continue;
-        custom_field_type[entry.FIELDID] = Model_CustomField::all_type().Index(entry.TYPE);
-    }
+    Model_CustomField::FIELDTYPE UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
+    Model_CustomField::FIELDTYPE UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
+    Model_CustomField::FIELDTYPE UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
+    Model_CustomField::FIELDTYPE UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
+    Model_CustomField::FIELDTYPE UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
+    int UDFC01_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC01"));
+    int UDFC02_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC02"));
+    int UDFC03_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC03"));
+    int UDFC04_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC04"));
+    int UDFC05_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC05"));
 
     auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
     const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
@@ -196,29 +200,39 @@ void mmCheckingPanel::filterTable()
         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             m_filteredBalance += transaction_amount;
 
+        full_tran.UDFC01_val = -DBL_MAX;
+        full_tran.UDFC02_val = -DBL_MAX;
+        full_tran.UDFC03_val = -DBL_MAX;
+        full_tran.UDFC04_val = -DBL_MAX;
+        full_tran.UDFC05_val = -DBL_MAX;
         if (custom_fields_data.find(tran.TRANSID) != custom_fields_data.end()) {
             const auto& udfcs = custom_fields_data.at(tran.TRANSID);
             for (const auto& udfc : udfcs)
             {
                 if (udfc.FIELDID == udfc01_ref_id) {
                     full_tran.UDFC01 = udfc.CONTENT;
-                    full_tran.UDFC01_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
+                    full_tran.UDFC01_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC01_Scale);
+                    full_tran.UDFC01_Type = UDFC01_Type;
                 }
                 else if (udfc.FIELDID == udfc02_ref_id) {
                     full_tran.UDFC02 = udfc.CONTENT;
-                    full_tran.UDFC02_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
+                    full_tran.UDFC02_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC02_Scale);
+                    full_tran.UDFC02_Type = UDFC01_Type;
                 }
                 else if (udfc.FIELDID == udfc03_ref_id) {
                     full_tran.UDFC03 = udfc.CONTENT;
-                    full_tran.UDFC03_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
+                    full_tran.UDFC03_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC03_Scale);
+                    full_tran.UDFC03_Type = UDFC01_Type;
                 }
                 else if (udfc.FIELDID == udfc04_ref_id) {
                     full_tran.UDFC04 = udfc.CONTENT;
-                    full_tran.UDFC04_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
+                    full_tran.UDFC04_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC04_Scale);
+                    full_tran.UDFC05_Type = UDFC01_Type;
                 }
                 else if (udfc.FIELDID == udfc05_ref_id) {
                     full_tran.UDFC05 = udfc.CONTENT;
-                    full_tran.UDFC05_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
+                    full_tran.UDFC05_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC05_Scale);
+                    full_tran.UDFC05_Type = UDFC01_Type;
                 }
             }
         }

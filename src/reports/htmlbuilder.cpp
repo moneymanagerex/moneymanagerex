@@ -27,6 +27,7 @@
 #include "model/Model_Infotable.h"
 #include <iomanip>
 #include <ios>
+#include <float.h>
 
 
 namespace tags
@@ -343,7 +344,7 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
     const wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
     wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
-    html_ += s;
+    html_ += (amount == -DBL_MAX) ? "" : s;     // If -DBL_MAX then just display empty string
     this->endTableCell();
 }
 
