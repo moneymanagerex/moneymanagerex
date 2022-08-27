@@ -186,13 +186,13 @@ table {
         hb.startSortTable();
             hb.startThead();
                 hb.startTableRow();
-                    hb.addTableHeaderCell(_("ID"), "ID");
-                    hb.addTableHeaderCell(_("Color"), "Color");
+                    hb.addTableHeaderCell(_("ID"), "ID text-right");
+                    hb.addTableHeaderCell(_("Color"), "Color text-center");
                     hb.addTableHeaderCell(_("Date"), "Date");
                     hb.addTableHeaderCell(_("Number"), "Number");
                     hb.addTableHeaderCell(_("Account"), "Account");
                     hb.addTableHeaderCell(_("Payee"), "Payee");
-                    hb.addTableHeaderCell(_("Status"), "Status");
+                    hb.addTableHeaderCell(_("Status"), "Status text-center");
                     hb.addTableHeaderCell(_("Category"), "Category");
                     hb.addTableHeaderCell(_("Type"), "Type");
                     hb.addTableHeaderCell(_("Amount"), "Amount text-right");
@@ -205,14 +205,14 @@ table {
     {
         hb.startTableRow();
         hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
-                , wxString::Format("%i", transaction.TRANSID));
-        hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString());
+                , wxString::Format("%i", transaction.TRANSID), true);
+        hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
                 , transaction.ACCOUNTNAME);
         hb.addTableCell(transaction.PAYEENAME);
-        hb.addTableCell(transaction.STATUS);
+        hb.addTableCell(transaction.STATUS, false, true);
         hb.addTableCell(transaction.CATEGNAME);
         if (Model_Checking::foreignTransactionAsTransfer(transaction))
                 hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));

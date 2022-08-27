@@ -166,13 +166,13 @@ table {
             hb.startSortTable();
                 hb.startThead();
                     hb.startTableRow();
-                        if (showColumnById(0)) hb.addTableHeaderCell(_("ID"), "ID");
-                        if (showColumnById(1)) hb.addTableHeaderCell(_("Color"), "Color");
+                        if (showColumnById(0)) hb.addTableHeaderCell(_("ID"), "ID text-right");
+                        if (showColumnById(1)) hb.addTableHeaderCell(_("Color"), "Color text-center");
                         if (showColumnById(2)) hb.addTableHeaderCell(_("Date"), "Date");
                         if (showColumnById(3)) hb.addTableHeaderCell(_("Number"), "Number");
                         if (showColumnById(4)) hb.addTableHeaderCell(_("Account"), "Account");
                         if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
-                        if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status");
+                        if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status text-center");
                         if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
                         if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
                         if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
@@ -184,7 +184,15 @@ table {
                             if (udfc_entry.empty()) continue;
                             const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
                             if (showColumnById(colNo++) && name != udfc_entry)
-                                hb.addTableHeaderCell(name, name);
+                            {
+                                wxString nameCSS = name;
+                                switch (Model_CustomField::getUDFCType(ref_type, udfc_entry)) {
+                                case Model_CustomField::FIELDTYPE::DECIMAL:
+                                case Model_CustomField::FIELDTYPE::INTEGER:
+                                    nameCSS.Append(" text-right");
+                                }
+                                hb.addTableHeaderCell(name, nameCSS);
+                            }
                         }
                     hb.endTableRow();
                 hb.endThead();
@@ -210,9 +218,9 @@ table {
                     && m_transDialog->getTypeCheckBox() && */
                 if (showColumnById(0)) {
                     hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
-                        , wxString::Format("%i", transaction.TRANSID));
+                        , wxString::Format("%i", transaction.TRANSID), true);
                 }
-                if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString());
+                if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString(), true);
                 if (showColumnById(2)) hb.addTableCellDate(transaction.TRANSDATE);
                 if (showColumnById(3)) hb.addTableCell(transaction.TRANSACTIONNUMBER);
                 if (showColumnById(4)) {
@@ -220,7 +228,7 @@ table {
                         , noOfTrans ? transaction.TOACCOUNTNAME : transaction.ACCOUNTNAME);
                 }
                 if (showColumnById(5)) hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
-                if (showColumnById(6)) hb.addTableCell(transaction.STATUS);
+                if (showColumnById(6)) hb.addTableCell(transaction.STATUS, false, true);
                 if (showColumnById(7)) hb.addTableCell(transaction.CATEGNAME);
                 if (showColumnById(8))
                 {
