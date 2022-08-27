@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-18 21:07+0300\n"
-"PO-Revision-Date: 2022-08-18 18:12\n"
+"PO-Revision-Date: 2022-08-27 06:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1610,15 +1610,15 @@ msgstr "בחירה בסוג־אב הנוכחי כסוג־אב התנועה"
 
 #: categdialog.cpp:317
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "שם מכיל מפריד סוג־אב. "
 
 #: categdialog.cpp:318
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "תו נקודותיים (:) משמש להפרדת סוגי־אב לכן לא ניתן להשתמש בו בשם"
 
 #: categdialog.cpp:320
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "ארגון סוגי־אב: שם לא תקין"
 
 #: categdialog.cpp:328
 msgid "Enter the name for the new category:"
@@ -6047,7 +6047,7 @@ msgstr "העברת תנועות מוטב"
 
 #: relocatecategorydialog.cpp:81
 msgid "Relocate source category to the destination category"
-msgstr "העברת כל סוג־אב המקור לסוג־אב היעד"
+msgstr "שינוי מיקום סוג־אב מקור לסוג־אב יעד"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
@@ -6055,7 +6055,7 @@ msgstr "מחיקת סוג־אב מקור לאחר ההגירה (ככול שלא 
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
-msgstr "העברה:"
+msgstr "שינוי מיקום:"
 
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:108
 msgid "to:"
@@ -6063,7 +6063,7 @@ msgstr "ל:"
 
 #: relocatecategorydialog.cpp:125 relocatepayeedialog.cpp:126
 msgid "Relocate"
-msgstr ""
+msgstr "שינוי מיקום"
 
 #: relocatecategorydialog.cpp:146 relocatepayeedialog.cpp:146
 #, c-format
@@ -6110,7 +6110,7 @@ msgstr "רשומות שנמצאו בתקציב: %i"
 
 #: relocatecategorydialog.h:42
 msgid "Relocate Category Dialog"
-msgstr "תיבת דו־שיח העברת סוג־אב"
+msgstr "תיבת דו־שיח שינוי מיקום סוג־אב"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
