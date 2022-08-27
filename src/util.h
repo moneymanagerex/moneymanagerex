@@ -161,6 +161,8 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& price_usd, wxString& output);
 bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg);
 
+wxString cleanseNumberString(wxString str, bool decimal);
+double cleanseNumberStringToDouble(wxString str, bool decimal);
 const wxString mmPlatformType();
 
 //All components version in TXT, HTML, ABOUT

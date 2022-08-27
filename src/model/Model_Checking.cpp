@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
-Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -322,7 +322,11 @@ wxString Model_Checking::toShortStatus(const wxString& fullStatus)
 Model_Checking::Full_Data::Full_Data()
     : Data(0), BALANCE(0), AMOUNT(0),
     UDFC01(""), UDFC02(""), UDFC03(""), UDFC04(""), UDFC05(""),
-    UDFC01_Type(-1), UDFC02_Type(-1), UDFC03_Type(-1), UDFC04_Type(-1), UDFC05_Type(-1)
+    UDFC01_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
+    UDFC02_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
+    UDFC03_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
+    UDFC04_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
+    UDFC05_Type(Model_CustomField::FIELDTYPE::UNKNOWN)
 {
 }
 

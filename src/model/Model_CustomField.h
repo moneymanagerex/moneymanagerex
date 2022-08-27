@@ -64,6 +64,8 @@ public:
     static const wxArrayString getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r);
     static const wxString getUDFC(const wxString& Properties);
     static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
+    static const FIELDTYPE getUDFCType(const wxString& ref_type, const wxString& name);
+    static const wxString getUDFCProperties(const wxString& ref_type, const wxString& name);
     static int getUDFCID(const wxString& ref_type, const wxString& name);
     static const std::map<wxString, int> getMatrix(Model_Attachment::REFTYPE reftype);
     static int getDigitScale(const wxString& Properties);
