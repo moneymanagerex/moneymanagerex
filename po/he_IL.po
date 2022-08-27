@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-18 21:07+0300\n"
-"PO-Revision-Date: 2022-08-27 06:57\n"
+"PO-Revision-Date: 2022-08-27 08:34\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -541,7 +541,7 @@ msgstr "אישור מחיקת נכס"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון כל שנה בשיעור מסוים, או, לא לשנות ערך כלל. סך־כל ערכם של הנכסים מתווסף לשווי הפיננסי הכולל."
+msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס עשוי לגדול או לקטון כל שנה בשיעור מסוים, או, לא לשנות את ערכו כלל. סך ערכם של כל הנכסים מתווסף לשווי הכלכלי הכולל."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:730
 #: general_report_manager.cpp:1007 mmframe.cpp:484 mmframe.cpp:749
@@ -1833,7 +1833,7 @@ msgstr "סמל סיומת"
 #: currencydialog.cpp:199 currencydialog.cpp:269 currencydialog.cpp:298
 #: import_export/qif_import_gui.cpp:327 import_export/univcsvdialog.cpp:361
 msgid "Decimal Char"
-msgstr "מפריד עשרוני"
+msgstr "תו עשרוני"
 
 #: currencydialog.cpp:206 currencydialog.cpp:273 currencydialog.cpp:302
 msgid "Grouping Char"
@@ -5867,7 +5867,7 @@ msgstr "נא להגדיר את החשבונות הגלויים"
 
 #: optionsettingsview.cpp:89
 msgid "Category Delimiter"
-msgstr "תוחם סוג-אב"
+msgstr "תוחם סוג־אב"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
@@ -5875,7 +5875,7 @@ msgstr "אפשרויות תנועה/תקציב"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets as Financial Years"
-msgstr "הצגת תקציב כשנה פיסקלית"
+msgstr "הצגת תקציב כשנת־כספים"
 
 #: optionsettingsview.cpp:127
 msgid "View Budgets with 'transfer' transactions"
