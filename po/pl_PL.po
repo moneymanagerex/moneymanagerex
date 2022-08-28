@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-18 21:07+0300\n"
-"PO-Revision-Date: 2022-08-18 18:12\n"
+"PO-Revision-Date: 2022-08-28 17:43\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -6619,7 +6619,8 @@ msgstr "*Liczba akcji"
 #: stockdialog.cpp:223
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Wprowadź liczbę akcji.\n"
+"Używane podczas tworzenia początkowej transakcji akcji."
 
 #: stockdialog.cpp:229 stocks_list.cpp:93
 msgid "*Share Price"
@@ -6628,7 +6629,8 @@ msgstr "*Cena akcji"
 #: stockdialog.cpp:235
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Wprowadź początkową cenę za akcję.\n"
+"Używane podczas tworzenia początkowej transakcji akcji."
 
 #: stockdialog.cpp:240
 msgid "*Commission"
@@ -6637,7 +6639,8 @@ msgstr "*Prowizja"
 #: stockdialog.cpp:244
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Wprowadź kwotę prowizji.\n"
+"Używane podczas tworzenia transakcji akcji."
 
 #: stockdialog.cpp:249 stocks_list.cpp:96
 msgid "Curr. Share Price"
@@ -6661,7 +6664,7 @@ msgstr "Data zakupu"
 
 #: stockdialog.cpp:319
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Określ datę ceny akcji/akcji."
 
 #: stockdialog.cpp:335
 msgid "Download Stock Price history"
@@ -6686,7 +6689,8 @@ msgstr "Prowadzony przez"
 #: stockdialog.cpp:493
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Nie znaleziono konta aktywów.\n\n"
+"Czy chcesz utworzyć nowe?"
 
 #: stockdialog.cpp:503
 msgid "The Company name does not have an associated Share Account.\n\n"
