@@ -106,7 +106,7 @@ bool mmCheckingPanel::Create(
     initFilterSettings();
     if (m_transFilterActive) {
         const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })", Model_Setting::instance().ViewTransactions());
-        wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+        wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_ADV_%d", m_AccountID), def_view);
         m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID, false, json);
         m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
     }
@@ -696,7 +696,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     {
         if (!m_trans_filter_dlg) {
             const wxString& def_view = wxString::Format(R"({ "FILTER": "%s" })", Model_Setting::instance().ViewTransactions());
-            wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+            wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_ADV_%d", m_AccountID), def_view);
             m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json));
         }
 
@@ -775,7 +775,7 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     if (m_transFilterActive)
     {
         const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }", Model_Setting::instance().ViewTransactions());
-        wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
+        wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_ADV_%d", m_AccountID), def_view);
         m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json));
         m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
     }
