@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-18 21:07+0300\n"
-"PO-Revision-Date: 2022-08-28 17:43\n"
+"PO-Revision-Date: 2022-08-28 19:13\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2011,7 +2011,9 @@ msgstr "Potwierdź usunięcie pola"
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Ta funkcja dokona masowego wyszukania i zastąpienia wartości dla pola \"%s\".\n"
+"Wyszuka i zastąpi jedynie całą zawartość pola, nie jest możliwe zastąpienie jedynie fragmentu zapisanej wartości.\n"
+"Zauważ, że nie ma tu żadnego sprawdzania poprawności!"
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
@@ -2765,7 +2767,7 @@ msgstr "Plik '%s' jest nieprawidłowy lub go brakuje w wybranym szablonie '%s'"
 #: images_list.cpp:435
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Brak metadanych '%s' w wybranym szablonie '%s'"
 
 #: images_list.cpp:468
 msgid "and more..."
