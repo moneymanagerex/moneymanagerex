@@ -237,16 +237,14 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     fromDateCtrl_->SetValue(begin_date);
     toDateControl_->SetValue(end_date);
-    if (dateRangeCheckBox_->IsChecked())
-    {
-        wxDateEvent date_event;
-        date_event.SetId(wxID_FIRST);
-        date_event.SetDate(begin_date);
-        OnDateChanged(date_event);
-        date_event.SetId(wxID_LAST);
-        date_event.SetDate(end_date);
-        OnDateChanged(date_event);
-    }
+
+    wxDateEvent date_event;
+    date_event.SetId(wxID_FIRST);
+    date_event.SetDate(begin_date);
+    OnDateChanged(date_event);
+    date_event.SetId(wxID_LAST);
+    date_event.SetDate(end_date);
+    OnDateChanged(date_event);
 
     //Date Period Range
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
@@ -1696,7 +1694,7 @@ void mmFilterTransactionsDialog::mmDoUpdateSettings()
     }
     if (!isReportMode_)
     {
-        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", accountID_), mmGetJsonSetings());
+        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_ADV_%d", accountID_), mmGetJsonSetings());
     }
 }
 
@@ -1735,7 +1733,10 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         }
         mmDoInitSettingNameChoice(user_label);
     }
-    else
+    else if (!isReportMode_)
+    {
+        mmDoUpdateSettings();
+    } else
     {
         const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
         const auto& l = mmGetLabelString();
