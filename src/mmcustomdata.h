@@ -70,7 +70,7 @@ private:
     void OnTimeChanged(wxDateEvent& event);
     void OnMultiChoice(wxCommandEvent& event);
     void OnSingleChoice(wxCommandEvent& event);
-    void OnCheckBoxChanged(wxCommandEvent& event);
+    void OnRadioBoxChanged(wxCommandEvent& event);
     void OnCheckBoxActivated(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id, const wxString& data);
