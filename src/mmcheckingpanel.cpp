@@ -200,7 +200,11 @@ void mmCheckingPanel::filterTable()
         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             m_filteredBalance += transaction_amount;
 
-        full_tran.UDFC01_val = -DBL_MAX;
+        full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC02_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC03_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC04_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC05_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
         full_tran.UDFC02_val = -DBL_MAX;
         full_tran.UDFC03_val = -DBL_MAX;
         full_tran.UDFC04_val = -DBL_MAX;
@@ -227,7 +231,7 @@ void mmCheckingPanel::filterTable()
                 else if (udfc.FIELDID == udfc04_ref_id) {
                     full_tran.UDFC04 = udfc.CONTENT;
                     full_tran.UDFC04_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC04_Scale);
-                    full_tran.UDFC05_Type = UDFC04_Type;
+                    full_tran.UDFC04_Type = UDFC04_Type;
                 }
                 else if (udfc.FIELDID == udfc05_ref_id) {
                     full_tran.UDFC05 = udfc.CONTENT;
