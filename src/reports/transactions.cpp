@@ -69,7 +69,7 @@ void mmReportTransactions::UDFCFormatHelper(Model_CustomField::FIELDTYPE type, i
         hb.addMoneyCell(val, scale);
     else if (ref != -1)
     {
-        if (type == Model_CustomField::FIELDTYPE::BOOLEAN)
+        if (type == Model_CustomField::FIELDTYPE::BOOLEAN && !data.empty())
         {
             bool v = wxString("TRUE|true|1").Contains(data);
             hb.addTableCell(v ? "&check;" : "&cross;", false, true);
