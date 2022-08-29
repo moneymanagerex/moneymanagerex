@@ -217,22 +217,22 @@ void mmCheckingPanel::filterTable()
                 else if (udfc.FIELDID == udfc02_ref_id) {
                     full_tran.UDFC02 = udfc.CONTENT;
                     full_tran.UDFC02_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC02_Scale);
-                    full_tran.UDFC02_Type = UDFC01_Type;
+                    full_tran.UDFC02_Type = UDFC02_Type;
                 }
                 else if (udfc.FIELDID == udfc03_ref_id) {
                     full_tran.UDFC03 = udfc.CONTENT;
                     full_tran.UDFC03_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC03_Scale);
-                    full_tran.UDFC03_Type = UDFC01_Type;
+                    full_tran.UDFC03_Type = UDFC03_Type;
                 }
                 else if (udfc.FIELDID == udfc04_ref_id) {
                     full_tran.UDFC04 = udfc.CONTENT;
                     full_tran.UDFC04_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC04_Scale);
-                    full_tran.UDFC05_Type = UDFC01_Type;
+                    full_tran.UDFC05_Type = UDFC04_Type;
                 }
                 else if (udfc.FIELDID == udfc05_ref_id) {
                     full_tran.UDFC05 = udfc.CONTENT;
                     full_tran.UDFC05_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC05_Scale);
-                    full_tran.UDFC05_Type = UDFC01_Type;
+                    full_tran.UDFC05_Type = UDFC05_Type;
                 }
             }
         }
