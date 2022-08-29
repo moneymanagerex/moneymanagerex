@@ -689,8 +689,8 @@ void mmCheckingPanel::initFilterSettings()
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
+    int oldView = m_currentView;
     m_currentView = event.GetId() - wxID_HIGHEST;
-    m_transFilterActive = false;
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
     {
@@ -701,11 +701,19 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
         }
 
         const auto json_settings = m_trans_filter_dlg->mmGetJsonSetings();
-        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
-            && m_trans_filter_dlg->mmIsSomethingChecked());
-        if (!m_transFilterActive)
-            m_currentView = MENU_VIEW_ALLTRANSACTIONS;
-    }
+        int status =  m_trans_filter_dlg->ShowModal();
+        if (oldView == MENU_VIEW_FILTER_DIALOG)
+        {
+            if (status != wxID_OK)
+                m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_AccountID, false, json_settings));   
+        } else
+        {
+            m_transFilterActive = (status == wxID_OK && m_trans_filter_dlg->mmIsSomethingChecked());
+            if (!m_transFilterActive)
+                m_currentView = oldView;
+        }
+    } else
+        m_transFilterActive = false;
 
     initFilterSettings();
     if (m_transFilterActive)
