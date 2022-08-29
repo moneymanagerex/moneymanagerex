@@ -1494,7 +1494,7 @@ wxString UDFCFormatHelper(Model_CustomField::FIELDTYPE type, wxString data)
             break;
         case Model_CustomField::FIELDTYPE::BOOLEAN:
             bool v = wxString("TRUE|true|1").Contains(data);
-            formattedData = (v) ? "\u2713" : "\u2717";
+            formattedData = (v) ? L"\u2713" : L"\u2717";
             break;
         }
     }
