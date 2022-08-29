@@ -155,7 +155,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         case Model_CustomField::BOOLEAN:
         {
             wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID,
-                wxEmptyString, wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxCHK_2STATE);
+                wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
             const auto& data = fieldData->CONTENT;
             if (!data.empty())

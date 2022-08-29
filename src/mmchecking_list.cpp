@@ -271,9 +271,14 @@ TransactionListCtrl::TransactionListCtrl(
         if (name != udfc_entry)
         {
             const auto& type = Model_CustomField::getUDFCType(ref_type, udfc_entry);
-            m_columns.push_back(PANEL_COLUMN(name, 100
-                ,(type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
-                    ?  wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT));
+            int align;
+            if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+                align = wxLIST_FORMAT_RIGHT;
+            else if (type == Model_CustomField::FIELDTYPE::BOOLEAN)
+                align = wxLIST_FORMAT_CENTER; 
+            else
+                align = wxLIST_FORMAT_LEFT; 
+            m_columns.push_back(PANEL_COLUMN(name, 100, align));
             m_real_columns.push_back(static_cast<EColumn>(i));
         }
         i++;
@@ -1478,6 +1483,24 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     EnsureVisible(selectedItem);
 }
 
+wxString UDFCFormatHelper(Model_CustomField::FIELDTYPE type, wxString data)
+{
+    wxString formattedData = data;
+    if (!data.empty())
+    {
+        switch (type) {
+        case Model_CustomField::FIELDTYPE::DATE:
+            formattedData = mmGetDateForDisplay(data);
+            break;
+        case Model_CustomField::FIELDTYPE::BOOLEAN:
+            bool v = wxString("TRUE|true|1").Contains(data);
+            formattedData = (v) ? "\u2713" : "\u2717";
+            break;
+        }
+    }
+    return formattedData;
+}
+
 const wxString TransactionListCtrl::getItem(long item, long column, bool realenum) const
 {
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
@@ -1508,15 +1531,15 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     case TransactionListCtrl::COL_UDFC01:
-        return tran.UDFC01_Type == Model_CustomField::FIELDTYPE::DATE && !tran.UDFC01.empty() ? mmGetDateForDisplay(tran.UDFC01) : tran.UDFC01;
+        return UDFCFormatHelper(tran.UDFC01_Type, tran.UDFC01);
     case TransactionListCtrl::COL_UDFC02:
-        return tran.UDFC02_Type == Model_CustomField::FIELDTYPE::DATE && !tran.UDFC02.empty() ? mmGetDateForDisplay(tran.UDFC02) : tran.UDFC02;
+        return UDFCFormatHelper(tran.UDFC02_Type, tran.UDFC02);
     case TransactionListCtrl::COL_UDFC03:
-        return tran.UDFC03_Type == Model_CustomField::FIELDTYPE::DATE && !tran.UDFC03.empty() ? mmGetDateForDisplay(tran.UDFC03) : tran.UDFC03;
+        return UDFCFormatHelper(tran.UDFC03_Type, tran.UDFC03);
     case TransactionListCtrl::COL_UDFC04:
-        return tran.UDFC04_Type == Model_CustomField::FIELDTYPE::DATE && !tran.UDFC04.empty() ? mmGetDateForDisplay(tran.UDFC04) : tran.UDFC04;
+        return UDFCFormatHelper(tran.UDFC04_Type, tran.UDFC04);
     case TransactionListCtrl::COL_UDFC05:
-        return tran.UDFC05_Type == Model_CustomField::FIELDTYPE::DATE && !tran.UDFC05.empty() ? mmGetDateForDisplay(tran.UDFC05) : tran.UDFC05;
+        return UDFCFormatHelper(tran.UDFC05_Type, tran.UDFC05);
     }
 
     bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
