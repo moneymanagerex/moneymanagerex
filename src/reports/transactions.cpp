@@ -63,6 +63,21 @@ void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<i
     hb.addTotalRow(_("Grand Total:"), noOfCols, v);
 }
 
+void mmReportTransactions::UDFCFormatHelper(Model_CustomField::FIELDTYPE type, int ref, wxString data, double val, int scale)
+{
+    if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        hb.addMoneyCell(val, scale);
+    else if (ref != -1)
+    {
+        if (type == Model_CustomField::FIELDTYPE::BOOLEAN && !data.empty())
+        {
+            bool v = wxString("TRUE|true|1").Contains(data);
+            hb.addTableCell(v ? "&check;" : "&cross;", false, true);
+        } else
+            hb.addTableCell(type == Model_CustomField::FIELDTYPE::DATE && !data.empty() ? mmGetDateForDisplay(data) : data);
+    }
+}
+
 wxString mmReportTransactions::getHTMLText()
 {
     Run(m_transDialog);
@@ -190,6 +205,10 @@ table {
                                 case Model_CustomField::FIELDTYPE::DECIMAL:
                                 case Model_CustomField::FIELDTYPE::INTEGER:
                                     nameCSS.Append(" text-right");
+                                    break;
+                                case Model_CustomField::FIELDTYPE::BOOLEAN:
+                                    nameCSS.Append(" center");
+                                    break;
                                 }
                                 hb.addTableHeaderCell(name, nameCSS);
                             }
@@ -324,30 +343,15 @@ table {
                 }
 
                 if (showColumnById(11))
-                    if (UDFC01_Type == Model_CustomField::FIELDTYPE::DECIMAL || UDFC01_Type == Model_CustomField::FIELDTYPE::INTEGER)
-                        hb.addMoneyCell(transaction.UDFC01_val, UDFC01_Scale);
-                    else if (udfc01_ref_id != -1)
-                        hb.addTableCell(UDFC01_Type == Model_CustomField::FIELDTYPE::DATE && !transaction.UDFC01.empty() ? mmGetDateForDisplay(transaction.UDFC01) : transaction.UDFC01);
+                    UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
                 if (showColumnById(12))
-                    if (UDFC02_Type == Model_CustomField::FIELDTYPE::DECIMAL || UDFC02_Type == Model_CustomField::FIELDTYPE::INTEGER)
-                        hb.addMoneyCell(transaction.UDFC02_val, UDFC02_Scale);
-                    else if (udfc02_ref_id != -1)
-                        hb.addTableCell(UDFC02_Type == Model_CustomField::FIELDTYPE::DATE && !transaction.UDFC02.empty() ? mmGetDateForDisplay(transaction.UDFC02) : transaction.UDFC02);
+                    UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
                  if (showColumnById(13))
-                    if (UDFC03_Type == Model_CustomField::FIELDTYPE::DECIMAL || UDFC03_Type == Model_CustomField::FIELDTYPE::INTEGER)
-                        hb.addMoneyCell(transaction.UDFC03_val, UDFC03_Scale);
-                    else if (udfc03_ref_id != -1)
-                        hb.addTableCell(UDFC03_Type == Model_CustomField::FIELDTYPE::DATE && !transaction.UDFC03.empty() ? mmGetDateForDisplay(transaction.UDFC03) : transaction.UDFC03);
+                    UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
                  if (showColumnById(14))
-                    if (UDFC04_Type == Model_CustomField::FIELDTYPE::DECIMAL || UDFC04_Type == Model_CustomField::FIELDTYPE::INTEGER)
-                        hb.addMoneyCell(transaction.UDFC04_val, UDFC04_Scale);
-                    else if (udfc04_ref_id != -1)
-                        hb.addTableCell(UDFC04_Type == Model_CustomField::FIELDTYPE::DATE && !transaction.UDFC04.empty() ? mmGetDateForDisplay(transaction.UDFC04) : transaction.UDFC04);
+                    UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
                  if (showColumnById(15))
-                    if (UDFC05_Type == Model_CustomField::FIELDTYPE::DECIMAL || UDFC05_Type == Model_CustomField::FIELDTYPE::INTEGER)
-                        hb.addMoneyCell(transaction.UDFC05_val, UDFC05_Scale);
-                    else if (udfc05_ref_id != -1)
-                        hb.addTableCell(UDFC05_Type == Model_CustomField::FIELDTYPE::DATE && !transaction.UDFC05.empty() ? mmGetDateForDisplay(transaction.UDFC05) : transaction.UDFC05);
+                    UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);
             }
             hb.endTableRow();
         }
