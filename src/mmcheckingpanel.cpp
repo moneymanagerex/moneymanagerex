@@ -205,6 +205,7 @@ void mmCheckingPanel::filterTable()
         full_tran.UDFC03_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
         full_tran.UDFC04_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
         full_tran.UDFC05_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC01_val = -DBL_MAX;
         full_tran.UDFC02_val = -DBL_MAX;
         full_tran.UDFC03_val = -DBL_MAX;
         full_tran.UDFC04_val = -DBL_MAX;
