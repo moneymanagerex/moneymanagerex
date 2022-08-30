@@ -59,6 +59,8 @@ public:
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
 private:
+    const int FIELDMULTIPLIER = 4;
+    const int CONTROLOFFSET = FIELDMULTIPLIER - 1;
     wxDialog* m_dialog;
     wxStaticBox* m_static_box;
     const wxString m_ref_type;
@@ -70,7 +72,7 @@ private:
     void OnTimeChanged(wxDateEvent& event);
     void OnMultiChoice(wxCommandEvent& event);
     void OnSingleChoice(wxCommandEvent& event);
-    void OnRadioBoxChanged(wxCommandEvent& event);
+    void OnRadioButtonChanged(wxCommandEvent& event);
     void OnCheckBoxActivated(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id, const wxString& data);
