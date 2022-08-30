@@ -47,8 +47,8 @@ public:
 
 private:
     mmDatePickerCtrl* m_datePicker;
-    void OnDateSelected( wxCalendarEvent& event);
-    void OnEndSelection( wxCalendarEvent& event);
+    void OnDateSelected(wxCalendarEvent& event);
+    void OnEndSelection(wxCalendarEvent& event);
     wxDECLARE_ABSTRACT_CLASS(mmCalendarPopup);
 };
 
@@ -83,12 +83,16 @@ mmCalendarPopup::~mmCalendarPopup()
 void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
 {
     m_datePicker->SetValue(event.GetDate());
+    wxDateEvent evt(m_datePicker, m_datePicker->GetValue(), wxEVT_DATE_CHANGED);
+    m_datePicker->GetEventHandler()->AddPendingEvent(evt);   
 }
 
 void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
 {
     m_datePicker->SetValue(event.GetDate());
     this->Dismiss();
+    wxDateEvent evt(m_datePicker, m_datePicker->GetValue(), wxEVT_DATE_CHANGED);
+    m_datePicker->GetEventHandler()->AddPendingEvent(evt); 
 }
 
 //------------
@@ -464,9 +468,10 @@ void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& event)
         wxDateTime date = this->GetValue();
         date = date.Add(wxDateSpan::Days(spinButton_->GetValue()));
         this->SetValue(date);
+        wxDateEvent evt(this, this->GetValue(), wxEVT_DATE_CHANGED);
+        this->GetEventHandler()->AddPendingEvent(evt);  
         spinButton_->SetValue(0);
     }
-    event.Skip();
 }
 
 /*/////////////////////////////////////////////////////////////*/
