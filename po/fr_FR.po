@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-08-30 11:34+0300\n"
-"PO-Revision-Date: 2022-08-30 08:42\n"
+"PO-Revision-Date: 2022-08-30 10:13\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4015,11 +4015,11 @@ msgstr "Champs Personnalisés"
 
 #: mmcustomdata.cpp:157
 msgid "False"
-msgstr ""
+msgstr "Faux"
 
 #: mmcustomdata.cpp:157
 msgid "True"
-msgstr ""
+msgstr "Vrai"
 
 #: mmcustomdata.cpp:304
 msgid "Please select"
