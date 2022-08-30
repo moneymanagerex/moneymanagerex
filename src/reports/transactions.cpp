@@ -207,7 +207,7 @@ table {
                                     nameCSS.Append(" text-right");
                                     break;
                                 case Model_CustomField::FIELDTYPE::BOOLEAN:
-                                    nameCSS.Append(" center");
+                                    nameCSS.Append(" text-center");
                                     break;
                                 }
                                 hb.addTableHeaderCell(name, nameCSS);

@@ -154,13 +154,15 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::BOOLEAN:
         {
-            wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID,
-                wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+            const wxString choices[] = { _("False"), _("True") };
+            wxRadioBox* CustomBoolean = new wxRadioBox(scrolled_window, controlID
+                , wxEmptyString, wxDefaultPosition, wxDefaultSize
+                , sizeof(choices) / sizeof(wxString), choices, 2, wxRA_SPECIFY_COLS);
 
             const auto& data = fieldData->CONTENT;
             if (!data.empty())
             {
-                CustomBoolean->SetValue(data == "TRUE");
+                CustomBoolean->SetSelection(data == "TRUE" ? 1 : 0);
                 if (nonDefaultData) 
                     SetWidgetChanged(controlID, data);
             }
@@ -168,7 +170,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             mmToolTip(CustomBoolean, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomBoolean, g_flagsExpand);
 
-            CustomBoolean->Connect(controlID, wxEVT_CHECKBOX, wxCommandEventHandler(mmCustomData::OnCheckBoxChanged), nullptr, this);
+            CustomBoolean->Connect(controlID, wxEVT_RADIOBOX, wxCommandEventHandler(mmCustomData::OnRadioBoxChanged), nullptr, this);
 
             break;
         }
@@ -391,13 +393,12 @@ void mmCustomData::SetWidgetData(wxWindowID controlID, const wxString& value)
         wxTextCtrl* d = static_cast<wxTextCtrl*>(w);
         d->SetValue(value);
     }
-    else if (class_name == "wxCheckBox")
+    else if (class_name == "wxRadioBox")
     {
-        wxCheckBox* d = static_cast<wxCheckBox*>(w);
+        wxRadioBox* d = static_cast<wxRadioBox*>(w);
         bool v = wxString("TRUE|true|1").Contains(value);
-        d->SetValue(v);
-        wxCommandEvent evt(wxEVT_CHECKBOX, controlID);
-        evt.SetInt(v);
+        d->SetSelection(v ? 1 : 0);
+        wxCommandEvent evt(wxEVT_RADIOBOX, controlID);
         d->GetEventHandler()->AddPendingEvent(evt);
     }
 }
@@ -440,10 +441,10 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
                 wxTextCtrl* d = static_cast<wxTextCtrl*>(w);
                 data = d->GetValue();
             }
-            else if (class_name == "wxCheckBox")
+            else if (class_name == "wxRadioBox")
             {
-                wxCheckBox* d = static_cast<wxCheckBox*>(w);
-                data = (d->GetValue() ? "TRUE" : "FALSE");
+                wxRadioBox* d = static_cast<wxRadioBox*>(w);
+                data = (d->GetSelection() == 1 ? "TRUE" : "FALSE");
             }
         }
     }
@@ -581,9 +582,9 @@ void mmCustomData::OnSingleChoice(wxCommandEvent& event)
     SetWidgetChanged(event.GetId(), data);
 }
 
-void mmCustomData::OnCheckBoxChanged(wxCommandEvent& event)
+void mmCustomData::OnRadioBoxChanged(wxCommandEvent& event)
 {
-    const auto& data = event.IsChecked() ? "TRUE" : "FALSE";
+    const auto& data = (event.GetSelection() == 1) ? "TRUE" : "FALSE";
     SetWidgetChanged(event.GetId(), data);
 }
 
