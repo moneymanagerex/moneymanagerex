@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/statline.h>
 
-#define STATIC_SPLIT_NUM 2
+#define STATIC_SPLIT_NUM 10
 
  wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
      EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
@@ -99,6 +99,15 @@ void mmSplitTransactionDialog::CreateControls()
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainSizer);
 
+    wxFlexGridSizer* flexGridSizerHead_ = new wxFlexGridSizer(0, 3, 0, 0);
+    flexGridSizerHead_->AddGrowableCol(1, 0);
+    mainSizer->Add(flexGridSizerHead_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
+    wxStaticText* categoryText = new wxStaticText(this, wxID_STATIC, _("Category"));
+    wxStaticText* amountText = new wxStaticText(this, wxID_STATIC, _("Amount"));
+    flexGridSizerHead_->AddSpacer(1);
+    flexGridSizerHead_->Add(categoryText, g_flagsH);
+    flexGridSizerHead_->Add(amountText, g_flagsH);
+
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     mainSizer->Add(slider_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
 
@@ -109,11 +118,6 @@ void mmSplitTransactionDialog::CreateControls()
     flexGridSizer_->AddGrowableCol(1, 0);
     dialogMainSizerV->Add(flexGridSizer_, g_flagsExpand);
 
-    wxStaticText* categoryText = new wxStaticText(slider_, wxID_STATIC, _("Category"));
-    wxStaticText* amountText = new wxStaticText(slider_, wxID_STATIC, _("Amount"));
-    flexGridSizer_->AddSpacer(1);
-    flexGridSizer_->Add(categoryText, g_flagsH);
-    flexGridSizer_->Add(amountText, g_flagsH);
 
     int size = static_cast<int>(m_splits.size()) + 1;
     if (size < STATIC_SPLIT_NUM) size = STATIC_SPLIT_NUM;
@@ -208,6 +212,8 @@ void mmSplitTransactionDialog::CreateControls()
     SetEvtHandlerEnabled(true);
 
     Fit();
+    wxSize sz = this->GetSize();
+    SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
 }
 
 void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
@@ -366,10 +372,11 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         flexGridSizer_->Add(nval, g_flagsH);
         ncbc->SetFocus();
         slider_->FitInside();
-        slider_->ScrollLines(ncbc->GetSize().GetY() * 2);
+        wxScrollWinEvent evt(wxEVT_SCROLLWIN_BOTTOM);
+        slider_->GetEventHandler()->AddPendingEvent(evt);
     }
-    slider_->SetMinSize(slider_->GetBestVirtualSize());
-    Fit();
+    //slider_->SetMinSize(slider_->GetBestVirtualSize());
+    //Fit();
 }
 
 void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)

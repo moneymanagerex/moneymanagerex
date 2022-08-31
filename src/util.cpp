@@ -1691,6 +1691,7 @@ void mmSetSize(wxWindow* w)
 
     if (name == "Split Transaction Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE");
+        my_size.SetHeight(w->GetSize().GetHeight());  // Do not touch the height
     }
     else if (name == "Organize Categories") {
         my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE");
