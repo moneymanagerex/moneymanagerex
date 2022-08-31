@@ -286,7 +286,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 
     categoryCheckBox_->SetValue(!s_category.IsEmpty());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
-    categoryComboBox_->SetLabelText(s_category);
+    categoryComboBox_->ChangeValue(s_category);
 
     // Sub Category inclusion
     Value& j_categorySubCat = GetValueByPointerWithDefault(j_doc, "/SUBCATEGORYINCLUDE", "");
