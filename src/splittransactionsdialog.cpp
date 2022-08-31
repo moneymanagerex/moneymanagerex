@@ -121,6 +121,8 @@ void mmSplitTransactionDialog::CreateControls()
 
     int size = static_cast<int>(m_splits.size()) + 1;
     if (size < STATIC_SPLIT_NUM) size = STATIC_SPLIT_NUM;
+
+    wxSize scrollSize;
     for (int i = 0; i < size; i++)
     {
         wxCheckBox* cb = new wxCheckBox(slider_, wxID_HIGHEST + i, ""
@@ -156,12 +158,16 @@ void mmSplitTransactionDialog::CreateControls()
         if (i == static_cast<int>(m_splits.size())) {
             cbc->SetFocusFromKbd();
         }
+        if (i == (STATIC_SPLIT_NUM - 1))
+        {
+            slider_->Fit();
+            scrollSize = slider_->GetSize();
+        }
     }
 
     slider_->Fit();
-    slider_->SetMinSize(slider_->GetBestVirtualSize());
+    slider_->SetMinSize(scrollSize);
     slider_->SetScrollRate(1, 1);
-    SetMinSize(wxSize(384, 432));
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
