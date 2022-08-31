@@ -99,14 +99,15 @@ void mmSplitTransactionDialog::CreateControls()
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainSizer);
 
-    wxFlexGridSizer* flexGridSizerHead_ = new wxFlexGridSizer(0, 3, 0, 0);
-    flexGridSizerHead_->AddGrowableCol(1, 0);
-    mainSizer->Add(flexGridSizerHead_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
+    wxBoxSizer* boxSizerHead_ = new wxBoxSizer(wxHORIZONTAL);
+    mainSizer->Add(boxSizerHead_, wxSizerFlags().Expand().Border(wxTOP, 5));
     wxStaticText* categoryText = new wxStaticText(this, wxID_STATIC, _("Category"));
+    categoryText->SetFont(this->GetFont().Bold());
     wxStaticText* amountText = new wxStaticText(this, wxID_STATIC, _("Amount"));
-    flexGridSizerHead_->AddSpacer(1);
-    flexGridSizerHead_->Add(categoryText, g_flagsH);
-    flexGridSizerHead_->Add(amountText, g_flagsH);
+    amountText->SetFont(this->GetFont().Bold());
+    boxSizerHead_->Add(categoryText, wxSizerFlags().Border(wxLEFT, 15));
+    boxSizerHead_->AddStretchSpacer();
+    boxSizerHead_->Add(amountText, wxSizerFlags().Border(wxRIGHT, 15));
 
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     mainSizer->Add(slider_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
