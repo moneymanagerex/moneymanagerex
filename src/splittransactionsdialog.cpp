@@ -376,7 +376,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
         slider_->GetEventHandler()->AddPendingEvent(evt);
     }
     //slider_->SetMinSize(slider_->GetBestVirtualSize());
-    Fit();
+    //Fit();
 }
 
 void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
