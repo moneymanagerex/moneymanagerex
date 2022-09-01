@@ -306,7 +306,7 @@ void mmTransDialog::dataToControls()
         bSplit_->UnsetToolTip();
         if (has_split)
         {
-            cbCategory_->SetLabelText(_("Split Transaction"));
+            cbCategory_->ChangeValue(_("Split Transaction"));
             cbCategory_->Disable();
             m_textAmount->SetValue(Model_Splittransaction::get_total(m_local_splits));
             m_trx_data.CATEGID = -1;

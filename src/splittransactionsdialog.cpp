@@ -132,6 +132,7 @@ void mmSplitTransactionDialog::CreateControls()
         mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
         cbc->SetName(wxString::Format("category_box%i", i));
         cbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
+        cbc->SetMinSize(wxSize(250,-1));
 
         mmTextCtrl* val = new mmTextCtrl(slider_, wxID_HIGHEST + i, ""
             , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
@@ -382,6 +383,7 @@ void mmSplitTransactionDialog::mmDoEnableLineById(int id)
             , wxString::Format("check_box%i", i));
         mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
         ncbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
+        ncbc->SetMinSize(wxSize(250,-1));
         ncb->Disable();
         ncb->Hide();
         ncbc->SetName(wxString::Format("category_box%i", i));
@@ -435,6 +437,7 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
     }
     
     UpdateSplitTotal();
+    event.Skip();
 }
 
 bool mmSplitTransactionDialog::mmDoCheckRow(int i, bool silent)
@@ -495,6 +498,7 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     if (w && !w->GetName().empty()) {
         row_num_ = w->GetId() - wxID_HIGHEST;
     }
+    event.Skip();
 }
 
 void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
