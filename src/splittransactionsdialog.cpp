@@ -100,7 +100,7 @@ void mmSplitTransactionDialog::CreateControls()
     this->SetSizer(mainSizer);
 
     wxBoxSizer* boxSizerHead_ = new wxBoxSizer(wxHORIZONTAL);
-    mainSizer->Add(boxSizerHead_, wxSizerFlags().Expand().Border(wxTOP, 5));
+    mainSizer->Add(boxSizerHead_, wxSizerFlags().Expand().Border(wxALL, 5));
     wxStaticText* categoryText = new wxStaticText(this, wxID_STATIC, _("Category"));
     categoryText->SetFont(this->GetFont().Bold());
     wxStaticText* amountText = new wxStaticText(this, wxID_STATIC, _("Amount"));
@@ -173,7 +173,7 @@ void mmSplitTransactionDialog::CreateControls()
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
-    bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5).Proportion(1));
+    bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5));
 
     wxButton* bAdd = new wxButton(this, mmID_SPLIT, _("Add Split"));
     bAdd->SetName("");
@@ -193,6 +193,7 @@ void mmSplitTransactionDialog::CreateControls()
     transAmount_ = new wxStaticText(this, wxID_STATIC, wxEmptyString);
     totalAmountSizer->Add(transAmountText, wxSizerFlags());
     totalAmountSizer->Add(transAmount_, wxSizerFlags().Border(wxLEFT, 5));
+    bottomSizer->AddStretchSpacer();
     bottomSizer->Add(totalAmountSizer, wxSizerFlags().Border(wxALL, 5));
     mainSizer->Add(bottomSizer, g_flagsExpand);
 
