@@ -2,6 +2,7 @@ version: 2.1
 jobs:
   build-linux:
     machine: true
+    resource_class: large
     steps: 
       - run:
           name: Checkout code
@@ -19,24 +20,29 @@ jobs:
             mkdir build && \
             mkdir -p /tmp/artifacts
       - run: 
+          name: Build MoneyManagerEx (SUSE Tumbleweed)
+          command: |
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:suse-tumbleweed bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.rpm /tmp/artifacts
+      - run: 
           name: Build MoneyManagerEx (Ubuntu Jammy Jellyfish)
           command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-jammy bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-jammy bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
       - run:
           name: Build MoneyManagerEx (Ubuntu Focal Fossa)
           command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-focal bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-focal bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
       - run: 
           name: Build MoneyManagerEx (Ubuntu Bionic)
           command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-bionic bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-bionic bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
       - run: 
           name: Build MoneyManagerEx (Fedora 36)
           command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:fedora-36 bash -c "rm -rf * && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
+            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:fedora-36 bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
             cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.rpm /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
