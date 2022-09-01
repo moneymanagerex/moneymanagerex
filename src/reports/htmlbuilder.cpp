@@ -27,6 +27,7 @@
 #include "model/Model_Infotable.h"
 #include <iomanip>
 #include <ios>
+#include <float.h>
 
 
 namespace tags
@@ -343,7 +344,7 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
     const wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
     wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
-    html_ += s;
+    html_ += (amount == -DBL_MAX) ? "" : s;     // If -DBL_MAX then just display empty string
     this->endTableCell();
 }
 
@@ -369,9 +370,10 @@ void mmHTMLBuilder::addEmptyTableCell(const int number)
         this->addTableCell("");
 }
 
-void mmHTMLBuilder::addColorMarker(const wxString& color)
+void mmHTMLBuilder::addColorMarker(const wxString& color, bool center)
 {
-    html_ += wxString::Format(tags::TABLE_CELL, "");
+    const wxString align = center ? " class='text-center'" : " class='text-left'";
+    html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += wxString::Format("<span style='font-family: serif; %s'>%s</span>"
         , (color.empty() ? "": wxString::Format("color: %s", color))
         , (color.empty() ? L" " : L"\u2588"));
@@ -410,9 +412,9 @@ void mmHTMLBuilder::addTableCellMonth(int month, int year)
 }
 
 void mmHTMLBuilder::addTableCellLink(const wxString& href
-    , const wxString& value)
+    , const wxString& value, bool numeric, bool center)
 {
-    addTableCell(wxString::Format(tags::TABLE_CELL_LINK, href, value));
+    addTableCell(wxString::Format(tags::TABLE_CELL_LINK, href, value), numeric, center);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)

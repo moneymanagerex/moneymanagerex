@@ -75,7 +75,7 @@ private:
     std::vector<Split> m_splits;
     double totalAmount_;
     int transType_;
-    int row_num_;;
+    int row_num_;
     Model_Currency::Data* m_currency;
     bool is_view_only_;
 

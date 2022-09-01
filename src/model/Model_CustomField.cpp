@@ -242,7 +242,6 @@ int Model_CustomField::getUDFCID(const wxString& ref_type, const wxString& name)
             }
         }
     }
-
     return -1;
 }
 
@@ -264,8 +263,49 @@ const wxString Model_CustomField::getUDFCName(const wxString& ref_type, const wx
             }
         }
     }
+    return wxEmptyString;
+}
 
-    return name;
+const Model_CustomField::FIELDTYPE Model_CustomField::getUDFCType(const wxString& ref_type, const wxString& name)
+{
+    Document json_doc;
+    const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));
+    for (const auto& item : a)
+    {
+        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
+        {
+            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
+            {
+                Value& s = json_doc["UDFC"];
+                const wxString& desc = s.GetString();
+                if (desc == name) {
+                    return type(item.TYPE);
+                }
+            }
+        }
+    }
+    return Model_CustomField::FIELDTYPE::UNKNOWN;
+}
+
+const wxString Model_CustomField::getUDFCProperties(const wxString& ref_type, const wxString& name)
+{
+    Document json_doc;
+    const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));
+    for (const auto& item : a)
+    {
+        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
+        {
+            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
+            {
+                Value& s = json_doc["UDFC"];
+                const wxString& desc = s.GetString();
+                if (desc == name) {
+                    return item.PROPERTIES;
+                }
+            }
+        }
+    }
+    return wxEmptyString;
 }
 
 const wxArrayString Model_CustomField::UDFC_FIELDS()

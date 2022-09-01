@@ -581,7 +581,7 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(bSplit_, g_flagsH);
 
     // Number ---------------------------------------------
-    textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+    textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
     mmToolTip(textNumber_, _("Specify any associated check number or transaction number"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
@@ -1171,15 +1171,9 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     toTextAmount_->Enable(m_advanced);
     mmToolTip(textAmount_, m_advanced ? amountTransferTip_ : _("Specify the transfer amount in the From Account"));
     if (m_advanced)
-    {
-        // Display the transfer amount in the toTextAmount control.
-        if (m_bill_data.TOTRANSAMOUNT > 0) {
-            toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
-        }
-        else {
-            toTextAmount_->SetValue(textAmount_->GetValue());
-        }
-    }
+        toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
+    else
+        toTextAmount_->ChangeValue("");
 }
 
 void mmBDDialog::setRepeatDetails()
@@ -1425,10 +1419,10 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
         object_in_focus_ = w->GetId();
     }
 
-    if (textAmount_->Calculate(Model_Currency::precision(m_bill_data.ACCOUNTID))) {
+    if (textAmount_->Calculate()) {
         textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
     }
-    if (m_advanced && toTextAmount_->Calculate(Model_Currency::precision(m_bill_data.TOACCOUNTID))) {
+    if (m_advanced && toTextAmount_->Calculate()) {
         toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
     }
 }

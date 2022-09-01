@@ -613,6 +613,32 @@ const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
     , { 9, { wxConvAuto(wxFONTENCODING_CP1257), "1257" } }
 };
 
+wxString cleanseNumberString(wxString str, bool decimal)
+{
+    // Strip any thousands separators and make sure decimal is "." (if present)
+    wxString content = str;
+    if (decimal)
+    {
+        wxRegEx pattern(R"([\., ](?=\d*[\., ]))");  // Leave the decimal seperator
+        pattern.ReplaceAll(&content, wxEmptyString);
+        content.Replace(",",".");
+    } else
+    {
+        wxRegEx pattern(R"([\., ])");
+        pattern.ReplaceAll(&content, wxEmptyString);           
+    }
+    return content;
+}
+
+double cleanseNumberStringToDouble(wxString str, bool decimal)
+{
+    double v;
+    if (!cleanseNumberString(str, decimal).ToCDouble(&v))
+        v = 0;
+    return v;
+}
+
+
 //
 const wxString mmPlatformType()
 {
@@ -1665,6 +1691,7 @@ void mmSetSize(wxWindow* w)
 
     if (name == "Split Transaction Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE");
+        my_size.SetHeight(w->GetSize().GetHeight());  // Do not touch the height
     }
     else if (name == "Organize Categories") {
         my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE");

@@ -645,6 +645,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     case COL_NOTES:
     {
         wxString full_notes = asset.NOTES;
+        full_notes.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID))
             full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;

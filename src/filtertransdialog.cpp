@@ -57,7 +57,8 @@ static const wxString GROUPBY_OPTIONS[] =
 {
     wxTRANSLATE("Account"),
     wxTRANSLATE("Payee"),
-    wxTRANSLATE("Category")
+    wxTRANSLATE("Category"),
+    wxTRANSLATE("Type")
 };
 
 
@@ -236,16 +237,14 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     fromDateCtrl_->SetValue(begin_date);
     toDateControl_->SetValue(end_date);
-    if (dateRangeCheckBox_->IsChecked())
-    {
-        wxDateEvent date_event;
-        date_event.SetId(wxID_FIRST);
-        date_event.SetDate(begin_date);
-        OnDateChanged(date_event);
-        date_event.SetId(wxID_LAST);
-        date_event.SetDate(end_date);
-        OnDateChanged(date_event);
-    }
+
+    wxDateEvent date_event;
+    date_event.SetId(wxID_FIRST);
+    date_event.SetDate(begin_date);
+    OnDateChanged(date_event);
+    date_event.SetId(wxID_LAST);
+    date_event.SetDate(end_date);
+    OnDateChanged(date_event);
 
     //Date Period Range
     Value& j_period = GetValueByPointerWithDefault(j_doc, "/PERIOD", "");
@@ -287,7 +286,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 
     categoryCheckBox_->SetValue(!s_category.IsEmpty());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
-    categoryComboBox_->SetLabelText(s_category);
+    categoryComboBox_->ChangeValue(s_category);
 
     // Sub Category inclusion
     Value& j_categorySubCat = GetValueByPointerWithDefault(j_doc, "/SUBCATEGORYINCLUDE", "");
@@ -603,13 +602,9 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     amountMinEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    amountMinEdit_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), nullptr, this);
     amountMaxEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    amountMaxEdit_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), nullptr, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, g_flagsExpand);
@@ -1286,14 +1281,6 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Da
     return ok;
 }
 
-void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
-{
-    if (event.GetId() == amountMinEdit_->GetId())
-        amountMinEdit_->Calculate();
-    else if (event.GetId() == amountMaxEdit_->GetId())
-        amountMaxEdit_->Calculate();
-}
-
 const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
 {
     wxString buffer;
@@ -1707,7 +1694,7 @@ void mmFilterTransactionsDialog::mmDoUpdateSettings()
     }
     if (!isReportMode_)
     {
-        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", accountID_), mmGetJsonSetings());
+        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_ADV_%d", accountID_), mmGetJsonSetings());
     }
 }
 
@@ -1746,7 +1733,10 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         }
         mmDoInitSettingNameChoice(user_label);
     }
-    else
+    else if (!isReportMode_)
+    {
+        mmDoUpdateSettings();
+    } else
     {
         const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
         const auto& l = mmGetLabelString();

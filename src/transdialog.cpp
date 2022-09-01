@@ -306,7 +306,7 @@ void mmTransDialog::dataToControls()
         bSplit_->UnsetToolTip();
         if (has_split)
         {
-            cbCategory_->SetLabelText(_("Split Transaction"));
+            cbCategory_->ChangeValue(_("Split Transaction"));
             cbCategory_->Disable();
             m_textAmount->SetValue(Model_Splittransaction::get_total(m_local_splits));
             m_trx_data.CATEGID = -1;
@@ -475,7 +475,7 @@ void mmTransDialog::CreateControls()
 
     // Number  ---------------------------------------------
 
-    textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+    textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
 
     wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
@@ -759,13 +759,13 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         cbCategory_->ChangeValue(cbCategory_->GetValue());
         break;
     case mmID_TEXTAMOUNT:
-        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID))) {
+        if (m_textAmount->Calculate()) {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
         break;
     case mmID_TOTEXTAMOUNT:
-        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID))) {
+        if (toTextAmount_->Calculate()) {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
@@ -1011,14 +1011,14 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == m_textAmount->GetId())
     {
-        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
+        if (m_textAmount->Calculate())
         {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
+        if (toTextAmount_->Calculate())
         {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }

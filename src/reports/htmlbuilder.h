@@ -91,7 +91,7 @@ public:
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1, bool isVoid = false);
     void addMoneyCell(double amount, int precision = -1);
     void addTableCellMonth(int month, int year = 0);
-    void addColorMarker(const wxString& color);
+    void addColorMarker(const wxString& color, bool center = false);
     const wxString getColor(int i);
     const wxString getRandomColor(bool positive);
 
@@ -101,7 +101,7 @@ public:
     void addEmptyTableCell(const int number = 1);
 
     /** Add a Cell value */
-    void addTableCellLink(const wxString& href, const wxString& value);
+    void addTableCellLink(const wxString& href, const wxString& value, bool numeric = false, bool center = false);
 
     void end(bool simple=false);
     void endTable();

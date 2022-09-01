@@ -31,14 +31,13 @@ void mmTextCtrl::OnTextEntered(wxCommandEvent& event)
 {
     Calculate( (m_alt_precision != -1) ? m_alt_precision 
                             : Model_Currency::precision(m_currency));
-    event.Skip();
 }
 
 void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     Calculate( (m_alt_precision != -1) ? m_alt_precision 
                             : Model_Currency::precision(m_currency));
-    event.Skip(); 
+    event.Skip();
 }
 
 void mmTextCtrl::SetValue(double value)

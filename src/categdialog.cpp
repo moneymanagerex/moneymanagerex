@@ -130,6 +130,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     SetEvtHandlerEnabled(false);
     CreateControls();
     fillControls();
+    m_maskTextCtrl->SetFocus();
     SetEvtHandlerEnabled(true);
 
     mmSetSize(this);
@@ -273,7 +274,6 @@ void mmCategDialog::CreateControls()
     searchPanel->SetSizer(search_sizer);
 
     m_maskTextCtrl = new wxSearchCtrl(searchPanel, wxID_FIND);
-    m_maskTextCtrl->SetFocus();
     search_sizer->Add(new wxStaticText(searchPanel, wxID_STATIC, _("Search:")), g_flagsH);
     search_sizer->Add(m_maskTextCtrl, g_flagsExpand);
 

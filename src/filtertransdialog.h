@@ -68,7 +68,8 @@ public:
     enum groupBy {
         GROUPBY_ACCOUNT,
         GROUPBY_PAYEE,
-        GROUPBY_CATEGORY
+        GROUPBY_CATEGORY,
+        GROUPBY_TYPE
     };
     int mmGetGroupBy() const;
 
