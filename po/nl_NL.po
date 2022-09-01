@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-08-30 11:34+0300\n"
-"PO-Revision-Date: 2022-08-30 15:45\n"
+"POT-Creation-Date: 2022-09-01 21:47+0300\n"
+"PO-Revision-Date: 2022-09-01 18:59\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -61,9 +61,9 @@ msgstr "Help ons met het versturen van anonieme gegevens over MMEX gebruik."
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:244
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:727
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
-#: mmSimpleDialogs.cpp:845 optiondialog.cpp:164 payeedialog.cpp:162
+#: mmSimpleDialogs.cpp:850 optiondialog.cpp:164 payeedialog.cpp:162
 #: sharetransactiondialog.cpp:330 splitdetailsdialog.cpp:159
-#: splittransactionsdialog.cpp:201 transactionsupdatedialog.cpp:266
+#: splittransactionsdialog.cpp:214 transactionsupdatedialog.cpp:266
 #: transdialog.cpp:532 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&OK "
@@ -792,7 +792,7 @@ msgstr "Controleer dat het bestand bestaat en de gebruiker rechten heeft om deze
 msgid "Open attachment failed"
 msgstr "Openen bijlage mislukt"
 
-#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:548
+#: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:553
 #: model/Model_Asset.cpp:24 model/Model_Budget.cpp:55
 #: optionsettingsmisc.cpp:103 reports/reportbase.cpp:212
 msgid "None"
@@ -973,7 +973,7 @@ msgstr "Geeft de mogelijkheid om afwijkende bedragen in de VAN en NAAR rekening 
 #: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/budgetcategorysummary.cpp:189
 #: reports/cashflow.cpp:426 reports/categexp.cpp:179
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:193
-#: splitdetailsdialog.cpp:135 splittransactionsdialog.cpp:113
+#: splitdetailsdialog.cpp:135 splittransactionsdialog.cpp:106
 #: transactionsupdatedialog.cpp:184 transdialog.cpp:424
 #: usertransactionpanel.cpp:132 webappdialog.cpp:153
 msgid "Amount"
@@ -1027,7 +1027,7 @@ msgstr "Begunstigde"
 #: reports/budgetingperf.cpp:220 reports/cashflow.cpp:425
 #: reports/categexp.cpp:178 reports/categexp.cpp:428
 #: reports/transactions.cpp:191 splitdetailsdialog.cpp:144
-#: splitdetailsdialog.cpp:186 splittransactionsdialog.cpp:112
+#: splitdetailsdialog.cpp:186 splittransactionsdialog.cpp:104
 #: transactionsupdatedialog.cpp:221 transdialog.cpp:464 transdialog.cpp:574
 #: usertransactionpanel.cpp:177 webappdialog.cpp:152
 msgid "Category"
@@ -1170,7 +1170,7 @@ msgstr "Het aantal uit te voeren betalingen ingeven.\n"
 
 #: billsdepositsdialog.cpp:1249 images_list.cpp:512
 #: import_export/univcsvdialog.cpp:1158 maincurrencydialog.cpp:479
-#: mmframe.cpp:3453 splittransactionsdialog.cpp:250 stockspanel.cpp:326
+#: mmframe.cpp:3453 splittransactionsdialog.cpp:265 stockspanel.cpp:326
 #: stockspanel.cpp:327 themes.cpp:316 themes.cpp:335 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Error"
@@ -1560,23 +1560,23 @@ msgstr "Specificeer het jaar voor berekening van de begroting."
 msgid "Budget Year already exists"
 msgstr "Begrotingsjaar bestaat al"
 
-#: categdialog.cpp:145 import_export/qif_export.cpp:137 mmframereport.cpp:140
+#: categdialog.cpp:146 import_export/qif_export.cpp:137 mmframereport.cpp:140
 msgid "Categories"
 msgstr "Categorieën"
 
-#: categdialog.cpp:239 mmframe.cpp:1615
+#: categdialog.cpp:240 mmframe.cpp:1615
 msgid "Reassign all categories to another category"
 msgstr "Alle categorieën aan een andere categorie toewijzen"
 
-#: categdialog.cpp:241
+#: categdialog.cpp:242
 msgid "Expand"
 msgstr "Uitvouwen"
 
-#: categdialog.cpp:246 maincurrencydialog.cpp:184
+#: categdialog.cpp:247 maincurrencydialog.cpp:184
 msgid "Show All"
 msgstr "Alles weergeven"
 
-#: categdialog.cpp:248
+#: categdialog.cpp:249
 msgid "Show all hidden categories"
 msgstr "Toon alle verborgen categorieën"
 
@@ -1865,7 +1865,7 @@ msgstr "Alle wijzigingen gaan zonder bijwerken verloren"
 
 #: currencydialog.cpp:270 currencydialog.cpp:274 currencydialog.cpp:281
 #: currencydialog.cpp:299 currencydialog.cpp:303 maincurrencydialog.cpp:622
-#: mmSimpleDialogs.cpp:745
+#: mmSimpleDialogs.cpp:750
 msgid "Invalid Entry"
 msgstr "Foutieve invoer"
 
@@ -2784,7 +2784,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Geen werkbaar thema gevonden, de installatie kan corrupt zijn"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1613
-#: mmSimpleDialogs.cpp:760
+#: mmSimpleDialogs.cpp:765
 msgid "Unable to open file."
 msgstr "Kan het bestand niet openen."
 
@@ -3393,7 +3393,7 @@ msgstr "Verwijderen bestaand bestand is mislukt. Het bestand is mogelijk vergren
 msgid "Destination file error"
 msgstr "Foutief doelbestand"
 
-#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:768
+#: import_export/univcsvdialog.cpp:1158 mmSimpleDialogs.cpp:773
 msgid "Invalid Account"
 msgstr "Foutieve rekening"
 
@@ -3580,101 +3580,101 @@ msgstr "Kon de historie voor symbool %s niet downloaden. Historische koersen nie
 msgid "Could not find base currency symbol!"
 msgstr "Kan het standaard valutasymbool niet vinden!"
 
-#: mmSimpleDialogs.cpp:404
+#: mmSimpleDialogs.cpp:408
 msgid "Retard or advance the date"
 msgstr "De datum uitstellen of vervroegen"
 
-#: mmSimpleDialogs.cpp:491 mmSimpleDialogs.cpp:503
+#: mmSimpleDialogs.cpp:496 mmSimpleDialogs.cpp:508
 msgid "Clear color"
 msgstr "Kleur wissen"
 
-#: mmSimpleDialogs.cpp:494 mmSimpleDialogs.cpp:508
+#: mmSimpleDialogs.cpp:499 mmSimpleDialogs.cpp:513
 #, c-format
 msgid "Color #%i"
 msgstr "Kleur #%i"
 
-#: mmSimpleDialogs.cpp:685
+#: mmSimpleDialogs.cpp:690
 msgid "Subtract one year"
 msgstr "Eén jaar aftrekken"
 
-#: mmSimpleDialogs.cpp:686
+#: mmSimpleDialogs.cpp:691
 msgid "Subtract one month"
 msgstr "Een maand aftrekken"
 
-#: mmSimpleDialogs.cpp:687
+#: mmSimpleDialogs.cpp:692
 msgid "Add one month"
 msgstr "Een maand toevoegen"
 
-#: mmSimpleDialogs.cpp:688
+#: mmSimpleDialogs.cpp:693
 msgid "Add one year"
 msgstr "Eén jaar toevoegen"
 
-#: mmSimpleDialogs.cpp:744
+#: mmSimpleDialogs.cpp:749
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Invoer %s is foutief"
 
-#: mmSimpleDialogs.cpp:751
+#: mmSimpleDialogs.cpp:756
 msgid "Please use this button for category selection."
 msgstr "Gebruik deze knop voor categorie selectie."
 
-#: mmSimpleDialogs.cpp:752
+#: mmSimpleDialogs.cpp:757
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "Gebruik deze knop voor categorie selectie\n"
 "of gebruik de 'splits' keuze voor meerdere categorieën."
 
-#: mmSimpleDialogs.cpp:755
+#: mmSimpleDialogs.cpp:760
 msgid "Invalid Category"
 msgstr "Foutieve categorie"
 
-#: mmSimpleDialogs.cpp:760
+#: mmSimpleDialogs.cpp:765
 msgid "File name is empty."
 msgstr "Bestandsnaam niet ingevuld"
 
-#: mmSimpleDialogs.cpp:761
+#: mmSimpleDialogs.cpp:766
 msgid "Please select the file for this operation."
 msgstr "Selecteer het bestand voor deze actie."
 
-#: mmSimpleDialogs.cpp:771
+#: mmSimpleDialogs.cpp:776
 msgid "Please select the account for this transaction."
 msgstr "Selecteer de rekening voor deze transactie."
 
-#: mmSimpleDialogs.cpp:773
+#: mmSimpleDialogs.cpp:778
 msgid "Please specify which account the transfer is going to."
 msgstr "Specificeer naar welke rekening de overboeking gaat."
 
-#: mmSimpleDialogs.cpp:775
+#: mmSimpleDialogs.cpp:780
 msgid "Selection can be made by using the dropdown button."
 msgstr "Een keuze kan worden gemaakt via het uitklapmenu."
 
-#: mmSimpleDialogs.cpp:778
+#: mmSimpleDialogs.cpp:783
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Activeren van de knop geeft een selectievakje aan waar het account kan worden geselecteerd."
 
-#: mmSimpleDialogs.cpp:787
+#: mmSimpleDialogs.cpp:792
 msgid "Invalid Payee"
 msgstr "Foutieve begunstigde"
 
-#: mmSimpleDialogs.cpp:788
+#: mmSimpleDialogs.cpp:793
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Type een nieuwe begunstigde in, \n"
 "of maak een keuze via het uitklapmenu."
 
-#: mmSimpleDialogs.cpp:796 mmSimpleDialogs.cpp:808
+#: mmSimpleDialogs.cpp:801 mmSimpleDialogs.cpp:813
 msgid "Invalid Name"
 msgstr "Foutieve naam"
 
-#: mmSimpleDialogs.cpp:799 mmSimpleDialogs.cpp:811
+#: mmSimpleDialogs.cpp:804 mmSimpleDialogs.cpp:816
 msgid "Already exist!"
 msgstr "Bestaat al!"
 
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:806
 msgid "Please type in a non empty name."
 msgstr "A.u.b. een niet lege naam invoeren."
 
-#: mmSimpleDialogs.cpp:813
+#: mmSimpleDialogs.cpp:818
 msgid "Please type in a non empty symbol."
 msgstr "A.u.b. een niet leeg teken invoeren."
 
@@ -4012,30 +4012,30 @@ msgstr "Dagen tussen geselecteerde transacties: %d"
 msgid "Custom fields"
 msgstr "Aangepaste velden"
 
-#: mmcustomdata.cpp:157
+#: mmcustomdata.cpp:158
 msgid "False"
 msgstr "Onwaar"
 
-#: mmcustomdata.cpp:157
+#: mmcustomdata.cpp:160
 msgid "True"
 msgstr "Waar"
 
-#: mmcustomdata.cpp:304
+#: mmcustomdata.cpp:309
 msgid "Please select"
 msgstr "Gelieve een keuze te maken"
 
-#: mmcustomdata.cpp:304
+#: mmcustomdata.cpp:309
 msgid "Multi Choice"
 msgstr "Meerdere keuzes"
 
-#: mmcustomdata.cpp:737
+#: mmcustomdata.cpp:747
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
 msgstr "Kan aangepast veld niet opslaan \"%s\":\n"
 "waarde \"%s\" komt niet overeen met RegEx validatie \"%s\""
 
-#: mmcustomdata.cpp:740
+#: mmcustomdata.cpp:750
 msgid "CustomField validation error"
 msgstr "CustomField validatie fout"
 
@@ -5114,7 +5114,7 @@ msgstr "Totaal"
 
 #: mmhomepage.cpp:108 mmhomepage.cpp:687 reports/incexpenses.cpp:280
 #: reports/payee.cpp:166 reports/summarystocks.cpp:155
-#: splittransactionsdialog.cpp:180
+#: splittransactionsdialog.cpp:192
 msgid "Total:"
 msgstr "Totaal:"
 
@@ -6570,15 +6570,15 @@ msgstr "Splits detailsvenster"
 msgid "Split Transaction Details"
 msgstr "Splitsen transactiedetails"
 
-#: splittransactionsdialog.cpp:166
+#: splittransactionsdialog.cpp:178
 msgid "Add Split"
 msgstr "Voeg Splitsing toe"
 
-#: splittransactionsdialog.cpp:172
+#: splittransactionsdialog.cpp:184
 msgid "Remove Split"
 msgstr "Uitsplitsing verwijderen"
 
-#: splittransactionsdialog.cpp:250
+#: splittransactionsdialog.cpp:265
 msgid "Invalid Total Amount"
 msgstr "Ongeldig totaal bedrag"
 
