@@ -8,7 +8,7 @@ jobs:
           name: Checkout code
           command: |
             cd $CIRCLE_WORKING_DIRECTORY && \
-            git clone --brabh $CIRCLE_BRANCH --recurse "$CIRCLE_REPOSITORY_URL" .
+            git clone --branch $CIRCLE_BRANCH --recurse "$CIRCLE_REPOSITORY_URL" .
       - run:
           name: Build DB headers and prepare to build
           command: |
