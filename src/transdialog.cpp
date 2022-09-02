@@ -1184,7 +1184,6 @@ void mmTransDialog::SetTooltips()
     mmToolTip(dpc_, _("Specify the date of the transaction"));
     mmToolTip(choiceStatus_, _("Specify the status for the transaction"));
     mmToolTip(transaction_type_, _("Specify the type of transactions to be created."));
-    mmToolTip(bSplit_, _("Use split Categories"));
     mmToolTip(textNumber_, _("Specify any associated check number or transaction number"));
     mmToolTip(textNotes_, _("Specify any text notes you want to add to this transaction."));
     mmToolTip(cAdvanced_, _("Allows the setting of different amounts in the FROM and TO accounts."));
