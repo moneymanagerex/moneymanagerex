@@ -433,15 +433,16 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())
         {
-            bool catFilter = dlg.get()->mmIsCategorySubCatChecked();
+            bool catFilter = dlg.get()->mmIsCategoryChecked();
+            bool subCatFilter = dlg.get()->mmIsCategorySubCatChecked();
             const auto& value = dlg.get()->mmGetCategoryPattern();
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
 
             for (const auto& split : full_tran.m_splits)
             {
-                const auto& categ = Model_Category::full_name(split.CATEGID, (!catFilter ? split.SUBCATEGID : -1));
+                const auto& categ = Model_Category::full_name(split.CATEGID, (!subCatFilter ? split.SUBCATEGID : -1));
 
-                if (pattern.Matches(categ)) {
+                if (!catFilter || pattern.Matches(categ)) {
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     trans_.push_back(full_tran);
