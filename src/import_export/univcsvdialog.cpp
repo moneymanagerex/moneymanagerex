@@ -119,7 +119,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
     CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
     CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
-    
+
     Create(parent, IsImporter() ? _("Import dialog") : _("Export dialog"), id, pos, size, style);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmUnivCSVDialog::changeFocus), nullptr, this);
 }
@@ -1271,7 +1271,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 }
                 pTxFile->AddNewItem(entry, itemType);
             }
-            
+
             ++numRecords;
         }
     }
@@ -1710,7 +1710,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             }
         }
 
-        holder.Amount = fabs(amount);
+        holder.Amount = amount;
         break;
 
     case UNIV_CSV_CATEGORY:
@@ -1787,7 +1787,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
         break;
 
-    // A number of type options are supported to make amount positive 
+    // A number of type options are supported to make amount positive
     // ('debit' seems odd but is there for backwards compatability!)
     case UNIV_CSV_TYPE:
         for (const wxString& entry : { "debit", "deposit", "+" }) {
