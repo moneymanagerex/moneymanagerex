@@ -1704,13 +1704,24 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_AMOUNT:
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
-        if (std::find(csvFieldOrder_.begin(), csvFieldOrder_.end(), UNIV_CSV_TYPE) == csvFieldOrder_.end()) {
-            if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
+        if (m_reverce_sign){
+            if (amount > 0.0){
+                holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+            }
+            else {
                 holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
             }
         }
+        else {
+            if (amount > 0.0){
+                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            }
+            else {
+                holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+            }
+        }
 
-        holder.Amount = amount;
+        holder.Amount = fabs(amount);
         break;
 
     case UNIV_CSV_CATEGORY:
