@@ -24,6 +24,7 @@
 
 #include "defs.h"
 #include <wx/srchctrl.h>
+#include <wx/tglbtn.h>
 #include "model/Model_Category.h"
 
 class mmCategDialogTreeCtrl : public wxTreeCtrl
@@ -95,11 +96,12 @@ private:
     void OnDoubleClicked(wxTreeEvent& event);
     void showCategDialogDeleteError(bool category = true);
     void OnCategoryRelocation(wxCommandEvent& /*event*/);
-    void OnExpandChbClick(wxCommandEvent& /*event*/);
-    void OnShowHiddenChbClick(wxCommandEvent& /*event*/);
+    void OnExpandOrCollapseToggle(wxCommandEvent& event);
+    void OnShowHiddenToggle(wxCommandEvent& /*event*/);
     void OnTextChanged(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
+    void OnItemCollapseOrExpand(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
     bool validateName(wxString name);
@@ -111,8 +113,9 @@ private:
     wxButton* m_buttonSelect;
     wxButton* m_buttonDelete;
     wxBitmapButton* m_buttonRelocate;
-    wxCheckBox* m_cbExpand;
-    wxCheckBox* m_cbShowAll;
+    wxToggleButton* m_tbCollapse;
+    wxToggleButton* m_tbExpand;
+    wxToggleButton* m_tbShowAll;
     wxTreeItemId m_selectedItemId;
     wxTreeItemId root_;
     wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText);
@@ -121,6 +124,7 @@ private:
     int m_subcateg_id;
     int m_init_selected_categ_id;
     int m_init_selected_subcateg_id;
+    bool m_clean_list;
     wxColour NormalColor_;
     wxArrayString m_hidden_categs;
     bool m_refresh_requested;
@@ -132,7 +136,9 @@ private:
         MENU_ITEM_UNHIDE,
         MENU_ITEM_CLEAR,
         MENU_ITEM_DELETE,
-        ID_DIALOG_CATEGORY
+        ID_DIALOG_CATEGORY,
+        ID_EXPAND,
+        ID_COLLAPSE
     };
 };
 

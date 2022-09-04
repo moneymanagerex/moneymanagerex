@@ -426,6 +426,9 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
+    if (isReportMode_)
+        m_setting_name->Append("", new wxStringClientData("{}"));
+
     if (isMultiAccount_)
     {
         wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key, true);
