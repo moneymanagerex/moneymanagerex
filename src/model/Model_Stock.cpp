@@ -78,9 +78,12 @@ double Model_Stock::InvestmentValue(const Data* r)
 
     for (const auto stock_link : stock_list)
     {
-        Model_Shareinfo::Data * share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
-        investmentValue += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
+        if (share_entry)
+        {
+            investmentValue += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
         }
+    }
     return investmentValue;
 }
 
