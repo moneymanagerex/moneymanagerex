@@ -209,7 +209,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     for (const auto stock_link : stock_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
-        if ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0))
+        if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_link.CHECKINGACCOUNTID);
             wxString sd = mmGetDateForDisplay(stock_trans->TRANSDATE);
