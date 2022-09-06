@@ -84,6 +84,7 @@ private:
     void CreateControls();
     void fillControls();
     void setTreeSelection(int category_id, int subcategory_id);
+    void saveCurrentCollapseState();
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -124,7 +125,8 @@ private:
     int m_subcateg_id;
     int m_init_selected_categ_id;
     int m_init_selected_subcateg_id;
-    bool m_clean_list;
+    std::map<int, bool> m_categoryVisible;
+    bool m_processExpandCollapse;
     wxColour NormalColor_;
     wxArrayString m_hidden_categs;
     bool m_refresh_requested;

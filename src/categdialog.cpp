@@ -77,7 +77,7 @@ mmCategDialog::mmCategDialog()
     , m_tbCollapse(nullptr)
     , m_tbExpand(nullptr)
     , m_tbShowAll(nullptr)
-    , m_clean_list(true)
+    , m_processExpandCollapse(true)
 {
     // Initialize fields in constructor
     m_categ_id = -1;
@@ -144,6 +144,8 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
         m_treeCtrl->Expand(root_);
     m_tbExpand->SetValue(expand_categs_tree);
     m_tbCollapse->SetValue(!expand_categs_tree);
+    m_tbShowAll->SetValue(Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true));
+    saveCurrentCollapseState();
   
     m_maskTextCtrl->SetFocus();
     SetEvtHandlerEnabled(true);
@@ -155,24 +157,26 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     return TRUE;
 }
 
-void mmCategDialog::fillControls()
-{
-    std::map<int, bool> categoryVisible;
-    if (!m_clean_list)
+void mmCategDialog::saveCurrentCollapseState()
     {
         wxTreeItemIdValue treeDummyValue;
 
-        // Determine which catgeories where collapsed prior to being called, so we can retain state
+    // Determine which categories were collapsed prior to being called, so we can retain state
         wxTreeItemId id = m_treeCtrl->GetFirstChild(m_treeCtrl->GetRootItem(), treeDummyValue);
+
+    m_categoryVisible.clear();
         while (id.IsOk())
         {
             mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(id));
             if (iData)
-                categoryVisible[iData->getCategData()->CATEGID] = m_treeCtrl->IsExpanded(id);
+            m_categoryVisible[iData->getCategData()->CATEGID] = m_treeCtrl->IsExpanded(id);
             id = m_treeCtrl->GetNextSibling(id);
         }
     }
 
+void mmCategDialog::fillControls()
+{
+    m_processExpandCollapse = false;
     m_treeCtrl->DeleteAllItems();
     root_ = m_treeCtrl->AddRoot(_("Categories"));
     m_selectedItemId = root_;
@@ -180,18 +184,18 @@ void mmCategDialog::fillControls()
     m_treeCtrl->SetFocus();
     NormalColor_ = m_treeCtrl->GetItemTextColour(root_);
     bool show_hidden_categs = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
-    m_tbShowAll->SetValue(show_hidden_categs);
 
+    const wxString match = m_maskStr + "*";
     const auto &categories = Model_Category::instance().all();
     for (const Model_Category::Data& category : categories)
     {
         wxTreeItemId maincat;
         bool cat_bShow = categShowStatus(category.CATEGID, -1);
-        if (m_tbShowAll->GetValue() || cat_bShow || category.CATEGID == m_init_selected_categ_id)
+        if (show_hidden_categs || cat_bShow || category.CATEGID == m_init_selected_categ_id)
         {
             Model_Subcategory::Data subcat;
             bool catDisplayed = true;
-            if (category.CATEGNAME.Lower().Matches(m_maskStr.Append("*")))
+            if (category.CATEGNAME.Lower().Matches(match))
             {
                 maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
                 m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
@@ -205,10 +209,10 @@ void mmCategDialog::fillControls()
             for (const auto &sub_category : Model_Category::sub_category(category))
             {
                 bool subcat_bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
-                if (m_tbShowAll->GetValue() || subcat_bShow || sub_category.SUBCATEGID == m_init_selected_subcateg_id)
+                if (show_hidden_categs || subcat_bShow || sub_category.SUBCATEGID == m_init_selected_subcateg_id)
                 {
                     const wxString fullName = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
-                    if (fullName.Lower().Matches(m_maskStr.Append("*")))
+                    if (fullName.Lower().Matches(match))
                     {
                         if (!catDisplayed)
                         {
@@ -233,7 +237,7 @@ void mmCategDialog::fillControls()
             if (maincat)
             {
                 m_treeCtrl->SortChildren(maincat);
-                if (categoryVisible.count(category.CATEGID) > 0 && !categoryVisible.at(category.CATEGID))
+                if (m_maskStr.IsEmpty() && (m_categoryVisible.count(category.CATEGID) > 0) && !m_categoryVisible.at(category.CATEGID))
                     m_treeCtrl->CollapseAllChildren(maincat);
                 else
                     m_treeCtrl->ExpandAllChildren(maincat);                
@@ -242,6 +246,11 @@ void mmCategDialog::fillControls()
     }
 
     m_treeCtrl->SortChildren(root_);
+    m_treeCtrl->Expand(root_);
+
+    if (m_maskStr.IsEmpty())
+        saveCurrentCollapseState();
+
     m_treeCtrl->SelectItem(m_selectedItemId);
     m_treeCtrl->EnsureVisible(m_selectedItemId);
 
@@ -253,6 +262,7 @@ void mmCategDialog::fillControls()
     m_buttonRelocate->Enable(!m_IsSelection);
 
     setTreeSelection(m_categ_id, m_subcateg_id);
+    m_processExpandCollapse = true;
 }
 
 void mmCategDialog::CreateControls()
@@ -693,7 +703,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
 
 void mmCategDialog::OnExpandOrCollapseToggle(wxCommandEvent& event)
 {
-    this->Freeze();
+    m_processExpandCollapse = false;
     if (event.GetId() == ID_EXPAND)
     {
         m_treeCtrl->ExpandAll();
@@ -708,10 +718,10 @@ void mmCategDialog::OnExpandOrCollapseToggle(wxCommandEvent& event)
         m_tbExpand->SetValue(false);
         m_tbCollapse->SetValue(true);
     }
-    this->Thaw();
-    m_clean_list = true;
     m_treeCtrl->EnsureVisible(m_selectedItemId);
     Model_Setting::instance().Set("EXPAND_CATEGS_TREE", m_tbExpand->GetValue());
+    saveCurrentCollapseState();
+    m_processExpandCollapse = true;
 }
 
 void mmCategDialog::OnShowHiddenToggle(wxCommandEvent& /*event*/)
@@ -722,7 +732,9 @@ void mmCategDialog::OnShowHiddenToggle(wxCommandEvent& /*event*/)
 
 void mmCategDialog::OnTextChanged(wxCommandEvent& event)
 {
-    m_maskStr = event.GetString().Lower().Prepend("*");
+    m_maskStr = event.GetString();
+    if (!m_maskStr.IsEmpty())
+        m_maskStr = m_maskStr.Lower().Prepend("*");
     fillControls();
     m_maskTextCtrl->SetFocus();
     m_maskTextCtrl->SetInsertionPointEnd();
@@ -784,9 +796,12 @@ void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
 
 void mmCategDialog::OnItemCollapseOrExpand(wxTreeEvent& event)
 {
+    if (m_processExpandCollapse)
+    {
     m_tbCollapse->SetValue(false);
     m_tbExpand->SetValue(false);
-    m_clean_list = false;
+        saveCurrentCollapseState();
+    }
     event.Skip();
 }
 
