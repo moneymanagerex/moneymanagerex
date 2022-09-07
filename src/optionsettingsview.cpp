@@ -143,7 +143,7 @@ void OptionSettingsView::Create()
 
     m_budget_days_offset = new wxSpinCtrl(view_panel, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -30, +30);
-    mmToolTip(m_budget_days_offset, _("Advance or retard the start date from the 1st of the month or year by the number of days"));
+    mmToolTip(m_budget_days_offset, _("Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"));
     m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
 
