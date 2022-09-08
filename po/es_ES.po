@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-08 14:15+0300\n"
-"PO-Revision-Date: 2022-09-08 11:34\n"
+"PO-Revision-Date: 2022-09-08 14:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5874,7 +5874,7 @@ msgstr "Desviación del presupuesto (días):"
 
 #: optionsettingsview.cpp:146
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Permite ajustar el 'primer día' del mes (normalmente el día 1) para el cálculo del presupuesto"
 
 #: optionsettingsview.cpp:154
 msgid "Start day of month for reporting:"
