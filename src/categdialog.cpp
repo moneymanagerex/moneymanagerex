@@ -152,7 +152,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
 
     mmSetSize(this);
     Centre();
-    SetMinSize(wxSize(316, 316));
+    SetMinSize(wxSize(400, 316));
     SetIcon(mmex::getProgramIcon());
     return TRUE;
 }
@@ -272,8 +272,8 @@ void mmCategDialog::CreateControls()
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     mainSizerVertical->Add(itemBoxSizer3, g_flagsExpand);
-    wxBoxSizer* itemBoxSizer33 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer3->Add(itemBoxSizer33);
+    wxStdDialogButtonSizer* itemBoxSizer33 = new wxStdDialogButtonSizer;
+    itemBoxSizer3->Add(itemBoxSizer33, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
     m_buttonRelocate = new wxBitmapButton(this
         , wxID_REPLACE_ALL, mmBitmap(png::RELOCATION, mmBitmapButtonSize));
