@@ -339,7 +339,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(listCtrlAccount_->m_asc ? ICON_DOWNARROW : ICON_UPARROW);
+    item.SetImage(listCtrlAccount_->m_asc ? ICON_UPARROW : ICON_DOWNARROW);
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
