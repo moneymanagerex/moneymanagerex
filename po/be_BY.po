@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-08 14:15+0300\n"
-"PO-Revision-Date: 2022-09-08 11:34\n"
+"PO-Revision-Date: 2022-09-08 15:21\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4040,11 +4040,11 @@ msgstr "Карыстальніцкія палі"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "Не"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "Так"
 
 #: mmcustomdata.cpp:309
 msgid "Please select"
@@ -5902,7 +5902,7 @@ msgstr "Зрушэнне бюджэту (дзён):"
 
 #: optionsettingsview.cpp:146
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Дазволіць змену першага дня месяца (звычайна — 1) для мэты разрахоўкі бюджэта"
 
 #: optionsettingsview.cpp:154
 msgid "Start day of month for reporting:"
