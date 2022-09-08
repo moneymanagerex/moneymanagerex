@@ -398,10 +398,11 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         Model_Subcategory::Data subcat;
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
         m_treeCtrl->Expand(m_selectedItemId);
+        m_treeCtrl->SelectItem(tid);
+        m_treeCtrl->SetFocus();
         m_refresh_requested = true;
         m_categ_id = category->CATEGID;
         m_subcateg_id = -1;
-        fillControls();
         return;
     }
 
@@ -428,10 +429,11 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         wxTreeItemId tid = m_treeCtrl->AppendItem(m_selectedItemId, text);
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
         m_treeCtrl->Expand(m_selectedItemId);
+        m_treeCtrl->SelectItem(tid);
+        m_treeCtrl->SetFocus();
         m_refresh_requested = true;
         m_categ_id = subcategory->CATEGID;
         m_subcateg_id = subcategory->SUBCATEGID;
-        fillControls();
         return;
     }
 
