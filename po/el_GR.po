@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-08 14:15+0300\n"
-"PO-Revision-Date: 2022-09-09 12:17\n"
+"POT-Creation-Date: 2022-09-09 20:50+0300\n"
+"PO-Revision-Date: 2022-09-09 17:59\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1561,7 +1561,7 @@ msgstr "Δηλώστε το έτος που θα βασισθεί ο προϋπ�
 msgid "Budget Year already exists"
 msgstr "Το έτος προϋπολογισμού ήδη υπάρχει"
 
-#: categdialog.cpp:181 import_export/qif_export.cpp:137 mmframereport.cpp:140
+#: categdialog.cpp:182 import_export/qif_export.cpp:137 mmframereport.cpp:140
 msgid "Categories"
 msgstr "Κατηγορίες"
 
@@ -1609,115 +1609,131 @@ msgstr "&Επιλογή"
 msgid "Select the currently selected category as the selected category for the transaction"
 msgstr "Επιλέξτε την τρέχουσα επιλεγμένη κατηγορία ως κατηγορία επιλεγμένη για τη συναλλαγή"
 
-#: categdialog.cpp:365
+#: categdialog.cpp:367
 msgid "Name contains category delimiter. "
 msgstr ""
 
-#: categdialog.cpp:366
+#: categdialog.cpp:368
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
 msgstr "Ο χαρακτήρας άνω και κάτω τελείας (:) χρησιμοποιείται για τη διάκριση κατηγοριών και υποκατηγοριών και για αυτό δεν πρέπει να χρησιμοποιείται στο όνομα"
 
-#: categdialog.cpp:368
+#: categdialog.cpp:370
 msgid "Organize Categories: Invalid Name"
 msgstr "Οργάνωση Κατηγοριών: Μη Έγκυρο Όνομα"
 
-#: categdialog.cpp:376
+#: categdialog.cpp:378
 msgid "Enter the name for the new category:"
 msgstr "Εισάγετε το όνομα για τη νέα κατηγορία:"
 
-#: categdialog.cpp:377
+#: categdialog.cpp:379
 msgid "Add Category"
 msgstr "Προσθήκη Κατηγορίας"
 
-#: categdialog.cpp:386 categdialog.cpp:600
+#: categdialog.cpp:388 categdialog.cpp:668
 msgid "Category with same name exists"
 msgstr "Υπάρχει ήδη κατηγορία με ίδιο όνομα"
 
-#: categdialog.cpp:387
+#: categdialog.cpp:389
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "Συμβουλή: Αν η κατηγορία προστέθηκε τώρα, ελέγξτε το κάτω μέρος της λίστας.\n"
 "Η κατηγορία θα μπεί στη σειρά της την επόμενη φορά που θα εμφανιστεί το παράθυρο"
 
-#: categdialog.cpp:389 categdialog.cpp:418 categdialog.cpp:439
+#: categdialog.cpp:391 categdialog.cpp:422 categdialog.cpp:445
 msgid "Organise Categories: Adding Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα προσθήκης"
 
-#: categdialog.cpp:417 categdialog.cpp:617
+#: categdialog.cpp:421 categdialog.cpp:486 categdialog.cpp:685
 msgid "Sub Category with same name exists"
 msgstr "Υπαρχει ήδη υποκατηγορία με ίδιο όνομα"
 
-#: categdialog.cpp:438
+#: categdialog.cpp:444
 msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr "Μη έγκυρη μητρική κατηγορία. Επιλέξτε τον κόμβο ριζικής ή κύριας κατηγορίας."
 
-#: categdialog.cpp:445
+#: categdialog.cpp:485
+msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
+msgstr ""
+
+#: categdialog.cpp:492
+#, c-format
+msgid "Are you sure you want to move\n"
+" \"%s\"\n"
+"to:\n"
+"\"%s\" ?"
+msgstr ""
+
+#: categdialog.cpp:495
+msgid "Confirm Move"
+msgstr ""
+
+#: categdialog.cpp:513
 msgid "Category in use."
 msgstr "Κατηγορία σε χρήση."
 
-#: categdialog.cpp:445
+#: categdialog.cpp:513
 msgid "Sub-Category in use."
 msgstr "Υποκατηγορία σε χρήση."
 
-#: categdialog.cpp:447
+#: categdialog.cpp:515
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές που χρησιμοποιούν αυτήν την Κατηγορία σε\n"
 "άλλη Κατηγορία χρησιμοποιώντας την εντολή μετεγκατάστασης:"
 
-#: categdialog.cpp:450
+#: categdialog.cpp:518
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές χρησιμοποιώντας αυτήν την υποκατηγορία σε μια άλλη υποκατηγορία\n"
 "χρησιμοποιώντας την εντολή μετεγκατάστασης:"
 
-#: categdialog.cpp:453
+#: categdialog.cpp:521
 msgid "Tools -> Relocation of -> Categories"
 msgstr "Εργαλεία -> Μετατόπιση των -> Κατηγοριών"
 
-#: categdialog.cpp:455
+#: categdialog.cpp:523
 msgid "Organise Categories: Delete Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα διαγραφής"
 
-#: categdialog.cpp:586
+#: categdialog.cpp:654
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr "Εισάγετε ένα νέο όνομα για %s'"
 
-#: categdialog.cpp:587
+#: categdialog.cpp:655
 msgid "Edit Category"
 msgstr "Επεξεργασία Κατηγορίας"
 
-#: categdialog.cpp:601 categdialog.cpp:618
+#: categdialog.cpp:669 categdialog.cpp:686
 msgid "Organise Categories: Editing Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα Επεξεργασίας"
 
-#: categdialog.cpp:695 mmframe.cpp:3384
+#: categdialog.cpp:763 mmframe.cpp:3384
 msgid "Category Relocation Completed."
 msgstr "Η Μετατόπιση Κατηγορίας Ολοκληρώθηκε."
 
-#: categdialog.cpp:696 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
+#: categdialog.cpp:764 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Οι εγγραφές έχουν ενημερωθεί στη βάση δεδομένων: %i"
 
-#: categdialog.cpp:698 mmframe.cpp:3387
+#: categdialog.cpp:766 mmframe.cpp:3387
 msgid "Category Relocation Result"
 msgstr "Αποτέλεσμα μετατόπισης κατηγορίας"
 
-#: categdialog.cpp:781
+#: categdialog.cpp:849
 msgid "Hide Selected Category"
 msgstr "Απόκρυψη Επιλεγμένης Κατηγορίας"
 
-#: categdialog.cpp:782
+#: categdialog.cpp:850
 msgid "Unhide Selected Category"
 msgstr "Επανεμφάνιση Επιλεγμένης Κατηγορίας"
 
-#: categdialog.cpp:784 payeedialog.cpp:401
+#: categdialog.cpp:852 payeedialog.cpp:401
 msgid "Remove Category"
 msgstr "Αφαίρεση κατηγορίας"
 
-#: categdialog.cpp:787 import_export/univcsvdialog.cpp:461
+#: categdialog.cpp:855 import_export/univcsvdialog.cpp:461
 msgid "Clear Settings"
 msgstr "Καθαρισμός Ρυθμίσεων"
 
