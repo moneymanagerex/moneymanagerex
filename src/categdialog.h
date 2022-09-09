@@ -103,10 +103,12 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     void OnItemCollapseOrExpand(wxTreeEvent& event);
+    void OnBeginDrag(wxTreeEvent& event);
+    void OnEndDrag(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
     bool validateName(wxString name);
-
+    
     mmCategDialogTreeCtrl* m_treeCtrl;
     wxSearchCtrl* m_maskTextCtrl;
     wxButton* m_buttonAdd;
@@ -125,6 +127,7 @@ private:
     int m_subcateg_id;
     int m_init_selected_categ_id;
     int m_init_selected_subcateg_id;
+    int m_dragSourceCATEGID, m_dragSourceSUBCATEGID;
     std::map<int, bool> m_categoryVisible;
     bool m_processExpandCollapse;
     wxColour NormalColor_;
