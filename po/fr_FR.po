@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-09 17:59\n"
+"PO-Revision-Date: 2022-09-09 19:02\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1652,7 +1652,7 @@ msgstr "Catégorie supérieure non valable. Sélectionner la catégorie racine o
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Vous ne pouvez pas déplacer une sous-catégorie vers une catégorie qui a déjà une sous-catégorie portant le même nom. Pensez à la renommer avant de la déplacer."
 
 #: categdialog.cpp:492
 #, c-format
@@ -1660,11 +1660,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir déplacer\n"
+" \"%s\"\n"
+"vers\n"
+"\"%s\" ?"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "Confirmez le déplacement"
 
 #: categdialog.cpp:513
 msgid "Category in use."
