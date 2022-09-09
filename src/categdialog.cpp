@@ -46,6 +46,8 @@ EVT_TREE_ITEM_ACTIVATED(wxID_ANY, mmCategDialog::OnDoubleClicked)
 EVT_TREE_ITEM_MENU(wxID_ANY, mmCategDialog::OnItemRightClick)
 EVT_TREE_ITEM_COLLAPSED(wxID_ANY, mmCategDialog::OnItemCollapseOrExpand)
 EVT_TREE_ITEM_EXPANDED(wxID_ANY, mmCategDialog::OnItemCollapseOrExpand)
+EVT_TREE_BEGIN_DRAG(wxID_ANY, mmCategDialog::OnBeginDrag)
+EVT_TREE_END_DRAG(wxID_ANY, mmCategDialog::OnEndDrag)
 EVT_MENU(wxID_ANY, mmCategDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
@@ -441,6 +443,68 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         , _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
 
 }
+
+// Handle Categories Drag/Drop
+
+void mmCategDialog::OnBeginDrag(wxTreeEvent& event)
+{
+    auto sourceItem = event.GetItem();
+    if (sourceItem == m_treeCtrl->GetRootItem())
+        return;
+
+    mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
+            (m_treeCtrl->GetItemData(sourceItem));
+    m_dragSourceCATEGID = iData->getCategData()->CATEGID;
+    m_dragSourceSUBCATEGID = iData->getSubCategData()->SUBCATEGID;
+
+    // Can only drag sub-categories
+    if (m_dragSourceSUBCATEGID != -1)
+        event.Allow();
+}
+
+void mmCategDialog::OnEndDrag(wxTreeEvent& event)
+{
+    auto destItem = event.GetItem();
+    if (destItem == m_treeCtrl->GetRootItem())
+        return;
+
+    mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
+            (m_treeCtrl->GetItemData(destItem));
+    int categID = iData->getCategData()->CATEGID;
+    int subCategID = iData->getSubCategData()->SUBCATEGID;
+            
+    // Can only drag onto other categories
+    if ((categID == m_dragSourceCATEGID) || (subCategID != -1))
+        return;
+
+    Model_Subcategory::Data* sourceSubCat = Model_Subcategory::instance().get(m_dragSourceSUBCATEGID);
+    if (Model_Subcategory::instance().get(sourceSubCat->SUBCATEGNAME, categID))
+    {
+        wxMessageBox(_("You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving.")
+                    , _("Sub Category with same name exists")
+                    , wxOK | wxICON_ERROR);
+        return;
+    }
+
+    wxString moveMessage = wxString::Format(
+        _("Are you sure you want to move\n \"%s\"\nto:\n\"%s\" ?")
+        , Model_Category::full_name(m_dragSourceCATEGID, m_dragSourceSUBCATEGID)
+        , Model_Category::full_name(categID, subCategID));
+    wxMessageDialog msgDlg(this, moveMessage, _("Confirm Move"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
+    if (msgDlg.ShowModal() != wxID_YES)
+        return;
+
+    sourceSubCat->CATEGID = categID;
+    Model_Subcategory::instance().save(sourceSubCat);
+
+    m_refresh_requested = true;
+    m_categ_id = categID;
+    m_subcateg_id = m_dragSourceSUBCATEGID;
+    fillControls();
+}
+
+//
 
 void mmCategDialog::showCategDialogDeleteError(bool category)
 {
