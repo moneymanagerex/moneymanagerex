@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-08 14:15+0300\n"
-"PO-Revision-Date: 2022-09-08 11:33\n"
+"POT-Creation-Date: 2022-09-09 20:50+0300\n"
+"PO-Revision-Date: 2022-09-09 17:59\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -1549,7 +1549,7 @@ msgstr "基本予算にオンする年を指定します。"
 msgid "Budget Year already exists"
 msgstr "予算年度はすでに存在します"
 
-#: categdialog.cpp:181 import_export/qif_export.cpp:137 mmframereport.cpp:140
+#: categdialog.cpp:182 import_export/qif_export.cpp:137 mmframereport.cpp:140
 msgid "Categories"
 msgstr "カテゴリー"
 
@@ -1597,115 +1597,131 @@ msgstr "選択(&S)"
 msgid "Select the currently selected category as the selected category for the transaction"
 msgstr "現在選択されているカテゴリーを、取引で選択したカテゴリーとして選択します"
 
-#: categdialog.cpp:365
+#: categdialog.cpp:367
 msgid "Name contains category delimiter. "
 msgstr ""
 
-#: categdialog.cpp:366
+#: categdialog.cpp:368
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
 msgstr ""
 
-#: categdialog.cpp:368
+#: categdialog.cpp:370
 msgid "Organize Categories: Invalid Name"
 msgstr ""
 
-#: categdialog.cpp:376
+#: categdialog.cpp:378
 msgid "Enter the name for the new category:"
 msgstr "新しいカテゴリーの名前を入力してください:"
 
-#: categdialog.cpp:377
+#: categdialog.cpp:379
 msgid "Add Category"
 msgstr "カテゴリーを追加"
 
-#: categdialog.cpp:386 categdialog.cpp:600
+#: categdialog.cpp:388 categdialog.cpp:668
 msgid "Category with same name exists"
 msgstr "同じ名前のカテゴリーが存在します"
 
-#: categdialog.cpp:387
+#: categdialog.cpp:389
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "ヒント: 今、カテゴリーを追加した場合は、リストの最後を確認してください。\n"
 "次回ダイアログボックスが表示されると、カテゴリーはソート順になります"
 
-#: categdialog.cpp:389 categdialog.cpp:418 categdialog.cpp:439
+#: categdialog.cpp:391 categdialog.cpp:422 categdialog.cpp:445
 msgid "Organise Categories: Adding Error"
 msgstr "カテゴリーの整理: 追加エラー"
 
-#: categdialog.cpp:417 categdialog.cpp:617
+#: categdialog.cpp:421 categdialog.cpp:486 categdialog.cpp:685
 msgid "Sub Category with same name exists"
 msgstr "同じ名前のサブカテゴリーが存在します"
 
-#: categdialog.cpp:438
+#: categdialog.cpp:444
 msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr "親カテゴリーが正しくありません。ルートまたはメインカテゴリーノードを選択してください。"
 
-#: categdialog.cpp:445
+#: categdialog.cpp:485
+msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
+msgstr ""
+
+#: categdialog.cpp:492
+#, c-format
+msgid "Are you sure you want to move\n"
+" \"%s\"\n"
+"to:\n"
+"\"%s\" ?"
+msgstr ""
+
+#: categdialog.cpp:495
+msgid "Confirm Move"
+msgstr ""
+
+#: categdialog.cpp:513
 msgid "Category in use."
 msgstr "カテゴリーは使用中です。"
 
-#: categdialog.cpp:445
+#: categdialog.cpp:513
 msgid "Sub-Category in use."
 msgstr "サブカテゴリーは使用中です。"
 
-#: categdialog.cpp:447
+#: categdialog.cpp:515
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr "ヒント: 再配置コマンドを使用して、このカテゴリーを使用している\n"
 "すべての取引を、別のカテゴリーに変更します:"
 
-#: categdialog.cpp:450
+#: categdialog.cpp:518
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr "ヒント: 再配置コマンドを使用して、このサブカテゴリー使用している\n"
 "すべての取引を、別のサブカテゴリーに変更します:"
 
-#: categdialog.cpp:453
+#: categdialog.cpp:521
 msgid "Tools -> Relocation of -> Categories"
 msgstr "ツール -> 再配置 -> カテゴリー"
 
-#: categdialog.cpp:455
+#: categdialog.cpp:523
 msgid "Organise Categories: Delete Error"
 msgstr "カテゴリーの整理: 削除エラー"
 
-#: categdialog.cpp:586
+#: categdialog.cpp:654
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr ""
 
-#: categdialog.cpp:587
+#: categdialog.cpp:655
 msgid "Edit Category"
 msgstr "カテゴリーを編集"
 
-#: categdialog.cpp:601 categdialog.cpp:618
+#: categdialog.cpp:669 categdialog.cpp:686
 msgid "Organise Categories: Editing Error"
 msgstr "カテゴリーの整理: 編集エラー"
 
-#: categdialog.cpp:695 mmframe.cpp:3384
+#: categdialog.cpp:763 mmframe.cpp:3384
 msgid "Category Relocation Completed."
 msgstr "カテゴリーの再配置が完了しました。"
 
-#: categdialog.cpp:696 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
+#: categdialog.cpp:764 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "データベースのレコードが更新されました: %i"
 
-#: categdialog.cpp:698 mmframe.cpp:3387
+#: categdialog.cpp:766 mmframe.cpp:3387
 msgid "Category Relocation Result"
 msgstr "カテゴリーの再配置結果"
 
-#: categdialog.cpp:781
+#: categdialog.cpp:849
 msgid "Hide Selected Category"
 msgstr "選択したカテゴリーを非表示にする"
 
-#: categdialog.cpp:782
+#: categdialog.cpp:850
 msgid "Unhide Selected Category"
 msgstr "選択したカテゴリーを表示する"
 
-#: categdialog.cpp:784 payeedialog.cpp:401
+#: categdialog.cpp:852 payeedialog.cpp:401
 msgid "Remove Category"
 msgstr ""
 
-#: categdialog.cpp:787 import_export/univcsvdialog.cpp:461
+#: categdialog.cpp:855 import_export/univcsvdialog.cpp:461
 msgid "Clear Settings"
 msgstr "設定をクリア"
 
