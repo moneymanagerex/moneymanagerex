@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-09 17:59\n"
+"PO-Revision-Date: 2022-09-09 19:57\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1647,7 +1647,7 @@ msgstr "Ogiltig överordnad kategori. Välj rot- eller huvudkategori."
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Du kan inte flytta en underkategori till en kategori som redan har en underkategori med det namnet. Överväg att byta namn innan du flyttar."
 
 #: categdialog.cpp:492
 #, c-format
@@ -1655,11 +1655,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Är du säker på att du vill flytta\n"
+" \"%s\"\n"
+"till:\n"
+"\"%s\" ?"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "Bekräfta flytt"
 
 #: categdialog.cpp:513
 msgid "Category in use."
