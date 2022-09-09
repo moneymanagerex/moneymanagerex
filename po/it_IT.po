@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-09 17:59\n"
+"PO-Revision-Date: 2022-09-09 21:22\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1652,7 +1652,7 @@ msgstr "Categoria principale non valida. Scegliere il nodo principale o una Cate
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Non è possibile spostare una sottocategoria in una categoria che ha già una sottocategoria con quel nome. Si consideri la rinominazione prima di spostare."
 
 #: categdialog.cpp:492
 #, c-format
@@ -1660,11 +1660,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Sei sicuro di voler spostare\n"
+"\"%s\"\n"
+"a:\n"
+"\"%s\" ?"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "Conferma spostamento"
 
 #: categdialog.cpp:513
 msgid "Category in use."
@@ -5892,7 +5895,7 @@ msgstr "Scostamento Budget (giorni):"
 
 #: optionsettingsview.cpp:146
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Consente di modificare il 'primo giorno' nel mese (in genere il giorno 1) ai fini del calcolo del bilancio"
 
 #: optionsettingsview.cpp:154
 msgid "Start day of month for reporting:"
