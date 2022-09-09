@@ -397,6 +397,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         wxTreeItemId tid = m_treeCtrl->AppendItem(m_selectedItemId, text);
         Model_Subcategory::Data subcat;
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
+        m_treeCtrl->SortChildren(m_selectedItemId);
         m_treeCtrl->Expand(m_selectedItemId);
         m_treeCtrl->SelectItem(tid);
         m_treeCtrl->SetFocus();
@@ -428,6 +429,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 
         wxTreeItemId tid = m_treeCtrl->AppendItem(m_selectedItemId, text);
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
+        m_treeCtrl->SortChildren(m_selectedItemId);
         m_treeCtrl->Expand(m_selectedItemId);
         m_treeCtrl->SelectItem(tid);
         m_treeCtrl->SetFocus();
