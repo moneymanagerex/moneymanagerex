@@ -152,7 +152,6 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
 
     mmSetSize(this);
     Centre();
-    SetMinSize(wxSize(400, 316));
     SetIcon(mmex::getProgramIcon());
     return TRUE;
 }
@@ -268,7 +267,6 @@ void mmCategDialog::fillControls()
 void mmCategDialog::CreateControls()
 {
     wxBoxSizer* mainSizerVertical = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(mainSizerVertical);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     mainSizerVertical->Add(itemBoxSizer3, g_flagsExpand);
@@ -356,6 +354,8 @@ void mmCategDialog::CreateControls()
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
     wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer9->Add(itemCancelButton, g_flagsH);
+
+    this->SetSizerAndFit(mainSizerVertical);
 }
 
 bool mmCategDialog::validateName(wxString name)
