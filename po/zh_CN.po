@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-09 17:59\n"
+"PO-Revision-Date: 2022-09-10 13:47\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1649,7 +1649,7 @@ msgstr "错误的父类目。选择根类目或主类目节点。"
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "目标类别已有同名的子类别，无法移动。请在再移动前先重命名子类别。"
 
 #: categdialog.cpp:492
 #, c-format
@@ -1657,11 +1657,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "您确定要将\n"
+"“%s”\n"
+"移动到\n"
+"“%s”？"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "确认移动"
 
 #: categdialog.cpp:513
 msgid "Category in use."
