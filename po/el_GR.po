@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-09 17:59\n"
+"PO-Revision-Date: 2022-09-11 10:47\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1653,7 +1653,7 @@ msgstr "Μη έγκυρη μητρική κατηγορία. Επιλέξτε τ
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Δεν μπορείτε να μετακινήσετε μια υποκατηγορία σε μια κατηγορία που έχει ήδη μια υποκατηγορία με αυτό το όνομα. Εξετάστε την μετονομασία πριν τη μετακίνηση."
 
 #: categdialog.cpp:492
 #, c-format
@@ -1661,11 +1661,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Είστε βέβαιοι ότι θέλετε να μετακινήσετε\n"
+" \"%s\"\n"
+"σε:\n"
+"\"%s\" ;"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "Επιβεβαίωση μετακίνησης"
 
 #: categdialog.cpp:513
 msgid "Category in use."
