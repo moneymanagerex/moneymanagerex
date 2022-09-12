@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-10 13:47\n"
+"PO-Revision-Date: 2022-09-12 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5879,7 +5879,7 @@ msgstr "预算偏移(天)："
 
 #: optionsettingsview.cpp:146
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "允许调整当月的“第一天”（通常是第一天）以用于预算计算"
 
 #: optionsettingsview.cpp:154
 msgid "Start day of month for reporting:"
