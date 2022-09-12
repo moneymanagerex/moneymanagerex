@@ -141,7 +141,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                             hb.addTableCell(entry.name);
                             hb.addTableCell(entry.symbol);
                             hb.addTableCellDate(entry.date);
-                            hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), "text-right");
+                            hb.addTableCell(Model_Account::toString(entry.qty, account, trunc(entry.qty) == entry.qty ? 0 : 4), "text-right");
                             hb.addCurrencyCell(entry.purchase, currency, 4);
                             hb.addCurrencyCell(entry.current, currency, 4);
                             hb.addCurrencyCell(entry.commission, currency, 4);
