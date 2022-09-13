@@ -73,32 +73,7 @@ wxDate Model_Stock::PURCHASEDATE(const Data& stock)
 /** Original value of Stocks */
 double Model_Stock::InvestmentValue(const Data* r)
 {
-    double investmentValue = 0;
-    double avg_share_price = 0;
-    double total_shares = 0;
-
-    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, r->STOCKID);
-
-    for (const auto stock_link : stock_list)
-    {
-        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
-        if (share_entry)
-        {
-            total_shares += share_entry->SHARENUMBER;
-
-            if (share_entry->SHARENUMBER > 0) {
-                investmentValue += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
-            }
-            else {
-                investmentValue += share_entry->SHARENUMBER * avg_share_price;
-            }
-            if (total_shares < 0) total_shares = 0;
-            if (investmentValue < 0) investmentValue = 0;
-            if (total_shares > 0) avg_share_price = investmentValue / total_shares;
-            else avg_share_price = 0;
-        }
-    }
-    return investmentValue;
+    return r->VALUE;
 }
 
 /** Original value of Stocks */

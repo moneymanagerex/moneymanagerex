@@ -197,7 +197,7 @@ double StocksListCtrl::GetGainLoss(long item) const
 
 double StocksListCtrl::getGainLoss(const Model_Stock::Data& stock)
 {
-    return Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
+    return Model_Stock::CurrentValue(stock) - stock.VALUE;
 }
 
 double StocksListCtrl::GetRealGainLoss(long item) const
