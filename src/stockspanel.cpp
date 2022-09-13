@@ -463,7 +463,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
 
     //Selected share info
-    wxString additionInfo = wxString::Format("|%s - %s| = %s, %s * %s = %s %s\n"
+    wxString additionInfo = wxString::Format("This Account: |%s - %s| = %s, %s * %s = %s %s\n"
         , sCurrentPrice, sPurchasePrice, sDifference
         , sDifference, sNumShares
         , Model_Currency::toCurrency(GetGainLoss(selectedIndex), m_stock_panel->m_currency)
@@ -472,7 +472,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     //Summary for account for selected symbol
     if (purchasedTime > 1)
     {
-        additionInfo += wxString::Format( "|%s - %s| = %s, %s * %s = %s ( %s %% )\n%s"
+        additionInfo += wxString::Format( "All Accounts: |%s - %s| = %s, %s * %s = %s ( %s %% )\n%s"
             ,  sCurrentPrice, sAvgPurchasePrice, sTotalDifference
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)

@@ -74,6 +74,9 @@ wxDate Model_Stock::PURCHASEDATE(const Data& stock)
 double Model_Stock::InvestmentValue(const Data* r)
 {
     double investmentValue = 0;
+    double avg_share_price = 0;
+    double total_shares = 0;
+
     Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, r->STOCKID);
 
     for (const auto stock_link : stock_list)
@@ -81,7 +84,18 @@ double Model_Stock::InvestmentValue(const Data* r)
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
         if (share_entry)
         {
-            investmentValue += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+            total_shares += share_entry->SHARENUMBER;
+
+            if (share_entry->SHARENUMBER > 0) {
+                investmentValue += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+            }
+            else {
+                investmentValue += share_entry->SHARENUMBER * avg_share_price;
+            }
+            if (total_shares < 0) total_shares = 0;
+            if (investmentValue < 0) investmentValue = 0;
+            if (total_shares > 0) avg_share_price = investmentValue / total_shares;
+            else avg_share_price = 0;
         }
     }
     return investmentValue;
@@ -204,4 +218,59 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         balance += it.second;
 
     return balance;
+}
+
+/**
+Returns the realized gain/loss of the stock due to sold shares
+*/
+double Model_Stock::RealGainLoss(const Data* r)
+{
+    Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE::STOCK, r->STOCKID);
+    double real_gain_loss = 0;
+    double total_shares = 0;
+    double total_initial_value = 0;
+    double avg_share_price = 0;
+    for (const auto trans : trans_list)
+    {
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
+
+        total_shares += share_entry->SHARENUMBER;
+
+        if (share_entry->SHARENUMBER > 0) {
+            total_initial_value += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+        }
+        else {
+            total_initial_value += share_entry->SHARENUMBER * avg_share_price;
+            real_gain_loss += -share_entry->SHARENUMBER * (share_entry->SHAREPRICE - avg_share_price) - share_entry->SHARECOMMISSION;
+        }
+
+        if (total_shares < 0) total_shares = 0;
+        if (total_initial_value < 0) total_initial_value = 0;
+        if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
+        else avg_share_price = 0;
+    }
+
+    return real_gain_loss;
+}
+
+/** Realized gain/loss due to sales */
+double Model_Stock::RealGainLoss(const Data& r)
+{
+    return RealGainLoss(&r);
+}
+
+/** Updates the current price across all accounts which hold the stock */
+double Model_Stock::UpdateCurrentPrice(const Data* r)
+{
+    double current_price = 0.0;
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(r->SYMBOL));
+    std::sort(histData.begin(), histData.end(), SorterByDATE());
+    current_price = histData.back().VALUE;
+    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(r->SYMBOL));
+    for (auto& stock : stocks) {
+        Model_Stock::Data* stockRecord = Model_Stock::instance().get(stock.STOCKID);
+        stockRecord->CURRENTPRICE = current_price;
+        Model_Stock::instance().save(stockRecord);
+    }
+    return current_price;
 }
