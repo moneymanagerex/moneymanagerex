@@ -171,6 +171,7 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     double total_shares = 0;
     double total_initial_value = 0;
     double total_commission = 0;
+    double avg_share_price = 0;
     for (const auto trans : trans_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
@@ -178,8 +179,15 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
         total_shares += share_entry->SHARENUMBER;
         if (total_shares < 0) total_shares = 0;
 
-        total_initial_value += share_entry->SHARENUMBER * share_entry->SHAREPRICE;
+        if (share_entry->SHARENUMBER > 0) {
+            total_initial_value += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+        }
+        else {
+            total_initial_value += share_entry->SHARENUMBER * avg_share_price;
+        }
+
         if (total_initial_value < 0) total_initial_value = 0;
+        if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
 
         total_commission += share_entry->SHARECOMMISSION;
     }
@@ -191,7 +199,7 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     }
     else
     {
-        stock_entry->PURCHASEPRICE = 0;
+        stock_entry->PURCHASEPRICE = avg_share_price;
         stock_entry->NUMSHARES = total_shares;
         stock_entry->VALUE = total_initial_value;
         stock_entry->COMMISSION = total_commission;

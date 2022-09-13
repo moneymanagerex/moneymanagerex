@@ -899,6 +899,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_history_date_ctrl->GetValue().FormatISODate()));
         m_price_listbox->SetItem(i, 1, listStr);
     }
+    m_current_price_ctrl->SetValue(Model_Stock::UpdateCurrentPrice(m_stock), Option::instance().SharePrecision());
 }
 
 void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
@@ -918,6 +919,7 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();
+    m_current_price_ctrl->SetValue(Model_Stock::UpdateCurrentPrice(m_stock), Option::instance().SharePrecision());
 }
 
 void mmStockDialog::ShowStockHistory()

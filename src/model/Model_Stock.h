@@ -60,6 +60,14 @@ public:
     static double CurrentValue(const Data* r);
     static double CurrentValue(const Data& r);
 
+    /** Realized gain/loss from sales */
+    static double RealGainLoss(const Data* r);
+    /** Realized gain/loss from sales */
+    static double RealGainLoss(const Data& r);
+
+    /** Update current price across accounts */
+    static double UpdateCurrentPrice(const Data* r);
+
 public:
     /**
     * Remove the Data record from memory and the database.
