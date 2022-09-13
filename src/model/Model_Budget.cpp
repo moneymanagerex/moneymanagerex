@@ -167,7 +167,6 @@ double Model_Budget::getMonthlyBudget(wxString budgetYearMonth)
     
     double estimatedBudget = 0;
     const wxString yearName = budgetYearMonth.Left(4);
-    int lastYear = -1;
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;
 
