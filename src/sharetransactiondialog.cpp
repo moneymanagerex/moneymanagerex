@@ -383,25 +383,8 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     double commission = 0;
     m_share_commission_ctrl->GetDouble(commission);
 
-    double current_price = share_price;
-    if (m_stock && ((m_stock->PURCHASEPRICE != m_stock->CURRENTPRICE) && (m_stock->PURCHASEPRICE != 0)))
-    {
-        current_price = m_stock->CURRENTPRICE;
-    }
-
     // allow for loyalty shares. These are "Free"
     bool loyalty_shares = (share_price == 0) && (num_shares > 0);
-    if (m_stock && loyalty_shares)
-    {
-        current_price = m_stock->CURRENTPRICE;
-    }
-
-    // Only update the current price when adding new shares
-    if (!m_checking_entry)
-    {
-        m_stock->CURRENTPRICE = current_price;
-        Model_Stock::instance().save(m_stock);
-    }
 
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
@@ -431,7 +414,12 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Translink::UpdateStockValue(m_stock);
         if (!loyalty_shares)
         {
-            Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_transaction_panel->TransactionDate(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
+            Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_transaction_panel->TransactionDate(), share_price, Model_StockHistory::MANUAL);
+
+            //If this is the most recent date in the price history update the value of this stock in all accounts
+            if (Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(m_stock->SYMBOL), Model_StockHistory::DATE(m_transaction_panel->TransactionDate(), GREATER)).size() == 0) {
+                Model_Stock::UpdateCurrentPrice(m_stock);
+            }
         }
     }
     else
