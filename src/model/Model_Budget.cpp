@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 James Higley
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,9 +18,11 @@
  ********************************************************/
 
 #include "Model_Budget.h"
+#include "Model_Budgetyear.h"
 #include <wx/intl.h>
 #include "model/Model_Category.h"
 #include "db/DB_Table_Budgettable_V1.h"
+#include "option.h"
 
 Model_Budget::Model_Budget()
 : Model<DB_Table_BUDGETTABLE_V1>()
@@ -106,6 +109,85 @@ void Model_Budget::getBudgetEntry(int budgetYearID
         budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
         budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
     }
+}
+
+void Model_Budget::getBudgetStats(
+      std::map<int, std::map<int, std::map<int, double> > > &budgetStats
+    , mmDateRange* date_range
+    , bool groupByMonth)
+{
+    //Initialization
+    //Set std::map with zeros
+    double value = 0;
+    const wxDateTime start_date(1, date_range->start_date().GetMonth(), date_range->start_date().GetYear());
+    for (const auto& category : Model_Category::all_categories())
+    {
+        for (int m = 0; m < 12; m++)
+        {
+            const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
+            const int idx = d.GetYear() * 100 + d.GetMonth();
+            budgetStats[category.second.first][category.second.second][groupByMonth ? idx : 0] = value;
+        }
+    }
+
+    //Calculations
+    std::map<int, std::map<int, double> > yearBudgetValue;
+    const wxString year = wxString::Format("%i", start_date.GetYear());
+    int budgetYearID = Model_Budgetyear::instance().Get(year);
+    for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
+        yearBudgetValue[budget.CATEGID][budget.SUBCATEGID] =  getEstimate(true, period(budget), budget.AMOUNT);
+
+    for (int m = 0; m < 12; m++)
+    {
+        for (const auto& cat : yearBudgetValue)
+            for (const auto& id : cat.second)
+            {
+                const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
+                const int idx = d.GetYear() * 100 + d.GetMonth();
+                budgetStats[cat.first][id.first][groupByMonth ? idx : 0] += id.second;
+            }
+
+        const wxString budgetYearMonth = wxString::Format("%s-%02d", year, m + 1);
+        budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
+        for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
+        {
+            const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
+            const int idx = d.GetYear() * 100 + d.GetMonth();
+            if (Option::instance().BudgetOverride())
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][groupByMonth ? idx : 0] = getEstimate(true, period(budget), budget.AMOUNT);
+            else
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][groupByMonth ? idx : 0] += getEstimate(true, period(budget), budget.AMOUNT);
+        }
+    }
+}
+
+double Model_Budget::getMonthlyBudget(wxString budgetYearMonth)
+{
+    // Grab related budget data first for year and then month and merge
+    
+    double estimatedBudget = 0;
+    const wxString yearName = budgetYearMonth.Left(4);
+    int lastYear = -1;
+    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
+    std::map<int, std::map<int, double> > budgetAmt;
+
+    int budgetYearId = Model_Budgetyear::instance().Get(yearName);
+    Model_Budget::instance().getBudgetEntry(budgetYearId, budgetPeriod, budgetAmt);
+    for (const auto &budget : budgetPeriod)
+        for (const auto &budgetCat : budget.second)
+            estimatedBudget += Model_Budget::getEstimate(true
+                , budgetCat.second
+                , budgetAmt[budget.first][budgetCat.first]);
+       
+    budgetYearId = Model_Budgetyear::instance().Get(budgetYearMonth);
+    Model_Budget::instance().getBudgetEntry(budgetYearId, budgetPeriod, budgetAmt);
+    for (const auto &budget : budgetPeriod)
+        for (const auto &budgetCat : budget.second)
+            estimatedBudget += Model_Budget::getEstimate(true
+                , budgetCat.second
+                , budgetAmt[budget.first][budgetCat.first]);
+
+    return estimatedBudget;
 }
 
 void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)

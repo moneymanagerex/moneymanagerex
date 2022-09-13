@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -83,6 +83,9 @@ public:
 
     void BudgetReportWithSummaries(bool value);
     bool BudgetReportWithSummaries();
+
+    void BudgetOverride(bool value);
+    bool BudgetOverride();
 
     void TransPayeeSelection(int value);
     int TransPayeeSelection();
@@ -174,6 +177,7 @@ private:
     bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
     bool m_budgetIncludeTransfers;          //INIDB_BUDGET_INCLUDE_TRANSFERS
     bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
+    bool m_budgetOverride;                  //INIDB_BUDGET_OVERRIDE
     bool m_ignoreFutureTransactions;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
     bool m_showToolTips;                    //INIDB_SHOW_TOOLTIPS
     bool m_showMoneyTips;                   //INIDB_SHOW_MONEYTIPS
