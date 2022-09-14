@@ -126,7 +126,7 @@ void Model_Budget::getBudgetStats(
         {
             const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
             const int idx = d.GetYear() * 100 + d.GetMonth();
-            budgetStats[category.second.first][category.second.second][groupByMonth ? idx : 0] = value;
+            budgetStats[category.second.first][category.second.second][idx] = value;
         }
     }
 
@@ -135,7 +135,7 @@ void Model_Budget::getBudgetStats(
     const wxString year = wxString::Format("%i", start_date.GetYear());
     int budgetYearID = Model_Budgetyear::instance().Get(year);
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
-        yearBudgetValue[budget.CATEGID][budget.SUBCATEGID] =  getEstimate(true, period(budget), budget.AMOUNT);
+        yearBudgetValue[budget.CATEGID][budget.SUBCATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
 
     for (int m = 0; m < 12; m++)
     {
@@ -144,7 +144,7 @@ void Model_Budget::getBudgetStats(
             {
                 const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
                 const int idx = d.GetYear() * 100 + d.GetMonth();
-                budgetStats[cat.first][id.first][groupByMonth ? idx : 0] += id.second;
+                budgetStats[cat.first][id.first][idx] += id.second;
             }
 
         const wxString budgetYearMonth = wxString::Format("%s-%02d", year, m + 1);
@@ -154,10 +154,22 @@ void Model_Budget::getBudgetStats(
             const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
             const int idx = d.GetYear() * 100 + d.GetMonth();
             if (Option::instance().BudgetOverride())
-                budgetStats[budget.CATEGID][budget.SUBCATEGID][groupByMonth ? idx : 0] = getEstimate(true, period(budget), budget.AMOUNT);
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][idx] = getEstimate(true, period(budget), budget.AMOUNT);
             else
-                budgetStats[budget.CATEGID][budget.SUBCATEGID][groupByMonth ? idx : 0] += getEstimate(true, period(budget), budget.AMOUNT);
-        }
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][idx] += getEstimate(true, period(budget), budget.AMOUNT);        }
+    }
+    if (!groupByMonth)
+    {
+        std::map<int, std::map<int, std::map<int, double> > > yearlyBudgetStats;
+        for (const auto& category : Model_Category::all_categories())
+            yearlyBudgetStats[category.second.first][category.second.second][0] = 0.0;
+
+        for (const auto& cat : budgetStats)
+            for (const auto& subcat : cat.second)
+                for (const auto& month : subcat.second)
+                    yearlyBudgetStats[cat.first][subcat.first][0] += month.second;
+
+        budgetStats = yearlyBudgetStats;
     }
 }
 
