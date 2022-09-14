@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-14 22:31+0300\n"
-"PO-Revision-Date: 2022-09-14 19:41\n"
+"PO-Revision-Date: 2022-09-14 20:42\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5091,7 +5091,7 @@ msgstr "Resumen de las cuentas"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Presupuestos"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
