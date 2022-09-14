@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-14 22:31+0300\n"
-"PO-Revision-Date: 2022-09-14 20:42\n"
+"PO-Revision-Date: 2022-09-14 21:40\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5891,11 +5891,11 @@ msgstr "Ver informe de categoría de presupuesto con totales"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Sobreescribir presupuesto anual con presupuesto mensual"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Si esto está activo y el presupuesto mensual existe se sobreescribirá el presupuesto anual; de lo contrario se combinarán"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6495,11 +6495,11 @@ msgstr "Comisión"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Ganancias / pérdidas realizadas"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Ganancias / pérdidas sin realizar"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6803,11 +6803,11 @@ msgstr "Total de acciones"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Precio medio de la acción"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Coste total"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
