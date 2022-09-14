@@ -528,7 +528,6 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
 
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
-    m_gui_frame->RefreshNavigationTree();
 }
 
 

@@ -267,6 +267,7 @@ void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
     if (Model_Stock::instance().get(dlg.m_stock_id))
     {
         doRefreshItems(dlg.m_stock_id);
+        m_stock_panel->m_frame->RefreshNavigationTree();
     }
 }
 
