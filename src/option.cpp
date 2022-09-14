@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 - 2021 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@ Option::Option()
     , m_budgetFinancialYears(false)
     , m_budgetIncludeTransfers(false)
     , m_budgetReportWithSummaries(true)
+    , m_budgetOverride(false)
     , m_ignoreFutureTransactions(false)
     , m_showToolTips(true)
     , m_showMoneyTips(true)
@@ -100,6 +101,7 @@ void Option::LoadOptions(bool include_infotable)
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
     m_budgetReportWithSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
+    m_budgetOverride = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_OVERRIDE, false);
     m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
     m_showToolTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_TOOLTIPS, true);
     m_showMoneyTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_MONEYTIPS, true);
@@ -262,6 +264,19 @@ bool Option::BudgetReportWithSummaries()
 {
     return m_budgetReportWithSummaries;
 }
+
+void Option::BudgetOverride(bool value)
+{
+    Model_Setting::instance().Set(INIDB_BUDGET_OVERRIDE, value);
+    m_budgetOverride = value;
+
+}
+
+bool Option::BudgetOverride()
+{
+    return m_budgetOverride;
+}
+
 
 void Option::IgnoreFutureTransactions(bool value)
 {
