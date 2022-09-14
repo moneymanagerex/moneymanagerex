@@ -207,15 +207,15 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     size_t i = Model_Budgetyear::instance().all().size();
     if (i > 0)
     {
-        if (hidden_reports.Index("Budget Performance") == wxNOT_FOUND)
+        if (hidden_reports.Index("Budgets") == wxNOT_FOUND)
         {
-            wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(parent_item, _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
-        }
+            wxTreeItemId budgetReports = m_nav_tree_ctrl->AppendItem(parent_item, _("Budgets"), img::PIECHART_PNG, img::PIECHART_PNG);
+            m_nav_tree_ctrl->SetItemData(budgetReports, new mmTreeItemData(mmTreeItemData::MENU_REPORT, "Budgets"));
 
-        if (hidden_reports.Index("Budget Category Summary") == wxNOT_FOUND)
-        {
-            wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(parent_item, _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
+            wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(budgetReports, _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
+            m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
+
+            wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(budgetReports, _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Category Summary", new mmReportBudgetCategorySummary()));
         }
     }

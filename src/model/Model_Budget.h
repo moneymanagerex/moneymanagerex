@@ -62,7 +62,6 @@ public:
         std::map<int, std::map<int, std::map<int, double> > > &budgetStats
         , mmDateRange* date_range
         , bool groupByMonth);
-    static double getMonthlyBudget(wxString budgetYearMonth);
     static void copyBudgetYear(int newYearID, int baseYearID);
     static double getEstimate(bool is_monthly, const PERIOD_ENUM period, const double amount);
 };

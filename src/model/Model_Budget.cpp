@@ -173,34 +173,6 @@ void Model_Budget::getBudgetStats(
     }
 }
 
-double Model_Budget::getMonthlyBudget(wxString budgetYearMonth)
-{
-    // Grab related budget data first for year and then month and merge
-    
-    double estimatedBudget = 0;
-    const wxString yearName = budgetYearMonth.Left(4);
-    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
-    std::map<int, std::map<int, double> > budgetAmt;
-
-    int budgetYearId = Model_Budgetyear::instance().Get(yearName);
-    Model_Budget::instance().getBudgetEntry(budgetYearId, budgetPeriod, budgetAmt);
-    for (const auto &budget : budgetPeriod)
-        for (const auto &budgetCat : budget.second)
-            estimatedBudget += Model_Budget::getEstimate(true
-                , budgetCat.second
-                , budgetAmt[budget.first][budgetCat.first]);
-       
-    budgetYearId = Model_Budgetyear::instance().Get(budgetYearMonth);
-    Model_Budget::instance().getBudgetEntry(budgetYearId, budgetPeriod, budgetAmt);
-    for (const auto &budget : budgetPeriod)
-        for (const auto &budgetCat : budget.second)
-            estimatedBudget += Model_Budget::getEstimate(true
-                , budgetCat.second
-                , budgetAmt[budget.first][budgetCat.first]);
-
-    return estimatedBudget;
-}
-
 void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)
 {
     for (const Data& data : instance().find(BUDGETYEARID(baseYearID)))

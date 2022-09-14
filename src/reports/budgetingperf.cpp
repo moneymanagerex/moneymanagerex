@@ -215,7 +215,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.startTfoot();
             {
                 hb.startTotalTableRow();
-                hb.addTableCell(_("Monthly Total"));
+                
+                hb.addTableCell(wxString::Format("%s<br>%s<br>%s"
+                                    ,_("Estimated:")
+                                    ,_("Actual:")
+                                    ,_("Difference: ")));
+
                 double estimateGrandTotal = 0;
                 double actualGrandTotal = 0;
                 for (int m = 0; m < 12; m++)
@@ -232,6 +237,23 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         hb.startSpan(actualVal, wxString::Format(" style='text-align:right;%s' nowrap"
                             , (actual - estimate < 0) ? "color:red;" : ""));
                         hb.endSpan();
+                        hb.addLineBreak();
+
+                        const double difference = actual - estimate;
+                        const auto differenceVal = Model_Currency::toString(difference, Model_Currency::GetBaseCurrency());
+                        hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                            , (difference < 0) ? "color:red;" : ""));
+                        hb.endSpan();
+                        hb.addLineBreak();
+
+                        if (estimate != 0)
+                        {
+                            double percent = (actual / estimate) * 100.0;
+                            const auto percentVal = wxString::Format("%.1f%%", percent);
+                            hb.startSpan(percentVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                                , (difference < 0) ? "color:red;" : ""));
+                            hb.endSpan();
+                        }
 
                     hb.endTableCell();
                     estimateGrandTotal += estimate;
@@ -240,19 +262,30 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 // Grand total end
                 const auto estimateVal = Model_Currency::toString(estimateGrandTotal, Model_Currency::GetBaseCurrency());
                 hb.startTableCell(" style='text-align:right;' nowrap");
-                hb.addText(estimateVal);
-                hb.addLineBreak();
+                    hb.addText(estimateVal);
+                    hb.addLineBreak();
 
-                const auto actualVal = Model_Currency::toString(actualGrandTotal, Model_Currency::GetBaseCurrency());
-                hb.addText(actualVal);
-                hb.endTableCell();
+                    const auto actualVal = Model_Currency::toString(actualGrandTotal, Model_Currency::GetBaseCurrency());
+                    hb.addText(actualVal);
+                    hb.addLineBreak();
 
-                if ( estimateGrandTotal != 0)
-                {
-                    double percent = (actualGrandTotal / estimateGrandTotal) * 100.0;
-                    hb.addTableCell(wxString::Format("%.1f", percent), true);
-                } else
-                    hb.addTableCell("-");   
+                    const double differenceGrandTotal = actualGrandTotal - estimateGrandTotal;
+                    const auto differenceVal = Model_Currency::toString(differenceGrandTotal, Model_Currency::GetBaseCurrency());
+                    hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                        , (differenceGrandTotal < 0) ? "color:red;" : ""));
+                    hb.endSpan();
+                    hb.addLineBreak();
+
+                    if (estimateGrandTotal != 0)
+                    {
+                        double percentGrandTotal = (actualGrandTotal / estimateGrandTotal) * 100.0;
+                        const auto percentVal = wxString::Format("%.1f%%", percentGrandTotal);
+                        hb.startSpan(percentVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                            , (differenceGrandTotal < 0) ? "color:red;" : ""));
+                        hb.endSpan();
+                    }
+                    hb.endTableCell();
+                    hb.addEmptyTableCell();
                 hb.endTableRow();
             }
             hb.endTfoot();
