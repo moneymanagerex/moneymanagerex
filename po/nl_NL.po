@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-08 14:15+0300\n"
-"PO-Revision-Date: 2022-09-08 16:55\n"
+"POT-Creation-Date: 2022-09-09 20:50+0300\n"
+"PO-Revision-Date: 2022-09-10 07:57\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1560,7 +1560,7 @@ msgstr "Specificeer het jaar voor berekening van de begroting."
 msgid "Budget Year already exists"
 msgstr "Begrotingsjaar bestaat al"
 
-#: categdialog.cpp:181 import_export/qif_export.cpp:137 mmframereport.cpp:140
+#: categdialog.cpp:182 import_export/qif_export.cpp:137 mmframereport.cpp:140
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -1608,115 +1608,134 @@ msgstr "&Selecteren"
 msgid "Select the currently selected category as the selected category for the transaction"
 msgstr "Kies de huidige geselecteerde categorie als de geselecteerde categorie voor de transactie"
 
-#: categdialog.cpp:365
+#: categdialog.cpp:367
 msgid "Name contains category delimiter. "
 msgstr "Naam bevat categorie scheidingsteken. "
 
-#: categdialog.cpp:366
+#: categdialog.cpp:368
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
 msgstr "Het dubbele (:) teken wordt gebruikt om categorieën en subcategorieën te scheiden en mag daarom niet in de naam worden gebruikt"
 
-#: categdialog.cpp:368
+#: categdialog.cpp:370
 msgid "Organize Categories: Invalid Name"
 msgstr "Beheren categorieën: Ongeldige naam"
 
-#: categdialog.cpp:376
+#: categdialog.cpp:378
 msgid "Enter the name for the new category:"
 msgstr "Naam voor de nieuwe categorie invoeren: "
 
-#: categdialog.cpp:377
+#: categdialog.cpp:379
 msgid "Add Category"
 msgstr "Categorie toevoegen"
 
-#: categdialog.cpp:386 categdialog.cpp:600
+#: categdialog.cpp:388 categdialog.cpp:668
 msgid "Category with same name exists"
 msgstr "Categorie met deze naam bestaat al"
 
-#: categdialog.cpp:387
+#: categdialog.cpp:389
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "TIP: Toegevoegde categorieën staan nu onderaan de lijst\n"
 "Bij volgende opening van dit venster worden ze gesorteerd."
 
-#: categdialog.cpp:389 categdialog.cpp:418 categdialog.cpp:439
+#: categdialog.cpp:391 categdialog.cpp:422 categdialog.cpp:445
 msgid "Organise Categories: Adding Error"
 msgstr "Beheer categorieën: Fout bij toevoegen"
 
-#: categdialog.cpp:417 categdialog.cpp:617
+#: categdialog.cpp:421 categdialog.cpp:486 categdialog.cpp:685
 msgid "Sub Category with same name exists"
 msgstr "Subcategorie met deze naam bestaat al"
 
-#: categdialog.cpp:438
+#: categdialog.cpp:444
 msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr "Ongeldige hoofdcategorie. Kies basis of de hoofdcategorie, geen subcategorie."
 
-#: categdialog.cpp:445
+#: categdialog.cpp:485
+msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
+msgstr "U kunt geen subcategorie verplaatsen naar een categorie die al een subcategorie met die naam heeft. Overweeg om de naam te wijzigen voordat u verplaatst."
+
+#: categdialog.cpp:492
+#, c-format
+msgid "Are you sure you want to move\n"
+" \"%s\"\n"
+"to:\n"
+"\"%s\" ?"
+msgstr "Weet u zeker dat u\n"
+" \"%s\"\n"
+"wilt verplaatsen naar:\n"
+"\"%s\" ?"
+
+#: categdialog.cpp:495
+msgid "Confirm Move"
+msgstr "Bevestig Verplaatsing"
+
+#: categdialog.cpp:513
 msgid "Category in use."
 msgstr "Categorie is in gebruik."
 
-#: categdialog.cpp:445
+#: categdialog.cpp:513
 msgid "Sub-Category in use."
 msgstr "Subcategorie is in gebruik."
 
-#: categdialog.cpp:447
+#: categdialog.cpp:515
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr "TIP: Wijzig alle transacties van deze categorie naar\n"
 "een andere categorie via de opdracht - overzetten:"
 
-#: categdialog.cpp:450
+#: categdialog.cpp:518
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr "TIP: Wijzig alle transacties van deze subcategorie naar\n"
 "een andere subcategorie via de opdracht - overzetten:"
 
-#: categdialog.cpp:453
+#: categdialog.cpp:521
 msgid "Tools -> Relocation of -> Categories"
 msgstr "Extra -> Overzetten van -> Categorieën"
 
-#: categdialog.cpp:455
+#: categdialog.cpp:523
 msgid "Organise Categories: Delete Error"
 msgstr "Beheer categorieën: Fout bij verwijderen"
 
-#: categdialog.cpp:586
+#: categdialog.cpp:654
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr "Voer een nieuwe naam in voor %s'"
 
-#: categdialog.cpp:587
+#: categdialog.cpp:655
 msgid "Edit Category"
 msgstr "Categorie wijzigen"
 
-#: categdialog.cpp:601 categdialog.cpp:618
+#: categdialog.cpp:669 categdialog.cpp:686
 msgid "Organise Categories: Editing Error"
 msgstr "Beheer categorieën: Fout bij wijzigen"
 
-#: categdialog.cpp:695 mmframe.cpp:3384
+#: categdialog.cpp:763 mmframe.cpp:3384
 msgid "Category Relocation Completed."
 msgstr "Categorie overzetten voltooid."
 
-#: categdialog.cpp:696 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
+#: categdialog.cpp:764 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Records zijn bijgewerkt in het databestand: %i"
 
-#: categdialog.cpp:698 mmframe.cpp:3387
+#: categdialog.cpp:766 mmframe.cpp:3387
 msgid "Category Relocation Result"
 msgstr "Categorie overzetten resultaat"
 
-#: categdialog.cpp:781
+#: categdialog.cpp:849
 msgid "Hide Selected Category"
 msgstr "Geselecteerde categorie verbergen"
 
-#: categdialog.cpp:782
+#: categdialog.cpp:850
 msgid "Unhide Selected Category"
 msgstr "Verborgen categorie tonen"
 
-#: categdialog.cpp:784 payeedialog.cpp:401
+#: categdialog.cpp:852 payeedialog.cpp:401
 msgid "Remove Category"
 msgstr "Verwijder categorie"
 
-#: categdialog.cpp:787 import_export/univcsvdialog.cpp:461
+#: categdialog.cpp:855 import_export/univcsvdialog.cpp:461
 msgid "Clear Settings"
 msgstr "Instellingen wissen"
 

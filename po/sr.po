@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-08 14:15+0300\n"
-"PO-Revision-Date: 2022-09-08 11:33\n"
+"POT-Creation-Date: 2022-09-09 20:50+0300\n"
+"PO-Revision-Date: 2022-09-09 17:59\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1562,7 +1562,7 @@ msgstr "Одреди годину на којој да се заснива бу�
 msgid "Budget Year already exists"
 msgstr "Ова буџетска година већ постоји"
 
-#: categdialog.cpp:181 import_export/qif_export.cpp:137 mmframereport.cpp:140
+#: categdialog.cpp:182 import_export/qif_export.cpp:137 mmframereport.cpp:140
 msgid "Categories"
 msgstr "Категорије"
 
@@ -1610,113 +1610,129 @@ msgstr "Одабери"
 msgid "Select the currently selected category as the selected category for the transaction"
 msgstr "Одабери сада изабрану категорију као категорију трансакције"
 
-#: categdialog.cpp:365
+#: categdialog.cpp:367
 msgid "Name contains category delimiter. "
 msgstr ""
 
-#: categdialog.cpp:366
+#: categdialog.cpp:368
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
 msgstr ""
 
-#: categdialog.cpp:368
+#: categdialog.cpp:370
 msgid "Organize Categories: Invalid Name"
 msgstr ""
 
-#: categdialog.cpp:376
+#: categdialog.cpp:378
 msgid "Enter the name for the new category:"
 msgstr "Унесите назив нове категорије:"
 
-#: categdialog.cpp:377
+#: categdialog.cpp:379
 msgid "Add Category"
 msgstr "Додај категорију"
 
-#: categdialog.cpp:386 categdialog.cpp:600
+#: categdialog.cpp:388 categdialog.cpp:668
 msgid "Category with same name exists"
 msgstr "Назив те категорије већ постоји"
 
-#: categdialog.cpp:387
+#: categdialog.cpp:389
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "Савет: Ако додате категорију, проверите листу испод.\n"
 "Категорија ће бити пресложена када следећи пут покренете прозор"
 
-#: categdialog.cpp:389 categdialog.cpp:418 categdialog.cpp:439
+#: categdialog.cpp:391 categdialog.cpp:422 categdialog.cpp:445
 msgid "Organise Categories: Adding Error"
 msgstr "Уреди категорије: Грешка у додавању"
 
-#: categdialog.cpp:417 categdialog.cpp:617
+#: categdialog.cpp:421 categdialog.cpp:486 categdialog.cpp:685
 msgid "Sub Category with same name exists"
 msgstr "Поткатегорија са тим именом већ постоји"
 
-#: categdialog.cpp:438
+#: categdialog.cpp:444
 msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr "Непостојећа матична категорија. Одаберите основу или главну категорију."
 
-#: categdialog.cpp:445
+#: categdialog.cpp:485
+msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
+msgstr ""
+
+#: categdialog.cpp:492
+#, c-format
+msgid "Are you sure you want to move\n"
+" \"%s\"\n"
+"to:\n"
+"\"%s\" ?"
+msgstr ""
+
+#: categdialog.cpp:495
+msgid "Confirm Move"
+msgstr ""
+
+#: categdialog.cpp:513
 msgid "Category in use."
 msgstr "Категорија у употреби."
 
-#: categdialog.cpp:445
+#: categdialog.cpp:513
 msgid "Sub-Category in use."
 msgstr "Поткатегорија у употреби."
 
-#: categdialog.cpp:447
+#: categdialog.cpp:515
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr "Савет: Преместите све трансакције које користе ову категорију у другу категорију користећи команду за премештање:"
 
-#: categdialog.cpp:450
+#: categdialog.cpp:518
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr "Савет: Преместите све трансакције које користе ову поткатегорију у другу поткатегорију користећи команду за премештање:"
 
-#: categdialog.cpp:453
+#: categdialog.cpp:521
 msgid "Tools -> Relocation of -> Categories"
 msgstr "Алати -> Премештање -> Категорије"
 
-#: categdialog.cpp:455
+#: categdialog.cpp:523
 msgid "Organise Categories: Delete Error"
 msgstr "Уреди категорије: Грешка у брисању"
 
-#: categdialog.cpp:586
+#: categdialog.cpp:654
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr "Унесите нови назив за \"%s\""
 
-#: categdialog.cpp:587
+#: categdialog.cpp:655
 msgid "Edit Category"
 msgstr "Уреди категорију"
 
-#: categdialog.cpp:601 categdialog.cpp:618
+#: categdialog.cpp:669 categdialog.cpp:686
 msgid "Organise Categories: Editing Error"
 msgstr "Уреди категорије: Грешка у изменама"
 
-#: categdialog.cpp:695 mmframe.cpp:3384
+#: categdialog.cpp:763 mmframe.cpp:3384
 msgid "Category Relocation Completed."
 msgstr "Премештање категорије завршено."
 
-#: categdialog.cpp:696 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
+#: categdialog.cpp:764 mmframe.cpp:3385 mmframe.cpp:3400 payeedialog.cpp:357
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Записи у бази податка су ажурирани: %i"
 
-#: categdialog.cpp:698 mmframe.cpp:3387
+#: categdialog.cpp:766 mmframe.cpp:3387
 msgid "Category Relocation Result"
 msgstr "Резултат премештања категорије"
 
-#: categdialog.cpp:781
+#: categdialog.cpp:849
 msgid "Hide Selected Category"
 msgstr "Сакриј изабрану категорију"
 
-#: categdialog.cpp:782
+#: categdialog.cpp:850
 msgid "Unhide Selected Category"
 msgstr "Откриј изабрану категорију"
 
-#: categdialog.cpp:784 payeedialog.cpp:401
+#: categdialog.cpp:852 payeedialog.cpp:401
 msgid "Remove Category"
 msgstr ""
 
-#: categdialog.cpp:787 import_export/univcsvdialog.cpp:461
+#: categdialog.cpp:855 import_export/univcsvdialog.cpp:461
 msgid "Clear Settings"
 msgstr "Обриши подешавања"
 
