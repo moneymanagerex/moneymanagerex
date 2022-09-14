@@ -164,7 +164,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
         int year = Model_Checking::TRANSDATE(transaction).GetYear();
 
-        int idx = year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth();
+        int idx = (year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth());
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT) {
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
@@ -173,19 +173,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
         }
     }
-
-    // Grab related budget data
-    std::map<int, double> goalStats;
-    for (const auto &stats : incomeExpensesStats)
-    {
-        int year = stats.first / 100;
-        int month = stats.first % 100 + 1;
-        const wxString yearMonthName = wxString::Format("%4d-%02d", year, month);
-        const double est = Model_Budget::getMonthlyBudget(yearMonthName);
-        if (est != 0)
-            goalStats[stats.first] = est;
-    }
-    bool displayGoals = goalStats.size() > 0;
 
     // Build the report
     mmHTMLBuilder hb;
@@ -258,11 +245,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             hb.addTableHeaderCell(_("Income"), "text-right");
             hb.addTableHeaderCell(_("Expenses"), "text-right");
             hb.addTableHeaderCell(_("Difference"), "text-right");
-            if (displayGoals)
-            {
-                hb.addTableHeaderCell(_("Budget Goal"), "text-right");
-                hb.addTableHeaderCell(_("Budget Goal%"), "text-right");
-            }
             hb.addTableHeaderCell(_("Cumulative"), "text-right");
             hb.endTableRow();
         }
@@ -271,7 +253,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
         double total_expenses = 0.0;
         double total_income = 0.0;
-        double total_goal = 0.0;
         hb.startTbody();
         for (const auto &stats : incomeExpensesStats)
         {
@@ -284,16 +265,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
                 hb.addMoneyCell(stats.second.first);
                 hb.addMoneyCell(stats.second.second);
                 hb.addMoneyCell(stats.second.first - stats.second.second);
-                if (displayGoals)
-                    if ((goalStats.count(stats.first) > 0) && (goalStats.at(stats.first) > 0))
-                    {
-                        const double goal = goalStats.at(stats.first);
-                        hb.addMoneyCell(goal);
-                        const double percentage = 100.0 * goal / (stats.second.first - stats.second.second);
-                        hb.addTableCell(wxString::Format("%.2f", percentage), true);
-                        total_goal += goal;
-                    } else
-                        hb.addEmptyTableCell(2);
                 hb.addMoneyCell(total_income - total_expenses);
             }
             hb.endTableRow();
@@ -304,12 +275,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         totals.push_back(total_income);
         totals.push_back(total_expenses);
         totals.push_back(total_income - total_expenses);
-        if (displayGoals)
-        {
-            totals.push_back(total_goal);
-            const double percentage = std::ceil(10000.0 *  total_goal / (total_income - total_expenses)) / 100.0;
-            totals.push_back(percentage);
-        }
         totals.push_back(total_income - total_expenses);
 
         hb.addMoneyTotalRow(_("Total:"), 5, totals);
