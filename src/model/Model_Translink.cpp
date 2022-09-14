@@ -172,6 +172,8 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     double total_initial_value = 0;
     double total_commission = 0;
     double avg_share_price = 0;
+    wxString earliest_date = wxDate::Today().FormatISODate();
+
     for (const auto trans : trans_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
@@ -190,6 +192,9 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
         if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
 
         total_commission += share_entry->SHARECOMMISSION;
+
+        wxString transdate = Model_Checking::instance().get(trans.CHECKINGACCOUNTID)->TRANSDATE;
+        if (transdate < earliest_date) earliest_date = transdate;
     }
 
     // The stock record contains the total of share transactions.
@@ -199,6 +204,7 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     }
     else
     {
+        stock_entry->PURCHASEDATE = earliest_date;
         stock_entry->PURCHASEPRICE = avg_share_price;
         stock_entry->NUMSHARES = total_shares;
         stock_entry->VALUE = total_initial_value;
