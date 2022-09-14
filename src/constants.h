@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -123,6 +123,7 @@ extern const wxString INIDB_HIDE_SHARE_ACCOUNTS;
 extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
 extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
 extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
+extern const wxString INIDB_BUDGET_OVERRIDE;
 extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 extern const wxString INIDB_SHOW_TOOLTIPS;
 extern const wxString INIDB_SHOW_MONEYTIPS;

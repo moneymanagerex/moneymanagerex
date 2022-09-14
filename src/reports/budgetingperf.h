@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006-2012
  Copyright (C) 2017 James Higley
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -32,15 +33,7 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    void DisplayRow(const wxString& catName
-        , int catID
-        , int subCatID
-        , double estimated
-        , double actual
-        , int month
-        , mmHTMLBuilder &hb
-        , const std::map<int, double>& stats
-        , bool bTotalRow = false);
+
 };
 
 #endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_

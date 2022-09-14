@@ -79,6 +79,7 @@ private:
         COL_NUMBER,
         COL_PRICE,
         COL_VALUE,
+        COL_REAL_GAIN_LOSS,
         COL_GAIN_LOSS,
         COL_CURRENT,
         COL_CURRVALUE,
@@ -90,6 +91,8 @@ private:
     wxImageList* m_imageList;
     double GetGainLoss(long item) const;
     static double getGainLoss(const Model_Stock::Data& stock);
+    double GetRealGainLoss(long item) const;
+    static double getRealGainLoss(const Model_Stock::Data& stock);
     void sortTable();
 };
 

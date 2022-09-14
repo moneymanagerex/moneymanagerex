@@ -164,7 +164,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
         int year = Model_Checking::TRANSDATE(transaction).GetYear();
 
-        int idx = (year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth());
+        int idx = year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth();
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT) {
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;

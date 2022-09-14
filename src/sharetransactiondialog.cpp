@@ -383,25 +383,8 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     double commission = 0;
     m_share_commission_ctrl->GetDouble(commission);
 
-    double current_price = share_price;
-    if (m_stock && ((m_stock->PURCHASEPRICE != m_stock->CURRENTPRICE) && (m_stock->PURCHASEPRICE != 0)))
-    {
-        current_price = m_stock->CURRENTPRICE;
-    }
-
     // allow for loyalty shares. These are "Free"
     bool loyalty_shares = (share_price == 0) && (num_shares > 0);
-    if (m_stock && loyalty_shares)
-    {
-        current_price = m_stock->CURRENTPRICE;
-    }
-
-    // Only update the current price when adding new shares
-    if (!m_checking_entry)
-    {
-        m_stock->CURRENTPRICE = current_price;
-        Model_Stock::instance().save(m_stock);
-    }
 
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
@@ -415,7 +398,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         int checking_id = m_transaction_panel->SaveChecking();
 
         /*
-        // The PURCHASEDATE, field in STOCK table becomes obsolete.
+        // The PURCHASEDATE field in STOCK table holds the earliest purchase date of the stock.
         // NUMSHARES, PURCHASEPRICE and COMMISSION fields in the Stocks table are used as
         // a summary and allows Stock history to work in its current form.
         // The Shares table now maintains share_num, share_price, and commission on the
@@ -431,8 +414,8 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Translink::UpdateStockValue(m_stock);
         if (!loyalty_shares)
         {
-            Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_transaction_panel->TransactionDate(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
-        }
+            Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_transaction_panel->TransactionDate(), share_price, Model_StockHistory::MANUAL);
+        }         
     }
     else
     {

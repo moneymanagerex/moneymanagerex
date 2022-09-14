@@ -34,7 +34,8 @@
 
 mmReportSummaryStocks::mmReportSummaryStocks()
     : mmPrintableBase(wxTRANSLATE("Summary of Stocks"))
-    , m_gain_loss_sum_total(0.0)
+    , m_real_gain_loss_sum_total(0.0)
+    , m_unreal_gain_loss_sum_total(0.0)
     , m_stock_balance(0.0)
 {
     setReportParameters(Reports::StocksReportSummary);
@@ -43,7 +44,8 @@ mmReportSummaryStocks::mmReportSummaryStocks()
 void  mmReportSummaryStocks::RefreshData()
 {
     m_stocks.clear();
-    m_gain_loss_sum_total = 0.0;
+    m_real_gain_loss_sum_total = 0.0;
+    m_unreal_gain_loss_sum_total = 0.0;
     m_stock_balance = 0.0;
 
     data_holder line;
@@ -57,7 +59,8 @@ void  mmReportSummaryStocks::RefreshData()
 
         account.id = a.id();
         account.name = a.ACCOUNTNAME;
-        account.gainloss = 0.0;
+        account.realgainloss = 0.0;
+        account.unrealgainloss = 0.0;
         account.total = Model_Account::investment_balance(a).first;
         account.data.clear();
 
@@ -66,9 +69,13 @@ void  mmReportSummaryStocks::RefreshData()
             const Model_Currency::Data* currency = Model_Account::currency(a);
             const double today_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, today);
             m_stock_balance += today_rate * Model_Stock::CurrentValue(stock);
-            account.gainloss += Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
+            line.realgainloss = Model_Stock::RealGainLoss(stock);
+            account.realgainloss += line.realgainloss;
+            line.unrealgainloss = Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
+            account.unrealgainloss += line.unrealgainloss;
             const double purchase_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, stock.PURCHASEDATE);
-            m_gain_loss_sum_total += (Model_Stock::CurrentValue(stock) * today_rate - Model_Stock::InvestmentValue(stock) * purchase_rate);
+            m_unreal_gain_loss_sum_total += (Model_Stock::CurrentValue(stock) * today_rate - Model_Stock::InvestmentValue(stock) * purchase_rate);
+            m_real_gain_loss_sum_total += line.realgainloss * today_rate;
 
             line.name = stock.STOCKNAME;
             line.symbol = stock.SYMBOL;
@@ -77,7 +84,6 @@ void  mmReportSummaryStocks::RefreshData()
             line.purchase = Model_Stock::InvestmentValue(stock);
             line.current = stock.CURRENTPRICE;
             line.commission = stock.COMMISSION;
-            line.gainloss = Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
             line.value = Model_Stock::CurrentValue(stock);
             account.data.push_back(line);
         }
@@ -110,7 +116,8 @@ wxString mmReportSummaryStocks::getHTMLText()
                     hb.addTableHeaderCell(_("Initial Value"), "text-right");
                     hb.addTableHeaderCell(_("Current Price"), "text-right");
                     hb.addTableHeaderCell(_("Commission"), "text-right");
-                    hb.addTableHeaderCell(_("Gain/Loss"), "text-right");
+                    hb.addTableHeaderCell(_("Realized Gain/Loss"), "text-right");
+                    hb.addTableHeaderCell(_("Unrealized Gain/Loss"), "text-right");
                     hb.addTableHeaderCell(_("Current Value"), "text-right");
                 }
                 hb.endTableRow();
@@ -141,11 +148,12 @@ wxString mmReportSummaryStocks::getHTMLText()
                             hb.addTableCell(entry.name);
                             hb.addTableCell(entry.symbol);
                             hb.addTableCellDate(entry.date);
-                            hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), "text-right");
+                            hb.addTableCell(Model_Account::toString(entry.qty, account, trunc(entry.qty) == entry.qty ? 0 : 4), "text-right");
                             hb.addCurrencyCell(entry.purchase, currency, 4);
                             hb.addCurrencyCell(entry.current, currency, 4);
                             hb.addCurrencyCell(entry.commission, currency, 4);
-                            hb.addCurrencyCell(entry.gainloss, currency);
+                            hb.addCurrencyCell(entry.realgainloss, currency);
+                            hb.addCurrencyCell(entry.unrealgainloss, currency);
                             hb.addCurrencyCell(entry.value, currency);
                         }
                         hb.endTableRow();
@@ -154,7 +162,8 @@ wxString mmReportSummaryStocks::getHTMLText()
                     {
                         hb.addTableCell(_("Total:"));
                         hb.addEmptyTableCell(6);
-                        hb.addCurrencyCell(acct.gainloss, currency);
+                        hb.addCurrencyCell(acct.realgainloss, currency);
+                        hb.addCurrencyCell(acct.unrealgainloss, currency);
                         hb.addCurrencyCell(acct.total, currency);
                     }
                     hb.endTableRow();
@@ -165,9 +174,10 @@ wxString mmReportSummaryStocks::getHTMLText()
 
             hb.startTfoot();
             {
-                const std::vector<wxString> v{ Model_Currency::toCurrency(m_gain_loss_sum_total),
+                const std::vector<wxString> v{ Model_Currency::toCurrency(m_real_gain_loss_sum_total),
+                                               Model_Currency::toCurrency(m_unreal_gain_loss_sum_total),
                                                Model_Currency::toCurrency(m_stock_balance) };
-                hb.addTotalRow(_("Grand Total:"), 9, v);
+                hb.addTotalRow(_("Grand Total:"), 10, v);
             }
             hb.endTfoot();
         }

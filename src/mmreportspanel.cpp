@@ -326,9 +326,12 @@ void mmReportsPanel::CreateControls()
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
-                m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
-                if (sel_id == e.BUDGETYEARID)
-                    sel_name = e.BUDGETYEARNAME;
+                if (name.length() == 4) // Only years
+                {
+                    m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
+                    if (sel_id == e.BUDGETYEARID)
+                        sel_name = e.BUDGETYEARNAME;
+                }
             }
             m_date_ranges->SetStringSelection(sel_name);
 
