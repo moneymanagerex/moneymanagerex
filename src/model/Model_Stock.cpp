@@ -185,7 +185,17 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
                 valueAtDate = precValue;
         }
 
-        totBalance[stock.id()] += stock.NUMSHARES * valueAtDate;
+        double numShares = 0.0;
+
+        Model_Translink::Data_Set linkrecords = Model_Translink::instance().find(Model_Translink::LINKRECORDID(stock.STOCKID));
+        for (const auto& txn : linkrecords)
+        {
+            if (Model_Checking::instance().get(txn.CHECKINGACCOUNTID)->TRANSDATE <= strDate) {
+                numShares += Model_Shareinfo::instance().ShareEntry(txn.CHECKINGACCOUNTID)->SHARENUMBER;
+            }
+        }
+
+        totBalance[stock.id()] += numShares * valueAtDate;
     }
 
     double balance = 0.0;
@@ -235,17 +245,18 @@ double Model_Stock::RealGainLoss(const Data& r)
 }
 
 /** Updates the current price across all accounts which hold the stock */
-double Model_Stock::UpdateCurrentPrice(const Data* r)
+void Model_Stock::UpdateCurrentPrice(const wxString& symbol, const double price)
 {
-    double current_price = 0.0;
-    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(r->SYMBOL));
-    std::sort(histData.begin(), histData.end(), SorterByDATE());
-    current_price = histData.back().VALUE;
-    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(r->SYMBOL));
+    double current_price = price;
+    if (price == -1) {
+        Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(symbol));
+        std::sort(histData.begin(), histData.end(), SorterByDATE());
+        current_price = histData.back().VALUE;
+    }
+    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(symbol));
     for (auto& stock : stocks) {
         Model_Stock::Data* stockRecord = Model_Stock::instance().get(stock.STOCKID);
         stockRecord->CURRENTPRICE = current_price;
         Model_Stock::instance().save(stockRecord);
     }
-    return current_price;
 }

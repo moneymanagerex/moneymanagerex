@@ -66,7 +66,7 @@ public:
     static double RealGainLoss(const Data& r);
 
     /** Update current price across accounts */
-    static double UpdateCurrentPrice(const Data* r);
+    static void UpdateCurrentPrice(const wxString& symbol, const double price = -1);
 
 public:
     /**

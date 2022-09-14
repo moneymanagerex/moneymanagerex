@@ -33,67 +33,10 @@ mmHistoryItem::mmHistoryItem()
 
 double mmHistoryData::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
-    wxString strDate = date.FormatISODate();
-    std::map<int, double> totBalance;
+    return Model_Stock::instance().getDailyBalanceAt(account, date);
 
-    for (const auto & stock : *this)
-    {
-        if (stock.acctId != account->id())
-            continue;
 
-        wxString precValueDate, nextValueDate;
 
-        double valueAtDate = 0.0, precValue = 0.0, nextValue = 0.0;
-
-        for (const auto & hist : stock.stockHist)
-        {
-            // test for the date requested
-            if (hist.DATE == strDate)
-            {
-                valueAtDate = hist.VALUE;
-                break;
-            }
-            // if not found, search for previous and next date
-            if (precValue == 0.0 && hist.DATE < strDate)
-            {
-                precValue = hist.VALUE;
-                precValueDate = hist.DATE;
-            }
-            if (hist.DATE > strDate)
-            {
-                nextValue = hist.VALUE;
-                nextValueDate = hist.DATE;
-            }
-            // end conditions: prec value assigned and price date < requested date
-            if (precValue != 0.0 && hist.DATE < strDate)
-                break;
-        }
-        if (valueAtDate == 0.0)
-        {
-            //  if previous not found but if the given date is after purchase date, takes purchase price
-            if (precValue == 0.0 && date >= stock.purchaseDate)
-            {
-                precValue = stock.purchasePrice;
-                precValueDate = stock.purchaseDateStr;
-            }
-            //  if next not found and the accoung is open, takes previous date
-            if (nextValue == 0.0 && Model_Account::status(account) == Model_Account::OPEN)
-            {
-                nextValue = precValue;
-                nextValueDate = precValueDate;
-            }
-            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= stock.purchaseDateStr && nextValueDate >= stock.purchaseDateStr)
-                valueAtDate = precValue;
-        }
-
-        totBalance[stock.stockId] += stock.numShares * valueAtDate;
-    }
-
-    double balance = 0.0;
-    for (const auto& it : totBalance)
-        balance += it.second;
-
-    return balance;
 }
 
 mmReportSummaryByDate::mmReportSummaryByDate(int mode)
@@ -209,6 +152,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                 histItem.stockId = stock.STOCKID;
                 histItem.purchasePrice = stock.PURCHASEPRICE;
                 histItem.purchaseDate = Model_Stock::PURCHASEDATE(stock);
+                if (histItem.purchaseDate.IsEarlierThan(earliestDate)) earliestDate = histItem.purchaseDate;
                 histItem.purchaseDateStr = stock.PURCHASEDATE;
                 histItem.numShares = stock.NUMSHARES;
                 histItem.stockHist = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL));

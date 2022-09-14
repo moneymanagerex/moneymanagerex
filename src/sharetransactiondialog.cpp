@@ -398,7 +398,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         int checking_id = m_transaction_panel->SaveChecking();
 
         /*
-        // The PURCHASEDATE, field in STOCK table becomes obsolete.
+        // The PURCHASEDATE field in STOCK table holds the earliest purchase date of the stock.
         // NUMSHARES, PURCHASEPRICE and COMMISSION fields in the Stocks table are used as
         // a summary and allows Stock history to work in its current form.
         // The Shares table now maintains share_num, share_price, and commission on the
@@ -415,12 +415,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (!loyalty_shares)
         {
             Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_transaction_panel->TransactionDate(), share_price, Model_StockHistory::MANUAL);
-
-            //If this is the most recent date in the price history update the value of this stock in all accounts
-            if (Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(m_stock->SYMBOL), Model_StockHistory::DATE(m_transaction_panel->TransactionDate(), GREATER)).size() == 0) {
-                Model_Stock::UpdateCurrentPrice(m_stock);
-            }
-        }
+        }         
     }
     else
     {
