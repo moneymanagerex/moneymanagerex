@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-12 02:22\n"
+"POT-Creation-Date: 2022-09-14 22:31+0300\n"
+"PO-Revision-Date: 2022-09-14 19:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr "选择这是否是经常使用的账户。 此选项用于筛选显示�
 #: import_export/qif_export.cpp:591 import_export/qif_import_gui.cpp:107
 #: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:305
 #: reports/transactions.cpp:194 sharetransactiondialog.cpp:275
-#: stockdialog.cpp:259 stocks_list.cpp:101 transactionsupdatedialog.cpp:241
+#: stockdialog.cpp:259 stocks_list.cpp:102 transactionsupdatedialog.cpp:241
 #: transdialog.cpp:508 usertransactionpanel.cpp:194 webappdialog.cpp:154
 msgid "Notes"
 msgstr "备注"
@@ -383,7 +383,7 @@ msgstr "资产明细"
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:143
 #: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:258
 #: import_export/qif_import_gui.cpp:271 import_export/qif_import_gui.cpp:281
-#: maincurrencydialog.cpp:80 payeedialog.cpp:65 reports/summarystocks.cpp:106
+#: maincurrencydialog.cpp:80 payeedialog.cpp:65 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "名称"
 
@@ -398,7 +398,7 @@ msgstr "请输入资产名称"
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:275 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:293 reports/cashflow.cpp:422
-#: reports/incexpenses.cpp:244 reports/summary.cpp:344
+#: reports/incexpenses.cpp:244 reports/summary.cpp:288
 #: reports/transactions.cpp:186 stockdialog.cpp:292 stockdialog.cpp:644
 #: transactionsupdatedialog.cpp:143 transdialog.cpp:370
 #: usertransactionpanel.cpp:98 webappdialog.cpp:147 wizard_update.cpp:141
@@ -458,11 +458,11 @@ msgstr "新交易明细"
 msgid "Edit Transaction Details"
 msgstr "编辑股票交易详情"
 
-#: assetdialog.cpp:300 constants.cpp:73 sharetransactiondialog.cpp:331
+#: assetdialog.cpp:300 constants.cpp:74 sharetransactiondialog.cpp:331
 msgid "&Cancel "
 msgstr "取消(&C) "
 
-#: assetdialog.cpp:396 sharetransactiondialog.cpp:439
+#: assetdialog.cpp:396 sharetransactiondialog.cpp:422
 msgid "Invalid Transaction"
 msgstr "无效的交易"
 
@@ -491,11 +491,11 @@ msgstr "ID"
 msgid "Type"
 msgstr "类型"
 
-#: assetspanel.cpp:63 reports/summarystocks.cpp:110
+#: assetspanel.cpp:63 reports/summarystocks.cpp:116
 msgid "Initial Value"
 msgstr "初始价值"
 
-#: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:254
+#: assetspanel.cpp:64 reports/summarystocks.cpp:121 stockdialog.cpp:254
 msgid "Current Value"
 msgstr "当前价值"
 
@@ -528,7 +528,7 @@ msgid "&Delete Asset"
 msgstr "删除资产(&D)"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:471
-#: mmframe.cpp:1369 mmframe.cpp:1389 payeedialog.cpp:412 stocks_list.cpp:147
+#: mmframe.cpp:1369 mmframe.cpp:1389 payeedialog.cpp:412 stocks_list.cpp:148
 msgid "&Organize Attachments"
 msgstr "管理附件(&O)"
 
@@ -793,44 +793,44 @@ msgid "Open attachment failed"
 msgstr "打开附件失败"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:552
-#: model/Model_Asset.cpp:24 model/Model_Budget.cpp:55
+#: model/Model_Asset.cpp:24 model/Model_Budget.cpp:58
 #: optionsettingsmisc.cpp:103 reports/reportbase.cpp:212
 msgid "None"
 msgstr "无"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:51
-#: model/Model_Budget.cpp:56
+#: model/Model_Budget.cpp:59
 msgid "Weekly"
 msgstr "每周"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
-#: model/Model_Budget.cpp:57
+#: model/Model_Budget.cpp:60
 msgid "Fortnightly"
 msgstr "每两周"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
-#: model/Model_Budget.cpp:58
+#: model/Model_Budget.cpp:61
 msgid "Monthly"
 msgstr "每月"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
-#: model/Model_Budget.cpp:59
+#: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
 msgstr "每二个月"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
-#: model/Model_Budget.cpp:60
+#: model/Model_Budget.cpp:63
 msgid "Quarterly"
 msgstr "每季度"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:56
-#: model/Model_Budget.cpp:61
+#: model/Model_Budget.cpp:64
 msgid "Half-Yearly"
 msgstr "每半年"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:57 mmframereport.cpp:201
-#: model/Model_Budget.cpp:62
+#: model/Model_Budget.cpp:65
 msgid "Yearly"
 msgstr "每年"
 
@@ -843,7 +843,7 @@ msgid "Four Weeks"
 msgstr "每四周"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:60 mmframereport.cpp:126
-#: model/Model_Budget.cpp:63
+#: model/Model_Budget.cpp:66
 msgid "Daily"
 msgstr "每天"
 
@@ -970,12 +970,11 @@ msgstr "指定转账账户"
 #: budgetingpanel.cpp:303 filtertrans.cpp:198 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:946 import_export/qif_export.cpp:588
 #: import_export/univcsvdialog.cpp:112 maincurrencydialog.cpp:622
-#: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/budgetcategorysummary.cpp:189
-#: reports/cashflow.cpp:426 reports/categexp.cpp:179
-#: reports/incexpenses.cpp:109 reports/transactions.cpp:193
-#: splitdetailsdialog.cpp:135 splittransactionsdialog.cpp:106
-#: transactionsupdatedialog.cpp:184 transdialog.cpp:424
-#: usertransactionpanel.cpp:132 webappdialog.cpp:153
+#: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/cashflow.cpp:426
+#: reports/categexp.cpp:179 reports/incexpenses.cpp:109
+#: reports/transactions.cpp:193 splitdetailsdialog.cpp:135
+#: splittransactionsdialog.cpp:106 transactionsupdatedialog.cpp:184
+#: transdialog.cpp:424 usertransactionpanel.cpp:132 webappdialog.cpp:153
 msgid "Amount"
 msgstr "金额"
 
@@ -1023,8 +1022,8 @@ msgstr "收款人"
 #: filtertransdialog.cpp:1454 import_export/qif_export.cpp:587
 #: import_export/qif_import_gui.cpp:105 import_export/qif_import_gui.cpp:277
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:288
-#: mmhomepage.cpp:190 reports/budgetcategorysummary.cpp:188
-#: reports/budgetingperf.cpp:220 reports/cashflow.cpp:425
+#: mmhomepage.cpp:190 reports/budgetcategorysummary.cpp:190
+#: reports/budgetingperf.cpp:132 reports/cashflow.cpp:425
 #: reports/categexp.cpp:178 reports/categexp.cpp:428
 #: reports/transactions.cpp:191 splitdetailsdialog.cpp:144
 #: splitdetailsdialog.cpp:186 splittransactionsdialog.cpp:104
@@ -1225,8 +1224,7 @@ msgstr "每 %s 天"
 msgid "Every %s Months"
 msgstr "每 %s 月"
 
-#: billsdepositspanel.cpp:140 budgetingpanel.cpp:302
-#: reports/budgetcategorysummary.cpp:190 reports/myusage.cpp:160
+#: billsdepositspanel.cpp:140 budgetingpanel.cpp:302 reports/myusage.cpp:160
 msgid "Frequency"
 msgstr "频率"
 
@@ -1363,11 +1361,11 @@ msgstr "分类"
 msgid "Sub Category: "
 msgstr "子类目： "
 
-#: budgetentrydialog.cpp:120
+#: budgetentrydialog.cpp:120 reports/budgetingperf.cpp:220
 msgid "Estimated:"
 msgstr "估计："
 
-#: budgetentrydialog.cpp:122
+#: budgetentrydialog.cpp:122 reports/budgetingperf.cpp:221
 msgid "Actual:"
 msgstr "实际："
 
@@ -1467,7 +1465,7 @@ msgstr "估计"
 msgid "Actual: "
 msgstr "实际："
 
-#: budgetingpanel.cpp:253 budgetingpanel.cpp:261
+#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:222
 msgid "Difference: "
 msgstr "差额： "
 
@@ -1483,12 +1481,12 @@ msgstr "图标"
 msgid "Sub Category"
 msgstr "子类目"
 
-#: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
+#: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:148
 #: reports/budgetcategorysummary.cpp:191
 msgid "Estimated"
 msgstr "估计"
 
-#: budgetingpanel.cpp:305 reports/budgetcategorysummary.cpp:144
+#: budgetingpanel.cpp:305 reports/budgetcategorysummary.cpp:149
 #: reports/budgetcategorysummary.cpp:192
 msgid "Actual"
 msgstr "实际"
@@ -1740,89 +1738,89 @@ msgstr "清除设置"
 msgid "Organize Categories"
 msgstr "类目管理"
 
-#: constants.cpp:71
+#: constants.cpp:72
 msgid "Cancel"
 msgstr "取消"
 
-#: constants.cpp:77 diagnostics.cpp:88 relocatecategorydialog.cpp:126
+#: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:126
 #: relocatepayeedialog.cpp:127 themes.cpp:195
 msgid "Close"
 msgstr "关闭"
 
-#: constants.cpp:79
+#: constants.cpp:80
 msgid "&Close "
 msgstr "关闭(&C)"
 
-#: constants.cpp:176
+#: constants.cpp:177
 msgid "Advanced Filter"
 msgstr "高级过滤"
 
-#: constants.cpp:177
+#: constants.cpp:178
 msgid "View All Transactions"
 msgstr "查看所有交易"
 
-#: constants.cpp:178
+#: constants.cpp:179
 msgid "View Today"
 msgstr "查看今天"
 
-#: constants.cpp:179
+#: constants.cpp:180
 msgid "View Current Month"
 msgstr "查看本月"
 
-#: constants.cpp:180
+#: constants.cpp:181
 msgid "View Last 30 days"
 msgstr "查看过去 30 天"
 
-#: constants.cpp:181
+#: constants.cpp:182
 msgid "View Last 90 days"
 msgstr "查看过去 90 天"
 
-#: constants.cpp:182
+#: constants.cpp:183
 msgid "View Last Month"
 msgstr "查看上月"
 
-#: constants.cpp:183
+#: constants.cpp:184
 msgid "View Last 3 Months"
 msgstr "查看最近 3 个月"
 
-#: constants.cpp:184
+#: constants.cpp:185
 msgid "View Last 12 Months"
 msgstr "查看最近12个月"
 
-#: constants.cpp:185
+#: constants.cpp:186
 msgid "View Current Year"
 msgstr "查看今年"
 
-#: constants.cpp:186
+#: constants.cpp:187
 msgid "View Current Financial Year"
 msgstr "查看本财年"
 
-#: constants.cpp:187
+#: constants.cpp:188
 msgid "View Last Year"
 msgstr "查看去年"
 
-#: constants.cpp:188
+#: constants.cpp:189
 msgid "View Last Financial Year"
 msgstr "查看上财年"
 
-#: constants.cpp:189
+#: constants.cpp:190
 msgid "View Since Statement Date"
 msgstr "查看自对账单日期"
 
-#: constants.cpp:191
+#: constants.cpp:192
 msgid "ALL"
 msgstr "全部"
 
-#: constants.cpp:192 mmframe.cpp:1415 mmframe.cpp:1815
+#: constants.cpp:193 mmframe.cpp:1415 mmframe.cpp:1815
 #: model/Model_Account.cpp:27
 msgid "Open"
 msgstr "打开"
 
-#: constants.cpp:193 mmframe.cpp:1416 model/Model_Account.cpp:28
+#: constants.cpp:194 mmframe.cpp:1416 model/Model_Account.cpp:28
 msgid "Closed"
 msgstr "已关闭"
 
-#: constants.cpp:194 mmframe.cpp:1414
+#: constants.cpp:195 mmframe.cpp:1414
 msgid "Favorites"
 msgstr "收藏夹 "
 
@@ -1946,7 +1944,7 @@ msgstr "自动完成"
 msgid "Enables autocomplete on custom field"
 msgstr "启用自定义字段自动完成"
 
-#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:203 util.cpp:604
+#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:210 util.cpp:604
 msgid "Default"
 msgstr "默认"
 
@@ -2228,7 +2226,7 @@ msgstr "看病费"
 msgid "Prescriptions"
 msgstr "规定"
 
-#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:226
+#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:233
 msgid "Auto"
 msgstr "自动"
 
@@ -3038,7 +3036,7 @@ msgstr "行 %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "从 QIF 文件读取的行数：%zu in %lld ms"
 
-#: import_export/qif_import_gui.cpp:521 mmreportspanel.cpp:341
+#: import_export/qif_import_gui.cpp:521 mmreportspanel.cpp:344
 msgid "Accounts:"
 msgstr "账户："
 
@@ -3170,8 +3168,8 @@ msgid "Don't Care"
 msgstr "不处理"
 
 #: import_export/univcsvdialog.cpp:121 mmchecking_list.cpp:296
-#: mmhomepage.cpp:648 reports/cashflow.cpp:427 reports/summary.cpp:319
-#: reports/summary.cpp:354
+#: mmhomepage.cpp:648 reports/cashflow.cpp:427 reports/summary.cpp:263
+#: reports/summary.cpp:298
 msgid "Balance"
 msgstr "余额"
 
@@ -3452,7 +3450,7 @@ msgstr "请在您的 CSV 文件中输入表示正值的单词，例如“debit�
 msgid "Enter a value"
 msgstr "输入值："
 
-#: maincurrencydialog.cpp:79 reports/summarystocks.cpp:107 stockdialog.cpp:421
+#: maincurrencydialog.cpp:79 reports/summarystocks.cpp:113 stockdialog.cpp:421
 #: stocks_list.cpp:92
 msgid "Symbol"
 msgstr "股票代号"
@@ -3942,7 +3940,7 @@ msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "正在将 %i 笔交易移动到..."
 
-#: mmchecking_list.cpp:1289 stocks_list.cpp:288
+#: mmchecking_list.cpp:1289 stocks_list.cpp:300
 msgid "Select the destination Account "
 msgstr "选择存入账户"
 
@@ -4063,18 +4061,18 @@ msgstr "工具栏"
 msgid "Favourites"
 msgstr "收藏夹"
 
-#: mmframe.cpp:478 mmframe.cpp:721 mmhomepage.cpp:632 reports/summary.cpp:305
-#: reports/summary.cpp:346
+#: mmframe.cpp:478 mmframe.cpp:721 mmhomepage.cpp:632 reports/summary.cpp:249
+#: reports/summary.cpp:290
 msgid "Bank Accounts"
 msgstr "银行账户"
 
-#: mmframe.cpp:479 mmframe.cpp:725 mmhomepage.cpp:633 reports/summary.cpp:307
-#: reports/summary.cpp:347
+#: mmframe.cpp:479 mmframe.cpp:725 mmhomepage.cpp:633 reports/summary.cpp:251
+#: reports/summary.cpp:291
 msgid "Credit Card Accounts"
 msgstr "信用卡账户"
 
-#: mmframe.cpp:480 mmframe.cpp:737 mmhomepage.cpp:635 reports/summary.cpp:311
-#: reports/summary.cpp:349
+#: mmframe.cpp:480 mmframe.cpp:737 mmhomepage.cpp:635 reports/summary.cpp:255
+#: reports/summary.cpp:293
 msgid "Term Accounts"
 msgstr "定期账户"
 
@@ -4086,8 +4084,8 @@ msgstr "股票投资"
 msgid "Cash Accounts"
 msgstr "现金账户"
 
-#: mmframe.cpp:483 mmframe.cpp:733 mmhomepage.cpp:634 reports/summary.cpp:309
-#: reports/summary.cpp:348
+#: mmframe.cpp:483 mmframe.cpp:733 mmhomepage.cpp:634 reports/summary.cpp:253
+#: reports/summary.cpp:292
 msgid "Loan Accounts"
 msgstr "贷款账户"
 
@@ -4103,8 +4101,8 @@ msgstr "主页"
 msgid "All Transactions"
 msgstr "所有交易"
 
-#: mmframe.cpp:745 mmhomepage.cpp:638 reports/summary.cpp:315
-#: reports/summary.cpp:351
+#: mmframe.cpp:745 mmhomepage.cpp:638 reports/summary.cpp:259
+#: reports/summary.cpp:295
 msgid "Share Accounts"
 msgstr "股票账户"
 
@@ -5078,6 +5076,10 @@ msgid "Summary of Accounts"
 msgstr "所有账户汇总"
 
 #: mmframereport.cpp:212
+msgid "Budgets"
+msgstr ""
+
+#: mmframereport.cpp:215
 msgid "Budget Performance"
 msgstr "预算执行情况"
 
@@ -5089,7 +5091,7 @@ msgstr "预算类别汇总"
 msgid "Stocks Report"
 msgstr "股票报告"
 
-#: mmframereport.cpp:315 mmreportspanel.cpp:384
+#: mmframereport.cpp:315 mmreportspanel.cpp:387
 msgid "Hide"
 msgstr "隐藏"
 
@@ -5101,22 +5103,22 @@ msgstr "返回(&B)"
 msgid "&Forward"
 msgstr "向前(&F)"
 
-#: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:317
-#: reports/summary.cpp:353
+#: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:261
+#: reports/summary.cpp:297
 msgid "Stocks"
 msgstr "股票"
 
-#: mmhomepage.cpp:81 reports/summarystocks.cpp:113 stocks_list.cpp:96
+#: mmhomepage.cpp:81
 msgid "Gain/Loss"
 msgstr "盈亏"
 
-#: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:294
-#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:352
+#: mmhomepage.cpp:82 reports/budgetingperf.cpp:143 reports/cashflow.cpp:294
+#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:296
 msgid "Total"
 msgstr "总计："
 
 #: mmhomepage.cpp:108 mmhomepage.cpp:687 reports/incexpenses.cpp:280
-#: reports/payee.cpp:166 reports/summarystocks.cpp:155
+#: reports/payee.cpp:166 reports/summarystocks.cpp:163
 #: splittransactionsdialog.cpp:192
 msgid "Total:"
 msgstr "总计："
@@ -5162,7 +5164,7 @@ msgstr "需跟进的交易"
 msgid "Total Transactions: "
 msgstr "交易笔数"
 
-#: mmhomepage.cpp:543 reports/categexp.cpp:232 reports/summarystocks.cpp:170
+#: mmhomepage.cpp:543 reports/categexp.cpp:232 reports/summarystocks.cpp:180
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
 msgstr "总计："
@@ -5171,7 +5173,7 @@ msgstr "总计："
 msgid "Investment Accounts"
 msgstr "投资账户"
 
-#: mmhomepage.cpp:637 reports/summary.cpp:313 reports/summary.cpp:350
+#: mmhomepage.cpp:637 reports/summary.cpp:257 reports/summary.cpp:294
 msgid "Asset Accounts"
 msgstr "资产账户"
 
@@ -5215,29 +5217,29 @@ msgstr "年份："
 msgid "Budget:"
 msgstr "预算："
 
-#: mmreportspanel.cpp:346 reports/reportbase.cpp:208
+#: mmreportspanel.cpp:349 reports/reportbase.cpp:208
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "所有账户"
 
-#: mmreportspanel.cpp:347
+#: mmreportspanel.cpp:350
 msgid "Specific Accounts"
 msgstr "特定账户"
 
-#: mmreportspanel.cpp:363
+#: mmreportspanel.cpp:366
 msgid "Future Months:"
 msgstr "未来月份："
 
-#: mmreportspanel.cpp:378
+#: mmreportspanel.cpp:381
 msgid "Chart:"
 msgstr "图表："
 
-#: mmreportspanel.cpp:383
+#: mmreportspanel.cpp:386
 msgid "Show"
 msgstr "显示"
 
-#: model/Model_Account.cpp:33 model/Model_Asset.cpp:36 reports/summary.cpp:303
-#: reports/summary.cpp:345
+#: model/Model_Account.cpp:33 model/Model_Asset.cpp:36 reports/summary.cpp:247
+#: reports/summary.cpp:289
 msgid "Cash"
 msgstr "现金"
 
@@ -5861,123 +5863,131 @@ msgstr "类别分隔符"
 msgid "Transaction/Budget Options"
 msgstr "交易/预算选项"
 
-#: optionsettingsview.cpp:122
+#: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
 msgstr "预算视为财政年度"
 
-#: optionsettingsview.cpp:127
+#: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
 msgstr "查看带有“转移”交易的预算"
 
-#: optionsettingsview.cpp:133
+#: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
 msgstr "查看带摘要的预算类别报告"
 
-#: optionsettingsview.cpp:142
+#: optionsettingsview.cpp:139
+msgid "Override yearly budget with monthly budget"
+msgstr ""
+
+#: optionsettingsview.cpp:141
+msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
+msgstr ""
+
+#: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
 msgstr "预算偏移(天)："
 
-#: optionsettingsview.cpp:146
+#: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
 msgstr "允许调整当月的“第一天”（通常是第一天）以用于预算计算"
 
-#: optionsettingsview.cpp:154
+#: optionsettingsview.cpp:161
 msgid "Start day of month for reporting:"
 msgstr "报告的开始日期："
 
-#: optionsettingsview.cpp:158
+#: optionsettingsview.cpp:165
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
 msgstr "允许为报告目的调整当月的“第一天”"
 
-#: optionsettingsview.cpp:163
+#: optionsettingsview.cpp:170
 msgid "Ignore Future Transactions"
 msgstr "忽略未来交易"
 
-#: optionsettingsview.cpp:169
+#: optionsettingsview.cpp:176
 msgid "Transaction Colors"
 msgstr "交易颜色"
 
-#: optionsettingsview.cpp:208
+#: optionsettingsview.cpp:215
 msgid "UI Appearance"
 msgstr "界面外观"
 
-#: optionsettingsview.cpp:219
+#: optionsettingsview.cpp:226
 msgid "Open Theme Manager"
 msgstr "打开主题管理器"
 
-#: optionsettingsview.cpp:221
+#: optionsettingsview.cpp:228
 msgid "Style Template"
 msgstr "样式模板"
 
-#: optionsettingsview.cpp:227
+#: optionsettingsview.cpp:234
 msgid "Light"
 msgstr "浅色"
 
-#: optionsettingsview.cpp:228
+#: optionsettingsview.cpp:235
 msgid "Dark"
 msgstr "暗色"
 
-#: optionsettingsview.cpp:232
+#: optionsettingsview.cpp:239
 msgid "Specify preferred theme variant to use if supported"
 msgstr "如果支持，请指定要使用的首选主题"
 
-#: optionsettingsview.cpp:234
+#: optionsettingsview.cpp:241
 msgid "Theme Mode"
 msgstr "主题模式"
 
-#: optionsettingsview.cpp:238
+#: optionsettingsview.cpp:245
 msgid "HTML Scale Factor"
 msgstr "HTML 缩放系数"
 
-#: optionsettingsview.cpp:253
+#: optionsettingsview.cpp:260
 msgid "Specify which scale factor is used for the report pages"
 msgstr "指定报告页面使用哪个比例系数"
 
-#: optionsettingsview.cpp:258
+#: optionsettingsview.cpp:265
 msgid "Normal"
 msgstr "正常"
 
-#: optionsettingsview.cpp:259
+#: optionsettingsview.cpp:266
 msgid "Enlarged"
 msgstr "放大"
 
-#: optionsettingsview.cpp:260
+#: optionsettingsview.cpp:267
 msgid "Large"
 msgstr "大"
 
-#: optionsettingsview.cpp:261
+#: optionsettingsview.cpp:268
 msgid "Huge"
 msgstr "巨大"
 
-#: optionsettingsview.cpp:263
+#: optionsettingsview.cpp:270
 msgid "Font size"
 msgstr "字体大小"
 
-#: optionsettingsview.cpp:275
+#: optionsettingsview.cpp:282
 msgid "Small (16 px)"
 msgstr "小 (16px)"
 
-#: optionsettingsview.cpp:276
+#: optionsettingsview.cpp:283
 msgid "Normal (24 px)"
 msgstr "正常 (24 px)"
 
-#: optionsettingsview.cpp:277
+#: optionsettingsview.cpp:284
 msgid "Large (32 px)"
 msgstr "大 (32 px)"
 
-#: optionsettingsview.cpp:278
+#: optionsettingsview.cpp:285
 msgid "Huge (48 px)"
 msgstr "巨大 (48 px)"
 
-#: optionsettingsview.cpp:292
+#: optionsettingsview.cpp:299
 msgid "Toolbar Icon Size"
 msgstr "工具栏图标大小"
 
-#: optionsettingsview.cpp:293
+#: optionsettingsview.cpp:300
 msgid "Navigation Icon Size"
 msgstr "导航栏图标大小"
 
-#: optionsettingsview.cpp:294
+#: optionsettingsview.cpp:301
 msgid "Others Icon Size"
 msgstr "其他图标大小"
 
@@ -6126,64 +6136,60 @@ msgstr "财政年度: %s - %i"
 msgid "Year: %i Month: %s"
 msgstr "年份: %i 月: %s"
 
-#: reports/budgetcategorysummary.cpp:119
+#: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Categories for %s"
 msgstr "预算类目：%s"
 
-#: reports/budgetcategorysummary.cpp:119
+#: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Category Summary for %s"
 msgstr "预算类目摘要 - %s"
 
-#: reports/budgetcategorysummary.cpp:122
+#: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
 msgstr "（预计对比实际）"
 
-#: reports/budgetcategorysummary.cpp:279
+#: reports/budgetcategorysummary.cpp:273
 msgid "Estimated Income:"
 msgstr "估计收入："
 
-#: reports/budgetcategorysummary.cpp:281
+#: reports/budgetcategorysummary.cpp:275
 msgid "Actual Income:"
 msgstr "实际收入："
 
-#: reports/budgetcategorysummary.cpp:283
+#: reports/budgetcategorysummary.cpp:277
 msgid "Difference Income:"
 msgstr "差额收入："
 
-#: reports/budgetcategorysummary.cpp:290
+#: reports/budgetcategorysummary.cpp:284
 msgid "Estimated Expenses:"
 msgstr "估计费用："
 
-#: reports/budgetcategorysummary.cpp:292
+#: reports/budgetcategorysummary.cpp:286
 msgid "Actual Expenses:"
 msgstr "实际支出："
 
-#: reports/budgetcategorysummary.cpp:294
+#: reports/budgetcategorysummary.cpp:288
 msgid "Difference Expenses:"
 msgstr "差异开支："
 
-#: reports/budgetingperf.cpp:198
+#: reports/budgetingperf.cpp:110
 #, c-format
 msgid "Budget Performance for %s"
 msgstr "%s 的预算执行情况"
 
-#: reports/budgetingperf.cpp:237 reports/budgetingperf.cpp:239
+#: reports/budgetingperf.cpp:151 reports/budgetingperf.cpp:153
 msgid "Est."
 msgstr "Est."
 
-#: reports/budgetingperf.cpp:237 reports/budgetingperf.cpp:239
+#: reports/budgetingperf.cpp:151 reports/budgetingperf.cpp:153
 msgid "Act."
 msgstr "Act."
 
-#: reports/budgetingperf.cpp:240
+#: reports/budgetingperf.cpp:154
 msgid "%"
 msgstr "%"
-
-#: reports/budgetingperf.cpp:295
-msgid "Monthly Total"
-msgstr "每月总计"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
@@ -6439,16 +6445,16 @@ msgstr "收款人报告"
 msgid "Accounts: "
 msgstr "账户"
 
-#: reports/summary.cpp:192
+#: reports/summary.cpp:135
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr "账户收支 - %s"
 
-#: reports/summary.cpp:192
+#: reports/summary.cpp:135
 msgid "Monthly Report"
 msgstr "月度报告"
 
-#: reports/summary.cpp:192
+#: reports/summary.cpp:135
 msgid "Yearly Report"
 msgstr "年度报告"
 
@@ -6456,24 +6462,32 @@ msgstr "年度报告"
 msgid "Summary of Stocks"
 msgstr "股票汇总"
 
-#: reports/summarystocks.cpp:108
+#: reports/summarystocks.cpp:114
 msgid "Purchase Date"
 msgstr "购买日期"
 
-#: reports/summarystocks.cpp:109
+#: reports/summarystocks.cpp:115
 msgid "Quantity"
 msgstr "数量"
 
-#: reports/summarystocks.cpp:111
+#: reports/summarystocks.cpp:117
 msgid "Current Price"
 msgstr "当前价格"
 
-#: reports/summarystocks.cpp:112 sharetransactiondialog.cpp:253
-#: stocks_list.cpp:100
+#: reports/summarystocks.cpp:118 sharetransactiondialog.cpp:253
+#: stocks_list.cpp:101
 msgid "Commission"
 msgstr "佣金"
 
-#: reports/summarystocks.cpp:184
+#: reports/summarystocks.cpp:119 stocks_list.cpp:96
+msgid "Realized Gain/Loss"
+msgstr ""
+
+#: reports/summarystocks.cpp:120 stocks_list.cpp:97
+msgid "Unrealized Gain/Loss"
+msgstr ""
+
+#: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
 msgstr "库存性能图表"
 
@@ -6605,7 +6619,7 @@ msgid "Enter number of shares.\n"
 msgstr "输入共享数量。\n"
 "在创建初始共享交易时使用。"
 
-#: stockdialog.cpp:228 stocks_list.cpp:94
+#: stockdialog.cpp:228
 msgid "*Share Price"
 msgstr "*股价"
 
@@ -6625,7 +6639,7 @@ msgid "Enter any commission paid.\n"
 msgstr "输入支付的任何佣金。\n"
 "在创建初始分享交易时使用。"
 
-#: stockdialog.cpp:246 stocks_list.cpp:97
+#: stockdialog.cpp:246 stocks_list.cpp:98
 msgid "Curr. Share Price"
 msgstr "当前价格"
 
@@ -6641,7 +6655,7 @@ msgstr "股票历史选项"
 msgid "Stock Price History"
 msgstr "股价历史"
 
-#: stockdialog.cpp:311 stocks_list.cpp:99
+#: stockdialog.cpp:311 stocks_list.cpp:100
 msgid "Price Date"
 msgstr "股价日期"
 
@@ -6773,47 +6787,51 @@ msgstr "股票历史错误"
 msgid "Share Total"
 msgstr "总资产"
 
-#: stocks_list.cpp:95
-msgid "Init Value"
-msgstr "初始价格"
+#: stocks_list.cpp:94
+msgid "Avg Share Price"
+msgstr ""
 
-#: stocks_list.cpp:98
+#: stocks_list.cpp:95
+msgid "Total Cost"
+msgstr ""
+
+#: stocks_list.cpp:99
 msgid "Curr. Total Value"
 msgstr "当前总价值"
 
-#: stocks_list.cpp:138
+#: stocks_list.cpp:139
 msgid "&New Stock Investment"
 msgstr "新增股票(&N)"
 
-#: stocks_list.cpp:140
+#: stocks_list.cpp:141
 msgid "&Add Stock Transactions"
 msgstr "添加股票交(&A)"
 
-#: stocks_list.cpp:141
+#: stocks_list.cpp:142
 msgid "&View Stock Transactions"
 msgstr "查看股票交易(&V)"
 
-#: stocks_list.cpp:143
+#: stocks_list.cpp:144
 msgid "&Edit Stock Investment"
 msgstr "编辑股票(&E)"
 
-#: stocks_list.cpp:145
+#: stocks_list.cpp:146
 msgid "&Delete Stock Investment"
 msgstr "删除股票(&D)"
 
-#: stocks_list.cpp:148
+#: stocks_list.cpp:149
 msgid "Stock &Web Page"
 msgstr "股票报价网页(&W)"
 
-#: stocks_list.cpp:265
+#: stocks_list.cpp:277
 msgid "Do you really want to delete the stock investment?"
 msgstr "您是否确定要删除这支股票？"
 
-#: stocks_list.cpp:266
+#: stocks_list.cpp:278
 msgid "Confirm Stock Investment Deletion"
 msgstr "确认删除股票投资"
 
-#: stocks_list.cpp:287
+#: stocks_list.cpp:299
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr "正在将交易从 %s 移动到"

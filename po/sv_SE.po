@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-09 20:50+0300\n"
-"PO-Revision-Date: 2022-09-09 19:57\n"
+"POT-Creation-Date: 2022-09-14 22:31+0300\n"
+"PO-Revision-Date: 2022-09-14 19:40\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr "Välj ifall om .bak-filer skall skapas vid öppnandet av databasfiler"
 #: import_export/qif_export.cpp:591 import_export/qif_import_gui.cpp:107
 #: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:305
 #: reports/transactions.cpp:194 sharetransactiondialog.cpp:275
-#: stockdialog.cpp:259 stocks_list.cpp:101 transactionsupdatedialog.cpp:241
+#: stockdialog.cpp:259 stocks_list.cpp:102 transactionsupdatedialog.cpp:241
 #: transdialog.cpp:508 usertransactionpanel.cpp:194 webappdialog.cpp:154
 msgid "Notes"
 msgstr "Noteringar"
@@ -383,7 +383,7 @@ msgstr "Detaljer över tillgång"
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:143
 #: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:258
 #: import_export/qif_import_gui.cpp:271 import_export/qif_import_gui.cpp:281
-#: maincurrencydialog.cpp:80 payeedialog.cpp:65 reports/summarystocks.cpp:106
+#: maincurrencydialog.cpp:80 payeedialog.cpp:65 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "Namn"
 
@@ -398,7 +398,7 @@ msgstr "Ange namnet på tillgången"
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:275 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:293 reports/cashflow.cpp:422
-#: reports/incexpenses.cpp:244 reports/summary.cpp:344
+#: reports/incexpenses.cpp:244 reports/summary.cpp:288
 #: reports/transactions.cpp:186 stockdialog.cpp:292 stockdialog.cpp:644
 #: transactionsupdatedialog.cpp:143 transdialog.cpp:370
 #: usertransactionpanel.cpp:98 webappdialog.cpp:147 wizard_update.cpp:141
@@ -458,11 +458,11 @@ msgstr "Detaljer för ny transaktion"
 msgid "Edit Transaction Details"
 msgstr "Redigera detaljer för transaktion"
 
-#: assetdialog.cpp:300 constants.cpp:73 sharetransactiondialog.cpp:331
+#: assetdialog.cpp:300 constants.cpp:74 sharetransactiondialog.cpp:331
 msgid "&Cancel "
 msgstr "&Avbryt "
 
-#: assetdialog.cpp:396 sharetransactiondialog.cpp:439
+#: assetdialog.cpp:396 sharetransactiondialog.cpp:422
 msgid "Invalid Transaction"
 msgstr "Ogiltig transaktion"
 
@@ -490,11 +490,11 @@ msgstr "ID"
 msgid "Type"
 msgstr "Typ"
 
-#: assetspanel.cpp:63 reports/summarystocks.cpp:110
+#: assetspanel.cpp:63 reports/summarystocks.cpp:116
 msgid "Initial Value"
 msgstr "Ursprungsvärde"
 
-#: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:254
+#: assetspanel.cpp:64 reports/summarystocks.cpp:121 stockdialog.cpp:254
 msgid "Current Value"
 msgstr "Aktuellt värde"
 
@@ -527,7 +527,7 @@ msgid "&Delete Asset"
 msgstr "&Ta bort tillgång"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:437 mmchecking_list.cpp:471
-#: mmframe.cpp:1369 mmframe.cpp:1389 payeedialog.cpp:412 stocks_list.cpp:147
+#: mmframe.cpp:1369 mmframe.cpp:1389 payeedialog.cpp:412 stocks_list.cpp:148
 msgid "&Organize Attachments"
 msgstr ""
 
@@ -791,44 +791,44 @@ msgid "Open attachment failed"
 msgstr "Öppning av bilaga misslyckades"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 mmSimpleDialogs.cpp:552
-#: model/Model_Asset.cpp:24 model/Model_Budget.cpp:55
+#: model/Model_Asset.cpp:24 model/Model_Budget.cpp:58
 #: optionsettingsmisc.cpp:103 reports/reportbase.cpp:212
 msgid "None"
 msgstr "Inget"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:51
-#: model/Model_Budget.cpp:56
+#: model/Model_Budget.cpp:59
 msgid "Weekly"
 msgstr "Veckovis"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
-#: model/Model_Budget.cpp:57
+#: model/Model_Budget.cpp:60
 msgid "Fortnightly"
 msgstr "Var fjortonde dag"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
-#: model/Model_Budget.cpp:58
+#: model/Model_Budget.cpp:61
 msgid "Monthly"
 msgstr "Månatlig"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
-#: model/Model_Budget.cpp:59
+#: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
 msgstr "Varannan månad"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
-#: model/Model_Budget.cpp:60
+#: model/Model_Budget.cpp:63
 msgid "Quarterly"
 msgstr "Kvartalsvis"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:56
-#: model/Model_Budget.cpp:61
+#: model/Model_Budget.cpp:64
 msgid "Half-Yearly"
 msgstr "Halvårsvis"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:57 mmframereport.cpp:201
-#: model/Model_Budget.cpp:62
+#: model/Model_Budget.cpp:65
 msgid "Yearly"
 msgstr "Årsvis"
 
@@ -841,7 +841,7 @@ msgid "Four Weeks"
 msgstr "Fyra veckor"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:60 mmframereport.cpp:126
-#: model/Model_Budget.cpp:63
+#: model/Model_Budget.cpp:66
 msgid "Daily"
 msgstr "Dagligen"
 
@@ -968,12 +968,11 @@ msgstr ""
 #: budgetingpanel.cpp:303 filtertrans.cpp:198 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:946 import_export/qif_export.cpp:588
 #: import_export/univcsvdialog.cpp:112 maincurrencydialog.cpp:622
-#: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/budgetcategorysummary.cpp:189
-#: reports/cashflow.cpp:426 reports/categexp.cpp:179
-#: reports/incexpenses.cpp:109 reports/transactions.cpp:193
-#: splitdetailsdialog.cpp:135 splittransactionsdialog.cpp:106
-#: transactionsupdatedialog.cpp:184 transdialog.cpp:424
-#: usertransactionpanel.cpp:132 webappdialog.cpp:153
+#: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/cashflow.cpp:426
+#: reports/categexp.cpp:179 reports/incexpenses.cpp:109
+#: reports/transactions.cpp:193 splitdetailsdialog.cpp:135
+#: splittransactionsdialog.cpp:106 transactionsupdatedialog.cpp:184
+#: transdialog.cpp:424 usertransactionpanel.cpp:132 webappdialog.cpp:153
 msgid "Amount"
 msgstr "Summa"
 
@@ -1021,8 +1020,8 @@ msgstr "Betalningsmottagare"
 #: filtertransdialog.cpp:1454 import_export/qif_export.cpp:587
 #: import_export/qif_import_gui.cpp:105 import_export/qif_import_gui.cpp:277
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:288
-#: mmhomepage.cpp:190 reports/budgetcategorysummary.cpp:188
-#: reports/budgetingperf.cpp:220 reports/cashflow.cpp:425
+#: mmhomepage.cpp:190 reports/budgetcategorysummary.cpp:190
+#: reports/budgetingperf.cpp:132 reports/cashflow.cpp:425
 #: reports/categexp.cpp:178 reports/categexp.cpp:428
 #: reports/transactions.cpp:191 splitdetailsdialog.cpp:144
 #: splitdetailsdialog.cpp:186 splittransactionsdialog.cpp:104
@@ -1222,8 +1221,7 @@ msgstr "Var %s:e dag"
 msgid "Every %s Months"
 msgstr "Var %s:e månad"
 
-#: billsdepositspanel.cpp:140 budgetingpanel.cpp:302
-#: reports/budgetcategorysummary.cpp:190 reports/myusage.cpp:160
+#: billsdepositspanel.cpp:140 budgetingpanel.cpp:302 reports/myusage.cpp:160
 msgid "Frequency"
 msgstr "Frekvens"
 
@@ -1363,11 +1361,11 @@ msgstr "Kategori: "
 msgid "Sub Category: "
 msgstr "Underkategori: "
 
-#: budgetentrydialog.cpp:120
+#: budgetentrydialog.cpp:120 reports/budgetingperf.cpp:220
 msgid "Estimated:"
 msgstr "Beräknad:"
 
-#: budgetentrydialog.cpp:122
+#: budgetentrydialog.cpp:122 reports/budgetingperf.cpp:221
 msgid "Actual:"
 msgstr "Verklig:"
 
@@ -1467,7 +1465,7 @@ msgstr "Beräknad: "
 msgid "Actual: "
 msgstr "Verklig: "
 
-#: budgetingpanel.cpp:253 budgetingpanel.cpp:261
+#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:222
 msgid "Difference: "
 msgstr "Skillnad: "
 
@@ -1483,12 +1481,12 @@ msgstr "Ikon"
 msgid "Sub Category"
 msgstr "Underkategori"
 
-#: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
+#: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:148
 #: reports/budgetcategorysummary.cpp:191
 msgid "Estimated"
 msgstr "Beräknad"
 
-#: budgetingpanel.cpp:305 reports/budgetcategorysummary.cpp:144
+#: budgetingpanel.cpp:305 reports/budgetcategorysummary.cpp:149
 #: reports/budgetcategorysummary.cpp:192
 msgid "Actual"
 msgstr "Verklig"
@@ -1736,89 +1734,89 @@ msgstr "Rensa inställningar"
 msgid "Organize Categories"
 msgstr "Organisera kategorier"
 
-#: constants.cpp:71
+#: constants.cpp:72
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: constants.cpp:77 diagnostics.cpp:88 relocatecategorydialog.cpp:126
+#: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:126
 #: relocatepayeedialog.cpp:127 themes.cpp:195
 msgid "Close"
 msgstr "Stäng"
 
-#: constants.cpp:79
+#: constants.cpp:80
 msgid "&Close "
 msgstr "&Stäng "
 
-#: constants.cpp:176
+#: constants.cpp:177
 msgid "Advanced Filter"
 msgstr "Avancerat filter"
 
-#: constants.cpp:177
+#: constants.cpp:178
 msgid "View All Transactions"
 msgstr "Visa alla transaktioner"
 
-#: constants.cpp:178
+#: constants.cpp:179
 msgid "View Today"
 msgstr "Visa idag"
 
-#: constants.cpp:179
+#: constants.cpp:180
 msgid "View Current Month"
 msgstr "Visa nuvarande månad"
 
-#: constants.cpp:180
+#: constants.cpp:181
 msgid "View Last 30 days"
 msgstr "Visa senaste 30 dagarna"
 
-#: constants.cpp:181
+#: constants.cpp:182
 msgid "View Last 90 days"
 msgstr "Visa senaste 90 dagarna"
 
-#: constants.cpp:182
+#: constants.cpp:183
 msgid "View Last Month"
 msgstr "Visa föregående månad"
 
-#: constants.cpp:183
+#: constants.cpp:184
 msgid "View Last 3 Months"
 msgstr "Visa de senaste 3 månaderna"
 
-#: constants.cpp:184
+#: constants.cpp:185
 msgid "View Last 12 Months"
 msgstr "Visa de senaste 12 månaderna"
 
-#: constants.cpp:185
+#: constants.cpp:186
 msgid "View Current Year"
 msgstr "Visa nuvarande månad"
 
-#: constants.cpp:186
+#: constants.cpp:187
 msgid "View Current Financial Year"
 msgstr "Visa nuvarande räkenskapsår"
 
-#: constants.cpp:187
+#: constants.cpp:188
 msgid "View Last Year"
 msgstr "Visa förra året"
 
-#: constants.cpp:188
+#: constants.cpp:189
 msgid "View Last Financial Year"
 msgstr "Visa förra räkenskapsåret"
 
-#: constants.cpp:189
+#: constants.cpp:190
 msgid "View Since Statement Date"
 msgstr ""
 
-#: constants.cpp:191
+#: constants.cpp:192
 msgid "ALL"
 msgstr "ALLA"
 
-#: constants.cpp:192 mmframe.cpp:1415 mmframe.cpp:1815
+#: constants.cpp:193 mmframe.cpp:1415 mmframe.cpp:1815
 #: model/Model_Account.cpp:27
 msgid "Open"
 msgstr "Öppet"
 
-#: constants.cpp:193 mmframe.cpp:1416 model/Model_Account.cpp:28
+#: constants.cpp:194 mmframe.cpp:1416 model/Model_Account.cpp:28
 msgid "Closed"
 msgstr "Stängt"
 
-#: constants.cpp:194 mmframe.cpp:1414
+#: constants.cpp:195 mmframe.cpp:1414
 msgid "Favorites"
 msgstr "Favoriter"
 
@@ -1942,7 +1940,7 @@ msgstr "Komplettera automatiskt"
 msgid "Enables autocomplete on custom field"
 msgstr "Aktiverar automatisk komplettering på anpassat fält"
 
-#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:203 util.cpp:604
+#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:210 util.cpp:604
 msgid "Default"
 msgstr "Förval"
 
@@ -2223,7 +2221,7 @@ msgstr "Läkare"
 msgid "Prescriptions"
 msgstr "Recept"
 
-#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:226
+#: db/DB_Table_Subcategory_V1.h:139 optionsettingsview.cpp:233
 msgid "Auto"
 msgstr "Bil"
 
@@ -3031,7 +3029,7 @@ msgstr "Rad %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Antal rader som läses från QIF-filen: %zu på %lld ms"
 
-#: import_export/qif_import_gui.cpp:521 mmreportspanel.cpp:341
+#: import_export/qif_import_gui.cpp:521 mmreportspanel.cpp:344
 msgid "Accounts:"
 msgstr ""
 
@@ -3163,8 +3161,8 @@ msgid "Don't Care"
 msgstr "Bryr mig inte"
 
 #: import_export/univcsvdialog.cpp:121 mmchecking_list.cpp:296
-#: mmhomepage.cpp:648 reports/cashflow.cpp:427 reports/summary.cpp:319
-#: reports/summary.cpp:354
+#: mmhomepage.cpp:648 reports/cashflow.cpp:427 reports/summary.cpp:263
+#: reports/summary.cpp:298
 msgid "Balance"
 msgstr "Balans"
 
@@ -3444,7 +3442,7 @@ msgstr ""
 msgid "Enter a value"
 msgstr "Ange ett värde"
 
-#: maincurrencydialog.cpp:79 reports/summarystocks.cpp:107 stockdialog.cpp:421
+#: maincurrencydialog.cpp:79 reports/summarystocks.cpp:113 stockdialog.cpp:421
 #: stocks_list.cpp:92
 msgid "Symbol"
 msgstr "Symbol"
@@ -3939,7 +3937,7 @@ msgid_plural "Moving %i transactions to..."
 msgstr[0] "Flyttar transaktionen till..."
 msgstr[1] "Flyttar %i transaktioner till..."
 
-#: mmchecking_list.cpp:1289 stocks_list.cpp:288
+#: mmchecking_list.cpp:1289 stocks_list.cpp:300
 msgid "Select the destination Account "
 msgstr ""
 
@@ -4059,18 +4057,18 @@ msgstr "Verktygsfält"
 msgid "Favourites"
 msgstr ""
 
-#: mmframe.cpp:478 mmframe.cpp:721 mmhomepage.cpp:632 reports/summary.cpp:305
-#: reports/summary.cpp:346
+#: mmframe.cpp:478 mmframe.cpp:721 mmhomepage.cpp:632 reports/summary.cpp:249
+#: reports/summary.cpp:290
 msgid "Bank Accounts"
 msgstr "Bankkonton"
 
-#: mmframe.cpp:479 mmframe.cpp:725 mmhomepage.cpp:633 reports/summary.cpp:307
-#: reports/summary.cpp:347
+#: mmframe.cpp:479 mmframe.cpp:725 mmhomepage.cpp:633 reports/summary.cpp:251
+#: reports/summary.cpp:291
 msgid "Credit Card Accounts"
 msgstr "Kreditkortskonton"
 
-#: mmframe.cpp:480 mmframe.cpp:737 mmhomepage.cpp:635 reports/summary.cpp:311
-#: reports/summary.cpp:349
+#: mmframe.cpp:480 mmframe.cpp:737 mmhomepage.cpp:635 reports/summary.cpp:255
+#: reports/summary.cpp:293
 msgid "Term Accounts"
 msgstr ""
 
@@ -4082,8 +4080,8 @@ msgstr ""
 msgid "Cash Accounts"
 msgstr "Kontantkonton"
 
-#: mmframe.cpp:483 mmframe.cpp:733 mmhomepage.cpp:634 reports/summary.cpp:309
-#: reports/summary.cpp:348
+#: mmframe.cpp:483 mmframe.cpp:733 mmhomepage.cpp:634 reports/summary.cpp:253
+#: reports/summary.cpp:292
 msgid "Loan Accounts"
 msgstr "Lånekonton"
 
@@ -4099,8 +4097,8 @@ msgstr "Övergripande"
 msgid "All Transactions"
 msgstr ""
 
-#: mmframe.cpp:745 mmhomepage.cpp:638 reports/summary.cpp:315
-#: reports/summary.cpp:351
+#: mmframe.cpp:745 mmhomepage.cpp:638 reports/summary.cpp:259
+#: reports/summary.cpp:295
 msgid "Share Accounts"
 msgstr ""
 
@@ -5063,6 +5061,10 @@ msgid "Summary of Accounts"
 msgstr "Kontosammanfattning"
 
 #: mmframereport.cpp:212
+msgid "Budgets"
+msgstr ""
+
+#: mmframereport.cpp:215
 msgid "Budget Performance"
 msgstr ""
 
@@ -5074,7 +5076,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:315 mmreportspanel.cpp:384
+#: mmframereport.cpp:315 mmreportspanel.cpp:387
 msgid "Hide"
 msgstr "Dölj"
 
@@ -5086,22 +5088,22 @@ msgstr "&Bakåt"
 msgid "&Forward"
 msgstr "&Framåt"
 
-#: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:317
-#: reports/summary.cpp:353
+#: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:261
+#: reports/summary.cpp:297
 msgid "Stocks"
 msgstr "Aktier"
 
-#: mmhomepage.cpp:81 reports/summarystocks.cpp:113 stocks_list.cpp:96
+#: mmhomepage.cpp:81
 msgid "Gain/Loss"
 msgstr "Vinst/förlust"
 
-#: mmhomepage.cpp:82 reports/budgetingperf.cpp:229 reports/cashflow.cpp:294
-#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:352
+#: mmhomepage.cpp:82 reports/budgetingperf.cpp:143 reports/cashflow.cpp:294
+#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:296
 msgid "Total"
 msgstr "Totalt"
 
 #: mmhomepage.cpp:108 mmhomepage.cpp:687 reports/incexpenses.cpp:280
-#: reports/payee.cpp:166 reports/summarystocks.cpp:155
+#: reports/payee.cpp:166 reports/summarystocks.cpp:163
 #: splittransactionsdialog.cpp:192
 msgid "Total:"
 msgstr "Totalt:"
@@ -5147,7 +5149,7 @@ msgstr ""
 msgid "Total Transactions: "
 msgstr ""
 
-#: mmhomepage.cpp:543 reports/categexp.cpp:232 reports/summarystocks.cpp:170
+#: mmhomepage.cpp:543 reports/categexp.cpp:232 reports/summarystocks.cpp:180
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
 msgstr ""
@@ -5156,7 +5158,7 @@ msgstr ""
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:637 reports/summary.cpp:313 reports/summary.cpp:350
+#: mmhomepage.cpp:637 reports/summary.cpp:257 reports/summary.cpp:294
 msgid "Asset Accounts"
 msgstr ""
 
@@ -5200,29 +5202,29 @@ msgstr "År:"
 msgid "Budget:"
 msgstr "Budget:"
 
-#: mmreportspanel.cpp:346 reports/reportbase.cpp:208
+#: mmreportspanel.cpp:349 reports/reportbase.cpp:208
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr ""
 
-#: mmreportspanel.cpp:347
+#: mmreportspanel.cpp:350
 msgid "Specific Accounts"
 msgstr ""
 
-#: mmreportspanel.cpp:363
+#: mmreportspanel.cpp:366
 msgid "Future Months:"
 msgstr "Framtida månader:"
 
-#: mmreportspanel.cpp:378
+#: mmreportspanel.cpp:381
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:383
+#: mmreportspanel.cpp:386
 msgid "Show"
 msgstr "Visa"
 
-#: model/Model_Account.cpp:33 model/Model_Asset.cpp:36 reports/summary.cpp:303
-#: reports/summary.cpp:345
+#: model/Model_Account.cpp:33 model/Model_Asset.cpp:36 reports/summary.cpp:247
+#: reports/summary.cpp:289
 msgid "Cash"
 msgstr "Pengar"
 
@@ -5841,123 +5843,131 @@ msgstr ""
 msgid "Transaction/Budget Options"
 msgstr ""
 
-#: optionsettingsview.cpp:122
+#: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
 msgstr ""
 
-#: optionsettingsview.cpp:127
+#: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:133
+#: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
 msgstr ""
 
-#: optionsettingsview.cpp:142
+#: optionsettingsview.cpp:139
+msgid "Override yearly budget with monthly budget"
+msgstr ""
+
+#: optionsettingsview.cpp:141
+msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
+msgstr ""
+
+#: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
 msgstr ""
 
-#: optionsettingsview.cpp:146
+#: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
 msgstr "Tillåter att \"första dagen\" i månaden (normalt den 1:a) justeras för budgetberäkningsändamål"
 
-#: optionsettingsview.cpp:154
+#: optionsettingsview.cpp:161
 msgid "Start day of month for reporting:"
 msgstr ""
 
-#: optionsettingsview.cpp:158
+#: optionsettingsview.cpp:165
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
 msgstr ""
 
-#: optionsettingsview.cpp:163
+#: optionsettingsview.cpp:170
 msgid "Ignore Future Transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:169
+#: optionsettingsview.cpp:176
 msgid "Transaction Colors"
 msgstr ""
 
-#: optionsettingsview.cpp:208
+#: optionsettingsview.cpp:215
 msgid "UI Appearance"
 msgstr ""
 
-#: optionsettingsview.cpp:219
+#: optionsettingsview.cpp:226
 msgid "Open Theme Manager"
 msgstr ""
 
-#: optionsettingsview.cpp:221
+#: optionsettingsview.cpp:228
 msgid "Style Template"
 msgstr ""
 
-#: optionsettingsview.cpp:227
+#: optionsettingsview.cpp:234
 msgid "Light"
 msgstr ""
 
-#: optionsettingsview.cpp:228
+#: optionsettingsview.cpp:235
 msgid "Dark"
 msgstr ""
 
-#: optionsettingsview.cpp:232
+#: optionsettingsview.cpp:239
 msgid "Specify preferred theme variant to use if supported"
 msgstr ""
 
-#: optionsettingsview.cpp:234
+#: optionsettingsview.cpp:241
 msgid "Theme Mode"
 msgstr ""
 
-#: optionsettingsview.cpp:238
+#: optionsettingsview.cpp:245
 msgid "HTML Scale Factor"
 msgstr ""
 
-#: optionsettingsview.cpp:253
+#: optionsettingsview.cpp:260
 msgid "Specify which scale factor is used for the report pages"
 msgstr ""
 
-#: optionsettingsview.cpp:258
+#: optionsettingsview.cpp:265
 msgid "Normal"
 msgstr "Normal"
 
-#: optionsettingsview.cpp:259
+#: optionsettingsview.cpp:266
 msgid "Enlarged"
 msgstr "Förstorad"
 
-#: optionsettingsview.cpp:260
+#: optionsettingsview.cpp:267
 msgid "Large"
 msgstr "Stor"
 
-#: optionsettingsview.cpp:261
+#: optionsettingsview.cpp:268
 msgid "Huge"
 msgstr "Jättestor"
 
-#: optionsettingsview.cpp:263
+#: optionsettingsview.cpp:270
 msgid "Font size"
 msgstr "Teckenstorlek"
 
-#: optionsettingsview.cpp:275
+#: optionsettingsview.cpp:282
 msgid "Small (16 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:276
+#: optionsettingsview.cpp:283
 msgid "Normal (24 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:277
+#: optionsettingsview.cpp:284
 msgid "Large (32 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:278
+#: optionsettingsview.cpp:285
 msgid "Huge (48 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:292
+#: optionsettingsview.cpp:299
 msgid "Toolbar Icon Size"
 msgstr ""
 
-#: optionsettingsview.cpp:293
+#: optionsettingsview.cpp:300
 msgid "Navigation Icon Size"
 msgstr ""
 
-#: optionsettingsview.cpp:294
+#: optionsettingsview.cpp:301
 msgid "Others Icon Size"
 msgstr ""
 
@@ -6106,63 +6116,59 @@ msgstr "Räkenskapsår: %s - %i"
 msgid "Year: %i Month: %s"
 msgstr "År: %i Månad: %s"
 
-#: reports/budgetcategorysummary.cpp:119
+#: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Categories for %s"
 msgstr ""
 
-#: reports/budgetcategorysummary.cpp:119
+#: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Category Summary for %s"
 msgstr ""
 
-#: reports/budgetcategorysummary.cpp:122
+#: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
 msgstr ""
 
-#: reports/budgetcategorysummary.cpp:279
+#: reports/budgetcategorysummary.cpp:273
 msgid "Estimated Income:"
 msgstr "Beräknad inkomst:"
 
-#: reports/budgetcategorysummary.cpp:281
+#: reports/budgetcategorysummary.cpp:275
 msgid "Actual Income:"
 msgstr "Faktisk inkomst:"
 
-#: reports/budgetcategorysummary.cpp:283
+#: reports/budgetcategorysummary.cpp:277
 msgid "Difference Income:"
 msgstr "Skillnad på inkomst:"
 
-#: reports/budgetcategorysummary.cpp:290
+#: reports/budgetcategorysummary.cpp:284
 msgid "Estimated Expenses:"
 msgstr "Beräknade utgifter:"
 
-#: reports/budgetcategorysummary.cpp:292
+#: reports/budgetcategorysummary.cpp:286
 msgid "Actual Expenses:"
 msgstr "Faktiska utgifter:"
 
-#: reports/budgetcategorysummary.cpp:294
+#: reports/budgetcategorysummary.cpp:288
 msgid "Difference Expenses:"
 msgstr "Skillnad på utgifter:"
 
-#: reports/budgetingperf.cpp:198
+#: reports/budgetingperf.cpp:110
 #, c-format
 msgid "Budget Performance for %s"
 msgstr ""
 
-#: reports/budgetingperf.cpp:237 reports/budgetingperf.cpp:239
+#: reports/budgetingperf.cpp:151 reports/budgetingperf.cpp:153
 msgid "Est."
 msgstr ""
 
-#: reports/budgetingperf.cpp:237 reports/budgetingperf.cpp:239
+#: reports/budgetingperf.cpp:151 reports/budgetingperf.cpp:153
 msgid "Act."
 msgstr ""
 
-#: reports/budgetingperf.cpp:240
+#: reports/budgetingperf.cpp:154
 msgid "%"
-msgstr ""
-
-#: reports/budgetingperf.cpp:295
-msgid "Monthly Total"
 msgstr ""
 
 #: reports/bugreport.h:56
@@ -6419,16 +6425,16 @@ msgstr "Rapport för betalningsmottagare"
 msgid "Accounts: "
 msgstr "Konton: "
 
-#: reports/summary.cpp:192
+#: reports/summary.cpp:135
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr ""
 
-#: reports/summary.cpp:192
+#: reports/summary.cpp:135
 msgid "Monthly Report"
 msgstr "Månatlig rapport"
 
-#: reports/summary.cpp:192
+#: reports/summary.cpp:135
 msgid "Yearly Report"
 msgstr "Årlig rapport"
 
@@ -6436,24 +6442,32 @@ msgstr "Årlig rapport"
 msgid "Summary of Stocks"
 msgstr "Aktiesammanfattning"
 
-#: reports/summarystocks.cpp:108
+#: reports/summarystocks.cpp:114
 msgid "Purchase Date"
 msgstr "Inköpsdatum"
 
-#: reports/summarystocks.cpp:109
+#: reports/summarystocks.cpp:115
 msgid "Quantity"
 msgstr "Kvantitet"
 
-#: reports/summarystocks.cpp:111
+#: reports/summarystocks.cpp:117
 msgid "Current Price"
 msgstr "Akt. pris:"
 
-#: reports/summarystocks.cpp:112 sharetransactiondialog.cpp:253
-#: stocks_list.cpp:100
+#: reports/summarystocks.cpp:118 sharetransactiondialog.cpp:253
+#: stocks_list.cpp:101
 msgid "Commission"
 msgstr "Provision"
 
-#: reports/summarystocks.cpp:184
+#: reports/summarystocks.cpp:119 stocks_list.cpp:96
+msgid "Realized Gain/Loss"
+msgstr ""
+
+#: reports/summarystocks.cpp:120 stocks_list.cpp:97
+msgid "Unrealized Gain/Loss"
+msgstr ""
+
+#: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
 msgstr ""
 
@@ -6583,7 +6597,7 @@ msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
 
-#: stockdialog.cpp:228 stocks_list.cpp:94
+#: stockdialog.cpp:228
 msgid "*Share Price"
 msgstr ""
 
@@ -6601,7 +6615,7 @@ msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
 
-#: stockdialog.cpp:246 stocks_list.cpp:97
+#: stockdialog.cpp:246 stocks_list.cpp:98
 msgid "Curr. Share Price"
 msgstr ""
 
@@ -6617,7 +6631,7 @@ msgstr ""
 msgid "Stock Price History"
 msgstr ""
 
-#: stockdialog.cpp:311 stocks_list.cpp:99
+#: stockdialog.cpp:311 stocks_list.cpp:100
 msgid "Price Date"
 msgstr ""
 
@@ -6746,47 +6760,51 @@ msgstr ""
 msgid "Share Total"
 msgstr ""
 
-#: stocks_list.cpp:95
-msgid "Init Value"
+#: stocks_list.cpp:94
+msgid "Avg Share Price"
 msgstr ""
 
-#: stocks_list.cpp:98
+#: stocks_list.cpp:95
+msgid "Total Cost"
+msgstr ""
+
+#: stocks_list.cpp:99
 msgid "Curr. Total Value"
 msgstr "Nuvarande totalt värde"
 
-#: stocks_list.cpp:138
+#: stocks_list.cpp:139
 msgid "&New Stock Investment"
 msgstr "&Ny aktieinvestering"
 
-#: stocks_list.cpp:140
+#: stocks_list.cpp:141
 msgid "&Add Stock Transactions"
 msgstr ""
 
-#: stocks_list.cpp:141
+#: stocks_list.cpp:142
 msgid "&View Stock Transactions"
 msgstr ""
 
-#: stocks_list.cpp:143
+#: stocks_list.cpp:144
 msgid "&Edit Stock Investment"
 msgstr "&Ändra aktieinvestering"
 
-#: stocks_list.cpp:145
+#: stocks_list.cpp:146
 msgid "&Delete Stock Investment"
 msgstr "&Ta bort aktieinvestering"
 
-#: stocks_list.cpp:148
+#: stocks_list.cpp:149
 msgid "Stock &Web Page"
 msgstr ""
 
-#: stocks_list.cpp:265
+#: stocks_list.cpp:277
 msgid "Do you really want to delete the stock investment?"
 msgstr "Vill du verkligen ta bort aktieinvesteringen?"
 
-#: stocks_list.cpp:266
+#: stocks_list.cpp:278
 msgid "Confirm Stock Investment Deletion"
 msgstr ""
 
-#: stocks_list.cpp:287
+#: stocks_list.cpp:299
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr "Flyttar transaktionen från %s till"
