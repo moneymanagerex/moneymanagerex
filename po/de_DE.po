@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-14 22:31+0300\n"
-"PO-Revision-Date: 2022-09-14 19:41\n"
+"PO-Revision-Date: 2022-09-15 10:20\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1648,7 +1648,7 @@ msgstr "Ungültige Oberkategorie. Oberste oder Hauptkategorie auswählen."
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Sie können keine Unterkategorie in eine Kategorie verschieben, die bereits eine Unterkategorie mit diesem Namen hat. Überlegen Sie vor dem Verschieben das Umbenennen."
 
 #: categdialog.cpp:492
 #, c-format
@@ -1656,11 +1656,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie\n"
+" \"%s\"\n"
+"nach\n"
+"\"%s\" verschieben möchten?"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "Verschieben bestätigen"
 
 #: categdialog.cpp:513
 msgid "Category in use."
@@ -5085,7 +5088,7 @@ msgstr "Kontenübersicht"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Budgets"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5885,11 +5888,11 @@ msgstr "Budget-Kategorie-Bericht mit Zusammenfassungen anzeigen"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Jahresbudget mit monatlichem Budget überschreiben"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Wenn ein monatliches Budget vorhanden ist, wird das Jahresbudget damit überschrieben; andernfalls werden sie zusammengeführt"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -5897,7 +5900,7 @@ msgstr "Budget-Offset (Tage):"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Ermöglicht die Anpassung des \"ersten Tages\" im Monat (normalerweise der 1.) für die Budgetberechnung"
 
 #: optionsettingsview.cpp:161
 msgid "Start day of month for reporting:"
@@ -6490,11 +6493,11 @@ msgstr "Gebühren"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Realisierter Gewinn / Verlust"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Nicht realisierter Gewinn/Verlust"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6798,11 +6801,11 @@ msgstr "Anteile gesamt"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Durchschnittspreis der Aktie"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Gesamtkosten"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
