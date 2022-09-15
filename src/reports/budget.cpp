@@ -1,6 +1,7 @@
 /*************************************************************************
  Copyright (C) 2012 Stefano Giorgio
  Copyright (C) 2017 James Higley
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -54,9 +55,9 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYear, wxDateTime& startDate, 
     if (pattern_month.Matches(budgetYear))
     {
         wxString monthStr = pattern_month.GetMatch(budgetYear, 2);
-        wxDateTime::Month month = static_cast<wxDateTime::Month>(wxAtoi(monthStr) - 1);
-        startDate.SetMonth(month);
-        SetDateToEndOfMonth(month, endDate);
+        int month = wxAtoi(monthStr) - 1;
+        startDate.Add(wxDateSpan::Months(month));
+        endDate.Add(wxDateSpan::Months(month));
     }
 }
 

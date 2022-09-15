@@ -212,18 +212,26 @@ void Model_Category::getCategoryStats(
     const auto &allSubcategories = Model_Subcategory::instance().all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    const wxDateTime start_date(1, date_range->start_date().GetMonth(), date_range->start_date().GetYear());
+    const wxDateTime start_date(date_range->start_date());
+
+    std::vector<std::pair<wxDateTime, int>> monthMap;
+    for (int m = 0; m < columns; m++)
+    {
+        const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
+        monthMap.push_back(std::make_pair(d,m));
+    }
+    std::reverse(monthMap.begin(), monthMap.end());
+
     for (const auto& category : Model_Category::instance().all())
     {
         for (int m = 0; m < columns; m++)
         {
-            const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-            int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0;
-            categoryStats[category.CATEGID][-1][idx] = value;
+            int month = group_by_month ? m : 0;
+            categoryStats[category.CATEGID][-1][month] = value;
             for (const auto & sub_category : allSubcategories)
             {
                 if (sub_category.CATEGID == category.CATEGID)
-                    categoryStats[category.CATEGID][sub_category.SUBCATEGID][idx] = value;
+                    categoryStats[category.CATEGID][sub_category.SUBCATEGID][month] = value;
             }
         }
     }
@@ -234,7 +242,6 @@ void Model_Category::getCategoryStats(
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
     {
-
         if (accountArray)
         {
             const auto account = Model_Account::instance().get(transaction.ACCOUNTID);
@@ -247,15 +254,14 @@ void Model_Category::getCategoryStats(
             Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
         wxDateTime d = Model_Checking::TRANSDATE(transaction);
 
-        // If month starts midway through month then make sure the entries for the calendar month
-        // are adjusted accordingly so we only have a full 12 months
+        int month = 0;
+        if (group_by_month)
+        {
+            auto it = std::find_if(monthMap.begin(), monthMap.end()
+                        , [d](std::pair<wxDateTime, int> date){return d >= date.first;});
+            month = it->second;
+        }
         
-        int day_start = (fin_months) ? Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1)
-                                     : Option::instance().getReportingFirstDay();
-        if (d.GetDay() < day_start)
-            d.Subtract(wxDateSpan::Month());
-
-        int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0; 
         int categID = transaction.CATEGID;
 
         if (categID > -1)
@@ -265,22 +271,22 @@ void Model_Category::getCategoryStats(
                 // Do not include asset or stock transfers in income expense calculations.
                 if (Model_Checking::foreignTransactionAsTransfer(transaction))
                     continue;
-                categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
+                categoryStats[categID][transaction.SUBCATEGID][month] += Model_Checking::balance(transaction) * convRate;
             }
             else if (budgetAmt != 0)
             {
                 double amt = transaction.TRANSAMOUNT * convRate;
                 if ((*budgetAmt)[categID][transaction.SUBCATEGID] < 0)
-                    categoryStats[categID][transaction.SUBCATEGID][idx] -= amt;
+                    categoryStats[categID][transaction.SUBCATEGID][month] -= amt;
                 else
-                    categoryStats[categID][transaction.SUBCATEGID][idx] += amt;
+                    categoryStats[categID][transaction.SUBCATEGID][month] += amt;
             }
         }
         else
         {
             for (const auto& entry : splits[transaction.id()])
             {
-                categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT
+                categoryStats[entry.CATEGID][entry.SUBCATEGID][month] += entry.SPLITTRANSAMOUNT
                     * convRate * ((Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL) ? -1 : 1);
             }
         }
