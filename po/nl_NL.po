@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-15 17:14+0300\n"
-"PO-Revision-Date: 2022-09-15 14:21\n"
+"PO-Revision-Date: 2022-09-15 16:24\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5093,7 +5093,7 @@ msgstr "Samenvatting van rekeningen"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Budgetten"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5893,11 +5893,11 @@ msgstr "Bekijk Budget Categorie Rapport met Samenvattingen"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Jaarlijks budget overschrijven met maandelijks budget"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Als het maandelijkse budget bestaat, gebruik dit om het jaarlijkse budget te overschrijven; anders combineer ze"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6497,11 +6497,11 @@ msgstr "Commissie"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Gerealiseerde winst/verlies"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Ongerealiseerde winst/verlies"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6805,11 +6805,11 @@ msgstr "Totaal aandelen"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Gem. aandelenprijs"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Totale kosten"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
