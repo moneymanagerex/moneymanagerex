@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-14 22:31+0300\n"
-"PO-Revision-Date: 2022-09-14 19:40\n"
+"PO-Revision-Date: 2022-09-15 10:21\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5077,7 +5077,7 @@ msgstr "所有账户汇总"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "预算"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5877,11 +5877,11 @@ msgstr "查看带摘要的预算类别报告"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "用每月预算覆盖年度预算"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "如果存在每月预算，则使用这个选项来替代年度预算；否则合并它们："
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6481,11 +6481,11 @@ msgstr "佣金"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "已实现收益/损失"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "未实现收益/损失"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6789,11 +6789,11 @@ msgstr "总资产"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "平均股价"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "总计花费"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
