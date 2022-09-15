@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-15 17:14+0300\n"
-"PO-Revision-Date: 2022-09-15 14:21\n"
+"PO-Revision-Date: 2022-09-15 15:22\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5086,7 +5086,7 @@ msgstr "Περίληψη των λογαριασμών"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Προϋπολογισμοί"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5884,11 +5884,11 @@ msgstr "Προβολή έκθεσης κατηγορίας προϋπολογι�
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Παράκαμψη ετήσιου προϋπολογισμού με μηνιαίο προϋπολογισμό"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Εάν υπάρχει μηνιαίος προϋπολογισμός τότε χρησιμοποιήστε αυτό για να παρακάμψετε τον ετήσιο προϋπολογισμό, διαφορετικά συνδυάστε τους"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6488,11 +6488,11 @@ msgstr "Προμήθεια"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Πραγματοποιημένα Κέρδη/Απώλειες"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Μη Πραγματοποιημένα Κέρδη/Απώλειες"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
