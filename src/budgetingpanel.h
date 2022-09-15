@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013 - 2022 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -110,6 +111,7 @@ private:
     wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
+    wxString m_monthName;
     wxString m_budget_offset_date;
     wxSharedPtr<wxImageList> m_imageList;
     wxStaticText* budgetReportHeading_;
