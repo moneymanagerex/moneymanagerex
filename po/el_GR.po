@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-15 17:14+0300\n"
-"PO-Revision-Date: 2022-09-15 15:22\n"
+"PO-Revision-Date: 2022-09-15 16:24\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -6796,11 +6796,11 @@ msgstr "Συνολική Κοινοποίηση"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Μέση Τιμή Μετοχής"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Συνολικό Κόστος"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
