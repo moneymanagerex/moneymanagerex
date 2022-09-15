@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-14 22:31+0300\n"
-"PO-Revision-Date: 2022-09-14 19:41\n"
+"POT-Creation-Date: 2022-09-15 17:14+0300\n"
+"PO-Revision-Date: 2022-09-15 14:21\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -399,7 +399,7 @@ msgstr "Пакажыце назву актыва"
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:293 reports/cashflow.cpp:422
 #: reports/incexpenses.cpp:244 reports/summary.cpp:288
-#: reports/transactions.cpp:186 stockdialog.cpp:292 stockdialog.cpp:644
+#: reports/transactions.cpp:186 stockdialog.cpp:292 stockdialog.cpp:643
 #: transactionsupdatedialog.cpp:143 transdialog.cpp:370
 #: usertransactionpanel.cpp:98 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
@@ -3391,7 +3391,7 @@ msgstr "З памылкамі: %ld"
 msgid "Log file written to: %s"
 msgstr "Файл справаздачы запісаны ў: %s"
 
-#: import_export/univcsvdialog.cpp:1079 stockdialog.cpp:648
+#: import_export/univcsvdialog.cpp:1079 stockdialog.cpp:647
 msgid "Please confirm saving"
 msgstr "Калі ласка, спраўдзіце захаванне"
 
@@ -3432,7 +3432,7 @@ msgstr "Хібны рахунак"
 msgid "Transactions exported: %ld"
 msgstr "Аперацыяў экспартавана: %ld"
 
-#: import_export/univcsvdialog.cpp:1579 stockdialog.cpp:554
+#: import_export/univcsvdialog.cpp:1579 stockdialog.cpp:553
 msgid "Choose CSV data file to import"
 msgstr "Абярыце файл CSV для імпарта"
 
@@ -3498,7 +3498,7 @@ msgid "Currency History Options"
 msgstr "Налады для гісторыі валютаў"
 
 #: maincurrencydialog.cpp:254 stockdialog.cpp:299 stockdialog.cpp:318
-#: stockdialog.cpp:644
+#: stockdialog.cpp:643
 msgid "Price"
 msgstr "Кошт"
 
@@ -3979,7 +3979,7 @@ msgstr[1] "Перасоўванне %i аперацыяў..."
 msgstr[2] "Перасоўванне %i аперацыяў..."
 msgstr[3] "Перасоўванне %i аперацыяў..."
 
-#: mmchecking_list.cpp:1289 stocks_list.cpp:300
+#: mmchecking_list.cpp:1289 stocks_list.cpp:301
 msgid "Select the destination Account "
 msgstr "Абраць рахунак прызначэння "
 
@@ -6427,7 +6427,7 @@ msgstr "Мінулыя 12 месяцаў"
 msgid "Current Year"
 msgstr "Бягучы год"
 
-#: reports/mmDateRange.cpp:173 stockdialog.cpp:689
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:688
 msgid "Current Year to Date"
 msgstr "Бягучы год да сёння"
 
@@ -6739,89 +6739,89 @@ msgstr "У кампаніі няма злучанага паявога раху�
 "Вы можаце перанакіраваць назву кампаніі на існуючый Паявы рахунак з тым жа імем. Калі гэта ўжо існуючы Фонд без паявога рахунка, рэкамендуецца стварыць Паявы Рахунак.\n\n"
 "Вы хочаце стварыць новы Паявы рахунак?\n"
 
-#: stockdialog.cpp:567
+#: stockdialog.cpp:566
 msgid "Stock History CSV Import"
 msgstr "Імпарт гістрыі каціровак з CSV"
 
-#: stockdialog.cpp:568 stockdialog.cpp:584
+#: stockdialog.cpp:567 stockdialog.cpp:583
 msgid "Quotes imported from CSV: "
 msgstr "Каціровак імпратавана з CSV: "
 
-#: stockdialog.cpp:640
+#: stockdialog.cpp:639
 #, c-format
 msgid "Total Lines : %ld"
 msgstr "Радкоў агулам : %ld"
 
-#: stockdialog.cpp:642
+#: stockdialog.cpp:641
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Імпартавана агулам : %ld"
 
-#: stockdialog.cpp:650
+#: stockdialog.cpp:649
 msgid "Importing CSV"
 msgstr "Імпартую CSV"
 
-#: stockdialog.cpp:681 stockdialog.cpp:711
+#: stockdialog.cpp:680 stockdialog.cpp:710
 msgid "5 Days"
 msgstr "5 дзён"
 
-#: stockdialog.cpp:682 stockdialog.cpp:713
+#: stockdialog.cpp:681 stockdialog.cpp:712
 msgid "1 Month"
 msgstr "1 месяц"
 
-#: stockdialog.cpp:683 stockdialog.cpp:714
+#: stockdialog.cpp:682 stockdialog.cpp:713
 msgid "3 Months"
 msgstr "3 месяцы"
 
-#: stockdialog.cpp:684
+#: stockdialog.cpp:683
 msgid "6 Months"
 msgstr "6 месяцаў"
 
-#: stockdialog.cpp:685
+#: stockdialog.cpp:684
 msgid "1 Year"
 msgstr "1 год"
 
-#: stockdialog.cpp:686
+#: stockdialog.cpp:685
 msgid "2 Years"
 msgstr "2 гады"
 
-#: stockdialog.cpp:687
+#: stockdialog.cpp:686
 msgid "5 Years"
 msgstr "5 гадоў"
 
-#: stockdialog.cpp:688
+#: stockdialog.cpp:687
 msgid "10 Years"
 msgstr "10 гадоў"
 
-#: stockdialog.cpp:690
+#: stockdialog.cpp:689
 msgid "Max"
 msgstr "Макс."
 
-#: stockdialog.cpp:696
+#: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
 msgstr "Абярыце перыяд гісторыі каціровак"
 
-#: stockdialog.cpp:697 stockdialog.cpp:721
+#: stockdialog.cpp:696 stockdialog.cpp:720
 msgid "Stock History Update"
 msgstr "Абнавіць гістрыю каціровак"
 
-#: stockdialog.cpp:710
+#: stockdialog.cpp:709
 msgid "1 Day"
 msgstr "1 дзень"
 
-#: stockdialog.cpp:712
+#: stockdialog.cpp:711
 msgid "1 Week"
 msgstr "1 тыдзень"
 
-#: stockdialog.cpp:720
+#: stockdialog.cpp:719
 msgid "Specify interval of stock history"
 msgstr "Пакажыце інтырвал для гісторыі акцыяў"
 
-#: stockdialog.cpp:735 stockdialog.cpp:739
+#: stockdialog.cpp:734 stockdialog.cpp:738
 msgid "Stock history not found!"
 msgstr "Гісторыя каціровак ня знойдзеная"
 
-#: stockdialog.cpp:736 stockdialog.cpp:848
+#: stockdialog.cpp:735 stockdialog.cpp:847
 msgid "Stock History Error"
 msgstr "Памылка гісторыі каціровак"
 
@@ -6865,15 +6865,15 @@ msgstr "&Выдаліць фондавыя інвестыцыі"
 msgid "Stock &Web Page"
 msgstr "&Вэб-старонка каціроўкаў"
 
-#: stocks_list.cpp:277
+#: stocks_list.cpp:278
 msgid "Do you really want to delete the stock investment?"
 msgstr "Вы сапраўды жадаеце выдаліць гэтую інвестыцыю?"
 
-#: stocks_list.cpp:278
+#: stocks_list.cpp:279
 msgid "Confirm Stock Investment Deletion"
 msgstr "Спраўдзіце выдаленне інвестыцыі"
 
-#: stocks_list.cpp:299
+#: stocks_list.cpp:300
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr "Перасоўванне аперацыі з %s на"
