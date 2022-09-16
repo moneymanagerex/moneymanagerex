@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-16 09:30+0300\n"
-"PO-Revision-Date: 2022-09-16 06:33\n"
+"PO-Revision-Date: 2022-09-16 09:18\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5119,7 +5119,7 @@ msgstr "Зводка рахункаў"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Бюджэты"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5919,11 +5919,11 @@ msgstr "Бюджэт па катыгорыях з вынікамі"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Перазапісаць месячны бюджэт паверх гадавога"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Калі існуе месячны бюджэт, выкарыстаць яго для перазапісу гадавога бюджэта; у іншым выпадку аб'яднаць іх"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6523,11 +6523,11 @@ msgstr "Камісія"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Дасягнутыя прыбыткі/вытраты"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Недасягнутыя прыбыткі/вытраты"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6831,11 +6831,11 @@ msgstr "Агулам за акцыю"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Сярэдні кошт акцыі"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Поўны кошт"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
