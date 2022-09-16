@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-16 09:30+0300\n"
-"PO-Revision-Date: 2022-09-16 06:32\n"
+"PO-Revision-Date: 2022-09-16 18:50\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1656,7 +1656,7 @@ msgstr "Nieprawidłowa kategoria nadrzędna. Wybierz główną gałąź kategori
 
 #: categdialog.cpp:485
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Nie możesz przenieść podkategorii do kategorii, która ma już podkategorię o tej nazwie. Przed przeniesieniem należy rozważyć zmianę nazwy podkategorii."
 
 #: categdialog.cpp:492
 #, c-format
@@ -1664,11 +1664,14 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Czy na pewno chcesz przenieść\n"
+" \"%s\"\n"
+"do:\n"
+"\"%s\" ?"
 
 #: categdialog.cpp:495
 msgid "Confirm Move"
-msgstr ""
+msgstr "Potwierdź przeniesienie"
 
 #: categdialog.cpp:513
 msgid "Category in use."
@@ -3036,7 +3039,7 @@ msgstr "Wyszukiwanie"
 #: import_export/qif_import_gui.cpp:428
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Czytanie linii %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:434
 #, c-format
@@ -3473,7 +3476,7 @@ msgstr "Ostatni kurs"
 
 #: maincurrencydialog.cpp:81
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Stały przelicznik"
 
 #: maincurrencydialog.cpp:136
 msgid "N/A"
@@ -5113,7 +5116,7 @@ msgstr "Podsumowanie kont"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Budżety"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5341,7 +5344,7 @@ msgstr "Inna"
 
 #: model/Model_Asset.cpp:75
 msgid "Asset Error"
-msgstr ""
+msgstr "Błąd aktywu"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5432,7 +5435,7 @@ msgstr "Skrypt SQL:\n"
 
 #: model/Model_Stock.cpp:54
 msgid "Stock Error"
-msgstr ""
+msgstr "Błąd akcji"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -5676,7 +5679,7 @@ msgstr "Określ czy używać dźwięku przy wprowadzaniu transakcji"
 
 #: optionsettingsgeneral.cpp:307
 msgid "Locale"
-msgstr ""
+msgstr "Ustawienie regionalne"
 
 #: optionsettingsgeneral.cpp:335
 #, c-format
@@ -5913,11 +5916,11 @@ msgstr "Wyświetl raport kategorii budżetu z podsumowaniami"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Zastąp roczny budżet budżetem miesięcznym"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Jeśli istnieje budżet miesięczny, użyj go, aby zastąpić budżet roczny; w przeciwnym razie połącz je"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6517,11 +6520,11 @@ msgstr "Prowizja"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Zrealizowany Zysk/Strata"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Niezrealizowany Zysk/Strata"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6825,11 +6828,11 @@ msgstr "Łącznie akcji"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Średnia cena akcji"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Całkowity koszt"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
