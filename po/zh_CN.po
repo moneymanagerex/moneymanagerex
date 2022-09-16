@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-09-15 17:14+0300\n"
-"PO-Revision-Date: 2022-09-15 14:21\n"
+"POT-Creation-Date: 2022-09-16 09:30+0300\n"
+"PO-Revision-Date: 2022-09-16 06:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
 #: mmSimpleDialogs.cpp:849 optiondialog.cpp:164 payeedialog.cpp:162
 #: sharetransactiondialog.cpp:330 splitdetailsdialog.cpp:159
 #: splittransactionsdialog.cpp:214 transactionsupdatedialog.cpp:266
-#: transdialog.cpp:532 wizard_update.cpp:216
+#: transdialog.cpp:533 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&OK "
 
@@ -132,7 +132,7 @@ msgstr "选择这是否是经常使用的账户。 此选项用于筛选显示�
 #: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:305
 #: reports/transactions.cpp:194 sharetransactiondialog.cpp:275
 #: stockdialog.cpp:259 stocks_list.cpp:102 transactionsupdatedialog.cpp:241
-#: transdialog.cpp:508 usertransactionpanel.cpp:194 webappdialog.cpp:154
+#: transdialog.cpp:509 usertransactionpanel.cpp:194 webappdialog.cpp:154
 msgid "Notes"
 msgstr "备注"
 
@@ -400,7 +400,7 @@ msgstr "请输入资产名称"
 #: reports/cashflow.cpp:293 reports/cashflow.cpp:422
 #: reports/incexpenses.cpp:244 reports/summary.cpp:288
 #: reports/transactions.cpp:186 stockdialog.cpp:292 stockdialog.cpp:643
-#: transactionsupdatedialog.cpp:143 transdialog.cpp:370
+#: transactionsupdatedialog.cpp:143 transdialog.cpp:371
 #: usertransactionpanel.cpp:98 webappdialog.cpp:147 wizard_update.cpp:141
 msgid "Date"
 msgstr "日期"
@@ -486,7 +486,7 @@ msgstr "ID"
 #: import_export/qif_import_gui.cpp:259 import_export/univcsvdialog.cpp:109
 #: maincurrencydialog.cpp:260 mmhomepage.cpp:435 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:192 splitdetailsdialog.cpp:119
-#: transactionsupdatedialog.cpp:166 transdialog.cpp:407
+#: transactionsupdatedialog.cpp:166 transdialog.cpp:408
 #: usertransactionpanel.cpp:128 webappdialog.cpp:150
 msgid "Type"
 msgstr "类型"
@@ -927,7 +927,7 @@ msgstr "授权自动执行"
 msgid "The requested payment will occur without user interaction"
 msgstr "请求的付款将在没有用户交互的情况下发生。"
 
-#: billsdepositsdialog.cpp:474 filtertrans.cpp:179 transdialog.cpp:362
+#: billsdepositsdialog.cpp:474 filtertrans.cpp:179 transdialog.cpp:363
 msgid "Transaction Details"
 msgstr "交易明细"
 
@@ -939,7 +939,7 @@ msgstr "指定用户需要输入此交易的日期"
 msgid "Date Paid"
 msgstr "付款日期"
 
-#: billsdepositsdialog.cpp:496 filtertransdialog.cpp:569 transdialog.cpp:1185
+#: billsdepositsdialog.cpp:496 filtertransdialog.cpp:569 transdialog.cpp:1187
 msgid "Specify the status for the transaction"
 msgstr "指定交易状态"
 
@@ -949,36 +949,36 @@ msgstr "指定交易状态"
 #: import_export/qif_import_gui.cpp:261 import_export/qif_import_gui.cpp:272
 #: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:108
 #: mmchecking_list.cpp:286 reports/transactions.cpp:190
-#: transactionsupdatedialog.cpp:151 transdialog.cpp:386
+#: transactionsupdatedialog.cpp:151 transdialog.cpp:387
 #: usertransactionpanel.cpp:166 webappdialog.cpp:149 wizard_update.cpp:141
 msgid "Status"
 msgstr "状态"
 
-#: billsdepositsdialog.cpp:504 splitdetailsdialog.cpp:130 transdialog.cpp:1186
+#: billsdepositsdialog.cpp:504 splitdetailsdialog.cpp:130 transdialog.cpp:1188
 msgid "Specify the type of transactions to be created."
 msgstr "指定要创建的交易的类型"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:402
+#: billsdepositsdialog.cpp:505 transdialog.cpp:403
 msgid "&Advanced"
 msgstr "高级(&A)"
 
-#: billsdepositsdialog.cpp:508 transdialog.cpp:1189
+#: billsdepositsdialog.cpp:508 transdialog.cpp:1191
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "指定转账账户"
 
 #: billsdepositsdialog.cpp:519 billsdepositspanel.cpp:139
-#: budgetingpanel.cpp:303 filtertrans.cpp:198 filtertransdialog.cpp:937
+#: budgetingpanel.cpp:304 filtertrans.cpp:198 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:946 import_export/qif_export.cpp:588
 #: import_export/univcsvdialog.cpp:112 maincurrencydialog.cpp:622
 #: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/cashflow.cpp:426
 #: reports/categexp.cpp:179 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:193 splitdetailsdialog.cpp:135
 #: splittransactionsdialog.cpp:106 transactionsupdatedialog.cpp:184
-#: transdialog.cpp:424 usertransactionpanel.cpp:132 webappdialog.cpp:153
+#: transdialog.cpp:425 usertransactionpanel.cpp:132 webappdialog.cpp:153
 msgid "Amount"
 msgstr "金额"
 
-#: billsdepositsdialog.cpp:530 transdialog.cpp:1171
+#: billsdepositsdialog.cpp:530 transdialog.cpp:1173
 msgid "Specify the transfer amount in the To Account"
 msgstr "指定转账账户"
 
@@ -989,8 +989,8 @@ msgstr "指定转账账户"
 #: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:172
 #: import_export/qif_import_gui.cpp:253 import_export/univcsvdialog.cpp:110
 #: mmchecking_list.cpp:281 reports/cashflow.cpp:423
-#: reports/transactions.cpp:188 transdialog.cpp:219 transdialog.cpp:223
-#: transdialog.cpp:431 transdialog.cpp:566 usertransactionpanel.cpp:102
+#: reports/transactions.cpp:188 transdialog.cpp:220 transdialog.cpp:224
+#: transdialog.cpp:432 transdialog.cpp:567 usertransactionpanel.cpp:102
 #: webappdialog.cpp:148
 msgid "Account"
 msgstr "账户"
@@ -999,7 +999,7 @@ msgstr "账户"
 msgid "Specify the Account that will own the recurring transaction"
 msgstr "指定此周期性交易所属的账户"
 
-#: billsdepositsdialog.cpp:550 transdialog.cpp:216 transdialog.cpp:442
+#: billsdepositsdialog.cpp:550 transdialog.cpp:217 transdialog.cpp:443
 msgid "To"
 msgstr "到"
 
@@ -1011,33 +1011,33 @@ msgstr "到"
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:284
 #: model/Model_Attachment.cpp:29 reports/cashflow.cpp:424 reports/payee.cpp:135
 #: reports/transactions.cpp:189 transactionsupdatedialog.cpp:197
-#: transdialog.cpp:220 transdialog.cpp:451 usertransactionpanel.cpp:170
+#: transdialog.cpp:221 transdialog.cpp:452 usertransactionpanel.cpp:170
 #: webappdialog.cpp:151
 msgid "Payee"
 msgstr "收款人"
 
 #: billsdepositsdialog.cpp:571 billsdepositsdialog.cpp:936
-#: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:196
+#: billsdepositspanel.cpp:137 budgetingpanel.cpp:301 filtertrans.cpp:196
 #: filtertransdialog.cpp:60 filtertransdialog.cpp:542 filtertransdialog.cpp:909
 #: filtertransdialog.cpp:1454 import_export/qif_export.cpp:587
 #: import_export/qif_import_gui.cpp:105 import_export/qif_import_gui.cpp:277
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:288
 #: mmhomepage.cpp:190 reports/budgetcategorysummary.cpp:190
 #: reports/budgetingperf.cpp:132 reports/cashflow.cpp:425
-#: reports/categexp.cpp:178 reports/categexp.cpp:428
+#: reports/categexp.cpp:178 reports/categexp.cpp:421
 #: reports/transactions.cpp:191 splitdetailsdialog.cpp:144
 #: splitdetailsdialog.cpp:186 splittransactionsdialog.cpp:104
-#: transactionsupdatedialog.cpp:221 transdialog.cpp:464 transdialog.cpp:574
+#: transactionsupdatedialog.cpp:221 transdialog.cpp:465 transdialog.cpp:575
 #: usertransactionpanel.cpp:177 webappdialog.cpp:152
 msgid "Category"
 msgstr "类目"
 
-#: billsdepositsdialog.cpp:577 billsdepositsdialog.cpp:1310 transdialog.cpp:470
-#: transdialog.cpp:1148
+#: billsdepositsdialog.cpp:577 billsdepositsdialog.cpp:1310 transdialog.cpp:471
+#: transdialog.cpp:1150
 msgid "Use split Categories"
 msgstr "拆分类目"
 
-#: billsdepositsdialog.cpp:585 transdialog.cpp:1187
+#: billsdepositsdialog.cpp:585 transdialog.cpp:1189
 msgid "Specify any associated check number or transaction number"
 msgstr "指定相关的查询号或交易号"
 
@@ -1045,17 +1045,17 @@ msgstr "指定相关的查询号或交易号"
 #: filtertransdialog.cpp:613 filtertransdialog.cpp:1525
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/univcsvdialog.cpp:116 mmchecking_list.cpp:277
-#: reports/transactions.cpp:187 transdialog.cpp:484
+#: reports/transactions.cpp:187 transdialog.cpp:485
 #: usertransactionpanel.cpp:190
 msgid "Number"
 msgstr "账号"
 
-#: billsdepositsdialog.cpp:594 transdialog.cpp:491 usertransactionpanel.cpp:205
+#: billsdepositsdialog.cpp:594 transdialog.cpp:492 usertransactionpanel.cpp:205
 msgid "Select one of the frequently used notes"
 msgstr "选择一个常用的备注"
 
 #: billsdepositsdialog.cpp:600 transactionsupdatedialog.cpp:235
-#: transdialog.cpp:498
+#: transdialog.cpp:499
 msgid "User Colors"
 msgstr "用户颜色"
 
@@ -1068,22 +1068,22 @@ msgstr "管理此周期性交易的附件"
 #: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:393
 #: import_export/univcsvdialog.cpp:986 reports/transactions.cpp:185
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:402
-#: transdialog.cpp:513
+#: transdialog.cpp:514
 msgid "Color"
 msgstr "颜色"
 
-#: billsdepositsdialog.cpp:621 transdialog.cpp:520 transdialog.cpp:1188
+#: billsdepositsdialog.cpp:621 transdialog.cpp:521 transdialog.cpp:1190
 #: usertransactionpanel.cpp:214
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "添加关于该交易的备注。"
 
 #: billsdepositsdialog.cpp:638 filtertransdialog.cpp:732
-#: transactionsupdatedialog.cpp:273 transdialog.cpp:536
+#: transactionsupdatedialog.cpp:273 transdialog.cpp:537
 msgid "Show/Hide custom fields window"
 msgstr "显示/隐藏自定义字段窗口"
 
-#: billsdepositsdialog.cpp:796 billsdepositsdialog.cpp:819 transdialog.cpp:215
-#: transdialog.cpp:224
+#: billsdepositsdialog.cpp:796 billsdepositsdialog.cpp:819 transdialog.cpp:216
+#: transdialog.cpp:225
 msgid "From"
 msgstr "从"
 
@@ -1096,7 +1096,7 @@ msgid "Looks like a late payment"
 msgstr "看起来像一个逾期付款"
 
 #: billsdepositsdialog.cpp:917 transactionsupdatedialog.cpp:335
-#: transdialog.cpp:599
+#: transdialog.cpp:600
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
@@ -1104,7 +1104,7 @@ msgstr "您以前没有使用过这个收款人姓名。 名字正确吗？\n"
 "%s"
 
 #: billsdepositsdialog.cpp:918 transactionsupdatedialog.cpp:336
-#: transdialog.cpp:600
+#: transdialog.cpp:601
 msgid "Confirm payee name"
 msgstr "确认收款人姓名"
 
@@ -1117,7 +1117,7 @@ msgstr "确认收款人姓名"
 #: filtertransdialog.cpp:969 import_export/univcsvdialog.cpp:986
 #: optionsettingsgeneral.cpp:282 optionsettingsgeneral.cpp:307
 #: splitdetailsdialog.cpp:186 transactionsupdatedialog.cpp:402
-#: transdialog.cpp:566 transdialog.cpp:574 util.cpp:747
+#: transdialog.cpp:567 transdialog.cpp:575 util.cpp:747
 msgid "Invalid value"
 msgstr "无效值"
 
@@ -1176,7 +1176,7 @@ msgid "Error"
 msgstr "错误"
 
 #: billsdepositsdialog.cpp:1320 splittransactionsdialog.h:56
-#: transdialog.cpp:309
+#: transdialog.cpp:310
 msgid "Split Transaction"
 msgstr "拆分交易"
 
@@ -1188,7 +1188,7 @@ msgstr "新的周期性交易"
 msgid "Specify where the transaction is going to"
 msgstr "指定交易的对象"
 
-#: billsdepositsdialog.h:124 transdialog.cpp:1180
+#: billsdepositsdialog.h:124 transdialog.cpp:1182
 msgid "Specify where the transaction is coming from"
 msgstr "指定交易的对象"
 
@@ -1196,7 +1196,7 @@ msgstr "指定交易的对象"
 msgid "Specify which account the transfer is going to"
 msgstr "指定发生转账的账户"
 
-#: billsdepositsdialog.h:126 transdialog.cpp:1175 usertransactionpanel.cpp:136
+#: billsdepositsdialog.h:126 transdialog.cpp:1177 usertransactionpanel.cpp:136
 msgid "Specify the amount for this transaction"
 msgstr "指定交易的金额"
 
@@ -1224,7 +1224,7 @@ msgstr "每 %s 天"
 msgid "Every %s Months"
 msgstr "每 %s 月"
 
-#: billsdepositspanel.cpp:140 budgetingpanel.cpp:302 reports/myusage.cpp:160
+#: billsdepositspanel.cpp:140 budgetingpanel.cpp:303 reports/myusage.cpp:160
 msgid "Frequency"
 msgstr "频率"
 
@@ -1378,7 +1378,7 @@ msgid "Expense"
 msgstr "支出"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:124 mmhomepage.cpp:439
-#: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:398
+#: reports/categexp.cpp:128 reports/categexp.cpp:158 reports/categexp.cpp:391
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
@@ -1433,7 +1433,7 @@ msgstr "预算类目摘要"
 msgid "Financial Year: %s - %li"
 msgstr "财政年度: %s - %li"
 
-#: budgetingpanel.cpp:178 reports/budget.cpp:92
+#: budgetingpanel.cpp:178 reports/budget.cpp:93
 #, c-format
 msgid "Year: %s"
 msgstr "每 %s 年"
@@ -1443,50 +1443,50 @@ msgstr "每 %s 年"
 msgid "Month: %s"
 msgstr "月份 %s"
 
-#: budgetingpanel.cpp:188
+#: budgetingpanel.cpp:189
 #, c-format
 msgid "%s    Start Date of: %s"
 msgstr "%s    开始日期: %s"
 
-#: budgetingpanel.cpp:191
+#: budgetingpanel.cpp:192
 #, c-format
 msgid "Budget Setup for %s"
 msgstr "%s 的预算设置"
 
-#: budgetingpanel.cpp:248
+#: budgetingpanel.cpp:249
 msgid "Income: "
 msgstr "收入："
 
-#: budgetingpanel.cpp:249 budgetingpanel.cpp:257
+#: budgetingpanel.cpp:250 budgetingpanel.cpp:258
 msgid "Estimated: "
 msgstr "估计"
 
-#: budgetingpanel.cpp:251 budgetingpanel.cpp:259
+#: budgetingpanel.cpp:252 budgetingpanel.cpp:260
 msgid "Actual: "
 msgstr "实际："
 
-#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:222
+#: budgetingpanel.cpp:254 budgetingpanel.cpp:262 reports/budgetingperf.cpp:222
 msgid "Difference: "
 msgstr "差额： "
 
-#: budgetingpanel.cpp:256
+#: budgetingpanel.cpp:257
 msgid "Expenses: "
 msgstr "支出："
 
-#: budgetingpanel.cpp:299
+#: budgetingpanel.cpp:300
 msgid "Icon"
 msgstr "图标"
 
-#: budgetingpanel.cpp:301
+#: budgetingpanel.cpp:302
 msgid "Sub Category"
 msgstr "子类目"
 
-#: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:148
+#: budgetingpanel.cpp:305 reports/budgetcategorysummary.cpp:148
 #: reports/budgetcategorysummary.cpp:191
 msgid "Estimated"
 msgstr "估计"
 
-#: budgetingpanel.cpp:305 reports/budgetcategorysummary.cpp:149
+#: budgetingpanel.cpp:306 reports/budgetcategorysummary.cpp:149
 #: reports/budgetcategorysummary.cpp:192
 msgid "Actual"
 msgstr "实际"
@@ -3011,9 +3011,9 @@ msgstr "在备注中包含收款人字段"
 #: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:1204
 #: import_export/univcsvdialog.cpp:761 import_export/univcsvdialog.cpp:895
 #: import_export/univcsvdialog.cpp:898 import_export/univcsvdialog.cpp:919
-#: import_export/univcsvdialog.cpp:926 themes.cpp:235 transdialog.cpp:273
-#: transdialog.cpp:277 transdialog.cpp:282 transdialog.cpp:887
-#: transdialog.cpp:891 transdialog.cpp:897 webapp.cpp:401 webapp.cpp:410
+#: import_export/univcsvdialog.cpp:926 themes.cpp:235 transdialog.cpp:274
+#: transdialog.cpp:278 transdialog.cpp:283 transdialog.cpp:889
+#: transdialog.cpp:893 transdialog.cpp:899 webapp.cpp:401 webapp.cpp:410
 msgid "Unknown"
 msgstr "不清楚"
 
@@ -3904,7 +3904,7 @@ msgid "Locked transaction to date: %s\n\n"
 msgstr "已锁定交易日期：%s\n\n"
 "已核实对账交易。"
 
-#: mmchecking_list.cpp:1050 transdialog.cpp:656 transdialog.cpp:689
+#: mmchecking_list.cpp:1050 transdialog.cpp:657 transdialog.cpp:690
 msgid "MMEX Transaction Check"
 msgstr "MMEX 交易检查"
 
@@ -3948,7 +3948,7 @@ msgstr "选择存入账户"
 msgid "Recurring Transaction saved."
 msgstr "周期性交易已保存。"
 
-#: mmcheckingpanel.cpp:353 mmframe.cpp:1820 transdialog.cpp:160
+#: mmcheckingpanel.cpp:353 mmframe.cpp:1820 transdialog.cpp:161
 msgid "New Transaction"
 msgstr "新增交易"
 
@@ -5113,7 +5113,7 @@ msgid "Gain/Loss"
 msgstr "盈亏"
 
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:143 reports/cashflow.cpp:294
-#: reports/categexp.cpp:180 reports/categexp.cpp:469 reports/summary.cpp:296
+#: reports/categexp.cpp:180 reports/categexp.cpp:462 reports/summary.cpp:296
 msgid "Total"
 msgstr "总计："
 
@@ -5138,7 +5138,7 @@ msgid "Income vs Expenses: %s"
 msgstr "收支情况：%s"
 
 #: mmhomepage.cpp:443 reports/categexp.cpp:123 reports/categexp.cpp:150
-#: reports/categexp.cpp:397 reports/categexp.cpp:468 reports/incexpenses.cpp:88
+#: reports/categexp.cpp:390 reports/categexp.cpp:461 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:137
 msgid "Expenses"
@@ -6126,12 +6126,12 @@ msgstr "收款人转移确认"
 msgid "Relocate Payee Dialog"
 msgstr "转移收款人对话框"
 
-#: reports/budget.cpp:88
+#: reports/budget.cpp:89
 #, c-format
 msgid "Financial Year: %s - %i"
 msgstr "财政年度: %s - %i"
 
-#: reports/budget.cpp:98
+#: reports/budget.cpp:99
 #, c-format
 msgid "Year: %i Month: %s"
 msgstr "年份: %i 月: %s"
@@ -6253,7 +6253,7 @@ msgstr "请在提交新的 bug 报告之前遵循这些说明:"
 msgid "months"
 msgstr "月份"
 
-#: reports/cashflow.cpp:295 reports/categexp.cpp:396
+#: reports/cashflow.cpp:295 reports/categexp.cpp:389
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:138
 msgid "Difference"
@@ -6291,11 +6291,11 @@ msgstr "类别摘要"
 msgid "Category Income/Expenses"
 msgstr "类目收支"
 
-#: reports/categexp.cpp:436
+#: reports/categexp.cpp:429
 msgid "Overall"
 msgstr "总计"
 
-#: reports/categexp.cpp:467 reports/payee.cpp:136
+#: reports/categexp.cpp:460 reports/payee.cpp:136
 msgid "Incomes"
 msgstr "收入"
 
@@ -6966,57 +6966,57 @@ msgstr "追加"
 msgid "Multi Transactions Update"
 msgstr "多交易更新"
 
-#: transdialog.cpp:160
+#: transdialog.cpp:161
 msgid "Duplicate Transaction"
 msgstr "复制并增加交易"
 
-#: transdialog.cpp:160
+#: transdialog.cpp:161
 msgid "Edit Transaction"
 msgstr "编辑交易"
 
-#: transdialog.cpp:482
+#: transdialog.cpp:483
 msgid "Populate Transaction #"
 msgstr "移动交易 #"
 
-#: transdialog.cpp:503 usertransactionpanel.cpp:198
+#: transdialog.cpp:504 usertransactionpanel.cpp:198
 msgid "Organize attachments of this transaction"
 msgstr "管理此交易的附件"
 
-#: transdialog.cpp:687
+#: transdialog.cpp:688
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr "此交易将超过您的账户限额。\n\n"
 "您想要继续吗？"
 
-#: transdialog.cpp:1078
+#: transdialog.cpp:1080
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "这两个账户有不同的货币，但您没有定义高级交易。这是否正确？"
 
-#: transdialog.cpp:1079
+#: transdialog.cpp:1081
 msgid "Currencies are different"
 msgstr "货币是不同的"
 
-#: transdialog.cpp:1166
+#: transdialog.cpp:1168
 msgid "Specify account the money is taken from"
 msgstr "指定钱来自于的账户"
 
-#: transdialog.cpp:1167
+#: transdialog.cpp:1169
 msgid "Specify account the money is moved to"
 msgstr "指定钱被移动到的账户"
 
-#: transdialog.cpp:1168
+#: transdialog.cpp:1170
 msgid "Specify the transfer amount in the From Account."
 msgstr "指定转账来源账户。"
 
-#: transdialog.cpp:1176
+#: transdialog.cpp:1178
 msgid "Specify account for the transaction"
 msgstr "指定交易的账户"
 
-#: transdialog.cpp:1178
+#: transdialog.cpp:1180
 msgid "Specify to whom the transaction is going to"
 msgstr "指定交易的对象"
 
-#: transdialog.cpp:1184 usertransactionpanel.cpp:93
+#: transdialog.cpp:1186 usertransactionpanel.cpp:93
 msgid "Specify the date of the transaction"
 msgstr "指定交易日期"
 
