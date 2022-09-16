@@ -433,7 +433,6 @@ void mmAssetDialog::CreateAssetAccount()
 
     mmNewAcctDialog account_dialog(asset_account, this);
     account_dialog.ShowModal();
-    m_gui_frame->RefreshNavigationTree();
 
     mmAssetDialog asset_dialog(this, m_gui_frame, m_asset, true);
     asset_dialog.SetTransactionAccountName(m_asset->ASSETNAME);

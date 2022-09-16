@@ -119,16 +119,11 @@ void Model_Budget::getBudgetStats(
     //Initialization
     //Set std::map with zeros
     double value = 0;
-    const wxDateTime start_date(1, date_range->start_date().GetMonth(), date_range->start_date().GetYear());
+    const wxDateTime start_date(date_range->start_date());
+
     for (const auto& category : Model_Category::all_categories())
-    {
-        for (int m = 0; m < 12; m++)
-        {
-            const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-            const int idx = d.GetYear() * 100 + d.GetMonth();
-            budgetStats[category.second.first][category.second.second][idx] = value;
-        }
-    }
+        for (int month = 0; month < 12; month++)
+            budgetStats[category.second.first][category.second.second][month] = value;
 
     //Calculations
     std::map<int, std::map<int, double> > yearBudgetValue;
@@ -137,26 +132,19 @@ void Model_Budget::getBudgetStats(
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
         yearBudgetValue[budget.CATEGID][budget.SUBCATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
 
-    for (int m = 0; m < 12; m++)
+    for (int month = 0; month < 12; month++)
     {
         for (const auto& cat : yearBudgetValue)
             for (const auto& id : cat.second)
-            {
-                const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-                const int idx = d.GetYear() * 100 + d.GetMonth();
-                budgetStats[cat.first][id.first][idx] += id.second;
-            }
+                budgetStats[cat.first][id.first][month] += id.second;
 
-        const wxString budgetYearMonth = wxString::Format("%s-%02d", year, m + 1);
+        const wxString budgetYearMonth = wxString::Format("%s-%02d", year, month + 1);
         budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
         for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
-        {
-            const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-            const int idx = d.GetYear() * 100 + d.GetMonth();
             if (Option::instance().BudgetOverride())
-                budgetStats[budget.CATEGID][budget.SUBCATEGID][idx] = getEstimate(true, period(budget), budget.AMOUNT);
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
             else
-                budgetStats[budget.CATEGID][budget.SUBCATEGID][idx] += getEstimate(true, period(budget), budget.AMOUNT);        }
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][month] += getEstimate(true, period(budget), budget.AMOUNT);
     }
     if (!groupByMonth)
     {
