@@ -178,8 +178,6 @@ int mmFilterTransactionsDialog::ShowModal()
 
 void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 {
-    if (json.empty()) return;
-
     Document j_doc;
     if (j_doc.Parse(json.utf8_str()).HasParseError())
     {
@@ -252,12 +250,9 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
     datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND && !s_range.empty());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
-    if (datesCheckBox_->IsChecked())
-    {
-        wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
-        evt.SetInt(rangeChoice_->GetSelection());
-        OnChoice(evt);
-    }
+    wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
+    evt.SetInt(rangeChoice_->GetSelection());
+    OnChoice(evt);
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
@@ -431,6 +426,9 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
+    if (isReportMode_)
+        m_setting_name->Append("", new wxStringClientData("{}"));
+
     if (isMultiAccount_)
     {
         wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key, true);

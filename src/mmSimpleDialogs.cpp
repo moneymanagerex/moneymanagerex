@@ -405,7 +405,6 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
         spinButton_->Connect(wxID_ANY, wxEVT_SPIN
         , wxSpinEventHandler(mmDatePickerCtrl::OnDateSpin), nullptr, this);
         spinButton_->SetRange(-32768, 32768);
-        mmToolTip(spinButton_, _("Retard or advance the date"));
     }
     return spinButton_; 
 }

@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -198,6 +199,7 @@ const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
 const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";
 const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY = "BUDGET_SETUP_WITHOUT_SUMMARY";
 const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG = "BUDGET_SUMMARY_WITHOUT_CATEGORIES";
+const wxString INIDB_BUDGET_OVERRIDE              = "BUDGET_OVERRIDE";
 const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS   = "IGNORE_FUTURE_TRANSACTIONS";
 const wxString INIDB_SHOW_TOOLTIPS                = "IGNORE_SHOW_TOOLTIPS";
 const wxString INIDB_SHOW_MONEYTIPS               = "IGNORE_SHOW_MONEYTIPS";

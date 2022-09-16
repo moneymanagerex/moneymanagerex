@@ -528,7 +528,6 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
 
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
-    m_gui_frame->RefreshNavigationTree();
 }
 
 
@@ -899,6 +898,10 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_history_date_ctrl->GetValue().FormatISODate()));
         m_price_listbox->SetItem(i, 1, listStr);
     }
+    //refresh m_stock to get updated attributes
+    m_stock = Model_Stock::instance().get(m_stock->STOCKID);
+    m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, Option::instance().SharePrecision());
+    m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), account));
 }
 
 void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
@@ -918,6 +921,11 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();
+    Model_Stock::UpdateCurrentPrice(m_stock->SYMBOL);
+    //refresh m_stock to get updated attributes
+    m_stock = Model_Stock::instance().get(m_stock->STOCKID);
+    m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, Option::instance().SharePrecision());
+    m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), Model_Account::instance().get(m_stock->HELDAT)));
 }
 
 void mmStockDialog::ShowStockHistory()

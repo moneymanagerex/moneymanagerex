@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -118,7 +118,6 @@ void OptionSettingsView::Create()
     wxStaticBoxSizer* trxStaticBoxSizer = new wxStaticBoxSizer(trxStaticBox, wxVERTICAL);
     viewsPanelSizer->Add(trxStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-
     m_budget_financial_years = new wxCheckBox(view_panel, wxID_STATIC, _("View Budgets as Financial Years"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
     trxStaticBoxSizer->Add(m_budget_financial_years, g_flagsV);
@@ -135,6 +134,14 @@ void OptionSettingsView::Create()
     m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
     trxStaticBoxSizer->Add(m_budget_summary_without_category, g_flagsV);
 
+    // Budget Yearly/Monthly relationship if both exist
+    m_budget_override = new wxCheckBox(view_panel, wxID_STATIC
+        , _("Override yearly budget with monthly budget")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    mmToolTip(m_budget_override, _("If monthly budget exists then use this to override the yearly budget; otherwise combine them"));
+    m_budget_override->SetValue(Option::instance().BudgetOverride());
+    trxStaticBoxSizer->Add(m_budget_override, g_flagsV);
+
     // Allows a year or financial year to start before or after the 1st of the month.
     wxBoxSizer* budget_offset_sizer = new wxBoxSizer(wxHORIZONTAL);
     trxStaticBoxSizer->Add(budget_offset_sizer);
@@ -143,7 +150,7 @@ void OptionSettingsView::Create()
 
     m_budget_days_offset = new wxSpinCtrl(view_panel, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -30, +30);
-    mmToolTip(m_budget_days_offset, _("Advance or retard the start date from the 1st of the month or year by the number of days"));
+    mmToolTip(m_budget_days_offset, _("Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"));
     m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
 
@@ -400,6 +407,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
+    Option::instance().BudgetOverride(m_budget_override->GetValue());
     Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
     Option::instance().setReportingFirstDay(m_reporting_firstday->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());

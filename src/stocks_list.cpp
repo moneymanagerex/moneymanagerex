@@ -91,9 +91,10 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_columns.push_back(PANEL_COLUMN(_("Company Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Share Total"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("*Share Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Init Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Avg Share Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Total Cost"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Realized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Unrealized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Curr. Share Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Curr. Total Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
@@ -171,6 +172,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     }
     if (column == COL_PRICE)        return Model_Currency::toString(m_stocks[item].PURCHASEPRICE, m_stock_panel->m_currency, 4);
     if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, m_stock_panel->m_currency);
+    if (column == COL_REAL_GAIN_LOSS)    return Model_Currency::toString(GetRealGainLoss(item), m_stock_panel->m_currency);
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(GetGainLoss(item), m_stock_panel->m_currency);
     if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, m_stock_panel->m_currency, 4);
     if (column == COL_CURRVALUE)    return Model_Currency::toString(Model_Stock::CurrentValue(m_stocks[item]), m_stock_panel->m_currency);
@@ -195,7 +197,17 @@ double StocksListCtrl::GetGainLoss(long item) const
 
 double StocksListCtrl::getGainLoss(const Model_Stock::Data& stock)
 {
-    return Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
+    return Model_Stock::CurrentValue(stock) - stock.VALUE;
+}
+
+double StocksListCtrl::GetRealGainLoss(long item) const
+{
+    return getRealGainLoss(m_stocks[item]);
+}
+
+double StocksListCtrl::getRealGainLoss(const Model_Stock::Data& stock)
+{
+    return Model_Stock::RealGainLoss(stock);
 }
 
 void StocksListCtrl::OnListItemSelected(wxListEvent& event)
@@ -255,6 +267,7 @@ void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
     if (Model_Stock::instance().get(dlg.m_stock_id))
     {
         doRefreshItems(dlg.m_stock_id);
+        m_stock_panel->m_frame->RefreshNavigationTree();
     }
 }
 
@@ -483,6 +496,13 @@ void StocksListCtrl::sortTable()
             {
                 return x.VALUE < y.VALUE;
             });
+        break;
+    case StocksListCtrl::COL_REAL_GAIN_LOSS:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
+        {
+            return getRealGainLoss(x) < getRealGainLoss(y);
+        });
         break;
     case StocksListCtrl::COL_GAIN_LOSS:
         std::stable_sort(m_stocks.begin(), m_stocks.end()

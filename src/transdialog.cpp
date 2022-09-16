@@ -54,6 +54,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHAR_HOOK(mmTransDialog::OnComboKey)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
     EVT_COMBOBOX(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
+    EVT_TEXT(mmID_PAYEE, mmTransDialog::OnPayeeChanged)
     EVT_BUTTON(mmID_CATEGORY_SPLIT, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -803,6 +804,7 @@ void mmTransDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
         SetCategoryForPayee(payee);
     }
 }
+
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
     const wxString old_type = m_trx_data.TRANSCODE;

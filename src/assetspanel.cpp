@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 -2021 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -53,7 +54,6 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 , m_panel(cp)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
-    ToggleWindowStyle(wxLC_EDIT_LABELS);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
@@ -328,7 +328,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
 
     m_selected_col = ColumnNr;
 
-    item.SetImage(m_asc ? mmAssetsPanel::ICON_DOWNARROW : mmAssetsPanel::ICON_UPARROW);
+    item.SetImage(m_asc ? mmAssetsPanel::ICON_UPARROW : mmAssetsPanel::ICON_DOWNARROW);
     SetColumn(m_selected_col, item);
 
     Model_Setting::instance().Set("ASSETS_ASC", m_asc);
@@ -569,7 +569,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? ICON_DOWNARROW : ICON_UPARROW);
+    item.SetImage(asc ? ICON_UPARROW : ICON_DOWNARROW);
     m_listCtrlAssets->SetColumn(col, item);
 
     if (this->m_filter_type == Model_Asset::TYPE(-1)) // ALL

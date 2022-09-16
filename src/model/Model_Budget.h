@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 James Higley
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,6 +22,8 @@
 
 #include "Model.h"
 #include "db/DB_Table_Budgettable_V1.h"
+#include "reports/mmDateRange.h"
+#include <float.h>
 
 class Model_Budget : public Model<DB_Table_BUDGETTABLE_V1>
 {
@@ -55,6 +58,10 @@ public:
     static void getBudgetEntry(int budgetYearID, std::map<int,
         std::map<int, PERIOD_ENUM> > &budgetPeriod,
         std::map<int, std::map<int, double> > &budgetAmt);
+    static void getBudgetStats(
+        std::map<int, std::map<int, std::map<int, double> > > &budgetStats
+        , mmDateRange* date_range
+        , bool groupByMonth);
     static void copyBudgetYear(int newYearID, int baseYearID);
     static double getEstimate(bool is_monthly, const PERIOD_ENUM period, const double amount);
 };

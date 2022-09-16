@@ -202,12 +202,14 @@ private:
     void FindSelectedTransactions();
     bool CheckForClosedAccounts();
     void setExtraTransactionData(bool single);
+    void SortTransactions(int sortcol, bool ascend);
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long m_topItemIndex;
     EColumn m_sortCol;
     wxString m_today;
+    bool m_firstSort;
 };
 
 //----------------------------------------------------------------------------

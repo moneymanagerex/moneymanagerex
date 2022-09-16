@@ -100,15 +100,16 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
+
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
         , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
-    auto categs = Model_Category::all_categories();
-    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical character
-    int categID = -1;
+    std::map<int, std::map<int, std::map<int, double> > > budgetStats;
+    Model_Budget::instance().getBudgetStats(budgetStats, &date_range, false);
+
 
     // Build the report
     mmHTMLBuilder hb;
@@ -127,12 +128,16 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     m_filter.setDateRange(yearBegin, yearEnd);
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
+    auto categs = Model_Category::all_categories();
+    categs[L"\uF8FF"] = std::make_pair(-1, -1); // end of list marker
+
     // Chart
     if (getChartSelection() == 0)
     {
         GraphData gd;
         GraphSeries gsActual, gsEstimated;
 
+        int categID = -1;
         for (const auto& category : categs)
         {
             if (categID != category.second.first && categID != -1)
@@ -163,13 +168,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 gd.labels.clear();
                 gd.series.clear();
             }
-            if (category.second.first != -1)
+            if (category.second.first != -1) // Check if we have hit the end of list marker
             {
-                double estimated = Model_Budget::getEstimate(monthlyBudget
-                    , budgetPeriod[category.second.first][category.second.second]
-                    , budgetAmt[category.second.first][category.second.second]);
+                double estimated = budgetStats[category.second.first][category.second.second][0];
                 double actual = categoryStats[category.second.first][category.second.second][0];
-
                 gd.labels.push_back(category.first);
                 gsActual.values.push_back(actual);
                 gsEstimated.values.push_back(estimated);
@@ -186,8 +188,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Amount"), "text-right");
-                    hb.addTableHeaderCell(_("Frequency"));
                     hb.addTableHeaderCell(_("Estimated"), "text-right");
                     hb.addTableHeaderCell(_("Actual"), "text-right");
                 }
@@ -196,14 +196,12 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.endThead();
             hb.startTbody();
             {
-                categID = -1;
+                int categID = -1;
                 double catTotalsEstimated = 0.0, catTotalsActual = 0.0;
 
                 for (const auto& category : categs)
                 {
-                    double estimated = Model_Budget::getEstimate(monthlyBudget
-                        , budgetPeriod[category.second.first][category.second.second]
-                        , budgetAmt[category.second.first][category.second.second]);
+                    double estimated = budgetStats[category.second.first][category.second.second][0];
 
                     if (estimated < 0)
                         estExpenses += estimated;
@@ -230,8 +228,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                             hb.addTableCellLink(wxString::Format("viewtrans:%d:-2"
                                                             , c->CATEGID)
                                                             , categName);
-                            hb.addTableCell(wxEmptyString);
-                            hb.addTableCell(wxEmptyString);
                             hb.addMoneyCell(catTotalsEstimated);
                             hb.addMoneyCell(catTotalsActual);
                         }
@@ -253,8 +249,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                                                 , category.second.first
                                                                 , category.second.second)
                                                                 , category.first);
-                            hb.addMoneyCell(amt);
-                            hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]);
                             hb.addMoneyCell(estimated);
                             hb.addMoneyCell(actual);
                         }

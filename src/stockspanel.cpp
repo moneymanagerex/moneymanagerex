@@ -209,7 +209,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     for (const auto stock_link : stock_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
-        if ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0))
+        if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_link.CHECKINGACCOUNTID);
             wxString sd = mmGetDateForDisplay(stock_trans->TRANSDATE);
@@ -463,7 +463,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
 
     //Selected share info
-    wxString additionInfo = wxString::Format("|%s - %s| = %s, %s * %s = %s %s\n"
+    wxString additionInfo = wxString::Format("This Account: |%s - %s| = %s, %s * %s = %s %s\n"
         , sCurrentPrice, sPurchasePrice, sDifference
         , sDifference, sNumShares
         , Model_Currency::toCurrency(GetGainLoss(selectedIndex), m_stock_panel->m_currency)
@@ -472,7 +472,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     //Summary for account for selected symbol
     if (purchasedTime > 1)
     {
-        additionInfo += wxString::Format( "|%s - %s| = %s, %s * %s = %s ( %s %% )\n%s"
+        additionInfo += wxString::Format( "All Accounts: |%s - %s| = %s, %s * %s = %s ( %s %% )\n%s"
             ,  sCurrentPrice, sAvgPurchasePrice, sTotalDifference
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)

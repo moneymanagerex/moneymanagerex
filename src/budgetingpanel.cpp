@@ -181,6 +181,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
     else
     {
         yearStr = wxString::Format(_("Month: %s"), yearStr);
+        yearStr += wxString::Format(" (%s)", m_monthName);
     }
 
     if (Option::instance().getBudgetDaysOffset() != 0)
@@ -368,21 +369,21 @@ void mmBudgetingPanel::initVirtualListControl()
     const wxString budgetYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);
-    wxDateTime dtBegin(1, wxDateTime::Jan, year);
-    wxDateTime dtEnd(31, wxDateTime::Dec, year);
+
+    int startDay = 1;
+    wxDate::Month startMonth = wxDateTime::Jan;
+    if (Option::instance().BudgetFinancialYears())
+        budgetDetails.GetFinancialYearValues(startDay, startMonth);
+    wxDateTime dtBegin(startDay, startMonth);
+    wxDateTime dtEnd = dtBegin;
+    dtEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     monthlyBudget_ = (budgetYearStr.length() > 5);
 
     if (monthlyBudget_)
     {
         budgetDetails.SetBudgetMonth(budgetYearStr, dtBegin, dtEnd);
-    }
-    else
-    {
-        int day = -1;
-        wxDateTime::Month month = wxDateTime::Month::Inv_Month;
-        budgetDetails.AdjustYearValues(day, month, dtBegin);
-        budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
+        m_monthName = wxGetTranslation(wxDateTime::GetEnglishMonthName(dtBegin.GetMonth()));
     }
 
     // Readjust dates by the Budget Offset Option

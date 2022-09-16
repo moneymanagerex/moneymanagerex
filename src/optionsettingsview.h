@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
 
 This program is free software; you can redistribute it and/or modify
@@ -74,6 +74,7 @@ private:
     wxCheckBox* m_budget_financial_years;
     wxCheckBox* m_budget_include_transfers;
     wxCheckBox* m_budget_summary_without_category;
+    wxCheckBox* m_budget_override;
     wxCheckBox* m_ignore_future_transactions;
     wxSpinCtrl* m_budget_days_offset;
     wxSpinCtrl* m_reporting_firstday;

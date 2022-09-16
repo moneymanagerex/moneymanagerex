@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 James Higley
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,9 +18,11 @@
  ********************************************************/
 
 #include "Model_Budget.h"
+#include "Model_Budgetyear.h"
 #include <wx/intl.h>
 #include "model/Model_Category.h"
 #include "db/DB_Table_Budgettable_V1.h"
+#include "option.h"
 
 Model_Budget::Model_Budget()
 : Model<DB_Table_BUDGETTABLE_V1>()
@@ -105,6 +108,56 @@ void Model_Budget::getBudgetEntry(int budgetYearID
     {
         budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
         budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
+    }
+}
+
+void Model_Budget::getBudgetStats(
+      std::map<int, std::map<int, std::map<int, double> > > &budgetStats
+    , mmDateRange* date_range
+    , bool groupByMonth)
+{
+    //Initialization
+    //Set std::map with zeros
+    double value = 0;
+    const wxDateTime start_date(date_range->start_date());
+
+    for (const auto& category : Model_Category::all_categories())
+        for (int month = 0; month < 12; month++)
+            budgetStats[category.second.first][category.second.second][month] = value;
+
+    //Calculations
+    std::map<int, std::map<int, double> > yearBudgetValue;
+    const wxString year = wxString::Format("%i", start_date.GetYear());
+    int budgetYearID = Model_Budgetyear::instance().Get(year);
+    for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
+        yearBudgetValue[budget.CATEGID][budget.SUBCATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
+
+    for (int month = 0; month < 12; month++)
+    {
+        for (const auto& cat : yearBudgetValue)
+            for (const auto& id : cat.second)
+                budgetStats[cat.first][id.first][month] += id.second;
+
+        const wxString budgetYearMonth = wxString::Format("%s-%02d", year, month + 1);
+        budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
+        for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
+            if (Option::instance().BudgetOverride())
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
+            else
+                budgetStats[budget.CATEGID][budget.SUBCATEGID][month] += getEstimate(true, period(budget), budget.AMOUNT);
+    }
+    if (!groupByMonth)
+    {
+        std::map<int, std::map<int, std::map<int, double> > > yearlyBudgetStats;
+        for (const auto& category : Model_Category::all_categories())
+            yearlyBudgetStats[category.second.first][category.second.second][0] = 0.0;
+
+        for (const auto& cat : budgetStats)
+            for (const auto& subcat : cat.second)
+                for (const auto& month : subcat.second)
+                    yearlyBudgetStats[cat.first][subcat.first][0] += month.second;
+
+        budgetStats = yearlyBudgetStats;
     }
 }
 
