@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-15 17:14+0300\n"
-"PO-Revision-Date: 2022-09-15 14:21\n"
+"PO-Revision-Date: 2022-09-16 02:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4355,7 +4355,7 @@ msgstr "重資料庫中刪除帳目"
 
 #: mmframe.cpp:1596
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "下載匯率(T)"
 
 #: mmframe.cpp:1596 mmframe.cpp:1845
 msgid "Download Currency and Stock rates"
