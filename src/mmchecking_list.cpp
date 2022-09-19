@@ -311,7 +311,7 @@ TransactionListCtrl::TransactionListCtrl(
     {
         if (udfc_entry.empty()) continue;
         const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
-        if (name != udfc_entry)
+        if (!name.IsEmpty() && name != udfc_entry)
         {
             const auto& type = Model_CustomField::getUDFCType(ref_type, udfc_entry);
             int align;
