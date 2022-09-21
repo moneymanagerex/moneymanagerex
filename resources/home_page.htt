@@ -21,24 +21,37 @@
     </style>
 </head>
 <body>
-    <table  width="100%">
+    <table width="100%">
+        <tr valign="top">
+        <td colspan=2>
+            <!--Grand total-->
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th width="5%"></th>
+                        <th id='grand_name'></th>
+                        <th id='recon_value'></th>
+                        <th id='asset_value'></th>
+                        <th id='stock_value'></th>
+                        <th id='bal_value'></th>
+                        <th width="5%"></th>
+                    </tr>
+                </thead>
+            </table>
+            <script>
+                var grand_json = <TMPL_VAR GRAND_TOTAL>;
+                document.getElementById('grand_name').innerHTML=grand_json['NAME'];
+                document.getElementById('recon_value').innerHTML=grand_json['RECONVALUE'];
+                document.getElementById('asset_value').innerHTML=grand_json['ASSETVALUE'];
+                document.getElementById('stock_value').innerHTML=grand_json['STOCKVALUE'];
+                document.getElementById('bal_value').innerHTML=grand_json['BALVALUE'];
+            </script>
+        </td>
+        </tr>
         <tr valign="top">
             <td width="50%">
                 <div class='shadow'>
-                <!--Grand total-->
-                <table class='table'>
-                    <thead>
-                        <tr class='active'>
-                            <th id='grand_name'>Grand Total:</th>
-                            <th class='money' id='grand_value'></th>
-                        </tr>
-                    </thead>
-                </table>
-                <script>
-                    var grand_json = <TMPL_VAR GRAND_TOTAL>;
-                    document.getElementById('grand_name').innerHTML=grand_json['NAME'];
-                    document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
-                </script>
+                
                 <!--Accounts-->
 
                 <TMPL_VAR ACCOUNTS_INFO>
@@ -52,24 +65,6 @@
                 <!--Stocks-->
                 <TMPL_VAR STOCKS_INFO>
                 <!--Assets-->
-                <div class = "shadow">
-                <table class="table">
-                    <thead>
-                        <tr class="active">
-                            <th>
-                                <a href="Assets:" id="assets_name" oncontextmenu="return false;" target="_blank"></a>
-                            </th>
-                            <th class="money" id="assets_value"></th>
-                        </tr>
-                    </thead>
-                </table>
-                <TMPL_VAR ASSET_ACCOUNTS_INFO>
-                </div>
-                <script>
-                    var assets_json = <TMPL_VAR ASSETS_INFO>;
-                    document.getElementById('assets_name').innerHTML=assets_json['NAME'];
-                    document.getElementById('assets_value').innerHTML=assets_json['VALUE'];
-                </script>
                 <TMPL_VAR CURRENCY_RATES>
             </td>
             <td>
