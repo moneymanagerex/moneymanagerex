@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 - 2020 Nikolay Akimov
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -88,7 +89,7 @@ class htmlWidgetGrandTotals
 {
 public:
     ~htmlWidgetGrandTotals();
-    const wxString getHTMLText(double& tBalance);
+    const wxString getHTMLText(double tBalance, double tReconciled, double tAssets, double tStocks);
 };
 
 class htmlWidgetAssets
@@ -102,7 +103,7 @@ class htmlWidgetAccounts
 {
 public:
     htmlWidgetAccounts();
-    const wxString displayAccounts(double& tBalance, int type);
+    const wxString displayAccounts(double& tBalance, double& tReconciled, int type);
     ~htmlWidgetAccounts();
 private:
     std::map<int, std::pair<double, double> > accountStats_;

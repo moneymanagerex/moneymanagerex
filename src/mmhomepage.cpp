@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 - 2021 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -532,17 +532,37 @@ htmlWidgetStatistics::~htmlWidgetStatistics()
 {
 }
 
-const wxString htmlWidgetGrandTotals::getHTMLText(double& tBalance)
+const wxString htmlWidgetGrandTotals::getHTMLText(double tBalance, double tReconciled, double tAssets, double tStocks)
 {
-    const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
+
+    const wxString tReconciledStr  = wxString::Format("%s: <span class='money'>%s</span>"
+                                        , _("Reconciled")
+                                        , Model_Currency::toCurrency(tReconciled));
+    const wxString tAssetStr  = wxString::Format("%s: <span class='money'>%s</span>"
+                                        , _("Assets")
+                                        , Model_Currency::toCurrency(tAssets));
+    const wxString tStockStr  = wxString::Format("%s: <span class='money'>%s</span>"
+                                        , _("Stock")
+                                        , Model_Currency::toCurrency(tStocks));
+    const wxString tBalanceStr  = wxString::Format("%s: <span class='money'>%s</span>"
+                                        , _("Balance")
+                                        , Model_Currency::toCurrency(tBalance));
 
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("NAME");
-    json_writer.String(_("Grand Total:").utf8_str());
-    json_writer.Key("VALUE");
+    json_writer.String(_("Total Net Worth").utf8_str());
+    json_writer.Key("RECONVALUE");
+    json_writer.String(tReconciledStr.utf8_str());
+    json_writer.Key("ASSETVALUE");
+    json_writer.String(tAssetStr.utf8_str());
+    json_writer.Key("STOCKVALUE");
+    json_writer.String(tStockStr.utf8_str());
+    json_writer.Key("BALVALUE");
     json_writer.String(tBalanceStr.utf8_str());
+
+
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getGrandTotalsJSON =======");
@@ -624,7 +644,7 @@ void htmlWidgetAccounts::get_account_stats()
 
 }
 
-const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = Model_Account::CHECKING)
+const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = Model_Account::CHECKING)
 {
     static const std::vector < std::pair <wxString, wxString> > typeStr
     {
@@ -651,7 +671,6 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
-    double tReconciled = 0;
     wxString body = "";
     const wxDate today = wxDate::Today();
     wxString vAccts = Model_Setting::instance().GetViewAccounts();
