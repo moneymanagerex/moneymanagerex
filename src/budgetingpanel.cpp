@@ -374,7 +374,7 @@ void mmBudgetingPanel::initVirtualListControl()
     wxDate::Month startMonth = wxDateTime::Jan;
     if (Option::instance().BudgetFinancialYears())
         budgetDetails.GetFinancialYearValues(startDay, startMonth);
-    wxDateTime dtBegin(startDay, startMonth);
+    wxDateTime dtBegin(startDay, startMonth, year);
     wxDateTime dtEnd = dtBegin;
     dtEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
