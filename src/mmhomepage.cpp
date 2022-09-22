@@ -575,24 +575,69 @@ htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
 {
 }
 
-const wxString htmlWidgetAssets::getHTMLText(double& tBalance)
+const wxString htmlWidgetAssets::getHTMLText()
 {
-    double asset_balance = Model_Asset::instance().balance();
-    tBalance += asset_balance;
+    const int MAX_ASSETS = 10;
+    wxString output = "";
+    output = R"(<div class="shadow">)";
+    output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'>\n";
+    output += "<th>" + _("Assets") + "</th>";
+    output += "<th class='text-right'>" + _("Initial Value") + "</th>\n";
+    output += "<th class='text-right'>" + _("Current Value") + "</th>\n";
+    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
+        , "ASSETS", "ASSETS", "ASSETS");
+    output += "</tr></thead><tbody id='ASSETS'>\n";
 
-    StringBuffer json_buffer;
-    PrettyWriter<StringBuffer> json_writer(json_buffer);
-    json_writer.StartObject();
-    json_writer.Key("NAME");
-    json_writer.String(_("Assets").utf8_str());
-    json_writer.Key("VALUE");
-    json_writer.String(Model_Currency::toCurrency(asset_balance).utf8_str());
-    json_writer.EndObject();
+    Model_Asset::Data_Set assets = Model_Asset::instance().all();
+    std::stable_sort(assets.begin(), assets.end(), SorterByVALUE());
+    std::reverse(assets.begin(), assets.end());
 
-    wxLogDebug("======= mmHomePagePanel::getAssetsJSON =======");
-    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
+    int rows = 0;
+    double initialDisplayed = 0.0;
+    double initialTotal = 0.0;
+    double currentDisplayed = 0.0;
+    double currentTotal = 0.0;
+    for (const auto& asset : assets)
+    {
+        double initial = asset.VALUE;
+        double current = Model_Asset::value(asset);
+        initialTotal += initial;
+        currentTotal += current;
+        if (rows++ < MAX_ASSETS)
+        {
+            initialDisplayed += initial;
+            currentDisplayed += current;
+            output += "<tr>";
+            output += wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n"
+                , asset.ASSETNAME, asset.ASSETNAME);
+            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+                , initial, Model_Currency::toCurrency(initial));
+            output += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>\n"
+                , current, Model_Currency::toCurrency(current));
+            output += "</tr>";
+        }
+    }
+    if (rows > MAX_ASSETS)
+    {       
+            output += "<tr>";
+            output += wxString::Format("<td sorttable_customkey='*%s*'>%s (%i)</td>\n"
+                , _("Other Assets"), _("Other Assets"), rows - MAX_ASSETS);
+            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+                , initialTotal - initialDisplayed, Model_Currency::toCurrency(initialTotal - initialDisplayed));
+            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+                , currentTotal - currentDisplayed, Model_Currency::toCurrency(currentTotal - currentDisplayed));
+            output += "</tr>";
+    }
 
-    return wxString::FromUTF8(json_buffer.GetString());
+    output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
+    output += wxString::Format("<td class='money'>%s</td>\n"
+        , Model_Currency::toCurrency(initialTotal));
+    output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n"
+        , Model_Currency::toCurrency(currentTotal));
+
+    output += "</div>";
+
+    return output;
 }
 
 htmlWidgetAssets::~htmlWidgetAssets()
