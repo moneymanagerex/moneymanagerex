@@ -68,9 +68,10 @@ public:
     };
     EColumn toEColumn(long col);
 public:
-    EColumn g_sortcol; // index of column to sort
-    EColumn m_prevSortCol;
-    bool g_asc; // asc\desc sorting
+    EColumn g_sortcol; // index of primary column to sort by
+    EColumn prev_g_sortcol; // index of secondary column to sort by
+    bool g_asc; // asc\desc sorting for primary sort column
+    bool prev_g_asc; // asc\desc sorting for secondary sort column
 
     bool getSortOrder() const;
     EColumn getSortColumn() const { return m_sortCol; }

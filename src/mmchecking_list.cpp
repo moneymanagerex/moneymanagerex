@@ -197,22 +197,7 @@ void TransactionListCtrl::sortTable()
 {
     if (m_trans.empty()) return;
 
-    if (m_firstSort)
-    {
-        int sortCol2 = COL_DEF_SORT;
-        bool sortAsc2 = true;
-        long val = COL_DEF_SORT;
-        wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), wxString() << val);
-        if (strVal.ToLong(&val)) 
-            sortCol2 = toEColumn(val);
-        val = 1; // asc sorting default
-        strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), wxString() << val);
-        if (strVal.ToLong(&val)) 
-            sortAsc2 = val != 0;
-        SortTransactions(sortCol2, sortAsc2);
-        m_firstSort = false;
-    }
-
+    SortTransactions(prev_g_sortcol, prev_g_asc);
     SortTransactions(g_sortcol, g_asc);
     
     RefreshItems(0, m_trans.size() - 1);
@@ -238,8 +223,9 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont)),
     m_sortCol(COL_DEF_SORT),
     g_sortcol(COL_DEF_SORT),
-    m_prevSortCol(COL_DEF_SORT),
+    prev_g_sortcol(COL_DEF_SORT),
     g_asc(true),
+    prev_g_asc(true),
     m_firstSort(true),
     m_topItemIndex(-1)
 {
@@ -571,6 +557,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
         setColumnImage(m_sortCol, -1);
         Model_Setting::instance().Set(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
         Model_Setting::instance().Set(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), g_sortcol);
+        prev_g_sortcol = g_sortcol;
+        prev_g_asc = m_asc;
     }
 
     if (g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) {
@@ -578,7 +566,6 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     }
     g_asc = m_asc;
 
-    m_prevSortCol = m_sortCol;
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
