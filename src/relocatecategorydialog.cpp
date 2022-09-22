@@ -29,6 +29,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(relocateCategoryDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocateCategoryDialog, wxDialog)
+    EVT_CHAR_HOOK(relocateCategoryDialog::OnComboKey)
     EVT_CHILD_FOCUS(relocateCategoryDialog::OnFocusChange)
     EVT_COMBOBOX(wxID_ANY, relocateCategoryDialog::OnTextUpdated)
     EVT_BUTTON(wxID_OK, relocateCategoryDialog::OnOk)
@@ -81,7 +82,7 @@ void relocateCategoryDialog::CreateControls()
         , _("Relocate source category to the destination category"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
-    cbSourceCategory_ = new mmComboBoxCategory(this);
+    cbSourceCategory_ = new mmComboBoxCategory(this, wxID_LAST);
     cbSourceCategory_->SetMinSize(wxSize(200, -1));
     Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
     if (category)
@@ -284,6 +285,50 @@ void relocateCategoryDialog::IsOkOk()
         e = false;
     wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
     ok->Enable(e);
+}
+
+void relocateCategoryDialog::OnComboKey(wxKeyEvent& event)
+{
+    if (event.GetKeyCode() == WXK_RETURN)
+    {
+        auto id = event.GetId();
+        switch (id)
+        {
+        case wxID_LAST:
+        {
+            auto category = cbSourceCategory_->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                dlg.ShowModal();
+                cbSourceCategory_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbSourceCategory_->ChangeValue(category);
+                return;
+            }
+        }
+
+        break;
+        case wxID_NEW:
+        {
+            auto category = cbDestCategory_->GetValue();
+            if (category.empty())
+            {
+                mmCategDialog dlg(this, true, -1, -1);
+                dlg.ShowModal();
+                cbDestCategory_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbDestCategory_->ChangeValue(category);
+                return;
+            }
+        }
+        break;
+        default:
+            break;
+        }
+    }
+
+    event.Skip();
 }
 
 void relocateCategoryDialog::OnFocusChange(wxChildFocusEvent& event)

@@ -49,6 +49,7 @@ public:
     // utility functions
     void OnTextUpdated(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
+    void OnComboKey(wxKeyEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
 
