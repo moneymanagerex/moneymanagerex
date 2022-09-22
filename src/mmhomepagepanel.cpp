@@ -170,7 +170,8 @@ void mmHomePagePanel::insertDataIntoTemplate()
     tBalance += stocks_widget.get_total();
 
     htmlWidgetAssets assets;
-    m_frames["ASSETS_INFO"] = assets.getHTMLText(tBalance);
+    m_frames["ASSETS_INFO"] = assets.getHTMLText();
+    tBalance += Model_Asset::instance().balance();
 
     htmlWidgetGrandTotals grand_totals;
     m_frames["GRAND_TOTAL"] = grand_totals.getHTMLText(tBalance, tReconciled

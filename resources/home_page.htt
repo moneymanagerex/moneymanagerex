@@ -65,6 +65,8 @@
                 <!--Stocks-->
                 <TMPL_VAR STOCKS_INFO>
                 <!--Assets-->
+                <TMPL_VAR ASSETS_INFO>
+                <!--Currency-->
                 <TMPL_VAR CURRENCY_RATES>
             </td>
             <td>

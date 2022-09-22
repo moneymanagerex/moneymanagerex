@@ -96,7 +96,7 @@ class htmlWidgetAssets
 {
 public:
     ~htmlWidgetAssets();
-    const wxString getHTMLText(double& tBalance);
+    const wxString getHTMLText();
 };
 
 class htmlWidgetAccounts
