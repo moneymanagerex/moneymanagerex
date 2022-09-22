@@ -577,7 +577,13 @@ htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
 
 const wxString htmlWidgetAssets::getHTMLText()
 {
-    const int MAX_ASSETS = 10;
+    Model_Asset::Data_Set assets = Model_Asset::instance().all();
+    if (assets.empty())
+        return wxEmptyString;
+    std::stable_sort(assets.begin(), assets.end(), SorterByVALUE());
+    std::reverse(assets.begin(), assets.end());
+
+    static const int MAX_ASSETS = 10;
     wxString output = "";
     output = R"(<div class="shadow">)";
     output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'>\n";
@@ -587,10 +593,6 @@ const wxString htmlWidgetAssets::getHTMLText()
     output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
         , "ASSETS", "ASSETS", "ASSETS");
     output += "</tr></thead><tbody id='ASSETS'>\n";
-
-    Model_Asset::Data_Set assets = Model_Asset::instance().all();
-    std::stable_sort(assets.begin(), assets.end(), SorterByVALUE());
-    std::reverse(assets.begin(), assets.end());
 
     int rows = 0;
     double initialDisplayed = 0.0;
