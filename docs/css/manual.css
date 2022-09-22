@@ -5,7 +5,24 @@ html {
     line-height: 1.3
 }
 
-a { text-decoration: none; }
+@media (prefers-color-scheme: dark) {
+    body {  
+        background: #333;
+        color: white;
+    }
+    a { text-decoration: none; 
+        color: yellow; }
+}
+  
+@media (prefers-color-scheme: light) {
+    body {
+        background: white;
+        color: #555;
+    }
+    a { text-decoration: none; 
+        color: blue; }
+}
+
 a:hover, a:focus { text-decoration: underline dotted; }
 a:focus { outline: thin dotted; }
 
