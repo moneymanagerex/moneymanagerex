@@ -88,7 +88,7 @@ public:
     static void RemoveTranslinkEntry(const int checking_account_id);
 
     /*
-    stock_entry.PURCHASEPRICE ... obsolete. This is now on a per entry basis.
+    stock_entry.PURCHASEPRICE = avg price of shares purchased.
     stock_entry.NUMSHARES = total amount of shares purchased.
     stock_entry.VALUE     = value of shares based on:
     ... share_entry.SHARENUMBER * share_entry.SHAREPRICE

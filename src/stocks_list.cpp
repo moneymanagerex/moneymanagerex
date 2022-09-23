@@ -453,12 +453,15 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     sortTable();
 
     int cnt = 0, selected_item = -1;
-    for (const auto& stock : m_stocks)
+    for (auto& stock : m_stocks)
     {
         if (id == stock.STOCKID)
         {
             selected_item = cnt;
             break;
+        }
+        if (!stock.PURCHASEPRICE) {
+            Model_Translink::UpdateStockValue(&stock);
         }
         ++cnt;
     }
