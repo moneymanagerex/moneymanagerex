@@ -555,8 +555,6 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     /* Clear previous column image */
     if (m_sortCol != ColumnNr) {
         setColumnImage(m_sortCol, -1);
-        Model_Setting::instance().Set(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
-        Model_Setting::instance().Set(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), g_sortcol);
         prev_g_sortcol = g_sortcol;
         prev_g_asc = m_asc;
     }
@@ -569,6 +567,14 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
+    // If primary sort is DATE then secondary is always ID in the same direction
+    if (ColumnNr == COL_DATE)
+    {
+        prev_g_sortcol = toEColumn(COL_ID);
+        prev_g_asc = m_asc;        
+    }
+    Model_Setting::instance().Set(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
+    Model_Setting::instance().Set(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), g_sortcol);
     Model_Setting::instance().Set(wxString::Format("%s_ASC", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
     Model_Setting::instance().Set(wxString::Format("%s_SORT_COL", m_cp->m_sortSaveTitle), g_sortcol);
 
