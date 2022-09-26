@@ -124,6 +124,7 @@ private:
     wxButton* m_btnDelete;
     wxButton* m_btnAttachment;
     wxStaticText* m_header_text;
+    wxStaticText* m_header_sortOrder;
     wxStaticText* m_header_balance;
     wxStaticText* m_info_panel;
     wxStaticText* m_info_panel_mini;
