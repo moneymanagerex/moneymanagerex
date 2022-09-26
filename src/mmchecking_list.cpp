@@ -199,6 +199,11 @@ void TransactionListCtrl::sortTable()
 
     SortTransactions(prev_g_sortcol, prev_g_asc);
     SortTransactions(g_sortcol, g_asc);
+
+    wxString sortText = wxString::Format("%s: %s %s / %s %s", _("Sort Order")
+                        , m_columns[g_sortcol].HEADER, g_asc ? L"\u25B2" : L"\u25BC"
+                        , m_columns[prev_g_sortcol].HEADER, prev_g_asc ? L"\u25B2" : L"\u25BC");
+    m_cp->m_header_sortOrder->SetLabelText(sortText);
     
     RefreshItems(0, m_trans.size() - 1);
 }
@@ -573,8 +578,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
         prev_g_sortcol = toEColumn(COL_ID);
         prev_g_asc = m_asc;        
     }
-    Model_Setting::instance().Set(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
-    Model_Setting::instance().Set(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), g_sortcol);
+    Model_Setting::instance().Set(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), (prev_g_asc ? 1 : 0));
+    Model_Setting::instance().Set(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), prev_g_sortcol);
     Model_Setting::instance().Set(wxString::Format("%s_ASC", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
     Model_Setting::instance().Set(wxString::Format("%s_SORT_COL", m_cp->m_sortSaveTitle), g_sortcol);
 

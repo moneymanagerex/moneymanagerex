@@ -284,9 +284,13 @@ void mmCheckingPanel::CreateControls()
     m_header_text->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(m_header_text, g_flagsExpandBorder1);
 
+    wxBoxSizer* infoPanel = new wxBoxSizer(wxHORIZONTAL);
     m_bitmapTransFilter = new wxButton(this, ID_TRX_FILTER);
     m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
-    itemBoxSizerVHeader->Add(m_bitmapTransFilter, g_flagsBorder1H);
+    infoPanel->Add(m_bitmapTransFilter, g_flagsH);
+    m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
+    infoPanel->Add(m_header_sortOrder, g_flagsH);
+    itemBoxSizerVHeader->Add(infoPanel, g_flagsBorder1H);
 
     m_header_balance = new wxStaticText(this, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
