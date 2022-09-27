@@ -326,7 +326,7 @@ void mmCheckingPanel::CreateControls()
     long val = m_listCtrlAccount->COL_DEF_SORT;
     wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL", m_sortSaveTitle), wxString() << val);
     if (strVal.ToLong(&val)) m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
-    val = m_listCtrlAccount->COL_DEF_SORT;
+    val = m_listCtrlAccount->COL_DEF_SORT2;
     strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL2", m_sortSaveTitle), wxString() << val);
     if (strVal.ToLong(&val)) m_listCtrlAccount->prev_g_sortcol = m_listCtrlAccount->toEColumn(val);
 

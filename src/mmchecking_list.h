@@ -64,7 +64,8 @@ public:
         COL_UDFC04,
         COL_UDFC05,
         COL_MAX, // number of columns
-        COL_DEF_SORT = COL_DATE // don't omit any columns before this
+        COL_DEF_SORT = COL_DATE, // don't omit any columns before this
+        COL_DEF_SORT2 = COL_ID 
     };
     EColumn toEColumn(long col);
 public:
