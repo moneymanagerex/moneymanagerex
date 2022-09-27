@@ -228,7 +228,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont)),
     m_sortCol(COL_DEF_SORT),
     g_sortcol(COL_DEF_SORT),
-    prev_g_sortcol(COL_DEF_SORT),
+    prev_g_sortcol(COL_DEF_SORT2),
     g_asc(true),
     prev_g_asc(true),
     m_firstSort(true),
