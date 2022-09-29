@@ -429,7 +429,7 @@ int UserTransactionPanel::SaveChecking()
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
     if (trxDate < account->INITIALDATE)
     {
-        mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is greater than the date of this transaction"), _("Invalid Date"));
+        mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
         return false;
     }  
 

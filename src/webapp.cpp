@@ -549,7 +549,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         wxString msgStr = wxString::Format("%s: %s / %s: %s\n\n%s\n%s"
                             , _("Account"), accountName
                             , _("Date"), trxDate
-                            , _("The opening date for the account is greater than the date of this transaction")
+                            , _("The opening date for the account is later than the date of this transaction")
                             , _("Today will be used as the transaction date"));
         wxMessageBox(msgStr, _("Invalid Date"), wxICON_ERROR);
         trxDate = wxDate::Today().FormatISODate();

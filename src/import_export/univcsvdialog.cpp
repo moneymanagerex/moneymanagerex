@@ -1047,7 +1047,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
                (toAccount && (trxDate < toAccount->INITIALDATE)))
         {
             wxString msg = wxString::Format(_("Line %ld: %s"), nLines + 1,
-                    _("The opening date for the account is greater than the date of this transaction"));
+                    _("The opening date for the account is later than the date of this transaction"));
             log << msg << endl;
             *log_field_ << msg << "\n";
             continue;

@@ -573,7 +573,7 @@ bool mmTransDialog::ValidateData()
 
     if (m_trx_data.TRANSDATE < account->INITIALDATE)
     {
-        mmErrorDialogs::ToolTip4Object(cbAccount_, _("The opening date for the account is greater than the date of this transaction"), _("Invalid Date"));
+        mmErrorDialogs::ToolTip4Object(cbAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
         return false;
     }  
 
@@ -648,7 +648,7 @@ bool mmTransDialog::ValidateData()
 
         if (m_trx_data.TRANSDATE < to_account->INITIALDATE)
         {
-            mmErrorDialogs::ToolTip4Object(cbToAccount_, _("The opening date for the account is greater than the date of this transaction"), _("Invalid Date"));
+            mmErrorDialogs::ToolTip4Object(cbToAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
             return false;
         }  
 

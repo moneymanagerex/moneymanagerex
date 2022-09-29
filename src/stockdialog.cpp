@@ -425,7 +425,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         
     const wxString pdate = m_purchase_date_ctrl->GetValue().FormatISODate();
     if (pdate < account->INITIALDATE)
-        return mmErrorDialogs::ToolTip4Object(m_purchase_date_ctrl, _("The opening date for the account is greater than the date of this transaction"), _("Invalid Date"));
+        return mmErrorDialogs::ToolTip4Object(m_purchase_date_ctrl, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
   
     const wxString stockName = m_stock_name_ctrl->GetValue();
     const wxString notes = m_notes_ctrl->GetValue();
