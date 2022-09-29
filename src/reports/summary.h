@@ -55,7 +55,6 @@ protected:
     enum TYPE { MONTHLY = 0, YEARLY };
 private:
     int mode_;
-    wxDate earliestDate;
     std::map<int, std::map<wxDate, double>> accountsBalanceMap;
     mmHistoryData   arHistory;
     std::map<wxString, double> currencyDateRateCache;

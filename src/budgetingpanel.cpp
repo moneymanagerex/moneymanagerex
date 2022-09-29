@@ -673,6 +673,7 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
         entry->SUBCATEGID = budget_[selectedIndex].second;
         entry->PERIOD = "";
         entry->AMOUNT = 0.0;
+        entry->ACTIVE = 1;
         Model_Budget::instance().save(entry);
     }
     else

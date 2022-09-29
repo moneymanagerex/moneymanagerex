@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
+Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -451,9 +452,12 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 
     //Search Account
     const Model_Account::Data* Account = Model_Account::instance().get(WebAppTrans.Account);
+    wxString accountName, accountInitialDate;
     if (Account != nullptr)
     {
         AccountID = Account->ACCOUNTID;
+        accountName = Account->ACCOUNTNAME;
+        accountInitialDate = Account->INITIALDATE;
         TrStatus = WebAppTrans.Status;
     }
     else
@@ -466,8 +470,9 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         {
             if (Model_Account::type(FirstAccount) != Model_Account::INVESTMENT && Model_Account::type(FirstAccount) != Model_Account::TERM)
             {
-                FistAccountName = FirstAccount.ACCOUNTNAME;
+                accountName = FirstAccount.ACCOUNTNAME;
                 AccountID = FirstAccount.ACCOUNTID;
+                accountInitialDate = FirstAccount.INITIALDATE;
                 break;
             }
         }
@@ -476,14 +481,15 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             << "\n\n"
             << wxString::Format(_("Transaction will be inserted with the first bank account:\n"
             "'%s' and marked as  'Follow Up'")
-            , FistAccountName) << "\n";
+            , accountName) << "\n";
         wxMessageBox(msgStr, _("Wrong WebApp account"), wxICON_ERROR);
     }
 
     //Search ToAccount
+    Model_Account::Data* ToAccount = NULL;
     if (WebAppTrans.ToAccount != "None")
     {
-        const Model_Account::Data* ToAccount = Model_Account::instance().get(WebAppTrans.ToAccount);
+        ToAccount = Model_Account::instance().get(WebAppTrans.ToAccount);
         if (ToAccount != nullptr)
             ToAccountID = ToAccount->ACCOUNTID;
     }
@@ -496,6 +502,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     {
         Model_Category::Data* NewCategory = Model_Category::instance().create();
         NewCategory->CATEGNAME = WebAppTrans.Category;
+        NewCategory->ACTIVE = 1;
         int NewCategoryID = Model_Category::instance().save(NewCategory);
         CategoryID = NewCategoryID;
     }
@@ -511,6 +518,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             Model_Subcategory::Data* NewSubCategory = Model_Subcategory::instance().create();
             NewSubCategory->CATEGID = CategoryID;
             NewSubCategory->SUBCATEGNAME = WebAppTrans.SubCategory;
+            NewSubCategory->ACTIVE = 1;
             int NewSubCategoryID = Model_Subcategory::instance().save(NewSubCategory);
             SubCategoryID = NewSubCategoryID;
         }
@@ -524,6 +532,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     {
         Model_Payee::Data* NewPayee = Model_Payee::instance().create();
         NewPayee->PAYEENAME = WebAppTrans.Payee;
+        NewPayee->ACTIVE = 1;
         NewPayee->CATEGID = CategoryID;
         NewPayee->SUBCATEGID = SubCategoryID;
         int NewPayeeID = Model_Payee::instance().save(NewPayee);
@@ -533,6 +542,18 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     //Create New Transaction
     Model_Checking::Data * desktopNewTransaction;
     desktopNewTransaction = Model_Checking::instance().create();
+    wxString trxDate = WebAppTrans.Date.FormatISODate();
+    if ((trxDate < accountInitialDate) ||
+            (ToAccount && trxDate < ToAccount->INITIALDATE))
+    {
+        wxString msgStr = wxString::Format("%s: %s / %s: %s\n\n%s\n%s"
+                            , _("Account"), accountName
+                            , _("Date"), trxDate
+                            , _("The opening date for the account is later than the date of this transaction")
+                            , _("Today will be used as the transaction date"));
+        wxMessageBox(msgStr, _("Invalid Date"), wxICON_ERROR);
+        trxDate = wxDate::Today().FormatISODate();
+    }
     desktopNewTransaction->TRANSDATE = WebAppTrans.Date.FormatISODate();
     desktopNewTransaction->STATUS = TrStatus;
     desktopNewTransaction->TRANSCODE = WebAppTrans.Type;

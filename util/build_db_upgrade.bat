@@ -5,7 +5,7 @@ REM Purpose: To allow easy installation of DB_Upgrade.h
 REM --------------------------------------------------------------------------
 @echo.
 set buildfile_name=sqliteupgrade2cpp.py
-set buildfile_location=../database
+set buildfile_location=../database/incremental_upgrade
 
 set actual_location=%buildfile_location%
 if not exist %actual_location% set actual_location=../%buildfile_location%

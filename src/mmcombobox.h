@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Nikolay Akimov
+Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -79,6 +80,7 @@ public:
             else {
                 p = Model_Payee::instance().create();
                 p->PAYEENAME = this->GetValue();
+                p->ACTIVE = 1;
                 Model_Payee::instance().save(p);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }

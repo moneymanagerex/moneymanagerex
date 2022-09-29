@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -67,6 +68,7 @@ void mmAddAccountWizard::RunIt()
         account->ACCOUNTTYPE = Model_Account::all_type()[accountType_];
         account->ACCOUNTNAME = accountName_;
         account->INITIALBAL = 0;
+        account->INITIALDATE = wxDate::Today().FormatISODate();
         account->CURRENCYID = currencyID_;
 
         Model_Account::instance().save(account);

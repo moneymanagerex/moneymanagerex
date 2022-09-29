@@ -921,6 +921,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
+                payee->ACTIVE = 1;
                 Model_Payee::instance().save(payee);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
@@ -1008,6 +1009,14 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_bill_data.FOLLOWUPID = color_id;
     else
         m_bill_data.FOLLOWUPID = -1;
+
+    const Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+    const Model_Account::Data* toAccount = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
+    if (m_bill_data.TRANSDATE < account->INITIALDATE)
+        return mmErrorDialogs::ToolTip4Object(cbAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
+  
+    if (toAccount && (m_bill_data.TRANSDATE < toAccount->INITIALDATE))
+        return mmErrorDialogs::ToolTip4Object(cbToAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
 
     if (!m_enter_occur)
     {

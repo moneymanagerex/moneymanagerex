@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016, 2020 Nikolay Akimov
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -423,6 +424,9 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     }
         
     const wxString pdate = m_purchase_date_ctrl->GetValue().FormatISODate();
+    if (pdate < account->INITIALDATE)
+        return mmErrorDialogs::ToolTip4Object(m_purchase_date_ctrl, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
+  
     const wxString stockName = m_stock_name_ctrl->GetValue();
     const wxString notes = m_notes_ctrl->GetValue();
 
@@ -520,6 +524,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     share_account->FAVORITEACCT = "TRUE";
     share_account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
     share_account->INITIALBAL = 0;
+    share_account->INITIALDATE = wxDate::Today().FormatISODate();
     share_account->CURRENCYID = stock_account->CURRENCYID;
     Model_Account::instance().save(share_account);
 

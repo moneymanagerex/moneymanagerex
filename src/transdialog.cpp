@@ -276,6 +276,7 @@ void mmTransDialog::dataToControls()
                 {
                     payee = Model_Payee::instance().create();
                     payee->PAYEENAME = _("Unknown");
+                    payee->ACTIVE = 1;
                     Model_Payee::instance().save(payee);
                     cbPayee_->mmDoReInitialize();
                 }
@@ -568,6 +569,13 @@ bool mmTransDialog::ValidateData()
         return false;
     }
     m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
+    const Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
+
+    if (m_trx_data.TRANSDATE < account->INITIALDATE)
+    {
+        mmErrorDialogs::ToolTip4Object(cbAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
+        return false;
+    }  
 
     if (m_local_splits.empty())
     {
@@ -604,6 +612,7 @@ bool mmTransDialog::ValidateData()
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
+                payee->ACTIVE = 1;
                 Model_Payee::instance().save(payee);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
@@ -627,7 +636,8 @@ bool mmTransDialog::ValidateData()
     }
     else //transfer
     {
-        Model_Account::Data *to_account = Model_Account::instance().get(cbToAccount_->GetValue());
+        const Model_Account::Data *to_account = Model_Account::instance().get(cbToAccount_->GetValue());
+
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
             || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
@@ -635,6 +645,12 @@ bool mmTransDialog::ValidateData()
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
+
+        if (m_trx_data.TRANSDATE < to_account->INITIALDATE)
+        {
+            mmErrorDialogs::ToolTip4Object(cbToAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
+            return false;
+        }  
 
         if (m_advanced)
         {
@@ -645,7 +661,6 @@ bool mmTransDialog::ValidateData()
     }
 
     /* Check if transaction is to proceed.*/
-    Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
         if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
@@ -891,6 +906,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
         {
             category = Model_Category::instance().create();
             category->CATEGNAME = _("Unknown");
+            category->ACTIVE = 1;
             Model_Category::instance().save(category);
             cbCategory_->mmDoReInitialize();
         }

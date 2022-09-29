@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -47,6 +48,15 @@ public:
     static Model_Currency& instance();
 
 public:
+    enum CURRENCYTYPE { FIAT = 0, CRYPTO };
+    static const std::vector<std::pair<CURRENCYTYPE, wxString> > CURRENCYTYPE_CHOICES;
+    static wxArrayString all_currencytype();
+    static const wxString FIAT_STR;
+    static const wxString CRYPTO_STR;
+    static CURRENCYTYPE currencytype(const Data* r);
+    static CURRENCYTYPE currencytype(const Data& r);
+    static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(CURRENCYTYPE currencytype, OP op = EQUAL);
+
     const wxArrayString all_currency_names();
     const std::map<wxString, int>  all_currency();
     const wxArrayString all_currency_symbols();

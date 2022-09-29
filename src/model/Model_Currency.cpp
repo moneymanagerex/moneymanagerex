@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2013 - 2022 Nikolay Akimov
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -57,6 +58,41 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
 Model_Currency& Model_Currency::instance()
 {
     return Singleton<Model_Currency>::instance();
+}
+
+const std::vector<std::pair<Model_Currency::CURRENCYTYPE, wxString> > Model_Currency::CURRENCYTYPE_CHOICES =
+{
+    {Model_Currency::FIAT, wxString(wxTRANSLATE("Fiat"))}
+    , {Model_Currency::CRYPTO, wxString(wxTRANSLATE("Crypto"))}
+};
+
+const wxString Model_Currency::FIAT_STR = all_currencytype()[FIAT];
+const wxString Model_Currency::CRYPTO_STR = all_currencytype()[CRYPTO];
+
+wxArrayString Model_Currency::all_currencytype()
+{
+    wxArrayString types;
+    for (const auto& item : CURRENCYTYPE_CHOICES) types.Add(wxGetTranslation(item.second));
+    return types;
+}
+
+Model_Currency::CURRENCYTYPE Model_Currency::currencytype(const Data* r)
+{
+    for (const auto &entry : CURRENCYTYPE_CHOICES)
+    {
+        if (r->CURRENCY_TYPE.CmpNoCase(entry.second) == 0) return entry.first;
+    }
+    return FIAT;
+}
+
+Model_Currency::CURRENCYTYPE Model_Currency::currencytype(const Data& r)
+{
+    return currencytype(&r);
+}
+
+DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE Model_Currency::CURRENCY_TYPE(CURRENCYTYPE currencytype, OP op)
+{
+    return DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE(all_currencytype()[currencytype], op);
 }
 
 const wxArrayString Model_Currency::all_currency_names()

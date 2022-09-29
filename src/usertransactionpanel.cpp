@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Nikolay Akimov
 Copyright (C) 2015 Stefano Giorgio
+Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -421,11 +422,22 @@ void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
 int UserTransactionPanel::SaveChecking()
 {
     double initial_amount = 0;
+    wxString trxDate = m_date_selector->GetValue().FormatISODate();
+
     m_entered_amount->checkValue(initial_amount);
+    
+    const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    if (trxDate < account->INITIALDATE)
+    {
+        mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
+        return false;
+    }  
+
 
     if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
     }
+
 
     m_checking_entry->ACCOUNTID = m_account_id;
     m_checking_entry->TOACCOUNTID = CheckingType();
@@ -438,7 +450,7 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
     m_checking_entry->SUBCATEGID = m_subcategory_id;
-    m_checking_entry->TRANSDATE = m_date_selector->GetValue().FormatISODate();
+    m_checking_entry->TRANSDATE = trxDate;
     m_checking_entry->FOLLOWUPID = 0;
     m_checking_entry->TOTRANSAMOUNT = m_checking_entry->TRANSAMOUNT;
 

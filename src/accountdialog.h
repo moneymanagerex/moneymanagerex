@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -62,6 +63,7 @@ private:
     wxTextCtrl* m_textAccountName;
     wxTextCtrl* m_notesCtrl;
     mmTextCtrl* m_initbalance_ctrl;
+    mmDatePickerCtrl* m_initdate_ctrl;
     wxImageList* m_imageList;
     wxBitmapButton* m_bitmapButtons;
     wxBitmapButton* bAttachments_;

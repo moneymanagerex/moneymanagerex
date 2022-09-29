@@ -1302,7 +1302,8 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                 Model_Checking::Data* trx = Model_Checking::instance().get(i);
                 if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)
                         || Model_Checking::foreignTransaction(*trx)
-                        || Model_Checking::type(trx->TRANSCODE) == Model_Checking::TRANSFER)
+                        || Model_Checking::type(trx->TRANSCODE) == Model_Checking::TRANSFER
+                        || trx->TRANSDATE < dest_account->INITIALDATE)
                     continue;
                 trx->ACCOUNTID = dest_account_id;
                 Model_Checking::instance().save(trx);

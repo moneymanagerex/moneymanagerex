@@ -28,11 +28,22 @@ class Model_Asset : public Model<DB_Table_ASSETS_V1>
 {
 public:
     enum RATE { RATE_NONE = 0, RATE_APPRECIATE, RATE_DEPRECIATE };
+
+    enum RATEMODE { PERCENTAGE = 0, LINEAR };
+    static const wxString PERCENTAGE_STR;
+    static const wxString LINEAR_STR;
+
     enum TYPE { TYPE_PROPERTY = 0, TYPE_AUTO, TYPE_HOUSE, TYPE_ART, TYPE_JEWELLERY, TYPE_CASH, TYPE_OTHER };
+
+    enum STATUS { STATUS_CLOSED = 0, STATUS_OPEN };
+    static const wxString OPEN_STR;
+    static const wxString CLOSED_STR;
 
 public:
     static const std::vector<std::pair<RATE, wxString> > RATE_CHOICES;
+    static const std::vector<std::pair<RATEMODE, wxString> > RATEMODE_CHOICES;
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
+    static const std::vector<std::pair<STATUS, wxString> > STATUS_CHOICES;
 
 public:
     Model_Asset();
@@ -60,7 +71,9 @@ public:
 public:
     static wxString get_asset_name(int asset_id);
     static wxArrayString all_rate();
+    static wxArrayString all_ratemode();
     static wxArrayString all_type();
+    static wxArrayString all_status();
     double balance();
     static wxDate STARTDATE(const Data* r);
     static wxDate STARTDATE(const Data& r);
@@ -69,6 +82,10 @@ public:
     static TYPE type(const Data& r);
     static RATE rate(const Data* r);
     static RATE rate(const Data& r);
+    static RATEMODE ratemode(const Data* r);
+    static RATEMODE ratemode(const Data& r);
+    static STATUS status(const Data* r);
+    static STATUS status(const Data& r);
 
     /** Returns the base currency Data record pointer*/
     static Model_Currency::Data* currency(const Data* /* r */);

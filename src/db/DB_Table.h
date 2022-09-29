@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-07-20 15:29:27.776453.
+ *          AUTO GENERATED at 2022-09-28 23:10:47.317664.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -204,6 +204,15 @@ struct SorterByACCOUNTTYPE
     }
 };
 
+struct SorterByACTIVE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.ACTIVE) < (y.ACTIVE);
+    }
+};
+
 struct SorterByALLOCATION
 { 
     template<class DATA>
@@ -246,6 +255,15 @@ struct SorterByASSETNAME
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.ASSETNAME) < (y.ASSETNAME);
+    }
+};
+
+struct SorterByASSETSTATUS
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.ASSETSTATUS) < (y.ASSETSTATUS);
     }
 };
 
@@ -417,6 +435,15 @@ struct SorterByCURRENCY_SYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.CURRENCY_SYMBOL) < (y.CURRENCY_SYMBOL);
+    }
+};
+
+struct SorterByCURRENCY_TYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.CURRENCY_TYPE) < (y.CURRENCY_TYPE);
     }
 };
 
@@ -609,6 +636,15 @@ struct SorterByINITIALBAL
     }
 };
 
+struct SorterByINITIALDATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.INITIALDATE) < (y.INITIALDATE);
+    }
+};
+
 struct SorterByINTERESTRATE
 { 
     template<class DATA>
@@ -696,6 +732,15 @@ struct SorterByNOTES
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.NOTES) < (y.NOTES);
+    }
+};
+
+struct SorterByNUMBER
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.NUMBER) < (y.NUMBER);
     }
 };
 
@@ -1200,6 +1245,15 @@ struct SorterByVALUECHANGE
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.VALUECHANGE) < (y.VALUECHANGE);
+    }
+};
+
+struct SorterByVALUECHANGEMODE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.VALUECHANGEMODE) < (y.VALUECHANGEMODE);
     }
 };
 

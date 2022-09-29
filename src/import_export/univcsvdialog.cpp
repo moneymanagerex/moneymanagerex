@@ -3,6 +3,7 @@
  Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2015, 2019, 2021 Nikolay Akimov
  Copyright (C) 2015 Yosef
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -896,6 +897,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder)
         if (!u) {
             Model_Payee::Data *p = Model_Payee::instance().create();
             p->PAYEENAME = _("Unknown");
+            p->ACTIVE = 1;
             p->CATEGID = -1;
             p->SUBCATEGID = -1;
             holder.PayeeID = Model_Payee::instance().save(p);
@@ -924,6 +926,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder)
         {
             Model_Category::Data *c = Model_Category::instance().create();
             c->CATEGNAME = _("Unknown");
+            c->ACTIVE = 1;
             holder.CategoryID = Model_Category::instance().save(c);
         }
     }
@@ -1037,8 +1040,21 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             continue;
         }
 
+        wxString trxDate = holder.Date.FormatISODate();
+        const Model_Account::Data* account = Model_Account::instance().get(accountID_);
+        const Model_Account::Data* toAccount = Model_Account::instance().get(holder.ToAccountID);
+        if ((trxDate < account->INITIALDATE) ||
+               (toAccount && (trxDate < toAccount->INITIALDATE)))
+        {
+            wxString msg = wxString::Format(_("Line %ld: %s"), nLines + 1,
+                    _("The opening date for the account is later than the date of this transaction"));
+            log << msg << endl;
+            *log_field_ << msg << "\n";
+            continue;
+        }
+
         Model_Checking::Data *pTransaction = Model_Checking::instance().create();
-        pTransaction->TRANSDATE = holder.Date.FormatISODate();
+        pTransaction->TRANSDATE = trxDate;
         pTransaction->ACCOUNTID = accountID_;
         pTransaction->TOACCOUNTID = holder.ToAccountID;
         pTransaction->PAYEEID = holder.PayeeID;
@@ -1695,6 +1711,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             payee = Model_Payee::instance().create();
             payee->PAYEENAME = token;
+            payee->ACTIVE = 1;
             Model_Payee::instance().save(payee);
         }
 
@@ -1720,6 +1737,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             category = Model_Category::instance().create();
             category->CATEGNAME = token;
+            category->ACTIVE = 1;
             Model_Category::instance().save(category);
         }
 
@@ -1737,6 +1755,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             sub_category = Model_Subcategory::instance().create();
             sub_category->CATEGID = holder.CategoryID;
             sub_category->SUBCATEGNAME = token;
+            sub_category->ACTIVE = 1;
             Model_Subcategory::instance().save(sub_category);
         }
         holder.SubCategoryID = sub_category->SUBCATEGID;

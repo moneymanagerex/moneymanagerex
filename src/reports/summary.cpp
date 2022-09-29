@@ -54,8 +54,6 @@ std::map<wxDate, double> mmReportSummaryByDate::createCheckingBalanceMap(const M
     for (const auto& tran : Model_Account::transaction(account))
     {
         wxDate date = Model_Checking::TRANSDATE(tran);
-        if (date.IsEarlierThan(earliestDate))
-            earliestDate = date;
         balance += Model_Checking::balance(tran, account.ACCOUNTID);
         balanceMap[date] = balance;
     }
@@ -86,6 +84,9 @@ double mmReportSummaryByDate::getInvestingDailyBalanceAt(const Model_Account::Da
 
 double mmReportSummaryByDate::getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date)
 {
+    if (date.FormatISODate() < account->INITIALDATE)
+        return 0.0;
+
     if (Model_Account::type(account) == Model_Account::INVESTMENT)
     {
         return getInvestingDailyBalanceAt(account, date);
@@ -138,10 +139,13 @@ wxString mmReportSummaryByDate::getHTMLText()
     currencyDateRateCache.clear();
     arHistory.clear();
 
-    earliestDate = wxDate::Today();
+    dateStart = wxDate::Today();
     // Calculate the report data
     for (const auto& account: Model_Account::instance().all())
     {
+        const wxDate accountOpeningDate = Model_Account::get_date_by_string(account.INITIALDATE);
+        if (accountOpeningDate.IsEarlierThan(dateStart))
+            dateStart = accountOpeningDate;
         if (Model_Account::type(account) == Model_Account::INVESTMENT)
         {
             Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::HELDAT(account.id()));
@@ -152,7 +156,6 @@ wxString mmReportSummaryByDate::getHTMLText()
                 histItem.stockId = stock.STOCKID;
                 histItem.purchasePrice = stock.PURCHASEPRICE;
                 histItem.purchaseDate = Model_Stock::PURCHASEDATE(stock);
-                if (histItem.purchaseDate.IsEarlierThan(earliestDate)) earliestDate = histItem.purchaseDate;
                 histItem.purchaseDateStr = stock.PURCHASEDATE;
                 histItem.numShares = stock.NUMSHARES;
                 histItem.stockHist = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL));
@@ -166,7 +169,6 @@ wxString mmReportSummaryByDate::getHTMLText()
             accountsBalanceMap[account.ACCOUNTID] = createCheckingBalanceMap(account);
         }
     }
-    dateStart = earliestDate;
 
     if (mode_ == MONTHLY)
     {
