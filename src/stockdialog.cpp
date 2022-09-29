@@ -493,7 +493,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
                 "Do you want to create one?")
                 , _("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
             {
-                CreateShareAccount(account, stockName);
+                CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
             }
         }
         else if (!share_account)
@@ -505,7 +505,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
                 "Do you want to create a new Share Acccount?\n")
                 , _("Edit Stock Investment"), wxYES_NO | wxICON_WARNING) == wxYES)
             {
-                CreateShareAccount(account, stockName);
+                CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
             }
         }
     }
@@ -514,7 +514,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     UpdateControls();
 }
 
-void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const wxString& name)
+void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const wxString& name, const wxString& openingDate)
 {
     if (name.empty()) return;
     Model_Account::Data* share_account = Model_Account::instance().create();
@@ -524,7 +524,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     share_account->FAVORITEACCT = "TRUE";
     share_account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
     share_account->INITIALBAL = 0;
-    share_account->INITIALDATE = wxDate::Today().FormatISODate();
+    share_account->INITIALDATE = openingDate;
     share_account->CURRENCYID = stock_account->CURRENCYID;
     Model_Account::instance().save(share_account);
 
