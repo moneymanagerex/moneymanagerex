@@ -1254,11 +1254,10 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
         if (mmGetNotes().empty() && !tran.NOTES.empty()) ok = false;
         else if (!mmGetNotes().empty()) {
             if (tran.NOTES.empty()) ok = false;
-            else if (mmGetNotes().StartsWith("regex[")) {
-                std::string pattern = mmGetNotes().SubString(6, mmGetNotes().find_last_of(']') - 1).ToStdString();
+            else if (mmGetNotes().StartsWith("regex:")) {
+                std::string pattern = mmGetNotes().Right(mmGetNotes().length() - 6).ToStdString();
                 std::regex regex(pattern, std::regex_constants::icase);
                 if (!std::regex_search(tran.NOTES.ToStdString(), regex)) ok = false;
-                notesEdit_->SetValue("regex[" + pattern + "]");
             }
             else ok = tran.NOTES.Lower().Matches(mmGetNotes().Lower());
         }
