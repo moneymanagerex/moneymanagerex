@@ -632,7 +632,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
         _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
         _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.") + "\n" +
-        _("Use regex[...] to match using regular expressions.")
+        _("Use regex: to match using regular expressions.")
     );
 
     // Colour
