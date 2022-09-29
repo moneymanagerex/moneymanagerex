@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013 - 2016, 2020, 2022 Nikolay Akimov
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
   This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -368,6 +369,9 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->STARTDATE        = m_dpc->GetValue().FormatISODate();
     m_asset->NOTES            = m_notes->GetValue().Trim();
     m_asset->ASSETNAME        = name;
+    m_asset->ASSETSTATUS      = Model_Asset::OPEN_STR;
+    m_asset->VALUECHANGEMODE  = Model_Asset::PERCENTAGE_STR;  
+    m_asset->CURRENCYID       = -1; 
     m_asset->VALUE            = value;
     m_asset->VALUECHANGE      = Model_Asset::all_rate()[valueChangeType];
     m_asset->VALUECHANGERATE  = valueChangeRate;
@@ -428,6 +432,7 @@ void mmAssetDialog::CreateAssetAccount()
     asset_account->FAVORITEACCT = "TRUE";
     asset_account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
     asset_account->INITIALBAL = 0;
+    asset_account->INITIALDATE = wxDate::Today().FormatISODate();
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
     Model_Account::instance().save(asset_account);
 

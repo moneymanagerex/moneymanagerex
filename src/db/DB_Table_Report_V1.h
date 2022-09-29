@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-07-20 15:29:27.776453.
+ *          AUTO GENERATED at 2022-09-28 23:10:47.317664.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATECONTENT TEXT, DESCRIPTION TEXT)");
+                db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, ACTIVE integer, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATECONTENT TEXT, DESCRIPTION TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -130,6 +130,12 @@ struct DB_Table_REPORT_V1 : public DB_Table
         explicit GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
+    struct ACTIVE : public DB_Column<int>
+    { 
+        static wxString name() { return "ACTIVE"; } 
+        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
     struct SQLCONTENT : public DB_Column<wxString>
     { 
         static wxString name() { return "SQLCONTENT"; } 
@@ -160,10 +166,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
         COL_REPORTID = 0
         , COL_REPORTNAME = 1
         , COL_GROUPNAME = 2
-        , COL_SQLCONTENT = 3
-        , COL_LUACONTENT = 4
-        , COL_TEMPLATECONTENT = 5
-        , COL_DESCRIPTION = 6
+        , COL_ACTIVE = 3
+        , COL_SQLCONTENT = 4
+        , COL_LUACONTENT = 5
+        , COL_TEMPLATECONTENT = 6
+        , COL_DESCRIPTION = 7
     };
 
     /** Returns the column name as a string*/
@@ -174,6 +181,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             case COL_REPORTID: return "REPORTID";
             case COL_REPORTNAME: return "REPORTNAME";
             case COL_GROUPNAME: return "GROUPNAME";
+            case COL_ACTIVE: return "ACTIVE";
             case COL_SQLCONTENT: return "SQLCONTENT";
             case COL_LUACONTENT: return "LUACONTENT";
             case COL_TEMPLATECONTENT: return "TEMPLATECONTENT";
@@ -190,6 +198,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         if ("REPORTID" == name) return COL_REPORTID;
         else if ("REPORTNAME" == name) return COL_REPORTNAME;
         else if ("GROUPNAME" == name) return COL_GROUPNAME;
+        else if ("ACTIVE" == name) return COL_ACTIVE;
         else if ("SQLCONTENT" == name) return COL_SQLCONTENT;
         else if ("LUACONTENT" == name) return COL_LUACONTENT;
         else if ("TEMPLATECONTENT" == name) return COL_TEMPLATECONTENT;
@@ -208,6 +217,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         int REPORTID;//  primary key
         wxString REPORTNAME;
         wxString GROUPNAME;
+        int ACTIVE;
         wxString SQLCONTENT;
         wxString LUACONTENT;
         wxString TEMPLATECONTENT;
@@ -238,6 +248,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             table_ = table;
         
             REPORTID = -1;
+            ACTIVE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
@@ -247,10 +258,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
             REPORTID = q.GetInt(0); // REPORTID
             REPORTNAME = q.GetString(1); // REPORTNAME
             GROUPNAME = q.GetString(2); // GROUPNAME
-            SQLCONTENT = q.GetString(3); // SQLCONTENT
-            LUACONTENT = q.GetString(4); // LUACONTENT
-            TEMPLATECONTENT = q.GetString(5); // TEMPLATECONTENT
-            DESCRIPTION = q.GetString(6); // DESCRIPTION
+            ACTIVE = q.GetInt(3); // ACTIVE
+            SQLCONTENT = q.GetString(4); // SQLCONTENT
+            LUACONTENT = q.GetString(5); // LUACONTENT
+            TEMPLATECONTENT = q.GetString(6); // TEMPLATECONTENT
+            DESCRIPTION = q.GetString(7); // DESCRIPTION
         }
 
         Data& operator=(const Data& other)
@@ -260,6 +272,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             REPORTID = other.REPORTID;
             REPORTNAME = other.REPORTNAME;
             GROUPNAME = other.GROUPNAME;
+            ACTIVE = other.ACTIVE;
             SQLCONTENT = other.SQLCONTENT;
             LUACONTENT = other.LUACONTENT;
             TEMPLATECONTENT = other.TEMPLATECONTENT;
@@ -286,6 +299,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
         bool match(const Self::GROUPNAME &in) const
         {
             return this->GROUPNAME.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::ACTIVE &in) const
+        {
+            return this->ACTIVE == in.v_;
         }
 
         bool match(const Self::SQLCONTENT &in) const
@@ -330,6 +348,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
             json_writer.String(this->REPORTNAME.utf8_str());
             json_writer.Key("GROUPNAME");
             json_writer.String(this->GROUPNAME.utf8_str());
+            json_writer.Key("ACTIVE");
+            json_writer.Int(this->ACTIVE);
             json_writer.Key("SQLCONTENT");
             json_writer.String(this->SQLCONTENT.utf8_str());
             json_writer.Key("LUACONTENT");
@@ -346,6 +366,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             row(L"REPORTID") = REPORTID;
             row(L"REPORTNAME") = REPORTNAME;
             row(L"GROUPNAME") = GROUPNAME;
+            row(L"ACTIVE") = ACTIVE;
             row(L"SQLCONTENT") = SQLCONTENT;
             row(L"LUACONTENT") = LUACONTENT;
             row(L"TEMPLATECONTENT") = TEMPLATECONTENT;
@@ -358,6 +379,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             t(L"REPORTID") = REPORTID;
             t(L"REPORTNAME") = REPORTNAME;
             t(L"GROUPNAME") = GROUPNAME;
+            t(L"ACTIVE") = ACTIVE;
             t(L"SQLCONTENT") = SQLCONTENT;
             t(L"LUACONTENT") = LUACONTENT;
             t(L"TEMPLATECONTENT") = TEMPLATECONTENT;
@@ -397,7 +419,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 7
+        NUM_COLUMNS = 8
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -407,7 +429,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
     DB_Table_REPORT_V1() : fake_(new Data())
     {
-        query_ = "SELECT REPORTID, REPORTNAME, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION FROM REPORT_V1 ";
+        query_ = "SELECT REPORTID, REPORTNAME, GROUPNAME, ACTIVE, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION FROM REPORT_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -437,11 +459,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION) VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, ACTIVE, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION) VALUES(?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, GROUPNAME = ?, SQLCONTENT = ?, LUACONTENT = ?, TEMPLATECONTENT = ?, DESCRIPTION = ? WHERE REPORTID = ?";
+            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, GROUPNAME = ?, ACTIVE = ?, SQLCONTENT = ?, LUACONTENT = ?, TEMPLATECONTENT = ?, DESCRIPTION = ? WHERE REPORTID = ?";
         }
 
         try
@@ -450,12 +472,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
             stmt.Bind(1, entity->REPORTNAME);
             stmt.Bind(2, entity->GROUPNAME);
-            stmt.Bind(3, entity->SQLCONTENT);
-            stmt.Bind(4, entity->LUACONTENT);
-            stmt.Bind(5, entity->TEMPLATECONTENT);
-            stmt.Bind(6, entity->DESCRIPTION);
+            stmt.Bind(3, entity->ACTIVE);
+            stmt.Bind(4, entity->SQLCONTENT);
+            stmt.Bind(5, entity->LUACONTENT);
+            stmt.Bind(6, entity->TEMPLATECONTENT);
+            stmt.Bind(7, entity->DESCRIPTION);
             if (entity->id() > 0)
-                stmt.Bind(7, entity->REPORTID);
+                stmt.Bind(8, entity->REPORTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

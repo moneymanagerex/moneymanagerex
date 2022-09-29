@@ -238,6 +238,7 @@ void mmPayeeDialog::AddPayee()
     {
         Model_Payee::Data *payee = Model_Payee::instance().create();
         payee->PAYEENAME = name;
+        payee->ACTIVE = 1;
         m_payee_id = Model_Payee::instance().save(payee);
         mmWebApp::MMEX_WebApp_UpdatePayee();
         m_payee_id = payee->PAYEEID;

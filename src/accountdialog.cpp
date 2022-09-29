@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -163,10 +164,15 @@ void mmNewAcctDialog::CreateControls()
     itemChoice6->SetSelection(0);
 
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, wxString::Format(_("Initial Balance: %s"), "")), g_flagsH);
-
     m_initbalance_ctrl = new mmTextCtrl(this, ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     grid_sizer->Add(m_initbalance_ctrl, g_flagsExpand);
     mmToolTip(m_initbalance_ctrl, _("Enter the initial balance in this account."));
+
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Opening Date:")), g_flagsH);
+
+    m_initdate_ctrl = new mmDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    mmToolTip(m_initdate_ctrl, _("The date when the account was opened"));
+    grid_sizer->Add(m_initdate_ctrl, g_flagsExpand);
 
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Currency:")), g_flagsH);
 
@@ -349,6 +355,8 @@ void mmNewAcctDialog::fillControls()
     m_initbalance_ctrl->SetCurrency(Model_Account::currency(m_account));
     m_initbalance_ctrl->SetValue(initBal);
 
+    m_initdate_ctrl->SetValue(Model_Account::DateOf(m_account->INITIALDATE));
+
     int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID, false, true);
     m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
 
@@ -526,7 +534,34 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (!m_initbalance_ctrl->checkValue(m_account->INITIALBAL, false))
         return;
 
-    if (!this->m_account) this->m_account = Model_Account::instance().create();
+    wxString openingDate = m_initdate_ctrl->GetValue().FormatISODate();
+    if (openingDate > wxDate::Today().FormatISODate())
+        return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Opening date cannot be in the future"), _("Invalid Date"));
+
+    if (this->m_account)
+    {
+        const Model_Checking::Data_Set all_trans_check1 = Model_Checking::instance().find(DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(openingDate, LESS)
+                                                                            ,DB_Table_CHECKINGACCOUNT_V1::ACCOUNTID(m_account->ACCOUNTID, EQUAL));
+        const Model_Checking::Data_Set all_trans_check2 = Model_Checking::instance().find(DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(openingDate, LESS)
+                                                                            ,DB_Table_CHECKINGACCOUNT_V1::TOACCOUNTID(m_account->ACCOUNTID, EQUAL));
+        if (!all_trans_check1.empty() || !all_trans_check2.empty())
+            return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Transactions for this account already exist before this date"), _("Invalid Date"));
+        
+        const Model_Stock::Data_Set all_trans_stock = Model_Stock::instance().find(DB_Table_STOCK_V1::PURCHASEDATE(openingDate, LESS)
+                                                   ,DB_Table_STOCK_V1::HELDAT(m_account->ACCOUNTID, EQUAL));
+        if (!all_trans_stock.empty())
+            return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Stock purchases for this account already exist before this date"), _("Invalid Date"));
+        
+        const Model_Billsdeposits::Data_Set all_trans_bd1 = Model_Billsdeposits::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)
+                                                   ,DB_Table_BILLSDEPOSITS_V1::ACCOUNTID(m_account->ACCOUNTID, EQUAL));
+        const Model_Billsdeposits::Data_Set all_trans_bd2 = Model_Billsdeposits::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)
+                                                   ,DB_Table_BILLSDEPOSITS_V1::TOACCOUNTID(m_account->ACCOUNTID, EQUAL));
+        if (!all_trans_bd1.empty() || !all_trans_bd2.empty())
+            return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Recurring transactions for this account are scheduled before this date"), _("Invalid Date"));
+    } else
+        this->m_account = Model_Account::instance().create();
+
+    m_account->INITIALDATE = openingDate;
 
     wxTextCtrl* textCtrlAcctNumber = static_cast<wxTextCtrl*>(FindWindow(ID_ACCTNUMBER));
     wxTextCtrl* textCtrlHeldAt = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT));

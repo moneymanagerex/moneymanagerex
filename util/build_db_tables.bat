@@ -4,7 +4,7 @@ REM Author : Stefano Giorgio
 REM Purpose: To allow easy installation of DB_Table_xxx.h files
 REM --------------------------------------------------------------------------
 set buildfile_name=sqlite2cpp.py
-set buildfile_location=../database/tables_v1.sql
+set buildfile_location=../database/tables.sql
 @echo Generated DB_Tables files for MMEX
 @echo.
 python %buildfile_name% %buildfile_location% 

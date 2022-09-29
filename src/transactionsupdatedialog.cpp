@@ -339,6 +339,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             {
                 Model_Payee::Data* payee = Model_Payee::instance().create();
                 payee->PAYEENAME = cbPayee_->GetValue();
+                payee->ACTIVE = 1;
                 Model_Payee::instance().save(payee);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
                 payee_id = payee->PAYEEID;
@@ -378,10 +379,6 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             continue;
         }
 
-        if (m_date_checkbox->IsChecked()) {
-            trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
-        }
-
         if (m_status_checkbox->IsChecked()) {
             trx->STATUS = status;
         }
@@ -394,6 +391,19 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (m_transferAcc_checkbox->IsChecked()) {
             trx->TOACCOUNTID = cbAccount_->mmGetId();
             trx->PAYEEID = -1;
+        }
+
+        if (m_date_checkbox->IsChecked()) {
+            wxString date = m_dpc->GetValue().FormatISODate();
+            const Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
+            const Model_Account::Data* to_account = Model_Account::instance().get(trx->TOACCOUNTID);
+            if ((date < account->INITIALDATE) ||
+                (to_account && (date < to_account->INITIALDATE)))
+            {
+                skip_trx.push_back(trx->TRANSID);
+                continue;
+            }
+            trx->TRANSDATE = date;
         }
 
         if (m_color_checkbox->IsChecked()) {

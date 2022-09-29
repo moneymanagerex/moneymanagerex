@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-07-20 15:29:27.776453.
+ *          AUTO GENERATED at 2022-09-28 23:10:47.317664.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, ACCESSINFO TEXT, INITIALBAL numeric, FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL, STATEMENTLOCKED integer, STATEMENTDATE TEXT, MINIMUMBALANCE numeric, CREDITLIMIT numeric, INTERESTRATE numeric, PAYMENTDUEDATE text, MINIMUMPAYMENT numeric)");
+                db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, ACCESSINFO TEXT, INITIALBAL numeric, INITIALDATE TEXT, FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL, STATEMENTLOCKED integer, STATEMENTDATE TEXT, MINIMUMBALANCE numeric, CREDITLIMIT numeric, INTERESTRATE numeric, PAYMENTDUEDATE text, MINIMUMPAYMENT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -178,6 +178,12 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         explicit INITIALBAL(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
+    struct INITIALDATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "INITIALDATE"; } 
+        explicit INITIALDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
     struct FAVORITEACCT : public DB_Column<wxString>
     { 
         static wxString name() { return "FAVORITEACCT"; } 
@@ -246,15 +252,16 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         , COL_CONTACTINFO = 8
         , COL_ACCESSINFO = 9
         , COL_INITIALBAL = 10
-        , COL_FAVORITEACCT = 11
-        , COL_CURRENCYID = 12
-        , COL_STATEMENTLOCKED = 13
-        , COL_STATEMENTDATE = 14
-        , COL_MINIMUMBALANCE = 15
-        , COL_CREDITLIMIT = 16
-        , COL_INTERESTRATE = 17
-        , COL_PAYMENTDUEDATE = 18
-        , COL_MINIMUMPAYMENT = 19
+        , COL_INITIALDATE = 11
+        , COL_FAVORITEACCT = 12
+        , COL_CURRENCYID = 13
+        , COL_STATEMENTLOCKED = 14
+        , COL_STATEMENTDATE = 15
+        , COL_MINIMUMBALANCE = 16
+        , COL_CREDITLIMIT = 17
+        , COL_INTERESTRATE = 18
+        , COL_PAYMENTDUEDATE = 19
+        , COL_MINIMUMPAYMENT = 20
     };
 
     /** Returns the column name as a string*/
@@ -273,6 +280,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             case COL_CONTACTINFO: return "CONTACTINFO";
             case COL_ACCESSINFO: return "ACCESSINFO";
             case COL_INITIALBAL: return "INITIALBAL";
+            case COL_INITIALDATE: return "INITIALDATE";
             case COL_FAVORITEACCT: return "FAVORITEACCT";
             case COL_CURRENCYID: return "CURRENCYID";
             case COL_STATEMENTLOCKED: return "STATEMENTLOCKED";
@@ -302,6 +310,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         else if ("CONTACTINFO" == name) return COL_CONTACTINFO;
         else if ("ACCESSINFO" == name) return COL_ACCESSINFO;
         else if ("INITIALBAL" == name) return COL_INITIALBAL;
+        else if ("INITIALDATE" == name) return COL_INITIALDATE;
         else if ("FAVORITEACCT" == name) return COL_FAVORITEACCT;
         else if ("CURRENCYID" == name) return COL_CURRENCYID;
         else if ("STATEMENTLOCKED" == name) return COL_STATEMENTLOCKED;
@@ -333,6 +342,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         wxString CONTACTINFO;
         wxString ACCESSINFO;
         double INITIALBAL;
+        wxString INITIALDATE;
         wxString FAVORITEACCT;
         int CURRENCYID;
         int STATEMENTLOCKED;
@@ -392,15 +402,16 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             CONTACTINFO = q.GetString(8); // CONTACTINFO
             ACCESSINFO = q.GetString(9); // ACCESSINFO
             INITIALBAL = q.GetDouble(10); // INITIALBAL
-            FAVORITEACCT = q.GetString(11); // FAVORITEACCT
-            CURRENCYID = q.GetInt(12); // CURRENCYID
-            STATEMENTLOCKED = q.GetInt(13); // STATEMENTLOCKED
-            STATEMENTDATE = q.GetString(14); // STATEMENTDATE
-            MINIMUMBALANCE = q.GetDouble(15); // MINIMUMBALANCE
-            CREDITLIMIT = q.GetDouble(16); // CREDITLIMIT
-            INTERESTRATE = q.GetDouble(17); // INTERESTRATE
-            PAYMENTDUEDATE = q.GetString(18); // PAYMENTDUEDATE
-            MINIMUMPAYMENT = q.GetDouble(19); // MINIMUMPAYMENT
+            INITIALDATE = q.GetString(11); // INITIALDATE
+            FAVORITEACCT = q.GetString(12); // FAVORITEACCT
+            CURRENCYID = q.GetInt(13); // CURRENCYID
+            STATEMENTLOCKED = q.GetInt(14); // STATEMENTLOCKED
+            STATEMENTDATE = q.GetString(15); // STATEMENTDATE
+            MINIMUMBALANCE = q.GetDouble(16); // MINIMUMBALANCE
+            CREDITLIMIT = q.GetDouble(17); // CREDITLIMIT
+            INTERESTRATE = q.GetDouble(18); // INTERESTRATE
+            PAYMENTDUEDATE = q.GetString(19); // PAYMENTDUEDATE
+            MINIMUMPAYMENT = q.GetDouble(20); // MINIMUMPAYMENT
         }
 
         Data& operator=(const Data& other)
@@ -418,6 +429,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             CONTACTINFO = other.CONTACTINFO;
             ACCESSINFO = other.ACCESSINFO;
             INITIALBAL = other.INITIALBAL;
+            INITIALDATE = other.INITIALDATE;
             FAVORITEACCT = other.FAVORITEACCT;
             CURRENCYID = other.CURRENCYID;
             STATEMENTLOCKED = other.STATEMENTLOCKED;
@@ -489,6 +501,11 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         bool match(const Self::INITIALBAL &in) const
         {
             return this->INITIALBAL == in.v_;
+        }
+
+        bool match(const Self::INITIALDATE &in) const
+        {
+            return this->INITIALDATE.CmpNoCase(in.v_) == 0;
         }
 
         bool match(const Self::FAVORITEACCT &in) const
@@ -574,6 +591,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             json_writer.String(this->ACCESSINFO.utf8_str());
             json_writer.Key("INITIALBAL");
             json_writer.Double(this->INITIALBAL);
+            json_writer.Key("INITIALDATE");
+            json_writer.String(this->INITIALDATE.utf8_str());
             json_writer.Key("FAVORITEACCT");
             json_writer.String(this->FAVORITEACCT.utf8_str());
             json_writer.Key("CURRENCYID");
@@ -608,6 +627,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             row(L"CONTACTINFO") = CONTACTINFO;
             row(L"ACCESSINFO") = ACCESSINFO;
             row(L"INITIALBAL") = INITIALBAL;
+            row(L"INITIALDATE") = INITIALDATE;
             row(L"FAVORITEACCT") = FAVORITEACCT;
             row(L"CURRENCYID") = CURRENCYID;
             row(L"STATEMENTLOCKED") = STATEMENTLOCKED;
@@ -633,6 +653,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             t(L"CONTACTINFO") = CONTACTINFO;
             t(L"ACCESSINFO") = ACCESSINFO;
             t(L"INITIALBAL") = INITIALBAL;
+            t(L"INITIALDATE") = INITIALDATE;
             t(L"FAVORITEACCT") = FAVORITEACCT;
             t(L"CURRENCYID") = CURRENCYID;
             t(L"STATEMENTLOCKED") = STATEMENTLOCKED;
@@ -677,7 +698,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 20
+        NUM_COLUMNS = 21
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -687,7 +708,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     DB_Table_ACCOUNTLIST_V1() : fake_(new Data())
     {
-        query_ = "SELECT ACCOUNTID, ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT FROM ACCOUNTLIST_V1 ";
+        query_ = "SELECT ACCOUNTID, ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, INITIALDATE, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT FROM ACCOUNTLIST_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -717,11 +738,11 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ACCOUNTLIST_V1(ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO ACCOUNTLIST_V1(ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, INITIALDATE, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ACCOUNTLIST_V1 SET ACCOUNTNAME = ?, ACCOUNTTYPE = ?, ACCOUNTNUM = ?, STATUS = ?, NOTES = ?, HELDAT = ?, WEBSITE = ?, CONTACTINFO = ?, ACCESSINFO = ?, INITIALBAL = ?, FAVORITEACCT = ?, CURRENCYID = ?, STATEMENTLOCKED = ?, STATEMENTDATE = ?, MINIMUMBALANCE = ?, CREDITLIMIT = ?, INTERESTRATE = ?, PAYMENTDUEDATE = ?, MINIMUMPAYMENT = ? WHERE ACCOUNTID = ?";
+            sql = "UPDATE ACCOUNTLIST_V1 SET ACCOUNTNAME = ?, ACCOUNTTYPE = ?, ACCOUNTNUM = ?, STATUS = ?, NOTES = ?, HELDAT = ?, WEBSITE = ?, CONTACTINFO = ?, ACCESSINFO = ?, INITIALBAL = ?, INITIALDATE = ?, FAVORITEACCT = ?, CURRENCYID = ?, STATEMENTLOCKED = ?, STATEMENTDATE = ?, MINIMUMBALANCE = ?, CREDITLIMIT = ?, INTERESTRATE = ?, PAYMENTDUEDATE = ?, MINIMUMPAYMENT = ? WHERE ACCOUNTID = ?";
         }
 
         try
@@ -738,17 +759,18 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             stmt.Bind(8, entity->CONTACTINFO);
             stmt.Bind(9, entity->ACCESSINFO);
             stmt.Bind(10, entity->INITIALBAL);
-            stmt.Bind(11, entity->FAVORITEACCT);
-            stmt.Bind(12, entity->CURRENCYID);
-            stmt.Bind(13, entity->STATEMENTLOCKED);
-            stmt.Bind(14, entity->STATEMENTDATE);
-            stmt.Bind(15, entity->MINIMUMBALANCE);
-            stmt.Bind(16, entity->CREDITLIMIT);
-            stmt.Bind(17, entity->INTERESTRATE);
-            stmt.Bind(18, entity->PAYMENTDUEDATE);
-            stmt.Bind(19, entity->MINIMUMPAYMENT);
+            stmt.Bind(11, entity->INITIALDATE);
+            stmt.Bind(12, entity->FAVORITEACCT);
+            stmt.Bind(13, entity->CURRENCYID);
+            stmt.Bind(14, entity->STATEMENTLOCKED);
+            stmt.Bind(15, entity->STATEMENTDATE);
+            stmt.Bind(16, entity->MINIMUMBALANCE);
+            stmt.Bind(17, entity->CREDITLIMIT);
+            stmt.Bind(18, entity->INTERESTRATE);
+            stmt.Bind(19, entity->PAYMENTDUEDATE);
+            stmt.Bind(20, entity->MINIMUMPAYMENT);
             if (entity->id() > 0)
-                stmt.Bind(20, entity->ACCOUNTID);
+                stmt.Bind(21, entity->ACCOUNTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

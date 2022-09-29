@@ -393,6 +393,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         }
         Model_Category::Data *category = Model_Category::instance().create();
         category->CATEGNAME = text;
+        category->ACTIVE = 1;
         Model_Category::instance().save(category);
         mmWebApp::MMEX_WebApp_UpdateCategory();
 
@@ -426,6 +427,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         Model_Subcategory::Data *subcategory = Model_Subcategory::instance().create();
         subcategory->SUBCATEGNAME = text;
         subcategory->CATEGID = iData->getCategData()->CATEGID;
+        subcategory->ACTIVE = 1;
         Model_Subcategory::instance().save(subcategory);
         mmWebApp::MMEX_WebApp_UpdateCategory();
 

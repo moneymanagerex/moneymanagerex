@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-07-20 15:29:27.776453.
+ *          AUTO GENERATED at 2022-09-28 23:10:47.317664.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric, NOTES TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -142,6 +142,12 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
     typedef SPLITTRANSID PRIMARY;
     enum COLUMN
     {
@@ -150,6 +156,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         , COL_CATEGID = 2
         , COL_SUBCATEGID = 3
         , COL_SPLITTRANSAMOUNT = 4
+        , COL_NOTES = 5
     };
 
     /** Returns the column name as a string*/
@@ -162,6 +169,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             case COL_CATEGID: return "CATEGID";
             case COL_SUBCATEGID: return "SUBCATEGID";
             case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
+            case COL_NOTES: return "NOTES";
             default: break;
         }
         
@@ -176,6 +184,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         else if ("CATEGID" == name) return COL_CATEGID;
         else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
         else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
+        else if ("NOTES" == name) return COL_NOTES;
 
         return COLUMN(-1);
     }
@@ -192,6 +201,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         int CATEGID;
         int SUBCATEGID;
         double SPLITTRANSAMOUNT;
+        wxString NOTES;
 
         int id() const
         {
@@ -233,6 +243,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             CATEGID = q.GetInt(2); // CATEGID
             SUBCATEGID = q.GetInt(3); // SUBCATEGID
             SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
+            NOTES = q.GetString(5); // NOTES
         }
 
         Data& operator=(const Data& other)
@@ -244,6 +255,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             CATEGID = other.CATEGID;
             SUBCATEGID = other.SUBCATEGID;
             SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
+            NOTES = other.NOTES;
             return *this;
         }
 
@@ -278,6 +290,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             return this->SPLITTRANSAMOUNT == in.v_;
         }
 
+        bool match(const Self::NOTES &in) const
+        {
+            return this->NOTES.CmpNoCase(in.v_) == 0;
+        }
+
         // Return the data record as a json string
         wxString to_json() const
         {
@@ -304,6 +321,8 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             json_writer.Int(this->SUBCATEGID);
             json_writer.Key("SPLITTRANSAMOUNT");
             json_writer.Double(this->SPLITTRANSAMOUNT);
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES.utf8_str());
         }
 
         row_t to_row_t() const
@@ -314,6 +333,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             row(L"CATEGID") = CATEGID;
             row(L"SUBCATEGID") = SUBCATEGID;
             row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            row(L"NOTES") = NOTES;
             return row;
         }
 
@@ -324,6 +344,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             t(L"CATEGID") = CATEGID;
             t(L"SUBCATEGID") = SUBCATEGID;
             t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            t(L"NOTES") = NOTES;
         }
 
         /** Save the record instance in memory to the database. */
@@ -359,7 +380,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 6
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -369,7 +390,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
     DB_Table_SPLITTRANSACTIONS_V1() : fake_(new Data())
     {
-        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM SPLITTRANSACTIONS_V1 ";
+        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT, NOTES FROM SPLITTRANSACTIONS_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -399,11 +420,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT, NOTES) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SPLITTRANSACTIONS_V1 SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
+            sql = "UPDATE SPLITTRANSACTIONS_V1 SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ?, NOTES = ? WHERE SPLITTRANSID = ?";
         }
 
         try
@@ -414,8 +435,9 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             stmt.Bind(2, entity->CATEGID);
             stmt.Bind(3, entity->SUBCATEGID);
             stmt.Bind(4, entity->SPLITTRANSAMOUNT);
+            stmt.Bind(5, entity->NOTES);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->SPLITTRANSID);
+                stmt.Bind(6, entity->SPLITTRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

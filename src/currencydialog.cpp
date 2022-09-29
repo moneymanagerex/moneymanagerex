@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
+ Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -76,6 +77,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
         m_currency->SCALE = 100;
         m_currency->DECIMAL_POINT = ".";
         m_currency->GROUP_SEPARATOR = ",";
+        m_currency->CURRENCY_TYPE = Model_Currency::FIAT_STR;
     }
 
     this->SetFont(parent->GetFont());

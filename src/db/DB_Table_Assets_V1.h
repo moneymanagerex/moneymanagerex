@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-07-20 15:29:27.776453.
+ *          AUTO GENERATED at 2022-09-28 23:10:47.317664.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL, ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT /* None, Appreciates, Depreciates */, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT /* Property, Automobile, Household Object, Art, Jewellery, Cash, Other */)");
+                db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL, ASSETNAME TEXT COLLATE NOCASE NOT NULL, ASSETSTATUS TEXT /* Open, Closed */, CURRENCYID integer, VALUECHANGEMODE TEXT /* Percentage, Linear */, VALUE numeric, VALUECHANGE TEXT /* None, Appreciates, Depreciates */, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT /* Property, Automobile, Household Object, Art, Jewellery, Cash, Other */)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -130,6 +130,24 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         explicit ASSETNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
+    struct ASSETSTATUS : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ASSETSTATUS"; } 
+        explicit ASSETSTATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct CURRENCYID : public DB_Column<int>
+    { 
+        static wxString name() { return "CURRENCYID"; } 
+        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
+    struct VALUECHANGEMODE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "VALUECHANGEMODE"; } 
+        explicit VALUECHANGEMODE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
@@ -166,11 +184,14 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         COL_ASSETID = 0
         , COL_STARTDATE = 1
         , COL_ASSETNAME = 2
-        , COL_VALUE = 3
-        , COL_VALUECHANGE = 4
-        , COL_NOTES = 5
-        , COL_VALUECHANGERATE = 6
-        , COL_ASSETTYPE = 7
+        , COL_ASSETSTATUS = 3
+        , COL_CURRENCYID = 4
+        , COL_VALUECHANGEMODE = 5
+        , COL_VALUE = 6
+        , COL_VALUECHANGE = 7
+        , COL_NOTES = 8
+        , COL_VALUECHANGERATE = 9
+        , COL_ASSETTYPE = 10
     };
 
     /** Returns the column name as a string*/
@@ -181,6 +202,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             case COL_ASSETID: return "ASSETID";
             case COL_STARTDATE: return "STARTDATE";
             case COL_ASSETNAME: return "ASSETNAME";
+            case COL_ASSETSTATUS: return "ASSETSTATUS";
+            case COL_CURRENCYID: return "CURRENCYID";
+            case COL_VALUECHANGEMODE: return "VALUECHANGEMODE";
             case COL_VALUE: return "VALUE";
             case COL_VALUECHANGE: return "VALUECHANGE";
             case COL_NOTES: return "NOTES";
@@ -198,6 +222,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         if ("ASSETID" == name) return COL_ASSETID;
         else if ("STARTDATE" == name) return COL_STARTDATE;
         else if ("ASSETNAME" == name) return COL_ASSETNAME;
+        else if ("ASSETSTATUS" == name) return COL_ASSETSTATUS;
+        else if ("CURRENCYID" == name) return COL_CURRENCYID;
+        else if ("VALUECHANGEMODE" == name) return COL_VALUECHANGEMODE;
         else if ("VALUE" == name) return COL_VALUE;
         else if ("VALUECHANGE" == name) return COL_VALUECHANGE;
         else if ("NOTES" == name) return COL_NOTES;
@@ -217,6 +244,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         int ASSETID;//  primary key
         wxString STARTDATE;
         wxString ASSETNAME;
+        wxString ASSETSTATUS;
+        int CURRENCYID;
+        wxString VALUECHANGEMODE;
         double VALUE;
         wxString VALUECHANGE;
         wxString NOTES;
@@ -248,6 +278,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             table_ = table;
         
             ASSETID = -1;
+            CURRENCYID = -1;
             VALUE = 0.0;
             VALUECHANGERATE = 0.0;
         }
@@ -259,11 +290,14 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             ASSETID = q.GetInt(0); // ASSETID
             STARTDATE = q.GetString(1); // STARTDATE
             ASSETNAME = q.GetString(2); // ASSETNAME
-            VALUE = q.GetDouble(3); // VALUE
-            VALUECHANGE = q.GetString(4); // VALUECHANGE
-            NOTES = q.GetString(5); // NOTES
-            VALUECHANGERATE = q.GetDouble(6); // VALUECHANGERATE
-            ASSETTYPE = q.GetString(7); // ASSETTYPE
+            ASSETSTATUS = q.GetString(3); // ASSETSTATUS
+            CURRENCYID = q.GetInt(4); // CURRENCYID
+            VALUECHANGEMODE = q.GetString(5); // VALUECHANGEMODE
+            VALUE = q.GetDouble(6); // VALUE
+            VALUECHANGE = q.GetString(7); // VALUECHANGE
+            NOTES = q.GetString(8); // NOTES
+            VALUECHANGERATE = q.GetDouble(9); // VALUECHANGERATE
+            ASSETTYPE = q.GetString(10); // ASSETTYPE
         }
 
         Data& operator=(const Data& other)
@@ -273,6 +307,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             ASSETID = other.ASSETID;
             STARTDATE = other.STARTDATE;
             ASSETNAME = other.ASSETNAME;
+            ASSETSTATUS = other.ASSETSTATUS;
+            CURRENCYID = other.CURRENCYID;
+            VALUECHANGEMODE = other.VALUECHANGEMODE;
             VALUE = other.VALUE;
             VALUECHANGE = other.VALUECHANGE;
             NOTES = other.NOTES;
@@ -300,6 +337,21 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         bool match(const Self::ASSETNAME &in) const
         {
             return this->ASSETNAME.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::ASSETSTATUS &in) const
+        {
+            return this->ASSETSTATUS.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::CURRENCYID &in) const
+        {
+            return this->CURRENCYID == in.v_;
+        }
+
+        bool match(const Self::VALUECHANGEMODE &in) const
+        {
+            return this->VALUECHANGEMODE.CmpNoCase(in.v_) == 0;
         }
 
         bool match(const Self::VALUE &in) const
@@ -349,6 +401,12 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             json_writer.String(this->STARTDATE.utf8_str());
             json_writer.Key("ASSETNAME");
             json_writer.String(this->ASSETNAME.utf8_str());
+            json_writer.Key("ASSETSTATUS");
+            json_writer.String(this->ASSETSTATUS.utf8_str());
+            json_writer.Key("CURRENCYID");
+            json_writer.Int(this->CURRENCYID);
+            json_writer.Key("VALUECHANGEMODE");
+            json_writer.String(this->VALUECHANGEMODE.utf8_str());
             json_writer.Key("VALUE");
             json_writer.Double(this->VALUE);
             json_writer.Key("VALUECHANGE");
@@ -367,6 +425,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             row(L"ASSETID") = ASSETID;
             row(L"STARTDATE") = STARTDATE;
             row(L"ASSETNAME") = ASSETNAME;
+            row(L"ASSETSTATUS") = ASSETSTATUS;
+            row(L"CURRENCYID") = CURRENCYID;
+            row(L"VALUECHANGEMODE") = VALUECHANGEMODE;
             row(L"VALUE") = VALUE;
             row(L"VALUECHANGE") = VALUECHANGE;
             row(L"NOTES") = NOTES;
@@ -380,6 +441,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             t(L"ASSETID") = ASSETID;
             t(L"STARTDATE") = STARTDATE;
             t(L"ASSETNAME") = ASSETNAME;
+            t(L"ASSETSTATUS") = ASSETSTATUS;
+            t(L"CURRENCYID") = CURRENCYID;
+            t(L"VALUECHANGEMODE") = VALUECHANGEMODE;
             t(L"VALUE") = VALUE;
             t(L"VALUECHANGE") = VALUECHANGE;
             t(L"NOTES") = NOTES;
@@ -420,7 +484,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 8
+        NUM_COLUMNS = 11
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -430,7 +494,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
     DB_Table_ASSETS_V1() : fake_(new Data())
     {
-        query_ = "SELECT ASSETID, STARTDATE, ASSETNAME, VALUE, VALUECHANGE, NOTES, VALUECHANGERATE, ASSETTYPE FROM ASSETS_V1 ";
+        query_ = "SELECT ASSETID, STARTDATE, ASSETNAME, ASSETSTATUS, CURRENCYID, VALUECHANGEMODE, VALUE, VALUECHANGE, NOTES, VALUECHANGERATE, ASSETTYPE FROM ASSETS_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -460,11 +524,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ASSETS_V1(STARTDATE, ASSETNAME, VALUE, VALUECHANGE, NOTES, VALUECHANGERATE, ASSETTYPE) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO ASSETS_V1(STARTDATE, ASSETNAME, ASSETSTATUS, CURRENCYID, VALUECHANGEMODE, VALUE, VALUECHANGE, NOTES, VALUECHANGERATE, ASSETTYPE) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ASSETS_V1 SET STARTDATE = ?, ASSETNAME = ?, VALUE = ?, VALUECHANGE = ?, NOTES = ?, VALUECHANGERATE = ?, ASSETTYPE = ? WHERE ASSETID = ?";
+            sql = "UPDATE ASSETS_V1 SET STARTDATE = ?, ASSETNAME = ?, ASSETSTATUS = ?, CURRENCYID = ?, VALUECHANGEMODE = ?, VALUE = ?, VALUECHANGE = ?, NOTES = ?, VALUECHANGERATE = ?, ASSETTYPE = ? WHERE ASSETID = ?";
         }
 
         try
@@ -473,13 +537,16 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
             stmt.Bind(1, entity->STARTDATE);
             stmt.Bind(2, entity->ASSETNAME);
-            stmt.Bind(3, entity->VALUE);
-            stmt.Bind(4, entity->VALUECHANGE);
-            stmt.Bind(5, entity->NOTES);
-            stmt.Bind(6, entity->VALUECHANGERATE);
-            stmt.Bind(7, entity->ASSETTYPE);
+            stmt.Bind(3, entity->ASSETSTATUS);
+            stmt.Bind(4, entity->CURRENCYID);
+            stmt.Bind(5, entity->VALUECHANGEMODE);
+            stmt.Bind(6, entity->VALUE);
+            stmt.Bind(7, entity->VALUECHANGE);
+            stmt.Bind(8, entity->NOTES);
+            stmt.Bind(9, entity->VALUECHANGERATE);
+            stmt.Bind(10, entity->ASSETTYPE);
             if (entity->id() > 0)
-                stmt.Bind(8, entity->ASSETID);
+                stmt.Bind(11, entity->ASSETID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

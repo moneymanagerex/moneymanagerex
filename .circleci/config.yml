@@ -13,9 +13,9 @@ jobs:
           name: Build DB headers and prepare to build
           command: |
             cd $CIRCLE_WORKING_DIRECTORY/src/db && \
-            python ../../util/sqlite2cpp.py ../../database/tables_v1.sql && \
+            python ../../util/sqlite2cpp.py ../../database/tables.sql && \
             rm -f sql*.sql *.mmdbg && \
-            python ../../util/sqliteupgrade2cpp.py ../../database && \
+            python ../../util/sqliteupgrade2cpp.py ../../database/incremental_upgrade && \
             cd ../.. && \
             mkdir build && \
             mkdir -p /tmp/artifacts
