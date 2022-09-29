@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/allmodel.h"
 
 #include <wx/valnum.h>
+#include <regex>
 
 constexpr auto DATE_MAX = 253402214400   /* Dec 31, 9999 */;
 
@@ -630,7 +631,8 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
         _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
         _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
-        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.")
+        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.") + "\n" +
+        _("Use regex[...] to match using regular expressions.")
     );
 
     // Colour
@@ -1244,6 +1246,19 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
     else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
+    else if (mmIsNotesChecked()) {
+        if (mmGetNotes().empty() && !tran.NOTES.empty()) ok = false;
+        else if (!mmGetNotes().empty()) {
+            if (tran.NOTES.empty()) ok = false;
+            else if (mmGetNotes().StartsWith("regex[")) {
+                std::string pattern = mmGetNotes().SubString(6, mmGetNotes().find_last_of(']') - 1).ToStdString();
+                std::regex regex(pattern, std::regex_constants::icase);
+                if (!std::regex_search(tran.NOTES.ToStdString(), regex)) ok = false;
+                notesEdit_->SetValue("regex[" + pattern + "]");
+            }
+            else ok = tran.NOTES.Lower().Matches(mmGetNotes().Lower());
+        }
+    }
     else if (mmIsNotesChecked() && (mmGetNotes().empty() ? !tran.NOTES.empty()
         : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(mmGetNotes().Lower())))
         ok = false;
