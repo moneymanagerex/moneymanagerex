@@ -96,6 +96,8 @@ private:
     bool mmIsPayeeMatches(const DATA &tran);
     template<class MODEL, class DATA = typename MODEL::Data>
     bool mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
+    template<class MODEL, class DATA = typename MODEL::DATA>
+    bool mmIsNoteMatches(const DATA& tran);
 
     void setTransferTypeCheckBoxes();
 

@@ -630,7 +630,8 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
         _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
         _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
-        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.")
+        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.") + "\n" +
+        _("Use regex: to match using regular expressions.")
     );
 
     // Colour
@@ -1195,6 +1196,21 @@ bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
 }
 
 template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::mmIsNoteMatches(const DATA& tran)
+{
+    const wxString value = mmGetNotes();
+    if (!value.empty()) {
+        if (value.StartsWith("regex:")) {
+            wxRegEx pattern("^(" + value.Right(value.length() - 6).ToStdString() + ")$", wxRE_ICASE | wxRE_EXTENDED);
+            if (pattern.IsValid() && pattern.Matches(tran.NOTES)) return true;
+            else return false;
+        }
+        else return tran.NOTES.Lower().Matches(value.Lower());
+    }
+    else return tran.NOTES.empty();
+}
+
+template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
     wxArrayString trx_categories;
@@ -1244,9 +1260,7 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
     else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
-    else if (mmIsNotesChecked() && (mmGetNotes().empty() ? !tran.NOTES.empty()
-        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(mmGetNotes().Lower())))
-        ok = false;
+    else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Checking>(tran)) ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran))
@@ -1272,9 +1286,7 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Da
         ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
-    else if (mmIsNotesChecked() && (mmGetNotes().empty()
-        ? !tran.NOTES.empty()
-        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(mmGetNotes().Lower())))
+    else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Billsdeposits>(tran)) ok = false;
         ok = false;
     return ok;
 }
