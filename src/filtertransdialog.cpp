@@ -1197,6 +1197,21 @@ bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
 }
 
 template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::mmIsNoteMatches(const DATA& tran)
+{
+    const wxString value = mmGetNotes();
+    if (!value.empty()) {
+        if (value.StartsWith("regex:")) {
+            wxRegEx pattern("^(" + value.Right(value.length() - 6).ToStdString() + ")$", wxRE_ICASE | wxRE_EXTENDED);
+            if (pattern.IsValid() && pattern.Matches(tran.NOTES)) return true;
+            else return false;
+        }
+        else return tran.NOTES.Lower().Matches(value.Lower());
+    }
+    else return tran.NOTES.empty();
+}
+
+template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
     wxArrayString trx_categories;
@@ -1246,22 +1261,11 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
     else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
+    else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Checking>(tran)) ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran))
         ok = false;
-    else if (mmIsNotesChecked()) {
-        if (mmGetNotes().empty() && !tran.NOTES.empty()) ok = false;
-        else if (!mmGetNotes().empty()) {
-            if (tran.NOTES.empty()) ok = false;
-            else if (mmGetNotes().StartsWith("regex:")) {
-                std::string pattern = mmGetNotes().Right(mmGetNotes().length() - 6).ToStdString();
-                std::regex regex(pattern, std::regex_constants::icase);
-                if (!std::regex_search(tran.NOTES.ToStdString(), regex)) ok = false;
-            }
-            else ok = tran.NOTES.Lower().Matches(mmGetNotes().Lower());
-        }
-    }
     return ok;
 }
 bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
@@ -1283,9 +1287,7 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Da
         ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
-    else if (mmIsNotesChecked() && (mmGetNotes().empty()
-        ? !tran.NOTES.empty()
-        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(mmGetNotes().Lower())))
+    else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Checking>(tran)) ok = false;
         ok = false;
     return ok;
 }
