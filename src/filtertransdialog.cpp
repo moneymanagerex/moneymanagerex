@@ -1246,6 +1246,10 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
     else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
+    else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
+        ok = false;
+    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran))
+        ok = false;
     else if (mmIsNotesChecked()) {
         if (mmGetNotes().empty() && !tran.NOTES.empty()) ok = false;
         else if (!mmGetNotes().empty()) {
@@ -1259,10 +1263,6 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
             else ok = tran.NOTES.Lower().Matches(mmGetNotes().Lower());
         }
     }
-    else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
-        ok = false;
-    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran))
-        ok = false;
     return ok;
 }
 bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
