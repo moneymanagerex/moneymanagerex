@@ -575,7 +575,7 @@ void mmCustomData::ClearSettings()
 {
     for (const auto &field : m_fields)
     {
-        SetStringValue(field.FIELDID * FIELDMULTIPLIER, "");
+        SetStringValue(field.FIELDID, "");
         wxWindowID labelID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER + CONTROLOFFSET;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb)
@@ -720,7 +720,7 @@ void mmCustomData::ShowCustomPanel() const
 
 void mmCustomData::SetStringValue(int fieldId, const wxString& value)
 {
-    wxWindowID widget_id = GetBaseID() + fieldId;
+    wxWindowID widget_id = GetBaseID() + fieldId * FIELDMULTIPLIER;
     SetWidgetData(widget_id, value);
 }
 
