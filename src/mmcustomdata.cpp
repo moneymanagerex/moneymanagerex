@@ -718,10 +718,12 @@ void mmCustomData::ShowCustomPanel() const
     m_static_box->Show();
 }
 
-void mmCustomData::SetStringValue(int fieldId, const wxString& value)
+void mmCustomData::SetStringValue(int fieldId, const wxString& value, bool hasChanged)
 {
     wxWindowID widget_id = GetBaseID() + fieldId * FIELDMULTIPLIER;
     SetWidgetData(widget_id, value);
+    if (hasChanged)
+         SetWidgetChanged(widget_id, value);
 }
 
 bool mmCustomData::ValidateCustomValues(int ref_id)

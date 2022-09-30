@@ -376,7 +376,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
         const auto entry = wxString::Format("CUSTOM%i", i.FIELDID);
         if (j_doc.HasMember(entry.c_str())) {
             const auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
-            m_custom_fields->SetStringValue(i.FIELDID, value);
+            m_custom_fields->SetStringValue(i.FIELDID, value, true);
             is_custom_found = true;
         }
         else

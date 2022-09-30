@@ -36,7 +36,7 @@ public:
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
     void UpdateCustomValues(int ref_id);
-    void SetStringValue(int fieldID, const wxString& value);
+    void SetStringValue(int fieldID, const wxString& value, bool hasChanged = false);
     bool ValidateCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
     void SetWidgetData(wxWindowID controlID, const wxString& value);

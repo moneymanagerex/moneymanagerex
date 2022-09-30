@@ -57,7 +57,8 @@ public:
 
     static void getBudgetEntry(int budgetYearID, std::map<int,
         std::map<int, PERIOD_ENUM> > &budgetPeriod,
-        std::map<int, std::map<int, double> > &budgetAmt);
+        std::map<int, std::map<int, double> > &budgetAmt,
+        std::map<int, std::map<int, wxString> > &budgetNotes);
     static void getBudgetStats(
         std::map<int, std::map<int, std::map<int, double> > > &budgetStats
         , mmDateRange* date_range

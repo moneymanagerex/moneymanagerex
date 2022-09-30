@@ -106,6 +106,7 @@ private:
     std::map<int, std::pair<double, double> > budgetTotals_;
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod_;
     std::map<int, std::map<int, double> > budgetAmt_;
+    std::map<int, std::map<int, wxString> > budgetNotes_;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats_;
     bool monthlyBudget_;
     wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
@@ -149,6 +150,7 @@ private:
         COL_AMOUNT,
         COL_ESTIMATED,
         COL_ACTUAL,
+        COL_NOTES,
         COL_MAX, // number of columns
     };
 };

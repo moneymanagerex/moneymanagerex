@@ -278,6 +278,7 @@ void mmBudgetingPanel::CreateControls()
     listCtrlBudget_->InsertColumn(COL_AMOUNT, listCtrlBudget_->m_columns[COL_AMOUNT].HEADER, wxLIST_FORMAT_RIGHT);
     listCtrlBudget_->InsertColumn(COL_ESTIMATED, listCtrlBudget_->m_columns[COL_ESTIMATED].HEADER, wxLIST_FORMAT_RIGHT);
     listCtrlBudget_->InsertColumn(COL_ACTUAL, listCtrlBudget_->m_columns[COL_ACTUAL].HEADER, wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_NOTES, listCtrlBudget_->m_columns[COL_NOTES].HEADER, wxLIST_FORMAT_LEFT);
 
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
@@ -304,6 +305,7 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
     m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Actual"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
 
     m_col_width = "BUDGET_COL%d_WIDTH";
 }
@@ -353,6 +355,7 @@ void mmBudgetingPanel::initVirtualListControl()
     budgetPeriod_.clear();
     budgetAmt_.clear();
     categoryStats_.clear();
+    budgetNotes_.clear();
     double estIncome = 0.0;
     double estExpenses = 0.0;
     double actIncome = 0.0;
@@ -393,7 +396,7 @@ void mmBudgetingPanel::initVirtualListControl()
     mmSpecifiedRange date_range(dtBegin, dtEnd);
 
     //Get statistics
-    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
+    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_, budgetNotes_);
     Model_Category::instance().getCategoryStats(categoryStats_
         , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
         , &date_range, Option::instance().getIgnoreFutureTransactions()
@@ -590,6 +593,14 @@ wxString mmBudgetingPanel::getItem(long item, long column)
             return Model_Currency::toCurrency(actual);
         }
     }
+    case COL_NOTES:
+        if (budget_[item].first >= 0)
+        {
+            wxString value = budgetNotes_[budget_[item].first][budget_[item].second];
+            value.Replace("\n", " ");
+            return value;
+        }
+        return wxEmptyString;
     default:
         return wxEmptyString;
     }

@@ -51,6 +51,7 @@ private:
     wxChoice* m_choiceItem;
     mmTextCtrl* m_textAmount;
     wxChoice* m_choiceType;
+    wxTextCtrl* m_Notes;
 
     wxString catEstimateAmountStr_;
     wxString catActualAmountStr_;
