@@ -94,7 +94,8 @@ DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ENUM period, OP op)
 
 void Model_Budget::getBudgetEntry(int budgetYearID
     , std::map<int, std::map<int, PERIOD_ENUM> > &budgetPeriod
-    , std::map<int, std::map<int, double> > &budgetAmt)
+    , std::map<int, std::map<int, double> > &budgetAmt
+    , std::map<int, std::map<int, wxString> > &budgetNotes)
 {
     //Set std::map with zerros
     double value = 0;
@@ -108,6 +109,7 @@ void Model_Budget::getBudgetEntry(int budgetYearID
     {
         budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
         budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
+        budgetNotes[budget.CATEGID][budget.SUBCATEGID] = budget.NOTES;
     }
 }
 
