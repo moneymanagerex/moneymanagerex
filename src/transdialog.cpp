@@ -453,7 +453,7 @@ void mmTransDialog::CreateControls()
     payee_label_ = new wxStaticText(this, mmID_PAYEE_LABEL, _("Payee"));
     payee_label_->SetFont(this->GetFont().Bold());
 
-    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE);
+    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE, wxDefaultSize, m_trx_data.PAYEEID, true);
     cbPayee_->SetMinSize(cbPayee_->GetSize());
 
     flex_sizer->Add(payee_label_, g_flagsH);

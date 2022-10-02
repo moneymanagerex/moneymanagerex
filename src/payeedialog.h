@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021,2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,9 +22,42 @@
 #define MM_EX_PAYEEDIALOG_H_
 
 #include "defs.h"
+#include "Model_Payee.h"
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 #include <map>
+#include "mmsimpledialogs.h"
+
+class mmEditPayeeDialog : public wxDialog
+{
+    wxDECLARE_DYNAMIC_CLASS(mmEditPayeeDialog);
+    wxDECLARE_EVENT_TABLE();
+
+public:
+    mmEditPayeeDialog();
+    mmEditPayeeDialog(wxWindow* parent, Model_Payee::Data* payee, const wxString &name = "mmEditPayeeDialog");
+    ~mmEditPayeeDialog();
+
+private:
+    Model_Payee::Data*  m_payee;
+    wxTextCtrl* m_payeeName;
+    wxCheckBox* m_inactive;
+    mmComboBoxCategory* m_category;
+    wxTextCtrl* m_reference;
+    wxTextCtrl* m_website;
+    wxTextCtrl* m_Notes;
+
+    void CreateControls();
+    void fillControls();
+    void OnComboKey(wxKeyEvent& event);
+    void OnCancel(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& /*event*/);
+
+    enum
+    {
+        mmID_CATEGORY = wxID_HIGHEST +  + 1500
+    };
+};
 
 class mmPayeeDialog : public wxDialog
 {
@@ -41,9 +74,12 @@ public:
 private:
     enum cols
     {
-        PAYEE_ID = 0,
-        PAYEE_NAME,
-        PAYEE_CATEGORY
+        PAYEE_NAME = 0,
+        PAYEE_INACTIVE,
+        PAYEE_CATEGORY,
+        PAYEE_NUMBER,
+        PAYEE_WEBSITE,
+        PAYEE_NOTES
     };
 
     enum menu_items
@@ -65,7 +101,8 @@ private:
     int m_payee_rename;
     bool m_payee_choose;
     wxString m_maskStr;
-    bool refreshRequested_, m_sortByPayee, m_sortReverse;
+    int m_sort, m_lastSort;
+    bool refreshRequested_, m_sortReverse;
     std::map<int, wxString> ColName_;
 
 private:

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -59,9 +60,13 @@ public:
 
     bool remove(int id);
 
-    const std::map<wxString, int> all_payees();
+    const std::map<wxString, int> all_payees(bool excludeInactive = false);
     const wxArrayString all_payee_names();
     const std::map<wxString, int> used_payee();
+
+    static bool is_inactive(int id);
+    static bool is_inactive(const Data* record);
+    static bool is_inactive(const Data& record);
 
     static bool is_used(int id);
     static bool is_used(const Data* record);
