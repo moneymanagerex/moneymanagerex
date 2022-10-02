@@ -26,7 +26,7 @@
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 #include <map>
-#include "mmsimpledialogs.h"
+#include "mmSimpleDialogs.h"
 
 class mmEditPayeeDialog : public wxDialog
 {
