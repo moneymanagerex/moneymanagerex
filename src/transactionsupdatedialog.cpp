@@ -198,7 +198,7 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_payee_checkbox->Enable(!m_hasTransfers);
 
-    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE);
+    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE, wxDefaultSize, -1, true);
     cbPayee_->Enable(false);
     cbPayee_->SetMinSize(wxSize(200, -1));
 

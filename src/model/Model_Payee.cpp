@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -96,12 +97,13 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::all_payees()
+const std::map<wxString, int> Model_Payee::all_payees(bool excludeInactive)
 {
     std::map<wxString, int> payees;
     for (const auto& payee : this->all())
     {
-        payees[payee.PAYEENAME] = payee.PAYEEID;
+        if (!excludeInactive || payee.ACTIVE)
+            payees[payee.PAYEENAME] = payee.PAYEEID;
     }
     return payees;
 }
@@ -125,6 +127,29 @@ const std::map<wxString, int> Model_Payee::used_payee()
     }
     return payees;
 }
+
+// -- Check if Payee should be made available for use
+
+bool Model_Payee::is_inactive(int id)
+{
+    const auto payee = Model_Payee::instance().get(id);
+    if (payee && payee->ACTIVE == 0)
+        return true;
+
+    return false;
+}
+
+bool Model_Payee::is_inactive(const Data* record)
+{
+    return is_inactive(record->PAYEEID);
+}
+
+bool Model_Payee::is_inactive(const Data& record)
+{
+    return is_inactive(&record);
+}
+
+// -- Check if Payee if being used
 
 bool Model_Payee::is_used(int id)
 {

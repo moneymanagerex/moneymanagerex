@@ -83,9 +83,14 @@ public:
     mmComboBoxPayee(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
+        , int payeeID = -1
+        , bool excludeInactive = false
     );
 protected:
     void init();
+private:
+    int payeeID_;
+    bool excludeInactive_;
 };
 
 class mmComboBoxUsedPayee : public mmComboBox

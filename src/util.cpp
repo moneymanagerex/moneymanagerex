@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2022 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -1707,6 +1707,9 @@ void mmSetSize(wxWindow* w)
     }
     else if (name == "General Reports Manager") {
         my_size = Model_Infotable::instance().GetSizeSetting("GRM_DIALOG_SIZE");
+    } 
+    else if (name == "mmEditPayeeDialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("EDITPAYEE_DIALOG_SIZE"); 
     }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));

@@ -266,11 +266,18 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
 
 void mmComboBoxPayee::init()
 {
-    all_elements_ = Model_Payee::instance().all_payees();
+    all_elements_ = Model_Payee::instance().all_payees(excludeInactive_);
+    if (payeeID_ > -1)
+        all_elements_[Model_Payee::get_payee_name(payeeID_)] = payeeID_;
 }
 
-mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id, wxSize size)
+// payeeID = always include this payee even if it would have been excluded as inactive
+// excludeInactive = set to true if inactive payees should be excluded
+mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
+                    , wxSize size, int payeeID, bool excludeInactive)
     : mmComboBox(parent, id, size)
+    , excludeInactive_(excludeInactive)
+    , payeeID_(payeeID)
 {
     init();
 }
