@@ -97,12 +97,12 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::all_payees(bool excludeInactive)
+const std::map<wxString, int> Model_Payee::all_payees(bool excludeHidden)
 {
     std::map<wxString, int> payees;
     for (const auto& payee : this->all())
     {
-        if (!excludeInactive || payee.ACTIVE)
+        if (!excludeHidden || payee.ACTIVE)
             payees[payee.PAYEENAME] = payee.PAYEEID;
     }
     return payees;
@@ -130,7 +130,7 @@ const std::map<wxString, int> Model_Payee::used_payee()
 
 // -- Check if Payee should be made available for use
 
-bool Model_Payee::is_inactive(int id)
+bool Model_Payee::is_hidden(int id)
 {
     const auto payee = Model_Payee::instance().get(id);
     if (payee && payee->ACTIVE == 0)
@@ -139,14 +139,14 @@ bool Model_Payee::is_inactive(int id)
     return false;
 }
 
-bool Model_Payee::is_inactive(const Data* record)
+bool Model_Payee::is_hidden(const Data* record)
 {
-    return is_inactive(record->PAYEEID);
+    return is_hidden(record->PAYEEID);
 }
 
-bool Model_Payee::is_inactive(const Data& record)
+bool Model_Payee::is_hidden(const Data& record)
 {
-    return is_inactive(&record);
+    return is_hidden(&record);
 }
 
 // -- Check if Payee if being used

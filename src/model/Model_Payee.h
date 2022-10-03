@@ -60,13 +60,13 @@ public:
 
     bool remove(int id);
 
-    const std::map<wxString, int> all_payees(bool excludeInactive = false);
+    const std::map<wxString, int> all_payees(bool excludeHidden = false);
     const wxArrayString all_payee_names();
     const std::map<wxString, int> used_payee();
 
-    static bool is_inactive(int id);
-    static bool is_inactive(const Data* record);
-    static bool is_inactive(const Data& record);
+    static bool is_hidden(int id);
+    static bool is_hidden(const Data* record);
+    static bool is_hidden(const Data& record);
 
     static bool is_used(int id);
     static bool is_used(const Data* record);
