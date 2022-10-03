@@ -1733,3 +1733,13 @@ void mmFontSize(wxWindow* widget)
         widget->SetFont(widget->GetFont().Larger());
     }
 }
+
+bool isValidURI(const wxString validate)
+{
+    wxString uri = validate.Lower().Trim();
+    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
+    if (pattern.Matches(uri))
+        return true;
+
+    return false;
+}

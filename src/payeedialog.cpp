@@ -142,10 +142,8 @@ void mmEditPayeeDialog::fillControls()
 
 void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    wxString uri = m_website->GetValue().Lower().Trim();
-    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
-    if (!uri.empty() && !pattern.Matches(uri))
-        return mmErrorDialogs::ToolTip4Object(m_website, _("Please insert a valid URL"), _("Invalid URL"));
+    if (!m_website->GetValue().empty() && !isValidURI(m_website->GetValue()))
+        return mmErrorDialogs::ToolTip4Object(m_website, _("Please enter a valid URL"), _("Invalid URL"));
 
     if (!m_category->GetValue().IsEmpty() && !m_category->mmIsValid())
         return mmErrorDialogs::ToolTip4Object(m_category, _("Invalid value"), _("Category"));
