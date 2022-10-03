@@ -81,11 +81,11 @@ void mmEditPayeeDialog::CreateControls()
     mmToolTip(m_payeeName, _("Enter the Name of the Payee. This name can be renamed at any time."));
     fgSizer1->Add(m_payeeName, g_flagsExpand);
 
-    // Active Status
-    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Inactive")), g_flagsH);
-    m_inactive = new wxCheckBox(this, wxID_ANY, "");
-    mmToolTip(m_inactive, _("Indicate whether the payee should not be made available for new transactions"));
-    fgSizer1->Add(m_inactive, g_flagsExpand);
+    // Hidden Status
+    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Hidden")), g_flagsH);
+    m_hidden = new wxCheckBox(this, wxID_ANY, "");
+    mmToolTip(m_hidden, _("Indicate whether the payee should hidden and not presented in the payee list for new transactions"));
+    fgSizer1->Add(m_hidden, g_flagsExpand);
 
     // Category
     const wxString title = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
@@ -132,7 +132,7 @@ void mmEditPayeeDialog::fillControls()
     if (!this->m_payee) return;
 
     m_payeeName->SetValue(m_payee->PAYEENAME);
-    m_inactive->SetValue(Model_Payee::is_inactive(m_payee));
+    m_hidden->SetValue(Model_Payee::is_hidden(m_payee));
     m_reference->SetValue(m_payee->NUMBER);
     m_website->SetValue(m_payee->WEBSITE);
     m_Notes->SetValue(m_payee->NOTES);
@@ -159,7 +159,7 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
             m_payee = Model_Payee::instance().create();
 
         m_payee->PAYEENAME = name;
-        m_payee->ACTIVE = m_inactive->GetValue() ? 0 : 1;
+        m_payee->ACTIVE = m_hidden->GetValue() ? 0 : 1;
         m_payee->NUMBER = m_reference->GetValue();
         m_payee->WEBSITE = m_website->GetValue();
         m_payee->NOTES = m_Notes->GetValue();
@@ -233,7 +233,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     , m_sortReverse (false)
 {
     ColName_[PAYEE_NAME] = _("Name");
-    ColName_[PAYEE_INACTIVE] = _("Inactive");
+    ColName_[PAYEE_HIDDEN] = _("Hidden");
     ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     ColName_[PAYEE_NUMBER] = _("Reference");
@@ -306,8 +306,8 @@ void mmPayeeDialog::CreateControls()
     col0.SetWidth(150);
     payeeListBox_->InsertColumn(0, col0);
 
-    col1.SetId(PAYEE_INACTIVE);
-    col1.SetText(ColName_[PAYEE_INACTIVE]);
+    col1.SetId(PAYEE_HIDDEN);
+    col1.SetText(ColName_[PAYEE_HIDDEN]);
     col1.SetAlign(wxLIST_FORMAT_CENTER);
     col1.SetWidth(50);
     payeeListBox_->InsertColumn(1, col1);
@@ -372,7 +372,7 @@ void mmPayeeDialog::fillControls()
     Model_Payee::Data_Set payees = Model_Payee::instance().FilterPayees(m_maskStr);
     switch (m_sort)
     {
-    case PAYEE_INACTIVE:
+    case PAYEE_HIDDEN:
         std::stable_sort(payees.begin(), payees.end(), SorterByACTIVE());
         break;    
     case PAYEE_CATEGORY:

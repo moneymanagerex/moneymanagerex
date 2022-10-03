@@ -41,7 +41,7 @@ public:
 private:
     Model_Payee::Data*  m_payee;
     wxTextCtrl* m_payeeName;
-    wxCheckBox* m_inactive;
+    wxCheckBox* m_hidden;
     mmComboBoxCategory* m_category;
     wxTextCtrl* m_reference;
     wxTextCtrl* m_website;
@@ -75,7 +75,7 @@ private:
     enum cols
     {
         PAYEE_NAME = 0,
-        PAYEE_INACTIVE,
+        PAYEE_HIDDEN,
         PAYEE_CATEGORY,
         PAYEE_NUMBER,
         PAYEE_WEBSITE,
