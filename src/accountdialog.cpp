@@ -523,12 +523,10 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         return mmErrorDialogs::MessageInvalid(this, _("Currency"));
 
     wxTextCtrl* textCtrlWebsite = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE));
-    wxString uri = textCtrlWebsite->GetValue().Lower().Trim();
-    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
-    if (!uri.empty() && !pattern.Matches(uri))
+    if (!textCtrlWebsite->GetValue().empty() && !isValidURI(textCtrlWebsite->GetValue()))
     {
         m_notebook->SetSelection(1);
-        return mmErrorDialogs::ToolTip4Object(textCtrlWebsite, _("Please insert a valid URL"), _("Invalid URL"));
+        return mmErrorDialogs::ToolTip4Object(textCtrlWebsite, _("Please enter a valid URL"), _("Invalid URL"));
     }
 
     if (!m_initbalance_ctrl->checkValue(m_account->INITIALBAL, false))
