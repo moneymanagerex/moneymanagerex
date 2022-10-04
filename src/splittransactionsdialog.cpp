@@ -516,8 +516,24 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                cbc->mmDoReInitialize();
+                int id = 0;
+                while (true)
+                {
+                    const wxString name = wxString::Format("category_box%i", id++);
+                    auto cbcUpdate = static_cast<mmComboBoxCategory*>(FindWindowByName(name));
+                    if (!cbcUpdate)
+                        break;
+
+                    if (cbc != cbcUpdate)
+                    {
+                        category = Model_Category::full_name(cbcUpdate->mmGetCategoryId(), cbcUpdate->mmGetSubcategoryId());
+                        cbcUpdate->mmDoReInitialize();
+                        cbcUpdate->ChangeValue(category);
+                    }
+                }
+
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
             }
         }
