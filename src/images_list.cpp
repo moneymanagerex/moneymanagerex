@@ -176,11 +176,13 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     return md;
 };
 
-const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
+constexpr int numSizes = 5;
+
+const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48}, {4, 64} };
 const int mmBitmapButtonSize = 16;
 bool darkFound, darkMode;
 
-static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons[numSizes][MAX_PNG];
 Document metaData_doc;
 
 static wxSharedPtr<wxArrayString> filesInVFS;
@@ -568,7 +570,7 @@ const std::vector<wxColour> mmThemeMetaColourArray(int ref)
 
 const wxBitmap mmBitmap(int ref, int size)
 {
-    int x = (size > 0) ? size : Option::instance().getIconSize();
+    const int x = (size > 0) ? size : Option::instance().getIconSize();
     auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
     wxASSERT(it != sizes.end());
 

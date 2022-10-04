@@ -105,7 +105,7 @@ public:
     void TransDateDefault(int value);
     int TransDateDefault();
 
-    void SendUsageStatistics(bool value);
+    void SendUsageStatistics(const bool value);
     bool SendUsageStatistics();
 
     void CheckNewsOnStartup(bool value);

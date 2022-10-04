@@ -49,12 +49,12 @@ private:
     void initControls();
     void handleLink(wxHtmlLinkEvent& event);
 
-    wxCheckBox* m_send_data;
-    wxHtmlWindow* aboutText_;
-    wxHtmlWindow* authorsText_;
-    wxHtmlWindow* sponsorsText_;
-    wxHtmlWindow* licenseText_;
-    wxHtmlWindow* privacyText_;
+    wxCheckBox* m_send_data = nullptr;
+    wxHtmlWindow* aboutText_ = nullptr;
+    wxHtmlWindow* authorsText_ = nullptr;
+    wxHtmlWindow* sponsorsText_ = nullptr;
+    wxHtmlWindow* licenseText_ = nullptr;
+    wxHtmlWindow* privacyText_ = nullptr;
 
 };
 

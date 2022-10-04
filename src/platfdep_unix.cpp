@@ -38,7 +38,7 @@ void SetInstallPrefix()
         fname.RemoveLastDir();
 
     if (wxStandardPaths *pp = dynamic_cast<wxStandardPaths*>(&p))
-    pp->SetInstallPrefix(fname.GetFullPath());
+        pp->SetInstallPrefix(fname.GetFullPath());
 }
 
 } // namespace

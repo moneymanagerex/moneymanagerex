@@ -1854,6 +1854,8 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmap(png::ABOUT, toolbar_icon_size), _("Show about dialog"));
     toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP, toolbar_icon_size), _("Show the Help file"));
 
+    toolBar_->SetToolBitmapSize(wxSize(32, 32));
+
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
 }

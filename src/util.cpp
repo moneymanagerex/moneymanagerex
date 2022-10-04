@@ -1655,7 +1655,7 @@ int pow10(int y)
 wxString HTMLEncode(wxString input)
 {
     wxString output;
-    for(int pos = 0; pos < input.Len(); ++pos) 
+    for(size_t pos = 0; pos < input.Len(); ++pos)
     {
         wxUniChar c = input.GetChar(pos);
         if (c.IsAscii())
