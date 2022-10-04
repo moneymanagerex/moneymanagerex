@@ -58,7 +58,7 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYear, wxDateTime& startDate, 
         int month = wxAtoi(monthStr) - 1;
         startDate.Add(wxDateSpan::Months(month));
         endDate = startDate;
-        endDate.Add(wxDateSpan::Months(1));
+        endDate.Add(wxDateSpan::Months(1).Subtract(wxDateSpan::Day()));
     }
 }
 
