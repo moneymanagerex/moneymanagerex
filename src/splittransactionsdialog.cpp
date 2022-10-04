@@ -129,7 +129,10 @@ void mmSplitTransactionDialog::CreateControls()
         wxCheckBox* cb = new wxCheckBox(slider_, wxID_HIGHEST + i, ""
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxDefaultValidator
             , wxString::Format("check_box%i", i));
-        mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i);
+        int catID = (i < m_splits.size()) ? m_splits.at(i).CATEGID : -1;
+        int subCatID = (i < m_splits.size()) ? m_splits.at(i).SUBCATEGID : -1;
+        mmComboBoxCategory* cbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + i
+                                        , wxDefaultSize, catID, subCatID, true);
         cbc->SetName(wxString::Format("category_box%i", i));
         cbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
         cbc->SetMinSize(wxSize(250,-1));

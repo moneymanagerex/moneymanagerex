@@ -76,16 +76,22 @@ Model_Category::Data* Model_Category::get(const wxString& name)
     return category;
 }
 
-const std::map<wxString, std::pair<int, int> > Model_Category::all_categories()
+const std::map<wxString, std::pair<int, int> > Model_Category::all_categories(bool excludeHidden)
 {
     std::map<wxString, std::pair<int, int> > full_categs;
     for (const auto& c : instance().all(COL_CATEGNAME))
     {
+        if (excludeHidden && (c.ACTIVE == 0))
+            continue;
+        
         full_categs[c.CATEGNAME] = std::make_pair(c.CATEGID, -1);
         for (const auto& s : Model_Subcategory::instance().find(Model_Subcategory::CATEGID(c.CATEGID)))
         {
-            const wxString nameStr = instance().full_name(c.CATEGID, s.SUBCATEGID);
-            full_categs[nameStr] = std::make_pair(c.CATEGID, s.SUBCATEGID);
+            if (!excludeHidden || (s.ACTIVE == 1))
+            {
+                const wxString nameStr = instance().full_name(c.CATEGID, s.SUBCATEGID);
+                full_categs[nameStr] = std::make_pair(c.CATEGID, s.SUBCATEGID);
+            }
         }
     }
     return full_categs;
@@ -132,6 +138,21 @@ const wxString Model_Category::full_name(int category_id, int subcategory_id, wx
     else {
         return category->CATEGNAME;
     }
+}
+
+// -- Check if Category should be made available for use. 
+//    Hiding a category hides all sub-categories
+
+bool Model_Category::is_hidden(int catID, int subcatID)
+{
+    const auto category = Model_Category::instance().get(catID);
+    const auto subcategory = Model_Subcategory::instance().get(subcatID);
+    if (category && category->ACTIVE == 0)
+        return true;
+    if (subcategory && subcategory->ACTIVE == 0)
+        return true;
+
+    return false;
 }
 
 bool Model_Category::is_used(int id, int sub_id)

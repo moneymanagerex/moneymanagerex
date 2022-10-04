@@ -55,11 +55,12 @@ public:
     Data* get(const wxString& name);
 
     const wxArrayString FilterCategory(const wxString& category_pattern);
-    static const std::map<wxString, std::pair<int, int> > all_categories();
+    static const std::map<wxString, std::pair<int, int> > all_categories(bool excludeHidden = false);
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);
     static const wxString full_name(int category_id, int subcategory_id);
     static const wxString full_name(int category_id, int subcategory_id, wxString delimiter);
+    static bool is_hidden(int catID, int subcatID);
     static bool is_used(int id, int sub_id);
     static bool is_used(int id);
     static bool has_income(int id, int sub_id = -1);

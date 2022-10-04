@@ -102,7 +102,7 @@ const std::map<wxString, int> Model_Payee::all_payees(bool excludeHidden)
     std::map<wxString, int> payees;
     for (const auto& payee : this->all())
     {
-        if (!excludeHidden || payee.ACTIVE)
+        if (!excludeHidden || (payee.ACTIVE == 1))
             payees[payee.PAYEENAME] = payee.PAYEEID;
     }
     return payees;

@@ -87,7 +87,7 @@ void relocatePayeeDialog::CreateControls()
     cbSourcePayee_->mmSetId(sourcePayeeID_);
     cbSourcePayee_->SetMinSize(wxSize(200, -1));
 
-    cbDestPayee_ = new mmComboBoxPayee(this, wxID_NEW);
+    cbDestPayee_ = new mmComboBoxPayee(this, wxID_NEW, wxDefaultSize, -1, true);
     cbDestPayee_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourcePayee_ = new wxCheckBox(this, wxID_ANY

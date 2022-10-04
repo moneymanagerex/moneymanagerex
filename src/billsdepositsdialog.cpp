@@ -570,7 +570,8 @@ void mmBDDialog::CreateControls()
 
     wxStaticText* categ_label2 = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL, _("Category"));
     categ_label2->SetFont(this->GetFont().Bold());
-    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
+                                            , m_bill_data.CATEGID, m_bill_data.SUBCATEGID, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
@@ -692,12 +693,12 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
         // If this is a Split Transaction, ignore displaying last category for payee
         if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
             && (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
-                Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT))
+                Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
+            && (!Model_Category::is_hidden(payee->CATEGID, -1) && !Model_Category::is_hidden(payee->CATEGID, payee->SUBCATEGID)))
         {
             m_bill_data.CATEGID = payee->CATEGID;
             m_bill_data.SUBCATEGID = payee->SUBCATEGID;
-
-                cbCategory_->ChangeValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
+            cbCategory_->ChangeValue(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
         }
     }
 }

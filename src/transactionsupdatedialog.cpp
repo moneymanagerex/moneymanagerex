@@ -222,7 +222,7 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_categ_checkbox->Enable(!m_hasSplits);
 
-    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, -1, true);
     cbCategory_->Enable(false);
 
     grid_sizer->Add(m_categ_checkbox, g_flagsH);
