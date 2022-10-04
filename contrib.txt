@@ -147,6 +147,11 @@ Pat Tiller McCoy
 Marlon Morales Arango
 Davide Tartari
 Jill Solomon
+Alberto Ghilardi
+Bartłomiej Korban
+John Weaving
+Rushikesh Jukar
+Ruben Fernandes
 
 ### 2021
 Renato
