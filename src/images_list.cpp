@@ -35,6 +35,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/tokenzr.h>
 #include "../3rd/lunasvg/include/lunasvg.h"
 
+#include <array>
+
 // SVG filename in Zip, the PNG enum to which it relates, whether to recolor background
 static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "NEW_DB.svg", { NEW_DB, false } },
@@ -176,14 +178,18 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     return md;
 };
 
-constexpr int numSizes = 5;
+constexpr int numSizes = 4;
 
-const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48}, {4, 64} };
+const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
+
 const int mmBitmapButtonSize = 16;
 bool darkFound, darkMode;
 
-static wxSharedPtr<wxBitmap> programIcons[numSizes][MAX_PNG];
+static wxSharedPtr<wxBitmap> programIconsLegacy[numSizes][MAX_PNG];
 Document metaData_doc;
+
+// Using SVG and wxBitmapBundle for better HiDPI support.
+static std::array<wxSharedPtr<wxBitmapBundle>, MAX_PNG> programIcons;
 
 static wxSharedPtr<wxArrayString> filesInVFS;
 
@@ -340,18 +346,22 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
 
                 // Only process dark mode files when in theme and needed
                 if (darkFound)
+                {
                     if (darkMode && !fileNameString.StartsWith("dark-"))
-                            continue;
+                        continue;
                     else if (!darkMode && fileNameString.StartsWith("dark-"))
                         continue;
+                }
 
                 // Remove dark mode prefix 
                 if (darkFound && darkMode) 
                     fileName = fileName.substr(5);
 
+                wxSharedPtr<wxBitmapBundle> sharedBmpBundle;
+
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
-                {
+                {                                        
 #if defined(__WXMSW__) || defined(__WXMAC__)
                     wxMemoryOutputStream memOut(nullptr);
                     themeStream.Read(memOut);
@@ -362,7 +372,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                     wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
                         , buffer->GetBufferSize());
                     wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
-#else
+#else                    
                     const wxString theme_file = mmex::getTempFolder() + fileName;
                     wxFileOutputStream fileOut(theme_file);
                     if (!fileOut.IsOk())
@@ -370,6 +380,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                     else
                         wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, theme_file);
                     themeStream.Read(fileOut);
+
 #endif
                     filesInVFS->Add(fileName);
                     continue;
@@ -382,11 +393,26 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 themeStream.Read(memOut);
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
 
+
                 std::unique_ptr<lunasvg::Document> document = lunasvg::Document::loadFromData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
                 if (!document)
                     continue;
 
                 int svgEnum = iconName2enum.find(fileName)->second.first;
+
+                const auto str = fileFullPath.c_str();
+
+                const int toolbar_icon_size = Option::instance().getToolbarIconSize();
+                sharedBmpBundle.reset(
+                            new wxBitmapBundle(
+                                     wxBitmapBundle::FromSVG(
+                                           static_cast<wxByte*>(buffer->GetBufferStart()), buffer->GetBufferSize(),
+                                                                wxSize( toolbar_icon_size, toolbar_icon_size )
+                                                            )
+                                              )
+                                     );
+
+                programIcons[svgEnum] = sharedBmpBundle;
 
                 std::uint32_t bgColor = 0;
                 if (iconName2enum.find(fileName)->second.second)
@@ -401,7 +427,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                     bitmap = document->renderToBitmap(i.second, i.second, bgColor);
                     if (!bitmap.valid())
                         continue;
-                    programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
+                    programIconsLegacy[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
                 }
 
             }
@@ -446,7 +472,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     int erroredIcons = 0;
     for (int i = 0; i < MAX_PNG; i++)
     {
-        if (!programIcons[0][i])
+        if (!programIconsLegacy[0][i])
         {
             for (auto it = iconName2enum.begin(); it != iconName2enum.end(); it++)
             {
@@ -574,5 +600,17 @@ const wxBitmap mmBitmap(int ref, int size)
     auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
     wxASSERT(it != sizes.end());
 
-    return *programIcons[it->first][ref].get();
+    return *programIconsLegacy[it->first][ref].get();
+}
+
+const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize)
+{
+    wxSharedPtr<wxBitmapBundle> &curBmpundle = programIcons[ref];
+
+    if(!curBmpundle)
+    {
+        return wxBitmapBundle(mmBitmap(ref, defSize));
+    }
+
+    return *curBmpundle.get();
 }

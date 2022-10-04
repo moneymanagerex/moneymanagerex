@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
+#include <wx/bmpbndl.h>
 #include <wx/window.h>
 #include <wx/imaglist.h>
 #include <wx/arrstr.h>
@@ -212,3 +213,4 @@ const wxColour mmThemeMetaColour(int ref);
 void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref, int size = -1);
+const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize);

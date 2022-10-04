@@ -1803,31 +1803,31 @@ void mmGUIFrame::createMenu()
 
 void mmGUIFrame::CreateToolBar()
 {
-    int toolbar_icon_size = Option::instance().getToolbarIconSize();
-    long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_PLAIN_BACKGROUND;
+    const int toolbar_icon_size = Option::instance().getToolbarIconSize();
+    const long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_PLAIN_BACKGROUND;
 
     toolBar_ = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
     toolBar_->SetToolBorderPadding(1);
     mmThemeMetaColour(toolBar_, meta::COLOR_LISTPANEL);
-    toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
+    //toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
 
-    toolBar_->AddTool(MENU_NEW, _("New"), mmBitmap(png::NEW_DB, toolbar_icon_size), _("New Database"));
-    toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN, toolbar_icon_size), _("Open Database"));
+    toolBar_->AddTool(MENU_NEW, _("New"), mmBitmapBundle(png::NEW_DB, toolbar_icon_size), _("New Database"));
+    toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmapBundle(png::OPEN, toolbar_icon_size), _("Open Database"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC, toolbar_icon_size), _("New Account"));
-    toolBar_->AddTool(MENU_HOMEPAGE, _("Home Page"), mmBitmap(png::HOME, toolbar_icon_size), _("Show Home Page"));
+    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmapBundle(png::NEW_ACC, toolbar_icon_size), _("New Account"));
+    toolBar_->AddTool(MENU_HOMEPAGE, _("Home Page"), mmBitmapBundle(png::HOME, toolbar_icon_size), _("Show Home Page"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX, toolbar_icon_size), _("New Transaction"));
+    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmapBundle(png::NEW_TRX, toolbar_icon_size), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY, toolbar_icon_size), _("Show Organize Categories Dialog"));
-    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE, toolbar_icon_size), _("Show Organize Payees Dialog"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmap(png::CURR, toolbar_icon_size), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Show Organize Categories Dialog"));
+    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Show Organize Payees Dialog"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmap(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
+    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM, toolbar_icon_size), _("General Report Manager"));
+    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmapBundle(png::GRM, toolbar_icon_size), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options"), mmBitmap(png::OPTIONS, toolbar_icon_size), _("Show the Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Options"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _("Show the Options Dialog"));
     toolBar_->AddSeparator();
 
     wxString news_array;
@@ -1837,24 +1837,22 @@ void mmGUIFrame::CreateToolBar()
     if (news_array.empty()) {
         news_array = _("Register/View Release &Notifications");
     }
-    const wxBitmap news_ico = (websiteNewsArray_.size() > 0)
-        ? mmBitmap(png::NEW_NEWS, toolbar_icon_size)
-        : mmBitmap(png::NEWS, toolbar_icon_size);
+    const auto news_ico = (websiteNewsArray_.size() > 0)
+        ? mmBitmapBundle(png::NEW_NEWS, toolbar_icon_size)
+        : mmBitmapBundle(png::NEWS, toolbar_icon_size);
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
-    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmap(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock rates"));
+    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmap(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmap(png::PRINT, toolbar_icon_size), _("Print current view"));
+    toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print current view"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmap(png::ABOUT, toolbar_icon_size), _("Show about dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP, toolbar_icon_size), _("Show the Help file"));
-
-    toolBar_->SetToolBitmapSize(wxSize(32, 32));
+    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("Show about dialog"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmapBundle(png::HELP, toolbar_icon_size), _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2691,7 +2689,7 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
     wxLaunchDefaultBrowser(mmex::weblink::News);
 
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
-    toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
+    //toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
     toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
 
     const auto b = toolBar_->FindTool(MENU_ANNOUNCEMENTMAILING);
