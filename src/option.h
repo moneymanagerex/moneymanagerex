@@ -163,43 +163,43 @@ public:
 
 private:
     wxString m_dateFormat;
-    wxLanguage m_language;
+    wxLanguage m_language = wxLANGUAGE_UNKNOWN;
     wxString m_userNameString;
     wxString m_localeNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
     int m_baseCurrency;
-    bool m_currencyHistoryEnabled;
-    bool m_bulk_enter;
+    bool m_currencyHistoryEnabled = false;
+    bool m_bulk_enter = false;
 
-    bool m_databaseUpdated;
-    bool m_hideShareAccounts;               //INIDB_HIDE_SHARE_ACCOUNTS
-    bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
-    bool m_budgetIncludeTransfers;          //INIDB_BUDGET_INCLUDE_TRANSFERS
-    bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
-    bool m_budgetOverride;                  //INIDB_BUDGET_OVERRIDE
-    bool m_ignoreFutureTransactions;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
-    bool m_showToolTips;                    //INIDB_SHOW_TOOLTIPS
-    bool m_showMoneyTips;                   //INIDB_SHOW_MONEYTIPS
+    bool m_databaseUpdated = false;
+    bool m_hideShareAccounts;                       //INIDB_HIDE_SHARE_ACCOUNTS
+    bool m_budgetFinancialYears = false;            //INIDB_BUDGET_FINANCIAL_YEARS
+    bool m_budgetIncludeTransfers = false;                  //INIDB_BUDGET_INCLUDE_TRANSFERS
+    bool m_budgetReportWithSummaries = true;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
+    bool m_budgetOverride = false;                  //INIDB_BUDGET_OVERRIDE
+    bool m_ignoreFutureTransactions = false;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
+    bool m_showToolTips = true;                    //INIDB_SHOW_TOOLTIPS
+    bool m_showMoneyTips = true;                   //INIDB_SHOW_MONEYTIPS
 
-    int m_transPayeeSelection;
-    int m_transCategorySelectionNonTransfer;
-    int m_transCategorySelectionTransfer;
-    int m_transStatusReconciled;
-    int m_transDateDefault;
-    bool m_usageStatistics;
+    int m_transPayeeSelection = Option::NONE;
+    int m_transCategorySelectionNonTransfer = Option::NONE;
+    int m_transCategorySelectionTransfer = Option::NONE;
+    int m_transStatusReconciled = Option::NONE;
+    int m_transDateDefault = 0;
+    bool m_usageStatistics = true;
     bool m_newsChecking;                    //INIDB_CHECK_NEWS
     int m_sharePrecision;
 
-    int m_theme_mode;
-    int m_html_font_size;
-    int m_ico_size;
-    int m_font_size;
-    int m_toolbar_ico_size;
-    int m_navigation_ico_size;
+    int m_theme_mode = Option::AUTO;
+    int m_html_font_size = 100;
+    int m_ico_size = 16;
+    int m_font_size = 0;
+    int m_toolbar_ico_size = 32;
+    int m_navigation_ico_size = 24;
 
-    int m_budget_days_offset;
-    int m_reporting_firstday;
+    int m_budget_days_offset = 0;
+    int m_reporting_firstday = 1;
 
     int m_homepage_incexp_range;
 };
