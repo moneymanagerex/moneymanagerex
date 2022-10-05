@@ -1972,6 +1972,39 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         m_password = password;
+
+        // WE CAN EVENTUALLY DELETE THIS CODE
+        // Get Hidden Categories id from stored INFO string and move to Category/Subcategory tables
+        wxString sSettings = Model_Infotable::instance().GetStringInfo("HIDDEN_CATEGS_ID", "");
+        if (!sSettings.empty())
+        {
+            wxStringTokenizer token(sSettings, ";");
+            Model_Category::instance().Savepoint();
+            Model_Subcategory::instance().Savepoint();
+            while (token.HasMoreTokens())
+            {
+                wxString catData = token.GetNextToken();
+                int catID = 0;
+                int subCatID = 0;
+                if (2 == sscanf(catData.mb_str(),"*%d:%d*", &catID, &subCatID))
+                {
+                    if (subCatID == -1)
+                    {
+                        const auto cat = Model_Category::instance().get(catID);
+                        cat->ACTIVE = 0;
+                        Model_Category::instance().save(cat);
+                    } else
+                    {
+                        const auto subcat = Model_Subcategory::instance().get(subCatID);
+                        subcat->ACTIVE = 0;
+                        Model_Subcategory::instance().save(subcat);
+                    }
+                }
+            }
+            Model_Category::instance().ReleaseSavepoint();
+            Model_Subcategory::instance().ReleaseSavepoint();
+            Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", "");
+        }
     }
     else if (openingNew) // New Database
     {

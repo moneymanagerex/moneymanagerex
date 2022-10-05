@@ -84,13 +84,13 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
         , int payeeID = -1
-        , bool excludeInactive = false
+        , bool excludeHidden = false
     );
 protected:
     void init();
 private:
     int payeeID_;
-    bool excludeInactive_;
+    bool excludeHidden_;
 };
 
 class mmComboBoxUsedPayee : public mmComboBox
@@ -125,12 +125,18 @@ public:
     mmComboBoxCategory(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
+        , int catID = -1
+        , int subCatID = -1
+        , bool excludeInactive = false
     );
     int mmGetCategoryId() const;
     int mmGetSubcategoryId() const;
 protected:
     void init();
 private:
+    int catID_;
+    int subCatID_;
+    bool excludeHidden_;
     std::map<wxString, std::pair<int, int> > all_categories_;
 };
 

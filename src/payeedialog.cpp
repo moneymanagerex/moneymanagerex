@@ -91,7 +91,7 @@ void mmEditPayeeDialog::CreateControls()
     const wxString title = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, title), g_flagsH);
-    m_category = new mmComboBoxCategory(this, mmID_CATEGORY);
+    m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, -1, true);
     mmToolTip(m_category, _("The category used as default for this payee"));
     fgSizer1->Add(m_category, g_flagsExpand);                     
 

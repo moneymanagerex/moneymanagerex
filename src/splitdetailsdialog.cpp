@@ -143,7 +143,8 @@ void SplitDetailDialog::CreateControls()
     wxStaticText* staticTextCategory = new wxStaticText(itemPanel7
         , wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, g_flagsH);
-    cbCategory_ = new mmComboBoxCategory(itemPanel7, mmID_CATEGORY);
+    cbCategory_ = new mmComboBoxCategory(itemPanel7, mmID_CATEGORY
+                                            ,wxDefaultSize, split_.CATEGID, split_.SUBCATEGID, true);
     cbCategory_->SetMinSize(wxSize(180, -1));
     controlSizer->Add(cbCategory_, g_flagsExpand);
 

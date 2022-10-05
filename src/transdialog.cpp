@@ -321,7 +321,8 @@ void mmTransDialog::dataToControls()
                 Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
                 , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
 
-            if (!transactions.empty()) 
+            if (!transactions.empty()
+                    && (!Model_Category::is_hidden(transactions.back().CATEGID, -1) && !Model_Category::is_hidden(transactions.back().CATEGID, transactions.back().SUBCATEGID)))
             {
                 const int cat = transactions.back().CATEGID;
                 const int subcat = transactions.back().SUBCATEGID;
@@ -465,7 +466,8 @@ void mmTransDialog::CreateControls()
 
     categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label_->SetFont(this->GetFont().Bold());
-    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
+                                            , m_trx_data.CATEGID, m_trx_data.SUBCATEGID, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
@@ -626,7 +628,8 @@ bool mmTransDialog::ValidateData()
             m_trx_data.TOACCOUNTID = -1;
         }
 
-        if (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+        if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+                    && (!Model_Category::is_hidden(m_trx_data.CATEGID, -1) && !Model_Category::is_hidden(m_trx_data.CATEGID, m_trx_data.SUBCATEGID)))
         {
             payee->CATEGID = m_trx_data.CATEGID;
             payee->SUBCATEGID = m_trx_data.SUBCATEGID;
@@ -927,7 +930,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // If this is a Split Transaction, ignore displaying last category for payee
     if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
          Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
-        && m_local_splits.empty() && m_new_trx && !m_duplicate)
+        && m_local_splits.empty() && m_new_trx && !m_duplicate
+        && (!Model_Category::is_hidden(payee->CATEGID, -1) && !Model_Category::is_hidden(payee->CATEGID, payee->SUBCATEGID)))
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);

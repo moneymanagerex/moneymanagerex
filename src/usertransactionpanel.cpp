@@ -264,7 +264,8 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
             Model_Payee::Data* last_payee = Model_Payee::instance().get(trans_list.at(last_trans_pos).PAYEEID);
             m_payee->SetLabelText(last_payee->PAYEENAME);
 
-            if (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+            if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+                        && (!Model_Category::is_hidden(last_payee->CATEGID, -1) && !Model_Category::is_hidden(last_payee->CATEGID, last_payee->SUBCATEGID)))
             {
                 m_payee_id = last_payee->PAYEEID;
                 m_category_id = last_payee->CATEGID;
@@ -300,7 +301,8 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
             m_payee->SetLabelText(payee->PAYEENAME);
 
             // Only for new transactions: if user want to autofill last category used for payee and category has not been set.
-            if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) && (m_category_id < 0) && (m_subcategory_id < 0))
+            if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) && (m_category_id < 0) && (m_subcategory_id < 0)
+                        && (!Model_Category::is_hidden(payee->CATEGID, -1) && !Model_Category::is_hidden(payee->CATEGID, payee->SUBCATEGID)))
             {
                 if (payee->CATEGID > 0)
                 {

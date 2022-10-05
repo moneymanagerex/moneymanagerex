@@ -88,7 +88,7 @@ void relocateCategoryDialog::CreateControls()
     if (category)
         cbSourceCategory_->SetValue(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
 
-    cbDestCategory_ = new mmComboBoxCategory(this, wxID_NEW);
+    cbDestCategory_ = new mmComboBoxCategory(this, wxID_NEW, wxDefaultSize, -1, -1, true);
     cbDestCategory_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceCategory_ = new wxCheckBox(this, wxID_ANY
