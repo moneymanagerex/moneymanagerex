@@ -205,7 +205,7 @@ enum png {
 };
 
 extern const int mmBitmapButtonSize;
-wxImageList* navtree_images_list(int size = 0);
+wxImageList* navtree_images_list(const int size = 0, const double dpiScale = 1.0);
 void LoadTheme();
 const wxString mmThemeMetaString(int ref);
 long mmThemeMetaLong(int ref);

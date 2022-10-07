@@ -246,7 +246,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     /* Create the Controls for the frame */
     mmFontSize(this);
     LoadTheme();
-    createMenu();
+    createMenu();    
     createControls();
     CreateToolBar();
     
@@ -683,7 +683,8 @@ void mmGUIFrame::createControls()
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
 
-    m_nav_tree_ctrl->AssignImageList(navtree_images_list(Option::instance().getNavigationIconSize()));
+    const double dpiScale = GetDPIScaleFactor();
+    m_nav_tree_ctrl->AssignImageList(navtree_images_list(Option::instance().getNavigationIconSize(), dpiScale));
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
