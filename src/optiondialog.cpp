@@ -84,7 +84,6 @@ void mmOptionsDialog::CreateControls()
     m_imageList = createImageList(optionIconSize);
 
     const int iconSize = optionIconSize*GetDPIScaleFactor();
-
     m_imageList->Add(mmBitmap(png::VIEW, iconSize));
     m_imageList->Add(mmBitmap(png::ATTACHMENTS, iconSize));
     m_imageList->Add(mmBitmap(png::GENERAL, iconSize));

@@ -630,7 +630,7 @@ const wxBitmap mmBitmap(int ref, int size)
 
     // Look for a better size match
     int bestAvailSize = size;
-    while( idx < 0 && idx)
+    while(idx)
     {
         bestAvailSize /= 2;
         idx = getIconSizeIdx(bestAvailSize);
