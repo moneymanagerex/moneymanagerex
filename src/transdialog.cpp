@@ -468,7 +468,7 @@ void mmTransDialog::CreateControls()
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
-    bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
+    bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
 
     flex_sizer->Add(categ_label_, g_flagsH);
@@ -479,7 +479,7 @@ void mmTransDialog::CreateControls()
 
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
 
-    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM, mmBitmapButtonSize));
+    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     mmToolTip(bAuto, _("Populate Transaction #"));
 
@@ -501,7 +501,7 @@ void mmTransDialog::CreateControls()
     bColours_->SetBackgroundColor(m_trx_data.FOLLOWUPID);
 
     // Attachments
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
     mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
 
     // Now display the Frequently Used Notes, Colour, Attachment buttons
@@ -534,7 +534,7 @@ void mmTransDialog::CreateControls()
     wxButton* button_ok = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* button_hide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+    wxBitmapButton* button_hide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(button_hide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         button_hide->Hide();

@@ -68,20 +68,8 @@ mmNewAcctDialog::mmNewAcctDialog()
 
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     : m_account(account)
-    , m_textAccountName(nullptr)
-    , m_notesCtrl(nullptr)
-    , m_initbalance_ctrl(nullptr)
-    , m_bitmapButtons(nullptr)
-    , m_statement_lock_ctrl(nullptr)
-    , m_statement_date_ctrl(nullptr)
-    , m_minimum_balance_ctrl(nullptr)
-    , m_credit_limit_ctrl(nullptr)
-    , m_interest_rate_ctrl(nullptr)
-    , m_payment_due_date_ctrl(nullptr)
-    , m_minimum_payment_ctrl(nullptr)
-    , m_accessinfo_infocus(false)
 {
-    m_imageList = navtree_images_list();
+    m_imageList.reset(navtree_images_list());
 
     m_currencyID = m_account->CURRENCYID;
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
@@ -94,10 +82,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()
-{
-    if (m_imageList)
-        delete m_imageList;
-}
+{}
 
 bool mmNewAcctDialog::Create(wxWindow* parent
     , wxWindowID id

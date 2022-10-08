@@ -52,25 +52,7 @@ transactionsUpdateDialog::~transactionsUpdateDialog()
 
 transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , std::vector<int>& transaction_id)
-    : m_payee_checkbox(nullptr)
-    , cbPayee_(nullptr)
-    , m_date_checkbox(nullptr)
-    , m_dpc(nullptr)
-    , m_status_checkbox(nullptr)
-    , m_status_choice(nullptr)
-    , m_categ_checkbox(nullptr)
-    , cbCategory_(nullptr)
-    , m_type_checkbox(nullptr)
-    , m_type_choice(nullptr)
-    , m_amount_checkbox(nullptr)
-    , m_amount_ctrl(nullptr)
-    , m_notes_checkbox(nullptr)
-    , m_append_checkbox(nullptr)
-    , m_notes_ctrl(nullptr)
-    , m_transaction_id(transaction_id)
-    , m_hasTransfers(false)
-    , m_hasNonTransfers(false)
-    , m_hasSplits(false)
+    : m_transaction_id(transaction_id)
 {
     m_currency = Model_Currency::GetBaseCurrency(); // base currency if we need it
 
