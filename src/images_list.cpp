@@ -293,7 +293,8 @@ static unsigned int getIconSizeIdx(const int iconSize)
 {
     const int x = (iconSize > 0) ? iconSize : Option::instance().getIconSize();
     auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
-    wxASSERT(it != sizes.end());
+    if(it == sizes.end())
+        return -1;
 
     return it->first;
 }
@@ -622,8 +623,24 @@ const std::vector<wxColour> mmThemeMetaColourArray(int ref)
 
 const wxBitmap mmBitmap(int ref, int size)
 {
-    const int idx = getIconSizeIdx(size);
-    return *programIcons[idx][ref].get();
+    int idx = getIconSizeIdx(size);
+
+    if(idx >= 0)
+        return *programIcons[idx][ref].get();
+
+    // Look for a better size match
+    int bestAvailSize = size;
+    while( idx < 0 && idx)
+    {
+        bestAvailSize /= 2;
+        idx = getIconSizeIdx(bestAvailSize);
+        if( idx >= 0 )
+            break;
+    }
+
+    wxSize bmpSize(size, size);
+    auto &bundle = programIconBundles[idx][ref];
+    return bundle.get()->GetBitmap(bmpSize);
 }
 
 const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize)
