@@ -288,7 +288,7 @@ void mmNewAcctDialog::CreateControls()
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmNewAcctDialog::OnImageButton), nullptr, this);
     itemBoxSizer28->Add(m_bitmapButtons, g_flagsH);
 
-    bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE, mmBitmap(png::CLIP,mmBitmapButtonSize));
+    bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE, mmBitmapBundle(png::CLIP));
     mmToolTip(bAttachments_, _("Organize attachments of this account"));
     itemBoxSizer28->Add(bAttachments_, g_flagsH);
 
