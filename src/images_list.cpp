@@ -35,6 +35,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/tokenzr.h>
 #include "../3rd/lunasvg/include/lunasvg.h"
 
+#include <array>
+
 // SVG filename in Zip, the PNG enum to which it relates, whether to recolor background
 static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "NEW_DB.svg", { NEW_DB, false } },
@@ -176,62 +178,72 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     return md;
 };
 
+constexpr int numSizes = 4;
+
 const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
+
 const int mmBitmapButtonSize = 16;
 bool darkFound, darkMode;
 
-static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons[numSizes][MAX_PNG];
 Document metaData_doc;
+
+// Using SVG and wxBitmapBundle for better HiDPI support.
+static std::array< std::array<wxSharedPtr<wxBitmapBundle>, MAX_PNG >, numSizes > programIconBundles;
 
 static wxSharedPtr<wxArrayString> filesInVFS;
 
-static const std::map<int, wxBitmap> navtree_images(int size)
+static const std::map<int, wxBitmapBundle> navtree_images(const int size)
 {
     return{
-        { HOUSE_PNG, mmBitmap(png::NAV_HOME, size) }
-        , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS, size) }
-        , { SCHEDULE_PNG, mmBitmap(png::RECURRING, size) }
-        , { CALENDAR_PNG, mmBitmap(png::BUDGET, size) }
-        , { PIECHART_PNG, mmBitmap(png::PIE_CHART, size) }
-        , { HELP_PNG, mmBitmap(png::NAV_HELP, size) }
-        , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE, size) }
-        , { FILTER_PNG, mmBitmap(png::NAV_FILTER, size) }
-        , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL, size) }
-        , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM, size) }
-        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM, size) } //TODO: GRM rep group ico
-        , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL, size) }
-        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL, size) }
-        , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL, size) }
-        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL, size) }
-        , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL, size) }
-        , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL, size) }
-        , { ACCOUNT_CLOSED_PNG, mmBitmap(png::ACCOUNT_CLOSED, size) }
+        { HOUSE_PNG, mmBitmapBundle(png::NAV_HOME, size) }
+        , { ALLTRANSACTIONS_PNG, mmBitmapBundle(png::ALLTRANSACTIONS, size) }
+        , { SCHEDULE_PNG, mmBitmapBundle(png::RECURRING, size) }
+        , { CALENDAR_PNG, mmBitmapBundle(png::BUDGET, size) }
+        , { PIECHART_PNG, mmBitmapBundle(png::PIE_CHART, size) }
+        , { HELP_PNG, mmBitmapBundle(png::NAV_HELP, size) }
+        , { FAVOURITE_PNG, mmBitmapBundle(png::FAVOURITE, size) }
+        , { FILTER_PNG, mmBitmapBundle(png::NAV_FILTER, size) }
+        , { ASSET_NORMAL_PNG, mmBitmapBundle(png::ASSET_NORMAL, size) }
+        , { CUSTOMSQL_PNG, mmBitmapBundle(png::NAV_GRM, size) }
+        , { CUSTOMSQL_GRP_PNG, mmBitmapBundle(png::NAV_GRM, size) } //TODO: GRM rep group ico
+        , { SAVINGS_ACC_NORMAL_PNG, mmBitmapBundle(png::SAVINGS_NORMAL, size) }
+        , { CARD_ACC_NORMAL_PNG, mmBitmapBundle(png::CC_NORMAL, size) }
+        , { TERMACCOUNT_NORMAL_PNG, mmBitmapBundle(png::TERM_NORMAL, size) }
+        , { STOCK_ACC_NORMAL_PNG, mmBitmapBundle(png::STOCKS_NORMAL, size) }
+        , { CASH_ACC_NORMAL_PNG, mmBitmapBundle(png::CASH_NORMAL, size) }
+        , { LOAN_ACC_NORMAL_PNG, mmBitmapBundle(png::LOAN_ACC_NORMAL, size) }
+        , { ACCOUNT_CLOSED_PNG, mmBitmapBundle(png::ACCOUNT_CLOSED, size) }
     };
 };
 
 // Custom icons for accounts
-static const std::map<int, wxBitmap> acc_images(int size)
+static const std::map<int, wxBitmapBundle> acc_images(int size)
 {
     return
     {
-        { ACC_ICON_MONEY, mmBitmap(png::ACC_MONEY, size) }
-        , { ACC_ICON_EURO, mmBitmap(png::ACC_EURO, size) }
-        , { ACC_ICON_FLAG, mmBitmap(png::ACC_FLAG, size) }
-        , { ACC_ICON_COINS, mmBitmap(png::ACC_COINS, size) }
-        , { ACC_ICON_ABOUT, mmBitmap(png::ACC_ABOUT, size) }
-        , { ACC_ICON_CLOCK, mmBitmap(png::ACC_CLOCK, size) }
-        , { ACC_ICON_CAT, mmBitmap(png::ACC_CAT, size) }
-        , { ACC_ICON_DOG, mmBitmap(png::ACC_DOG, size) }
-        , { ACC_ICON_TREES, mmBitmap(png::ACC_TREES, size) }
-        , { ACC_ICON_HOURGLASS, mmBitmap(png::ACC_HOURGLASS, size) }
-        , { ACC_ICON_WORK, mmBitmap(png::ACC_WORK, size) }
-        , { ACC_ICON_PAYPAL, mmBitmap(png::ACC_PAYPAL, size)}
-        , { ACC_ICON_WALLET, mmBitmap(png::ACC_WALLET, size) }
-        , { ACC_ICON_RUBIK, mmBitmap(png::ACC_RUBIK, size) }
+        { ACC_ICON_MONEY, mmBitmapBundle(png::ACC_MONEY, size) }
+        , { ACC_ICON_EURO, mmBitmapBundle(png::ACC_EURO, size) }
+        , { ACC_ICON_FLAG, mmBitmapBundle(png::ACC_FLAG, size) }
+        , { ACC_ICON_COINS, mmBitmapBundle(png::ACC_COINS, size) }
+        , { ACC_ICON_ABOUT, mmBitmapBundle(png::ACC_ABOUT, size) }
+        , { ACC_ICON_CLOCK, mmBitmapBundle(png::ACC_CLOCK, size) }
+        , { ACC_ICON_CAT, mmBitmapBundle(png::ACC_CAT, size) }
+        , { ACC_ICON_DOG, mmBitmapBundle(png::ACC_DOG, size) }
+        , { ACC_ICON_TREES, mmBitmapBundle(png::ACC_TREES, size) }
+        , { ACC_ICON_HOURGLASS, mmBitmapBundle(png::ACC_HOURGLASS, size) }
+        , { ACC_ICON_WORK, mmBitmapBundle(png::ACC_WORK, size) }
+        , { ACC_ICON_PAYPAL, mmBitmapBundle(png::ACC_PAYPAL, size)}
+        , { ACC_ICON_WALLET, mmBitmapBundle(png::ACC_WALLET, size) }
+        , { ACC_ICON_RUBIK, mmBitmapBundle(png::ACC_RUBIK, size) }
     };
 }
 
-wxImageList* navtree_images_list(int size)
+
+std::map<int, wxBitmap> gCachedBitmaps;
+
+
+wxImageList* navtree_images_list(const int size, const double dpiScale)
 {
     int x = (size > 0) ? size : Option::instance().getIconSize();
     if (x < 16) x = 16;
@@ -239,13 +251,21 @@ wxImageList* navtree_images_list(int size)
     wxImageList* imageList = createImageList(x);
     for (const auto& img : navtree_images(x))
     {
-        wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
-        imageList->Add(img.second);
+        auto &bundle = img.second;
+        wxSize size = bundle.GetDefaultSize();
+        wxASSERT(size.GetHeight() == x && size.GetWidth() == x);
+
+        gCachedBitmaps[img.first] = bundle.GetBitmap(size*dpiScale);
+        imageList->Add(gCachedBitmaps[img.first]);
     }
     for (const auto& img : acc_images(x))
     {
-        wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
-        imageList->Add(img.second);
+        auto &bundle = img.second;
+        wxSize size = bundle.GetDefaultSize();
+        wxASSERT(size.GetHeight() == x && size.GetWidth() == x);
+
+        gCachedBitmaps[img.first] = bundle.GetBitmap(size*dpiScale);
+        imageList->Add(gCachedBitmaps[img.first]);
     }
 
     return imageList;
@@ -267,6 +287,16 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
 
     wxImage image (size, size, data, alpha);
     return (new wxBitmap (image));
+}
+
+static unsigned int getIconSizeIdx(const int iconSize)
+{
+    const int x = (iconSize > 0) ? iconSize : Option::instance().getIconSize();
+    auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
+    if(it == sizes.end())
+        return -1;
+
+    return it->first;
 }
 
 bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
@@ -338,18 +368,22 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
 
                 // Only process dark mode files when in theme and needed
                 if (darkFound)
+                {
                     if (darkMode && !fileNameString.StartsWith("dark-"))
-                            continue;
+                        continue;
                     else if (!darkMode && fileNameString.StartsWith("dark-"))
                         continue;
+                }
 
                 // Remove dark mode prefix 
                 if (darkFound && darkMode) 
                     fileName = fileName.substr(5);
 
+                wxSharedPtr<wxBitmapBundle> sharedBmpBundle;
+
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
-                {
+                {                                        
 #if defined(__WXMSW__) || defined(__WXMAC__)
                     wxMemoryOutputStream memOut(nullptr);
                     themeStream.Read(memOut);
@@ -360,7 +394,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                     wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
                         , buffer->GetBufferSize());
                     wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
-#else
+#else                    
                     const wxString theme_file = mmex::getTempFolder() + fileName;
                     wxFileOutputStream fileOut(theme_file);
                     if (!fileOut.IsOk())
@@ -368,6 +402,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                     else
                         wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, theme_file);
                     themeStream.Read(fileOut);
+
 #endif
                     filesInVFS->Add(fileName);
                     continue;
@@ -380,11 +415,31 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 themeStream.Read(memOut);
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
 
+
                 std::unique_ptr<lunasvg::Document> document = lunasvg::Document::loadFromData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
                 if (!document)
                     continue;
 
                 int svgEnum = iconName2enum.find(fileName)->second.first;
+
+                const auto str = fileFullPath.c_str();
+
+                for(const auto &sizePair : sizes)
+                {
+                    const unsigned int toolbar_icon_size = sizePair.second;
+                    //const int toolbar_icon_size = Option::instance().getToolbarIconSize();
+                    sharedBmpBundle.reset(
+                                new wxBitmapBundle(
+                                         wxBitmapBundle::FromSVG(
+                                               static_cast<wxByte*>(buffer->GetBufferStart()), buffer->GetBufferSize(),
+                                                                    wxSize( toolbar_icon_size, toolbar_icon_size )
+                                                                )
+                                                  )
+                                         );
+
+                    const unsigned int idx = getIconSizeIdx(toolbar_icon_size);
+                    programIconBundles[idx][svgEnum] = sharedBmpBundle;
+                }
 
                 std::uint32_t bgColor = 0;
                 if (iconName2enum.find(fileName)->second.second)
@@ -568,9 +623,28 @@ const std::vector<wxColour> mmThemeMetaColourArray(int ref)
 
 const wxBitmap mmBitmap(int ref, int size)
 {
-    int x = (size > 0) ? size : Option::instance().getIconSize();
-    auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
-    wxASSERT(it != sizes.end());
+    int idx = getIconSizeIdx(size);
 
-    return *programIcons[it->first][ref].get();
+    if(idx >= 0)
+        return *programIcons[idx][ref].get();
+
+    // Look for a better size match
+    int bestAvailSize = size;
+    while(idx)
+    {
+        bestAvailSize /= 2;
+        idx = getIconSizeIdx(bestAvailSize);
+        if( idx >= 0 )
+            break;
+    }
+
+    wxSize bmpSize(size, size);
+    auto &bundle = programIconBundles[idx][ref];
+    return bundle.get()->GetBitmap(bmpSize);
+}
+
+const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize)
+{
+    const int idx = getIconSizeIdx(defSize);
+    return *programIconBundles[idx][ref].get();
 }

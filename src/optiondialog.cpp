@@ -80,14 +80,16 @@ bool mmOptionsDialog::Create(wxWindow* parent
 
 void mmOptionsDialog::CreateControls()
 {
-    const int optionIconSize = 48;
+    const int optionIconSize = 48; // Relative to DPI
     m_imageList = createImageList(optionIconSize);
-    m_imageList->Add(mmBitmap(png::VIEW, optionIconSize));
-    m_imageList->Add(mmBitmap(png::ATTACHMENTS, optionIconSize));
-    m_imageList->Add(mmBitmap(png::GENERAL, optionIconSize));
-    m_imageList->Add(mmBitmap(png::OTHERS, optionIconSize));
-    m_imageList->Add(mmBitmap(png::NETWORK, optionIconSize));
-    m_imageList->Add(mmBitmap(png::HOME, optionIconSize));
+
+    const int iconSize = optionIconSize*GetDPIScaleFactor();
+    m_imageList->Add(mmBitmap(png::VIEW, iconSize));
+    m_imageList->Add(mmBitmap(png::ATTACHMENTS, iconSize));
+    m_imageList->Add(mmBitmap(png::GENERAL, iconSize));
+    m_imageList->Add(mmBitmap(png::OTHERS, iconSize));
+    m_imageList->Add(mmBitmap(png::NETWORK, iconSize));
+    m_imageList->Add(mmBitmap(png::HOME, iconSize));
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);

@@ -33,32 +33,6 @@
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
-    , m_language(wxLANGUAGE_UNKNOWN)
-    , m_databaseUpdated(false)
-    , m_budgetFinancialYears(false)
-    , m_budgetIncludeTransfers(false)
-    , m_budgetReportWithSummaries(true)
-    , m_budgetOverride(false)
-    , m_ignoreFutureTransactions(false)
-    , m_showToolTips(true)
-    , m_showMoneyTips(true)
-    , m_currencyHistoryEnabled(false)
-    , m_bulk_enter(false)
-    , m_transPayeeSelection(Option::NONE)
-    , m_transCategorySelectionNonTransfer(Option::NONE)
-    , m_transCategorySelectionTransfer(Option::NONE)
-    , m_transStatusReconciled(Option::NONE)
-    , m_usageStatistics(true)
-    , m_transDateDefault(0)
-    , m_sharePrecision(4)
-    , m_theme_mode(Option::AUTO)
-    , m_html_font_size(100)
-    , m_ico_size(16)
-    , m_font_size(0)
-    , m_toolbar_ico_size(32)
-    , m_navigation_ico_size(24)
-    , m_budget_days_offset(0)
-    , m_reporting_firstday(1)
 {}
 
 //----------------------------------------------------------------------------
@@ -358,7 +332,7 @@ int Option::SharePrecision()
     return m_sharePrecision;
 }
 
-void Option::SendUsageStatistics(bool value)
+void Option::SendUsageStatistics(const bool value)
 {
     m_usageStatistics = value;
     Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, value);

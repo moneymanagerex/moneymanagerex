@@ -64,7 +64,8 @@ private:
     wxTextCtrl* m_notesCtrl;
     mmTextCtrl* m_initbalance_ctrl;
     mmDatePickerCtrl* m_initdate_ctrl;
-    wxImageList* m_imageList;
+
+    wxImageList* m_imageList = nullptr;
     wxBitmapButton* m_bitmapButtons;
     wxBitmapButton* bAttachments_;
     wxString m_accessInfo;

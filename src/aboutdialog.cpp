@@ -21,7 +21,6 @@
 #include "constants.h"
 #include "paths.h"
 #include "reports/htmlbuilder.h"
-#include "model/allmodel.h"
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/regex.h>
@@ -38,18 +37,12 @@ mmAboutDialog::mmAboutDialog()
 
 mmAboutDialog::~mmAboutDialog()
 {
-    bool v = m_send_data->GetValue();
+    const bool v = m_send_data->GetValue();
     Option::instance().SendUsageStatistics(v);
 }
 
 
 mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo)
-    : m_send_data(nullptr)
-    , aboutText_(nullptr)
-    , authorsText_(nullptr)
-    , sponsorsText_(nullptr)
-    , licenseText_(nullptr)
-    , privacyText_(nullptr)
 {
     const wxString caption = (tabToOpenNo == 4)
         ? _("License agreement")
