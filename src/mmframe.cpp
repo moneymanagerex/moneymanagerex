@@ -683,8 +683,7 @@ void mmGUIFrame::createControls()
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
 
-    const double dpiScale = GetDPIScaleFactor();
-    m_nav_tree_ctrl->AssignImageList(navtree_images_list(Option::instance().getNavigationIconSize(), dpiScale));
+    m_nav_tree_ctrl->SetImages(navtree_images_list(Option::instance().getNavigationIconSize()));
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
@@ -2724,7 +2723,7 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
     //toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
-    toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
+    toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmapBundle(png::NEWS, toolbar_icon_size));
 
     const auto b = toolBar_->FindTool(MENU_ANNOUNCEMENTMAILING);
     if (b) b->SetShortHelp(_("Register/View Release &Notifications"));

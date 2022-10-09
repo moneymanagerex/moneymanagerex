@@ -72,13 +72,13 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     , m_stock_panel(cp)
     , m_imageList(0)
 {
-    m_imageList = createImageList();
-    m_imageList->Add(mmBitmap(png::PROFIT));
-    m_imageList->Add(mmBitmap(png::LOSS));
-    m_imageList->Add(mmBitmap(png::DOWNARROW));
-    m_imageList->Add(mmBitmap(png::UPARROW));
+    wxVector<wxBitmapBundle> images;
+    images.push_back(mmBitmapBundle(png::PROFIT));
+    images.push_back(mmBitmapBundle(png::LOSS));
+    images.push_back(mmBitmapBundle(png::DOWNARROW));
+    images.push_back(mmBitmapBundle(png::UPARROW));
 
-    SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
+    SetSmallImages(images);
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     // load the global variables

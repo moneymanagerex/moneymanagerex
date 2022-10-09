@@ -207,11 +207,11 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer76->Add(m_setting_name_ctrl_, wxSizerFlags(g_flagsH).Center().Proportion(1));
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
-        , wxID_SAVEAS, mmBitmap(png::SAVE, mmBitmapButtonSize));
+        , wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
 
     wxBitmapButton* itemButtonClear = new wxBitmapButton(itemPanel67
-        , wxID_CLEAR, mmBitmap(png::CLEAR, mmBitmapButtonSize));
+        , wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
     itemBoxSizer76->Add(itemButtonClear, wxSizerFlags(g_flagsH).Center().Proportion(0));
 
     //

@@ -80,16 +80,14 @@ bool mmOptionsDialog::Create(wxWindow* parent
 
 void mmOptionsDialog::CreateControls()
 {
-    const int optionIconSize = 48; // Relative to DPI
-    m_imageList = createImageList(optionIconSize);
-
-    const int iconSize = optionIconSize*GetDPIScaleFactor();
-    m_imageList->Add(mmBitmap(png::VIEW, iconSize));
-    m_imageList->Add(mmBitmap(png::ATTACHMENTS, iconSize));
-    m_imageList->Add(mmBitmap(png::GENERAL, iconSize));
-    m_imageList->Add(mmBitmap(png::OTHERS, iconSize));
-    m_imageList->Add(mmBitmap(png::NETWORK, iconSize));
-    m_imageList->Add(mmBitmap(png::HOME, iconSize));
+    const int iconSize = 48;
+    wxVector<wxBitmapBundle> images;
+    images.push_back(mmBitmapBundle(png::VIEW, iconSize));
+    images.push_back(mmBitmapBundle(png::ATTACHMENTS, iconSize));
+    images.push_back(mmBitmapBundle(png::GENERAL, iconSize));
+    images.push_back(mmBitmapBundle(png::OTHERS, iconSize));
+    images.push_back(mmBitmapBundle(png::NETWORK, iconSize));
+    images.push_back(mmBitmapBundle(png::HOME, iconSize));
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);
@@ -101,7 +99,7 @@ void mmOptionsDialog::CreateControls()
     mainDialogPanel->SetSizer(mainDialogPanelSizer);
 
     m_notebook = new wxListbook(mainDialogPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_LEFT);
-    m_notebook->SetImageList(m_imageList);
+    m_notebook->SetImages(images);
 
     /*********************************************************************************************
      General Panel
