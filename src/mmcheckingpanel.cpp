@@ -303,18 +303,19 @@ void mmCheckingPanel::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    m_imageList.reset(createImageList());
-    m_imageList->Add(mmBitmap(png::UNRECONCILED));
-    m_imageList->Add(mmBitmap(png::RECONCILED));
-    m_imageList->Add(mmBitmap(png::VOID_STAT));
-    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
-    m_imageList->Add(mmBitmap(png::DUPLICATE_STAT));
-    m_imageList->Add(mmBitmap(png::UPARROW));
-    m_imageList->Add(mmBitmap(png::DOWNARROW));
+    m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
+    m_images.push_back(mmBitmapBundle(png::RECONCILED));
+    m_images.push_back(mmBitmapBundle(png::VOID_STAT));
+    m_images.push_back(mmBitmapBundle(png::FOLLOW_UP));
+    m_images.push_back(mmBitmapBundle(png::DUPLICATE_STAT));
+    m_images.push_back(mmBitmapBundle(png::UPARROW));
+    m_images.push_back(mmBitmapBundle(png::DOWNARROW));
 
     m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10);
 
-    m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
+    m_listCtrlAccount->SetSmallImages(m_images);
+    m_listCtrlAccount->SetNormalImages(m_images);
+
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
     m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
 
@@ -378,9 +379,10 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(m_btnDuplicate, 0, wxRIGHT, 5);
     m_btnDuplicate->Enable(false);
 
+    const auto &btnDupSize = m_btnDuplicate->GetSize();
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
-        , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
-        , wxSize(30, m_btnDuplicate->GetSize().GetY()));
+        , mmBitmapBundle(png::CLIP), wxDefaultPosition
+        , wxSize(btnDupSize.GetY(), btnDupSize.GetY()));
     mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
     m_btnAttachment->Enable(false);

@@ -213,4 +213,4 @@ const wxColour mmThemeMetaColour(int ref);
 void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref, int size = -1);
-const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize);
+const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize = -1);

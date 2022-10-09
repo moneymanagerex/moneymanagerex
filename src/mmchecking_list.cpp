@@ -22,21 +22,21 @@
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
-#include "filtertransdialog.h"
+//#include "filtertransdialog.h"
 #include "images_list.h"
 #include "mmchecking_list.h"
 #include "mmcheckingpanel.h"
-#include "mmex.h"
+//#include "mmex.h"
 #include "mmframe.h"
 #include "mmSimpleDialogs.h"
-#include "paths.h"
-#include "splittransactionsdialog.h"
+//#include "paths.h"
+//#include "splittransactionsdialog.h"
 #include "sharetransactiondialog.h"
 #include "transactionsupdatedialog.h"
 #include "transdialog.h"
 #include "util.h"
-#include "validators.h"
-#include "model/allmodel.h"
+//#include "validators.h"
+//#include "model/allmodel.h"
 #include <wx/clipbrd.h>
 
 #include <wx/srchctrl.h>
@@ -81,7 +81,7 @@ wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
-TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(long col)
+TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long col)
 {
     EColumn res = COL_DEF_SORT;
     if (col >= 0 && col < m_real_columns.size()) res = static_cast<EColumn>(col);
@@ -345,7 +345,7 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
     }
 }
 
-void TransactionListCtrl::setExtraTransactionData(bool single)
+void TransactionListCtrl::setExtraTransactionData(const bool single)
 {
     bool isForeign = false;
     if (single)
@@ -509,7 +509,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {
     FindSelectedTransactions();
     int evt = event.GetId();
-    bool bRefreshRequired = false;
+    //bool bRefreshRequired = false;
     wxString org_status = "";
     wxString status = "";
     switch (evt)
@@ -533,7 +533,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
                 || m_trans[row].TRANSDATE > statement_date)
             {
-                bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
+                //bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
                 m_trans[row].STATUS = status;
                 Model_Checking::instance().save(&m_trans[row]);
             }

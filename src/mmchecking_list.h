@@ -67,7 +67,7 @@ public:
         COL_DEF_SORT = COL_DATE, // don't omit any columns before this
         COL_DEF_SORT2 = COL_ID 
     };
-    EColumn toEColumn(long col);
+    EColumn toEColumn(const unsigned long col);
 public:
     EColumn g_sortcol; // index of primary column to sort by
     EColumn prev_g_sortcol; // index of secondary column to sort by
@@ -167,7 +167,7 @@ private:
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
     wxDECLARE_EVENT_TABLE();
 
-    mmCheckingPanel* m_cp;
+    mmCheckingPanel* m_cp = nullptr;
 
     wxSharedPtr<wxListItemAttr> m_attr1;  // style1
     wxSharedPtr<wxListItemAttr> m_attr2;  // style2
@@ -203,7 +203,7 @@ private:
     bool TransactionLocked(int AccountID, const wxString& transdate);
     void FindSelectedTransactions();
     bool CheckForClosedAccounts();
-    void setExtraTransactionData(bool single);
+    void setExtraTransactionData(const bool single);
     void SortTransactions(int sortcol, bool ascend);
 private:
     /* The topmost visible item - this will be used to set
