@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-09-16 09:30+0300\n"
-"PO-Revision-Date: 2022-09-16 16:58\n"
+"PO-Revision-Date: 2022-10-09 21:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5093,7 +5093,7 @@ msgstr "Resumo das Contas"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Orçamentos"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5893,11 +5893,11 @@ msgstr "Ver Relatório da Categoria de Orçamento com Resumos"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Sobrescrever o orçamento anual com orçamento mensal"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Se o orçamento mensal existir, use isto para substituir o orçamento anual; caso contrário, combine-os"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6065,7 +6065,7 @@ msgstr "Realocar a categoria de origem para a categoria de destino"
 
 #: relocatecategorydialog.cpp:94
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Excluir a categoria de origem após a realocação (se não tiver subcategorias)"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:107
 msgid "Relocate:"
@@ -6497,11 +6497,11 @@ msgstr "Custo"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:96
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Ganho/Perda Realizada"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:97
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Ganho/Perda Não Realizada"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6597,11 +6597,11 @@ msgstr "Detalhamento das Categorias desta Transação"
 
 #: splittransactionsdialog.cpp:178
 msgid "Add Split"
-msgstr ""
+msgstr "Adicionar divisão"
 
 #: splittransactionsdialog.cpp:184
 msgid "Remove Split"
-msgstr ""
+msgstr "Remover divisão"
 
 #: splittransactionsdialog.cpp:265
 msgid "Invalid Total Amount"
@@ -6805,11 +6805,11 @@ msgstr "Total"
 
 #: stocks_list.cpp:94
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Preço médio da Ação"
 
 #: stocks_list.cpp:95
 msgid "Total Cost"
-msgstr ""
+msgstr "Total Investido"
 
 #: stocks_list.cpp:99
 msgid "Curr. Total Value"
