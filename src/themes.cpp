@@ -258,7 +258,7 @@ void mmThemesDialog::RefreshView()
     themeImageUrl = "memory:" + themeImageName;
     vfsThemeImageLoaded = true;
 #else
-    mmBitmapBundle(png::WEB).SaveFile(mmex::getTempFolder() + webImageName, wxBITMAP_TYPE_PNG);
+    mmBitmapBundle(png::WEB).GetBitmap(wxDefaultSize).SaveFile(mmex::getTempFolder() + webImageName, wxBITMAP_TYPE_PNG);
     imgUrl = "file://" + mmex::getTempFolder() + webImageName;
     thisTheme.bitMap.SaveFile(mmex::getTempFolder() + themeImageName, wxBITMAP_TYPE_PNG);
     themeImageUrl = "file://" + mmex::getTempFolder() + themeImageName;
