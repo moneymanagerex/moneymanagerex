@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
 #include <wx/tokenzr.h>
+#include <memory>
 //#include "../3rd/lunasvg/include/lunasvg.h"
 
 #include <array>
