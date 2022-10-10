@@ -190,7 +190,7 @@ bool darkFound, darkMode;
 Document metaData_doc;
 
 // Using SVG and wxBitmapBundle for better HiDPI support.
-static std::array< std::array<wxSharedPtr<wxBitmapBundle>, MAX_PNG >, numSizes > programIconBundles;
+static wxSharedPtr<wxBitmapBundle> programIconBundles[numSizes][MAX_PNG];
 
 static wxSharedPtr<wxArrayString> filesInVFS;
 
@@ -392,8 +392,6 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 if (darkFound && darkMode) 
                     fileName = fileName.substr(5);
 
-                wxSharedPtr<wxBitmapBundle> sharedBmpBundle;
-
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
                 {                                        
@@ -434,23 +432,15 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 //    continue;
 
                 int svgEnum = iconName2enum.find(fileName)->second.first;
-
-                const auto str = fileFullPath.c_str();
-
                 for(const auto &sizePair : sizes)
                 {
                     const unsigned int icon_size = sizePair.second;
-                    //const int toolbar_icon_size = Option::instance().getToolbarIconSize();
-                    sharedBmpBundle.reset(
-                                new wxBitmapBundle(
+                    programIconBundles[sizePair.first][svgEnum] = new wxBitmapBundle(
                                          wxBitmapBundle::FromSVG(
                                                static_cast<wxByte*>(buffer->GetBufferStart()), buffer->GetBufferSize(),
                                                                     wxSize( icon_size, icon_size )
                                                                 )
-                                                  )
-                                         );
-
-                    programIconBundles[sizePair.first][svgEnum] = sharedBmpBundle;
+                                                  );
                 }
 
                 /*std::uint32_t bgColor = 0;
@@ -658,5 +648,5 @@ const std::vector<wxColour> mmThemeMetaColourArray(int ref)
 const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize)
 {
     const int idx = getIconSizeIdx(defSize);
-    return *programIconBundles[idx][ref].get();
+    return *programIconBundles[idx][ref];
 }
