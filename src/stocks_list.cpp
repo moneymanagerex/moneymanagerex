@@ -64,13 +64,11 @@ wxEND_EVENT_TABLE()
 
 StocksListCtrl::~StocksListCtrl()
 {
-    if (m_imageList) delete m_imageList;
 }
 
 StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid)
     : mmListCtrl(parent, winid)
     , m_stock_panel(cp)
-    , m_imageList(0)
 {
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::PROFIT));

@@ -51,7 +51,6 @@ mmOptionsDialog::mmOptionsDialog( )
 
 mmOptionsDialog::~mmOptionsDialog( )
 {
-    delete m_imageList;
 }
 
 mmOptionsDialog::mmOptionsDialog(wxWindow* parent, mmGUIApp* app): m_app(app)

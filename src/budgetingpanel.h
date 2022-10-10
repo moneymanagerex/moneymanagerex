@@ -94,7 +94,7 @@ public:
     wxString BuildPage() const { return listCtrlBudget_->BuildPage(GetPanelTitle()); }
 
 private:
-    enum EIcons //m_imageList
+    enum EIcons
     {
         ICON_RECONCILLED,
         ICON_VOID,
@@ -114,7 +114,6 @@ private:
     int budgetYearID_;
     wxString m_monthName;
     wxString m_budget_offset_date;
-    wxSharedPtr<wxImageList> m_imageList;
     wxStaticText* budgetReportHeading_;
     wxStaticText* income_estimated_;
     wxStaticText* income_actual_;

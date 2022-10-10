@@ -80,7 +80,7 @@ class mmAssetsPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum EIcons //m_imageList
+    enum EIcons
     {
         ICON_PROPERTY,
         ICON_CAR,
@@ -118,8 +118,6 @@ private:
     mmAssetsListCtrl* m_listCtrlAssets;
     wxButton* m_bitmapTransFilter;
     wxStaticText* header_text_;
-
-    wxScopedPtr<wxImageList> m_imageList;
 
     bool Create(wxWindow *parent
         , wxWindowID winid

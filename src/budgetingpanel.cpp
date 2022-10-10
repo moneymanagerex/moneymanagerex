@@ -75,7 +75,6 @@ mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
     : budgetYearID_(budgetYearID)
     , m_frame(frame)
     , listCtrlBudget_(nullptr)
-    , m_imageList(nullptr)
     , income_estimated_(nullptr)
     , income_actual_(nullptr)
     , income_diff_(nullptr)

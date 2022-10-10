@@ -57,7 +57,6 @@ private:
     void OnPageChange(wxBookCtrlEvent& event);
 
 private:
-    wxImageList* m_imageList;
     wxListbook* m_notebook;
     std::vector<OptionSettingsBase*> m_panel_list;
 };
