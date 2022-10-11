@@ -354,6 +354,7 @@ void mmGUIFrame::cleanup()
     /* Delete the GUI */
     cleanupHomePanel(false);
     ShutdownDatabase();
+    CloseTheme();
 
     // Backup the database according to user requirements
     if (Option::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))

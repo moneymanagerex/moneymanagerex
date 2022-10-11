@@ -208,6 +208,7 @@ extern const int mmBitmapButtonSize;
 //wxImageList* navtree_images_list(const int size = 0, const double dpiScale = 1.0);
 wxVector<wxBitmapBundle> navtree_images_list(const int size = 0);
 void LoadTheme();
+void CloseTheme();
 const wxString mmThemeMetaString(int ref);
 long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);

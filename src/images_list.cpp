@@ -572,6 +572,15 @@ void LoadTheme()
     } 
 }
 
+void CloseTheme()
+{
+    // Release icons - needed before app closure
+    // https://github.com/wxWidgets/wxWidgets/issues/22862
+    for (int i = 0; i < numSizes; i++) 
+        for (int j = 0; j < MAX_PNG; j++)
+            programIconBundles[i][j].reset();
+}
+
 const wxString mmThemeMetaString(int ref)
 {
     auto i = metaDataTrans().find(ref)->second;
