@@ -39,7 +39,7 @@ class mmCheckingPanel : public mmPanelBase
 {
 public:
 
-    enum EIcons //m_imageList
+    enum EIcons
     {
         ICON_UNRECONCILED,
         ICON_RECONCILED,
@@ -146,7 +146,6 @@ private:
     TransactionListCtrl* m_listCtrlAccount;
     Model_Account::Data* m_account;
     Model_Currency::Data* m_currency;   // the account currency if single account otherwise the base currency
-    wxScopedPtr<wxImageList> m_imageList;
 
     void initViewTransactionsHeader();
     void initFilterSettings();

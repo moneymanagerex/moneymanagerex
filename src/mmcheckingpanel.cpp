@@ -286,7 +286,7 @@ void mmCheckingPanel::CreateControls()
 
     wxBoxSizer* infoPanel = new wxBoxSizer(wxHORIZONTAL);
     m_bitmapTransFilter = new wxButton(this, ID_TRX_FILTER);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
+    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     infoPanel->Add(m_bitmapTransFilter, g_flagsH);
     m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
     infoPanel->Add(m_header_sortOrder, g_flagsH);
@@ -303,18 +303,18 @@ void mmCheckingPanel::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    m_imageList.reset(createImageList());
-    m_imageList->Add(mmBitmap(png::UNRECONCILED));
-    m_imageList->Add(mmBitmap(png::RECONCILED));
-    m_imageList->Add(mmBitmap(png::VOID_STAT));
-    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
-    m_imageList->Add(mmBitmap(png::DUPLICATE_STAT));
-    m_imageList->Add(mmBitmap(png::UPARROW));
-    m_imageList->Add(mmBitmap(png::DOWNARROW));
+    wxVector<wxBitmapBundle> images;
+    images.push_back(mmBitmapBundle(png::UNRECONCILED));
+    images.push_back(mmBitmapBundle(png::RECONCILED));
+    images.push_back(mmBitmapBundle(png::VOID_STAT));
+    images.push_back(mmBitmapBundle(png::FOLLOW_UP));
+    images.push_back(mmBitmapBundle(png::DUPLICATE_STAT));
+    images.push_back(mmBitmapBundle(png::UPARROW));
+    images.push_back(mmBitmapBundle(png::DOWNARROW));
 
     m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10);
 
-    m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
+    m_listCtrlAccount->SetSmallImages(images);
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
     m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
 
@@ -379,7 +379,7 @@ void mmCheckingPanel::CreateControls()
     m_btnDuplicate->Enable(false);
 
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
-        , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
+        , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, m_btnDuplicate->GetSize().GetY()));
     mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
@@ -672,7 +672,7 @@ void mmCheckingPanel::initFilterSettings()
 
     auto item = m_transFilterActive ? menu_labels()[MENU_VIEW_FILTER_DIALOG] : menu_labels()[m_currentView];
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
 
     //Text field for name of day of the week
     wxSize buttonSize(wxDefaultSize);

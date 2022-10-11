@@ -77,7 +77,7 @@ class mmBillsDepositsPanel : public mmPanelBase
 
 public:
 
-    enum EIcons //m_imageList
+    enum EIcons
     {
         ICON_FOLLOWUP,
         ICON_RUN_AUTO,
@@ -139,7 +139,6 @@ private:
     wxString tips();
 
 private:
-    wxSharedPtr<wxImageList> m_imageList;
     wxSharedPtr<mmFilterTransactionsDialog> transFilterDlg_;
     billsDepositsListCtrl* listCtrlAccount_;
     wxStaticText* m_infoText;

@@ -425,14 +425,14 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->AddSpacer(1);
 
     m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV
-        , mmBitmap(png::LEFTARROW, mmBitmapButtonSize));
+        , mmBitmapBundle(png::LEFTARROW, mmBitmapButtonSize));
     mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
 
     m_choice_repeat = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS);
 
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM
-        , mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+        , mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(m_btn_due_date, _("Advance the next occurring date with the specified values"));
     repeatBoxSizer->Add(m_btn_due_prev_date, g_flagsH);
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand));
@@ -574,7 +574,7 @@ void mmBDDialog::CreateControls()
                                             , m_bill_data.CATEGID, m_bill_data.SUBCATEGID, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
-    bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmap(png::NEW_TRX, mmBitmapButtonSize));
+    bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
 
     transPanelSizer->Add(categ_label2, g_flagsH);
@@ -601,7 +601,7 @@ void mmBDDialog::CreateControls()
     mmToolTip(bColours_, _("User Colors"));
 
     // Attachments
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
     mmToolTip(bAttachments_, _("Organize attachments of this recurring transaction"));
 
     // Now display the Frequntly Used Notes, Colour, Attachment buttons
@@ -635,7 +635,7 @@ void mmBDDialog::CreateControls()
 
     mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
     wxBitmapButton* button_hide = new wxBitmapButton(buttonsPanel
-        , ID_BTN_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
+        , ID_BTN_CUSTOMFIELDS, mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(button_hide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         button_hide->Hide();
@@ -1367,7 +1367,7 @@ void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_BTN_CUSTOMFIELDS));
 
     if (button)
-        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
+        button->SetBitmap(mmBitmapBundle(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
 
     m_custom_fields->ShowHideCustomPanel();
 

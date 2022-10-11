@@ -33,7 +33,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
 #include <wx/tokenzr.h>
-#include "../3rd/lunasvg/include/lunasvg.h"
+#include <memory>
+//#include "../3rd/lunasvg/include/lunasvg.h"
 
 #include <array>
 
@@ -185,11 +186,11 @@ const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3,
 const int mmBitmapButtonSize = 16;
 bool darkFound, darkMode;
 
-static wxSharedPtr<wxBitmap> programIcons[numSizes][MAX_PNG];
+//static wxSharedPtr<wxBitmap> programIcons[numSizes][MAX_PNG];
 Document metaData_doc;
 
 // Using SVG and wxBitmapBundle for better HiDPI support.
-static std::array< std::array<wxSharedPtr<wxBitmapBundle>, MAX_PNG >, numSizes > programIconBundles;
+static wxSharedPtr<wxBitmapBundle> programIconBundles[numSizes][MAX_PNG];
 
 static wxSharedPtr<wxArrayString> filesInVFS;
 
@@ -240,10 +241,22 @@ static const std::map<int, wxBitmapBundle> acc_images(int size)
 }
 
 
-std::map<int, wxBitmap> gCachedBitmaps;
+//std::map<int, wxBitmap> gCachedBitmaps;
 
+wxVector<wxBitmapBundle> navtree_images_list(const int size)
+{
+    int x = (size > 0) ? size : Option::instance().getIconSize();
 
-wxImageList* navtree_images_list(const int size, const double dpiScale)
+    wxVector<wxBitmapBundle> images;
+    for (const auto& img : navtree_images(x))
+        images.push_back(img.second);
+    for (const auto& img : acc_images(x))
+         images.push_back(img.second);
+         
+    return (images);
+}
+
+/*wxImageList* navtree_images_list(const int size, const double dpiScale)
 {
     int x = (size > 0) ? size : Option::instance().getIconSize();
     if (x < 16) x = 16;
@@ -269,9 +282,9 @@ wxImageList* navtree_images_list(const int size, const double dpiScale)
     }
 
     return imageList;
-}
+}*/
 
-wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
+/*wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
 {
     int totalSize = size * size;
     unsigned char *data = static_cast<unsigned char *> (malloc (totalSize * 3));
@@ -287,7 +300,7 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
 
     wxImage image (size, size, data, alpha);
     return (new wxBitmap (image));
-}
+}*/
 
 static unsigned int getIconSizeIdx(const int iconSize)
 {
@@ -379,8 +392,6 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 if (darkFound && darkMode) 
                     fileName = fileName.substr(5);
 
-                wxSharedPtr<wxBitmapBundle> sharedBmpBundle;
-
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
                 {                                        
@@ -416,32 +427,23 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
 
 
-                std::unique_ptr<lunasvg::Document> document = lunasvg::Document::loadFromData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
-                if (!document)
-                    continue;
+                //std::unique_ptr<lunasvg::Document> document = lunasvg::Document::loadFromData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
+                //if (!document)
+                //    continue;
 
                 int svgEnum = iconName2enum.find(fileName)->second.first;
-
-                const auto str = fileFullPath.c_str();
-
                 for(const auto &sizePair : sizes)
                 {
-                    const unsigned int toolbar_icon_size = sizePair.second;
-                    //const int toolbar_icon_size = Option::instance().getToolbarIconSize();
-                    sharedBmpBundle.reset(
-                                new wxBitmapBundle(
+                    const unsigned int icon_size = sizePair.second;
+                    programIconBundles[sizePair.first][svgEnum] = new wxBitmapBundle(
                                          wxBitmapBundle::FromSVG(
                                                static_cast<wxByte*>(buffer->GetBufferStart()), buffer->GetBufferSize(),
-                                                                    wxSize( toolbar_icon_size, toolbar_icon_size )
+                                                                    wxSize( icon_size, icon_size )
                                                                 )
-                                                  )
-                                         );
-
-                    const unsigned int idx = getIconSizeIdx(toolbar_icon_size);
-                    programIconBundles[idx][svgEnum] = sharedBmpBundle;
+                                                  );
                 }
 
-                std::uint32_t bgColor = 0;
+                /*std::uint32_t bgColor = 0;
                 if (iconName2enum.find(fileName)->second.second)
                     bgColor = bgStringConv;
 
@@ -455,7 +457,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                     if (!bitmap.valid())
                         continue;
                     programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
-                }
+                }*/
 
             }
         }
@@ -499,7 +501,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     int erroredIcons = 0;
     for (int i = 0; i < MAX_PNG; i++)
     {
-        if (!programIcons[0][i])
+        if (!programIconBundles[0][i])
         {
             for (auto it = iconName2enum.begin(); it != iconName2enum.end(); it++)
             {
@@ -570,6 +572,15 @@ void LoadTheme()
     } 
 }
 
+void CloseTheme()
+{
+    // Release icons - needed before app closure
+    // https://github.com/wxWidgets/wxWidgets/issues/22862
+    for (int i = 0; i < numSizes; i++) 
+        for (int j = 0; j < MAX_PNG; j++)
+            programIconBundles[i][j].reset();
+}
+
 const wxString mmThemeMetaString(int ref)
 {
     auto i = metaDataTrans().find(ref)->second;
@@ -621,7 +632,7 @@ const std::vector<wxColour> mmThemeMetaColourArray(int ref)
     return colours;
 }
 
-const wxBitmap mmBitmap(int ref, int size)
+/*const wxBitmap mmBitMap(int ref, int size)
 {
     int idx = getIconSizeIdx(size);
 
@@ -641,10 +652,10 @@ const wxBitmap mmBitmap(int ref, int size)
     wxSize bmpSize(size, size);
     auto &bundle = programIconBundles[idx][ref];
     return bundle.get()->GetBitmap(bmpSize);
-}
+}*/
 
 const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize)
 {
     const int idx = getIconSizeIdx(defSize);
-    return *programIconBundles[idx][ref].get();
+    return *programIconBundles[idx][ref];
 }

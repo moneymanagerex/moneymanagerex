@@ -614,6 +614,7 @@ install(FILES
     resources/home_page.htt
     resources/kaching.wav
     resources/mmex.png
+    resources/mmex.svg
     DESTINATION "${MMEX_RES_DIR}")
 
 #Themes & GRM

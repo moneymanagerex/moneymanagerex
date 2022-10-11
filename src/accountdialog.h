@@ -65,7 +65,7 @@ private:
     mmTextCtrl* m_initbalance_ctrl;
     mmDatePickerCtrl* m_initdate_ctrl;
 
-    wxImageList* m_imageList = nullptr;
+    wxVector<wxBitmapBundle> m_images;
     wxBitmapButton* m_bitmapButtons;
     wxBitmapButton* bAttachments_;
     wxString m_accessInfo;

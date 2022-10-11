@@ -96,7 +96,7 @@ void mmCustomFieldListDialog::CreateControls()
     wxButton* btnClose = new wxButton(buttons_panel, wxID_OK, wxGetTranslation(g_CloseLabel));
     buttons_sizer->Add(btnClose, g_flagsH);
 
-    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::MORE_OPTIONS, mmBitmapButtonSize));
+    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmapBundle(png::MORE_OPTIONS, mmBitmapButtonSize));
     mmToolTip(magicButton, _("Other tools"));
     buttons_sizer->Add(magicButton, g_flagsH);
 
