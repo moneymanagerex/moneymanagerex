@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013 - 2016, 2020 -2022 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,8 @@
 
 #include "defs.h"
 #include "model/Model_Checking.h"
+#include "mmSimpleDialogs.h"
+#include "mmTextCtrl.h"
 #include <wx/dataview.h>
 #include <wx/vscroll.h>
 
@@ -34,6 +37,29 @@ class wxStaticText;
 #ifndef wxFIXED_MINSIZE
 #define wxFIXED_MINSIZE 0
 #endif
+
+class mmEditSplitOther : public wxDialog
+{
+    wxDECLARE_DYNAMIC_CLASS(mmEditSplitOther);
+    wxDECLARE_EVENT_TABLE();
+
+public:
+    mmEditSplitOther();
+    mmEditSplitOther(wxWindow* parent, Model_Currency::Data* currency, Split* split
+                        , const wxString &name = "mmEditSplitOther");
+    ~mmEditSplitOther();
+
+private:
+    Split* m_split;
+    Model_Currency::Data* m_currency;
+    wxTextCtrl* m_Notes;
+
+    void CreateControls();
+    void fillControls();
+    void OnCancel(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& /*event*/);
+
+};
 
 class mmSplitTransactionDialog: public wxDialog
 {
@@ -61,18 +87,30 @@ private:
         );
 
     void CreateControls();
-    void mmDoEnableLineById(int id);
+    void FillControls(int focusRow = -1);
+    void createNewRow(bool enabled);
+    void activateNewRow();
     void UpdateSplitTotal();
+    void UpdateExtraInfo(int id);
 
     void OnOk(wxCommandEvent& event);
     void OnAddRow(wxCommandEvent& event);
     void OnRemoveRow(wxCommandEvent& event);
+    void OnOtherButton(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnComboKey(wxKeyEvent& event);
-    bool mmDoCheckRow(int i, bool silent = false);
+    bool mmDoCheckRow(int row);
 
-    std::vector<Split> m_splits;
+    struct SplitWidget
+    {
+        mmComboBoxCategory* category;
+        mmTextCtrl* amount;
+        wxBitmapButton* other;
+    };
+
+    std::vector<SplitWidget> m_splits_widgets;
+    std::vector<Split> m_orig_splits, m_splits;
     double totalAmount_;
     int transType_;
     int row_num_;
@@ -87,6 +125,6 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-inline std::vector<Split> mmSplitTransactionDialog::mmGetResult() const { return m_splits; }
+inline std::vector<Split> mmSplitTransactionDialog::mmGetResult() const { return m_orig_splits; }
 
 #endif

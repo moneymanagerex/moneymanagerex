@@ -118,7 +118,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         Model_Checking::getTransactionData(m_trx_data, transaction);
         const auto s = Model_Checking::splittransaction(transaction);
         for (const auto& item : s)
-            m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+            m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT, item.NOTES });
 
         if (m_duplicate && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
         {
@@ -989,6 +989,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
         s.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
+        s.NOTES = m_trx_data.NOTES;
         m_local_splits.push_back(s);
     }
 
@@ -1006,6 +1007,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_trx_data.CATEGID = m_local_splits[0].CATEGID;
         m_trx_data.SUBCATEGID = m_local_splits[0].SUBCATEGID;
         m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
+        m_trx_data.NOTES = m_local_splits[0].NOTES;
         m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
         m_local_splits.clear();
     }
@@ -1118,6 +1120,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         s->CATEGID = entry.CATEGID;
         s->SUBCATEGID = entry.SUBCATEGID;
         s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        s->NOTES = entry.NOTES;
         splt.push_back(*s);
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);

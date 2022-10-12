@@ -178,8 +178,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     singleton.h
     sharetransactiondialog.cpp
     sharetransactiondialog.h
-    splitdetailsdialog.cpp
-    splitdetailsdialog.h
     splittransactionsdialog.cpp
     splittransactionsdialog.h
     stockdialog.cpp

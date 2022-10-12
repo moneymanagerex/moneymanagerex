@@ -554,6 +554,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->CATEGID = item.CATEGID;
                     split->SUBCATEGID = item.SUBCATEGID;
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
+                    split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
                 }
                 Model_Splittransaction::instance().save(checking_splits);
