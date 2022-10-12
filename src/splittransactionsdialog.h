@@ -91,7 +91,7 @@ private:
     void createNewRow(bool enabled);
     void activateNewRow();
     void UpdateSplitTotal();
-    void UpdateExtraInfo(int id);
+    void UpdateExtraInfo(int row);
 
     void OnOk(wxCommandEvent& event);
     void OnAddRow(wxCommandEvent& event);
