@@ -1,6 +1,6 @@
 ﻿## Active Developers
 Nikolay          [Nikolay]
-Whalley          [whall3y]
+Whalley          [whalley]
 Gabriele         [gabriele-v]
 Lisheng          [guanlisheng]
 James            [siena123]
@@ -152,6 +152,7 @@ Bartłomiej Korban
 John Weaving
 Rushikesh Jukar
 Ruben Fernandes
+Sabrina Blanc
 
 ### 2021
 Renato
