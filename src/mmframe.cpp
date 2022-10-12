@@ -1991,14 +1991,20 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
                 {
                     if (subCatID == -1)
                     {
-                        const auto cat = Model_Category::instance().get(catID);
-                        cat->ACTIVE = 0;
-                        Model_Category::instance().save(cat);
+                        Model_Category::Data* cat = Model_Category::instance().get(catID);
+                        if (cat && cat->CATEGID != -1)
+                        {
+                            cat->ACTIVE = 0;
+                            Model_Category::instance().save(cat);
+                        }
                     } else
                     {
-                        const auto subcat = Model_Subcategory::instance().get(subCatID);
-                        subcat->ACTIVE = 0;
-                        Model_Subcategory::instance().save(subcat);
+                        Model_Subcategory::Data* subcat = Model_Subcategory::instance().get(subCatID);
+                        if (subcat && subcat->SUBCATEGID != -1)
+                        {
+                            subcat->ACTIVE = 0;
+                            Model_Subcategory::instance().save(subcat);
+                        }
                     }
                 }
             }
