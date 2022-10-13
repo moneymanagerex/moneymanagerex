@@ -328,20 +328,20 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
     int catID = (row < m_splits.size()) ? m_splits.at(row).CATEGID : -1;
     int subCatID = (row < m_splits.size()) ? m_splits.at(row).SUBCATEGID : -1;
 
-    mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, wxID_HIGHEST + row
+    mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
                                         , wxDefaultSize, catID, subCatID, true);
     ncbc->Enable(enabled);
     ncbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
     ncbc->SetMinSize(wxSize(250,-1));
 
-    mmTextCtrl* nval = new mmTextCtrl(slider_, wxID_HIGHEST + row, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
+    mmTextCtrl* nval = new mmTextCtrl(slider_, mmID_MAX + row, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
     nval->Enable(enabled);
-    nval->Connect(wxID_HIGHEST + row, wxEVT_COMMAND_TEXT_ENTER
+    nval->Connect(mmID_MAX + row, wxEVT_COMMAND_TEXT_ENTER
                 , wxCommandEventHandler(mmSplitTransactionDialog::OnTextEntered), nullptr, this);
     nval->SetMinSize(wxSize(100,-1));
 
-    wxBitmapButton* nother = new wxBitmapButton(slider_, wxID_HIGHEST + row, mmBitmapBundle(png::GRM, mmBitmapButtonSize));
-    nother->Connect(wxID_HIGHEST + row, wxEVT_BUTTON
+    wxBitmapButton* nother = new wxBitmapButton(slider_, mmID_MAX + row, mmBitmapBundle(png::GRM, mmBitmapButtonSize));
+    nother->Connect(mmID_MAX + row, wxEVT_BUTTON
             , wxCommandEventHandler(mmSplitTransactionDialog::OnOtherButton), nullptr, this);
     nother->Enable(enabled);
 
@@ -418,6 +418,8 @@ void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
     if (m_splits.size() < 2)    // Should keep one split
         return;
     m_splits.erase(m_splits.begin() + row_num_ );
+    if (row_num_ > 0)
+        row_num_--;
     FillControls(row_num_);
     UpdateSplitTotal();
 }
@@ -425,8 +427,8 @@ void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
 void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
 {
     wxWindow* w = this->FindFocus();
-    if (w && (w->GetId() >= wxID_HIGHEST))
-        row_num_ = w->GetId() - wxID_HIGHEST;
+    if (w && (w->GetId() >= mmID_MAX))
+        row_num_ = w->GetId() - mmID_MAX;
 
     wxLogDebug("split row = %d", row_num_);
     event.Skip();
@@ -434,7 +436,7 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
 
 void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
 {
-    int row = event.GetId() - wxID_HIGHEST;
+    int row = event.GetId() - mmID_MAX;
     if (m_splits_widgets.at(row).category->GetValue().empty() && m_splits_widgets.at(row).amount->GetValue().empty())
         return;
 
@@ -448,7 +450,7 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
 
 void mmSplitTransactionDialog::OnOtherButton(wxCommandEvent& event)
 {
-    int row = event.GetId() - wxID_HIGHEST;
+    int row = event.GetId() - mmID_MAX;
     mmEditSplitOther dlg(this, m_currency, &m_splits.at(row));
     dlg.ShowModal();
     UpdateExtraInfo(row);
