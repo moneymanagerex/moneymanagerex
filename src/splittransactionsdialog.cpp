@@ -184,6 +184,7 @@ bool mmSplitTransactionDialog::Create(wxWindow* parent
     row_num_ = m_splits.size() - 1;
     if (!is_view_only_)
         activateNewRow();
+
     UpdateSplitTotal();
 
     mmSetSize(this);
@@ -360,7 +361,7 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
 
 void mmSplitTransactionDialog::activateNewRow()  
 {
-    if (row_num_ < (m_splits_widgets.size() - 1)) 
+    if (row_num_ < (static_cast<int>(m_splits_widgets.size()) - 1)) 
     {
         int row = row_num_ + 1;
         if (row >= m_splits.size())
