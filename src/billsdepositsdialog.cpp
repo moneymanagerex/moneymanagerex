@@ -152,7 +152,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         m_bill_data.FOLLOWUPID = bill->FOLLOWUPID;
         //
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
-            m_bill_data.local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+            m_bill_data.local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT, item.NOTES });
         }
 
         // If duplicate then we may need to copy the attachments
@@ -371,6 +371,7 @@ void mmBDDialog::SetDialogParameters(int trx_id)
             s.CATEGID = split_trans.CATEGID;
             s.SPLITTRANSAMOUNT = split_trans.SPLITTRANSAMOUNT;
             s.SUBCATEGID = split_trans.SUBCATEGID;
+            s.NOTES = split_trans.NOTES;
             m_bill_data.local_splits.push_back(s);
         }
     }
@@ -1052,6 +1053,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             s->CATEGID = entry.CATEGID;
             s->SUBCATEGID = entry.SUBCATEGID;
             s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+            s->NOTES = entry.NOTES;
             splt.push_back(*s);
         }
         Model_Budgetsplittransaction::instance().update(splt, m_trans_id);
@@ -1095,6 +1097,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 split->CATEGID = item.CATEGID;
                 split->SUBCATEGID = item.SUBCATEGID;
                 split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
+                split->NOTES = item.NOTES;
                 checking_splits.push_back(*split);
             }
             Model_Splittransaction::instance().update(checking_splits, trans_id);
@@ -1277,6 +1280,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
         s.SPLITTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
         s.CATEGID = m_bill_data.CATEGID;
         s.SUBCATEGID = m_bill_data.SUBCATEGID;
+        s.NOTES = m_bill_data.NOTES;
         m_bill_data.local_splits.push_back(s);
     }
 
@@ -1298,6 +1302,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
     {
         m_bill_data.CATEGID = m_bill_data.local_splits[0].CATEGID;
         m_bill_data.SUBCATEGID = m_bill_data.local_splits[0].SUBCATEGID;
+        textNotes_->SetValue(m_bill_data.local_splits[0].NOTES);
         m_bill_data.local_splits.clear();
     }
 

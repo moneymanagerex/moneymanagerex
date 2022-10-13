@@ -1711,6 +1711,9 @@ void mmSetSize(wxWindow* w)
     else if (name == "mmEditPayeeDialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("EDITPAYEE_DIALOG_SIZE"); 
     }
+    else if (name == "mmEditSplitOther") {
+        my_size = Model_Infotable::instance().GetSizeSetting("EDITSPLITOTHER_DIALOG_SIZE"); 
+    }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();

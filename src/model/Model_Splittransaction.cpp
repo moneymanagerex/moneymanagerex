@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -91,6 +92,7 @@ int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
             split_item->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
             split_item->CATEGID = item.CATEGID;
             split_item->SUBCATEGID = item.SUBCATEGID;
+            split_item->NOTES = item.NOTES;            
             split_items.push_back(*split_item);
         }
         instance().save(split_items);
