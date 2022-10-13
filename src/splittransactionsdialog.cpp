@@ -200,18 +200,6 @@ void mmSplitTransactionDialog::CreateControls()
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainSizer);
 
-    wxBoxSizer* boxSizerHead_ = new wxBoxSizer(wxHORIZONTAL);
-    mainSizer->Add(boxSizerHead_, wxSizerFlags().Expand().Border(wxALL, 5));
-    wxStaticText* categoryText = new wxStaticText(this, wxID_STATIC, _("Category"));
-    categoryText->SetFont(this->GetFont().Bold());
-    wxStaticText* amountText = new wxStaticText(this, wxID_STATIC, _("Amount"));
-    amountText->SetFont(this->GetFont().Bold());
-    wxStaticText* otherText = new wxStaticText(this, wxID_STATIC, _("Other"));
-    otherText->SetFont(this->GetFont().Bold());
-    boxSizerHead_->Add(categoryText, g_flagsExpand);
-    boxSizerHead_->Add(amountText, g_flagsH);
-    boxSizerHead_->Add(otherText, g_flagsH);
-
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     mainSizer->Add(slider_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
 
@@ -221,6 +209,14 @@ void mmSplitTransactionDialog::CreateControls()
     flexGridSizer_ = new wxFlexGridSizer(0, 3, 0, 0);
     flexGridSizer_->AddGrowableCol(0, 0);
     dialogMainSizerV->Add(flexGridSizer_, g_flagsExpand);
+
+    wxStaticText* categoryText = new wxStaticText(slider_, wxID_STATIC, _("Category"));
+    categoryText->SetFont(this->GetFont().Bold());
+    wxStaticText* amountText = new wxStaticText(slider_, wxID_STATIC, _("Amount"));
+    amountText->SetFont(this->GetFont().Bold());
+    flexGridSizer_->Add(categoryText, g_flagsExpand);
+    flexGridSizer_->Add(amountText, g_flagsH);
+    flexGridSizer_->AddSpacer(1);
 
     int size = static_cast<int>(m_splits.size());
     if (size < STATIC_SPLIT_NUM) size = STATIC_SPLIT_NUM;
@@ -312,12 +308,12 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
         {
             m_splits_widgets.at(row).category->ChangeValue("");
             m_splits_widgets.at(row).amount->SetValue("");
-            m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::GRM,mmBitmapButtonSize));
+            m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
             m_splits_widgets.at(row).category->Enable(false);
             m_splits_widgets.at(row).amount->Enable(false);
             m_splits_widgets.at(row).other->Enable(false);
-
         }
+
         if (focusRow != -1)
             m_splits_widgets.at(focusRow).category->SetFocus();
     }
@@ -341,7 +337,8 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
                 , wxCommandEventHandler(mmSplitTransactionDialog::OnTextEntered), nullptr, this);
     nval->SetMinSize(wxSize(100,-1));
 
-    wxBitmapButton* nother = new wxBitmapButton(slider_, mmID_MAX + row, mmBitmapBundle(png::GRM, mmBitmapButtonSize));
+    wxButton* nother = new wxButton(slider_, mmID_MAX + row, _("Notes"));
+    nother->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
     nother->Connect(mmID_MAX + row, wxEVT_BUTTON
             , wxCommandEventHandler(mmSplitTransactionDialog::OnOtherButton), nullptr, this);
     nother->Enable(enabled);
@@ -507,9 +504,9 @@ void mmSplitTransactionDialog::UpdateSplitTotal()
 void mmSplitTransactionDialog::UpdateExtraInfo(int row)
 {
     if (m_splits.at(row).NOTES.IsEmpty())
-        m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::GRM,mmBitmapButtonSize));
+        m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
     else
-        m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::RIGHTARROW,mmBitmapButtonSize));
+        m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::RECONCILED,mmBitmapButtonSize));
 
     m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).NOTES);   
 }

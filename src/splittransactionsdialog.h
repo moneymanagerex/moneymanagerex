@@ -106,7 +106,7 @@ private:
     {
         mmComboBoxCategory* category;
         mmTextCtrl* amount;
-        wxBitmapButton* other;
+        wxButton* other;
     };
 
     std::vector<SplitWidget> m_splits_widgets;
