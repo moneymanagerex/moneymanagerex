@@ -1302,7 +1302,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
     {
         m_bill_data.CATEGID = m_bill_data.local_splits[0].CATEGID;
         m_bill_data.SUBCATEGID = m_bill_data.local_splits[0].SUBCATEGID;
-        m_bill_data.NOTES = m_bill_data.local_splits[0].NOTES;
+        textNotes_->SetValue(m_bill_data.local_splits[0].NOTES);
         m_bill_data.local_splits.clear();
     }
 
