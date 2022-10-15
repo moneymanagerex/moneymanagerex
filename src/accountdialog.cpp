@@ -69,8 +69,6 @@ mmNewAcctDialog::mmNewAcctDialog()
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     : m_account(account)
 {
-    m_imageList.reset(navtree_images_list());
-
     m_currencyID = m_account->CURRENCYID;
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
     wxASSERT(currency);
@@ -342,7 +340,7 @@ void mmNewAcctDialog::fillControls()
     m_initdate_ctrl->SetValue(Model_Account::DateOf(m_account->INITIALDATE));
 
     int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID, false, true);
-    m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
+    m_bitmapButtons->SetBitmap(m_images.at(selectedImage));
 
     m_accessInfo = m_account->ACCESSINFO;
 
@@ -435,14 +433,14 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 #ifdef __WXMSW__    // Avoid transparancy black background issue
     menuItem->SetBackgroundColour(wxColour(* wxWHITE));
 #endif
-    menuItem->SetBitmap(m_imageList->GetBitmap(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
+    menuItem->SetBitmap(m_images.at(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
     mainMenu->Append(menuItem);
 
     for (int i = img::LAST_NAVTREE_PNG; i < acc_img::MAX_ACC_ICON; ++i)
     {
         menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i
             , wxString::Format(_("Image #%i"), i - img::LAST_NAVTREE_PNG + 1));
-        menuItem->SetBitmap(m_imageList->GetBitmap(i));
+        menuItem->SetBitmap(m_images.at(i));
         mainMenu->Append(menuItem);
     }
 
@@ -459,7 +457,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
     if (selectedImage != 0)
         image_id = selectedImage + img::LAST_NAVTREE_PNG - 1;
 
-    m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(image_id));
+    m_bitmapButtons->SetBitmap(m_images.at(image_id));
 }
 
 void mmNewAcctDialog::OnChangeFocus(wxChildFocusEvent& event)
@@ -507,12 +505,10 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         return mmErrorDialogs::MessageInvalid(this, _("Currency"));
 
     wxTextCtrl* textCtrlWebsite = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE));
-    wxString uri = textCtrlWebsite->GetValue().Lower().Trim();
-    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
-    if (!uri.empty() && !pattern.Matches(uri))
+    if (!textCtrlWebsite->GetValue().empty() && !isValidURI(textCtrlWebsite->GetValue()))
     {
         m_notebook->SetSelection(1);
-        return mmErrorDialogs::ToolTip4Object(textCtrlWebsite, _("Please insert a valid URL"), _("Invalid URL"));
+        return mmErrorDialogs::ToolTip4Object(textCtrlWebsite, _("Please enter a valid URL"), _("Invalid URL"));
     }
 
     if (!m_initbalance_ctrl->checkValue(m_account->INITIALBAL, false))

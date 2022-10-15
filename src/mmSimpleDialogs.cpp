@@ -266,17 +266,17 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
 
 void mmComboBoxPayee::init()
 {
-    all_elements_ = Model_Payee::instance().all_payees(excludeInactive_);
+    all_elements_ = Model_Payee::instance().all_payees(excludeHidden_);
     if (payeeID_ > -1)
         all_elements_[Model_Payee::get_payee_name(payeeID_)] = payeeID_;
 }
 
 // payeeID = always include this payee even if it would have been excluded as inactive
-// excludeInactive = set to true if inactive payees should be excluded
+// excludeHidden = set to true if inactive payees should be excluded
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
-                    , wxSize size, int payeeID, bool excludeInactive)
+                    , wxSize size, int payeeID, bool excludeHidden)
     : mmComboBox(parent, id, size)
-    , excludeInactive_(excludeInactive)
+    , excludeHidden_(excludeHidden)
     , payeeID_(payeeID)
 {
     init();
@@ -311,15 +311,24 @@ void mmComboBoxCategory::init()
 {
     int i = 0;
     all_elements_.clear();
-    all_categories_ = Model_Category::instance().all_categories();
+    all_categories_ = Model_Category::instance().all_categories(excludeHidden_);
+    if (catID_ > -1)
+        all_categories_.insert(std::make_pair(Model_Category::full_name(catID_, subCatID_)
+                                    , std::make_pair(catID_, subCatID_)));
     for (const auto& item : all_categories_)
     {
         all_elements_[item.first] = i++;
     }
 }
 
-mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id, wxSize size)
+// catID/subCatID = always include this category even if it would have been excluded as inactive
+// excludeHidden = set to true if hidden categories should be excluded
+mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
+                    , wxSize size, int catID, int subCatID, bool excludeHidden)
     : mmComboBox(parent, id, size)
+    , excludeHidden_(excludeHidden)
+    , catID_(catID)
+    , subCatID_(subCatID)
 {
     init();
 }
@@ -520,13 +529,13 @@ void mmColorButton::OnColourButton(wxCommandEvent& event)
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
+        wxBitmap bitmap(mmBitmapBundle(png::EMPTY, mmBitmapButtonSize).GetDefaultSize());
         wxMemoryDC memoryDC(bitmap);
         wxRect rect(memoryDC.GetSize());
 
         memoryDC.SetBackground(wxBrush(getUDColour(i)));
         memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
+        memoryDC.DrawBitmap(mmBitmapBundle(png::EMPTY, mmBitmapButtonSize).GetBitmap(wxDefaultSize), 0, 0, true);
         memoryDC.SelectObject(wxNullBitmap);
         menuItem->SetBitmap(bitmap);
 

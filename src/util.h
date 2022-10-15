@@ -277,3 +277,5 @@ const wxString __(const char* c);
 
 void mmSetSize(wxWindow* w);
 void mmFontSize(wxWindow* widget);
+
+bool isValidURI(const wxString validate);

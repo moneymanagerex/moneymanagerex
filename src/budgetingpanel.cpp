@@ -75,7 +75,6 @@ mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
     : budgetYearID_(budgetYearID)
     , m_frame(frame)
     , listCtrlBudget_(nullptr)
-    , m_imageList(nullptr)
     , income_estimated_(nullptr)
     , income_actual_(nullptr)
     , income_diff_(nullptr)
@@ -225,7 +224,7 @@ void mmBudgetingPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2, 0, wxALL, 1);
 
     m_bitmapTransFilter = new wxButton(itemPanel3, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
+    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     m_bitmapTransFilter->SetMinSize(wxSize(300, -1));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
@@ -263,14 +262,14 @@ void mmBudgetingPanel::CreateControls()
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
-    m_imageList = createImageList();
-    m_imageList->Add(mmBitmap(png::RECONCILED));
-    m_imageList->Add(mmBitmap(png::VOID_STAT));
-    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
+    wxVector<wxBitmapBundle> images;
+    images.push_back(mmBitmapBundle(png::RECONCILED));
+    images.push_back(mmBitmapBundle(png::VOID_STAT));
+    images.push_back(mmBitmapBundle(png::FOLLOW_UP));
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 
-    listCtrlBudget_->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
+    listCtrlBudget_->SetSmallImages(images);
     listCtrlBudget_->InsertColumn(COL_ICON, (" "));
     listCtrlBudget_->InsertColumn(COL_CATEGORY, listCtrlBudget_->m_columns[COL_CATEGORY].HEADER);
     listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, listCtrlBudget_->m_columns[COL_SUBCATEGORY].HEADER);

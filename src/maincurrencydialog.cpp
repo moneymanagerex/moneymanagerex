@@ -172,7 +172,7 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxBitmapButton* update_button = new wxBitmapButton(this, wxID_STATIC, mmBitmap(png::CURRATES, mmBitmapButtonSize));
+    wxBitmapButton* update_button = new wxBitmapButton(this, wxID_STATIC, mmBitmapBundle(png::CURRATES, mmBitmapButtonSize));
     itemBoxSizer22->Add(update_button, g_flagsH);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
     mmToolTip(update_button, _("Online update currency rate"));
@@ -291,7 +291,7 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    buttonDownloadHistory_ = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::CURRATES, mmBitmapButtonSize));
+    buttonDownloadHistory_ = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmapBundle(png::CURRATES, mmBitmapButtonSize));
     mmToolTip(buttonDownloadHistory_, _("Download Currency Values history"));
     buttonDownloadHistory_->Disable();
 
@@ -303,7 +303,7 @@ void mmMainCurrencyDialog::CreateControls()
     mmToolTip(historyButtonDelete_, _("Delete selected Currency Values"));
     historyButtonDelete_->Disable();
 
-    buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT, mmBitmapButtonSize));
+    buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, mmBitmapBundle(png::VOID_STAT, mmBitmapButtonSize));
     mmToolTip(buttonDelUnusedHistory_, _("Delete Currency Values history for unused currencies and days"));
     buttonDelUnusedHistory_->Disable();
 

@@ -104,15 +104,6 @@ mmCategDialog::mmCategDialog(wxWindow* parent
     m_IsSelection = bIsSelection;
     m_refresh_requested = false;
 
-    //Get Hidden Categories id from stored string
-    m_hidden_categs.clear();
-    wxString sSettings = Model_Infotable::instance().GetStringInfo("HIDDEN_CATEGS_ID", "");
-    wxStringTokenizer token(sSettings, ";");
-    while (token.HasMoreTokens())
-    {
-        m_hidden_categs.Add(token.GetNextToken());
-    }
-
     this->SetFont(parent->GetFont());
     Create(parent);
       const wxAcceleratorEntry entries[] =
@@ -165,7 +156,7 @@ void mmCategDialog::saveCurrentCollapseState()
     // Determine which categories were collapsed prior to being called, so we can retain state
         wxTreeItemId id = m_treeCtrl->GetFirstChild(m_treeCtrl->GetRootItem(), treeDummyValue);
 
-    m_categoryVisible.clear();
+        m_categoryVisible.clear();
         while (id.IsOk())
         {
             mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(id));
@@ -276,7 +267,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer3->Add(itemBoxSizer33, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
     m_buttonRelocate = new wxBitmapButton(this
-        , wxID_REPLACE_ALL, mmBitmap(png::RELOCATION, mmBitmapButtonSize));
+        , wxID_REPLACE_ALL, mmBitmapBundle(png::RELOCATION, mmBitmapButtonSize));
     m_buttonRelocate->Connect(wxID_REPLACE_ALL, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
     mmToolTip(m_buttonRelocate, _("Reassign all categories to another category"));
@@ -571,21 +562,6 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
     Model_Payee::instance().save(payees);
     mmWebApp::MMEX_WebApp_UpdatePayee();
 
-    wxString sIndex = wxString::Format("*%i:%i*", m_categ_id, m_subcateg_id);
-    wxString sSettings = "";
-    for (size_t i = 0; i < m_hidden_categs.GetCount(); i++)
-    {
-        if (m_subcateg_id != -1 && m_hidden_categs[i] == sIndex)
-            m_hidden_categs.RemoveAt(i, i);
-        else if (m_subcateg_id == -1 && m_hidden_categs[i].Contains(wxString::Format("*%i:", m_categ_id)))
-            m_hidden_categs.RemoveAt(i, i);
-        else
-            sSettings << m_hidden_categs[i] << ";";
-    }
-    sIndex.RemoveLast(1);
-
-    Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
-
     m_treeCtrl->SelectItem(PreviousItem);
     m_selectedItemId = PreviousItem;
 }
@@ -814,21 +790,67 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
 
-    const wxString index = wxString::Format("*%i:%i*", m_categ_id, m_subcateg_id);
+    auto cat = Model_Category::instance().get(m_categ_id);
+    auto subCat = Model_Subcategory::instance().get(m_subcateg_id);
     switch (id)
     {
     case MENU_ITEM_HIDE:
+    {
         m_treeCtrl->SetItemTextColour(m_selectedItemId, wxColour("GREY"));
-        if (m_hidden_categs.Index(index) == wxNOT_FOUND)
-            m_hidden_categs.Add(index);
+        if (m_subcateg_id == -1)
+        {
+            cat->ACTIVE = 0;
+            Model_Category::instance().save(cat);
+        } else
+        {
+            subCat->ACTIVE = 0;   
+            Model_Subcategory::instance().save(subCat); 
+        }
         break;
+    }
     case MENU_ITEM_UNHIDE:
+    {
         m_treeCtrl->SetItemTextColour(m_selectedItemId, NormalColor_);
-        m_hidden_categs.Remove(index);
+        if (m_subcateg_id == -1)
+        {
+            cat->ACTIVE = 1;
+            Model_Category::instance().save(cat);
+        } else
+        {
+            subCat->ACTIVE = 1;  
+            Model_Subcategory::instance().save(subCat);   
+        }
         break;
+    }
     case MENU_ITEM_CLEAR:
-        m_hidden_categs.Clear();
+    {
+        wxMessageDialog msgDlg(this, _("Are you sure you want to unhide all categories")
+                , _("Unhide all categories")
+                , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
+        if (msgDlg.ShowModal() == wxID_YES)
+        {
+            const auto categList = Model_Category::all_categories();
+            Model_Category::instance().Savepoint();
+            Model_Subcategory::instance().Savepoint();
+            for (auto catItem : categList)
+            {
+                if (catItem.second.second == -1)
+                {
+                    auto cat = Model_Category::instance().get(catItem.second.first);
+                    cat->ACTIVE = 1;
+                    Model_Category::instance().save(cat);
+                } else
+                {
+                    auto subCat = Model_Subcategory::instance().get(catItem.second.second);
+                    subCat->ACTIVE = 1;
+                    Model_Subcategory::instance().save(subCat);
+                }
+            }
+            Model_Category::instance().ReleaseSavepoint();
+            Model_Subcategory::instance().ReleaseSavepoint();
+        }
         break;
+    }
     case MENU_ITEM_DELETE:
     {
         mmDoDeleteSelectedCategory();
@@ -836,12 +858,6 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     }
     }
 
-    wxString sSettings = "";
-    for (const auto& item : m_hidden_categs) {
-        sSettings.Append((sSettings.empty() ? "" : ";") + item);
-    }
-
-    Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
     fillControls();
 }
 
@@ -877,16 +893,12 @@ void mmCategDialog::OnItemCollapseOrExpand(wxTreeEvent& event)
 
 bool mmCategDialog::categShowStatus(int categId, int subCategId)
 {
-    if (subCategId != -1)
-    {
-        const wxString cat_index = wxString::Format("*%i:%i*", categId, -1);
-        if (m_hidden_categs.Index(cat_index) != wxNOT_FOUND)
-            return false;
-    }
-
-    const wxString index = wxString::Format("*%i:%i*", categId, subCategId);
-    if (m_hidden_categs.Index(index) != wxNOT_FOUND)
+    if ((subCategId != -1) && Model_Category::is_hidden(categId,-1))
         return false;
+
+    if (Model_Category::is_hidden(categId,subCategId))
+        return false;
+    
     return true;
 }
 

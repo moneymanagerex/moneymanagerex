@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
+ Copyright (C) 2022 Mark WHalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -55,21 +56,22 @@ private:
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
-    void OnTextChanged(wxCommandEvent& event);
+    void OnDataChanged(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
     Model_Currency::Data* m_currency;
     int m_scale;
 
-    wxTextCtrl* m_currencyName;
-    wxStaticText* sampleText_;
-    wxTextCtrl* m_currencySymbol;
-    mmTextCtrl* baseConvRate_;
-    wxTextCtrl* pfxTx_;
-    wxTextCtrl* sfxTx_;
-    wxTextCtrl* decTx_;
-    wxTextCtrl* grpTx_;
-    wxTextCtrl* scaleTx_;
+    wxTextCtrl* mctrl_name;
+    wxTextCtrl* mctrl_code;
+    wxTextCtrl* mctrl_symbol;
+    wxRadioButton* mctrl_prefix;
+    wxRadioButton* mctrl_suffix;
+    wxChoice* mctrl_decimalSep;
+    wxChoice* mctrl_groupSep;
+    wxTextCtrl* mctrl_scale;
+    mmTextCtrl* mctrl_baseConvRate;
+    wxStaticText* mctrl_sampleText;
 
 };
 

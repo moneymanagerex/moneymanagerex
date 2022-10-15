@@ -260,9 +260,9 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Notes")), g_flagsH);
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
-    m_bAttachments = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
+    m_bAttachments = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
     mmToolTip(m_bAttachments, _("Organize attachments of this stock"));
-    wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, mmBitmap(png::WEB, mmBitmapButtonSize));
+    wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, mmBitmapBundle(png::WEB, mmBitmapButtonSize));
     mmToolTip(itemButton31, _("Display the web page for the specified Stock symbol"));
     iconsSizer->Add(m_bAttachments, g_flagsH);
     iconsSizer->Add(itemButton31, g_flagsH);
@@ -327,9 +327,9 @@ void mmStockDialog::CreateControls()
     m_history_price_ctrl->Enable(false);
 
     wxStdDialogButtonSizer*  std_buttons_sizer = new wxStdDialogButtonSizer;
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE, mmBitmapButtonSize));
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmapBundle(png::UPDATE, mmBitmapButtonSize));
     mmToolTip(buttonDownload, _("Download Stock Price history"));
-    wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, mmBitmap(png::IMPORT, mmBitmapButtonSize));
+    wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, mmBitmapBundle(png::IMPORT, mmBitmapButtonSize));
     mmToolTip(buttonImport, _("Import Stock Price history (CSV Format)"));
     wxButton* buttonDel = new wxButton(buttons_panel, wxID_DELETE, _("&Delete "));
     mmToolTip(buttonDel, _("Delete selected Stock Price"));

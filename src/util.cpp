@@ -1711,6 +1711,9 @@ void mmSetSize(wxWindow* w)
     else if (name == "mmEditPayeeDialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("EDITPAYEE_DIALOG_SIZE"); 
     }
+    else if (name == "mmEditSplitOther") {
+        my_size = Model_Infotable::instance().GetSizeSetting("EDITSPLITOTHER_DIALOG_SIZE"); 
+    }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();
@@ -1732,4 +1735,14 @@ void mmFontSize(wxWindow* widget)
     {
         widget->SetFont(widget->GetFont().Larger());
     }
+}
+
+bool isValidURI(const wxString validate)
+{
+    wxString uri = validate.Lower().Trim();
+    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
+    if (pattern.Matches(uri))
+        return true;
+
+    return false;
 }

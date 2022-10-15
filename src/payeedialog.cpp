@@ -91,7 +91,7 @@ void mmEditPayeeDialog::CreateControls()
     const wxString title = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, title), g_flagsH);
-    m_category = new mmComboBoxCategory(this, mmID_CATEGORY);
+    m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, -1, true);
     mmToolTip(m_category, _("The category used as default for this payee"));
     fgSizer1->Add(m_category, g_flagsExpand);                     
 
@@ -142,10 +142,8 @@ void mmEditPayeeDialog::fillControls()
 
 void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    wxString uri = m_website->GetValue().Lower().Trim();
-    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
-    if (!uri.empty() && !pattern.Matches(uri))
-        return mmErrorDialogs::ToolTip4Object(m_website, _("Please insert a valid URL"), _("Invalid URL"));
+    if (!m_website->GetValue().empty() && !isValidURI(m_website->GetValue()))
+        return mmErrorDialogs::ToolTip4Object(m_website, _("Please enter a valid URL"), _("Invalid URL"));
 
     if (!m_category->GetValue().IsEmpty() && !m_category->mmIsValid())
         return mmErrorDialogs::ToolTip4Object(m_category, _("Invalid value"), _("Category"));
@@ -343,7 +341,7 @@ void mmPayeeDialog::CreateControls()
     tools_sizer->Add(tools_sizer2, wxSizerFlags(g_flagsExpand).Border(0));
 
     m_magicButton = new wxBitmapButton(buttons_panel
-        , wxID_APPLY, mmBitmap(png::MORE_OPTIONS, mmBitmapButtonSize));
+        , wxID_APPLY, mmBitmapBundle(png::MORE_OPTIONS, mmBitmapButtonSize));
     mmToolTip(m_magicButton, _("Other tools"));
     tools_sizer2->Add(m_magicButton, g_flagsH);
 

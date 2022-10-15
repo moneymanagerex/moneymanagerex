@@ -248,7 +248,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( asset_details_panel, wxID_STATIC, _("Notes")), g_flagsH);
 
     bAttachments_ = new wxBitmapButton(asset_details_panel, wxID_FILE
-        , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
+        , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
     itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flagsV).Align(wxALIGN_RIGHT));
     mmToolTip(bAttachments_, _("Organize attachments of this asset"));

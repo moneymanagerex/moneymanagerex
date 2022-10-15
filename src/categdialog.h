@@ -131,7 +131,6 @@ private:
     std::map<int, bool> m_categoryVisible;
     bool m_processExpandCollapse;
     wxColour NormalColor_;
-    wxArrayString m_hidden_categs;
     bool m_refresh_requested;
     wxString m_maskStr;
 

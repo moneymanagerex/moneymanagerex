@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014 - 2021 Nikolay Akimov
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -286,7 +286,7 @@ void mmCheckingPanel::CreateControls()
 
     wxBoxSizer* infoPanel = new wxBoxSizer(wxHORIZONTAL);
     m_bitmapTransFilter = new wxButton(this, ID_TRX_FILTER);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
+    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     infoPanel->Add(m_bitmapTransFilter, g_flagsH);
     m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
     infoPanel->Add(m_header_sortOrder, g_flagsH);
@@ -674,7 +674,7 @@ void mmCheckingPanel::initFilterSettings()
 
     auto item = m_transFilterActive ? menu_labels()[MENU_VIEW_FILTER_DIALOG] : menu_labels()[m_currentView];
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
 
     //Text field for name of day of the week
     wxSize buttonSize(wxDefaultSize);
@@ -763,10 +763,10 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
         s.CATEGID = entry.CATEGID;
         s.SUBCATEGID = entry.SUBCATEGID;
         s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        s.NOTES = entry.NOTES;
         splt.push_back(s);
     }
-    mmSplitTransactionDialog splitTransDialog(this
-        , splt, m_AccountID, transType, 0.0, true);
+    mmSplitTransactionDialog splitTransDialog(this, splt, m_AccountID, transType, 0.0, true);
 
     //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();

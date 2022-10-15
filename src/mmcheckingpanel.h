@@ -24,8 +24,6 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 //----------------------------------------------------------------------------
 #include "mmpanelbase.h"
 #include "constants.h"
-//#include "reports/mmDateRange.h"
-//#include "model/Model_Checking.h"
 #include "model/Model_Account.h"
 #include <map>
 //----------------------------------------------------------------------------
@@ -39,7 +37,7 @@ class mmCheckingPanel : public mmPanelBase
 {
 public:
 
-    enum EIcons //m_imageList
+    enum EIcons
     {
         ICON_UNRECONCILED,
         ICON_RECONCILED,

@@ -88,7 +88,6 @@ private:
         COL_NOTES,
         COL_MAX, // number of columns
     };
-    wxImageList* m_imageList;
     double GetGainLoss(long item) const;
     static double getGainLoss(const Model_Stock::Data& stock);
     double GetRealGainLoss(long item) const;

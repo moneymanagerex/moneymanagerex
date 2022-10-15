@@ -275,12 +275,12 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Notes")), g_flagsH);
 
     //Attachments
-    m_attachments_btn = new wxBitmapButton(stock_details_panel, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
+    m_attachments_btn = new wxBitmapButton(stock_details_panel, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
     mmToolTip(m_attachments_btn, _("Organize attachments of this stock"));
     //TODO m_attachments not used here
     m_attachments_btn->Hide();
 
-    wxBitmapButton* web_button = new wxBitmapButton(stock_details_panel, wxID_INDEX, mmBitmap(png::WEB, mmBitmapButtonSize));
+    wxBitmapButton* web_button = new wxBitmapButton(stock_details_panel, wxID_INDEX, mmBitmapBundle(png::WEB, mmBitmapButtonSize));
     mmToolTip(web_button, _("Display the web page for the specified Stock symbol"));
 
     wxBoxSizer* icon_sizer = new wxBoxSizer(wxHORIZONTAL);

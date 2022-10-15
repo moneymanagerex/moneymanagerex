@@ -93,8 +93,8 @@ void mmAppStartDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-    wxBitmap itemStaticBitmap4Bitmap(money_xpm);
-    wxStaticBitmap* itemStaticBitmap4 = new wxStaticBitmap(this, wxID_STATIC, wxBitmap(money_xpm));
+    wxBitmapBundle logo = wxBitmapBundle::FromSVGFile(mmex::getPathResource(mmex::MMEX_LOGO), wxSize(160, 160));
+    wxStaticBitmap* itemStaticBitmap4 = new wxStaticBitmap(this, wxID_STATIC, logo);
 
     itemBoxSizer3->Add(itemStaticBitmap4, g_flagsCenter);
 

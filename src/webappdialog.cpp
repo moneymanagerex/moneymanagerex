@@ -96,7 +96,7 @@ void mmWebAppDialog::CreateControls()
     // Header --------------------------------------------
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 6, 0, 0);
 
-    net_button_ = new wxBitmapButton(this, wxID_EXECUTE, mmBitmap(png::LED_OFF, mmBitmapButtonSize));
+    net_button_ = new wxBitmapButton(this, wxID_EXECUTE, mmBitmapBundle(png::LED_OFF, mmBitmapButtonSize));
     mmToolTip(net_button_, _("Network status (click to refresh)"));
     flex_sizer->Add(net_button_, g_flagsCenter);
 
@@ -113,7 +113,7 @@ void mmWebAppDialog::CreateControls()
     guid_text_->Enable(false);
     guid_text_->SetValue(mmWebApp::getGuid());
 
-    wxBitmapButton* help_button = new wxBitmapButton(this, wxID_HELP, mmBitmap(png::HELP, mmBitmapButtonSize));
+    wxBitmapButton* help_button = new wxBitmapButton(this, wxID_HELP, mmBitmapBundle(png::HELP, mmBitmapButtonSize));
     if (isStartup_)
     {
         help_button->Disable();
@@ -183,7 +183,7 @@ void mmWebAppDialog::OnCheckNetwork(wxCommandEvent& /*event*/)
 void mmWebAppDialog::fillControls()
 {
     isFilledOnce_ = true;
-    net_button_->SetBitmap(mmBitmap(png::LED_OFF, mmBitmapButtonSize));
+    net_button_->SetBitmap(mmBitmapBundle(png::LED_OFF, mmBitmapButtonSize));
     webtranListBox_->DeleteAllItems();
     WebAppTransactions_.clear();
     mainBoxSizer_->Show(loadingSizer_, true);
@@ -215,10 +215,10 @@ void mmWebAppDialog::fillControls()
             wxMessageBox(msgStr, _("Transactions download error"), wxICON_ERROR);
         }
 
-        return net_button_->SetBitmap(mmBitmap(png::LED_RED, mmBitmapButtonSize));
+        return net_button_->SetBitmap(mmBitmapBundle(png::LED_RED, mmBitmapButtonSize));
     }
 
-    net_button_->SetBitmap(mmBitmap(png::LED_GREEN));
+    net_button_->SetBitmap(mmBitmapBundle(png::LED_GREEN));
 
     for (const auto& WebTran : WebAppTransactions_)
     {

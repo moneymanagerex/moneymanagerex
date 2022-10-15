@@ -67,9 +67,9 @@ private:
     mmTextCtrl* m_initbalance_ctrl = nullptr;
     mmDatePickerCtrl* m_initdate_ctrl = nullptr;
 
-    std::unique_ptr<wxImageList> m_imageList;
+    wxVector<wxBitmapBundle> m_images;
     wxBitmapButton* m_bitmapButtons = nullptr;
-    wxBitmapButton* bAttachments_;
+    wxBitmapButton* bAttachments_ = nullptr;
     wxString m_accessInfo;
 
     wxCheckBox* m_statement_lock_ctrl = nullptr;

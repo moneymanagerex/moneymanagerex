@@ -354,6 +354,7 @@ void mmGUIFrame::cleanup()
     /* Delete the GUI */
     cleanupHomePanel(false);
     ShutdownDatabase();
+    CloseTheme();
 
     // Backup the database according to user requirements
     if (Option::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
@@ -553,6 +554,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->CATEGID = item.CATEGID;
                     split->SUBCATEGID = item.SUBCATEGID;
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
+                    split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
                 }
                 Model_Splittransaction::instance().save(checking_splits);
@@ -683,8 +685,8 @@ void mmGUIFrame::createControls()
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
 
-    const double dpiScale = GetDPIScaleFactor();
-    m_nav_tree_ctrl->AssignImageList(navtree_images_list(Option::instance().getNavigationIconSize(), dpiScale));
+    const auto navIconSize = Option::instance().getNavigationIconSize();
+    m_nav_tree_ctrl->SetImages(navtree_images_list(navIconSize));
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
@@ -1973,6 +1975,45 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         m_password = password;
+
+        // WE CAN EVENTUALLY DELETE THIS CODE
+        // Get Hidden Categories id from stored INFO string and move to Category/Subcategory tables
+        wxString sSettings = Model_Infotable::instance().GetStringInfo("HIDDEN_CATEGS_ID", "");
+        if (!sSettings.empty())
+        {
+            wxStringTokenizer token(sSettings, ";");
+            Model_Category::instance().Savepoint();
+            Model_Subcategory::instance().Savepoint();
+            while (token.HasMoreTokens())
+            {
+                wxString catData = token.GetNextToken();
+                int catID = 0;
+                int subCatID = 0;
+                if (2 == sscanf(catData.mb_str(),"*%d:%d*", &catID, &subCatID))
+                {
+                    if (subCatID == -1)
+                    {
+                        Model_Category::Data* cat = Model_Category::instance().get(catID);
+                        if (cat && cat->CATEGID != -1)
+                        {
+                            cat->ACTIVE = 0;
+                            Model_Category::instance().save(cat);
+                        }
+                    } else
+                    {
+                        Model_Subcategory::Data* subcat = Model_Subcategory::instance().get(subCatID);
+                        if (subcat && subcat->SUBCATEGID != -1)
+                        {
+                            subcat->ACTIVE = 0;
+                            Model_Subcategory::instance().save(subcat);
+                        }
+                    }
+                }
+            }
+            Model_Category::instance().ReleaseSavepoint();
+            Model_Subcategory::instance().ReleaseSavepoint();
+            Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", "");
+        }
     }
     else if (openingNew) // New Database
     {
@@ -2691,7 +2732,7 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
     //toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
-    toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS, toolbar_icon_size));
+    toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmapBundle(png::NEWS, toolbar_icon_size));
 
     const auto b = toolBar_->FindTool(MENU_ANNOUNCEMENTMAILING);
     if (b) b->SetShortHelp(_("Register/View Release &Notifications"));

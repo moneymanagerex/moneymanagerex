@@ -118,7 +118,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         Model_Checking::getTransactionData(m_trx_data, transaction);
         const auto s = Model_Checking::splittransaction(transaction);
         for (const auto& item : s)
-            m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+            m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT, item.NOTES });
 
         if (m_duplicate && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
         {
@@ -321,7 +321,8 @@ void mmTransDialog::dataToControls()
                 Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
                 , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
 
-            if (!transactions.empty()) 
+            if (!transactions.empty()
+                    && (!Model_Category::is_hidden(transactions.back().CATEGID, -1) && !Model_Category::is_hidden(transactions.back().CATEGID, transactions.back().SUBCATEGID)))
             {
                 const int cat = transactions.back().CATEGID;
                 const int subcat = transactions.back().SUBCATEGID;
@@ -465,7 +466,8 @@ void mmTransDialog::CreateControls()
 
     categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label_->SetFont(this->GetFont().Bold());
-    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY);
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
+                                            , m_trx_data.CATEGID, m_trx_data.SUBCATEGID, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
@@ -626,7 +628,8 @@ bool mmTransDialog::ValidateData()
             m_trx_data.TOACCOUNTID = -1;
         }
 
-        if (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+        if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+                    && (!Model_Category::is_hidden(m_trx_data.CATEGID, -1) && !Model_Category::is_hidden(m_trx_data.CATEGID, m_trx_data.SUBCATEGID)))
         {
             payee->CATEGID = m_trx_data.CATEGID;
             payee->SUBCATEGID = m_trx_data.SUBCATEGID;
@@ -927,7 +930,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // If this is a Split Transaction, ignore displaying last category for payee
     if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
          Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
-        && m_local_splits.empty() && m_new_trx && !m_duplicate)
+        && m_local_splits.empty() && m_new_trx && !m_duplicate
+        && (!Model_Category::is_hidden(payee->CATEGID, -1) && !Model_Category::is_hidden(payee->CATEGID, payee->SUBCATEGID)))
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
@@ -985,6 +989,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
         s.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
+        s.NOTES = m_trx_data.NOTES;
         m_local_splits.push_back(s);
     }
 
@@ -1002,6 +1007,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_trx_data.CATEGID = m_local_splits[0].CATEGID;
         m_trx_data.SUBCATEGID = m_local_splits[0].SUBCATEGID;
         m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
+        textNotes_->SetValue(m_local_splits[0].NOTES);
         m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
         m_local_splits.clear();
     }
@@ -1114,6 +1120,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         s->CATEGID = entry.CATEGID;
         s->SUBCATEGID = entry.SUBCATEGID;
         s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        s->NOTES = entry.NOTES;
         splt.push_back(*s);
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
@@ -1222,7 +1229,7 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS));
 
     if (button)
-        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
+        button->SetBitmap(mmBitmapBundle(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
 
     m_custom_fields->ShowHideCustomPanel();
 
