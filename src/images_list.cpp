@@ -186,7 +186,6 @@ const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3,
 const int mmBitmapButtonSize = 16;
 bool darkFound, darkMode;
 
-//static wxSharedPtr<wxBitmap> programIcons[numSizes][MAX_PNG];
 Document metaData_doc;
 
 // Using SVG and wxBitmapBundle for better HiDPI support.
@@ -254,51 +253,6 @@ wxVector<wxBitmapBundle> navtree_images_list(const int size)
     return (images);
 }
 
-/*wxImageList* navtree_images_list(const int size, const double dpiScale)
-{
-    int x = (size > 0) ? size : Option::instance().getIconSize();
-    if (x < 16) x = 16;
-    if (x > 48) x = 48;
-    wxImageList* imageList = createImageList(x);
-    for (const auto& img : navtree_images(x))
-    {
-        auto &bundle = img.second;
-        wxSize size = bundle.GetDefaultSize();
-        wxASSERT(size.GetHeight() == x && size.GetWidth() == x);
-
-        gCachedBitmaps[img.first] = bundle.GetBitmap(size*dpiScale);
-        imageList->Add(gCachedBitmaps[img.first]);
-    }
-    for (const auto& img : acc_images(x))
-    {
-        auto &bundle = img.second;
-        wxSize size = bundle.GetDefaultSize();
-        wxASSERT(size.GetHeight() == x && size.GetWidth() == x);
-
-        gCachedBitmaps[img.first] = bundle.GetBitmap(size*dpiScale);
-        imageList->Add(gCachedBitmaps[img.first]);
-    }
-
-    return imageList;
-}*/
-
-/*wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
-{
-    int totalSize = size * size;
-    unsigned char *data = static_cast<unsigned char *> (malloc (totalSize * 3));
-    unsigned char *alpha = static_cast<unsigned char *> (malloc (totalSize));
-
-    for (int i = 0; i < totalSize; i++)
-    {
-        data[(3 * i)] = rgba[(4 * i)];
-        data[(3 * i) + 1] = rgba[(4 * i) + 1];
-        data[(3 * i) + 2] = rgba[(4 * i) + 2];
-        alpha[i] = rgba[(4 * i) + 3];
-    }
-
-    wxImage image (size, size, data, alpha);
-    return (new wxBitmap (image));
-}*/
 
 static unsigned int getIconSizeIdx(const int iconSize)
 {
