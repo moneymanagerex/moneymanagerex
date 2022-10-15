@@ -414,9 +414,9 @@ void mmUnivCSVDialog::CreateControls()
     }
     itemBoxSizer6->Add(bImport_, 0, wxALIGN_CENTER | wxALL, 5);
 
-    wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    itemBoxSizer6->Add(itemCancelButton, 0, wxALIGN_CENTER | wxALL, 5);
-    itemCancelButton->SetFocus();
+    wxButton* itemCloseButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
+    itemBoxSizer6->Add(itemCloseButton, 0, wxALIGN_CENTER | wxALL, 5);
+    itemCloseButton->SetFocus();
 
     //Log viewer
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxVERTICAL);
