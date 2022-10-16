@@ -100,7 +100,7 @@ public:
     wxString GetSettingsPrfix() const;
 
 private:
-    wxButton* bImport_;
+    wxButton* bImport_ = nullptr;
 
     enum EUnivCvs
     {
@@ -141,31 +141,31 @@ private:
     };
 private:
     EDialogType dialogType_;
-    wxString delimit_;
+    wxString delimit_ = ",";
     wxString decimal_;
 
     std::vector<int> csvFieldOrder_;
-    wxListBox* csvFieldCandicate_;
-    wxListBox* csvListBox_;
+    wxListBox* csvFieldCandicate_ = nullptr;
+    wxListBox* csvListBox_ = nullptr;
 
-    wxButton* m_button_add_;
-    wxButton* m_button_remove_;
-    wxChoice* m_choice_account_;
-    wxListCtrl* m_list_ctrl_; //preview
-    wxTextCtrl* m_text_ctrl_;
-    wxTextCtrl* m_setting_name_ctrl_;
-    wxTextCtrl* log_field_;
-    wxTextCtrl* m_textDelimiter;
-    wxSpinCtrl* m_spinIgnoreFirstRows_;
-    wxSpinCtrl* m_spinIgnoreLastRows_;
+    wxButton* m_button_add_ = nullptr;
+    wxButton* m_button_remove_ = nullptr;
+    wxChoice* m_choice_account_ = nullptr;
+    wxListCtrl* m_list_ctrl_ = nullptr; //preview
+    wxTextCtrl* m_text_ctrl_ = nullptr;
+    wxTextCtrl* m_setting_name_ctrl_ = nullptr;
+    wxTextCtrl* log_field_ = nullptr;
+    wxTextCtrl* m_textDelimiter = nullptr;
+    wxSpinCtrl* m_spinIgnoreFirstRows_ = nullptr;
+    wxSpinCtrl* m_spinIgnoreLastRows_ = nullptr;
 
     std::map<int, wxString> CSVFieldName_;
 private:
-    wxChoice* choiceDateFormat_;
-    wxChoice* m_choiceEncoding;
+    wxChoice* choiceDateFormat_ = nullptr;
+    wxChoice* m_choiceEncoding = nullptr;
     wxString date_format_;
-    mmColorButton* colorButton_;
-    wxCheckBox* colorCheckBox_;
+    mmColorButton* colorButton_ = nullptr;
+    wxCheckBox* colorCheckBox_ = nullptr;
 
     wxChoice* m_choiceAmountFieldSign;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
@@ -173,10 +173,10 @@ private:
     wxCheckBox* m_checkBoxExportTitles;
 
     int accountID_;
-    bool importSuccessful_;
-    bool m_userDefinedDateMask;
+    bool importSuccessful_ = false;
+    bool m_userDefinedDateMask = false;
     int m_object_in_focus;
-    bool m_reverce_sign;
+    bool m_reverce_sign = false;
     wxString depositType_;
 
     /// Creation

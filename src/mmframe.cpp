@@ -685,7 +685,8 @@ void mmGUIFrame::createControls()
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
 
-    m_nav_tree_ctrl->SetImages(navtree_images_list(Option::instance().getNavigationIconSize()));
+    const auto navIconSize = Option::instance().getNavigationIconSize();
+    m_nav_tree_ctrl->SetImages(navtree_images_list(navIconSize));
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 

@@ -81,28 +81,8 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     long style
 ) :
     dialogType_(dialogType),
-    delimit_(","),
-    bImport_(nullptr),
-    csvFieldCandicate_(nullptr),
-    csvListBox_(nullptr),
-    m_button_add_(nullptr),
-    m_button_remove_(nullptr),
-    m_choice_account_(nullptr),
-    m_list_ctrl_(nullptr),
-    m_text_ctrl_(nullptr),
-    m_setting_name_ctrl_(nullptr),
-    log_field_(nullptr),
-    m_textDelimiter(nullptr),
-    m_spinIgnoreFirstRows_(nullptr),
-    m_spinIgnoreLastRows_(nullptr),
-    choiceDateFormat_(nullptr),
-    m_choiceAmountFieldSign(nullptr),
-    m_choiceDecimalSeparator(nullptr),
-    importSuccessful_(false),
-    m_userDefinedDateMask(false),
-    m_reverce_sign(false),
-    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT]),
-    decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT)
+    decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
+    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
 {
     CSVFieldName_[UNIV_CSV_ID] = wxTRANSLATE("ID");
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
@@ -434,9 +414,9 @@ void mmUnivCSVDialog::CreateControls()
     }
     itemBoxSizer6->Add(bImport_, 0, wxALIGN_CENTER | wxALL, 5);
 
-    wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    itemBoxSizer6->Add(itemCancelButton, 0, wxALIGN_CENTER | wxALL, 5);
-    itemCancelButton->SetFocus();
+    wxButton* itemCloseButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
+    itemBoxSizer6->Add(itemCloseButton, 0, wxALIGN_CENTER | wxALL, 5);
+    itemCloseButton->SetFocus();
 
     //Log viewer
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxVERTICAL);

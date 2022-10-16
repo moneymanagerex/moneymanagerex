@@ -214,5 +214,4 @@ long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
 void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
-//const wxBitmap mmBitMap(int ref, int size = -1);
 const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize = -1);
