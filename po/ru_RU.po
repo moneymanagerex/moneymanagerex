@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-15 19:41\n"
+"PO-Revision-Date: 2022-10-16 19:08\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Введите начальный баланс для данного с�
 
 #: accountdialog.cpp:168
 msgid "Opening Date:"
-msgstr ""
+msgstr "Дата открытия:"
 
 #: accountdialog.cpp:171
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Дата открытия счета"
 
 #: accountdialog.cpp:174 import_export/univcsvdialog.cpp:1877
 msgid "Currency:"
