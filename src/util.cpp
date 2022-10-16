@@ -1307,7 +1307,6 @@ const wxString getProgramDescription(int type)
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")" << eol
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
         << bull + LUA_RELEASE << eol
-        << bull + "lunasvg v2.3.1" << eol
         << bull + curl_version() << eol
         << bull + GETTEXT_VERSION << eol
         << bull + "apexcharts.js" << eol

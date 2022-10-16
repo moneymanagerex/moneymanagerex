@@ -34,7 +34,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/mstream.h>
 #include <wx/tokenzr.h>
 #include <memory>
-//#include "../3rd/lunasvg/include/lunasvg.h"
 
 #include <array>
 
@@ -378,11 +377,6 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 themeStream.Read(memOut);
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
 
-
-                //std::unique_ptr<lunasvg::Document> document = lunasvg::Document::loadFromData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
-                //if (!document)
-                //    continue;
-
                 int svgEnum = iconName2enum.find(fileName)->second.first;
                 for(const auto &sizePair : sizes)
                 {
@@ -394,23 +388,6 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                                                                 )
                                                   );
                 }
-
-                /*std::uint32_t bgColor = 0;
-                if (iconName2enum.find(fileName)->second.second)
-                    bgColor = bgStringConv;
-
-                lunasvg::Bitmap bitmap;
-
-                // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
-
-                for (const auto& i : sizes)
-                {
-                    bitmap = document->renderToBitmap(i.second, i.second, bgColor);
-                    if (!bitmap.valid())
-                        continue;
-                    programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
-                }*/
-
             }
         }
         cont = directory.GetNext(&filename);
