@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-09-28 23:10:47.317664.
+ *          AUTO GENERATED at 2022-10-16 12:50:22.607317.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -64,7 +64,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
