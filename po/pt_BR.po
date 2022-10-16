@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-15 19:41\n"
+"PO-Revision-Date: 2022-10-16 00:55\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Insira o saldo inicial desta conta."
 
 #: accountdialog.cpp:168
 msgid "Opening Date:"
-msgstr ""
+msgstr "Data de abertura:"
 
 #: accountdialog.cpp:171
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "A data quando a conta foi aberta"
 
 #: accountdialog.cpp:174 import_export/univcsvdialog.cpp:1877
 msgid "Currency:"
@@ -283,7 +283,7 @@ msgstr "Moeda"
 
 #: accountdialog.cpp:526 payeedialog.cpp:146
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Por favor, insira uma URL válida"
 
 #: accountdialog.cpp:526 payeedialog.cpp:146
 msgid "Invalid URL"
@@ -291,26 +291,26 @@ msgstr "URL inválida"
 
 #: accountdialog.cpp:534
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Data de abertura não pode estar no futuro"
 
 #: accountdialog.cpp:534 accountdialog.cpp:543 accountdialog.cpp:548
 #: accountdialog.cpp:555 billsdepositsdialog.cpp:1018
 #: billsdepositsdialog.cpp:1021 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:554
 msgid "Invalid Date"
-msgstr ""
+msgstr "Data Inválida"
 
 #: accountdialog.cpp:543
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "As transações para esta conta já existem antes desta data"
 
 #: accountdialog.cpp:548
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Compras de ações para esta conta já existem antes desta data"
 
 #: accountdialog.cpp:555
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "Transações recorrentes para esta conta estão agendadas antes desta data"
 
 #: accountdialog.h:39 mmframe.cpp:1576 mmframe.cpp:1819
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -1161,7 +1161,7 @@ msgstr "Valor Inválido"
 #: import_export/univcsvdialog.cpp:1050 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:552
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "A data de abertura da conta é posterior à data desta transação"
 
 #: billsdepositsdialog.cpp:1185
 msgid "Specify the transfer amount in the From Account"
@@ -1451,7 +1451,7 @@ msgstr "Informe o valor orçado para esta categoria."
 
 #: budgetentrydialog.cpp:157 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Insira observações para descrever esta entrada de orçamento"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
