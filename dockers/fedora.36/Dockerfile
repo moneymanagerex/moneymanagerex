@@ -4,7 +4,7 @@ RUN ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime && echo "Europe/Lon
     dnf -y install --setopt=install_weak_deps=False \
       ccache \
       cmake \
-      fmt \
+      fmt-devel \
       gcc-c++ \
       gettext \
       git \
