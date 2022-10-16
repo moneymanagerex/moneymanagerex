@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-16 19:08\n"
+"PO-Revision-Date: 2022-10-16 20:03\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -283,7 +283,7 @@ msgstr "Валюта"
 
 #: accountdialog.cpp:526 payeedialog.cpp:146
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Пожалуйста, введите правильный URL"
 
 #: accountdialog.cpp:526 payeedialog.cpp:146
 msgid "Invalid URL"
@@ -291,26 +291,26 @@ msgstr "Неверный URL"
 
 #: accountdialog.cpp:534
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Дата открытия не может быть в будущем"
 
 #: accountdialog.cpp:534 accountdialog.cpp:543 accountdialog.cpp:548
 #: accountdialog.cpp:555 billsdepositsdialog.cpp:1018
 #: billsdepositsdialog.cpp:1021 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:554
 msgid "Invalid Date"
-msgstr ""
+msgstr "Неверная дата"
 
 #: accountdialog.cpp:543
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Существуют транзакции в этом счёте до указанной даты"
 
 #: accountdialog.cpp:548
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Существуют сделки в этом счёте до указанной даты"
 
 #: accountdialog.cpp:555
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "Существуют повторяющиеся транзакции в этом счёте до указанной даты"
 
 #: accountdialog.h:39 mmframe.cpp:1576 mmframe.cpp:1819
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -1161,7 +1161,7 @@ msgstr "Неверное значение"
 #: import_export/univcsvdialog.cpp:1050 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:552
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Дата открытия счета позже даты этой транзакции"
 
 #: billsdepositsdialog.cpp:1185
 msgid "Specify the transfer amount in the From Account"
@@ -1456,7 +1456,7 @@ msgstr "Введите размер бюджета для данной кате�
 
 #: budgetentrydialog.cpp:157 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Введите примечания для этой записи в бюджете"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1774,11 +1774,11 @@ msgstr "Результат замены категории"
 
 #: categdialog.cpp:827
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Вы уверены, что хотите раскрыть все категории"
 
 #: categdialog.cpp:828
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Раскрыть все категории"
 
 #: categdialog.cpp:867
 msgid "Hide Selected Category"
@@ -1897,7 +1897,7 @@ msgstr "Название валюты"
 
 #: currencydialog.cpp:198
 msgid "Currency Code"
-msgstr ""
+msgstr "Код валюты"
 
 #: currencydialog.cpp:203
 msgid "Currency Symbol"
@@ -1905,15 +1905,15 @@ msgstr "Обозначение валюты"
 
 #: currencydialog.cpp:207
 msgid "Symbol Location"
-msgstr ""
+msgstr "Расположение символа"
 
 #: currencydialog.cpp:208
 msgid "Prefix"
-msgstr ""
+msgstr "Префикс"
 
 #: currencydialog.cpp:209
 msgid "Suffix"
-msgstr ""
+msgstr "Суффикс"
 
 #: currencydialog.cpp:215 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:362
@@ -1922,11 +1922,11 @@ msgstr "Разделитель целой и дробной части"
 
 #: currencydialog.cpp:218 currencydialog.cpp:225
 msgid "Dot"
-msgstr ""
+msgstr "Точка"
 
 #: currencydialog.cpp:219 currencydialog.cpp:226
 msgid "Comma"
-msgstr ""
+msgstr "Запятая"
 
 #: currencydialog.cpp:221
 msgid "Grouping Char"
@@ -1934,7 +1934,7 @@ msgstr "Разделитель групп"
 
 #: currencydialog.cpp:227
 msgid "Space"
-msgstr ""
+msgstr "Пробел"
 
 #: currencydialog.cpp:232
 msgid "Scale"
@@ -1971,7 +1971,7 @@ msgstr "Неверная запись"
 
 #: currencydialog.cpp:290 currencydialog.cpp:315
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "Символ раздела групп не может совпадать с десятичным знаком"
 
 #: currencydialog.cpp:337
 #, c-format
@@ -2555,7 +2555,7 @@ msgstr "Введите любой текст для поиска по замет
 
 #: filtertransdialog.cpp:634
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Используйте регулярное выражение: для сопоставления с использованием регулярных выражений."
 
 #: filtertransdialog.cpp:651
 msgid "Presentation Options"
@@ -3442,7 +3442,7 @@ msgstr "Тип (снятие/депозит) неизвестен."
 #: import_export/univcsvdialog.cpp:1049
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Строка %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1074
 #, c-format
@@ -3908,7 +3908,7 @@ msgstr "Если название актива не заполнять, то о�
 
 #: mmchecking_list.cpp:203
 msgid "Sort Order"
-msgstr ""
+msgstr "Порядок сортировки"
 
 #: mmchecking_list.cpp:423
 msgid "&New Withdrawal"
@@ -5303,11 +5303,11 @@ msgstr "Акции"
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Общая стоимость"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "Другие активы"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5425,11 +5425,11 @@ msgstr "Удешевление"
 
 #: model/Model_Asset.cpp:31
 msgid "Percentage"
-msgstr ""
+msgstr "Процент"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "Линейный"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -5479,11 +5479,11 @@ msgstr "Проверка запланированной транзакции"
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "Валюта"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "Крипта"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -6145,19 +6145,19 @@ msgstr "Размер прочих значков"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "Изменить получателя"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Введите имя получателя. Это имя можно изменить в любое время."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "Скрыто"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Укажите, скрыть ли получателя и не отображать далее в списке получателей для новых транзакций"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6169,23 +6169,23 @@ msgstr "Категория по умолчанию"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Категория, используемая по умолчанию для этого получателя"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "Ссылка"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Ссылка на получателя, например номер банковского счета"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "Сайт"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "URL сайта, связанный с получателем платежа"
 
 #: payeedialog.cpp:170
 msgid "Payee with same name exists"
@@ -6193,7 +6193,7 @@ msgstr "Получатель с таким именем уже существу�
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "Вебсайт"
 
 #: payeedialog.cpp:470
 msgid "Payee in use."
@@ -6754,11 +6754,11 @@ msgstr "Редактирование транзакции"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Изменить детали разделённой транзакции"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Введите заметки для этой разделённой транзакции"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -7530,7 +7530,7 @@ msgstr "Не верный WebApp счёт"
 
 #: webapp.cpp:553
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Текущая дата будет использоваться как дата транзакции"
 
 #: webapp.cpp:583 webapp.cpp:617 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
