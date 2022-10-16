@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-16 00:55\n"
+"PO-Revision-Date: 2022-10-16 02:15\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1769,11 +1769,11 @@ msgstr "Resultado da realocação de Categoria"
 
 #: categdialog.cpp:827
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Tem certeza de que deseja reexibir todas as categorias?"
 
 #: categdialog.cpp:828
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Mostrar todas as categorias"
 
 #: categdialog.cpp:867
 msgid "Hide Selected Category"
@@ -1892,7 +1892,7 @@ msgstr "Nome da Moeda"
 
 #: currencydialog.cpp:198
 msgid "Currency Code"
-msgstr ""
+msgstr "Código da Moeda"
 
 #: currencydialog.cpp:203
 msgid "Currency Symbol"
@@ -1900,15 +1900,15 @@ msgstr "Símbolo da Moeda"
 
 #: currencydialog.cpp:207
 msgid "Symbol Location"
-msgstr ""
+msgstr "Localização Símbolo"
 
 #: currencydialog.cpp:208
 msgid "Prefix"
-msgstr ""
+msgstr "Prefixo"
 
 #: currencydialog.cpp:209
 msgid "Suffix"
-msgstr ""
+msgstr "Sufixo"
 
 #: currencydialog.cpp:215 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:362
@@ -1917,11 +1917,11 @@ msgstr "Separador Decimal"
 
 #: currencydialog.cpp:218 currencydialog.cpp:225
 msgid "Dot"
-msgstr ""
+msgstr "Ponto"
 
 #: currencydialog.cpp:219 currencydialog.cpp:226
 msgid "Comma"
-msgstr ""
+msgstr "Virgula"
 
 #: currencydialog.cpp:221
 msgid "Grouping Char"
@@ -1929,7 +1929,7 @@ msgstr "Separador de Milhar"
 
 #: currencydialog.cpp:227
 msgid "Space"
-msgstr ""
+msgstr "Espaço"
 
 #: currencydialog.cpp:232
 msgid "Scale"
@@ -1966,7 +1966,7 @@ msgstr "Informação Inválida"
 
 #: currencydialog.cpp:290 currencydialog.cpp:315
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "O caractere de agrupamento não pode ser o mesmo que o caractere decimal"
 
 #: currencydialog.cpp:337
 #, c-format
@@ -2548,7 +2548,7 @@ msgstr "Digite qualquer sequência de caracteres para encontrá-la nas observaç
 
 #: filtertransdialog.cpp:634
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Use regex: para corresponder usando expressões regulares."
 
 #: filtertransdialog.cpp:651
 msgid "Presentation Options"
@@ -3433,7 +3433,7 @@ msgstr "Tipo (pagamento/recebimento) desconhecido."
 #: import_export/univcsvdialog.cpp:1049
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Linha %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1074
 #, c-format
@@ -3899,7 +3899,7 @@ msgstr "Se o campo Nome da Ação estiver vazio, ele será preenchido quando os 
 
 #: mmchecking_list.cpp:203
 msgid "Sort Order"
-msgstr ""
+msgstr "Ordem de Classificação"
 
 #: mmchecking_list.cpp:423
 msgid "&New Withdrawal"
@@ -5278,11 +5278,11 @@ msgstr "Stock"
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Valor Líquido Total"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "Outros Ativos"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5400,11 +5400,11 @@ msgstr "Depreciação"
 
 #: model/Model_Asset.cpp:31
 msgid "Percentage"
-msgstr ""
+msgstr "Porcentagem"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -5454,11 +5454,11 @@ msgstr "Verificação de Transação Recorrente MMEX"
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "Fiduciária"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "Cripto"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -6120,19 +6120,19 @@ msgstr "Tamanho de outros ícones"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "Editar Favorecido"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Digite o nome do Favorecido. Este nome pode ser renomeado a qualquer momento."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "Oculto"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Indique se o beneficiário deve ser ocultado e não apresentado na lista de beneficiários para novas transações"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6144,23 +6144,23 @@ msgstr "Categoria Padrão"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "A categoria usada como padrão para este beneficiário"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Uma referência a ser usada para o beneficiário, por exemplo, número de conta bancária"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "Web Site"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "URL do site associado ao beneficiário"
 
 #: payeedialog.cpp:170
 msgid "Payee with same name exists"
@@ -6168,7 +6168,7 @@ msgstr "Já existe um Beneficiário com este nome"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #: payeedialog.cpp:470
 msgid "Payee in use."
@@ -6729,11 +6729,11 @@ msgstr "Editar Transação de Ação"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Editar Detalhe Divisão"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Insira observações para descrever esta transação dividida"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -7505,7 +7505,7 @@ msgstr "Conta WebApp errada"
 
 #: webapp.cpp:553
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Hoje será usado como a data da transação"
 
 #: webapp.cpp:583 webapp.cpp:617 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
