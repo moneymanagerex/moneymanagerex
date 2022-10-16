@@ -70,8 +70,6 @@ This software uses the following open source packages:
 
 [libcurl]
 
-[lunasvg]
-
 #### Supported platforms ####
 - Windows XP, 2003, Vista, 7, 8 and 10
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
@@ -116,7 +114,6 @@ Tips
 [SQLite3]: http://sqlite.org/
 [Mongoose]: https://github.com/cesanta/mongoose
 [RapidJSON]: http://rapidjson.org/
-[lunasvg]: https://github.com/sammycage/lunasvg
 [ChartNew.JS]: https://github.com/FVANCOP/ChartNew.js
 [ApexCharts.js]: https://apexcharts.com/
 [html-template]: https://github.com/moneymanagerex/html-template

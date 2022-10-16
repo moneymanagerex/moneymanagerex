@@ -22,9 +22,6 @@
 [submodule "3rd/apexcharts.js"]
 	path = 3rd/apexcharts.js
 	url = https://github.com/apexcharts/apexcharts.js.git
-[submodule "3rd/lunasvg"]
-	path = 3rd/lunasvg
-	url = https://github.com/sammycage/lunasvg.git
 [submodule "themes"]
 	path = themes
 	url = https://github.com/moneymanagerex/themes.git

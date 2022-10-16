@@ -374,7 +374,6 @@ target_link_libraries(${MMEX_EXE} PUBLIC
     HTML-template
     CURL::libcurl
     fmt
-    lunasvg
     LuaGlue
     Lua)
 
