@@ -61,6 +61,7 @@ private:
 
     Model_Currency::Data* m_currency;
     int m_scale;
+    bool m_locale_used;
 
     wxTextCtrl* mctrl_name;
     wxTextCtrl* mctrl_code;
