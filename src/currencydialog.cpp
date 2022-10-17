@@ -33,6 +33,9 @@
 #include <wx/combobox.h>
 #include <wx/valnum.h>
 
+#include <fmt/core.h>
+#include <fmt/format.h>
+
 wxIMPLEMENT_DYNAMIC_CLASS(mmCurrencyDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmCurrencyDialog, wxDialog)
@@ -81,6 +84,21 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
         m_currency->GROUP_SEPARATOR = ",";
         m_currency->CURRENCY_TYPE = Model_Currency::FIAT_STR;
     }
+
+    // Check if locale will be used in preference
+    const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    m_locale_used = false;
+    if (!locale.empty())
+    {
+        try {
+            fmt::format(std::locale(locale.c_str()), "{:L}", 123);
+            m_locale_used = true;
+        }
+        catch (...) {
+            // nothing
+        }
+    }
+
 
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -151,23 +169,10 @@ void mmCurrencyDialog::fillControls()
                 break;
         mctrl_groupSep->SetSelection(i);
         m_scale = log10(m_currency->SCALE);
-        mctrl_decimalSep->Enable(m_scale > 0); 
+        mctrl_decimalSep->Enable(!m_locale_used && m_scale > 0); 
+        mctrl_groupSep->Enable(!m_locale_used); 
         const wxString& scale_value = wxString::Format("%i", m_scale);
         mctrl_scale->ChangeValue(scale_value);
-
-        /*const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
-        if (!locale.empty())
-        {
-            try {
-                fmt::format(std::locale(locale.c_str()), "{:L}", 123);
-                decTx_->Disable();
-                grpTx_->Disable();
-            }
-            catch (...) {
-                //Do nothing
-            }
-        }*/
-
         mctrl_code->ChangeValue(m_currency->CURRENCY_SYMBOL);
 
         bool baseCurrency = (Option::instance().getBaseCurrencyID() == m_currency->CURRENCYID);
@@ -314,7 +319,7 @@ void mmCurrencyDialog::OnDataChanged(wxCommandEvent& WXUNUSED(event))
         mmErrorDialogs::ToolTip4Object(mctrl_groupSep, _("Invalid Entry")
                 , _("Grouping character cannot be the same as the decimal character"));
 
-    mctrl_decimalSep->Enable(scale > 0); 
+    mctrl_decimalSep->Enable(!m_locale_used && scale > 0); 
 
     if (mctrl_prefix->GetValue())
     {
@@ -335,7 +340,7 @@ void mmCurrencyDialog::OnDataChanged(wxCommandEvent& WXUNUSED(event))
     double base_amount = 1234567.89;
 
     dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency, scale));
-    if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
+    if (!mctrl_groupSep->IsEnabled())
         dispAmount = dispAmount + "  " + _("(Using Locale)");
     mctrl_sampleText->SetLabelText(dispAmount);
 }
