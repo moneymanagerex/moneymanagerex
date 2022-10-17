@@ -340,7 +340,7 @@ void mmCurrencyDialog::OnDataChanged(wxCommandEvent& WXUNUSED(event))
     double base_amount = 1234567.89;
 
     dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency, scale));
-    if (!mctrl_groupSep->IsEnabled())
+    if (m_locale_used)
         dispAmount = dispAmount + "  " + _("(Using Locale)");
     mctrl_sampleText->SetLabelText(dispAmount);
 }
