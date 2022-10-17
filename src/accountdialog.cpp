@@ -69,6 +69,7 @@ mmNewAcctDialog::mmNewAcctDialog()
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     : m_account(account)
 {
+    m_images = navtree_images_list();
     m_currencyID = m_account->CURRENCYID;
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
     wxASSERT(currency);
