@@ -250,9 +250,12 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
     datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND && !s_range.empty());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
-    wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
-    evt.SetInt(rangeChoice_->GetSelection());
-    OnChoice(evt);
+    if (datesCheckBox_->IsChecked())
+    {
+        wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
+        evt.SetInt(rangeChoice_->GetSelection());
+        OnChoice(evt);
+    }
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
