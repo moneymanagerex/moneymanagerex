@@ -68,9 +68,10 @@ enum img {
     TERMACCOUNT_NORMAL_PNG,
     STOCK_ACC_NORMAL_PNG,
     CASH_ACC_NORMAL_PNG,
+    TRASH_PNG,
     LOAN_ACC_NORMAL_PNG,
     ACCOUNT_CLOSED_PNG,
-    LAST_NAVTREE_PNG
+    LAST_NAVTREE_PNG,
 };
 
 /* Images set for accounts to be user assigned */
@@ -130,6 +131,7 @@ enum png {
     ASSET_NORMAL,
     ACCOUNT_CLOSED,
     RECURRING,
+    TRASH,
     BUDGET,
     PIE_CHART,
     

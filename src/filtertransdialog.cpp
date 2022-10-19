@@ -50,7 +50,9 @@ static const wxString TRANSACTION_STATUSES[] =
     wxTRANSLATE("Void"),
     wxTRANSLATE("Follow Up"),
     wxTRANSLATE("Duplicate"),
-    wxTRANSLATE("All Except Reconciled")
+    wxTRANSLATE("Trash"),
+    wxTRANSLATE("All Except Reconciled"),
+    wxTRANSLATE("Not Trash")
 };
 
 static const wxString GROUPBY_OPTIONS[] =
@@ -1100,6 +1102,10 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
     {
         return "R" != itemStatus;
     }
+    else if ("N" == filterStatus) // Not Trash
+    {
+        return "T" != itemStatus;
+    }
     return false;
 }
 
@@ -1491,6 +1497,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     {
         wxArrayString s = Model_Checking::all_status();
         s.Add(wxTRANSLATE("All Except Reconciled"));
+        s.Add(wxTRANSLATE("Not Trash"));
         int item = choiceStatus_->GetSelection();
         wxString status;
         if (0 <= item && static_cast<size_t>(item) < s.size())

@@ -449,7 +449,8 @@ void mmQIFExportDialog::mmExportQIF()
     wxArrayInt allCustomFields4Export;
 
     const auto transactions = Model_Checking::instance().find(
-        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
+        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL));
 
     if (exp_transactions && !transactions.empty())
     {

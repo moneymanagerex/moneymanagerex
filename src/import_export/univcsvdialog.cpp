@@ -1176,7 +1176,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
         , Model_Checking::TOACCOUNTID(fromAccountID)))
     {
-        if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
+        if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || Model_Checking::status(pBankTransaction) == Model_Checking::TRASH)
             continue;
 
         Model_Checking::Full_Data tran(pBankTransaction, split);
@@ -1391,7 +1391,7 @@ void mmUnivCSVDialog::update_preview()
             for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
                 , Model_Checking::TOACCOUNTID(fromAccountID)))
             {
-                if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
+                if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || Model_Checking::status(pBankTransaction) == Model_Checking::TRASH)
                     continue;
 
                 Model_Checking::Full_Data tran(pBankTransaction, split);

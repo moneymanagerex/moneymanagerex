@@ -213,6 +213,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
 
     for (const auto &trx : transactions)
@@ -399,6 +400,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range.get()->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
     );
 
