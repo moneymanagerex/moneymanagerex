@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-15 19:41\n"
+"PO-Revision-Date: 2022-10-18 10:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "输入账户初始金额。"
 
 #: accountdialog.cpp:168
 msgid "Opening Date:"
-msgstr ""
+msgstr "开始日期："
 
 #: accountdialog.cpp:171
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "开设账户的日期"
 
 #: accountdialog.cpp:174 import_export/univcsvdialog.cpp:1877
 msgid "Currency:"
@@ -283,7 +283,7 @@ msgstr "货币"
 
 #: accountdialog.cpp:526 payeedialog.cpp:146
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "请输入有效的 URL 地址"
 
 #: accountdialog.cpp:526 payeedialog.cpp:146
 msgid "Invalid URL"
@@ -291,26 +291,26 @@ msgstr "无效的 URL"
 
 #: accountdialog.cpp:534
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "开始日期不能是将来的日期"
 
 #: accountdialog.cpp:534 accountdialog.cpp:543 accountdialog.cpp:548
 #: accountdialog.cpp:555 billsdepositsdialog.cpp:1018
 #: billsdepositsdialog.cpp:1021 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:554
 msgid "Invalid Date"
-msgstr ""
+msgstr "无效的日期"
 
 #: accountdialog.cpp:543
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "此账户的交易在此日期之前已存在"
 
 #: accountdialog.cpp:548
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "该账户的股票购买在此日期前已经存在"
 
 #: accountdialog.cpp:555
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "该账户的经常性交易计划在此日期之前进行"
 
 #: accountdialog.h:39 mmframe.cpp:1576 mmframe.cpp:1819
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -1161,7 +1161,7 @@ msgstr "无效值"
 #: import_export/univcsvdialog.cpp:1050 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:552
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "账户的开始日期晚于此交易的日期"
 
 #: billsdepositsdialog.cpp:1185
 msgid "Specify the transfer amount in the From Account"
@@ -1448,7 +1448,7 @@ msgstr "输入这个类目的预算金额"
 
 #: budgetentrydialog.cpp:157 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "输入描述此预算条目的说明"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1766,11 +1766,11 @@ msgstr "类目移动结果"
 
 #: categdialog.cpp:827
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "你确定你要取消隐藏所有类别吗？"
 
 #: categdialog.cpp:828
 msgid "Unhide all categories"
-msgstr ""
+msgstr "取消隐藏所有类别"
 
 #: categdialog.cpp:867
 msgid "Hide Selected Category"
@@ -1889,7 +1889,7 @@ msgstr "货币名字"
 
 #: currencydialog.cpp:198
 msgid "Currency Code"
-msgstr ""
+msgstr "货币代码"
 
 #: currencydialog.cpp:203
 msgid "Currency Symbol"
@@ -1897,15 +1897,15 @@ msgstr "货币符号"
 
 #: currencydialog.cpp:207
 msgid "Symbol Location"
-msgstr ""
+msgstr "符号位置"
 
 #: currencydialog.cpp:208
 msgid "Prefix"
-msgstr ""
+msgstr "前缀"
 
 #: currencydialog.cpp:209
 msgid "Suffix"
-msgstr ""
+msgstr "后缀"
 
 #: currencydialog.cpp:215 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:362
@@ -1914,11 +1914,11 @@ msgstr "小数点"
 
 #: currencydialog.cpp:218 currencydialog.cpp:225
 msgid "Dot"
-msgstr ""
+msgstr "点"
 
 #: currencydialog.cpp:219 currencydialog.cpp:226
 msgid "Comma"
-msgstr ""
+msgstr "逗号"
 
 #: currencydialog.cpp:221
 msgid "Grouping Char"
@@ -1926,7 +1926,7 @@ msgstr "货币千位分割符"
 
 #: currencydialog.cpp:227
 msgid "Space"
-msgstr ""
+msgstr "空格"
 
 #: currencydialog.cpp:232
 msgid "Scale"
@@ -1963,7 +1963,7 @@ msgstr "输入无效"
 
 #: currencydialog.cpp:290 currencydialog.cpp:315
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "分组字符不能与十进制字符相同"
 
 #: currencydialog.cpp:337
 #, c-format
@@ -2544,7 +2544,7 @@ msgstr "输入任何字符串以在交易记录中找到它"
 
 #: filtertransdialog.cpp:634
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "使用正则表达式：匹配正则表达式。"
 
 #: filtertransdialog.cpp:651
 msgid "Presentation Options"
@@ -3428,7 +3428,7 @@ msgstr "类型(支出/存款) 未知。"
 #: import_export/univcsvdialog.cpp:1049
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "行 %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1074
 #, c-format
@@ -3894,7 +3894,7 @@ msgstr "如果股票名称字段为空，当价格更新时它将被归档"
 
 #: mmchecking_list.cpp:203
 msgid "Sort Order"
-msgstr ""
+msgstr "排序方式"
 
 #: mmchecking_list.cpp:423
 msgid "&New Withdrawal"
@@ -5262,11 +5262,11 @@ msgstr "股票"
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "总净资产"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "其他资产"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5384,11 +5384,11 @@ msgstr "贬值"
 
 #: model/Model_Asset.cpp:31
 msgid "Percentage"
-msgstr ""
+msgstr "百分比"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "线性"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -5438,11 +5438,11 @@ msgstr "MMEX 周期性交易检查"
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "法定货币"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "加密货币"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -6104,19 +6104,19 @@ msgstr "其他图标大小"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "编辑收款人"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "输入收款人名称。此名称可以随时重命名。"
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "隐藏"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "指示收款人是否应该隐藏而不是在收款人列表中显示新交易"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6128,23 +6128,23 @@ msgstr "默认类目"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "此收款人使用的默认类别"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "引用"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "用于收款人的引用，例如银行帐号"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "网站"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "与收款人关联的网站 URL"
 
 #: payeedialog.cpp:170
 msgid "Payee with same name exists"
@@ -6152,7 +6152,7 @@ msgstr "收帐人名称已存在"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "网站"
 
 #: payeedialog.cpp:470
 msgid "Payee in use."
@@ -6713,11 +6713,11 @@ msgstr "编辑股票交易"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "编辑拆分详情"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "输入注释来描述这笔拆分交易"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -7489,7 +7489,7 @@ msgstr "错误的 WebApp 账户"
 
 #: webapp.cpp:553
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "今天将被用作交易日期"
 
 #: webapp.cpp:583 webapp.cpp:617 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
