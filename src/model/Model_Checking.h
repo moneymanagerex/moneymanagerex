@@ -32,7 +32,7 @@ public:
 
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
+    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_, TRASH};
 
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
     static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;

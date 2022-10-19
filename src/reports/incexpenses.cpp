@@ -48,7 +48,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(transaction))
@@ -147,7 +148,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(transaction))

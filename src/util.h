@@ -106,6 +106,7 @@ public:
         FAVORITES,
         ASSETS,
         BILLS,
+        TRASH,
         FILTER,
         FILTER_REPORT,
         MENU_ACCOUNT,

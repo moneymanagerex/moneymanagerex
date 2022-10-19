@@ -120,6 +120,7 @@ extern const wxString INIDB_SEND_USAGE_STATS;
 extern const wxString INIDB_CHECK_NEWS;
 
 extern const wxString INIDB_HIDE_SHARE_ACCOUNTS;
+extern const wxString INIDB_HIDE_DELETED_TRANSACTIONS;
 extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
 extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
 extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
@@ -151,6 +152,7 @@ enum id
     mmID_PAYEE,
     mmID_SPLIT,
     mmID_ALLTRANSACTIONS,
+    mmID_DELETEDTRANSACTIONS,
     mmID_BROWSER,
     mmID_REMOVE,
     mmID_COLOR,

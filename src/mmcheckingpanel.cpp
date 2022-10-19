@@ -66,6 +66,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_listCtrlAccount()
     , m_AccountID(accountID)
     , isAllAccounts_((-1 == accountID) ? true : false)
+    , isTrash_((-2 == accountID) ? true : false)
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
@@ -88,7 +89,7 @@ bool mmCheckingPanel::Create(
     const wxSize& size, long style, const wxString& name
 )
 {
-    if (isAllAccounts_) {
+    if (isAllAccounts_ || isTrash_) {
         m_currency = Model_Currency::GetBaseCurrency();
     }
     else {
@@ -127,7 +128,7 @@ void mmCheckingPanel::filterTable()
 {
     m_listCtrlAccount->m_trans.clear();
 
-    m_account_balance = !isAllAccounts_ && m_account ? m_account->INITIALBAL : 0.0;
+    m_account_balance = !isAllAccounts_ && !isTrash_ && m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
     
@@ -157,11 +158,12 @@ void mmCheckingPanel::filterTable()
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
 
-    const auto i = isAllAccounts_ ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
+    const auto i = (isAllAccounts_ ? Model_Checking::instance().all() : (isTrash_ ? Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::TRASH)) : Model_Account::transaction(this->m_account)));
+
     for (const auto& tran : i)
     {
-        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && Model_Checking::status(tran.STATUS) != Model_Checking::TRASH)
             m_account_balance += transaction_amount;
 
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
@@ -197,7 +199,7 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && Model_Checking::status(tran.STATUS) != Model_Checking::TRASH)
             m_filteredBalance += transaction_amount;
 
         full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
@@ -241,8 +243,8 @@ void mmCheckingPanel::filterTable()
                 }
             }
         }
-
-        m_listCtrlAccount->m_trans.push_back(full_tran);
+        if (isTrash_ || !(isTrash_ || Model_Checking::status(full_tran.STATUS) == Model_Checking::TRASH))
+            m_listCtrlAccount->m_trans.push_back(full_tran);
     }
 }
 
@@ -322,7 +324,7 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
     // load the global variables
-    m_sortSaveTitle = isAllAccounts_ ? "ALLTRANS" : "CHECK";
+    m_sortSaveTitle = isAllAccounts_ ? "ALLTRANS" : (isTrash_ ? "DELETED" : "CHECK");
 
     long val = m_listCtrlAccount->COL_DEF_SORT;
     wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL", m_sortSaveTitle), wxString() << val);
@@ -363,6 +365,7 @@ void mmCheckingPanel::CreateControls()
     m_btnNew = new wxButton(itemPanel12, wxID_NEW, _("&New "));
     mmToolTip(m_btnNew, _("New Transaction"));
     itemButtonsSizer->Add(m_btnNew, 0, wxRIGHT, 5);
+    if (isTrash_) m_btnNew->Enable(false);
 
     m_btnEdit = new wxButton(itemPanel12, wxID_EDIT, _("&Edit "));
     mmToolTip(m_btnEdit, _("Edit selected transaction"));
@@ -379,14 +382,14 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(m_btnDuplicate, 0, wxRIGHT, 5);
     m_btnDuplicate->Enable(false);
 
-    const auto &btnDupSize = m_btnDuplicate->GetSize();
+    const auto& btnDupSize = m_btnDuplicate->GetSize();
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
         , mmBitmapBundle(png::CLIP), wxDefaultPosition
         , wxSize(btnDupSize.GetY(), btnDupSize.GetY()));
     mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
     m_btnAttachment->Enable(false);
-
+    
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, m_btnDuplicate->GetSize().GetHeight())
@@ -417,6 +420,8 @@ wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) cons
 {
     if (isAllAccounts_)
         return wxString::Format(_("Full Transactions Report"));
+    else if (isTrash_)
+        return wxString::Format(_("Deleted Transactions"));
     else
         return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
 }
@@ -432,7 +437,7 @@ void mmCheckingPanel::setAccountSummary()
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
     m_header_text->SetLabelText(GetPanelTitle(*account));
 
-    if (!isAllAccounts_)
+    if (!isAllAccounts_ && !isTrash_)
     {
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
         const wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
@@ -452,7 +457,7 @@ void mmCheckingPanel::setAccountSummary()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::enableTransactionButtons(bool editDelete, bool duplicate, bool attach)
 {
- 
+    if (isTrash_) return;
     m_btnEdit->Enable(editDelete);
     m_btnDelete->Enable(editDelete);
 
@@ -562,6 +567,12 @@ void mmCheckingPanel::showTips()
 void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 {
     m_listCtrlAccount->OnDeleteTransaction(event);
+}
+//----------------------------------------------------------------------------
+
+void mmCheckingPanel::OnRestoreTransaction(wxCommandEvent& event)
+{
+    m_listCtrlAccount->OnRestoreTransaction(event);
 }
 //----------------------------------------------------------------------------
 

@@ -271,7 +271,7 @@ table {
                     if (showColumnById(9)) 
                         if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
-                        else 
+                        else if (Model_Checking::status(transaction.STATUS) != Model_Checking::TRASH)
                             hb.addCurrencyCell(amount, curr);
                     total[curr->CURRENCYID] += amount;
                     grand_total[curr->CURRENCYID] += amount;
