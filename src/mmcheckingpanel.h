@@ -120,6 +120,7 @@ private:
     wxButton* m_btnEdit = nullptr;
     wxButton* m_btnDuplicate = nullptr;
     wxButton* m_btnDelete = nullptr;
+    wxButton* m_btnRestore = nullptr;
     wxButton* m_btnAttachment = nullptr;
     wxStaticText* m_header_text = nullptr;
     wxStaticText* m_header_sortOrder = nullptr;

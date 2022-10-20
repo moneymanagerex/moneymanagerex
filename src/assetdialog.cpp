@@ -138,8 +138,8 @@ void mmAssetDialog::dataToControls()
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(std::abs(m_asset->VALUE));
-
-    if (!Model_Translink::TranslinkList(Model_Attachment::ASSET, m_asset->ASSETID).empty())
+    Model_Translink::Data_Set translink = Model_Translink::TranslinkList(Model_Attachment::ASSET, m_asset->ASSETID);
+    if (!translink.empty())
     {
         m_value->Enable(false);
     }
@@ -151,7 +151,7 @@ void mmAssetDialog::dataToControls()
     m_assetType->SetSelection(Model_Asset::type(m_asset));
 
     // Set up the transaction if this is the first entry.
-    if (Model_Translink::TranslinkList(Model_Attachment::ASSET, m_asset->ASSETID).empty())
+    if (translink.empty())
     {
         m_transaction_panel->SetTransactionValue(m_asset->VALUE);
     }
@@ -162,6 +162,13 @@ void mmAssetDialog::dataToControls()
         m_assetType->Enable(false);
         m_dpc->Enable(false);
         m_value->Enable(false);
+    }
+
+    if (m_checking_entry && Model_Checking::status(m_checking_entry) == Model_Checking::TRASH) {
+        m_valueChange->Enable(false);
+        m_valueChangeRate->Enable(false);
+        m_notes->Enable(false);
+        bAttachments_->Enable(false);
     }
 }
 

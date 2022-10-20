@@ -350,6 +350,24 @@ void mmTransDialog::dataToControls()
 
     if (!skip_tooltips_init_)
         SetTooltips();
+
+    if (Model_Checking::status(m_status) == Model_Checking::TRASH) {
+        dpc_->Enable(false);
+        transaction_type_->Enable(false);
+        cbAccount_->Enable(false);
+        m_textAmount->Enable(false);
+        cbToAccount_->Enable(false);
+        toTextAmount_->Enable(false);
+        cAdvanced_->Enable(false);
+        cbPayee_->Enable(false);
+        cbCategory_->Enable(false);
+        bSplit_->Enable(false);
+        bAuto->Enable(false);
+        textNumber_->Enable(false);
+        textNotes_->Enable(false);
+        bColours_->Enable(false);
+        bAttachments_->Enable(false);
+    }
 }
 
 void mmTransDialog::CreateControls()
@@ -383,7 +401,8 @@ void mmTransDialog::CreateControls()
     choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
     for (const auto& i : Model_Checking::all_status()) {
-        choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
+        if(i != "Trash") choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
+        if (i == "Trash" && Model_Checking::status(m_trx_data) == Model_Checking::TRASH) choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
@@ -481,7 +500,7 @@ void mmTransDialog::CreateControls()
 
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
 
-    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
+    bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     mmToolTip(bAuto, _("Populate Transaction #"));
 
@@ -1078,7 +1097,6 @@ void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 
 void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    m_trx_data.STATUS = "";
     m_trx_data.NOTES = textNotes_->GetValue();
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_trx_data.TRANSDATE = dpc_->GetValue().FormatISODate();
@@ -1086,7 +1104,10 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (status_obj)
     {
         m_status = Model_Checking::toShortStatus(status_obj->GetData());
-        m_trx_data.STATUS = m_status;
+        if (Model_Checking::status(m_status) == Model_Checking::TRASH) {
+            if (Model_Checking::status(m_trx_data) != Model_Checking::TRASH) m_trx_data.STATUS = m_trx_data.STATUS.Append("T");
+        }
+        else m_trx_data.STATUS = m_status;
     }
 
     if (!ValidateData()) return;

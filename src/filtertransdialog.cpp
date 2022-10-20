@@ -1104,7 +1104,11 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
     }
     else if ("N" == filterStatus) // Not Trash
     {
-        return "T" != itemStatus;
+        return !itemStatus.EndsWith("T");
+    }
+    else if ("T" == filterStatus) // Trash
+    {
+        return itemStatus.EndsWith("T");
     }
     return false;
 }

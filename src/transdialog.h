@@ -109,6 +109,7 @@ private:
     mmComboBoxPayee* cbPayee_;
     mmComboBoxCategory* cbCategory_;
     wxBitmapButton* bSplit_;
+    wxBitmapButton* bAuto;
     wxCheckBox* cAdvanced_;
     wxButton* m_button_cancel;
     wxChoice* choiceStatus_;

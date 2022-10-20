@@ -192,7 +192,7 @@ Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
     else if (r.CmpNoCase("V") == 0) ret = VOID_;
     else if (r.CmpNoCase("F") == 0) ret = FOLLOWUP;
     else if (r.CmpNoCase("D") == 0) ret = DUPLICATE_;
-    else if (r.CmpNoCase("T") == 0) ret = TRASH;
+    else if (r.EndsWith("T")) ret = TRASH;
     cache.insert(std::make_pair(r, ret));
 
     return ret;

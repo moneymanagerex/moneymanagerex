@@ -213,13 +213,12 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
 
     for (const auto &trx : transactions)
     {
-        // Do not include asset or stock transfers in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(trx))
+        // Do not include asset or stock transfers or deleted transactions in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(trx) || Model_Checking::status(trx) == Model_Checking::TRASH)
             continue;
 
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
@@ -400,15 +399,14 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range.get()->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::TRASH, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
     );
 
     for (const auto& pBankTransaction : transactions)
     {
 
-        // Do not include asset or stock transfers in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
+        // Do not include asset or stock transfers or deleted transactions in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction) || Model_Checking::status(pBankTransaction) == Model_Checking::TRASH)
             continue;
 
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
