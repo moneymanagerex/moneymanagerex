@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-17 06:38\n"
+"PO-Revision-Date: 2022-10-20 06:01\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgstr "Ημερομηνία Έναρξης:"
 
 #: accountdialog.cpp:171
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Η ημερομηνία ανοίγματος του λογαριασμού"
 
 #: accountdialog.cpp:174 import_export/univcsvdialog.cpp:1877
 msgid "Currency:"
@@ -291,7 +291,7 @@ msgstr "Λανθασμένο URL"
 
 #: accountdialog.cpp:534
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Η ημερομηνία έναρξης δεν μπορεί να είναι στο μέλλον"
 
 #: accountdialog.cpp:534 accountdialog.cpp:543 accountdialog.cpp:548
 #: accountdialog.cpp:555 billsdepositsdialog.cpp:1018
@@ -302,15 +302,15 @@ msgstr "Μη έγκυρη ημερομηνία"
 
 #: accountdialog.cpp:543
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Συναλλαγές για αυτόν το λογαριασμό υπάρχουν ήδη πριν από αυτή την ημερομηνία"
 
 #: accountdialog.cpp:548
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Αγορές μετοχών για αυτόν τον λογαριασμό υπάρχουν ήδη πριν από αυτή την ημερομηνία"
 
 #: accountdialog.cpp:555
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "Οι επαναλαμβανόμενες συναλλαγές για αυτό το λογαριασμό έχουν προγραμματιστεί πριν από αυτή την ημερομηνία"
 
 #: accountdialog.h:39 mmframe.cpp:1576 mmframe.cpp:1819
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -1161,7 +1161,7 @@ msgstr "Μη έγκυρη τιμή"
 #: import_export/univcsvdialog.cpp:1050 stockdialog.cpp:428 transdialog.cpp:578
 #: transdialog.cpp:654 usertransactionpanel.cpp:434 webapp.cpp:552
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Η ημερομηνία έναρξης του λογαριασμού είναι μεταγενέστερη από την ημερομηνία της συναλλαγής"
 
 #: billsdepositsdialog.cpp:1185
 msgid "Specify the transfer amount in the From Account"
@@ -1452,7 +1452,7 @@ msgstr "Εισάγετε το προϋπολογισμένο ποσό για α�
 
 #: budgetentrydialog.cpp:157 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Εισάγετε σημειώσεις για να περιγράψετε αυτή την εγγραφή προϋπολογισμού"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1770,11 +1770,11 @@ msgstr "Αποτέλεσμα μετατόπισης κατηγορίας"
 
 #: categdialog.cpp:827
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Είστε σίγουρος ότι θέλετε να επανεμφανίσετε όλες τις κατηγορίες"
 
 #: categdialog.cpp:828
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Επανεμφάνιση όλων των κατηγοριών"
 
 #: categdialog.cpp:867
 msgid "Hide Selected Category"
@@ -1901,7 +1901,7 @@ msgstr "Σύμβολο νομίσματος"
 
 #: currencydialog.cpp:207
 msgid "Symbol Location"
-msgstr ""
+msgstr "Τοποθεσία Συμβόλου"
 
 #: currencydialog.cpp:208
 msgid "Prefix"
@@ -5271,11 +5271,11 @@ msgstr "Απόθεμα"
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Σύνολο Καθαρής Αξίας"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "Λοιπά Ενεργητικά"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5397,7 +5397,7 @@ msgstr "Ποσοστό"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "Γραμμικό"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -6111,7 +6111,7 @@ msgstr "Μέγεθος Εικονιδίου Άλλα"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "Επεξεργασία Δικαιούχου"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
@@ -6135,7 +6135,7 @@ msgstr "Προεπιλεγμένη Κατηγορία"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Η κατηγορία χρησιμοποιήθηκε ως προεπιλογή για αυτόν τον δικαιούχο"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
@@ -6720,11 +6720,11 @@ msgstr "Επεξεργασία Κοινοποίησης Συναλλαγής"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Επεξεργασία Λεπτομερειών Διαχωρισμού"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Εισάγετε σημειώσεις για να περιγράψετε αυτή τη διαχωρισμένη συναλλαγή"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -7495,7 +7495,7 @@ msgstr "Λάθος λογαριασμός WebApp"
 
 #: webapp.cpp:553
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Η σημερινή ημερομηνία θα χρησιμοποιηθεί ως ημερομηνία συναλλαγής"
 
 #: webapp.cpp:583 webapp.cpp:617 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
