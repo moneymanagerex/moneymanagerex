@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-20 06:01\n"
+"PO-Revision-Date: 2022-10-21 06:36\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1967,7 +1967,7 @@ msgstr "Μη έγκυρη εισαγωγή"
 
 #: currencydialog.cpp:290 currencydialog.cpp:315
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "Ο χαρακτήρας ομαδοποίησης δεν μπορεί να είναι ο ίδιος με τον χαρακτήρα δεκαδικών αριθμών"
 
 #: currencydialog.cpp:337
 #, c-format
@@ -2549,7 +2549,7 @@ msgstr "Εισάγετε οποιαδήποτε φράση για να τη βρ
 
 #: filtertransdialog.cpp:634
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Χρήση regex: για αντιστοίχιση με τη χρήση κανονικών εκφράσεων."
 
 #: filtertransdialog.cpp:651
 msgid "Presentation Options"
@@ -3430,7 +3430,7 @@ msgstr "Τύπος (ανάληψη/κατάθεση) άγνωστος."
 #: import_export/univcsvdialog.cpp:1049
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Γραμμή %ld %s"
 
 #: import_export/univcsvdialog.cpp:1074
 #, c-format
@@ -5447,7 +5447,7 @@ msgstr "Έλεγχος Επαναλαμβανόμενης Συναλλαγής M
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
@@ -6115,7 +6115,7 @@ msgstr "Επεξεργασία Δικαιούχου"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Εισάγετε το όνομα του δικαιούχου. Αυτό το όνομα μπορεί να μετονομαστεί ανά πάσα στιγμή."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
@@ -6123,7 +6123,7 @@ msgstr "Κρυφό"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Αναφέρατε αν ο δικαιούχος πληρωμής θα πρέπει να κρυφτεί και να μην παρουσιάζεται στον κατάλογο δικαιούχων για νέες συναλλαγές"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6143,7 +6143,7 @@ msgstr "Αναφορά"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Στοιχεία που πρέπει να χρησιμοποιούνται για τον δικαιούχο, π.χ. αριθμός τραπεζικού λογαριασμού"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
@@ -6151,7 +6151,7 @@ msgstr "Ιστοσελίδα"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "URL ιστοσελίδας που σχετίζεται με τον δικαιούχο"
 
 #: payeedialog.cpp:170
 msgid "Payee with same name exists"
