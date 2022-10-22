@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-15 19:41\n"
+"PO-Revision-Date: 2022-10-22 09:31\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Engedélyezze az MMEX használatáról adatok anonim küldését, hogy s
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:276
 #: transactionsupdatedialog.cpp:266 transdialog.cpp:536 wizard_update.cpp:216
 msgid "&OK "
-msgstr "&OK"
+msgstr "&Rendben "
 
 #: accountdialog.cpp:109 mmframe.cpp:1579
 msgid "Edit Account"
@@ -2410,8 +2410,8 @@ msgstr "Érvénytelen fájltartalom, vegye fel a kapcsolatot az MMEX-támogatás
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr "Ezt a log-ot küldje meg az MMEX-nek:\n"
-"a mentéshez nyomjon OK-t, vagy Cancel-t a kilépéshez"
+msgstr "Küldje el ezt a naplót az MMEX támogatási csapatának:\n"
+"nyomja meg a Rendben gombot a fájlba mentéshez vagy a Mégse gombot a kilépéshez"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:284
 msgid "MMEX debug"
@@ -3131,12 +3131,12 @@ msgstr "Dátumformátum"
 
 #: import_export/qif_import_gui.cpp:532
 msgid "Press OK Button to continue"
-msgstr "Nyomj OK-t a folytatsához"
+msgstr "Nyomja meg a Rendben gombot a folytatáshoz"
 
 #: import_export/qif_import_gui.cpp:731 import_export/qif_import_gui.cpp:760
 #: import_export/qif_import_gui.cpp:777
 msgid "OK"
-msgstr "OK"
+msgstr "Rendben"
 
 #: import_export/qif_import_gui.cpp:741 import_export/qif_import_gui.cpp:760
 #: stockspanel.cpp:391
