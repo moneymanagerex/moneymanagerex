@@ -22,6 +22,10 @@
 #include "model/Model_Account.h"
 #include "../resources/addacctwiz.xpm"
 
+BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)
+    EVT_WIZARD_CANCEL(wxID_ANY, mmNewDatabaseWizard::OnCancel)
+END_EVENT_TABLE()
+
 mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
     : wxWizard(frame, wxID_ANY, _("New Database Wizard")
         , wxBitmap(addacctwiz_xpm), wxDefaultPosition, wxDEFAULT_DIALOG_STYLE)
@@ -49,8 +53,9 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
     GetPageAreaSizer()->Add(page1);
 }
 
-void mmNewDatabaseWizard::RunIt(bool modal)
+bool mmNewDatabaseWizard::RunIt(bool modal)
 {
+    success_ = true;
     if (modal)
     {
         if (RunWizard(page1))
@@ -66,6 +71,12 @@ void mmNewDatabaseWizard::RunIt(bool modal)
         ShowPage(page1);
         Show(true);
     }
+    return success_;
+}
+
+void mmNewDatabaseWizard::OnCancel(wxWizardEvent& evt)
+{
+    success_ = false;
 }
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizardPage, wxWizardPageSimple)
