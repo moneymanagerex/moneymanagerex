@@ -2033,7 +2033,13 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
         wizard->CenterOnParent();
-        wizard->RunIt(true);
+        if (!wizard->RunIt(true))
+        {
+            ShutdownDatabase();
+            wxRemoveFile(fileName);
+            return false;
+        }
+
         wxButton* next = static_cast<wxButton*>(wizard->FindWindow(wxID_FORWARD)); //FIXME: 
         if (next) next->SetLabel(_("&Next ->"));
 
