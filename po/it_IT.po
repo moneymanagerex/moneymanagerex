@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-15 22:25+0300\n"
-"PO-Revision-Date: 2022-10-16 13:39\n"
+"PO-Revision-Date: 2022-10-21 11:23\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5185,7 +5185,7 @@ msgstr "Saldo dei Conti"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Bilanci"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5428,7 +5428,7 @@ msgstr "Altro"
 
 #: model/Model_Asset.cpp:93
 msgid "Asset Error"
-msgstr ""
+msgstr "Errore del cespite"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5523,7 +5523,7 @@ msgstr "Lo script SQL:\n"
 
 #: model/Model_Stock.cpp:54
 msgid "Stock Error"
-msgstr ""
+msgstr "Errore del titolo"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6004,11 +6004,11 @@ msgstr "Riepilogo Budget Categorie con totali"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Scavalca il bilancio annuale conbilancio mensile"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Se esiste un bilancio mensile, utilizzare questo per ignorare il bilancio annuale; altrimenti combinarli"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6637,11 +6637,11 @@ msgstr "Commissioni"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Guadagno/Perdita realizzato"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Guadagno/Perdita non realizzato"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6945,11 +6945,11 @@ msgstr "Totale Azioni"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Quota Media"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "Costo Totale"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"

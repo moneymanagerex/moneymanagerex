@@ -29,10 +29,14 @@ class mmNewDatabaseWizard : public wxWizard
 {
 public:
     mmNewDatabaseWizard(wxFrame *frame);
-    void RunIt(bool modal);
+    bool RunIt(bool modal);
 
 private:
+    void OnCancel(wxWizardEvent& evt);
     wxWizardPageSimple* page1;
+    bool success_;
+    
+    wxDECLARE_EVENT_TABLE();
 };
 
 class mmNewDatabaseWizardPage : public wxWizardPageSimple
