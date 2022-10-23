@@ -810,9 +810,14 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     switch (id)
     {
     case ID_PERIOD_CB:
+    {
         if (dateRangeCheckBox_->IsChecked())
             dateRangeCheckBox_->SetValue(false);
+        wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
+        evt.SetInt(rangeChoice_->GetSelection());
+        OnChoice(evt);
         break;
+    }
     case ID_DATE_RANGE_CB:
         if (datesCheckBox_->IsChecked())
             datesCheckBox_->SetValue(false);
