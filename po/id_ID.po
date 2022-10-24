@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-24 00:25+0300\n"
-"PO-Revision-Date: 2022-10-24 00:12\n"
+"PO-Revision-Date: 2022-10-24 01:25\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -2400,15 +2400,16 @@ msgstr "Konten file tidak valid, harap menghubungi dukungan MMEX!"
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "Kirimkan log ini ke tim dukungan MMEX:\n"
+"tekan Oke unutk menyimpan file atau Batal untuk keluar"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:284
 msgid "MMEX debug"
-msgstr ""
+msgstr "Debug MMEX"
 
 #: dbupgrade.cpp:244
 msgid "Save debug file"
-msgstr ""
+msgstr "Simpan file debug"
 
 #: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2416,7 +2417,7 @@ msgstr "Pemeliharaan DB selesai, silakan tutup dan buka kembali MMEX!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Ketika membuka file basis data:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2430,28 +2431,30 @@ msgstr "Anda harus menetukan lokasi ke file data keuangan yang berbeda"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Kata sandi yang salah diberikan untuk file yang terenkripsi\n"
+"atau\n"
+"terdapat upaya untuk membuka File yang bukan merupakan file basis data\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:941 webapp.cpp:121
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Galat: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1916
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "Pembukaan Basis Data MMEX - Galat"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnosa"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Pengembang mungkin meminta Anda menyediakan informasi yang ada di sini untuk membantu mendiagnosa masalah yang Anda laporkan dengan program ini."
 
 #: filtertrans.cpp:183
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 #: filtertransdialog.cpp:48 mmchecking_list.cpp:483 mmchecking_list.cpp:940
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
