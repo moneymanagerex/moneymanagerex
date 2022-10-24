@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-24 00:25+0300\n"
-"PO-Revision-Date: 2022-10-24 14:28\n"
+"PO-Revision-Date: 2022-10-24 15:28\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -2527,51 +2527,51 @@ msgstr "Transfer Masuk"
 
 #: filtertransdialog.cpp:599
 msgid "Amount Range"
-msgstr ""
+msgstr "Rentang Jumlah"
 
 #: filtertransdialog.cpp:632
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Masukkan string apa pun untuk menemukannya di catatan transaksi"
 
 #: filtertransdialog.cpp:637
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Gunakan regex: untuk mencocokkan menggunakan ekspresi reguler."
 
 #: filtertransdialog.cpp:654
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opsi Presentasi"
 
 #: filtertransdialog.cpp:668 filtertransdialog.cpp:967
 #: filtertransdialog.cpp:1582
 msgid "Hide Columns"
-msgstr ""
+msgstr "Sembunyikan Kolom"
 
 #: filtertransdialog.cpp:679 filtertransdialog.cpp:973
 #: filtertransdialog.cpp:1595
 msgid "Group By"
-msgstr ""
+msgstr "Kelompokkan Berdasarkan"
 
 #: filtertransdialog.cpp:688
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Tentukan cara pengelompokan laporan"
 
 #: filtertransdialog.cpp:696
 msgid "Settings"
-msgstr ""
+msgstr "Pengaturan"
 
 #: filtertransdialog.cpp:710
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Simpan nilai aktif ke dalam pilihan Preset saat ini"
 
 #: filtertransdialog.cpp:715
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Hapus pilihan Preset saat ini"
 
 #: filtertransdialog.cpp:880 filtertransdialog.cpp:913
 #: filtertransdialog.cpp:1304 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
-msgstr ""
+msgstr "Nilai kosong"
 
 #: filtertransdialog.cpp:897
 #, c-format
@@ -2582,51 +2582,51 @@ msgstr ""
 
 #: filtertransdialog.cpp:1030
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Sembunyikan Kolom Laporan"
 
 #: filtertransdialog.cpp:1164 mmframe.cpp:1174
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Item yang dipilih akan dihapus"
 
 #: filtertransdialog.cpp:1165 mmframe.cpp:1175
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Apakah Anda ingin melanjutkan?"
 
 #: filtertransdialog.cpp:1166 mmframe.cpp:1176
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Pengaturan penghapusan item"
 
 #: filtertransdialog.cpp:1319
 msgid "Filtering Details: "
-msgstr ""
+msgstr "Rincian Filter: "
 
 #: filtertransdialog.cpp:1419
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: filtertransdialog.cpp:1439
 msgid "Since"
-msgstr ""
+msgstr "Sejak"
 
 #: filtertransdialog.cpp:1441
 msgid "Before"
-msgstr ""
+msgstr "Sebelum"
 
 #: filtertransdialog.cpp:1453
 msgid "Period"
-msgstr ""
+msgstr "Periode"
 
 #: filtertransdialog.cpp:1523
 msgid "Amount Min."
-msgstr ""
+msgstr "Jumlah Min."
 
 #: filtertransdialog.cpp:1531
 msgid "Amount Max."
-msgstr ""
+msgstr "Jumlah Maks."
 
 #: filtertransdialog.cpp:1721 mmframe.cpp:1203
 msgid "Setting Name"
-msgstr ""
+msgstr "Nama Pengaturan"
 
 #: filtertransdialog.cpp:1721 mmframe.cpp:1203
 msgid "Please Enter"
