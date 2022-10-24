@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-24 00:25+0300\n"
-"PO-Revision-Date: 2022-10-24 01:25\n"
+"PO-Revision-Date: 2022-10-24 14:28\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -2475,7 +2475,7 @@ msgstr "Batal"
 #: filtertransdialog.cpp:51 mmchecking_list.cpp:489 mmchecking_list.cpp:929
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
-msgstr ""
+msgstr "Tindak Lanjut"
 
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:491
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
@@ -2492,15 +2492,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:507
 msgid "Period Range"
-msgstr ""
+msgstr "Rentang Periode"
 
 #: filtertransdialog.cpp:519 reports/mmDateRange.cpp:35
 msgid "Date Range"
-msgstr ""
+msgstr "Rentang Tanggal"
 
 #: filtertransdialog.cpp:555 filtertransdialog.cpp:1485
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Termasuk semua sub-kategori"
 
 #: filtertransdialog.cpp:581 filtertransdialog.cpp:1353
 #: import_export/univcsvdialog.cpp:100 mmchecking_list.cpp:281
@@ -2519,11 +2519,11 @@ msgstr "Penerimaan"
 #: filtertransdialog.cpp:585 filtertransdialog.cpp:791
 #: filtertransdialog.cpp:1357
 msgid "Transfer Out"
-msgstr ""
+msgstr "Transfer Keluar"
 
 #: filtertransdialog.cpp:587 filtertransdialog.cpp:1355
 msgid "Transfer In"
-msgstr ""
+msgstr "Transfer Masuk"
 
 #: filtertransdialog.cpp:599
 msgid "Amount Range"
