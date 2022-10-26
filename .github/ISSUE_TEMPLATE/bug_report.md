@@ -11,7 +11,7 @@ MMEX version:
  - [ ] 1.5.19
  - [ ] 1.5.20
  - [x] 1.5.21
- - [ ] 1.5.22 Beta
+ - [ ] 1.6.0 Beta
  - [ ] Other (please specify)
 
 Note: bug reporters are expected to have verified the bug still exists
