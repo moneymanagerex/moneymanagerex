@@ -65,6 +65,7 @@ private:
     mmTextCtrl* m_share_commission_ctrl;
     wxTextCtrl* m_notes_ctrl;
     wxBitmapButton* m_attachments_btn;
+    wxBitmapButton* web_button;
 
     UserTransactionPanel* m_transaction_panel;
     wxString m_dialog_heading;

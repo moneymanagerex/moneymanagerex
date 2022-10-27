@@ -176,6 +176,9 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
 
     for (const auto trans : trans_list)
     {
+        Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
+        if (Model_Checking::status(checking_entry) == Model_Checking::TRASH) continue;
+
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
 
         total_shares += share_entry->SHARENUMBER;
@@ -193,7 +196,7 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
 
         total_commission += share_entry->SHARECOMMISSION;
 
-        wxString transdate = Model_Checking::instance().get(trans.CHECKINGACCOUNTID)->TRANSDATE;
+        wxString transdate = checking_entry->TRANSDATE;
         if (transdate < earliest_date) earliest_date = transdate;
     }
 
@@ -216,12 +219,11 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
 void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
 {
     Data_Set trans_list = TranslinkList(Model_Attachment::REFTYPE::ASSET, asset_entry->ASSETID);
-    bool value_updated = false;
     double new_value = 0;
     for (const auto trans : trans_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (asset_trans)
+        if (asset_trans && Model_Checking::status(asset_trans) != Model_Checking::TRASH)
         {
             Model_Currency::Data* asset_currency = Model_Account::currency(Model_Account::instance().get(asset_trans->ACCOUNTID));
             const double conv_rate = Model_CurrencyHistory::getDayRate(asset_currency->CURRENCYID, asset_trans->TRANSDATE);
@@ -233,15 +235,13 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
             else
             {
                 new_value += asset_trans->TRANSAMOUNT * conv_rate;  // Deposit to asset value
-            }
-
-            asset_entry->VALUE = new_value;
-            value_updated = true;  
+            }  
         }
     }
 
-    if (value_updated)
+    if (asset_entry->VALUE != new_value)
     {
+        asset_entry->VALUE = new_value;
         Model_Asset::instance().save(asset_entry);
     }
 }

@@ -74,6 +74,7 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "ASSET_NORMAL.svg", { ASSET_NORMAL, true } },
     { "ACCOUNT_CLOSED.svg", { ACCOUNT_CLOSED, true } },
     { "RECURRING.svg", { RECURRING, true } },
+    { "TRASH.svg", { TRASH, true } },
     { "BUDGET.svg", { BUDGET, true } },
     { "PIE_CHART.svg", { PIE_CHART, true } },
      
@@ -198,6 +199,7 @@ static const std::map<int, wxBitmapBundle> navtree_images(const int size)
         { HOUSE_PNG, mmBitmapBundle(png::NAV_HOME, size) }
         , { ALLTRANSACTIONS_PNG, mmBitmapBundle(png::ALLTRANSACTIONS, size) }
         , { SCHEDULE_PNG, mmBitmapBundle(png::RECURRING, size) }
+        , { TRASH_PNG, mmBitmapBundle(png::TRASH, size) }
         , { CALENDAR_PNG, mmBitmapBundle(png::BUDGET, size) }
         , { PIECHART_PNG, mmBitmapBundle(png::PIE_CHART, size) }
         , { HELP_PNG, mmBitmapBundle(png::NAV_HELP, size) }

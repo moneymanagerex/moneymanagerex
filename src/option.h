@@ -75,6 +75,9 @@ public:
     void HideShareAccounts(bool value);
     bool HideShareAccounts();
 
+    void HideDeletedTransactions(bool value);
+    bool HideDeletedTransactions();
+
     void BudgetFinancialYears(bool value);
     bool BudgetFinancialYears();
 
@@ -174,6 +177,7 @@ private:
 
     bool m_databaseUpdated = false;
     bool m_hideShareAccounts;                       //INIDB_HIDE_SHARE_ACCOUNTS
+    bool m_hideDeletedTransactions;                       //INIDB_HIDE_DELETED_TRANSACTIONS
     bool m_budgetFinancialYears = false;            //INIDB_BUDGET_FINANCIAL_YEARS
     bool m_budgetIncludeTransfers = false;                  //INIDB_BUDGET_INCLUDE_TRANSFERS
     bool m_budgetReportWithSummaries = true;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG

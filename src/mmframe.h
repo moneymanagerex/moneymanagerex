@@ -142,6 +142,7 @@ private:
     void createHomePage();
     void createCheckingAccountPage(int accountID);
     void createAllTransactionsPage();
+    void createDeletedTransactionsPage();
     void createStocksAccountPage(int accountID);
 private:
     void createBillsDeposits();
@@ -191,6 +192,7 @@ private:
     void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
 private:
     void OnHideShareAccounts(wxCommandEvent &event);
+    void OnHideDeletedTransactions(wxCommandEvent& event);
     void OnChangeGUILanguage(wxCommandEvent &event);
     void OnKeyDown(wxTreeEvent& event);
 
@@ -334,6 +336,7 @@ private:
         MENU_VIEW_TOOLBAR,
         MENU_VIEW_LINKS,
         MENU_VIEW_HIDE_SHARE_ACCOUNTS,
+        MENU_VIEW_HIDE_DELETED_TRANSACTIONS,
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_RELOCATION,

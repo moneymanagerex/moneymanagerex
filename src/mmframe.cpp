@@ -137,6 +137,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
 EVT_MENU(MENU_VIEW_HIDE_SHARE_ACCOUNTS, mmGUIFrame::OnHideShareAccounts)
+EVT_MENU(MENU_VIEW_HIDE_DELETED_TRANSACTIONS, mmGUIFrame::OnHideDeletedTransactions)
 EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYears)
 EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
 EVT_MENU(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmGUIFrame::OnViewBudgetCategorySummary)
@@ -644,6 +645,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_REFRESH_WEBAPP)->Enable(enable && mmWebApp::WebApp_CheckEnabled());
 
     menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_HIDE_DELETED_TRANSACTIONS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Enable(enable);
@@ -756,6 +758,10 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
     m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData(mmTreeItemData::BILLS, "Recurring Transactions"));
     m_nav_tree_ctrl->SetItemBold(bills, true);
+
+    wxTreeItemId trash = m_nav_tree_ctrl->AppendItem(root, _("Deleted Transactions"), img::TRASH_PNG, img::TRASH_PNG);
+    m_nav_tree_ctrl->SetItemData(trash, new mmTreeItemData(mmTreeItemData::TRASH, "Deleted Transactions"));
+    m_nav_tree_ctrl->SetItemBold(trash, true);
 
     wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData(mmTreeItemData::HELP_BUDGET, "Budget Setup"));
@@ -893,6 +899,10 @@ void mmGUIFrame::DoRecreateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || Option::instance().HideShareAccounts())
         {
             m_nav_tree_ctrl->Delete(shareAccounts);
+        }
+        if (Option::instance().HideDeletedTransactions())
+        {
+            m_nav_tree_ctrl->Delete(trash);
         }
     }
     //m_nav_tree_ctrl->SelectItem(root);
@@ -1067,6 +1077,8 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         return OnBillsDeposits(e);
     case  mmTreeItemData::ALL_TRANSACTIONS:
         return createAllTransactionsPage();
+    case  mmTreeItemData::TRASH:
+        return createDeletedTransactionsPage();
     case mmTreeItemData::BUDGET:
         return createBudgetingPage(iData->getData());
     case mmTreeItemData::REPORT:
@@ -1506,7 +1518,8 @@ void mmGUIFrame::createMenu()
         _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);
     wxMenuItem* menuItemHideShareAccounts = new wxMenuItem(menuView, MENU_VIEW_HIDE_SHARE_ACCOUNTS,
         _("&Display Share Accounts"), _("Show/Hide Share Accounts in the navigation tree"), wxITEM_CHECK);
-
+    wxMenuItem* menuItemHideDeletedTransactions = new wxMenuItem(menuView, MENU_VIEW_HIDE_DELETED_TRANSACTIONS,
+        _("&Display Deleted Transactions"), _("Show/Hide Deleted Transactions in the navigation tree"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
         _("Budgets: As Financial &Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
@@ -1524,7 +1537,7 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemToolbar);
     menuView->Append(menuItemLinks);
     menuView->Append(menuItemHideShareAccounts);
-    menuView->AppendSeparator();
+    menuView->Append(menuItemHideDeletedTransactions);
     menuView->Append(menuItemBudgetFinancialYears);
     menuView->Append(menuItemBudgetTransferTotal);
     menuView->AppendSeparator();
@@ -1795,6 +1808,7 @@ void mmGUIFrame::createMenu()
     SetMenuBar(menuBar_);
 
     menuBar_->Check(MENU_VIEW_HIDE_SHARE_ACCOUNTS, !Option::instance().HideShareAccounts());
+    menuBar_->Check(MENU_VIEW_HIDE_DELETED_TRANSACTIONS, !Option::instance().HideDeletedTransactions());
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().BudgetFinancialYears());
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, Option::instance().BudgetIncludeTransfers());
     menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, Option::instance().BudgetReportWithSummaries());
@@ -3044,6 +3058,45 @@ void mmGUIFrame::createAllTransactionsPage()
     m_nav_tree_ctrl->SetFocus();
 }
 
+void mmGUIFrame::createDeletedTransactionsPage()
+{
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Deleted Transactions");
+
+    const auto time = wxDateTime::UNow();
+
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    if (panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS)
+    {
+        mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        checkingAccountPage->RefreshList();
+    }
+    else
+    {
+
+        DoWindowsFreezeThaw(homePanel_);
+        wxSizer* sizer = cleanupHomePanel();
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -2, mmID_DELETEDTRANSACTIONS);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        DoWindowsFreezeThaw(homePanel_);
+    }
+
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
+
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+
+    menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetFocus();
+}
+
 void mmGUIFrame::createCheckingAccountPage(int accountID)
 {
     StringBuffer json_buffer;
@@ -3375,6 +3428,12 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &WXUNUSED(event))
 {
     Option::instance().HideShareAccounts(!Option::instance().HideShareAccounts());
+    DoRecreateNavTreeControl();
+}
+
+void mmGUIFrame::OnHideDeletedTransactions(wxCommandEvent& WXUNUSED(event))
+{
+    Option::instance().HideDeletedTransactions(!Option::instance().HideDeletedTransactions());
     DoRecreateNavTreeControl();
 }
 

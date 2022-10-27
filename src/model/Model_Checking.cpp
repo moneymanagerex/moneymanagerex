@@ -39,6 +39,7 @@ const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Check
     , {Model_Checking::VOID_, wxString(wxTRANSLATE("Void"))}
     , {Model_Checking::FOLLOWUP, wxString(wxTRANSLATE("Follow Up"))}
     , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
+    , {Model_Checking::TRASH, wxString(wxTRANSLATE("Trash"))}
 };
 
 const wxString Model_Checking::TRANSFER_STR = all_type()[TRANSFER];
@@ -191,6 +192,7 @@ Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
     else if (r.CmpNoCase("V") == 0) ret = VOID_;
     else if (r.CmpNoCase("F") == 0) ret = FOLLOWUP;
     else if (r.CmpNoCase("D") == 0) ret = DUPLICATE_;
+    else if (r.EndsWith("T")) ret = TRASH;
     cache.insert(std::make_pair(r, ret));
 
     return ret;
@@ -234,7 +236,7 @@ double Model_Checking::amount(const Data&r, int account_id)
 
 double Model_Checking::balance(const Data* r, int account_id)
 {
-    if (Model_Checking::status(r->STATUS) == Model_Checking::VOID_) return 0;
+    if (Model_Checking::status(r->STATUS) == Model_Checking::VOID_ || Model_Checking::status(r->STATUS) == Model_Checking::TRASH) return 0;
     return amount(r, account_id);
 }
 

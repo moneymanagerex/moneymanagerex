@@ -53,6 +53,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_EDIT,      mmCheckingPanel::OnEditTransaction)
     EVT_BUTTON(wxID_REMOVE,    mmCheckingPanel::OnDeleteTransaction)
     EVT_BUTTON(wxID_DUPLICATE, mmCheckingPanel::OnDuplicateTransaction)
+    EVT_BUTTON(wxID_UNDELETE, mmCheckingPanel::OnRestoreTransaction)
     EVT_BUTTON(wxID_FILE,      mmCheckingPanel::OnOpenAttachment)
     EVT_BUTTON(ID_TRX_FILTER,  mmCheckingPanel::OnMouseLeftDown)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
@@ -66,6 +67,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_listCtrlAccount()
     , m_AccountID(accountID)
     , isAllAccounts_((-1 == accountID) ? true : false)
+    , isTrash_((-2 == accountID) ? true : false)
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
@@ -88,7 +90,7 @@ bool mmCheckingPanel::Create(
     const wxSize& size, long style, const wxString& name
 )
 {
-    if (isAllAccounts_) {
+    if (isAllAccounts_ || isTrash_) {
         m_currency = Model_Currency::GetBaseCurrency();
     }
     else {
@@ -127,7 +129,7 @@ void mmCheckingPanel::filterTable()
 {
     m_listCtrlAccount->m_trans.clear();
 
-    m_account_balance = !isAllAccounts_ && m_account ? m_account->INITIALBAL : 0.0;
+    m_account_balance = !isAllAccounts_ && !isTrash_ && m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
     
@@ -157,11 +159,12 @@ void mmCheckingPanel::filterTable()
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
 
-    const auto i = isAllAccounts_ ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
+    const auto i = (isAllAccounts_ || isTrash_) ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
+
     for (const auto& tran : i)
     {
-        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && Model_Checking::status(tran) != Model_Checking::TRASH)
             m_account_balance += transaction_amount;
 
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
@@ -197,7 +200,7 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && Model_Checking::status(tran) != Model_Checking::TRASH)
             m_filteredBalance += transaction_amount;
 
         full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
@@ -241,8 +244,8 @@ void mmCheckingPanel::filterTable()
                 }
             }
         }
-
-        m_listCtrlAccount->m_trans.push_back(full_tran);
+        if ((isTrash_ && Model_Checking::status(full_tran) == Model_Checking::TRASH) || !(isTrash_ || Model_Checking::status(full_tran) == Model_Checking::TRASH))
+            m_listCtrlAccount->m_trans.push_back(full_tran);
     }
 }
 
@@ -280,86 +283,90 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerVHeader->AddGrowableCol(0, 0);
     itemBoxSizer9->Add(itemBoxSizerVHeader, g_flagsBorder1V);
 
-    m_header_text = new wxStaticText( this, wxID_STATIC, "");
-    m_header_text->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(m_header_text, g_flagsExpandBorder1);
+m_header_text = new wxStaticText(this, wxID_STATIC, "");
+m_header_text->SetFont(this->GetFont().Larger().Bold());
+itemBoxSizerVHeader->Add(m_header_text, g_flagsExpandBorder1);
 
-    wxBoxSizer* infoPanel = new wxBoxSizer(wxHORIZONTAL);
-    m_bitmapTransFilter = new wxButton(this, ID_TRX_FILTER);
-    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    infoPanel->Add(m_bitmapTransFilter, g_flagsH);
-    m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
-    infoPanel->Add(m_header_sortOrder, g_flagsH);
-    itemBoxSizerVHeader->Add(infoPanel, g_flagsBorder1H);
+wxBoxSizer* infoPanel = new wxBoxSizer(wxHORIZONTAL);
+m_bitmapTransFilter = new wxButton(this, ID_TRX_FILTER);
+m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+infoPanel->Add(m_bitmapTransFilter, g_flagsH);
+m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
+infoPanel->Add(m_header_sortOrder, g_flagsH);
+itemBoxSizerVHeader->Add(infoPanel, g_flagsBorder1H);
 
-    m_header_balance = new wxStaticText(this, wxID_STATIC, "");
-    itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
+m_header_balance = new wxStaticText(this, wxID_STATIC, "");
+itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
 
-    m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
+m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
 
-    /* ---------------------- */
+/* ---------------------- */
 
-    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
-        , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
-        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
+wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
+    , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
+    , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
-    m_images.push_back(mmBitmapBundle(png::RECONCILED));
-    m_images.push_back(mmBitmapBundle(png::VOID_STAT));
-    m_images.push_back(mmBitmapBundle(png::FOLLOW_UP));
-    m_images.push_back(mmBitmapBundle(png::DUPLICATE_STAT));
-    m_images.push_back(mmBitmapBundle(png::UPARROW));
-    m_images.push_back(mmBitmapBundle(png::DOWNARROW));
+m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
+m_images.push_back(mmBitmapBundle(png::RECONCILED));
+m_images.push_back(mmBitmapBundle(png::VOID_STAT));
+m_images.push_back(mmBitmapBundle(png::FOLLOW_UP));
+m_images.push_back(mmBitmapBundle(png::DUPLICATE_STAT));
+m_images.push_back(mmBitmapBundle(png::UPARROW));
+m_images.push_back(mmBitmapBundle(png::DOWNARROW));
 
-    m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10);
+m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10);
 
-    m_listCtrlAccount->SetSmallImages(m_images);
-    m_listCtrlAccount->SetNormalImages(m_images);
+m_listCtrlAccount->SetSmallImages(m_images);
+m_listCtrlAccount->SetNormalImages(m_images);
 
-    m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
-    m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
+m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
+m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
 
-    m_listCtrlAccount->createColumns(*m_listCtrlAccount);
+m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
-    // load the global variables
-    m_sortSaveTitle = isAllAccounts_ ? "ALLTRANS" : "CHECK";
+// load the global variables
+m_sortSaveTitle = isAllAccounts_ ? "ALLTRANS" : (isTrash_ ? "DELETED" : "CHECK");
 
-    long val = m_listCtrlAccount->COL_DEF_SORT;
-    wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL", m_sortSaveTitle), wxString() << val);
-    if (strVal.ToLong(&val)) m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
-    val = m_listCtrlAccount->COL_DEF_SORT2;
-    strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL2", m_sortSaveTitle), wxString() << val);
-    if (strVal.ToLong(&val)) m_listCtrlAccount->prev_g_sortcol = m_listCtrlAccount->toEColumn(val);
+long val = m_listCtrlAccount->COL_DEF_SORT;
+wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL", m_sortSaveTitle), wxString() << val);
+if (strVal.ToLong(&val)) m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
+val = m_listCtrlAccount->COL_DEF_SORT2;
+strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL2", m_sortSaveTitle), wxString() << val);
+if (strVal.ToLong(&val)) m_listCtrlAccount->prev_g_sortcol = m_listCtrlAccount->toEColumn(val);
 
-    val = 1; // asc sorting default
-    strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_ASC", m_sortSaveTitle), wxString() << val);
-    if (strVal.ToLong(&val)) m_listCtrlAccount->g_asc = val != 0;
-    val = 1; 
-    strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_ASC2", m_sortSaveTitle), wxString() << val);
-    if (strVal.ToLong(&val)) m_listCtrlAccount->prev_g_asc = val != 0;
+val = 1; // asc sorting default
+strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_ASC", m_sortSaveTitle), wxString() << val);
+if (strVal.ToLong(&val)) m_listCtrlAccount->g_asc = val != 0;
+val = 1;
+strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_ASC2", m_sortSaveTitle), wxString() << val);
+if (strVal.ToLong(&val)) m_listCtrlAccount->prev_g_asc = val != 0;
 
-    // --
-    m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
-    m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
-    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->getSortColumn()
-        , m_listCtrlAccount->getSortOrder() ? ICON_ASC : ICON_DESC); // asc\desc sort mark (arrow)
+// --
+m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
+m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
+m_listCtrlAccount->setColumnImage(m_listCtrlAccount->getSortColumn()
+    , m_listCtrlAccount->getSortOrder() ? ICON_ASC : ICON_DESC); // asc\desc sort mark (arrow)
 
-    wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
-    mmThemeMetaColour(itemPanel12, meta::COLOR_LISTPANEL);
+wxPanel* itemPanel12 = new wxPanel(itemSplitterWindow10, wxID_ANY
+    , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+mmThemeMetaColour(itemPanel12, meta::COLOR_LISTPANEL);
 
-    itemSplitterWindow10->SplitHorizontally(m_listCtrlAccount, itemPanel12);
-    itemSplitterWindow10->SetMinimumPaneSize(100);
-    itemSplitterWindow10->SetSashGravity(1.0);
+itemSplitterWindow10->SplitHorizontally(m_listCtrlAccount, itemPanel12);
+itemSplitterWindow10->SetMinimumPaneSize(100);
+itemSplitterWindow10->SetSashGravity(1.0);
 
-    itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
+itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
 
-    wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
-    itemPanel12->SetSizer(itemBoxSizer4);
+wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
+itemPanel12->SetSizer(itemBoxSizer4);
 
-    wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
+wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
 
+m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
+mmToolTip(m_btnDelete, _("Delete selected transaction"));
+
+if (!isTrash_) {
     m_btnNew = new wxButton(itemPanel12, wxID_NEW, _("&New "));
     mmToolTip(m_btnNew, _("New Transaction"));
     itemButtonsSizer->Add(m_btnNew, 0, wxRIGHT, 5);
@@ -369,8 +376,6 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(m_btnEdit, 0, wxRIGHT, 5);
     m_btnEdit->Enable(false);
 
-    m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
-    mmToolTip(m_btnDelete, _("Delete selected transaction"));
     itemButtonsSizer->Add(m_btnDelete, 0, wxRIGHT, 5);
     m_btnDelete->Enable(false);
 
@@ -379,17 +384,28 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(m_btnDuplicate, 0, wxRIGHT, 5);
     m_btnDuplicate->Enable(false);
 
-    const auto &btnDupSize = m_btnDuplicate->GetSize();
+    const auto& btnDupSize = m_btnDuplicate->GetSize();
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
         , mmBitmapBundle(png::CLIP), wxDefaultPosition
         , wxSize(btnDupSize.GetY(), btnDupSize.GetY()));
     mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
     m_btnAttachment->Enable(false);
+}
+else
+    {
+    m_btnRestore = new wxButton(itemPanel12, wxID_UNDELETE, _("&Restore "));
+    mmToolTip(m_btnRestore, _("Restore selected transaction"));
+    itemButtonsSizer->Add(m_btnRestore, 0, wxRIGHT, 5);
+    m_btnRestore->Enable(false);
 
+    itemButtonsSizer->Add(m_btnDelete, 0, wxRIGHT, 5);
+    m_btnDelete->Enable(false);
+}
+    
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
-        , wxSize(100, m_btnDuplicate->GetSize().GetHeight())
+        , wxSize(100, m_btnDelete->GetSize().GetHeight())
         , wxTE_NOHIDESEL, wxDefaultValidator);
     searchCtrl->SetDescriptiveText(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
@@ -417,6 +433,8 @@ wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) cons
 {
     if (isAllAccounts_)
         return wxString::Format(_("Full Transactions Report"));
+    else if (isTrash_)
+        return wxString::Format(_("Deleted Transactions"));
     else
         return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
 }
@@ -432,7 +450,7 @@ void mmCheckingPanel::setAccountSummary()
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
     m_header_text->SetLabelText(GetPanelTitle(*account));
 
-    if (!isAllAccounts_)
+    if (!isAllAccounts_ && !isTrash_)
     {
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
         const wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
@@ -452,13 +470,16 @@ void mmCheckingPanel::setAccountSummary()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::enableTransactionButtons(bool editDelete, bool duplicate, bool attach)
 {
- 
-    m_btnEdit->Enable(editDelete);
     m_btnDelete->Enable(editDelete);
 
-    m_btnDuplicate->Enable(duplicate);
-
-    m_btnAttachment->Enable(attach);
+    if (!isTrash_) {
+        m_btnEdit->Enable(editDelete);
+        m_btnDuplicate->Enable(duplicate);
+        m_btnAttachment->Enable(attach);
+    }
+    else {
+        m_btnRestore->Enable(editDelete);
+    }
 
 }
 //----------------------------------------------------------------------------
@@ -562,6 +583,12 @@ void mmCheckingPanel::showTips()
 void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 {
     m_listCtrlAccount->OnDeleteTransaction(event);
+}
+//----------------------------------------------------------------------------
+
+void mmCheckingPanel::OnRestoreTransaction(wxCommandEvent& event)
+{
+    m_listCtrlAccount->OnRestoreTransaction(event);
 }
 //----------------------------------------------------------------------------
 
