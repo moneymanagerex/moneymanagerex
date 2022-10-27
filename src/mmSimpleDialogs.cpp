@@ -108,6 +108,7 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     , is_initialized_(false)
 {
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
+    Bind(wxEVT_CHAR, &mmComboBox::OnKeyPressed, this);
 }
 
 void mmComboBox::OnDropDown(wxCommandEvent& event)
@@ -213,6 +214,17 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
             if (item.first.CmpNoCase(text) == 0) {
                 SetValue(item.first);
                 Dismiss();
+                break;
+            }
+        }
+    }
+    else if (event.GetKeyCode() == ':')
+    {
+        for (const auto& item : all_elements_)
+        {
+            if (item.first.CmpNoCase(text) == 0) {
+                SetValue(item.first);
+                SetInsertionPointEnd();
                 break;
             }
         }
