@@ -1061,7 +1061,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
-    wxString deletionTime = wxDateTime::Now().FormatISOCombined();
+    wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<wxString, int>> assetStockAccts;
     const auto s = Model_Checking::toShortStatus(status);
     Model_Checking::instance().Savepoint();
@@ -1120,7 +1120,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        wxString deletionTime = wxDateTime::Now().FormatISOCombined();
+        wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
         std::set<std::pair<wxString, int>> assetStockAccts;
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
@@ -1676,6 +1676,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     const Model_Checking::Full_Data& tran = m_trans.at(item);
 
     wxString value = wxEmptyString;
+    wxDateTime datetime;
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
@@ -1699,9 +1700,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     case TransactionListCtrl::COL_DELETEDTIME:
-        value = tran.DELETEDTIME;
-        value.Replace("T", " ");
-        return value;
+        datetime.ParseISOCombined(tran.DELETEDTIME);
+        return datetime.FromUTC().FormatISOCombined(' ');
     case TransactionListCtrl::COL_UDFC01:
         return UDFCFormatHelper(tran.UDFC01_Type, tran.UDFC01);
     case TransactionListCtrl::COL_UDFC02:
