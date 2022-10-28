@@ -57,6 +57,7 @@ public:
         COL_BALANCE,
         COL_CREDIT,
         COL_NOTES,
+        COL_DELETEDTIME,
         COL_UDFC01,
         COL_UDFC02,
         COL_UDFC03,
