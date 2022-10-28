@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-09-28 23:10:36.239965.
+ *          AUTO GENERATED at 2022-10-27 23:35:03.601568.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 15;
+const int dbLatestVersion = 16;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -229,6 +229,13 @@ const std::vector<wxString> dbUpgradeQuery =
         -- Tidy-up: This table was in the schema but has been removed and should not exist
         drop table if exists SPLITTRANSACTIONS_V2;
         
+        
+    )",
+
+    // Upgrade to version 16
+    R"(
+        alter table CHECKINGACCOUNT_V1 add column LASTUPDATEDTIME text;
+        alter table CHECKINGACCOUNT_V1 add column DELETEDTIME text;
         
     )",
 
