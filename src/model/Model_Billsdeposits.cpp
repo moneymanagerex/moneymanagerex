@@ -297,12 +297,31 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
         abort_transaction = true;
     }
 
-    if (abort_transaction && wxMessageBox(_(
-        "A recurring transaction will exceed your account limit.\n\n"
-        "Do you wish to continue?")
-        , _("MMEX Recurring Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+    if (abort_transaction)
     {
-        abort_transaction = false;
+        std::stringstream message;
+        message
+            << "A recurring transaction will exceed your account limit.\n\n"
+            << "Account: " << account->ACCOUNTNAME << "\n"
+            << "Current Balance: " << current_account_balance << "\n"
+            << "Transaction amount: " << r.TRANSAMOUNT << "\n\n"
+            << "Do you wish to continue ?";
+
+        if (account->MINIMUMBALANCE > 0)
+        {
+            message << "Minimum Balance: " << account->MINIMUMBALANCE << "\n";
+        }
+
+        if (account->CREDITLIMIT > 0)
+        {
+            message << "Credit Limit: " << account->CREDITLIMIT << "\n";
+        }
+
+        if (wxMessageBox(message.str()
+            , _("MMEX Recurring Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+        {
+            abort_transaction = false;
+        }
     }
 
     if (!abort_transaction)
