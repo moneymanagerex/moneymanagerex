@@ -923,7 +923,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
             OnDeleteTransaction(evt);
         }
-        else if (key == wxKeyCode('U'))
+        else if (key == wxKeyCode('R'))
         {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_RESTORE);
             OnRestoreTransaction(evt);
@@ -948,7 +948,7 @@ void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent& event)
         for (const auto& tran : this->m_trans)
         {
             Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
-            trx->STATUS = trx->STATUS.RemoveLast(1);
+            trx->DELETEDTIME.Clear();
             Model_Checking::instance().save(trx);
             Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
             if (!translink.empty()) {
@@ -990,8 +990,7 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
         for (const auto& i : m_selected_id)
         {
             Model_Checking::Data* trx = Model_Checking::instance().get(i);
-
-            trx->STATUS = trx->STATUS.RemoveLast(1);
+            trx->DELETEDTIME.Clear();
             Model_Checking::instance().save(trx);
             Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
             if (!translink.empty()) {
@@ -1054,6 +1053,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
+    wxString deletionTime = wxDateTime().Now().FormatISOCombined(' ');
     std::set<std::pair<wxString, int>> assetStockAccts;
     const auto s = Model_Checking::toShortStatus(status);
     Model_Checking::instance().Savepoint();
@@ -1070,7 +1070,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
             }
             else {
                 Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
-                trx->STATUS = trx->STATUS.Append("T");
+                trx->DELETEDTIME = deletionTime;
                 Model_Checking::instance().save(trx);
                 Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
                 if (!translink.empty()) {
@@ -1112,6 +1112,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
+        wxString deletionTime = wxDateTime().Now().FormatISOCombined(' ');
         std::set<std::pair<wxString, int>> assetStockAccts;
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
@@ -1143,7 +1144,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
             }
             else {
-                trx->STATUS = trx->STATUS.Append("T");
+                trx->DELETEDTIME = deletionTime;
                 Model_Checking::instance().save(trx);
                 Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
                 if (!translink.empty()) {
@@ -1166,7 +1167,6 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             }
         }
     }
-
     refreshVisualList();
 }
 

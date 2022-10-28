@@ -169,7 +169,7 @@ void ShareTransactionDialog::DataToControls()
                 m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
                 m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
                     , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
-                if (checking_entry && Model_Checking::status(checking_entry) == Model_Checking::TRASH) {
+                if (checking_entry && !checking_entry->DELETEDTIME.IsEmpty()) {
                     m_share_num_ctrl->Enable(false);
                     m_share_price_ctrl->Enable(false);
                     m_share_commission_ctrl->Enable(false);

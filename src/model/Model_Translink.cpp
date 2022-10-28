@@ -177,7 +177,7 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     for (const auto trans : trans_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (Model_Checking::status(checking_entry) == Model_Checking::TRASH) continue;
+        if (!checking_entry->DELETEDTIME.IsEmpty()) continue;
 
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
 
@@ -223,7 +223,7 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
     for (const auto trans : trans_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (asset_trans && Model_Checking::status(asset_trans) != Model_Checking::TRASH)
+        if (asset_trans && asset_trans->DELETEDTIME.IsEmpty())
         {
             Model_Currency::Data* asset_currency = Model_Account::currency(Model_Account::instance().get(asset_trans->ACCOUNTID));
             const double conv_rate = Model_CurrencyHistory::getDayRate(asset_currency->CURRENCYID, asset_trans->TRANSDATE);

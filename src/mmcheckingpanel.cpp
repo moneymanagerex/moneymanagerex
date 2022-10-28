@@ -164,7 +164,7 @@ void mmCheckingPanel::filterTable()
     for (const auto& tran : i)
     {
          double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && Model_Checking::status(tran) != Model_Checking::TRASH)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
             m_account_balance += transaction_amount;
 
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
@@ -200,7 +200,7 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && Model_Checking::status(tran) != Model_Checking::TRASH)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
             m_filteredBalance += transaction_amount;
 
         full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
@@ -244,7 +244,7 @@ void mmCheckingPanel::filterTable()
                 }
             }
         }
-        if ((isTrash_ && Model_Checking::status(full_tran) == Model_Checking::TRASH) || !(isTrash_ || Model_Checking::status(full_tran) == Model_Checking::TRASH))
+        if ((isTrash_ && !full_tran.DELETEDTIME.IsEmpty()) || !(isTrash_ || !full_tran.DELETEDTIME.IsEmpty()))
             m_listCtrlAccount->m_trans.push_back(full_tran);
     }
 }

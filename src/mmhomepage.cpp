@@ -218,7 +218,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     for (const auto &trx : transactions)
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(trx) || Model_Checking::status(trx) == Model_Checking::TRASH)
+        if (Model_Checking::foreignTransactionAsTransfer(trx) || !trx.DELETEDTIME.IsEmpty())
             continue;
 
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
@@ -406,7 +406,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     {
 
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction) || Model_Checking::status(pBankTransaction) == Model_Checking::TRASH)
+        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction) || !pBankTransaction.DELETEDTIME.IsEmpty())
             continue;
 
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
