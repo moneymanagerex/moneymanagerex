@@ -263,7 +263,7 @@ void Model_Category::getCategoryStats(
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
     {
-        if (Model_Checking::status(transaction) == Model_Checking::TRASH) continue;
+        if (!transaction.DELETEDTIME.IsEmpty()) continue;
 
         if (accountArray)
         {

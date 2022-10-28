@@ -158,10 +158,7 @@ void UserTransactionPanel::Create()
 
     for (const auto& i : Model_Checking::all_status())
     {
-        if (i != "Trash") m_status_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
-        if (i == "Trash" && m_checking_entry) {
-            if (Model_Checking::status(m_checking_entry) == Model_Checking::TRASH) m_status_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
-        }
+        m_status_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
     m_status_selector->SetSelection(Option::instance().TransStatusReconciled());
@@ -254,11 +251,12 @@ void UserTransactionPanel::DataToControls()
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
 
-    if (Model_Checking::status(m_checking_entry->STATUS) == Model_Checking::TRASH)
+    if (!m_checking_entry->DELETEDTIME.IsEmpty())
     {
         m_date_selector->Enable(false);
         m_account->Enable(false);
         m_type_selector->Enable(false);
+        m_status_selector->Enable(false);
         m_transfer->Enable(false);
         m_entered_amount->Enable(false);
         m_trans_currency->Enable(false);
@@ -466,10 +464,7 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[TransactionType()];
     m_checking_entry->TRANSAMOUNT = initial_amount;
-    if (Model_Checking::status(m_status_selector->GetStringSelection().Left(1)) == Model_Checking::TRASH) {
-        if (Model_Checking::status(m_checking_entry) != Model_Checking::TRASH) m_checking_entry->STATUS = m_checking_entry->STATUS.Append("T");
-    }
-    else m_checking_entry->STATUS = m_status_selector->GetStringSelection().Left(1);
+    m_checking_entry->STATUS = Model_Checking::all_status()[TransactionType()].Mid(0, 1);
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
