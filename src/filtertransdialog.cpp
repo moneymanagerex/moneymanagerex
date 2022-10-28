@@ -50,9 +50,7 @@ static const wxString TRANSACTION_STATUSES[] =
     wxTRANSLATE("Void"),
     wxTRANSLATE("Follow Up"),
     wxTRANSLATE("Duplicate"),
-    wxTRANSLATE("Trash"),
-    wxTRANSLATE("All Except Reconciled"),
-    wxTRANSLATE("Not Trash")
+    wxTRANSLATE("All Except Reconciled")
 };
 
 static const wxString GROUPBY_OPTIONS[] =
@@ -1106,14 +1104,6 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
     else if ("A" == filterStatus) // All Except Reconciled
     {
         return "R" != itemStatus;
-    }
-    else if ("N" == filterStatus) // Not Trash
-    {
-        return !itemStatus.EndsWith("T");
-    }
-    else if ("T" == filterStatus) // Trash
-    {
-        return itemStatus.EndsWith("T");
     }
     return false;
 }

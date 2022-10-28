@@ -51,7 +51,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(transaction) || Model_Checking::status(transaction) == Model_Checking::TRASH)
+        if (Model_Checking::foreignTransactionAsTransfer(transaction) || !transaction.DELETEDTIME.IsEmpty())
             continue;
 
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
@@ -150,7 +150,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(transaction) || Model_Checking::status(transaction) == Model_Checking::TRASH)
+        if (Model_Checking::foreignTransactionAsTransfer(transaction) || !transaction.DELETEDTIME.IsEmpty())
             continue;
 
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);

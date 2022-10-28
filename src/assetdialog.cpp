@@ -164,7 +164,7 @@ void mmAssetDialog::dataToControls()
         m_value->Enable(false);
     }
 
-    if (m_checking_entry && Model_Checking::status(m_checking_entry) == Model_Checking::TRASH) {
+    if (m_checking_entry && !m_checking_entry->DELETEDTIME.IsEmpty()) {
         m_valueChange->Enable(false);
         m_valueChangeRate->Enable(false);
         m_notes->Enable(false);

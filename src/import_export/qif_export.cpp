@@ -469,7 +469,7 @@ void mmQIFExportDialog::mmExportQIF()
 
         for (const auto& transaction : transactions)
         {
-            if (Model_Checking::status(transaction) == Model_Checking::TRASH) continue;
+            if (!transaction.DELETEDTIME.IsEmpty()) continue;
 
             //Filtering
             if (dateFromCheckBox_->IsChecked() && transaction.TRANSDATE < begin_date)

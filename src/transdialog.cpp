@@ -351,7 +351,7 @@ void mmTransDialog::dataToControls()
     if (!skip_tooltips_init_)
         SetTooltips();
 
-    if (Model_Checking::status(m_status) == Model_Checking::TRASH) {
+    if (!m_trx_data.DELETEDTIME.IsEmpty()) {
         dpc_->Enable(false);
         transaction_type_->Enable(false);
         cbAccount_->Enable(false);
@@ -401,8 +401,7 @@ void mmTransDialog::CreateControls()
     choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
     for (const auto& i : Model_Checking::all_status()) {
-        if(i != "Trash") choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
-        if (i == "Trash" && Model_Checking::status(m_trx_data) == Model_Checking::TRASH) choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
+        choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
@@ -1104,10 +1103,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (status_obj)
     {
         m_status = Model_Checking::toShortStatus(status_obj->GetData());
-        if (Model_Checking::status(m_status) == Model_Checking::TRASH) {
-            if (Model_Checking::status(m_trx_data) != Model_Checking::TRASH) m_trx_data.STATUS = m_trx_data.STATUS.Append("T");
-        }
-        else m_trx_data.STATUS = m_status;
+        m_trx_data.STATUS = m_status;
     }
 
     if (!ValidateData()) return;
