@@ -555,6 +555,8 @@ bool Model_Checking::getTransactionData(Data &data, const Data* r)
         data.TRANSACTIONNUMBER = r->TRANSACTIONNUMBER;
         data.PAYEEID = r->PAYEEID;
         data.TRANSID = r->TRANSID;
+        data.LASTUPDATEDTIME = r->LASTUPDATEDTIME;
+        data.DELETEDTIME = r->DELETEDTIME;
     }
     return r ? true : false;
 }

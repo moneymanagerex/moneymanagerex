@@ -355,6 +355,7 @@ void mmTransDialog::dataToControls()
         dpc_->Enable(false);
         transaction_type_->Enable(false);
         cbAccount_->Enable(false);
+        choiceStatus_->Enable(false);
         m_textAmount->Enable(false);
         cbToAccount_->Enable(false);
         toTextAmount_->Enable(false);

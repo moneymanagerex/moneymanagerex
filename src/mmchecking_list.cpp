@@ -145,6 +145,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
         break;
+    case TransactionListCtrl::COL_DELETEDTIME:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME())
+            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByDELETEDTIME());
+        break;
     case TransactionListCtrl::COL_UDFC01:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC01");
         if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
@@ -297,6 +301,10 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NOTES);
+    if (m_cp->isTrash_) {
+        m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
+        m_real_columns.push_back(COL_DELETEDTIME);
+    }
 
     int i = COL_UDFC01;
     const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -1053,7 +1061,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
-    wxString deletionTime = wxDateTime().Now().FormatISOCombined(' ');
+    wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<wxString, int>> assetStockAccts;
     const auto s = Model_Checking::toShortStatus(status);
     Model_Checking::instance().Savepoint();
@@ -1112,7 +1120,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        wxString deletionTime = wxDateTime().Now().FormatISOCombined(' ');
+        wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
         std::set<std::pair<wxString, int>> assetStockAccts;
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
@@ -1612,7 +1620,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
         }
 
-        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE
+        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE, COL_DELETEDTIME
             , COL_UDFC01, COL_UDFC02, COL_UDFC03, COL_UDFC04, COL_UDFC05 } )
         {
             const auto test = getItem(selectedItem, t, true).Lower();
@@ -1668,6 +1676,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     const Model_Checking::Full_Data& tran = m_trans.at(item);
 
     wxString value = wxEmptyString;
+    wxDateTime datetime;
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
@@ -1690,6 +1699,9 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         if (tran.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
+    case TransactionListCtrl::COL_DELETEDTIME:
+        datetime.ParseISOCombined(tran.DELETEDTIME);
+        return datetime.FromUTC().FormatISOCombined(' ');
     case TransactionListCtrl::COL_UDFC01:
         return UDFCFormatHelper(tran.UDFC01_Type, tran.UDFC01);
     case TransactionListCtrl::COL_UDFC02:
