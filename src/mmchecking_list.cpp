@@ -1061,7 +1061,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
-    wxString deletionTime = wxDateTime().Now().FormatISOCombined();
+    wxString deletionTime = wxDateTime::Now().FormatISOCombined();
     std::set<std::pair<wxString, int>> assetStockAccts;
     const auto s = Model_Checking::toShortStatus(status);
     Model_Checking::instance().Savepoint();
@@ -1120,7 +1120,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        wxString deletionTime = wxDateTime().Now().FormatISOCombined();
+        wxString deletionTime = wxDateTime::Now().FormatISOCombined();
         std::set<std::pair<wxString, int>> assetStockAccts;
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
