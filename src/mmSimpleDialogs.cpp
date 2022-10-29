@@ -777,14 +777,9 @@ void mmErrorDialogs::MessageInvalid(wxWindow *parent, const wxString &message)
     MessageError(parent, msg, _("Invalid Entry"));
 }
 
-void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
+void mmErrorDialogs::InvalidCategory(wxWindow *win)
 {
-    const wxString& msg = simple
-        ? _("Please use this button for category selection.")
-        : _("Please use this button for category selection\n"
-            "or use the 'Split' checkbox for multiple categories.");
-
-    ToolTip4Object(win, msg + "\n", _("Invalid Category"), wxICON_ERROR);
+    ToolTip4Object(win, _("Please select an existing category"), _("Invalid Category"), wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
