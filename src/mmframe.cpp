@@ -506,11 +506,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
-        bool allow_transaction = bills.AllowTransaction(q1, bal);
         const wxDateTime payment_date = bills.TRANSDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
-            if (allow_transaction && bills.allowExecution())
+            if (bills.allowExecution() && bills.AllowTransaction(q1, bal))
             {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
@@ -524,9 +523,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             }
         }
 
-        if (allow_transaction && bills.autoExecuteSilent() && bills.requireExecution())
+        if (bills.autoExecuteSilent() && bills.requireExecution())
         {
-            if (bills.allowExecution())
+            if (bills.allowExecution() && bills.AllowTransaction(q1, bal))
             {
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
