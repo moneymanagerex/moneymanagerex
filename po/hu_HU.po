@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-29 11:22+0300\n"
-"PO-Revision-Date: 2022-10-29 08:40\n"
+"PO-Revision-Date: 2022-10-29 23:06\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -499,7 +499,7 @@ msgstr "Elvet"
 
 #: assetdialog.cpp:407 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr "Érvénytelen tranzakció"
+msgstr "Érvénytelen ügylet"
 
 #: assetdialog.cpp:414
 msgid "Asset Account not found.\n\n"
@@ -1220,7 +1220,7 @@ msgstr "Hiba"
 #: billsdepositsdialog.cpp:1335 splittransactionsdialog.h:82
 #: transdialog.cpp:311
 msgid "Split Transaction"
-msgstr ""
+msgstr "Ügylet felosztása"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
@@ -1333,11 +1333,11 @@ msgstr "Következő előfordulás kihagyása"
 
 #: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction"
-msgstr ""
+msgstr "&Új, ismétlődő ügylet"
 
 #: billsdepositspanel.cpp:432
 msgid "&Edit Recurring Transaction"
-msgstr ""
+msgstr "Ismétlődő ügylet s&zerkesztése"
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction"
@@ -4125,11 +4125,11 @@ msgstr "A kijelölt ügylet duplikálása"
 
 #: mmcheckingpanel.cpp:397
 msgid "&Restore "
-msgstr ""
+msgstr "&Visszaállítás"
 
 #: mmcheckingpanel.cpp:398
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Kijelölt ügylet visszaállítása"
 
 #: mmcheckingpanel.cpp:413
 msgid "Enter any string to find it in the nearest transaction data"
@@ -4141,7 +4141,7 @@ msgstr "Teljes jelentés az ügyletekről"
 
 #: mmcheckingpanel.cpp:437 mmframe.cpp:762
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Törölt ügyletek"
 
 #: mmcheckingpanel.cpp:439
 #, c-format
@@ -4495,11 +4495,11 @@ msgstr "A navigációs fán a részvényszámlák mutatása/elrejtése"
 
 #: mmframe.cpp:1522
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "Törölt ügyletek &megjelenítése"
 
 #: mmframe.cpp:1522
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "Törölt ügyletek megjelenítése/elrejtése a navigációs fában"
 
 #: mmframe.cpp:1524
 msgid "Budgets: As Financial &Years"
