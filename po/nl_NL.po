@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-29 11:22+0300\n"
-"PO-Revision-Date: 2022-10-29 08:40\n"
+"PO-Revision-Date: 2022-10-29 11:54\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2633,7 +2633,7 @@ msgstr "Periode"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Trash"
-msgstr ""
+msgstr "Geen afval"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -3907,7 +3907,7 @@ msgstr "Sorteervolgorde"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr ""
+msgstr "Verwijderd aan"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal"
@@ -3967,12 +3967,12 @@ msgstr "Nieuwe herhalende t&ransactie"
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Geselecteerde transactie &herstellen..."
+msgstr[1] "Geselecteerde transacties &herstellen..."
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
-msgstr ""
+msgstr "Herstel alle transacties in de huidige weergave"
 
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
@@ -3983,8 +3983,8 @@ msgstr[1] "&Verwijder geselecteerde transacties..."
 #: mmchecking_list.cpp:488
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Geselecteerde transactie definitief verwijderen..."
+msgstr[1] "Geselecteerde transacties definitief verwijderen..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete all transactions in current view"
@@ -3992,7 +3992,7 @@ msgstr "Verwijder alle transacties in de huidige lijst"
 
 #: mmchecking_list.cpp:491
 msgid "Permanently delete all transactions in current view"
-msgstr ""
+msgstr "Alle transacties in de huidige weergave permanent verwijderen"
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Follow Up\" Transactions"
@@ -4008,26 +4008,26 @@ msgstr "Verzoek"
 
 #: mmchecking_list.cpp:950
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Weet u zeker dat u alle getoonde transacties wilt herstellen?"
 
 #: mmchecking_list.cpp:951 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Herstel transactie bevestigen"
 
 #: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wilt u de geselecteerde transactie echt herstellen?"
+msgstr[1] "Wilt u echt %i geselecteerde transacties herstellen?"
 
 #: mmchecking_list.cpp:1026
 msgid "Do you really want to delete all the transactions shown? Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Weet u zeker dat u alle getoonde transacties wilt verwijderen? Verwijderde transacties worden tijdelijk opgeslagen en kunnen worden hersteld vanuit de verwijderde transacties weergave."
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to permanently delete all the transactions shown? You cannot undo this action."
-msgstr ""
+msgstr "Weet u zeker dat u alle getoonde transacties permanent wilt verwijderen? U kunt deze actie niet ongedaan maken."
 
 #: mmchecking_list.cpp:1030 mmchecking_list.cpp:1041 mmchecking_list.cpp:1052
 #: mmchecking_list.cpp:1118
@@ -4041,7 +4041,7 @@ msgstr "Wilt u werkelijk alle getoonde \"%s\" transacties verwijderen?"
 
 #: mmchecking_list.cpp:1113 mmchecking_list.cpp:1114
 msgid "permanently "
-msgstr ""
+msgstr "permanent "
 
 #: mmchecking_list.cpp:1113
 msgid "Do you really want to "
@@ -4051,7 +4051,7 @@ msgstr[1] ""
 
 #: mmchecking_list.cpp:1115
 msgid " You cannot undo this action."
-msgstr ""
+msgstr " U kunt deze actie niet ongedaan maken."
 
 #: mmchecking_list.cpp:1193
 #, c-format
@@ -4125,11 +4125,11 @@ msgstr "Kopieer de geselecteerde transacties"
 
 #: mmcheckingpanel.cpp:397
 msgid "&Restore "
-msgstr ""
+msgstr "&Herstellen "
 
 #: mmcheckingpanel.cpp:398
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Geselecteerde transactie herstellen"
 
 #: mmcheckingpanel.cpp:413
 msgid "Enter any string to find it in the nearest transaction data"
@@ -4141,7 +4141,7 @@ msgstr "Volledige Transacties Rapport"
 
 #: mmcheckingpanel.cpp:437 mmframe.cpp:762
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Transacties verwijderen"
 
 #: mmcheckingpanel.cpp:439
 #, c-format
@@ -4495,11 +4495,11 @@ msgstr "Toon/Verberg aandelenrekeningen in de navigatieboom"
 
 #: mmframe.cpp:1522
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "&Verwijderd weergeven transacties"
 
 #: mmframe.cpp:1522
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "Toon/verberg verwijderde transacties in de navigatiestructuur"
 
 #: mmframe.cpp:1524
 msgid "Budgets: As Financial &Years"
