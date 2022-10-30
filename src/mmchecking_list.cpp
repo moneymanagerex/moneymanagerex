@@ -990,7 +990,7 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
     wxMessageDialog msgDlg(this
         , text
         , _("Confirm Transaction Restore")
-        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
+        , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -1023,12 +1023,19 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
     if (i == MENU_TREEPOPUP_DELETE_VIEWED)
     {
-        wxString text = !m_cp->isTrash_ ? _("Do you really want to delete all the transactions shown? Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.") :
-            _("Do you really want to permanently delete all the transactions shown? You cannot undo this action.");
+        wxString text = !m_cp->isTrash_ 
+            ? _("Do you really want to delete all the transactions shown?")
+            : _("Do you really want to permanently delete all the transactions shown?");
+
+        text += "\n\n";
+        text += !m_cp->isTrash_
+            ? "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
+            : "You cannot undo this action.";
+
         wxMessageDialog msgDlg(this
             , text
             , _("Confirm Transaction Deletion")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+            , wxYES_NO | wxNO_DEFAULT | (m_cp->isTrash_ ? wxICON_ERROR : wxICON_WARNING));
         if (msgDlg.ShowModal() == wxID_YES)
         {
             DeleteTransactionsByStatus("");
@@ -1110,13 +1117,21 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     FindSelectedTransactions();
 
     //ask if they really want to delete
-    const wxString text = wxString::Format(wxPLURAL("Do you really want to " + _(m_cp->isTrash_ ? "permanently " : "") + "delete the selected transaction?"
-        , "Do you really want to " + _(m_cp->isTrash_ ? "permanently " : "") + "delete %i selected transactions?", sel), sel)
-        + _(m_cp->isTrash_ ? " You cannot undo this action." : " Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
+    wxString text = m_cp->isTrash_ ?
+        wxPLURAL("Do you really want to permanently delete the selected transaction?"
+        , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel)
+        , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel))
+        :
+        wxPLURAL("Do you really want to delete the selected transaction?"
+            , wxString::Format("Do you really want to delete %i selected transactions?", sel)
+            , wxString::Format("Do you really want to delete %i selected transactions?", sel));
+    text += "\n\n";
+    text += _(m_cp->isTrash_ ? " You cannot undo this action." : " Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
+
     wxMessageDialog msgDlg(this
         , text
         , _("Confirm Transaction Deletion")
-        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
+        , wxYES_NO | wxYES_DEFAULT | (m_cp->isTrash_ ? wxICON_ERROR : wxICON_WARNING));
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
