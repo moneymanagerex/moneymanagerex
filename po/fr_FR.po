@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 20:51\n"
+"PO-Revision-Date: 2022-10-30 22:07\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2633,7 +2633,7 @@ msgstr "Période"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Deleted"
-msgstr ""
+msgstr "Non supprimé/e"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2805,11 +2805,11 @@ msgstr "Renommer le rapport..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "Actif/active"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Afficher/Masquer le rapport dans le panneau de navigation principal"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
