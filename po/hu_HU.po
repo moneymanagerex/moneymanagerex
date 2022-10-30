@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-29 11:22+0300\n"
-"PO-Revision-Date: 2022-10-30 00:04\n"
+"PO-Revision-Date: 2022-10-30 01:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -909,7 +909,7 @@ msgstr "Havi (utolsó munkanap)"
 
 #: billsdepositsdialog.cpp:300 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr "Rendszeres ügylet ismétlődése"
+msgstr "Rendszeres ügylet megkettőzése"
 
 #: billsdepositsdialog.cpp:302 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -2490,7 +2490,7 @@ msgstr "Követés"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:510
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
-msgstr "Duplikálás"
+msgstr "Megkettőzés"
 
 #: filtertransdialog.cpp:53 filtertransdialog.cpp:1498
 msgid "All Except Reconciled"
@@ -2628,7 +2628,7 @@ msgstr "Időszak"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Trash"
-msgstr ""
+msgstr "Szemétlen"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -3190,7 +3190,7 @@ msgstr "Átutalások importálása"
 
 #: import_export/qif_import_gui.cpp:977
 msgid "Importing Split transactions"
-msgstr "Összetett ügyletek importálása"
+msgstr "Felosztott ügyletek importálása"
 
 #: import_export/qif_import_gui.cpp:981
 msgid "Import finished successfully"
@@ -3725,8 +3725,8 @@ msgstr "Használja ezt a gombot a kategória kiválasztásához,"
 #: mmSimpleDialogs.cpp:784
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Használja ezt a gombot a kategória kiválasztásához,\n"
-"vagy a 'Bontás' jelölőt, többes kategória esetén."
+msgstr "Kérjük, használja ezt a gombot a kategória kijelölésére\n"
+"vagy használja a „Felosztás” jelölőnégyzetet több kategória esetén."
 
 #: mmSimpleDialogs.cpp:787
 msgid "Invalid Category"
@@ -4121,7 +4121,7 @@ msgstr "A kiválasztott ügylet szerkesztése"
 
 #: mmcheckingpanel.cpp:383
 msgid "Duplicate selected transaction"
-msgstr "A kijelölt ügylet duplikálása"
+msgstr "Kijelölt ügylet megkettőzése"
 
 #: mmcheckingpanel.cpp:397
 msgid "&Restore "
@@ -4623,7 +4623,7 @@ msgstr "Költségvetés beállítása "
 
 #: mmframe.cpp:1651
 msgid "&Recurring Transactions"
-msgstr "Rendszeres ügyletek"
+msgstr "&Rendszeres ügyletek"
 
 #: mmframe.cpp:1651
 msgid "Bills && Deposits"
@@ -5513,7 +5513,7 @@ msgstr "Bankszámla"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr "Rendszeres ügylet"
+msgstr "RendszeresUgylet"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5523,7 +5523,7 @@ msgstr "Egy rendszeres ügylet meghaladja a számlakorlátját.\n\n"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
-msgstr "MMEX Rendszeres ügyletek ellenőrzése"
+msgstr "MMEX rendszeres ügyletek ellenőrzése"
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
@@ -5710,11 +5710,11 @@ msgstr "Válaszd, hogy a melléklet eltávolításakor a fájlt ne törölje, ha
 
 #: optionsettingsattachment.cpp:178
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr "Tranzakciót duplikálásakor a mellékletet is duplikálja"
+msgstr "Ügyletek megkettőzésekor a mellékleteket is ismételje"
 
 #: optionsettingsattachment.cpp:180
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr "Jelöld be, ha a mellékletet új tranzakcióhoz akarod másolni duplikáláskor, vagy beillesztéskor"
+msgstr "Jelölje be, hogy a mellékleteket megkettőzéskor vagy beillesztéskor új ügyletekhez szeretné-e másolni"
 
 #: optionsettingsattachment.cpp:193
 msgid "Choose folder to set as attachments archive"
@@ -5824,11 +5824,11 @@ msgstr "Jelölje be, hogy másoláskor a tranzakció eredeti dátumát, vagy a j
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr "Tranzakció duplikálásakor az eredeti dátumot használja"
+msgstr "Ügyletek megkettőzésekor használja az eredeti dátumot"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr "Jelölje be, hogy tranzakció duplikálásakor annak eredeti dátumát, vagy a jelenlegi dátumot használja-e"
+msgstr "Jelölje be, hogy az eredeti ügylet dátumát vagy a jelenlegi dátumot használja-e az ügyletek megkettőzésekor"
 
 #: optionsettingsgeneral.cpp:224
 msgid "Use Transaction Sound"
@@ -6308,7 +6308,7 @@ msgstr "Ügyletekben talált bejegyzések: %i"
 #: relocatecategorydialog.cpp:271
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "Az összetett ügyletekben talált bejegyzések: %i"
+msgstr "Felosztott ügyletekben talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:272 relocatepayeedialog.cpp:204
 #, c-format
@@ -6318,7 +6318,7 @@ msgstr "A rendszeres ügyletek között talált bejegyzések: %i"
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "Az rendszeres összetett ügyletek között talált bejegyzések: %i"
+msgstr "Rendszeres felosztott ügyletek között talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
@@ -6802,19 +6802,19 @@ msgstr "Értékpapírügylet szerkesztése"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Felosztás részleteinek szerkesztése"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Írjon be megjegyzéseket a felosztott ügylet leírásához"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
-msgstr ""
+msgstr "Felosztás hozzáadása"
 
 #: splittransactionsdialog.cpp:247
 msgid "Remove Split"
-msgstr ""
+msgstr "Felosztás eltávolítása"
 
 #: splittransactionsdialog.cpp:392
 msgid "Invalid Total Amount"
@@ -7197,7 +7197,7 @@ msgstr "Többszörös tranzakció frissítése"
 
 #: transdialog.cpp:161
 msgid "Duplicate Transaction"
-msgstr "Ügylet duplikálása"
+msgstr "Ügylet megkettőzése"
 
 #: transdialog.cpp:161
 msgid "Edit Transaction"
