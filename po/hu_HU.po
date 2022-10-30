@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-29 11:22+0300\n"
-"PO-Revision-Date: 2022-10-29 23:06\n"
+"PO-Revision-Date: 2022-10-30 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -909,7 +909,7 @@ msgstr "Havi (utolsó munkanap)"
 
 #: billsdepositsdialog.cpp:300 billsdepositspanel.cpp:298
 msgid "Duplicate Recurring Transaction"
-msgstr "Rendszeres tranzakció duplikálása"
+msgstr "Rendszeres ügylet ismétlődése"
 
 #: billsdepositsdialog.cpp:302 billsdepositspanel.cpp:293
 msgid "Edit Recurring Transaction"
@@ -1033,7 +1033,7 @@ msgstr "Számla"
 
 #: billsdepositsdialog.cpp:546
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Határozza a számlát, amihez a rendszer ügylethez tartozik"
+msgstr "Határozza a számlát, amihez a rendszeres ügylethez tartozik"
 
 #: billsdepositsdialog.cpp:551 transdialog.cpp:217 transdialog.cpp:464
 msgid "To"
@@ -1224,7 +1224,7 @@ msgstr "Ügylet felosztása"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:289
 msgid "New Recurring Transaction"
-msgstr "Új rendszeres ügylet"
+msgstr "Új, rendszeres ügylet"
 
 #: billsdepositsdialog.h:123
 msgid "Specify where the transaction is going to"
@@ -1305,7 +1305,7 @@ msgstr "D&uplikálás "
 
 #: billsdepositspanel.cpp:303
 msgid "Delete Recurring Transaction"
-msgstr "Ismétlődő tranzakció törlése"
+msgstr "Rendszeres ügylet törlése"
 
 #: billsdepositspanel.cpp:307
 msgid "Ente&r"
@@ -1313,7 +1313,7 @@ msgstr "Ente&r"
 
 #: billsdepositspanel.cpp:308
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr "Add meg következő ismétlődő tranzakció esedékességét"
+msgstr "Add meg következő rendszeres ügylet esedékességét"
 
 #: billsdepositspanel.cpp:312
 msgid "&Skip"
@@ -1321,7 +1321,7 @@ msgstr "Átlép"
 
 #: billsdepositspanel.cpp:313
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "A következő ismétlődő tranzakció előfordulásának átugrása"
+msgstr "A következő rendszeres ügylet előfordulásának átugrása"
 
 #: billsdepositspanel.cpp:427
 msgid "Enter next Occurrence"
@@ -1333,19 +1333,19 @@ msgstr "Következő előfordulás kihagyása"
 
 #: billsdepositspanel.cpp:431
 msgid "&New Recurring Transaction"
-msgstr "&Új, ismétlődő ügylet"
+msgstr "&Új, rendszeres ügylet"
 
 #: billsdepositspanel.cpp:432
 msgid "&Edit Recurring Transaction"
-msgstr "Ismétlődő ügylet s&zerkesztése"
+msgstr "Rendszeres ügylet s&zerkesztése"
 
 #: billsdepositspanel.cpp:433
 msgid "D&uplicate Recurring Transaction"
-msgstr ""
+msgstr "Rendszeres ügylet &ismétlődése"
 
 #: billsdepositspanel.cpp:435
 msgid "&Delete Recurring Transaction"
-msgstr ""
+msgstr "Rendszeres ügylet &törlése"
 
 #: billsdepositspanel.cpp:483
 msgid "Manual"
@@ -1391,7 +1391,7 @@ msgstr[1] "%d napja lejárt!"
 
 #: billsdepositspanel.cpp:679
 msgid "Do you really want to delete the recurring transaction?"
-msgstr "Valóban törli az ismétlődő tranzakciót?"
+msgstr "Valóban törli a rendszeres ügyletet?"
 
 #: billsdepositspanel.cpp:680
 msgid "Confirm Deletion"
@@ -2600,7 +2600,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1170 mmframe.cpp:1187
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Folytatja a műveletet?"
 
 #: filtertransdialog.cpp:1171 mmframe.cpp:1188
 msgid "Settings item deletion"
@@ -3918,8 +3918,8 @@ msgstr "Új átutalás"
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ügylet s&zerkesztése…"
+msgstr[1] "Ügyletek s&zerkesztése…"
 
 #: mmchecking_list.cpp:446
 msgid "&Copy Transaction"
@@ -3945,8 +3945,8 @@ msgstr "Ügylet duplikálása"
 #: mmchecking_list.cpp:459
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ügylet &áthelyezése…"
+msgstr[1] "Ügyletek &áthelyezése…"
 
 #: mmchecking_list.cpp:465
 msgid "&View In Other Account"
@@ -3958,17 +3958,17 @@ msgstr "Összetett kategóriák mutatása"
 
 #: mmchecking_list.cpp:477
 msgid "Create Recurring T&ransaction"
-msgstr "Rendszeres ügylet létrehozása"
+msgstr "Rendszeres ügylet létre&hozása"
 
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kijelölt ügylet &visszaállítása…"
+msgstr[1] "Kijelölt ügyletek &visszaállítása…"
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
-msgstr ""
+msgstr "Összes ügylet visszaállítása a jelenlegi nézetben"
 
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
@@ -4004,22 +4004,22 @@ msgstr "Megjelölés mint"
 
 #: mmchecking_list.cpp:950
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Biztosan visszaállít az összes megjelenített ügyletet?"
 
 #: mmchecking_list.cpp:951 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Ügylet visszaállításának megerősítése"
 
 #: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Biztosan visszaállít az ügyletet?"
+msgstr[1] "Biztosan visszaállít %i ügyletet?"
 
 #: mmchecking_list.cpp:1026
 msgid "Do you really want to delete all the transactions shown? Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Biztosan törölni szeretné az összes megjelenített ügyletet? A törölt ügyletek átmenetileg tárolásra kerülnek, és a Törölt ügyletek nézetből visszaállíthatók."
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to permanently delete all the transactions shown? You cannot undo this action."
@@ -5518,8 +5518,8 @@ msgstr "Rendszeres ügylet"
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr "A rendszeres tranzakció a számlád limitjét meghaladja \n\n"
-"Folytatod?"
+msgstr "Egy rendszeres ügylet meghaladja a számlakorlátját.\n\n"
+"Folytatja a műveletet?"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
@@ -7214,8 +7214,8 @@ msgstr "Az ügylethez tartozó mellékletek rendezése"
 #: transdialog.cpp:725
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr "A tranzakció meghaladja a számlalimitet.\n\n"
-"Folytatja?"
+msgstr "Ez az ügylet meghaladja a számlakorlátját.\n\n"
+"Folytatja a műveletet?"
 
 #: transdialog.cpp:1120
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
