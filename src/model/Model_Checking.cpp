@@ -331,7 +331,7 @@ Model_Checking::Full_Data::Full_Data()
 }
 
 Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
-, m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
+, Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
