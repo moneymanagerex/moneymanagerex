@@ -1072,13 +1072,10 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    if (!frequentNotes_.empty() || !m_local_splits.empty())
+    if (!frequentNotes_.empty())
     {
         wxMenu menu;
         int id = wxID_LOWEST;
-
-        if (!m_local_splits.empty())
-            menu.Append(++id, _("Generate notes from split categories"));
 
         for (const auto& entry : frequentNotes_) {
             wxString label = entry.Mid(0, 36) + (entry.size() > 36 ? "..." : "");
@@ -1091,22 +1088,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_LOWEST - static_cast<int>(!m_local_splits.empty());
-
-    if (!m_local_splits.empty() && i == 0)
-    {
-        const auto account = Model_Account::instance().get(m_account_id);
-        wxString notes;
-        for (const auto& entry : m_local_splits)
-        {
-            notes += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
-                + " (" + (account ? Model_Account::toCurrency(entry.SPLITTRANSAMOUNT, account)
-                    : wxString::Format("%.2f", entry.SPLITTRANSAMOUNT))
-                + ") " +  entry.NOTES + "\n";
-        }
-        textNotes_->ChangeValue(notes);
-        return;
-    }
+    int i = event.GetId() - wxID_LOWEST);
 
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
         if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
