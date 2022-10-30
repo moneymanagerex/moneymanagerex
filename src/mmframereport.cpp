@@ -240,7 +240,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
 {
     /*GRM Reports*/
-    auto records = Model_Report::instance().all();
+    auto records = Model_Report::instance().find(Model_Report::ACTIVE(1, EQUAL));
     //Sort by group name and report name
     std::sort(records.begin(), records.end(), SorterByREPORTNAME());
     std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
@@ -253,6 +253,7 @@ void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
         if (group_name != record.GROUPNAME && !no_group)
         {
             group = m_nav_tree_ctrl->AppendItem(parent_item, wxGetTranslation(record.GROUPNAME), img::CUSTOMSQL_GRP_PNG, img::CUSTOMSQL_GRP_PNG);
+            m_nav_tree_ctrl->SetItemBold(group, true);
             m_nav_tree_ctrl->SetItemData(group, new mmTreeItemData(new mmGeneralGroupReport(record.GROUPNAME), record.GROUPNAME));
             group_name = record.GROUPNAME;
         }
