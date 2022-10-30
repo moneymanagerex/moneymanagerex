@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 11:55\n"
+"PO-Revision-Date: 2022-10-30 17:42\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2774,11 +2774,11 @@ msgstr "Administrador de informes generales"
 
 #: general_report_manager.cpp:731
 msgid "Assets..."
-msgstr ""
+msgstr "Activos..."
 
 #: general_report_manager.cpp:734
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Nuevo informe vacío..."
 
 #: general_report_manager.cpp:735
 msgid "New Sample Report"
@@ -2786,11 +2786,11 @@ msgstr "Nuevo informe de ejemplo"
 
 #: general_report_manager.cpp:738
 msgid "Change Group..."
-msgstr ""
+msgstr "Cambiar grupo..."
 
 #: general_report_manager.cpp:740
 msgid "Rename Group..."
-msgstr ""
+msgstr "Renombrar grupo..."
 
 #: general_report_manager.cpp:741
 msgid "UnGroup"
@@ -2798,11 +2798,11 @@ msgstr "Desagrupar"
 
 #: general_report_manager.cpp:742
 msgid "Rename Report..."
-msgstr ""
+msgstr "Renombrar informe..."
 
 #: general_report_manager.cpp:744
 msgid "Delete Report..."
-msgstr ""
+msgstr "Borrar informe..."
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
 msgid "Enter the name for the report"
