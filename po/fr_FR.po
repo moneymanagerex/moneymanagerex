@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 11:55\n"
+"PO-Revision-Date: 2022-10-30 14:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2777,11 +2777,11 @@ msgstr "Configuration des rapports généraux"
 
 #: general_report_manager.cpp:731
 msgid "Assets..."
-msgstr ""
+msgstr "Avoir..."
 
 #: general_report_manager.cpp:734
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Nouveau rapport vide..."
 
 #: general_report_manager.cpp:735
 msgid "New Sample Report"
@@ -2789,11 +2789,11 @@ msgstr "Nouvel exemple de rapport"
 
 #: general_report_manager.cpp:738
 msgid "Change Group..."
-msgstr ""
+msgstr "Changer de groupe..."
 
 #: general_report_manager.cpp:740
 msgid "Rename Group..."
-msgstr ""
+msgstr "Renommer le groupe..."
 
 #: general_report_manager.cpp:741
 msgid "UnGroup"
@@ -2801,11 +2801,11 @@ msgstr "Dégrouper"
 
 #: general_report_manager.cpp:742
 msgid "Rename Report..."
-msgstr ""
+msgstr "Renommer le rapport..."
 
 #: general_report_manager.cpp:744
 msgid "Delete Report..."
-msgstr ""
+msgstr "Supprimer le rapport..."
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
 msgid "Enter the name for the report"
@@ -3733,7 +3733,7 @@ msgstr "l'entrée %s n'est pas correcte"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Veuillez sélectionner une catégorie existante"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Invalid Category"
@@ -4025,11 +4025,11 @@ msgstr[1] "Voulez-vous vraiment restaurer les %i opérations sélectionnées ?"
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Souhaitez-vous réellement supprimer toutes les opérations affichées ?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Souhaitez-vous réellement supprimer définitivement toutes les opérations affichées ?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -5516,15 +5516,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Une opération récurrente dépassera la limite du solde de votre compte.\n\n"
+"Compte : %s\n"
+"Solde actuel : %6.2f\n"
+"Montant de la transaction : %6.2f\n"
+"%s: %6.2f\n\n"
+"Voulez-vous continuer ?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Solde minimum"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Plafond de crédit"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -6828,7 +6833,7 @@ msgstr "Montant total non valable "
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Veuillez saisir un montant valide"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
