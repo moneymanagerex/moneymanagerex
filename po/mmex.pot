@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-10-30 14:29+0300\n"
+"POT-Creation-Date: 2022-10-30 22:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -579,7 +579,7 @@ msgstr ""
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1008
+#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1030
 #: mmframe.cpp:486 mmframe.cpp:753 mmframe.cpp:1654 mmframe.cpp:3226
 #: mmhomepage.cpp:542 mmhomepage.cpp:590 mmhomepagepanel.cpp:235
 msgid "Assets"
@@ -682,7 +682,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: attachmentdialog.cpp:56 general_report_manager.cpp:441
+#: attachmentdialog.cpp:56 general_report_manager.cpp:442
 msgid "Description"
 msgstr ""
 
@@ -977,7 +977,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:572 transdialog.cpp:1228
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:572 transdialog.cpp:1248
 msgid "Specify the status for the transaction"
 msgstr ""
 
@@ -992,7 +992,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1229
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1249
 msgid "Specify the type of transactions to be created."
 msgstr ""
 
@@ -1000,7 +1000,7 @@ msgstr ""
 msgid "&Advanced"
 msgstr ""
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1232
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1252
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -1016,7 +1016,7 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1214
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1234
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
@@ -1071,11 +1071,11 @@ msgid "Category"
 msgstr ""
 
 #: billsdepositsdialog.cpp:579 billsdepositsdialog.cpp:1325 transdialog.cpp:493
-#: transdialog.cpp:1191
+#: transdialog.cpp:1211
 msgid "Use split Categories"
 msgstr ""
 
-#: billsdepositsdialog.cpp:587 transdialog.cpp:1230
+#: billsdepositsdialog.cpp:587 transdialog.cpp:1250
 msgid "Specify any associated check number or transaction number"
 msgstr ""
 
@@ -1110,7 +1110,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:623 transdialog.cpp:543 transdialog.cpp:1231
+#: billsdepositsdialog.cpp:623 transdialog.cpp:543 transdialog.cpp:1251
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
@@ -1232,7 +1232,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:124 transdialog.cpp:1223
+#: billsdepositsdialog.h:124 transdialog.cpp:1243
 msgid "Specify where the transaction is coming from"
 msgstr ""
 
@@ -1240,7 +1240,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:126 transdialog.cpp:1218 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:126 transdialog.cpp:1238 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -2629,7 +2629,7 @@ msgid "Period"
 msgstr ""
 
 #: filtertransdialog.cpp:1499
-msgid "Not Trash"
+msgid "Not Deleted"
 msgstr ""
 
 #: filtertransdialog.cpp:1529
@@ -2676,92 +2676,92 @@ msgid "Choose Accounts"
 msgstr ""
 
 #: general_report_manager.cpp:293 mmframe.cpp:775 mmframe.cpp:2764
-#: mmframereport.cpp:315 reports/myusage.cpp:142 reports/myusage.cpp:159
+#: mmframereport.cpp:316 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr ""
 
-#: general_report_manager.cpp:388 import_export/univcsvdialog.cpp:411
+#: general_report_manager.cpp:389 import_export/univcsvdialog.cpp:411
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&Import"
 msgstr ""
 
-#: general_report_manager.cpp:390
+#: general_report_manager.cpp:391
 msgid "Locate and load a report file."
 msgstr ""
 
-#: general_report_manager.cpp:392 import_export/univcsvdialog.cpp:413
+#: general_report_manager.cpp:393 import_export/univcsvdialog.cpp:413
 #: mmframe.cpp:1336 mmframe.cpp:1498
 msgid "&Export"
 msgstr ""
 
-#: general_report_manager.cpp:394
+#: general_report_manager.cpp:395
 msgid "Export the report to a new file."
 msgstr ""
 
-#: general_report_manager.cpp:397 stockdialog.cpp:349
+#: general_report_manager.cpp:398 stockdialog.cpp:349
 msgid "&Save "
 msgstr ""
 
-#: general_report_manager.cpp:399
+#: general_report_manager.cpp:400
 msgid "Save changes."
 msgstr ""
 
-#: general_report_manager.cpp:401
+#: general_report_manager.cpp:402
 msgid "&Run"
 msgstr ""
 
-#: general_report_manager.cpp:403
+#: general_report_manager.cpp:404
 msgid "Run selected report."
 msgstr ""
 
-#: general_report_manager.cpp:415
+#: general_report_manager.cpp:416
 msgid "Output"
 msgstr ""
 
-#: general_report_manager.cpp:438
+#: general_report_manager.cpp:439
 msgid "SQL"
 msgstr ""
 
-#: general_report_manager.cpp:439
+#: general_report_manager.cpp:440
 msgid "Lua"
 msgstr ""
 
-#: general_report_manager.cpp:440
+#: general_report_manager.cpp:441
 msgid "Template"
 msgstr ""
 
-#: general_report_manager.cpp:493
+#: general_report_manager.cpp:494
 msgid "&Test"
 msgstr ""
 
-#: general_report_manager.cpp:494
+#: general_report_manager.cpp:495
 msgid "Create Template"
 msgstr ""
 
-#: general_report_manager.cpp:546
+#: general_report_manager.cpp:547
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] ""
 msgstr[1] ""
 
-#: general_report_manager.cpp:573
+#: general_report_manager.cpp:574
 msgid "SQL Syntax Error"
 msgstr ""
 
-#: general_report_manager.cpp:604
+#: general_report_manager.cpp:605
 msgid "Load report file:"
 msgstr ""
 
-#: general_report_manager.cpp:606 general_report_manager.cpp:1037
+#: general_report_manager.cpp:607 general_report_manager.cpp:1059
 msgid "General Report Manager files (*.grm)"
 msgstr ""
 
-#: general_report_manager.cpp:606 general_report_manager.cpp:1037
+#: general_report_manager.cpp:607 general_report_manager.cpp:1059
 msgid "ZIP files (*.zip)"
 msgstr ""
 
-#: general_report_manager.cpp:670
+#: general_report_manager.cpp:671
 #, c-format
 msgid ""
 "Unable to open file:\n"
@@ -2769,93 +2769,101 @@ msgid ""
 "\n"
 msgstr ""
 
-#: general_report_manager.cpp:671 general_report_manager.h:64
+#: general_report_manager.cpp:672 general_report_manager.h:64
 msgid "General Reports Manager"
 msgstr ""
 
-#: general_report_manager.cpp:731
+#: general_report_manager.cpp:732
 msgid "Assets..."
 msgstr ""
 
-#: general_report_manager.cpp:734
+#: general_report_manager.cpp:735
 msgid "New Empty Report..."
 msgstr ""
 
-#: general_report_manager.cpp:735
+#: general_report_manager.cpp:736
 msgid "New Sample Report"
 msgstr ""
 
-#: general_report_manager.cpp:738
+#: general_report_manager.cpp:739
 msgid "Change Group..."
 msgstr ""
 
-#: general_report_manager.cpp:740
+#: general_report_manager.cpp:741
 msgid "Rename Group..."
 msgstr ""
 
-#: general_report_manager.cpp:741
+#: general_report_manager.cpp:742
 msgid "UnGroup"
 msgstr ""
 
-#: general_report_manager.cpp:742
+#: general_report_manager.cpp:743
 msgid "Rename Report..."
 msgstr ""
 
-#: general_report_manager.cpp:744
+#: general_report_manager.cpp:747
+msgid "Active"
+msgstr ""
+
+#: general_report_manager.cpp:747
+msgid "Show/Hide the Report in the main Navigation tree control"
+msgstr ""
+
+#: general_report_manager.cpp:751
 msgid "Delete Report..."
 msgstr ""
 
-#: general_report_manager.cpp:839 general_report_manager.cpp:987
+#: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
 msgstr ""
 
-#: general_report_manager.cpp:840 general_report_manager.cpp:988
+#: general_report_manager.cpp:849 general_report_manager.cpp:1010
 #: mmframe.cpp:780 mmframe.cpp:1672 mmframe.cpp:1844
 msgid "General Report Manager"
 msgstr ""
 
-#: general_report_manager.cpp:858
+#: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
 msgstr ""
 
-#: general_report_manager.cpp:887 general_report_manager.cpp:968
+#: general_report_manager.cpp:906 general_report_manager.cpp:990
 msgid "Enter or choose name for the new report group"
 msgstr ""
 
-#: general_report_manager.cpp:888
+#: general_report_manager.cpp:907
 msgid "Change report group"
 msgstr ""
 
-#: general_report_manager.cpp:904
+#: general_report_manager.cpp:923
 msgid "Enter or choose name for the new group"
 msgstr ""
 
-#: general_report_manager.cpp:905
+#: general_report_manager.cpp:924
 msgid "Rename Group"
 msgstr ""
 
-#: general_report_manager.cpp:969
+#: general_report_manager.cpp:991
 msgid "Add Report Group"
 msgstr ""
 
-#: general_report_manager.cpp:982
+#: general_report_manager.cpp:1004
 #, c-format
 msgid "New Report %s"
 msgstr ""
 
-#: general_report_manager.cpp:995
+#: general_report_manager.cpp:1017
 msgid "Report Name already exists"
 msgstr ""
 
-#: general_report_manager.cpp:995 general_report_manager.cpp:1002
+#: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
 msgstr ""
 
-#: general_report_manager.cpp:1034
+#: general_report_manager.cpp:1056
 msgid "Choose file to Save As Report"
 msgstr ""
 
-#: general_report_manager.cpp:1212
+#: general_report_manager.cpp:1234
 msgid "Parameters:"
 msgstr ""
 
@@ -5265,7 +5273,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:315 mmreportspanel.cpp:387
+#: mmframereport.cpp:316 mmreportspanel.cpp:387
 msgid "Hide"
 msgstr ""
 
@@ -7233,35 +7241,39 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 
-#: transdialog.cpp:1120
+#: transdialog.cpp:1081
+msgid "Generate notes from split categories"
+msgstr ""
+
+#: transdialog.cpp:1140
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1121
+#: transdialog.cpp:1141
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1209
+#: transdialog.cpp:1229
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1210
+#: transdialog.cpp:1230
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1211
+#: transdialog.cpp:1231
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1239
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1221
+#: transdialog.cpp:1241
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1227 usertransactionpanel.cpp:94
+#: transdialog.cpp:1247 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr ""
 

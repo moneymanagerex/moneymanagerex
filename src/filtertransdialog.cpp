@@ -1496,7 +1496,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     {
         wxArrayString s = Model_Checking::all_status();
         s.Add(wxTRANSLATE("All Except Reconciled"));
-        s.Add(wxTRANSLATE("Not Trash"));
+        s.Add(wxTRANSLATE("Not Deleted"));
         int item = choiceStatus_->GetSelection();
         wxString status;
         if (0 <= item && static_cast<size_t>(item) < s.size())
