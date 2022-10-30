@@ -297,12 +297,37 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
         abort_transaction = true;
     }
 
-    if (abort_transaction && wxMessageBox(_(
-        "A recurring transaction will exceed your account limit.\n\n"
-        "Do you wish to continue?")
-        , _("MMEX Recurring Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+    if (abort_transaction)
     {
-        abort_transaction = false;
+        wxString message = _("A recurring transaction will exceed your account limit.\n\n"
+            "Account: %s\n"
+            "Current Balance: %6.2f\n"
+            "Transaction amount: %6.2f\n"
+            "%s: %6.2f\n\n"
+            "Do you wish to continue ?"
+        );
+
+        wxString limitDescription;
+        double limitAmount{ 0.0L };
+
+        if (account->MINIMUMBALANCE > 0)
+        {
+            limitDescription = _("Minimum Balance");
+            limitAmount = account->MINIMUMBALANCE;
+        }
+
+        if (account->CREDITLIMIT > 0)
+        {
+            limitDescription = _("Credit Limit");
+            limitAmount = account->CREDITLIMIT;
+        }
+
+        message.Printf(message, account->ACCOUNTNAME, current_account_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
+
+        if (wxMessageBox(message, _("MMEX Recurring Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+        {
+            abort_transaction = false;
+        }
     }
 
     if (!abort_transaction)

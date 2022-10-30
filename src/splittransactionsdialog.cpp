@@ -406,8 +406,11 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
-    activateNewRow();
-    FillControls();
+    if (mmDoCheckRow(row_num_))
+    {
+        activateNewRow();
+        FillControls();
+    }
     event.Skip();
 }
 
@@ -522,11 +525,15 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
 
     // Validate category and amount
     if (!m_splits_widgets.at(row).category->mmIsValid()) {
-            mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category, true);
+            mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category);
             return false;
     }
-    if (!m_splits_widgets.at(row).amount->Calculate())
+
+    if (!m_splits_widgets.at(row).amount->Calculate()) {
+            mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount, 
+                                _("Please enter a valid monetary amount"), _("Invalid Value"));
             return false;
+    }
 
     m_splits_widgets.at(row).amount->GetDouble(amount);
 
