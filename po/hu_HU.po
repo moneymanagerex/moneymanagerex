@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 22:07\n"
+"PO-Revision-Date: 2022-10-30 23:16\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2091,7 +2091,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr "Valóban törli ezt a felhasználói mezőt és az összes adatát?"
+msgstr "Biztosan törölni szeretné ezt az egyéni mezőt és az összes adatot?"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
@@ -2627,7 +2627,7 @@ msgstr "Időszak"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Deleted"
-msgstr ""
+msgstr "Nincs törölve"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2800,11 +2800,11 @@ msgstr ""
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "Fennáll"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Kimutatások megjelenítése/elrejtése a fő navigációs ablakban"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
@@ -4028,11 +4028,11 @@ msgstr[1] "Biztosan visszaállít %i ügyletet?"
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Biztosan törölni szeretné az összes megjelenített ügyletet?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Biztosan véglegesen törölni szeretné az összes megjelenített ügyletet?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -5522,11 +5522,16 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "A rendszeres ügylet túllépi számlakorlátját.\n\n"
+"Számla: %s\n"
+"Jelenlegi egyenleg: %6.2f\n"
+"Ügylet összege: %6.2f\n"
+"%s: %6.2f\n\n"
+"Folytatja a műveletet?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Legkisebb egyenleg"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
@@ -6833,7 +6838,7 @@ msgstr "Érvénytelen végösszeg"
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Adjon meg egy érvényes pénzösszeget"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
