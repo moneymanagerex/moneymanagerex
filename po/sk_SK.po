@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 11:55\n"
+"POT-Creation-Date: 2022-10-30 23:12+0300\n"
+"PO-Revision-Date: 2022-10-30 20:51\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -578,7 +578,7 @@ msgstr "Potvrďte odstránenie hmotného majetku"
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX umožňuje sledovať dlhodobý majetok ako autá, domy, pozemky a iné. Každý hmotný majetok môže mať hodnotu, ktorá každoročne narastá alebo klesá o určitú percentuálnu sadzbu alebo sa nemení. Hodnota hmotného majetku bude pripočítaná k hodnote vášho celkového majetku."
 
-#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1008
+#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:486 mmframe.cpp:753 mmframe.cpp:1654 mmframe.cpp:3226
 #: mmhomepage.cpp:542 mmhomepage.cpp:590 mmhomepagepanel.cpp:235
 msgid "Assets"
@@ -677,7 +677,7 @@ msgstr ""
 msgid "Account \t Date\t   Value\n\n"
 msgstr ""
 
-#: attachmentdialog.cpp:56 general_report_manager.cpp:441
+#: attachmentdialog.cpp:56 general_report_manager.cpp:443
 msgid "Description"
 msgstr "Opis"
 
@@ -972,7 +972,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr "Dátum platby"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:572 transdialog.cpp:1228
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:572 transdialog.cpp:1230
 msgid "Specify the status for the transaction"
 msgstr "Upresnite stav transakcie"
 
@@ -987,7 +987,7 @@ msgstr "Upresnite stav transakcie"
 msgid "Status"
 msgstr "Stav"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1229
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1231
 msgid "Specify the type of transactions to be created."
 msgstr "Upresnite typ vytváranej transakcie."
 
@@ -995,7 +995,7 @@ msgstr "Upresnite typ vytváranej transakcie."
 msgid "&Advanced"
 msgstr "&Rozšírené"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1232
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1234
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Umožňuje nastaviť rôzne sumy na zdrojové a cieľové účty."
 
@@ -1011,7 +1011,7 @@ msgstr "Umožňuje nastaviť rôzne sumy na zdrojové a cieľové účty."
 msgid "Amount"
 msgstr "Suma"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1214
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1216
 msgid "Specify the transfer amount in the To Account"
 msgstr "Upresnite sumu prevodu na cieľový účet"
 
@@ -1066,11 +1066,11 @@ msgid "Category"
 msgstr "Kategória"
 
 #: billsdepositsdialog.cpp:579 billsdepositsdialog.cpp:1325 transdialog.cpp:493
-#: transdialog.cpp:1191
+#: transdialog.cpp:1193
 msgid "Use split Categories"
 msgstr "Použiť kategórie rozdelenia"
 
-#: billsdepositsdialog.cpp:587 transdialog.cpp:1230
+#: billsdepositsdialog.cpp:587 transdialog.cpp:1232
 msgid "Specify any associated check number or transaction number"
 msgstr "Upresnite zodpovedajúce číslo šeku alebo číslo transakcie"
 
@@ -1105,7 +1105,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:623 transdialog.cpp:543 transdialog.cpp:1231
+#: billsdepositsdialog.cpp:623 transdialog.cpp:543 transdialog.cpp:1233
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Zadajte ľubovolnú poznámku, ktorú chcete pridať k transakcii."
@@ -1221,7 +1221,7 @@ msgstr "Nová opakujúca sa transakcia"
 msgid "Specify where the transaction is going to"
 msgstr "Upresnite kam odchádza transakcia"
 
-#: billsdepositsdialog.h:124 transdialog.cpp:1223
+#: billsdepositsdialog.h:124 transdialog.cpp:1225
 msgid "Specify where the transaction is coming from"
 msgstr "Upresnite odkiaľ prichádza transakcia"
 
@@ -1229,7 +1229,7 @@ msgstr "Upresnite odkiaľ prichádza transakcia"
 msgid "Specify which account the transfer is going to"
 msgstr "Upresnite účet, na ktorý odchádza prevod"
 
-#: billsdepositsdialog.h:126 transdialog.cpp:1218 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:126 transdialog.cpp:1220 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Upresnite sumu pre túto transakciu"
 
@@ -2617,7 +2617,7 @@ msgid "Period"
 msgstr ""
 
 #: filtertransdialog.cpp:1499
-msgid "Not Trash"
+msgid "Not Deleted"
 msgstr ""
 
 #: filtertransdialog.cpp:1529
@@ -2664,69 +2664,69 @@ msgid "Choose Accounts"
 msgstr "Vybrať účty"
 
 #: general_report_manager.cpp:293 mmframe.cpp:775 mmframe.cpp:2764
-#: mmframereport.cpp:315 reports/myusage.cpp:142 reports/myusage.cpp:159
+#: mmframereport.cpp:316 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr "Reporty"
 
-#: general_report_manager.cpp:388 import_export/univcsvdialog.cpp:411
+#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:411
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&Import"
 msgstr "&Importovať"
 
-#: general_report_manager.cpp:390
+#: general_report_manager.cpp:392
 msgid "Locate and load a report file."
 msgstr "Nájsť a načítať súbor s reportom."
 
-#: general_report_manager.cpp:392 import_export/univcsvdialog.cpp:413
+#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:413
 #: mmframe.cpp:1336 mmframe.cpp:1498
 msgid "&Export"
 msgstr "&Exportovať"
 
-#: general_report_manager.cpp:394
+#: general_report_manager.cpp:396
 msgid "Export the report to a new file."
 msgstr "Exportovať report do nového súboru."
 
-#: general_report_manager.cpp:397 stockdialog.cpp:349
+#: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
 msgstr "&Uložiť "
 
-#: general_report_manager.cpp:399
+#: general_report_manager.cpp:401
 msgid "Save changes."
 msgstr "Uložiť zmeny."
 
-#: general_report_manager.cpp:401
+#: general_report_manager.cpp:403
 msgid "&Run"
 msgstr "&Spustiť"
 
-#: general_report_manager.cpp:403
+#: general_report_manager.cpp:405
 msgid "Run selected report."
 msgstr "Spustiť vybraný report."
 
-#: general_report_manager.cpp:415
+#: general_report_manager.cpp:417
 msgid "Output"
 msgstr "Výstup"
 
-#: general_report_manager.cpp:438
+#: general_report_manager.cpp:440
 msgid "SQL"
 msgstr "SQL"
 
-#: general_report_manager.cpp:439
+#: general_report_manager.cpp:441
 msgid "Lua"
 msgstr ""
 
-#: general_report_manager.cpp:440
+#: general_report_manager.cpp:442
 msgid "Template"
 msgstr "Šablóna"
 
-#: general_report_manager.cpp:493
+#: general_report_manager.cpp:495
 msgid "&Test"
 msgstr "&Test"
 
-#: general_report_manager.cpp:494
+#: general_report_manager.cpp:496
 msgid "Create Template"
 msgstr "Vytvoriť šablónu"
 
-#: general_report_manager.cpp:546
+#: general_report_manager.cpp:548
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
@@ -2735,116 +2735,124 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: general_report_manager.cpp:573
+#: general_report_manager.cpp:575
 msgid "SQL Syntax Error"
 msgstr "SQL syntaktická chyba"
 
-#: general_report_manager.cpp:604
+#: general_report_manager.cpp:606
 msgid "Load report file:"
 msgstr "Načítať súbor s reportom:"
 
-#: general_report_manager.cpp:606 general_report_manager.cpp:1037
+#: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "General Report Manager files (*.grm)"
 msgstr ""
 
-#: general_report_manager.cpp:606 general_report_manager.cpp:1037
+#: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
 msgstr ""
 
-#: general_report_manager.cpp:670
+#: general_report_manager.cpp:672
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
 msgstr "Nepodarilo sa otvoriť súbor:\n"
 "%s\n\n"
 
-#: general_report_manager.cpp:671 general_report_manager.h:64
+#: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
 msgstr "Správca vlastných reportov"
 
-#: general_report_manager.cpp:731
+#: general_report_manager.cpp:733
 msgid "Assets..."
 msgstr ""
 
-#: general_report_manager.cpp:734
+#: general_report_manager.cpp:736
 msgid "New Empty Report..."
 msgstr ""
 
-#: general_report_manager.cpp:735
+#: general_report_manager.cpp:737
 msgid "New Sample Report"
 msgstr "Nový vzorový report"
 
-#: general_report_manager.cpp:738
+#: general_report_manager.cpp:740
 msgid "Change Group..."
 msgstr ""
 
-#: general_report_manager.cpp:740
+#: general_report_manager.cpp:742
 msgid "Rename Group..."
 msgstr ""
 
-#: general_report_manager.cpp:741
+#: general_report_manager.cpp:743
 msgid "UnGroup"
 msgstr "Zrušiť zoskupenie"
 
-#: general_report_manager.cpp:742
+#: general_report_manager.cpp:744
 msgid "Rename Report..."
 msgstr ""
 
-#: general_report_manager.cpp:744
+#: general_report_manager.cpp:748
+msgid "Active"
+msgstr ""
+
+#: general_report_manager.cpp:748
+msgid "Show/Hide the report in the main navigation panel"
+msgstr ""
+
+#: general_report_manager.cpp:752
 msgid "Delete Report..."
 msgstr ""
 
-#: general_report_manager.cpp:839 general_report_manager.cpp:987
+#: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
 msgstr "Zadajte názov reportu"
 
-#: general_report_manager.cpp:840 general_report_manager.cpp:988
+#: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:780 mmframe.cpp:1672 mmframe.cpp:1844
 msgid "General Report Manager"
 msgstr "Správca vlastných reportov"
 
-#: general_report_manager.cpp:858
+#: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
 msgstr "Odstrániť názov reportu:"
 
-#: general_report_manager.cpp:887 general_report_manager.cpp:968
+#: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
 msgstr ""
 
-#: general_report_manager.cpp:888
+#: general_report_manager.cpp:908
 msgid "Change report group"
 msgstr ""
 
-#: general_report_manager.cpp:904
+#: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
 msgstr ""
 
-#: general_report_manager.cpp:905
+#: general_report_manager.cpp:925
 msgid "Rename Group"
 msgstr ""
 
-#: general_report_manager.cpp:969
+#: general_report_manager.cpp:992
 msgid "Add Report Group"
 msgstr "Pridať skupinu reportov"
 
-#: general_report_manager.cpp:982
+#: general_report_manager.cpp:1005
 #, c-format
 msgid "New Report %s"
 msgstr ""
 
-#: general_report_manager.cpp:995
+#: general_report_manager.cpp:1018
 msgid "Report Name already exists"
 msgstr ""
 
-#: general_report_manager.cpp:995 general_report_manager.cpp:1002
+#: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
 msgstr "Nový report"
 
-#: general_report_manager.cpp:1034
+#: general_report_manager.cpp:1057
 msgid "Choose file to Save As Report"
 msgstr "Vyberte súbor pre Uložiť ako report"
 
-#: general_report_manager.cpp:1212
+#: general_report_manager.cpp:1235
 msgid "Parameters:"
 msgstr "Parametre:"
 
@@ -5251,7 +5259,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:315 mmreportspanel.cpp:387
+#: mmframereport.cpp:316 mmreportspanel.cpp:387
 msgid "Hide"
 msgstr "Skryť"
 
@@ -7201,35 +7209,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: transdialog.cpp:1120
+#: transdialog.cpp:1122
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1121
+#: transdialog.cpp:1123
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1209
+#: transdialog.cpp:1211
 msgid "Specify account the money is taken from"
 msgstr "Upresnite účet, z ktorého sa prevádzajú peniaze"
 
-#: transdialog.cpp:1210
+#: transdialog.cpp:1212
 msgid "Specify account the money is moved to"
 msgstr "Upresnite účet, na ktorý sa prevádzajú peniaze"
 
-#: transdialog.cpp:1211
+#: transdialog.cpp:1213
 msgid "Specify the transfer amount in the From Account."
 msgstr "Upresnite sumu prevodu zo zdrojového účtu."
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1221
 msgid "Specify account for the transaction"
 msgstr "Upresnite účet pre transakciu"
 
-#: transdialog.cpp:1221
+#: transdialog.cpp:1223
 msgid "Specify to whom the transaction is going to"
 msgstr "Upresnite kam odchádza transakcia"
 
-#: transdialog.cpp:1227 usertransactionpanel.cpp:94
+#: transdialog.cpp:1229 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Upresnite dátum transakcie"
 
