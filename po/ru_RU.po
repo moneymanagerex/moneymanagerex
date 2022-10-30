@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-29 11:22+0300\n"
-"PO-Revision-Date: 2022-10-29 08:40\n"
+"PO-Revision-Date: 2022-10-30 09:35\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3982,14 +3982,14 @@ msgstr "Создать повторяющуюся транзакцию"
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Восстановить выбранную транзакцию..."
+msgstr[1] "&Восстановить выбранную транзакцию..."
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "&Восстановить выбранные транзакции..."
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
-msgstr ""
+msgstr "Восстановить все транзакции в текущем представлении"
 
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
@@ -4002,7 +4002,7 @@ msgstr[3] "&Удалить отмеченные транзакции..."
 #: mmchecking_list.cpp:488
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "&Окончательно удалить выбранную транзакцию..."
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -4013,7 +4013,7 @@ msgstr "Удалить все показанные транзакции"
 
 #: mmchecking_list.cpp:491
 msgid "Permanently delete all transactions in current view"
-msgstr ""
+msgstr "&Окончательно удалить все транзакции в текущем представлении"
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Follow Up\" Transactions"
@@ -4029,17 +4029,17 @@ msgstr "Отметить как"
 
 #: mmchecking_list.cpp:950
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Вы действительно хотите восстановить все транзакции?"
 
 #: mmchecking_list.cpp:951 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Подтвердите восстановление транзакций"
 
 #: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Вы действительно хотите восстановить выбранную транзакцию?"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
