@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 20:50\n"
+"PO-Revision-Date: 2022-10-30 22:07\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3735,7 +3735,7 @@ msgstr "A %s tétel érvénytelen"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Kérjük, válasszon egy meglévő kategóriát"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Invalid Category"
@@ -5530,7 +5530,7 @@ msgstr ""
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Hitelkeret"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
