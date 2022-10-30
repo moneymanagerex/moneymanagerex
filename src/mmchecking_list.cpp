@@ -1694,11 +1694,16 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_NOTES:
+    {
         value = tran.NOTES;
+        auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(tran.TRANSID));
+        for (const auto& split : splits)
+            value += wxString::Format(" %s", split.NOTES);
         value.Replace("\n", " ");
         if (tran.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
-        return value;
+        return value.Trim();
+    }
     case TransactionListCtrl::COL_DELETEDTIME:
         datetime.ParseISOCombined(tran.DELETEDTIME);
         return datetime.FromUTC().FormatISOCombined(' ');
