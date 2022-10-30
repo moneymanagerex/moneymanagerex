@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 13:04\n"
+"PO-Revision-Date: 2022-10-30 14:04\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3732,7 +3732,7 @@ msgstr "Inserimento %s non valido"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Seleziona una categoria esistente"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Invalid Category"
@@ -4024,11 +4024,11 @@ msgstr[1] "Vuoi davvero ripristinare %i transazioni selezionate?"
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Vuoi davvero eliminare tutte le transazioni mostrate?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Vuoi davvero eliminare definitivamente tutte le transazioni mostrate?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -5515,15 +5515,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Una transazione ricorrente supererà il limite del tuo conto.\n\n"
+"Account: %s\n"
+"Saldo attuale: %6.2f\n"
+"Importo della transazione: %6.2f\n"
+"%s: %6.2f\n\n"
+"Vuoi continuare ?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Saldo Minimo"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Credito limite"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -6826,7 +6831,7 @@ msgstr "Totale Complessivo non valido "
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Inserisci un importo monetario valido"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
