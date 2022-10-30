@@ -1702,7 +1702,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         value.Replace("\n", " ");
         if (tran.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
-        return value.Trim();
+        return value.Trim(false);
     }
     case TransactionListCtrl::COL_DELETEDTIME:
         datetime.ParseISOCombined(tran.DELETEDTIME);
