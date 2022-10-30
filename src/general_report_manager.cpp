@@ -308,7 +308,8 @@ void mmGeneralReportManager::fillControls()
             m_treeCtrl->SetItemBold(group, true);
             m_treeCtrl->SetItemData(group, new MyTreeItemData(-1, group_name));
         }
-        wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group, record.REPORTNAME);
+        wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group
+            , wxString::Format("%s%s", (record.ACTIVE ? L"" : L"\u2717 "), record.REPORTNAME));
         m_treeCtrl->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
 
         if (m_selectedReportID == record.REPORTID)
@@ -744,7 +745,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu.AppendSeparator();
 
     wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
-        _("Active"), _("Show/Hide the Report in the main Navigation tree control"), wxITEM_CHECK);
+        _("Active"), _("Show/Hide the report in the main navigation panel"), wxITEM_CHECK);
     customReportMenu.Append(menuItemActive);
 
     customReportMenu.AppendSeparator();
