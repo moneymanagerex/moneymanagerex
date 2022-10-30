@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-29 11:22+0300\n"
-"PO-Revision-Date: 2022-10-30 01:09\n"
+"PO-Revision-Date: 2022-10-30 04:00\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3988,7 +3988,7 @@ msgstr "Minden ügylet törlése az aktuális nézetben"
 
 #: mmchecking_list.cpp:491
 msgid "Permanently delete all transactions in current view"
-msgstr ""
+msgstr "Összes ügylet végleges törlése a jelenlegi nézetben"
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Follow Up\" Transactions"
@@ -4023,7 +4023,7 @@ msgstr "Biztosan törölni szeretné az összes megjelenített ügyletet? A tör
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to permanently delete all the transactions shown? You cannot undo this action."
-msgstr ""
+msgstr "Biztosan véglegesen törölni szeretné az összes megjelenített ügyletet? Ez a művelet nem vonható vissza."
 
 #: mmchecking_list.cpp:1030 mmchecking_list.cpp:1041 mmchecking_list.cpp:1052
 #: mmchecking_list.cpp:1118
@@ -4047,7 +4047,7 @@ msgstr[1] ""
 
 #: mmchecking_list.cpp:1115
 msgid " You cannot undo this action."
-msgstr ""
+msgstr " Ez a művelet nem vonható vissza."
 
 #: mmchecking_list.cpp:1193
 #, c-format
