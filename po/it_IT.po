@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 14:04\n"
+"POT-Creation-Date: 2022-10-30 23:12+0300\n"
+"PO-Revision-Date: 2022-10-30 20:50\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -579,7 +579,7 @@ msgstr "Conferma cancellazione del Cespite"
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX consente di gestire beni immobili come automobili, case, terreni ed altro. Ogni cespite può essere rivalutato o svalutato in base ad un determinato tasso annuo, o conservare inalterato il proprio valore. Il valore totale dei cespiti è incluso nel valore finanziario complessivo."
 
-#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1008
+#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:486 mmframe.cpp:753 mmframe.cpp:1654 mmframe.cpp:3226
 #: mmhomepage.cpp:542 mmhomepage.cpp:590 mmhomepagepanel.cpp:235
 msgid "Assets"
@@ -679,7 +679,7 @@ msgstr "Gestione Cespiti"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Conto \t Data\t   Valore\n\n"
 
-#: attachmentdialog.cpp:56 general_report_manager.cpp:441
+#: attachmentdialog.cpp:56 general_report_manager.cpp:443
 msgid "Description"
 msgstr "Descrizione"
 
@@ -974,7 +974,7 @@ msgstr "Specificare la data in cui sarà richiesto all'utente di inserire questa
 msgid "Date Paid"
 msgstr "Data Pagamento"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:572 transdialog.cpp:1228
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:572 transdialog.cpp:1230
 msgid "Specify the status for the transaction"
 msgstr "Indicare lo stato dell'operazione"
 
@@ -989,7 +989,7 @@ msgstr "Indicare lo stato dell'operazione"
 msgid "Status"
 msgstr "Stato"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1229
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1231
 msgid "Specify the type of transactions to be created."
 msgstr "Specificare il tipo di operazione da creare."
 
@@ -997,7 +997,7 @@ msgstr "Specificare il tipo di operazione da creare."
 msgid "&Advanced"
 msgstr "&Avanzate"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1232
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1234
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Consente di impostare diversi importi nei conti di Origine e Destinazione"
 
@@ -1013,7 +1013,7 @@ msgstr "Consente di impostare diversi importi nei conti di Origine e Destinazion
 msgid "Amount"
 msgstr "Importo"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1214
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1216
 msgid "Specify the transfer amount in the To Account"
 msgstr "Specificare l'importo da trasferire al Conto Destinazione"
 
@@ -1068,11 +1068,11 @@ msgid "Category"
 msgstr "Categoria"
 
 #: billsdepositsdialog.cpp:579 billsdepositsdialog.cpp:1325 transdialog.cpp:493
-#: transdialog.cpp:1191
+#: transdialog.cpp:1193
 msgid "Use split Categories"
 msgstr "Usa Categorie suddivise"
 
-#: billsdepositsdialog.cpp:587 transdialog.cpp:1230
+#: billsdepositsdialog.cpp:587 transdialog.cpp:1232
 msgid "Specify any associated check number or transaction number"
 msgstr "Inserire il numero di controllo o il numero dell'operazione"
 
@@ -1107,7 +1107,7 @@ msgstr "Gestisce gli allegati per questa operazione ricorrente"
 msgid "Color"
 msgstr "Colore"
 
-#: billsdepositsdialog.cpp:623 transdialog.cpp:543 transdialog.cpp:1231
+#: billsdepositsdialog.cpp:623 transdialog.cpp:543 transdialog.cpp:1233
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Inserire una nota per questa operazione."
@@ -1229,7 +1229,7 @@ msgstr "Nuova operazione ricorrente"
 msgid "Specify where the transaction is going to"
 msgstr "Specificare la destinazione dell'operazione"
 
-#: billsdepositsdialog.h:124 transdialog.cpp:1223
+#: billsdepositsdialog.h:124 transdialog.cpp:1225
 msgid "Specify where the transaction is coming from"
 msgstr "Specificare l'origine dell'operazione"
 
@@ -1237,7 +1237,7 @@ msgstr "Specificare l'origine dell'operazione"
 msgid "Specify which account the transfer is going to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: billsdepositsdialog.h:126 transdialog.cpp:1218 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:126 transdialog.cpp:1220 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Specificare l'importo di questa operazione"
 
@@ -2631,8 +2631,8 @@ msgid "Period"
 msgstr "Periodo"
 
 #: filtertransdialog.cpp:1499
-msgid "Not Trash"
-msgstr "Non Spazzatura"
+msgid "Not Deleted"
+msgstr ""
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2678,185 +2678,193 @@ msgid "Choose Accounts"
 msgstr "Scegliere Conti"
 
 #: general_report_manager.cpp:293 mmframe.cpp:775 mmframe.cpp:2764
-#: mmframereport.cpp:315 reports/myusage.cpp:142 reports/myusage.cpp:159
+#: mmframereport.cpp:316 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
 msgstr "Resoconti"
 
-#: general_report_manager.cpp:388 import_export/univcsvdialog.cpp:411
+#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:411
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&Import"
 msgstr "&Importa"
 
-#: general_report_manager.cpp:390
+#: general_report_manager.cpp:392
 msgid "Locate and load a report file."
 msgstr "Sfoglia e carica file resoconto."
 
-#: general_report_manager.cpp:392 import_export/univcsvdialog.cpp:413
+#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:413
 #: mmframe.cpp:1336 mmframe.cpp:1498
 msgid "&Export"
 msgstr "&Esporta"
 
-#: general_report_manager.cpp:394
+#: general_report_manager.cpp:396
 msgid "Export the report to a new file."
 msgstr "Esporta il resoconto in un nuovo file"
 
-#: general_report_manager.cpp:397 stockdialog.cpp:349
+#: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
 msgstr "&Salva"
 
-#: general_report_manager.cpp:399
+#: general_report_manager.cpp:401
 msgid "Save changes."
 msgstr "Salva le modifiche."
 
-#: general_report_manager.cpp:401
+#: general_report_manager.cpp:403
 msgid "&Run"
 msgstr "&Esegui"
 
-#: general_report_manager.cpp:403
+#: general_report_manager.cpp:405
 msgid "Run selected report."
 msgstr "Esegue il resoconto selezionato."
 
-#: general_report_manager.cpp:415
+#: general_report_manager.cpp:417
 msgid "Output"
 msgstr "Output"
 
-#: general_report_manager.cpp:438
+#: general_report_manager.cpp:440
 msgid "SQL"
 msgstr "SQL"
 
-#: general_report_manager.cpp:439
+#: general_report_manager.cpp:441
 msgid "Lua"
 msgstr "Lua"
 
-#: general_report_manager.cpp:440
+#: general_report_manager.cpp:442
 msgid "Template"
 msgstr "Modello"
 
-#: general_report_manager.cpp:493
+#: general_report_manager.cpp:495
 msgid "&Test"
 msgstr "&Test"
 
-#: general_report_manager.cpp:494
+#: general_report_manager.cpp:496
 msgid "Create Template"
 msgstr "Crea Modello"
 
-#: general_report_manager.cpp:546
+#: general_report_manager.cpp:548
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "%zu riga restituita, durata: %lld ms"
 msgstr[1] "%zu righe restituite, durata: %lld ms"
 
-#: general_report_manager.cpp:573
+#: general_report_manager.cpp:575
 msgid "SQL Syntax Error"
 msgstr "Errore di sintassi SQL"
 
-#: general_report_manager.cpp:604
+#: general_report_manager.cpp:606
 msgid "Load report file:"
 msgstr "Carica file resoconto:"
 
-#: general_report_manager.cpp:606 general_report_manager.cpp:1037
+#: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "General Report Manager files (*.grm)"
 msgstr "File di report Gestione generale (*.grm)"
 
-#: general_report_manager.cpp:606 general_report_manager.cpp:1037
+#: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
 msgstr "File ZIP (*. zip)"
 
-#: general_report_manager.cpp:670
+#: general_report_manager.cpp:672
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
 msgstr "Impossibile aprire il file:\n"
 "%s\n\n"
 
-#: general_report_manager.cpp:671 general_report_manager.h:64
+#: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
 msgstr "Gestione Resoconti"
 
-#: general_report_manager.cpp:731
+#: general_report_manager.cpp:733
 msgid "Assets..."
 msgstr "Asset..."
 
-#: general_report_manager.cpp:734
+#: general_report_manager.cpp:736
 msgid "New Empty Report..."
 msgstr "Nuovo Rapporto Vuoto..."
 
-#: general_report_manager.cpp:735
+#: general_report_manager.cpp:737
 msgid "New Sample Report"
 msgstr "Nuovo modello di Resoconto"
 
-#: general_report_manager.cpp:738
+#: general_report_manager.cpp:740
 msgid "Change Group..."
 msgstr "Cambia Gruppo..."
 
-#: general_report_manager.cpp:740
+#: general_report_manager.cpp:742
 msgid "Rename Group..."
 msgstr "Rinomina Gruppo..."
 
-#: general_report_manager.cpp:741
+#: general_report_manager.cpp:743
 msgid "UnGroup"
 msgstr "Separa"
 
-#: general_report_manager.cpp:742
+#: general_report_manager.cpp:744
 msgid "Rename Report..."
 msgstr "Rinomina Report..."
 
-#: general_report_manager.cpp:744
+#: general_report_manager.cpp:748
+msgid "Active"
+msgstr ""
+
+#: general_report_manager.cpp:748
+msgid "Show/Hide the report in the main navigation panel"
+msgstr ""
+
+#: general_report_manager.cpp:752
 msgid "Delete Report..."
 msgstr "Elimina Segnalazione..."
 
-#: general_report_manager.cpp:839 general_report_manager.cpp:987
+#: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
 msgstr "Inserire il nome del resoconto"
 
-#: general_report_manager.cpp:840 general_report_manager.cpp:988
+#: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:780 mmframe.cpp:1672 mmframe.cpp:1844
 msgid "General Report Manager"
 msgstr "Gestione Resoconti"
 
-#: general_report_manager.cpp:858
+#: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
 msgstr "Elimina il Resoconto:"
 
-#: general_report_manager.cpp:887 general_report_manager.cpp:968
+#: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
 msgstr "Inserire o scegliere il nome del nuovo gruppo di resoconti"
 
-#: general_report_manager.cpp:888
+#: general_report_manager.cpp:908
 msgid "Change report group"
 msgstr "Cambiare gruppo di resoconti"
 
-#: general_report_manager.cpp:904
+#: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
 msgstr "Inserire o scegliere il nome del nuovo gruppo di resoconti"
 
-#: general_report_manager.cpp:905
+#: general_report_manager.cpp:925
 msgid "Rename Group"
 msgstr "Rinomina Gruppo"
 
-#: general_report_manager.cpp:969
+#: general_report_manager.cpp:992
 msgid "Add Report Group"
 msgstr "Aggiungere gruppo resoconti"
 
-#: general_report_manager.cpp:982
+#: general_report_manager.cpp:1005
 #, c-format
 msgid "New Report %s"
 msgstr "Nuovo Resoconto %s"
 
-#: general_report_manager.cpp:995
+#: general_report_manager.cpp:1018
 msgid "Report Name already exists"
 msgstr "Esiste già un resoconto con questo nome"
 
-#: general_report_manager.cpp:995 general_report_manager.cpp:1002
+#: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
 msgstr "Nuovo Resoconto"
 
-#: general_report_manager.cpp:1034
+#: general_report_manager.cpp:1057
 msgid "Choose file to Save As Report"
 msgstr "Scegliere il file da salvare come resoconto"
 
-#: general_report_manager.cpp:1212
+#: general_report_manager.cpp:1235
 msgid "Parameters:"
 msgstr "Parametri:"
 
@@ -5264,7 +5272,7 @@ msgstr "Riepilogo Categoria Budget"
 msgid "Stocks Report"
 msgstr "Report titoli"
 
-#: mmframereport.cpp:315 mmreportspanel.cpp:387
+#: mmframereport.cpp:316 mmreportspanel.cpp:387
 msgid "Hide"
 msgstr "Nascondi"
 
@@ -7230,35 +7238,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "Questa operazione supererà il limite del conto.\n\n"
 "Vuoi continuare?"
 
-#: transdialog.cpp:1120
+#: transdialog.cpp:1122
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "I due conti hanno valute diverse ma non hai definito una transazione avanzata. È corretto?"
 
-#: transdialog.cpp:1121
+#: transdialog.cpp:1123
 msgid "Currencies are different"
 msgstr "Le valute sono diverse"
 
-#: transdialog.cpp:1209
+#: transdialog.cpp:1211
 msgid "Specify account the money is taken from"
 msgstr "Specificare il Conto dal quale si effettua il trasferimento"
 
-#: transdialog.cpp:1210
+#: transdialog.cpp:1212
 msgid "Specify account the money is moved to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: transdialog.cpp:1211
+#: transdialog.cpp:1213
 msgid "Specify the transfer amount in the From Account."
 msgstr "Specificare l'importo da trasferire dal Conto Origine."
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1221
 msgid "Specify account for the transaction"
 msgstr "Specificare il conto per questa operazione"
 
-#: transdialog.cpp:1221
+#: transdialog.cpp:1223
 msgid "Specify to whom the transaction is going to"
 msgstr "Specificare la destinazione dell'operazione"
 
-#: transdialog.cpp:1227 usertransactionpanel.cpp:94
+#: transdialog.cpp:1229 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Specificare la data dell'operazione"
 
