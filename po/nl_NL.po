@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 11:56\n"
+"PO-Revision-Date: 2022-10-30 13:04\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2776,11 +2776,11 @@ msgstr "Algemene rapport beheerder"
 
 #: general_report_manager.cpp:731
 msgid "Assets..."
-msgstr ""
+msgstr "Bezittingen..."
 
 #: general_report_manager.cpp:734
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Nieuw leeg rapport..."
 
 #: general_report_manager.cpp:735
 msgid "New Sample Report"
@@ -2788,11 +2788,11 @@ msgstr "Nieuw voorbeeld rapport"
 
 #: general_report_manager.cpp:738
 msgid "Change Group..."
-msgstr ""
+msgstr "Wijzig groep..."
 
 #: general_report_manager.cpp:740
 msgid "Rename Group..."
-msgstr ""
+msgstr "Groep hernoemen..."
 
 #: general_report_manager.cpp:741
 msgid "UnGroup"
@@ -2800,11 +2800,11 @@ msgstr "Groepering opheffen"
 
 #: general_report_manager.cpp:742
 msgid "Rename Report..."
-msgstr ""
+msgstr "Hernoem rapport..."
 
 #: general_report_manager.cpp:744
 msgid "Delete Report..."
-msgstr ""
+msgstr "Verwijder rapport..."
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
 msgid "Enter the name for the report"
@@ -4024,11 +4024,11 @@ msgstr[1] "Wilt u echt %i geselecteerde transacties herstellen?"
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Wilt u werkelijk alle getoonde transacties verwijderen?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Wilt u echt alle getoonde transacties permanent verwijderen?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -5515,15 +5515,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Een periodieke transactie overschrijdt je rekeninglimiet.\n\n"
+"Rekening: %s\n"
+"Huidig saldo: %6.2f\n"
+"Transactiebedrag: %6.2f\n"
+"%s: %6.2f\n\n"
+"Wilt u doorgaan?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Minimum saldo"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Kredietlimiet"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -6826,7 +6831,7 @@ msgstr "Ongeldig totaal bedrag"
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Vul een geldig bedrag in"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
