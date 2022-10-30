@@ -1088,7 +1088,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_LOWEST);
+    int i = event.GetId() - wxID_LOWEST;
 
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
         if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
