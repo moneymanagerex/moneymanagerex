@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 14:29+0300\n"
-"PO-Revision-Date: 2022-10-30 11:56\n"
+"PO-Revision-Date: 2022-10-30 19:32\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2639,7 +2639,7 @@ msgstr "Период"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Trash"
-msgstr ""
+msgstr "Не корзина"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2785,11 +2785,11 @@ msgstr "Менеджер отчётов"
 
 #: general_report_manager.cpp:731
 msgid "Assets..."
-msgstr ""
+msgstr "Активы..."
 
 #: general_report_manager.cpp:734
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Новый пустой отчёт..."
 
 #: general_report_manager.cpp:735
 msgid "New Sample Report"
@@ -2797,11 +2797,11 @@ msgstr "Новый пример отчёта"
 
 #: general_report_manager.cpp:738
 msgid "Change Group..."
-msgstr ""
+msgstr "Сменить группу..."
 
 #: general_report_manager.cpp:740
 msgid "Rename Group..."
-msgstr ""
+msgstr "Переименовать группу..."
 
 #: general_report_manager.cpp:741
 msgid "UnGroup"
@@ -2809,11 +2809,11 @@ msgstr "Разгруппировать"
 
 #: general_report_manager.cpp:742
 msgid "Rename Report..."
-msgstr ""
+msgstr "Переименовать отчёт..."
 
 #: general_report_manager.cpp:744
 msgid "Delete Report..."
-msgstr ""
+msgstr "Удалить отчёт..."
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
 msgid "Enter the name for the report"
@@ -3741,7 +3741,7 @@ msgstr "Запись %s неверная"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Пожалуйста, выберите существующую категорию"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Invalid Category"
@@ -3917,7 +3917,7 @@ msgstr "Порядок сортировки"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr ""
+msgstr "Дата удаления"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal"
@@ -3984,8 +3984,8 @@ msgstr "Создать повторяющуюся транзакцию"
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
 msgstr[0] "&Восстановить выбранную транзакцию..."
-msgstr[1] "&Восстановить выбранную транзакцию..."
-msgstr[2] ""
+msgstr[1] "&Восстановить выбранные транзакции..."
+msgstr[2] "&Восстановить выбранные транзакции..."
 msgstr[3] "&Восстановить выбранные транзакции..."
 
 #: mmchecking_list.cpp:483
@@ -4004,9 +4004,9 @@ msgstr[3] "&Удалить отмеченные транзакции..."
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
 msgstr[0] "&Окончательно удалить выбранную транзакцию..."
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[1] "&Окончательно удалить выбранные транзакции..."
+msgstr[2] "&Окончательно удалить выбранные транзакции..."
+msgstr[3] "&Окончательно удалить выбранные транзакции..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete all transactions in current view"
@@ -4047,11 +4047,11 @@ msgstr[3] "Вы действительно хотите восстановить
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Вы действительно хотите удалить все показанные транзакции?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Вы действительно хотите навсегда удалить все показанные транзакции?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -4065,7 +4065,7 @@ msgstr "Вы действительно хотите удалить все по�
 
 #: mmchecking_list.cpp:1129
 msgid " You cannot undo this action."
-msgstr ""
+msgstr " Это действие нельзя отменить."
 
 #: mmchecking_list.cpp:1208
 #, c-format
@@ -4145,11 +4145,11 @@ msgstr "Повторить отмеченную транзакцию"
 
 #: mmcheckingpanel.cpp:397
 msgid "&Restore "
-msgstr ""
+msgstr "&Восстановить "
 
 #: mmcheckingpanel.cpp:398
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Восстановить выбранную транзакцию"
 
 #: mmcheckingpanel.cpp:413
 msgid "Enter any string to find it in the nearest transaction data"
@@ -4161,7 +4161,7 @@ msgstr "Отчёт по транзакциям"
 
 #: mmcheckingpanel.cpp:437 mmframe.cpp:761
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Удаленные транзакции"
 
 #: mmcheckingpanel.cpp:439
 #, c-format
@@ -4515,11 +4515,11 @@ msgstr "Показать/Скрыть из панели навигации"
 
 #: mmframe.cpp:1521
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "&Отображать удаленные транзакции"
 
 #: mmframe.cpp:1521
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "Показать/скрыть удаленные транзакции в дереве навигации"
 
 #: mmframe.cpp:1523
 msgid "Budgets: As Financial &Years"
@@ -5544,15 +5544,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Периодические транзакции превысят лимит вашего счета.\n\n"
+"Аккаунт: %s\n"
+"Текущий баланс: %6.2f\n"
+"Сумма транзакции: %6.2f\n"
+"%s: %6.2f\n\n"
+"Вы хотите продолжить ?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Минимальный баланс"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Кредитный лимит"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -6855,7 +6860,7 @@ msgstr "Введена неправильная сумма"
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Пожалуйста, введите правильную денежную сумму"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
