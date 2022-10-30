@@ -305,6 +305,7 @@ void mmGeneralReportManager::fillControls()
         {
             group_name = record.GROUPNAME;
             group = m_treeCtrl->AppendItem(m_rootItem, group_name);
+            m_treeCtrl->SetItemBold(group, true);
             m_treeCtrl->SetItemData(group, new MyTreeItemData(-1, group_name));
         }
         wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group, record.REPORTNAME);
@@ -728,24 +729,31 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     Model_Report::Data *report = Model_Report::instance().get(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
-    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets"));
+    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets..."));
 
     wxMenu customReportMenu;
-    customReportMenu.Append(ID_NEW_EMPTY, _("New Empty Report"));
+    customReportMenu.Append(ID_NEW_EMPTY, _("New Empty Report..."));
     customReportMenu.Append(wxID_ANY, _("New Sample Report"), samplesMenu);
     customReportMenu.AppendSeparator();
     if (report)
-        customReportMenu.Append(ID_GROUP, _("Change Group"));
+        customReportMenu.Append(ID_GROUP, _("Change Group..."));
     else
-        customReportMenu.Append(ID_GROUP, _("Rename Group"));
+        customReportMenu.Append(ID_GROUP, _("Rename Group..."));
     customReportMenu.Append(ID_UNGROUP, _("UnGroup"));
-    customReportMenu.Append(ID_RENAME, _("Rename Report"));
+    customReportMenu.Append(ID_RENAME, _("Rename Report..."));
     customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_DELETE, _("Delete Report"));
+
+    wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
+        _("Active"), _("Show/Hide the Report in the main Navigation tree control"), wxITEM_CHECK);
+    customReportMenu.Append(menuItemActive);
+
+    customReportMenu.AppendSeparator();
+    customReportMenu.Append(ID_DELETE, _("Delete Report..."));
 
     if (report)
     {
         customReportMenu.Enable(ID_UNGROUP, !report->GROUPNAME.empty());
+        menuItemActive->Check(report->ACTIVE);
     }
     else
     {
@@ -755,6 +763,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
         customReportMenu.Enable(ID_UNGROUP, false);
         customReportMenu.Enable(ID_RENAME, false);
         customReportMenu.Enable(ID_DELETE, false);
+        customReportMenu.Enable(ID_ACTIVE, false);
     }
     PopupMenu(&customReportMenu);
 }
@@ -871,6 +880,16 @@ bool mmGeneralReportManager::DeleteReport(int id)
     return false;
 }
 
+void mmGeneralReportManager::changeReportState(int id)
+{
+    Model_Report::Data* report = Model_Report::instance().get(id);
+    if (report)
+    {
+        report->ACTIVE = (report->ACTIVE + 1) % 2;
+        Model_Report::instance().save(report);
+    }
+}
+
 bool mmGeneralReportManager::changeReportGroup(int id, bool ungroup)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
@@ -948,6 +967,9 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
                 break;
             case ID_UNGROUP:
                 this->changeReportGroup(report_id, true);
+                break;
+            case ID_ACTIVE:
+                this->changeReportState(report_id);
                 break;
             }
         }

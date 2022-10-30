@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-10-30 13:50+0300\n"
+"POT-Creation-Date: 2022-10-30 14:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -579,10 +579,9 @@ msgstr ""
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:731
-#: general_report_manager.cpp:1008 mmframe.cpp:486 mmframe.cpp:753
-#: mmframe.cpp:1654 mmframe.cpp:3226 mmhomepage.cpp:542 mmhomepage.cpp:590
-#: mmhomepagepanel.cpp:235
+#: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1008
+#: mmframe.cpp:486 mmframe.cpp:753 mmframe.cpp:1654 mmframe.cpp:3226
+#: mmhomepage.cpp:542 mmhomepage.cpp:590 mmhomepagepanel.cpp:235
 msgid "Assets"
 msgstr ""
 
@@ -2774,8 +2773,12 @@ msgstr ""
 msgid "General Reports Manager"
 msgstr ""
 
+#: general_report_manager.cpp:731
+msgid "Assets..."
+msgstr ""
+
 #: general_report_manager.cpp:734
-msgid "New Empty Report"
+msgid "New Empty Report..."
 msgstr ""
 
 #: general_report_manager.cpp:735
@@ -2783,11 +2786,11 @@ msgid "New Sample Report"
 msgstr ""
 
 #: general_report_manager.cpp:738
-msgid "Change Group"
+msgid "Change Group..."
 msgstr ""
 
-#: general_report_manager.cpp:740 general_report_manager.cpp:905
-msgid "Rename Group"
+#: general_report_manager.cpp:740
+msgid "Rename Group..."
 msgstr ""
 
 #: general_report_manager.cpp:741
@@ -2795,11 +2798,11 @@ msgid "UnGroup"
 msgstr ""
 
 #: general_report_manager.cpp:742
-msgid "Rename Report"
+msgid "Rename Report..."
 msgstr ""
 
 #: general_report_manager.cpp:744
-msgid "Delete Report"
+msgid "Delete Report..."
 msgstr ""
 
 #: general_report_manager.cpp:839 general_report_manager.cpp:987
@@ -2825,6 +2828,10 @@ msgstr ""
 
 #: general_report_manager.cpp:904
 msgid "Enter or choose name for the new group"
+msgstr ""
+
+#: general_report_manager.cpp:905
+msgid "Rename Group"
 msgstr ""
 
 #: general_report_manager.cpp:969
