@@ -162,7 +162,6 @@ private:
         mmID_TOACCOUNTNAME,
         mmID_PAYEE_LABEL,
         mmID_PAYEE,
-        mmID_CATEGORY,
         mmID_CATEGORY_SPLIT,
         mmID_ACCOUNTNAME,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,

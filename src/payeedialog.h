@@ -53,10 +53,6 @@ private:
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 
-    enum
-    {
-        mmID_CATEGORY = wxID_HIGHEST +  + 1500
-    };
 };
 
 class mmPayeeDialog : public wxDialog
