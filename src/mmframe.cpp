@@ -666,6 +666,8 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(wxID_PREFERENCES, enable);
     toolBar_->EnableTool(wxID_NEW, enable);
     toolBar_->EnableTool(wxID_PRINT, enable);
+    toolBar_->Refresh();
+    toolBar_->Update();
 }
 //----------------------------------------------------------------------------
 
