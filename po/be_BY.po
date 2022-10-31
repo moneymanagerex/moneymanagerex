@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 20:51\n"
+"PO-Revision-Date: 2022-10-31 18:11\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Пакажыце пачатковы баланс гэтага рахун
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Дата адкрыцця:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Дата, калі быў адчынены рахунак"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1857
 msgid "Currency:"
@@ -283,7 +283,7 @@ msgstr "Валюта"
 
 #: accountdialog.cpp:512 payeedialog.cpp:146
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Калі ласка, пакажыце слушную спасылку"
 
 #: accountdialog.cpp:512 payeedialog.cpp:146
 msgid "Invalid URL"
@@ -291,26 +291,26 @@ msgstr "Хібная спасылка"
 
 #: accountdialog.cpp:520
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Дата заканчэння ня можа быць у будучыні"
 
 #: accountdialog.cpp:520 accountdialog.cpp:529 accountdialog.cpp:534
 #: accountdialog.cpp:541 billsdepositsdialog.cpp:1018
 #: billsdepositsdialog.cpp:1021 stockdialog.cpp:428 transdialog.cpp:597
 #: transdialog.cpp:673 usertransactionpanel.cpp:451 webapp.cpp:554
 msgid "Invalid Date"
-msgstr ""
+msgstr "Хібная дата"
 
 #: accountdialog.cpp:529
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "У гэтым рахунку ўжо існуюць аперацыі раней за гэтую дату"
 
 #: accountdialog.cpp:534
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "У гэтым рахунку ўжо існуюць прыдбаныя каштоўныя паперы раней за гэтую дату"
 
 #: accountdialog.cpp:541
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "Аперацыі, што паўтараюцца, ужо існуюць у гэтым рахунку раней за гэтую дату"
 
 #: accountdialog.h:41 mmframe.cpp:1589 mmframe.cpp:1833
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -1162,7 +1162,7 @@ msgstr "Хібнае значэнне"
 #: import_export/univcsvdialog.cpp:1030 stockdialog.cpp:428 transdialog.cpp:597
 #: transdialog.cpp:673 usertransactionpanel.cpp:451 webapp.cpp:552
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Дата адкрыцця рахунка пазней за дату гэтай аперацыі"
 
 #: billsdepositsdialog.cpp:1185
 msgid "Specify the transfer amount in the From Account"
@@ -1457,7 +1457,7 @@ msgstr "Калі ласка, пакажыце памер бюджэту для �
 
 #: budgetentrydialog.cpp:157 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Пакажыце нататкі з апіснне гэтага запісу ў бюджэце"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1632,7 +1632,7 @@ msgstr "Глядзець усе"
 
 #: categdialog.cpp:287
 msgid "Show all hidden categories"
-msgstr "Глядзець усе схаваныя катыгорыі"
+msgstr "Глядзець усе ўтоеныя катыгорыі"
 
 #: categdialog.cpp:317 maincurrencydialog.cpp:215 payeedialog.cpp:351
 msgid "Search:"
@@ -1773,11 +1773,11 @@ msgstr "Вынік перасоўвання катыгорыі"
 
 #: categdialog.cpp:827
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Вы ўпэўненыя, што жадаеце адлюстраваць усе схаваныя катыгорыі"
 
 #: categdialog.cpp:828
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Адлюстраваць усе ўтоеныя катыгорыі"
 
 #: categdialog.cpp:867
 msgid "Hide Selected Category"
@@ -1896,7 +1896,7 @@ msgstr "Назва валюты"
 
 #: currencydialog.cpp:203
 msgid "Currency Code"
-msgstr ""
+msgstr "Код валюты"
 
 #: currencydialog.cpp:208
 msgid "Currency Symbol"
@@ -1904,15 +1904,15 @@ msgstr "Сымбаль валюты"
 
 #: currencydialog.cpp:212
 msgid "Symbol Location"
-msgstr ""
+msgstr "Знаходжанне цікера"
 
 #: currencydialog.cpp:213
 msgid "Prefix"
-msgstr ""
+msgstr "Прэфікс"
 
 #: currencydialog.cpp:214
 msgid "Suffix"
-msgstr ""
+msgstr "Суфікс"
 
 #: currencydialog.cpp:220 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:342
@@ -1921,11 +1921,11 @@ msgstr "Падзяляльнік цэлай і дробавай часткаў"
 
 #: currencydialog.cpp:223 currencydialog.cpp:230
 msgid "Dot"
-msgstr ""
+msgstr "Кропка"
 
 #: currencydialog.cpp:224 currencydialog.cpp:231
 msgid "Comma"
-msgstr ""
+msgstr "Коска"
 
 #: currencydialog.cpp:226
 msgid "Grouping Char"
@@ -1933,7 +1933,7 @@ msgstr "Падзяляльнік групаў"
 
 #: currencydialog.cpp:232
 msgid "Space"
-msgstr ""
+msgstr "Прагал"
 
 #: currencydialog.cpp:237
 msgid "Scale"
@@ -1970,7 +1970,7 @@ msgstr "Хібны запіс"
 
 #: currencydialog.cpp:295 currencydialog.cpp:320
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "Сымбалі групоўкі ня могуць быць такія самыя, як падзяляльнік дробавай часткі"
 
 #: currencydialog.cpp:342
 #, c-format
@@ -2554,7 +2554,7 @@ msgstr "Пакажыце будзь-якой тэкст для пошука па
 
 #: filtertransdialog.cpp:637
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Выкарыстанне regex: для пошука супадзенняў ў выкарыстаннем рыгулярным выразаў."
 
 #: filtertransdialog.cpp:654
 msgid "Presentation Options"
@@ -2639,7 +2639,7 @@ msgstr "Перыяд"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Deleted"
-msgstr ""
+msgstr "Ня выдаленая"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2785,11 +2785,11 @@ msgstr "Дыспетчар агульных справаздачаў"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Актывы..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Новая пустая справаздача..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2797,11 +2797,11 @@ msgstr "Новы прыклад справаздачы"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "Змяніць групу..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "Пераназваць групу..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -2809,19 +2809,19 @@ msgstr "Разгрупаваць"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "Пераназваць справаздачу..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "Актыўная"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Адлюстраваць/схаваць справаздачу ў галоўнай панэлі"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "Выдаліць справаздачу..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -3461,7 +3461,7 @@ msgstr "Невядомы тып (спісанне/унёсак)."
 #: import_export/univcsvdialog.cpp:1029
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Радок %ld %s"
 
 #: import_export/univcsvdialog.cpp:1054
 #, c-format
@@ -3749,7 +3749,7 @@ msgstr "Хібны запіс %s"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Калі ласка, абярыце катыгорыю, што існуе"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Invalid Category"
@@ -3922,11 +3922,11 @@ msgstr "Пустая назва актыва запоўніцца падчас �
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
-msgstr ""
+msgstr "Парадак упарадкаваньня"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr ""
+msgstr "Дата выдалення"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal"
@@ -3992,14 +3992,14 @@ msgstr "Стварыць аперацыю, што паўтараецца"
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "А&днавіць абраную аперацыю..."
+msgstr[1] "А&днавіць абраныя аперацыі..."
+msgstr[2] "А&днавіць абраныя аперацыі..."
+msgstr[3] "А&днавіць абраныя аперацыі..."
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
-msgstr ""
+msgstr "Выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
@@ -4012,10 +4012,10 @@ msgstr[3] "&Выдаліць абраныя аперацыі..."
 #: mmchecking_list.cpp:488
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Назаўжды &выдаліць абраную аперацыю..."
+msgstr[1] "Назаўжды &выдаліць абраныя аперацыі..."
+msgstr[2] "Назаўжды &выдаліць абраныя аперацыі..."
+msgstr[3] "Назаўжды &выдаліць абраныя аперацыі..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete all transactions in current view"
@@ -4023,7 +4023,7 @@ msgstr "Выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:491
 msgid "Permanently delete all transactions in current view"
-msgstr ""
+msgstr "Назаўжды выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Follow Up\" Transactions"
@@ -4039,28 +4039,28 @@ msgstr "Пазначыць як"
 
 #: mmchecking_list.cpp:950
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Вы сапраўды хочаце аднавіць усе бачныя аперацыі?"
 
 #: mmchecking_list.cpp:951 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Спраўдзіць аднаўленне аперацыі"
 
 #: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Вы сапраўды хочаце аднавіць абраную аперацыю?"
+msgstr[1] "Вы сапраўды хочаце аднавіць %i абраных аперацыяў?"
+msgstr[2] "Вы сапраўды хочаце аднавіць %i абраных аперацыяў?"
+msgstr[3] "Вы сапраўды хочаце аднавіць %i абраных аперацыяў?"
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Вы сапраўды хочаце выдаліць усе бачныя аперацыі?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Вы сапраўды хочаце назаўжды выдаліць усе бачныя аперацыі?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -4074,7 +4074,7 @@ msgstr "Вы сапраўды хочаце выдаліць усе бачныя 
 
 #: mmchecking_list.cpp:1129
 msgid " You cannot undo this action."
-msgstr ""
+msgstr " Гэта дзеянне немагчыма адмяніць."
 
 #: mmchecking_list.cpp:1208
 #, c-format
@@ -4154,11 +4154,11 @@ msgstr "Дубляваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:397
 msgid "&Restore "
-msgstr ""
+msgstr "&Аднавіць "
 
 #: mmcheckingpanel.cpp:398
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Аднавіць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:413
 msgid "Enter any string to find it in the nearest transaction data"
@@ -4170,7 +4170,7 @@ msgstr "Справаздача па аперацыях"
 
 #: mmcheckingpanel.cpp:437 mmframe.cpp:761
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Выдаленыя аперацыі"
 
 #: mmcheckingpanel.cpp:439
 #, c-format
@@ -4524,11 +4524,11 @@ msgstr "Адлюстраваць/схаваць паявы рахунак з п�
 
 #: mmframe.cpp:1521
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "Адлюстраваць выдаленыя аперацыі"
 
 #: mmframe.cpp:1521
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "Адлюстраваць/Прыхаваць аперацыі ў дрэве навігацыі"
 
 #: mmframe.cpp:1523
 msgid "Budgets: As Financial &Years"
@@ -5381,11 +5381,11 @@ msgstr "Акцыя"
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Агульная вартасць"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "Іншыя актывы"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5503,11 +5503,11 @@ msgstr "Патанненне"
 
 #: model/Model_Asset.cpp:31
 msgid "Percentage"
-msgstr ""
+msgstr "Адсоткі"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "Лінейны"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -5553,15 +5553,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Аперацыя, што паўтараецца, перавысіць абмежаванне рахунка.\n\n"
+"Рахунак: %s\n"
+"Бягучы баланс: %6.2f\n"
+"Сума аперацыі: %6.2f\n"
+"%s: %6.2f\n\n"
+"Працягваць?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Мінімальны баланс"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Крыдытны ліміт"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -5569,11 +5574,11 @@ msgstr "Узгадненне запланаванай аперацыі"
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "Фізічныя"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "Крыпта"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -6235,19 +6240,19 @@ msgstr "Памер іншых значкоў"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "Рыдагаваць платніка"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Пакажыце назву Платніка. Гэтая назва можа быць змененая ў будзь-які час."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "Утоены"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Пазначыць платніка ўтоеным, каб не было бачна ў спісе платнікоў для новых аперацыяў"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6259,23 +6264,23 @@ msgstr "Катыгорыя па змаўчанні"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Катыгорыя выкарыстоўваецца па змаўчанні для гэтага платніка"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "Сувязь"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Сувязь, што будзе выкарыстана для платніка, напрыклад нумар банкаўскага рахунка"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "Вэб-сайт"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "Спасылка на вэб-сайт, што звязаны з платніком"
 
 #: payeedialog.cpp:170
 msgid "Payee with same name exists"
@@ -6283,7 +6288,7 @@ msgstr "Платнік з такім імем ужо існуе"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "Вэб-сайт"
 
 #: payeedialog.cpp:470
 msgid "Payee in use."
@@ -6844,11 +6849,11 @@ msgstr "Рыдагаванне аперацыі"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Рыдагаваць састаўную аперацыю"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Рыдагаваць нататкі з апісаннем састаўной аперацыі"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -6864,7 +6869,7 @@ msgstr "Хібная агульная сума"
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Укажыце дапушчальнае грашовае значэнне"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
@@ -7624,7 +7629,7 @@ msgstr "Хібны рахунак з WebApp"
 
 #: webapp.cpp:553
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "За дату аперацыі будзе ўзяты сённяшні дзень"
 
 #: webapp.cpp:583 webapp.cpp:617 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
