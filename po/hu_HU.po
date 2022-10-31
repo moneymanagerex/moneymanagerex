@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-31 01:19\n"
+"PO-Revision-Date: 2022-10-31 02:25\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Adja meg a számla kezdő egyenlegét."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Nyitódátum:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "A számla megnyitásának dátuma"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1857
 msgid "Currency:"
@@ -291,7 +291,7 @@ msgstr "Érvénytelen URL cím"
 
 #: accountdialog.cpp:520
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "A nyitó dátuma nem lehet a jövőben"
 
 #: accountdialog.cpp:520 accountdialog.cpp:529 accountdialog.cpp:534
 #: accountdialog.cpp:541 billsdepositsdialog.cpp:1018
@@ -302,11 +302,11 @@ msgstr "Érvénytelen dátum"
 
 #: accountdialog.cpp:529
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Ehhez a számlához már léteznek ügylet(ek) ezen dátum előtt"
 
 #: accountdialog.cpp:534
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Ehhez a számlához már léteztek részvényvásárlás(ok) ezen dátum előtt"
 
 #: accountdialog.cpp:541
 msgid "Recurring transactions for this account are scheduled before this date"
@@ -1160,7 +1160,7 @@ msgstr "Érvénytelen érték"
 #: import_export/univcsvdialog.cpp:1030 stockdialog.cpp:428 transdialog.cpp:597
 #: transdialog.cpp:673 usertransactionpanel.cpp:451 webapp.cpp:552
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "A számla nyitási dátuma későbbi, mint az ügylet dátuma"
 
 #: billsdepositsdialog.cpp:1185
 msgid "Specify the transfer amount in the From Account"
@@ -1972,7 +1972,7 @@ msgstr "%.2f Mutasd mint: %s"
 
 #: currencydialog.cpp:344
 msgid "(Using Locale)"
-msgstr "(Hely használata)"
+msgstr "(Területi beállítás használata)"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -2784,11 +2784,11 @@ msgstr "Új jelentésminta"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "Csoport módosítása…"
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "Csoport átnevezése…"
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -2796,7 +2796,7 @@ msgstr "Csoport bontása"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "Jelentés átnevezése…"
 
 #: general_report_manager.cpp:748
 msgid "Active"
@@ -2808,7 +2808,7 @@ msgstr "Kimutatások megjelenítése/elrejtése a fő navigációs ablakban"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "Jelentés törlése…"
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -4062,9 +4062,8 @@ msgstr "MMEX tranzakció ellenőrzés"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] "Zárolt számlához kapcsolódó ügyletet akar szerkeszteni.\n"
-"A szerkesztés %i ügyletre hat, és egy zárolt számlát érint."
-msgstr[1] ""
+msgstr[0] "Ügylet szerkesztése lezárt számlával."
+msgstr[1] "%i ügylet szerkesztése lezárt számlával."
 
 #: mmchecking_list.cpp:1246
 msgid "\n\n"
@@ -4670,7 +4669,7 @@ msgstr "Webapp frissítése"
 
 #: mmframe.cpp:1687
 msgid "&Options...\tCtrl-,"
-msgstr "&Opcióks...\tCtrl-,"
+msgstr "&Beállítások…\tCtrl-,"
 
 #: mmframe.cpp:1687 mmframe.cpp:1846
 msgid "Show the Options Dialog"
@@ -4878,7 +4877,7 @@ msgstr "Frissítések keresése"
 
 #: mmframe.cpp:1798 mmframe.cpp:1870
 msgid "&About"
-msgstr ""
+msgstr "&Névjegy"
 
 #: mmframe.cpp:1798 mmframe.cpp:1870
 msgid "Show about dialog"
@@ -4922,7 +4921,7 @@ msgstr "Pénznemkezelő párbeszéd mutatása"
 
 #: mmframe.cpp:1846
 msgid "&Options"
-msgstr ""
+msgstr "&Beállítások"
 
 #: mmframe.cpp:1854 mmframe.cpp:2757
 msgid "Register/View Release &Notifications"
@@ -5856,7 +5855,7 @@ msgstr "Jelölje be, hogy a tranzakciók bevitelénél legyen-e hangvisszajelzé
 
 #: optionsettingsgeneral.cpp:307
 msgid "Locale"
-msgstr ""
+msgstr "Területi beállítás"
 
 #: optionsettingsgeneral.cpp:335
 #, c-format
@@ -5865,7 +5864,7 @@ msgstr "Példa a pénznem értékére: %s"
 
 #: optionsettingsgeneral.cpp:339
 msgid "bad locale name"
-msgstr "hibás helynév"
+msgstr "hibás területi beállítás neve"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6766,7 +6765,7 @@ msgstr "Részvény jelzése"
 
 #: sharetransactiondialog.cpp:230 stockdialog.cpp:206
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Adja meg az részvény tőzsdei szimbólumát. (opcionális) Tegye hozzá a tőzsdéét is. pl. IBM.BE"
+msgstr "Adja meg az részvény tőzsdei szimbólumát. (Nem kötelező) Tegye hozzá a tőzsdéét is. pl. IBM.BE"
 
 #: sharetransactiondialog.cpp:233
 msgid "Share Number"
@@ -6898,7 +6897,7 @@ msgstr "Írd be a részvény/értékpapír aktuális árát."
 
 #: stockdialog.cpp:281
 msgid "Stock History Options"
-msgstr "Részvényelőzmények opciói"
+msgstr "Részvényelőzmények beállításai"
 
 #: stockdialog.cpp:288
 msgid "Stock Price History"
@@ -7785,7 +7784,7 @@ msgstr "Adja meg az adatbázis által alapértelmezetten használt \n"
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
-msgstr "Adjon meg egy címet, vagy a nevét (opcionális)."
+msgstr "Adjon meg egy címet, vagy a nevét (nem kötelező)."
 
 #: wizard_newdb.cpp:126
 msgid "Used as a database title for displayed and printed reports."
