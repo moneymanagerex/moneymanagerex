@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 22:07\n"
+"PO-Revision-Date: 2022-10-31 02:25\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2808,7 +2808,7 @@ msgstr "Attivo"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Mostra/Nasconde il report nel pannello di navigazione principale"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
