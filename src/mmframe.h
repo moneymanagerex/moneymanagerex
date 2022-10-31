@@ -148,7 +148,7 @@ private:
     void createBillsDeposits();
 
     void createBudgetingPage(int budgetYearID);
-
+    void autocleanDeletedTransactions();
     void createControls();
     /*Set nav tree items status from JSON data with stored in DB*/
     void loadNavigationTreeItemsStatusFromJson();

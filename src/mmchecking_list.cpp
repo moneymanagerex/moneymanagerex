@@ -1020,15 +1020,16 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 {
     auto i = event.GetId();
+    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
 
     if (i == MENU_TREEPOPUP_DELETE_VIEWED)
     {
-        wxString text = !m_cp->isTrash_ 
+        wxString text = !(m_cp->isTrash_ || retainDays == 0)
             ? _("Do you really want to delete all the transactions shown?")
             : _("Do you really want to permanently delete all the transactions shown?");
 
         text += "\n\n";
-        text += !m_cp->isTrash_
+        text += !(m_cp->isTrash_ || retainDays == 0)
             ? "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
             : "You cannot undo this action.";
 
@@ -1068,6 +1069,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
+    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<wxString, int>> assetStockAccts;
     const auto s = Model_Checking::toShortStatus(status);
@@ -1078,7 +1080,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     {
         if (tran.STATUS == s || (s.empty() && status.empty()))
         {
-            if (m_cp->isTrash_) {
+            if (m_cp->isTrash_ || retainDays == 0) {
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(tran.TRANSID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
@@ -1115,9 +1117,10 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     if (sel < 1) return;
 
     FindSelectedTransactions();
+    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
 
     //ask if they really want to delete
-    wxString text = m_cp->isTrash_ ?
+    wxString text = (m_cp->isTrash_ || retainDays == 0)?
         wxPLURAL("Do you really want to permanently delete the selected transaction?"
         , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel)
         , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel))
@@ -1126,7 +1129,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             , wxString::Format("Do you really want to delete %i selected transactions?", sel)
             , wxString::Format("Do you really want to delete %i selected transactions?", sel));
     text += "\n\n";
-    text += _(m_cp->isTrash_ ? " You cannot undo this action." : " Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
+    text += _((m_cp->isTrash_ || retainDays == 0) ? " You cannot undo this action." : " Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
 
     wxMessageDialog msgDlg(this
         , text
@@ -1149,7 +1152,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 continue;
             }
 
-            if (m_cp->isTrash_) {
+            if (m_cp->isTrash_ || retainDays == 0) {
                 if (Model_Checking::foreignTransaction(*trx))
                 {
                     Model_Translink::RemoveTranslinkEntry(i);
