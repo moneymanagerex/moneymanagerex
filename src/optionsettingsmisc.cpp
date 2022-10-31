@@ -204,7 +204,7 @@ void OptionSettingsMisc::Create()
     mmToolTip(m_deleted_trans_retain_days, _("Specify number of days to retain deleted transactions. Transactions older than this will be automatically deleted upon database open."));
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 2, 0, 0);
     flex_sizer3->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Days to retain deleted transactions")), g_flagsH);
-    flex_sizer3->Add(m_deleted_trans_retain_days, g_flagsH);
+    flex_sizer3->Add(m_deleted_trans_retain_days, g_flagsBorder1H);
     databaseStaticBoxSizer->Add(flex_sizer3);
 
     //CSV Import
