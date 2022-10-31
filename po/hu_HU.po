@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 23:16\n"
+"PO-Revision-Date: 2022-10-31 01:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2675,7 +2675,7 @@ msgstr "Számlák kiválasztása"
 #: general_report_manager.cpp:293 mmframe.cpp:775 mmframe.cpp:2764
 #: mmframereport.cpp:316 reports/myusage.cpp:142 reports/myusage.cpp:159
 msgid "Reports"
-msgstr "Kimutatások"
+msgstr "Jelentések"
 
 #: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:411
 #: mmframe.cpp:1329 mmframe.cpp:1489
@@ -2772,11 +2772,11 @@ msgstr "Fő jelentéskezelő"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Eszközök…"
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Új üres jelentés…"
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
