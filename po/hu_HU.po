@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-31 03:24\n"
+"PO-Revision-Date: 2022-10-31 05:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3637,7 +3637,7 @@ msgstr "Pénznem-párbeszéd"
 
 #: maincurrencydialog.cpp:392
 msgid "Base Currency Selection"
-msgstr "Alap pénznem kiválasztása"
+msgstr "Alappénznem kijelölése"
 
 #: maincurrencydialog.cpp:432
 #, c-format
@@ -3662,7 +3662,7 @@ msgstr "Pénznem-előzmény hiba"
 
 #: maincurrencydialog.cpp:533
 msgid "Set as Base Currency"
-msgstr "Beállítás alap pénznemként"
+msgstr "Alappénznemként beállítása"
 
 #: maincurrencydialog.cpp:534
 msgid "Online Update Currency Rate"
@@ -3688,7 +3688,7 @@ msgstr "A(z) %s szimbólumhoz tartozó előzményeket nem tudom letölteni. Az �
 
 #: maincurrencydialog.cpp:784 optionsettingsgeneral.cpp:289
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Az alap pénznem megváltoztatása törli az árfolyamtörténetet. Folytatja?"
+msgstr "Az alappénznem megváltoztatása törli az árfolyamtörténetet. Folytatja?"
 
 #: maincurrencydialog.cpp:808
 msgid "Do you want to update today currency rates?"
@@ -3701,7 +3701,7 @@ msgstr "A(z) %s szimbólumhoz tartozó előzményeket nem tudom letölteni. Az �
 
 #: maincurrencydialog.cpp:872 stockspanel.cpp:337 util.cpp:675
 msgid "Could not find base currency symbol!"
-msgstr "Az alap pénznem szimbóluma nem található!"
+msgstr "Az alappénznem szimbóluma nem található!"
 
 #: mmSimpleDialogs.cpp:523 mmSimpleDialogs.cpp:535
 msgid "Clear color"
@@ -5785,7 +5785,7 @@ msgstr "Dátumformátum minta:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
-msgstr "Alap pénznem"
+msgstr "Alappénznem"
 
 #: optionsettingsgeneral.cpp:133 wizard_newdb.cpp:91
 msgid "Set Currency"
@@ -5793,7 +5793,7 @@ msgstr "Pénznem beállítása"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Az adatbázis alap pénznemének beállítása a \"Pénznem párbeszéd\" segítségével"
+msgstr "Az adatbázis alappénznemének beállítása a „Pénznem párbeszéd” segítségével"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
@@ -7446,7 +7446,7 @@ msgstr ""
 
 #: util.cpp:1021
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Nem sikerült beszerezni az alappénznemet!"
 
 #: util.cpp:1027
 msgid "USD"
