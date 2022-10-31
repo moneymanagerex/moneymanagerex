@@ -431,7 +431,7 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     if (w && (w->GetId() >= mmID_MAX))
         row_num_ = w->GetId() - mmID_MAX;
 
-    wxLogDebug("split row = %d", row_num_);
+    UpdateSplitTotal();
     event.Skip();
 }
 
@@ -452,10 +452,12 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
 void mmSplitTransactionDialog::OnOtherButton(wxCommandEvent& event)
 {
     int row = event.GetId() - mmID_MAX;
-    mmEditSplitOther dlg(this, m_currency, &m_splits.at(row));
-    dlg.ShowModal();
-    UpdateExtraInfo(row);
-
+    if (mmDoCheckRow(row))
+    {
+        mmEditSplitOther dlg(this, m_currency, &m_splits.at(row));
+        dlg.ShowModal();
+        UpdateExtraInfo(row);   
+    }
     event.Skip();
 }
 
