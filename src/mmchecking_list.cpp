@@ -1347,6 +1347,9 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
+    if (m_cp->isTrash_)
+        return;
+    
     FindSelectedTransactions();
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
