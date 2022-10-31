@@ -150,6 +150,8 @@ table {
     // Display the data for each row
     for (auto& transaction : trans_)
     {
+        if (!transaction.DELETEDTIME.IsEmpty()) continue;
+
         wxString sortLabel = "ALL";
         if (groupBy == mmFilterTransactionsDialog::GROUPBY_ACCOUNT)
             sortLabel = transaction.ACCOUNTNAME;
