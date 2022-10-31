@@ -228,7 +228,7 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
                 break;
             }
         }
-        SetValue(GetValue().Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", mmex::DEFDELIMTER)));
+        SetValue(GetValue().Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
         SetInsertionPointEnd();
     }
     else {
