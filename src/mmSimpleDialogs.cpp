@@ -217,19 +217,24 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
                 break;
             }
         }
+        event.Skip();
     }
-    else if (event.GetKeyCode() == ':')
+    else if (event.GetId() == mmID_CATEGORY && event.GetKeyCode() == ':')
     {
+        wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", mmex::DEFDELIMTER);
         for (const auto& item : all_elements_)
         {
             if (item.first.CmpNoCase(text) == 0) {
                 SetValue(item.first);
-                SetInsertionPointEnd();
                 break;
             }
         }
+        SetValue(GetValue().Append(delimiter));
+        SetInsertionPointEnd();
     }
-    event.Skip();
+    else {
+        event.Skip();
+    }
 }
 
 const wxString mmComboBox::mmGetPattern() const
