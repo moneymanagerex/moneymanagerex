@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 20:51\n"
+"PO-Revision-Date: 2022-10-31 06:04\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2640,7 +2640,7 @@ msgstr "Okres"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Deleted"
-msgstr ""
+msgstr "Nie usunięto"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2786,11 +2786,11 @@ msgstr "Menedżer raportów"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Aktywa..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Nowy pusty raport..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2798,11 +2798,11 @@ msgstr "Nowy przykładowy raport"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "Zmień grupę..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "Zmień nazwę grupy..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -2810,19 +2810,19 @@ msgstr "Rozgrupuj"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "Zmień nazwę raportu..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "Aktywny"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Pokaż/ukryj raport w głównym panelu nawigacji"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "Usuń raport..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -3750,7 +3750,7 @@ msgstr " Wpis %s jest nieprawidłowy"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Proszę wybrać istniejącą kategorię"
 
 #: mmSimpleDialogs.cpp:782
 msgid "Invalid Category"
@@ -3926,7 +3926,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr ""
+msgstr "Usunięto"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal"
@@ -3992,14 +3992,14 @@ msgstr "Utwórz t&ransakcję powtarzaną"
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Przywróć wybraną transakcję..."
+msgstr[1] "&Przywróć wybrane transakcje..."
+msgstr[2] "&Przywróć wybrane transakcje..."
+msgstr[3] "&Przywróć wybrane transakcje..."
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
-msgstr ""
+msgstr "Przywróć wszystkie transakcje w bieżącym widoku"
 
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
@@ -4012,10 +4012,10 @@ msgstr[3] "&Usuń wybrane transakcje..."
 #: mmchecking_list.cpp:488
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Trwale usuń wybraną transakcję..."
+msgstr[1] "&Trwale usuń wybrane transakcje..."
+msgstr[2] "&Trwale usuń wybrane transakcje..."
+msgstr[3] "&Trwale usuń wybrane transakcje..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete all transactions in current view"
@@ -4023,7 +4023,7 @@ msgstr "Usuń wszystkie transakcje w bieżącym widoku"
 
 #: mmchecking_list.cpp:491
 msgid "Permanently delete all transactions in current view"
-msgstr ""
+msgstr "Trwale usuń wszystkie transakcje w bieżącym widoku"
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Follow Up\" Transactions"
@@ -4039,28 +4039,28 @@ msgstr "Oznacz jako"
 
 #: mmchecking_list.cpp:950
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Czy na pewno chcesz przywrócić wszystkie wyświetlone transakcje?"
 
 #: mmchecking_list.cpp:951 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Potwierdź przywracanie transakcji"
 
 #: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Czy na pewno chcesz przywrócić wybraną transakcję?"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć wszystkie wyświetlane transakcje?"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Czy na pewno chcesz trwale usunąć wszystkie wyświetlane transakcje?"
 
 #: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
 #: mmchecking_list.cpp:1133
@@ -5550,15 +5550,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Cykliczna transakcja przekroczy limit Twojego konta.\n\n"
+"Konto: %s\n"
+"Bieżące saldo: %6.2f\n"
+"Kwota transakcji: %6.2f\n"
+"%s: %6.2f\n\n"
+"Czy chcesz kontynuować?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Minimalne saldo"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Limit kredytowy"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -6861,7 +6866,7 @@ msgstr "Nieprawidłowa łączna kwota"
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Wprowadź prawidłową kwotę pieniężną"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
