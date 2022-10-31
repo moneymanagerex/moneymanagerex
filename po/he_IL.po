@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-31 08:54\n"
+"PO-Revision-Date: 2022-10-31 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "נא להזין יתרת פתיחה לחשבון."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "תאריך פתיחה:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "תאריך יצירת החשבון"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1857
 msgid "Currency:"
@@ -283,7 +283,7 @@ msgstr "מטבע"
 
 #: accountdialog.cpp:512 payeedialog.cpp:146
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "נא להזין מען־URL תקין"
 
 #: accountdialog.cpp:512 payeedialog.cpp:146
 msgid "Invalid URL"
@@ -291,14 +291,14 @@ msgstr "מען URL לא תקין"
 
 #: accountdialog.cpp:520
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "תאריך הפתיחה לא יכול לחול בעתיד"
 
 #: accountdialog.cpp:520 accountdialog.cpp:529 accountdialog.cpp:534
 #: accountdialog.cpp:541 billsdepositsdialog.cpp:1018
 #: billsdepositsdialog.cpp:1021 stockdialog.cpp:428 transdialog.cpp:597
 #: transdialog.cpp:673 usertransactionpanel.cpp:451 webapp.cpp:554
 msgid "Invalid Date"
-msgstr ""
+msgstr "תאריך לא תקין"
 
 #: accountdialog.cpp:529
 msgid "Transactions for this account already exist before this date"
@@ -1712,7 +1712,7 @@ msgstr ""
 
 #: categdialog.cpp:488
 msgid "Confirm Move"
-msgstr ""
+msgstr "אישור העברה"
 
 #: categdialog.cpp:506
 msgid "Category in use."
@@ -1770,11 +1770,11 @@ msgstr "תוצאת העברת סוג־אב"
 
 #: categdialog.cpp:827
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "האם לבטל הסתרת כל סוגי־האב"
 
 #: categdialog.cpp:828
 msgid "Unhide all categories"
-msgstr ""
+msgstr "ביטול הסתרת כל סוגי־האב"
 
 #: categdialog.cpp:867
 msgid "Hide Selected Category"
@@ -1893,7 +1893,7 @@ msgstr "שם מטבע"
 
 #: currencydialog.cpp:203
 msgid "Currency Code"
-msgstr ""
+msgstr "קוד מטבע"
 
 #: currencydialog.cpp:208
 msgid "Currency Symbol"
@@ -1905,11 +1905,11 @@ msgstr ""
 
 #: currencydialog.cpp:213
 msgid "Prefix"
-msgstr ""
+msgstr "קידומת"
 
 #: currencydialog.cpp:214
 msgid "Suffix"
-msgstr ""
+msgstr "סיומת"
 
 #: currencydialog.cpp:220 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:342
@@ -1918,11 +1918,11 @@ msgstr "תו עשרוני"
 
 #: currencydialog.cpp:223 currencydialog.cpp:230
 msgid "Dot"
-msgstr ""
+msgstr "נקודה"
 
 #: currencydialog.cpp:224 currencydialog.cpp:231
 msgid "Comma"
-msgstr ""
+msgstr "פסיק"
 
 #: currencydialog.cpp:226
 msgid "Grouping Char"
@@ -1930,7 +1930,7 @@ msgstr "תו קיבוץ"
 
 #: currencydialog.cpp:232
 msgid "Space"
-msgstr ""
+msgstr "רווח"
 
 #: currencydialog.cpp:237
 msgid "Scale"
@@ -2635,7 +2635,7 @@ msgstr "תקופה"
 
 #: filtertransdialog.cpp:1499
 msgid "Not Deleted"
-msgstr ""
+msgstr "לא נמחק"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
@@ -2781,11 +2781,11 @@ msgstr "מנהל דוחות כללי"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "נכסים..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "דוח (ריק) חדש..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2793,11 +2793,11 @@ msgstr "דוח דוגמא חדש"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "שינוי קבוצה..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "שינוי שם קבוצה..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -2805,11 +2805,11 @@ msgstr "פרק קבוצה"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "שינוי שם דוח..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "פעיל"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
@@ -2817,7 +2817,7 @@ msgstr ""
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "מחיקת דוח..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -3458,7 +3458,7 @@ msgstr "סוג (משיכה/הפקדה) לא מוכרים."
 #: import_export/univcsvdialog.cpp:1029
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "שורה %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1054
 #, c-format
@@ -3918,11 +3918,11 @@ msgstr "אם שדה שם ניר הערך נותר ריק, הוא יושלם בע
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
-msgstr ""
+msgstr "סדר מיון"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr ""
+msgstr "נמחק ביום"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal"
@@ -4039,16 +4039,16 @@ msgstr ""
 
 #: mmchecking_list.cpp:951 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "אישור שחזור תנועה"
 
 #: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[1] "האם לשחזר את %i התנועות שנבחרו?"
+msgstr[2] "האם לשחזר את %i התנועות שנבחרו?"
+msgstr[3] "האם לשחזר את %i התנועות שנבחרו?"
 
 #: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
@@ -4150,7 +4150,7 @@ msgstr "שכפול תנועה"
 
 #: mmcheckingpanel.cpp:397
 msgid "&Restore "
-msgstr ""
+msgstr "&שחזור "
 
 #: mmcheckingpanel.cpp:398
 msgid "Restore selected transaction"
@@ -4166,7 +4166,7 @@ msgstr "דוח תנועות מלא"
 
 #: mmcheckingpanel.cpp:437 mmframe.cpp:761
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "תנועות שנמחקו"
 
 #: mmcheckingpanel.cpp:439
 #, c-format
@@ -5283,7 +5283,7 @@ msgstr "יתרת חשבונות"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "תקציב"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5380,7 +5380,7 @@ msgstr ""
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "נכסים אחרים"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5498,11 +5498,11 @@ msgstr "פחת"
 
 #: model/Model_Asset.cpp:31
 msgid "Percentage"
-msgstr ""
+msgstr "אחוז"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "קו ישר"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -5564,11 +5564,11 @@ msgstr "בדיקת תנועות מחזוריות של MMEX"
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "מטבע לאומי (פיאט)"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "מטבע מבוזר (קריפטו)"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -6230,7 +6230,7 @@ msgstr "גודל סמלים אחרים"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "עריכת מוטב"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
@@ -6238,7 +6238,7 @@ msgstr ""
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "מוסתר"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
@@ -6258,7 +6258,7 @@ msgstr ""
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "אסמכתא"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
@@ -6266,7 +6266,7 @@ msgstr ""
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "אתר רשת"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
@@ -6278,7 +6278,7 @@ msgstr "קיים כבר מוטב בעל שם זהה"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "אתר מרשתת"
 
 #: payeedialog.cpp:470
 msgid "Payee in use."
@@ -6859,7 +6859,7 @@ msgstr "סכום כולל לא תקין"
 
 #: splittransactionsdialog.cpp:534
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "נא להזין סכום כספי תקין"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
@@ -7059,11 +7059,11 @@ msgstr "סך־כל מניות"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "עלות מניה ממוצעת"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "עלות כוללת"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
