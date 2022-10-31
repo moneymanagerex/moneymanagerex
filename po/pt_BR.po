@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-30 20:51\n"
+"PO-Revision-Date: 2022-10-31 17:00\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3916,7 +3916,7 @@ msgstr "Ordem de Classificação"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr ""
+msgstr "Excluída em"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal"
@@ -3976,12 +3976,12 @@ msgstr "Criar T&ransação Recorrente"
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Restaurar a transação selecionada..."
+msgstr[1] "&Restaurar as transações selecionadas..."
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
-msgstr ""
+msgstr "Restaurar todas as transações mostradas neste momento"
 
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
@@ -3992,8 +3992,8 @@ msgstr[1] "&Excluir transações selecionadas..."
 #: mmchecking_list.cpp:488
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Excluir permanentemente a transação selecionada..."
+msgstr[1] "&Excluir permanentemente as transações selecionadas..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete all transactions in current view"
