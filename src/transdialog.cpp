@@ -368,6 +368,7 @@ void mmTransDialog::dataToControls()
         textNotes_->Enable(false);
         bColours_->Enable(false);
         bAttachments_->Enable(false);
+        bFrequentUsedNotes->Enable(false);
     }
 }
 

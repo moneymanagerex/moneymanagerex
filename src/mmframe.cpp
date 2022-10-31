@@ -3523,12 +3523,44 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::autocleanDeletedTransactions() {
+    wxDateSpan days = wxDateSpan::Days(Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30));
+    wxDateTime earliestDate = wxDateTime().Now().ToUTC().Subtract(days);
+    Model_Checking::Data_Set deletedTransactions = Model_Checking::instance().find(Model_Checking::DELETEDTIME(earliestDate.FormatISOCombined(), LESS_OR_EQUAL), Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL));
+    if (!deletedTransactions.empty()) {
+        Model_Checking::instance().Savepoint();
+        Model_Attachment::instance().Savepoint();
+        Model_Splittransaction::instance().Savepoint();
+        Model_CustomFieldData::instance().Savepoint();
+        for (const auto& transaction : deletedTransactions) {
+            if (Model_Checking::foreignTransaction(transaction))
+            {
+                Model_Translink::RemoveTranslinkEntry(transaction.TRANSID);
+            }
+
+            Model_Checking::instance().remove(transaction.TRANSID);
+
+            // remove also any split transactions
+            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            mmAttachmentManage::DeleteAllAttachments(RefType, transaction.TRANSID);
+
+            // remove also any custom fields for the transaction
+            Model_CustomFieldData::DeleteAllData(RefType, transaction.TRANSID);
+        }
+        Model_CustomFieldData::instance().ReleaseSavepoint();
+        Model_Splittransaction::instance().ReleaseSavepoint();
+        Model_Attachment::instance().ReleaseSavepoint();
+        Model_Checking::instance().ReleaseSavepoint();
+    }
+}
+
 void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 {
     autoRepeatTransactionsTimer_.Stop();
 
     if (openFile(dbFileName, newDatabase))
     {
+        autocleanDeletedTransactions();
         DoRecreateNavTreeControl();
         createHomePage();
         mmLoadColorsFromDatabase();
