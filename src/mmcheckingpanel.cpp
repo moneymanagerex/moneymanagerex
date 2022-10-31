@@ -512,6 +512,11 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
         }
 
         wxString notesStr = full_tran.NOTES;
+        auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(full_tran.TRANSID));
+        for (const auto& split : splits)
+                if (!split.NOTES.IsEmpty())
+                    notesStr += "\n" + split.NOTES;
+
         if (full_tran.has_attachment()) {
             const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
             Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
