@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-10-30 23:12+0300\n"
-"PO-Revision-Date: 2022-10-31 02:25\n"
+"PO-Revision-Date: 2022-10-31 03:24\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -781,7 +781,7 @@ msgstr "Mell."
 
 #: attachmentdialog.cpp:400
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "E könyvtárat és fájljait a Money Manager EX szoftver automatikusan kezeli."
+msgstr "E könyvtárat és fájljait a MoneyManager Ex szoftver automatikusan kezeli."
 
 #: attachmentdialog.cpp:402
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -3610,7 +3610,7 @@ msgstr "Valutaárfolyam előzményeinek letöltése"
 
 #: maincurrencydialog.cpp:298
 msgid "&Add / Update "
-msgstr "Hozzáad / Frissít"
+msgstr "&Hozzáadás/frissítés"
 
 #: maincurrencydialog.cpp:299
 msgid "Add Currency Values to history"
@@ -4361,7 +4361,7 @@ msgstr "Számla törlése"
 
 #: mmframe.cpp:1382 mmframe.cpp:1402
 msgid "&Launch Account Website"
-msgstr "Számla weboldalának betöltése"
+msgstr "Számla webhelyének &látogatása"
 
 #: mmframe.cpp:1398 mmframe.cpp:1595
 msgid "&Reallocate Account"
@@ -4729,7 +4729,7 @@ msgstr "&Weboldal"
 
 #: mmframe.cpp:1723
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr "A Money Manager EX honlapjának megnyitása hírek, frissítések stb. miatt"
+msgstr "A MoneyManager Ex weboldalának meglátogassa hírekért, frissítésekért és egyebekért"
 
 #: mmframe.cpp:1725
 msgid "&Facebook"
@@ -4797,7 +4797,7 @@ msgstr "Látogasd meg az MMEX fórumát a felhasználói megjegyzések olvasás�
 
 #: mmframe.cpp:1742
 msgid "Money Manager Ex for &Android"
-msgstr "MoneyManagerEx Androidra"
+msgstr "MoneyManager Ex &Androidra"
 
 #: mmframe.cpp:1743
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5471,11 +5471,11 @@ msgstr "Leértékelés"
 
 #: model/Model_Asset.cpp:31
 msgid "Percentage"
-msgstr ""
+msgstr "Százalék"
 
 #: model/Model_Asset.cpp:32
 msgid "Linear"
-msgstr ""
+msgstr "Vonalas"
 
 #: model/Model_Asset.cpp:40
 msgid "Property"
@@ -5546,7 +5546,7 @@ msgstr ""
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "Kriptográfia"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5611,7 +5611,7 @@ msgstr "Az SQL-szkript:\n"
 
 #: model/Model_Stock.cpp:54
 msgid "Stock Error"
-msgstr ""
+msgstr "Részvényhiba"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -5798,8 +5798,8 @@ msgstr "Az adatbázis alap pénznemének beállítása a \"Pénznem párbeszéd\
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr "A formátum a lokálisból származtatott.\n"
-"Hagyd üresen, hogy a formátumot a \"Pénznem párbeszéd | szerkesztés\" használatával kézzel állíthasd be"
+msgstr "Területi beállításból származtatott formátum.\n"
+"Hagyja üresen a formátum kézi beállításához a „Pénznem párbeszédablak | Szerkesztés”"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6160,39 +6160,39 @@ msgstr "Határozza meg a jelentés oldalainál használt szorzótényezőt."
 
 #: optionsettingsview.cpp:265
 msgid "Normal"
-msgstr ""
+msgstr "Szokásos"
 
 #: optionsettingsview.cpp:266
 msgid "Enlarged"
-msgstr ""
+msgstr "Felnagyítva"
 
 #: optionsettingsview.cpp:267
 msgid "Large"
-msgstr ""
+msgstr "Nagy"
 
 #: optionsettingsview.cpp:268
 msgid "Huge"
-msgstr ""
+msgstr "Hatalmas"
 
 #: optionsettingsview.cpp:270
 msgid "Font size"
-msgstr ""
+msgstr "Betűméret"
 
 #: optionsettingsview.cpp:282
 msgid "Small (16 px)"
-msgstr "Kicsi (16 px)"
+msgstr "Kicsi (16 képpont)"
 
 #: optionsettingsview.cpp:283
 msgid "Normal (24 px)"
-msgstr "Normál (24 px)"
+msgstr "Szokásos (24 képpont)"
 
 #: optionsettingsview.cpp:284
 msgid "Large (32 px)"
-msgstr "Nagy (32 px)"
+msgstr "Nagy (32 képpont)"
 
 #: optionsettingsview.cpp:285
 msgid "Huge (48 px)"
-msgstr "Hatalmas (48 px)"
+msgstr "Hatalmas (48 képpont)"
 
 #: optionsettingsview.cpp:299
 msgid "Toolbar Icon Size"
@@ -6212,15 +6212,15 @@ msgstr "Kedvezményezett szerkesztése"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Adja meg a kedvezményezett nevét. A név bármikor átnevezhető."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "Rejtett"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Jelezze, hogy a kedvezményezettnek el kell-e rejtenie, és nem kell-e megjelennie a kedvezményezettek listáján az új ügyletek esetén"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6244,7 +6244,7 @@ msgstr ""
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "Weboldal"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
@@ -6256,7 +6256,7 @@ msgstr "Már van ilyen nevű kedvezményezett"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "Weboldal"
 
 #: payeedialog.cpp:470
 msgid "Payee in use."
@@ -6500,7 +6500,7 @@ msgstr "Különbözet"
 
 #: reports/cashflow.cpp:296 reports/cashflow.cpp:428
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Halmozott különbség"
 
 #: reports/cashflow.cpp:352
 msgid "Cash Flow - Daily"
@@ -6591,7 +6591,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Halmozott"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -7450,7 +7450,7 @@ msgstr ""
 
 #: util.cpp:1027
 msgid "USD"
-msgstr ""
+msgstr "amerikai dollár (USD)"
 
 #: util.cpp:1030
 msgid "Could not find currency 'USD', needed for converting history prices"
@@ -7463,11 +7463,11 @@ msgstr ""
 #: util.cpp:1281
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Verzió: %s"
 
 #: util.cpp:1282
 msgid "Build on"
-msgstr ""
+msgstr "Készítési időpont"
 
 #: util.cpp:1283
 msgid "Database version: "
@@ -7487,11 +7487,11 @@ msgstr ""
 
 #: util.cpp:1315
 msgid "Build using:"
-msgstr ""
+msgstr "Készítési felhasználás:"
 
 #: util.cpp:1336
 msgid "Running on:"
-msgstr ""
+msgstr "Fut a következőn:"
 
 #: util.h:180
 msgid "January"
@@ -7817,7 +7817,7 @@ msgstr "Új MMEX-verzió érhető el!"
 #: wizard_update.cpp:181
 #, c-format
 msgid "Your version is %s"
-msgstr "A verzió a(z) %s"
+msgstr "%s verzió"
 
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "Unable to check for updates!"
