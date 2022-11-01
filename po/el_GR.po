@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-11-01 13:35+0300\n"
-"PO-Revision-Date: 2022-11-01 10:42\n"
+"PO-Revision-Date: 2022-11-01 14:04\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5925,7 +5925,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "Επιλογές Βάσης Δεδομένων"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -5957,11 +5957,11 @@ msgstr "Μέγιστος Αριθμός Αρχείων"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Καθορίστε τον αριθμό των ημερών για να διατηρήσετε τις διαγραμμένες συναλλαγές. Οι συναλλαγές παλαιότερες από αυτόν τον αριθμό θα εκκαθαριστούν αυτόματα μετά το άνοιγμα της βάσης δεδομένων."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Ημέρες διατήρησης διαγραμμένων συναλλαγών"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
