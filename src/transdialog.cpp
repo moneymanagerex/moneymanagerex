@@ -705,8 +705,7 @@ bool mmTransDialog::ValidateData()
         if ((m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL]) ||
             (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::TRANSFER]))
         {
-            const auto fromAccount{ Model_Account::instance().get(m_trx_data.ACCOUNTID) };
-            const double fromAccountBalance = Model_Account::balance(fromAccount);
+            const double fromAccountBalance = Model_Account::balance(account);
             const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
 
             bool abort_transaction = false;
