@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-11-01 13:35+0300\n"
-"PO-Revision-Date: 2022-11-01 10:41\n"
+"PO-Revision-Date: 2022-11-01 14:04\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5961,7 +5961,7 @@ msgstr "Transakcje zbiorcze:"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "Opcje bazy danych"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -5993,11 +5993,11 @@ msgstr "Maks. plików"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Określ liczbę dni do zachowania usuniętych transakcji. Transakcje starsze od niej zostaną automatycznie wyczyszczone podczas otwierania bazy danych."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Dni do zachowania usuniętych transakcji"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
