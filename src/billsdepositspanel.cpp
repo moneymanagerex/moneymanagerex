@@ -246,13 +246,18 @@ void mmBillsDepositsPanel::CreateControls()
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
+    /* Disable feature to judge reaction :-)
+       https://github.com/moneymanagerex/moneymanagerex/issues/5281
+
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
+
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     m_bitmapTransFilter->SetLabel(_("Transaction Filter"));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
+    */
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow(this
