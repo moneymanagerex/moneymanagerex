@@ -702,32 +702,32 @@ bool mmTransDialog::ValidateData()
     //Checking account does not exceed limits
     if (m_new_trx || m_duplicate)
     {
-        bool abort_transaction = false;
-        double new_value = m_trx_data.TRANSAMOUNT;
-
-        if (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+        if ((m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL]) ||
+            (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::TRANSFER]))
         {
-            new_value *= -1;
-        }
+            const auto fromAccount{ Model_Account::instance().get(m_trx_data.ACCOUNTID) };
+            const double fromAccountBalance = Model_Account::balance(fromAccount);
+            const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
 
-        new_value += m_current_balance;
+            bool abort_transaction = false;
 
-        if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
-        {
-            abort_transaction = true;
-        }
+            if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
+            {
+                abort_transaction = true;
+            }
 
-        if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
-        {
-            abort_transaction = true;
-        }
+            if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
+            {
+                abort_transaction = true;
+            }
 
-        if (abort_transaction && wxMessageBox(_(
-            "This transaction will exceed your account limit.\n\n"
-            "Do you wish to continue?")
-            , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
-        {
-            return false;
+            if (abort_transaction && wxMessageBox(_(
+                "This transaction will exceed your account limit.\n\n"
+                "Do you wish to continue?")
+                , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
+            {
+                return false;
+            }
         }
     }
 
