@@ -702,8 +702,8 @@ bool mmTransDialog::ValidateData()
     //Checking account does not exceed limits
     if (m_new_trx || m_duplicate)
     {
-        if ((m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL]) ||
-            (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::TRANSFER]))
+        if ((m_trx_data.TRANSCODE == Model_Checking::WITHDRAWAL_STR) ||
+            (m_trx_data.TRANSCODE == Model_Checking::TRANSFER_STR))
         {
             const double fromAccountBalance = Model_Account::balance(account);
             const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
