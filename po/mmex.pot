@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-11-01 13:35+0300\n"
+"POT-Creation-Date: 2022-11-01 17:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1809,7 +1809,7 @@ msgid "&Close "
 msgstr ""
 
 #: constants.cpp:177
-msgid "Advanced Filter"
+msgid "View with Transaction Filter"
 msgstr ""
 
 #: constants.cpp:178
