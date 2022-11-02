@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-11-01 17:59+0300\n"
-"PO-Revision-Date: 2022-11-01 15:09\n"
+"PO-Revision-Date: 2022-11-02 06:22\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5954,7 +5954,7 @@ msgstr "צובר תנועות:"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "אפשרויות מסד־נתונים"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -5986,11 +5986,11 @@ msgstr "מספר קבצים מירבי"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "הדגרת מספר ימים שבמסגרתם ניתן לאחזור תנועות שנמחקו. תנועות מחוקות שחרגו ממספר ימים זה, ימחקו לצמיתות."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "מספר ימים לאחזור תנועות שנמחקו"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
@@ -6751,11 +6751,11 @@ msgstr "עמלה"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "רווח/הפסד ממומש"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "רווח/הפסד בלתי ממומש"
 
 #: reports/summarystocks.cpp:194
 msgid "Stocks Performance Charts"
@@ -6843,11 +6843,11 @@ msgstr "עריכת תנועת ניר ערך"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "עריכת פרטי פיצול"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "נא להזין הערות לתאור תנועת מפוצלת זו"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -7624,7 +7624,7 @@ msgstr "חשבון י מרשתת שגוי"
 
 #: webapp.cpp:553
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "לתאריך תנועוה, ייעשה שימוש בתאריך 'היום'"
 
 #: webapp.cpp:583 webapp.cpp:617 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
