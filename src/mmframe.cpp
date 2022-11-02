@@ -901,7 +901,7 @@ void mmGUIFrame::DoRecreateNavTreeControl()
         {
             m_nav_tree_ctrl->Delete(shareAccounts);
         }
-        if (Option::instance().HideDeletedTransactions())
+        if (Model_Checking::instance().find(Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL)).empty() || Option::instance().HideDeletedTransactions())
         {
             m_nav_tree_ctrl->Delete(trash);
         }
