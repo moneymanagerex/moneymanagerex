@@ -972,6 +972,7 @@ void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent& event)
     }
     
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
@@ -1015,6 +1016,7 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
     }
 
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
@@ -1065,6 +1067,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
         }
     }
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
@@ -1194,6 +1197,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         }
     }
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 //----------------------------------------------------------------------------
