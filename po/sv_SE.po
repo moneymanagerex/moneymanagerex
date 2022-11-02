@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-11-01 17:59+0300\n"
-"PO-Revision-Date: 2022-11-01 15:08\n"
+"PO-Revision-Date: 2022-11-02 00:17\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3722,7 +3722,7 @@ msgstr "Posten %s är ogiltig"
 
 #: mmSimpleDialogs.cpp:786
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Välj en befintlig kategori"
 
 #: mmSimpleDialogs.cpp:786
 msgid "Invalid Category"
@@ -4013,11 +4013,11 @@ msgstr[1] ""
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Vill du verkligen ta bort alla transaktioner som visas?"
 
 #: mmchecking_list.cpp:1029
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Vill du verkligen ta bort alla transaktioner som visas permanent?"
 
 #: mmchecking_list.cpp:1038 mmchecking_list.cpp:1049 mmchecking_list.cpp:1060
 #: mmchecking_list.cpp:1136
@@ -5488,15 +5488,20 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "En återkommande transaktion kommer att överskrida din kontogräns.\n\n"
+"Konto: %s\n"
+"Nuvarande saldo: %6.2f\n"
+"Transaktionsbelopp: %6.2f\n"
+"%s: %6.2f\n\n"
+"Vill du fortsätta ?"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Minsta saldo"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "Kreditgräns"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -6802,7 +6807,7 @@ msgstr "Ogiltigt totalbelopp"
 
 #: splittransactionsdialog.cpp:536
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Ange ett giltigt penningbelopp"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
