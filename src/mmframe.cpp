@@ -904,6 +904,10 @@ void mmGUIFrame::DoRecreateNavTreeControl()
         if (Model_Checking::instance().find(Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL)).empty() || Option::instance().HideDeletedTransactions())
         {
             m_nav_tree_ctrl->Delete(trash);
+            if (panelCurrent_ && panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS) {
+                wxCommandEvent event(wxEVT_MENU, MENU_HOMEPAGE);
+                GetEventHandler()->AddPendingEvent(event);
+            }
         }
     }
     //m_nav_tree_ctrl->SelectItem(root);
