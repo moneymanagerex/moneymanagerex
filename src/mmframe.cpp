@@ -904,6 +904,10 @@ void mmGUIFrame::DoRecreateNavTreeControl()
         if (Model_Checking::instance().find(Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL)).empty() || Option::instance().HideDeletedTransactions())
         {
             m_nav_tree_ctrl->Delete(trash);
+            if (panelCurrent_ && panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS) {
+                wxCommandEvent event(wxEVT_MENU, MENU_HOMEPAGE);
+                GetEventHandler()->AddPendingEvent(event);
+            }
         }
     }
     //m_nav_tree_ctrl->SelectItem(root);
@@ -2549,6 +2553,9 @@ void mmGUIFrame::refreshPanelData()
     case mmID_BILLS:
         wxDynamicCast(panelCurrent_, mmBillsDepositsPanel)->RefreshList();
         break;
+    case mmID_DELETEDTRANSACTIONS:
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
+        break;
     case mmID_BUDGET:
         wxDynamicCast(panelCurrent_, mmBudgetingPanel)->RefreshList();
         break;
@@ -2571,6 +2578,7 @@ void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
     if (dlg.getRefreshRequested())
     {
         refreshPanelData();
+        RefreshNavigationTree();
     }
 }
 //----------------------------------------------------------------------------
@@ -2582,6 +2590,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
     if (dlg.getRefreshRequested())
     {
         refreshPanelData();
+        RefreshNavigationTree();
     }
 }
 //----------------------------------------------------------------------------

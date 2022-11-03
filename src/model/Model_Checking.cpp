@@ -95,6 +95,7 @@ bool Model_Checking::remove(int id)
     //Model_Splittransaction::instance().remove(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)));
     for (const auto& r : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)))
         Model_Splittransaction::instance().remove(r.SPLITTRANSID);
+    if(foreignTransaction(*instance().get(id))) Model_Translink::RemoveTranslinkEntry(id);
     return this->remove(id, db_);
 }
 
