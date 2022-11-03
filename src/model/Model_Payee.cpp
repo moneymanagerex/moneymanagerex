@@ -153,7 +153,7 @@ bool Model_Payee::is_hidden(const Data& record)
 
 bool Model_Payee::is_used(int id)
 {
-    const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
+    const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id), Model_Checking::DELETEDTIME(wxEmptyString));
     if (!trans.empty()) return true;
     const auto &bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
     if (!bills.empty()) return true;
