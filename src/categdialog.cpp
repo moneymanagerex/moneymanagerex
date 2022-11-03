@@ -19,6 +19,7 @@
  ********************************************************/
 
 #include "categdialog.h"
+#include "attachmentdialog.h"
 #include "images_list.h"
 #include "relocatecategorydialog.h"
 #include "util.h"
@@ -519,12 +520,60 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
 void mmCategDialog::mmDoDeleteSelectedCategory()
 {
     wxTreeItemId PreviousItem = m_treeCtrl->GetPrevVisible(m_selectedItemId);
-
-    if (m_subcateg_id == -1)
-    {
+    Model_Checking::Data_Set deletedTrans;
+    Model_Splittransaction::Data_Set splits;
+    wxString messageText;
+    wxString messageTitle;
+    if (m_subcateg_id == -1){
         if (Model_Category::is_used(m_categ_id) || m_categ_id == m_init_selected_categ_id)
             return showCategDialogDeleteError();
         else {
+            deletedTrans = Model_Checking::instance().find(Model_Checking::CATEGID(m_categ_id));
+            splits = Model_Splittransaction::instance().find(Model_Splittransaction::CATEGID(m_categ_id));
+            messageText = _("Deleted transactions exist which use this category.\n\nDeleting the category will also automatically purge the associated deleted transactions.\n\nDo you wish to continue?");
+            messageTitle = _("Confirm Category Deletion");
+        }
+    }
+    else {
+        if (Model_Category::is_used(m_categ_id, m_subcateg_id)
+            || ((m_categ_id == m_init_selected_categ_id) && (m_subcateg_id == m_init_selected_subcateg_id)))
+            return showCategDialogDeleteError(false);
+        else {
+            deletedTrans = Model_Checking::instance().find(Model_Checking::CATEGID(m_categ_id), Model_Checking::SUBCATEGID(m_subcateg_id));
+            splits = Model_Splittransaction::instance().find(Model_Splittransaction::CATEGID(m_categ_id), Model_Splittransaction::SUBCATEGID(m_subcateg_id));
+            messageText = _("Deleted transactions exist which use this subcategory.\n\nDeleting the subcategory will also automatically purge the associated deleted transactions.\n\nDo you wish to continue?");
+            messageTitle = _("Confirm Subcategory Deletion");
+        }
+    }
+
+    wxMessageDialog msgDlg(this, messageText, messageTitle, wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+    if ((deletedTrans.empty() && splits.empty()) || msgDlg.ShowModal() == wxID_YES)
+    {
+        if(!(deletedTrans.empty() && splits.empty())){
+            Model_Checking::instance().Savepoint();
+            Model_Splittransaction::instance().Savepoint();
+            Model_Attachment::instance().Savepoint();
+            Model_CustomFieldData::instance().Savepoint();
+            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            for (auto& split : splits) {
+                Model_Checking::instance().remove(split.TRANSID);
+                mmAttachmentManage::DeleteAllAttachments(RefType, split.TRANSID);
+                Model_CustomFieldData::DeleteAllData(RefType, split.TRANSID);
+            }
+
+            for (auto& tran : deletedTrans) {
+                Model_Checking::instance().remove(tran.TRANSID);
+                mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
+                Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
+            }
+            
+            Model_Checking::instance().ReleaseSavepoint();
+            Model_Splittransaction::instance().ReleaseSavepoint();
+            Model_Attachment::instance().ReleaseSavepoint();
+            Model_CustomFieldData::instance().ReleaseSavepoint();
+        }
+
+        if (m_subcateg_id == -1) {
             Model_Subcategory::Data_Set subcategories = Model_Subcategory::instance().find(Model_Subcategory::CATEGID(m_categ_id));
             if (!subcategories.empty())
             {
@@ -536,15 +585,9 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
             }
             Model_Category::instance().remove(m_categ_id);
         }
+        else Model_Subcategory::instance().remove(m_subcateg_id);
     }
-    else
-    {
-        if (Model_Category::is_used(m_categ_id, m_subcateg_id)
-            || ((m_categ_id == m_init_selected_categ_id) && (m_subcateg_id == m_init_selected_subcateg_id)))
-            return showCategDialogDeleteError(false);
-        else
-            Model_Subcategory::instance().remove(m_subcateg_id);
-    }
+    else return;
 
     m_refresh_requested = true;
     m_treeCtrl->Delete(m_selectedItemId);
@@ -836,12 +879,12 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
             {
                 if (catItem.second.second == -1)
                 {
-                    auto cat = Model_Category::instance().get(catItem.second.first);
+                    cat = Model_Category::instance().get(catItem.second.first);
                     cat->ACTIVE = 1;
                     Model_Category::instance().save(cat);
                 } else
                 {
-                    auto subCat = Model_Subcategory::instance().get(catItem.second.second);
+                    subCat = Model_Subcategory::instance().get(catItem.second.second);
                     subCat->ACTIVE = 1;
                     Model_Subcategory::instance().save(subCat);
                 }

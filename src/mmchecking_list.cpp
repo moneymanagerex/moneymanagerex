@@ -1079,14 +1079,22 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     Model_Checking::instance().Savepoint();
     Model_Attachment::instance().Savepoint();
     Model_Splittransaction::instance().Savepoint();
+    Model_CustomFieldData::instance().Savepoint();
     for (const auto& tran : this->m_trans)
     {
         if (tran.STATUS == s || (s.empty() && status.empty()))
         {
             if (m_cp->isTrash_ || retainDays == 0) {
-                // remove also removes any split transactions
+                // remove also removes any split transactions & translink entries
                 Model_Checking::instance().remove(tran.TRANSID);
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
+
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                // remove also any attachments
+                mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
+
+                // remove also any custom fields for the transaction
+                Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
             }
             else {
                 Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
@@ -1110,6 +1118,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     Model_Splittransaction::instance().ReleaseSavepoint();
     Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
+    Model_CustomFieldData::instance().ReleaseSavepoint();
 }
 
 
@@ -1156,19 +1165,15 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             }
 
             if (m_cp->isTrash_ || retainDays == 0) {
-                if (Model_Checking::foreignTransaction(*trx))
-                {
-                    Model_Translink::RemoveTranslinkEntry(i);
-                    m_cp->m_frame->RefreshNavigationTree();
-                }
-                
+                // remove also removes split transactions & translink entries
                 Model_Checking::instance().remove(i);
-                
-                // remove also any split transactions
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), i);
+
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                // remove also any attachments
+                mmAttachmentManage::DeleteAllAttachments(RefType, i);
                 
                 // remove also any custom fields for the transaction
-                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
                 Model_CustomFieldData::DeleteAllData(RefType, i);
 
             }
