@@ -219,17 +219,12 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
         }
         event.Skip();
     }
-    else if (event.GetId() == mmID_CATEGORY && event.GetKeyCode() == ':')
+    else if (event.GetId() == mmID_CATEGORY && event.GetUnicodeKey() == ':')
     {
-        for (const auto& item : all_elements_)
-        {
-            if (item.first.CmpNoCase(text) == 0) {
-                SetValue(item.first);
-                break;
-            }
-        }
-        SetValue(GetValue().Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
+        this->SetEvtHandlerEnabled(false);
+        ChangeValue(text.Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
         SetInsertionPointEnd();
+        this->SetEvtHandlerEnabled(true);
     }
     else {
         event.Skip();
