@@ -37,7 +37,7 @@ msgstr "作者"
 
 #: aboutdialog.cpp:190
 msgid "Sponsors"
-msgstr "赞助人员"
+msgstr "赞助者"
 
 #: aboutdialog.cpp:195
 msgid "License"
@@ -49,11 +49,11 @@ msgstr "隐私"
 
 #: aboutdialog.cpp:238 optionsettingsnet.cpp:124
 msgid "Send anonymous statistics usage data"
-msgstr "发送匿名使用情况统计数据"
+msgstr "匿名发送使用情况统计数据"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:126
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
+msgstr "启用以匿名发送关于 MMEX 使用情况的数据。"
 
 #: aboutdialog.cpp:246 accountdialog.cpp:296 appstartdialog.cpp:145
 #: assetdialog.cpp:307 attachmentdialog.cpp:152 billsdepositsdialog.cpp:633
@@ -1610,11 +1610,11 @@ msgstr "重新分配所有收款人到另一个收款人"
 
 #: categdialog.cpp:275 reports/categexp.cpp:168
 msgid "Collapse All"
-msgstr ""
+msgstr "全部折叠"
 
 #: categdialog.cpp:280 reports/categexp.cpp:169
 msgid "Expand All"
-msgstr ""
+msgstr "全部展开"
 
 #: categdialog.cpp:285 maincurrencydialog.cpp:184
 msgid "Show All"
@@ -1806,7 +1806,7 @@ msgstr "关闭(&C)"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
-msgstr ""
+msgstr "打开交易筛选查看"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -2086,7 +2086,7 @@ msgstr "属性"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "自定义字段"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2527,11 +2527,11 @@ msgstr "收入"
 #: filtertransdialog.cpp:585 filtertransdialog.cpp:791
 #: filtertransdialog.cpp:1362
 msgid "Transfer Out"
-msgstr ""
+msgstr "转出"
 
 #: filtertransdialog.cpp:587 filtertransdialog.cpp:1360
 msgid "Transfer In"
-msgstr ""
+msgstr "转入"
 
 #: filtertransdialog.cpp:599
 msgid "Amount Range"
@@ -2596,11 +2596,11 @@ msgstr "隐藏报告列"
 
 #: filtertransdialog.cpp:1169 mmframe.cpp:1187
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "选中的项目将被删除"
 
 #: filtertransdialog.cpp:1170 mmframe.cpp:1188
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "您想继续吗"
 
 #: filtertransdialog.cpp:1171 mmframe.cpp:1189
 msgid "Settings item deletion"
@@ -2663,7 +2663,7 @@ msgstr "在继续之前要保存它们吗?"
 
 #: filtertransdialog.cpp:1769
 msgid "Please confirm"
-msgstr ""
+msgstr "请确认"
 
 #: filtertransdialog.cpp:1786 reports/reportbase.cpp:241
 msgid "Choose Accounts"
@@ -2767,11 +2767,11 @@ msgstr "通用报表管理器"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "资产..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "新建空报表..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2779,11 +2779,11 @@ msgstr "新建模板报表"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "更改分组..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "重命名分组..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -2791,19 +2791,19 @@ msgstr "取消分组"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "重命名报表..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "活跃"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "在主页面中显示/隐藏报表"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "删除报表..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -3065,17 +3065,17 @@ msgstr "正在导出交易 %zu"
 #: import_export/qif_export.cpp:633
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "已导出的类目: %zu \n"
 
 #: import_export/qif_export.cpp:635
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "已导出的交易: %zu \n"
 
 #: import_export/qif_export.cpp:636
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr "导出的账户数量： %zu"
+msgstr "已导出的账户： %zu"
 
 #: import_export/qif_export.cpp:638 mmframe.cpp:1497
 msgid "Export to QIF"
@@ -3091,7 +3091,7 @@ msgstr "编码："
 
 #: import_export/qif_import_gui.cpp:196
 msgid "Filtering Details:"
-msgstr "过滤细节："
+msgstr "筛选细节："
 
 #: import_export/qif_import_gui.cpp:235
 msgid "Data"
@@ -3731,7 +3731,7 @@ msgstr "条目 %s 无效"
 
 #: mmSimpleDialogs.cpp:786
 msgid "Please select an existing category"
-msgstr ""
+msgstr "请选择一个已经存在的类目"
 
 #: mmSimpleDialogs.cpp:786
 msgid "Invalid Category"
@@ -3947,7 +3947,7 @@ msgstr "复制并增加交易(&U)"
 #: mmchecking_list.cpp:459
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
+msgstr[0] "移动交易(&M)..."
 
 #: mmchecking_list.cpp:465
 msgid "&View In Other Account"
@@ -3964,7 +3964,7 @@ msgstr "创建周期性交易(&T)"
 #: mmchecking_list.cpp:481
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] "删除所选交易(&D)..."
+msgstr[0] "恢复所选交易(&R)..."
 
 #: mmchecking_list.cpp:483
 msgid "Restore all transactions in current view"
@@ -3973,7 +3973,7 @@ msgstr "永久删除当前视图中的所有交易"
 #: mmchecking_list.cpp:488
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "删除所选交易(&D)..."
 
 #: mmchecking_list.cpp:488
 msgid "&Permanently delete selected transaction..."
@@ -4012,15 +4012,15 @@ msgstr "确认删除交易"
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] "你真的想恢复 %i 个所选的交易吗？"
+msgstr[0] "您真的想恢复 %i 个所选的交易吗？"
 
 #: mmchecking_list.cpp:1028
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "您确认要删除所有显示的交易吗？"
 
 #: mmchecking_list.cpp:1029
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "您确认要永久删除所有显示的交易吗？"
 
 #: mmchecking_list.cpp:1038 mmchecking_list.cpp:1049 mmchecking_list.cpp:1060
 #: mmchecking_list.cpp:1136
@@ -4142,7 +4142,7 @@ msgstr "差额： "
 
 #: mmcheckingpanel.cpp:463
 msgid "Filtered View Bal: "
-msgstr "过滤视图平衡："
+msgstr "筛选视图平衡："
 
 #: mmcheckingpanel.cpp:528 webapp.cpp:608
 msgid "Attachment"
@@ -4169,11 +4169,11 @@ msgstr "自定义字段"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "错误"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "正确"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
@@ -4275,11 +4275,11 @@ msgstr "具有此名称的设置已存在"
 
 #: mmframe.cpp:1225
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "请为此设置命名"
 
 #: mmframe.cpp:1227
 msgid "Name in use"
-msgstr ""
+msgstr "正在使用的名称"
 
 #: mmframe.cpp:1284
 msgid "Do you really want to delete the account?"
@@ -4323,15 +4323,15 @@ msgstr "JSON 文件(&J)"
 
 #: mmframe.cpp:1363
 msgid "&Edit Filter"
-msgstr ""
+msgstr "编辑筛选器(&E)"
 
 #: mmframe.cpp:1364
 msgid "&Rename Filter"
-msgstr ""
+msgstr "重命名筛选器(&R)"
 
 #: mmframe.cpp:1365
 msgid "&Delete Filter"
-msgstr ""
+msgstr "删除筛选器(&D)"
 
 #: mmframe.cpp:1381 mmframe.cpp:1399 mmframe.cpp:1419 mmframe.cpp:1594
 msgid "&Edit Account"
@@ -5501,15 +5501,15 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "您希望继续吗"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "最低余额"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
-msgstr ""
+msgstr "信用额度"
 
 #: model/Model_Billsdeposits.cpp:327
 msgid "MMEX Recurring Transaction Check"
@@ -5830,7 +5830,7 @@ msgstr "选择当登记交易时是否使用声音提示"
 
 #: optionsettingsgeneral.cpp:307
 msgid "Locale"
-msgstr ""
+msgstr "地区"
 
 #: optionsettingsgeneral.cpp:335
 #, c-format
@@ -5911,7 +5911,7 @@ msgstr "批量交易："
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "数据库选项"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -5943,11 +5943,11 @@ msgstr "最多文件个数"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "请指定保留已删除交易的天数，超过这个时间的交易将在数据库打开时自动清除。"
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "保留已删除交易的天数"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
@@ -5995,7 +5995,7 @@ msgstr "指定代理的端口"
 
 #: optionsettingsnet.cpp:110
 msgid "Proxy"
-msgstr "IP"
+msgstr "代理"
 
 #: optionsettingsnet.cpp:112
 msgid "Port"
@@ -7142,7 +7142,7 @@ msgstr "没有更新"
 
 #: stockspanel.cpp:357
 msgid "Connecting..."
-msgstr "正在连接……"
+msgstr "正在连接..."
 
 #: stockspanel.cpp:461
 #, c-format
@@ -7458,11 +7458,11 @@ msgstr "数据库版本： "
 
 #: util.cpp:1290
 msgid "Git commit: "
-msgstr "Git commit: "
+msgstr "Git 提交: "
 
 #: util.cpp:1294
 msgid "Git branch: "
-msgstr "Git branch: "
+msgstr "Git 分支: "
 
 #: util.cpp:1298
 msgid "MMEX is using the following support products:"
