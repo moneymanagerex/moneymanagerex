@@ -293,7 +293,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 
         const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO"
             ,"CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO"
-            , "TERM_ACCOUNTS_INFO", "ASSET_ACCOUNTS_INFO", "SHARE_ACCOUNTS_INFO"
+            , "TERM_ACCOUNTS_INFO", "ASSETS", "SHARE_ACCOUNTS_INFO"
             , "CURRENCY_RATES", "BILLS_AND_DEPOSITS" };
 
         for (const auto& entry : type)
