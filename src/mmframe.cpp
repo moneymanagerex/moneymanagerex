@@ -2632,10 +2632,10 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
-        setNavTreeSection(_("Transaction Report"));
     }
     if (is_ok) {
         mmReportTransactions* rs = new mmReportTransactions(dlg);
+        setNavTreeSection(_("Transaction Report"));
         createReportsPage(rs, true);
     }
 }
