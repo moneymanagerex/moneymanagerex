@@ -1008,7 +1008,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
         s.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
-        s.NOTES = m_trx_data.NOTES;
+        s.NOTES = textNotes_->GetValue();
         m_local_splits.push_back(s);
     }
 
