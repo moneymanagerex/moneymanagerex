@@ -449,14 +449,12 @@ int UserTransactionPanel::SaveChecking()
     if (trxDate < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
-        return false;
+        return -1;
     }  
-
 
     if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
     }
-
 
     m_checking_entry->ACCOUNTID = m_account_id;
     m_checking_entry->TOACCOUNTID = CheckingType();
