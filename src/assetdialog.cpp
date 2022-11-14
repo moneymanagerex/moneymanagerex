@@ -395,6 +395,9 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
         int checking_id = m_transaction_panel->SaveChecking();
+        if (checking_id < 0)
+            return;
+
         if (!m_transfer_entry)
         {
             Model_Translink::SetAssetTranslink(new_asset_id
