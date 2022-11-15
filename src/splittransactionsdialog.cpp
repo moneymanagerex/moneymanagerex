@@ -289,6 +289,7 @@ void mmSplitTransactionDialog::CreateControls()
 
 void mmSplitTransactionDialog::FillControls(int focusRow)
 {
+    DoWindowsFreezeThaw(this);
     for (int row=0; row<m_splits_widgets.size(); row++)
     {
         if (row < m_splits.size())
@@ -313,6 +314,7 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
             m_splits_widgets.at(row).amount->Enable(false);
             m_splits_widgets.at(row).other->Enable(false);
         }
+        DoWindowsFreezeThaw(this);
 
         if (focusRow != -1)
             m_splits_widgets.at(focusRow).category->SetFocus();
