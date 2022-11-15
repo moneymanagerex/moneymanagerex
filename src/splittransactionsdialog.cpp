@@ -314,11 +314,11 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
             m_splits_widgets.at(row).amount->Enable(false);
             m_splits_widgets.at(row).other->Enable(false);
         }
-        DoWindowsFreezeThaw(this);
 
         if (focusRow != -1)
             m_splits_widgets.at(focusRow).category->SetFocus();
     }
+    DoWindowsFreezeThaw(this);
 }
 
 void mmSplitTransactionDialog::createNewRow(bool enabled)
