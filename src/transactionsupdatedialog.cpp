@@ -557,7 +557,8 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmPayeeDialog dlg(this, true);
                 dlg.ShowModal();
-                cbPayee_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbPayee_->mmDoReInitialize();
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
@@ -575,7 +576,8 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                cbCategory_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbCategory_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
