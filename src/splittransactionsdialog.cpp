@@ -474,19 +474,25 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                for (int i=0; i<m_splits_widgets.size(); i++)
+                DoWindowsFreezeThaw(this);
+                if (dlg.getRefreshRequested())
                 {
-                    auto cbcUpdate = m_splits_widgets.at(i).category;
-                    if (cbc != cbcUpdate)
+                    for (int i=0; i<m_splits_widgets.size(); i++)
                     {
-                        category = Model_Category::full_name(cbcUpdate->mmGetCategoryId(), cbcUpdate->mmGetSubcategoryId());
-                        cbcUpdate->mmDoReInitialize();
-                        cbcUpdate->ChangeValue(category);
+                        auto cbcUpdate = m_splits_widgets.at(i).category;
+                        if (cbc != cbcUpdate)
+                        {
+                            category = Model_Category::full_name(cbcUpdate->mmGetCategoryId(), cbcUpdate->mmGetSubcategoryId());
+                            cbcUpdate->mmDoReInitialize();
+                            cbcUpdate->ChangeValue(category);
+                        }
                     }
                 }
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
-                cbc->mmDoReInitialize();
+                if (dlg.getRefreshRequested()) 
+                    cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
+                DoWindowsFreezeThaw(this);
             }
         }
     }

@@ -301,7 +301,8 @@ void relocateCategoryDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                cbSourceCategory_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbSourceCategory_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 cbSourceCategory_->ChangeValue(category);
                 return;
@@ -316,7 +317,8 @@ void relocateCategoryDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                cbDestCategory_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbDestCategory_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 cbDestCategory_->ChangeValue(category);
                 return;

@@ -186,7 +186,8 @@ void mmEditPayeeDialog::OnComboKey(wxKeyEvent& event)
         {
             mmCategDialog dlg(this, true, -1, -1);
             dlg.ShowModal();
-            m_category->mmDoReInitialize();
+            if (dlg.getRefreshRequested())
+                m_category->mmDoReInitialize();
             category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
             m_category->ChangeValue(category);
             return;
@@ -446,6 +447,7 @@ void mmPayeeDialog::AddPayee()
 {
     mmEditPayeeDialog dlg(this, NULL);
     dlg.ShowModal();
+    refreshRequested_ = true;
     fillControls();
 }
 
@@ -456,6 +458,7 @@ void mmPayeeDialog::EditPayee()
     {
         mmEditPayeeDialog dlg(this, payee);
         dlg.ShowModal();
+        refreshRequested_ = true;
         fillControls();
     }
 }
