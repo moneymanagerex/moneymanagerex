@@ -157,8 +157,13 @@ bool Model_Category::is_hidden(int catID, int subcatID)
 
 bool Model_Category::is_used(int id, int sub_id)
 {
-    const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id), Model_Checking::DELETEDTIME(wxEmptyString));
-    if (!trans.empty()) return true;
+    const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
+    if (!trans.empty())
+    {
+        for (const auto& txn : trans)
+            if (txn.DELETEDTIME.IsEmpty())
+                return true;
+    }
     const auto &split = Model_Splittransaction::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
     if (!split.empty())
     {
@@ -176,8 +181,13 @@ bool Model_Category::is_used(int id, int sub_id)
 
 bool Model_Category::is_used(int id)
 {
-    const auto& trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::DELETEDTIME(wxEmptyString));
-    if (!trans.empty()) return true;
+    const auto& trans = Model_Checking::instance().find(Model_Checking::CATEGID(id));
+    if (!trans.empty())
+    {
+        for (const auto& txn : trans)
+            if (txn.DELETEDTIME.IsEmpty())
+                return true;
+    }
     const auto& split = Model_Splittransaction::instance().find(Model_Checking::CATEGID(id));
     if (!split.empty())
     {
@@ -196,8 +206,10 @@ bool Model_Category::has_income(int id, int sub_id)
 {
     double sum = 0.0;
     auto splits = Model_Splittransaction::instance().get_all();
-    for (const auto& tran: Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id), Model_Checking::DELETEDTIME(wxEmptyString)))
+    for (const auto& tran: Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id)))
     {
+        if (!tran.DELETEDTIME.IsEmpty()) continue;
+
         switch (Model_Checking::type(tran))
         {
         case Model_Checking::WITHDRAWAL:
