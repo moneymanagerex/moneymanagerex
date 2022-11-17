@@ -61,10 +61,8 @@ private:
     std::map<wxString, double> currencyDateRateCache;
 
     std::map<wxDate, double> createCheckingBalanceMap(const Model_Account::Data& account);
-    std::map<wxDate, double> createAssetBalanceMap(const Model_Asset::Data& asset);
     double getCheckingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    double getAssetDailyBalanceAt(const Model_Asset::Data* asset, const wxDate& date);
     double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getDayRate(int currencyid, const wxDate& date);
 };
