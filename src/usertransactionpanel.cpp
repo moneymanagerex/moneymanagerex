@@ -201,7 +201,7 @@ void UserTransactionPanel::Create()
     //m_attachment->Enable(false);
 
     // Frequent Notes ---------------------------------------------
-    wxButton* frequent_notes = new wxButton(this, ID_TRANS_FREQUENT_NOTES, "..."
+    frequent_notes = new wxButton(this, ID_TRANS_FREQUENT_NOTES, "..."
         , wxDefaultPosition, wxSize(m_attachment->GetSize().GetX(), -1));
     mmToolTip(frequent_notes, _("Select one of the frequently used notes"));
     frequent_notes->Connect(ID_TRANS_FREQUENT_NOTES
@@ -250,6 +250,23 @@ void UserTransactionPanel::DataToControls()
 
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
+
+    if (!m_checking_entry->DELETEDTIME.IsEmpty())
+    {
+        m_date_selector->Enable(false);
+        m_account->Enable(false);
+        m_type_selector->Enable(false);
+        m_status_selector->Enable(false);
+        m_transfer->Enable(false);
+        m_entered_amount->Enable(false);
+        m_trans_currency->Enable(false);
+        m_payee->Enable(false);
+        m_category->Enable(false);
+        m_entered_number->Enable(false);
+        m_attachment->Enable(false);
+        m_entered_notes->Enable(false);
+        frequent_notes->Enable(false);
+    }
 }
 
 void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
@@ -432,14 +449,12 @@ int UserTransactionPanel::SaveChecking()
     if (trxDate < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
-        return false;
+        return -1;
     }  
-
 
     if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
     }
-
 
     m_checking_entry->ACCOUNTID = m_account_id;
     m_checking_entry->TOACCOUNTID = CheckingType();

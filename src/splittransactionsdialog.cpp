@@ -289,6 +289,7 @@ void mmSplitTransactionDialog::CreateControls()
 
 void mmSplitTransactionDialog::FillControls(int focusRow)
 {
+    DoWindowsFreezeThaw(this);
     for (int row=0; row<m_splits_widgets.size(); row++)
     {
         if (row < m_splits.size())
@@ -317,6 +318,7 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
         if (focusRow != -1)
             m_splits_widgets.at(focusRow).category->SetFocus();
     }
+    DoWindowsFreezeThaw(this);
 }
 
 void mmSplitTransactionDialog::createNewRow(bool enabled)
@@ -406,8 +408,11 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
-    activateNewRow();
-    FillControls();
+    if (mmDoCheckRow(row_num_))
+    {
+        activateNewRow();
+        FillControls();
+    }
     event.Skip();
 }
 
@@ -428,7 +433,7 @@ void mmSplitTransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     if (w && (w->GetId() >= mmID_MAX))
         row_num_ = w->GetId() - mmID_MAX;
 
-    wxLogDebug("split row = %d", row_num_);
+    UpdateSplitTotal();
     event.Skip();
 }
 
@@ -449,10 +454,12 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
 void mmSplitTransactionDialog::OnOtherButton(wxCommandEvent& event)
 {
     int row = event.GetId() - mmID_MAX;
-    mmEditSplitOther dlg(this, m_currency, &m_splits.at(row));
-    dlg.ShowModal();
-    UpdateExtraInfo(row);
-
+    if (mmDoCheckRow(row))
+    {
+        mmEditSplitOther dlg(this, m_currency, &m_splits.at(row));
+        dlg.ShowModal();
+        UpdateExtraInfo(row);   
+    }
     event.Skip();
 }
 
@@ -467,19 +474,25 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                for (int i=0; i<m_splits_widgets.size(); i++)
+                DoWindowsFreezeThaw(this);
+                if (dlg.getRefreshRequested())
                 {
-                    auto cbcUpdate = m_splits_widgets.at(i).category;
-                    if (cbc != cbcUpdate)
+                    for (int i=0; i<m_splits_widgets.size(); i++)
                     {
-                        category = Model_Category::full_name(cbcUpdate->mmGetCategoryId(), cbcUpdate->mmGetSubcategoryId());
-                        cbcUpdate->mmDoReInitialize();
-                        cbcUpdate->ChangeValue(category);
+                        auto cbcUpdate = m_splits_widgets.at(i).category;
+                        if (cbc != cbcUpdate)
+                        {
+                            category = Model_Category::full_name(cbcUpdate->mmGetCategoryId(), cbcUpdate->mmGetSubcategoryId());
+                            cbcUpdate->mmDoReInitialize();
+                            cbcUpdate->ChangeValue(category);
+                        }
                     }
                 }
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
-                cbc->mmDoReInitialize();
+                if (dlg.getRefreshRequested()) 
+                    cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
+                DoWindowsFreezeThaw(this);
             }
         }
     }
@@ -522,11 +535,15 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
 
     // Validate category and amount
     if (!m_splits_widgets.at(row).category->mmIsValid()) {
-            mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category, true);
+            mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category);
             return false;
     }
-    if (!m_splits_widgets.at(row).amount->Calculate())
+
+    if (!m_splits_widgets.at(row).amount->Calculate()) {
+            mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount, 
+                                _("Please enter a valid monetary amount"), _("Invalid Value"));
             return false;
+    }
 
     m_splits_widgets.at(row).amount->GetDouble(amount);
 

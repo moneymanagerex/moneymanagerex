@@ -109,6 +109,7 @@ private:
     mmComboBoxPayee* cbPayee_;
     mmComboBoxCategory* cbCategory_;
     wxBitmapButton* bSplit_;
+    wxBitmapButton* bAuto;
     wxCheckBox* cAdvanced_;
     wxButton* m_button_cancel;
     wxChoice* choiceStatus_;
@@ -161,7 +162,6 @@ private:
         mmID_TOACCOUNTNAME,
         mmID_PAYEE_LABEL,
         mmID_PAYEE,
-        mmID_CATEGORY,
         mmID_CATEGORY_SPLIT,
         mmID_ACCOUNTNAME,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,

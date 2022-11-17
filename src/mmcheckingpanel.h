@@ -120,6 +120,7 @@ private:
     wxButton* m_btnEdit = nullptr;
     wxButton* m_btnDuplicate = nullptr;
     wxButton* m_btnDelete = nullptr;
+    wxButton* m_btnRestore = nullptr;
     wxButton* m_btnAttachment = nullptr;
     wxStaticText* m_header_text = nullptr;
     wxStaticText* m_header_sortOrder = nullptr;
@@ -133,6 +134,7 @@ private:
     int m_currentView;
     int m_AccountID;
     bool isAllAccounts_; // TRUE = All accounts are displayed
+    bool isTrash_ = false; // TRUE = Deleted transactions are displayed
     wxString m_sortSaveTitle;   // Used for saving sort settings
     bool m_transFilterActive;
     wxString m_begin_date;
@@ -167,6 +169,7 @@ private:
 
     void OnNewTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
+    void OnRestoreTransaction(wxCommandEvent& event);
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);

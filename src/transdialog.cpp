@@ -233,7 +233,7 @@ void mmTransDialog::dataToControls()
     //Amounts
     if (!skip_amount_init_)
     {
-        if (m_transfer & m_advanced)
+        if (m_transfer && m_advanced)
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT);
         else
             toTextAmount_->ChangeValue("");
@@ -350,6 +350,26 @@ void mmTransDialog::dataToControls()
 
     if (!skip_tooltips_init_)
         SetTooltips();
+
+    if (!m_trx_data.DELETEDTIME.IsEmpty()) {
+        dpc_->Enable(false);
+        transaction_type_->Enable(false);
+        cbAccount_->Enable(false);
+        choiceStatus_->Enable(false);
+        m_textAmount->Enable(false);
+        cbToAccount_->Enable(false);
+        toTextAmount_->Enable(false);
+        cAdvanced_->Enable(false);
+        cbPayee_->Enable(false);
+        cbCategory_->Enable(false);
+        bSplit_->Enable(false);
+        bAuto->Enable(false);
+        textNumber_->Enable(false);
+        textNotes_->Enable(false);
+        bColours_->Enable(false);
+        bAttachments_->Enable(false);
+        bFrequentUsedNotes->Enable(false);
+    }
 }
 
 void mmTransDialog::CreateControls()
@@ -481,7 +501,7 @@ void mmTransDialog::CreateControls()
 
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
 
-    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
+    bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     mmToolTip(bAuto, _("Populate Transaction #"));
 
@@ -682,32 +702,31 @@ bool mmTransDialog::ValidateData()
     //Checking account does not exceed limits
     if (m_new_trx || m_duplicate)
     {
-        bool abort_transaction = false;
-        double new_value = m_trx_data.TRANSAMOUNT;
-
-        if (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+        if ((m_trx_data.TRANSCODE == Model_Checking::WITHDRAWAL_STR) ||
+            (m_trx_data.TRANSCODE == Model_Checking::TRANSFER_STR))
         {
-            new_value *= -1;
-        }
+            const double fromAccountBalance = Model_Account::balance(account);
+            const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
 
-        new_value += m_current_balance;
+            bool abort_transaction = false;
 
-        if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
-        {
-            abort_transaction = true;
-        }
+            if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
+            {
+                abort_transaction = true;
+            }
 
-        if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
-        {
-            abort_transaction = true;
-        }
+            if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
+            {
+                abort_transaction = true;
+            }
 
-        if (abort_transaction && wxMessageBox(_(
-            "This transaction will exceed your account limit.\n\n"
-            "Do you wish to continue?")
-            , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
-        {
-            return false;
+            if (abort_transaction && wxMessageBox(_(
+                "This transaction will exceed your account limit.\n\n"
+                "Do you wish to continue?")
+                , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
+            {
+                return false;
+            }
         }
     }
 
@@ -863,7 +882,8 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmPayeeDialog dlg(this, true);
                 dlg.ShowModal();
-                cbPayee_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbPayee_->mmDoReInitialize();
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
@@ -882,7 +902,8 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                cbCategory_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbCategory_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 cbCategory_->ChangeValue(category);
                 return;
@@ -989,7 +1010,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
         s.SUBCATEGID = cbCategory_->mmGetSubcategoryId();
-        s.NOTES = m_trx_data.NOTES;
+        s.NOTES = textNotes_->GetValue();
         m_local_splits.push_back(s);
     }
 
@@ -1057,6 +1078,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
     {
         wxMenu menu;
         int id = wxID_LOWEST;
+
         for (const auto& entry : frequentNotes_) {
             wxString label = entry.Mid(0, 36) + (entry.size() > 36 ? "..." : "");
             label.Replace("\n", " ");
@@ -1069,6 +1091,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_LOWEST;
+
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
         if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
             textNotes_->AppendText("\n");
@@ -1078,7 +1101,6 @@ void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 
 void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    m_trx_data.STATUS = "";
     m_trx_data.NOTES = textNotes_->GetValue();
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_trx_data.TRANSDATE = dpc_->GetValue().FormatISODate();

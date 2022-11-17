@@ -95,6 +95,7 @@ bool Model_Checking::remove(int id)
     //Model_Splittransaction::instance().remove(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)));
     for (const auto& r : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)))
         Model_Splittransaction::instance().remove(r.SPLITTRANSID);
+    if(foreignTransaction(*instance().get(id))) Model_Translink::RemoveTranslinkEntry(id);
     return this->remove(id, db_);
 }
 
@@ -234,7 +235,7 @@ double Model_Checking::amount(const Data&r, int account_id)
 
 double Model_Checking::balance(const Data* r, int account_id)
 {
-    if (Model_Checking::status(r->STATUS) == Model_Checking::VOID_) return 0;
+    if (Model_Checking::status(r->STATUS) == Model_Checking::VOID_ || !r->DELETEDTIME.IsEmpty()) return 0;
     return amount(r, account_id);
 }
 
@@ -395,7 +396,7 @@ wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
 {
     if (TYPE::TRANSFER == type(this->TRANSCODE))
     {
-        if (this->ACCOUNTID == account_id || account_id == -1)
+        if (this->ACCOUNTID == account_id || account_id < 0)
             return ("> " + this->TOACCOUNTNAME);
         else
             return ("< " + this->ACCOUNTNAME);
@@ -555,6 +556,8 @@ bool Model_Checking::getTransactionData(Data &data, const Data* r)
         data.TRANSACTIONNUMBER = r->TRANSACTIONNUMBER;
         data.PAYEEID = r->PAYEEID;
         data.TRANSID = r->TRANSID;
+        data.LASTUPDATEDTIME = r->LASTUPDATEDTIME;
+        data.DELETEDTIME = r->DELETEDTIME;
     }
     return r ? true : false;
 }

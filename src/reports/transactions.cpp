@@ -150,6 +150,8 @@ table {
     // Display the data for each row
     for (auto& transaction : trans_)
     {
+        if (!transaction.DELETEDTIME.IsEmpty()) continue;
+
         wxString sortLabel = "ALL";
         if (groupBy == mmFilterTransactionsDialog::GROUPBY_ACCOUNT)
             sortLabel = transaction.ACCOUNTNAME;
@@ -271,7 +273,7 @@ table {
                     if (showColumnById(9)) 
                         if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
-                        else 
+                        else if (transaction.DELETEDTIME.IsEmpty())
                             hb.addCurrencyCell(amount, curr);
                     total[curr->CURRENCYID] += amount;
                     grand_total[curr->CURRENCYID] += amount;
@@ -446,6 +448,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     trans_.push_back(full_tran);
+                    trans_.back().NOTES += (full_tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES;
                 }
             }
         }

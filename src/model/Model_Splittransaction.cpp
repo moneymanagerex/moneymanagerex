@@ -104,8 +104,18 @@ const wxString Model_Splittransaction::get_tooltip(const std::vector<Split>& row
 {
     wxString split_tooltip = "";
     for (const auto& entry : rows)
-        split_tooltip += wxString::Format("%s = %s\n"
-        , Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
-        , Model_Currency::toCurrency(entry.SPLITTRANSAMOUNT, currency));
+    {
+        split_tooltip += wxString::Format("%s = %s"
+                    , Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
+                    , Model_Currency::toCurrency(entry.SPLITTRANSAMOUNT, currency));
+        if (!entry.NOTES.IsEmpty())
+        {
+            wxString value = entry.NOTES;
+            value.Replace("\n", " ");
+            split_tooltip += wxString::Format(" (%s)", value);
+        }
+        split_tooltip += "\n";
+    }
+    split_tooltip = split_tooltip.Left(split_tooltip.Len()-1);
     return split_tooltip;
 }

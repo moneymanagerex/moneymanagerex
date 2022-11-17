@@ -41,7 +41,6 @@ public:
     Model_Checking::Full_Data_Set m_trans;
     void markSelectedTransaction();
     void DeleteTransactionsByStatus(const wxString& status);
-    void DeleteViewedTransactions();
 public:
     enum EColumn
     {
@@ -58,6 +57,7 @@ public:
         COL_BALANCE,
         COL_CREDIT,
         COL_NOTES,
+        COL_DELETEDTIME,
         COL_UDFC01,
         COL_UDFC02,
         COL_UDFC03,
@@ -86,7 +86,9 @@ public:
     void OnNewTransaction(wxCommandEvent& event);
     void OnNewTransferTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
+    void OnRestoreTransaction(wxCommandEvent& event);
     void OnDeleteViewedTransaction(wxCommandEvent& event);
+    void OnRestoreViewedTransaction(wxCommandEvent& event);
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
@@ -161,6 +163,8 @@ private:
         MENU_TREEPOPUP_DELETE_VIEWED,
         MENU_TREEPOPUP_DELETE_FLAGGED,
         MENU_TREEPOPUP_DELETE_UNRECONCILED,
+        MENU_TREEPOPUP_RESTORE,
+        MENU_TREEPOPUP_RESTORE_VIEWED,
         ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
     };
 private:

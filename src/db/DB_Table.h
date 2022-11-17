@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-10-16 12:50:22.607317.
+ *          AUTO GENERATED at 2022-10-27 23:32:45.961706.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -501,6 +501,15 @@ struct SorterByDECIMAL_POINT
     }
 };
 
+struct SorterByDELETEDTIME
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.DELETEDTIME) < (y.DELETEDTIME);
+    }
+};
+
 struct SorterByDESCRIPTION
 { 
     template<class DATA>
@@ -660,6 +669,15 @@ struct SorterByJSONCONTENT
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.JSONCONTENT) < (y.JSONCONTENT);
+    }
+};
+
+struct SorterByLASTUPDATEDTIME
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.LASTUPDATEDTIME) < (y.LASTUPDATEDTIME);
     }
 };
 

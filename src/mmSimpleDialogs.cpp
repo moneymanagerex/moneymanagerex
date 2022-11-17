@@ -108,6 +108,7 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     , is_initialized_(false)
 {
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
+    Bind(wxEVT_CHAR, &mmComboBox::OnKeyPressed, this);
 }
 
 void mmComboBox::OnDropDown(wxCommandEvent& event)
@@ -216,8 +217,18 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
                 break;
             }
         }
+        event.Skip();
     }
-    event.Skip();
+    else if (event.GetId() == mmID_CATEGORY && event.GetUnicodeKey() == ':')
+    {
+        this->SetEvtHandlerEnabled(false);
+        ChangeValue(text.Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
+        SetInsertionPointEnd();
+        this->SetEvtHandlerEnabled(true);
+    }
+    else {
+        event.Skip();
+    }
 }
 
 const wxString mmComboBox::mmGetPattern() const
@@ -765,14 +776,9 @@ void mmErrorDialogs::MessageInvalid(wxWindow *parent, const wxString &message)
     MessageError(parent, msg, _("Invalid Entry"));
 }
 
-void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
+void mmErrorDialogs::InvalidCategory(wxWindow *win)
 {
-    const wxString& msg = simple
-        ? _("Please use this button for category selection.")
-        : _("Please use this button for category selection\n"
-            "or use the 'Split' checkbox for multiple categories.");
-
-    ToolTip4Object(win, msg + "\n", _("Invalid Category"), wxICON_ERROR);
+    ToolTip4Object(win, _("Please select an existing category"), _("Invalid Category"), wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)

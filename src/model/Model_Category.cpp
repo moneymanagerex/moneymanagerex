@@ -158,9 +158,19 @@ bool Model_Category::is_hidden(int catID, int subcatID)
 bool Model_Category::is_used(int id, int sub_id)
 {
     const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
-    if (!trans.empty()) return true;
+    if (!trans.empty())
+    {
+        for (const auto& txn : trans)
+            if (txn.DELETEDTIME.IsEmpty())
+                return true;
+    }
     const auto &split = Model_Splittransaction::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
-    if (!split.empty()) return true;
+    if (!split.empty())
+    {
+        for (const auto& txn : split)
+            if (Model_Checking::instance().get(txn.TRANSID)->DELETEDTIME.IsEmpty())
+                return true;
+    }
     const auto &deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
     if (!deposits.empty()) return true;
     const auto &deposit_split = Model_Budgetsplittransaction::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
@@ -172,9 +182,19 @@ bool Model_Category::is_used(int id, int sub_id)
 bool Model_Category::is_used(int id)
 {
     const auto& trans = Model_Checking::instance().find(Model_Checking::CATEGID(id));
-    if (!trans.empty()) return true;
+    if (!trans.empty())
+    {
+        for (const auto& txn : trans)
+            if (txn.DELETEDTIME.IsEmpty())
+                return true;
+    }
     const auto& split = Model_Splittransaction::instance().find(Model_Checking::CATEGID(id));
-    if (!split.empty()) return true;
+    if (!split.empty())
+    {
+        for (const auto& txn : split)
+            if (Model_Checking::instance().get(txn.TRANSID)->DELETEDTIME.IsEmpty())
+                return true;
+    }
     const auto& deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id));
     if (!deposits.empty()) return true;
     const auto& deposit_split = Model_Budgetsplittransaction::instance().find(Model_Billsdeposits::CATEGID(id));
@@ -188,6 +208,8 @@ bool Model_Category::has_income(int id, int sub_id)
     auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran: Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id)))
     {
+        if (!tran.DELETEDTIME.IsEmpty()) continue;
+
         switch (Model_Checking::type(tran))
         {
         case Model_Checking::WITHDRAWAL:
@@ -263,6 +285,8 @@ void Model_Category::getCategoryStats(
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
     {
+        if (!transaction.DELETEDTIME.IsEmpty()) continue;
+
         if (accountArray)
         {
             const auto account = Model_Account::instance().get(transaction.ACCOUNTID);

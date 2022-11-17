@@ -60,6 +60,8 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU_RANGE(MENU_TREEPOPUP_NEW_WITHDRAWAL, MENU_TREEPOPUP_NEW_DEPOSIT, TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_NEW_TRANSFER, TransactionListCtrl::OnNewTransferTransaction)
     EVT_MENU(MENU_TREEPOPUP_DELETE2, TransactionListCtrl::OnDeleteTransaction)
+    EVT_MENU(MENU_TREEPOPUP_RESTORE, TransactionListCtrl::OnRestoreTransaction)
+    EVT_MENU(MENU_TREEPOPUP_RESTORE_VIEWED, TransactionListCtrl::OnRestoreViewedTransaction)
     EVT_MENU_RANGE(MENU_TREEPOPUP_DELETE_VIEWED, MENU_TREEPOPUP_DELETE_UNRECONCILED, TransactionListCtrl::OnDeleteViewedTransaction)
     EVT_MENU(MENU_TREEPOPUP_EDIT2, TransactionListCtrl::OnEditTransaction)
     EVT_MENU(MENU_TREEPOPUP_MOVE2, TransactionListCtrl::OnMoveTransaction)
@@ -142,6 +144,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
     case TransactionListCtrl::COL_DATE:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
+        break;
+    case TransactionListCtrl::COL_DELETEDTIME:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME())
+            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByDELETEDTIME());
         break;
     case TransactionListCtrl::COL_UDFC01:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC01");
@@ -267,7 +273,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NUMBER);
-    if (m_cp->isAllAccounts_)
+    if (m_cp->isAllAccounts_ || m_cp->isTrash_)
     {
         m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
         m_real_columns.push_back(COL_ACCOUNT);
@@ -282,7 +288,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_WITHDRAWAL);
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_real_columns.push_back(COL_DEPOSIT);
-    if (!m_cp->isAllAccounts_)
+    if (!m_cp->isAllAccounts_ && !m_cp->isTrash_)
     {
         m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
         m_real_columns.push_back(COL_BALANCE);
@@ -295,6 +301,10 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NOTES);
+    if (m_cp->isTrash_) {
+        m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
+        m_real_columns.push_back(COL_DELETEDTIME);
+    }
 
     int i = COL_UDFC01;
     const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -420,86 +430,95 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         }
     }
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, __(wxTRANSLATE("&New Withdrawal")));
-    menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, __(wxTRANSLATE("&New Deposit")));
-    if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-        menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, __(wxTRANSLATE("&New Transfer")));
+    if (!m_cp->isTrash_) {
+        menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, __(wxTRANSLATE("&New Withdrawal")));
+        menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, __(wxTRANSLATE("&New Deposit")));
+        if (Model_Account::instance().all_checking_account_names(true).size() > 1)
+            menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, __(wxTRANSLATE("&New Transfer")));
 
-    menu.AppendSeparator();
+        menu.AppendSeparator();
 
-    menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction...", "&Edit Transactions...", selected));
-    if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
+        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction...", "&Edit Transactions...", selected));
+        if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
-    if (!m_cp->isAllAccounts_)     // Copy/Paste not suitable if all accounts visible
-    {
-        menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
-        if (is_nothing_selected) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+        if (!m_cp->isAllAccounts_)     // Copy/Paste not suitable if all accounts visible
+        {
+            menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
+            if (is_nothing_selected) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
 
-        int toPaste = m_selectedForCopy.size();
-        menu.Append(MENU_ON_PASTE_TRANSACTION, 
-            wxString::Format( wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)"), (toPaste < 2) ? 1 : toPaste), toPaste)
-        );
-        if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+            int toPaste = m_selectedForCopy.size();
+            menu.Append(MENU_ON_PASTE_TRANSACTION,
+                wxString::Format(wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)"), (toPaste < 2) ? 1 : toPaste), toPaste)
+            );
+            if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+        }
+
+        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, __(wxTRANSLATE("D&uplicate Transaction")));
+        if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+
+        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction...", "&Move Transactions...", selected));
+        if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
+            menu.Enable(MENU_TREEPOPUP_MOVE2, false);
+
+        menu.AppendSeparator();
+
+        menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _("&View In Other Account"));
+        if (m_cp->isAllAccounts_ || is_nothing_selected || multiselect || is_foreign || !type_transfer)
+            menu.Enable(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, false);
+
+        menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
+        if (is_nothing_selected || multiselect || have_category)
+            menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
+
+        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
+        if (is_nothing_selected || multiselect)
+            menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
+
+        menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, __(wxTRANSLATE("Create Recurring T&ransaction")));
+        if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
+    }
+    else {
+        menu.Append(MENU_TREEPOPUP_RESTORE, wxPLURAL("&Restore selected transaction...", "&Restore selected transactions...", selected));
+        if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_RESTORE, false);
+        menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, __(wxTRANSLATE("Restore all transactions in current view")));
     }
 
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, __(wxTRANSLATE("D&uplicate Transaction")));
-    if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
-
-    menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction...", "&Move Transactions...", selected));
-    if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
-        menu.Enable(MENU_TREEPOPUP_MOVE2, false);
-
     menu.AppendSeparator();
-
-    menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _("&View In Other Account"));
-    if (m_cp->isAllAccounts_ || is_nothing_selected || multiselect || is_foreign || !type_transfer)
-        menu.Enable(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, false);
-
-    menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
-    if (is_nothing_selected || multiselect || have_category)
-        menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
-
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
-    if (is_nothing_selected || multiselect)
-        menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
-
-    menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, __(wxTRANSLATE("Create Recurring T&ransaction")));
-    if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
-
-    menu.AppendSeparator();
-
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, wxPLURAL("&Delete selected transaction...", "&Delete selected transactions...", selected));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, !m_cp->isTrash_ ? wxPLURAL("&Delete selected transaction...", "&Delete selected transactions...", selected) : wxPLURAL("&Permanently delete selected transaction...", "&Permanently delete selected transactions...", selected));
     if (is_nothing_selected) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, __(wxTRANSLATE("Delete all transactions in current view")));
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, __(wxTRANSLATE("Delete Viewed \"Follow Up\" Transactions")));
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, __(wxTRANSLATE("Delete Viewed \"Unreconciled\" Transactions")));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, !m_cp->isTrash_ ? __(wxTRANSLATE("Delete all transactions in current view")) : __(wxTRANSLATE("Permanently delete all transactions in current view")));
+    if (!m_cp->isTrash_) {
+        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, __(wxTRANSLATE("Delete Viewed \"Follow Up\" Transactions")));
+        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, __(wxTRANSLATE("Delete Viewed \"Unreconciled\" Transactions")));
+    }
     menu.Append(MENU_TREEPOPUP_DELETE2, _("&Delete "), subGlobalOpMenuDelete);
 
-    menu.AppendSeparator();
+    if (!m_cp->isTrash_) {
+        menu.AppendSeparator();
 
-    wxMenu* subGlobalOpMenuMark = new wxMenu();
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Unreconciled"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Reconciled"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Void"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Follow Up"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Duplicate"));
-    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-    menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark as"));
+        wxMenu* subGlobalOpMenuMark = new wxMenu();
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Unreconciled"));
+        if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Reconciled"));
+        if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Void"));
+        if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Follow Up"));
+        if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Duplicate"));
+        if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
+        menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark as"));
 
-    // Disable menu items not ment for foreign transactions
-    if (is_foreign)
-    {
-        menu.Enable(MENU_ON_COPY_TRANSACTION, false);
-        menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
-        menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+        // Disable menu items not ment for foreign transactions
+        if (is_foreign)
+        {
+            menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+            menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+            menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+        }
     }
-
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
 }
@@ -728,8 +747,8 @@ void TransactionListCtrl::OnSelectAll(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
-    // we can't copy with multiple accounts open or there is nothing to copy
-    if (m_cp->isAllAccounts_ || GetSelectedItemCount() < 1) return;
+    // we can't copy with multiple accounts open, deleted items, or there is nothing to copy
+    if (m_cp->isAllAccounts_ || m_cp->isTrash_ || GetSelectedItemCount() < 1) return;
 
     // collect the selected transactions for copy
     FindSelectedTransactions();
@@ -779,8 +798,8 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
-    // we can't paste with multiple accounts open or there is nothing to paste
-    if (m_cp->isAllAccounts_ || m_selectedForCopy.size() < 1) return;
+    // we can't paste with multiple accounts open, deleted items, or there is nothing to paste
+    if (m_cp->isAllAccounts_ || m_cp->isTrash_ || m_selectedForCopy.size() < 1) return;
     
     FindSelectedTransactions();
     Model_Checking::instance().Savepoint();
@@ -796,7 +815,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 
 int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 {
-    wxASSERT(!m_cp->isAllAccounts_);
+    wxASSERT(!m_cp->isAllAccounts_ && !m_cp->isTrash_);
 
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
@@ -870,54 +889,156 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     }
 
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
-
-    if (key == wxKeyCode('R')) {
-        // Reconciled
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
-        OnMarkTransaction(evt);
-    }
-    else if (key == wxKeyCode('U')) {
-        // Unreconciled
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
-        OnMarkTransaction(evt);
-    }
-    else if (key == wxKeyCode('F')) {
-        // Follow Up
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
-        OnMarkTransaction(evt);
-    }
-    else if (key == wxKeyCode('D')) {
-        // Duplicate
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
-        OnMarkTransaction(evt);
-    }
-    else if (key == wxKeyCode('V')) {
-        // Void
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
-        OnMarkTransaction(evt);
-    }
-    else if (key == WXK_DELETE || key == WXK_NUMPAD_DELETE)
-    {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
-        OnDeleteTransaction(evt);
+    if (!m_cp->isTrash_) {
+        if (key == wxKeyCode('R')) {
+            // Reconciled
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
+            OnMarkTransaction(evt);
+        }
+        else if (key == wxKeyCode('U')) {
+            // Unreconciled
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
+            OnMarkTransaction(evt);
+        }
+        else if (key == wxKeyCode('F')) {
+            // Follow Up
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
+            OnMarkTransaction(evt);
+        }
+        else if (key == wxKeyCode('D')) {
+            // Duplicate
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
+            OnMarkTransaction(evt);
+        }
+        else if (key == wxKeyCode('V')) {
+            // Void
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
+            OnMarkTransaction(evt);
+        }
+        else if (key == WXK_DELETE || key == WXK_NUMPAD_DELETE)
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
+            OnDeleteTransaction(evt);
+        }
+        else {
+            event.Skip();
+            return;
+        }
     }
     else {
-        event.Skip();
-        return;
+        if (key == WXK_DELETE || key == WXK_NUMPAD_DELETE)
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
+            OnDeleteTransaction(evt);
+        }
+        else if (key == wxKeyCode('R'))
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_RESTORE);
+            OnRestoreTransaction(evt);
+        }
+        else {
+            event.Skip();
+            return;
+        }
     }
 }
 //----------------------------------------------------------------------------
 
+void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent& event)
+{
+    wxMessageDialog msgDlg(this
+            , _("Do you really want to restore all of the transactions shown?")
+            , _("Confirm Transaction Restore")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+    if (msgDlg.ShowModal() == wxID_YES)
+    {
+        std::set<std::pair<wxString, int>> assetStockAccts;
+        for (const auto& tran : this->m_trans)
+        {
+            Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
+            trx->DELETEDTIME.Clear();
+            Model_Checking::instance().save(trx);
+            Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
+            if (!translink.empty()) {
+                assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+            }
+        }
+        if (!assetStockAccts.empty()) {
+            for (const auto& i : assetStockAccts) {
+                if (i.first == "Asset") Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
+                else if (i.first == "Stock") Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+            }
+        }
+    }
+    
+    refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
+}
+
+void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
+{
+    // check if any transactions selected
+    int sel = GetSelectedItemCount();
+    if (sel < 1) return;
+
+    FindSelectedTransactions();
+
+    //ask if they really want to restore
+    const wxString text = wxString::Format(
+        wxPLURAL("Do you really want to restore the selected transaction?"
+            , "Do you really want to restore %i selected transactions?", sel), sel);
+
+    wxMessageDialog msgDlg(this
+        , text
+        , _("Confirm Transaction Restore")
+        , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
+
+    if (msgDlg.ShowModal() == wxID_YES)
+    {
+        std::set<std::pair<wxString, int>> assetStockAccts;
+        for (const auto& i : m_selected_id)
+        {
+            Model_Checking::Data* trx = Model_Checking::instance().get(i);
+            trx->DELETEDTIME.Clear();
+            Model_Checking::instance().save(trx);
+            Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
+            if (!translink.empty()) {
+                assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+            }
+        }
+        m_selected_id.clear();
+        if (!assetStockAccts.empty()) {
+            for (const auto& i : assetStockAccts) {
+                if (i.first == "Asset") Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
+                else if (i.first == "Stock") Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+            }
+        }
+    }
+
+    refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
+}
+
 void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 {
     auto i = event.GetId();
+    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
 
     if (i == MENU_TREEPOPUP_DELETE_VIEWED)
     {
+        wxString text = !(m_cp->isTrash_ || retainDays == 0)
+            ? _("Do you really want to delete all the transactions shown?")
+            : _("Do you really want to permanently delete all the transactions shown?");
+
+        text += "\n\n";
+        text += !(m_cp->isTrash_ || retainDays == 0)
+            ? "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
+            : "You cannot undo this action.";
+
         wxMessageDialog msgDlg(this
-            , _("Do you really want to delete all the transactions shown?")
+            , text
             , _("Confirm Transaction Deletion")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+            , wxYES_NO | wxNO_DEFAULT | (m_cp->isTrash_ ? wxICON_ERROR : wxICON_WARNING));
         if (msgDlg.ShowModal() == wxID_YES)
         {
             DeleteTransactionsByStatus("");
@@ -946,27 +1067,58 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
         }
     }
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
+    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
+    wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
+    std::set<std::pair<wxString, int>> assetStockAccts;
     const auto s = Model_Checking::toShortStatus(status);
     Model_Checking::instance().Savepoint();
     Model_Attachment::instance().Savepoint();
     Model_Splittransaction::instance().Savepoint();
+    Model_CustomFieldData::instance().Savepoint();
     for (const auto& tran : this->m_trans)
     {
         if (tran.STATUS == s || (s.empty() && status.empty()))
         {
-            // remove also removes any split transactions
-            Model_Checking::instance().remove(tran.TRANSID);
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
+            if (m_cp->isTrash_ || retainDays == 0) {
+                // remove also removes any split transactions & translink entries
+                Model_Checking::instance().remove(tran.TRANSID);
 
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                // remove also any attachments
+                mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
+
+                // remove also any custom fields for the transaction
+                Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
+            }
+            else {
+                Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
+                trx->DELETEDTIME = deletionTime;
+                Model_Checking::instance().save(trx);
+                Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
+                if (!translink.empty()) {
+                    assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+                }
+            }
         }
     }
+
+    if (!assetStockAccts.empty()) {
+        for (const auto& i : assetStockAccts) {
+            if (i.first == "Asset") Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
+            else if (i.first == "Stock") Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+        }
+    }
+
     Model_Splittransaction::instance().ReleaseSavepoint();
     Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
+    Model_CustomFieldData::instance().ReleaseSavepoint();
 }
 
 
@@ -977,19 +1129,29 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     if (sel < 1) return;
 
     FindSelectedTransactions();
+    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
 
     //ask if they really want to delete
-    const wxString text = wxString::Format(
+    wxString text = (m_cp->isTrash_ || retainDays == 0)?
+        wxPLURAL("Do you really want to permanently delete the selected transaction?"
+        , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel)
+        , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel))
+        :
         wxPLURAL("Do you really want to delete the selected transaction?"
-            , "Do you really want to delete %i selected transactions?", sel)
-        , sel);
+            , wxString::Format("Do you really want to delete %i selected transactions?", sel)
+            , wxString::Format("Do you really want to delete %i selected transactions?", sel));
+    text += "\n\n";
+    text += _((m_cp->isTrash_ || retainDays == 0) ? " You cannot undo this action." : " Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
+
     wxMessageDialog msgDlg(this
         , text
         , _("Confirm Transaction Deletion")
-        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
+        , wxYES_NO | wxYES_DEFAULT | (m_cp->isTrash_ ? wxICON_ERROR : wxICON_WARNING));
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
+        wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
+        std::set<std::pair<wxString, int>> assetStockAccts;
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
         Model_Splittransaction::instance().Savepoint();
@@ -1002,32 +1164,45 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 continue;
             }
 
-            if (Model_Checking::foreignTransaction(*trx))
-            {
-                Model_Translink::RemoveTranslinkEntry(i);
-                m_cp->m_frame->RefreshNavigationTree();
+            if (m_cp->isTrash_ || retainDays == 0) {
+                // remove also removes split transactions & translink entries
+                Model_Checking::instance().remove(i);
+
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                // remove also any attachments
+                mmAttachmentManage::DeleteAllAttachments(RefType, i);
+                
+                // remove also any custom fields for the transaction
+                Model_CustomFieldData::DeleteAllData(RefType, i);
+
             }
-
-            Model_Checking::instance().remove(i);
-
-            // remove also any split transactions
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), i);
-
-            // remove also any custom fields for the transaction
-            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-            Model_CustomFieldData::DeleteAllData(RefType, i);
-
+            else {
+                trx->DELETEDTIME = deletionTime;
+                Model_Checking::instance().save(trx);
+                Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
+                if (!translink.empty()) {
+                    assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+                }
+            }
             m_selectedForCopy.erase(std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), i)
-                , m_selectedForCopy.end());
+              , m_selectedForCopy.end());
         }
         m_selected_id.clear();
         Model_CustomFieldData::instance().ReleaseSavepoint();
         Model_Splittransaction::instance().ReleaseSavepoint();
         Model_Attachment::instance().ReleaseSavepoint();
         Model_Checking::instance().ReleaseSavepoint();
-    }
 
+        if (!assetStockAccts.empty()) {
+            for (const auto& i : assetStockAccts) {
+                if (i.first == "Asset") Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
+                else if (i.first == "Stock") Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+            }
+        }
+    }
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 //----------------------------------------------------------------------------
@@ -1181,6 +1356,9 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
+    if (m_cp->isTrash_)
+        return;
+    
     FindSelectedTransactions();
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
@@ -1414,30 +1592,6 @@ void TransactionListCtrl::markSelectedTransaction()
     }
 }
 
-void TransactionListCtrl::DeleteViewedTransactions()
-{
-    Model_Checking::instance().Savepoint();
-    Model_Attachment::instance().Savepoint();
-    Model_Splittransaction::instance().Savepoint();
-    for (const auto& tran : this->m_trans)
-    {
-        if (Model_Checking::foreignTransaction(tran))
-        {
-            Model_Translink::RemoveTranslinkEntry(tran.TRANSID);
-        }
-
-        // remove also removes any split transactions
-        Model_Checking::instance().remove(tran.TRANSID);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
-
-        m_selectedForCopy.erase(std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), tran.TRANSID)
-            , m_selectedForCopy.end());
-    }
-    Model_Splittransaction::instance().ReleaseSavepoint();
-    Model_Attachment::instance().ReleaseSavepoint();
-    Model_Checking::instance().ReleaseSavepoint();
-}
-
 void TransactionListCtrl::markItem(long selectedItem)
 {
     //First of all any items should be unselected
@@ -1496,7 +1650,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
         }
 
-        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE
+        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE, COL_DELETEDTIME
             , COL_UDFC01, COL_UDFC02, COL_UDFC03, COL_UDFC04, COL_UDFC05 } )
         {
             const auto test = getItem(selectedItem, t, true).Lower();
@@ -1552,6 +1706,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     const Model_Checking::Full_Data& tran = m_trans.at(item);
 
     wxString value = wxEmptyString;
+    wxDateTime datetime;
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
@@ -1569,11 +1724,19 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_NOTES:
+    {
         value = tran.NOTES;
+        auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(tran.TRANSID));
+        for (const auto& split : splits)
+            value += wxString::Format(" %s", split.NOTES);
         value.Replace("\n", " ");
         if (tran.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
-        return value;
+        return value.Trim(false);
+    }
+    case TransactionListCtrl::COL_DELETEDTIME:
+        datetime.ParseISOCombined(tran.DELETEDTIME);
+        return datetime.FromUTC().FormatISOCombined(' ');
     case TransactionListCtrl::COL_UDFC01:
         return UDFCFormatHelper(tran.UDFC01_Type, tran.UDFC01);
     case TransactionListCtrl::COL_UDFC02:

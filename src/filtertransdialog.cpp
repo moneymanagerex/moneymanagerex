@@ -1295,7 +1295,6 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Da
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
     else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Billsdeposits>(tran)) ok = false;
-        ok = false;
     return ok;
 }
 
@@ -1893,7 +1892,8 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmPayeeDialog dlg(this, true);
                 dlg.ShowModal();
-                cbPayee_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbPayee_->mmDoReInitialize();
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
@@ -1911,7 +1911,8 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmCategDialog dlg(this, true, -1, -1);
                 dlg.ShowModal();
-                categoryComboBox_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    categoryComboBox_->mmDoReInitialize();
                 category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
                 categoryComboBox_->ChangeValue(category);
                 categoryComboBox_->SelectAll();

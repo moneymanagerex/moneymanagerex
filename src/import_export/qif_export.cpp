@@ -469,6 +469,8 @@ void mmQIFExportDialog::mmExportQIF()
 
         for (const auto& transaction : transactions)
         {
+            if (!transaction.DELETEDTIME.IsEmpty()) continue;
+
             //Filtering
             if (dateFromCheckBox_->IsChecked() && transaction.TRANSDATE < begin_date)
                 continue;
