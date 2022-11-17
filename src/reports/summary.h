@@ -56,7 +56,6 @@ protected:
 private:
     int mode_;
     std::map<int, std::map<wxDate, double>> accountsBalanceMap;
-    std::map<int, std::map<wxDate, double>> assetBalanceMap;
     mmHistoryData   arHistory;
     std::map<wxString, double> currencyDateRateCache;
 
