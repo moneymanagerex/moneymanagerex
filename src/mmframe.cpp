@@ -3544,14 +3544,10 @@ void mmGUIFrame::autocleanDeletedTransactions() {
         Model_Splittransaction::instance().Savepoint();
         Model_CustomFieldData::instance().Savepoint();
         for (const auto& transaction : deletedTransactions) {
-            if (Model_Checking::foreignTransaction(transaction))
-            {
-                Model_Translink::RemoveTranslinkEntry(transaction.TRANSID);
-            }
-
+            // removing the checking transaction also removes split, translink, and share entries
             Model_Checking::instance().remove(transaction.TRANSID);
 
-            // remove also any split transactions
+            // remove also any attachments for the transaction
             const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
             mmAttachmentManage::DeleteAllAttachments(RefType, transaction.TRANSID);
 
