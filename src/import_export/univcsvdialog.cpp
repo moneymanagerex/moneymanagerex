@@ -1237,7 +1237,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     break;
                 case UNIV_CSV_SUBCATEGORY:
                     if(category && category->PARENTID != -1)
-                        entry = category ? wxGetTranslation(category->CATEGNAME) : "";
+                        entry = wxGetTranslation(category->CATEGNAME);
                     break;
                 case UNIV_CSV_TRANSNUM:
                     entry = pBankTransaction.TRANSACTIONNUMBER;
