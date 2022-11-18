@@ -640,18 +640,12 @@ wxTreeItemId mmCategDialog::getTreeItemFor(const wxTreeItemId& itemID, const wxS
 
 void mmCategDialog::setTreeSelection(int category_id)
 {
-    const auto& categories = Model_Category::instance().find(Model_Category::CATEGID(category_id));
-    if (!categories.empty())
+    Model_Category::Data* category = Model_Category::instance().get(category_id);
+    if (category)
     {
-        Model_Category::Data* category = Model_Category::instance().get(category_id);
-        wxString categoryName = "";
-        if (category)
-        {
-            categoryName = category->CATEGNAME;
-            setTreeSelection(categoryName, category->PARENTID);
-            m_categ_id = category_id;
-        }
+        setTreeSelection(category->CATEGNAME, category->PARENTID);
     }
+    m_categ_id = category_id;   
 }
 
 void mmCategDialog::setTreeSelection(const wxString& catName, const int parentid)

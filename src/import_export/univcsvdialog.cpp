@@ -1230,9 +1230,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     if (category)
                     {
                         if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
-                            entry = category ? wxGetTranslation(Model_Category::full_name(category->PARENTID), ":") : "";
+                            entry = wxGetTranslation(Model_Category::full_name(category->PARENTID), ":");
                         else
-                            entry = category ? wxGetTranslation(Model_Category::full_name(category->CATEGID), ":") : "";
+                            entry = wxGetTranslation(Model_Category::full_name(category->CATEGID), ":");
                     }
                     break;
                 case UNIV_CSV_SUBCATEGORY:
@@ -1456,14 +1456,19 @@ void mmUnivCSVDialog::update_preview()
                             text << inQuotes(amount, delimit);
                             break;
                         case UNIV_CSV_CATEGORY:
-                            if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
-                                text << inQuotes(category ? Model_Category::full_name(category->PARENTID, ":") : "", delimit);
-                            else
-                                text << inQuotes(category ? Model_Category::full_name(category->CATEGID, ":") : "", delimit);
+                            if (category)
+                            {
+                                if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
+                                    text << inQuotes(Model_Category::full_name(category->PARENTID, ":"), delimit);
+                                else
+                                    text << inQuotes(Model_Category::full_name(category->CATEGID, ":"), delimit);
+                            }
+                            else text << inQuotes("", delimit);
                             break;
                         case UNIV_CSV_SUBCATEGORY:
-                            if (category->PARENTID != -1)
+                            if (category && category->PARENTID != -1)
                                 text << inQuotes(category ? category->CATEGNAME : "", delimit);
+                            else text << inQuotes("", delimit);
                             break;
                         case UNIV_CSV_TRANSNUM:
                             text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
