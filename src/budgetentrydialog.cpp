@@ -101,19 +101,20 @@ void mmBudgetEntryDialog::CreateControls()
     itemPanel7->SetSizer(itemGridSizer2);
     
     const Model_Category::Data* category = Model_Category::instance().get(budgetEntry_->CATEGID);
-    const Model_Subcategory::Data* sub_category = (budgetEntry_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(budgetEntry_->SUBCATEGID) : 0);
-
+    
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
     
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Category: ")), g_flagsH);
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->CATEGNAME), wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->PARENTID > 0
+        ? Model_Category::instance().get(category->PARENTID)->CATEGNAME : category->CATEGNAME)
+        , wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     // only add the subcategory if it exists.
-    if (budgetEntry_->SUBCATEGID >= 0) {
+    if (category->PARENTID >= 0) {
         wxStaticText* itemTextSubCatTag = new wxStaticText(itemPanel7, wxID_STATIC
             , _("Sub Category: "));
         wxStaticText* itemTextSubCatName = new wxStaticText(itemPanel7, wxID_STATIC
-            , sub_category->SUBCATEGNAME);
+            , category->CATEGNAME);
         
         itemGridSizer2->Add(itemTextSubCatTag, g_flagsH);
         itemGridSizer2->Add(itemTextSubCatName, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));

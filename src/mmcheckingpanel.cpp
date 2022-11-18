@@ -796,7 +796,6 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     for (const auto& entry : splits) {
         Split s;
         s.CATEGID = entry.CATEGID;
-        s.SUBCATEGID = entry.SUBCATEGID;
         s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
         s.NOTES = entry.NOTES;
         splt.push_back(s);

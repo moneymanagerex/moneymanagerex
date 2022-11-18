@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2017 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
- 
+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -24,23 +24,25 @@
 #include "reportbase.h"
 #include "util.h"
 #include <vector>
+#include "Model_Category.h"
 
 class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
+    // structure for sorting of data
+    struct data_holder { int catID; int subCatID; wxString name; double amount; int categs; int level; };
     enum TYPE { GOES = 0, COME , MONTHLY, SUMMARY };
     explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
+    double AppendData(std::vector<data_holder> data, std::map<int, std::map<int, double>> categoryStats, Model_Category::Data* category, int groupID, int level);
     virtual wxString getHTMLText();
 
 protected:
     enum TYPE type_;
 
 private:
-    // structure for sorting of data
-    struct data_holder { int catID; int subCatID; wxString name; double amount; int categs; };
     std::vector<data_holder> data_;
 };
 

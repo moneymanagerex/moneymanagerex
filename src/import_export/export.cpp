@@ -44,7 +44,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     bool is_transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
-    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
+    wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     wxString payee = full_tran.PAYEENAME;
@@ -78,7 +78,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
             if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID, ":");
+            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
 
             buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
@@ -176,7 +176,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID, ":");
+        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
     }
@@ -221,23 +221,11 @@ const wxString mmExportTransaction::getCategoriesQIF()
     buffer_qif << "!Type:Cat" << "\n";
     for (const auto& category : Model_Category::instance().all())
     {
-        const wxString& categ_name = category.CATEGNAME;
+        const wxString& categ_name = Model_Category::full_name(category.CATEGID, ":");
         bool bIncome = Model_Category::has_income(category.CATEGID);
         buffer_qif << "N" << categ_name << "\n"
             << (bIncome ? "I" : "E") << "\n"
             << "^" << "\n";
-
-        for (const auto& sub_category : Model_Category::sub_category(category))
-        {
-            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
-            bool bSubcateg = sub_category.CATEGID != -1;
-            wxString full_categ_name = wxString()
-                << categ_name << (bSubcateg ? wxString() << ":" : wxString() << "")
-                << sub_category.SUBCATEGNAME;
-            buffer_qif << "N" << full_categ_name << "\n"
-                << (bIncome ? "I" : "E") << "\n"
-                << "^" << "\n";
-        }
     }
     return buffer_qif;
 }
@@ -326,8 +314,6 @@ void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer,
                 json_writer.String(p->PAYEENAME.utf8_str());
                 json_writer.Key("CATEGORY_ID");
                 json_writer.Int(p->CATEGID);
-                json_writer.Key("SUBCATEGORY_ID");
-                json_writer.Int(p->SUBCATEGID);
                 json_writer.EndObject();
             }
         }
@@ -345,25 +331,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
         json_writer.Key("ID");
         json_writer.Int(category.CATEGID);
         json_writer.Key("NAME");
-        json_writer.String(category.CATEGNAME.utf8_str());
-
-        const auto sub_categ = Model_Category::sub_category(category);
-        if (!sub_categ.empty())
-        {
-            json_writer.Key("SUB_CATEGORIES");
-            json_writer.StartArray();
-            for (const auto& sub_category : sub_categ)
-            {
-                auto test = sub_categ.to_json();
-                json_writer.StartObject();
-                json_writer.Key("ID");
-                json_writer.Int(sub_category.SUBCATEGID);
-                json_writer.Key("NAME");
-                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
-                json_writer.EndObject();
-            }
-            json_writer.EndArray();
-        }
+        json_writer.String(Model_Category::full_name(category.CATEGID, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -381,27 +349,7 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
         json_writer.Key("ID");
         json_writer.Int(category.CATEGID);
         json_writer.Key("NAME");
-        json_writer.String(category.CATEGNAME.utf8_str());
-
-        const auto sub_categ = Model_Category::sub_category(category);
-        if (!sub_categ.empty())
-        {
-            json_writer.Key("SUB_CATEGORIES");
-            json_writer.StartArray();
-            for (const auto& sub_category : sub_categ)
-            {
-                if (!Model_Subcategory::instance().is_used(sub_category.SUBCATEGID))
-                    continue;
-                auto test = sub_categ.to_json();
-                json_writer.StartObject();
-                json_writer.Key("ID");
-                json_writer.Int(sub_category.SUBCATEGID);
-                json_writer.Key("NAME");
-                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
-                json_writer.EndObject();
-            }
-            json_writer.EndArray();
-        }
+        json_writer.String(Model_Category::full_name(category.CATEGID, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -425,8 +373,6 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             json_writer.StartObject();
             json_writer.Key("CATEGORY_ID");
             json_writer.Int(split_entry.CATEGID);
-            json_writer.Key("SUBCATEGORY_ID");
-            json_writer.Int(split_entry.SUBCATEGID);
             json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
             json_writer.EndObject();

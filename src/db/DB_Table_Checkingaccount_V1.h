@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-10-27 23:32:45.961706.
+ *          AUTO GENERATED at 2022-11-18 09:14:51.123705.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, LASTUPDATEDTIME TEXT, DELETEDTIME TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, TRANSDATE TEXT, LASTUPDATEDTIME TEXT, DELETEDTIME TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -173,12 +173,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
     struct TRANSDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSDATE"; } 
@@ -222,12 +216,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         , COL_TRANSACTIONNUMBER = 7
         , COL_NOTES = 8
         , COL_CATEGID = 9
-        , COL_SUBCATEGID = 10
-        , COL_TRANSDATE = 11
-        , COL_LASTUPDATEDTIME = 12
-        , COL_DELETEDTIME = 13
-        , COL_FOLLOWUPID = 14
-        , COL_TOTRANSAMOUNT = 15
+        , COL_TRANSDATE = 10
+        , COL_LASTUPDATEDTIME = 11
+        , COL_DELETEDTIME = 12
+        , COL_FOLLOWUPID = 13
+        , COL_TOTRANSAMOUNT = 14
     };
 
     /** Returns the column name as a string*/
@@ -245,7 +238,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             case COL_TRANSACTIONNUMBER: return "TRANSACTIONNUMBER";
             case COL_NOTES: return "NOTES";
             case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
             case COL_TRANSDATE: return "TRANSDATE";
             case COL_LASTUPDATEDTIME: return "LASTUPDATEDTIME";
             case COL_DELETEDTIME: return "DELETEDTIME";
@@ -270,7 +262,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         else if ("TRANSACTIONNUMBER" == name) return COL_TRANSACTIONNUMBER;
         else if ("NOTES" == name) return COL_NOTES;
         else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
         else if ("TRANSDATE" == name) return COL_TRANSDATE;
         else if ("LASTUPDATEDTIME" == name) return COL_LASTUPDATEDTIME;
         else if ("DELETEDTIME" == name) return COL_DELETEDTIME;
@@ -297,7 +288,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString TRANSACTIONNUMBER;
         wxString NOTES;
         int CATEGID;
-        int SUBCATEGID;
         wxString TRANSDATE;
         wxString LASTUPDATEDTIME;
         wxString DELETEDTIME;
@@ -334,7 +324,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             PAYEEID = -1;
             TRANSAMOUNT = 0.0;
             CATEGID = -1;
-            SUBCATEGID = -1;
             FOLLOWUPID = -1;
             TOTRANSAMOUNT = 0.0;
         }
@@ -353,12 +342,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
             NOTES = q.GetString(8); // NOTES
             CATEGID = q.GetInt(9); // CATEGID
-            SUBCATEGID = q.GetInt(10); // SUBCATEGID
-            TRANSDATE = q.GetString(11); // TRANSDATE
-            LASTUPDATEDTIME = q.GetString(12); // LASTUPDATEDTIME
-            DELETEDTIME = q.GetString(13); // DELETEDTIME
-            FOLLOWUPID = q.GetInt(14); // FOLLOWUPID
-            TOTRANSAMOUNT = q.GetDouble(15); // TOTRANSAMOUNT
+            TRANSDATE = q.GetString(10); // TRANSDATE
+            LASTUPDATEDTIME = q.GetString(11); // LASTUPDATEDTIME
+            DELETEDTIME = q.GetString(12); // DELETEDTIME
+            FOLLOWUPID = q.GetInt(13); // FOLLOWUPID
+            TOTRANSAMOUNT = q.GetDouble(14); // TOTRANSAMOUNT
         }
 
         Data& operator=(const Data& other)
@@ -375,7 +363,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             TRANSACTIONNUMBER = other.TRANSACTIONNUMBER;
             NOTES = other.NOTES;
             CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
             TRANSDATE = other.TRANSDATE;
             LASTUPDATEDTIME = other.LASTUPDATEDTIME;
             DELETEDTIME = other.DELETEDTIME;
@@ -440,11 +427,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::SUBCATEGID &in) const
-        {
-            return this->SUBCATEGID == in.v_;
-        }
-
         bool match(const Self::TRANSDATE &in) const
         {
             return this->TRANSDATE.CmpNoCase(in.v_) == 0;
@@ -506,8 +488,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
             json_writer.Key("TRANSDATE");
             json_writer.String(this->TRANSDATE.utf8_str());
             json_writer.Key("LASTUPDATEDTIME");
@@ -533,7 +513,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             row(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             row(L"NOTES") = NOTES;
             row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
             row(L"TRANSDATE") = TRANSDATE;
             row(L"LASTUPDATEDTIME") = LASTUPDATEDTIME;
             row(L"DELETEDTIME") = DELETEDTIME;
@@ -554,7 +533,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             t(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             t(L"NOTES") = NOTES;
             t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
             t(L"TRANSDATE") = TRANSDATE;
             t(L"LASTUPDATEDTIME") = LASTUPDATEDTIME;
             t(L"DELETEDTIME") = DELETEDTIME;
@@ -595,7 +573,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 16
+        NUM_COLUMNS = 15
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -605,7 +583,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     DB_Table_CHECKINGACCOUNT_V1() : fake_(new Data())
     {
-        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT_V1 ";
+        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -635,11 +613,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CHECKINGACCOUNT_V1 SET ACCOUNTID = ?, TOACCOUNTID = ?, PAYEEID = ?, TRANSCODE = ?, TRANSAMOUNT = ?, STATUS = ?, TRANSACTIONNUMBER = ?, NOTES = ?, CATEGID = ?, SUBCATEGID = ?, TRANSDATE = ?, LASTUPDATEDTIME = ?, DELETEDTIME = ?, FOLLOWUPID = ?, TOTRANSAMOUNT = ? WHERE TRANSID = ?";
+            sql = "UPDATE CHECKINGACCOUNT_V1 SET ACCOUNTID = ?, TOACCOUNTID = ?, PAYEEID = ?, TRANSCODE = ?, TRANSAMOUNT = ?, STATUS = ?, TRANSACTIONNUMBER = ?, NOTES = ?, CATEGID = ?, TRANSDATE = ?, LASTUPDATEDTIME = ?, DELETEDTIME = ?, FOLLOWUPID = ?, TOTRANSAMOUNT = ? WHERE TRANSID = ?";
         }
 
         try
@@ -655,14 +633,13 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             stmt.Bind(7, entity->TRANSACTIONNUMBER);
             stmt.Bind(8, entity->NOTES);
             stmt.Bind(9, entity->CATEGID);
-            stmt.Bind(10, entity->SUBCATEGID);
-            stmt.Bind(11, entity->TRANSDATE);
-            stmt.Bind(12, entity->LASTUPDATEDTIME);
-            stmt.Bind(13, entity->DELETEDTIME);
-            stmt.Bind(14, entity->FOLLOWUPID);
-            stmt.Bind(15, entity->TOTRANSAMOUNT);
+            stmt.Bind(10, entity->TRANSDATE);
+            stmt.Bind(11, entity->LASTUPDATEDTIME);
+            stmt.Bind(12, entity->DELETEDTIME);
+            stmt.Bind(13, entity->FOLLOWUPID);
+            stmt.Bind(14, entity->TOTRANSAMOUNT);
             if (entity->id() > 0)
-                stmt.Bind(16, entity->TRANSID);
+                stmt.Bind(15, entity->TRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

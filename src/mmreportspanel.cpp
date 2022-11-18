@@ -368,7 +368,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_forwardMonths = new wxSpinCtrl(itemPanel3, ID_CHOICE_FORWARD_MONTHS
-                                    ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER);
+                ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER);
             m_forwardMonths->SetRange(1, 120);
             m_forwardMonths->SetValue(rb_->getForwardMonths());
             itemBoxSizerHeader->Add(m_forwardMonths, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
@@ -542,37 +542,31 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         while ( tokenizer.HasMoreTokens() )
         {
             switch (i++) {
-                case 0:
-                    catID = wxAtoi(tokenizer.GetNextToken());
-                    break;
-                case 1:
-                    subCatID = wxAtoi(tokenizer.GetNextToken());
-                    break;
-                case 2:
-                    payeeID = wxAtoi(tokenizer.GetNextToken());
-                    break;
-                default:
-                    break;
+            case 0:
+                catID = wxAtoi(tokenizer.GetNextToken());
+                break;
+            case 1:
+                subCatID = wxAtoi(tokenizer.GetNextToken());
+                break;
+            case 2:
+                payeeID = wxAtoi(tokenizer.GetNextToken());
+                break;
+            default:
+                break;
             }
         }
 
         if (catID > 0)
         {
-            std::vector<std::pair<int, int>> cats;
-            std::pair<int, int> cat;
-            cat.first = catID;
+            std::vector<int> cats;
             if (-2 == subCatID) // include all sub categories
             {
-                Model_Category::Data *category = Model_Category::instance().get(catID);
-                for (const auto &subCategory : Model_Category::sub_category(category))
+                for (const auto& subCategory : Model_Category::sub_tree(Model_Category::instance().get(catID)))
                 {
-                    cat.second = subCategory.SUBCATEGID;
-                    cats.push_back(cat);
+                    cats.push_back(subCategory.CATEGID);
                 }
-                subCatID = -1;          
             }
-            cat.second = subCatID;
-            cats.push_back(cat);
+            cats.push_back(catID);
             rb_->m_filter.setCategoryList(cats);
         }
 

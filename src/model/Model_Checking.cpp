@@ -350,11 +350,11 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     {
         for (const auto& entry : m_splits)
             this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
-            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
+            + Model_Category::full_name(entry.CATEGID);
     }
     else
     {
-        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
+        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID);
     }
 }
 
@@ -380,11 +380,11 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     {
         for (const auto& entry : m_splits)
             this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
-            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
+            + Model_Category::full_name(entry.CATEGID);
     }
     else
     {
-        CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
+        CATEGNAME = Model_Category::full_name(r.CATEGID);
     }
 }
 
@@ -409,7 +409,7 @@ const wxString Model_Checking::Full_Data::get_currency_code(int account_id) cons
 {
     if (TYPE::TRANSFER == type(this->TRANSCODE))
     {
-        if (this->ACCOUNTID == account_id || account_id == -1) 
+        if (this->ACCOUNTID == account_id || account_id == -1)
             account_id = this->ACCOUNTID;
         else
             account_id = this->TOACCOUNTID;
@@ -455,17 +455,17 @@ wxString Model_Checking::Full_Data::info() const
     return info;
 }
 
-bool CompareUsedNotes(const std::tuple<int, wxString, wxString>& a, const std::tuple<int, wxString, wxString>& b) 
-{ 
-   if (std::get<0>(a) < std::get<0>(b)) return true;
-   if (std::get<0>(b) < std::get<0>(a)) return false;
+bool CompareUsedNotes(const std::tuple<int, wxString, wxString>& a, const std::tuple<int, wxString, wxString>& b)
+{
+    if (std::get<0>(a) < std::get<0>(b)) return true;
+    if (std::get<0>(b) < std::get<0>(a)) return false;
 
-   // a=b for primary condition, go to secondary (but reverse order)
-   if (std::get<1>(a) > std::get<1>(b)) return true;
-   if (std::get<1>(b) > std::get<1>(a)) return false;
+    // a=b for primary condition, go to secondary (but reverse order)
+    if (std::get<1>(a) > std::get<1>(b)) return true;
+    if (std::get<1>(b) > std::get<1>(a)) return false;
 
-   return false;
-} 
+    return false;
+}
 
 void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID)
 {
@@ -532,7 +532,6 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     data.STATUS = toShortStatus(all_status()[Option::instance().TransStatusReconciled()]);
     data.TRANSCODE = all_type()[WITHDRAWAL];
     data.CATEGID = -1;
-    data.SUBCATEGID = -1;
     data.FOLLOWUPID = -1;
     data.TRANSAMOUNT = 0;
     data.TOTRANSAMOUNT = 0;
@@ -548,7 +547,6 @@ bool Model_Checking::getTransactionData(Data &data, const Data* r)
         data.TOACCOUNTID = r->TOACCOUNTID;
         data.TRANSCODE = r->TRANSCODE;
         data.CATEGID = r->CATEGID;
-        data.SUBCATEGID = r->SUBCATEGID;
         data.TRANSAMOUNT = r->TRANSAMOUNT;
         data.TOTRANSAMOUNT = r->TOTRANSAMOUNT;
         data.FOLLOWUPID = r->FOLLOWUPID;
@@ -571,7 +569,6 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
     r->ACCOUNTID = data.ACCOUNTID;
     r->TRANSAMOUNT = data.TRANSAMOUNT;
     r->CATEGID = data.CATEGID;
-    r->SUBCATEGID = data.SUBCATEGID;
     r->TOACCOUNTID = data.TOACCOUNTID;
     r->TOTRANSAMOUNT = data.TOTRANSAMOUNT;
     r->NOTES = data.NOTES;
@@ -608,7 +605,7 @@ const wxString Model_Checking::Full_Data::to_json()
         for (const auto & item : m_splits)
         {
             json_writer.StartObject();
-            json_writer.Key(Model_Category::full_name(item.CATEGID, item.SUBCATEGID).utf8_str());
+            json_writer.Key(Model_Category::full_name(item.CATEGID).utf8_str());
             json_writer.Double(item.SPLITTRANSAMOUNT);
             json_writer.EndObject();
         }
@@ -617,7 +614,7 @@ const wxString Model_Checking::Full_Data::to_json()
     else
     {
         json_writer.Key("CATEG");
-        json_writer.String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).utf8_str());
+        json_writer.String(Model_Category::full_name(this->CATEGID).utf8_str());
     }
 
     json_writer.EndObject();
