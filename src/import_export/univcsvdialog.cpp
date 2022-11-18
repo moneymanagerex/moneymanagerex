@@ -1227,13 +1227,16 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     entry = tran.get_currency_code(fromAccountID);
                     break;
                 case UNIV_CSV_CATEGORY:
-                    if(isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
-                        entry = category ? wxGetTranslation(Model_Category::full_name(category->PARENTID), ":") : "";
-                    else
-                        entry = category ? wxGetTranslation(Model_Category::full_name(category->CATEGID), ":") : "";
+                    if (category)
+                    {
+                        if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
+                            entry = category ? wxGetTranslation(Model_Category::full_name(category->PARENTID), ":") : "";
+                        else
+                            entry = category ? wxGetTranslation(Model_Category::full_name(category->CATEGID), ":") : "";
+                    }
                     break;
                 case UNIV_CSV_SUBCATEGORY:
-                    if(category->PARENTID != -1)
+                    if(category && category->PARENTID != -1)
                         entry = category ? wxGetTranslation(category->CATEGNAME) : "";
                     break;
                 case UNIV_CSV_TRANSNUM:

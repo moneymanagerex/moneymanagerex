@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
 }
 
-double mmReportCategoryExpenses::AppendData(std::vector<mmReportCategoryExpenses::data_holder> data, std::map<int, std::map<int, double>> categoryStats, Model_Category::Data* category, int groupID, int level) {
+double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int, std::map<int, double>> &categoryStats, Model_Category::Data* category, int groupID, int level) {
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
@@ -70,13 +70,12 @@ void  mmReportCategoryExpenses::RefreshData()
 
     data_holder line;
     int groupID = 0;
-    double amt = 0;
     Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::PARENTID(-1));
     std::stable_sort(categories.begin(), categories.end(), SorterByCATEGNAME());
     std::reverse(categories.begin(), categories.end());
     for (const auto& category : categories)
     {
-        amt = categoryStats[category.CATEGID][0];
+        double amt = categoryStats[category.CATEGID][0];
         if (type_ == COME && amt < 0.0) amt = 0;
         if (type_ == GOES && amt > 0.0) amt = 0;
         

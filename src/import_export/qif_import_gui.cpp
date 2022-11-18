@@ -1187,7 +1187,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             s->TRANSID = trx->TRANSID;
             split.push_back(s);
         }
-        trx->CATEGID = -1 * m_splitDataSets.size();
+        trx->CATEGID = static_cast<int32_t>(-1) * m_splitDataSets.size();
         m_splitDataSets.push_back(split);
     }
     else

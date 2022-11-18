@@ -355,7 +355,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     const wxString& text = wxGetTextFromUser(prompt_msg, _("Add Category"), "");
     if (text.IsEmpty() || !validateName(text))
         return;
-    Model_Category::Data* selectedCategory = ((mmTreeItemCateg*)m_treeCtrl->GetItemData(m_selectedItemId))->getCategData();
+    Model_Category::Data* selectedCategory = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(m_selectedItemId))->getCategData();
     Model_Category::Data* category = Model_Category::instance().create();
     category->CATEGNAME = text;
     category->ACTIVE = 1;
@@ -646,10 +646,11 @@ void mmCategDialog::setTreeSelection(int category_id)
         Model_Category::Data* category = Model_Category::instance().get(category_id);
         wxString categoryName = "";
         if (category)
+        {
             categoryName = category->CATEGNAME;
-
-        setTreeSelection(categoryName, category->PARENTID);
-        m_categ_id = category_id;
+            setTreeSelection(categoryName, category->PARENTID);
+            m_categ_id = category_id;
+        }
     }
 }
 
