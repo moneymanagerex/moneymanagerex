@@ -93,6 +93,8 @@ public:
     static double value(const Data* r);
     /** Returns the calculated current value */
     static double value(const Data& r);
+    /** Returns the calculated value at a given date */
+    double valueAtDate(const Data* r, const wxDate date);
 };
 
 #endif // 
