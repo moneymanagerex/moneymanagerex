@@ -72,7 +72,7 @@ bool mmHomePagePanel::Create(wxWindow *parent
     , const wxString& name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxPanelBase::Create(parent, winid, pos, size, style, name);
+    mmPanelBase::Create(parent, winid, pos, size, style, name);
 
     createControls();
     GetSizer()->Fit(this);
