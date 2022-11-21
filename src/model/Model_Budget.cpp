@@ -25,7 +25,7 @@
 #include "option.h"
 
 Model_Budget::Model_Budget()
-: Model<DB_Table_BUDGETTABLE_V1>()
+    : Model<DB_Table_BUDGETTABLE_V1>()
 {
 }
 
@@ -43,7 +43,7 @@ Model_Budget& Model_Budget::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
-    
+
     return ins;
 }
 
@@ -93,28 +93,29 @@ DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ENUM period, OP op)
 }
 
 void Model_Budget::getBudgetEntry(int budgetYearID
-    , std::map<int, std::map<int, PERIOD_ENUM> > &budgetPeriod
-    , std::map<int, std::map<int, double> > &budgetAmt
-    , std::map<int, std::map<int, wxString> > &budgetNotes)
+    , std::map<int, PERIOD_ENUM> &budgetPeriod
+    , std::map<int, double> &budgetAmt
+    , std::map<int, wxString> &budgetNotes)
 {
     //Set std::map with zerros
     double value = 0;
-    for (const auto& category : Model_Category::all_categories())
+    for (const auto& category : Model_Category::instance().all())
     {
-        budgetPeriod[category.second.first][category.second.second] = NONE;
-        budgetAmt[category.second.first][category.second.second] = value;
+        budgetPeriod[category.CATEGID] = NONE;
+        budgetAmt[category.CATEGID] = value;
+
     }
 
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
     {
-        budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
-        budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
-        budgetNotes[budget.CATEGID][budget.SUBCATEGID] = budget.NOTES;
+        budgetPeriod[budget.CATEGID] = period(budget);
+        budgetAmt[budget.CATEGID] = budget.AMOUNT;
+        budgetNotes[budget.CATEGID] = budget.NOTES;
     }
 }
 
 void Model_Budget::getBudgetStats(
-      std::map<int, std::map<int, std::map<int, double> > > &budgetStats
+    std::map<int, std::map<int, double> > &budgetStats
     , mmDateRange* date_range
     , bool groupByMonth)
 {
@@ -123,41 +124,43 @@ void Model_Budget::getBudgetStats(
     double value = 0;
     const wxDateTime start_date(date_range->start_date());
 
-    for (const auto& category : Model_Category::all_categories())
-        for (int month = 0; month < 12; month++)
-            budgetStats[category.second.first][category.second.second][month] = value;
+    for (const auto& category : Model_Category::instance().all())
+    {
+        for (int month = 0; month < 12; month++) {
+            budgetStats[category.CATEGID][month] = value;
+        }
+    }
 
     //Calculations
-    std::map<int, std::map<int, double> > yearBudgetValue;
+    std::map<int, double> yearBudgetValue;
     const wxString year = wxString::Format("%i", start_date.GetYear());
     int budgetYearID = Model_Budgetyear::instance().Get(year);
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
-        yearBudgetValue[budget.CATEGID][budget.SUBCATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
+        yearBudgetValue[budget.CATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
 
     for (int month = 0; month < 12; month++)
     {
         for (const auto& cat : yearBudgetValue)
-            for (const auto& id : cat.second)
-                budgetStats[cat.first][id.first][month] += id.second;
+            budgetStats[cat.first][month] += cat.second;
 
         const wxString budgetYearMonth = wxString::Format("%s-%02d", year, month + 1);
         budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
         for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
             if (Option::instance().BudgetOverride())
-                budgetStats[budget.CATEGID][budget.SUBCATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
+                budgetStats[budget.CATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
             else
-                budgetStats[budget.CATEGID][budget.SUBCATEGID][month] += getEstimate(true, period(budget), budget.AMOUNT);
+                budgetStats[budget.CATEGID][month] += getEstimate(true, period(budget), budget.AMOUNT);
     }
     if (!groupByMonth)
     {
-        std::map<int, std::map<int, std::map<int, double> > > yearlyBudgetStats;
-        for (const auto& category : Model_Category::all_categories())
-            yearlyBudgetStats[category.second.first][category.second.second][0] = 0.0;
+        std::map<int, std::map<int,double> > yearlyBudgetStats;
+        for (const auto& category : Model_Category::instance().all()) {
+            yearlyBudgetStats[category.CATEGID][0] = 0.0;
+        }
 
         for (const auto& cat : budgetStats)
-            for (const auto& subcat : cat.second)
-                for (const auto& month : subcat.second)
-                    yearlyBudgetStats[cat.first][subcat.first][0] += month.second;
+            for (const auto& month : cat.second)
+                yearlyBudgetStats[cat.first][0] += month.second;
 
         budgetStats = yearlyBudgetStats;
     }

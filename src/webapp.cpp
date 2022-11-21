@@ -26,7 +26,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
 #include "model/Model_Infotable.h"
 
 //Expected WebAppVersion
@@ -143,7 +142,7 @@ bool mmWebApp::WebApp_CheckApiVersion()
 int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output)
 {
     const auto temp =
-R"(--Custom_Boundary_MMEX_WebApp
+        R"(--Custom_Boundary_MMEX_WebApp
 Content-Disposition: form-data; name="MMEX_Post"
 
 %s
@@ -226,15 +225,31 @@ bool mmWebApp::WebApp_UpdatePayee()
     {
         const Model_Category::Data* def_category = Model_Category::instance().get(payee.CATEGID);
         if (def_category != nullptr)
-            def_category_name = def_category->CATEGNAME;
+        {
+            if (def_category->PARENTID == -1)
+            {
+                def_category_name = def_category->CATEGNAME;
+                def_subcategory_name = "None";
+            }
+            else
+            {
+                Model_Category::Data* parent_category = Model_Category::instance().get(def_category->PARENTID);
+                if (parent_category != nullptr && parent_category->PARENTID == -1) {
+                    def_category_name = parent_category->CATEGNAME;
+                    def_subcategory_name = def_category->CATEGNAME;
+                }
+                else
+                {
+                    def_category_name = "None";
+                    def_subcategory_name = "None";
+                }
+            }
+        }
         else
+        {
             def_category_name = "None";
-
-        const Model_Subcategory::Data* def_subcategory = Model_Subcategory::instance().get(payee.SUBCATEGID);
-        if (def_subcategory != nullptr)
-            def_subcategory_name = def_subcategory->SUBCATEGNAME;
-        else
             def_subcategory_name = "None";
+        }
 
         json_writer.StartObject();
         json_writer.Key("PayeeName");
@@ -277,7 +292,7 @@ bool mmWebApp::WebApp_UpdateCategory()
     json_writer.Key("Categories");
 
     json_writer.StartArray();
-    const auto &categories = Model_Category::instance().all();
+    const auto &categories = Model_Category::instance().find(Model_Category::PARENTID(-1));
     for (const Model_Category::Data& category : categories)
     {
         bool first_category_run = true;
@@ -293,7 +308,7 @@ bool mmWebApp::WebApp_UpdateCategory()
             if (first_category_run == true)
             {
                 json_writer.Key("SubCategoryName");
-                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
+                json_writer.String(sub_category.CATEGNAME.utf8_str());
                 json_writer.EndObject();
 
                 first_category_run = false;
@@ -305,7 +320,7 @@ bool mmWebApp::WebApp_UpdateCategory()
                 json_writer.String(category.CATEGNAME.utf8_str());
 
                 json_writer.Key("SubCategoryName");
-                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
+                json_writer.String(sub_category.CATEGNAME.utf8_str());
                 json_writer.EndObject();
 
                 first_category_run = false;
@@ -447,7 +462,6 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     int ToAccountID = -1;
     int PayeeID = -1;
     int CategoryID = -1;
-    int SubCategoryID = -1;
     wxString TrStatus;
 
     //Search Account
@@ -495,7 +509,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
 
     //Search or insert Category
-    const Model_Category::Data* Category = Model_Category::instance().get(WebAppTrans.Category);
+    const Model_Category::Data* Category = Model_Category::instance().get(WebAppTrans.Category, -1);
     if (Category != nullptr)
         CategoryID = Category->CATEGID;
     else
@@ -503,24 +517,23 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         Model_Category::Data* NewCategory = Model_Category::instance().create();
         NewCategory->CATEGNAME = WebAppTrans.Category;
         NewCategory->ACTIVE = 1;
-        int NewCategoryID = Model_Category::instance().save(NewCategory);
-        CategoryID = NewCategoryID;
+        NewCategory->PARENTID = -1;
+        CategoryID = Model_Category::instance().save(NewCategory);
     }
 
     //Search or insert SubCategory
     if (!WebAppTrans.SubCategory.IsEmpty())
     {
-        const Model_Subcategory::Data* SubCategory = Model_Subcategory::instance().get(WebAppTrans.SubCategory, CategoryID);
+        const Model_Category::Data* SubCategory = Model_Category::instance().get(WebAppTrans.SubCategory, CategoryID);
         if (SubCategory != nullptr)
-            SubCategoryID = SubCategory->SUBCATEGID;
+            CategoryID = SubCategory->CATEGID;
         else if (CategoryID != -1)
         {
-            Model_Subcategory::Data* NewSubCategory = Model_Subcategory::instance().create();
-            NewSubCategory->CATEGID = CategoryID;
-            NewSubCategory->SUBCATEGNAME = WebAppTrans.SubCategory;
+            Model_Category::Data* NewSubCategory = Model_Category::instance().create();
+            NewSubCategory->PARENTID = CategoryID;
+            NewSubCategory->CATEGNAME = WebAppTrans.SubCategory;
             NewSubCategory->ACTIVE = 1;
-            int NewSubCategoryID = Model_Subcategory::instance().save(NewSubCategory);
-            SubCategoryID = NewSubCategoryID;
+            CategoryID = Model_Category::instance().save(NewSubCategory);
         }
     }
 
@@ -534,7 +547,6 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         NewPayee->PAYEENAME = WebAppTrans.Payee;
         NewPayee->ACTIVE = 1;
         NewPayee->CATEGID = CategoryID;
-        NewPayee->SUBCATEGID = SubCategoryID;
         int NewPayeeID = Model_Payee::instance().save(NewPayee);
         PayeeID = NewPayeeID;
     }
@@ -562,7 +574,6 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     desktopNewTransaction->TOACCOUNTID = ToAccountID;
     desktopNewTransaction->PAYEEID = PayeeID;
     desktopNewTransaction->CATEGID = CategoryID;
-    desktopNewTransaction->SUBCATEGID = SubCategoryID;
     desktopNewTransaction->TRANSACTIONNUMBER = "";
     desktopNewTransaction->NOTES = WebAppTrans.Notes;
     desktopNewTransaction->FOLLOWUPID = -1;
@@ -603,10 +614,10 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                     if (DesktopAttachmentName != wxEmptyString)
                     {
                         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
-                            NewAttachment->REFTYPE = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-                            NewAttachment->REFID = DeskNewTrID;
-                            NewAttachment->DESCRIPTION = _("Attachment") + "_" << AttachmentNr;
-                            NewAttachment->FILENAME = DesktopAttachmentName;
+                        NewAttachment->REFTYPE = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                        NewAttachment->REFID = DeskNewTrID;
+                        NewAttachment->DESCRIPTION = _("Attachment") + "_" << AttachmentNr;
+                        NewAttachment->FILENAME = DesktopAttachmentName;
                         Model_Attachment::instance().save(NewAttachment);
                     }
                     else

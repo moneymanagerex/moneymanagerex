@@ -39,15 +39,39 @@ namespace tags
 </body>
 <script>
     $(".toggle").click(function() {
-        var kids = $(this).nextUntil(".toggle")
-        kids.toggle(kids.first().is(":hidden"))
+		var text = $("td a", this).text();
+        if ($(this).next("tr").is(":hidden")) {
+            $("tr[data-row-pid='" + $(this).data("row-id") + "']").show();
+            $("td a", this).text(text.replace(text[0],"\u2212"));
+        } else {
+            $("td a", this).text(text.replace(text[0],"+"));
+            $("tr[data-row-pid^='" + $(this).data("row-id") + "']").each(function(){
+                if($(this).hasClass('toggle')){
+                    text = $("td a", this).text();
+                    $("td a", this).text(text.replace(text[0],"+"));
+                }
+                $(this).hide();
+            });
+        }
     })
+
     function expandAllToggles() {
-        $(".xtoggle").show();
+        $("tr.toggle td a").each(function(){
+            var text = $(this).text();
+            $(this).text(text.replace(text[0],"\u2212"));
+        });
+        $("tr").show();
     }
+
     function collapseAllToggles() {
-        $(".xtoggle").hide();
+    	$("tr.toggle td a").each(function(){
+            var text = $(this).text();
+            $(this).text(text.replace(text[0],"+"));
+        });
+        $("tr.toggle[data-row-pid!='0.']").hide();
+        $("tr.xtoggle").hide();
     }
+
     collapseAllToggles();
     var elements = document.getElementsByClassName('money');
     for (var i = 0; i < elements.length; i++) {
@@ -75,7 +99,7 @@ namespace tags
 <script src = 'memory:sorttable.js'></script>
 <script src = 'memory:jquery.min.js'></script>
 <style>
-    /* Sortable tables */
+     * Sortable tables */
     table.sortable thead {cursor: default;}
     body { font-size: %s%%; }
 %s

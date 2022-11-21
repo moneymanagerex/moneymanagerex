@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
 #include "reports/mmDateRange.h"
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance()
@@ -48,7 +47,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     } else
     {
         startDay = 1;
-        startMonth = wxDateTime::Jan;    
+        startMonth = wxDateTime::Jan;
     }
 
     long startYear;
@@ -87,12 +86,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
-    std::map<int, std::map<int, double> > budgetAmt;
-    std::map<int, std::map<int, wxString> > budgetNotes;
+    std::map<int, Model_Budget::PERIOD_ENUM> budgetPeriod;
+    std::map<int, double> budgetAmt;
+    std::map<int, wxString> budgetNotes;
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
 
-    std::map<int, std::map<int, std::map<int, double> > > categoryStats;
+    std::map<int, std::map<int, double> > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
         , &date_range
@@ -100,8 +99,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         , true
         , (evaluateTransfer ? &budgetAmt : nullptr)
         , Option::instance().BudgetFinancialYears());
-    
-    std::map<int, std::map<int, std::map<int, double> > > budgetStats;
+
+    std::map<int, std::map<int, double> > budgetStats;
     Model_Budget::instance().getBudgetStats(budgetStats, &date_range, true);
 
     //Totals
@@ -139,7 +138,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         if (m >= 12) m -= 12;
                         hb.addTableHeaderCell(wxGetTranslation(
                             wxDateTime::GetEnglishMonthName(wxDateTime::Month(m)
-                            , wxDateTime::Name_Abbr)), "text-center", 1);
+                                , wxDateTime::Name_Abbr)), "text-center", 1);
                     }
                     hb.addTableHeaderCell(_("Total"), "text-center", 2);
                 }
@@ -161,21 +160,19 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             {
                 for (const auto& category : Model_Category::all_categories())
                 {
-                    const int catID = category.second.first;
-                    const int subCatID = category.second.second;
+                    const int catID = category.second;
                     hb.startTableRow();
-                    hb.addTableCellLink(wxString::Format("viewtrans:%d:%d"
-                        , category.second.first
-                        , category.second.second)
+                    hb.addTableCellLink(wxString::Format("viewtrans:%d"
+                        , category.second)
                         , category.first);
                     double yearActual = 0;
                     double yearEstimate = 0;
                     int totalMonth = 0;
-                    for (const auto &i : categoryStats[catID][subCatID])
+                    for (const auto &i : categoryStats[catID])
                     {
                         hb.startTableCell(" style='text-align:right;' nowrap");
 
-                        const double estimate = budgetStats[catID][subCatID][i.first];
+                        const double estimate = budgetStats[catID][i.first];
                         wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
                         hb.addText(estimateVal);
                         hb.addLineBreak();
@@ -203,12 +200,13 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     hb.addText(actualVal);
                     hb.endTableCell();
 
-                    if ( yearEstimate != 0)
+                    if (yearEstimate != 0)
                     {
                         double percent = (yearActual / yearEstimate) * 100.0;
                         hb.addTableCell(wxString::Format("%.1f", percent), true);
-                    } else
-                        hb.addTableCell("-");   
+                    }
+                    else
+                        hb.addTableCell("-");
                     hb.endTableRow();
                 }
             }
@@ -216,11 +214,11 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.startTfoot();
             {
                 hb.startTotalTableRow();
-                
+
                 hb.addTableCell(wxString::Format("%s<br>%s<br>%s"
-                                    ,_("Estimated:")
-                                    ,_("Actual:")
-                                    ,_("Difference: ")));
+                    ,_("Estimated:")
+                    ,_("Actual:")
+                    ,_("Difference: ")));
 
                 double estimateGrandTotal = 0;
                 double actualGrandTotal = 0;
@@ -228,33 +226,33 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 {
                     hb.startTableCell(" style='text-align:right;' nowrap");
 
-                        const double estimate = estimateTotal[m];
-                        wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
-                        hb.addText(estimateVal);
-                        hb.addLineBreak();
+                    const double estimate = estimateTotal[m];
+                    wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
+                    hb.addText(estimateVal);
+                    hb.addLineBreak();
 
-                        const double actual = actualTotal[m];
-                        const auto actualVal = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
-                        hb.startSpan(actualVal, wxString::Format(" style='text-align:right;%s' nowrap"
-                            , (actual - estimate < 0) ? "color:red;" : ""));
-                        hb.endSpan();
-                        hb.addLineBreak();
+                    const double actual = actualTotal[m];
+                    const auto actualVal = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
+                    hb.startSpan(actualVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                        , (actual - estimate < 0) ? "color:red;" : ""));
+                    hb.endSpan();
+                    hb.addLineBreak();
 
-                        const double difference = actual - estimate;
-                        const auto differenceVal = Model_Currency::toString(difference, Model_Currency::GetBaseCurrency());
-                        hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                    const double difference = actual - estimate;
+                    const auto differenceVal = Model_Currency::toString(difference, Model_Currency::GetBaseCurrency());
+                    hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                        , (difference < 0) ? "color:red;" : ""));
+                    hb.endSpan();
+                    hb.addLineBreak();
+
+                    if (estimate != 0)
+                    {
+                        double percent = (actual / estimate) * 100.0;
+                        const auto percentVal = wxString::Format("%.1f%%", percent);
+                        hb.startSpan(percentVal, wxString::Format(" style='text-align:right;%s' nowrap"
                             , (difference < 0) ? "color:red;" : ""));
                         hb.endSpan();
-                        hb.addLineBreak();
-
-                        if (estimate != 0)
-                        {
-                            double percent = (actual / estimate) * 100.0;
-                            const auto percentVal = wxString::Format("%.1f%%", percent);
-                            hb.startSpan(percentVal, wxString::Format(" style='text-align:right;%s' nowrap"
-                                , (difference < 0) ? "color:red;" : ""));
-                            hb.endSpan();
-                        }
+                    }
 
                     hb.endTableCell();
                     estimateGrandTotal += estimate;
@@ -263,30 +261,30 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 // Grand total end
                 const auto estimateVal = Model_Currency::toString(estimateGrandTotal, Model_Currency::GetBaseCurrency());
                 hb.startTableCell(" style='text-align:right;' nowrap");
-                    hb.addText(estimateVal);
-                    hb.addLineBreak();
+                hb.addText(estimateVal);
+                hb.addLineBreak();
 
-                    const auto actualVal = Model_Currency::toString(actualGrandTotal, Model_Currency::GetBaseCurrency());
-                    hb.addText(actualVal);
-                    hb.addLineBreak();
+                const auto actualVal = Model_Currency::toString(actualGrandTotal, Model_Currency::GetBaseCurrency());
+                hb.addText(actualVal);
+                hb.addLineBreak();
 
-                    const double differenceGrandTotal = actualGrandTotal - estimateGrandTotal;
-                    const auto differenceVal = Model_Currency::toString(differenceGrandTotal, Model_Currency::GetBaseCurrency());
-                    hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                const double differenceGrandTotal = actualGrandTotal - estimateGrandTotal;
+                const auto differenceVal = Model_Currency::toString(differenceGrandTotal, Model_Currency::GetBaseCurrency());
+                hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                    , (differenceGrandTotal < 0) ? "color:red;" : ""));
+                hb.endSpan();
+                hb.addLineBreak();
+
+                if (estimateGrandTotal != 0)
+                {
+                    double percentGrandTotal = (actualGrandTotal / estimateGrandTotal) * 100.0;
+                    const auto percentVal = wxString::Format("%.1f%%", percentGrandTotal);
+                    hb.startSpan(percentVal, wxString::Format(" style='text-align:right;%s' nowrap"
                         , (differenceGrandTotal < 0) ? "color:red;" : ""));
                     hb.endSpan();
-                    hb.addLineBreak();
-
-                    if (estimateGrandTotal != 0)
-                    {
-                        double percentGrandTotal = (actualGrandTotal / estimateGrandTotal) * 100.0;
-                        const auto percentVal = wxString::Format("%.1f%%", percentGrandTotal);
-                        hb.startSpan(percentVal, wxString::Format(" style='text-align:right;%s' nowrap"
-                            , (differenceGrandTotal < 0) ? "color:red;" : ""));
-                        hb.endSpan();
-                    }
-                    hb.endTableCell();
-                    hb.addEmptyTableCell();
+                }
+                hb.endTableCell();
+                hb.addEmptyTableCell();
                 hb.endTableRow();
             }
             hb.endTfoot();

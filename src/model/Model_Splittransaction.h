@@ -27,7 +27,6 @@
 struct Split
 {
     int CATEGID;
-    int SUBCATEGID;
     double SPLITTRANSAMOUNT;
     wxString NOTES;
 };

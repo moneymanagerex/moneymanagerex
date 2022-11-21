@@ -56,11 +56,11 @@ public:
     static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL);
 
     static void getBudgetEntry(int budgetYearID, std::map<int,
-        std::map<int, PERIOD_ENUM> > &budgetPeriod,
-        std::map<int, std::map<int, double> > &budgetAmt,
-        std::map<int, std::map<int, wxString> > &budgetNotes);
+       PERIOD_ENUM> &budgetPeriod,
+        std::map<int, double> &budgetAmt,
+        std::map<int, wxString> &budgetNotes);
     static void getBudgetStats(
-        std::map<int, std::map<int, std::map<int, double> > > &budgetStats
+        std::map<int, std::map<int, double> > &budgetStats
         , mmDateRange* date_range
         , bool groupByMonth);
     static void copyBudgetYear(int newYearID, int baseYearID);

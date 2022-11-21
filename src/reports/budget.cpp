@@ -71,9 +71,9 @@ void mmReportBudget::GetFinancialYearValues(int& day, wxDateTime::Month& month) 
         day = 28;
     }
     else if ( ((day > 30) && (month == wxDateTime::Sep)) ||
-              ((day > 30) && (month == wxDateTime::Apr)) ||
-              ((day > 30) && (month == wxDateTime::Jun)) ||
-              ((day > 30) && (month == wxDateTime::Nov)) )
+        ((day > 30) && (month == wxDateTime::Apr)) ||
+        ((day > 30) && (month == wxDateTime::Jun)) ||
+        ((day > 30) && (month == wxDateTime::Nov)) )
     {
         day = 30;
     }

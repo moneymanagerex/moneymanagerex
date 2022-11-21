@@ -85,7 +85,6 @@ int Model_Budgetsplittransaction::update(const Data_Set& rows, int transactionID
             split_item->TRANSID = transactionID;
             split_item->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
             split_item->CATEGID = item.CATEGID;
-            split_item->SUBCATEGID = item.SUBCATEGID;
             split_item->NOTES = item.NOTES;
             split_items.push_back(*split_item);
         }

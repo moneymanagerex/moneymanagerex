@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013 - 2022 Nikolay Akimov
-Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ class mmGUIFrame;
 class budgetingListCtrl : public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(budgetingListCtrl)
-    wxDECLARE_EVENT_TABLE();
+        wxDECLARE_EVENT_TABLE();
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id);
@@ -103,11 +103,12 @@ private:
 
     mmGUIFrame* m_frame;
     std::vector<std::pair<int, int> > budget_;
+    std::map<int, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
     std::map<int, std::pair<double, double> > budgetTotals_;
-    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod_;
-    std::map<int, std::map<int, double> > budgetAmt_;
-    std::map<int, std::map<int, wxString> > budgetNotes_;
-    std::map<int, std::map<int, std::map<int, double> > > categoryStats_;
+    std::map<int, Model_Budget::PERIOD_ENUM> budgetPeriod_;
+    std::map<int, double> budgetAmt_;
+    std::map<int, wxString> budgetNotes_;
+    std::map<int, std::map<int,double> > categoryStats_;
     bool monthlyBudget_;
     wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
     wxString currentView_;
@@ -133,7 +134,7 @@ private:
     void sortTable();
     bool DisplayEntryAllowed(int categoryID, int subcategoryID);
     void UpdateBudgetHeading();
-    double getEstimate(int category, int subcategory) const;
+    double getEstimate(int category) const;
     wxString GetPanelTitle() const;
 
     /* Event handlers for Buttons */
@@ -144,7 +145,6 @@ private:
     {
         COL_ICON = 0,
         COL_CATEGORY,
-        COL_SUBCATEGORY,
         COL_FREQUENCY,
         COL_AMOUNT,
         COL_ESTIMATED,
