@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
 }
 
-double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int, std::map<int, double>> &categoryStats, Model_Category::Data* category, int groupID, int level) {
+double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int groupID, int level) {
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
@@ -50,7 +50,7 @@ double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryEx
     std::reverse(subcategories.begin(), subcategories.end());
     double subamount = 0;
     for (const auto& subcategory : subcategories) {
-        double amount = AppendData(data_, categoryStats, (Model_Category::Data*)&subcategory, groupID, level + 1);
+        double amount = AppendData(data_, categoryStats, &subcategory, groupID, level + 1);
         if (amount != 0) data_.insert(data_.begin(), { category->CATEGID, subcategory.CATEGID, category->CATEGNAME, amount, groupID, level });
         subamount += amount;
     }
@@ -85,7 +85,7 @@ void  mmReportCategoryExpenses::RefreshData()
         double subamount = 0;
         for (const auto& sub_category : subcategories)
         {
-            double amount = AppendData(data_, categoryStats, (Model_Category::Data*)&sub_category, category.CATEGID, 1);
+            double amount = AppendData(data_, categoryStats, &sub_category, category.CATEGID, 1);
             if (amount != 0) data_.insert(data_.begin(), { category.CATEGID, sub_category.CATEGID, category.CATEGNAME, amount, category.CATEGID, 0 });
             subamount += amount;
         }

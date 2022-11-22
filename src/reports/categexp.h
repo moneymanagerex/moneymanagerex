@@ -36,7 +36,8 @@ public:
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
-    double AppendData(const std::vector<data_holder>& data, std::map<int, std::map<int, double>>& categoryStats, Model_Category::Data* category, int groupID, int level);
+    double AppendData(const std::vector<data_holder>& data, std::map<int, std::map<int, double>>& categoryStats,
+        const DB_Table_CATEGORY_V1::Data* category, int groupID, int level);
     virtual wxString getHTMLText();
 
 protected:
