@@ -629,7 +629,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     switch (column)
     {
     case COL_ICON:
-        return " ";
+        return "";
     case COL_ID:
         return wxString::Format("%i", asset.ASSETID).Trim();
     case COL_NAME:
