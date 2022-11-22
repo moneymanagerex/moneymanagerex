@@ -8,10 +8,10 @@ assignees: ''
 ---
 
 MMEX version:
- - [ ] 1.5.20
  - [ ] 1.5.21
- - [x] 1.6.0
- - [ ] 1.6.1 Beta
+ - [ ] 1.6.0
+ - [x] 1.6.1
+ - [ ] 1.6.2 Alpha
  - [ ] Other (please specify)
 
 Note: bug reporters are expected to have verified the bug still exists
