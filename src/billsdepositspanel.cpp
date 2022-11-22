@@ -127,22 +127,22 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 
-    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Payment"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Number"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
+    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Payment"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Number"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Notes"), 150, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "BD_COL%d_WIDTH";
     m_default_sort_column = m_bdp->col_sort();
