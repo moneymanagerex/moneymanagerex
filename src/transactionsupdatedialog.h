@@ -75,7 +75,7 @@ private:
     wxTextCtrl* m_notes_ctrl = nullptr;
     std::vector<int> m_transaction_id;
     Model_Currency::Data* m_currency = nullptr;
-    bool m_hasTransfers, m_hasNonTransfers, m_hasSplits;
+    bool m_hasTransfers = false, m_hasNonTransfers = false, m_hasSplits = false;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
     enum
