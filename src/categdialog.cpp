@@ -363,10 +363,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(-1));
         if (!categories.empty())
         {
-            wxString errMsg = _("Category with same name exists for this parent");
-            errMsg << "\n\n" << _("Tip: If category added now, check bottom of list.\n"
-                "Category will be in sorted order next time dialog appears");
-            wxMessageBox(errMsg, _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Category with same name exists for this parent"), _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = -1;
@@ -375,10 +372,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(selectedCategory->CATEGID));
         if (!categories.empty())
         {
-            wxString errMsg = _("Category with same name exists for this parent");
-            errMsg << "\n\n" << _("Tip: If category added now, check bottom of list.\n"
-                "Category will be in sorted order next time dialog appears");
-            wxMessageBox(errMsg, _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Category with same name exists for this parent"), _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = selectedCategory->CATEGID;
@@ -417,18 +411,37 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
     auto destItem = event.GetItem();
     int categID = -1;
     Model_Category::Data* newParent = nullptr;
+
     if (destItem != root_) {
         newParent = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(destItem))->getCategData();
         categID = newParent->CATEGID;
     }
+
     if (categID == m_dragSourceCATEGID) return;
+
     Model_Category::Data* sourceCat = Model_Category::instance().get(m_dragSourceCATEGID);
+
+    if (categID == sourceCat->PARENTID) return;
+
     if (!Model_Category::instance().find(Model_Category::CATEGNAME(sourceCat->CATEGNAME), Model_Category::PARENTID(categID)).empty() && sourceCat->PARENTID != categID)
     {
         wxMessageBox(_("You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving.")
             , _("Sub Category with same name exists")
             , wxOK | wxICON_ERROR);
         return;
+    }
+
+    wxString subtree_root;
+    for (const auto& subcat : Model_Category::sub_tree(sourceCat))
+    {
+        if (subcat.PARENTID == sourceCat->CATEGID) subtree_root = subcat.CATEGNAME;
+        if (subcat.CATEGID == categID)
+        {
+            wxMessageBox(wxString::Format("You cannot move a category to one of its own descendants.\n\nConsider first relocating subcategory %s to move the subtree.", subtree_root)
+                , _("Target category is a descendant")
+                , wxOK | wxICON_ERROR);
+            return;
+        }
     }
 
     wxString moveMessage = wxString::Format(
