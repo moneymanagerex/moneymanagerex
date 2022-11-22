@@ -265,44 +265,44 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
-    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER));
+    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER, false));
     m_real_columns.push_back(COL_IMGSTATUS);
-    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_ID);
-    m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NUMBER);
     if (m_cp->isAllAccounts_ || m_cp->isTrash_)
     {
-        m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
+        m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT, true));
         m_real_columns.push_back(COL_ACCOUNT);
     }
-    m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_PAYEE_STR);
-    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_CENTER));
+    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_CENTER, true));
     m_real_columns.push_back(COL_STATUS);
-    m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_CATEGORY);
-    m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_WITHDRAWAL);
-    m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_DEPOSIT);
     if (!m_cp->isAllAccounts_ && !m_cp->isTrash_)
     {
-        m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+        m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
         m_real_columns.push_back(COL_BALANCE);
         Model_Account::Data* account = Model_Account::instance().get(m_cp->m_AccountID);
         if (0 != account->CREDITLIMIT)
         {
-            m_columns.push_back(PANEL_COLUMN(_("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+            m_columns.push_back(PANEL_COLUMN(_("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
             m_real_columns.push_back(COL_CREDIT);
         }
     }
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NOTES);
     if (m_cp->isTrash_) {
-        m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
+        m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
         m_real_columns.push_back(COL_DELETEDTIME);
     }
 
@@ -322,7 +322,7 @@ TransactionListCtrl::TransactionListCtrl(
                 align = wxLIST_FORMAT_CENTER; 
             else
                 align = wxLIST_FORMAT_LEFT; 
-            m_columns.push_back(PANEL_COLUMN(name, 100, align));
+            m_columns.push_back(PANEL_COLUMN(name, 100, align, true));
             m_real_columns.push_back(static_cast<EColumn>(i));
         }
         i++;
