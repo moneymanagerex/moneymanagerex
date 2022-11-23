@@ -164,12 +164,13 @@ void mmCheckingPanel::filterTable()
     for (const auto& tran : i)
     {
          double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
-            m_account_balance += transaction_amount;
-
-        if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
-            m_reconciled_balance += transaction_amount;
-
+        if (tran.DELETEDTIME.IsEmpty())
+        {
+            if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+                m_account_balance += transaction_amount;
+            if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
+                m_reconciled_balance += transaction_amount;
+        }
         if (ignore_future) {
             if (tran.TRANSDATE > today_date_string) continue;
         }
