@@ -95,7 +95,6 @@ wxString mmReportMyUsage::getHTMLText()
 
              if (!pobj.HasMember("seconds") || !pobj["seconds"].IsDouble())
                  continue;
-             const auto s = pobj["seconds"].GetDouble();
 
              usage_by_module[module] += 1;
          }

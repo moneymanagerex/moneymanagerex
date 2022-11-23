@@ -137,8 +137,6 @@ void mmReportCashFlow::getTransactions()
 
         int repeatsType = entry.REPEATS;
         int numRepeats = entry.NUMOCCURRENCES;
-        double amt = entry.TRANSAMOUNT;
-        double toAmt = entry.TOTRANSAMOUNT;
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         repeatsType %= BD_REPEATS_MULTIPLEX_BASE;
