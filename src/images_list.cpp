@@ -255,7 +255,7 @@ wxVector<wxBitmapBundle> navtree_images_list(const int size)
 }
 
 
-static unsigned int getIconSizeIdx(const int iconSize)
+static int getIconSizeIdx(const int iconSize)
 {
     const int x = (iconSize > 0) ? iconSize : Option::instance().getIconSize();
     auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
