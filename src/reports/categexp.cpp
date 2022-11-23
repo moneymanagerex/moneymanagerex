@@ -143,7 +143,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     if (!expense_vector.empty())
     {
         std::sort(expense_vector.begin(), expense_vector.end());
-        std::stable_sort(expense_vector.begin(), expense_vector.end(), [](auto& left, auto& right) {
+        std::stable_sort(expense_vector.begin(), expense_vector.end(), [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
             return left.second < right.second;});
         for (const auto& i : expense_vector)
         {
@@ -156,7 +156,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     if (!income_vector.empty())
     {
         std::sort(income_vector.begin(), income_vector.end());
-        std::stable_sort(income_vector.begin(), income_vector.end(), [](auto& left, auto& right) {
+        std::stable_sort(income_vector.begin(), income_vector.end(), [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
             return left.second > right.second; });
         for (const auto& i : income_vector)
         {
