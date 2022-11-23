@@ -135,7 +135,7 @@ wxString mmReportMyUsage::getHTMLText()
 
         wxArrayString labels;
 
-        std::stable_sort(usage_vector.begin(), usage_vector.end(), [](auto& left, auto& right) {
+        std::stable_sort(usage_vector.begin(), usage_vector.end(), [](const std::pair<wxString, int>& left, const std::pair<wxString, int>& right) {
             return left.second > right.second;});
 
         for (const auto &stats : usage_vector)
