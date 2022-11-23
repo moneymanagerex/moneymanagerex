@@ -113,10 +113,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     GraphData gdExpenses, gdIncome;
     GraphSeries gsExpenses, gsIncome;
-
+    std::vector<std::pair<wxString, double>> expense_vector;
+    std::vector<std::pair<wxString, double>> income_vector;
     std::map <int, int> group_counter;
     std::map <int, std::map<int, double>> group_total;
-
+    
     for (const auto& entry : sortedData)
     {
         if (entry.subCatID != -1 || entry.level == 0) group_counter[entry.catID] = 1;
@@ -129,25 +130,39 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 if (entry.amount < 0)
                 {
-                    gsExpenses.values.push_back({ entry.amount });
-                    gdExpenses.labels.push_back(Model_Category::full_name(entry.catID));
+                    expense_vector.push_back(std::make_pair(Model_Category::full_name(entry.catID), entry.amount));
                 }
                 else if (entry.amount > 0)
                 {
-                    gsIncome.values.push_back({ entry.amount });
-                    gdIncome.labels.push_back(Model_Category::full_name(entry.catID));
+                    income_vector.push_back(std::make_pair(Model_Category::full_name(entry.catID), entry.amount));
                 }
             }
         }
     }
 
-    if (!gsExpenses.values.empty())
+    if (!expense_vector.empty())
     {
+        std::sort(expense_vector.begin(), expense_vector.end());
+        std::stable_sort(expense_vector.begin(), expense_vector.end(), [](auto& left, auto& right) {
+            return left.second < right.second;});
+        for (const auto& i : expense_vector)
+        {
+            gsExpenses.values.push_back({ i.second });
+            gdExpenses.labels.push_back(i.first);
+        }
         gsExpenses.name = _("Expenses");
         gdExpenses.series.push_back(gsExpenses);
     }
-    if (!gsIncome.values.empty())
+    if (!income_vector.empty())
     {
+        std::sort(income_vector.begin(), income_vector.end());
+        std::stable_sort(income_vector.begin(), income_vector.end(), [](auto& left, auto& right) {
+            return left.second > right.second; });
+        for (const auto& i : income_vector)
+        {
+            gsIncome.values.push_back({ i.second });
+            gdIncome.labels.push_back(i.first);
+        }
         gsIncome.name = _("Income");
         gdIncome.series.push_back(gsIncome);
     }
