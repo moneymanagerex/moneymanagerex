@@ -407,11 +407,13 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
-    if (mmDoCheckRow(row_num_))
-    {
-        activateNewRow();
-        FillControls();
-    }
+    for (int id=0; id<m_splits.size(); id++)
+        if (!mmDoCheckRow(id))
+            return;
+    
+    activateNewRow();
+    FillControls();
+
     event.Skip();
 }
 
@@ -419,6 +421,11 @@ void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
 {
     if (m_splits.size() < 2)    // Should keep one split
         return;
+
+    for (int id=0; id<m_splits.size(); id++)
+        if ((id != row_num_) && !mmDoCheckRow(id))
+            return;
+            
     m_splits.erase(m_splits.begin() + row_num_ );
     if (row_num_ > 0)
         row_num_--;
