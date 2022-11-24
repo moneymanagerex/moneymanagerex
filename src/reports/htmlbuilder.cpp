@@ -114,8 +114,8 @@ namespace tags
     static const wxString DIV_COL3 = "<div class='col-xs-3'></div>\n<div class='col-xs-6'>\n"; //25_50%
     static const wxString DIV_COL1 = "<div class='col-xs-1'></div>\n<div class='col-xs-10'>\n"; //8%
     static const wxString DIV_END = "</div>\n";
-    static const wxString TABLE_START = "<table class='table table-bordered'>\n";
-    static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
+    static const wxString TABLE_START = "<table class='table table-bordered report-table'>\n";
+    static const wxString SORTTABLE_START = "<table class='sortable table report-table'>\n";
     static const wxString TABLE_END = "</table>\n";
     static const wxString THEAD_START = "<thead>\n";
     static const wxString THEAD_END = "</thead>\n";
