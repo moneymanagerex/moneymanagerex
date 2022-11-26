@@ -23,13 +23,20 @@
 #include "Model.h"
 #include <wx/sharedptr.h>
 #include "db/DB_Table_Category_V1.h"
-#include "Model_Subcategory.h"
 
 class mmDateRange;
 class Model_Category : public Model<DB_Table_CATEGORY_V1>
 {
 public:
     using Model<DB_Table_CATEGORY_V1>::get;
+    struct SorterByFULLNAME
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return full_name(x.CATEGID) < full_name(y.CATEGID);
+        }
+    };
 
 public:
     Model_Category();
@@ -52,27 +59,29 @@ public:
 
 public:
     /** Return the Data record for the given category name */
-    Data* get(const wxString& name);
+    Data* get(const wxString& name, const int& parentid);
+    Data* get(const wxString& name, const wxString& parentname);
 
     const wxArrayString FilterCategory(const wxString& category_pattern);
-    static const std::map<wxString, std::pair<int, int> > all_categories(bool excludeHidden = false);
-    static Model_Subcategory::Data_Set sub_category(const Data* r);
-    static Model_Subcategory::Data_Set sub_category(const Data& r);
-    static const wxString full_name(int category_id, int subcategory_id);
-    static const wxString full_name(int category_id, int subcategory_id, wxString delimiter);
-    static bool is_hidden(int catID, int subcatID);
-    static bool is_used(int id, int sub_id);
+    static const std::map<wxString, int > all_categories(bool excludeHidden = false);
+    static Model_Category::Data_Set sub_category(const Data* r);
+    static Model_Category::Data_Set sub_category(const Data& r);
+    static Model_Category::Data_Set sub_tree(const Data& r);
+    static Model_Category::Data_Set sub_tree(const Data* r);
+    static const wxString full_name(int category_id);
+    static const wxString full_name(int category_id, wxString delimiter);
+    static bool is_hidden(int catID);
     static bool is_used(int id);
-    static bool has_income(int id, int sub_id = -1);
+    static bool has_income(int id);
     static void getCategoryStats(
-        std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+        std::map<int, std::map<int, double>> &categoryStats
         , wxSharedPtr<wxArrayString> accountArray
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
-        , std::map<int, std::map<int, double> > *budgetAmt = nullptr
+        , std::map<int, double >*budgetAmt = nullptr
         , bool fin_months = false);
 private:
-    static const wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = nullptr);
+    static const wxString full_name(const Data* category);
 
 };
 

@@ -24,8 +24,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../reports/htmlbuilder.h"
 
 mmFilterTransactions::mmFilterTransactions()
-{  
-    this->clear();  
+{
+    this->clear();
 }
 
 void mmFilterTransactions::clear()
@@ -63,11 +63,11 @@ void mmFilterTransactions::setPayeeList(const wxArrayInt payeeList)
     _payeeList = payeeList;
 }
 
-void mmFilterTransactions::setCategoryList(const std::vector<std::pair<int, int>> &categoryList)
+void mmFilterTransactions::setCategoryList(const std::vector<int> &categoryList)
 {
     _categoryFilter = true;
     _categoryList = categoryList;
-} 
+}
 
 template<class MODEL, class DATA>
 bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
@@ -75,21 +75,19 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, t
     const auto it = splits.find(tran.id());
     if (it == splits.end())
     {
-        std::vector<std::pair<int, int>>::iterator it2;
-        for (it2 = _categoryList.begin(); it2 != _categoryList.end(); ++it2)
+        for (int it2 : _categoryList)
         {
-            if ((it2->first == tran.CATEGID) && (it2->second == tran.SUBCATEGID))
+            if (it2 == tran.CATEGID)
                 return true;
         }
     }
     else
     {
-        for (const auto &split : it->second)
+        for (const auto& split : it->second)
         {
-            std::vector<std::pair<int, int>>::iterator it2;
-            for (it2 = _categoryList.begin(); it2 != _categoryList.end(); ++it2)
+            for (int it2 : _categoryList)
             {
-                if ((it2->first == split.CATEGID) && (it2->second == split.SUBCATEGID))
+                if (it2 == split.CATEGID)
                     return true;
             }
         }
@@ -103,8 +101,8 @@ bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
 {
     bool ok = true;
     if (_accountFilter
-            && (_accountList.Index(tran.ACCOUNTID) == wxNOT_FOUND)
-            && (_accountList.Index(tran.TOACCOUNTID) == wxNOT_FOUND))
+        && (_accountList.Index(tran.ACCOUNTID) == wxNOT_FOUND)
+        && (_accountList.Index(tran.TOACCOUNTID) == wxNOT_FOUND))
         ok = false;
     else if (_dateFilter && ((tran.TRANSDATE < _startDate) || (tran.TRANSDATE > _endDate)))
         ok = false;
@@ -126,7 +124,7 @@ wxString mmFilterTransactions::getHTML()
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
-        if (full_tran.has_split()) 
+        if (full_tran.has_split())
         {
             bool found = true;
             for (const auto& split : full_tran.m_splits)
@@ -137,7 +135,7 @@ wxString mmFilterTransactions::getHTML()
 
                     for (const auto& it : _categoryList)
                     {
-                        if ((it.first == split.CATEGID) && (it.second == split.SUBCATEGID)) {
+                        if (it == split.CATEGID) {
                             found = true;
                             break;
                         }
@@ -146,7 +144,7 @@ wxString mmFilterTransactions::getHTML()
 
                 if (found)
                 {
-                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
+                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     _trans.push_back(full_tran);
                 }
@@ -156,7 +154,7 @@ wxString mmFilterTransactions::getHTML()
     }
 
     std::stable_sort(_trans.begin(), _trans.end(), SorterByTRANSDATE());
-    
+
     const wxString extra_style = R"(
 table {
   width: 100%;
@@ -180,44 +178,44 @@ table {
 
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     hb.addDivContainer();
-        hb.addTableCellLink("back:",wxString::Format("<< %s", _("Back")));
+    hb.addTableCellLink("back:",wxString::Format("<< %s", _("Back")));
     hb.endDiv();
     hb.addDivContainer("shadow");
-        hb.startSortTable();
-            hb.startThead();
-                hb.startTableRow();
-                    hb.addTableHeaderCell(_("ID"), "ID text-right");
-                    hb.addTableHeaderCell(_("Color"), "Color text-center");
-                    hb.addTableHeaderCell(_("Date"), "Date");
-                    hb.addTableHeaderCell(_("Number"), "Number");
-                    hb.addTableHeaderCell(_("Account"), "Account");
-                    hb.addTableHeaderCell(_("Payee"), "Payee");
-                    hb.addTableHeaderCell(_("Status"), "Status text-center");
-                    hb.addTableHeaderCell(_("Category"), "Category");
-                    hb.addTableHeaderCell(_("Type"), "Type");
-                    hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-                    hb.addTableHeaderCell(_("Notes"), "Notes");
-                hb.endTableRow();
-            hb.endThead();
-            hb.startTbody();
+    hb.startSortTable();
+    hb.startThead();
+    hb.startTableRow();
+    hb.addTableHeaderCell(_("ID"), "ID text-right");
+    hb.addTableHeaderCell(_("Color"), "Color text-center");
+    hb.addTableHeaderCell(_("Date"), "Date");
+    hb.addTableHeaderCell(_("Number"), "Number");
+    hb.addTableHeaderCell(_("Account"), "Account");
+    hb.addTableHeaderCell(_("Payee"), "Payee");
+    hb.addTableHeaderCell(_("Status"), "Status text-center");
+    hb.addTableHeaderCell(_("Category"), "Category");
+    hb.addTableHeaderCell(_("Type"), "Type");
+    hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+    hb.addTableHeaderCell(_("Notes"), "Notes");
+    hb.endTableRow();
+    hb.endThead();
+    hb.startTbody();
     // Display the data for each row
     for (auto& transaction : _trans)
     {
         hb.startTableRow();
         hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
-                , wxString::Format("%i", transaction.TRANSID), true);
+            , wxString::Format("%i", transaction.TRANSID), true);
         hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
-                , transaction.ACCOUNTNAME);
+            , transaction.ACCOUNTNAME);
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS, false, true);
         hb.addTableCell(transaction.CATEGNAME);
         if (Model_Checking::foreignTransactionAsTransfer(transaction))
-                hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
-            else
-                hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
+            hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
+        else
+            hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
 
         Model_Account::Data* acc;
         const Model_Currency::Data* curr;
@@ -252,4 +250,4 @@ table {
 
     hb.end();
     return hb.getHTMLText();
-}   
+}

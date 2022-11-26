@@ -114,9 +114,9 @@ table {
 
     hb.init(false, extra_style);
     wxString label = m_transDialog->mmGetLabelString();
-     hb.addReportHeader(wxString::Format("%s %s%s", getReportTitle(), !label.IsEmpty() ? ": " : "", label), 
-            ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmGetStartDay() : 1),
-            ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false ));
+    hb.addReportHeader(wxString::Format("%s %s%s", getReportTitle(), !label.IsEmpty() ? ": " : "", label),
+        ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmGetStartDay() : 1),
+        ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false ));
     wxDateTime start,end;
     start.ParseISODate(m_transDialog->mmGetBeginDate());
     end.ParseISODate(m_transDialog->mmGetEndDate());
@@ -164,13 +164,13 @@ table {
 
         if (sortLabel != lastSortLabel)
         {
-            if (lastSortLabel != "") 
+            if (lastSortLabel != "")
             {
                 hb.endTbody();
                 hb.endTable();
                 hb.startTable();
                 hb.startTbody();
-                displayTotals(total, total_in_base_curr, m_noOfCols); 
+                displayTotals(total, total_in_base_curr, m_noOfCols);
                 hb.endTbody();
                 hb.endTable();
                 hb.endDiv();
@@ -178,57 +178,57 @@ table {
                 total_in_base_curr.clear();
             }
             hb.addDivContainer("shadow");
-            if (groupBy > -1) 
+            if (groupBy > -1)
                 hb.addHeader(2, sortLabel);
             hb.startSortTable();
-                hb.startThead();
-                    hb.startTableRow();
-                        if (showColumnById(0)) hb.addTableHeaderCell(_("ID"), "ID text-right");
-                        if (showColumnById(1)) hb.addTableHeaderCell(_("Color"), "Color text-center");
-                        if (showColumnById(2)) hb.addTableHeaderCell(_("Date"), "Date");
-                        if (showColumnById(3)) hb.addTableHeaderCell(_("Number"), "Number");
-                        if (showColumnById(4)) hb.addTableHeaderCell(_("Account"), "Account");
-                        if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
-                        if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status text-center");
-                        if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
-                        if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
-                        if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-                        if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
-                        const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-                        int colNo = 11;
-                        for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
-                        {
-                            if (udfc_entry.empty()) continue;
-                            const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
-                            if (showColumnById(colNo++) && name != udfc_entry)
-                            {
-                                wxString nameCSS = name;
-                                switch (Model_CustomField::getUDFCType(ref_type, udfc_entry)) {
-                                case Model_CustomField::FIELDTYPE::DECIMAL:
-                                case Model_CustomField::FIELDTYPE::INTEGER:
-                                    nameCSS.Append(" text-right");
-                                    break;
-                                case Model_CustomField::FIELDTYPE::BOOLEAN:
-                                    nameCSS.Append(" text-center");
-                                    break;
-                                }
-                                hb.addTableHeaderCell(name, nameCSS);
-                            }
-                        }
-                    hb.endTableRow();
-                hb.endThead();
+            hb.startThead();
+            hb.startTableRow();
+            if (showColumnById(0)) hb.addTableHeaderCell(_("ID"), "ID text-right");
+            if (showColumnById(1)) hb.addTableHeaderCell(_("Color"), "Color text-center");
+            if (showColumnById(2)) hb.addTableHeaderCell(_("Date"), "Date");
+            if (showColumnById(3)) hb.addTableHeaderCell(_("Number"), "Number");
+            if (showColumnById(4)) hb.addTableHeaderCell(_("Account"), "Account");
+            if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
+            if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status text-center");
+            if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
+            if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
+            if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+            if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
+            const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            int colNo = 11;
+            for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
+            {
+                if (udfc_entry.empty()) continue;
+                const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
+                if (showColumnById(colNo++) && name != udfc_entry)
+                {
+                    wxString nameCSS = name;
+                    switch (Model_CustomField::getUDFCType(ref_type, udfc_entry)) {
+                    case Model_CustomField::FIELDTYPE::DECIMAL:
+                    case Model_CustomField::FIELDTYPE::INTEGER:
+                        nameCSS.Append(" text-right");
+                        break;
+                    case Model_CustomField::FIELDTYPE::BOOLEAN:
+                        nameCSS.Append(" text-center");
+                        break;
+                    }
+                    hb.addTableHeaderCell(name, nameCSS);
+                }
+            }
+            hb.endTableRow();
+            hb.endThead();
             hb.startTbody();
         }
         lastSortLabel = sortLabel;
-    
+
         // If a transfer between two accounts in the list of accounts being reported then we
         // should report both the transfer in and transfer out, i.e. two transactions
-        int noOfTrans = 1; 
+        int noOfTrans = 1;
         if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER) &&
             (allAccounts ||
-            ((selected_accounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
-            && (selected_accounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
-                noOfTrans = 2;
+                ((selected_accounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
+                    && (selected_accounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
+            noOfTrans = 2;
 
         auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
         while (noOfTrans--)
@@ -270,7 +270,7 @@ table {
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                    if (showColumnById(9)) 
+                    if (showColumnById(9))
                         if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
@@ -348,11 +348,11 @@ table {
                     UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
                 if (showColumnById(12))
                     UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
-                 if (showColumnById(13))
+                if (showColumnById(13))
                     UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
-                 if (showColumnById(14))
+                if (showColumnById(14))
                     UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
-                 if (showColumnById(15))
+                if (showColumnById(15))
                     UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);
             }
             hb.endTableRow();
@@ -365,7 +365,7 @@ table {
         hb.startTable();
         hb.startTbody();
         displayTotals(total, total_in_base_curr, m_noOfCols);
-    }  
+    }
     hb.endTbody();
     hb.endTable();
     hb.endDiv();
@@ -436,16 +436,15 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         if (full_tran.has_split())
         {
             bool catFilter = dlg.get()->mmIsCategoryChecked();
-            bool subCatFilter = dlg.get()->mmIsCategorySubCatChecked();
             const auto& value = dlg.get()->mmGetCategoryPattern();
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
 
             for (const auto& split : full_tran.m_splits)
             {
-                const auto& categ = Model_Category::full_name(split.CATEGID, (!subCatFilter ? split.SUBCATEGID : -1));
+                const auto& categ = Model_Category::full_name(split.CATEGID);
 
                 if (!catFilter || pattern.Matches(categ)) {
-                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID, split.SUBCATEGID);
+                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     trans_.push_back(full_tran);
                     trans_.back().NOTES += (full_tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES;
@@ -459,18 +458,18 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
     switch (dlg.get()->mmGetGroupBy())
     {
-        case mmFilterTransactionsDialog::GROUPBY_ACCOUNT:
-            std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());
-            break;
-        case mmFilterTransactionsDialog::GROUPBY_PAYEE:
-            std::stable_sort(trans_.begin(), trans_.end(), SorterByPAYEENAME());
-            break;   
-        case mmFilterTransactionsDialog::GROUPBY_CATEGORY:
-            std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
-            break;   
-        case mmFilterTransactionsDialog::GROUPBY_TYPE:
-            std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
-            break;   
+    case mmFilterTransactionsDialog::GROUPBY_ACCOUNT:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());
+        break;
+    case mmFilterTransactionsDialog::GROUPBY_PAYEE:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByPAYEENAME());
+        break;
+    case mmFilterTransactionsDialog::GROUPBY_CATEGORY:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
+        break;
+    case mmFilterTransactionsDialog::GROUPBY_TYPE:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
+        break;
     }
 }
 

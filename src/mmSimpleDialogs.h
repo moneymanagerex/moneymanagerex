@@ -126,18 +126,15 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
         , int catID = -1
-        , int subCatID = -1
         , bool excludeInactive = false
     );
     int mmGetCategoryId() const;
-    int mmGetSubcategoryId() const;
 protected:
     void init();
 private:
     int catID_;
-    int subCatID_;
     bool excludeHidden_;
-    std::map<wxString, std::pair<int, int> > all_categories_;
+    std::map<wxString, int > all_categories_;
 };
 
 /* -------------------------------------------- */
@@ -161,10 +158,10 @@ class mmDatePickerCtrl : public wxDatePickerCtrl
 {
     wxDECLARE_EVENT_TABLE();
 
-public: 
+public:
     mmDatePickerCtrl(wxWindow* parent, wxWindowID id
-    , wxDateTime dt=wxDateTime::Today(), wxPoint pos=wxDefaultPosition, wxSize size=wxDefaultSize
-    , long style=wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+        , wxDateTime dt=wxDateTime::Today(), wxPoint pos=wxDefaultPosition, wxSize size=wxDefaultSize
+        , long style=wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     ~mmDatePickerCtrl();
     void SetValue(const wxDateTime &dt);    // Override
     bool Enable(bool state=true);           // Override

@@ -250,7 +250,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     createMenu();    
     createControls();
     CreateToolBar();
-    
+
 #if wxUSE_STATUSBAR
     CreateStatusBar();
 #endif // wxUSE_STATUSBAR
@@ -540,7 +540,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran->TRANSACTIONNUMBER = q1.TRANSACTIONNUMBER;
                 tran->NOTES = q1.NOTES;
                 tran->CATEGID = q1.CATEGID;
-                tran->SUBCATEGID = q1.SUBCATEGID;
                 tran->FOLLOWUPID = q1.FOLLOWUPID;
                 tran->TRANSDATE = payment_date.FormatISODate();
 
@@ -552,7 +551,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
                     split->TRANSID = transID;
                     split->CATEGID = item.CATEGID;
-                    split->SUBCATEGID = item.SUBCATEGID;
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
                     split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
@@ -724,7 +722,7 @@ void mmGUIFrame::DoRecreateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favourites"));
     m_nav_tree_ctrl->SetItemBold(favourites, true);
 
-   wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
+    wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Bank Accounts"));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
 
@@ -1188,9 +1186,9 @@ void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
     wxString selected = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
 
     if (wxMessageBox(
-      _("The selected item will be deleted") + "\n\n" +
-      _("Do you wish to continue?")
-      , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
+        _("The selected item will be deleted") + "\n\n" +
+        _("Do you wish to continue?")
+        , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
         return;
 
     int sel_json = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", selected);
@@ -1225,8 +1223,8 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
         else
         {
             wxString msgStr = wxString() << _("A setting with this name already exists") << "\n"
-            << "\n"
-            << _("Please specify a new name for the setting") << "\n";
+                << "\n"
+                << _("Please specify a new name for the setting") << "\n";
 
             wxMessageBox(msgStr, _("Name in use"), wxICON_ERROR);
         }
@@ -1248,7 +1246,7 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
         j_doc.Accept(writer);
         data = wxString::FromUTF8(buffer.GetString());
         Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", data, -1);
-        
+
         DoRecreateNavTreeControl();
         setNavTreeSection(_("Transaction Report"));
     }
@@ -1665,7 +1663,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemThemes = new wxMenuItem(menuTools, MENU_THEME_MANAGER
         , __(wxTRANSLATE("T&heme Manager")), _("Theme Manager"));
     menuTools->Append(menuItemThemes);
-    
+
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
@@ -1786,7 +1784,7 @@ void mmGUIFrame::createMenu()
         , _("Report a &Bug")
         , _("Report an error in application to the developers"));
     menuHelp->Append(menuItemReportBug);
-    
+
     wxMenuItem* menuItemDiagnostics = new wxMenuItem(menuTools, MENU_DIAGNOSTICS
         , _("View Diagnostics")
         , _("Help provide information to the developers"));
@@ -1893,7 +1891,6 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Currency::instance(m_db.get()));
     m_all_models.push_back(&Model_CurrencyHistory::instance(m_db.get()));
     m_all_models.push_back(&Model_Budgetyear::instance(m_db.get()));
-    m_all_models.push_back(&Model_Subcategory::instance(m_db.get())); // subcategory must be initialized before category
     m_all_models.push_back(&Model_Category::instance(m_db.get()));
     m_all_models.push_back(&Model_Billsdeposits::instance(m_db.get()));
     m_all_models.push_back(&Model_Splittransaction::instance(m_db.get()));
@@ -2002,7 +1999,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         {
             wxStringTokenizer token(sSettings, ";");
             Model_Category::instance().Savepoint();
-            Model_Subcategory::instance().Savepoint();
             while (token.HasMoreTokens())
             {
                 wxString catData = token.GetNextToken();
@@ -2018,19 +2014,19 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
                             cat->ACTIVE = 0;
                             Model_Category::instance().save(cat);
                         }
-                    } else
+                    }
+                    else
                     {
-                        Model_Subcategory::Data* subcat = Model_Subcategory::instance().get(subCatID);
-                        if (subcat && subcat->SUBCATEGID != -1)
+                        Model_Category::Data* subcat = Model_Category::instance().get(subCatID);
+                        if (subcat && subcat->CATEGID != -1)
                         {
                             subcat->ACTIVE = 0;
-                            Model_Subcategory::instance().save(subcat);
+                            Model_Category::instance().save(subcat);
                         }
                     }
                 }
             }
             Model_Category::instance().ReleaseSavepoint();
-            Model_Subcategory::instance().ReleaseSavepoint();
             Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", "");
         }
     }
@@ -2112,7 +2108,7 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 //----------------------------------------------------------------------------
 
 bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxString &password)
-{
+{ 
     menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(false);
     if (createDataStore(fileName, password, openingNew))
     {
@@ -2573,7 +2569,7 @@ void mmGUIFrame::refreshPanelData()
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 {
-    mmCategDialog dlg(this, false, -1, -1);
+    mmCategDialog dlg(this, false, -1);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
@@ -2709,12 +2705,12 @@ void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
 {
     if (mmWebApp::MMEX_WebApp_UpdateAccount()
-            && mmWebApp::MMEX_WebApp_UpdateCategory()
-            && mmWebApp::MMEX_WebApp_UpdatePayee())
+        && mmWebApp::MMEX_WebApp_UpdateCategory()
+        && mmWebApp::MMEX_WebApp_UpdatePayee())
         wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("Refresh WebApp"), wxOK | wxICON_INFORMATION);
     else
         wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
-                _("Refresh WebApp"), wxOK | wxICON_ERROR);
+            _("Refresh WebApp"), wxOK | wxICON_ERROR);
 }
 
 //----------------------------------------------------------------------------
@@ -3255,17 +3251,17 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
 {
     wxBusyInfo info
 #if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-    (
-        wxBusyInfoFlags()
-        .Parent(this)
-        .Title(_("Downloading stock prices from Yahoo"))
-        .Text(_("Please wait..."))
-        .Foreground(*wxWHITE)
-        .Background(wxColour(0, 102, 51))
-        .Transparency(4 * wxALPHA_OPAQUE / 5)
-    );
+        (
+            wxBusyInfoFlags()
+            .Parent(this)
+            .Title(_("Downloading stock prices from Yahoo"))
+            .Text(_("Please wait..."))
+            .Foreground(*wxWHITE)
+            .Background(wxColour(0, 102, 51))
+            .Transparency(4 * wxALPHA_OPAQUE / 5)
+            );
 #else
-    (_("Downloading stock prices from Yahoo"), this);
+        (_("Downloading stock prices from Yahoo"), this);
 #endif
     wxString msg;
     getOnlineCurrencyRates(msg);

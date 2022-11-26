@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-10-27 23:32:45.961706.
+ *          AUTO GENERATED at 2022-11-18 09:14:51.123705.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric, NOTES TEXT)");
+                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SPLITTRANSAMOUNT numeric, NOTES TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -130,12 +130,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
     struct SPLITTRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "SPLITTRANSAMOUNT"; } 
@@ -154,9 +148,8 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         COL_SPLITTRANSID = 0
         , COL_TRANSID = 1
         , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
-        , COL_SPLITTRANSAMOUNT = 4
-        , COL_NOTES = 5
+        , COL_SPLITTRANSAMOUNT = 3
+        , COL_NOTES = 4
     };
 
     /** Returns the column name as a string*/
@@ -167,7 +160,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             case COL_SPLITTRANSID: return "SPLITTRANSID";
             case COL_TRANSID: return "TRANSID";
             case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
             case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
             case COL_NOTES: return "NOTES";
             default: break;
@@ -182,7 +174,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
         else if ("TRANSID" == name) return COL_TRANSID;
         else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
         else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
         else if ("NOTES" == name) return COL_NOTES;
 
@@ -199,7 +190,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         int SPLITTRANSID;//  primary key
         int TRANSID;
         int CATEGID;
-        int SUBCATEGID;
         double SPLITTRANSAMOUNT;
         wxString NOTES;
 
@@ -230,7 +220,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             SPLITTRANSID = -1;
             TRANSID = -1;
             CATEGID = -1;
-            SUBCATEGID = -1;
             SPLITTRANSAMOUNT = 0.0;
         }
 
@@ -241,9 +230,8 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
             TRANSID = q.GetInt(1); // TRANSID
             CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
-            NOTES = q.GetString(5); // NOTES
+            SPLITTRANSAMOUNT = q.GetDouble(3); // SPLITTRANSAMOUNT
+            NOTES = q.GetString(4); // NOTES
         }
 
         Data& operator=(const Data& other)
@@ -253,7 +241,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             SPLITTRANSID = other.SPLITTRANSID;
             TRANSID = other.TRANSID;
             CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
             SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
             NOTES = other.NOTES;
             return *this;
@@ -278,11 +265,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         bool match(const Self::CATEGID &in) const
         {
             return this->CATEGID == in.v_;
-        }
-
-        bool match(const Self::SUBCATEGID &in) const
-        {
-            return this->SUBCATEGID == in.v_;
         }
 
         bool match(const Self::SPLITTRANSAMOUNT &in) const
@@ -317,8 +299,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             json_writer.Int(this->TRANSID);
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
             json_writer.Key("SPLITTRANSAMOUNT");
             json_writer.Double(this->SPLITTRANSAMOUNT);
             json_writer.Key("NOTES");
@@ -331,7 +311,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             row(L"SPLITTRANSID") = SPLITTRANSID;
             row(L"TRANSID") = TRANSID;
             row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
             row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             row(L"NOTES") = NOTES;
             return row;
@@ -342,7 +321,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             t(L"SPLITTRANSID") = SPLITTRANSID;
             t(L"TRANSID") = TRANSID;
             t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
             t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             t(L"NOTES") = NOTES;
         }
@@ -380,7 +358,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 6
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -390,7 +368,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
     DB_Table_SPLITTRANSACTIONS_V1() : fake_(new Data())
     {
-        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT, NOTES FROM SPLITTRANSACTIONS_V1 ";
+        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SPLITTRANSAMOUNT, NOTES FROM SPLITTRANSACTIONS_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -420,11 +398,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT, NOTES) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SPLITTRANSAMOUNT, NOTES) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SPLITTRANSACTIONS_V1 SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ?, NOTES = ? WHERE SPLITTRANSID = ?";
+            sql = "UPDATE SPLITTRANSACTIONS_V1 SET TRANSID = ?, CATEGID = ?, SPLITTRANSAMOUNT = ?, NOTES = ? WHERE SPLITTRANSID = ?";
         }
 
         try
@@ -433,11 +411,10 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
             stmt.Bind(1, entity->TRANSID);
             stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
-            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
-            stmt.Bind(5, entity->NOTES);
+            stmt.Bind(3, entity->SPLITTRANSAMOUNT);
+            stmt.Bind(4, entity->NOTES);
             if (entity->id() > 0)
-                stmt.Bind(6, entity->SPLITTRANSID);
+                stmt.Bind(5, entity->SPLITTRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

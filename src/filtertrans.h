@@ -34,8 +34,8 @@ public:
     void setDateRange(wxDateTime startDate, wxDateTime endDate);
     void setAccountList(wxSharedPtr<wxArrayString> accountList);
     void setPayeeList(const wxArrayInt payeeList);
-    void setCategoryList(const std::vector<std::pair<int, int>> &categoryList);
- 
+    void setCategoryList(const std::vector<int> &categoryList);
+
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>
     bool checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits);
@@ -50,14 +50,14 @@ private:
     wxString _startDate, _endDate;
     // account
     bool _accountFilter;
-    wxArrayInt _accountList; 
+    wxArrayInt _accountList;
     // payee
     bool _payeeFilter;
-    wxArrayInt _payeeList; 
+    wxArrayInt _payeeList;
     // category
     bool _categoryFilter;
-    std::vector<std::pair<int, int>> _categoryList;
- 
+    std::vector<int> _categoryList;
+
     Model_Checking::Full_Data_Set _trans;
 
 };

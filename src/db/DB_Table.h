@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-10-27 23:32:45.961706.
+ *          AUTO GENERATED at 2022-11-18 09:14:51.123705.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -213,30 +213,12 @@ struct SorterByACTIVE
     }
 };
 
-struct SorterByALLOCATION
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.ALLOCATION) < (y.ALLOCATION);
-    }
-};
-
 struct SorterByAMOUNT
 { 
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.AMOUNT) < (y.AMOUNT);
-    }
-};
-
-struct SorterByASSETCLASSID
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.ASSETCLASSID) < (y.ASSETCLASSID);
     }
 };
 
@@ -600,15 +582,6 @@ struct SorterByHISTID
     }
 };
 
-struct SorterByID
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.ID) < (y.ID);
-    }
-};
-
 struct SorterByINFOID
 { 
     template<class DATA>
@@ -723,15 +696,6 @@ struct SorterByMINIMUMPAYMENT
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.MINIMUMPAYMENT) < (y.MINIMUMPAYMENT);
-    }
-};
-
-struct SorterByNAME
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.NAME) < (y.NAME);
     }
 };
 
@@ -996,15 +960,6 @@ struct SorterBySHAREPRICE
     }
 };
 
-struct SorterBySORTORDER
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.SORTORDER) < (y.SORTORDER);
-    }
-};
-
 struct SorterBySPLITTRANSAMOUNT
 { 
     template<class DATA>
@@ -1083,33 +1038,6 @@ struct SorterBySTOCKNAME
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.STOCKNAME) < (y.STOCKNAME);
-    }
-};
-
-struct SorterBySTOCKSYMBOL
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.STOCKSYMBOL) < (y.STOCKSYMBOL);
-    }
-};
-
-struct SorterBySUBCATEGID
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.SUBCATEGID) < (y.SUBCATEGID);
-    }
-};
-
-struct SorterBySUBCATEGNAME
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (std::wcscoll(x.SUBCATEGNAME.Lower().wc_str(),y.SUBCATEGNAME.Lower().wc_str()) < 0);  // Locale case-insensitive
     }
 };
 
