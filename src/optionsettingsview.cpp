@@ -318,7 +318,7 @@ void OptionSettingsView::Create()
 
     Fit();
     view_panel->SetMinSize(view_panel->GetBestVirtualSize());
-    view_panel->SetScrollRate(1, 1);
+    view_panel->SetScrollRate(6, 6);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
     this->Connect(ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected), nullptr, this);
