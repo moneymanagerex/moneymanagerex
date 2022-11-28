@@ -228,7 +228,7 @@ void OptionSettingsGeneral::Create()
 
     Fit();
     general_panel->SetMinSize(general_panel->GetBestVirtualSize());
-    general_panel->SetScrollRate(1, 1);
+    general_panel->SetScrollRate(6, 6);
 }
 
 void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)

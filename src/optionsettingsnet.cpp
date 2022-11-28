@@ -189,7 +189,7 @@ void OptionSettingsNet::Create()
 
     Fit();
     network_panel->SetMinSize(network_panel->GetBestVirtualSize());
-    network_panel->SetScrollRate(1, 1);
+    network_panel->SetScrollRate(6, 6);
 }
 
 void OptionSettingsNet::OnProxyChanged(wxCommandEvent& WXUNUSED(event))
