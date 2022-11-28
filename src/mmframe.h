@@ -155,7 +155,7 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
-    void DoRecreateNavTreeControl();
+    void DoRecreateNavTreeControl(bool home_page = false);
     void DoUpdateReportNavigation(wxTreeItemId& parent_item);
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
     void DoUpdateFilterNavigation(wxTreeItemId& parent_item);
