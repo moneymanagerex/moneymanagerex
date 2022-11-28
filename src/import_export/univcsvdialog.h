@@ -133,7 +133,6 @@ private:
         double ToAmount = 0.0;
         int PayeeID = -1;
         int CategoryID = -1;
-        int SubCategoryID = -1;
         double Amount = 0.0;
         wxString Number;
         wxString Notes;

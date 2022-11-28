@@ -75,7 +75,6 @@ public:
         int TOACCOUNTID = -1;
         wxString TRANSCODE = Model_Billsdeposits::all_type()[Model_Billsdeposits::WITHDRAWAL];;
         int CATEGID = -1;
-        int SUBCATEGID = -1;
         double TRANSAMOUNT = 0;
         double TOTRANSAMOUNT = 0;
         int FOLLOWUPID = -1;

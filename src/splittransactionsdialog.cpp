@@ -78,7 +78,7 @@ void mmEditSplitOther::CreateControls()
 
     // Split Category
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Category")), g_flagsH);
-    wxString catName = Model_Category::full_name(m_split->CATEGID, m_split->SUBCATEGID);
+    wxString catName = Model_Category::full_name(m_split->CATEGID);
     wxTextCtrl* category = new wxTextCtrl(this, wxID_ANY, catName);
     category->Disable();
     fgSizer1->Add(category, g_flagsExpand);
@@ -131,12 +131,12 @@ void mmEditSplitOther::OnCancel(wxCommandEvent& /*event*/)
 
 #define STATIC_SPLIT_NUM 10
 
- wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
-     EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
-     EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
-     EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
-     EVT_BUTTON(mmID_REMOVE, mmSplitTransactionDialog::OnRemoveRow)
- wxEND_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(mmSplitTransactionDialog, wxDialog)
+EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
+EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
+EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
+EVT_BUTTON(mmID_REMOVE, mmSplitTransactionDialog::OnRemoveRow)
+wxEND_EVENT_TABLE()
 
 mmSplitTransactionDialog::mmSplitTransactionDialog( )
 {
@@ -144,7 +144,7 @@ mmSplitTransactionDialog::mmSplitTransactionDialog( )
 
 mmSplitTransactionDialog::~mmSplitTransactionDialog()
 {
-     Model_Infotable::instance().Set("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().Set("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
 }
 
 mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
@@ -233,7 +233,7 @@ void mmSplitTransactionDialog::CreateControls()
     }
     slider_->Fit();
     slider_->SetMinSize(scrollSize);
-    slider_->SetScrollRate(1, 1);
+    slider_->SetScrollRate(6, 6);
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -289,12 +289,13 @@ void mmSplitTransactionDialog::CreateControls()
 
 void mmSplitTransactionDialog::FillControls(int focusRow)
 {
+    DoWindowsFreezeThaw(this);
     for (int row=0; row<m_splits_widgets.size(); row++)
     {
         if (row < m_splits.size())
         {
             m_splits_widgets.at(row).category->ChangeValue(
-                    Model_Category::full_name(m_splits.at(row).CATEGID, m_splits.at(row).SUBCATEGID));
+                    Model_Category::full_name(m_splits.at(row).CATEGID));
             if (m_splits.at(row).CATEGID == -1)
                 m_splits_widgets.at(row).amount->SetValue("");
             else
@@ -317,16 +318,16 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
         if (focusRow != -1)
             m_splits_widgets.at(focusRow).category->SetFocus();
     }
+    DoWindowsFreezeThaw(this);
 }
 
 void mmSplitTransactionDialog::createNewRow(bool enabled)
 {
     int row = m_splits_widgets.size();
     int catID = (row < m_splits.size()) ? m_splits.at(row).CATEGID : -1;
-    int subCatID = (row < m_splits.size()) ? m_splits.at(row).SUBCATEGID : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
-                                        , wxDefaultSize, catID, subCatID, true);
+                                        , wxDefaultSize, catID, true);
     ncbc->Enable(enabled);
     ncbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
     ncbc->SetMinSize(wxSize(250,-1));
@@ -363,7 +364,7 @@ void mmSplitTransactionDialog::activateNewRow()
         int row = row_num_ + 1;
         if (row >= m_splits.size())
         {
-            Split s = {-1, -1, 0, ""};
+            Split s = {-1, 0, ""};
             m_splits.push_back(s);
         }
         m_splits_widgets.at(row).category->Enable(true);
@@ -373,7 +374,7 @@ void mmSplitTransactionDialog::activateNewRow()
     } else
     {
         createNewRow(true);
-        Split s = {-1, -1, 0, ""};
+        Split s = {-1, 0, ""};
         m_splits.push_back(s);
     }
 }
@@ -406,11 +407,13 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
-    if (mmDoCheckRow(row_num_))
-    {
-        activateNewRow();
-        FillControls();
-    }
+    for (int id=0; id<m_splits.size(); id++)
+        if (!mmDoCheckRow(id))
+            return;
+    
+    activateNewRow();
+    FillControls();
+
     event.Skip();
 }
 
@@ -418,6 +421,11 @@ void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
 {
     if (m_splits.size() < 2)    // Should keep one split
         return;
+
+    for (int id=0; id<m_splits.size(); id++)
+        if ((id != row_num_) && !mmDoCheckRow(id))
+            return;
+            
     m_splits.erase(m_splits.begin() + row_num_ );
     if (row_num_ > 0)
         row_num_--;
@@ -470,21 +478,27 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbc->GetValue();
             if (category.empty())
             {
-                mmCategDialog dlg(this, true, -1, -1);
+                mmCategDialog dlg(this, true, -1);
                 dlg.ShowModal();
-                for (int i=0; i<m_splits_widgets.size(); i++)
+                DoWindowsFreezeThaw(this);
+                if (dlg.getRefreshRequested())
                 {
-                    auto cbcUpdate = m_splits_widgets.at(i).category;
-                    if (cbc != cbcUpdate)
+                    for (int i=0; i<m_splits_widgets.size(); i++)
                     {
-                        category = Model_Category::full_name(cbcUpdate->mmGetCategoryId(), cbcUpdate->mmGetSubcategoryId());
-                        cbcUpdate->mmDoReInitialize();
-                        cbcUpdate->ChangeValue(category);
+                        auto cbcUpdate = m_splits_widgets.at(i).category;
+                        if (cbc != cbcUpdate)
+                        {
+                            category = Model_Category::full_name(cbcUpdate->mmGetCategoryId());
+                            cbcUpdate->mmDoReInitialize();
+                            cbcUpdate->ChangeValue(category);
+                        }
                     }
                 }
-                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
-                cbc->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId());
+                if (dlg.getRefreshRequested()) 
+                    cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
+                DoWindowsFreezeThaw(this);
             }
         }
     }
@@ -540,7 +554,6 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
     m_splits_widgets.at(row).amount->GetDouble(amount);
 
     m_splits.at(row).CATEGID = m_splits_widgets.at(row).category->mmGetCategoryId();
-    m_splits.at(row).SUBCATEGID = m_splits_widgets.at(row).category->mmGetSubcategoryId();
     m_splits.at(row).SPLITTRANSAMOUNT = amount;   
     return true;
 }

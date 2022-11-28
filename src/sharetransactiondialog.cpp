@@ -403,6 +403,8 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         int checking_id = m_transaction_panel->SaveChecking();
+        if (checking_id < 0)
+            return;
 
         /*
         // The PURCHASEDATE field in STOCK table holds the earliest purchase date of the stock.

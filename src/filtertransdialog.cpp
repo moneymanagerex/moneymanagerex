@@ -801,7 +801,7 @@ void mmFilterTransactionsDialog::setTransferTypeCheckBoxes()
         cbTypeTransferTo_->SetLabel(_("Transfer"));
         Layout();
         bSelectedAccounts_->Disable();
-    }    
+    }
 }
 
 void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
@@ -832,7 +832,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
-            && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+        && (categoryComboBox_->mmGetCategoryId() != -1));
     if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
@@ -1112,7 +1112,7 @@ bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int a
 {
     bool result = false;
     if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER]
-        && cbTypeTransferTo_->GetValue() 
+        && cbTypeTransferTo_->GetValue()
         && (!mmIsAccountChecked() || (m_selected_accounts_id.Index(accountid) != wxNOT_FOUND)))
     {
         result = true;
@@ -1224,11 +1224,11 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std
     wxArrayString trx_categories;
     const auto& it = splits.find(tran.id());
     if (it == splits.end()) {
-        trx_categories.Add(Model_Category::full_name(tran.CATEGID, tran.SUBCATEGID));
+        trx_categories.Add(Model_Category::full_name(tran.CATEGID));
     }
     else {
         for (const auto& split : it->second) {
-            trx_categories.Add(Model_Category::full_name(split.CATEGID, split.SUBCATEGID));
+            trx_categories.Add(Model_Category::full_name(split.CATEGID));
         }
     }
 
@@ -1279,8 +1279,8 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Da
 {
     bool ok = true;
     if (mmIsAccountChecked()
-            && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND
-            && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
+        && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND
+        && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
     else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date && tran.TRANSDATE > m_end_date))
         ok = false;
@@ -1461,7 +1461,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     }
 
     //Payee
-   if (payeeCheckBox_->IsChecked())
+    if (payeeCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Payee") : "PAYEE").utf8_str());
         json_writer.String(cbPayee_->GetValue().utf8_str());
@@ -1474,8 +1474,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         if (categoryComboBox_->mmIsValid())
         {
             int categ = categoryComboBox_->mmGetCategoryId();
-            int subcateg = categoryComboBox_->mmGetSubcategoryId();
-            const auto& full_name = Model_Category::full_name(categ, subcateg, ":");
+            const auto& full_name = Model_Category::full_name(categ, ":");
             json_writer.String(full_name.utf8_str());
         } else {
             json_writer.String(categoryComboBox_->GetValue().utf8_str());
@@ -1483,8 +1482,8 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     }
 
     // Sub Category inclusion
-    if (categoryCheckBox_->IsChecked() 
-        && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1))
+    if (categoryCheckBox_->IsChecked()
+        && (categoryComboBox_->mmGetCategoryId() != -1))
     {
         json_writer.Key((i18n ? _("Include all sub-categories") : "SUBCATEGORYINCLUDE").utf8_str());
         json_writer.Bool(categorySubCatCheckBox_->GetValue());
@@ -1609,9 +1608,9 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
 void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
 {
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
-            && (categoryComboBox_->mmGetCategoryId() != -1) && (categoryComboBox_->mmGetSubcategoryId() == -1));
+        && (categoryComboBox_->mmGetCategoryId() != -1));
     if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
-    event.Skip();  
+    event.Skip();
 }
 
 void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
@@ -1892,7 +1891,8 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
             {
                 mmPayeeDialog dlg(this, true);
                 dlg.ShowModal();
-                cbPayee_->mmDoReInitialize();
+                if (dlg.getRefreshRequested())
+                    cbPayee_->mmDoReInitialize();
                 int payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
@@ -1908,10 +1908,11 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
             auto category = categoryComboBox_->GetValue();
             if (category.empty())
             {
-                mmCategDialog dlg(this, true, -1, -1);
+                mmCategDialog dlg(this, true, -1);
                 dlg.ShowModal();
-                categoryComboBox_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                if (dlg.getRefreshRequested())
+                    categoryComboBox_->mmDoReInitialize();
+                category = Model_Category::full_name(dlg.getCategId());
                 categoryComboBox_->ChangeValue(category);
                 categoryComboBox_->SelectAll();
                 return;

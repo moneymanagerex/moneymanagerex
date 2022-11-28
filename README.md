@@ -3,7 +3,7 @@ Money Manager Ex
 ================
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
-[![t]][Travis] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
+[![ci]][CircleCI] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
 [![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
@@ -91,7 +91,7 @@ Tips
 
 [website]: https://moneymanagerex.org "MMEX website"
 [AppVeyor]: https://ci.appveyor.com/project/moneymanagerex/moneymanagerex "AppVeyor CI"
-[Travis]: http://travis-ci.com/moneymanagerex/moneymanagerex "Travis CI"
+[CircleCI]: https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex?branch=master "Circle CI"
 [OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
 [GitHubIssues]: https://github.com/moneymanagerex/moneymanagerex/issues "open issues on GitHub"
 [SourceForgeDL]: https://sourceforge.net/projects/moneymanagerex/files/latest "SourceForge downloads"
@@ -122,7 +122,7 @@ Tips
 [general report]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers
 [a]: https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=windows&logoWidth=0.01
-[t]: https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=linux/mac
+[ci]: https://img.shields.io/circleci/build/github/moneymanagerex/moneymanagerex/master?label=linux/mac
 [o]: http://www.openhub.net/p/moneymanagerex/widgets/project_thin_badge.gif
 [i]: https://img.shields.io/github/issues-raw/moneymanagerex/moneymanagerex.svg?label=gh%20issues
 [c]: https://img.shields.io/github/contributors/moneymanagerex/moneymanagerex.svg
