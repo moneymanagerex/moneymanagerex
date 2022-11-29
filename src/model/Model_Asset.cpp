@@ -19,6 +19,7 @@
 
 #include "Model_Asset.h"
 #include "Model_Translink.h"
+#include "Model_CurrencyHistory.h"
 
 const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
 {
@@ -225,7 +226,8 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
                 const wxDate tranDate = Model_Checking::TRANSDATE(tran);
                 if (tranDate <= date)
                 {
-                    double sum = -1 * Model_Checking::balance(tran, tran->ACCOUNTID);
+                    double amount = -1 * Model_Checking::balance(tran, tran->ACCOUNTID) *
+                        Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran->ACCOUNTID)->CURRENCYID, date);
                     wxTimeSpan diff_time = date - tranDate;
                     double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
@@ -234,16 +236,16 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
                     case RATE_NONE:
                         break;
                     case RATE_APPRECIATE:
-                        sum *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                        amount *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                         break;
                     case RATE_DEPRECIATE:
-                        sum *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                        amount *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                         break;
                     default:
                         break;
                     }
 
-                    balance += sum;
+                    balance += amount;
                 }
             }
         }
