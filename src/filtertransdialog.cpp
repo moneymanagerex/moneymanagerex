@@ -278,7 +278,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
         Model_Category::Data_Set categs = Model_Category::instance().all();
         for (const auto& categ : categs) {
             if (categ.CATEGNAME == categ_name) {
-                regex.Compile(categ_name + _(" ?: ?"));
+                regex.Compile(categ_name + " ?: ?");
                 regex.Replace(&s_category, categ_name + delimiter);
                 break;
             }
