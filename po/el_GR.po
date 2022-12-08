@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-02 21:34+0300\n"
-"PO-Revision-Date: 2022-12-08 11:06\n"
+"PO-Revision-Date: 2022-12-08 11:48\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1667,7 +1667,7 @@ msgstr "Προσθήκη Κατηγορίας"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Υπάρχει κατηγορία με το ίδιο όνομα για αυτόν τον γονέα"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1683,7 +1683,7 @@ msgstr "Υπαρχει ήδη υποκατηγορία με ίδιο όνομα"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Η κατηγορία στόχος είναι απόγονος"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1698,7 +1698,7 @@ msgstr "Είστε βέβαιοι ότι θέλετε να μετακινήσε�
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Ανώτατο επίπεδο"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1736,11 +1736,13 @@ msgstr "Οργάνωση Κατηγοριών: Σφάλμα διαγραφής"
 msgid "Deleted transactions exist which use this category or one of its descendants.\n\n"
 "Deleting the category will also automatically purge the associated deleted transactions.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Υπάρχουν Διαγραμμένες συναλλαγές που χρησιμοποιούν αυτή την κατηγορία ή μία από τις απογόνους της.\n\n"
+"Η διαγραφή της κατηγορίας θα καθαρίσει επίσης αυτόματα τις σχετικές διαγραμμένες συναλλαγές.\n\n"
+"Θέλετε να συνεχίσετε;"
 
 #: categdialog.cpp:502
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Επιβεβαίωση Διαγραφής Κατηγορίας"
 
 #: categdialog.cpp:612
 #, c-format
@@ -1753,7 +1755,7 @@ msgstr "Επεξεργασία Κατηγορίας"
 
 #: categdialog.cpp:624
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Υπάρχει κατηγορία με το ίδιο όνομα για αυτόν τον γονέα"
 
 #: categdialog.cpp:625
 msgid "Organise Categories: Editing Error"
@@ -6284,11 +6286,13 @@ msgstr "Οργάνωση δικαιούχων: Σφάλμα διαγραφής"
 msgid "Deleted transactions exist which use this payee.\n\n"
 "Deleting the payee will also automatically purge the associated deleted transactions.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Υπάρχουν Διαγραμμένες συναλλαγές που χρησιμοποιούν αυτή την κατηγορία.\n"
+"Η διαγραφή της κατηγορίας θα καθαρίσει επίσης αυτόματα τις σχετικές διαγραμμένες συναλλαγές.\n\n"
+"Θέλετε να συνεχίσετε;"
 
 #: payeedialog.cpp:484
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Επιβεβαίωση Διαγραφής Κατηγορίας"
 
 #: payeedialog.cpp:605
 msgid "Define Category"
@@ -6533,15 +6537,15 @@ msgstr "Ταμειακές Ροές - Συναλλαγές"
 #: reports/categexp.cpp:236 reports/categexp.cpp:241 reports/categexp.cpp:244
 #: reports/categexp.cpp:246
 msgid "."
-msgstr ""
+msgstr "."
 
 #: reports/categexp.cpp:237
 msgid "0."
-msgstr ""
+msgstr "0."
 
 #: reports/categexp.cpp:263
 msgid "&nbsp&nbsp&nbsp&nbsp"
-msgstr ""
+msgstr "&nbsp&nbsp&nbsp&nbsp"
 
 #: reports/categexp.cpp:281
 msgid "Total Expenses:"
