@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-08 15:01+0300\n"
+"POT-Creation-Date: 2022-12-08 15:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -563,7 +563,7 @@ msgid "&Delete Asset"
 msgstr ""
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
-#: mmframe.cpp:1386 mmframe.cpp:1406 payeedialog.cpp:618 stocks_list.cpp:146
+#: mmframe.cpp:1386 mmframe.cpp:1406 payeedialog.cpp:620 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr ""
 
@@ -613,7 +613,7 @@ msgstr ""
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:349 billsdepositspanel.cpp:297
 #: categdialog.cpp:317 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:537
-#: mmcheckingpanel.cpp:375 payeedialog.cpp:612 stockspanel.cpp:144
+#: mmcheckingpanel.cpp:375 payeedialog.cpp:614 stockspanel.cpp:144
 msgid "&Edit "
 msgstr ""
 
@@ -765,7 +765,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:346 categdialog.cpp:313 customfieldlistdialog.cpp:261
 #: import_export/univcsvdialog.cpp:221 maincurrencydialog.cpp:536
-#: payeedialog.cpp:611 stockdialog.cpp:336
+#: payeedialog.cpp:613 stockdialog.cpp:336
 msgid "&Add "
 msgstr ""
 
@@ -775,7 +775,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:225 maincurrencydialog.cpp:538
-#: payeedialog.cpp:614
+#: payeedialog.cpp:616
 msgid "&Remove "
 msgstr ""
 
@@ -1733,69 +1733,72 @@ msgid "Organise Categories: Delete Error"
 msgstr ""
 
 #: categdialog.cpp:501
-msgid ""
-"Deleted transactions exist which use this category or one of its descendants.\n"
-"\n"
-"Deleting the category will also automatically purge the associated deleted transactions.\n"
-"\n"
-"Do you wish to continue?"
+msgid "Deleted transactions exist which use this category or one of its descendants."
 msgstr ""
 
 #: categdialog.cpp:502
+msgid "Deleting the category will also automatically purge the associated deleted transactions."
+msgstr ""
+
+#: categdialog.cpp:503 payeedialog.cpp:485
+msgid "Do you wish to continue ?"
+msgstr ""
+
+#: categdialog.cpp:504
 msgid "Confirm Category Deletion"
 msgstr ""
 
-#: categdialog.cpp:612
+#: categdialog.cpp:614
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr ""
 
-#: categdialog.cpp:613
+#: categdialog.cpp:615
 msgid "Edit Category"
 msgstr ""
 
-#: categdialog.cpp:624
+#: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
 msgstr ""
 
-#: categdialog.cpp:625
+#: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
 msgstr ""
 
-#: categdialog.cpp:682 mmframe.cpp:3483
+#: categdialog.cpp:684 mmframe.cpp:3483
 msgid "Category Relocation Completed."
 msgstr ""
 
-#: categdialog.cpp:683 mmframe.cpp:3484 mmframe.cpp:3499 payeedialog.cpp:563
+#: categdialog.cpp:685 mmframe.cpp:3484 mmframe.cpp:3499 payeedialog.cpp:565
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr ""
 
-#: categdialog.cpp:685 mmframe.cpp:3486
+#: categdialog.cpp:687 mmframe.cpp:3486
 msgid "Category Relocation Result"
 msgstr ""
 
-#: categdialog.cpp:761
+#: categdialog.cpp:763
 msgid "Are you sure you want to unhide all categories"
 msgstr ""
 
-#: categdialog.cpp:762
+#: categdialog.cpp:764
 msgid "Unhide all categories"
 msgstr ""
 
-#: categdialog.cpp:790
+#: categdialog.cpp:792
 msgid "Hide Selected Category"
 msgstr ""
 
-#: categdialog.cpp:791
+#: categdialog.cpp:793
 msgid "Unhide Selected Category"
 msgstr ""
 
-#: categdialog.cpp:793 payeedialog.cpp:607
+#: categdialog.cpp:795 payeedialog.cpp:609
 msgid "Remove Category"
 msgstr ""
 
-#: categdialog.cpp:796 import_export/univcsvdialog.cpp:441
+#: categdialog.cpp:798 import_export/univcsvdialog.cpp:441
 msgid "Clear Settings"
 msgstr ""
 
@@ -5207,11 +5210,11 @@ msgstr ""
 msgid "Account: %s - Select new type."
 msgstr ""
 
-#: mmframe.cpp:3498 payeedialog.cpp:562
+#: mmframe.cpp:3498 payeedialog.cpp:564
 msgid "Payee Relocation Completed."
 msgstr ""
 
-#: mmframe.cpp:3502 payeedialog.cpp:566
+#: mmframe.cpp:3502 payeedialog.cpp:568
 msgid "Payee Relocation Result"
 msgstr ""
 
@@ -6291,23 +6294,22 @@ msgid "Organize Payees: Delete Error"
 msgstr ""
 
 #: payeedialog.cpp:483
-msgid ""
-"Deleted transactions exist which use this payee.\n"
-"\n"
-"Deleting the payee will also automatically purge the associated deleted transactions.\n"
-"\n"
-"Do you wish to continue?"
+msgid "Deleted transactions exist which use this payee."
 msgstr ""
 
 #: payeedialog.cpp:484
+msgid "Deleting the payee will also automatically purge the associated deleted transactions."
+msgstr ""
+
+#: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
 msgstr ""
 
-#: payeedialog.cpp:605
+#: payeedialog.cpp:607
 msgid "Define Category"
 msgstr ""
 
-#: payeedialog.cpp:622
+#: payeedialog.cpp:624
 msgid "Relocate Payee"
 msgstr ""
 

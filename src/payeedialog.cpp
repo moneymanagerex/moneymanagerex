@@ -480,7 +480,9 @@ void mmPayeeDialog::DeletePayee()
         }
         Model_Checking::Data_Set deletedTrans = Model_Checking::instance().find(Model_Checking::PAYEEID(m_payee_id));
         wxMessageDialog msgDlg(this
-            , _("Deleted transactions exist which use this payee.\n\nDeleting the payee will also automatically purge the associated deleted transactions.\n\nDo you wish to continue?")
+            , _("Deleted transactions exist which use this payee.")
+                + "\n\n" + _("Deleting the payee will also automatically purge the associated deleted transactions.")
+                + "\n\n" + _("Do you wish to continue ?")
             , _("Confirm Payee Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)
