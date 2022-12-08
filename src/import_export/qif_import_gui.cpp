@@ -922,11 +922,19 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 if (dateToCheckBox_->IsChecked() && trx->TRANSDATE > end_date)
                     continue;
                 
-                const Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
-                const Model_Account::Data* toAccount = Model_Account::instance().get(trx->TOACCOUNTID);
-                if ((trx->TRANSDATE < account->INITIALDATE) ||
-                    (toAccount && (trx->TRANSDATE < toAccount->INITIALDATE)))
+                Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
+                Model_Account::Data* toAccount = Model_Account::instance().get(trx->TOACCOUNTID);
+
+                if ((trx->TRANSDATE < account->STATEMENTDATE && account->STATEMENTLOCKED) ||
+                    (toAccount && (trx->TRANSDATE < toAccount->STATEMENTDATE && toAccount->STATEMENTLOCKED)))
                     continue;
+
+                if (trx->TRANSDATE < account->INITIALDATE) {
+                    account->INITIALDATE = trx->TRANSDATE;
+                }
+                if (toAccount && (trx->TRANSDATE < toAccount->INITIALDATE)) {
+                    toAccount->INITIALDATE = trx->TRANSDATE;
+                }
 
                 if (trx->TRANSCODE == transferStr && trx->TOTRANSAMOUNT > 0.0)
                     transfer_from_data_set.push_back(trx);
