@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-02 21:34+0300\n"
-"PO-Revision-Date: 2022-12-08 11:06\n"
+"PO-Revision-Date: 2022-12-08 11:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1372,10 +1372,8 @@ msgstr "Inaktív"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] "%d nap késés!\n"
-"%d nap késés!"
-msgstr[1] "%d nap késés!\n"
-"%d nap késés!"
+msgstr[0] "%d nap késés!"
+msgstr[1] "%d nap késés!"
 
 #: billsdepositspanel.cpp:563 billsdepositspanel.cpp:623 mmhomepage.cpp:321
 #, c-format
