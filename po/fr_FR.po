@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-02 21:34+0300\n"
-"PO-Revision-Date: 2022-12-08 11:05\n"
+"PO-Revision-Date: 2022-12-08 11:48\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1666,7 +1666,7 @@ msgstr "Ajouter une catégorie"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Une catégorie avec le même nom existe pour ce parent"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1682,7 +1682,7 @@ msgstr "Une sous-catégorie avec le même nom existe déjà"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "La catégorie cible est un descendant"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1697,7 +1697,7 @@ msgstr "Êtes-vous sûr de vouloir déplacer\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Premier niveau"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1735,11 +1735,13 @@ msgstr "Gestion des catégories: erreur d'effacement"
 msgid "Deleted transactions exist which use this category or one of its descendants.\n\n"
 "Deleting the category will also automatically purge the associated deleted transactions.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Il existe des transactions supprimées qui utilisent cette catégorie ou l'un de ses descendants.\n\n"
+"La suppression de la catégorie supprimera également automatiquement les opérations associées.\n\n"
+"Voulez-vous continuer ?"
 
 #: categdialog.cpp:502
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Confirmer la suppression de la catégorie"
 
 #: categdialog.cpp:612
 #, c-format
@@ -1752,7 +1754,7 @@ msgstr "Modifier la catégorie"
 
 #: categdialog.cpp:624
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Une catégorie avec le même nom existe pour le parent"
 
 #: categdialog.cpp:625
 msgid "Organise Categories: Editing Error"
@@ -6295,11 +6297,13 @@ msgstr "Gestion des tiers, erreur d'effacement"
 msgid "Deleted transactions exist which use this payee.\n\n"
 "Deleting the payee will also automatically purge the associated deleted transactions.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Les transactions supprimées existent qui utilisent ce bénéficiaire.\n\n"
+"La suppression du bénéficiaire effacera également automatiquement les opérations supprimées associées.\n\n"
+"Voulez-vous continuer ?"
 
 #: payeedialog.cpp:484
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Confirmez la suppression du bénéficiaire"
 
 #: payeedialog.cpp:605
 msgid "Define Category"

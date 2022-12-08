@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-02 21:34+0300\n"
-"PO-Revision-Date: 2022-12-08 11:06\n"
+"PO-Revision-Date: 2022-12-08 11:49\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1736,7 +1736,7 @@ msgstr ""
 
 #: categdialog.cpp:502
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "确认删除类目"
 
 #: categdialog.cpp:612
 #, c-format
@@ -6274,7 +6274,7 @@ msgstr ""
 
 #: payeedialog.cpp:484
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "确认删除收款人"
 
 #: payeedialog.cpp:605
 msgid "Define Category"
