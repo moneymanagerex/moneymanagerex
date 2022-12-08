@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 13:53\n"
+"PO-Revision-Date: 2022-12-08 14:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1666,7 +1666,7 @@ msgstr "Añadir categoría"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Ya existe una categoría con el mismo nombre en esta matriz"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1682,7 +1682,7 @@ msgstr "Existe una subcategoría con el mismo nombre"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "La categoría de destino es descendiente"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1756,7 +1756,7 @@ msgstr "Editar categoría"
 
 #: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Ya existe una categoría con el mismo nombre en la matriz"
 
 #: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
