@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/allmodel.h"
 
 #include <wx/valnum.h>
+#include <wx/regex.h>
 
 constexpr auto DATE_MAX = 253402214400   /* Dec 31, 9999 */;
 
@@ -272,11 +273,13 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     if (delimiter != ":" && s_category.Contains(":"))
     {
         wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
+        wxRegEx regex;
         const auto& categ_name = categ_token.GetNextToken();
         Model_Category::Data_Set categs = Model_Category::instance().all();
         for (const auto& categ : categs) {
             if (categ.CATEGNAME == categ_name) {
-                s_category.Replace(categ_name + ":", categ_name + delimiter);
+                regex.Compile(categ_name + " ?: ?");
+                regex.Replace(&s_category, categ_name + delimiter);
                 break;
             }
         }
