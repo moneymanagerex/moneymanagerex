@@ -55,15 +55,15 @@ private:
 wxIMPLEMENT_CLASS(mmCalendarPopup, wxPopupTransientWindow);
 
 mmCalendarPopup::mmCalendarPopup( wxWindow *parent, mmDatePickerCtrl* datePicker)
-                     : wxPopupTransientWindow(parent,
-                                              wxBORDER_NONE)
-                    , m_datePicker(datePicker)
+    : wxPopupTransientWindow(parent,
+        wxBORDER_NONE)
+    , m_datePicker(datePicker)
 {
     wxWindow* panel = new wxWindow(this, wxID_ANY);
 
     wxCalendarCtrl* m_calendarCtrl = new wxCalendarCtrl(panel, wxID_ANY, datePicker->GetValue()
-                        , wxDefaultPosition, wxDefaultSize
-                        , wxCAL_SEQUENTIAL_MONTH_SELECTION | wxCAL_SHOW_HOLIDAYS | wxCAL_SHOW_SURROUNDING_WEEKS);
+        , wxDefaultPosition, wxDefaultSize
+        , wxCAL_SEQUENTIAL_MONTH_SELECTION | wxCAL_SHOW_HOLIDAYS | wxCAL_SHOW_SURROUNDING_WEEKS);
     m_calendarCtrl->Bind(wxEVT_CALENDAR_SEL_CHANGED, &mmCalendarPopup::OnDateSelected, this);
     m_calendarCtrl->Bind(wxEVT_CALENDAR_DOUBLECLICKED, &mmCalendarPopup::OnEndSelection, this);
 
@@ -84,7 +84,7 @@ void mmCalendarPopup::OnDateSelected(wxCalendarEvent& event)
 {
     m_datePicker->SetValue(event.GetDate());
     wxDateEvent evt(m_datePicker, m_datePicker->GetValue(), wxEVT_DATE_CHANGED);
-    m_datePicker->GetEventHandler()->AddPendingEvent(evt);   
+    m_datePicker->GetEventHandler()->AddPendingEvent(evt);
 }
 
 void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
@@ -92,15 +92,15 @@ void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
     m_datePicker->SetValue(event.GetDate());
     this->Dismiss();
     wxDateEvent evt(m_datePicker, m_datePicker->GetValue(), wxEVT_DATE_CHANGED);
-    m_datePicker->GetEventHandler()->AddPendingEvent(evt); 
+    m_datePicker->GetEventHandler()->AddPendingEvent(evt);
 }
 
 //------------
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
-    EVT_SET_FOCUS(mmComboBox::OnSetFocus)
-    EVT_COMBOBOX_DROPDOWN(wxID_ANY, mmComboBox::OnDropDown)
-    EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
+EVT_SET_FOCUS(mmComboBox::OnSetFocus)
+EVT_COMBOBOX_DROPDOWN(wxID_ANY, mmComboBox::OnDropDown)
+EVT_TEXT(wxID_ANY, mmComboBox::OnTextUpdated)
 wxEND_EVENT_TABLE()
 
 mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
@@ -121,19 +121,19 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
     if (!is_initialized_)
     {
-        wxArrayString auto_complete;
-        for (const auto& item : all_elements_) {
-            auto_complete.Add(item.first);
-        }
-        auto_complete.Sort(CaseInsensitiveLocaleCmp);
+       wxArrayString auto_complete;
+       for (const auto& item : all_elements_) {
+           auto_complete.Add(item.first);
+       }
+       auto_complete.Sort(CaseInsensitiveLocaleCmp);
 
-        this->AutoComplete(auto_complete);
-        if (!auto_complete.empty()) {
-            this->Insert(auto_complete, 0);
-        }
-        if (auto_complete.GetCount() == 1) {
-            Select(0);
-        }
+       this->AutoComplete(auto_complete);
+       if (!auto_complete.empty()) {
+           this->Insert(auto_complete, 0);
+       }
+       if (auto_complete.GetCount() == 1) {
+           Select(0);
+       }
         is_initialized_ = true;
     }
     event.Skip();
@@ -143,7 +143,7 @@ void mmComboBox::mmDoReInitialize()
 {
     this->Clear();
     init();
-    is_initialized_ = false; 
+    is_initialized_ = false;
     wxFocusEvent evt(wxEVT_SET_FOCUS);
     OnSetFocus(evt);
 }
@@ -157,8 +157,8 @@ void mmComboBox::mmSetId(int id)
         ChangeValue(result->first);
 }
 
-int mmComboBox::mmGetId() const 
-{ 
+int mmComboBox::mmGetId() const
+{
     auto text = GetValue();
     if (all_elements_.count(text) == 1)
         return all_elements_.at(text);
@@ -219,17 +219,12 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
         }
         event.Skip();
     }
-    else if (event.GetId() == mmID_CATEGORY && event.GetKeyCode() == ':')
+    else if (event.GetId() == mmID_CATEGORY && event.GetUnicodeKey() == ':')
     {
-        for (const auto& item : all_elements_)
-        {
-            if (item.first.CmpNoCase(text) == 0) {
-                SetValue(item.first);
-                break;
-            }
-        }
-        SetValue(GetValue().Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
+        this->SetEvtHandlerEnabled(false);
+        ChangeValue(text.Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
         SetInsertionPointEnd();
+        this->SetEvtHandlerEnabled(true);
     }
     else {
         event.Skip();
@@ -270,7 +265,7 @@ void mmComboBoxAccount::init()
 // accountID = always include this account even if it would have been excluded as closed
 // excludeClosed = set to true if closed accounts should be excluded
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
-                    , wxSize size, int accountID, bool excludeClosed)
+    , wxSize size, int accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
     , excludeClosed_(excludeClosed)
     , accountID_(accountID)
@@ -329,8 +324,8 @@ void mmComboBoxCategory::init()
     all_elements_.clear();
     all_categories_ = Model_Category::instance().all_categories(excludeHidden_);
     if (catID_ > -1)
-        all_categories_.insert(std::make_pair(Model_Category::full_name(catID_, subCatID_)
-                                    , std::make_pair(catID_, subCatID_)));
+        all_categories_.insert(std::make_pair(Model_Category::full_name(catID_)
+                                    , catID_));
     for (const auto& item : all_categories_)
     {
         all_elements_[item.first] = i++;
@@ -340,11 +335,10 @@ void mmComboBoxCategory::init()
 // catID/subCatID = always include this category even if it would have been excluded as inactive
 // excludeHidden = set to true if hidden categories should be excluded
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
-                    , wxSize size, int catID, int subCatID, bool excludeHidden)
+                    , wxSize size, int catID, bool excludeHidden)
     : mmComboBox(parent, id, size)
     , excludeHidden_(excludeHidden)
     , catID_(catID)
-    , subCatID_(subCatID)
 {
     init();
 }
@@ -353,16 +347,7 @@ int mmComboBoxCategory::mmGetCategoryId() const
 {
     auto text = GetValue();
     if (all_categories_.count(text) == 1)
-        return all_categories_.at(text).first;
-    else
-        return -1;
-}
-
-int mmComboBoxCategory::mmGetSubcategoryId() const
-{
-    auto text = GetValue();
-    if (all_categories_.count(text) == 1)
-        return all_categories_.at(text).second;
+        return all_categories_.at(text);
     else
         return -1;
 }
@@ -382,8 +367,8 @@ mmComboBoxCustom::mmComboBoxCustom(wxWindow* parent, wxArrayString& a, wxWindowI
 /* --------------------------------------------------------- */
 
 wxBEGIN_EVENT_TABLE(mmDatePickerCtrl, wxDatePickerCtrl)
-    EVT_DATE_CHANGED(wxID_ANY, mmDatePickerCtrl::OnDateChanged)
-    EVT_SPIN(wxID_ANY, mmDatePickerCtrl::OnDateSpin)
+EVT_DATE_CHANGED(wxID_ANY, mmDatePickerCtrl::OnDateChanged)
+EVT_SPIN(wxID_ANY, mmDatePickerCtrl::OnDateSpin)
 wxEND_EVENT_TABLE()
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
@@ -392,8 +377,8 @@ mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime d
     , itemStaticTextWeek_(nullptr)
     , spinButton_(nullptr)
 {
-// The standard date control for MacOS does not have a date picker so make one available when right-click
-// over the date field.
+    // The standard date control for MacOS does not have a date picker so make one available when right-click
+    // over the date field.
 #if defined (__WXMAC__)
     Bind(wxEVT_RIGHT_DOWN, &mmDatePickerCtrl::OnCalendar, this);
 #endif
@@ -408,14 +393,14 @@ mmDatePickerCtrl::~mmDatePickerCtrl()
 }
 
 wxStaticText* mmDatePickerCtrl::getTextWeek()
-{ 
+{
     if (!itemStaticTextWeek_)
     {
         //Text field for name of day of the week
         wxSize WeekDayNameMaxSize(wxDefaultSize);
         for (wxDateTime::WeekDay d = wxDateTime::Sun;
-                d != wxDateTime::Inv_WeekDay;
-                d = wxDateTime::WeekDay(d+1))
+            d != wxDateTime::Inv_WeekDay;
+            d = wxDateTime::WeekDay(d+1))
             WeekDayNameMaxSize.IncTo(GetTextExtent(
                 wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
         WeekDayNameMaxSize.SetHeight(-1);
@@ -424,24 +409,24 @@ wxStaticText* mmDatePickerCtrl::getTextWeek()
         wxDateEvent dateEvent(this, this->GetValue(), wxEVT_DATE_CHANGED);
         OnDateChanged(dateEvent);
     }
-    return itemStaticTextWeek_; 
+    return itemStaticTextWeek_;
 }
 
 wxSpinButton* mmDatePickerCtrl::getSpinButton()
-{ 
+{
     if (!spinButton_)
     {
         spinButton_ = new wxSpinButton(this->GetParent(), wxID_ANY
             , wxDefaultPosition, wxSize(-1, this->GetSize().GetHeight())
             , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
         spinButton_->Connect(wxID_ANY, wxEVT_SPIN
-        , wxSpinEventHandler(mmDatePickerCtrl::OnDateSpin), nullptr, this);
+            , wxSpinEventHandler(mmDatePickerCtrl::OnDateSpin), nullptr, this);
         spinButton_->SetRange(-32768, 32768);
     }
-    return spinButton_; 
+    return spinButton_;
 }
 
-void mmDatePickerCtrl::SetValue(const wxDateTime &dt)	
+void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
 {
     wxDatePickerCtrl::SetValue(dt);
     //trigger date change event
@@ -459,7 +444,7 @@ bool mmDatePickerCtrl::Enable(bool state)
 
 wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
 {
-    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL); 
+    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     date_sizer->Add(this, g_flagsH);
 #if defined(__WXMSW__) || defined(__WXGTK__)
     date_sizer->Add(this->getSpinButton(), g_flagsH);
@@ -470,7 +455,7 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
 }
 
 void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
-{  
+{
     mmCalendarPopup* m_simplePopup = new mmCalendarPopup( parent_, this );
 
     // make sure we correctly position the popup below the date
@@ -500,7 +485,7 @@ void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& event)
         date = date.Add(wxDateSpan::Days(spinButton_->GetValue()));
         this->SetValue(date);
         wxDateEvent evt(this, this->GetValue(), wxEVT_DATE_CHANGED);
-        this->GetEventHandler()->AddPendingEvent(evt);  
+        this->GetEventHandler()->AddPendingEvent(evt);
         spinButton_->SetValue(0);
     }
 }
@@ -817,7 +802,7 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object)
 {
     const wxString& errorHeader = _("Invalid Payee");
     const wxString& errorMessage = _("Please type in a new payee,\n"
-            "or make a selection using the dropdown button.")
+        "or make a selection using the dropdown button.")
         + "\n";
     ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
 }
@@ -842,7 +827,7 @@ void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
         errorMessage = _("Already exist!");
     else
         errorMessage = _("Please type in a non empty symbol.");
- 
+
     ToolTip4Object(textBox, errorMessage, errorHeader, wxICON_ERROR);
 }
 
@@ -861,7 +846,7 @@ mmMultiChoiceDialog::mmMultiChoiceDialog()
 }
 
 mmMultiChoiceDialog::mmMultiChoiceDialog(
-      wxWindow* parent
+    wxWindow* parent
     , const wxString& message
     , const wxString& caption
     , const wxArrayString& items)

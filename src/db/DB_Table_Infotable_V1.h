@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-10-27 23:32:45.961706.
+ *          AUTO GENERATED at 2022-11-18 09:14:51.123705.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -109,7 +109,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO INFOTABLE_V1 VALUES ('1', '%s', '%s')", L"DATAVERSION", L"3"));
+        db->ExecuteUpdate("INSERT INTO INFOTABLE_V1 VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
     

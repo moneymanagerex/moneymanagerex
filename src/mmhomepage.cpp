@@ -206,7 +206,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         acc_conv_rates[account.ACCOUNTID] = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
     }
     //Temporary map
-    std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
+    std::map<int /*category*/, double> stat;
 
     const auto split = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
@@ -226,7 +226,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
         if (it == split.end())
         {
-            std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
+            int category = trx.CATEGID;
             if (withdrawal)
                 stat[category] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
             else
@@ -236,7 +236,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         {
             for (const auto& entry : it->second)
             {
-                std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
+                int category = entry.CATEGID;
                 double val = entry.SPLITTRANSAMOUNT
                     * (acc_conv_rates[trx.ACCOUNTID])
                     * (withdrawal ? -1 : 1);
@@ -251,7 +251,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         if (i.second < 0)
         {
             std::pair <wxString, double> stat_pair;
-            stat_pair.first = Model_Category::full_name(i.first.first, i.first.second);
+            stat_pair.first = Model_Category::full_name(i.first);
             stat_pair.second = i.second;
             categoryStats.push_back(stat_pair);
         }

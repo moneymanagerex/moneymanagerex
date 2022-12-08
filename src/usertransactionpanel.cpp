@@ -34,11 +34,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)
-    EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, UserTransactionPanel::OnTransAccountButton)
-    EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, UserTransactionPanel::OnTransPayeeButton)
-    EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, UserTransactionPanel::OnTransCategoryButton)
-    EVT_MENU(wxID_ANY, UserTransactionPanel::onSelectedNote)
-    EVT_BUTTON(wxID_FILE, UserTransactionPanel::OnAttachments)
+EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, UserTransactionPanel::OnTransAccountButton)
+EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, UserTransactionPanel::OnTransPayeeButton)
+EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, UserTransactionPanel::OnTransCategoryButton)
+EVT_MENU(wxID_ANY, UserTransactionPanel::onSelectedNote)
+EVT_BUTTON(wxID_FILE, UserTransactionPanel::OnAttachments)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -221,7 +221,7 @@ void UserTransactionPanel::Create()
 void UserTransactionPanel::DataToControls()
 {
     if (!m_checking_entry) return;
-        
+
     wxDateTime trans_date;
     trans_date.ParseDate(m_checking_entry->TRANSDATE);
     TransactionDate(trans_date);
@@ -243,10 +243,9 @@ void UserTransactionPanel::DataToControls()
 
     m_payee_id = m_checking_entry->PAYEEID;
     m_payee->SetLabelText(Model_Payee::get_payee_name(m_payee_id));
-    
+
     m_category_id = m_checking_entry->CATEGID;
-    m_subcategory_id = m_checking_entry->SUBCATEGID;
-    m_category->SetLabelText(Model_Category::full_name(m_category_id, m_subcategory_id));
+    m_category->SetLabelText(Model_Category::full_name(m_category_id));
 
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
@@ -282,11 +281,11 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
             m_payee->SetLabelText(last_payee->PAYEENAME);
 
             if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
-                        && (!Model_Category::is_hidden(last_payee->CATEGID, -1) && !Model_Category::is_hidden(last_payee->CATEGID, last_payee->SUBCATEGID)))
+                        && (!Model_Category::is_hidden(last_payee->CATEGID)))
             {
                 m_payee_id = last_payee->PAYEEID;
                 m_category_id = last_payee->CATEGID;
-                m_category->SetLabelText(Model_Category::full_name(last_payee->CATEGID, last_payee->SUBCATEGID));
+                m_category->SetLabelText(Model_Category::full_name(last_payee->CATEGID));
             }
         }
     }
@@ -319,16 +318,12 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
 
             // Only for new transactions: if user want to autofill last category used for payee and category has not been set.
             if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) && (m_category_id < 0) && (m_subcategory_id < 0)
-                        && (!Model_Category::is_hidden(payee->CATEGID, -1) && !Model_Category::is_hidden(payee->CATEGID, payee->SUBCATEGID)))
+                        && (!Model_Category::is_hidden(payee->CATEGID)))
             {
                 if (payee->CATEGID > 0)
                 {
                     m_category_id = payee->CATEGID;
-                    if (payee->SUBCATEGID > 0)
-                    {
-                        m_subcategory_id = payee->SUBCATEGID;
-                    }
-                    m_category->SetLabelText(Model_Category::full_name(m_category_id, m_subcategory_id));
+                    m_category->SetLabelText(Model_Category::full_name(m_category_id));
                 }
             }
         }
@@ -337,12 +332,11 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
 
 void UserTransactionPanel::OnTransCategoryButton(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog dlg(this, true, m_category_id, m_subcategory_id);
+    mmCategDialog dlg(this, true, m_category_id);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_category_id = dlg.getCategId();
-        m_subcategory_id = dlg.getSubCategId();
-        m_category->SetLabelText(Model_Category::full_name(m_category_id, m_subcategory_id));
+        m_category->SetLabelText(Model_Category::full_name(m_category_id));
     }
 }
 
@@ -449,14 +443,12 @@ int UserTransactionPanel::SaveChecking()
     if (trxDate < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
-        return false;
+        return -1;
     }  
-
 
     if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
     }
-
 
     m_checking_entry->ACCOUNTID = m_account_id;
     m_checking_entry->TOACCOUNTID = CheckingType();
@@ -468,7 +460,6 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
-    m_checking_entry->SUBCATEGID = m_subcategory_id;
     m_checking_entry->TRANSDATE = trxDate;
     m_checking_entry->FOLLOWUPID = 0;
     m_checking_entry->TOTRANSAMOUNT = m_checking_entry->TRANSAMOUNT;

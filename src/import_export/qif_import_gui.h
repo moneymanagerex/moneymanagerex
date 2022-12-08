@@ -83,7 +83,7 @@ private:
     std::unordered_map <wxString, int> m_QIFaccountsID;
     std::unordered_map <wxString, int> m_QIFpayeeNames;
     wxArrayString m_payee_names;
-    std::unordered_map <wxString, std::pair<int, int> > m_QIFcategoryNames;
+    std::unordered_map <wxString, int> m_QIFcategoryNames;
     std::vector <Model_Splittransaction::Cache> m_splitDataSets;
 
     wxString m_accountNameStr;

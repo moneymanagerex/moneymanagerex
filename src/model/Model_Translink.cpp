@@ -136,12 +136,7 @@ void Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE table_typ
 {
     for (const auto& translink : TranslinkList(table_type, entry_id))
     {
-        if (table_type == Model_Attachment::STOCK)
-        {
-            Model_Shareinfo::RemoveShareEntry(translink.CHECKINGACCOUNTID);
-        }
         Model_Checking::instance().remove(translink.CHECKINGACCOUNTID);
-        Model_Translink::instance().remove(translink.TRANSLINKID);
     }
 }
 
@@ -149,7 +144,6 @@ void Model_Translink::RemoveTranslinkEntry(const int checking_account_id)
 {
     Data translink = TranslinkRecord(checking_account_id);
     Model_Shareinfo::RemoveShareEntry(translink.CHECKINGACCOUNTID);
-    Model_Checking::instance().remove(translink.CHECKINGACCOUNTID);
     Model_Translink::instance().remove(translink.TRANSLINKID);
 
     if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::ASSET))

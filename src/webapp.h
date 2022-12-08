@@ -47,16 +47,16 @@ namespace WebAppParam
 class mmWebApp
 {
 
-/** Return services page URL with GUID inserted */
-const static wxString getServicesPageURL();
+    /** Return services page URL with GUID inserted */
+    const static wxString getServicesPageURL();
 
-//Internal function
-const static wxString WebApp_getApiVersion();
-static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output);
-static bool WebApp_DeleteAllAccount();
-static bool WebApp_DeleteAllPayee();
-static bool WebApp_DeleteAllCategory();
-static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr, wxString& Error);
+    //Internal function
+    const static wxString WebApp_getApiVersion();
+    static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output);
+    static bool WebApp_DeleteAllAccount();
+    static bool WebApp_DeleteAllPayee();
+    static bool WebApp_DeleteAllCategory();
+    static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr, wxString& Error);
 
 public:
     const static wxString getUrl();
@@ -73,6 +73,7 @@ public:
         wxString Payee;
         wxString Category;
         wxString SubCategory;
+        int ParentCategory;
         double Amount;
         wxString Notes;
         wxString Attachments;

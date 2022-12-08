@@ -427,14 +427,14 @@ void mmQIFExportDialog::mmExportQIF()
     if (m_type == QIF && exp_categ)
     {
         buffer << mmExportTransaction::getCategoriesQIF();
-        numCategories = Model_Category::instance().all_categories().size();
+        numCategories = Model_Category::instance().all().size();
         sErrorMsg << _("Categories exported") << "\n";
     }
     else if (m_type == JSON)
     {
         if (exp_categ) {
             mmExportTransaction::getCategoriesJSON(json_writer);
-            numCategories = Model_Category::instance().all_categories().size();
+            numCategories = Model_Category::instance().all().size();
         }
         else {
             mmExportTransaction::getUsedCategoriesJSON(json_writer);

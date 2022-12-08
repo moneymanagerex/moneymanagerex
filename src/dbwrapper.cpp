@@ -21,7 +21,7 @@
 #include "paths.h"
 #include "constants.h"
 //----------------------------------------------------------------------------
-#include "sqlite3.h"
+#include "sqlite3mc_amalgamation.h"
 //----------------------------------------------------------------------------
 /*
     SQLITE_OPEN_READWRITE

@@ -91,7 +91,7 @@ void mmEditPayeeDialog::CreateControls()
     const wxString title = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, title), g_flagsH);
-    m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, -1, true);
+    m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, true);
     mmToolTip(m_category, _("The category used as default for this payee"));
     fgSizer1->Add(m_category, g_flagsExpand);                     
 
@@ -136,7 +136,7 @@ void mmEditPayeeDialog::fillControls()
     m_reference->SetValue(m_payee->NUMBER);
     m_website->SetValue(m_payee->WEBSITE);
     m_Notes->SetValue(m_payee->NOTES);
-    const wxString category = Model_Category::full_name(m_payee->CATEGID, m_payee->SUBCATEGID);
+    const wxString category = Model_Category::full_name(m_payee->CATEGID);
         m_category->ChangeValue(category);
 }
 
@@ -162,7 +162,6 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
         m_payee->WEBSITE = m_website->GetValue();
         m_payee->NOTES = m_Notes->GetValue();
         m_payee->CATEGID = m_category->mmGetCategoryId();
-        m_payee->SUBCATEGID = m_category->mmGetSubcategoryId();
         Model_Payee::instance().save(m_payee);
         mmWebApp::MMEX_WebApp_UpdatePayee();
     }
@@ -184,10 +183,11 @@ void mmEditPayeeDialog::OnComboKey(wxKeyEvent& event)
         auto category = m_category->GetValue();
         if (category.empty())
         {
-            mmCategDialog dlg(this, true, -1, -1);
+            mmCategDialog dlg(this, true, -1);
             dlg.ShowModal();
-            m_category->mmDoReInitialize();
-            category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+            if (dlg.getRefreshRequested())
+                m_category->mmDoReInitialize();
+            category = Model_Category::full_name(dlg.getCategId());
             m_category->ChangeValue(category);
             return;
         }
@@ -201,16 +201,16 @@ void mmEditPayeeDialog::OnComboKey(wxKeyEvent& event)
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
-    EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
-    EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
-    EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
-    EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
-    EVT_LIST_COL_CLICK(wxID_ANY, mmPayeeDialog::OnSort)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY, mmPayeeDialog::OnListItemDeselected)
-    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, mmPayeeDialog::OnItemRightClick)
-    EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
+EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
+EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
+EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
+EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
+EVT_LIST_COL_CLICK(wxID_ANY, mmPayeeDialog::OnSort)
+EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
+EVT_LIST_ITEM_SELECTED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
+EVT_LIST_ITEM_DESELECTED(wxID_ANY, mmPayeeDialog::OnListItemDeselected)
+EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, mmPayeeDialog::OnItemRightClick)
+EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 mmPayeeDialog::~mmPayeeDialog()
@@ -293,7 +293,7 @@ void mmPayeeDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
-    payeeListBox_ = new wxListView(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
+    payeeListBox_ = new wxListView(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
         wxLC_REPORT | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
     payeeListBox_->SetMinSize(wxSize(250, 100));
 
@@ -378,9 +378,9 @@ void mmPayeeDialog::fillControls()
         {
             return(
                 CaseInsensitiveLocaleCmp(
-                    Model_Category::instance().full_name(x.CATEGID, x.SUBCATEGID)
-                    , Model_Category::instance().full_name(y.CATEGID, y.SUBCATEGID)) < 0
-            ); 
+                    Model_Category::instance().full_name(x.CATEGID)
+                    , Model_Category::instance().full_name(y.CATEGID)) < 0
+                );
         });
         break;  
     case PAYEE_NUMBER:
@@ -408,7 +408,7 @@ void mmPayeeDialog::fillControls()
         item.SetId(idx);
         item.SetData(payee.PAYEEID);
         payeeListBox_->InsertItem(item);
-        const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
+        const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID);
         payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);
         payeeListBox_->SetItem(idx, 1, payee.ACTIVE == 0 ? L"\u2713" : L"");        
         payeeListBox_->SetItem(idx, 2, full_category_name);
@@ -446,6 +446,7 @@ void mmPayeeDialog::AddPayee()
 {
     mmEditPayeeDialog dlg(this, NULL);
     dlg.ShowModal();
+    refreshRequested_ = true;
     fillControls();
 }
 
@@ -456,16 +457,17 @@ void mmPayeeDialog::EditPayee()
     {
         mmEditPayeeDialog dlg(this, payee);
         dlg.ShowModal();
+        refreshRequested_ = true;
         fillControls();
     }
 }
 
 void mmPayeeDialog::DeletePayee()
 {
-    const auto *payee = Model_Payee::instance().get(m_payee_id);
+    const auto* payee = Model_Payee::instance().get(m_payee_id);
     if (payee)
     {
-        if (!Model_Payee::instance().remove(m_payee_id))
+        if (Model_Payee::instance().is_used(m_payee_id))
         {
             wxString deletePayeeErrMsg = _("Payee in use.");
             deletePayeeErrMsg
@@ -476,12 +478,38 @@ void mmPayeeDialog::DeletePayee()
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
-        else
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
+        Model_Checking::Data_Set deletedTrans = Model_Checking::instance().find(Model_Checking::PAYEEID(m_payee_id));
+        wxMessageDialog msgDlg(this
+            , _("Deleted transactions exist which use this payee.\n\nDeleting the payee will also automatically purge the associated deleted transactions.\n\nDo you wish to continue?")
+            , _("Confirm Payee Deletion")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)
+        {
+            if (!deletedTrans.empty()) {
+                Model_Checking::instance().Savepoint();
+                Model_Splittransaction::instance().Savepoint();
+                Model_Attachment::instance().Savepoint();
+                Model_CustomFieldData::instance().Savepoint();
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
-        m_payee_id = -1;
-        refreshRequested_ = true;
-        fillControls();
+                for (auto& tran : deletedTrans) {
+                    Model_Checking::instance().remove(tran.TRANSID);
+                    mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
+                    Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
+                }
+
+                Model_Checking::instance().ReleaseSavepoint();
+                Model_Splittransaction::instance().ReleaseSavepoint();
+                Model_Attachment::instance().ReleaseSavepoint();
+                Model_CustomFieldData::instance().ReleaseSavepoint();
+            }
+
+            Model_Payee::instance().remove(m_payee_id);
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
+            m_payee_id = -1;
+            refreshRequested_ = true;
+            fillControls();
+        }    
     }
 }
 
@@ -490,11 +518,10 @@ void mmPayeeDialog::DefineDefaultCategory()
     Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
     if (payee)
     {
-        mmCategDialog dlg(this, true, payee->CATEGID, payee->SUBCATEGID);
+        mmCategDialog dlg(this, true, payee->CATEGID);
         if (dlg.ShowModal() == wxID_OK)
         {
             payee->CATEGID = dlg.getCategId();
-            payee->SUBCATEGID = dlg.getSubCategId();
             refreshRequested_ = true;
             Model_Payee::instance().save(payee);
             mmWebApp::MMEX_WebApp_UpdatePayee();
@@ -509,7 +536,6 @@ void mmPayeeDialog::RemoveDefaultCategory()
     if (payee)
     {
         payee->CATEGID = -1;
-        payee->SUBCATEGID = -1;
         refreshRequested_ = true;
         Model_Payee::instance().save(payee);
         mmWebApp::MMEX_WebApp_UpdatePayee();
@@ -546,14 +572,14 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
 {
     switch(event.GetId())
     {
-        case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
-        case MENU_REMOVE_CATEGORY: RemoveDefaultCategory() ; break;
-        case MENU_NEW_PAYEE: AddPayee(); break;
-        case MENU_EDIT_PAYEE: EditPayee(); break;
-        case MENU_DELETE_PAYEE: DeletePayee(); break;
-        case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
-        case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
-        default: break;
+    case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
+    case MENU_REMOVE_CATEGORY: RemoveDefaultCategory() ; break;
+    case MENU_NEW_PAYEE: AddPayee(); break;
+    case MENU_EDIT_PAYEE: EditPayee(); break;
+    case MENU_DELETE_PAYEE: DeletePayee(); break;
+    case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
+    case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
+    default: break;
     }
 }
 

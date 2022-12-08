@@ -265,44 +265,44 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
-    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER));
+    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER, false));
     m_real_columns.push_back(COL_IMGSTATUS);
-    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_ID);
-    m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NUMBER);
     if (m_cp->isAllAccounts_ || m_cp->isTrash_)
     {
-        m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
+        m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT, true));
         m_real_columns.push_back(COL_ACCOUNT);
     }
-    m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_PAYEE_STR);
-    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_CENTER));
+    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_CENTER, true));
     m_real_columns.push_back(COL_STATUS);
-    m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_CATEGORY);
-    m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_WITHDRAWAL);
-    m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_DEPOSIT);
     if (!m_cp->isAllAccounts_ && !m_cp->isTrash_)
     {
-        m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+        m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
         m_real_columns.push_back(COL_BALANCE);
         Model_Account::Data* account = Model_Account::instance().get(m_cp->m_AccountID);
         if (0 != account->CREDITLIMIT)
         {
-            m_columns.push_back(PANEL_COLUMN(_("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+            m_columns.push_back(PANEL_COLUMN(_("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
             m_real_columns.push_back(COL_CREDIT);
         }
     }
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NOTES);
     if (m_cp->isTrash_) {
-        m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
+        m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
         m_real_columns.push_back(COL_DELETEDTIME);
     }
 
@@ -322,7 +322,7 @@ TransactionListCtrl::TransactionListCtrl(
                 align = wxLIST_FORMAT_CENTER; 
             else
                 align = wxLIST_FORMAT_LEFT; 
-            m_columns.push_back(PANEL_COLUMN(name, 100, align));
+            m_columns.push_back(PANEL_COLUMN(name, 100, align, true));
             m_real_columns.push_back(static_cast<EColumn>(i));
         }
         i++;
@@ -972,6 +972,7 @@ void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent& event)
     }
     
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
@@ -1015,6 +1016,7 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
     }
 
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
@@ -1065,6 +1067,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
         }
     }
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
@@ -1076,14 +1079,22 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     Model_Checking::instance().Savepoint();
     Model_Attachment::instance().Savepoint();
     Model_Splittransaction::instance().Savepoint();
+    Model_CustomFieldData::instance().Savepoint();
     for (const auto& tran : this->m_trans)
     {
         if (tran.STATUS == s || (s.empty() && status.empty()))
         {
             if (m_cp->isTrash_ || retainDays == 0) {
-                // remove also removes any split transactions
+                // remove also removes any split transactions & translink entries
                 Model_Checking::instance().remove(tran.TRANSID);
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
+
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                // remove also any attachments
+                mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
+
+                // remove also any custom fields for the transaction
+                Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
             }
             else {
                 Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
@@ -1107,6 +1118,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     Model_Splittransaction::instance().ReleaseSavepoint();
     Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
+    Model_CustomFieldData::instance().ReleaseSavepoint();
 }
 
 
@@ -1153,19 +1165,15 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             }
 
             if (m_cp->isTrash_ || retainDays == 0) {
-                if (Model_Checking::foreignTransaction(*trx))
-                {
-                    Model_Translink::RemoveTranslinkEntry(i);
-                    m_cp->m_frame->RefreshNavigationTree();
-                }
-                
+                // remove also removes split transactions & translink entries
                 Model_Checking::instance().remove(i);
-                
-                // remove also any split transactions
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), i);
+
+                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                // remove also any attachments
+                mmAttachmentManage::DeleteAllAttachments(RefType, i);
                 
                 // remove also any custom fields for the transaction
-                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
                 Model_CustomFieldData::DeleteAllData(RefType, i);
 
             }
@@ -1194,6 +1202,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         }
     }
     refreshVisualList();
+    m_cp->m_frame->RefreshNavigationTree();
 }
 
 //----------------------------------------------------------------------------
