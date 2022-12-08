@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 12:18\n"
+"PO-Revision-Date: 2022-12-08 13:53\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1734,15 +1734,15 @@ msgstr "Οργάνωση Κατηγοριών: Σφάλμα διαγραφής"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Υπάρχουν Διαγραμμένες συναλλαγές που χρησιμοποιούν αυτή την κατηγορία ή μία από τις απογόνους της."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Η διαγραφή της κατηγορίας θα καθαρίσει επίσης αυτόματα τις σχετικές διαγραμμένες συναλλαγές."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Θέλετε να συνεχίσετε;"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
@@ -6288,11 +6288,11 @@ msgstr "Οργάνωση δικαιούχων: Σφάλμα διαγραφής"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Υπάρχουν διαγραμμένες συναλλαγές που χρησιμοποιούν αυτόν τον δικαιούχο πληρωμής."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Διαγραφή του δικαιούχου πληρωμής θα καθαρίσει επίσης αυτόματα τις σχετικές διαγραμμένες συναλλαγές."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
