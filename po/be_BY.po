@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-02 21:34+0300\n"
-"PO-Revision-Date: 2022-12-08 11:05\n"
+"POT-Creation-Date: 2022-12-08 15:16+0300\n"
+"PO-Revision-Date: 2022-12-08 12:18\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Уключыць, каб дапамагчы нам праз дасыла
 #: assetdialog.cpp:307 attachmentdialog.cpp:152 billsdepositsdialog.cpp:630
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:269
-#: customfieldeditdialog.cpp:203 filtertransdialog.cpp:729
+#: customfieldeditdialog.cpp:203 filtertransdialog.cpp:732
 #: import_export/qif_export.cpp:230 import_export/qif_import_gui.cpp:365
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:163 payeedialog.cpp:120
 #: payeedialog.cpp:355 sharetransactiondialog.cpp:337
@@ -136,7 +136,7 @@ msgstr "Абярыце, ці часта выкарыстоўваеце гэты 
 #: accountdialog.cpp:181 assetdialog.cpp:255 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:608 billsdepositspanel.cpp:145
 #: budgetentrydialog.cpp:154 budgetingpanel.cpp:305 filtertrans.cpp:197
-#: filtertransdialog.cpp:624 filtertransdialog.cpp:1551
+#: filtertransdialog.cpp:627 filtertransdialog.cpp:1554
 #: import_export/qif_export.cpp:593 import_export/qif_import_gui.cpp:107
 #: import_export/univcsvdialog.cpp:97 mmchecking_list.cpp:302
 #: payeedialog.cpp:111 payeedialog.cpp:239 reports/transactions.cpp:196
@@ -426,7 +426,7 @@ msgid "Enter the name of the asset"
 msgstr "Пакажыце назву актыва"
 
 #: assetdialog.cpp:209 assetspanel.cpp:61 filtertrans.cpp:189
-#: filtertransdialog.cpp:869 filtertransdialog.cpp:875
+#: filtertransdialog.cpp:872 filtertransdialog.cpp:878
 #: import_export/qif_export.cpp:584 import_export/qif_import_gui.cpp:101
 #: import_export/univcsvdialog.cpp:87 maincurrencydialog.cpp:248
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:272 mmreportspanel.cpp:257
@@ -514,9 +514,9 @@ msgid "ID"
 msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:512 billsdepositspanel.cpp:138
-#: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:61
-#: filtertransdialog.cpp:575 filtertransdialog.cpp:933
-#: filtertransdialog.cpp:1514 import_export/qif_export.cpp:125
+#: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
+#: filtertransdialog.cpp:578 filtertransdialog.cpp:936
+#: filtertransdialog.cpp:1517 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:586 import_export/qif_import_gui.cpp:104
 #: import_export/qif_import_gui.cpp:259 import_export/univcsvdialog.cpp:89
 #: maincurrencydialog.cpp:260 mmhomepage.cpp:435 reports/incexpenses.cpp:108
@@ -562,8 +562,8 @@ msgstr "&Рыдагаванне актыва"
 msgid "&Delete Asset"
 msgstr "В&ыдаленне актыва"
 
-#: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:473
-#: mmframe.cpp:1386 mmframe.cpp:1406 payeedialog.cpp:618 stocks_list.cpp:146
+#: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
+#: mmframe.cpp:1386 mmframe.cpp:1406 payeedialog.cpp:620 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr "Дыспетчар далучэнняў"
 
@@ -589,8 +589,8 @@ msgid "Assets"
 msgstr "Актывы"
 
 #: assetspanel.cpp:430 assetspanel.cpp:707 assetspanel.cpp:724
-#: filtertransdialog.cpp:222 filtertransdialog.cpp:500
-#: filtertransdialog.cpp:798 filtertransdialog.cpp:1815
+#: filtertransdialog.cpp:223 filtertransdialog.cpp:503
+#: filtertransdialog.cpp:801 filtertransdialog.cpp:1818
 #: import_export/qif_export.cpp:74 import_export/qif_export.cpp:75
 #: import_export/qif_export.cpp:145 mmframe.cpp:1430
 msgid "All"
@@ -615,12 +615,12 @@ msgstr "Усе аперацыі для актыва"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:349 billsdepositspanel.cpp:297
 #: categdialog.cpp:317 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:537
-#: mmcheckingpanel.cpp:375 payeedialog.cpp:612 stockspanel.cpp:144
+#: mmcheckingpanel.cpp:375 payeedialog.cpp:614 stockspanel.cpp:144
 msgid "&Edit "
 msgstr "Р&ыдагаваць "
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:307 budgetyeardialog.cpp:103
-#: categdialog.cpp:321 maincurrencydialog.cpp:302 mmchecking_list.cpp:496
+#: categdialog.cpp:321 maincurrencydialog.cpp:302 mmchecking_list.cpp:493
 #: mmcheckingpanel.cpp:367 stockdialog.cpp:334 stockspanel.cpp:149
 msgid "&Delete "
 msgstr "&Выдаліць "
@@ -642,19 +642,19 @@ msgstr "Пошук"
 msgid "Enter any string to find related assets"
 msgstr "Напішыце любы тэкст для пошука будзь-якіх актываў"
 
-#: assetspanel.cpp:511 filtertransdialog.cpp:633 mmcheckingpanel.cpp:415
+#: assetspanel.cpp:511 filtertransdialog.cpp:636 mmcheckingpanel.cpp:415
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "Парада: Знакі пытання (?) і зорачку (*) можна выкарыстоўваць падстановачныя у крытэры пошуку."
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:634 mmcheckingpanel.cpp:416
+#: assetspanel.cpp:512 filtertransdialog.cpp:637 mmcheckingpanel.cpp:416
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "Выкарыстоўвайце знак пытання (?), каб знайсці будзь-які адзін сымбаль — напрыклад, д?м знаходзіць \"дом\" і \"дым\"."
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:635 mmcheckingpanel.cpp:417
+#: assetspanel.cpp:513 filtertransdialog.cpp:638 mmcheckingpanel.cpp:417
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "Выкарыстоўвайце зорачку (*), каб знайсці будзь-якую колькасць знакаў — напрыклад, д*м знаходзіць \"дом\" і \"дынамікам\"."
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:636 mmcheckingpanel.cpp:418
+#: assetspanel.cpp:514 filtertransdialog.cpp:639 mmcheckingpanel.cpp:418
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Выкарыстоўвайце зорачку (*) у пачатку, каб знайсці будзь-які радок у сярэдзіне сказа."
 
@@ -764,7 +764,7 @@ msgstr "Спраўдзіце выдаленне далучэння"
 
 #: attachmentdialog.cpp:346 categdialog.cpp:313 customfieldlistdialog.cpp:261
 #: import_export/univcsvdialog.cpp:221 maincurrencydialog.cpp:536
-#: payeedialog.cpp:611 stockdialog.cpp:336
+#: payeedialog.cpp:613 stockdialog.cpp:336
 msgid "&Add "
 msgstr "Д&адаць "
 
@@ -774,7 +774,7 @@ msgstr "А&дчыніць "
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:225 maincurrencydialog.cpp:538
-#: payeedialog.cpp:614
+#: payeedialog.cpp:616
 msgid "&Remove "
 msgstr "В&ыдаліць "
 
@@ -977,13 +977,13 @@ msgstr "Пакажыце дату, калі карыстальніку прап�
 msgid "Date Paid"
 msgstr "Дата аплаты"
 
-#: billsdepositsdialog.cpp:494 filtertransdialog.cpp:572 transdialog.cpp:1222
+#: billsdepositsdialog.cpp:494 filtertransdialog.cpp:575 transdialog.cpp:1222
 msgid "Specify the status for the transaction"
 msgstr "Пакажыце стан аперацыі"
 
 #: billsdepositsdialog.cpp:496 billsdepositspanel.cpp:136 filtertrans.cpp:193
-#: filtertransdialog.cpp:562 filtertransdialog.cpp:928
-#: filtertransdialog.cpp:1503 import_export/qif_export.cpp:585
+#: filtertransdialog.cpp:565 filtertransdialog.cpp:931
+#: filtertransdialog.cpp:1506 import_export/qif_export.cpp:585
 #: import_export/qif_import_gui.cpp:261 import_export/qif_import_gui.cpp:272
 #: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:88
 #: mmchecking_list.cpp:283 reports/transactions.cpp:192
@@ -1005,8 +1005,8 @@ msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Ручное пазначэнне сумы, што будзе пералічаная на рахунак «куды»."
 
 #: billsdepositsdialog.cpp:517 billsdepositspanel.cpp:139
-#: budgetingpanel.cpp:302 filtertrans.cpp:196 filtertransdialog.cpp:946
-#: filtertransdialog.cpp:955 import_export/qif_export.cpp:590
+#: budgetingpanel.cpp:302 filtertrans.cpp:196 filtertransdialog.cpp:949
+#: filtertransdialog.cpp:958 import_export/qif_export.cpp:590
 #: import_export/univcsvdialog.cpp:92 maincurrencydialog.cpp:622
 #: mmhomepage.cpp:363 mmhomepage.cpp:437 reports/cashflow.cpp:419
 #: reports/categexp.cpp:218 reports/incexpenses.cpp:109
@@ -1022,8 +1022,8 @@ msgstr "Пакажыце суму для рахунка, куды робіцца
 
 #: billsdepositsdialog.cpp:539 billsdepositsdialog.cpp:806
 #: billsdepositsdialog.cpp:819 billsdepositspanel.cpp:134 filtertrans.cpp:191
-#: filtertransdialog.cpp:58 filtertransdialog.cpp:496 filtertransdialog.cpp:859
-#: filtertransdialog.cpp:1430 import_export/qif_export.cpp:587
+#: filtertransdialog.cpp:59 filtertransdialog.cpp:499 filtertransdialog.cpp:862
+#: filtertransdialog.cpp:1433 import_export/qif_export.cpp:587
 #: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:172
 #: import_export/qif_import_gui.cpp:253 import_export/univcsvdialog.cpp:90
 #: mmchecking_list.cpp:278 reports/cashflow.cpp:416
@@ -1042,9 +1042,9 @@ msgid "To"
 msgstr "Куды"
 
 #: billsdepositsdialog.cpp:557 billsdepositsdialog.cpp:807
-#: billsdepositspanel.cpp:135 filtertrans.cpp:192 filtertransdialog.cpp:59
-#: filtertransdialog.cpp:535 filtertransdialog.cpp:885
-#: filtertransdialog.cpp:1466 import_export/qif_export.cpp:588
+#: billsdepositspanel.cpp:135 filtertrans.cpp:192 filtertransdialog.cpp:60
+#: filtertransdialog.cpp:538 filtertransdialog.cpp:888
+#: filtertransdialog.cpp:1469 import_export/qif_export.cpp:588
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:266
 #: import_export/univcsvdialog.cpp:91 mmchecking_list.cpp:281
 #: model/Model_Attachment.cpp:29 payeedialog.cpp:79 payeedialog.cpp:169
@@ -1056,13 +1056,13 @@ msgstr "Платнік"
 
 #: billsdepositsdialog.cpp:569 billsdepositsdialog.cpp:938
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
-#: filtertransdialog.cpp:60 filtertransdialog.cpp:545 filtertransdialog.cpp:918
-#: filtertransdialog.cpp:1473 import_export/qif_export.cpp:589
+#: filtertransdialog.cpp:61 filtertransdialog.cpp:548 filtertransdialog.cpp:921
+#: filtertransdialog.cpp:1476 import_export/qif_export.cpp:589
 #: import_export/qif_import_gui.cpp:105 import_export/qif_import_gui.cpp:277
 #: import_export/univcsvdialog.cpp:94 mmchecking_list.cpp:285
 #: mmhomepage.cpp:190 payeedialog.cpp:149 reports/budgetcategorysummary.cpp:185
 #: reports/budgetingperf.cpp:132 reports/cashflow.cpp:418
-#: reports/categexp.cpp:217 reports/categexp.cpp:455
+#: reports/categexp.cpp:217 reports/categexp.cpp:457
 #: reports/transactions.cpp:193 splittransactionsdialog.cpp:80
 #: splittransactionsdialog.cpp:213 transactionsupdatedialog.cpp:203
 #: transdialog.cpp:484 transdialog.cpp:602 usertransactionpanel.cpp:178
@@ -1080,7 +1080,7 @@ msgid "Specify any associated check number or transaction number"
 msgstr "Пакажыце нумар чэка або нумар аперацыі"
 
 #: billsdepositsdialog.cpp:586 billsdepositspanel.cpp:144 filtertrans.cpp:190
-#: filtertransdialog.cpp:616 filtertransdialog.cpp:1543
+#: filtertransdialog.cpp:619 filtertransdialog.cpp:1546
 #: import_export/qif_export.cpp:592 import_export/qif_import_gui.cpp:102
 #: import_export/univcsvdialog.cpp:96 mmchecking_list.cpp:274
 #: reports/transactions.cpp:189 transdialog.cpp:505
@@ -1101,8 +1101,8 @@ msgstr "Колеры карыстальніка"
 msgid "Organize attachments of this recurring transaction"
 msgstr "Дыспетчар далучэнняў запланаванай аперацыі"
 
-#: billsdepositsdialog.cpp:613 filtertrans.cpp:188 filtertransdialog.cpp:641
-#: filtertransdialog.cpp:964 filtertransdialog.cpp:1558
+#: billsdepositsdialog.cpp:613 filtertrans.cpp:188 filtertransdialog.cpp:644
+#: filtertransdialog.cpp:967 filtertransdialog.cpp:1561
 #: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:373
 #: import_export/univcsvdialog.cpp:967 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
@@ -1115,7 +1115,7 @@ msgstr "Колер"
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Увядзіце тэкставыя нататкі да гэтай аперацыі."
 
-#: billsdepositsdialog.cpp:637 filtertransdialog.cpp:736
+#: billsdepositsdialog.cpp:637 filtertransdialog.cpp:739
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:557
 msgid "Show/Hide custom fields window"
 msgstr "Пацказаць ці схаваць вакенца карыстальніцкіх палёў"
@@ -1147,12 +1147,12 @@ msgid "Confirm payee name"
 msgstr "Спраўдзіце імя платніка"
 
 #: billsdepositsdialog.cpp:938 billsdepositsdialog.cpp:1255
-#: filtertransdialog.cpp:859 filtertransdialog.cpp:869
-#: filtertransdialog.cpp:875 filtertransdialog.cpp:904
-#: filtertransdialog.cpp:928 filtertransdialog.cpp:933
-#: filtertransdialog.cpp:946 filtertransdialog.cpp:955
-#: filtertransdialog.cpp:964 filtertransdialog.cpp:972
-#: filtertransdialog.cpp:978 import_export/univcsvdialog.cpp:967
+#: filtertransdialog.cpp:862 filtertransdialog.cpp:872
+#: filtertransdialog.cpp:878 filtertransdialog.cpp:907
+#: filtertransdialog.cpp:931 filtertransdialog.cpp:936
+#: filtertransdialog.cpp:949 filtertransdialog.cpp:958
+#: filtertransdialog.cpp:967 filtertransdialog.cpp:975
+#: filtertransdialog.cpp:981 import_export/univcsvdialog.cpp:967
 #: optionsettingsgeneral.cpp:282 optionsettingsgeneral.cpp:307
 #: payeedialog.cpp:149 transactionsupdatedialog.cpp:393 transdialog.cpp:587
 #: transdialog.cpp:602 util.cpp:747
@@ -1426,7 +1426,7 @@ msgid "Expense"
 msgstr "Выдатак"
 
 #: budgetentrydialog.cpp:131 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:439
-#: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:425
+#: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:427
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
@@ -1737,66 +1737,72 @@ msgid "Organise Categories: Delete Error"
 msgstr "Дыспетчар катыгорыяў: памылка выдалення"
 
 #: categdialog.cpp:501
-msgid "Deleted transactions exist which use this category or one of its descendants.\n\n"
-"Deleting the category will also automatically purge the associated deleted transactions.\n\n"
-"Do you wish to continue?"
+msgid "Deleted transactions exist which use this category or one of its descendants."
 msgstr ""
 
 #: categdialog.cpp:502
+msgid "Deleting the category will also automatically purge the associated deleted transactions."
+msgstr ""
+
+#: categdialog.cpp:503 payeedialog.cpp:485
+msgid "Do you wish to continue ?"
+msgstr ""
+
+#: categdialog.cpp:504
 msgid "Confirm Category Deletion"
 msgstr ""
 
-#: categdialog.cpp:612
+#: categdialog.cpp:614
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr "Пакажыце новую назву для '%s'"
 
-#: categdialog.cpp:613
+#: categdialog.cpp:615
 msgid "Edit Category"
 msgstr "Рыдагаваць катыгорыю"
 
-#: categdialog.cpp:624
+#: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
 msgstr ""
 
-#: categdialog.cpp:625
+#: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
 msgstr "Дыспетчар катыгорыяў: памылка рыдагавання"
 
-#: categdialog.cpp:682 mmframe.cpp:3483
+#: categdialog.cpp:684 mmframe.cpp:3483
 msgid "Category Relocation Completed."
 msgstr "Замена катыгорыяў зробленая."
 
-#: categdialog.cpp:683 mmframe.cpp:3484 mmframe.cpp:3499 payeedialog.cpp:563
+#: categdialog.cpp:685 mmframe.cpp:3484 mmframe.cpp:3499 payeedialog.cpp:565
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "У базе дадзеных абноўлена запісаў: %i"
 
-#: categdialog.cpp:685 mmframe.cpp:3486
+#: categdialog.cpp:687 mmframe.cpp:3486
 msgid "Category Relocation Result"
 msgstr "Вынік перасоўвання катыгорыі"
 
-#: categdialog.cpp:761
+#: categdialog.cpp:763
 msgid "Are you sure you want to unhide all categories"
 msgstr "Вы ўпэўненыя, што жадаеце адлюстраваць усе схаваныя катыгорыі"
 
-#: categdialog.cpp:762
+#: categdialog.cpp:764
 msgid "Unhide all categories"
 msgstr "Адлюстраваць усе ўтоеныя катыгорыі"
 
-#: categdialog.cpp:790
+#: categdialog.cpp:792
 msgid "Hide Selected Category"
 msgstr "Схаваць абраную катыгорыю"
 
-#: categdialog.cpp:791
+#: categdialog.cpp:793
 msgid "Unhide Selected Category"
 msgstr "Не хаваць абраную катыгорыю"
 
-#: categdialog.cpp:793 payeedialog.cpp:607
+#: categdialog.cpp:795 payeedialog.cpp:609
 msgid "Remove Category"
 msgstr "Выдаліць катыгорыю"
 
-#: categdialog.cpp:796 import_export/univcsvdialog.cpp:441
+#: categdialog.cpp:798 import_export/univcsvdialog.cpp:441
 msgid "Clear Settings"
 msgstr "Скінуць налады"
 
@@ -2361,8 +2367,8 @@ msgstr "Іншы прыбытак"
 msgid "Other Expenses"
 msgstr "Іншыя выдаткі"
 
-#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:801
-#: filtertransdialog.cpp:1361 model/Model_Billsdeposits.cpp:34
+#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:804
+#: filtertransdialog.cpp:1364 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:32
 msgid "Transfer"
 msgstr "Пераказ"
@@ -2480,124 +2486,124 @@ msgstr "Распрацоўшчыкі могуць папрасіць вас на
 msgid "Back"
 msgstr "Назад"
 
-#: filtertransdialog.cpp:48 mmchecking_list.cpp:502 mmchecking_list.cpp:1061
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:499 mmchecking_list.cpp:1058
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
 msgstr "Няўзгодненая"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:504 mmhomepage.cpp:539
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:501 mmhomepage.cpp:539
 #: mmhomepage.cpp:714 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:38
 msgid "Reconciled"
 msgstr "Узгодненая"
 
-#: filtertransdialog.cpp:50 mmchecking_list.cpp:506
+#: filtertransdialog.cpp:51 mmchecking_list.cpp:503
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
 msgid "Void"
 msgstr "Скасаваная"
 
-#: filtertransdialog.cpp:51 mmchecking_list.cpp:508 mmchecking_list.cpp:1050
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:505 mmchecking_list.cpp:1047
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
 msgstr "Дапрацаваць"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:510
+#: filtertransdialog.cpp:53 mmchecking_list.cpp:507
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
 msgstr "Дублікат"
 
-#: filtertransdialog.cpp:53 filtertransdialog.cpp:1496
+#: filtertransdialog.cpp:54 filtertransdialog.cpp:1499
 msgid "All Except Reconciled"
 msgstr "Акрамя узгодненых"
 
-#: filtertransdialog.cpp:481 transactionsupdatedialog.cpp:117
+#: filtertransdialog.cpp:484 transactionsupdatedialog.cpp:117
 msgid "Specify"
 msgstr "Пакажыце"
 
-#: filtertransdialog.cpp:507
+#: filtertransdialog.cpp:510
 msgid "Period Range"
 msgstr "Дыяпазон датаў"
 
-#: filtertransdialog.cpp:519 reports/mmDateRange.cpp:35
+#: filtertransdialog.cpp:522 reports/mmDateRange.cpp:35
 msgid "Date Range"
 msgstr "Прамежак часу"
 
-#: filtertransdialog.cpp:555 filtertransdialog.cpp:1488
+#: filtertransdialog.cpp:558 filtertransdialog.cpp:1491
 msgid "Include all sub-categories"
 msgstr "Улічваць усе падкатыгорыі"
 
-#: filtertransdialog.cpp:581 filtertransdialog.cpp:1357
+#: filtertransdialog.cpp:584 filtertransdialog.cpp:1360
 #: import_export/univcsvdialog.cpp:99 mmchecking_list.cpp:287
 #: model/Model_Billsdeposits.cpp:32 model/Model_Checking.cpp:30
 #: reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Спісанне"
 
-#: filtertransdialog.cpp:583 filtertransdialog.cpp:1358
+#: filtertransdialog.cpp:586 filtertransdialog.cpp:1361
 #: import_export/univcsvdialog.cpp:100 mmchecking_list.cpp:289
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:31
 #: reports/forecast.cpp:79
 msgid "Deposit"
 msgstr "Унёсак"
 
-#: filtertransdialog.cpp:585 filtertransdialog.cpp:791
-#: filtertransdialog.cpp:1361
+#: filtertransdialog.cpp:588 filtertransdialog.cpp:794
+#: filtertransdialog.cpp:1364
 msgid "Transfer Out"
 msgstr "Дасланыя пераказы"
 
-#: filtertransdialog.cpp:587 filtertransdialog.cpp:1359
+#: filtertransdialog.cpp:590 filtertransdialog.cpp:1362
 msgid "Transfer In"
 msgstr "Атрыманыя пераказы"
 
-#: filtertransdialog.cpp:599
+#: filtertransdialog.cpp:602
 msgid "Amount Range"
 msgstr "Дыяпазон цэнаў"
 
-#: filtertransdialog.cpp:632
+#: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
 msgstr "Пакажыце будзь-якой тэкст для пошука па нататках"
 
-#: filtertransdialog.cpp:637
+#: filtertransdialog.cpp:640
 msgid "Use regex: to match using regular expressions."
 msgstr "Выкарыстанне regex: для пошука супадзенняў ў выкарыстаннем рыгулярным выразаў."
 
-#: filtertransdialog.cpp:654
+#: filtertransdialog.cpp:657
 msgid "Presentation Options"
 msgstr "Параметры адлюстравання"
 
-#: filtertransdialog.cpp:668 filtertransdialog.cpp:972
-#: filtertransdialog.cpp:1585
+#: filtertransdialog.cpp:671 filtertransdialog.cpp:975
+#: filtertransdialog.cpp:1588
 msgid "Hide Columns"
 msgstr "Схаваць слупкі"
 
-#: filtertransdialog.cpp:679 filtertransdialog.cpp:978
-#: filtertransdialog.cpp:1598
+#: filtertransdialog.cpp:682 filtertransdialog.cpp:981
+#: filtertransdialog.cpp:1601
 msgid "Group By"
 msgstr "Групаваць па"
 
-#: filtertransdialog.cpp:688
+#: filtertransdialog.cpp:691
 msgid "Specify how the report should be grouped"
 msgstr "Абраць, як групаваць справаздачу"
 
-#: filtertransdialog.cpp:696
+#: filtertransdialog.cpp:699
 msgid "Settings"
 msgstr "Налады"
 
-#: filtertransdialog.cpp:710
+#: filtertransdialog.cpp:713
 msgid "Save active values into current Preset selection"
 msgstr "Захаваць актыўныя значэння ў бягучы шаблон"
 
-#: filtertransdialog.cpp:715
+#: filtertransdialog.cpp:718
 msgid "Delete current Preset selection"
 msgstr "Выдаліць абраны шаблон"
 
-#: filtertransdialog.cpp:885 filtertransdialog.cpp:918
-#: filtertransdialog.cpp:1308 reports/myusage.cpp:104 webappdialog.cpp:194
+#: filtertransdialog.cpp:888 filtertransdialog.cpp:921
+#: filtertransdialog.cpp:1311 reports/myusage.cpp:104 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
 msgstr "Пустое значэнне"
 
-#: filtertransdialog.cpp:902
+#: filtertransdialog.cpp:905
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
@@ -2606,82 +2612,82 @@ msgstr "Гэтае імя не супадае ні з адным платнік�
 "Усё адно жадаеце яго выкарыстаць?\n"
 "%s"
 
-#: filtertransdialog.cpp:1035
+#: filtertransdialog.cpp:1038
 msgid "Hide Report Columns"
 msgstr "Схаваць слупкі у справаздачы"
 
-#: filtertransdialog.cpp:1169 mmframe.cpp:1190
+#: filtertransdialog.cpp:1172 mmframe.cpp:1190
 msgid "The selected item will be deleted"
 msgstr "Абраны запіс будзе выдалены"
 
-#: filtertransdialog.cpp:1170 mmframe.cpp:1191
+#: filtertransdialog.cpp:1173 mmframe.cpp:1191
 msgid "Do you wish to continue?"
 msgstr "Сапраўды жадаеце выдаліць?"
 
-#: filtertransdialog.cpp:1171 mmframe.cpp:1192
+#: filtertransdialog.cpp:1174 mmframe.cpp:1192
 msgid "Settings item deletion"
 msgstr "Налады выдалення аперацыі"
 
-#: filtertransdialog.cpp:1323
+#: filtertransdialog.cpp:1326
 msgid "Filtering Details: "
 msgstr "Дыталі фільтра: "
 
-#: filtertransdialog.cpp:1423
+#: filtertransdialog.cpp:1426
 msgid "Label"
 msgstr "Пазнака"
 
-#: filtertransdialog.cpp:1443
+#: filtertransdialog.cpp:1446
 msgid "Since"
 msgstr "Пачынаючы з"
 
-#: filtertransdialog.cpp:1445
+#: filtertransdialog.cpp:1448
 msgid "Before"
 msgstr "Перад"
 
-#: filtertransdialog.cpp:1457
+#: filtertransdialog.cpp:1460
 msgid "Period"
 msgstr "Перыяд"
 
-#: filtertransdialog.cpp:1526
+#: filtertransdialog.cpp:1529
 msgid "Amount Min."
 msgstr "Сума мін."
 
-#: filtertransdialog.cpp:1534
+#: filtertransdialog.cpp:1537
 msgid "Amount Max."
 msgstr "Сума макс."
 
-#: filtertransdialog.cpp:1724 mmframe.cpp:1218
+#: filtertransdialog.cpp:1727 mmframe.cpp:1218
 msgid "Setting Name"
 msgstr "Назва наладаў"
 
-#: filtertransdialog.cpp:1724 mmframe.cpp:1218
+#: filtertransdialog.cpp:1727 mmframe.cpp:1218
 msgid "Please Enter"
 msgstr "Калі ласка, пакажыце"
 
-#: filtertransdialog.cpp:1747
+#: filtertransdialog.cpp:1750
 msgid "The entered name is already in use"
 msgstr "Такое імя ўжо выкарыстоўваецца"
 
-#: filtertransdialog.cpp:1747 images_list.cpp:325 images_list.cpp:413
+#: filtertransdialog.cpp:1750 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
 #: images_list.cpp:494 import_export/qif_import_gui.cpp:732
 #: import_export/qif_import_gui.cpp:735
 msgid "Warning"
 msgstr "Папярэджанне"
 
-#: filtertransdialog.cpp:1765
+#: filtertransdialog.cpp:1768
 msgid "Filter settings have changed"
 msgstr "Змяніліся налады фильтра"
 
-#: filtertransdialog.cpp:1766
+#: filtertransdialog.cpp:1769
 msgid "Do you want to save them before continuing?"
 msgstr "Жадаеце захаваць іх перад тым, як выйсці?"
 
-#: filtertransdialog.cpp:1767
+#: filtertransdialog.cpp:1770
 msgid "Please confirm"
 msgstr "Калі ласка, спраўдзіце"
 
-#: filtertransdialog.cpp:1784 reports/reportbase.cpp:241
+#: filtertransdialog.cpp:1787 reports/reportbase.cpp:241
 msgid "Choose Accounts"
 msgstr "Абярыце рахункі"
 
@@ -3953,7 +3959,7 @@ msgstr[1] "&Рыдагаваць аперацыі..."
 msgstr[2] "&Рыдагаваць аперацыі..."
 msgstr[3] "&Рыдагаваць аперацыі..."
 
-#: mmchecking_list.cpp:446
+#: mmchecking_list.cpp:444
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Капіяваць аперацыю"
@@ -3961,20 +3967,20 @@ msgstr[1] "&Капіяваць аперацыі"
 msgstr[2] "&Капіяваць аперацыяў"
 msgstr[3] "&Капіяваць аперацыі"
 
-#: mmchecking_list.cpp:451
+#: mmchecking_list.cpp:449
 msgid "&Paste Transaction"
 msgstr "&Уставіць аперацыю"
 
-#: mmchecking_list.cpp:451
+#: mmchecking_list.cpp:449
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr "&Уставіць аперацыі (%d)"
 
-#: mmchecking_list.cpp:456
+#: mmchecking_list.cpp:453
 msgid "D&uplicate Transaction"
 msgstr "Д&убляваць аперацыю"
 
-#: mmchecking_list.cpp:459
+#: mmchecking_list.cpp:456
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] "П&ерасунуць аперацыю..."
@@ -3982,19 +3988,19 @@ msgstr[1] "П&ерасунуць аперацыі..."
 msgstr[2] "П&ерасунуць аперацыі..."
 msgstr[3] "П&ерасунуць аперацыі..."
 
-#: mmchecking_list.cpp:465
+#: mmchecking_list.cpp:462
 msgid "&View In Other Account"
 msgstr "&Глядзцець у іншым рахунку"
 
-#: mmchecking_list.cpp:469
+#: mmchecking_list.cpp:466
 msgid "&View Split Categories"
 msgstr "&Глядзець састаўныя катыгорыі"
 
-#: mmchecking_list.cpp:477
+#: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction"
 msgstr "Стварыць аперацыю, што паўтараецца"
 
-#: mmchecking_list.cpp:481
+#: mmchecking_list.cpp:478
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
 msgstr[0] "А&днавіць абраную аперацыю..."
@@ -4002,11 +4008,11 @@ msgstr[1] "А&днавіць абраныя аперацыі..."
 msgstr[2] "А&днавіць абраныя аперацыі..."
 msgstr[3] "А&днавіць абраныя аперацыі..."
 
-#: mmchecking_list.cpp:483
+#: mmchecking_list.cpp:480
 msgid "Restore all transactions in current view"
 msgstr "Выдаліць усе бачныя аперацыі"
 
-#: mmchecking_list.cpp:488
+#: mmchecking_list.cpp:485
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
 msgstr[0] "&Выдаліць абраную аперацыю..."
@@ -4014,7 +4020,7 @@ msgstr[1] "&Выдаліць абраныя аперацыі..."
 msgstr[2] "&Выдаліць абраныя аперацыі..."
 msgstr[3] "&Выдаліць абраныя аперацыі..."
 
-#: mmchecking_list.cpp:488
+#: mmchecking_list.cpp:485
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
 msgstr[0] "Назаўжды &выдаліць абраную аперацыю..."
@@ -4022,35 +4028,35 @@ msgstr[1] "Назаўжды &выдаліць абраныя аперацыі...
 msgstr[2] "Назаўжды &выдаліць абраныя аперацыі..."
 msgstr[3] "Назаўжды &выдаліць абраныя аперацыі..."
 
-#: mmchecking_list.cpp:491
+#: mmchecking_list.cpp:488
 msgid "Delete all transactions in current view"
 msgstr "Выдаліць усе бачныя аперацыі"
 
-#: mmchecking_list.cpp:491
+#: mmchecking_list.cpp:488
 msgid "Permanently delete all transactions in current view"
 msgstr "Назаўжды выдаліць усе бачныя аперацыі"
 
-#: mmchecking_list.cpp:493
+#: mmchecking_list.cpp:490
 msgid "Delete Viewed \"Follow Up\" Transactions"
 msgstr "Выдаліць бачныя аперацыі у стане «Дапрацаваць»"
 
-#: mmchecking_list.cpp:494
+#: mmchecking_list.cpp:491
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr "Выдаліць бачныя «Няўзгодненыя» аперацыі"
 
-#: mmchecking_list.cpp:512
+#: mmchecking_list.cpp:509
 msgid "Mark as"
 msgstr "Пазначыць як"
 
-#: mmchecking_list.cpp:950
+#: mmchecking_list.cpp:947
 msgid "Do you really want to restore all of the transactions shown?"
 msgstr "Вы сапраўды хочаце аднавіць усе бачныя аперацыі?"
 
-#: mmchecking_list.cpp:951 mmchecking_list.cpp:993
+#: mmchecking_list.cpp:948 mmchecking_list.cpp:990
 msgid "Confirm Transaction Restore"
 msgstr "Спраўдзіць аднаўленне аперацыі"
 
-#: mmchecking_list.cpp:988
+#: mmchecking_list.cpp:985
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
@@ -4059,40 +4065,40 @@ msgstr[1] "Вы сапраўды хочаце аднавіць %i абраных
 msgstr[2] "Вы сапраўды хочаце аднавіць %i абраных аперацыяў?"
 msgstr[3] "Вы сапраўды хочаце аднавіць %i абраных аперацыяў?"
 
-#: mmchecking_list.cpp:1030
+#: mmchecking_list.cpp:1027
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Вы сапраўды хочаце выдаліць усе бачныя аперацыі?"
 
-#: mmchecking_list.cpp:1031
+#: mmchecking_list.cpp:1028
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr "Вы сапраўды хочаце назаўжды выдаліць усе бачныя аперацыі?"
 
-#: mmchecking_list.cpp:1040 mmchecking_list.cpp:1051 mmchecking_list.cpp:1062
-#: mmchecking_list.cpp:1148
+#: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
+#: mmchecking_list.cpp:1145
 msgid "Confirm Transaction Deletion"
 msgstr "Спраўдзіць выдаленне аперацыі"
 
-#: mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
+#: mmchecking_list.cpp:1047 mmchecking_list.cpp:1058
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Вы сапраўды хочаце выдаліць усе бачныя аперацыі ў устане «%s»?"
 
-#: mmchecking_list.cpp:1144
+#: mmchecking_list.cpp:1141
 msgid " You cannot undo this action."
 msgstr " Гэта дзеянне немагчыма адмяніць."
 
-#: mmchecking_list.cpp:1220
+#: mmchecking_list.cpp:1217
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Заблакаваных аперацыяў да сёння: %s\n\n"
 "Узгодненыя аперацыі."
 
-#: mmchecking_list.cpp:1223 transdialog.cpp:690 transdialog.cpp:721
+#: mmchecking_list.cpp:1220 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
 msgstr "Праверка аперацыяў"
 
-#: mmchecking_list.cpp:1256
+#: mmchecking_list.cpp:1253
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
@@ -4101,17 +4107,17 @@ msgstr[1] "Вы збіраецеся змяніць %i транзакцыі ў �
 msgstr[2] "Вы збіраецеся змяніць %i транзакцыяў ў зачыненым рахунку."
 msgstr[3] "Вы збіраецеся змяніць %i транзакцыі ў зачыненым рахунку."
 
-#: mmchecking_list.cpp:1258
+#: mmchecking_list.cpp:1255
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "Вы дагэтуль хочаце выканаць рыдагаванне?"
 
-#: mmchecking_list.cpp:1259
+#: mmchecking_list.cpp:1256
 msgid "Closed Account Check"
 msgstr "Узгадненне зачыненага рахунка"
 
-#: mmchecking_list.cpp:1450
+#: mmchecking_list.cpp:1447
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
@@ -4120,11 +4126,11 @@ msgstr[1] "Вы сапраўды хочаце перасунуць %i абран
 msgstr[2] "Вы сапраўды хочаце перасунуць %i абраных аперацыяў?"
 msgstr[3] "Вы сапраўды хочаце перасунуць %i абраныя аперацыі?"
 
-#: mmchecking_list.cpp:1455
+#: mmchecking_list.cpp:1452
 msgid "Confirm Transaction Move"
 msgstr "Спраўдзіць перасоўванне аперацыі"
 
-#: mmchecking_list.cpp:1461
+#: mmchecking_list.cpp:1458
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
@@ -4133,11 +4139,11 @@ msgstr[1] "Перасоўванне %i аперацыяў..."
 msgstr[2] "Перасоўванне %i аперацыяў..."
 msgstr[3] "Перасоўванне %i аперацыяў..."
 
-#: mmchecking_list.cpp:1465 stocks_list.cpp:299
+#: mmchecking_list.cpp:1462 stocks_list.cpp:299
 msgid "Select the destination Account "
 msgstr "Абраць рахунак прызначэння "
 
-#: mmchecking_list.cpp:1552
+#: mmchecking_list.cpp:1549
 msgid "Recurring Transaction saved."
 msgstr "Запланаваная аперацыя была захаваная."
 
@@ -5233,11 +5239,11 @@ msgstr "Перасоўванне рахунка"
 msgid "Account: %s - Select new type."
 msgstr "Рахунак: %s — Абярыце новы тып."
 
-#: mmframe.cpp:3498 payeedialog.cpp:562
+#: mmframe.cpp:3498 payeedialog.cpp:564
 msgid "Payee Relocation Completed."
 msgstr "Замена платніка зробленая."
 
-#: mmframe.cpp:3502 payeedialog.cpp:566
+#: mmframe.cpp:3502 payeedialog.cpp:568
 msgid "Payee Relocation Result"
 msgstr "Вынік замены платніка"
 
@@ -5263,11 +5269,11 @@ msgstr "Рух сродкаў"
 msgid "Summary"
 msgstr "Зводка"
 
-#: mmframereport.cpp:149 reports/categexp.cpp:301
+#: mmframereport.cpp:149 reports/categexp.cpp:303
 msgid "Where the Money Goes"
 msgstr "Куды сыходзяць грошы"
 
-#: mmframereport.cpp:152 reports/categexp.cpp:307
+#: mmframereport.cpp:152 reports/categexp.cpp:309
 msgid "Where the Money Comes From"
 msgstr "Адкуль прыходзяць грошы"
 
@@ -5329,7 +5335,7 @@ msgid "Gain/Loss"
 msgstr "Атрымана/Згублена"
 
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:143 reports/cashflow.cpp:288
-#: reports/categexp.cpp:219 reports/categexp.cpp:496 reports/summary.cpp:305
+#: reports/categexp.cpp:219 reports/categexp.cpp:498 reports/summary.cpp:305
 msgid "Total"
 msgstr "Агулам"
 
@@ -5354,7 +5360,7 @@ msgid "Income vs Expenses: %s"
 msgstr "Прыбыткі і выдаткі: %s"
 
 #: mmhomepage.cpp:443 reports/categexp.cpp:153 reports/categexp.cpp:188
-#: reports/categexp.cpp:424 reports/categexp.cpp:495 reports/incexpenses.cpp:88
+#: reports/categexp.cpp:426 reports/categexp.cpp:497 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
@@ -6320,20 +6326,22 @@ msgid "Organize Payees: Delete Error"
 msgstr "Дыспетчар платнікоў: памылка выдалення"
 
 #: payeedialog.cpp:483
-msgid "Deleted transactions exist which use this payee.\n\n"
-"Deleting the payee will also automatically purge the associated deleted transactions.\n\n"
-"Do you wish to continue?"
+msgid "Deleted transactions exist which use this payee."
 msgstr ""
 
 #: payeedialog.cpp:484
+msgid "Deleting the payee will also automatically purge the associated deleted transactions."
+msgstr ""
+
+#: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
 msgstr ""
 
-#: payeedialog.cpp:605
+#: payeedialog.cpp:607
 msgid "Define Category"
 msgstr "Вызначыць катыгорыю"
 
-#: payeedialog.cpp:622
+#: payeedialog.cpp:624
 msgid "Relocate Payee"
 msgstr "Перасоўванне платніка"
 
@@ -6547,7 +6555,7 @@ msgstr "Перад адпраўкай новай памылкі, калі лас
 msgid "months"
 msgstr "месяцы"
 
-#: reports/cashflow.cpp:289 reports/categexp.cpp:423
+#: reports/cashflow.cpp:289 reports/categexp.cpp:425
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
@@ -6569,45 +6577,32 @@ msgstr "Рух сродкаў — штомесяц"
 msgid "Cash Flow - Transactions"
 msgstr "Рух сродкаў — аперацыі"
 
-#: reports/categexp.cpp:236 reports/categexp.cpp:241 reports/categexp.cpp:244
-#: reports/categexp.cpp:246
-msgid "."
-msgstr ""
-
-#: reports/categexp.cpp:237
-msgid "0."
-msgstr ""
-
-#: reports/categexp.cpp:263
-msgid "&nbsp&nbsp&nbsp&nbsp"
-msgstr ""
-
-#: reports/categexp.cpp:281
+#: reports/categexp.cpp:283
 msgid "Total Expenses:"
 msgstr "Выдаткаў агулам:"
 
-#: reports/categexp.cpp:282
+#: reports/categexp.cpp:284
 msgid "Total Income:"
 msgstr "Агульны прыбытак:"
 
-#: reports/categexp.cpp:284 reports/summarystocks.cpp:180
+#: reports/categexp.cpp:286 reports/summarystocks.cpp:180
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
 msgstr "Цалкам:"
 
-#: reports/categexp.cpp:313
+#: reports/categexp.cpp:315
 msgid "Categories Summary"
 msgstr "Зводка па катыгорыях"
 
-#: reports/categexp.cpp:322
+#: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
 msgstr "Прыбыткі і выдаткі па катыгорыях"
 
-#: reports/categexp.cpp:463
+#: reports/categexp.cpp:465
 msgid "Overall"
 msgstr "У цэлым"
 
-#: reports/categexp.cpp:494 reports/payee.cpp:137
+#: reports/categexp.cpp:496 reports/payee.cpp:137
 msgid "Incomes"
 msgstr "Прыбыткі"
 
