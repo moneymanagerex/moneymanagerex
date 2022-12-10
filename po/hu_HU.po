@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 12:18\n"
+"PO-Revision-Date: 2022-12-09 09:27\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -540,7 +540,7 @@ msgstr "&Új eszköz"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr "Eszköz meg&kettőzése"
+msgstr "Eszköz &megkettőzése"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
@@ -1666,7 +1666,7 @@ msgstr "Kategória hozzáadása"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Azonos nevű kategória létezik ehhez a fölérendelthez"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1682,7 +1682,7 @@ msgstr "Már van ilyen nevű al-kategória"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Célkategória egy leszármazott"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1697,7 +1697,7 @@ msgstr "Biztosan áthelyezni szeretné a következőt:\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Felső szint"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1731,19 +1731,19 @@ msgstr "Kategóriák rendezése: törlési hiba"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Törölt ügyletek léteznek, amelyek ezt a kategóriát vagy valamelyik leszármazottját használják."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "A kategória törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Folytatja a műveletet?"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Kategória törlésének megerősítése"
 
 #: categdialog.cpp:614
 #, c-format
@@ -1756,7 +1756,7 @@ msgstr "Kategória szerkesztése"
 
 #: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Azonos nevű kategória létezik a fölérendelthez"
 
 #: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
@@ -2288,7 +2288,7 @@ msgstr "Biztosítás"
 
 #: db/DB_Table_Category_V1.h:148 optionsettingsview.cpp:233
 msgid "Auto"
-msgstr "Autó"
+msgstr "Önműködő"
 
 #: db/DB_Table_Category_V1.h:149
 msgid "Life"
@@ -3602,7 +3602,7 @@ msgstr "Összes pénznem megjelenítése"
 
 #: maincurrencydialog.cpp:236
 msgid "Currency History Options"
-msgstr "Valutatörténet opciói"
+msgstr "Valutaelőzmények beállításai"
 
 #: maincurrencydialog.cpp:254 stockdialog.cpp:300 stockdialog.cpp:319
 #: stockdialog.cpp:648
@@ -3635,7 +3635,7 @@ msgstr "A kijelölt valutaárfolyamok törlése"
 
 #: maincurrencydialog.cpp:307
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr "A használaton kívüli pénznemek és napok árfolyamtörténetének törlése"
+msgstr "Használaton kívüli pénznemek és napok árfolyamelőzményeinek törlése"
 
 #: maincurrencydialog.cpp:363
 msgid "Do you really want to delete the selected Currency?"
@@ -3656,7 +3656,8 @@ msgstr "Alappénznem kijelölése"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr "Találtam árfolyamtörténetet ehhez: %s, de az opcióknál a \"Használja a pénznem előzményeit\" nincs bekapcsolva: kattints a nem-re és engedélyezd, vagy kattints az igen-re a(z) %s árfolyamelőzményeinek eltávolításához"
+msgstr "A(z) %s árfolyamelőzményt megtaláltuk, de az „Árfolyamelőzmények használata” a beállításokban le van tiltva:\n"
+"Kattintson a Nem gombra az engedélyezéshez, vagy kattintson az Igen gombra a(z) %s összes korábbi árfolyam eltávolításához"
 
 #: maincurrencydialog.cpp:444
 #, c-format
@@ -3962,7 +3963,7 @@ msgstr "Ügylet beillesztése (%d)"
 
 #: mmchecking_list.cpp:453
 msgid "D&uplicate Transaction"
-msgstr "Ügylet duplikálása"
+msgstr "Ügylet &megkettőzése"
 
 #: mmchecking_list.cpp:456
 msgid "&Move Transaction..."
@@ -3976,7 +3977,7 @@ msgstr "Más számlában &megjelenítés"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr "Összetett kategóriák mutatása"
+msgstr "Felosztott kategóriák &megjelenítése"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction"
@@ -4472,7 +4473,7 @@ msgstr "Jelenlegi nézet nyomtatása"
 
 #: mmframe.cpp:1511
 msgid "E&xit\tAlt-X"
-msgstr "&Kilépés Alt-X"
+msgstr "&Kilépés\tAlt-X"
 
 #: mmframe.cpp:1511
 msgid "Quit this program"
@@ -4488,7 +4489,7 @@ msgstr "Eszköztár megjelenítése/elrejtése"
 
 #: mmframe.cpp:1519
 msgid "&Navigation"
-msgstr "Navigáció "
+msgstr "&Navigáció"
 
 #: mmframe.cpp:1519
 msgid "Show/Hide the Navigation tree control"
@@ -4552,7 +4553,7 @@ msgstr "Pénzzel kapcsolatos tippek megjelenítése"
 
 #: mmframe.cpp:1555
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr "Váltás teljes képernyős mód között\tShift+F11"
+msgstr "&Teljes képernyős nézet ki-/bekapcsolása\tShift+F11"
 
 #: mmframe.cpp:1556 mmframe.cpp:1866
 msgid "Toggle Fullscreen"
@@ -4560,7 +4561,7 @@ msgstr "Teljes képernyős váltás"
 
 #: mmframe.cpp:1562
 msgid "Switch Application &Language"
-msgstr "Alkalmazás nyelvének váltása"
+msgstr "Felhasználói felület &nyelve"
 
 #: mmframe.cpp:1588
 msgid "&Home Page"
@@ -4748,7 +4749,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1727
 msgid "Visit us on Facebook"
-msgstr "Keressen minket a Facebook-on"
+msgstr "Látogasson el hozzánk Facebook-on"
 
 #: mmframe.cpp:1729
 msgid "&Crowdin"
@@ -4756,7 +4757,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1729
 msgid "We use Crowdin to translate MMEX"
-msgstr "Az MMEX fordítására Crowdin-t használunk"
+msgstr "MMEX-fordítások a Crowdin segítségével történnek"
 
 #: mmframe.cpp:1731
 msgid "&Twitter"
@@ -4792,7 +4793,7 @@ msgstr "Lépj be a forráskód tárolójába és kövesd a jelentett hiba státu
 
 #: mmframe.cpp:1739
 msgid "W&iki pages"
-msgstr "W&iki oldalak"
+msgstr "&Wiki oldalak"
 
 #: mmframe.cpp:1739
 msgid "Read and update wiki pages"
@@ -4800,7 +4801,7 @@ msgstr "Olvasd és frissítsd a wiki-oldalakat"
 
 #: mmframe.cpp:1741
 msgid "F&orum"
-msgstr "Fórum"
+msgstr "&Fórum"
 
 #: mmframe.cpp:1742
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4816,7 +4817,7 @@ msgstr "Töltsd le az ingyenes androidos verziót és futtasd az MMEX-et az okos
 
 #: mmframe.cpp:1747
 msgid "&Newsletter"
-msgstr "Hírlevél"
+msgstr "&Hírlevél"
 
 #: mmframe.cpp:1748
 msgid "Subscribe to e-mail newsletter or view existing announcements"
@@ -4832,23 +4833,23 @@ msgstr "RSS-hírcsatorna csatlakoztatása a hírgyűjtőhöz"
 
 #: mmframe.cpp:1752
 msgid "&Donate via PayPal"
-msgstr "Adakozzon PayPal-on"
+msgstr "Adományozzon &PayPal-on keresztül"
 
 #: mmframe.cpp:1753
 msgid "Donate the team to support infrastructure etc"
-msgstr "Adakozz a csapatnak, hogy támogasd az infrastruktúrát stb"
+msgstr "Adományozzon a csapatnak az infrastruktúra támogatására stb"
 
 #: mmframe.cpp:1755
 msgid "&Buy us a Coffee"
-msgstr "Vegyen nekünk egy kávét"
+msgstr "&Vásároljon nekünk egy kávét"
 
 #: mmframe.cpp:1756
 msgid "Buy key developer a coffee"
-msgstr "Vegyen a főfejlesztőnek egy kávét"
+msgstr "Vásároljon a főfejlesztőnek egy kávét"
 
 #: mmframe.cpp:1759
 msgid "&Community"
-msgstr "Közösség"
+msgstr "&Közösség"
 
 #: mmframe.cpp:1760
 msgid "Stay in touch with MMEX community"
@@ -4856,7 +4857,7 @@ msgstr "Maradj kapcsolatban az MMEX-közösséggel"
 
 #: mmframe.cpp:1782
 msgid "Report a &Bug"
-msgstr "Hiba bejelentése"
+msgstr "&Hiba bejelentése"
 
 #: mmframe.cpp:1783
 msgid "Report an error in application to the developers"
@@ -4864,7 +4865,7 @@ msgstr "Jelentsen be egy alkalmazás hibát a fejlesztőknek"
 
 #: mmframe.cpp:1787
 msgid "View Diagnostics"
-msgstr "Diagnosztika megtekintése"
+msgstr "&Diagnosztika megtekintése"
 
 #: mmframe.cpp:1788
 msgid "Help provide information to the developers"
@@ -4880,7 +4881,7 @@ msgstr "Alkalmazásindítás párbeszédpanel"
 
 #: mmframe.cpp:1796
 msgid "Check for &Updates"
-msgstr "Frissítések keresése"
+msgstr "&Frissítések keresése"
 
 #: mmframe.cpp:1796
 msgid "Check For Updates"
@@ -4936,7 +4937,7 @@ msgstr "&Beállítások"
 
 #: mmframe.cpp:1856 mmframe.cpp:2757
 msgid "Register/View Release &Notifications"
-msgstr "Kiadási megjegyzések regisztrálása/nézése"
+msgstr "Kiadási &megjegyzések regisztrálása/megjelenítése"
 
 #: mmframe.cpp:1861 optionsettingsnet.cpp:131
 msgid "News"
@@ -6099,11 +6100,11 @@ msgstr "Tranzakció- vagy Költségvetésopciók"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
-msgstr "Költségvetés mutatása pénzügyi év szerint"
+msgstr "Költségvetés megjelenítése pénzügyi év szerint"
 
 #: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
-msgstr "Költségvetések mutatása \"átutalási\" ügyletekkel együtt"
+msgstr "Költségvetések megjelenítése „átutalási” ügyletekkel együtt"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
@@ -6167,11 +6168,11 @@ msgstr "Használni kívánt témaváltozat megadása"
 
 #: optionsettingsview.cpp:241
 msgid "Theme Mode"
-msgstr "Téma mód"
+msgstr "Téma"
 
 #: optionsettingsview.cpp:245
 msgid "HTML Scale Factor"
-msgstr "HTML nagyítási lépték"
+msgstr "HTML-nagyságrendi tényező"
 
 #: optionsettingsview.cpp:260
 msgid "Specify which scale factor is used for the report pages"
@@ -6295,15 +6296,15 @@ msgstr "Kedvezményezettek rendszerezése: Törlési hiba"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Törölt ügyletek léteznek, amelyek használják ezt a kedvezményezettet."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "A kedvezményezett törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Kedvezményezett törlésének megerősítése"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
