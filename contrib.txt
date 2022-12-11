@@ -156,6 +156,9 @@ Sabrina Blanc
 Martin Goike
 Michael Smith
 Antonio Navarro Sánchez
+Alain Barussaud
+Emanuele Pizzurno
+William McCracken
 
 ### 2021
 Renato
@@ -407,7 +410,7 @@ Jeremy McEachron
 Michael Ellis
 Michel EVERS
 Santiago Durango
-william Doscher
+William Doscher
 Barry Petersen
 John Stewart
 Brian Marstella
