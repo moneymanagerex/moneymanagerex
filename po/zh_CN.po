@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 12:19\n"
+"PO-Revision-Date: 2022-12-09 03:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1663,7 +1663,7 @@ msgstr "增加分类"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "该父类存在相同名称的分类"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1679,7 +1679,7 @@ msgstr "子类目名称已存在"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "目标类别是一个子代"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1694,7 +1694,7 @@ msgstr "您确定要将\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "最高级别"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1730,15 +1730,15 @@ msgstr "类目管理：删除错误"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "存在使用该类别或其下级之一的已删除交易。"
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "删除该类别也将自动清除相关的已删除交易。"
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "您想要继续吗？"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
@@ -1755,7 +1755,7 @@ msgstr "编辑类目"
 
 #: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "父类存在相同名称的类别"
 
 #: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
@@ -6274,11 +6274,11 @@ msgstr "收款人管理"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "存在使用该收款人的已删除交易。"
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "删除收款人也将自动清除相关的已删除交易。"
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
