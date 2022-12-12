@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 12:18\n"
+"PO-Revision-Date: 2022-12-12 19:27\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1664,7 +1664,7 @@ msgstr "Kategorie hinzufügen"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Kategorie mit gleichem Namen existiert für diese übergeordnete Kategorie"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1680,7 +1680,7 @@ msgstr "Eine Unterkategorie mit diesem Namen existiert bereits"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Zielkategorie ist ein Nachkomme"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1695,7 +1695,7 @@ msgstr "Sind Sie sicher, dass Sie\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Oberste Ebene"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1729,19 +1729,19 @@ msgstr "Kategorien verwalten: löschen Fehler"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Gelöschte Transaktionen existieren, die diese Kategorie oder einen ihrer Nachkommen verwenden."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Das Löschen der Kategorie löscht auch automatisch die zugehörigen gelöschten Transaktionen."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Möchten Sie fortfahren ?"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Löschen der Kategorie bestätigen"
 
 #: categdialog.cpp:614
 #, c-format
@@ -1754,7 +1754,7 @@ msgstr "Kategorie editieren"
 
 #: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Kategorie mit gleichem Namen existiert für diese übergeordnete Kategorie"
 
 #: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
@@ -6293,15 +6293,15 @@ msgstr "Empfänger/Zahler verwalten, lösch Fehler"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Es gibt gelöschte Transaktionen, die diesen Zahlungsempfänger verwenden."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Das Löschen der Kategorie löscht auch automatisch die zugehörigen gelöschten Transaktionen."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Bestätigung der Löschung des Zahlungsempfängers"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
