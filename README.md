@@ -90,7 +90,7 @@ Tips
 * Star it if you feel it is helpful [![st]][stargazers]
 
 [website]: https://moneymanagerex.org "MMEX website"
-[AppVeyor]: https://ci.appveyor.com/project/moneymanagerex/moneymanagerex "AppVeyor CI"
+[AppVeyor]: https://ci.appveyor.com/project/whalley/moneymanagerex "AppVeyor CI"
 [CircleCI]: https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex?branch=master "Circle CI"
 [OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
 [GitHubIssues]: https://github.com/moneymanagerex/moneymanagerex/issues "open issues on GitHub"
