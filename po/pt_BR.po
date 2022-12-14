@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 15:50\n"
+"POT-Creation-Date: 2022-12-14 11:08+0300\n"
+"PO-Revision-Date: 2022-12-14 08:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2458,7 +2458,7 @@ msgstr "Uma senha incorreta foi informada para um arquivo criptografado\n"
 "ou\n"
 "tentativa de abrir um arquivo que não é um arquivo de banco de dados \n"
 
-#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:940 webapp.cpp:120
+#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:948 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "Erro: %s"
@@ -3126,7 +3126,7 @@ msgid "Include payee field in notes"
 msgstr "Incluir campo beneficiário nas notas"
 
 #: import_export/qif_import_gui.cpp:390 import_export/qif_import_gui.cpp:393
-#: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:1207
+#: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:1215
 #: import_export/univcsvdialog.cpp:741 import_export/univcsvdialog.cpp:875
 #: import_export/univcsvdialog.cpp:878 import_export/univcsvdialog.cpp:898
 #: import_export/univcsvdialog.cpp:905 themes.cpp:235 transdialog.cpp:273
@@ -3214,65 +3214,65 @@ msgstr "Importando Categorias"
 msgid "Importing transaction %i of %i"
 msgstr "Importando transação %i de %i"
 
-#: import_export/qif_import_gui.cpp:951
+#: import_export/qif_import_gui.cpp:959
 msgid "Importing Transfers"
 msgstr "Importando Transferências"
 
-#: import_export/qif_import_gui.cpp:976
+#: import_export/qif_import_gui.cpp:984
 msgid "Importing Split transactions"
 msgstr "Importando transações com múltiplas categorias"
 
-#: import_export/qif_import_gui.cpp:980
+#: import_export/qif_import_gui.cpp:988
 msgid "Import finished successfully"
 msgstr "Importação finalizada com sucesso"
 
-#: import_export/qif_import_gui.cpp:980
+#: import_export/qif_import_gui.cpp:988
 #, c-format
 msgid "Total Imported: %zu"
 msgstr "Total Importado: %zu"
 
-#: import_export/qif_import_gui.cpp:990 import_export/univcsvdialog.cpp:1104
+#: import_export/qif_import_gui.cpp:998 import_export/univcsvdialog.cpp:1104
 msgid "Imported transactions discarded by user!"
 msgstr "Transações importadas descartadas pelo usuário!"
 
-#: import_export/qif_import_gui.cpp:992 import_export/qif_import_gui.h:44
+#: import_export/qif_import_gui.cpp:1000 import_export/qif_import_gui.h:44
 msgid "QIF Import"
 msgstr "Importar QIF"
 
-#: import_export/qif_import_gui.cpp:1071
+#: import_export/qif_import_gui.cpp:1079
 msgid "Transaction code is missing"
 msgstr "Falta o código da transação"
 
-#: import_export/qif_import_gui.cpp:1091
+#: import_export/qif_import_gui.cpp:1099
 msgid "Transaction Payee is missing or incorrect"
 msgstr "O beneficiário da transação está ausente ou incorreto"
 
-#: import_export/qif_import_gui.cpp:1103
+#: import_export/qif_import_gui.cpp:1111
 msgid "Date format or date mask is incorrect"
 msgstr "Formato de data ou máscara de data está incorreto"
 
-#: import_export/qif_import_gui.cpp:1115
+#: import_export/qif_import_gui.cpp:1123
 msgid "Transaction Account is incorrect"
 msgstr "Conta de transação está incorreta"
 
-#: import_export/qif_import_gui.cpp:1124
+#: import_export/qif_import_gui.cpp:1132
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Conta de transação para transferência está incorreta"
 
-#: import_export/qif_import_gui.cpp:1154
+#: import_export/qif_import_gui.cpp:1162
 msgid "Transaction Amount is incorrect"
 msgstr "O valor da transação está incorreto"
 
-#: import_export/qif_import_gui.cpp:1176
+#: import_export/qif_import_gui.cpp:1184
 msgid "Transaction Category is incorrect"
 msgstr "A Categoria de transação está incorreta"
 
-#: import_export/qif_import_gui.cpp:1265
+#: import_export/qif_import_gui.cpp:1273
 #, c-format
 msgid "Added account: %s"
 msgstr "Conta %s adicionada"
 
-#: import_export/qif_import_gui.cpp:1306 import_export/univcsvdialog.cpp:882
+#: import_export/qif_import_gui.cpp:1314 import_export/univcsvdialog.cpp:882
 #, c-format
 msgid "Added payee: %s"
 msgstr "Favorecido %s adicionado"
@@ -3573,10 +3573,9 @@ msgstr "Por favor, digite a palavra indicando valores positivos no arquivo CSV, 
 msgid "Enter a value"
 msgstr "Digite o valor"
 
-#: maincurrencydialog.cpp:79 reports/summarystocks.cpp:113 stockdialog.cpp:422
-#: stocks_list.cpp:90
-msgid "Symbol"
-msgstr "Símbolo"
+#: maincurrencydialog.cpp:79
+msgid "Code"
+msgstr ""
 
 #: maincurrencydialog.cpp:81
 msgid "Last Rate"
@@ -6738,6 +6737,10 @@ msgstr "Relatório Anual"
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
 msgstr "Resumo dos Investimentos"
+
+#: reports/summarystocks.cpp:113 stockdialog.cpp:422 stocks_list.cpp:90
+msgid "Symbol"
+msgstr "Símbolo"
 
 #: reports/summarystocks.cpp:114
 msgid "Purchase Date"
