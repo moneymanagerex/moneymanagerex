@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-08 15:16+0300\n"
-"PO-Revision-Date: 2022-12-08 12:18\n"
+"POT-Creation-Date: 2022-12-14 11:08+0300\n"
+"PO-Revision-Date: 2022-12-14 08:12\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -2434,7 +2434,7 @@ msgid "An incorrect password given for an encrypted file\n"
 "attempt to open a File that is not a database file \n"
 msgstr ""
 
-#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:940 webapp.cpp:120
+#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:948 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr ""
@@ -3099,7 +3099,7 @@ msgid "Include payee field in notes"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:390 import_export/qif_import_gui.cpp:393
-#: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:1207
+#: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:1215
 #: import_export/univcsvdialog.cpp:741 import_export/univcsvdialog.cpp:875
 #: import_export/univcsvdialog.cpp:878 import_export/univcsvdialog.cpp:898
 #: import_export/univcsvdialog.cpp:905 themes.cpp:235 transdialog.cpp:273
@@ -3187,65 +3187,65 @@ msgstr ""
 msgid "Importing transaction %i of %i"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:951
+#: import_export/qif_import_gui.cpp:959
 msgid "Importing Transfers"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:976
+#: import_export/qif_import_gui.cpp:984
 msgid "Importing Split transactions"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:980
+#: import_export/qif_import_gui.cpp:988
 msgid "Import finished successfully"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:980
+#: import_export/qif_import_gui.cpp:988
 #, c-format
 msgid "Total Imported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:990 import_export/univcsvdialog.cpp:1104
+#: import_export/qif_import_gui.cpp:998 import_export/univcsvdialog.cpp:1104
 msgid "Imported transactions discarded by user!"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:992 import_export/qif_import_gui.h:44
+#: import_export/qif_import_gui.cpp:1000 import_export/qif_import_gui.h:44
 msgid "QIF Import"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1071
+#: import_export/qif_import_gui.cpp:1079
 msgid "Transaction code is missing"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1091
+#: import_export/qif_import_gui.cpp:1099
 msgid "Transaction Payee is missing or incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1103
+#: import_export/qif_import_gui.cpp:1111
 msgid "Date format or date mask is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1115
+#: import_export/qif_import_gui.cpp:1123
 msgid "Transaction Account is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1124
+#: import_export/qif_import_gui.cpp:1132
 msgid "Transaction Account for transfer is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1154
+#: import_export/qif_import_gui.cpp:1162
 msgid "Transaction Amount is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1176
+#: import_export/qif_import_gui.cpp:1184
 msgid "Transaction Category is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1265
+#: import_export/qif_import_gui.cpp:1273
 #, c-format
 msgid "Added account: %s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1306 import_export/univcsvdialog.cpp:882
+#: import_export/qif_import_gui.cpp:1314 import_export/univcsvdialog.cpp:882
 #, c-format
 msgid "Added payee: %s"
 msgstr ""
@@ -3545,9 +3545,8 @@ msgstr ""
 msgid "Enter a value"
 msgstr ""
 
-#: maincurrencydialog.cpp:79 reports/summarystocks.cpp:113 stockdialog.cpp:422
-#: stocks_list.cpp:90
-msgid "Symbol"
+#: maincurrencydialog.cpp:79
+msgid "Code"
 msgstr ""
 
 #: maincurrencydialog.cpp:81
@@ -6676,6 +6675,10 @@ msgstr ""
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
+msgstr ""
+
+#: reports/summarystocks.cpp:113 stockdialog.cpp:422 stocks_list.cpp:90
+msgid "Symbol"
 msgstr ""
 
 #: reports/summarystocks.cpp:114
