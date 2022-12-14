@@ -453,6 +453,8 @@ int mmGUIApp::OnExit()
     Model_Usage::instance().save(usage);
 
     if (m_setting_db) {
+        m_setting_db->Close();
+        m_setting_db->ShutdownSQLite();
         delete m_setting_db;
     }
 
