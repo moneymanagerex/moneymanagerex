@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-14 11:11\n"
+"PO-Revision-Date: 2022-12-15 13:38\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -721,7 +721,7 @@ msgstr "Organiser les pièces jointes | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organiser les pièces jointes | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1220,7 +1220,7 @@ msgstr "Erreur"
 #: billsdepositsdialog.cpp:1325 splittransactionsdialog.h:82
 #: transdialog.cpp:310
 msgid "Split Transaction"
-msgstr ""
+msgstr "Fractionner la transaction"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
