@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-16 01:20\n"
+"PO-Revision-Date: 2022-12-16 02:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5231,7 +5231,7 @@ msgstr "Kivétel értelmezve"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
-msgstr "Cash Flow"
+msgstr "Pénzforgalom"
 
 #: mmframereport.cpp:146 mmframereport.cpp:233 mmhomepage.cpp:190
 msgid "Summary"
