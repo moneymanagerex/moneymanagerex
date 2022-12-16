@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-14 08:12\n"
+"PO-Revision-Date: 2022-12-15 13:38\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1697,7 +1697,7 @@ msgstr "Sei sicuro di voler spostare\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Livello superiore"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1820,7 +1820,7 @@ msgstr "&Chiudi"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
-msgstr ""
+msgstr "Visualizza con filtro transazione"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -3575,7 +3575,7 @@ msgstr "Immettere un valore"
 
 #: maincurrencydialog.cpp:79
 msgid "Code"
-msgstr ""
+msgstr "Codice"
 
 #: maincurrencydialog.cpp:81
 msgid "Last Rate"
@@ -5948,7 +5948,7 @@ msgstr "Transazioni in blocco:"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "Opzioni Database"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
