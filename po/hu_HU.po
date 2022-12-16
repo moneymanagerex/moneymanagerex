@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-14 23:01\n"
+"PO-Revision-Date: 2022-12-16 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3661,7 +3661,7 @@ msgstr "A(z) %s árfolyamelőzményt megtaláltuk, de az „Árfolyamelőzménye
 #: maincurrencydialog.cpp:444
 #, c-format
 msgid "Currency History Options: %s "
-msgstr "Valutaárfolyam-történet opciói: %s "
+msgstr "Valutaárfolyam-előzmények beállításai: %s "
 
 #: maincurrencydialog.cpp:500
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3851,7 +3851,7 @@ msgstr "Tipp: tranzakció figyeltként megjelöléséhez elegendő kiválasztani
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "Tipp: az MMEX lehetővé teszi valamennyi megtekinthető jelentés kinyomtatását. A nyomtatási beállítások a Fájl->Nyomtatás alatt érhetők el."
+msgstr "Tipp: az MMEX lehetővé teszi valamennyi megtekinthető jelentés kinyomtatását. A nyomtatási beállítások a Fájl→Nyomtatás alatt érhetők el."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -5144,7 +5144,7 @@ msgstr "Néhány beállítás csak az alkalmazás újraindítása után lép ér
 
 #: mmframe.cpp:2679 optiondialog.cpp:223 optiondialog.h:49
 msgid "MMEX Options"
-msgstr "MMEX-opciók"
+msgstr "MMEX beállításai"
 
 #: mmframe.cpp:2703
 msgid "Accounts, Payees, and Categories Updated"
