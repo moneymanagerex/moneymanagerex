@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-11-18 09:15:59.614304.
+ *          AUTO GENERATED at 2022-12-17 19:38:56.162657.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -281,6 +281,12 @@ const std::vector<wxString> dbUpgradeQuery =
         -- DB Tidy, redundant tables
         DROP TABLE IF EXISTS ASSETCLASS_V1;
         DROP TABLE IF EXISTS ASSETCLASS_STOCK_V1;
+        
+        -- DB Tidy, redundant views
+        DROP VIEW IF EXISTS alldata;
+        DROP VIEW IF EXISTS alldatax;
+        DROP VIEW IF EXISTS budget;
+        
     )",
 
 };
