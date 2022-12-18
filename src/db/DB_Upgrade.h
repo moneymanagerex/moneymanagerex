@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-12-17 19:38:56.162657.
+ *          AUTO GENERATED at 2022-12-18 13:00:39.982612.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -241,6 +241,11 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 17
     R"(
+        -- DB Tidy, redundant views
+        DROP VIEW IF EXISTS alldata;
+        DROP VIEW IF EXISTS alldatax;
+        DROP VIEW IF EXISTS budget;
+        
         -- Nested Categories
         -- https://github.com/moneymanagerex/moneymanagerex/issues/1477
         ALTER TABLE CATEGORY_V1 RENAME TO CATEGORY_V1_OLD;
@@ -281,11 +286,6 @@ const std::vector<wxString> dbUpgradeQuery =
         -- DB Tidy, redundant tables
         DROP TABLE IF EXISTS ASSETCLASS_V1;
         DROP TABLE IF EXISTS ASSETCLASS_STOCK_V1;
-        
-        -- DB Tidy, redundant views
-        DROP VIEW IF EXISTS alldata;
-        DROP VIEW IF EXISTS alldatax;
-        DROP VIEW IF EXISTS budget;
         
     )",
 
