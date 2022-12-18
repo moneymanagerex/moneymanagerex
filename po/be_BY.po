@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-14 08:12\n"
+"PO-Revision-Date: 2022-12-18 21:47\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1673,7 +1673,7 @@ msgstr "Дадаць катыгорыю"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Катыгорыя з такім імем ужо існуе для гэтай бацькоўскай катыгорыі"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1689,7 +1689,7 @@ msgstr "Падкатыгорыя з такою назвай ужо існуе"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Катыгорыя прызначэння належыць да бягучай"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1704,7 +1704,7 @@ msgstr "Вы ўпэўненыя, што жадаеце перасунуць\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Найвышэйшы ўзровень"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1738,7 +1738,7 @@ msgstr "Дыспетчар катыгорыяў: памылка выдаленн
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Ёсць выдаленыя аперацыі, што належаць да гэтый катыгорыі або яе падкатыгорыяў."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
@@ -1763,7 +1763,7 @@ msgstr "Рыдагаваць катыгорыю"
 
 #: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Катыгорыя з такім імем ужо існуе для гэтай бацькоўскай катыгорыі"
 
 #: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
