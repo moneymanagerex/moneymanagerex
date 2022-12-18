@@ -17,9 +17,9 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.6.2)
+set(MMEX_VERSION 1.6.3)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
