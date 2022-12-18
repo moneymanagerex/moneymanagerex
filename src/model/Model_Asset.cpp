@@ -19,6 +19,7 @@
 
 #include "Model_Asset.h"
 #include "Model_Translink.h"
+#include "Model_CurrencyHistory.h"
 
 const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
 {
@@ -216,31 +217,55 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
 {
     double balance = 0;
     if (date >= STARTDATE(r)) {
-        for (const auto& link : Model_Translink::instance().find(Model_Translink::LINKRECORDID(r->ASSETID), Model_Translink::LINKTYPE(Model_Attachment::reftype_desc(Model_Attachment::ASSET))))
+        Model_Translink::Data_Set translink_records = Model_Translink::instance().find(Model_Translink::LINKRECORDID(r->ASSETID), Model_Translink::LINKTYPE(Model_Attachment::reftype_desc(Model_Attachment::ASSET)));
+        if (!translink_records.empty())
         {
-            const Model_Checking::Data* tran = Model_Checking::instance().get(link.CHECKINGACCOUNTID);
-            const wxDate tranDate = Model_Checking::TRANSDATE(tran);
-            if (tranDate <= date)
+            for (const auto& link : translink_records)
             {
-                double sum = -1 * Model_Checking::balance(tran, tran->ACCOUNTID);
-                wxTimeSpan diff_time = date - tranDate;
-                double diff_time_in_days = static_cast<double>(diff_time.GetDays());
-
-                switch (rate(r))
+                const Model_Checking::Data* tran = Model_Checking::instance().get(link.CHECKINGACCOUNTID);
+                const wxDate tranDate = Model_Checking::TRANSDATE(tran);
+                if (tranDate <= date)
                 {
-                case RATE_NONE:
-                    break;
-                case RATE_APPRECIATE:
-                    sum *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
-                    break;
-                case RATE_DEPRECIATE:
-                    sum *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
-                    break;
-                default:
-                    break;
-                }
+                    double amount = -1 * Model_Checking::balance(tran, tran->ACCOUNTID) *
+                        Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran->ACCOUNTID)->CURRENCYID, tranDate);
+                    wxTimeSpan diff_time = date - tranDate;
+                    double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
-                balance += sum;
+                    switch (rate(r))
+                    {
+                    case RATE_NONE:
+                        break;
+                    case RATE_APPRECIATE:
+                        amount *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                        break;
+                    case RATE_DEPRECIATE:
+                        amount *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                        break;
+                    default:
+                        break;
+                    }
+
+                    balance += amount;
+                }
+            }
+        }
+        else {
+            balance = r->VALUE;
+            wxTimeSpan diff_time = date - STARTDATE(r);
+            double diff_time_in_days = static_cast<double>(diff_time.GetDays());
+
+            switch (rate(r))
+            {
+            case RATE_NONE:
+                break;
+            case RATE_APPRECIATE:
+                balance *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                break;
+            case RATE_DEPRECIATE:
+                balance *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                break;
+            default:
+                break;
             }
         }
     }

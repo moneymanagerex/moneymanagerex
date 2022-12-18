@@ -157,7 +157,7 @@ void mmCurrencyDialog::fillControls()
             mctrl_prefix->SetValue(true);
             mctrl_symbol->ChangeValue(m_currency->PFX_SYMBOL);
         }
-        int i;
+        unsigned int i;
         for (i = 0; i<mctrl_decimalSep->GetCount(); i++)
             if (static_cast<wxStringClientData *>(mctrl_decimalSep->GetClientObject(i))->GetData()
                                  == m_currency->DECIMAL_POINT)

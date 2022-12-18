@@ -28,12 +28,13 @@
 
 struct PANEL_COLUMN
 {
-    PANEL_COLUMN(const wxString & header, int width, int format)
-        : HEADER(header), WIDTH(width), FORMAT(format)
+    PANEL_COLUMN(const wxString & header, int width, int format, bool sortable)
+        : HEADER(header), WIDTH(width), FORMAT(format), SORTABLE(sortable)
     {}
     wxString HEADER;
     int WIDTH;
     int FORMAT;
+    bool SORTABLE;
 };
 
 class mmListCtrl : public wxListCtrl

@@ -34,12 +34,12 @@
 wxIMPLEMENT_DYNAMIC_CLASS(transactionsUpdateDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(transactionsUpdateDialog, wxDialog)
-    EVT_BUTTON(wxID_OK, transactionsUpdateDialog::OnOk)
-    EVT_BUTTON(ID_BTN_CUSTOMFIELDS, transactionsUpdateDialog::OnMoreFields)
-    EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
-    EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
-    EVT_CHAR_HOOK(transactionsUpdateDialog::OnComboKey)
-    EVT_CHOICE(ID_TRANS_TYPE, transactionsUpdateDialog::OnTransTypeChanged)
+EVT_BUTTON(wxID_OK, transactionsUpdateDialog::OnOk)
+EVT_BUTTON(ID_BTN_CUSTOMFIELDS, transactionsUpdateDialog::OnMoreFields)
+EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
+EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
+EVT_CHAR_HOOK(transactionsUpdateDialog::OnComboKey)
+EVT_CHOICE(ID_TRANS_TYPE, transactionsUpdateDialog::OnTransTypeChanged)
 wxEND_EVENT_TABLE()
 
 transactionsUpdateDialog::transactionsUpdateDialog()
@@ -61,18 +61,18 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     {
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
         const bool isTransfer = Model_Checking::is_transfer(trx);
-        
+
         if (!m_hasSplits)
         {
             Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id));
             if (!split.empty())
                 m_hasSplits = true;
         }
-  
+
         if (!m_hasTransfers && isTransfer)
             m_hasTransfers = true;
 
-        if (!m_hasNonTransfers && !isTransfer)    
+        if (!m_hasNonTransfers && !isTransfer)
             m_hasNonTransfers = true;
     }
 
@@ -204,7 +204,7 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_categ_checkbox->Enable(!m_hasSplits);
 
-    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, -1, true);
+    cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, true);
     cbCategory_->Enable(false);
 
     grid_sizer->Add(m_categ_checkbox, g_flagsH);
@@ -345,7 +345,6 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return mmErrorDialogs::InvalidCategory(cbCategory_);
     }
     int categ_id = cbCategory_->mmGetCategoryId();
-    int m_subcateg_id = cbCategory_->mmGetSubcategoryId();
 
     const auto split = Model_Splittransaction::instance().get_all();
 
@@ -393,7 +392,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (color_id < 0 || color_id > 7) {
                 return mmErrorDialogs::ToolTip4Object(bColours_, _("Color"), _("Invalid value"), wxICON_ERROR);
             }
-            trx->FOLLOWUPID = color_id == 0 ? -1 : color_id ;
+            trx->FOLLOWUPID = color_id == 0 ? -1 : color_id ; 
         }
 
         if (m_notes_checkbox->IsChecked()) {
@@ -413,13 +412,12 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_categ_checkbox->IsChecked()) {
             trx->CATEGID = categ_id;
-            trx->SUBCATEGID = m_subcateg_id;
         }
 
         if (m_type_checkbox->IsChecked()) {
             trx->TRANSCODE = type;
         }
- 
+
         // Need to consider TOTRANSAMOUNT if material transaction change
         if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() || m_transferAcc_checkbox->IsChecked())
         {
@@ -434,7 +432,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 const auto to_curr = Model_Currency::instance().get(to_acc->CURRENCYID);
                 if (curr == to_curr)
                 {
-                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT;                
+                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT;
                 } else
                 {
                     double exch = 1;
@@ -474,7 +472,7 @@ void transactionsUpdateDialog::SetPayeeTransferControls()
     } else
     {
         m_transferAcc_checkbox->SetValue(false);
-        cbAccount_->Enable(false);        
+        cbAccount_->Enable(false);
     }
 }
 
@@ -574,11 +572,11 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbCategory_->GetValue();
             if (category.empty())
             {
-                mmCategDialog dlg(this, true, -1, -1);
+                mmCategDialog dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId(), dlg.getSubCategId());
+                category = Model_Category::full_name(dlg.getCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
                 return;

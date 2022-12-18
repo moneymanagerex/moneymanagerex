@@ -104,8 +104,8 @@ void mmReportCashFlow::getTransactions()
 
     // Now gather all transations posted after today
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-                    Model_Checking::TRANSDATE(m_today, GREATER),
-                    Model_Checking::TRANSDATE(endDate, LESS));
+        Model_Checking::TRANSDATE(m_today, GREATER),
+        Model_Checking::TRANSDATE(endDate, LESS));
     for (auto& trx : transactions)
     {
         bool isAccountFound = m_account_id.Index(trx.ACCOUNTID) != wxNOT_FOUND;
@@ -118,7 +118,6 @@ void mmReportCashFlow::getTransactions()
             for (const auto& split_item : Model_Checking::splittransaction(transaction))
             {
                 trx.CATEGID = split_item.CATEGID;
-                trx.SUBCATEGID = split_item.SUBCATEGID;
                 trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
                 trx.TRANSAMOUNT = trueAmount(trx);
                 m_forecastVector.push_back(trx);
@@ -138,8 +137,6 @@ void mmReportCashFlow::getTransactions()
 
         int repeatsType = entry.REPEATS;
         int numRepeats = entry.NUMOCCURRENCES;
-        double amt = entry.TRANSAMOUNT;
-        double toAmt = entry.TOTRANSAMOUNT;
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         repeatsType %= BD_REPEATS_MULTIPLEX_BASE;
@@ -175,15 +172,13 @@ void mmReportCashFlow::getTransactions()
                 for (const auto& split_item : Model_Billsdeposits::splittransaction(entry))
                 {
                     trx.CATEGID = split_item.CATEGID;
-                    trx.SUBCATEGID = split_item.SUBCATEGID;
                     trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
                     trx.TRANSAMOUNT = trueAmount(trx);
                     m_forecastVector.push_back(trx);
                 }
-            } else 
+            } else
             {
                 trx.CATEGID = entry.CATEGID;
-                trx.SUBCATEGID = entry.SUBCATEGID;
                 trx.TRANSAMOUNT = trueAmount(trx);
                 m_forecastVector.push_back(trx);
             }
@@ -215,7 +210,7 @@ void mmReportCashFlow::getTransactions()
     }
 
     // Sort by transaction date
-    sort(m_forecastVector.begin(), m_forecastVector.end(), 
+    sort(m_forecastVector.begin(), m_forecastVector.end(),
         [] (Model_Checking::Data const& a, Model_Checking::Data const& b) { return a.TRANSDATE < b.TRANSDATE; });
 }
 
@@ -237,7 +232,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
     {
         dateMap[dt.FormatISODate()] = 0;
         if (monthly)
-           dt.Add(wxDateSpan::Month());         
+            dt.Add(wxDateSpan::Month());
         else
             dt.Add(wxDateSpan::Day());
     }
@@ -248,13 +243,12 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
         wxString date = trx.TRANSDATE;
         if (monthly)
         {
-            wxDateTime dt;
             dt.ParseDate(trx.TRANSDATE);
             date = dt.SetDay(1).FormatISODate();
-        }            
+        }
         if (dateMap.count(date) == 0)
             dateMap[date] = trx.TRANSAMOUNT;
-        else 
+        else
             dateMap[date] = dateMap[date] + trx.TRANSAMOUNT;
     }
 
@@ -298,7 +292,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
             }
             hb.endThead();
 
-            double runningBalance = m_balance;
+            runningBalance = m_balance;
             hb.startTbody();
             {
                 int lastRowDate = -1;
@@ -307,7 +301,6 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
                 double lastBalance = runningBalance;
                 for (const auto& entry : dateMap)
                 {
-                    wxDateTime dt;
                     dt.ParseDate(entry.first);
                     if (monthly)
                         rowDate = dt.GetYear();
@@ -322,7 +315,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
                         hb.startTableRow();
                     else
                         hb.startAltTableRow();
-        
+
                     hb.addTableCell(entry.first);
                     runningBalance += entry.second;
                     hb.addMoneyCell(runningBalance);
@@ -357,7 +350,7 @@ mmReportCashFlowDaily::mmReportCashFlowDaily()
 
 wxString mmReportCashFlowDaily::getHTMLText()
 {
-        return getHTMLText_DayOrMonth(false);
+    return getHTMLText_DayOrMonth(false);
 }
 
 //--------- Cash Flow - Monthly
@@ -371,7 +364,7 @@ mmReportCashFlowMonthly::mmReportCashFlowMonthly()
 
 wxString mmReportCashFlowMonthly::getHTMLText()
 {
-        return getHTMLText_DayOrMonth(true);
+    return getHTMLText_DayOrMonth(true);
 }
 
 //--------- Cash Flow - Transactions
@@ -451,8 +444,8 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         hb.addTableCellDate(trx.TRANSDATE);
         hb.addTableCell(Model_Account::get_account_name(trx.ACCOUNTID));
         hb.addTableCell((trx.TOACCOUNTID == -1) ? Model_Payee::get_payee_name(trx.PAYEEID)
-                            : "> " + Model_Account::get_account_name(trx.TOACCOUNTID));
-        hb.addTableCell(Model_Category::full_name(trx.CATEGID, trx.SUBCATEGID));
+            : "> " + Model_Account::get_account_name(trx.TOACCOUNTID));
+        hb.addTableCell(Model_Category::full_name(trx.CATEGID));
         double amount = trx.TRANSAMOUNT;
         hb.addMoneyCell(amount);
         runningBalance += amount;

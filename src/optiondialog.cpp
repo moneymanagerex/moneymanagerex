@@ -40,9 +40,9 @@ static const char * const s_pagetitle[] = {
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
-    EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
-    EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
-    EVT_LISTBOOK_PAGE_CHANGED(wxID_ANY, mmOptionsDialog::OnPageChange)
+EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
+EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
+EVT_LISTBOOK_PAGE_CHANGED(wxID_ANY, mmOptionsDialog::OnPageChange)
 wxEND_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -79,14 +79,14 @@ bool mmOptionsDialog::Create(wxWindow* parent
 
 void mmOptionsDialog::CreateControls()
 {
-    const int iconSize = 48;
+    const int iconSize = 32;
     wxVector<wxBitmapBundle> images;
-    images.push_back(mmBitmapBundle(png::VIEW, iconSize));
-    images.push_back(mmBitmapBundle(png::ATTACHMENTS, iconSize));
     images.push_back(mmBitmapBundle(png::GENERAL, iconSize));
-    images.push_back(mmBitmapBundle(png::OTHERS, iconSize));
-    images.push_back(mmBitmapBundle(png::NETWORK, iconSize));
+    images.push_back(mmBitmapBundle(png::VIEW, iconSize));
     images.push_back(mmBitmapBundle(png::HOME, iconSize));
+    images.push_back(mmBitmapBundle(png::ATTACHMENTS, iconSize));
+    images.push_back(mmBitmapBundle(png::NETWORK, iconSize));
+    images.push_back(mmBitmapBundle(png::OTHERS, iconSize));
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);
@@ -139,19 +139,16 @@ void mmOptionsDialog::CreateControls()
     /**********************************************************************************************
     Add the panels to the notebook
     **********************************************************************************************/
-    m_notebook->InsertPage(0, general_panel, wxGetTranslation(s_pagetitle[0]), true, 2);
-    m_notebook->InsertPage(1, views_panel, wxGetTranslation(s_pagetitle[1]), false, 0);
-    m_notebook->InsertPage(2, home_panel, wxGetTranslation(s_pagetitle[2]), false, 5);
-    m_notebook->InsertPage(3, attachment_panel, wxGetTranslation(s_pagetitle[3]), false, 1);
-    m_notebook->InsertPage(4, network_panel, wxGetTranslation(s_pagetitle[4]), false, 4);
-    m_notebook->InsertPage(5, others_panel, wxGetTranslation(s_pagetitle[5]), false, 3);
+    for (int i = 0; i < m_panel_list.size(); i++) {
+        m_notebook->InsertPage(i, m_panel_list.at(i), wxGetTranslation(s_pagetitle[i]), i ? false : true, i);
+    }
 
     mainDialogPanelSizer->Add(m_notebook, g_flagsExpand);
     mainDialogPanelSizer->Layout();
 
-   /**********************************************************************************************
-    Button Panel with OK and Cancel Buttons
-    **********************************************************************************************/
+    /**********************************************************************************************
+     Button Panel with OK and Cancel Buttons
+     **********************************************************************************************/
     wxStaticLine* panelSeparatorLine = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     mainDialogSizer->Add(panelSeparatorLine, 0, wxGROW | wxLEFT | wxRIGHT, 10);
 

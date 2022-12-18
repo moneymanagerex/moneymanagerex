@@ -24,7 +24,7 @@
 #include "Model_Category.h"
 #include "Model_Payee.h"
 
-/* TODO: Move attachment management outside of attachmentdialog */
+ /* TODO: Move attachment management outside of attachmentdialog */
 #include "attachmentdialog.h"
 
 const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
@@ -44,11 +44,11 @@ const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_
 };
 
 Model_Billsdeposits::Model_Billsdeposits()
-: Model<DB_Table_BILLSDEPOSITS_V1>()
-, m_autoExecuteManual (false)
-, m_autoExecuteSilent (false)
-, m_requireExecution (false)
-, m_allowExecution (false)
+    : Model<DB_Table_BILLSDEPOSITS_V1>()
+    , m_autoExecuteManual (false)
+    , m_autoExecuteSilent (false)
+    , m_requireExecution (false)
+    , m_allowExecution (false)
 
 {
 }
@@ -105,7 +105,7 @@ wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data* r)
 {
     return Model::to_date(r->NEXTOCCURRENCEDATE);
 }
-    
+
 wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
 {
     return Model::to_date(r.NEXTOCCURRENCEDATE);
@@ -117,7 +117,7 @@ Model_Billsdeposits::TYPE Model_Billsdeposits::type(const wxString& r)
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
-    for (const auto& t : TYPE_CHOICES) 
+    for (const auto& t : TYPE_CHOICES)
     {
         if (r.CmpNoCase(t.second) == 0)
         {
@@ -145,7 +145,7 @@ Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const wxString& r)
 
     for (const auto & s : STATUS_ENUM_CHOICES)
     {
-        if (r.CmpNoCase(s.second) == 0) 
+        if (r.CmpNoCase(s.second) == 0)
         {
             cache.insert(std::make_pair(r, s.first));
             return s.first;
@@ -443,10 +443,10 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     {
         for (const auto& entry : m_bill_splits)
             CATEGNAME += (CATEGNAME.empty() ? " * " : ", ")
-            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
+            + Model_Category::full_name(entry.CATEGID);
     }
     else
-        CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
+        CATEGNAME = Model_Category::full_name(r.CATEGID);
 
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
@@ -461,7 +461,7 @@ wxString Model_Billsdeposits::Full_Data::real_payee_name() const
 {
     if (TYPE::TRANSFER == type(this->TRANSCODE))
     {
-            return ("> " + this->PAYEENAME);
+        return ("> " + this->PAYEENAME);
     }
     return this->PAYEENAME;
 }

@@ -182,7 +182,7 @@ void OptionSettingsAttachment::Create()
 
     Fit();
     attachment_panel->SetMinSize(attachment_panel->GetBestVirtualSize());
-    attachment_panel->SetScrollRate(1, 1);
+    attachment_panel->SetScrollRate(6, 6);
 }
 
 void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& WXUNUSED(event))

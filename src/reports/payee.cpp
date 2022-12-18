@@ -108,7 +108,8 @@ wxString mmReportPayeeExpenses::getHTMLText()
     {
         GraphData gd;
         GraphSeries data_usage;
-
+        std::stable_sort(valueList_.begin(), valueList_.end(), [](const ValuePair& left, const ValuePair& right) {
+            return abs(left.amount) > abs(right.amount); });
         for (const auto &stats : valueList_)
         {
             data_usage.values.push_back(stats.amount);
