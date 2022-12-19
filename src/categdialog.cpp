@@ -596,13 +596,12 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     {
         m_categ_id = iData->getCategData()->CATEGID;
 
-        //bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
         m_buttonDelete->Enable(!mmIsUsed());
+        m_buttonSelect->Enable(m_IsSelection && !bRootSelected && !Model_Category::is_hidden(m_categ_id));
     }
 
     m_buttonAdd->Enable(true);
     m_buttonEdit->Enable(!bRootSelected);
-    m_buttonSelect->Enable(m_IsSelection && !bRootSelected);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
