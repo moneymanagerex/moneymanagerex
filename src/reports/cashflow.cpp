@@ -109,6 +109,7 @@ void mmReportCashFlow::getTransactions()
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
     for (auto& trx : transactions)
     {
+        if (!trx.DELETEDTIME.IsEmpty()) continue;
         bool isAccountFound = m_account_id.Index(trx.ACCOUNTID) != wxNOT_FOUND;
         bool isToAccountFound = m_account_id.Index(trx.TOACCOUNTID) != wxNOT_FOUND;
         if (!isAccountFound && !isToAccountFound)
