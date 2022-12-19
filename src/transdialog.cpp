@@ -899,8 +899,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId());
-                cbCategory_->ChangeValue(category);
+                if (!Model_Category::is_hidden(dlg.getCategId())) cbCategory_->ChangeValue(Model_Category::full_name(dlg.getCategId()));
                 return;
             }
         }
