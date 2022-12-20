@@ -203,11 +203,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     : wxFrame(nullptr, wxID_ANY, title, pos, size)
     , m_app(app)
     , panelCurrent_(nullptr)
-    //, checkingAccountPage_(nullptr)
-    //, budgetingPage_(nullptr)
-    //, homePanel_(nullptr)
-    , m_commit_callback_hook(nullptr)
-    , m_update_callback_hook(nullptr)
     , gotoAccountID_(-1)
     , gotoTransID_(-1)
     , activeReport_(false)
@@ -374,8 +369,6 @@ void mmGUIFrame::ShutdownDatabase()
         }
         m_db->SetCommitHook(nullptr);
         m_db->Close();
-        delete m_commit_callback_hook;
-        delete m_update_callback_hook;
         m_db.reset();
     }
 }
@@ -1946,9 +1939,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         if (!m_db) return false;
 
         m_commit_callback_hook = new CommitCallbackHook();
-        m_db->SetCommitHook(m_commit_callback_hook);
+        m_db->SetCommitHook(m_commit_callback_hook.get());
         m_update_callback_hook = new UpdateCallbackHook();
-        m_db->SetUpdateHook(m_update_callback_hook);
+        m_db->SetUpdateHook(m_update_callback_hook.get());
 
         //Check if DB upgrade needed
         if (dbUpgrade::isUpgradeDBrequired(m_db.get()))
@@ -2036,9 +2029,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         m_db = mmDBWrapper::Open(fileName, password);
         m_commit_callback_hook = new CommitCallbackHook();
-        m_db->SetCommitHook(m_commit_callback_hook);
+        m_db->SetCommitHook(m_commit_callback_hook.get());
         m_update_callback_hook = new UpdateCallbackHook();
-        m_db->SetUpdateHook(m_update_callback_hook);
+        m_db->SetUpdateHook(m_update_callback_hook.get());
 
         m_password = password;
         dbUpgrade::InitializeVersion(m_db.get());
