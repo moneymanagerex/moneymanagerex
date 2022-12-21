@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-18 21:47\n"
+"PO-Revision-Date: 2022-12-21 21:10\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1738,19 +1738,19 @@ msgstr "Дыспетчар катыгорыяў: памылка выдаленн
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr "Ёсць выдаленыя аперацыі, што належаць да гэтый катыгорыі або яе падкатыгорыяў."
+msgstr "Ёсць выдаленыя аперацыі, што належаць да гэтый катыгорыі або ейных падкатыгорыяў."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "У выніку выдалення катыгорыі будуць знішчаныя ўсе аперацыі, што ўжо былі выдаленыя."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Сапраўды жадаеце працягнуць?"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Спраўдзіце выдаленне катыгорыі"
 
 #: categdialog.cpp:614
 #, c-format
@@ -1825,7 +1825,7 @@ msgstr "&Зачыніць "
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
-msgstr ""
+msgstr "Глядзець праз фільтр аперацыяў"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -3584,7 +3584,7 @@ msgstr "Пакажыце значэнне"
 
 #: maincurrencydialog.cpp:79
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: maincurrencydialog.cpp:81
 msgid "Last Rate"
@@ -5978,7 +5978,7 @@ msgstr "Шматлікія аперацыі:"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "Налады базы дадзеных"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -6010,11 +6010,11 @@ msgstr "Ліміт файлаў"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Пазначце колькасць дзён для захавання выдаленых аперацыяў. Аперацыі, што ёсць старэйшыя за гэты перыяд, будуць выдаленыя падчас адчынення базы дадзеных."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Сколькі дзён захоўваць выдаленыя аперацыі"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
@@ -6326,15 +6326,15 @@ msgstr "Дыспетчар платнікоў: памылка выдалення
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Існуюць выдаленыя аперацыі, што належаць да гэтага платніка."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "У выніку выдалення платніка будуць знішчаныя ўсе ягоныя/ейныя аперацыі, што ўжо былі выдаленыя."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Спраўдзіце выдаленне платніка"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
