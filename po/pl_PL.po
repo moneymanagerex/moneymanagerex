@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-21 18:31\n"
+"PO-Revision-Date: 2022-12-21 21:10\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1672,7 +1672,7 @@ msgstr "Dodaj kategorię"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Kategoria o tej samej nazwie istnieje dla nadrzędnej"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1688,7 +1688,7 @@ msgstr "Podkategoria o tej nazwie już istnieje"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Kategoria docelowa jest potomkiem"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1703,7 +1703,7 @@ msgstr "Czy na pewno chcesz przenieść\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Najwyższy poziom"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1739,19 +1739,19 @@ msgstr "Organizuj kategorie: Błąd usuwania"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Istnieją usunięte transakcje, które używają tej kategorii lub jednego z jej potomków."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Usunięcie kategorii spowoduje również automatyczne wyczyszczenie powiązanych usuniętych transakcji."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Czy chcesz kontynuować?"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Potwierdź usunięcie kategorii"
 
 #: categdialog.cpp:614
 #, c-format
@@ -1764,7 +1764,7 @@ msgstr "Edytuj kategorię"
 
 #: categdialog.cpp:626
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Kategoria o tej samej nazwie istnieje dla nadrzędnej"
 
 #: categdialog.cpp:627
 msgid "Organise Categories: Editing Error"
@@ -1826,7 +1826,7 @@ msgstr "Zamknij"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
-msgstr ""
+msgstr "Pokaż z filtrem transakcji"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -3424,7 +3424,7 @@ msgstr "Konto nie istnieje"
 #: import_export/univcsvdialog.cpp:1886
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Pozytywne jeśli typ ma '%s'"
 
 #: import_export/univcsvdialog.cpp:924
 msgid "Incorrect fields specified for import!"
@@ -4090,7 +4090,8 @@ msgstr " Nie możesz cofnąć tej akcji."
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Zablokowana transakcja do daty: %s\n\n"
+"Uzgodnione transakcje."
 
 #: mmchecking_list.cpp:1220 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
@@ -4171,7 +4172,7 @@ msgstr "Przywróć wybraną transakcję"
 
 #: mmcheckingpanel.cpp:414
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Wprowadź dowolny ciąg, aby znaleźć go w najbliższych danych transakcji"
 
 #: mmcheckingpanel.cpp:436
 msgid "Full Transactions Report"
@@ -4200,7 +4201,7 @@ msgstr "Różnica: "
 
 #: mmcheckingpanel.cpp:464
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Bilans przefiltrowanych: "
 
 #: mmcheckingpanel.cpp:529 webapp.cpp:619
 msgid "Attachment"
@@ -4214,7 +4215,7 @@ msgstr "Wybrane transakcje: %zu"
 #: mmcheckingpanel.cpp:565
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Suma wybranych transakcji: %s"
 
 #: mmcheckingpanel.cpp:569
 #, c-format
@@ -4245,11 +4246,12 @@ msgstr "Wielokrotnego wyboru"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Nie można zapisać pola niestandardowego \"%s\":\n"
+"wartość \"%s\" nie pasuje do weryfikacji RegEx \"%s\""
 
 #: mmcustomdata.cpp:754
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Błąd walidacji pola niestandardowego"
 
 #: mmex.cpp:173
 msgid "Fatal error occured.\n"
@@ -5057,7 +5059,7 @@ msgstr "Wybierz plik bazy danych do zapisania"
 
 #: mmframe.cpp:2227
 msgid "Converted DB!"
-msgstr ""
+msgstr "Baza danych przekonwertowana!"
 
 #: mmframe.cpp:2227
 msgid "MMEX message"
@@ -6323,15 +6325,15 @@ msgstr "Organizuj beneficjentów: Błąd usuwania"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Istnieją transakcje usunięte, które używają tego beneficjenta."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Usunięcie beneficjenta spowoduje również automatyczne wyczyszczenie powiązanych usuniętych transakcji."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Potwierdź usunięcie beneficjenta"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
@@ -7505,11 +7507,11 @@ msgstr "Oczekiwano odpowiedzi na podanie danych lub ciągu błędów"
 
 #: util.cpp:986
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Nie można znaleźć zasobu dla symbolu"
 
 #: util.cpp:1021
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Nie można pobrać waluty bazowej!"
 
 #: util.cpp:1027
 msgid "USD"
@@ -7521,7 +7523,7 @@ msgstr "Nie można znaleźć waluty 'USD', potrzebnej do przeliczenia historyczn
 
 #: util.cpp:1051
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Nie można przetworzyć ceny w historii aktywów"
 
 #: util.cpp:1281
 #, c-format
