@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-14 08:12\n"
+"PO-Revision-Date: 2022-12-21 18:31\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1360,7 +1360,7 @@ msgstr "Automatycznie"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] "Pozostał %d dzień"
-msgstr[1] ""
+msgstr[1] "Pozostało %d dni"
 msgstr[2] "Pozostało %d dni"
 msgstr[3] "Pozostało %d dni"
 
@@ -1374,18 +1374,18 @@ msgstr "Nieaktywne"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] "%d dniowe opóźnienie!"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d dzień spóźnienia!"
+msgstr[1] "%d dni spóźnienia!"
+msgstr[2] "%d dni spóźnienia!"
 msgstr[3] "%d dni spóźnienia!"
 
 #: billsdepositspanel.cpp:563 billsdepositspanel.cpp:623 mmhomepage.cpp:321
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d dzień zaległości!"
+msgstr[1] "%d dni zaległości!"
+msgstr[2] "%d dni zaległości!"
 msgstr[3] "%d dni zaległości!"
 
 #: billsdepositspanel.cpp:684
@@ -2160,8 +2160,8 @@ msgstr "Czy chcesz zaktualizować do pustych? \n"
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "Znaleziono i zastąpiono %zu wystąpienie!"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "Znaleziono i zastąpiono %zu wystąpienia!"
+msgstr[2] "Znaleziono i zastąpiono %zu wystąpień!"
 msgstr[3] "Znaleziono i zastąpiono %zu wystąpień!"
 
 #: customfieldlistdialog.cpp:265
@@ -2764,8 +2764,8 @@ msgstr "Utwórz wzorzec"
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "Zwrócono %zu wiersz, czas trwania: %lld ms"
-msgstr[1] "Zwrócono %zu wierszy, czas trwania: %lld ms"
-msgstr[2] ""
+msgstr[1] "Zwrócono %zu wiersze, czas trwania: %lld ms"
+msgstr[2] "Zwrócono %zu wierszy, czas trwania: %lld ms"
 msgstr[3] "Zwrócono %zu wierszy, czas trwania: %lld ms"
 
 #: general_report_manager.cpp:575
@@ -3585,7 +3585,7 @@ msgstr "Wprowadź wartość"
 
 #: maincurrencydialog.cpp:79
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: maincurrencydialog.cpp:81
 msgid "Last Rate"
