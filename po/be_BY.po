@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-14 11:08+0300\n"
-"PO-Revision-Date: 2022-12-21 21:10\n"
+"PO-Revision-Date: 2022-12-21 22:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1886,7 +1886,7 @@ msgstr "УСЕ"
 #: constants.cpp:193 mmframe.cpp:1432 mmframe.cpp:1833
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Адчыненыя"
+msgstr "Адчынены"
 
 #: constants.cpp:194 mmframe.cpp:1433 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
