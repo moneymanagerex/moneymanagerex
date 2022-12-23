@@ -268,7 +268,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     }
 
     scrolled_window->FitInside();
-    scrolled_window->SetScrollRate(5, 5);
+    scrolled_window->SetScrollRate(6, 6);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
     Model_Checking::Data* refTxn = Model_Checking::instance().get(m_ref_id);
     if (refTxn && !refTxn->DELETEDTIME.IsEmpty()) scrolled_window->Disable();

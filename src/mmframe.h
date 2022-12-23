@@ -155,7 +155,7 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
-    void DoRecreateNavTreeControl();
+    void DoRecreateNavTreeControl(bool home_page = false);
     void DoUpdateReportNavigation(wxTreeItemId& parent_item);
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
     void DoUpdateFilterNavigation(wxTreeItemId& parent_item);
@@ -273,8 +273,8 @@ private:
     void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
 
     // Required to prevent memory leaks.
-    CommitCallbackHook* m_commit_callback_hook;
-    UpdateCallbackHook* m_update_callback_hook;
+    wxSharedPtr<CommitCallbackHook> m_commit_callback_hook;
+    wxSharedPtr<UpdateCallbackHook> m_update_callback_hook;
     void ShutdownDatabase();
 private:
     // any class wishing to process wxWindows events must use this macro

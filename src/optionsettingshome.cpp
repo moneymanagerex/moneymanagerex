@@ -92,7 +92,7 @@ void OptionSettingsHome::Create()
 
     Fit();
     home_panel->SetMinSize(home_panel->GetBestVirtualSize());
-    home_panel->SetScrollRate(1, 1);
+    home_panel->SetScrollRate(6, 6);
 }
 
 

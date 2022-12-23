@@ -896,11 +896,10 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
             if (category.empty())
             {
                 mmCategDialog dlg(this, true, -1);
-                dlg.ShowModal();
+                int rc = dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId());
-                cbCategory_->ChangeValue(category);
+                if (rc != wxID_CANCEL) cbCategory_->ChangeValue(Model_Category::full_name(dlg.getCategId()));
                 return;
             }
         }

@@ -233,7 +233,7 @@ void mmSplitTransactionDialog::CreateControls()
     }
     slider_->Fit();
     slider_->SetMinSize(scrollSize);
-    slider_->SetScrollRate(1, 1);
+    slider_->SetScrollRate(6, 6);
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);

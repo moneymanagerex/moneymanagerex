@@ -55,7 +55,6 @@ static const wxCmdLineEntryDesc g_cmdLineDesc[] =
 //----------------------------------------------------------------------------
 
 mmGUIApp::mmGUIApp() : m_frame(nullptr)
-, m_setting_db(nullptr)
 , m_optParam1(wxEmptyString)
 , m_optParam2(wxEmptyString)
 , m_optParamSilent(false)
@@ -453,7 +452,8 @@ int mmGUIApp::OnExit()
     Model_Usage::instance().save(usage);
 
     if (m_setting_db) {
-        delete m_setting_db;
+        m_setting_db->Close();
+        m_setting_db->ShutdownSQLite();
     }
 
     /* CURL Cleanup */
