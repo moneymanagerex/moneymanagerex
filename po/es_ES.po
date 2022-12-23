@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-23 15:14\n"
+"PO-Revision-Date: 2022-12-23 18:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5641,7 +5641,7 @@ msgstr "Internet"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Aplicar "
 
 #: optiondialog.cpp:219
 #, c-format
