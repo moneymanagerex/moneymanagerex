@@ -266,7 +266,7 @@ const wxString Model_CustomField::getUDFCName(const wxString& ref_type, const wx
     return wxEmptyString;
 }
 
-const Model_CustomField::FIELDTYPE Model_CustomField::getUDFCType(const wxString& ref_type, const wxString& name)
+Model_CustomField::FIELDTYPE Model_CustomField::getUDFCType(const wxString& ref_type, const wxString& name)
 {
     Document json_doc;
     const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));

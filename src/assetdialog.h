@@ -19,7 +19,6 @@
 #pragma once
 
 #include "model/Model_Asset.h"
-#include "model/Model_Currency.h"
 #include "model/Model_Translink.h"
 
 class mmDatePickerCtrl;
@@ -60,20 +59,20 @@ private:
     void CreateAssetAccount();
     void HideTransactionPanel();
 private:
-    mmGUIFrame* m_gui_frame;
-    wxChoice*  m_assetType;
-    wxTextCtrl* m_assetName;
-    mmDatePickerCtrl* m_dpc;
-    wxTextCtrl* m_notes;
-    mmTextCtrl* m_value;
-    mmTextCtrl* m_valueChangeRate;
-    wxChoice*  m_valueChange;
-    wxStaticText* m_valueChangeRateLabel;
-    wxBitmapButton* bAttachments_;
-    wxStaticBox* m_transaction_frame;
-    UserTransactionPanel* m_transaction_panel;
-    Model_Translink::Data* m_transfer_entry;
-    Model_Checking::Data* m_checking_entry;
+    mmGUIFrame* m_gui_frame = nullptr;
+    wxChoice*  m_assetType = nullptr;
+    wxTextCtrl* m_assetName = nullptr;
+    mmDatePickerCtrl* m_dpc = nullptr;
+    wxTextCtrl* m_notes = nullptr;
+    mmTextCtrl* m_value = nullptr;
+    mmTextCtrl* m_valueChangeRate = nullptr;
+    wxChoice*  m_valueChange = nullptr;
+    wxStaticText* m_valueChangeRateLabel = nullptr;
+    wxBitmapButton* bAttachments_ = nullptr;
+    wxStaticBox* m_transaction_frame = nullptr;
+    UserTransactionPanel* m_transaction_panel = nullptr;
+    Model_Translink::Data* m_transfer_entry = nullptr;
+    Model_Checking::Data* m_checking_entry = nullptr;
     wxString m_dialog_heading;
     bool m_hidden_trans_entry;
     bool assetRichText;
