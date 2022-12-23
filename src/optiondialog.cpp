@@ -158,7 +158,7 @@ void mmOptionsDialog::CreateControls()
     mainDialogSizer->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
 
     wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _("&OK "));
-    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _("&Apply"));
+    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _("&Apply "));
     wxButton* itemButtonCancel = new wxButton(buttonPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttonPanelSizer->Add(itemButtonOK, g_flagsH);
     buttonPanelSizer->Add(itemButtonApply, g_flagsH);
