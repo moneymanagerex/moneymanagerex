@@ -338,7 +338,9 @@ void mmNewAcctDialog::fillControls()
     m_initbalance_ctrl->SetCurrency(Model_Account::currency(m_account));
     m_initbalance_ctrl->SetValue(initBal);
 
-    m_initdate_ctrl->SetValue(Model_Account::DateOf(m_account->INITIALDATE));
+    if (!m_account->INITIALDATE.empty()) {
+        m_initdate_ctrl->SetValue(Model_Account::DateOf(m_account->INITIALDATE));
+    }
 
     int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID, false, true);
     m_bitmapButtons->SetBitmap(m_images.at(selectedImage));
@@ -350,8 +352,7 @@ void mmNewAcctDialog::fillControls()
     
     m_interest_rate_ctrl->SetValue(m_account->INTERESTRATE, 2);
 
-    if (!m_account->PAYMENTDUEDATE.empty())
-    {
+    if (!m_account->PAYMENTDUEDATE.empty()) {
         m_payment_due_date_ctrl->SetValue(Model_Account::DateOf(m_account->PAYMENTDUEDATE));
     }
     
@@ -360,8 +361,7 @@ void mmNewAcctDialog::fillControls()
 
     m_statement_lock_ctrl->SetValue(Model_Account::BoolOf(m_account->STATEMENTLOCKED));
 
-    if (!m_account->STATEMENTDATE.empty())
-    {
+    if (!m_account->STATEMENTDATE.empty()) {
         m_statement_date_ctrl->SetValue(Model_Account::DateOf(m_account->STATEMENTDATE));
     }
     m_minimum_balance_ctrl->SetCurrency(Model_Account::currency(m_account));

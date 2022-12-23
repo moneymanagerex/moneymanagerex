@@ -498,7 +498,9 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
         }
     }
 
-    wxMessageDialog msgDlg(this, _("Deleted transactions exist which use this category or one of its descendants.\n\nDeleting the category will also automatically purge the associated deleted transactions.\n\nDo you wish to continue?")
+    wxMessageDialog msgDlg(this, _("Deleted transactions exist which use this category or one of its descendants.")
+            + "\n\n" + _("Deleting the category will also automatically purge the associated deleted transactions.")
+            + "\n\n" + _("Do you wish to continue ?")
         , _("Confirm Category Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if ((deletedTrans.empty() && splits.empty()) || msgDlg.ShowModal() == wxID_YES)
     {
@@ -594,13 +596,12 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     {
         m_categ_id = iData->getCategData()->CATEGID;
 
-        //bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
         m_buttonDelete->Enable(!mmIsUsed());
+        m_buttonSelect->Enable(m_IsSelection && !bRootSelected && !Model_Category::is_hidden(m_categ_id));
     }
 
     m_buttonAdd->Enable(true);
     m_buttonEdit->Enable(!bRootSelected);
-    m_buttonSelect->Enable(m_IsSelection && !bRootSelected);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)

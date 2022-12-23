@@ -105,9 +105,11 @@ void mmReportCashFlow::getTransactions()
     // Now gather all transations posted after today
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_today, GREATER),
-        Model_Checking::TRANSDATE(endDate, LESS));
+        Model_Checking::TRANSDATE(endDate, LESS),
+        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
     for (auto& trx : transactions)
     {
+        if (!trx.DELETEDTIME.IsEmpty()) continue;
         bool isAccountFound = m_account_id.Index(trx.ACCOUNTID) != wxNOT_FOUND;
         bool isToAccountFound = m_account_id.Index(trx.TOACCOUNTID) != wxNOT_FOUND;
         if (!isAccountFound && !isToAccountFound)
@@ -130,7 +132,7 @@ void mmReportCashFlow::getTransactions()
     }
     // Now we gather the recurring transaction list
 
-    for (const auto& entry : Model_Billsdeposits::instance().all())
+    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Billsdeposits::VOID_, NOT_EQUAL)))
     {
         wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;

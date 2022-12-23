@@ -230,7 +230,7 @@ void OptionSettingsMisc::Create()
 
     Fit();
     misc_panel->SetMinSize(misc_panel->GetBestVirtualSize());
-    misc_panel->SetScrollRate(1, 1);
+    misc_panel->SetScrollRate(6, 6);
 }
 
 void OptionSettingsMisc::OnBackupChanged(wxCommandEvent& WXUNUSED(event))

@@ -1282,7 +1282,7 @@ const wxString getProgramDescription(int type)
         << bull << (simple ? "Build:" : _("Build on")) << " " << build_date << " " BUILD_TIME << eol
         << bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
 #if WXSQLITE3_HAVE_CODEC
-        << bull << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
 #endif
         << eol
 
@@ -1322,15 +1322,15 @@ const wxString getProgramDescription(int type)
 #endif
         << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << eol
 #elif defined(__clang__)
-        << bull + "Clang " + __VERSION__ << "\n"
+        << bull + "Clang " + __VERSION__ << eol
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        << bull + "GCC " + __VERSION__
+        << bull + "GCC " + __VERSION__ << eol
 #endif
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
-        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
+        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << eol
 #endif
 #ifdef LINUX_DISTRO_STRING
-        << bull + LINUX_DISTRO_STRING
+        << bull + LINUX_DISTRO_STRING 
 #endif
         << eol << eol
         << (simple ? "OS:" : _("Running on:")) << eol

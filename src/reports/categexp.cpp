@@ -233,17 +233,17 @@ wxString mmReportCategoryExpenses::getHTMLText()
                     if (entry.subCatID != -1) continue;
 
                     if (entry.level == 0) {
-                        row_id = wxString::Format("%i", entry.catID) + _(".");
-                        row_pid = _("0.");
+                        row_id = wxString::Format("%i", entry.catID) + ".";
+                        row_pid = "0.";
                     }
                     else if (entry.level > lastLevel) {
                         row_pid = row_id;
-                        row_id = row_id + wxString::Format("%i", entry.catID) + _(".");
+                        row_id = row_id + wxString::Format("%i", entry.catID) + ".";
                     }
                     else if (entry.level == lastLevel)
-                        row_id = row_pid + wxString::Format("%i", entry.catID) + _(".");
+                        row_id = row_pid + wxString::Format("%i", entry.catID) + ".";
                     else {
-                        row_id = levelParent[entry.level] + wxString::Format("%i", entry.catID) + _(".");
+                        row_id = levelParent[entry.level] + wxString::Format("%i", entry.catID) + ".";
                         row_pid = levelParent[entry.level];
                     }
 
@@ -260,7 +260,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
                         hb.endTableRow();
                     }
                     if (entry.amount != 0) {
-                        if (group_counter[entry.catID]) indent = indent + _("&nbsp&nbsp&nbsp&nbsp");
+                        if (group_counter[entry.catID]) {
+                            indent.Append("&nbsp&nbsp&nbsp&nbsp");
+                        }
                         hb.startTableRow("xtoggle' data-row-id='" + row_id + "' data-row-pid='" + (group_counter[entry.catID] ? row_id : row_pid));
                         hb.addTableCell(wxString::Format(indent +"<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>", entry.catID, entry.name));
                         hb.addMoneyCell(entry.amount);

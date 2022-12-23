@@ -76,7 +76,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     bHistoryEnabled_ = Option::instance().getCurrencyHistoryEnabled();
 
     ColName_[CURR_BASE]   = " ";
-    ColName_[CURR_SYMBOL] = _("Symbol");
+    ColName_[CURR_SYMBOL] = _("Code");
     ColName_[CURR_NAME]   = _("Name");
     ColName_[BASE_RATE]   = bHistoryEnabled_ ? _("Last Rate") : _("Fixed Rate");
 
