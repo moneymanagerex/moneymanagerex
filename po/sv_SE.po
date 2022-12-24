@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-23 15:14\n"
+"PO-Revision-Date: 2022-12-23 18:08\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1661,7 +1661,7 @@ msgstr "Lägg till kategori"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Kategori med samma namn finns för denna förälder"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1677,7 +1677,7 @@ msgstr "Underkategori med samma namn finns redan"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Målkategorin är en ättling"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1692,7 +1692,7 @@ msgstr "Är du säker på att du vill flytta\n"
 
 #: categdialog.cpp:450
 msgid "Top level"
-msgstr ""
+msgstr "Högsta nivå"
 
 #: categdialog.cpp:451
 msgid "Confirm Move"
@@ -1726,19 +1726,19 @@ msgstr "Organisera kategorier: Raderingsfel"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Raderade transaktioner finns som använder denna kategori eller en av dess ättlingar."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Borttagning av kategorin kommer också automatiskt rensa associerade borttagna transaktioner."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Vill du fortsätta?"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Bekräfta borttagning av kategori"
 
 #: categdialog.cpp:613
 #, c-format
@@ -1751,7 +1751,7 @@ msgstr "Redigera kategori"
 
 #: categdialog.cpp:625
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Kategori med samma namn finns för föräldern"
 
 #: categdialog.cpp:626
 msgid "Organise Categories: Editing Error"
@@ -1813,7 +1813,7 @@ msgstr "&Stäng "
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
-msgstr ""
+msgstr "Visa med transaktionsfilter"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -3562,7 +3562,7 @@ msgstr "Ange ett värde"
 
 #: maincurrencydialog.cpp:79
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: maincurrencydialog.cpp:81
 msgid "Last Rate"
@@ -5610,7 +5610,7 @@ msgstr "Nätverk"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Verkställ "
 
 #: optiondialog.cpp:219
 #, c-format
@@ -5914,7 +5914,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "Databasinställningar"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -5944,11 +5944,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Ange antal dagar för att behålla raderade transaktioner. Transaktioner äldre än detta kommer automatiskt att rensas när databasen öppnas."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Dagar att behålla borttagna transaktioner"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
@@ -6260,15 +6260,15 @@ msgstr "Organisera betalningsmottagare: Raderingsfel"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Raderade transaktioner finns som använder denna betalningsmottagare."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Borttagning av betalningsmottagaren kommer också automatiskt rensa de associerade borttagna transaktionerna."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Bekräfta borttagning av betalningsmottagare"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
