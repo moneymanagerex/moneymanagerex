@@ -68,7 +68,7 @@ public:
     void ViewStockTransactions(int selectedIndex);
 
     int m_account_id;
-    Model_Currency::Data * m_currency;
+    Model_Currency::Data * m_currency = nullptr;
     void updateExtraStocksData(int selIndex);
     wxStaticText* stock_details_short_;
     void updateHeader();
@@ -77,16 +77,16 @@ public:
     mmGUIFrame* m_frame;
 
 private:
-    StocksListCtrl* listCtrlAccount_;
-    wxStaticText* stock_details_;
+    StocksListCtrl* listCtrlAccount_ = nullptr;
+    wxStaticText* stock_details_ = nullptr;
     void call_dialog(int selectedIndex);
     void sortTable() {}
     const wxString Total_Shares();
 
-    wxStaticText* header_text_;
-    wxStaticText* header_total_;
-    wxBitmapButton* attachment_button_;
-    wxBitmapButton* refresh_button_;
+    wxStaticText* header_text_ = nullptr;
+    wxStaticText* header_total_ = nullptr;
+    wxBitmapButton* attachment_button_ = nullptr;
+    wxBitmapButton* refresh_button_ = nullptr;
 
     bool onlineQuoteRefresh(wxString& sError);
     wxString GetPanelTitle(const Model_Account::Data& account) const;

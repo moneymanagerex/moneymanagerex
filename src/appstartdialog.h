@@ -38,9 +38,9 @@ public:
 
 private:
     mmAppStartDialog(){};
-    wxCheckBox* itemCheckBox;
-    wxButton* m_buttonClose;
-    wxButton* m_buttonExit;
+    wxCheckBox* itemCheckBox = nullptr;
+    wxButton* m_buttonClose = nullptr;
+    wxButton* m_buttonExit = nullptr;
 
     bool Create(wxWindow* parent
         , wxWindowID id

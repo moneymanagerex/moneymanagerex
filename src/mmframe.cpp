@@ -202,15 +202,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , const wxSize& size)
     : wxFrame(nullptr, wxID_ANY, title, pos, size)
     , m_app(app)
-    , panelCurrent_(nullptr)
-    , gotoAccountID_(-1)
-    , gotoTransID_(-1)
-    , activeReport_(false)
-    , m_nav_tree_ctrl(nullptr)
-    , menuBar_(nullptr)
-    , toolBar_(nullptr)
-    , selectedItemData_(nullptr)
-    , helpFileIndex_(-1)
     , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 {
     // tell wxAuiManager to manage this frame
@@ -863,6 +854,9 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             case Model_Account::LOAN:
                 tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
+                break;
+            default:
+                wxASSERT(0);
                 break;
             }
 
@@ -3373,7 +3367,7 @@ void mmGUIFrame::ReallocateAccount(int accountID)
     wxArrayString types = Model_Account::instance().all_type();
     types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
     wxArrayString t;
-    for (const auto entry : types)
+    for (const auto &entry : types)
         t.Add(wxGetTranslation(entry));
 
     mmSingleChoiceDialog type_choice(this

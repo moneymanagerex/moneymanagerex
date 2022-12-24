@@ -44,10 +44,10 @@ END_EVENT_TABLE()
 mmStocksPanel::mmStocksPanel(int accountID
     , mmGUIFrame* frame
     , wxWindow *parent
-    , wxWindowID winid)
+    , wxWindowID winid)    
     : m_account_id(accountID)
-    , m_frame(frame)
     , m_currency()
+    , m_frame(frame)
 {
     Create(parent, winid);
 }
@@ -206,7 +206,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     // TODO create a panel to display all the information on one screen
     wxString msg = wxString::Format(_("Temporary Stock list: %s\n\n"
         "Date          Lot          Shares          Price        Commission\n\n"), Model_Account::get_account_name(stock->HELDAT));
-    for (const auto stock_link : stock_list)
+    for (const auto &stock_link : stock_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))

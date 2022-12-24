@@ -94,31 +94,31 @@ private:
     // Marker to indicate DB was inuse when opened and open cancelled
     bool db_lockInPlace;
 
-    int gotoAccountID_;
-    int gotoTransID_;
+    int gotoAccountID_ = -1;
+    int gotoTransID_ = -1;
 
     /* There are 2 kinds of reports */
-    bool activeReport_;
+    bool activeReport_ = false;
 
     /* Repeat Transactions automatic processing delay */
     wxTimer autoRepeatTransactionsTimer_;
     void OnAutoRepeatTransactionsTimer(wxTimerEvent& event);
 
     /* controls */
-    mmPanelBase* panelCurrent_;
+    mmPanelBase* panelCurrent_ = nullptr;
 
-    wxPanel* homePanel_;
-    wxTreeCtrl* m_nav_tree_ctrl;
-    wxMenuBar *menuBar_;
-    wxAuiToolBar* toolBar_;
+    wxPanel* homePanel_ = nullptr;
+    wxTreeCtrl* m_nav_tree_ctrl = nullptr;
+    wxMenuBar *menuBar_ = nullptr;
+    wxAuiToolBar* toolBar_ = nullptr;
 private:
-    mmTreeItemData* selectedItemData_;
+    mmTreeItemData* selectedItemData_ = nullptr;
 
     wxTreeItemId getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const;
     bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
 
     /* printing */
-    int helpFileIndex_;
+    int helpFileIndex_ = -1;
 
     /* wxAUI */
     wxAuiManager m_mgr;
