@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-23 15:14\n"
+"PO-Revision-Date: 2022-12-24 11:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5620,7 +5620,7 @@ msgstr "网络"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "应用(&A)"
 
 #: optiondialog.cpp:219
 #, c-format
