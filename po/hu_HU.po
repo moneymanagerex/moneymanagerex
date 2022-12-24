@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-24 09:02\n"
+"PO-Revision-Date: 2022-12-24 10:01\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4936,7 +4936,7 @@ msgstr "&Beállítások"
 
 #: mmframe.cpp:1849 mmframe.cpp:2750
 msgid "Register/View Release &Notifications"
-msgstr "Kiadási megjegyzések megtekintése"
+msgstr "Hírek"
 
 #: mmframe.cpp:1854 optionsettingsnet.cpp:131
 msgid "News"
