@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-23 15:14\n"
+"PO-Revision-Date: 2022-12-24 12:21\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Autori"
 
 #: aboutdialog.cpp:190
 msgid "Sponsors"
-msgstr "Promotori"
+msgstr "Sponsors"
 
 #: aboutdialog.cpp:195
 msgid "License"
@@ -1666,7 +1666,7 @@ msgstr "Aggiungi categoria"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Esiste una categoria con lo stesso nome per questo genitore"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1682,7 +1682,7 @@ msgstr "Sotto-Categoria già esistente!"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "La categoria di destinazione è un discendente"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1745,7 +1745,7 @@ msgstr "Vuoi continuare ?"
 
 #: categdialog.cpp:504
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Conferma l'eliminazione della categoria"
 
 #: categdialog.cpp:613
 #, c-format
@@ -1758,7 +1758,7 @@ msgstr "Modifica categoria"
 
 #: categdialog.cpp:625
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Esiste una categoria con lo stesso nome per questo genitore"
 
 #: categdialog.cpp:626
 msgid "Organise Categories: Editing Error"
@@ -5643,7 +5643,7 @@ msgstr "Rete"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Applica "
 
 #: optiondialog.cpp:219
 #, c-format
@@ -5980,11 +5980,11 @@ msgstr "Numero massimo di file"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Specificare il numero di giorni per mantenere le transazioni eliminate. Le transazioni più vecchie di questo verranno eliminate automaticamente all'apertura del database."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Giorni da conservare le transazioni eliminate"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
@@ -6304,7 +6304,7 @@ msgstr "Eliminando il beneficiario si eliminerà automaticamente anche le transa
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Conferma Eliminazione Beneficiario"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
@@ -7228,7 +7228,7 @@ msgstr "Qualcosa è andato storto durante l'importazione del tema"
 
 #: themes.cpp:327
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr "Sei sicuro di voler eliminare questo tema? Se vuoi usarlo di nuovo, devi reimportarlo."
+msgstr "Sei sicuro di voler eliminare questo tema? Se volessi usarlo di nuovo, dovrai reimportarlo."
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
