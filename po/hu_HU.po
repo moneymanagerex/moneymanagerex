@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-24 10:01\n"
+"PO-Revision-Date: 2022-12-25 08:21\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3048,7 +3048,7 @@ msgstr "JSON-fájlok (*.json)"
 
 #: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1602
 msgid "CSV Files (*.csv)"
-msgstr "CSV fájlok (*.csv)"
+msgstr "CSV-fájlok (*.csv)"
 
 #: import_export/qif_export.cpp:331
 msgid "No Account available for export"
@@ -3319,7 +3319,7 @@ msgstr "Számla: "
 
 #: import_export/univcsvdialog.cpp:293
 msgid "CSV Delimiter:"
-msgstr "CSV elválasztójel"
+msgstr "CSV elválasztójel:"
 
 #: import_export/univcsvdialog.cpp:321
 msgid "Export column titles"
@@ -3387,7 +3387,7 @@ msgstr "Mozgatás &lefelé"
 
 #: import_export/univcsvdialog.cpp:445 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Adja meg, hogy milyen elválasztójelet használjon a CSV-ben"
+msgstr "Adja meg a CSV-fájlok importálásakor/exportálásakor használandó határolójelet"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Import File"
@@ -5987,7 +5987,7 @@ msgstr "Napok a törölt ügyletek megőrzésére"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
-msgstr "CVS-beállítások"
+msgstr "CSV-beállítások"
 
 #: optionsettingsmisc.cpp:221
 msgid "Delimiter"
