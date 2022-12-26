@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-24 10:01\n"
+"PO-Revision-Date: 2022-12-25 09:24\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2395,7 +2395,7 @@ msgstr "Az MMEX-adatbázis sikeresen frissült a(z) %i verzióra"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr "Javasoljuk az adatbázis optializálását az Eszközök -> Adatbázis -> Optimalizálás-nál"
+msgstr "Javasoljuk az adatbázis optializálását az Eszközök → Adatbázis → Optimalizálás-nál"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -2965,15 +2965,15 @@ msgstr "Ügyletek"
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:342
 msgid "QIF Export"
-msgstr "QIF Exportálás"
+msgstr "Exportálás QIF-fájlként"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr "JSON exportálás"
+msgstr "Exportálás JSON-fájlként"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr "CSV exportálás"
+msgstr "Exportálás CSV-fájlként"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -3036,7 +3036,7 @@ msgstr "Válasszon QIF adatfájlt az exporthoz!"
 
 #: import_export/qif_export.cpp:297 import_export/qif_import_gui.cpp:788
 msgid "QIF Files (*.qif)"
-msgstr "QIF fájlok (*.qif)"
+msgstr "QIF-fájlok (*.qif)"
 
 #: import_export/qif_export.cpp:303
 msgid "Choose JSON data file to Export"
@@ -3048,7 +3048,7 @@ msgstr "JSON-fájlok (*.json)"
 
 #: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1602
 msgid "CSV Files (*.csv)"
-msgstr "CSV fájlok (*.csv)"
+msgstr "CSV-fájlok (*.csv)"
 
 #: import_export/qif_export.cpp:331
 msgid "No Account available for export"
@@ -3097,11 +3097,11 @@ msgstr "Exportált számlák száma: %zu"
 
 #: import_export/qif_export.cpp:638 mmframe.cpp:1490
 msgid "Export to QIF"
-msgstr "QIF-be exportálás"
+msgstr "Exportálás QIF-fájlként"
 
 #: import_export/qif_import_gui.cpp:149 import_export/univcsvdialog.cpp:166
 msgid "&Browse"
-msgstr "Böngészés"
+msgstr "&Tallózás"
 
 #: import_export/qif_import_gui.cpp:160 import_export/univcsvdialog.cpp:307
 msgid "Encoding:"
@@ -3307,11 +3307,11 @@ msgstr "&MMEX-formátum"
 
 #: import_export/univcsvdialog.cpp:246
 msgid "&Up"
-msgstr "Fel"
+msgstr "&Felfelé"
 
 #: import_export/univcsvdialog.cpp:250
 msgid "&Down"
-msgstr "Le"
+msgstr "&Lefelé"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Account: "
@@ -3319,7 +3319,7 @@ msgstr "Számla: "
 
 #: import_export/univcsvdialog.cpp:293
 msgid "CSV Delimiter:"
-msgstr "CSV elválasztójel"
+msgstr "CSV elválasztójel:"
 
 #: import_export/univcsvdialog.cpp:321
 msgid "Export column titles"
@@ -3387,7 +3387,7 @@ msgstr "Mozgatás &lefelé"
 
 #: import_export/univcsvdialog.cpp:445 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Adja meg, hogy milyen elválasztójelet használjon a CSV-ben"
+msgstr "Adja meg a CSV-fájlok importálásakor/exportálásakor használandó határolójelet"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Import File"
@@ -4440,19 +4440,19 @@ msgstr "Importálás a Webalkalmazásból"
 
 #: mmframe.cpp:1487
 msgid "Export to CSV"
-msgstr "CSV-be exportálás"
+msgstr "Exportálás CSV-fájlként"
 
 #: mmframe.cpp:1488
 msgid "Export to fixed CSV"
-msgstr "Exportálás fix CSV-be"
+msgstr "Exportálás rögzített CSV-fájlként"
 
 #: mmframe.cpp:1489
 msgid "Export to XML"
-msgstr "Exportálás XML-be"
+msgstr "Exportálás XML-fájlként"
 
 #: mmframe.cpp:1491
 msgid "Export to JSON"
-msgstr "Exportálás JSON-be"
+msgstr "Exportálás JSON-fájlként"
 
 #: mmframe.cpp:1492
 msgid "&HTML Files"
@@ -4460,7 +4460,7 @@ msgstr "&HTML-fájlok"
 
 #: mmframe.cpp:1492
 msgid "Export to HTML"
-msgstr "Exportálás HTML-be"
+msgstr "Exportálás HTML-fájlként"
 
 #: mmframe.cpp:1498 mmframe.cpp:1862
 msgid "&Print"
@@ -5664,7 +5664,7 @@ msgstr "MInden Op. rendszernek (Win, Mac, Unix) van a saját könyvtára"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
-msgstr "Könvytár keresése"
+msgstr "Mappa tallózása"
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:208
 msgid "Real path:"
@@ -5987,7 +5987,7 @@ msgstr "Napok a törölt ügyletek megőrzésére"
 
 #: optionsettingsmisc.cpp:213
 msgid "CSV Settings"
-msgstr "CVS-beállítások"
+msgstr "CSV-beállítások"
 
 #: optionsettingsmisc.cpp:221
 msgid "Delimiter"
