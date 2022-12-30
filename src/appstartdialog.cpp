@@ -17,14 +17,14 @@
  ********************************************************/
 
 #include "appstartdialog.h"
-#include "defs.h"
+//#include "defs.h"
 #include "paths.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
-#include "option.h"
+//#include "option.h"
 #include "util.h"
 #include "model/Model_Setting.h"
-#include "../resources/money.xpm"
+//#include "../resources/money.xpm"
 
 /*******************************************************/
 
@@ -43,9 +43,6 @@ wxEND_EVENT_TABLE()
 
 mmAppStartDialog::mmAppStartDialog(wxWindow* parent, mmGUIApp* app, const wxString& name)
     : m_app(app)
-    , itemCheckBox(nullptr)
-    , m_buttonClose(nullptr)
-    , m_buttonExit(nullptr)
 {
     this->SetFont(parent->GetFont());
     const auto caption = wxString::Format("%s - %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
