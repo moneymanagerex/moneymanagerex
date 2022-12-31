@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"PO-Revision-Date: 2022-12-31 07:17\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Nie zdefiniowano katalogu załączników."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Proszę ustawić w menu Narzędzia → Opcje → Załączniki"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1731,7 +1731,7 @@ msgstr "Porada: Zmień wszystkie transakcje używające tej podkategorii na\n"
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Narzędzia → Przenieś → Kategorie"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2405,7 +2405,7 @@ msgstr "Baza danych MMEX pomyślnie zaktualizowana do wersji %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Sugerujemy optymalizację bazy danych, dostępną w Narzędzia → Baza danych → Optymalizuj bazę danych"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3864,7 +3864,7 @@ msgstr "Porada: Żeby oznaczyć transakcję jako 'do wyjaśnienia' - wybierz ją
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Porada: MMEX wspiera wydruk wszystkich raportów. Opcje wydruku są dostępne w menu Plik → Drukuj."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -5009,7 +5009,7 @@ msgstr "Przepraszamy. Wersja bazy danych jest zbyt stara lub hasło bazy danych 
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Następny →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -5153,7 +5153,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Rachunki akcji przechowują transakcje na akcjach/udziałach\n\n"
+"Transakcje dotyczące akcji są tworzone z widoku portfela \n"
+"po wyborze emitenta w powiązanym widoku.\n\n"
+"Rachunki te stają się widoczne dopiero po skojarzeniu akcji z kontem\n"
+"Lub za pomocą menu Wygląd → Pokaż udziały giełdowe\n"
+"Rachunki te mogą również obsługiwać normalne transakcje na zwykłe konta."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5702,22 +5707,22 @@ msgstr "Legenda (może być użyta jako zmienna na początku powyższej ścieżk
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s → Katalog dokumentów użytkownika"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s → Folder profilu użytkownika"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s → Folder pliku bazy danych .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s → Folder danych aplikacji MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5729,15 +5734,15 @@ msgstr "Jeszcze nie ustawione"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Folder Windows → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Folder Mac → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Folder Unix → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -6312,7 +6317,7 @@ msgstr "Porada: Zmień wszystkie transakcje z typ beneficjentem na innego benefi
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Narzędzia → Przenieś → Beneficjentów"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
