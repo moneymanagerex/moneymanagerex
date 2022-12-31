@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"PO-Revision-Date: 2022-12-31 21:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -694,7 +694,7 @@ msgstr "Anhangsverzeichnis nicht definiert."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Bitte setzen Sie es unter Extras → Optionen → Anhänge"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1721,7 +1721,7 @@ msgstr "Tipp: Verlagern Sie mit dem Befehl \"verschieben\" alle Buchungen von ei
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Extras -> Umzug -> Kategorien"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2395,7 +2395,7 @@ msgstr "MMEX-Datenbank erfolgreich aktualisiert auf Version %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Wir empfehlen eine Datenbankoptimierung unter Tools → Datenbank → Optimieren"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3852,7 +3852,7 @@ msgstr "Tipp: Um eine Buchung \"erfordert Nachtrag\" zu markieren, wählen Sie e
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Tipp: MMEX unterstützt das Drucken aller Reports die angezeigt werden können. Die Druckoptionen stehen im Menü Datei → Drucken zur Verfügung."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
