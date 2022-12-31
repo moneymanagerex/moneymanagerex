@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 07:17\n"
+"PO-Revision-Date: 2022-12-31 08:16\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -6505,7 +6505,7 @@ msgstr "Nie usuwaj informacji załączonych poniżej tego tekstu."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Użyj menu Pomoc → Sprawdź uaktualnienia, aby pobrać najnowszą wersję, w której twój problem może być już rozwiązany."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7633,12 +7633,12 @@ msgstr "Niewłaściwa wersja WebApp API"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "Wersja WebApp API → %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Oczekiwana wersja API → %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7811,7 +7811,7 @@ msgstr "Nie ustawiono waluty bazowej dla konta."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Ustaw najpierw używając menu Narzędzia → Opcje, a następnie dodaj nowe konto."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
