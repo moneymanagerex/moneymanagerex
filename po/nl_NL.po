@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"PO-Revision-Date: 2022-12-31 09:46\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Bijlagenmap niet opgegeven."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Stel het in in in Tools → Opties → Bijlagen"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1725,7 +1725,7 @@ msgstr "TIP: Wijzig alle transacties van deze subcategorie naar\n"
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Extra -> Opnieuw Toewijzen -> Categorieën"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2397,7 +2397,7 @@ msgstr "MMEX databestand succesvol bijgewerkt naar versie %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "We adviseren een database optimalisatie onder Tools -> Database -> Optimaliseren"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
