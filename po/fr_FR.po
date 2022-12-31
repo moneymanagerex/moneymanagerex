@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 11:45\n"
+"PO-Revision-Date: 2022-12-31 14:16\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Le répertoire des pièces jointes n'est pas défini."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr "Veuillez le définir dans Outils → Options → Pièces jointes"
+msgstr "Veuillez le définir dans Outils → Options... → Pièces jointes"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1725,7 +1725,7 @@ msgstr "Astuce : changer toutes les opérations utilisant cette sous-catégorie 
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr "Outils -> réattribution de -> Catégories"
+msgstr "Outils -> Réattribution de... -> Catégories"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2398,7 +2398,7 @@ msgstr "La base de données MMEX a été mise à jour avec succès vers la versi
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr "Nous suggérons une optimisation de la base de données via Outils -> Base de données -> Optimiser"
+msgstr "Nous suggérons d'optimiser la base de données via Outils -> Base de données -> Optimiser la base de données"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3855,7 +3855,7 @@ msgstr "Astuce: Pour marquer une opération nécessitant le suivi, il suffit de 
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "Astuce : MMEX prend en charge l'impression de tous les rapports qui peuvent être consultés. Les options d'impression sont disponibles sous le menu, Fichier → Imprimer."
+msgstr "Astuce : MMEX prend en charge l'impression de tous les rapports qui peuvent être consultés. Les options d'impression sont disponibles sous le menu, Fichier → Imprimer..."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -5125,7 +5125,11 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Les comptes de titres servent à la gestion des valeurs mobilières. \n"
+"Les opérations sont créées dans la vue portefeuille des titres, après avoir sélectionné la valeur de la société au sein de la vue associée.\n"
+"Ces comptes ne seront visibles qu’après avoir associé des actions à un compte d’émission\n"
+"à l’aide du menu Affichage --> Afficher les comptes d'actions. \n"
+"Les comptes d'actions peuvent contenir également des opérations normales vers un compte ordinaire."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5674,22 +5678,22 @@ msgstr "Légende (peut être utilisée comme variable au début du chemin)"
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s → Répertoire de documents de l'utilisateur"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s → Répertoire du profil de l'utilisateur"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s → Répertoire de la base de données .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Répertoire des données de l'application MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5701,15 +5705,15 @@ msgstr "Pas encore défini"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Répertoire Windows → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Dossier Mac → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Dossier Unix → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -6285,7 +6289,7 @@ msgstr "Astuce : Changer toutes les transactions utilisant ce tiers pour un autr
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Outils -> Réattibution de... -> Tiers"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6473,7 +6477,7 @@ msgstr "Veuillez ne pas effacer les informations jointes sous ce texte."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Utiliser le menu Aide->Vérifier les Mises à jour pour obtenir la dernière version. Votre problème est peut-être déjà résolu."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7601,12 +7605,12 @@ msgstr "Mauvaise version de l'API Webapp: "
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "Version de l'API WebApp : %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Version de l'API attendue : %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7773,7 +7777,7 @@ msgstr "Devise principale non définie"
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Régler cela en prtemier en utilisant le menu Outils-> Options avant d'ajouter un nouveau compte."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
