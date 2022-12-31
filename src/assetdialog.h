@@ -36,7 +36,7 @@ public:
     mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Asset::Data* asset, bool trans_data = false);
     mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
-    Model_Asset::Data* m_asset;
+    Model_Asset::Data* m_asset = nullptr;
     void SetTransactionAccountName(const wxString& account_name);
     void SetTransactionDate();
 
@@ -73,9 +73,9 @@ private:
     UserTransactionPanel* m_transaction_panel = nullptr;
     Model_Translink::Data* m_transfer_entry = nullptr;
     Model_Checking::Data* m_checking_entry = nullptr;
-    wxString m_dialog_heading;
-    bool m_hidden_trans_entry;
-    bool assetRichText;
+    wxString m_dialog_heading = _("New Asset");
+    bool m_hidden_trans_entry = true;
+    bool assetRichText = true;
 
     enum
     {
