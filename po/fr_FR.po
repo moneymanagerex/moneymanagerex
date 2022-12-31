@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:08\n"
+"PO-Revision-Date: 2022-12-31 11:45\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Le répertoire des pièces jointes n'est pas défini."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Veuillez le définir dans Outils → Options → Pièces jointes"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1725,7 +1725,7 @@ msgstr "Astuce : changer toutes les opérations utilisant cette sous-catégorie 
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Outils -> réattribution de -> Catégories"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2398,7 +2398,7 @@ msgstr "La base de données MMEX a été mise à jour avec succès vers la versi
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Nous suggérons une optimisation de la base de données via Outils -> Base de données -> Optimiser"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3855,7 +3855,7 @@ msgstr "Astuce: Pour marquer une opération nécessitant le suivi, il suffit de 
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Astuce : MMEX prend en charge l'impression de tous les rapports qui peuvent être consultés. Les options d'impression sont disponibles sous le menu, Fichier → Imprimer."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -4980,7 +4980,7 @@ msgstr "Désolé. La version de la base de données est trop ancienne ou le mot 
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Suivant →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
