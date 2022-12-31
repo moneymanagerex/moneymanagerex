@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-23 18:11+0300\n"
-"PO-Revision-Date: 2022-12-23 15:14\n"
+"POT-Creation-Date: 2022-12-31 03:28+0300\n"
+"PO-Revision-Date: 2022-12-31 03:09\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "Posielať anonymné štatistické dáta o používaní"
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Povolením nám umožníte zbierať anonymné dáta o používaní MMEX."
 
-#: aboutdialog.cpp:246 accountdialog.cpp:296 appstartdialog.cpp:145
+#: aboutdialog.cpp:246 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:307 attachmentdialog.cpp:152 billsdepositsdialog.cpp:630
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:269
@@ -68,7 +68,7 @@ msgstr "Povolením nám umožníte zbierať anonymné dáta o používaní MMEX.
 msgid "&OK "
 msgstr "&OK "
 
-#: accountdialog.cpp:95 mmframe.cpp:1587
+#: accountdialog.cpp:95 mmframe.cpp:1581
 msgid "Edit Account"
 msgstr "Upraviť účet"
 
@@ -312,85 +312,85 @@ msgstr ""
 msgid "Recurring transactions for this account are scheduled before this date"
 msgstr ""
 
-#: accountdialog.h:41 mmframe.cpp:1584 mmframe.cpp:1828
+#: accountdialog.h:41 mmframe.cpp:1578 mmframe.cpp:1822
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
 msgid "New Account"
 msgstr "Nový účet"
 
-#: appstartdialog.cpp:104
+#: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
 msgstr "Otvoriť naposledy otvorenú databázu"
 
-#: appstartdialog.cpp:107
+#: appstartdialog.cpp:102
 msgid "Create a New Database"
 msgstr "Vytvoriť novú databázu"
 
-#: appstartdialog.cpp:108
+#: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
 msgstr "Pre prácu s programom je nutné najskôr vytvoriť nový databázový súbor"
 
-#: appstartdialog.cpp:111
+#: appstartdialog.cpp:106
 msgid "Open Existing Database"
 msgstr "Otvoriť existujúcu databázu"
 
-#: appstartdialog.cpp:112
+#: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
 msgstr "Otvoriť už vytvorený databázový súbor s príponou (*.mmb)"
 
-#: appstartdialog.cpp:115
+#: appstartdialog.cpp:110
 msgid "Change Language"
 msgstr ""
 
-#: appstartdialog.cpp:116 appstartdialog.cpp:219 mmframe.cpp:1556
+#: appstartdialog.cpp:111 appstartdialog.cpp:214 mmframe.cpp:1550
 #: optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
 msgstr ""
 
-#: appstartdialog.cpp:119
+#: appstartdialog.cpp:114
 msgid "Read Documentation"
 msgstr "Čítať dokumentáciu"
 
-#: appstartdialog.cpp:120
+#: appstartdialog.cpp:115
 msgid "Read the user manual"
 msgstr "Čítať používateľský manuál"
 
-#: appstartdialog.cpp:123
+#: appstartdialog.cpp:118
 msgid "Visit Website for more information"
 msgstr "Navštíviť webstránku pre získanie ďalších informácií"
 
-#: appstartdialog.cpp:124
+#: appstartdialog.cpp:119
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
 msgstr "Otvoriť webstránku %s, kde získate informácie o novinkách, aktualizáciach atď."
 
-#: appstartdialog.cpp:132 wizard_update.cpp:209
+#: appstartdialog.cpp:127 wizard_update.cpp:209
 #, c-format
 msgid "Show this window next time %s starts"
 msgstr "Pri najbližšom štarte %s zobraziť toto okno"
 
-#: appstartdialog.cpp:146
+#: appstartdialog.cpp:141
 msgid "&Exit "
 msgstr "&Ukončiť "
 
-#: appstartdialog.cpp:162
+#: appstartdialog.cpp:157
 #, c-format
 msgid "Open the previously opened database : %s"
 msgstr ""
 
-#: appstartdialog.cpp:206 mmframe.cpp:1561 mmframe.cpp:2813
+#: appstartdialog.cpp:201 mmframe.cpp:1555 mmframe.cpp:2807
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
 msgid "system default"
 msgstr ""
 
-#: appstartdialog.cpp:219 optionsettingsgeneral.cpp:92
+#: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
 msgid "Language"
 msgstr ""
 
-#: appstartdialog.cpp:226 mmframe.cpp:3607 optionsettingsgeneral.cpp:350
+#: appstartdialog.cpp:221 mmframe.cpp:3601 optionsettingsgeneral.cpp:350
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: appstartdialog.cpp:228 mmframe.cpp:3609 optionsettingsgeneral.cpp:352
+#: appstartdialog.cpp:223 mmframe.cpp:3603 optionsettingsgeneral.cpp:352
 msgid "Language change"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgid "&Delete Asset"
 msgstr "O&dstrániť hmotný majetok"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
-#: mmframe.cpp:1379 mmframe.cpp:1399 payeedialog.cpp:620 stocks_list.cpp:146
+#: mmframe.cpp:1373 mmframe.cpp:1393 payeedialog.cpp:620 stocks_list.cpp:146
 msgid "&Organize Attachments"
 msgstr "&Organizovanie príloh"
 
@@ -579,7 +579,7 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr "MMEX umožňuje sledovať dlhodobý majetok ako autá, domy, pozemky a iné. Každý hmotný majetok môže mať hodnotu, ktorá každoročne narastá alebo klesá o určitú percentuálnu sadzbu alebo sa nemení. Hodnota hmotného majetku bude pripočítaná k hodnote vášho celkového majetku."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
-#: mmframe.cpp:478 mmframe.cpp:749 mmframe.cpp:1649 mmframe.cpp:3219
+#: mmframe.cpp:469 mmframe.cpp:740 mmframe.cpp:1643 mmframe.cpp:3213
 #: mmhomepage.cpp:542 mmhomepage.cpp:590 mmhomepagepanel.cpp:235
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
@@ -589,7 +589,7 @@ msgstr "Hmotný majetok"
 #: filtertransdialog.cpp:223 filtertransdialog.cpp:503
 #: filtertransdialog.cpp:801 filtertransdialog.cpp:1818
 #: import_export/qif_export.cpp:74 import_export/qif_export.cpp:75
-#: import_export/qif_export.cpp:145 mmframe.cpp:1423
+#: import_export/qif_export.cpp:145 mmframe.cpp:1417
 msgid "All"
 msgstr "Všetky"
 
@@ -692,8 +692,8 @@ msgid "Attachment folder not defined."
 msgstr "Nie je nastavený priečinok príloh."
 
 #: attachmentdialog.cpp:66
-msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "Prosím nastavte ho v Nástroje -> Možnosti -> Prílohy"
+msgid "Please set it in Tools → Options → Attachments"
+msgstr ""
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1203,7 +1203,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1255 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1151 maincurrencydialog.cpp:479
-#: mmframe.cpp:3572 splittransactionsdialog.cpp:393 stockspanel.cpp:326
+#: mmframe.cpp:3566 splittransactionsdialog.cpp:393 stockspanel.cpp:326
 #: stockspanel.cpp:327 themes.cpp:316 themes.cpp:335 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Error"
@@ -1282,8 +1282,8 @@ msgstr "MMEX umožňuje nastaviť trvalé príkazy ako transakcie. Tieto transak
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
-#: billsdepositspanel.cpp:245 billsdepositspanel.cpp:984 mmframe.cpp:753
-#: mmframe.cpp:2971 mmhomepagepanel.cpp:241
+#: billsdepositspanel.cpp:245 billsdepositspanel.cpp:984 mmframe.cpp:744
+#: mmframe.cpp:2965 mmhomepagepanel.cpp:241
 msgid "Recurring Transactions"
 msgstr "Opakujúce sa transakcie"
 
@@ -1598,7 +1598,7 @@ msgstr "Rozpočet na daný rok už existuje"
 msgid "Categories"
 msgstr "Kategórie"
 
-#: categdialog.cpp:258 mmframe.cpp:1625
+#: categdialog.cpp:258 mmframe.cpp:1619
 msgid "Reassign all categories to another category"
 msgstr "Priradiť všetky kategórie inej kategórii"
 
@@ -1719,8 +1719,8 @@ msgstr "Tip: Zmeňte podkategóriu za inú podkategóriu vo všetkých transakci
 "ktoré ju používajú pomocou príkazu na premiestnenie:"
 
 #: categdialog.cpp:476
-msgid "Tools -> Relocation of -> Categories"
-msgstr "Nástroje -> Premiestniť -> Kategórie"
+msgid "Tools → Relocation of → Categories"
+msgstr ""
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -1759,16 +1759,16 @@ msgstr ""
 msgid "Organise Categories: Editing Error"
 msgstr "Organizovanie kategórií: Chyba úpravy"
 
-#: categdialog.cpp:683 mmframe.cpp:3476
+#: categdialog.cpp:683 mmframe.cpp:3470
 msgid "Category Relocation Completed."
 msgstr "Premiestnenie kategórií je dokončené."
 
-#: categdialog.cpp:684 mmframe.cpp:3477 mmframe.cpp:3492 payeedialog.cpp:565
+#: categdialog.cpp:684 mmframe.cpp:3471 mmframe.cpp:3486 payeedialog.cpp:565
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Boli aktualizované záznamy v databáze: %i"
 
-#: categdialog.cpp:686 mmframe.cpp:3479
+#: categdialog.cpp:686 mmframe.cpp:3473
 msgid "Category Relocation Result"
 msgstr "Výsledok premiestnenia kategórií"
 
@@ -1796,7 +1796,7 @@ msgstr ""
 msgid "Clear Settings"
 msgstr "Vymazať nastavenia"
 
-#: categdialog.h:68 mmframe.cpp:1612 mmframe.cpp:1833
+#: categdialog.h:68 mmframe.cpp:1606 mmframe.cpp:1827
 msgid "Organize Categories"
 msgstr "Organizovanie kategórií"
 
@@ -1873,17 +1873,17 @@ msgstr ""
 msgid "ALL"
 msgstr "Všetko"
 
-#: constants.cpp:193 mmframe.cpp:1425 mmframe.cpp:1826
+#: constants.cpp:193 mmframe.cpp:1419 mmframe.cpp:1820
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "Otvorený"
 
-#: constants.cpp:194 mmframe.cpp:1426 model/Model_Account.cpp:28
+#: constants.cpp:194 mmframe.cpp:1420 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "Uzavretý"
 
-#: constants.cpp:195 mmframe.cpp:1424
+#: constants.cpp:195 mmframe.cpp:1418
 msgid "Favorites"
 msgstr "Obľúbené"
 
@@ -2067,8 +2067,8 @@ msgstr ""
 msgid "Changing field type will delete all content!"
 msgstr ""
 
-#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2253
-#: mmframe.cpp:2272
+#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2247
+#: mmframe.cpp:2266
 msgid "Do you want to proceed?"
 msgstr "Chcete pokračovať?"
 
@@ -2387,7 +2387,7 @@ msgid "MMEX database succesfully upgraded to version %i"
 msgstr ""
 
 #: dbupgrade.cpp:121
-msgid "We suggest a database optimization under Tools -> Database -> Optimize"
+msgid "We suggest a database optimization under Tools → Database → Optimize"
 msgstr ""
 
 #: dbupgrade.cpp:182
@@ -2451,7 +2451,7 @@ msgstr ""
 msgid "Error: %s"
 msgstr "Chyba: %s"
 
-#: dbwrapper.cpp:85 mmframe.cpp:1923
+#: dbwrapper.cpp:85 mmframe.cpp:1917
 msgid "Opening MMEX Database - Error"
 msgstr "Chyba pri otváraní databázi MMEX"
 
@@ -2595,15 +2595,15 @@ msgstr ""
 msgid "Hide Report Columns"
 msgstr ""
 
-#: filtertransdialog.cpp:1172 mmframe.cpp:1183
+#: filtertransdialog.cpp:1172 mmframe.cpp:1177
 msgid "The selected item will be deleted"
 msgstr ""
 
-#: filtertransdialog.cpp:1173 mmframe.cpp:1184
+#: filtertransdialog.cpp:1173 mmframe.cpp:1178
 msgid "Do you wish to continue?"
 msgstr ""
 
-#: filtertransdialog.cpp:1174 mmframe.cpp:1185
+#: filtertransdialog.cpp:1174 mmframe.cpp:1179
 msgid "Settings item deletion"
 msgstr ""
 
@@ -2635,11 +2635,11 @@ msgstr "Min. suma"
 msgid "Amount Max."
 msgstr "Max. suma"
 
-#: filtertransdialog.cpp:1727 mmframe.cpp:1211
+#: filtertransdialog.cpp:1727 mmframe.cpp:1205
 msgid "Setting Name"
 msgstr ""
 
-#: filtertransdialog.cpp:1727 mmframe.cpp:1211
+#: filtertransdialog.cpp:1727 mmframe.cpp:1205
 msgid "Please Enter"
 msgstr ""
 
@@ -2674,13 +2674,13 @@ msgstr "Vybrať účty"
 msgid "Transaction Filter"
 msgstr "Filter transakcií"
 
-#: general_report_manager.cpp:293 mmframe.cpp:771 mmframe.cpp:2757
+#: general_report_manager.cpp:293 mmframe.cpp:762 mmframe.cpp:2751
 #: mmframereport.cpp:316 reports/myusage.cpp:147 reports/myusage.cpp:164
 msgid "Reports"
 msgstr "Reporty"
 
 #: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:410
-#: mmframe.cpp:1325 mmframe.cpp:1484
+#: mmframe.cpp:1319 mmframe.cpp:1478
 msgid "&Import"
 msgstr "&Importovať"
 
@@ -2689,7 +2689,7 @@ msgid "Locate and load a report file."
 msgstr "Nájsť a načítať súbor s reportom."
 
 #: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:412
-#: mmframe.cpp:1332 mmframe.cpp:1493
+#: mmframe.cpp:1326 mmframe.cpp:1487
 msgid "&Export"
 msgstr "&Exportovať"
 
@@ -2818,7 +2818,7 @@ msgid "Enter the name for the report"
 msgstr "Zadajte názov reportu"
 
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
-#: mmframe.cpp:776 mmframe.cpp:1667 mmframe.cpp:1839
+#: mmframe.cpp:767 mmframe.cpp:1661 mmframe.cpp:1833
 msgid "General Report Manager"
 msgstr "Správca vlastných reportov"
 
@@ -2911,7 +2911,7 @@ msgid "Unable to open file."
 msgstr "Nepodarilo sa otvoriť súbor."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:973 mmframe.cpp:2413 mmframe.cpp:2432
+#: import_export/univcsvdialog.cpp:973 mmframe.cpp:2407 mmframe.cpp:2426
 msgid "Universal CSV Import"
 msgstr "Univerzálny import CSV"
 
@@ -2985,8 +2985,8 @@ msgstr "JSON"
 msgid "CSV"
 msgstr ""
 
-#: import_export/qif_export.cpp:143 mmframe.cpp:3310 mmframe.cpp:3314
-#: mmframe.cpp:3331 mmframe.cpp:3335
+#: import_export/qif_export.cpp:143 mmframe.cpp:3304 mmframe.cpp:3308
+#: mmframe.cpp:3325 mmframe.cpp:3329
 msgid "Accounts"
 msgstr "Účty"
 
@@ -3085,7 +3085,7 @@ msgstr ""
 msgid "Number of accounts exported: %zu"
 msgstr ""
 
-#: import_export/qif_export.cpp:638 mmframe.cpp:1490
+#: import_export/qif_export.cpp:638 mmframe.cpp:1484
 msgid "Export to QIF"
 msgstr "Export do QIF"
 
@@ -3839,8 +3839,8 @@ msgid "Tip: To mark a transaction as requiring followup, just select the transac
 msgstr "Tip: Pre označenie trasakcie ako sledovanej ju vyberte a stlačte klávesu 'f' alebo 'F'."
 
 #: mmTips.h:29
-msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "Tip: MMEX podporuje tlač všetkých reportov, ktoré môže program zobraziť. Možnosti tlače sú dostupné v menu Súbor -> Tlačiť."
+msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
+msgstr ""
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -4124,7 +4124,7 @@ msgstr ""
 msgid "Delete selected transaction"
 msgstr "Odstrániť vybranú transakciu"
 
-#: mmcheckingpanel.cpp:372 mmframe.cpp:1831 transdialog.cpp:160
+#: mmcheckingpanel.cpp:372 mmframe.cpp:1825 transdialog.cpp:160
 msgid "New Transaction"
 msgstr "Nová transakcia"
 
@@ -4152,7 +4152,7 @@ msgstr ""
 msgid "Full Transactions Report"
 msgstr ""
 
-#: mmcheckingpanel.cpp:438 mmframe.cpp:757
+#: mmcheckingpanel.cpp:438 mmframe.cpp:748
 msgid "Deleted Transactions"
 msgstr ""
 
@@ -4231,979 +4231,979 @@ msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
 
-#: mmframe.cpp:272
+#: mmframe.cpp:263
 msgid "Navigation"
 msgstr "Navigácia"
 
-#: mmframe.cpp:273
+#: mmframe.cpp:264
 msgid "Toolbar"
 msgstr "Panel nástrojov"
 
-#: mmframe.cpp:471 mmframe.cpp:717
+#: mmframe.cpp:462 mmframe.cpp:708
 msgid "Favourites"
 msgstr ""
 
-#: mmframe.cpp:472 mmframe.cpp:721 mmhomepage.cpp:699 reports/summary.cpp:256
+#: mmframe.cpp:463 mmframe.cpp:712 mmhomepage.cpp:699 reports/summary.cpp:256
 #: reports/summary.cpp:299
 msgid "Bank Accounts"
 msgstr "Bankové účty"
 
-#: mmframe.cpp:473 mmframe.cpp:725 mmhomepage.cpp:700 reports/summary.cpp:258
+#: mmframe.cpp:464 mmframe.cpp:716 mmhomepage.cpp:700 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
 msgstr "Účty kreditných kariet"
 
-#: mmframe.cpp:474 mmframe.cpp:737 mmhomepage.cpp:702 reports/summary.cpp:262
+#: mmframe.cpp:465 mmframe.cpp:728 mmhomepage.cpp:702 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
 msgstr "Termínované účty"
 
-#: mmframe.cpp:475 mmframe.cpp:741
+#: mmframe.cpp:466 mmframe.cpp:732
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:476 mmframe.cpp:729 mmhomepage.cpp:698
+#: mmframe.cpp:467 mmframe.cpp:720 mmhomepage.cpp:698
 msgid "Cash Accounts"
 msgstr "Hotovostné účty"
 
-#: mmframe.cpp:477 mmframe.cpp:733 mmhomepage.cpp:701 reports/summary.cpp:260
+#: mmframe.cpp:468 mmframe.cpp:724 mmhomepage.cpp:701 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:508
+#: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
 msgstr ""
 
-#: mmframe.cpp:709 mmframe.cpp:1829
+#: mmframe.cpp:700 mmframe.cpp:1823
 msgid "Home Page"
 msgstr "Domáca stránka"
 
-#: mmframe.cpp:713
+#: mmframe.cpp:704
 msgid "All Transactions"
 msgstr ""
 
-#: mmframe.cpp:745 mmhomepage.cpp:705 reports/summary.cpp:266
+#: mmframe.cpp:736 mmhomepage.cpp:705 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:761 mmframe.cpp:1641 mmframe.cpp:2638
+#: mmframe.cpp:752 mmframe.cpp:1635 mmframe.cpp:2632
 msgid "Budget Setup"
 msgstr "Nastavenie rozpočtu"
 
-#: mmframe.cpp:766 mmframe.cpp:1244 mmframe.cpp:1261 mmframe.cpp:2623
+#: mmframe.cpp:757 mmframe.cpp:1238 mmframe.cpp:1255 mmframe.cpp:2617
 msgid "Transaction Report"
 msgstr "Výpis transakcií"
 
-#: mmframe.cpp:783 mmframe.cpp:2454 mmframe.cpp:2707 mmhelppanel.cpp:69
+#: mmframe.cpp:774 mmframe.cpp:2448 mmframe.cpp:2701 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Pomoc"
 
-#: mmframe.cpp:1218
+#: mmframe.cpp:1212
 msgid "A setting with this name already exists"
 msgstr ""
 
-#: mmframe.cpp:1220
+#: mmframe.cpp:1214
 msgid "Please specify a new name for the setting"
 msgstr ""
 
-#: mmframe.cpp:1222
+#: mmframe.cpp:1216
 msgid "Name in use"
 msgstr ""
 
-#: mmframe.cpp:1279
+#: mmframe.cpp:1273
 msgid "Do you really want to delete the account?"
 msgstr "Naozaj chcete odstrániť účet?"
 
-#: mmframe.cpp:1286 mmframe.cpp:3343
+#: mmframe.cpp:1280 mmframe.cpp:3337
 msgid "Confirm Account Deletion"
 msgstr "Potvrďte odstránenie účtu"
 
-#: mmframe.cpp:1305
+#: mmframe.cpp:1299
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX bol spustený bez aktívnej databázy."
 
-#: mmframe.cpp:1306
+#: mmframe.cpp:1300
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: Chyba kontextového menu"
 
-#: mmframe.cpp:1322 mmframe.cpp:1327 mmframe.cpp:1480 mmframe.cpp:1487
+#: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files"
 msgstr ""
 
-#: mmframe.cpp:1323 mmframe.cpp:1329 mmframe.cpp:1481 mmframe.cpp:1489
+#: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files"
 msgstr ""
 
-#: mmframe.cpp:1323 mmframe.cpp:1481
+#: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
 msgstr ""
 
-#: mmframe.cpp:1324 mmframe.cpp:1330 mmframe.cpp:1482 mmframe.cpp:1490
+#: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files"
 msgstr ""
 
-#: mmframe.cpp:1328 mmframe.cpp:1488
+#: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files"
 msgstr ""
 
-#: mmframe.cpp:1331 mmframe.cpp:1491
+#: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files"
 msgstr ""
 
-#: mmframe.cpp:1357
+#: mmframe.cpp:1351
 msgid "&Edit Filter"
 msgstr ""
 
-#: mmframe.cpp:1358
+#: mmframe.cpp:1352
 msgid "&Rename Filter"
 msgstr ""
 
-#: mmframe.cpp:1359
+#: mmframe.cpp:1353
 msgid "&Delete Filter"
 msgstr ""
 
-#: mmframe.cpp:1375 mmframe.cpp:1393 mmframe.cpp:1413 mmframe.cpp:1587
+#: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account"
 msgstr "&Upraviť účet"
 
-#: mmframe.cpp:1376 mmframe.cpp:1396 mmframe.cpp:1416 mmframe.cpp:1593
+#: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account"
 msgstr "&Odstrániť účet"
 
-#: mmframe.cpp:1378 mmframe.cpp:1398
+#: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
 msgstr "Í&sť na stránku účtu"
 
-#: mmframe.cpp:1394 mmframe.cpp:1590
+#: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account"
 msgstr ""
 
-#: mmframe.cpp:1412 mmframe.cpp:1584
+#: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account"
 msgstr "&Nový účet"
 
-#: mmframe.cpp:1414
+#: mmframe.cpp:1408
 msgid "Account &List (Home)"
 msgstr "Zoz&nam účtov (úvodná stránka)"
 
-#: mmframe.cpp:1427 optionsettingsview.cpp:69
+#: mmframe.cpp:1421 optionsettingsview.cpp:69
 msgid "Accounts Visible"
 msgstr "Viditeľné účty"
 
-#: mmframe.cpp:1465
+#: mmframe.cpp:1459
 msgid "&New Database"
 msgstr ""
 
-#: mmframe.cpp:1465 mmframe.cpp:1825 wizard_newdb.cpp:137
+#: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
 msgstr "Nová databáza"
 
-#: mmframe.cpp:1466
+#: mmframe.cpp:1460
 msgid "&Open Database\tCtrl-O"
 msgstr "&Otvoriť databázu\tCtrl-O"
 
-#: mmframe.cpp:1466 mmframe.cpp:1826
+#: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
 msgstr "Otvoriť databázu"
 
-#: mmframe.cpp:1467
+#: mmframe.cpp:1461
 msgid "Save Database &As"
 msgstr "Uložiť databázu &ako"
 
-#: mmframe.cpp:1467
+#: mmframe.cpp:1461
 msgid "Save Database As"
 msgstr "Uložiť databázu ako"
 
-#: mmframe.cpp:1474
+#: mmframe.cpp:1468
 msgid "&Recent Files"
 msgstr ""
 
-#: mmframe.cpp:1475
+#: mmframe.cpp:1469
 msgid "&Clear Recent Files"
 msgstr "&Vymazať zoznam naposledy otvorených súborov"
 
-#: mmframe.cpp:1480
+#: mmframe.cpp:1474
 msgid "Import from any CSV file"
 msgstr "Import z ľubovoľného CSV súboru"
 
-#: mmframe.cpp:1482
+#: mmframe.cpp:1476
 msgid "Import from QIF"
 msgstr "Import z QIF"
 
-#: mmframe.cpp:1483
+#: mmframe.cpp:1477
 msgid "&WebApp"
 msgstr ""
 
-#: mmframe.cpp:1483
+#: mmframe.cpp:1477
 msgid "Import from WebApp"
 msgstr ""
 
-#: mmframe.cpp:1487
+#: mmframe.cpp:1481
 msgid "Export to CSV"
 msgstr "Export do CSV"
 
-#: mmframe.cpp:1488
+#: mmframe.cpp:1482
 msgid "Export to fixed CSV"
 msgstr ""
 
-#: mmframe.cpp:1489
+#: mmframe.cpp:1483
 msgid "Export to XML"
 msgstr "Exportovať do XML"
 
-#: mmframe.cpp:1491
+#: mmframe.cpp:1485
 msgid "Export to JSON"
 msgstr "Exportovať do JSON"
 
-#: mmframe.cpp:1492
+#: mmframe.cpp:1486
 msgid "&HTML Files"
 msgstr ""
 
-#: mmframe.cpp:1492
+#: mmframe.cpp:1486
 msgid "Export to HTML"
 msgstr "Export do HTML"
 
-#: mmframe.cpp:1498 mmframe.cpp:1862
+#: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "&Print"
 msgstr ""
 
-#: mmframe.cpp:1498 mmframe.cpp:1862
+#: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
 msgstr "Tlačiť aktuálny pohľad"
 
-#: mmframe.cpp:1504
+#: mmframe.cpp:1498
 msgid "E&xit\tAlt-X"
 msgstr ""
 
-#: mmframe.cpp:1504
+#: mmframe.cpp:1498
 msgid "Quit this program"
 msgstr ""
 
-#: mmframe.cpp:1510
+#: mmframe.cpp:1504
 msgid "&Toolbar"
 msgstr "&Panel nástrojov"
 
-#: mmframe.cpp:1510
+#: mmframe.cpp:1504
 msgid "Show/Hide the toolbar"
 msgstr "Zobraziť/skryť panel nástrojov"
 
-#: mmframe.cpp:1512
+#: mmframe.cpp:1506
 msgid "&Navigation"
 msgstr "&Navigácia"
 
-#: mmframe.cpp:1512
+#: mmframe.cpp:1506
 msgid "Show/Hide the Navigation tree control"
 msgstr "Zobraziť/skryť ovládanie navigačného stromu"
 
-#: mmframe.cpp:1514
+#: mmframe.cpp:1508
 msgid "&Display Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:1514
+#: mmframe.cpp:1508
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr ""
 
-#: mmframe.cpp:1516
+#: mmframe.cpp:1510
 msgid "&Display Deleted Transactions"
 msgstr ""
 
-#: mmframe.cpp:1516
+#: mmframe.cpp:1510
 msgid "Show/Hide Deleted Transactions in the navigation tree"
 msgstr ""
 
-#: mmframe.cpp:1518
+#: mmframe.cpp:1512
 msgid "Budgets: As Financial &Years"
 msgstr ""
 
-#: mmframe.cpp:1518
+#: mmframe.cpp:1512
 msgid "Display Budgets in Financial Year Format"
 msgstr "Zobraziť rozpočty vo formáte fiškálneho roku"
 
-#: mmframe.cpp:1520
+#: mmframe.cpp:1514
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "Rozpočty: &Vrátane celkových prevodov"
 
-#: mmframe.cpp:1520
+#: mmframe.cpp:1514
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "Zahrnúť prevodové transakcie do rozpočtový súčtov"
 
-#: mmframe.cpp:1522
+#: mmframe.cpp:1516
 msgid "Budget Category Report: with &Summaries"
 msgstr ""
 
-#: mmframe.cpp:1522
+#: mmframe.cpp:1516
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr ""
 
-#: mmframe.cpp:1524
+#: mmframe.cpp:1518
 msgid "Ignore F&uture Transactions"
 msgstr "Ignorovať &budúce transakcie"
 
-#: mmframe.cpp:1524
+#: mmframe.cpp:1518
 msgid "Ignore Future transactions"
 msgstr "Ignorovať budúce transakcie"
 
-#: mmframe.cpp:1526 optionsettingsview.cpp:104
+#: mmframe.cpp:1520 optionsettingsview.cpp:104
 msgid "Show Tooltips"
 msgstr ""
 
-#: mmframe.cpp:1528 optionsettingsview.cpp:110
+#: mmframe.cpp:1522 optionsettingsview.cpp:110
 msgid "Show Money Tips"
 msgstr ""
 
-#: mmframe.cpp:1548
+#: mmframe.cpp:1542
 msgid "Toggle &Fullscreen\tShift+F11"
 msgstr ""
 
-#: mmframe.cpp:1549 mmframe.cpp:1859
+#: mmframe.cpp:1543 mmframe.cpp:1853
 msgid "Toggle Fullscreen"
 msgstr "Prepnúť na celú obrazovku"
 
-#: mmframe.cpp:1555
+#: mmframe.cpp:1549
 msgid "Switch Application &Language"
 msgstr ""
 
-#: mmframe.cpp:1581
+#: mmframe.cpp:1575
 msgid "&Home Page"
 msgstr ""
 
-#: mmframe.cpp:1581 mmframe.cpp:1829
+#: mmframe.cpp:1575 mmframe.cpp:1823
 msgid "Show Home Page"
 msgstr ""
 
-#: mmframe.cpp:1590
+#: mmframe.cpp:1584
 msgid "Change the account type of an account."
 msgstr ""
 
-#: mmframe.cpp:1593
+#: mmframe.cpp:1587
 msgid "Delete Account from database"
 msgstr "Odstránenie účtu z databázy"
 
-#: mmframe.cpp:1606
+#: mmframe.cpp:1600
 msgid "Download Ra&tes"
 msgstr ""
 
-#: mmframe.cpp:1606 mmframe.cpp:1856
+#: mmframe.cpp:1600 mmframe.cpp:1850
 msgid "Download Currency and Stock rates"
 msgstr ""
 
-#: mmframe.cpp:1612
+#: mmframe.cpp:1606
 msgid "Organize &Categories"
 msgstr ""
 
-#: mmframe.cpp:1616
+#: mmframe.cpp:1610
 msgid "Organize &Payees"
 msgstr ""
 
-#: mmframe.cpp:1616 mmframe.cpp:1834 payeedialog.cpp:274
+#: mmframe.cpp:1610 mmframe.cpp:1828 payeedialog.cpp:274
 msgid "Organize Payees"
 msgstr "Organizovanie príjemcov"
 
-#: mmframe.cpp:1620
+#: mmframe.cpp:1614
 msgid "Organize Curre&ncy"
 msgstr ""
 
-#: mmframe.cpp:1620 mmframe.cpp:1835
+#: mmframe.cpp:1614 mmframe.cpp:1829
 msgid "Organize Currency"
 msgstr "Organizovanie meny"
 
-#: mmframe.cpp:1624
+#: mmframe.cpp:1618
 msgid "&Categories"
 msgstr ""
 
-#: mmframe.cpp:1627
+#: mmframe.cpp:1621
 msgid "&Payees"
 msgstr ""
 
-#: mmframe.cpp:1628
+#: mmframe.cpp:1622
 msgid "Reassign all payees to another payee"
 msgstr "Priradiť všetkých príjmecov inému príjemcovi"
 
-#: mmframe.cpp:1630
+#: mmframe.cpp:1624
 msgid "Re&location of"
 msgstr ""
 
-#: mmframe.cpp:1631
+#: mmframe.cpp:1625
 msgid "Relocate Categories && Payees"
 msgstr "Premiestniť kategórie && príjemcov"
 
-#: mmframe.cpp:1641
+#: mmframe.cpp:1635
 msgid "&Budget Setup"
 msgstr "Nastavenie &rozpočtu"
 
-#: mmframe.cpp:1645
+#: mmframe.cpp:1639
 msgid "&Recurring Transactions"
 msgstr ""
 
-#: mmframe.cpp:1645
+#: mmframe.cpp:1639
 msgid "Bills && Deposits"
 msgstr "Platby &a vklady"
 
-#: mmframe.cpp:1649
+#: mmframe.cpp:1643
 msgid "&Assets"
 msgstr "&Hmotný majetok"
 
-#: mmframe.cpp:1655
+#: mmframe.cpp:1649
 msgid "T&heme Manager"
 msgstr ""
 
-#: mmframe.cpp:1655 themes.cpp:143
+#: mmframe.cpp:1649 themes.cpp:143
 msgid "Theme Manager"
 msgstr ""
 
-#: mmframe.cpp:1661
+#: mmframe.cpp:1655
 msgid "Transaction Report &Filter"
 msgstr ""
 
-#: mmframe.cpp:1661 mmframe.cpp:1837
+#: mmframe.cpp:1655 mmframe.cpp:1831
 msgid "Transaction Report Filter"
 msgstr "Filter výpisu transakcií"
 
-#: mmframe.cpp:1667
+#: mmframe.cpp:1661
 msgid "General Report &Manager"
 msgstr ""
 
-#: mmframe.cpp:1671
+#: mmframe.cpp:1665
 msgid "C&ustom Fields Manager"
 msgstr ""
 
-#: mmframe.cpp:1671
+#: mmframe.cpp:1665
 msgid "Custom Fields Manager"
 msgstr ""
 
-#: mmframe.cpp:1677
+#: mmframe.cpp:1671
 msgid "Refresh &WebApp"
 msgstr ""
 
-#: mmframe.cpp:1677 mmframe.cpp:2696 mmframe.cpp:2699
+#: mmframe.cpp:1671 mmframe.cpp:2690 mmframe.cpp:2693
 msgid "Refresh WebApp"
 msgstr ""
 
-#: mmframe.cpp:1682
+#: mmframe.cpp:1676
 msgid "&Options...\tCtrl-,"
 msgstr ""
 
-#: mmframe.cpp:1682 mmframe.cpp:1841
+#: mmframe.cpp:1676 mmframe.cpp:1835
 msgid "Show the Options Dialog"
 msgstr "Zobraziť dialóg s možnosťami"
 
-#: mmframe.cpp:1689
+#: mmframe.cpp:1683
 msgid "Convert Encrypted &DB"
 msgstr ""
 
-#: mmframe.cpp:1690
+#: mmframe.cpp:1684
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr ""
 
-#: mmframe.cpp:1692
+#: mmframe.cpp:1686
 msgid "Change Encrypted &Password"
 msgstr ""
 
-#: mmframe.cpp:1693
+#: mmframe.cpp:1687
 msgid "Change the password of an encrypted database"
 msgstr ""
 
-#: mmframe.cpp:1695
+#: mmframe.cpp:1689
 msgid "&Optimize Database"
 msgstr ""
 
-#: mmframe.cpp:1696
+#: mmframe.cpp:1690
 msgid "Optimize database space and performance"
 msgstr ""
 
-#: mmframe.cpp:1698
+#: mmframe.cpp:1692
 msgid "Database De&bug"
 msgstr ""
 
-#: mmframe.cpp:1699
+#: mmframe.cpp:1693
 msgid "Generate database report or fix errors"
 msgstr ""
 
-#: mmframe.cpp:1704
+#: mmframe.cpp:1698
 msgid "Databa&se"
 msgstr ""
 
-#: mmframe.cpp:1705
+#: mmframe.cpp:1699
 msgid "Database management"
 msgstr ""
 
-#: mmframe.cpp:1712 mmframe.cpp:1866
+#: mmframe.cpp:1706 mmframe.cpp:1860
 msgid "&Help\tF1"
 msgstr "&Pomoc\tF1"
 
-#: mmframe.cpp:1712 mmframe.cpp:1866
+#: mmframe.cpp:1706 mmframe.cpp:1860
 msgid "Show the Help file"
 msgstr "Zobraziť súbor s pomocou"
 
-#: mmframe.cpp:1717
+#: mmframe.cpp:1711
 msgid "&Website"
 msgstr ""
 
-#: mmframe.cpp:1718
+#: mmframe.cpp:1712
 msgid "Open the Money Manager EX website for latest news, updates etc"
 msgstr ""
 
-#: mmframe.cpp:1720
+#: mmframe.cpp:1714
 msgid "&Facebook"
 msgstr ""
 
-#: mmframe.cpp:1720
+#: mmframe.cpp:1714
 msgid "Visit us on Facebook"
 msgstr "Navštívte nás na Facebooku"
 
-#: mmframe.cpp:1722
+#: mmframe.cpp:1716
 msgid "&Crowdin"
 msgstr ""
 
-#: mmframe.cpp:1722
+#: mmframe.cpp:1716
 msgid "We use Crowdin to translate MMEX"
 msgstr ""
 
-#: mmframe.cpp:1724
+#: mmframe.cpp:1718
 msgid "&Twitter"
 msgstr ""
 
-#: mmframe.cpp:1724
+#: mmframe.cpp:1718
 msgid "Follow us on Twitter"
 msgstr "Sledujte nás na Twitteri"
 
-#: mmframe.cpp:1726
+#: mmframe.cpp:1720
 msgid "&YouTube"
 msgstr ""
 
-#: mmframe.cpp:1726
+#: mmframe.cpp:1720
 msgid "Watch free video materials about MMEX"
 msgstr ""
 
-#: mmframe.cpp:1728
+#: mmframe.cpp:1722
 msgid "&Slack"
 msgstr ""
 
-#: mmframe.cpp:1728
+#: mmframe.cpp:1722
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr ""
 
-#: mmframe.cpp:1730
+#: mmframe.cpp:1724
 msgid "&GitHub"
 msgstr ""
 
-#: mmframe.cpp:1730
+#: mmframe.cpp:1724
 msgid "Access open source code repository and track reported bug statuses"
 msgstr ""
 
-#: mmframe.cpp:1732
+#: mmframe.cpp:1726
 msgid "W&iki pages"
 msgstr ""
 
-#: mmframe.cpp:1732
+#: mmframe.cpp:1726
 msgid "Read and update wiki pages"
 msgstr ""
 
-#: mmframe.cpp:1734
+#: mmframe.cpp:1728
 msgid "F&orum"
 msgstr ""
 
-#: mmframe.cpp:1735
+#: mmframe.cpp:1729
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr ""
 
-#: mmframe.cpp:1737
+#: mmframe.cpp:1731
 msgid "Money Manager Ex for &Android"
 msgstr ""
 
-#: mmframe.cpp:1738
+#: mmframe.cpp:1732
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr ""
 
-#: mmframe.cpp:1740
+#: mmframe.cpp:1734
 msgid "&Newsletter"
 msgstr ""
 
-#: mmframe.cpp:1741
+#: mmframe.cpp:1735
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr ""
 
-#: mmframe.cpp:1743
+#: mmframe.cpp:1737
 msgid "&RSS Feed"
 msgstr ""
 
-#: mmframe.cpp:1743
+#: mmframe.cpp:1737
 msgid "Connect RSS web feed to news aggregator"
 msgstr ""
 
-#: mmframe.cpp:1745
+#: mmframe.cpp:1739
 msgid "&Donate via PayPal"
 msgstr ""
 
-#: mmframe.cpp:1746
+#: mmframe.cpp:1740
 msgid "Donate the team to support infrastructure etc"
 msgstr ""
 
-#: mmframe.cpp:1748
+#: mmframe.cpp:1742
 msgid "&Buy us a Coffee"
 msgstr ""
 
-#: mmframe.cpp:1749
+#: mmframe.cpp:1743
 msgid "Buy key developer a coffee"
 msgstr ""
 
-#: mmframe.cpp:1752
+#: mmframe.cpp:1746
 msgid "&Community"
 msgstr ""
 
-#: mmframe.cpp:1753
+#: mmframe.cpp:1747
 msgid "Stay in touch with MMEX community"
 msgstr ""
 
-#: mmframe.cpp:1775
+#: mmframe.cpp:1769
 msgid "Report a &Bug"
 msgstr ""
 
-#: mmframe.cpp:1776
+#: mmframe.cpp:1770
 msgid "Report an error in application to the developers"
 msgstr ""
 
-#: mmframe.cpp:1780
+#: mmframe.cpp:1774
 msgid "View Diagnostics"
 msgstr ""
 
-#: mmframe.cpp:1781
+#: mmframe.cpp:1775
 msgid "Help provide information to the developers"
 msgstr ""
 
-#: mmframe.cpp:1785
+#: mmframe.cpp:1779
 msgid "&Show App Start Dialog"
 msgstr ""
 
-#: mmframe.cpp:1785
+#: mmframe.cpp:1779
 msgid "App Start Dialog"
 msgstr ""
 
-#: mmframe.cpp:1789
+#: mmframe.cpp:1783
 msgid "Check for &Updates"
 msgstr "Skontrolovať a&ktualizácie"
 
-#: mmframe.cpp:1789
+#: mmframe.cpp:1783
 msgid "Check For Updates"
 msgstr ""
 
-#: mmframe.cpp:1793 mmframe.cpp:1865
+#: mmframe.cpp:1787 mmframe.cpp:1859
 msgid "&About"
 msgstr ""
 
-#: mmframe.cpp:1793 mmframe.cpp:1865
+#: mmframe.cpp:1787 mmframe.cpp:1859
 msgid "Show about dialog"
 msgstr "Zobraziť informácie o programe"
 
-#: mmframe.cpp:1797
+#: mmframe.cpp:1791
 msgid "&File"
 msgstr "&Súbor"
 
-#: mmframe.cpp:1798
+#: mmframe.cpp:1792
 msgid "&Accounts"
 msgstr "Účt&y"
 
-#: mmframe.cpp:1799
+#: mmframe.cpp:1793
 msgid "&Tools"
 msgstr "&Nástroje"
 
-#: mmframe.cpp:1800
+#: mmframe.cpp:1794
 msgid "&View"
 msgstr "&Zobraziť"
 
-#: mmframe.cpp:1801
+#: mmframe.cpp:1795
 msgid "&Help"
 msgstr "&Pomoc"
 
-#: mmframe.cpp:1825 mmframe.cpp:1831
+#: mmframe.cpp:1819 mmframe.cpp:1825
 msgid "New"
 msgstr "Nový"
 
-#: mmframe.cpp:1833
+#: mmframe.cpp:1827
 msgid "Show Organize Categories Dialog"
 msgstr "Zobraziť dialóg pre organizovanie kategórií"
 
-#: mmframe.cpp:1834
+#: mmframe.cpp:1828
 msgid "Show Organize Payees Dialog"
 msgstr "Zobraziť dialóg pre organizovanie príjemcov"
 
-#: mmframe.cpp:1835
+#: mmframe.cpp:1829
 msgid "Show Organize Currency Dialog"
 msgstr "Zobraziť dialóg pre organizovanie meny"
 
-#: mmframe.cpp:1841
+#: mmframe.cpp:1835
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1849 mmframe.cpp:2750
+#: mmframe.cpp:1843 mmframe.cpp:2744
 msgid "Register/View Release &Notifications"
 msgstr "Za&registrovať sa alebo si prezrieť oznámenia o vydaní"
 
-#: mmframe.cpp:1854 optionsettingsnet.cpp:131
+#: mmframe.cpp:1848 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Novinky"
 
-#: mmframe.cpp:1856
+#: mmframe.cpp:1850
 msgid "Download rates"
 msgstr ""
 
-#: mmframe.cpp:1859
+#: mmframe.cpp:1853
 msgid "Toggle Fullscreen\tF11"
 msgstr ""
 
-#: mmframe.cpp:1917
+#: mmframe.cpp:1911
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr ""
 
-#: mmframe.cpp:1918 mmframe.cpp:2193 mmframe.cpp:2326
+#: mmframe.cpp:1912 mmframe.cpp:2187 mmframe.cpp:2320
 msgid "MMEX: Encrypted Database"
 msgstr ""
 
-#: mmframe.cpp:1952
+#: mmframe.cpp:1946
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr ""
 
-#: mmframe.cpp:1952
+#: mmframe.cpp:1946
 msgid "MMEX upgrade"
 msgstr ""
 
-#: mmframe.cpp:1974 mmframe.cpp:2060
+#: mmframe.cpp:1968 mmframe.cpp:2054
 msgid "No File opened"
 msgstr ""
 
-#: mmframe.cpp:1976
+#: mmframe.cpp:1970
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr ""
 
-#: mmframe.cpp:2050
-msgid "&Next ->"
-msgstr "&Ďalší ->"
+#: mmframe.cpp:2044
+msgid "&Next →"
+msgstr ""
 
-#: mmframe.cpp:2063
+#: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
 msgstr ""
 
-#: mmframe.cpp:2065
+#: mmframe.cpp:2059
 msgid "Password not entered for encrypted Database.\n"
 msgstr ""
 
-#: mmframe.cpp:2083
+#: mmframe.cpp:2077
 msgid "portable mode"
 msgstr ""
 
-#: mmframe.cpp:2119
+#: mmframe.cpp:2113
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
 msgstr ""
 
-#: mmframe.cpp:2123
+#: mmframe.cpp:2117
 msgid "MMEX Instance Check"
 msgstr ""
 
-#: mmframe.cpp:2143
+#: mmframe.cpp:2137
 msgid "Choose database file to create"
 msgstr "Vyberte názov pre nový databázový súbor"
 
-#: mmframe.cpp:2166
+#: mmframe.cpp:2160
 msgid "Choose database file to open"
 msgstr "Vyberte databázový súbor na otvorenie"
 
-#: mmframe.cpp:2183
+#: mmframe.cpp:2177
 msgid "Choose Encrypted database file to open"
 msgstr ""
 
-#: mmframe.cpp:2193
+#: mmframe.cpp:2187
 msgid "Enter password for database"
 msgstr ""
 
-#: mmframe.cpp:2198
+#: mmframe.cpp:2192
 msgid "Choose database file to Save As"
 msgstr ""
 
-#: mmframe.cpp:2220
+#: mmframe.cpp:2214
 msgid "Converted DB!"
 msgstr ""
 
-#: mmframe.cpp:2220
+#: mmframe.cpp:2214
 msgid "MMEX message"
 msgstr ""
 
-#: mmframe.cpp:2226
+#: mmframe.cpp:2220
 msgid "MMEX: Encryption Password Change"
 msgstr ""
 
-#: mmframe.cpp:2227
+#: mmframe.cpp:2221
 #, c-format
 msgid "New password for database\n\n"
 "%s"
 msgstr ""
 
-#: mmframe.cpp:2232
+#: mmframe.cpp:2226
 msgid "New password must not be empty."
 msgstr ""
 
-#: mmframe.cpp:2236
+#: mmframe.cpp:2230
 msgid "Please confirm new password"
 msgstr ""
 
-#: mmframe.cpp:2240
+#: mmframe.cpp:2234
 msgid "Password change completed."
 msgstr ""
 
-#: mmframe.cpp:2244
+#: mmframe.cpp:2238
 msgid "Confirm password failed."
 msgstr ""
 
-#: mmframe.cpp:2253
+#: mmframe.cpp:2247
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr ""
 
-#: mmframe.cpp:2254 mmframe.cpp:2264
+#: mmframe.cpp:2248 mmframe.cpp:2258
 msgid "DB Optimization"
 msgstr ""
 
-#: mmframe.cpp:2261
+#: mmframe.cpp:2255
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
 msgstr ""
 
-#: mmframe.cpp:2272
+#: mmframe.cpp:2266
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr ""
 
-#: mmframe.cpp:2273
+#: mmframe.cpp:2267
 msgid "DB Debug"
 msgstr ""
 
-#: mmframe.cpp:2292 mmframe.cpp:2313
+#: mmframe.cpp:2286 mmframe.cpp:2307
 msgid "Save database file as"
 msgstr "Uložiť databázový súbor ako"
 
-#: mmframe.cpp:2313
+#: mmframe.cpp:2307
 msgid "Can't copy file to itself"
 msgstr "Súbor nemožno kopírovať do seba samého"
 
-#: mmframe.cpp:2326
+#: mmframe.cpp:2320
 msgid "Enter password for new database"
 msgstr ""
 
-#: mmframe.cpp:2413 mmframe.cpp:2432
+#: mmframe.cpp:2407 mmframe.cpp:2426
 msgid "No account available to import"
 msgstr ""
 
-#: mmframe.cpp:2481
+#: mmframe.cpp:2475
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
-#: mmframe.cpp:2485
+#: mmframe.cpp:2479
 msgid "Asset Account Creation"
 msgstr ""
 
-#: mmframe.cpp:2491
+#: mmframe.cpp:2485
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
-"Or by using the Menu View --> 'Display Share Accounts'\n"
+"Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
 
-#: mmframe.cpp:2497
+#: mmframe.cpp:2491
 msgid "Share Account Creation"
 msgstr ""
 
-#: mmframe.cpp:2670
+#: mmframe.cpp:2664
 msgid "MMEX Options have been updated."
 msgstr "Nastavenia MMEX boli aktualizované."
 
-#: mmframe.cpp:2671
+#: mmframe.cpp:2665
 msgid "Some settings take effect only after an application restart."
 msgstr ""
 
-#: mmframe.cpp:2672 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2666 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "Možnosti MMEX"
 
-#: mmframe.cpp:2696
+#: mmframe.cpp:2690
 msgid "Accounts, Payees, and Categories Updated"
 msgstr ""
 
-#: mmframe.cpp:2698
+#: mmframe.cpp:2692
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr ""
 
-#: mmframe.cpp:2830
+#: mmframe.cpp:2824
 msgid "Choose HTML file to Export"
 msgstr "Vybrať HTML súbor, do ktorého sa bude exportovať"
 
-#: mmframe.cpp:3243 mmframe.cpp:3250
+#: mmframe.cpp:3237 mmframe.cpp:3244
 msgid "Downloading stock prices from Yahoo"
 msgstr ""
 
-#: mmframe.cpp:3244
+#: mmframe.cpp:3238
 msgid "Please wait..."
 msgstr "Prosím čakajte..."
 
-#: mmframe.cpp:3293 stockspanel.cpp:401
+#: mmframe.cpp:3287 stockspanel.cpp:401
 #, c-format
 msgid "%s on %s"
 msgstr "%s na %s"
 
-#: mmframe.cpp:3310
+#: mmframe.cpp:3304
 msgid "No account available to edit!"
 msgstr "Na úpravu nie je dostupný žiadny účet!"
 
-#: mmframe.cpp:3314
+#: mmframe.cpp:3308
 msgid "Choose Account to Edit"
 msgstr "Vybrať účet na úpravu"
 
-#: mmframe.cpp:3331
+#: mmframe.cpp:3325
 msgid "No account available to delete!"
 msgstr "Na odstránenie nie je dostupný žiadny účet!"
 
-#: mmframe.cpp:3335
+#: mmframe.cpp:3329
 msgid "Choose Account to Delete"
 msgstr "Vybrať účet na odstránenie"
 
-#: mmframe.cpp:3340
+#: mmframe.cpp:3334
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "Naozaj chcete odstrániť\n"
 " %s účet: %s ?"
 
-#: mmframe.cpp:3358
+#: mmframe.cpp:3352
 msgid "Select the account to reallocate"
 msgstr ""
 
-#: mmframe.cpp:3358 mmframe.cpp:3381
+#: mmframe.cpp:3352 mmframe.cpp:3375
 msgid "Account Reallocation"
 msgstr ""
 
-#: mmframe.cpp:3380
+#: mmframe.cpp:3374
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr ""
 
-#: mmframe.cpp:3491 payeedialog.cpp:564
+#: mmframe.cpp:3485 payeedialog.cpp:564
 msgid "Payee Relocation Completed."
 msgstr "Premiestnenie príjemcov je dokončené."
 
-#: mmframe.cpp:3495 payeedialog.cpp:568
+#: mmframe.cpp:3489 payeedialog.cpp:568
 msgid "Payee Relocation Result"
 msgstr "Výsledok premiestnenia príjemcov"
 
-#: mmframe.cpp:3572
+#: mmframe.cpp:3566
 #, c-format
 msgid "File %s not found"
 msgstr "Súbor %s nebol nájdený"
@@ -5659,22 +5659,22 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:112
 #, c-format
-msgid "%s -> User document directory"
+msgid "%s → User document directory"
 msgstr ""
 
 #: optionsettingsattachment.cpp:113
 #, c-format
-msgid "%s -> User profile folder"
+msgid "%s → User profile folder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:114
 #, c-format
-msgid "%s -> Folder of .MMB database file"
+msgid "%s → Folder of .MMB database file"
 msgstr ""
 
 #: optionsettingsattachment.cpp:115
 #, c-format
-msgid "%s -> MMEX Application data folder"
+msgid "%s → MMEX Application data folder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:121
@@ -5686,15 +5686,15 @@ msgid "Not set yet"
 msgstr "Ešte nenastavené"
 
 #: optionsettingsattachment.cpp:133
-msgid "Windows folder -> "
+msgid "Windows folder → "
 msgstr ""
 
 #: optionsettingsattachment.cpp:140
-msgid "Mac folder -> "
+msgid "Mac folder → "
 msgstr ""
 
 #: optionsettingsattachment.cpp:147
-msgid "Unix folder -> "
+msgid "Unix folder → "
 msgstr ""
 
 #: optionsettingsattachment.cpp:155
@@ -6267,8 +6267,8 @@ msgid "Tip: Change all transactions using this Payee to another Payee using the 
 msgstr ""
 
 #: payeedialog.cpp:477
-msgid "Tools -> Relocation of -> Payees"
-msgstr "Nástroje -> Premiestniť -> Príjemcov"
+msgid "Tools → Relocation of → Payees"
+msgstr ""
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6455,7 +6455,7 @@ msgid "Please do not remove information attached below this text."
 msgstr ""
 
 #: reports/bugreport.h:74
-msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
+msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
 msgstr ""
 
 #: reports/bugreport.h:75
@@ -7574,13 +7574,13 @@ msgstr "Nesprávna verzia API webovej aplikácie:"
 
 #: webapp.cpp:132
 #, c-format
-msgid "WebApp   API version -> %s"
-msgstr "Verzia API webovej aplikácie -> %s"
+msgid "WebApp   API version: %s"
+msgstr ""
 
 #: webapp.cpp:133
 #, c-format
-msgid "Expected API version -> %s"
-msgstr "Očakávaná verzia API -> %s"
+msgid "Expected API version: %s"
+msgstr ""
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7745,8 +7745,8 @@ msgid "Base Account Currency Not set."
 msgstr "Základná mena účtu nie je nastavená."
 
 #: wizard_newaccount.cpp:166
-msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr "Najprv ju nastavte v Nástroje->Možnosti a potom pridajte nový účet."
+msgid "Set that first using Tools → Options menu and then add a new account."
+msgstr ""
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
