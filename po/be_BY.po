@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"PO-Revision-Date: 2022-12-31 13:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -697,7 +697,7 @@ msgstr "Не паказаная тэчка з файламі."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Калі ласка, задайце шлях праз MMEX → Налады → Файлавыя"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1730,7 +1730,7 @@ msgstr "Парада: змяніце гэтую падкатыгорыю ва ў
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Прылады → Перасоўванне → Катыгорыі..."
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2404,7 +2404,7 @@ msgstr "База дадзеных MMEX паспяхова абноўленая �
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Прылады → База дадзеных → Аптымізаваць..."
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3864,7 +3864,7 @@ msgstr "Парада: Каб адзначыць аперацыю такой, ш�
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл → Друкаваць..."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -4102,9 +4102,9 @@ msgstr "Праверка аперацыяў"
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Вы збіраецеся змяніць аперацыю ў зачыненым рахунку."
-msgstr[1] "Вы збіраецеся змяніць %i транзакцыі ў зачыненым рахунку."
-msgstr[2] "Вы збіраецеся змяніць %i транзакцыяў ў зачыненым рахунку."
-msgstr[3] "Вы збіраецеся змяніць %i транзакцыі ў зачыненым рахунку."
+msgstr[1] "Вы збіраецеся змяніць %i аперацыі ў зачыненым рахунку."
+msgstr[2] "Вы збіраецеся змяніць %i аперацыяў у зачыненым рахунку."
+msgstr[3] "Вы збіраецеся змяніць %i аперацыі ў зачыненым рахунку."
 
 #: mmchecking_list.cpp:1255
 msgid "\n\n"
@@ -4758,7 +4758,7 @@ msgstr "Кіраванне базай дадзеных"
 
 #: mmframe.cpp:1706 mmframe.cpp:1860
 msgid "&Help\tF1"
-msgstr "&Дапамога\tF1"
+msgstr "&Даведка\tF1"
 
 #: mmframe.cpp:1706 mmframe.cpp:1860
 msgid "Show the Help file"
@@ -5009,7 +5009,7 @@ msgstr "Выбачце. Вэрсія базы дадзеных занадта с
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Наступны →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -5154,7 +5154,14 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Паявыя рахункі ўтрымліваюць аперацыі з акцыямі.\n\n"
+"Аперацыі з акцыямі рэгіструюцца ў спецыяльных рахунках\n"
+"пасля выбара акцыяў кампаніі ў звязаным выглядзе.\n\n"
+"Гэтыя рахункі становяцца бачнымі толькі пасля звязвання \n"
+"акцыі з Паявым рахункам або з дапамогай меню\n"
+"Выляд → Паказаць паявыя рахункі\n"
+"Паявыя рахункі таксама могуць утрымліваць звычайныя\n"
+"аперацыі для звычайных рахункаў."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5668,7 +5675,7 @@ msgstr "Сеткавыя"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Ужыць "
 
 #: optiondialog.cpp:219
 #, c-format
@@ -5703,22 +5710,22 @@ msgstr "Умоўныя позначкі (можа выкарыстоўвацца
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s → Тэчка дакументаў карыстальніка"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s → Тэчка профіля карыстальніка"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s → Тэчка файла базы дадзеных .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s → Тэчка дадзеных дадатка MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5730,15 +5737,15 @@ msgstr "Яшчэ не пазначаная"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Тэчка Windows → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Тэчка Mac → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Тэчка Unix → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -6313,7 +6320,7 @@ msgstr "Парада: змяніце гэтага платніка ва ўсіх
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Прылады → Перасоўванне → Атрымальнікі..."
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6501,7 +6508,7 @@ msgstr "Калі ласка, не выдаляйце інфармацыю, па�
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "У меню Даведка → Праверыць наяўнасць абнаўленняў пераканайцеся, што ў вас усталяваная найноўшая вэрсія дадатка, у якой вашая праблема ўжо можа быць выпраўленая."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7629,12 +7636,12 @@ msgstr "Хібная вэрсія WebApp API:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp  вэрсія API: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Чаканая вэрсія API: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7803,7 +7810,7 @@ msgstr "Асноўная валюта рахунка не абраная."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Усталюйце яе праз меню MMEX → Налады, а потым дадайце рахунак."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
