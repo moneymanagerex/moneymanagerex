@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 09:46\n"
+"PO-Revision-Date: 2022-12-31 10:50\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3854,7 +3854,7 @@ msgstr "TIP: Om een transactie als 'te controleren' te markeren, selecteer de tr
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Tip: MMEX ondersteunt het printen van alle rapporten die kunnen worden bekeken. De afdrukopties zijn beschikbaar via het menu, Bestand → Afdrukken."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -4979,7 +4979,7 @@ msgstr "Sorry. De Database versie is te oud of het wachtwoord van de database is
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Volgende →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -5124,7 +5124,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Aandelenrekeningen bevatten aandelentransacties\n\n"
+"Aandelentransacties worden ingevoerd in het effectenportefeuille venster\n"
+"na selectie van de betreffende effecten in het bijbehorende venster.\n\n"
+"Deze rekeningen worden alleen getoond na het koppelen van een effect aan een aandelenrekening\n"
+"of door gebruik van de menuoptie --> 'Toon effectenrekeningen'\n"
+"Aandelenrekeningen kunnen ook transacties naar reguliere rekeningen bevatten."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5673,22 +5678,22 @@ msgstr "Legende (kan gebruikt worden als variabelen aan het begin van pad hierbo
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s -> Gebruikersdocumentenmap"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s -> Gebruikersprofielmap"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Map van .MMB database bestand"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s -> MMEX Applicatie Gegevensmap"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5700,15 +5705,15 @@ msgstr "Nog niet ingesteld"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Windows map → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Mac map → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Unix map → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -6283,7 +6288,7 @@ msgstr "TIP: Wijzig alle transacties met deze begunstigde in een andere begunsti
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Extra -> Opnieuw Toewijzen -> Begunstigden"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6471,7 +6476,7 @@ msgstr "Gelieve geen informatie te verwijderen die onder deze tekst is gekoppeld
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Gebruik Help->Controleer op Updates in MMEX om de nieuwste versie te krijgen, waar je probleem misschien al opgelost is."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7599,12 +7604,12 @@ msgstr "Foutieve WebApp API versie:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp API versie: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Verwachte API versie: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7777,7 +7782,7 @@ msgstr "Standaardvaluta niet ingesteld."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Dat eerst instellen via Extra -> Opties menu en daarna pas een nieuw bedrag invoeren."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
