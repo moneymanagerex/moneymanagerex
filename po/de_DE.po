@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 21:26\n"
+"PO-Revision-Date: 2022-12-31 22:47\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4977,7 +4977,7 @@ msgstr "Die Datenbankversion ist zu alt oder das Datenbankpasswort ist falsch"
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Weiter →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -5121,7 +5121,10 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Aktienkonten beinhalten Aktientransaktionen\n\n"
+"Aktientransaktionen werden innerhalb der Aktienportfoliosicht nach der Auswahl der Unternehmensaktien in der zugehörigen Ansicht angelegt.\n"
+"Diese Konten werden erst sichtbar, wenn dem Aktienkonto eine Aktie zugeordnet wurde, oder dies über das Menü View -->'Aktienkonten anzeigen' aktiviert wurde.\n"
+"Aktienkonten können auch normale Transaktionen auf einem regulären Konto enthalten."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5670,22 +5673,22 @@ msgstr "Legende (kann als Variablen am Anfang des obigen Pfades verwendet werden
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s -> Benutzerdokument-Verzeichnis"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s -> Benutzerprofilordner"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Ordner der .MMB Datenbankdatei"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s -> MMEX-Anwendungsdatenordner"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5697,15 +5700,15 @@ msgstr "Noch nicht festgelegt"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Windows-Ordner → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Mac-Ordner → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Unix-Ordner → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -6281,7 +6284,7 @@ msgstr "Tipp: Ändern Sie alle Buchungen mit diesem Zahlungsempfänger zu einem 
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Extras -> Umzug -> Zahlungsempfänger"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6469,7 +6472,7 @@ msgstr "Bitte entfernen Sie die unter diesem Text enthaltenen Informationen nich
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Verwenden Sie Hilfe → Prüfe auf neue Version, um die neueste MMEX Version zu erhalten, bei der Ihr Problem bereits behoben sein könnte."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7597,12 +7600,12 @@ msgstr "Falsche WebApp-API-Version:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp   API version -> %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Erwartete API-Version: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
