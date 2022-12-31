@@ -17,11 +17,9 @@
  ********************************************************/
 
 #include "appstartdialog.h"
-//#include "defs.h"
 #include "paths.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
-//#include "option.h"
 #include "util.h"
 #include "model/Model_Setting.h"
 //#include "../resources/money.xpm"

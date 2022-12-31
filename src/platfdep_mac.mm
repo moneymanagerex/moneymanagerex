@@ -61,7 +61,7 @@ const wxString mmex::GetAppName()
 
 #import <Cocoa/Cocoa.h>
 
-const bool mmex::isDarkMode()
+bool mmex::isDarkMode()
 {
     NSAppearance *appearance = NSAppearance.currentAppearance;
     if (@available(*, macOS 10.14)) {
