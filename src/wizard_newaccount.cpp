@@ -163,7 +163,7 @@ bool mmAddAccountTypePage::TransferDataFromWindow()
     {
         wxString errorMsg;
         errorMsg << _("Base Account Currency Not set.") << "\n"
-                 << _("Set that first using Tools->Options menu and then add a new account.");
+                 << _("Set that first using Tools → Options menu and then add a new account.");
         wxMessageBox( errorMsg, _("New Account"), wxOK|wxICON_WARNING, this);
         return false;
     }

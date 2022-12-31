@@ -129,8 +129,8 @@ bool mmWebApp::WebApp_CheckApiVersion()
     if (mmWebApp::WebApp_getApiVersion() != WebAppParam::ApiExpectedVersion)
     {
         wxString msgStr = _("Wrong WebApp API version:") + "\n"
-            + wxString::Format(_("WebApp   API version -> %s"), mmWebApp::WebApp_getApiVersion()) + "\n"
-            + wxString::Format(_("Expected API version -> %s"), WebAppParam::ApiExpectedVersion) + "\n";
+            + wxString::Format(_("WebApp   API version: %s"), mmWebApp::WebApp_getApiVersion()) + "\n"
+            + wxString::Format(_("Expected API version: %s"), WebAppParam::ApiExpectedVersion) + "\n";
         wxMessageBox(msgStr, _("Wrong WebApp API version"), wxICON_ERROR);
         return false;
     }

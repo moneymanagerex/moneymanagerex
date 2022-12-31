@@ -474,7 +474,7 @@ void mmPayeeDialog::DeletePayee()
                 << "\n\n"
                 << _("Tip: Change all transactions using this Payee to another Payee"
                     " using the relocate command:")
-                << "\n\n" << _("Tools -> Relocation of -> Payees");
+                << "\n\n" << _("Tools → Relocation of → Payees");
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
