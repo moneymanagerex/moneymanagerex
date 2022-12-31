@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"PO-Revision-Date: 2022-12-31 09:46\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Mellékletek könyvtár nincs megadva"
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Állítsa be az Eszközök → Beállítások → Mellékletek menüben"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1723,7 +1723,7 @@ msgstr "Tipp: az összes tranzakció eredeti alkategóriájának másik alkateg�
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Eszközök → Áthelyezés → Kategóriák"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2395,7 +2395,7 @@ msgstr "Az MMEX-adatbázis sikeresen frissült a(z) %i verzióra"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Javasoljuk az adatbázis optimalizálását az Eszközök → Adatbázis → Adatbázis optimalizálása menü kiválasztásával"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3835,7 +3835,7 @@ msgstr "Javaslat: használja a másolást (CRTL+C) és a beillesztést (CTRL+V) 
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr "Tipp: ne felejtsen el másolatot készíteni az .mmb fájljáról!"
+msgstr "Tipp: emlékezzen biztonsági másolatot készíteni az .mmb-fájlról."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -3851,15 +3851,15 @@ msgstr "Tipp: tranzakció figyeltként megjelöléséhez elegendő kiválasztani
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Tipp: az MMEX lehetővé teszi valamennyi megtekinthető jelentés kinyomtatását. A nyomtatási beállítások a Fájl → Nyomtatás menü alatt érhetők el."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr "Tipp: Az Eszközök menü Beállítások párbeszédpanelje lehetővé teszi az MMEX futásidejű viselkedésének megváltoztatását."
+msgstr "Tipp: az Eszközök menü Beállítások párbeszédpanelje lehetővé teszi az MMEX futásidejű viselkedésének megváltoztatását. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "Tipp: Meghatározott szempontok szerinti tartalmú jelentés nyomtatásához az ügyletek megfelelő szűrésével válassza ki a kívánt ügyleteket, majd nyomtasson a menüből."
+msgstr "Tipp: meghatározott szempontok szerinti tartalmú jelentés nyomtatásához az ügyletek megfelelő szűrésével válassza ki a kívánt ügyleteket, majd nyomtasson a menüből."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -4979,7 +4979,7 @@ msgstr "Elnézést! Vagy az adatbázis verziója túl régi, vagy a jelszó hib�
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Következő →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -5123,7 +5123,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Értékpapírszámlák az értékpapírügyleteket tartalmazzák\n\n"
+"Az értékpapírügyletek bevitele a Értékpapír portfólió nézetben történik,\n"
+"a gazdasági társaság kijelölése után, a hozzárendelt nézetben.\n\n"
+"Ezek a számlák csak akkor láthatók, ha már rendeltünk értékpapírt az értékpapírszámlához,\n"
+"vagy a menüben Nézet → Értékpapírszámlák megjelenítése kiválasztásával.\n"
+"Az Értékpapírszámlák az egyéb számlákon szokásos ügyleteket is tartalmazhatnak."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5672,22 +5677,22 @@ msgstr "Jelmagyarázat (a fenti útvonal elején változóként felhasználható
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s → Felhasználói dokumentum könyvtára"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s → Felhasználói profilkönyvtár"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s → Az .MMB-adatbázisfájl könyvtára"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s → Az MMEX-alkalmazás adatkönyvtára"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5699,15 +5704,15 @@ msgstr "Még nincs beállítva"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Windows mappa → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Mac mappa → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Unix mappa → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -6282,7 +6287,7 @@ msgstr "Tipp: az összes, adott kedvezményezetthez tartozó ügylet másik kedv
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Eszközök → Áthelyezés → Kedvezményezettek"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6470,7 +6475,7 @@ msgstr "Ne távolítsa el az ehhez a szöveghez lent csatolt információt."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Az MMEX legfrissebb verziója letöltéséhez, amiben a problémát már talán megoldották, használja a Súgó → Frissítések keresése menüpont."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7598,12 +7603,12 @@ msgstr "Hibás Webalkalmazás-API verzió:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "Webalkalmazás-API verzió: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Várt API-verzió: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7776,7 +7781,7 @@ msgstr "Alap pénznem nincs beállítva."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Először ezt állítsa be az Eszközök → Beállítások menüben, majd hozzon létre új számlát."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
