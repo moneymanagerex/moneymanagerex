@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 08:16\n"
+"PO-Revision-Date: 2023-01-01 08:30\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5118,7 +5118,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Οι Λογαριασμοί μετοχών κατέχουν συναλλαγές μετοχών.\n\n"
+"Οι συναλλαγές μετοχών δημιουργούνται στο πλαίσιο της προβολής χαρτοφυλακίου μετοχών\n"
+"μετά την επιλογή του αποθέματος της εταιρείας μέσα στη σχετική προβολή.\n\n"
+"Αυτοί οι λογαριασμοί γίνονται ορατοί μόνο αφού συσχετίσετε ένα Απόθεμα με το Λογαριασμό Μοιραστείτε\n"
+"Ή χρησιμοποιώντας το μενού Προβολή --> 'Προβολή Συναλλαγές Μετοχών'\n"
+"Οι λογαριασμοί μετοχών μπορούν επίσης να κρατήσουν κανονικές συναλλαγές σε κανονικό λογαριασμό."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5674,12 +5679,12 @@ msgstr "%s -> Φάκελος προφίλ χρήστη"
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Φάκελος του αρχείου βάσης δεδομένων .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Φάκελος δεδομένων εφαρμογής MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -6274,7 +6279,7 @@ msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές χ
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Εργαλεία -> Μετατόπιση των -> Δικαιούχων"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6462,7 +6467,7 @@ msgstr "Παρακαλούμε να μην αφαιρείτε τις πληρο�
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Χρησιμοποιήστε το Βοήθεια->Έλεγχος νέας έκδοσης του ΜΜΕΧ για να λάβετε την πιο ενημερωμένη έκδοση, όπου μπορεί το πρόβλημά σας να έχει ήδη επιλυθεί."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7590,12 +7595,12 @@ msgstr "Λάθος έκδοση API Webapp:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp API έκδοση -> %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Αναμενόμενη έκδοση API -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7766,7 +7771,7 @@ msgstr "Το βασικό νόμισμα του λογαριασμού δεν ο
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Ορίστε το πρώτα χρησιμοποιώντας το μενού Εργαλεία->Επιλογές και μετά προσθέστε ένα νέο λογαριασμό."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
