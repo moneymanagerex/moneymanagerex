@@ -142,7 +142,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
         categ = "[" + (reverce ? full_tran.ACCOUNTNAME : full_tran.TOACCOUNTNAME) + "]";
-        payee = wxString::Format("%s %s %s -> %s %s %s"
+        payee = wxString::Format("%s %s %s → %s %s %s"
             , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
             , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
         //Transaction number used to make transaction unique
