@@ -59,25 +59,25 @@ private:
         MENU_DELETE_WEBTRAN
     };
 
-    wxBoxSizer* mainBoxSizer_;
-    wxFlexGridSizer* loadingSizer_;
-    wxDataViewListCtrl* webtranListBox_;
-    wxSearchCtrl* m_maskTextCtrl;
-    wxTextCtrl* url_text_;
-    wxTextCtrl* guid_text_;
-    wxBitmapButton* net_button_;
-    wxGauge* gauge_;
+    wxBoxSizer* mainBoxSizer_ = nullptr;
+    wxFlexGridSizer* loadingSizer_ = nullptr;
+    wxDataViewListCtrl* webtranListBox_ = nullptr;
+    wxSearchCtrl* m_maskTextCtrl = nullptr;
+    wxTextCtrl* url_text_ = nullptr;
+    wxTextCtrl* guid_text_ = nullptr;
+    wxBitmapButton* net_button_ = nullptr;
+    wxGauge* gauge_ = nullptr;
 
     wxTimer autoWebAppDialogTimer_;
 
     wxArrayString tempFiles_;
-    bool refreshRequested_;
-    bool isStartup_;
-    bool isFilledOnce_;
-    int m_webtran_id;
+    bool refreshRequested_ = false;
+    bool isStartup_ = false;
+    bool isFilledOnce_ = false;
+    int m_webtran_id = -1;
     mmWebApp::WebTranVector WebAppTransactions_;
 
-    mmWebAppDialog() : m_webtran_id(-1), refreshRequested_(false) {}
+    mmWebAppDialog(){}
 
     void Create(wxWindow* parent, const wxString& name = "mmWebAppDialog");
     void CreateControls();

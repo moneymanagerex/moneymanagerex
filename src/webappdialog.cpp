@@ -55,16 +55,7 @@ void mmWebAppDialog::OnButtonHelpClick(wxCommandEvent& WXUNUSED(event))
 }
 
 mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const bool startup, const wxString& name) :
-    m_webtran_id(-1)
-    , webtranListBox_(nullptr)
-    , m_maskTextCtrl(nullptr)
-    , url_text_(nullptr)
-    , guid_text_(nullptr)
-    , net_button_(nullptr)
-    , refreshRequested_(false)
-    , isStartup_(false)
-    , isFilledOnce_(false)
-    , autoWebAppDialogTimer_(this, wxID_REFRESH)
+    autoWebAppDialogTimer_(this, wxID_REFRESH)
 {
     isStartup_ = startup;
     Create(parent, name);
@@ -291,12 +282,12 @@ bool mmWebAppDialog::ImportWebTr(int WebTrID, bool open)
     mmWebApp::webtran_holder WebTrToImport;
     bool bFound = false;
 
-    for (const auto WebTr : WebAppTransactions_)
+    for (const auto &webTr : WebAppTransactions_)
     {
-        if (WebTr.ID == WebTrID)
+        if (webTr.ID == WebTrID)
         {
             bFound = true;
-            WebTrToImport = WebTr;
+            WebTrToImport = webTr;
             int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(WebTrToImport);
             if (InsertedTransactionID > 0)
             {

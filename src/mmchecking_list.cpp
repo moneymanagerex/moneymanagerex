@@ -1732,7 +1732,9 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return value.Trim(false);
     }
     case TransactionListCtrl::COL_DELETEDTIME:
-        datetime.ParseISOCombined(tran.DELETEDTIME);
+        datetime.ParseISOCombined(tran.DELETEDTIME);        
+        if(!datetime.IsValid())
+            return wxString("");
         return datetime.FromUTC().FormatISOCombined(' ');
     case TransactionListCtrl::COL_UDFC01:
         return UDFCFormatHelper(tran.UDFC01_Type, tran.UDFC01);

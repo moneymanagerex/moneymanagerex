@@ -73,13 +73,13 @@ public:
 private:
     void OnNewWindow(wxWebViewEvent& evt);
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
-    wxChoice* m_date_ranges;
-    mmDatePickerCtrl *m_start_date, *m_end_date;
-    wxWebView * browser_;
-    mmPrintableBase* rb_;
-    wxChoice* m_accounts;
-    wxChoice* m_chart;
-    wxSpinCtrl *m_forwardMonths;
+    wxChoice* m_date_ranges = nullptr;
+    mmDatePickerCtrl *m_start_date = nullptr, *m_end_date = nullptr;
+    wxWebView * browser_ = nullptr;
+    mmPrintableBase* rb_ = nullptr;
+    wxChoice* m_accounts = nullptr;
+    wxChoice* m_chart = nullptr;
+    wxSpinCtrl *m_forwardMonths = nullptr;
 
 private:
     void OnDateRangeChanged(wxCommandEvent& event);
