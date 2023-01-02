@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 14:16\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4935,11 +4935,7 @@ msgstr "Afficher la boîte de dialogue des devises"
 msgid "&Options"
 msgstr "Options"
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr "Enregistrer/Voir les Révisions  et les Notifications"
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Infos"
 
@@ -5923,28 +5919,28 @@ msgid "No"
 msgstr "Non"
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "Date par défaut :"
+msgid "Default Date"
+msgstr "Date par défaut"
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "Bénéficiaire par défaut :"
+msgid "Default Payee"
+msgstr "Bénéficiaire par défaut"
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
-msgstr "Catégorie de dépôt/retrait par défaut:"
+msgid "Default Deposit/Withdrawal Category"
+msgstr "Catégorie de dépôt/retrait par défaut"
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
-msgstr "Catégorie de transfert par défaut:"
+msgid "Default Transfer Category"
+msgstr "Catégorie de virement par défaut"
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "Statut du compte par défaut :"
+msgid "Default Status"
+msgstr "Statut par défaut"
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
-msgstr "Tansactions en lot:"
+msgid "Bulk Transactions"
+msgstr "Tansactions en lot"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -5961,8 +5957,8 @@ msgstr "Quand MMEX démarre, \n"
 "Créer un backup de la base de données :  dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "Sauvegarde de la base de données à la fermeture."
+msgid "Backup database on exit"
+msgstr "Sauvegarder la base de données à la fermeture"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
