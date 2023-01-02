@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 22:04\n"
+"PO-Revision-Date: 2023-01-02 23:00\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -564,7 +564,7 @@ msgstr "&Ta bort tillgång"
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1373 mmframe.cpp:1393 payeedialog.cpp:620 stocks_list.cpp:146
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "&Organisera Bilagor"
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -3831,7 +3831,7 @@ msgstr "Tips: .mmb-filen är inte krypterad. Det innebär att alla andra som har
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "Tips: För att markera en transaktion som avstämd, välj bara transaktionen och tryck på 'r' eller 'R' -tangenten. För att markera en transaktion som oavstämd, välj bara transaktionen och tryck på 'u' eller 'U' -tangenten."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
@@ -4147,7 +4147,7 @@ msgstr "Kontobalans: "
 
 #: mmcheckingpanel.cpp:460
 msgid "Reconciled Bal: "
-msgstr ""
+msgstr "Avstämd bal: "
 
 #: mmcheckingpanel.cpp:462
 msgid "Diff: "
