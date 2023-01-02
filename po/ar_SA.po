@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:08\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -4959,11 +4959,7 @@ msgstr "عرض نافذة تنظيم العملات"
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr ""
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "الأخبار"
 
@@ -5924,27 +5920,27 @@ msgid "No"
 msgstr ""
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "التاريخ الإفتراضي:"
+msgid "Default Date"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "المٌستفيد الإفتراضي:"
+msgid "Default Payee"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
+msgid "Default Deposit/Withdrawal Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
+msgid "Default Transfer Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "حالة المُعاملة الإفتراضية:"
+msgid "Default Status"
+msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
+msgid "Bulk Transactions"
 msgstr ""
 
 #: optionsettingsmisc.cpp:169
@@ -5962,8 +5958,8 @@ msgstr "عندما يبدأ تشغيل البرنامج،\n"
 "فإنه يقوم بإنشاء نسخة إحتياطية من قاعدة البيانات"
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "أخذ نسخة إحتياطية عند الخروج من البرنامج."
+msgid "Backup database on exit"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
