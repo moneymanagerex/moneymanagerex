@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4934,11 +4934,7 @@ msgstr "Mostra la Gestione Valute"
 msgid "&Options"
 msgstr "&Opzioni"
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr "Registrati/Visualizza rilasci e notizie"
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Novità"
 
@@ -5923,28 +5919,28 @@ msgid "No"
 msgstr "No"
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "Data predefinita:"
+msgid "Default Date"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "Beneficiario predefinito:"
+msgid "Default Payee"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
-msgstr "Categoria Predefinita di Deposito/Prelievo:"
+msgid "Default Deposit/Withdrawal Category"
+msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
-msgstr "Categoria di Trasferimento Predefinita:"
+msgid "Default Transfer Category"
+msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "Stato predefinito:"
+msgid "Default Status"
+msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
-msgstr "Transazioni in blocco:"
+msgid "Bulk Transactions"
+msgstr ""
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -5961,8 +5957,8 @@ msgstr "All'avvio MMEX, crea un database di \n"
 "backup: dbFile_start_YYYY-MM-DD.ext"
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "Esegui backup del database all'uscita."
+msgid "Backup database on exit"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
