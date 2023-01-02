@@ -82,7 +82,7 @@ void OptionSettingsMisc::Create()
 
     // Share Precision
     wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    share_precision_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Share Precision")), wxSizerFlags(g_flagsExpand).Proportion(0));
+    share_precision_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Share Precision")), g_flagsH);
 
     m_share_precision = new wxSpinCtrl(misc_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
         , wxSP_ARROW_KEYS, 2, 10, Option::instance().SharePrecision());
@@ -145,17 +145,17 @@ void OptionSettingsMisc::Create()
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     newTransflexGridSizer->AddGrowableCol(1, 0);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Date:")), g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Date")), g_flagsH);
     newTransflexGridSizer->Add(defaultDateChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Payee:")), g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Payee")), g_flagsH);
     newTransflexGridSizer->Add(defaultPayeeChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Deposit/Withdrawal Category:")), g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Deposit/Withdrawal Category")), g_flagsH);
     newTransflexGridSizer->Add(defaultCategoryNonTransferChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Transfer Category:")), g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Transfer Category")), g_flagsH);
     newTransflexGridSizer->Add(defaultCategoryTransferChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Status:")), g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Default Status")), g_flagsH);
     newTransflexGridSizer->Add(default_status, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Bulk Transactions:")), g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Bulk Transactions")), g_flagsH);
     newTransflexGridSizer->Add(bulk_enter, g_flagsExpand);
 
     //----------------------------------------------
@@ -180,7 +180,7 @@ void OptionSettingsMisc::Create()
     databaseStaticBoxSizer->Add(databaseCheckBox, g_flagsV);
 
     wxCheckBox* databaseUpdateCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
-        , _("Backup database on exit."), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        , _("Backup database on exit"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     databaseUpdateCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB_UPDATE", true));
     databaseUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\n"
         "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
