@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 09:46\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4932,11 +4932,7 @@ msgstr "Mostrar la ventana para organizar divisas"
 msgid "&Options"
 msgstr "&Opciones"
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr "Registrar/Ver &Notificaciones de versión"
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Nuevos"
 
@@ -5921,28 +5917,28 @@ msgid "No"
 msgstr "No"
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "Fecha por defecto:"
+msgid "Default Date"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "Beneficiario por defecto:"
+msgid "Default Payee"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
-msgstr "Categoría por defecto para abonos/cargos:"
+msgid "Default Deposit/Withdrawal Category"
+msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
-msgstr "Categoría por defecto para transferencias:"
+msgid "Default Transfer Category"
+msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "Estado por defecto:"
+msgid "Default Status"
+msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
-msgstr "Transacciones masivas:"
+msgid "Bulk Transactions"
+msgstr ""
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -5959,8 +5955,8 @@ msgstr "Cuando se inicia MMEX,\n"
 "crear la copia de seguridad: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "Copia de seguridad de la base de datos al salir."
+msgid "Backup database on exit"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
