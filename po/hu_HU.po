@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 13:13\n"
+"PO-Revision-Date: 2023-01-02 20:25\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5919,27 +5919,27 @@ msgstr "Nem"
 
 #: optionsettingsmisc.cpp:148
 msgid "Default Date"
-msgstr ""
+msgstr "Alapértelmezett dátum"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Alapértelmezett kedvezményezett"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Alapértelmezett betét/kivét kategória"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Alapértelmezett átutalási kategória"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Alapértelmezett állapot"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Tömeges ügyletek"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -5957,7 +5957,7 @@ msgstr "Az MMEX indulásakor\n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Adatbázis biztonsági másolatának készítése kilépéskor"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
