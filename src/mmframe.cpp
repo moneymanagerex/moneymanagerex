@@ -1840,7 +1840,7 @@ void mmGUIFrame::CreateToolBar()
         news_array += entry.Title + "\n";
     }
     if (news_array.empty()) {
-        news_array = _("Register/View Release &Notifications");
+        news_array = _("News");
     }
     const auto news_ico = (websiteNewsArray_.size() > 0)
         ? mmBitmapBundle(png::NEW_NEWS, toolbar_icon_size)
@@ -2741,7 +2741,7 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
     toolBar_->SetToolBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmapBundle(png::NEWS, toolbar_icon_size));
 
     const auto b = toolBar_->FindTool(MENU_ANNOUNCEMENTMAILING);
-    if (b) b->SetShortHelp(_("Register/View Release &Notifications"));
+    if (b) b->SetShortHelp(_("News"));
 }
 //----------------------------------------------------------------------------
 
