@@ -412,7 +412,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     }
 
     std::unordered_map <int, wxString> trx;
-
+    int split_id = 0;
     wxSharedPtr<mmDates> dParser(new mmDates);
     std::map<wxString, int> comma({ {".", 0}, {",", 0} });
     while (input.IsOk() && !input.Eof())
@@ -437,7 +437,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
         }
 
         const qifLineType lineType = mmQIFImport::lineType(lineStr);
-        const auto data = mmQIFImport::getLineData(lineStr);
+        auto data = mmQIFImport::getLineData(lineStr);
         if (lineType == EOTLT)
         {
             if (trx.find(AcctType) != trx.end())
@@ -456,21 +456,14 @@ bool mmQIFImportDialog::mmReadQIFFile()
                 vQIF_trxs_.push_back(trx);
             }
             trx.clear();
+            split_id = 0;
             continue;
         }
 
         //Parse Categories
-        const wxString& s = trx.find(CategorySplit) != trx.end() ? trx[CategorySplit] : "";
-        if (!s.empty())
+        if (lineType == CategorySplit || lineType == Category)
         {
-            wxStringTokenizer token(s, "\n");
-            while (token.HasMoreTokens())
-            {
-                wxString c = token.GetNextToken();
-                qif_api->getFinancistoProject(c);
-                if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
-                    m_QIFcategoryNames[c] = -1;
-            }
+            m_QIFcategoryNames[data] = -1;
         }
 
         //Parse date format
@@ -480,16 +473,28 @@ bool mmQIFImportDialog::mmReadQIFFile()
         }
 
         //Parse numbers
-        if (lineType == Amount)
+        if (lineType == Amount || lineType == AmountSplit)
         {
             comma["."] += data.Contains(".") ? data.find(".") + 1 : 0;
             comma[","] += data.Contains(",") ? data.find(",") + 1 : 0;
         }
 
-        if (trx[lineType].empty() || lineType == AcctType)
+        if (lineType == CategorySplit)
+            split_id++;
+
+        if (lineType == AcctType)
             trx[lineType] = data;
         else
-            trx[lineType] += "\n" + data;
+        {
+            wxString prefix;
+            if (!trx[lineType].empty())
+                prefix = "\n";
+
+            if (lineType == MemoSplit)
+                data.Prepend(wxString::Format("%d:", split_id));
+            
+            trx[lineType] += prefix + data;
+        }
 
     }
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
@@ -1172,11 +1177,14 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     if (t.find(CategorySplit) != t.end())
     {
         Model_Splittransaction::Cache split;
-        wxStringTokenizer token(t[CategorySplit], "\n");
-        wxStringTokenizer amtToken(t.find(AmountSplit) != t.end() ? t[AmountSplit] : "", "\n");
-        while (token.HasMoreTokens())
+        wxStringTokenizer categToken(t[CategorySplit], "\n");
+        wxStringTokenizer amtToken((t.find(AmountSplit) != t.end() ? t[AmountSplit] : ""), "\n");
+        wxString notes = t.find(MemoSplit) != t.end() ? t[MemoSplit] : "";
+        int split_id = 1;
+
+        while (categToken.HasMoreTokens())
         {
-            const wxString c = token.GetNextToken();
+            const wxString c = categToken.GetNextToken();
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
             int categID = m_QIFcategoryNames[c];
             if (categID <= 0)
@@ -1191,9 +1199,19 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             amtSplit = mmTrimAmount(amtSplit, decimal_, ".");
             double amount;
             amtSplit.ToCDouble(&amount);
+
+            wxString memo;
+            if (!notes.empty()) {
+                wxRegEx pattern(wxString::Format("%d:(.*)", split_id), wxRE_NEWLINE);
+                if (pattern.Matches(notes))
+                    memo = pattern.GetMatch(notes, 1);
+            }
+
             s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
             s->TRANSID = trx->TRANSID;
+            s->NOTES = memo;
             split.push_back(s);
+            split_id++;
         }
         trx->CATEGID = -1 * static_cast<int>(m_splitDataSets.size());
         m_splitDataSets.push_back(split);
