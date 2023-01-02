@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -4939,11 +4939,7 @@ msgstr "Prikaži dijalog za uređivanje valuta"
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr "Registriraj se/Prikaz &napomena o izdanju"
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Novosti"
 
@@ -5914,27 +5910,27 @@ msgid "No"
 msgstr ""
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "Standardni datum:"
+msgid "Default Date"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "Standardni primatelj:"
+msgid "Default Payee"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
+msgid "Default Deposit/Withdrawal Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
+msgid "Default Transfer Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "Standardni status:"
+msgid "Default Status"
+msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
+msgid "Bulk Transactions"
 msgstr ""
 
 #: optionsettingsmisc.cpp:169
@@ -5952,8 +5948,8 @@ msgstr "Kad se MMEX pokrene,\n"
 "stvara se sigurnosna kopija baze podataka u obliku: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "Stvori sigurnosnu kopiju baze podataka prilikom zatvaranja."
+msgid "Backup database on exit"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
