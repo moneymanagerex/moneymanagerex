@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:08\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Dosarul atasat nu este definit."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Vă rugăm să-l setați în Unelte -> Opțiuni -> Atașamente"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1484,12 +1484,12 @@ msgstr ""
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Anul: %s"
 
 #: budgetingpanel.cpp:182
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Luna: %s"
 
 #: budgetingpanel.cpp:188
 #, c-format
@@ -1503,7 +1503,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
-msgstr ""
+msgstr "Venit: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
@@ -4927,11 +4927,7 @@ msgstr "Arată Dialogul de Administrare a Valutelor"
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr ""
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr ""
 
@@ -5892,28 +5888,28 @@ msgid "No"
 msgstr "Nu"
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr ""
+msgid "Default Date"
+msgstr "Data implicită"
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr ""
+msgid "Default Payee"
+msgstr "Beneficiar implicit"
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
-msgstr ""
+msgid "Default Deposit/Withdrawal Category"
+msgstr "Categoria implicită de depunere/retragere"
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
-msgstr ""
+msgid "Default Transfer Category"
+msgstr "Categoria de transfer implicită"
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr ""
+msgid "Default Status"
+msgstr "Stare implicită"
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
-msgstr ""
+msgid "Bulk Transactions"
+msgstr "Tranzacții în masă"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -5929,8 +5925,8 @@ msgid "When MMEX Starts,\n"
 msgstr ""
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr ""
+msgid "Backup database on exit"
+msgstr "Backup bază de date la ieșire"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
