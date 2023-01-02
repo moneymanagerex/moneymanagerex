@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 13:13\n"
+"PO-Revision-Date: 2023-01-02 22:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -219,7 +219,7 @@ msgstr ""
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Avstämt datum:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
@@ -2470,7 +2470,7 @@ msgstr "Tillbaka"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:499 mmchecking_list.cpp:1058
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
-msgstr ""
+msgstr "Oavstämd"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:501 mmhomepage.cpp:539
 #: mmhomepage.cpp:714 model/Model_Billsdeposits.cpp:40
@@ -2495,7 +2495,7 @@ msgstr "Dubblett"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:1499
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "Alla Utom Avstämda"
 
 #: filtertransdialog.cpp:484 transactionsupdatedialog.cpp:117
 msgid "Specify"
@@ -2542,7 +2542,7 @@ msgstr "Beloppintervall"
 
 #: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Ange en sträng för att hitta den i transaktionsanteckningar"
 
 #: filtertransdialog.cpp:640
 msgid "Use regex: to match using regular expressions."
@@ -4004,7 +4004,7 @@ msgstr "Ta bort visade transaktioner \"Följ upp\""
 
 #: mmchecking_list.cpp:491
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Ta bort visade transaktioner \"Oförenliga\""
+msgstr "Ta bort visade \"Oavstämda\" Transaktioner"
 
 #: mmchecking_list.cpp:509
 msgid "Mark as"
@@ -4022,7 +4022,7 @@ msgstr "Bekräfta återställning av transaktion"
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Vill du verkligen återställa den valda transaktionen?"
 msgstr[1] "Vill du verkligen återställa %i valda transaktioner?"
 
 #: mmchecking_list.cpp:1027
@@ -4222,7 +4222,7 @@ msgstr "Verktygsfält"
 
 #: mmframe.cpp:462 mmframe.cpp:708
 msgid "Favourites"
-msgstr ""
+msgstr "Favoriter"
 
 #: mmframe.cpp:463 mmframe.cpp:712 mmhomepage.cpp:699 reports/summary.cpp:256
 #: reports/summary.cpp:299
@@ -4262,7 +4262,7 @@ msgstr "Övergripande"
 
 #: mmframe.cpp:704
 msgid "All Transactions"
-msgstr ""
+msgstr "Alla Transaktioner"
 
 #: mmframe.cpp:736 mmhomepage.cpp:705 reports/summary.cpp:266
 #: reports/summary.cpp:304
@@ -5383,7 +5383,7 @@ msgstr "Budget:"
 #: mmreportspanel.cpp:349 reports/reportbase.cpp:208
 #: reports/transactions.cpp:86
 msgid "All Accounts"
-msgstr ""
+msgstr "Alla konton"
 
 #: mmreportspanel.cpp:350
 msgid "Specific Accounts"
@@ -6801,7 +6801,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:301 stockdialog.cpp:273
 msgid "Enter notes associated with this investment"
-msgstr ""
+msgstr "Ange anteckningar kopplade till denna investering"
 
 #: sharetransactiondialog.cpp:306
 msgid "Add Transaction Details"
@@ -6817,7 +6817,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Ange anteckningar för att beskriva denna delade transaktion"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
