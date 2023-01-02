@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-02 15:17+0300\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4935,11 +4935,7 @@ msgstr ""
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr ""
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr ""
 
