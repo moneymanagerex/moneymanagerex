@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 13:13\n"
+"PO-Revision-Date: 2023-01-02 16:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5004,7 +5004,7 @@ msgstr "Сожалею. Версия базы данных слишком ста
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Далее →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -5149,7 +5149,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Паевые счета содержат сделки с акциями.\n\n"
+"Сделки с акциями регистрируются в фондовом портфеле\n"
+"после выбора акций компании в связанном виде.\n\n"
+"Эти счета становятся видимыми только после связывания акции со счётом\n"
+"или с помощью меню Показать → 'Показывать паевой счёт'\n"
+"Паевые счета также могут содержать обычные транзакции для обычных счетов."
 
 #: mmframe.cpp:2491
 msgid "Share Account Creation"
@@ -5698,22 +5703,22 @@ msgstr "Легенда (может использоваться как пере�
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s → User document directory"
-msgstr ""
+msgstr "%s → Пользовательская папка документов"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s → User profile folder"
-msgstr ""
+msgstr "%s → Папка профиля пользователя"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s → Folder of .MMB database file"
-msgstr ""
+msgstr "%s → Папка где расположен .mmb файл"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s → MMEX Application data folder"
-msgstr ""
+msgstr "%s → MMEX папка с данными"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5725,15 +5730,15 @@ msgstr "Еще не установлено"
 
 #: optionsettingsattachment.cpp:133
 msgid "Windows folder → "
-msgstr ""
+msgstr "Windows папка → "
 
 #: optionsettingsattachment.cpp:140
 msgid "Mac folder → "
-msgstr ""
+msgstr "Mac папка → "
 
 #: optionsettingsattachment.cpp:147
 msgid "Unix folder → "
-msgstr ""
+msgstr "Unix папка → "
 
 #: optionsettingsattachment.cpp:155
 msgid "Create and use Attachments subfolder"
@@ -5944,11 +5949,11 @@ msgstr "Нет"
 
 #: optionsettingsmisc.cpp:148
 msgid "Default Date"
-msgstr ""
+msgstr "Дата по умолчанию"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Получатель по умолчанию"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
