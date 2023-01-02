@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2023-01-01 08:30\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4931,11 +4931,7 @@ msgstr "Εμφάνιση του παραθύρου οργάνωσης των ν�
 msgid "&Options"
 msgstr "&Επιλογές"
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr "Εγγραφή/Προβολή Ειδοποιήσεων Απελευθέρωσης"
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Νέα"
 
@@ -5914,27 +5910,27 @@ msgid "No"
 msgstr "Όχι"
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "Προεπιλεγμένη ημερομηνία:"
+msgid "Default Date"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "Προεπιλεγμένος δικαιούχος:"
+msgid "Default Payee"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
-msgstr "Προεπιλεγμένη Κατηγορία Κατάθεσης/Ανάληψης:"
+msgid "Default Deposit/Withdrawal Category"
+msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
-msgstr "Προεπιλεγμένη Κατηγορία Μεταφοράς:"
+msgid "Default Transfer Category"
+msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "Προεπιλεγμένη κατάσταση:"
+msgid "Default Status"
+msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
+msgid "Bulk Transactions"
 msgstr ""
 
 #: optionsettingsmisc.cpp:169
@@ -5952,8 +5948,8 @@ msgstr "Όταν ξεκινάει το MMEX,\n"
 "δημιουργεί ένα αντίγραφο ασφαλείας της βάσης δεδομένων: αρχείοΒΔ_start_ΕΕΕΕ-MM-ΗΗ.ext."
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "Αντίγραφο ασφαλείας βάσης δεδομένων κατά την έξοδο."
+msgid "Backup database on exit"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
