@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 16:53\n"
+"PO-Revision-Date: 2023-01-02 17:54\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -695,7 +695,7 @@ msgstr "Не указана папка с файлами."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Пожалуйста, задайте путь через → Опции → Вложения"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1730,7 +1730,7 @@ msgstr "Совет. Измените все транзакции, использ
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Инструменты → Замена → Категории"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2404,7 +2404,7 @@ msgstr "База данных MMEX успешно обновлена до вер
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Мы предлагаем оптимизацию базы данных в меню Сервис → База данных → Оптимизатор"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -3863,7 +3863,7 @@ msgstr "Подсказка: Чтобы отметить транзакцию т�
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Подсказка: MMEX поддерживает печать отчетов после просмотра. Параметры печати можно задать в меню, Файл → Настройка печати."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -5957,19 +5957,19 @@ msgstr "Получатель по умолчанию"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Категория депозита/снятия по умолчанию"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Категория перевода по умолчанию"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Статус по умолчанию"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Массовые транзакции"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -5987,7 +5987,7 @@ msgstr "При сиарте MMEX, \n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Архивировать БД при выходе"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
@@ -6313,7 +6313,7 @@ msgstr "Совет: Изменить все транзакции этого по
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Инструменты → Замена → Получатели"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6501,7 +6501,7 @@ msgstr "Пожалуйста, не удаляйте информацию, ука
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "В меню Помощь → Проверить обновления убедитесь, что у вас установлена новая версия программы, ваша проблема уже может быть исправлена."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7629,12 +7629,12 @@ msgstr "Не правильная WebApp API версия:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp   API версия: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Ожидаемая версия API: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7806,7 +7806,7 @@ msgstr "Основная валюта не установлена."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Установите её через меню Инструменты → Настройки затем добавьте счёт."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
