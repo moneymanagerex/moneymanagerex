@@ -1202,7 +1202,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
             wxString memo;
             if (!notes.empty()) {
-                wxRegEx pattern(wxString::Format("%d:(.*)", split_id), wxRE_NEWLINE);
+                wxRegEx pattern(wxString::Format("^%d:(.*)", split_id), wxRE_NEWLINE);
                 if (pattern.Matches(notes))
                     memo = pattern.GetMatch(notes, 1);
             }
