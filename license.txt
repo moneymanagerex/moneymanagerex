@@ -56,7 +56,7 @@ We use Google Analytics for collecting anonymous data. Other than for the above 
 https://support.google.com/analytics/answer/7318509
  
 4. Disable statistics sending
-You can turn of at any moment sending of stats simply removing corresponding flag under Options->Network.
+You can turn of at any moment sending of stats simply removing corresponding flag under Options → Network.
  
 5. Your consent
 By installing or using Money Manager EX, you consent to our Privacy policy.
