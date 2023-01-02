@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
-"PO-Revision-Date: 2022-12-31 03:09\n"
+"POT-Creation-Date: 2023-01-02 15:36+0300\n"
+"PO-Revision-Date: 2023-01-02 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -4936,11 +4936,7 @@ msgstr "Zobraziť dialóg pre organizovanie meny"
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1843 mmframe.cpp:2744
-msgid "Register/View Release &Notifications"
-msgstr "Za&registrovať sa alebo si prezrieť oznámenia o vydaní"
-
-#: mmframe.cpp:1848 optionsettingsnet.cpp:131
+#: mmframe.cpp:1843 mmframe.cpp:1848 mmframe.cpp:2744 optionsettingsnet.cpp:131
 msgid "News"
 msgstr "Novinky"
 
@@ -5904,27 +5900,27 @@ msgid "No"
 msgstr ""
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
-msgstr "Predvolený dátum:"
+msgid "Default Date"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
-msgstr "Predvolený príjemca:"
+msgid "Default Payee"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
+msgid "Default Deposit/Withdrawal Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
+msgid "Default Transfer Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
-msgstr "Predvolený stav:"
+msgid "Default Status"
+msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
+msgid "Bulk Transactions"
 msgstr ""
 
 #: optionsettingsmisc.cpp:169
@@ -5941,8 +5937,8 @@ msgid "When MMEX Starts,\n"
 msgstr "Pri štarte MMEX vytvoriť zálohu databázy: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
-msgstr "Pri ukončení odzálohovať databázu."
+msgid "Backup database on exit"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
