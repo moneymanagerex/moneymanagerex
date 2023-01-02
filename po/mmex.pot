@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2022-12-31 03:28+0300\n"
+"POT-Creation-Date: 2023-01-02 15:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5921,27 +5921,27 @@ msgid "No"
 msgstr ""
 
 #: optionsettingsmisc.cpp:148
-msgid "Default Date:"
+msgid "Default Date"
 msgstr ""
 
 #: optionsettingsmisc.cpp:150
-msgid "Default Payee:"
+msgid "Default Payee"
 msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid "Default Deposit/Withdrawal Category:"
+msgid "Default Deposit/Withdrawal Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:154
-msgid "Default Transfer Category:"
+msgid "Default Transfer Category"
 msgstr ""
 
 #: optionsettingsmisc.cpp:156
-msgid "Default Status:"
+msgid "Default Status"
 msgstr ""
 
 #: optionsettingsmisc.cpp:158
-msgid "Bulk Transactions:"
+msgid "Bulk Transactions"
 msgstr ""
 
 #: optionsettingsmisc.cpp:169
@@ -5959,7 +5959,7 @@ msgid ""
 msgstr ""
 
 #: optionsettingsmisc.cpp:183
-msgid "Backup database on exit."
+msgid "Backup database on exit"
 msgstr ""
 
 #: optionsettingsmisc.cpp:185
