@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 13:13\n"
+"PO-Revision-Date: 2023-01-03 07:28\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5911,23 +5911,23 @@ msgstr "Όχι"
 
 #: optionsettingsmisc.cpp:148
 msgid "Default Date"
-msgstr ""
+msgstr "Προεπιλεγμένη ημερομηνία"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Προεπιλεγμένος Δικαιούχος"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Προεπιλεγμένη Κατηγορία Κατάθεσης/Ανάληψης"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Προεπιλεγμένη Κατηγορία Μεταφοράς"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Προεπιλεγμένη Κατάσταση"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
@@ -5949,7 +5949,7 @@ msgstr "Όταν ξεκινάει το MMEX,\n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Αντίγραφο ασφαλείας βάσης δεδομένων κατά την έξοδο"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
