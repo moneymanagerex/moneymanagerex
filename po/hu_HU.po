@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 22:30\n"
+"PO-Revision-Date: 2023-01-03 23:28\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4444,7 +4444,7 @@ msgstr "Adatbázis megnyitása"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Adatbázis mentése &másként…"
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4468,7 +4468,7 @@ msgstr "Importálás QIF-ből"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&Webalkalmazás…"
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4492,7 +4492,7 @@ msgstr "Exportálás JSON-fájlként"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML-fájlok…"
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4500,7 +4500,7 @@ msgstr "Exportálás HTML-fájlként"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Nyomtatás…"
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
