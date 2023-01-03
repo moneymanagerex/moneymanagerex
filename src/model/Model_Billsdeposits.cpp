@@ -429,7 +429,7 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
                 dt.SetToPrevWeekDay(wxDateTime::Fri);
         }
     }
-    wxLogDebug("init date: %s → next date: %s", nextOccurDate.FormatISODate(), dt.FormatISODate());
+    wxLogDebug("init date: %s -> next date: %s", nextOccurDate.FormatISODate(), dt.FormatISODate());
     return dt;
 }
 

@@ -642,7 +642,7 @@ double cleanseNumberStringToDouble(wxString str, bool decimal)
 //
 const wxString mmPlatformType()
 {
-    return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
+    return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3).MakeLower();
 }
 
 void DoWindowsFreezeThaw(wxWindow* w)

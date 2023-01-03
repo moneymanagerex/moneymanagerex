@@ -473,7 +473,7 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Sub-Category to\n"
             "another Sub-Category using the relocate command:");
 
-    deleteCategoryErrMsg << "\n\n" << _("Tools → Relocation of → Categories");
+    deleteCategoryErrMsg << "\n\n" << wxString::FromUTF8(_("Tools → Relocation of → Categories").ToStdString());
 
     wxMessageBox(deleteCategoryErrMsg, _("Organise Categories: Delete Error"), wxOK | wxICON_ERROR);
 }

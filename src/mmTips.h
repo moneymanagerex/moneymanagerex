@@ -47,17 +47,17 @@ static const wxString STOCKTIPS[] = {
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
     wxTRANSLATE("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),
     wxTRANSLATE("Sample of UK (HSBC HLDG) share: HSBA.L"),
-    wxTRANSLATE("If the Stock Name field is empty it will be filed when prices updated") //depricated
-    /*
-    Before you start investing, have a fully-funded emergency fund.
-    Before you start investing, know your cash flow (have a budget).
-    Before you start investing, pay off consumer debt - especially credit cards.
-    Before you start investing, make net worth your primary tracking metric.
-    Before you start investing, clarify your goals and priorities.
-    Before you start investing, make sure you understand investing basics.
-    Common mistake of investors: only buying companies you know.
-    Common mistake of investors: buying companies you like.
-    Common mistake of investors: buying buzzworthy companies.
-    Common mistake of investors: forgetting to rebalance.
-    */
+    wxTRANSLATE("Before you start investing, have a fully-funded emergency fund."),
+    
+    wxTRANSLATE("Before you start investing, have a fully-funded emergency fund."),
+    wxTRANSLATE("Before you start investing, know your cash flow (have a budget)."),
+    wxTRANSLATE("Before you start investing, pay off consumer debt - especially credit cards."),
+    wxTRANSLATE("Before you start investing, make net worth your primary tracking metric."),
+    wxTRANSLATE("Before you start investing, clarify your goals and priorities."),
+    wxTRANSLATE("Before you start investing, make sure you understand investing basics."),
+    wxTRANSLATE("Common mistake of investors: only buying companies you know."),
+    wxTRANSLATE("Common mistake of investors: buying companies you like."),
+    wxTRANSLATE("Common mistake of investors: buying buzzworthy companies."),
+    wxTRANSLATE("Common mistake of investors: forgetting to rebalance."),
+
 };

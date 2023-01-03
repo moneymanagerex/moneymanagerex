@@ -583,7 +583,13 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
 void mmCheckingPanel::showTips()
 {
     if (Option::instance().getShowMoneyTips())
-        m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
+        m_info_panel->SetLabelText(
+            wxString::FromUTF8(
+                wxGetTranslation(
+                    TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]
+                ).ToStdString()
+            )
+        );
     else
         m_info_panel->SetLabelText("");
 }
