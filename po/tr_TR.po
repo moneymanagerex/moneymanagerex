@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-02 15:36+0300\n"
-"PO-Revision-Date: 2023-01-02 13:13\n"
+"POT-Creation-Date: 2023-01-03 20:10+0300\n"
+"PO-Revision-Date: 2023-01-03 17:16\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -535,37 +535,37 @@ msgid "Current Value"
 msgstr "Bugünkü Değer"
 
 #: assetspanel.cpp:97
-msgid "&New Asset"
-msgstr "&Yeni Varlık"
+msgid "&New Asset..."
+msgstr ""
 
 #: assetspanel.cpp:99
-msgid "D&uplicate Asset"
-msgstr "Varlığı &Kopyala"
+msgid "D&uplicate Asset..."
+msgstr ""
 
 #: assetspanel.cpp:101
-msgid "&Add Asset Transaction"
-msgstr "&Varlık İşlemi Ekle"
+msgid "&Add Asset Transaction..."
+msgstr ""
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
 msgstr "Varlık İşlemlerini &Göster"
 
 #: assetspanel.cpp:103
-msgid "&Open Asset Account"
-msgstr "Varlık Hesabını &Aç"
+msgid "&Open Asset Account..."
+msgstr ""
 
 #: assetspanel.cpp:105
-msgid "&Edit Asset"
-msgstr "Varlık &Düzenle"
+msgid "&Edit Asset..."
+msgstr ""
 
 #: assetspanel.cpp:107
-msgid "&Delete Asset"
-msgstr "Varlık &Sil"
+msgid "&Delete Asset..."
+msgstr ""
 
-#: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
-#: mmframe.cpp:1373 mmframe.cpp:1393 payeedialog.cpp:620 stocks_list.cpp:146
-msgid "&Organize Attachments"
-msgstr "İlişikleri Dü&zenleyin"
+#: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
+#: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
+msgid "&Organize Attachments..."
+msgstr ""
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -618,7 +618,7 @@ msgid "&Edit "
 msgstr "Düz&enle"
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:307 budgetyeardialog.cpp:103
-#: categdialog.cpp:321 maincurrencydialog.cpp:302 mmchecking_list.cpp:493
+#: categdialog.cpp:321 maincurrencydialog.cpp:302 mmchecking_list.cpp:495
 #: mmcheckingpanel.cpp:367 stockdialog.cpp:334 stockspanel.cpp:149
 msgid "&Delete "
 msgstr "&Sil"
@@ -1319,7 +1319,7 @@ msgid "Skip Next Recurring Transaction Occurrence"
 msgstr ""
 
 #: billsdepositspanel.cpp:432
-msgid "Enter next Occurrence"
+msgid "Enter next Occurrence..."
 msgstr ""
 
 #: billsdepositspanel.cpp:434
@@ -1327,19 +1327,19 @@ msgid "Skip next Occurrence"
 msgstr "Sonraki gerçekleşmeyi atlayın"
 
 #: billsdepositspanel.cpp:436
-msgid "&New Recurring Transaction"
+msgid "&New Recurring Transaction..."
 msgstr ""
 
 #: billsdepositspanel.cpp:437
-msgid "&Edit Recurring Transaction"
+msgid "&Edit Recurring Transaction..."
 msgstr ""
 
 #: billsdepositspanel.cpp:438
-msgid "D&uplicate Recurring Transaction"
+msgid "D&uplicate Recurring Transaction..."
 msgstr ""
 
 #: billsdepositspanel.cpp:440
-msgid "&Delete Recurring Transaction"
+msgid "&Delete Recurring Transaction..."
 msgstr ""
 
 #: billsdepositspanel.cpp:488
@@ -2450,7 +2450,7 @@ msgstr "Şifrelenmiş bir dosya için yanlış şifre\n"
 "veya\n"
 "veritabanı dosyası olmayan bir dosya açmaya çalışıldı\n"
 
-#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:948 webapp.cpp:120
+#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:953 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "Hata: %s"
@@ -2471,28 +2471,28 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:499 mmchecking_list.cpp:1058
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:501 mmchecking_list.cpp:1060
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Unreconciled"
 msgstr ""
 
-#: filtertransdialog.cpp:50 mmchecking_list.cpp:501 mmhomepage.cpp:539
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:503 mmhomepage.cpp:539
 #: mmhomepage.cpp:714 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:38
 msgid "Reconciled"
 msgstr "Onaylanmış"
 
-#: filtertransdialog.cpp:51 mmchecking_list.cpp:503
+#: filtertransdialog.cpp:51 mmchecking_list.cpp:505
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:39
 msgid "Void"
 msgstr "Hükümsüz"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:505 mmchecking_list.cpp:1047
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:507 mmchecking_list.cpp:1049
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:40
 msgid "Follow Up"
 msgstr ""
 
-#: filtertransdialog.cpp:53 mmchecking_list.cpp:507
+#: filtertransdialog.cpp:53 mmchecking_list.cpp:509
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:41
 msgid "Duplicate"
 msgstr "EşKopya"
@@ -2653,8 +2653,8 @@ msgstr ""
 
 #: filtertransdialog.cpp:1750 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
-#: images_list.cpp:494 import_export/qif_import_gui.cpp:732
-#: import_export/qif_import_gui.cpp:735
+#: images_list.cpp:494 import_export/qif_import_gui.cpp:737
+#: import_export/qif_import_gui.cpp:740
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -3026,7 +3026,7 @@ msgstr "Verilecek Hesabı Seçin:"
 msgid "Choose QIF data file to Export"
 msgstr "Verilecek QIF veri dosyasını seçin"
 
-#: import_export/qif_export.cpp:297 import_export/qif_import_gui.cpp:788
+#: import_export/qif_export.cpp:297 import_export/qif_import_gui.cpp:793
 msgid "QIF Files (*.qif)"
 msgstr "QIF Dosyaları (*.qif)"
 
@@ -3059,7 +3059,7 @@ msgid "Categories exported"
 msgstr "Kategoriler dışa aktarıldı."
 
 #: import_export/qif_export.cpp:462 import_export/qif_import_gui.cpp:399
-#: import_export/qif_import_gui.cpp:887
+#: import_export/qif_import_gui.cpp:892
 msgid "Please wait"
 msgstr "Lütfen Bekleyin"
 
@@ -3116,7 +3116,7 @@ msgid "Include payee field in notes"
 msgstr "Notlarda alacaklı alanını içer"
 
 #: import_export/qif_import_gui.cpp:390 import_export/qif_import_gui.cpp:393
-#: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:1215
+#: import_export/qif_import_gui.cpp:619 import_export/qif_import_gui.cpp:1233
 #: import_export/univcsvdialog.cpp:741 import_export/univcsvdialog.cpp:875
 #: import_export/univcsvdialog.cpp:878 import_export/univcsvdialog.cpp:898
 #: import_export/univcsvdialog.cpp:905 themes.cpp:235 transdialog.cpp:273
@@ -3139,130 +3139,130 @@ msgstr "Satır okunuyor %zu, %lld ms"
 msgid "Line %zu \t %s\n"
 msgstr "Satır %zu \t %s\n"
 
-#: import_export/qif_import_gui.cpp:516
+#: import_export/qif_import_gui.cpp:521
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "QIF dosyasından okunan satır sayısı: %zu, %lld ms'de"
 
-#: import_export/qif_import_gui.cpp:521 mmreportspanel.cpp:344
+#: import_export/qif_import_gui.cpp:526 mmreportspanel.cpp:344
 msgid "Accounts:"
 msgstr "Hesaplar:"
 
-#: import_export/qif_import_gui.cpp:528 import_export/qif_import_gui.cpp:806
+#: import_export/qif_import_gui.cpp:533 import_export/qif_import_gui.cpp:811
 #: import_export/univcsvdialog.cpp:281
 msgid "Date Format: "
 msgstr "Tarih Biçimi:"
 
-#: import_export/qif_import_gui.cpp:531
+#: import_export/qif_import_gui.cpp:536
 msgid "Press OK Button to continue"
 msgstr "Devam etmek için TAMAM düğmesine basın"
 
-#: import_export/qif_import_gui.cpp:730 import_export/qif_import_gui.cpp:759
-#: import_export/qif_import_gui.cpp:776
+#: import_export/qif_import_gui.cpp:735 import_export/qif_import_gui.cpp:764
+#: import_export/qif_import_gui.cpp:781
 msgid "OK"
 msgstr "Tamam"
 
-#: import_export/qif_import_gui.cpp:740 import_export/qif_import_gui.cpp:759
+#: import_export/qif_import_gui.cpp:745 import_export/qif_import_gui.cpp:764
 #: stockspanel.cpp:391
 msgid "Missing"
 msgstr "Kayıp"
 
-#: import_export/qif_import_gui.cpp:786
+#: import_export/qif_import_gui.cpp:791
 msgid "Choose QIF data file to Import"
 msgstr "Alınacak QIF veri dosyasını seçin"
 
-#: import_export/qif_import_gui.cpp:879
+#: import_export/qif_import_gui.cpp:884
 msgid "Do you want to import all transaction ?"
 msgstr "Tüm işlemleri almak istiyor musunuz?"
 
-#: import_export/qif_import_gui.cpp:880
+#: import_export/qif_import_gui.cpp:885
 msgid "All missing account, payees and categories will be created."
 msgstr "Tüm kayıp hesaplar, alacaklılar ve kategoriler yaratılacak."
 
-#: import_export/qif_import_gui.cpp:881
+#: import_export/qif_import_gui.cpp:886
 msgid "Confirm Import"
 msgstr "Almayı Onayla"
 
-#: import_export/qif_import_gui.cpp:887
+#: import_export/qif_import_gui.cpp:892
 msgid "Importing"
 msgstr "Alınıyor"
 
-#: import_export/qif_import_gui.cpp:889
+#: import_export/qif_import_gui.cpp:894
 msgid "Importing Accounts"
 msgstr "Hesaplar alınıyor"
 
-#: import_export/qif_import_gui.cpp:892
+#: import_export/qif_import_gui.cpp:897
 msgid "Importing Payees"
 msgstr "Alacaklı/Satıcılar alınıyor"
 
-#: import_export/qif_import_gui.cpp:895
+#: import_export/qif_import_gui.cpp:900
 msgid "Importing Categories"
 msgstr "Kategoriler alınıyor."
 
-#: import_export/qif_import_gui.cpp:912
+#: import_export/qif_import_gui.cpp:917
 #, c-format
 msgid "Importing transaction %i of %i"
 msgstr "İşlemler alınıyor %i / %i"
 
-#: import_export/qif_import_gui.cpp:959
+#: import_export/qif_import_gui.cpp:964
 msgid "Importing Transfers"
 msgstr "Aktarımlar alınıyor"
 
-#: import_export/qif_import_gui.cpp:984
+#: import_export/qif_import_gui.cpp:989
 msgid "Importing Split transactions"
 msgstr "Parçalı işlemler alınıyor."
 
-#: import_export/qif_import_gui.cpp:988
+#: import_export/qif_import_gui.cpp:993
 msgid "Import finished successfully"
 msgstr "Alma başarılı bir şekilde sonuçlandı."
 
-#: import_export/qif_import_gui.cpp:988
+#: import_export/qif_import_gui.cpp:993
 #, c-format
 msgid "Total Imported: %zu"
 msgstr "Toplam Alınan: %zu"
 
-#: import_export/qif_import_gui.cpp:998 import_export/univcsvdialog.cpp:1104
+#: import_export/qif_import_gui.cpp:1003 import_export/univcsvdialog.cpp:1104
 msgid "Imported transactions discarded by user!"
 msgstr "Alınan işlemler kullanıcı tarafından silindi."
 
-#: import_export/qif_import_gui.cpp:1000 import_export/qif_import_gui.h:44
+#: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "QIF Import"
 msgstr "QIF Alma"
 
-#: import_export/qif_import_gui.cpp:1079
+#: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
 msgstr "İşlem kodu kayıp"
 
-#: import_export/qif_import_gui.cpp:1099
+#: import_export/qif_import_gui.cpp:1104
 msgid "Transaction Payee is missing or incorrect"
 msgstr "İşlem alacaklısı kayıp veya yanlış."
 
-#: import_export/qif_import_gui.cpp:1111
+#: import_export/qif_import_gui.cpp:1116
 msgid "Date format or date mask is incorrect"
 msgstr "Tarih biçimi veya tarih kalıbı yanlış"
 
-#: import_export/qif_import_gui.cpp:1123
+#: import_export/qif_import_gui.cpp:1128
 msgid "Transaction Account is incorrect"
 msgstr "İşlem Hesabı yanlış"
 
-#: import_export/qif_import_gui.cpp:1132
+#: import_export/qif_import_gui.cpp:1137
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Aktarım için İşlem Hesabı yanlış"
 
-#: import_export/qif_import_gui.cpp:1162
+#: import_export/qif_import_gui.cpp:1167
 msgid "Transaction Amount is incorrect"
 msgstr "İşlem Tutarı yanlış"
 
-#: import_export/qif_import_gui.cpp:1184
+#: import_export/qif_import_gui.cpp:1192
 msgid "Transaction Category is incorrect"
 msgstr "İşlem Kategorisi yanlış"
 
-#: import_export/qif_import_gui.cpp:1273
+#: import_export/qif_import_gui.cpp:1291
 #, c-format
 msgid "Added account: %s"
 msgstr "Eklenen hesap: %s"
 
-#: import_export/qif_import_gui.cpp:1314 import_export/univcsvdialog.cpp:882
+#: import_export/qif_import_gui.cpp:1332 import_export/univcsvdialog.cpp:882
 #, c-format
 msgid "Added payee: %s"
 msgstr "Eklenen Alacaklı: %s"
@@ -3919,16 +3919,16 @@ msgid "Deleted On"
 msgstr ""
 
 #: mmchecking_list.cpp:434
-msgid "&New Withdrawal"
-msgstr "&Yeni Çekme"
+msgid "&New Withdrawal..."
+msgstr ""
 
 #: mmchecking_list.cpp:435
-msgid "&New Deposit"
-msgstr "&Yeni Yatırma"
+msgid "&New Deposit..."
+msgstr ""
 
 #: mmchecking_list.cpp:437
-msgid "&New Transfer"
-msgstr "&Yeni Aktarım"
+msgid "&New Transfer..."
+msgstr ""
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -3951,157 +3951,157 @@ msgstr ""
 msgid "&Paste Transactions (%d)"
 msgstr ""
 
-#: mmchecking_list.cpp:453
-msgid "D&uplicate Transaction"
-msgstr "İşlemi Ko&pyala"
+#: mmchecking_list.cpp:454
+msgid "D&uplicate Transaction..."
+msgstr ""
 
-#: mmchecking_list.cpp:456
+#: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:462
+#: mmchecking_list.cpp:463
 msgid "&View In Other Account"
 msgstr ""
 
-#: mmchecking_list.cpp:466
+#: mmchecking_list.cpp:467
 msgid "&View Split Categories"
 msgstr "&Parçalı Kategorileri Göster"
 
-#: mmchecking_list.cpp:474
-msgid "Create Recurring T&ransaction"
+#: mmchecking_list.cpp:475
+msgid "Create Recurring T&ransaction..."
 msgstr ""
 
-#: mmchecking_list.cpp:478
+#: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:480
-msgid "Restore all transactions in current view"
+#: mmchecking_list.cpp:481
+msgid "Restore all transactions in current view..."
 msgstr ""
 
-#: mmchecking_list.cpp:485
+#: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:485
+#: mmchecking_list.cpp:487
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:488
-msgid "Delete all transactions in current view"
-msgstr "Listedeki tüm işlemleri sil"
-
-#: mmchecking_list.cpp:488
-msgid "Permanently delete all transactions in current view"
+#: mmchecking_list.cpp:490
+msgid "Delete all transactions in current view..."
 msgstr ""
 
 #: mmchecking_list.cpp:490
-msgid "Delete Viewed \"Follow Up\" Transactions"
+msgid "Permanently delete all transactions in current view..."
 msgstr ""
 
-#: mmchecking_list.cpp:491
-msgid "Delete Viewed \"Unreconciled\" Transactions"
+#: mmchecking_list.cpp:492
+msgid "Delete Viewed \"Follow Up\" Transactions..."
 msgstr ""
 
-#: mmchecking_list.cpp:509
+#: mmchecking_list.cpp:493
+msgid "Delete Viewed \"Unreconciled\" Transactions..."
+msgstr ""
+
+#: mmchecking_list.cpp:511
 msgid "Mark as"
 msgstr ""
 
-#: mmchecking_list.cpp:947
+#: mmchecking_list.cpp:949
 msgid "Do you really want to restore all of the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:948 mmchecking_list.cpp:990
+#: mmchecking_list.cpp:950 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
 msgstr ""
 
-#: mmchecking_list.cpp:985
+#: mmchecking_list.cpp:987
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1027
+#: mmchecking_list.cpp:1029
 msgid "Do you really want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1028
+#: mmchecking_list.cpp:1030
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1037 mmchecking_list.cpp:1048 mmchecking_list.cpp:1059
-#: mmchecking_list.cpp:1145
+#: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
+#: mmchecking_list.cpp:1147
 msgid "Confirm Transaction Deletion"
 msgstr "İşlem Silme Onayı"
 
-#: mmchecking_list.cpp:1047 mmchecking_list.cpp:1058
+#: mmchecking_list.cpp:1049 mmchecking_list.cpp:1060
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1141
+#: mmchecking_list.cpp:1143
 msgid " You cannot undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1217
+#: mmchecking_list.cpp:1219
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "İşlem tarihe sabitlendi: %s\n\n"
 "Onaylanmış işlemler."
 
-#: mmchecking_list.cpp:1220 transdialog.cpp:690 transdialog.cpp:721
+#: mmchecking_list.cpp:1222 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
 msgstr "MMEX İşlem Kontrolü"
 
-#: mmchecking_list.cpp:1253
+#: mmchecking_list.cpp:1255
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1255
+#: mmchecking_list.cpp:1257
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:1256
+#: mmchecking_list.cpp:1258
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1447
+#: mmchecking_list.cpp:1449
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1452
+#: mmchecking_list.cpp:1454
 msgid "Confirm Transaction Move"
 msgstr ""
 
-#: mmchecking_list.cpp:1458
+#: mmchecking_list.cpp:1460
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1462 stocks_list.cpp:299
+#: mmchecking_list.cpp:1464 stocks_list.cpp:299
 msgid "Select the destination Account "
 msgstr "Alıcı Hesabı seçin"
 
-#: mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1551
 msgid "Recurring Transaction saved."
 msgstr ""
 
@@ -4316,11 +4316,11 @@ msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: Menu Açılma Hatası"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
-msgid "&CSV Files"
+msgid "&CSV Files..."
 msgstr ""
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
-msgid "&XML Files"
+msgid "&XML Files..."
 msgstr ""
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
@@ -4328,48 +4328,48 @@ msgid "Import from XML (Excel format)"
 msgstr "XML'den al (Excel formatı)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
-msgid "&QIF Files"
+msgid "&QIF Files..."
 msgstr ""
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
-msgid "&MMEX CSV Files"
+msgid "&MMEX CSV Files..."
 msgstr ""
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
-msgid "&JSON Files"
+msgid "&JSON Files..."
 msgstr ""
 
 #: mmframe.cpp:1351
-msgid "&Edit Filter"
+msgid "&Edit Filter..."
 msgstr ""
 
 #: mmframe.cpp:1352
-msgid "&Rename Filter"
+msgid "&Rename Filter..."
 msgstr ""
 
 #: mmframe.cpp:1353
-msgid "&Delete Filter"
+msgid "&Delete Filter..."
 msgstr ""
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
-msgid "&Edit Account"
-msgstr "&Hesap Düzenle"
+msgid "&Edit Account..."
+msgstr ""
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
-msgid "&Delete Account"
-msgstr "Hesap &Sil"
+msgid "&Delete Account..."
+msgstr ""
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
 msgstr "Hesap Internet Sayfasına Bağ&lan"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
-msgid "&Reallocate Account"
-msgstr "Hesa&p Türünü Değiştir"
+msgid "&Reallocate Account..."
+msgstr ""
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
-msgid "New &Account"
-msgstr "Yeni &Hesap"
+msgid "New &Account..."
+msgstr ""
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4380,7 +4380,7 @@ msgid "Accounts Visible"
 msgstr "Görülebilir Hesaplar"
 
 #: mmframe.cpp:1459
-msgid "&New Database"
+msgid "&New Database..."
 msgstr ""
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
@@ -4388,16 +4388,16 @@ msgid "New Database"
 msgstr "Yeni Veritabanı"
 
 #: mmframe.cpp:1460
-msgid "&Open Database\tCtrl-O"
-msgstr "&Veritabanı Aç\tCtrl-O"
+msgid "&Open Database...\tCtrl-O"
+msgstr ""
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
 msgstr "Veritabanı Aç"
 
 #: mmframe.cpp:1461
-msgid "Save Database &As"
-msgstr "Veritabanını Farklı &Kaydet"
+msgid "Save Database &As..."
+msgstr ""
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4420,7 +4420,7 @@ msgid "Import from QIF"
 msgstr "QIF'den al"
 
 #: mmframe.cpp:1477
-msgid "&WebApp"
+msgid "&WebApp..."
 msgstr ""
 
 #: mmframe.cpp:1477
@@ -4444,15 +4444,15 @@ msgid "Export to JSON"
 msgstr "JSON olarak Dışa Aktar"
 
 #: mmframe.cpp:1486
-msgid "&HTML Files"
+msgid "&HTML Files..."
 msgstr ""
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
 msgstr "HTML'e ver"
 
-#: mmframe.cpp:1492 mmframe.cpp:1856
-msgid "&Print"
+#: mmframe.cpp:1492
+msgid "&Print..."
 msgstr ""
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
@@ -4576,11 +4576,11 @@ msgid "Download Currency and Stock rates"
 msgstr ""
 
 #: mmframe.cpp:1606
-msgid "Organize &Categories"
+msgid "Organize &Categories..."
 msgstr ""
 
 #: mmframe.cpp:1610
-msgid "Organize &Payees"
+msgid "Organize &Payees..."
 msgstr ""
 
 #: mmframe.cpp:1610 mmframe.cpp:1828 payeedialog.cpp:274
@@ -4588,7 +4588,7 @@ msgid "Organize Payees"
 msgstr "Alacaklıları Düzenle"
 
 #: mmframe.cpp:1614
-msgid "Organize Curre&ncy"
+msgid "Organize Curre&ncy..."
 msgstr ""
 
 #: mmframe.cpp:1614 mmframe.cpp:1829
@@ -4596,11 +4596,11 @@ msgid "Organize Currency"
 msgstr "Para Birimini Düzenle"
 
 #: mmframe.cpp:1618
-msgid "&Categories"
+msgid "&Categories..."
 msgstr ""
 
 #: mmframe.cpp:1621
-msgid "&Payees"
+msgid "&Payees..."
 msgstr ""
 
 #: mmframe.cpp:1622
@@ -4616,8 +4616,8 @@ msgid "Relocate Categories && Payees"
 msgstr "Ala&caklı ve Kategorileri Taşı"
 
 #: mmframe.cpp:1635
-msgid "&Budget Setup"
-msgstr "&Bütçe Yapımı"
+msgid "&Budget Setup..."
+msgstr ""
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -4632,7 +4632,7 @@ msgid "&Assets"
 msgstr "&Varlıklar"
 
 #: mmframe.cpp:1649
-msgid "T&heme Manager"
+msgid "T&heme Manager..."
 msgstr ""
 
 #: mmframe.cpp:1649 themes.cpp:143
@@ -4640,7 +4640,7 @@ msgid "Theme Manager"
 msgstr ""
 
 #: mmframe.cpp:1655
-msgid "Transaction Report &Filter"
+msgid "Transaction Report &Filter..."
 msgstr ""
 
 #: mmframe.cpp:1655 mmframe.cpp:1831
@@ -4648,11 +4648,11 @@ msgid "Transaction Report Filter"
 msgstr "İşlem Rapor Süzgeci"
 
 #: mmframe.cpp:1661
-msgid "General Report &Manager"
+msgid "General Report &Manager..."
 msgstr ""
 
 #: mmframe.cpp:1665
-msgid "C&ustom Fields Manager"
+msgid "C&ustom Fields Manager..."
 msgstr ""
 
 #: mmframe.cpp:1665
@@ -4660,7 +4660,7 @@ msgid "Custom Fields Manager"
 msgstr "Özel Alanlar Yöneticisi"
 
 #: mmframe.cpp:1671
-msgid "Refresh &WebApp"
+msgid "Refresh &WebApp..."
 msgstr ""
 
 #: mmframe.cpp:1671 mmframe.cpp:2690 mmframe.cpp:2693
@@ -4676,7 +4676,7 @@ msgid "Show the Options Dialog"
 msgstr "Seçenekler Ekranını Göster"
 
 #: mmframe.cpp:1683
-msgid "Convert Encrypted &DB"
+msgid "Convert Encrypted &DB..."
 msgstr ""
 
 #: mmframe.cpp:1684
@@ -4684,7 +4684,7 @@ msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr ""
 
 #: mmframe.cpp:1686
-msgid "Change Encrypted &Password"
+msgid "Change Encrypted &Password..."
 msgstr ""
 
 #: mmframe.cpp:1687
@@ -4692,7 +4692,7 @@ msgid "Change the password of an encrypted database"
 msgstr ""
 
 #: mmframe.cpp:1689
-msgid "&Optimize Database"
+msgid "&Optimize Database..."
 msgstr ""
 
 #: mmframe.cpp:1690
@@ -4700,7 +4700,7 @@ msgid "Optimize database space and performance"
 msgstr "Veritabanı boşluklarını ve performansını iyileştirin."
 
 #: mmframe.cpp:1692
-msgid "Database De&bug"
+msgid "Database De&bug..."
 msgstr ""
 
 #: mmframe.cpp:1693
@@ -4934,6 +4934,10 @@ msgstr ""
 #: mmframe.cpp:1853
 msgid "Toggle Fullscreen\tF11"
 msgstr "Tam Ekrana geç\tF11"
+
+#: mmframe.cpp:1856
+msgid "&Print"
+msgstr ""
 
 #: mmframe.cpp:1911
 #, c-format
@@ -6278,6 +6282,10 @@ msgstr ""
 msgid "Define Category"
 msgstr ""
 
+#: payeedialog.cpp:620
+msgid "&Organize Attachments"
+msgstr "İlişikleri Dü&zenleyin"
+
 #: payeedialog.cpp:624
 msgid "Relocate Payee"
 msgstr "Alacaklı Taşı"
@@ -7047,24 +7055,24 @@ msgid "Curr. Total Value"
 msgstr "Günc. Toplam Değer"
 
 #: stocks_list.cpp:137
-msgid "&New Stock Investment"
-msgstr "&Yeni Menkul Kıymet Yatırımı"
+msgid "&New Stock Investment..."
+msgstr ""
 
 #: stocks_list.cpp:139
-msgid "&Add Stock Transactions"
-msgstr "Menkul Değer Yatırımı &Ekle"
+msgid "&Add Stock Transactions..."
+msgstr ""
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
 msgstr "Menkul Değer İşlemlerini &Göster"
 
 #: stocks_list.cpp:142
-msgid "&Edit Stock Investment"
-msgstr "&Menkul Kıymet Yatırımı Düzenle"
+msgid "&Edit Stock Investment..."
+msgstr ""
 
 #: stocks_list.cpp:144
-msgid "&Delete Stock Investment"
-msgstr "Menkul Kıymet Yatırımı &Sil"
+msgid "&Delete Stock Investment..."
+msgstr ""
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
