@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-03 22:30\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3919,43 +3919,43 @@ msgstr "exemple de UK (HSBC HLDG) titre : HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Avant de commencer à investir, conservez une épargne de précaution entièrement financée."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Avant de commencer à investir, évaluez vos flux de trésorerie (faire un budget)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Avant de commencer à investir, remboursez vos dettes - en particulier celle des cartes de crédit."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Avant de commencer à investir, faites de votre patrimoine le principal indicateur de suivi."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Avant de commencer à investir, faites le point de vos objectifs et de vos priorités."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Avant de commencer à investir, assurez-vous d'avoir bien compris les principes de base de l'investissement."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Erreur courante d'investisseurs : n'acheter que les sociétés que l'on connaît."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Erreur courante d'investisseurs : acheter les compagnies que l'on aime."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Erreur courante d'investisseurs : acheter les sociétés dont on parle le plus."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Erreur courante d'investisseurs : oublier d'équilibrer."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -5714,22 +5714,22 @@ msgstr "Légende (peut être utilisée comme variable au début du chemin)"
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s → Répertoire des documents de l'utilisateur"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s → Répertoire du profil de l'utilisateur"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s → Répertoire de la base de données .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Répertoire des données de l'application MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5742,17 +5742,17 @@ msgstr "Pas encore défini"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Répertoire Windows → %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Dossier Mac → %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Dossier Unix → %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
