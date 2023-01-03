@@ -92,7 +92,7 @@ public:
     static bool DeleteAttachment(const wxString& FileToDelete);
     static bool OpenAttachment(const wxString& FileToOpen);
     static bool DeleteAllAttachments(const wxString& RefType, int RefId);
-    static bool RelocateAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
+    static bool RelocateAllAttachments(const wxString& OldRefType, int OldRefId, const wxString& NewRefType, int NewRefId);
     static bool CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
     static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
 private:

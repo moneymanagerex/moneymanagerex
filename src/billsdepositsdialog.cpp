@@ -1055,7 +1055,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Budgetsplittransaction::instance().update(splt, m_trans_id);
 
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, m_trans_id);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_trans_id);
 
         //Custom Data
         m_custom_fields->SaveCustomValues(-m_trans_id);
@@ -1099,6 +1099,9 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             //Custom Data
             m_custom_fields->SaveCustomValues(trans_id);
 
+            const wxString& oldRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+            const wxString& newRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            mmAttachmentManage::RelocateAllAttachments(oldRefType, m_bill_data.BDID, newRefType, trans_id);
         }
         Model_Billsdeposits::instance().completeBDInSeries(m_bill_data.BDID);
     }
