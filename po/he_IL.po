@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-03 20:10+0300\n"
-"PO-Revision-Date: 2023-01-03 17:16\n"
+"POT-Creation-Date: 2023-01-03 21:53+0300\n"
+"PO-Revision-Date: 2023-01-03 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2379,7 +2379,7 @@ msgstr "שדרוג מסד נתוני MMEX לגרסה %i כשל!"
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr "נא לשחזר את מסד הנתונים מגיבוי קדם־שדרוג שנוצר אוטומטית ולנסות שנית, או, לפנות לתמיכת MMEX"
 
-#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
+#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
 msgstr "שדרוג מסד נתוני MMEX"
 
@@ -2403,41 +2403,41 @@ msgstr "שדרוג מסד נתוני MMEX לגרסה %i צלחה"
 msgid "We suggest a database optimization under Tools → Database → Optimize"
 msgstr ""
 
-#: dbupgrade.cpp:182
+#: dbupgrade.cpp:183
 msgid "Load debug file"
 msgstr "טען קובץ ניפוי"
 
-#: dbupgrade.cpp:189
+#: dbupgrade.cpp:190
 msgid "Wrong file type!"
 msgstr "סוג קובץ שגוי!"
 
-#: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
-#: dbupgrade.cpp:288
+#: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
+#: dbupgrade.cpp:289
 msgid "MMEX debug error"
 msgstr "שגיאת ניפוי תקלים ב־MMEX"
 
-#: dbupgrade.cpp:226 dbupgrade.cpp:277
+#: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
 msgstr "שגיאת שאילתה, יש ליצור קשר עם תמיכת MMEX!"
 
-#: dbupgrade.cpp:233 dbupgrade.cpp:288
+#: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
 msgstr "תוכן קובץ לא תקין, נא ליצור קשר עם תמיכת MMEX!"
 
-#: dbupgrade.cpp:240
+#: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr "נא לשלוח קובץ יומן זה לצוות תמיכת MMEX: נא להקיש על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
 
-#: dbupgrade.cpp:241 dbupgrade.cpp:284
+#: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
 msgstr "ניפוי תקלים MMEX"
 
-#: dbupgrade.cpp:244
+#: dbupgrade.cpp:245
 msgid "Save debug file"
 msgstr "שמור קובץ ניפוי"
 
-#: dbupgrade.cpp:284
+#: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "תחזוקת מסד הנתונים הושלמה, נא להפעיל את MMEX מחדש!"
 
@@ -3922,9 +3922,45 @@ msgstr "על מנת לייצור ניר ערך חדש, יש להזין את סמ
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
 msgstr "דוגמה לסמל נייר (HSBC HLDG)  אנגלי:HSBA.L"
 
-#: mmTips.h:50
-msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "אם שדה שם ניר הערך נותר ריק, הוא יושלם בעת עדכון מחירים"
+#: mmTips.h:50 mmTips.h:52
+msgid "Before you start investing, have a fully-funded emergency fund."
+msgstr ""
+
+#: mmTips.h:53
+msgid "Before you start investing, know your cash flow (have a budget)."
+msgstr ""
+
+#: mmTips.h:54
+msgid "Before you start investing, pay off consumer debt - especially credit cards."
+msgstr ""
+
+#: mmTips.h:55
+msgid "Before you start investing, make net worth your primary tracking metric."
+msgstr ""
+
+#: mmTips.h:56
+msgid "Before you start investing, clarify your goals and priorities."
+msgstr ""
+
+#: mmTips.h:57
+msgid "Before you start investing, make sure you understand investing basics."
+msgstr ""
+
+#: mmTips.h:58
+msgid "Common mistake of investors: only buying companies you know."
+msgstr ""
+
+#: mmTips.h:59
+msgid "Common mistake of investors: buying companies you like."
+msgstr ""
+
+#: mmTips.h:60
+msgid "Common mistake of investors: buying buzzworthy companies."
+msgstr ""
+
+#: mmTips.h:61
+msgid "Common mistake of investors: forgetting to rebalance."
+msgstr ""
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -5682,7 +5718,7 @@ msgstr "לכל סוג מערכת הפעלה (וינדוס, מק, יוניקס) �
 msgid "Browse for folder"
 msgstr "נא לדפדף לבחירת תיקיה"
 
-#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:208
+#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
 msgstr "נתיב ממשי:"
 
@@ -5692,22 +5728,22 @@ msgstr "מקרא: (ניתן לשימוש כמשתנה בתחילת הנתיב ש
 
 #: optionsettingsattachment.cpp:112
 #, c-format
-msgid "%s → User document directory"
+msgid "%s : User document directory"
 msgstr ""
 
 #: optionsettingsattachment.cpp:113
 #, c-format
-msgid "%s → User profile folder"
+msgid "%s : User profile folder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:114
 #, c-format
-msgid "%s → Folder of .MMB database file"
+msgid "%s : Folder of .MMB database file"
 msgstr ""
 
 #: optionsettingsattachment.cpp:115
 #, c-format
-msgid "%s → MMEX Application data folder"
+msgid "%s : MMEX Application data folder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:121
@@ -5718,75 +5754,78 @@ msgstr "ספרית מערכת הפעלה אחרת "
 msgid "Not set yet"
 msgstr "טרם הוגדר"
 
-#: optionsettingsattachment.cpp:133
-msgid "Windows folder → "
+#: optionsettingsattachment.cpp:135
+#, c-format
+msgid "Windows folder: %s"
 msgstr ""
 
-#: optionsettingsattachment.cpp:140
-msgid "Mac folder → "
+#: optionsettingsattachment.cpp:143
+#, c-format
+msgid "Mac folder: %s"
 msgstr ""
 
-#: optionsettingsattachment.cpp:147
-msgid "Unix folder → "
+#: optionsettingsattachment.cpp:151
+#, c-format
+msgid "Unix folder: %s"
 msgstr ""
 
-#: optionsettingsattachment.cpp:155
+#: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
 msgstr "יצירה ושימוש בספרית משנה 'צרופות'"
 
-#: optionsettingsattachment.cpp:166
+#: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
 msgstr "מחיקת קובץ לאחר שיובא"
 
-#: optionsettingsattachment.cpp:168
+#: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
 msgstr "בחירת על מנת למחוק קובץ לאחר יבוא צרופות לארכיב"
 
-#: optionsettingsattachment.cpp:172
+#: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
 msgstr "כאשר צרופה מוסרת, הקובץ יועבר במקום להמחק"
 
-#: optionsettingsattachment.cpp:174
+#: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr "בהסרה, לא למחוק את הקובץ מצורף, במקום זאת להעבירו לספרית משנה ' נמחק'"
 
-#: optionsettingsattachment.cpp:178
+#: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
 msgstr "בעת שכפול רשומה, לשכפל גם את הצרופה"
 
-#: optionsettingsattachment.cpp:180
+#: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
 msgstr "נא לבחור על מנת לשכפל גם את הצרופה, כאשר רשומה משוכפלת לרשומה חדשה החדשה"
 
-#: optionsettingsattachment.cpp:193
+#: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
 msgstr "בחירת סיפריה שתשמש כארכיב צרופות"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
 msgstr "לא ניתן לכתוב לתקית הצרופות!"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
 msgstr "תקית צרופות"
 
-#: optionsettingsattachment.cpp:242
+#: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
 msgstr "נתיב קבצים מצורפים השתנתה!"
 
-#: optionsettingsattachment.cpp:244 optionsettingsattachment.cpp:253
+#: optionsettingsattachment.cpp:248 optionsettingsattachment.cpp:257
 msgid "Attachments folder migration"
 msgstr "העברת ספרית צרופות"
 
-#: optionsettingsattachment.cpp:250
+#: optionsettingsattachment.cpp:254
 msgid "Error moving attachments folder: please move it manually!"
 msgstr "שגיאה בעת העברת תיקית קבצים מצורפים: נא לבצע העברה ידנית!"
 
-#: optionsettingsattachment.cpp:251
+#: optionsettingsattachment.cpp:255
 msgid "Origin"
 msgstr "מקור"
 
-#: optionsettingsattachment.cpp:252
+#: optionsettingsattachment.cpp:256
 msgid "Destination"
 msgstr "יעד"
 
