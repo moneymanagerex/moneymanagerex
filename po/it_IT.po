@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-03 23:28\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Autori"
 
 #: aboutdialog.cpp:190
 msgid "Sponsors"
-msgstr "Sponsors"
+msgstr "Promotori"
 
 #: aboutdialog.cpp:195
 msgid "License"
@@ -556,7 +556,7 @@ msgstr ""
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Modifica Cespite..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
@@ -3918,43 +3918,43 @@ msgstr "Esempio di azione UK (HSBC HLDG): HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Prima di iniziare a investire, assicurati di avere un fondo d'emergenza completamente finanziato."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Prima di iniziare a investire, valuta il tuo flusso di cassa (fai un budget)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Prima di iniziare a investire, estingui i tuoi debiti, soprattutto quelli della carta di credito."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Prima di iniziare a investire, fai in modo che il patrimonio netto sia il tuo parametro di riferimento principale."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Prima di iniziare a investire, fai il punto sui tuoi obiettivi e sulle tue priorità."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Prima di iniziare a investire, assicurati di aver compreso le basi dell'investimento."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Errore comune degli investitori: acquistare solo aziende conosciute."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Errore comune degli investitori: acquistare le società che ti piacciono."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Errore comune degli investitori: acquistare aziende che fanno tendenza."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Errore comune degli investitori: dimenticare di ribilanciare."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -4303,7 +4303,7 @@ msgstr "Conti di cassa"
 #: mmframe.cpp:468 mmframe.cpp:724 mmhomepage.cpp:701 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
-msgstr "Conti Prestiti"
+msgstr "Conti di Prestiti"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
@@ -4364,11 +4364,11 @@ msgstr "MMEX: Errore Menu"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "File &CSV..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "File &XML..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4376,35 +4376,35 @@ msgstr "Importa da XML (Formato Excel)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "File &QIF..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "File &MMEX CSV..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "File &JSON..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Modifica Filtro..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Rinomina Filtro..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Elimina Filtro..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Modifica Conto..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Elimina Conto..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
@@ -4412,11 +4412,11 @@ msgstr "&Apri il sito web del Conto"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Riassegna Conto..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account..."
-msgstr ""
+msgstr "Nuovo &Conto..."
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4428,7 +4428,7 @@ msgstr "Conti Visibili"
 
 #: mmframe.cpp:1459
 msgid "&New Database..."
-msgstr ""
+msgstr "&Nuovo Database..."
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4436,7 +4436,7 @@ msgstr "Nuovo Database"
 
 #: mmframe.cpp:1460
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Apri Database...\tCtrl-O"
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
@@ -4444,7 +4444,7 @@ msgstr "Apri Database"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Salva Database &Come..."
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4468,7 +4468,7 @@ msgstr "Importa da QIF"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4492,7 +4492,7 @@ msgstr "Esporta in file JSON"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "File &HTML..."
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4500,7 +4500,7 @@ msgstr "Esporta in file HTML"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Stampa..."
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
@@ -5714,22 +5714,22 @@ msgstr "Legenda (possono essere utilizzati come variabili all'inizio del percors
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Directory documento utente"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Cartella profilo utente"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Cartella del file del database .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : Cartella dati applicazione MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5742,17 +5742,17 @@ msgstr "Non ancora impostato"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Cartella Windows: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Cartella Mac: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Cartella Unix: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
