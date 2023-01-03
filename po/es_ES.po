@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-03 20:10+0300\n"
-"PO-Revision-Date: 2023-01-03 17:16\n"
+"POT-Creation-Date: 2023-01-03 21:53+0300\n"
+"PO-Revision-Date: 2023-01-03 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2373,7 +2373,7 @@ msgstr "Error al actualizar la base de datos MMEX a la versión %i!"
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr "Por favor, restaure la BD desde una copia de seguridad anterior y vuelva a intentarlo o contacte con el soporte de MMEX"
 
-#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
+#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
 msgstr "Base de datos actualizado"
 
@@ -2397,42 +2397,42 @@ msgstr "Base de datos MMEX actualizada correctamente a la versión %i"
 msgid "We suggest a database optimization under Tools → Database → Optimize"
 msgstr "Sugerimos una optimización de la base de datos en Herramientas → Base de datos → Optimizar base de datos..."
 
-#: dbupgrade.cpp:182
+#: dbupgrade.cpp:183
 msgid "Load debug file"
 msgstr "Cargar archivo de depuración"
 
-#: dbupgrade.cpp:189
+#: dbupgrade.cpp:190
 msgid "Wrong file type!"
 msgstr "¡Tipo de archivo incorrecto!"
 
-#: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
-#: dbupgrade.cpp:288
+#: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
+#: dbupgrade.cpp:289
 msgid "MMEX debug error"
 msgstr "Error de depuración"
 
-#: dbupgrade.cpp:226 dbupgrade.cpp:277
+#: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
 msgstr "¡Error de consulta, por favor contacte con el soporte de MMEX!"
 
-#: dbupgrade.cpp:233 dbupgrade.cpp:288
+#: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
 msgstr "Contenido de archivo no válido, ¡Por favor, contacta con el soporte de MMEX!"
 
-#: dbupgrade.cpp:240
+#: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr "Envíe este log al equipo de soporte de MMEX:\n"
 "pulse OK para guardar el fichero o Cancelar para salir"
 
-#: dbupgrade.cpp:241 dbupgrade.cpp:284
+#: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
 msgstr "Depuración MMEX"
 
-#: dbupgrade.cpp:244
+#: dbupgrade.cpp:245
 msgid "Save debug file"
 msgstr "Guardar archivo de depuración"
 
-#: dbupgrade.cpp:284
+#: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "¡Mantenimiento de la BD completado, por favor cierre y vuelva a abrir MMEX!"
 
@@ -3914,9 +3914,45 @@ msgstr "Para crear una nueva acción debe introducir el símbolo, el número de 
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
 msgstr "Ejemplo de una cotización del IBEX: SAN.MC"
 
-#: mmTips.h:50
-msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "Si el nombre de la acción está vacío se archivará cuando se actualice el precio"
+#: mmTips.h:50 mmTips.h:52
+msgid "Before you start investing, have a fully-funded emergency fund."
+msgstr ""
+
+#: mmTips.h:53
+msgid "Before you start investing, know your cash flow (have a budget)."
+msgstr ""
+
+#: mmTips.h:54
+msgid "Before you start investing, pay off consumer debt - especially credit cards."
+msgstr ""
+
+#: mmTips.h:55
+msgid "Before you start investing, make net worth your primary tracking metric."
+msgstr ""
+
+#: mmTips.h:56
+msgid "Before you start investing, clarify your goals and priorities."
+msgstr ""
+
+#: mmTips.h:57
+msgid "Before you start investing, make sure you understand investing basics."
+msgstr ""
+
+#: mmTips.h:58
+msgid "Common mistake of investors: only buying companies you know."
+msgstr ""
+
+#: mmTips.h:59
+msgid "Common mistake of investors: buying companies you like."
+msgstr ""
+
+#: mmTips.h:60
+msgid "Common mistake of investors: buying buzzworthy companies."
+msgstr ""
+
+#: mmTips.h:61
+msgid "Common mistake of investors: forgetting to rebalance."
+msgstr ""
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -5665,7 +5701,7 @@ msgstr "Cada tipo de sistema operativo (Win, Mac, Unix) tiene su carpeta de adju
 msgid "Browse for folder"
 msgstr "Explorar carpetas"
 
-#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:208
+#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
 msgstr "Ruta real:"
 
@@ -5675,23 +5711,23 @@ msgstr "Leyenda (puede usarse como variables al principio de la ruta anterior)"
 
 #: optionsettingsattachment.cpp:112
 #, c-format
-msgid "%s → User document directory"
-msgstr "%s → Directorio de documentos del usuario"
+msgid "%s : User document directory"
+msgstr ""
 
 #: optionsettingsattachment.cpp:113
 #, c-format
-msgid "%s → User profile folder"
-msgstr "%s → Carpeta del perfil de usuario"
+msgid "%s : User profile folder"
+msgstr ""
 
 #: optionsettingsattachment.cpp:114
 #, c-format
-msgid "%s → Folder of .MMB database file"
-msgstr "%s → Carpeta del archivo de base de datos .MMB"
+msgid "%s : Folder of .MMB database file"
+msgstr ""
 
 #: optionsettingsattachment.cpp:115
 #, c-format
-msgid "%s → MMEX Application data folder"
-msgstr "%s → Carpeta de datos de la aplicación MMEX"
+msgid "%s : MMEX Application data folder"
+msgstr ""
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5701,75 +5737,78 @@ msgstr "Otras carpetas del SO"
 msgid "Not set yet"
 msgstr "Aún no establecido"
 
-#: optionsettingsattachment.cpp:133
-msgid "Windows folder → "
-msgstr "Carpeta de Windows → "
+#: optionsettingsattachment.cpp:135
+#, c-format
+msgid "Windows folder: %s"
+msgstr ""
 
-#: optionsettingsattachment.cpp:140
-msgid "Mac folder → "
-msgstr "Carpeta de Mac → "
+#: optionsettingsattachment.cpp:143
+#, c-format
+msgid "Mac folder: %s"
+msgstr ""
 
-#: optionsettingsattachment.cpp:147
-msgid "Unix folder → "
-msgstr "Carpeta de Unix → "
+#: optionsettingsattachment.cpp:151
+#, c-format
+msgid "Unix folder: %s"
+msgstr ""
 
-#: optionsettingsattachment.cpp:155
+#: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
 msgstr "Crear y usar subcarpeta de adjuntos"
 
-#: optionsettingsattachment.cpp:166
+#: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
 msgstr "Borrar archivo después de importar"
 
-#: optionsettingsattachment.cpp:168
+#: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
 msgstr "Seleccione para borrar el archivo después de importar en los adjuntos"
 
-#: optionsettingsattachment.cpp:172
+#: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
 msgstr "Cuando se borre el adjunto, mover el fichero en lugar de borrarlo"
 
-#: optionsettingsattachment.cpp:174
+#: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr "Seleccione para no eliminar el archivo cuando se borre el adjunto, sin moverlo a la subcarpeta 'Borrados'"
 
-#: optionsettingsattachment.cpp:178
+#: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
 msgstr "Al duplicar transacciones duplicar también los archivos adjuntos"
 
-#: optionsettingsattachment.cpp:180
+#: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
 msgstr "Seleccione si desea copiar los archivos adjuntos a las nuevas transacciones cuando sean duplicadas"
 
-#: optionsettingsattachment.cpp:193
+#: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
 msgstr "Elegir carpeta como para los archivos adjuntos"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
 msgstr "¡No se puede escribir en la carpeta de adjuntos!"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
 msgstr "Carpeta de adjuntos"
 
-#: optionsettingsattachment.cpp:242
+#: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
 msgstr "¡La carpeta de los adjuntos se ha cambiado!"
 
-#: optionsettingsattachment.cpp:244 optionsettingsattachment.cpp:253
+#: optionsettingsattachment.cpp:248 optionsettingsattachment.cpp:257
 msgid "Attachments folder migration"
 msgstr "Migración de carpetas de adjuntos"
 
-#: optionsettingsattachment.cpp:250
+#: optionsettingsattachment.cpp:254
 msgid "Error moving attachments folder: please move it manually!"
 msgstr "¡Error al mover la carpeta de adjuntos: por favor, muévala manualmente!"
 
-#: optionsettingsattachment.cpp:251
+#: optionsettingsattachment.cpp:255
 msgid "Origin"
 msgstr "Origen"
 
-#: optionsettingsattachment.cpp:252
+#: optionsettingsattachment.cpp:256
 msgid "Destination"
 msgstr "Destino"
 
