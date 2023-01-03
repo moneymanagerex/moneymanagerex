@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-03 22:30\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -263,7 +263,7 @@ msgstr "Organisera bilagor till detta konto"
 
 #: accountdialog.cpp:433
 msgid "Default Image"
-msgstr "Förvald bild"
+msgstr "Standardbild"
 
 #: accountdialog.cpp:443
 #, c-format
@@ -306,7 +306,7 @@ msgstr "Transaktioner för detta konto finns redan före detta datum"
 
 #: accountdialog.cpp:534
 msgid "Stock purchases for this account already exist before this date"
-msgstr "Lagerköp för detta konto finns redan före detta datum"
+msgstr "Aktieköp för detta konto finns redan före detta datum"
 
 #: accountdialog.cpp:541
 msgid "Recurring transactions for this account are scheduled before this date"
