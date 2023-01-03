@@ -54,9 +54,9 @@ wxString mmReportForecast::getHTMLText()
     {
         if (Model_Checking::type(trx) == Model_Checking::TRANSFER || Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
-
-        amount_by_day[trx.TRANSDATE].first += Model_Checking::withdrawal(trx, -1);
-        amount_by_day[trx.TRANSDATE].second += Model_Checking::deposit(trx, -1);
+        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+        amount_by_day[trx.TRANSDATE].first += Model_Checking::withdrawal(trx, -1) * convRate;
+        amount_by_day[trx.TRANSDATE].second += Model_Checking::deposit(trx, -1) * convRate;
     }
 
     
