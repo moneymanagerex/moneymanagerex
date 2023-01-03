@@ -477,7 +477,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     if (!m_edit)
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, m_stock->STOCKID);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock->STOCKID);
     }
 
     Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_history_date_ctrl->GetValue(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);

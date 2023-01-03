@@ -539,16 +539,18 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int RefId
     return true;
 }
 
-bool mmAttachmentManage::RelocateAllAttachments(const wxString& RefType, int OldRefId, int NewRefId)
+bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int OldRefId, const wxString& NewRefType, int NewRefId)
 {
-    auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(OldRefId));
-    const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + RefType + m_PathSep;
+    auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(OldRefType), Model_Attachment::REFID(OldRefId));
+    const wxString OldAttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + OldRefType + m_PathSep;
+    const wxString NewAttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + NewRefType + m_PathSep;
 
     for (auto &entry : attachments)
     {
         wxString NewFileName = entry.FILENAME;
-        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%i", NewRefId));
-        wxRenameFile(AttachmentsFolder + entry.FILENAME, AttachmentsFolder + NewFileName);
+        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), NewRefType + "_" + wxString::Format("%i", NewRefId));
+        wxRenameFile(OldAttachmentsFolder + entry.FILENAME, NewAttachmentsFolder + NewFileName);
+        entry.REFTYPE = NewRefType;
         entry.REFID = NewRefId;
         entry.FILENAME = NewFileName;
     }

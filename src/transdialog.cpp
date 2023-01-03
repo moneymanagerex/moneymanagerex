@@ -1139,7 +1139,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     if (m_new_trx || m_duplicate)
     {
-        mmAttachmentManage::RelocateAllAttachments(RefType, -1, m_trx_data.TRANSID);
+        mmAttachmentManage::RelocateAllAttachments(RefType, -1, RefType, m_trx_data.TRANSID);
     }
 
     m_custom_fields->SaveCustomValues(m_trx_data.TRANSID);

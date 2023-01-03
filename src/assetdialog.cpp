@@ -365,7 +365,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     if (old_asset_id < 0)
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, new_asset_id);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, new_asset_id);
     }
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
