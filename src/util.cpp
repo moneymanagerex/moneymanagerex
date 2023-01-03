@@ -1673,16 +1673,6 @@ wxString HTMLEncode(wxString input)
     return output;
 }
 
-const wxString __(const char* c)
-{
-    wxString mystring = wxGetTranslation(wxString::FromUTF8(c));
-    if (mystring.Contains("\t"))
-        mystring.Replace("\t", "...\t", false);
-    else
-        mystring.Append("...");
-    return mystring;
-}
-
 void mmSetSize(wxWindow* w)
 {
     auto name = w->GetName();
