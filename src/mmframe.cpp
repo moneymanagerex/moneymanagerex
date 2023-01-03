@@ -1313,16 +1313,16 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 void mmGUIFrame::AppendImportMenu(wxMenu& menu)
 {
     wxMenu* importFrom(new wxMenu);
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, __(wxTRANSLATE("&CSV Files")));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, __(wxTRANSLATE("&XML Files")), _("Import from XML (Excel format)"));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, __(wxTRANSLATE("&QIF Files")));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format)"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
     menu.AppendSubMenu(importFrom, _("&Import"));
     wxMenu* exportTo(new wxMenu);
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, __(wxTRANSLATE("&CSV Files")));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, __(wxTRANSLATE("&MMEX CSV Files")));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, __(wxTRANSLATE("&XML Files")));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, __(wxTRANSLATE("&QIF Files")));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, __(wxTRANSLATE("&JSON Files")));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files..."));
     menu.AppendSubMenu(exportTo, _("&Export"));
 }
 
@@ -1348,9 +1348,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     {
         const wxString data = iData->getString();
         wxLogDebug("MENU FILTER: %s", data);
-        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, __(wxTRANSLATE("&Edit Filter")));
-        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, __(wxTRANSLATE("&Rename Filter")));
-        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, __(wxTRANSLATE("&Delete Filter")));
+        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, _("&Edit Filter..."));
+        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, _("&Rename Filter..."));
+        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, _("&Delete Filter..."));
         PopupMenu(&menu, pt);
         break;
     }
@@ -1366,11 +1366,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Account")));
-            menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Account")));
+            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account..."));
+            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account..."));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments..."));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
 
             PopupMenu(&menu, pt);
@@ -1384,13 +1384,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            menu.Append(MENU_TREEPOPUP_EDIT, __(wxTRANSLATE("&Edit Account")));
-            menu.Append(MENU_TREEPOPUP_REALLOCATE, __(wxTRANSLATE("&Reallocate Account")));
+            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account..."));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account..."));
             menu.AppendSeparator();
-            menu.Append(MENU_TREEPOPUP_DELETE, __(wxTRANSLATE("&Delete Account")));
+            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account..."));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, __(wxTRANSLATE("&Organize Attachments")));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments..."));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::SHARES]);
             menu.AppendSeparator();
@@ -1403,11 +1403,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::MENU_FAVORITES:
     case mmTreeItemData::ALL_TRANSACTIONS:
     {
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, __(wxTRANSLATE("New &Account")));
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, __(wxTRANSLATE("&Edit Account")));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account..."));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account..."));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
         menu.AppendSeparator();
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, __(wxTRANSLATE("&Delete Account")));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account..."));
         menu.AppendSeparator();
 
         AppendImportMenu(menu);
@@ -1456,9 +1456,9 @@ void mmGUIFrame::createMenu()
 {
     wxMenu* menu_file = new wxMenu;
 
-    wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, __(wxTRANSLATE("&New Database")), _("New Database"));
-    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, __(wxTRANSLATE("&Open Database\tCtrl-O")), _("Open Database"));
-    wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, __(wxTRANSLATE("Save Database &As")), _("Save Database As"));
+    wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database..."), _("New Database"));
+    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database...\tCtrl-O"), _("Open Database"));
+    wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As..."), _("Save Database As"));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
     menu_file->Append(menuItemSaveAs);
@@ -1471,25 +1471,25 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenu* importMenu = new wxMenu;
-    importMenu->Append(MENU_IMPORT_UNIVCSV, __(wxTRANSLATE("&CSV Files")), _("Import from any CSV file"));
-    importMenu->Append(MENU_IMPORT_XML, __(wxTRANSLATE("&XML Files")), _("Import from XML (Excel format)"));
-    importMenu->Append(MENU_IMPORT_QIF, __(wxTRANSLATE("&QIF Files")), _("Import from QIF"));
-    importMenu->Append(MENU_IMPORT_WEBAPP, __(wxTRANSLATE("&WebApp")), _("Import from WebApp"));
+    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
+    importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
+    importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
+    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
     menu_file->Append(MENU_IMPORT, _("&Import"), importMenu);
 
     wxMenu* exportMenu = new wxMenu;
-    exportMenu->Append(MENU_EXPORT_CSV, __(wxTRANSLATE("&CSV Files")), _("Export to CSV"));
-    exportMenu->Append(MENU_EXPORT_MMEX, __(wxTRANSLATE("&MMEX CSV Files")), _("Export to fixed CSV"));
-    exportMenu->Append(MENU_EXPORT_XML, __(wxTRANSLATE("&XML Files")), _("Export to XML"));
-    exportMenu->Append(MENU_EXPORT_QIF, __(wxTRANSLATE("&QIF Files")), _("Export to QIF"));
-    exportMenu->Append(MENU_EXPORT_JSON, __(wxTRANSLATE("&JSON Files")), _("Export to JSON"));
-    exportMenu->Append(MENU_EXPORT_HTML, __(wxTRANSLATE("&HTML Files")), _("Export to HTML"));
+    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV Files..."), _("Export to CSV"));
+    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV Files..."), _("Export to fixed CSV"));
+    exportMenu->Append(MENU_EXPORT_XML, _("&XML Files..."), _("Export to XML"));
+    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files..."), _("Export to QIF"));
+    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON Files..."), _("Export to JSON"));
+    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML Files..."), _("Export to HTML"));
     menu_file->Append(MENU_EXPORT, _("&Export"), exportMenu);
 
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
-        __(wxTRANSLATE("&Print")), _("Print current view"));
+        _("&Print..."), _("Print current view"));
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
@@ -1575,16 +1575,16 @@ void mmGUIFrame::createMenu()
         , _("&Home Page"), _("Show Home Page"));
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
-        , __(wxTRANSLATE("New &Account")), _("New Account"));
+        , _("New &Account..."), _("New Account"));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
-        , __(wxTRANSLATE("&Edit Account")), _("Edit Account"));
+        , _("&Edit Account..."), _("Edit Account"));
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
-        , __(wxTRANSLATE("&Reallocate Account")), _("Change the account type of an account."));
+        , _("&Reallocate Account..."), _("Change the account type of an account."));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
-        , __(wxTRANSLATE("&Delete Account")), _("Delete Account from database"));
+        , _("&Delete Account..."), _("Delete Account from database"));
 
     menuAccounts->Append(menuItemAcctList);
     menuAccounts->AppendSeparator();
@@ -1603,22 +1603,22 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
-        , MENU_ORGCATEGS, __(wxTRANSLATE("Organize &Categories")), _("Organize Categories"));
+        , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
-        , MENU_ORGPAYEE, __(wxTRANSLATE("Organize &Payees")), _("Organize Payees"));
+        , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , __(wxTRANSLATE("Organize Curre&ncy")), _("Organize Currency"));
+        , _("Organize Curre&ncy..."), _("Organize Currency"));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
-        , MENU_CATEGORY_RELOCATION, __(wxTRANSLATE("&Categories"))
+        , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
-        , MENU_PAYEE_RELOCATION, __(wxTRANSLATE("&Payees"))
+        , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
         , MENU_RELOCATION, _("Re&location of")
@@ -1632,7 +1632,7 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
-        , __(wxTRANSLATE("&Budget Setup")), _("Budget Setup"));
+        , _("&Budget Setup..."), _("Budget Setup"));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
@@ -1646,29 +1646,29 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemThemes = new wxMenuItem(menuTools, MENU_THEME_MANAGER
-        , __(wxTRANSLATE("T&heme Manager")), _("Theme Manager"));
+        , _("T&heme Manager..."), _("Theme Manager"));
     menuTools->Append(menuItemThemes);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
-        , __(wxTRANSLATE("Transaction Report &Filter")), _("Transaction Report Filter"));
+        , _("Transaction Report &Filter..."), _("Transaction Report Filter"));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
-        , __(wxTRANSLATE("General Report &Manager")), _("General Report Manager"));
+        , _("General Report &Manager..."), _("General Report Manager"));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
-        , __(wxTRANSLATE("C&ustom Fields Manager")), _("Custom Fields Manager"));
+        , _("C&ustom Fields Manager..."), _("Custom Fields Manager"));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemWA = new wxMenuItem(menuTools, MENU_REFRESH_WEBAPP
-        , __(wxTRANSLATE("Refresh &WebApp")), _("Refresh WebApp"));
+        , _("Refresh &WebApp..."), _("Refresh WebApp"));
     menuTools->Append(menuItemWA);
     menuTools->AppendSeparator();
 
@@ -1680,16 +1680,16 @@ void mmGUIFrame::createMenu()
 
     wxMenu* menuDatabase = new wxMenu;
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
-        , __(wxTRANSLATE("Convert Encrypted &DB"))
+        , _("Convert Encrypted &DB...")
         , _("Convert Encrypted DB to Non-Encrypted DB"));
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
-        , __(wxTRANSLATE("Change Encrypted &Password"))
+        , _("Change Encrypted &Password...")
         , _("Change the password of an encrypted database"));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
-        , __(wxTRANSLATE("&Optimize Database"))
+        , _("&Optimize Database...")
         , _("Optimize database space and performance"));
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
-        , __(wxTRANSLATE("Database De&bug"))
+        , _("Database De&bug...")
         , _("Generate database report or fix errors"));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
