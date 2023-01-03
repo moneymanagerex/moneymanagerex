@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-03 20:10+0300\n"
-"PO-Revision-Date: 2023-01-03 17:16\n"
+"POT-Creation-Date: 2023-01-03 21:53+0300\n"
+"PO-Revision-Date: 2023-01-03 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2376,7 +2376,7 @@ msgstr "Η αναβάθμιση της βάσης δεδομένων MMEX στη
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr "Παρακαλώ επαναφέρετε την DB από αυτόματη δημιουργία προ-αναβάθμιση αντίγραφο ασφαλείας και προσπαθήστε ξανά ή επικοινωνήστε με την υποστήριξη MMEX"
 
-#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
+#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
 msgstr "Αναβάθμιση βάσης δεδομένων MMEX"
 
@@ -2400,42 +2400,42 @@ msgstr "Η βάση δεδομένων MMEX αναβαθμίστηκε επιτ�
 msgid "We suggest a database optimization under Tools → Database → Optimize"
 msgstr "Προτείνουμε να γίνει βελτιστοποίηση της βάσης δεδομένων από Εργαλεία -> Βάση Δεδομένων -> Βελτιστοποίηση"
 
-#: dbupgrade.cpp:182
+#: dbupgrade.cpp:183
 msgid "Load debug file"
 msgstr "Φόρτωση αρχείου αποσφαλμάτωσης"
 
-#: dbupgrade.cpp:189
+#: dbupgrade.cpp:190
 msgid "Wrong file type!"
 msgstr "Λανθασμένος τύπος αρχείου!"
 
-#: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
-#: dbupgrade.cpp:288
+#: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
+#: dbupgrade.cpp:289
 msgid "MMEX debug error"
 msgstr "Σφάλμα εντοπισμού σφαλμάτων MMEX"
 
-#: dbupgrade.cpp:226 dbupgrade.cpp:277
+#: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
 msgstr "Σφάλμα ερωτήματος, παρακαλώ επικοινωνήστε με την υποστήριξη MMEX!"
 
-#: dbupgrade.cpp:233 dbupgrade.cpp:288
+#: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
 msgstr "Μη έγκυρο περιεχόμενο αρχείου, παρακαλώ επικοινωνήστε με την υποστήριξη MMEX!"
 
-#: dbupgrade.cpp:240
+#: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr "Στείλτε αυτό το αρχείο καταγραφής στην ομάδα υποστήριξης MMEX:\n"
 "πατήστε OK για να αποθηκεύσετε στο αρχείο ή Ακύρωση για έξοδο"
 
-#: dbupgrade.cpp:241 dbupgrade.cpp:284
+#: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
 msgstr "MMEX αποσφαλμάτωση"
 
-#: dbupgrade.cpp:244
+#: dbupgrade.cpp:245
 msgid "Save debug file"
 msgstr "Αποθήκευση αρχείου αποσφαλμάτωσης"
 
-#: dbupgrade.cpp:284
+#: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Η συντήρηση της DB ολοκληρώθηκε, κλείστε και ανοίξτε ξανά το MMEX!"
 
@@ -3913,9 +3913,45 @@ msgstr "Για να δημιουργήσετε νέα εγγραφή αποθε�
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
 msgstr "Δείγμα του Ηνωμένου Βασιλείου (HSBC HLDG) μετοχή: HSBA.L"
 
-#: mmTips.h:50
-msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "Εάν το πεδίο Όνομα αποθέματος είναι κενό, θα αρχειοθετηθεί όταν ενημερωθούν οι τιμές"
+#: mmTips.h:50 mmTips.h:52
+msgid "Before you start investing, have a fully-funded emergency fund."
+msgstr ""
+
+#: mmTips.h:53
+msgid "Before you start investing, know your cash flow (have a budget)."
+msgstr ""
+
+#: mmTips.h:54
+msgid "Before you start investing, pay off consumer debt - especially credit cards."
+msgstr ""
+
+#: mmTips.h:55
+msgid "Before you start investing, make net worth your primary tracking metric."
+msgstr ""
+
+#: mmTips.h:56
+msgid "Before you start investing, clarify your goals and priorities."
+msgstr ""
+
+#: mmTips.h:57
+msgid "Before you start investing, make sure you understand investing basics."
+msgstr ""
+
+#: mmTips.h:58
+msgid "Common mistake of investors: only buying companies you know."
+msgstr ""
+
+#: mmTips.h:59
+msgid "Common mistake of investors: buying companies you like."
+msgstr ""
+
+#: mmTips.h:60
+msgid "Common mistake of investors: buying buzzworthy companies."
+msgstr ""
+
+#: mmTips.h:61
+msgid "Common mistake of investors: forgetting to rebalance."
+msgstr ""
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -5658,7 +5694,7 @@ msgstr "Κάθε τύπος OS (Win, Mac, Unix) έχει το φάκελο συ�
 msgid "Browse for folder"
 msgstr "Αναζήτηση φακέλου"
 
-#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:208
+#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
 msgstr "Πραγματική διαδρομή:"
 
@@ -5668,23 +5704,23 @@ msgstr "Υπόμνημα (μπορεί να χρησιμοποιηθεί ως μ
 
 #: optionsettingsattachment.cpp:112
 #, c-format
-msgid "%s → User document directory"
-msgstr "%s -> Κατάλογος εγγράφου χρήστη"
+msgid "%s : User document directory"
+msgstr ""
 
 #: optionsettingsattachment.cpp:113
 #, c-format
-msgid "%s → User profile folder"
-msgstr "%s -> Φάκελος προφίλ χρήστη"
+msgid "%s : User profile folder"
+msgstr ""
 
 #: optionsettingsattachment.cpp:114
 #, c-format
-msgid "%s → Folder of .MMB database file"
-msgstr "%s -> Φάκελος του αρχείου βάσης δεδομένων .MMB"
+msgid "%s : Folder of .MMB database file"
+msgstr ""
 
 #: optionsettingsattachment.cpp:115
 #, c-format
-msgid "%s → MMEX Application data folder"
-msgstr "%s -> Φάκελος δεδομένων εφαρμογής MMEX"
+msgid "%s : MMEX Application data folder"
+msgstr ""
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5694,75 +5730,78 @@ msgstr "Άλλοι φάκελοι OS "
 msgid "Not set yet"
 msgstr "Δεν έχει οριστεί ακόμα"
 
-#: optionsettingsattachment.cpp:133
-msgid "Windows folder → "
-msgstr "Φάκελος των Windows → "
+#: optionsettingsattachment.cpp:135
+#, c-format
+msgid "Windows folder: %s"
+msgstr ""
 
-#: optionsettingsattachment.cpp:140
-msgid "Mac folder → "
-msgstr "Φάκελος Mac → "
+#: optionsettingsattachment.cpp:143
+#, c-format
+msgid "Mac folder: %s"
+msgstr ""
 
-#: optionsettingsattachment.cpp:147
-msgid "Unix folder → "
-msgstr "Φάκελος Unix → "
+#: optionsettingsattachment.cpp:151
+#, c-format
+msgid "Unix folder: %s"
+msgstr ""
 
-#: optionsettingsattachment.cpp:155
+#: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
 msgstr "Δημιουργία και χρήση υποφακέλου Συνημμένων"
 
-#: optionsettingsattachment.cpp:166
+#: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
 msgstr "Διαγραφή αρχείου μετά την εισαγωγή"
 
-#: optionsettingsattachment.cpp:168
+#: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
 msgstr "Επιλέξτε για διαγραφή αρχείου μετά την εισαγωγή στην αρχειοθήκη συνημμένων"
 
-#: optionsettingsattachment.cpp:172
+#: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
 msgstr "Όταν καταργήσετε το συνημμένο, μετακινήστε το αρχείο αντί για διαγραφή"
 
-#: optionsettingsattachment.cpp:174
+#: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr "Επιλέξτε για να μην διαγράψετε το αρχείο όταν καταργηθεί το συνημμένο, αλλά αντ' αυτού μετακινήστε το στον υποφάκελο 'Διαγραφή'"
 
-#: optionsettingsattachment.cpp:178
+#: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
 msgstr "Κατά την δημιουργία αντιγράφων των συναλλαγών αντιγράφονται επίσης τα συνημμένα"
 
-#: optionsettingsattachment.cpp:180
+#: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
 msgstr "Επιλέξτε αν θέλετε να αντιγράψετε τα συνημμένα σε νέες συναλλαγές όταν είναι διπλότυπες ή επικολλημένες"
 
-#: optionsettingsattachment.cpp:193
+#: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
 msgstr "Επιλογή φακέλου για ορισμό αρχείου συνημμένων"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
 msgstr "Ο φάκελος συνημμένων δεν είναι εγγράψιμος!"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
 msgstr "Φάκελος συνημμένων"
 
-#: optionsettingsattachment.cpp:242
+#: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
 msgstr "Η διαδρομή συνημμένων έχει αλλάξει!"
 
-#: optionsettingsattachment.cpp:244 optionsettingsattachment.cpp:253
+#: optionsettingsattachment.cpp:248 optionsettingsattachment.cpp:257
 msgid "Attachments folder migration"
 msgstr "Μεταφορά φακέλου συνημμένων"
 
-#: optionsettingsattachment.cpp:250
+#: optionsettingsattachment.cpp:254
 msgid "Error moving attachments folder: please move it manually!"
 msgstr "Σφάλμα κατά τη μετακίνηση του φακέλου συνημμένων: παρακαλώ μετακινήστε τον χειροκίνητα!"
 
-#: optionsettingsattachment.cpp:251
+#: optionsettingsattachment.cpp:255
 msgid "Origin"
 msgstr "Καταγωγή"
 
-#: optionsettingsattachment.cpp:252
+#: optionsettingsattachment.cpp:256
 msgid "Destination"
 msgstr "Προορισμός"
 
