@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-03 20:10+0300\n"
-"PO-Revision-Date: 2023-01-03 17:16\n"
+"POT-Creation-Date: 2023-01-03 21:53+0300\n"
+"PO-Revision-Date: 2023-01-03 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2368,7 +2368,7 @@ msgstr "MMEX veritabanı %i sürümüne yükseltme başarısız!"
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr "Lütfen VeriTabanını otomatik oluşturulan yükseltme öncesi yedekten geri yükleyin ve yeniden deneyin veya MMEX destekle ilişki kurun."
 
-#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
+#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
 msgstr "MMEX veritabanı yükseltme"
 
@@ -2391,42 +2391,42 @@ msgstr "MMEX veritabanı %i sürümüne başarıyla yükseltildi"
 msgid "We suggest a database optimization under Tools → Database → Optimize"
 msgstr ""
 
-#: dbupgrade.cpp:182
+#: dbupgrade.cpp:183
 msgid "Load debug file"
 msgstr "Hata yakalama dosyasını yükleyin"
 
-#: dbupgrade.cpp:189
+#: dbupgrade.cpp:190
 msgid "Wrong file type!"
 msgstr "Yanlış dosya tipi!"
 
-#: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
-#: dbupgrade.cpp:288
+#: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
+#: dbupgrade.cpp:289
 msgid "MMEX debug error"
 msgstr "MMEX hata ayıklama hatası"
 
-#: dbupgrade.cpp:226 dbupgrade.cpp:277
+#: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
 msgstr "Sorgu hatası, lütfen MMEX destekle bağlantı kurun!"
 
-#: dbupgrade.cpp:233 dbupgrade.cpp:288
+#: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
 msgstr "Geçersiz dosya içeriği, lütfen MMEX desteğine başvurun!"
 
-#: dbupgrade.cpp:240
+#: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr "Bu log dosyasını MMEX destek timine gönderin:\n"
 "dosyaya kaydetmek için Tamam'a veya çıkmak için İptal'e basın"
 
-#: dbupgrade.cpp:241 dbupgrade.cpp:284
+#: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
 msgstr "MMEX hata ayıklama"
 
-#: dbupgrade.cpp:244
+#: dbupgrade.cpp:245
 msgid "Save debug file"
 msgstr "Hata ayıklama dosyasını kaydedin."
 
-#: dbupgrade.cpp:284
+#: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "VT yönetimi tamamlandı, lütfen MMEX'i kapatıp yeniden açın!"
 
@@ -3906,9 +3906,45 @@ msgstr "Yeni hisse senedi giriş simgesi yaratmak için, pay sayısı ve alış 
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
 msgstr "UK (HSBC HLDG) payı örneği: HSBA.L"
 
-#: mmTips.h:50
-msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "Eğer Hisse Senedi Adı alanı boşsa, fiyat güncellendiğinde doldurulacaktır."
+#: mmTips.h:50 mmTips.h:52
+msgid "Before you start investing, have a fully-funded emergency fund."
+msgstr ""
+
+#: mmTips.h:53
+msgid "Before you start investing, know your cash flow (have a budget)."
+msgstr ""
+
+#: mmTips.h:54
+msgid "Before you start investing, pay off consumer debt - especially credit cards."
+msgstr ""
+
+#: mmTips.h:55
+msgid "Before you start investing, make net worth your primary tracking metric."
+msgstr ""
+
+#: mmTips.h:56
+msgid "Before you start investing, clarify your goals and priorities."
+msgstr ""
+
+#: mmTips.h:57
+msgid "Before you start investing, make sure you understand investing basics."
+msgstr ""
+
+#: mmTips.h:58
+msgid "Common mistake of investors: only buying companies you know."
+msgstr ""
+
+#: mmTips.h:59
+msgid "Common mistake of investors: buying companies you like."
+msgstr ""
+
+#: mmTips.h:60
+msgid "Common mistake of investors: buying buzzworthy companies."
+msgstr ""
+
+#: mmTips.h:61
+msgid "Common mistake of investors: forgetting to rebalance."
+msgstr ""
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -5640,7 +5676,7 @@ msgstr ""
 msgid "Browse for folder"
 msgstr "Dizin için gözat"
 
-#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:208
+#: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
 msgstr "Gerçek yol:"
 
@@ -5650,22 +5686,22 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:112
 #, c-format
-msgid "%s → User document directory"
+msgid "%s : User document directory"
 msgstr ""
 
 #: optionsettingsattachment.cpp:113
 #, c-format
-msgid "%s → User profile folder"
+msgid "%s : User profile folder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:114
 #, c-format
-msgid "%s → Folder of .MMB database file"
+msgid "%s : Folder of .MMB database file"
 msgstr ""
 
 #: optionsettingsattachment.cpp:115
 #, c-format
-msgid "%s → MMEX Application data folder"
+msgid "%s : MMEX Application data folder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:121
@@ -5676,75 +5712,78 @@ msgstr "Diğer İşletim Sistemi dizinleri"
 msgid "Not set yet"
 msgstr ""
 
-#: optionsettingsattachment.cpp:133
-msgid "Windows folder → "
+#: optionsettingsattachment.cpp:135
+#, c-format
+msgid "Windows folder: %s"
 msgstr ""
 
-#: optionsettingsattachment.cpp:140
-msgid "Mac folder → "
+#: optionsettingsattachment.cpp:143
+#, c-format
+msgid "Mac folder: %s"
 msgstr ""
 
-#: optionsettingsattachment.cpp:147
-msgid "Unix folder → "
+#: optionsettingsattachment.cpp:151
+#, c-format
+msgid "Unix folder: %s"
 msgstr ""
 
-#: optionsettingsattachment.cpp:155
+#: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
 msgstr "İlişikler altdizini oluşturun ve kullanın"
 
-#: optionsettingsattachment.cpp:166
+#: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
 msgstr "Almadan sonra dosyayı sil"
 
-#: optionsettingsattachment.cpp:168
+#: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
 msgstr "Almadan sonra İlişikler dizininde dosyayı silmek için seçin"
 
-#: optionsettingsattachment.cpp:172
+#: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
 msgstr "İlişik kaldırıldığında dosyayı silme yerine taşı"
 
-#: optionsettingsattachment.cpp:174
+#: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr "İlişik kaldırıldığında dosyanın silinmemesi, fakat yerine 'Deleted' dizinine taşınması için seçin"
 
-#: optionsettingsattachment.cpp:178
+#: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
 msgstr ""
 
-#: optionsettingsattachment.cpp:180
+#: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
 msgstr ""
 
-#: optionsettingsattachment.cpp:193
+#: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
 msgstr "İlişikler arşivi olarak ayarlamak için dizini seçin"
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
 msgstr ""
 
-#: optionsettingsattachment.cpp:234
+#: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
 msgstr ""
 
-#: optionsettingsattachment.cpp:242
+#: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
 msgstr "İlişikler yolu değişti!"
 
-#: optionsettingsattachment.cpp:244 optionsettingsattachment.cpp:253
+#: optionsettingsattachment.cpp:248 optionsettingsattachment.cpp:257
 msgid "Attachments folder migration"
 msgstr "İlişikler dizini yer değişimi"
 
-#: optionsettingsattachment.cpp:250
+#: optionsettingsattachment.cpp:254
 msgid "Error moving attachments folder: please move it manually!"
 msgstr "İlişikler dizini taşımasında hata: lütfen elle taşıyın!"
 
-#: optionsettingsattachment.cpp:251
+#: optionsettingsattachment.cpp:255
 msgid "Origin"
 msgstr "Kaynak"
 
-#: optionsettingsattachment.cpp:252
+#: optionsettingsattachment.cpp:256
 msgid "Destination"
 msgstr "Hedef"
 
