@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-04 17:07\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -536,15 +536,15 @@ msgstr "Текущее значение"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "Новый актив..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "Дублировать актив..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Добавить транзакцию актива..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,20 +552,20 @@ msgstr "Показать транзакции актива"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "Открыть счёт актива..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "Редактировать актив..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "Удалить актив..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Редактор вложений..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1320,7 +1320,7 @@ msgstr "Пропустить следующее появление повтор�
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Введите следующее начисление..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1328,19 +1328,19 @@ msgstr "Пропустить следующее начисление"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Новая повторяющаяся Транзакция..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Редактировать повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "&Дублировать повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Удалить повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3927,43 +3927,43 @@ msgstr "Пример актива GAZPROM, тикер: GAZP.ME"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Прежде чем приступить к инвестированию, создайте резервный фонд."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Прежде чем начать инвестировать, изучите свой денежный поток (имейте бюджет)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Прежде чем приступить к инвестированию, погасите все кредиты."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Прежде чем вы начнете инвестировать, оцените всё своё имущество."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Прежде чем начать инвестирование, уточните цели и приоритеты."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Прежде чем начать инвестирование, убедитесь, что вы понимаете основы инвестирования."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Обычная ошибка инвесторов: покупка только известных брендов."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Обычная ошибка инвесторов: покупка компаний, которые вам нравится (субъективно)."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Обычная ошибка инвесторов: покупка недостойных компаний."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Обычная ошибка инвесторов: забыли про балансировку."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -3975,15 +3975,15 @@ msgstr "Дата удаления"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Новый снятие..."
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Новый депозит..."
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "Новый перевод..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -4012,7 +4012,7 @@ msgstr "Вставить транзакции (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "Дублировать транзакцию..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4032,7 +4032,7 @@ msgstr "Показать разделённые категории"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Создать повторяющуюся транзакцию..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4044,7 +4044,7 @@ msgstr[3] "&Восстановить выбранные транзакции..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Восстановить все транзакции в текущем представлении..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4064,19 +4064,19 @@ msgstr[3] "&Окончательно удалить выбранные тран�
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Удалить все транзакции в текущем представлении..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "&Окончательно удалить все транзакции в текущем представлении..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Удалить показанные транзакции \"для отслеживания\"..."
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Удалить показанные не выверенные транзакции..."
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
@@ -4393,11 +4393,11 @@ msgstr "MMEX: Ошибка"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "CSV &файлы..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML файлы..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4405,35 +4405,35 @@ msgstr "Импорт из XML  (Excel формат)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF файлы..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV файлы..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON файлы..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Изменить фильтр..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Переименовать фильтр..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Удалить фильтр..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Редактировать счёт..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Удалить счёт..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
@@ -4441,11 +4441,11 @@ msgstr "&Перейти на Web-сайт"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Переопределить счёт..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account..."
-msgstr ""
+msgstr "Новый счёт..."
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4457,7 +4457,7 @@ msgstr "Показывать счета"
 
 #: mmframe.cpp:1459
 msgid "&New Database..."
-msgstr ""
+msgstr "&Новая база данных..."
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4465,7 +4465,7 @@ msgstr "Новая база данных"
 
 #: mmframe.cpp:1460
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Открыть базу данных...\tCtrl-O"
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
@@ -4473,7 +4473,7 @@ msgstr "Открыть базу данных"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "&Сохранить базу данных как..."
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4497,7 +4497,7 @@ msgstr "Импорт из QIF"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4521,7 +4521,7 @@ msgstr "Экспорт в JSON файл"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML файлы..."
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4529,7 +4529,7 @@ msgstr "Экспортировать в HTML"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Печать..."
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
@@ -4653,11 +4653,11 @@ msgstr "Загрузить историю курсов валют и акций"
 
 #: mmframe.cpp:1606
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "&Категории..."
 
 #: mmframe.cpp:1610
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Редактор получа&телей..."
 
 #: mmframe.cpp:1610 mmframe.cpp:1828 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4665,7 +4665,7 @@ msgstr "Редактор получателей"
 
 #: mmframe.cpp:1614
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Редактор &валют..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1829
 msgid "Organize Currency"
@@ -4673,11 +4673,11 @@ msgstr "&Валюта"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Категории..."
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
-msgstr ""
+msgstr "&Получатели..."
 
 #: mmframe.cpp:1622
 msgid "Reassign all payees to another payee"
@@ -4693,7 +4693,7 @@ msgstr "Замена категорий и получателей"
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Бюджет..."
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -4709,7 +4709,7 @@ msgstr "&Активы"
 
 #: mmframe.cpp:1649
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "Менеджер &тем..."
 
 #: mmframe.cpp:1649 themes.cpp:143
 msgid "Theme Manager"
@@ -4717,7 +4717,7 @@ msgstr "Менеджер тем"
 
 #: mmframe.cpp:1655
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Отчёт по критериям..."
 
 #: mmframe.cpp:1655 mmframe.cpp:1831
 msgid "Transaction Report Filter"
@@ -4725,11 +4725,11 @@ msgstr "Отчёт по критериям"
 
 #: mmframe.cpp:1661
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "&Менеджер отчётов..."
 
 #: mmframe.cpp:1665
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "&Управление доп. полями..."
 
 #: mmframe.cpp:1665
 msgid "Custom Fields Manager"
@@ -4737,7 +4737,7 @@ msgstr "Диспетчер пользовательских полей"
 
 #: mmframe.cpp:1671
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Обновить &WebApp..."
 
 #: mmframe.cpp:1671 mmframe.cpp:2690 mmframe.cpp:2693
 msgid "Refresh WebApp"
@@ -4753,7 +4753,7 @@ msgstr "Настройки"
 
 #: mmframe.cpp:1683
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Преобразовать &зашифрованную БД..."
 
 #: mmframe.cpp:1684
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4761,7 +4761,7 @@ msgstr "Преобразование зашифрованной БД в неза
 
 #: mmframe.cpp:1686
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "&Сменить пароль зашифрованной БД..."
 
 #: mmframe.cpp:1687
 msgid "Change the password of an encrypted database"
@@ -4769,7 +4769,7 @@ msgstr "Сменить пароль для зашифрованной базы �
 
 #: mmframe.cpp:1689
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Оптимизировать базу данных..."
 
 #: mmframe.cpp:1690
 msgid "Optimize database space and performance"
@@ -4777,7 +4777,7 @@ msgstr "Оптимизация пространства базы данных"
 
 #: mmframe.cpp:1692
 msgid "Database De&bug..."
-msgstr ""
+msgstr "Отладка &базы данных..."
 
 #: mmframe.cpp:1693
 msgid "Generate database report or fix errors"
@@ -5743,22 +5743,22 @@ msgstr "Легенда (может использоваться как пере�
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Пользовательская папка документов"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Папка профиля пользователя"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Папка где расположен .mmb файл"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : MMEX папка с данными"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5771,17 +5771,17 @@ msgstr "Еще не установлено"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Windows папка: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Mac папка: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Unix папка: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -7157,11 +7157,11 @@ msgstr "Текущая сумма"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Добавление новой инвестиции..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Добавить транзакцию..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7169,11 +7169,11 @@ msgstr "Показать транзакции"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Редактирование инвестиции..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Удаление инвестиции..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
