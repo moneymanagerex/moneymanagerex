@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 09:22\n"
+"PO-Revision-Date: 2023-01-04 10:45\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -536,15 +536,15 @@ msgstr "Huidige waarde"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Nieuwe Bezitting..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "K&opieer bezitting..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Bezittingen transactie toevoegen..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,20 +552,20 @@ msgstr "Bezittingentransacties &tonen"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Bezittingen rekening openen..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Wijzig bezitting..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Verwijder bezitting..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Beheer bijlagen..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1321,7 +1321,7 @@ msgstr "Sla volgende herhalende transactie over"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Invoeren volgende gebeurtenis..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1329,19 +1329,19 @@ msgstr "Overslaan volgende gebeurtenis"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nieuwe herhalende transactie..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Herhalende transactie wijzigen..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "K&opieer herhalende transactie..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Verwijder herhalende transactie..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3918,43 +3918,43 @@ msgstr "Voorbeeld voor UK (HSBC HLDG) aandeel: HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Voordat u begint met beleggen, zorg voor een volledig gefinancierd noodfonds."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Voordat u begint met beleggen, moet u uw cashflow kennen (een budget hebben)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Voordat u begint met beleggen, moet uw schulden afbetalen, vooral creditcards."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Voordat u begint met beleggen, moet u uw primaire trackingstatistiek netto waard maken."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Voordat u begint met investeren, moet u uw doelstellingen en prioriteiten duidelijk hebben."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Voordat u begint met beleggen, moet u ervoor zorgen dat u de basisprincipes van beleggen begrijpt."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Veelgemaakte fout van investeerders: alleen bedrijven kopen die je kent."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Veelgemaakte fout van investeerders: bedrijven kopen die je leuk vindt."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Veelgemaakte fout van beleggers: buzzwaardige bedrijven kopen."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Veelgemaakte fout van beleggers: vergeten te herbalanceren."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -3966,15 +3966,15 @@ msgstr "Verwijderd aan"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Nieuwe opname..."
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Nieuwe storting..."
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Nieuwe overboeking..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -3999,7 +3999,7 @@ msgstr "&Plak Transacties (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "Kopieer transactie..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4017,7 +4017,7 @@ msgstr "Toon &Splitsen categorieën"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Nieuwe herhalende t&ransactie..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4027,7 +4027,7 @@ msgstr[1] "Geselecteerde transacties &herstellen..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Herstel alle transacties in de huidige weergave..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4043,19 +4043,19 @@ msgstr[1] "Geselecteerde transacties definitief verwijderen..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Verwijder alle transacties in de huidige lijst..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Alle transacties in de huidige weergave permanent verwijderen..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Verwijder bekeken 'te controleren' transacties..."
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Verwijder bekeken \"openstaande\" transacties..."
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
@@ -4364,11 +4364,11 @@ msgstr "MMEX: Menu pop-up fout"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV-bestanden..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML bestanden..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4376,35 +4376,35 @@ msgstr "Import van XML (Excel opmaak)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF bestanden..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV bestanden..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON bestanden..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "Filter &bewerken..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "Filternaam wijzigen..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "Filter verwijderen..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Wijzig Rekening..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Verwijder rekening..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
@@ -4412,11 +4412,11 @@ msgstr "&Open website van de rekening"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "Rekening opnieuw toewijzen..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account..."
-msgstr ""
+msgstr "Nieuwe &rekening..."
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4428,7 +4428,7 @@ msgstr "Zichtbare rekeningen"
 
 #: mmframe.cpp:1459
 msgid "&New Database..."
-msgstr ""
+msgstr "&Nieuwe Database..."
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4436,7 +4436,7 @@ msgstr "Wizard voor een nieuw databestand"
 
 #: mmframe.cpp:1460
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Open Database...\tCtrl-O"
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
@@ -4444,7 +4444,7 @@ msgstr "&Open databestand\tCtrl-O"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Databestand opslaan als..."
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4468,7 +4468,7 @@ msgstr "Importeer een QIF-bestand"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4492,7 +4492,7 @@ msgstr "Exporteren als JSON"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML bestanden..."
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4500,7 +4500,7 @@ msgstr "Export naar HTML-bestand"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Afdrukken..."
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
@@ -4624,11 +4624,11 @@ msgstr "Download valutakoersen en aandelenkoersen"
 
 #: mmframe.cpp:1606
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "&Categorieën Beheren..."
 
 #: mmframe.cpp:1610
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Beheren &begunstigden..."
 
 #: mmframe.cpp:1610 mmframe.cpp:1828 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4636,7 +4636,7 @@ msgstr "Beheer begunstigden"
 
 #: mmframe.cpp:1614
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Beheren &valuta's..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1829
 msgid "Organize Currency"
@@ -4644,11 +4644,11 @@ msgstr "Beheer valuta's"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Categorieën..."
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
-msgstr ""
+msgstr "&Begunstigden..."
 
 #: mmframe.cpp:1622
 msgid "Reassign all payees to another payee"
@@ -4664,7 +4664,7 @@ msgstr "Overzetten Categorieën && Begunstigden"
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Begrotingen..."
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -4680,7 +4680,7 @@ msgstr "&Bezittingen"
 
 #: mmframe.cpp:1649
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "T&hema Beheerder..."
 
 #: mmframe.cpp:1649 themes.cpp:143
 msgid "Theme Manager"
@@ -4688,7 +4688,7 @@ msgstr "Themabeheerder"
 
 #: mmframe.cpp:1655
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "Transactie &Rapport Filter..."
 
 #: mmframe.cpp:1655 mmframe.cpp:1831
 msgid "Transaction Report Filter"
@@ -4696,11 +4696,11 @@ msgstr "Transactie rapportfilter"
 
 #: mmframe.cpp:1661
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Algemene Rapport &Beheer..."
 
 #: mmframe.cpp:1665
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Aangepaste velden beheer..."
 
 #: mmframe.cpp:1665
 msgid "Custom Fields Manager"
@@ -5714,12 +5714,12 @@ msgstr "Legende (kan gebruikt worden als variabelen aan het begin van pad hierbo
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Gebruikersdocumentenmap"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : gebruikersprofielmap"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
