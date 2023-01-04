@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 06:06\n"
+"PO-Revision-Date: 2023-01-04 07:24\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3843,7 +3843,7 @@ msgstr "Tipp: az .mmb fájl nincs titkosítva. Ez azt jelenti, hogy bárki, aki 
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "Tipp: tranzakció ellenőrzöttként megjelöléséhez válassza ki az ügyletet és üsse le az \"r\", vagy \"R\" betűt. Ha nincs ellenőrizve, akkor elegendő az \"u\", vagy \"U\" leütése."
+msgstr "Tipp: Ha egy ügyletet egyeztetettként szeretne megjelölni, válassza ki az ügyletet, és nyomja meg az „R” billentyűt. Ha egy ügyletet egyeztetetlenként szeretne megjelölni, válassza ki az ügyletet, és nyomja meg az „U” billentyűt."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
@@ -3939,19 +3939,19 @@ msgstr "Mielőtt elkezdené a befektetést, győződjön meg arról, hogy megér
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "A befektetők gyakori hibája: csak olyan cégeket vásárol, amelyeket ismer."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "A befektetők gyakori hibája: olyan cégeket vásárolnak, amelyek tetszenek."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "A befektetők gyakori hibája: nyüzsgő cégeket vásárolnak."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "A befektetők gyakori hibája: elfelejtik a portfóliót egyensúlyba hozni."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -4050,11 +4050,11 @@ msgstr "Összes ügylet végleges törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Megtekintett „követés” ügyletek törlése…"
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Megtekintett „nincs egyeztetve” ügyletek törlése…"
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
