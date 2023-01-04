@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 17:07\n"
+"PO-Revision-Date: 2023-01-04 23:35\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -536,15 +536,15 @@ msgstr "Valore Attuale"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Nuovo Cespite..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&uplica Cespite..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Aggiungi Operazione su Cespite..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,7 +552,7 @@ msgstr "&Mostra Operazioni sui Cespiti"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Apri Conto Cespite..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
@@ -560,7 +560,7 @@ msgstr "&Modifica Cespite..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Elimina Cespite..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
@@ -569,15 +569,15 @@ msgstr ""
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
-msgstr "Vuoi davvero cancellare il Cespite?"
+msgstr "Vuoi davvero eliminare il Cespite?"
 
 #: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
-msgstr "Conferma cancellazione del Cespite"
+msgstr "Conferma eliminazione del Cespite"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX consente di gestire beni immobili come automobili, case, terreni ed altro. Ogni cespite può essere rivalutato o svalutato in base ad un determinato tasso annuo, o conservare inalterato il proprio valore. Il valore totale dei cespiti è incluso nel valore finanziario complessivo."
+msgstr "MMEX consente di gestire beni immobili come automobili, case, terreni ed altro. Ogni cespite può essere rivalutato o svalutato in base ad un determinato tasso annuo, o conservare inalterato il proprio valore. Il valore totale dei cespiti viene sommato al tuo patrimonio finanziario complessivo."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:469 mmframe.cpp:740 mmframe.cpp:1643 mmframe.cpp:3213
@@ -5531,7 +5531,7 @@ msgstr "Proprietà"
 
 #: model/Model_Asset.cpp:44
 msgid "Household Object"
-msgstr "Cespiti di famiglia"
+msgstr "Beni di famiglia"
 
 #: model/Model_Asset.cpp:45
 msgid "Art"
@@ -7537,7 +7537,7 @@ msgstr "Impossibile trovare la valuta 'USD' necessaria per convertire i prezzi d
 
 #: util.cpp:1051
 msgid "Could not parse price in asset history"
-msgstr "Impossibile analizzare i prezzi nella cronologia delle risorse"
+msgstr "Impossibile analizzare il prezzo nello storico del cespite"
 
 #: util.cpp:1281
 #, c-format
@@ -7546,7 +7546,7 @@ msgstr "Versione: %s"
 
 #: util.cpp:1282
 msgid "Build on"
-msgstr "Costruire"
+msgstr "Compilata il"
 
 #: util.cpp:1283
 msgid "Database version: "
