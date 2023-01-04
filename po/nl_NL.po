@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-04 09:22\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5724,12 +5724,12 @@ msgstr ""
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Map van .MMB database bestand"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : MMEX Applicatie Gegevensmap"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5742,17 +5742,17 @@ msgstr "Nog niet ingesteld"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Windows map: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Mac map: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Unix map: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -5963,27 +5963,27 @@ msgstr "Nee"
 
 #: optionsettingsmisc.cpp:148
 msgid "Default Date"
-msgstr ""
+msgstr "Standaard datum"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Standaard begunstigde"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Standaard storting/opname categorie"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Standaard overdrachtscategorie"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Standaard status"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Bulk transacties"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -6001,7 +6001,7 @@ msgstr "Wanneer MMEX start, \n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Back-up databestand bij afsluiten"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
