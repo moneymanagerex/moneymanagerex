@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 21:14\n"
+"PO-Revision-Date: 2023-01-04 22:12\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4028,19 +4028,19 @@ msgstr[1] "&Radera valda transaktioner permanent..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Ta bort alla transaktioner i aktuell vy..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Ta bort alla transaktioner permanent i aktuell vy..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Ta bort visade transaktioner för \"uppföljning\"..."
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Ta bort visade \"Oavstämda\" Transaktioner..."
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
@@ -4347,11 +4347,11 @@ msgstr ""
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV-filer..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML-filer..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4359,35 +4359,35 @@ msgstr "Importera från XML (Excel-format)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF-filer..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV-filer..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON-filer..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Redigera filter..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Byt namn på filter..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Radera filter..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Redigera konto..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Ta bort konto..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
@@ -4395,11 +4395,11 @@ msgstr "&Öppna kontots hemsida"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Omfördela konto..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account..."
-msgstr ""
+msgstr "Nytt &konto..."
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4411,7 +4411,7 @@ msgstr "Synliga konton"
 
 #: mmframe.cpp:1459
 msgid "&New Database..."
-msgstr ""
+msgstr "&Ny databas..."
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4419,7 +4419,7 @@ msgstr "Ny databas"
 
 #: mmframe.cpp:1460
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Öppna databas... Ctrl-O"
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
@@ -4427,7 +4427,7 @@ msgstr "Öppna databas"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Spara databas &som..."
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4451,7 +4451,7 @@ msgstr "Importera från QIF"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4475,7 +4475,7 @@ msgstr "Exportera till JSON"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML-filer..."
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4483,7 +4483,7 @@ msgstr "Exportera till HTML"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Skriv ut..."
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
@@ -4607,11 +4607,11 @@ msgstr ""
 
 #: mmframe.cpp:1606
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Organisera &kategorier..."
 
 #: mmframe.cpp:1610
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Organisera &betalningsmottagare..."
 
 #: mmframe.cpp:1610 mmframe.cpp:1828 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4619,7 +4619,7 @@ msgstr "Oraganisera betalningsmottagare"
 
 #: mmframe.cpp:1614
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Organisera va&lutor..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1829
 msgid "Organize Currency"
@@ -4627,11 +4627,11 @@ msgstr "Organisera valutor"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Kategorier..."
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
-msgstr ""
+msgstr "&Betalningsmottagare..."
 
 #: mmframe.cpp:1622
 msgid "Reassign all payees to another payee"
@@ -4647,7 +4647,7 @@ msgstr ""
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Budgetinstälningar..."
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -4663,7 +4663,7 @@ msgstr ""
 
 #: mmframe.cpp:1649
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "T&emahanterare..."
 
 #: mmframe.cpp:1649 themes.cpp:143
 msgid "Theme Manager"
@@ -4671,7 +4671,7 @@ msgstr ""
 
 #: mmframe.cpp:1655
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "Transaktionsrapport &filter..."
 
 #: mmframe.cpp:1655 mmframe.cpp:1831
 msgid "Transaction Report Filter"
@@ -4679,11 +4679,11 @@ msgstr ""
 
 #: mmframe.cpp:1661
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Allmän rapport&hanterare..."
 
 #: mmframe.cpp:1665
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Hanteraren av anpassade &fält..."
 
 #: mmframe.cpp:1665
 msgid "Custom Fields Manager"
@@ -4691,7 +4691,7 @@ msgstr ""
 
 #: mmframe.cpp:1671
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Uppdatera &Webbapp..."
 
 #: mmframe.cpp:1671 mmframe.cpp:2690 mmframe.cpp:2693
 msgid "Refresh WebApp"
@@ -4707,7 +4707,7 @@ msgstr ""
 
 #: mmframe.cpp:1683
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Konvertera Krypterad &DB..."
 
 #: mmframe.cpp:1684
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4715,7 +4715,7 @@ msgstr ""
 
 #: mmframe.cpp:1686
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Ändra krypterat &Lösenord..."
 
 #: mmframe.cpp:1687
 msgid "Change the password of an encrypted database"
@@ -4723,7 +4723,7 @@ msgstr ""
 
 #: mmframe.cpp:1689
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Optimera databas..."
 
 #: mmframe.cpp:1690
 msgid "Optimize database space and performance"
@@ -4731,7 +4731,7 @@ msgstr "Optimera databasens utrymme och prestanda"
 
 #: mmframe.cpp:1692
 msgid "Database De&bug..."
-msgstr ""
+msgstr "Databas &felsökning..."
 
 #: mmframe.cpp:1693
 msgid "Generate database report or fix errors"
@@ -7085,11 +7085,11 @@ msgstr "Nuvarande totalt värde"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Ny aktieinvestering..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Lägg till aktietransaktion..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7097,11 +7097,11 @@ msgstr ""
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Ändra aktieinvestering..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Ta bort aktieinvestering..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
