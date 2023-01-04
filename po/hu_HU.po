@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 02:38\n"
+"PO-Revision-Date: 2023-01-04 03:35\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1904,11 +1904,11 @@ msgstr "Pénznemkód"
 
 #: currencydialog.cpp:208
 msgid "Currency Symbol"
-msgstr "Pénznem jele"
+msgstr "Pénznemjelzés"
 
 #: currencydialog.cpp:212
 msgid "Symbol Location"
-msgstr "Szimbólum elhelyezkedése"
+msgstr "Jelzés elhelyezkedése"
 
 #: currencydialog.cpp:213
 msgid "Prefix"
@@ -3697,7 +3697,7 @@ msgstr "%s-pénznemárfolyamát letöltése sikertelen"
 #: maincurrencydialog.cpp:722
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "A(z) %s szimbólumhoz tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
+msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
 
 #: maincurrencydialog.cpp:784 optionsettingsgeneral.cpp:289
 msgid "Changing base currency will delete all history rates, proceed?"
@@ -3710,11 +3710,11 @@ msgstr "Frissíteni szeretné a pénznemárfolyamokat?"
 #: maincurrencydialog.cpp:829
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "A(z) %s szimbólumhoz tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
+msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
 
 #: maincurrencydialog.cpp:872 stockspanel.cpp:337 util.cpp:675
 msgid "Could not find base currency symbol!"
-msgstr "Az alappénznem szimbóluma nem található!"
+msgstr "Az alappénznem jelzése nem található!"
 
 #: mmSimpleDialogs.cpp:512 mmSimpleDialogs.cpp:524
 msgid "Clear color"
@@ -3907,7 +3907,7 @@ msgstr "Az MMEX-t használva az értékpapírok és a befektetési alapok is kö
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Új részvénybejegyzés készítéshez meg kell adni a szimbólumát, a vásárolt darabszámot és vételi árfolyamot."
+msgstr "Új értékpapír bejegyzésének készítéshez meg kell adni a jelet, a vásárolt darabszámot és vételi árfolyamot."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -6782,7 +6782,7 @@ msgstr "Befektetések összegzése"
 
 #: reports/summarystocks.cpp:113 stockdialog.cpp:422 stocks_list.cpp:90
 msgid "Symbol"
-msgstr "Szimbólum"
+msgstr "Jel"
 
 #: reports/summarystocks.cpp:114
 msgid "Purchase Date"
@@ -6839,11 +6839,11 @@ msgstr "Adja meg a részvénytársaság nevét"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:199
 msgid "Stock Symbol"
-msgstr "Részvény jelzése"
+msgstr "Értékpapírjelzés"
 
 #: sharetransactiondialog.cpp:230 stockdialog.cpp:206
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Adja meg az részvény tőzsdei szimbólumát. (Nem kötelező) Tegye hozzá a tőzsdéét is. pl. IBM.BE"
+msgstr "Értékpapírjelzés megadása. (Nem kötelező) Tegye hozzá a tőzsdéét is. pl. IBM.BE"
 
 #: sharetransactiondialog.cpp:233
 msgid "Share Number"
@@ -6879,7 +6879,7 @@ msgstr "Értékpapírhoz tartozó mellékletek rendszerezése"
 
 #: sharetransactiondialog.cpp:291 stockdialog.cpp:266
 msgid "Display the web page for the specified Stock symbol"
-msgstr "Honlap megjelenítése a megadott értékpapír szimbólumhoz"
+msgstr "Honlap megjelenítése a megadott értékpapírjelzéséhez"
 
 #: sharetransactiondialog.cpp:301 stockdialog.cpp:273
 msgid "Enter notes associated with this investment"
@@ -6932,7 +6932,7 @@ msgstr "*Dátum"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr "Részvény-befektetés kezdő dátumának megadása\n"
+msgstr "Értékpapírbefektetés kezdő dátumának megadása\n"
 "Az induló részvényügylet létrehozásakor használja."
 
 #: stockdialog.cpp:218
@@ -7127,23 +7127,23 @@ msgstr "Akt. összérték"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Új értékpapírbefektetés…"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "Értékpapírügyletek &hozzáadása…"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr "Részvényügyletek &megjelenítés"
+msgstr "Értékpapírügyletek &megjelenítése"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "Értékpapírbefektetés s&zerkesztése…"
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "Értékpapírbefektetés &törlése…"
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7151,11 +7151,11 @@ msgstr "Részvények weblap"
 
 #: stocks_list.cpp:276
 msgid "Do you really want to delete the stock investment?"
-msgstr "Biztosan törölni szeretné a részvénybefektetést?"
+msgstr "Biztosan törölni szeretné az értékpapírbefektetést?"
 
 #: stocks_list.cpp:277
 msgid "Confirm Stock Investment Deletion"
-msgstr "Részvénybefektetés törlésének megerősítése"
+msgstr "Értékpapírbefektetés törlésének megerősítése"
 
 #: stocks_list.cpp:298
 #, c-format
@@ -7164,7 +7164,7 @@ msgstr "Ügylet áthelyezése %s helyről ide:"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
-msgstr "Részvényügyletek hozzáadása"
+msgstr "Értékpapírügyletek hozzáadása"
 
 #: stockspanel.cpp:140
 msgid "View Stock Transactions"
@@ -7172,7 +7172,7 @@ msgstr "Részvényügyletek mutatása"
 
 #: stockspanel.cpp:150
 msgid "Delete Stock Investment"
-msgstr "Részvénybefektetés törlése"
+msgstr "Értékpapírbefektetés törlése"
 
 #: stockspanel.cpp:154
 msgid "&Move"
