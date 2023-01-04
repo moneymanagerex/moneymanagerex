@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 04:58\n"
+"PO-Revision-Date: 2023-01-04 06:06\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2505,7 +2505,7 @@ msgstr "Megkettőzés"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:1499
 msgid "All Except Reconciled"
-msgstr "Kiegyenlítettek kivételével mind"
+msgstr "Minden, az egyeztetve kivételével"
 
 #: filtertransdialog.cpp:484 transactionsupdatedialog.cpp:117
 msgid "Specify"
@@ -4101,7 +4101,8 @@ msgstr "Ez a művelet nem vonható vissza."
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr "Az ügylet zárolva e dátumhoz: %s."
+msgstr "A mai napig zárolt ügyletek: %s\n\n"
+"Egyeztetett ügyletek."
 
 #: mmchecking_list.cpp:1222 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
@@ -4199,7 +4200,7 @@ msgstr "Számlaegyenleg: "
 
 #: mmcheckingpanel.cpp:460
 msgid "Reconciled Bal: "
-msgstr "Kiegyenlítettek egyenleg: "
+msgstr "Egyeztetett egyenleg: "
 
 #: mmcheckingpanel.cpp:462
 msgid "Diff: "
