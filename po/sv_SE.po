@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 22:30\n"
+"PO-Revision-Date: 2023-01-04 21:14\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -535,15 +535,15 @@ msgstr "Aktuellt värde"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Ny tillgång..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&uplicera tillgång..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Lägg till tillgångstransaktion..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -551,20 +551,20 @@ msgstr ""
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Öppna tillgångskonto..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Redigera tillgång..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Ta bort tillgång..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Organisera bilagor..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1318,7 +1318,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Ange nästa förekomst..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1326,19 +1326,19 @@ msgstr "Hoppa över nästa tillfälle"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Ny återkommande transaktion..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Redigera återkommande transaktion..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplicera återkommande transaktion..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Ta bort återkommande transaktion..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3951,15 +3951,15 @@ msgstr "Borttagen den"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Nytt uttag..."
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Ny insättning..."
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Ny överföring..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -3984,7 +3984,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "D&uplicera transaktion..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4002,7 +4002,7 @@ msgstr "&Visa delade kategorier"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Skapa återkommande T&ransaktion..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4012,7 +4012,7 @@ msgstr[1] "&Återställ valda transaktioner..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Återställ alla transaktioner i aktuell vy..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
