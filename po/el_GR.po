@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-04 10:45\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3915,15 +3915,15 @@ msgstr "Δείγμα του Ηνωμένου Βασιλείου (HSBC HLDG) με
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Πριν ξεκινήσετε την επένδυση, να έχετε ένα πλήρως χρηματοδοτούμενο ταμείο έκτακτης ανάγκης."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Πριν αρχίσετε να επενδύετε, να γνωρίζετε τις ταμειακές σας ροές (να έχετε ένα προϋπολογισμό)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Πριν ξεκινήσετε την επένδυση, εξοφλήσετε το καταναλωτικό χρέος - ειδικά τις πιστωτικές κάρτες."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -3931,19 +3931,19 @@ msgstr ""
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Πριν αρχίσετε να επενδύετε, διευκρινίστε τους στόχους και τις προτεραιότητές σας."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Πριν ξεκινήσετε την επένδυση, βεβαιωθείτε ότι καταλαβαίνετε τα βασικά σχετικά με τις επενδύσεις."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Ένα κοινό λάθος των επενδυτών: αγοράζουν μόνο τις εταιρείες που γνωρίζουν."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Ένα κοινό λάθος των επενδυτών: αγοράζουν μόνο τις εταιρείες που τους αρέσουν."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
@@ -5705,22 +5705,22 @@ msgstr "Υπόμνημα (μπορεί να χρησιμοποιηθεί ως μ
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Κατάλογος εγγράφων χρήστη"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Φάκελος προφίλ χρήστη"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Φάκελος αρχείου .MMB βάσης δεδομένων"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : Φάκελος δεδομένων εφαρμογών MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5733,17 +5733,17 @@ msgstr "Δεν έχει οριστεί ακόμα"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Φάκελος Windows: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Φάκελος Mac: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Φάκελος Unix: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
