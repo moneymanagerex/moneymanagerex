@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 23:28\n"
+"PO-Revision-Date: 2023-01-04 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -544,7 +544,7 @@ msgstr "Eszköz meg&kettőzése…"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "Eszközügylet &hozzáadása…"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,7 +552,7 @@ msgstr "Eszközművelet mutatása"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "Eszközszámla &megnyitása…"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
@@ -565,7 +565,7 @@ msgstr "Eszköz &törlése…"
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "Mellékletek &rendszerezése…"
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1321,7 +1321,7 @@ msgstr "Következő rendszeres ügylet előfordulásának kihagyása"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Következő előfordulás megadása…"
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1329,19 +1329,19 @@ msgstr "Következő előfordulás kihagyása"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Új, rendszeres ügylet…"
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "Rendszeres ügyletének s&zerkesztése…"
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "Rendszeres ügyletének meg&kettőzése…"
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "Rendszeres ügyletének &törlése…"
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3915,19 +3915,19 @@ msgstr "Minta brit (HSBC HLDG) részvény: HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, rendelkezzen egy teljesen finanszírozott segélyalappal."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, ismerje meg pénzforgalmát (legyen költségvetése)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, fizesse ki a fogyasztói adósságokat – különösen a hitelkártyákat."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, állítsa be a nettó értékét az elsődleges követési mutatóként."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
@@ -3963,15 +3963,15 @@ msgstr "Törlés dátuma"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Új kivét…"
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Új betét…"
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Új átutalás…"
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -3998,7 +3998,7 @@ msgstr "Ügylet beillesztése (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "Ügylet meg&kettőzése…"
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4016,7 +4016,7 @@ msgstr "Felosztott kategóriák &megjelenítése"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Rendszeres ügylet létre&hozása…"
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4026,7 +4026,7 @@ msgstr[1] "Kijelölt ügyletek &visszaállítása…"
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Összes ügylet visszaállítása a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4624,11 +4624,11 @@ msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1606
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "&Kategóriák rendszerezése…"
 
 #: mmframe.cpp:1610
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "&Kedvezményezettek rendszerezése…"
 
 #: mmframe.cpp:1610 mmframe.cpp:1828 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4636,7 +4636,7 @@ msgstr "Kedvezményezettek rendszerezése"
 
 #: mmframe.cpp:1614
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "&Pénznem rendszerezése…"
 
 #: mmframe.cpp:1614 mmframe.cpp:1829
 msgid "Organize Currency"
@@ -4644,11 +4644,11 @@ msgstr "Pénznem rendszerezése"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Kategóriák…"
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
-msgstr ""
+msgstr "&Kedvezményezettek…"
 
 #: mmframe.cpp:1622
 msgid "Reassign all payees to another payee"
@@ -4664,7 +4664,7 @@ msgstr "Kategóriák és kedvezményezettek áthelyezése"
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Költségvetés beállítása…"
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -4680,7 +4680,7 @@ msgstr "Eszközök"
 
 #: mmframe.cpp:1649
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "&Témakezelő…"
 
 #: mmframe.cpp:1649 themes.cpp:143
 msgid "Theme Manager"
@@ -4688,7 +4688,7 @@ msgstr "Témakezelő"
 
 #: mmframe.cpp:1655
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "Ügylet-jelentés s&zűrése…"
 
 #: mmframe.cpp:1655 mmframe.cpp:1831
 msgid "Transaction Report Filter"
@@ -4696,11 +4696,11 @@ msgstr "Ügylet-jelentés szűrése"
 
 #: mmframe.cpp:1661
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Általános jelentés&kezelő…"
 
 #: mmframe.cpp:1665
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "&Egyéni mezőkezelő…"
 
 #: mmframe.cpp:1665
 msgid "Custom Fields Manager"
@@ -4708,7 +4708,7 @@ msgstr "Felhasználói mező kezelője"
 
 #: mmframe.cpp:1671
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "&Webalkalmazás frissítése…"
 
 #: mmframe.cpp:1671 mmframe.cpp:2690 mmframe.cpp:2693
 msgid "Refresh WebApp"
@@ -4724,7 +4724,7 @@ msgstr "Beállítások megjelenítése"
 
 #: mmframe.cpp:1683
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Titkosított &adatbázis átalakítása…"
 
 #: mmframe.cpp:1684
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4732,7 +4732,7 @@ msgstr "Titkosított adatbázis konvertálása titkosítatlanra"
 
 #: mmframe.cpp:1686
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Titkosítási &jelszó módosítása…"
 
 #: mmframe.cpp:1687
 msgid "Change the password of an encrypted database"
@@ -4740,7 +4740,7 @@ msgstr "Titkosított adatbázis jelszavának módosítása"
 
 #: mmframe.cpp:1689
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "Adatbázis &optimalizálása…"
 
 #: mmframe.cpp:1690
 msgid "Optimize database space and performance"
@@ -4748,7 +4748,7 @@ msgstr "Adatbázis méretének és működésének optimalizálása "
 
 #: mmframe.cpp:1692
 msgid "Database De&bug..."
-msgstr ""
+msgstr "Adatbázis &hibakeresése…"
 
 #: mmframe.cpp:1693
 msgid "Generate database report or fix errors"
