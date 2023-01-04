@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 00:56\n"
+"PO-Revision-Date: 2023-01-04 02:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3931,11 +3931,11 @@ msgstr "Mielőtt elkezdené a befektetést, állítsa be a nettó értékét az 
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, tisztázza céljait és elsőbbségeit."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, győződjön meg arról, hogy megértette a befektetés alapjait."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
@@ -4042,11 +4042,11 @@ msgstr[1] "Kijelölt ügyletek &végleges törlése…"
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Összes ügylet törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Összes ügylet végleges törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
