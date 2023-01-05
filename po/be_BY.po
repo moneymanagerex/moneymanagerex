@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-05 18:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -536,15 +536,15 @@ msgstr "Бягучае значэнне"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Новы актыў..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "Д&убляваць актыў..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Дадаць аперацыю для актыва..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,20 +552,20 @@ msgstr "&Усе аперацыі для актыва"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Адчыніць рахунак актыва..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Рыдагаванне актыва..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Выдаліць актыва..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Дыспетчар далучэнняў..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1322,7 +1322,7 @@ msgstr "Ігнараваць наступнае з’яўленне заплан
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Дадаць чэргавую..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1330,19 +1330,19 @@ msgstr "Абмінуць чэргавую дату"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Стварыць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Рыдагаваць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "Зрабіць &дублікат запланаванай аперацыі..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Прыбраць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -4394,11 +4394,11 @@ msgstr "MMEX: Памылка усплывальнага акенца"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "Файлы &CSV..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "Файлы &XML..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4406,35 +4406,35 @@ msgstr "Імпартаваць з XML (фармат Excel)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "Файлы &QIF..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "Файлы &MMEX CSV..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "Файлы &JSON..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Рыдагаваць фільтр..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Перайменаваць фільтр..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Выдаліць фільтр..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Рыдагаваць рахунак..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Выдаліць рахунак..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
