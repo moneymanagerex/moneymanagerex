@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 23:35\n"
+"PO-Revision-Date: 2023-01-05 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2290,7 +2290,7 @@ msgstr "Assicurazione"
 
 #: db/DB_Table_Category_V1.h:148 optionsettingsview.cpp:233
 msgid "Auto"
-msgstr "Automobile"
+msgstr "Automatica"
 
 #: db/DB_Table_Category_V1.h:149
 msgid "Life"
