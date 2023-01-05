@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-05 16:14\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -535,15 +535,15 @@ msgstr "Aktueller Wert"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Neuer Vermögenswert..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "Vermögenswert D&uplizieren..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Vermögenswert hinzufügen..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -551,20 +551,20 @@ msgstr "Anlagenbuchung &anzeigen"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Anlagenkonto öffnen..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Vermögenswert bearbeiten..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Vermögenswert löschen..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Beilage verwalten..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1319,7 +1319,7 @@ msgstr "Nächste wiederkehrende Buchung überspringen"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Nächstes Ereignis eingeben..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1327,19 +1327,19 @@ msgstr "Überspringe nächstes Ereignis"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Neue wiederkehrende Buchung..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Wiederkehrende Buchung bearbeiten..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "&Wiederkehrende Transaktion duplizieren..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&lösche wiederkehrende Buchung..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3916,43 +3916,43 @@ msgstr "Als Beispiel für Großbritannien (HSBC HLDG) Aktien: HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Bevor Sie mit dem Investieren beginnen, sollten Sie über einen gut gefüllten Notfallfonds verfügen."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Bevor Sie investieren, sollten Sie Ihren Cashflow kennen (ein Budget haben)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Bevor Sie mit dem Investieren beginnen, zahlen Sie ihre Verbraucherkredite ab - insbesonders Kreditkarten."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Bevor Sie mit dem Investieren beginnen, sollten Sie den Nettowert zu Ihrer wichtigsten Messgröße machen."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Bevor Sie mit dem Investieren beginnen, sollten Sie Ihre Ziele und Prioritäten klären."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Bevor Sie mit dem Investieren beginnen, sollten Sie die Grundlagen des Investierens verstehen."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Häufiger Fehler von Investoren: kaufen sie nur Unternehmen, die Sie kennen."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Häufiger Fehler von Anlegern: Unternehmen kaufen, die Sie mögen."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Häufiger Fehler von Anlegern: der Kauf von Unternehmen, die in aller Munde sind."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Häufiger Fehler von Anlegern: Vergessen, die Balance wiederherzustellen."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -3964,15 +3964,15 @@ msgstr "Gelöscht am"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Neue Auszahlung..."
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Neue Einzahlung..."
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Neue Überweisung..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -3997,7 +3997,7 @@ msgstr "Buchungen einfügen (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "Buchung D&uplizieren..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4015,7 +4015,7 @@ msgstr "&Zeige gesplittete Kategorien"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Wiederkehrende Buchung e&rstellen..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4025,7 +4025,7 @@ msgstr[1] "Ausgewählte Transaktionen &wiederherstellen..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Alle Transaktionen in der aktuellen Ansicht wiederherstellen..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4041,19 +4041,19 @@ msgstr[1] "&Ausgewählte Transaktionen dauerhaft löschen..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Alle Transaktionen in der aktuellen Ansicht löschen..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Lösche alle Transaktionen in der aktuellen Ansicht dauerhaft..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Lösche angezeigte \"nachfolgende\" Buchungen..."
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Lösche angezeigte \"nicht abgestimmte\" Buchungen..."
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
@@ -4362,11 +4362,11 @@ msgstr "MMEX: Menu Popup Fehler"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV-Dateien..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML-Dateien..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4374,35 +4374,35 @@ msgstr "Import von XML (Excel Format)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF-Dateien..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV Dateien..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON-Dateien..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "Filter b&earbeiten..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "Filter &umbenennen..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "Filter &löschen..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Konto bearbeiten..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "Konto &löschen..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
@@ -4410,11 +4410,11 @@ msgstr "Konto-Webseite &öffnen"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "Konto &neu zuweisen..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account..."
-msgstr ""
+msgstr "Neues &Konto..."
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4426,7 +4426,7 @@ msgstr "Sichtbare Konten"
 
 #: mmframe.cpp:1459
 msgid "&New Database..."
-msgstr ""
+msgstr "&Neue Datenbank..."
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4434,7 +4434,7 @@ msgstr "Neue Datenbank"
 
 #: mmframe.cpp:1460
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "Datenbank &oeffnen\tCtrl-O"
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
@@ -4442,7 +4442,7 @@ msgstr "Datenbank Öffnen"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Datenbank speichern &unter..."
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4466,7 +4466,7 @@ msgstr "Import von QIF"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4490,7 +4490,7 @@ msgstr "Nach JSON exportieren"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML-Dateien..."
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4498,7 +4498,7 @@ msgstr "Export als HTML"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Drucken..."
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
