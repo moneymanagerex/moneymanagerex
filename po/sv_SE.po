@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-04 22:12\n"
+"PO-Revision-Date: 2023-01-05 15:18\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -693,7 +693,7 @@ msgstr "Mapp för bilagor är inte definierad."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Ange det i Verktyg → Alternativ → Bilagor"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1718,7 +1718,7 @@ msgstr ""
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Verktyg → Flytt av → Kategorier"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2388,7 +2388,7 @@ msgstr ""
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Vi föreslår en databasoptimering under Verktyg → Databas → Optimera"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -3839,7 +3839,7 @@ msgstr ""
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Tips: MMEX stöder utskrift av alla rapporter som kan visas. Utskriftsalternativen finns under menyn, Arkiv → Utskrift."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -4997,7 +4997,7 @@ msgstr ""
 
 #: mmframe.cpp:2044
 msgid "&Next →"
-msgstr ""
+msgstr "&Nästa →"
 
 #: mmframe.cpp:2057
 msgid "Cannot locate previously opened database.\n"
@@ -6291,7 +6291,7 @@ msgstr ""
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Verktyg → Flytt av → Betalningsmottagare"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
@@ -6483,7 +6483,7 @@ msgstr ""
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Använd Hjälp → Sök efter uppdateringar i MMEX för att få den senaste versionen, där ditt problem kanske redan är åtgärdat."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7603,12 +7603,12 @@ msgstr "Fel API-version av WebApp:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp API-version: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Förväntad API-version: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7778,7 +7778,7 @@ msgstr ""
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Ange att först använda Verktyg → Alternativ menyn och sedan lägga till ett nytt konto."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
