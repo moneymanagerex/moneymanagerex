@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:51\n"
+"PO-Revision-Date: 2023-01-06 11:46\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -536,15 +536,15 @@ msgstr "Valor actual"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Nuevo activo..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&uplicar activo..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Añadir transacción de activos..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,20 +552,20 @@ msgstr "&Ver transacciones del valor"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Abrir una cuenta de valores..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Editar activo..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Eliminar activo..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1373 mmframe.cpp:1393 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Organizar adjuntos..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1321,7 +1321,7 @@ msgstr "Omitir la siguiente aparición de la transacción periódica"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Registrar siguiente aparición..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1329,19 +1329,19 @@ msgstr "Omitir siguiente aparición"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nueva transacción periódica..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Editar transacción periódica..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplicar transacción periódica..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Borrar transacción periódica..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3972,7 +3972,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Nueva transferencia..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -3997,7 +3997,7 @@ msgstr "&Pegar transacciones (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "D&uplicar transacción..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4015,7 +4015,7 @@ msgstr "&Ver categorías divididas"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Crear t&ransacción periódica..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4025,7 +4025,7 @@ msgstr[1] "&Restaurar transacciones seleccionadas..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Restaurar todas las transacciones de la vista actual..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4041,11 +4041,11 @@ msgstr[1] "&Eliminar permanentemente las transacciones seleccionadas..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Borrar todas las transacciones de la vista actual..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Eliminar permanentemente todas las transacciones de la vista actual..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
@@ -4362,11 +4362,11 @@ msgstr "MMEX: Error de menú emergente"
 
 #: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&Archivos CSV..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&XML Files..."
-msgstr ""
+msgstr "&Archivos XML..."
 
 #: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "Import from XML (Excel format)"
@@ -4374,35 +4374,35 @@ msgstr "Importar desde XML (formato Excel)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&Archivos QIF..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&Archivos CSV de MMEX..."
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&Archivos JSON..."
 
 #: mmframe.cpp:1351
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Editar filtro..."
 
 #: mmframe.cpp:1352
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Renombrar filtro..."
 
 #: mmframe.cpp:1353
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Eliminar filtro..."
 
 #: mmframe.cpp:1369 mmframe.cpp:1387 mmframe.cpp:1407 mmframe.cpp:1581
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Editar cuenta..."
 
 #: mmframe.cpp:1370 mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1587
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Borrar cuenta..."
 
 #: mmframe.cpp:1372 mmframe.cpp:1392
 msgid "&Launch Account Website"
@@ -4410,11 +4410,11 @@ msgstr "&Abrir sitio web de la cuenta"
 
 #: mmframe.cpp:1388 mmframe.cpp:1584
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Reasignar cuenta..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1578
 msgid "New &Account..."
-msgstr ""
+msgstr "Nueva &cuenta..."
 
 #: mmframe.cpp:1408
 msgid "Account &List (Home)"
@@ -4426,7 +4426,7 @@ msgstr "Cuentas visibles"
 
 #: mmframe.cpp:1459
 msgid "&New Database..."
-msgstr ""
+msgstr "&Nueva base de datos..."
 
 #: mmframe.cpp:1459 mmframe.cpp:1819 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4434,7 +4434,7 @@ msgstr "Nueva base de datos"
 
 #: mmframe.cpp:1460
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Abrir base de datos...\tCtrl-O"
 
 #: mmframe.cpp:1460 mmframe.cpp:1820
 msgid "Open Database"
@@ -4442,7 +4442,7 @@ msgstr "Abrir base de datos"
 
 #: mmframe.cpp:1461
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Guardar base de datos &como..."
 
 #: mmframe.cpp:1461
 msgid "Save Database As"
@@ -4466,7 +4466,7 @@ msgstr "Importar desde QIF"
 
 #: mmframe.cpp:1477
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1477
 msgid "Import from WebApp"
@@ -4490,7 +4490,7 @@ msgstr "Exportar a JSON"
 
 #: mmframe.cpp:1486
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&Archivos HTML..."
 
 #: mmframe.cpp:1486
 msgid "Export to HTML"
@@ -4498,7 +4498,7 @@ msgstr "Exportar a HTML"
 
 #: mmframe.cpp:1492
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimir..."
 
 #: mmframe.cpp:1492 mmframe.cpp:1856
 msgid "Print current view"
@@ -4634,7 +4634,7 @@ msgstr "Organizar beneficiarios"
 
 #: mmframe.cpp:1614
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Organizar divi&sas..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1829
 msgid "Organize Currency"
@@ -4642,11 +4642,11 @@ msgstr "Organizar divisas"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Categorías..."
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
-msgstr ""
+msgstr "&Beneficiarios..."
 
 #: mmframe.cpp:1622
 msgid "Reassign all payees to another payee"
@@ -4662,7 +4662,7 @@ msgstr "Reorganizar categorías y beneficiarios"
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Organizar presupuesto..."
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -4678,7 +4678,7 @@ msgstr "&Activos"
 
 #: mmframe.cpp:1649
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "G&estor de temas..."
 
 #: mmframe.cpp:1649 themes.cpp:143
 msgid "Theme Manager"
@@ -5740,17 +5740,17 @@ msgstr "Aún no establecido"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Carpeta de Windows: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Carpeta de Mac: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Carpeta de Unix: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
