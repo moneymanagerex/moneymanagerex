@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 01:25+0300\n"
-"PO-Revision-Date: 2023-01-06 22:33\n"
+"PO-Revision-Date: 2023-01-06 23:33\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1812,7 +1812,7 @@ msgstr "Annulla"
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:127
 #: relocatepayeedialog.cpp:127 themes.cpp:195
 msgid "Close"
-msgstr "Chiuso"
+msgstr "Chiudi"
 
 #: constants.cpp:80
 msgid "&Close "
@@ -7251,7 +7251,7 @@ msgstr "Elimina"
 
 #: themes.cpp:193
 msgid "Use"
-msgstr "Usa"
+msgstr "Utilizza"
 
 #: themes.cpp:239
 msgid "No description available"
