@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-06 18:16+0300\n"
-"PO-Revision-Date: 2023-01-06 15:24\n"
+"PO-Revision-Date: 2023-01-06 16:21\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4642,7 +4642,7 @@ msgstr "Währungen verwalten"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Kategorien..."
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
@@ -4662,7 +4662,7 @@ msgstr "Umziehen von Kategorien && Empfänger/Zahler"
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Budget einrichten..."
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
