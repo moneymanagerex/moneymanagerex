@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-05 16:14\n"
+"POT-Creation-Date: 2023-01-06 18:16+0300\n"
+"PO-Revision-Date: 2023-01-06 16:21\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4642,7 +4642,7 @@ msgstr "Währungen verwalten"
 
 #: mmframe.cpp:1618
 msgid "&Categories..."
-msgstr ""
+msgstr "&Kategorien..."
 
 #: mmframe.cpp:1621
 msgid "&Payees..."
@@ -4662,7 +4662,7 @@ msgstr "Umziehen von Kategorien && Empfänger/Zahler"
 
 #: mmframe.cpp:1635
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Budget einrichten..."
 
 #: mmframe.cpp:1639
 msgid "&Recurring Transactions"
@@ -7541,30 +7541,34 @@ msgid "Version: %s"
 msgstr "Version: %s"
 
 #: util.cpp:1282
-msgid "Build on"
-msgstr "Aufbauend auf"
+#, c-format
+msgid "Built on: %s %s"
+msgstr ""
 
 #: util.cpp:1283
-msgid "Database version: "
-msgstr "Datenbankversion: "
+#, c-format
+msgid "Database version: %d"
+msgstr ""
 
 #: util.cpp:1290
-msgid "Git commit: "
-msgstr "Git commit: "
+#, c-format
+msgid "Git commit: %s (%s)"
+msgstr ""
 
-#: util.cpp:1294
-msgid "Git branch: "
-msgstr "Git branch: "
+#: util.cpp:1293
+#, c-format
+msgid "Git branch: %s"
+msgstr ""
 
-#: util.cpp:1298
+#: util.cpp:1297
 msgid "MMEX is using the following support products:"
 msgstr "MMEX verwendet folgene Unterstützungsprodukte:"
 
-#: util.cpp:1315
-msgid "Build using:"
-msgstr "Genutztes Build:"
+#: util.cpp:1314
+msgid "Has been built using:"
+msgstr ""
 
-#: util.cpp:1336
+#: util.cpp:1335
 msgid "Running on:"
 msgstr "Läuft auf:"
 
