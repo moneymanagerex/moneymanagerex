@@ -1279,19 +1279,18 @@ const wxString getProgramDescription(int type)
 
     wxString description;
     description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
-        << bull << (simple ? "Build:" : _("Build on")) << " " << build_date << " " BUILD_TIME << eol
-        << bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
+        << bull << wxString::Format(simple ? "Built: %s %s" : _("Built on: %s %s"), build_date, BUILD_TIME) << eol
+        << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
         << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
 #endif
         << eol
 
 #ifdef GIT_COMMIT_HASH
-        << bull << (simple ? "git " : _("Git commit: ")) << GIT_COMMIT_HASH
-        << " (" << GIT_COMMIT_DATE << ")" << eol
+        << bull << wxString::Format(simple ? "git %s (%s)" : _("Git commit: %s (%s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
 #endif
 #ifdef GIT_BRANCH
-        << bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH << eol
+        << bull << wxString::Format(simple ? "%s" : _("Git branch: %s"), GIT_BRANCH) << eol
 #endif
         << eol
 
@@ -1312,7 +1311,7 @@ const wxString getProgramDescription(int type)
         << bull + "apexcharts.js" << eol
         << eol
 
-        << (simple ? "Build using:" : _("Build using:")) << eol
+        << (simple ? "Has been built using:" : _("Has been built using:")) << eol
         << bull + CMAKE_VERSION << eol
         << bull + MAKE_VERSION << eol
 
@@ -1332,7 +1331,7 @@ const wxString getProgramDescription(int type)
 #ifdef LINUX_DISTRO_STRING
         << bull + LINUX_DISTRO_STRING 
 #endif
-        << eol << eol
+        << eol
         << (simple ? "OS:" : _("Running on:")) << eol
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
