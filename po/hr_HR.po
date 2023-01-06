@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-03 21:53+0300\n"
-"PO-Revision-Date: 2023-01-03 19:52\n"
+"POT-Creation-Date: 2023-01-06 18:16+0300\n"
+"PO-Revision-Date: 2023-01-06 15:24\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -7536,30 +7536,34 @@ msgid "Version: %s"
 msgstr "Verzija: %s"
 
 #: util.cpp:1282
-msgid "Build on"
-msgstr "Izgrađeno na osnovi"
+#, c-format
+msgid "Built on: %s %s"
+msgstr ""
 
 #: util.cpp:1283
-msgid "Database version: "
-msgstr "Verzija baze podataka: "
+#, c-format
+msgid "Database version: %d"
+msgstr ""
 
 #: util.cpp:1290
-msgid "Git commit: "
-msgstr "Git obveza: "
+#, c-format
+msgid "Git commit: %s (%s)"
+msgstr ""
 
-#: util.cpp:1294
-msgid "Git branch: "
-msgstr "Git grana: "
+#: util.cpp:1293
+#, c-format
+msgid "Git branch: %s"
+msgstr ""
 
-#: util.cpp:1298
+#: util.cpp:1297
 msgid "MMEX is using the following support products:"
 msgstr "MMEX koristi sljedeće proizvode podrške:"
 
-#: util.cpp:1315
-msgid "Build using:"
+#: util.cpp:1314
+msgid "Has been built using:"
 msgstr ""
 
-#: util.cpp:1336
+#: util.cpp:1335
 msgid "Running on:"
 msgstr "Pokreće se na:"
 
