@@ -41,7 +41,7 @@ public:
     mmQIFImportDialog(wxWindow* parent, int account_id);
 
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY
-        , const wxString& caption = _("QIF Import")
+        , const wxString& caption = _("Import from QIF file")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);

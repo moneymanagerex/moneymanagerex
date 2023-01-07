@@ -45,9 +45,9 @@ mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type)
     wxString type_name;
     switch (type)
     {
-    case (QIF): type_name = _("QIF Export"); break;
-    case (JSON): type_name = _("JSON Export"); break;
-    case (CSV): type_name = _("CSV Export"); break;
+    case (QIF): type_name = _("Export as QIF file"); break;
+    case (JSON): type_name = _("Export as JSON file"); break;
+    case (CSV): type_name = _("Export as CSV file"); break;
     }
     Create(parent, type_name);
 
@@ -635,7 +635,7 @@ void mmQIFExportDialog::mmExportQIF()
     msg += wxString::Format(_("Number of transactions exported: %zu \n"), numRecords);
     msg += wxString::Format(_("Number of accounts exported: %zu"), allAccounts4Export.size());
 
-    wxMessageDialog msgDlg(this, msg, _("Export to QIF"), wxOK | wxICON_INFORMATION);
+    wxMessageDialog msgDlg(this, msg, _("Export as QIF file"), wxOK | wxICON_INFORMATION);
 
     msgDlg.ShowModal();
 }
