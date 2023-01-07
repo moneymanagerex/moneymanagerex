@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 14:16+0300\n"
-"PO-Revision-Date: 2023-01-07 11:18\n"
+"POT-Creation-Date: 2023-01-07 15:02+0300\n"
+"PO-Revision-Date: 2023-01-07 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "开始日期："
 msgid "The date when the account was opened"
 msgstr "开设账户的日期"
 
-#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1873
+#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1892
 msgid "Currency:"
 msgstr "货币："
 
@@ -685,7 +685,7 @@ msgid "Description"
 msgstr "描述"
 
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:194
-#: import_export/univcsvdialog.cpp:166
+#: import_export/univcsvdialog.cpp:185
 msgid "File"
 msgstr "文件"
 
@@ -761,7 +761,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "确认删除附件"
 
 #: attachmentdialog.cpp:346 categdialog.cpp:313 customfieldlistdialog.cpp:261
-#: import_export/univcsvdialog.cpp:221 maincurrencydialog.cpp:536
+#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:536
 #: payeedialog.cpp:613 stockdialog.cpp:336
 msgid "&Add "
 msgstr "添加(&A)"
@@ -771,7 +771,7 @@ msgid "&Open "
 msgstr "打开(&O)"
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:225 maincurrencydialog.cpp:538
+#: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:538
 #: payeedialog.cpp:616
 msgid "&Remove "
 msgstr "移除(&R)"
@@ -1101,8 +1101,8 @@ msgstr "管理此周期性交易的附件"
 
 #: billsdepositsdialog.cpp:613 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:967 filtertransdialog.cpp:1561
-#: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:373
-#: import_export/univcsvdialog.cpp:967 reports/transactions.cpp:187
+#: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:392
+#: import_export/univcsvdialog.cpp:986 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:534
 msgid "Color"
@@ -1150,7 +1150,7 @@ msgstr "确认收款人姓名"
 #: filtertransdialog.cpp:931 filtertransdialog.cpp:936
 #: filtertransdialog.cpp:949 filtertransdialog.cpp:958
 #: filtertransdialog.cpp:967 filtertransdialog.cpp:975
-#: filtertransdialog.cpp:981 import_export/univcsvdialog.cpp:967
+#: filtertransdialog.cpp:981 import_export/univcsvdialog.cpp:986
 #: optionsettingsgeneral.cpp:282 optionsettingsgeneral.cpp:307
 #: payeedialog.cpp:149 transactionsupdatedialog.cpp:393 transdialog.cpp:587
 #: transdialog.cpp:602 util.cpp:747
@@ -1158,7 +1158,7 @@ msgid "Invalid value"
 msgstr "无效值"
 
 #: billsdepositsdialog.cpp:1016 billsdepositsdialog.cpp:1019
-#: import_export/univcsvdialog.cpp:1028 stockdialog.cpp:428 transdialog.cpp:595
+#: import_export/univcsvdialog.cpp:1047 stockdialog.cpp:428 transdialog.cpp:595
 #: transdialog.cpp:669 usertransactionpanel.cpp:445 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "账户的开始日期晚于此交易的日期"
@@ -1210,7 +1210,7 @@ msgstr "指定要支付的付款数量。\n"
 "如果是持续付款，请留空。"
 
 #: billsdepositsdialog.cpp:1258 images_list.cpp:500
-#: import_export/univcsvdialog.cpp:1151 maincurrencydialog.cpp:479
+#: import_export/univcsvdialog.cpp:1170 maincurrencydialog.cpp:479
 #: mmframe.cpp:3566 splittransactionsdialog.cpp:393 stockspanel.cpp:326
 #: stockspanel.cpp:327 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
@@ -1434,7 +1434,7 @@ msgstr "预算周期："
 msgid "Specify the frequency of the expense or deposit"
 msgstr "指定支出的周期或存款的期限"
 
-#: budgetentrydialog.cpp:146 import_export/univcsvdialog.cpp:330
+#: budgetentrydialog.cpp:146 import_export/univcsvdialog.cpp:349
 msgid "Amount:"
 msgstr "总额："
 
@@ -1794,7 +1794,7 @@ msgstr "显示所选类目"
 msgid "Remove Category"
 msgstr "删除类别"
 
-#: categdialog.cpp:797 import_export/univcsvdialog.cpp:441
+#: categdialog.cpp:797 import_export/univcsvdialog.cpp:460
 msgid "Clear Settings"
 msgstr "清除设置"
 
@@ -1918,7 +1918,7 @@ msgid "Suffix"
 msgstr "后缀"
 
 #: currencydialog.cpp:220 import_export/qif_import_gui.cpp:327
-#: import_export/univcsvdialog.cpp:341
+#: import_export/univcsvdialog.cpp:360
 msgid "Decimal Char"
 msgstr "小数点"
 
@@ -2689,8 +2689,7 @@ msgstr "交易过滤"
 msgid "Reports"
 msgstr "报表"
 
-#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:410
-#: mmframe.cpp:1319 mmframe.cpp:1478
+#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:429
 msgid "&Import"
 msgstr "导入(&I)"
 
@@ -2698,8 +2697,7 @@ msgstr "导入(&I)"
 msgid "Locate and load a report file."
 msgstr "查找并加载报表文件。"
 
-#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:412
-#: mmframe.cpp:1326 mmframe.cpp:1487
+#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:431
 msgid "&Export"
 msgstr "导出(&E)"
 
@@ -2912,13 +2910,13 @@ msgstr "主题 %s 缺少条目且不兼容。恢复到默认主题"
 msgid "No workable theme found, the installation may be corrupt"
 msgstr "没有找到可用的主题，安装程序可能已损坏"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1618
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1637
 #: mmSimpleDialogs.cpp:776
 msgid "Unable to open file."
 msgstr "无法打开文件"
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:973 mmframe.cpp:2407 mmframe.cpp:2426
+#: import_export/univcsvdialog.cpp:992 mmframe.cpp:2407 mmframe.cpp:2426
 msgid "Universal CSV Import"
 msgstr "普通CSV文件导入对话框"
 
@@ -2959,18 +2957,19 @@ msgstr "找不到数据表。"
 msgid "Transactions"
 msgstr "交易"
 
-#: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
-#: import_export/qif_export.cpp:342
-msgid "QIF Export"
-msgstr "QIF 导出"
+#: import_export/qif_export.cpp:48 import_export/qif_export.cpp:638
+#: mmframe.cpp:1484
+msgid "Export as QIF file"
+msgstr ""
 
-#: import_export/qif_export.cpp:49
-msgid "JSON Export"
-msgstr "导出 JSON"
+#: import_export/qif_export.cpp:49 mmframe.cpp:1485
+msgid "Export as JSON file"
+msgstr ""
 
-#: import_export/qif_export.cpp:50
-msgid "CSV Export"
-msgstr "导出 CSV"
+#: import_export/qif_export.cpp:50 import_export/univcsvdialog.cpp:110
+#: mmframe.cpp:1481
+msgid "Export as CSV file"
+msgstr ""
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -3015,17 +3014,21 @@ msgid "Write to File"
 msgstr "写入文件"
 
 #: import_export/qif_export.cpp:193 import_export/qif_import_gui.cpp:137
-#: import_export/univcsvdialog.cpp:153
+#: import_export/univcsvdialog.cpp:172
 msgid "File Name:"
 msgstr "文件名"
 
-#: import_export/qif_export.cpp:216 import_export/univcsvdialog.cpp:429
+#: import_export/qif_export.cpp:216 import_export/univcsvdialog.cpp:448
 msgid "Clear"
 msgstr "清除"
 
 #: import_export/qif_export.cpp:250
 msgid "Choose Account to Export from:"
 msgstr "选择要导出的账户："
+
+#: import_export/qif_export.cpp:251 import_export/qif_export.cpp:342
+msgid "QIF Export"
+msgstr "QIF 导出"
 
 #: import_export/qif_export.cpp:295 import_export/qif_export.cpp:311
 msgid "Choose QIF data file to Export"
@@ -3043,7 +3046,7 @@ msgstr "选择要导出的 JSON 数据文件"
 msgid "JSON Files (*.json)"
 msgstr "JSON 文件(*.json)"
 
-#: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1602
+#: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1621
 msgid "CSV Files (*.csv)"
 msgstr "CSV 文件 (*.csv)"
 
@@ -3092,15 +3095,11 @@ msgstr "已导出的交易: %zu \n"
 msgid "Number of accounts exported: %zu"
 msgstr "已导出的账户： %zu"
 
-#: import_export/qif_export.cpp:638 mmframe.cpp:1484
-msgid "Export to QIF"
-msgstr "导出到 QIF"
-
-#: import_export/qif_import_gui.cpp:149 import_export/univcsvdialog.cpp:166
+#: import_export/qif_import_gui.cpp:149 import_export/univcsvdialog.cpp:185
 msgid "&Browse"
 msgstr "浏览(&B)"
 
-#: import_export/qif_import_gui.cpp:160 import_export/univcsvdialog.cpp:307
+#: import_export/qif_import_gui.cpp:160 import_export/univcsvdialog.cpp:326
 msgid "Encoding:"
 msgstr "编码："
 
@@ -3122,9 +3121,9 @@ msgstr "在备注中包含收款人字段"
 
 #: import_export/qif_import_gui.cpp:390 import_export/qif_import_gui.cpp:393
 #: import_export/qif_import_gui.cpp:619 import_export/qif_import_gui.cpp:1233
-#: import_export/univcsvdialog.cpp:741 import_export/univcsvdialog.cpp:875
-#: import_export/univcsvdialog.cpp:878 import_export/univcsvdialog.cpp:898
-#: import_export/univcsvdialog.cpp:905 themes.cpp:235 transdialog.cpp:273
+#: import_export/univcsvdialog.cpp:760 import_export/univcsvdialog.cpp:894
+#: import_export/univcsvdialog.cpp:897 import_export/univcsvdialog.cpp:917
+#: import_export/univcsvdialog.cpp:924 themes.cpp:235 transdialog.cpp:273
 #: transdialog.cpp:277 transdialog.cpp:283 transdialog.cpp:922
 #: transdialog.cpp:926 transdialog.cpp:933 webapp.cpp:417 webapp.cpp:426
 msgid "Unknown"
@@ -3154,7 +3153,7 @@ msgid "Accounts:"
 msgstr "账户："
 
 #: import_export/qif_import_gui.cpp:533 import_export/qif_import_gui.cpp:811
-#: import_export/univcsvdialog.cpp:281
+#: import_export/univcsvdialog.cpp:300
 msgid "Date Format: "
 msgstr "日期格式："
 
@@ -3226,13 +3225,13 @@ msgstr "导入成功完成"
 msgid "Total Imported: %zu"
 msgstr "总导入： %zu"
 
-#: import_export/qif_import_gui.cpp:1003 import_export/univcsvdialog.cpp:1104
+#: import_export/qif_import_gui.cpp:1003 import_export/univcsvdialog.cpp:1123
 msgid "Imported transactions discarded by user!"
 msgstr "导入的交易被用户丢弃！"
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
-msgid "QIF Import"
-msgstr "导入QIF"
+msgid "Import from QIF file"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3267,7 +3266,7 @@ msgstr "交易类目不正确"
 msgid "Added account: %s"
 msgstr "已添加账户： %s"
 
-#: import_export/qif_import_gui.cpp:1332 import_export/univcsvdialog.cpp:882
+#: import_export/qif_import_gui.cpp:1332 import_export/univcsvdialog.cpp:901
 #, c-format
 msgid "Added payee: %s"
 msgstr "增加收款人：%s"
@@ -3286,285 +3285,289 @@ msgstr "不处理"
 msgid "Balance"
 msgstr "余额"
 
-#: import_export/univcsvdialog.cpp:103
-msgid "Import dialog"
-msgstr "导入对话框"
+#: import_export/univcsvdialog.cpp:107
+msgid "Import from CSV file"
+msgstr ""
 
-#: import_export/univcsvdialog.cpp:103
-msgid "Export dialog"
-msgstr "导出对话框"
+#: import_export/univcsvdialog.cpp:113
+msgid "Import from XML file"
+msgstr ""
 
-#: import_export/univcsvdialog.cpp:198
+#: import_export/univcsvdialog.cpp:116 mmframe.cpp:1483
+msgid "Export as XML file"
+msgstr ""
+
+#: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
 msgstr "指定字段顺序"
 
-#: import_export/univcsvdialog.cpp:229
+#: import_export/univcsvdialog.cpp:248
 msgid "&MMEX format"
 msgstr "MMEX 格式(&M)"
 
-#: import_export/univcsvdialog.cpp:246
+#: import_export/univcsvdialog.cpp:265
 msgid "&Up"
 msgstr "上移(&U)"
 
-#: import_export/univcsvdialog.cpp:250
+#: import_export/univcsvdialog.cpp:269
 msgid "&Down"
 msgstr "下移(&D)"
 
-#: import_export/univcsvdialog.cpp:268
+#: import_export/univcsvdialog.cpp:287
 msgid "Account: "
 msgstr "账户"
 
-#: import_export/univcsvdialog.cpp:293
+#: import_export/univcsvdialog.cpp:312
 msgid "CSV Delimiter:"
 msgstr "CSV分隔符："
 
-#: import_export/univcsvdialog.cpp:321
+#: import_export/univcsvdialog.cpp:340
 msgid "Export column titles"
 msgstr "导出标题行"
 
-#: import_export/univcsvdialog.cpp:336
+#: import_export/univcsvdialog.cpp:355
 msgid "Positive values are deposits"
 msgstr "正值是存款"
 
-#: import_export/univcsvdialog.cpp:337
+#: import_export/univcsvdialog.cpp:356
 msgid "Positive values are withdrawals"
 msgstr "正值是取款"
 
-#: import_export/univcsvdialog.cpp:354
+#: import_export/univcsvdialog.cpp:373
 msgid "Rows to ignore"
 msgstr "要忽略的行"
 
-#: import_export/univcsvdialog.cpp:361
+#: import_export/univcsvdialog.cpp:380
 msgid "From start: "
 msgstr "起始日期："
 
-#: import_export/univcsvdialog.cpp:383
+#: import_export/univcsvdialog.cpp:402
 msgid "From end: "
 msgstr "结束日期："
 
-#: import_export/univcsvdialog.cpp:395
+#: import_export/univcsvdialog.cpp:414
 msgid "Preview"
 msgstr "预览"
 
-#: import_export/univcsvdialog.cpp:435
+#: import_export/univcsvdialog.cpp:454
 msgid "Choose XML data file to Import"
 msgstr "选择要导入的 XML 数据文件"
 
-#: import_export/univcsvdialog.cpp:435
+#: import_export/univcsvdialog.cpp:454
 msgid "Choose CSV data file to Import"
 msgstr "选择要导入的 CSV 数据文件"
 
-#: import_export/univcsvdialog.cpp:436
+#: import_export/univcsvdialog.cpp:455
 msgid "Choose XML data file to Export"
 msgstr "选择要导出的 XML 数据文件"
 
-#: import_export/univcsvdialog.cpp:436
+#: import_export/univcsvdialog.cpp:455
 msgid "Choose CSV data file to Export"
 msgstr "选择要导出的 CSV 数据文件"
 
-#: import_export/univcsvdialog.cpp:439
+#: import_export/univcsvdialog.cpp:458
 msgid "Template name"
 msgstr "模板名称"
 
-#: import_export/univcsvdialog.cpp:440
+#: import_export/univcsvdialog.cpp:459
 msgid "Save Template"
 msgstr "保存模板"
 
-#: import_export/univcsvdialog.cpp:442
+#: import_export/univcsvdialog.cpp:461
 msgid "MMEX standard format"
 msgstr "标准 MMEX 格式"
 
-#: import_export/univcsvdialog.cpp:443
+#: import_export/univcsvdialog.cpp:462
 msgid "Move Up"
 msgstr "向上移动"
 
-#: import_export/univcsvdialog.cpp:444
+#: import_export/univcsvdialog.cpp:463
 msgid "Move &Down"
 msgstr "向下移动(&D)"
 
-#: import_export/univcsvdialog.cpp:445 optionsettingsmisc.cpp:224
+#: import_export/univcsvdialog.cpp:464 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "指定当导入/导出 CSV 文件时的分隔符"
 
-#: import_export/univcsvdialog.cpp:446
+#: import_export/univcsvdialog.cpp:465
 msgid "Import File"
 msgstr "导入文件"
 
-#: import_export/univcsvdialog.cpp:447
+#: import_export/univcsvdialog.cpp:466
 msgid "Export File"
 msgstr "导出文件"
 
-#: import_export/univcsvdialog.cpp:538
+#: import_export/univcsvdialog.cpp:557
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr "用于此模板的账户” %s “不存在。\n"
 "请选择一个新账户。"
 
-#: import_export/univcsvdialog.cpp:540
+#: import_export/univcsvdialog.cpp:559
 msgid "Account does not exist"
 msgstr "账户不存在"
 
-#: import_export/univcsvdialog.cpp:683 import_export/univcsvdialog.cpp:754
-#: import_export/univcsvdialog.cpp:1886
+#: import_export/univcsvdialog.cpp:702 import_export/univcsvdialog.cpp:773
+#: import_export/univcsvdialog.cpp:1905
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "如果类型有 '%s ' 则为正数"
 
-#: import_export/univcsvdialog.cpp:924
+#: import_export/univcsvdialog.cpp:943
 msgid "Incorrect fields specified for import!"
 msgstr "指定导入的字段不正确！"
 
-#: import_export/univcsvdialog.cpp:925
+#: import_export/univcsvdialog.cpp:944
 msgid "Date field is required."
 msgstr "日期字段是必填的。"
 
-#: import_export/univcsvdialog.cpp:926
+#: import_export/univcsvdialog.cpp:945
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "必须填写金额字段并在类目中选择是支出或收入。"
 
-#: import_export/univcsvdialog.cpp:927 import_export/univcsvdialog.cpp:1073
+#: import_export/univcsvdialog.cpp:946 import_export/univcsvdialog.cpp:1092
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
 msgstr "导入"
 
-#: import_export/univcsvdialog.cpp:983
+#: import_export/univcsvdialog.cpp:1002
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr "导入交易到账户 %s : %ld"
 
-#: import_export/univcsvdialog.cpp:994
+#: import_export/univcsvdialog.cpp:1013
 #, c-format
 msgid "Line %ld: Empty"
 msgstr "行 %ld：为空"
 
-#: import_export/univcsvdialog.cpp:1008
+#: import_export/univcsvdialog.cpp:1027
 #, c-format
 msgid "Line %ld: Error:"
 msgstr "行 %ld：错误"
 
-#: import_export/univcsvdialog.cpp:1010
+#: import_export/univcsvdialog.cpp:1029
 msgid "Invalid Date."
 msgstr "日期无效。"
 
-#: import_export/univcsvdialog.cpp:1011 mmTextCtrl.cpp:116
+#: import_export/univcsvdialog.cpp:1030 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
 msgstr "不可用数量。"
 
-#: import_export/univcsvdialog.cpp:1013
+#: import_export/univcsvdialog.cpp:1032
 msgid "Type (withdrawal/deposit) unknown."
 msgstr "类型(支出/存款) 未知。"
 
-#: import_export/univcsvdialog.cpp:1027
+#: import_export/univcsvdialog.cpp:1046
 #, c-format
 msgid "Line %ld: %s"
 msgstr "行 %ld: %s"
 
-#: import_export/univcsvdialog.cpp:1051
+#: import_export/univcsvdialog.cpp:1070
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr "行 %ld：正常，已导入。"
 
-#: import_export/univcsvdialog.cpp:1058
+#: import_export/univcsvdialog.cpp:1077
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "总行数： %ld"
 
-#: import_export/univcsvdialog.cpp:1060
+#: import_export/univcsvdialog.cpp:1079
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr "选择导入的行：%ld"
 
-#: import_export/univcsvdialog.cpp:1062
+#: import_export/univcsvdialog.cpp:1081
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr "空行： %ld"
 
-#: import_export/univcsvdialog.cpp:1064
+#: import_export/univcsvdialog.cpp:1083
 #, c-format
 msgid "Imported: %ld"
 msgstr "已导入： %ld"
 
-#: import_export/univcsvdialog.cpp:1066
+#: import_export/univcsvdialog.cpp:1085
 #, c-format
 msgid "Errored: %ld"
 msgstr "已错误： %ld"
 
-#: import_export/univcsvdialog.cpp:1069
+#: import_export/univcsvdialog.cpp:1088
 #, c-format
 msgid "Log file written to: %s"
 msgstr "日志文件写入到： %s"
 
-#: import_export/univcsvdialog.cpp:1072 stockdialog.cpp:652
+#: import_export/univcsvdialog.cpp:1091 stockdialog.cpp:652
 msgid "Please confirm saving"
 msgstr "请确认保存"
 
-#: import_export/univcsvdialog.cpp:1105
+#: import_export/univcsvdialog.cpp:1124
 msgid "No imported transactions!"
 msgstr "没有导入的交易 ！"
 
-#: import_export/univcsvdialog.cpp:1125
+#: import_export/univcsvdialog.cpp:1144
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "指定用于导出的字段不正确！至少需要日期和金额。"
 
-#: import_export/univcsvdialog.cpp:1126 import_export/univcsvdialog.cpp:1279
+#: import_export/univcsvdialog.cpp:1145 import_export/univcsvdialog.cpp:1298
 msgid "Export"
 msgstr "导出"
 
-#: import_export/univcsvdialog.cpp:1136
+#: import_export/univcsvdialog.cpp:1155
 msgid "Overwrite existing file?"
 msgstr "覆盖已存在的文件？"
 
-#: import_export/univcsvdialog.cpp:1136
+#: import_export/univcsvdialog.cpp:1155
 msgid "File exists"
 msgstr "文件已存在"
 
-#: import_export/univcsvdialog.cpp:1142
+#: import_export/univcsvdialog.cpp:1161
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "删除现有文件失败。文件可能会被其他程序锁定。"
 
-#: import_export/univcsvdialog.cpp:1143
+#: import_export/univcsvdialog.cpp:1162
 msgid "Destination file error"
 msgstr "目标文件错误"
 
-#: import_export/univcsvdialog.cpp:1151 mmSimpleDialogs.cpp:784
+#: import_export/univcsvdialog.cpp:1170 mmSimpleDialogs.cpp:784
 msgid "Invalid Account"
 msgstr "账户不可用"
 
-#: import_export/univcsvdialog.cpp:1278
+#: import_export/univcsvdialog.cpp:1297
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "交易已导出： %ld"
 
-#: import_export/univcsvdialog.cpp:1584 stockdialog.cpp:558
+#: import_export/univcsvdialog.cpp:1603 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
 msgstr "选择要导出的CSV数据文件"
 
-#: import_export/univcsvdialog.cpp:1587
+#: import_export/univcsvdialog.cpp:1606
 msgid "Choose CSV data file to export"
 msgstr "选择要导出的 CSV 数据文件"
 
-#: import_export/univcsvdialog.cpp:1590
+#: import_export/univcsvdialog.cpp:1609
 msgid "Choose XML data file to import"
 msgstr "选择要导入的 XML 数据文件"
 
-#: import_export/univcsvdialog.cpp:1593
+#: import_export/univcsvdialog.cpp:1612
 msgid "Choose XML data file to export"
 msgstr "选择要导出的 XML 数据文件"
 
-#: import_export/univcsvdialog.cpp:1601
+#: import_export/univcsvdialog.cpp:1620
 msgid "XML Files (*.xml)"
 msgstr "XML 文件(*.xml)"
 
-#: import_export/univcsvdialog.cpp:1601
+#: import_export/univcsvdialog.cpp:1620
 msgid "All Files"
 msgstr "所有文件"
 
-#: import_export/univcsvdialog.cpp:1882
+#: import_export/univcsvdialog.cpp:1901
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr "请在您的 CSV 文件中输入表示正值的单词，例如“debit”"
 
-#: import_export/univcsvdialog.cpp:1882
+#: import_export/univcsvdialog.cpp:1901
 msgid "Enter a value"
 msgstr "输入值："
 
@@ -4347,28 +4350,48 @@ msgstr "MMEX 已经被打开，没有激活的数据库。"
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX：菜单弹出错误"
 
-#: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
+#: mmframe.cpp:1316 mmframe.cpp:1474
 msgid "&CSV Files..."
 msgstr ""
 
-#: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
+#: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "&XML Files..."
 msgstr ""
 
-#: mmframe.cpp:1317 mmframe.cpp:1475
-msgid "Import from XML (Excel format)"
-msgstr "从 XML 导入(Excel 格式)"
+#: mmframe.cpp:1317
+msgid "Import from XML (Excel format) file"
+msgstr ""
 
-#: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
+#: mmframe.cpp:1318 mmframe.cpp:1476
 msgid "&QIF Files..."
 msgstr ""
 
+#: mmframe.cpp:1319 mmframe.cpp:1478
+msgid "&Import from"
+msgstr ""
+
+#: mmframe.cpp:1321 mmframe.cpp:1481
+msgid "&CSV File..."
+msgstr ""
+
 #: mmframe.cpp:1322 mmframe.cpp:1482
-msgid "&MMEX CSV Files..."
+msgid "&MMEX CSV File..."
+msgstr ""
+
+#: mmframe.cpp:1323 mmframe.cpp:1483
+msgid "&XML File..."
+msgstr ""
+
+#: mmframe.cpp:1324 mmframe.cpp:1484
+msgid "&QIF File..."
 msgstr ""
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
-msgid "&JSON Files..."
+msgid "&JSON File..."
+msgstr ""
+
+#: mmframe.cpp:1326 mmframe.cpp:1487
+msgid "&Export as"
 msgstr ""
 
 #: mmframe.cpp:1351
@@ -4447,6 +4470,10 @@ msgstr "清除最近打开文件纪录(&C)"
 msgid "Import from any CSV file"
 msgstr "导入CSV文件"
 
+#: mmframe.cpp:1475
+msgid "Import from XML (Excel format)"
+msgstr "从 XML 导入(Excel 格式)"
+
 #: mmframe.cpp:1476
 msgid "Import from QIF"
 msgstr "导入QIF文件"
@@ -4459,29 +4486,17 @@ msgstr ""
 msgid "Import from WebApp"
 msgstr "从 WebApp 导入"
 
-#: mmframe.cpp:1481
-msgid "Export to CSV"
-msgstr "导出 CSV 文件"
-
 #: mmframe.cpp:1482
-msgid "Export to fixed CSV"
-msgstr "导出到固定的 CSV"
-
-#: mmframe.cpp:1483
-msgid "Export to XML"
-msgstr "导出到 XML"
-
-#: mmframe.cpp:1485
-msgid "Export to JSON"
-msgstr "导出到 JSON"
-
-#: mmframe.cpp:1486
-msgid "&HTML Files..."
+msgid "Export as fixed CSV file"
 msgstr ""
 
 #: mmframe.cpp:1486
-msgid "Export to HTML"
-msgstr "导出到 HTML"
+msgid "&HTML File..."
+msgstr ""
+
+#: mmframe.cpp:1486
+msgid "Export as HTML file"
+msgstr ""
 
 #: mmframe.cpp:1492
 msgid "&Print..."
