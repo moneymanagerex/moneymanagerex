@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 14:16+0300\n"
-"PO-Revision-Date: 2023-01-07 11:18\n"
+"POT-Creation-Date: 2023-01-07 15:02+0300\n"
+"PO-Revision-Date: 2023-01-07 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr ""
 msgid "The date when the account was opened"
 msgstr ""
 
-#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1873
+#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1892
 msgid "Currency:"
 msgstr "Para Birimi:"
 
@@ -685,7 +685,7 @@ msgid "Description"
 msgstr "Tanım"
 
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:194
-#: import_export/univcsvdialog.cpp:166
+#: import_export/univcsvdialog.cpp:185
 msgid "File"
 msgstr "Dosya"
 
@@ -761,7 +761,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "İlişik Silme Onayı"
 
 #: attachmentdialog.cpp:346 categdialog.cpp:313 customfieldlistdialog.cpp:261
-#: import_export/univcsvdialog.cpp:221 maincurrencydialog.cpp:536
+#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:536
 #: payeedialog.cpp:613 stockdialog.cpp:336
 msgid "&Add "
 msgstr "&Ekle"
@@ -771,7 +771,7 @@ msgid "&Open "
 msgstr "&Aç"
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:225 maincurrencydialog.cpp:538
+#: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:538
 #: payeedialog.cpp:616
 msgid "&Remove "
 msgstr "&Kaldır"
@@ -1101,8 +1101,8 @@ msgstr "Bu yinelenen işlemin ilişiklerini düzenleyin."
 
 #: billsdepositsdialog.cpp:613 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:967 filtertransdialog.cpp:1561
-#: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:373
-#: import_export/univcsvdialog.cpp:967 reports/transactions.cpp:187
+#: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:392
+#: import_export/univcsvdialog.cpp:986 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:534
 msgid "Color"
@@ -1149,7 +1149,7 @@ msgstr ""
 #: filtertransdialog.cpp:931 filtertransdialog.cpp:936
 #: filtertransdialog.cpp:949 filtertransdialog.cpp:958
 #: filtertransdialog.cpp:967 filtertransdialog.cpp:975
-#: filtertransdialog.cpp:981 import_export/univcsvdialog.cpp:967
+#: filtertransdialog.cpp:981 import_export/univcsvdialog.cpp:986
 #: optionsettingsgeneral.cpp:282 optionsettingsgeneral.cpp:307
 #: payeedialog.cpp:149 transactionsupdatedialog.cpp:393 transdialog.cpp:587
 #: transdialog.cpp:602 util.cpp:747
@@ -1157,7 +1157,7 @@ msgid "Invalid value"
 msgstr "Geçersiz Değer"
 
 #: billsdepositsdialog.cpp:1016 billsdepositsdialog.cpp:1019
-#: import_export/univcsvdialog.cpp:1028 stockdialog.cpp:428 transdialog.cpp:595
+#: import_export/univcsvdialog.cpp:1047 stockdialog.cpp:428 transdialog.cpp:595
 #: transdialog.cpp:669 usertransactionpanel.cpp:445 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr ""
@@ -1209,7 +1209,7 @@ msgstr "Yapılacak ödemelerin sayısını belirtin.\n"
 "Ödemeler sürekli devam edecekse boş bırakın."
 
 #: billsdepositsdialog.cpp:1258 images_list.cpp:500
-#: import_export/univcsvdialog.cpp:1151 maincurrencydialog.cpp:479
+#: import_export/univcsvdialog.cpp:1170 maincurrencydialog.cpp:479
 #: mmframe.cpp:3566 splittransactionsdialog.cpp:393 stockspanel.cpp:326
 #: stockspanel.cpp:327 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
@@ -1436,7 +1436,7 @@ msgstr "Sıklık: "
 msgid "Specify the frequency of the expense or deposit"
 msgstr "Gider veya gelirin sıklığını belirtiniz"
 
-#: budgetentrydialog.cpp:146 import_export/univcsvdialog.cpp:330
+#: budgetentrydialog.cpp:146 import_export/univcsvdialog.cpp:349
 msgid "Amount:"
 msgstr "Tutar:"
 
@@ -1793,7 +1793,7 @@ msgstr "Seçilen Kategoriyi Göster"
 msgid "Remove Category"
 msgstr ""
 
-#: categdialog.cpp:797 import_export/univcsvdialog.cpp:441
+#: categdialog.cpp:797 import_export/univcsvdialog.cpp:460
 msgid "Clear Settings"
 msgstr "Ayarları Temizle"
 
@@ -1917,7 +1917,7 @@ msgid "Suffix"
 msgstr ""
 
 #: currencydialog.cpp:220 import_export/qif_import_gui.cpp:327
-#: import_export/univcsvdialog.cpp:341
+#: import_export/univcsvdialog.cpp:360
 msgid "Decimal Char"
 msgstr "Ondalık Karakteri"
 
@@ -2683,8 +2683,7 @@ msgstr "İşlem Filtresi"
 msgid "Reports"
 msgstr "Raporlar"
 
-#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:410
-#: mmframe.cpp:1319 mmframe.cpp:1478
+#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:429
 msgid "&Import"
 msgstr "A&l"
 
@@ -2692,8 +2691,7 @@ msgstr "A&l"
 msgid "Locate and load a report file."
 msgstr "Bir rapor dosyasını bulun ve yükleyin."
 
-#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:412
-#: mmframe.cpp:1326 mmframe.cpp:1487
+#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:431
 msgid "&Export"
 msgstr "&Ver"
 
@@ -2907,13 +2905,13 @@ msgstr ""
 msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1618
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1637
 #: mmSimpleDialogs.cpp:776
 msgid "Unable to open file."
 msgstr "Dosya açılamadı."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:973 mmframe.cpp:2407 mmframe.cpp:2426
+#: import_export/univcsvdialog.cpp:992 mmframe.cpp:2407 mmframe.cpp:2426
 msgid "Universal CSV Import"
 msgstr "Evrensel CSV Alımı"
 
@@ -2954,17 +2952,18 @@ msgstr "Tablo bulunamadı"
 msgid "Transactions"
 msgstr "İşlemler"
 
-#: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
-#: import_export/qif_export.cpp:342
-msgid "QIF Export"
-msgstr "QIF Verme"
+#: import_export/qif_export.cpp:48 import_export/qif_export.cpp:638
+#: mmframe.cpp:1484
+msgid "Export as QIF file"
+msgstr ""
 
-#: import_export/qif_export.cpp:49
-msgid "JSON Export"
-msgstr "JSON Verme"
+#: import_export/qif_export.cpp:49 mmframe.cpp:1485
+msgid "Export as JSON file"
+msgstr ""
 
-#: import_export/qif_export.cpp:50
-msgid "CSV Export"
+#: import_export/qif_export.cpp:50 import_export/univcsvdialog.cpp:110
+#: mmframe.cpp:1481
+msgid "Export as CSV file"
 msgstr ""
 
 #: import_export/qif_export.cpp:110
@@ -3010,17 +3009,21 @@ msgid "Write to File"
 msgstr "Dosyaya Yaz"
 
 #: import_export/qif_export.cpp:193 import_export/qif_import_gui.cpp:137
-#: import_export/univcsvdialog.cpp:153
+#: import_export/univcsvdialog.cpp:172
 msgid "File Name:"
 msgstr "Dosya Adı:"
 
-#: import_export/qif_export.cpp:216 import_export/univcsvdialog.cpp:429
+#: import_export/qif_export.cpp:216 import_export/univcsvdialog.cpp:448
 msgid "Clear"
 msgstr "Temizle"
 
 #: import_export/qif_export.cpp:250
 msgid "Choose Account to Export from:"
 msgstr "Verilecek Hesabı Seçin:"
+
+#: import_export/qif_export.cpp:251 import_export/qif_export.cpp:342
+msgid "QIF Export"
+msgstr "QIF Verme"
 
 #: import_export/qif_export.cpp:295 import_export/qif_export.cpp:311
 msgid "Choose QIF data file to Export"
@@ -3038,7 +3041,7 @@ msgstr "Verilecek JSON veri dosyası seçin"
 msgid "JSON Files (*.json)"
 msgstr "JSON Dosyaları (*.json)"
 
-#: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1602
+#: import_export/qif_export.cpp:313 import_export/univcsvdialog.cpp:1621
 msgid "CSV Files (*.csv)"
 msgstr "CSV Dosyaları (*.csv)"
 
@@ -3087,15 +3090,11 @@ msgstr "Dışa aktarılan işlem sayısı: %zu \n"
 msgid "Number of accounts exported: %zu"
 msgstr "Verilen hesap sayısı: %zu"
 
-#: import_export/qif_export.cpp:638 mmframe.cpp:1484
-msgid "Export to QIF"
-msgstr "QIF'e Ver"
-
-#: import_export/qif_import_gui.cpp:149 import_export/univcsvdialog.cpp:166
+#: import_export/qif_import_gui.cpp:149 import_export/univcsvdialog.cpp:185
 msgid "&Browse"
 msgstr "&Gözat"
 
-#: import_export/qif_import_gui.cpp:160 import_export/univcsvdialog.cpp:307
+#: import_export/qif_import_gui.cpp:160 import_export/univcsvdialog.cpp:326
 msgid "Encoding:"
 msgstr "Şifrele:"
 
@@ -3117,9 +3116,9 @@ msgstr "Notlarda alacaklı alanını içer"
 
 #: import_export/qif_import_gui.cpp:390 import_export/qif_import_gui.cpp:393
 #: import_export/qif_import_gui.cpp:619 import_export/qif_import_gui.cpp:1233
-#: import_export/univcsvdialog.cpp:741 import_export/univcsvdialog.cpp:875
-#: import_export/univcsvdialog.cpp:878 import_export/univcsvdialog.cpp:898
-#: import_export/univcsvdialog.cpp:905 themes.cpp:235 transdialog.cpp:273
+#: import_export/univcsvdialog.cpp:760 import_export/univcsvdialog.cpp:894
+#: import_export/univcsvdialog.cpp:897 import_export/univcsvdialog.cpp:917
+#: import_export/univcsvdialog.cpp:924 themes.cpp:235 transdialog.cpp:273
 #: transdialog.cpp:277 transdialog.cpp:283 transdialog.cpp:922
 #: transdialog.cpp:926 transdialog.cpp:933 webapp.cpp:417 webapp.cpp:426
 msgid "Unknown"
@@ -3149,7 +3148,7 @@ msgid "Accounts:"
 msgstr "Hesaplar:"
 
 #: import_export/qif_import_gui.cpp:533 import_export/qif_import_gui.cpp:811
-#: import_export/univcsvdialog.cpp:281
+#: import_export/univcsvdialog.cpp:300
 msgid "Date Format: "
 msgstr "Tarih Biçimi:"
 
@@ -3221,13 +3220,13 @@ msgstr "Alma başarılı bir şekilde sonuçlandı."
 msgid "Total Imported: %zu"
 msgstr "Toplam Alınan: %zu"
 
-#: import_export/qif_import_gui.cpp:1003 import_export/univcsvdialog.cpp:1104
+#: import_export/qif_import_gui.cpp:1003 import_export/univcsvdialog.cpp:1123
 msgid "Imported transactions discarded by user!"
 msgstr "Alınan işlemler kullanıcı tarafından silindi."
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
-msgid "QIF Import"
-msgstr "QIF Alma"
+msgid "Import from QIF file"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3262,7 +3261,7 @@ msgstr "İşlem Kategorisi yanlış"
 msgid "Added account: %s"
 msgstr "Eklenen hesap: %s"
 
-#: import_export/qif_import_gui.cpp:1332 import_export/univcsvdialog.cpp:882
+#: import_export/qif_import_gui.cpp:1332 import_export/univcsvdialog.cpp:901
 #, c-format
 msgid "Added payee: %s"
 msgstr "Eklenen Alacaklı: %s"
@@ -3281,285 +3280,289 @@ msgstr "Dikkate Alma"
 msgid "Balance"
 msgstr "Kalıntı"
 
-#: import_export/univcsvdialog.cpp:103
-msgid "Import dialog"
-msgstr "Alma Penceresi"
+#: import_export/univcsvdialog.cpp:107
+msgid "Import from CSV file"
+msgstr ""
 
-#: import_export/univcsvdialog.cpp:103
-msgid "Export dialog"
-msgstr "Verme Penceresi"
+#: import_export/univcsvdialog.cpp:113
+msgid "Import from XML file"
+msgstr ""
 
-#: import_export/univcsvdialog.cpp:198
+#: import_export/univcsvdialog.cpp:116 mmframe.cpp:1483
+msgid "Export as XML file"
+msgstr ""
+
+#: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
 msgstr "Dosyadaki alanların sırasını belirle"
 
-#: import_export/univcsvdialog.cpp:229
+#: import_export/univcsvdialog.cpp:248
 msgid "&MMEX format"
 msgstr "&MMEX biçimi"
 
-#: import_export/univcsvdialog.cpp:246
+#: import_export/univcsvdialog.cpp:265
 msgid "&Up"
 msgstr "&Yukarı"
 
-#: import_export/univcsvdialog.cpp:250
+#: import_export/univcsvdialog.cpp:269
 msgid "&Down"
 msgstr "&Aşağı"
 
-#: import_export/univcsvdialog.cpp:268
+#: import_export/univcsvdialog.cpp:287
 msgid "Account: "
 msgstr "Hesap:"
 
-#: import_export/univcsvdialog.cpp:293
+#: import_export/univcsvdialog.cpp:312
 msgid "CSV Delimiter:"
 msgstr "CSV Ayracı"
 
-#: import_export/univcsvdialog.cpp:321
+#: import_export/univcsvdialog.cpp:340
 msgid "Export column titles"
 msgstr "Verme sütunu başlıkları"
 
-#: import_export/univcsvdialog.cpp:336
+#: import_export/univcsvdialog.cpp:355
 msgid "Positive values are deposits"
 msgstr "Artı değerler yatanlardır."
 
-#: import_export/univcsvdialog.cpp:337
+#: import_export/univcsvdialog.cpp:356
 msgid "Positive values are withdrawals"
 msgstr "Artı değerler çekilenlerdir."
 
-#: import_export/univcsvdialog.cpp:354
+#: import_export/univcsvdialog.cpp:373
 msgid "Rows to ignore"
 msgstr "Atlanacak satırlar"
 
-#: import_export/univcsvdialog.cpp:361
+#: import_export/univcsvdialog.cpp:380
 msgid "From start: "
 msgstr "Başlangıçtan:"
 
-#: import_export/univcsvdialog.cpp:383
+#: import_export/univcsvdialog.cpp:402
 msgid "From end: "
 msgstr "Bitişken:"
 
-#: import_export/univcsvdialog.cpp:395
+#: import_export/univcsvdialog.cpp:414
 msgid "Preview"
 msgstr "Önizleme"
 
-#: import_export/univcsvdialog.cpp:435
+#: import_export/univcsvdialog.cpp:454
 msgid "Choose XML data file to Import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:435
+#: import_export/univcsvdialog.cpp:454
 msgid "Choose CSV data file to Import"
 msgstr "Alınacak CSV veri dosyasını seçin"
 
-#: import_export/univcsvdialog.cpp:436
+#: import_export/univcsvdialog.cpp:455
 msgid "Choose XML data file to Export"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:436
+#: import_export/univcsvdialog.cpp:455
 msgid "Choose CSV data file to Export"
 msgstr "Verilecek CSV veri dosyasını seçin"
 
-#: import_export/univcsvdialog.cpp:439
+#: import_export/univcsvdialog.cpp:458
 msgid "Template name"
 msgstr "Şablon adı"
 
-#: import_export/univcsvdialog.cpp:440
+#: import_export/univcsvdialog.cpp:459
 msgid "Save Template"
 msgstr "Şablonu Kaydet"
 
-#: import_export/univcsvdialog.cpp:442
+#: import_export/univcsvdialog.cpp:461
 msgid "MMEX standard format"
 msgstr "MMEX standart biçimi"
 
-#: import_export/univcsvdialog.cpp:443
+#: import_export/univcsvdialog.cpp:462
 msgid "Move Up"
 msgstr "Yukarı Taşı"
 
-#: import_export/univcsvdialog.cpp:444
+#: import_export/univcsvdialog.cpp:463
 msgid "Move &Down"
 msgstr "Aşağı &Taşı"
 
-#: import_export/univcsvdialog.cpp:445 optionsettingsmisc.cpp:224
+#: import_export/univcsvdialog.cpp:464 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "CVS dosyaları verilirken/alınırken kullanılacak ayracı belirle"
 
-#: import_export/univcsvdialog.cpp:446
+#: import_export/univcsvdialog.cpp:465
 msgid "Import File"
 msgstr "Dosya Al"
 
-#: import_export/univcsvdialog.cpp:447
+#: import_export/univcsvdialog.cpp:466
 msgid "Export File"
 msgstr "Dosya Ver"
 
-#: import_export/univcsvdialog.cpp:538
+#: import_export/univcsvdialog.cpp:557
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr "Bu şablon için öntanımlı hesap %s yok.\n"
 "Lütfen yeni bir hesap seçin."
 
-#: import_export/univcsvdialog.cpp:540
+#: import_export/univcsvdialog.cpp:559
 msgid "Account does not exist"
 msgstr "Hesap yok"
 
-#: import_export/univcsvdialog.cpp:683 import_export/univcsvdialog.cpp:754
-#: import_export/univcsvdialog.cpp:1886
+#: import_export/univcsvdialog.cpp:702 import_export/univcsvdialog.cpp:773
+#: import_export/univcsvdialog.cpp:1905
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Eğer tür '%s' e sahipse pozitif"
 
-#: import_export/univcsvdialog.cpp:924
+#: import_export/univcsvdialog.cpp:943
 msgid "Incorrect fields specified for import!"
 msgstr "Alma için hatalı alanlar belirlendi."
 
-#: import_export/univcsvdialog.cpp:925
+#: import_export/univcsvdialog.cpp:944
 msgid "Date field is required."
 msgstr "Tarih alanı gereklidir."
 
-#: import_export/univcsvdialog.cpp:926
+#: import_export/univcsvdialog.cpp:945
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "Tutar alanı veya Çekilen ve Yatan alanların ikisi de gereklidir."
 
-#: import_export/univcsvdialog.cpp:927 import_export/univcsvdialog.cpp:1073
+#: import_export/univcsvdialog.cpp:946 import_export/univcsvdialog.cpp:1092
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
 msgstr "Al"
 
-#: import_export/univcsvdialog.cpp:983
+#: import_export/univcsvdialog.cpp:1002
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr "%s : %ld hesabına alınan işlemler"
 
-#: import_export/univcsvdialog.cpp:994
+#: import_export/univcsvdialog.cpp:1013
 #, c-format
 msgid "Line %ld: Empty"
 msgstr "Satır %ld: Boş"
 
-#: import_export/univcsvdialog.cpp:1008
+#: import_export/univcsvdialog.cpp:1027
 #, c-format
 msgid "Line %ld: Error:"
 msgstr "Satır %ld: Error:"
 
-#: import_export/univcsvdialog.cpp:1010
+#: import_export/univcsvdialog.cpp:1029
 msgid "Invalid Date."
 msgstr "Geçersiz Tarih."
 
-#: import_export/univcsvdialog.cpp:1011 mmTextCtrl.cpp:116
+#: import_export/univcsvdialog.cpp:1030 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
 msgstr "Geçersiz Tutar."
 
-#: import_export/univcsvdialog.cpp:1013
+#: import_export/univcsvdialog.cpp:1032
 msgid "Type (withdrawal/deposit) unknown."
 msgstr "Tür (çekilen/yatan) belli değil."
 
-#: import_export/univcsvdialog.cpp:1027
+#: import_export/univcsvdialog.cpp:1046
 #, c-format
 msgid "Line %ld: %s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1051
+#: import_export/univcsvdialog.cpp:1070
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr "Satır %ld: alımı tamamlandı."
 
-#: import_export/univcsvdialog.cpp:1058
+#: import_export/univcsvdialog.cpp:1077
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "Toplam Satır : %ld"
 
-#: import_export/univcsvdialog.cpp:1060
+#: import_export/univcsvdialog.cpp:1079
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr "Seçili alınacak satırlar: %ld"
 
-#: import_export/univcsvdialog.cpp:1062
+#: import_export/univcsvdialog.cpp:1081
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr "Boş Satırlar: %ld"
 
-#: import_export/univcsvdialog.cpp:1064
+#: import_export/univcsvdialog.cpp:1083
 #, c-format
 msgid "Imported: %ld"
 msgstr "Alınan : %ld"
 
-#: import_export/univcsvdialog.cpp:1066
+#: import_export/univcsvdialog.cpp:1085
 #, c-format
 msgid "Errored: %ld"
 msgstr "Hatalı: %ld"
 
-#: import_export/univcsvdialog.cpp:1069
+#: import_export/univcsvdialog.cpp:1088
 #, c-format
 msgid "Log file written to: %s"
 msgstr "Yazılan log dosyası : %s"
 
-#: import_export/univcsvdialog.cpp:1072 stockdialog.cpp:652
+#: import_export/univcsvdialog.cpp:1091 stockdialog.cpp:652
 msgid "Please confirm saving"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1105
+#: import_export/univcsvdialog.cpp:1124
 msgid "No imported transactions!"
 msgstr "Alınan işlem yok!"
 
-#: import_export/univcsvdialog.cpp:1125
+#: import_export/univcsvdialog.cpp:1144
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "Verme için geçersiz alanlar belirlendi. En azından Tarih ve Tutar gereklidir."
 
-#: import_export/univcsvdialog.cpp:1126 import_export/univcsvdialog.cpp:1279
+#: import_export/univcsvdialog.cpp:1145 import_export/univcsvdialog.cpp:1298
 msgid "Export"
 msgstr "Ver"
 
-#: import_export/univcsvdialog.cpp:1136
+#: import_export/univcsvdialog.cpp:1155
 msgid "Overwrite existing file?"
 msgstr "Var olan dosyanın üzerine yazılsın mı?"
 
-#: import_export/univcsvdialog.cpp:1136
+#: import_export/univcsvdialog.cpp:1155
 msgid "File exists"
 msgstr "Dosya var."
 
-#: import_export/univcsvdialog.cpp:1142
+#: import_export/univcsvdialog.cpp:1161
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "Var olan dosya silinemedi. Dosya başka bir program tarafından kilitlenmiş olabilir."
 
-#: import_export/univcsvdialog.cpp:1143
+#: import_export/univcsvdialog.cpp:1162
 msgid "Destination file error"
 msgstr "Hedef dosya hatası"
 
-#: import_export/univcsvdialog.cpp:1151 mmSimpleDialogs.cpp:784
+#: import_export/univcsvdialog.cpp:1170 mmSimpleDialogs.cpp:784
 msgid "Invalid Account"
 msgstr "Geçersiz Hesap"
 
-#: import_export/univcsvdialog.cpp:1278
+#: import_export/univcsvdialog.cpp:1297
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "Verilen işlemler: %ld"
 
-#: import_export/univcsvdialog.cpp:1584 stockdialog.cpp:558
+#: import_export/univcsvdialog.cpp:1603 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
 msgstr "Alınacak CSV veri dosyası seçin"
 
-#: import_export/univcsvdialog.cpp:1587
+#: import_export/univcsvdialog.cpp:1606
 msgid "Choose CSV data file to export"
 msgstr "Verilecek CSV veri dosyası seçin"
 
-#: import_export/univcsvdialog.cpp:1590
+#: import_export/univcsvdialog.cpp:1609
 msgid "Choose XML data file to import"
 msgstr "Alınacak XML veri dosyası seçin"
 
-#: import_export/univcsvdialog.cpp:1593
+#: import_export/univcsvdialog.cpp:1612
 msgid "Choose XML data file to export"
 msgstr "Verilecek XML veri dosyası seçin"
 
-#: import_export/univcsvdialog.cpp:1601
+#: import_export/univcsvdialog.cpp:1620
 msgid "XML Files (*.xml)"
 msgstr "XML Dosyaları (*.xml)"
 
-#: import_export/univcsvdialog.cpp:1601
+#: import_export/univcsvdialog.cpp:1620
 msgid "All Files"
 msgstr "Tüm Dosyalar"
 
-#: import_export/univcsvdialog.cpp:1882
+#: import_export/univcsvdialog.cpp:1901
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr "Lütfen CSV dosyanıza pozitif değerleri gösteren kelimeyi yazın, ör. 'Bankamatik'"
 
-#: import_export/univcsvdialog.cpp:1882
+#: import_export/univcsvdialog.cpp:1901
 msgid "Enter a value"
 msgstr "Bir değer girin"
 
@@ -4351,28 +4354,48 @@ msgstr "MMEX etkin bir veritabanı olmadan açıldı."
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: Menu Açılma Hatası"
 
-#: mmframe.cpp:1316 mmframe.cpp:1321 mmframe.cpp:1474 mmframe.cpp:1481
+#: mmframe.cpp:1316 mmframe.cpp:1474
 msgid "&CSV Files..."
 msgstr ""
 
-#: mmframe.cpp:1317 mmframe.cpp:1323 mmframe.cpp:1475 mmframe.cpp:1483
+#: mmframe.cpp:1317 mmframe.cpp:1475
 msgid "&XML Files..."
 msgstr ""
 
-#: mmframe.cpp:1317 mmframe.cpp:1475
-msgid "Import from XML (Excel format)"
-msgstr "XML'den al (Excel formatı)"
+#: mmframe.cpp:1317
+msgid "Import from XML (Excel format) file"
+msgstr ""
 
-#: mmframe.cpp:1318 mmframe.cpp:1324 mmframe.cpp:1476 mmframe.cpp:1484
+#: mmframe.cpp:1318 mmframe.cpp:1476
 msgid "&QIF Files..."
 msgstr ""
 
+#: mmframe.cpp:1319 mmframe.cpp:1478
+msgid "&Import from"
+msgstr ""
+
+#: mmframe.cpp:1321 mmframe.cpp:1481
+msgid "&CSV File..."
+msgstr ""
+
 #: mmframe.cpp:1322 mmframe.cpp:1482
-msgid "&MMEX CSV Files..."
+msgid "&MMEX CSV File..."
+msgstr ""
+
+#: mmframe.cpp:1323 mmframe.cpp:1483
+msgid "&XML File..."
+msgstr ""
+
+#: mmframe.cpp:1324 mmframe.cpp:1484
+msgid "&QIF File..."
 msgstr ""
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
-msgid "&JSON Files..."
+msgid "&JSON File..."
+msgstr ""
+
+#: mmframe.cpp:1326 mmframe.cpp:1487
+msgid "&Export as"
 msgstr ""
 
 #: mmframe.cpp:1351
@@ -4451,6 +4474,10 @@ msgstr "So&n Dosyaları Temizle"
 msgid "Import from any CSV file"
 msgstr "Herhangibir CSV'den al"
 
+#: mmframe.cpp:1475
+msgid "Import from XML (Excel format)"
+msgstr "XML'den al (Excel formatı)"
+
 #: mmframe.cpp:1476
 msgid "Import from QIF"
 msgstr "QIF'den al"
@@ -4463,29 +4490,17 @@ msgstr ""
 msgid "Import from WebApp"
 msgstr "WebApp'dan Al"
 
-#: mmframe.cpp:1481
-msgid "Export to CSV"
-msgstr "CSV'ye ver"
-
 #: mmframe.cpp:1482
-msgid "Export to fixed CSV"
-msgstr ""
-
-#: mmframe.cpp:1483
-msgid "Export to XML"
-msgstr "XML'e ver"
-
-#: mmframe.cpp:1485
-msgid "Export to JSON"
-msgstr "JSON olarak Dışa Aktar"
-
-#: mmframe.cpp:1486
-msgid "&HTML Files..."
+msgid "Export as fixed CSV file"
 msgstr ""
 
 #: mmframe.cpp:1486
-msgid "Export to HTML"
-msgstr "HTML'e ver"
+msgid "&HTML File..."
+msgstr ""
+
+#: mmframe.cpp:1486
+msgid "Export as HTML file"
+msgstr ""
 
 #: mmframe.cpp:1492
 msgid "&Print..."
