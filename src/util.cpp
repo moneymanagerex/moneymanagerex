@@ -1311,7 +1311,7 @@ const wxString getProgramDescription(int type)
         << bull + "apexcharts.js" << eol
         << eol
 
-        << (simple ? "Has been built using:" : _("Has been built using:")) << eol
+        << (simple ? "Built width:" : _("Built width:")) << eol
         << bull + CMAKE_VERSION << eol
         << bull + MAKE_VERSION << eol
 
@@ -1322,16 +1322,18 @@ const wxString getProgramDescription(int type)
         << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << eol
 #elif defined(__clang__)
         << bull + "Clang " + __VERSION__ << eol
+        << eol
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
         << bull + "GCC " + __VERSION__ << eol
+        << eol
 #endif
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
         << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << eol
 #endif
-#ifdef LINUX_DISTRO_STRING
-        << bull + LINUX_DISTRO_STRING 
-#endif
         << eol
+#ifdef LINUX_DISTRO_STRING
+        << bull + LINUX_DISTRO_STRING
+#endif
         << (simple ? "OS:" : _("Running on:")) << eol
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
