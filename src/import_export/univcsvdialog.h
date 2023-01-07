@@ -86,7 +86,7 @@ public:
 
     /// Constructors
     mmUnivCSVDialog();
-    mmUnivCSVDialog(wxWindow* parent, EDialogType dialogType,
+    mmUnivCSVDialog(wxWindow* parent, EDialogType dialogType, int account_id,
                     wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
                     const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
                     const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
@@ -140,6 +140,7 @@ private:
     };
 private:
     EDialogType dialogType_;
+    int m_account_id;
     wxString delimit_ = ",";
     wxString decimal_;
 

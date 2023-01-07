@@ -74,12 +74,14 @@ mmUnivCSVDialog::mmUnivCSVDialog()
 mmUnivCSVDialog::mmUnivCSVDialog(
     wxWindow* parent,
     EDialogType dialogType,
+    int account_id,
     wxWindowID id,
     const wxPoint& pos,
     const wxSize& size,
     long style
 ) :
     dialogType_(dialogType),
+    m_account_id(account_id),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
     depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
 {
@@ -547,8 +549,22 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     m_text_ctrl_->ChangeValue(fn);
 
     // Account
-    Value& account_name = GetValueByPointerWithDefault(json_doc, "/ACCOUNT_NAME", "");
-    const wxString& an = wxString::FromUTF8(account_name.IsString() ? account_name.GetString() : "");
+    wxString an;
+    if (m_account_id > -1)
+    {
+        const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+        if (account)
+            an = account->ACCOUNTNAME;
+        else
+            m_account_id = -1;
+    }
+
+    if (m_account_id < 0)
+    {
+        Value& account_name = GetValueByPointerWithDefault(json_doc, "/ACCOUNT_NAME", "");
+        an = wxString::FromUTF8(account_name.IsString() ? account_name.GetString() : "");
+    }
+
     if (!an.empty())
     {
         int itemIndex = m_choice_account_->FindString(an);

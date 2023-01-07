@@ -1035,16 +1035,19 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     if (!m_db) return;
 
     wxTreeItemId selectedItem = event.GetItem();
-    if (!selectedItem) return;
+    if (!selectedItem)
+        return;
 
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
-    if (!iData) return;
+    if (!iData)
+        return;
 
     menuPrintingEnable(false);
     m_nav_tree_ctrl->Update();
     selectedItemData_ = iData;
-
     activeReport_ = false;
+    gotoAccountID_ = -1;
+
     wxCommandEvent e;
     switch (iData->getType())
     {
@@ -2351,13 +2354,13 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnExportToCSV(wxCommandEvent& /*event*/)
 {
-    mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_CSV).ShowModal();
+    mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_CSV, gotoAccountID_).ShowModal();
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnExportToXML(wxCommandEvent& /*event*/)
 {
-    mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_XML).ShowModal();
+    mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_XML, gotoAccountID_).ShowModal();
 }
 //----------------------------------------------------------------------------
 
@@ -2409,7 +2412,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         return;
     }
 
-    mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV);
+    mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV, gotoAccountID_);
     univCSVDialog.ShowModal();
     if (univCSVDialog.isImportCompletedSuccessfully())
     {
@@ -2428,7 +2431,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
         return;
     }
 
-    mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML);
+    mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML, gotoAccountID_);
     univCSVDialog.ShowModal();
     if (univCSVDialog.isImportCompletedSuccessfully())
     {
