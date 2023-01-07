@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 15:02+0300\n"
-"PO-Revision-Date: 2023-01-07 13:40\n"
+"PO-Revision-Date: 2023-01-07 14:49\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2963,16 +2963,16 @@ msgstr "Buchungen"
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:638
 #: mmframe.cpp:1484
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Als QIF-Datei exportieren"
 
 #: import_export/qif_export.cpp:49 mmframe.cpp:1485
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Als JSON-Datei exportieren"
 
 #: import_export/qif_export.cpp:50 import_export/univcsvdialog.cpp:110
 #: mmframe.cpp:1481
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Als CSV-Datei exportieren"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -3234,7 +3234,7 @@ msgstr "Importierte Buchungen durch Benutzer verworfen!"
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Aus QIF-Datei importieren"
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3290,15 +3290,15 @@ msgstr "Kontostand"
 
 #: import_export/univcsvdialog.cpp:107
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Aus CSV-Datei importieren"
 
 #: import_export/univcsvdialog.cpp:113
 msgid "Import from XML file"
-msgstr ""
+msgstr "Aus XML-Datei importieren"
 
 #: import_export/univcsvdialog.cpp:116 mmframe.cpp:1483
 msgid "Export as XML file"
-msgstr ""
+msgstr "Als XML-Datei exportieren"
 
 #: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
@@ -4373,7 +4373,7 @@ msgstr "&XML-Dateien..."
 
 #: mmframe.cpp:1317
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "Import aus XML-Datei (Excel Format)"
 
 #: mmframe.cpp:1318 mmframe.cpp:1476
 msgid "&QIF Files..."
@@ -4381,19 +4381,19 @@ msgstr "&QIF-Dateien..."
 
 #: mmframe.cpp:1319 mmframe.cpp:1478
 msgid "&Import from"
-msgstr ""
+msgstr "&Importieren von"
 
 #: mmframe.cpp:1321 mmframe.cpp:1481
 msgid "&CSV File..."
-msgstr ""
+msgstr "&CSV-Datei..."
 
 #: mmframe.cpp:1322 mmframe.cpp:1482
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "&MMEX CSV Datei..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1483
 msgid "&XML File..."
-msgstr ""
+msgstr "&XML-Datei..."
 
 #: mmframe.cpp:1324 mmframe.cpp:1484
 msgid "&QIF File..."
