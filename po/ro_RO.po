@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 01:25+0300\n"
-"PO-Revision-Date: 2023-01-06 22:33\n"
+"PO-Revision-Date: 2023-01-07 07:14\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1399,19 +1399,19 @@ msgstr "Intrarea Anului Bugetar"
 
 #: budgetentrydialog.cpp:108
 msgid "Category: "
-msgstr ""
+msgstr "Categorie: "
 
 #: budgetentrydialog.cpp:115
 msgid "Sub Category: "
-msgstr ""
+msgstr "Subcategorie: "
 
 #: budgetentrydialog.cpp:122 reports/budgetingperf.cpp:219
 msgid "Estimated:"
-msgstr ""
+msgstr "Estimat:"
 
 #: budgetentrydialog.cpp:124 reports/budgetingperf.cpp:220
 msgid "Actual:"
-msgstr ""
+msgstr "Actual:"
 
 #: budgetentrydialog.cpp:127
 msgid "Type:"
@@ -1450,7 +1450,7 @@ msgstr "Introdu suma bugetată pentru această categorie."
 
 #: budgetentrydialog.cpp:158 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Introdu o notă pentru a descrie această înregistrare în buget"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1462,7 +1462,7 @@ msgstr "Vezi Categoriile Bugetare Non-Zero"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "Vezi Categoriile Bugetare Planificate"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1474,12 +1474,12 @@ msgstr "Vezi Categoriile de Cheltuieli Bugetare"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "Vezi Sumarul Categoriilor Bugetare"
 
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Anul financiar: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
@@ -1494,12 +1494,12 @@ msgstr "Luna: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Data de începere a: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "Configurare buget pentru %s"
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
@@ -1507,23 +1507,23 @@ msgstr "Venit: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
-msgstr ""
+msgstr "Estimat: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
-msgstr ""
+msgstr "Actual: "
 
 #: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:221
 msgid "Difference: "
-msgstr ""
+msgstr "Diferența: "
 
 #: budgetingpanel.cpp:256
 msgid "Expenses: "
-msgstr ""
+msgstr "Cheltuieli: "
 
 #: budgetingpanel.cpp:299
 msgid "Icon"
-msgstr ""
+msgstr "Pictogramă"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:186
@@ -1537,11 +1537,11 @@ msgstr "Real"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Editor de buget"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Adaugă un an"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -7505,22 +7505,22 @@ msgstr ""
 #: util.cpp:1282
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "Construit pe: %s %s"
 
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Versiunea bazei de date: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git commit: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git branch: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7528,7 +7528,7 @@ msgstr ""
 
 #: util.cpp:1314
 msgid "Has been built using:"
-msgstr ""
+msgstr "A fost construit folosind:"
 
 #: util.cpp:1335
 msgid "Running on:"
