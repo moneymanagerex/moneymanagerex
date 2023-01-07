@@ -673,6 +673,7 @@ void mmGUIFrame::createControls()
     m_nav_tree_ctrl->SetImages(navtree_images_list(navIconSize));
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+    m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
@@ -1314,16 +1315,16 @@ void mmGUIFrame::AppendImportMenu(wxMenu& menu)
 {
     wxMenu* importFrom(new wxMenu);
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format)"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format) file"));
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
-    menu.AppendSubMenu(importFrom, _("&Import"));
+    menu.AppendSubMenu(importFrom, _("&Import from"));
     wxMenu* exportTo(new wxMenu);
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files..."));
-    menu.AppendSubMenu(exportTo, _("&Export"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON File..."));
+    menu.AppendSubMenu(exportTo, _("&Export as"));
 }
 
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
@@ -1475,16 +1476,16 @@ void mmGUIFrame::createMenu()
     importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
     importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
     importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
-    menu_file->Append(MENU_IMPORT, _("&Import"), importMenu);
+    menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
 
     wxMenu* exportMenu = new wxMenu;
-    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV Files..."), _("Export to CSV"));
-    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV Files..."), _("Export to fixed CSV"));
-    exportMenu->Append(MENU_EXPORT_XML, _("&XML Files..."), _("Export to XML"));
-    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files..."), _("Export to QIF"));
-    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON Files..."), _("Export to JSON"));
-    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML Files..."), _("Export to HTML"));
-    menu_file->Append(MENU_EXPORT, _("&Export"), exportMenu);
+    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV File..."), _("Export as CSV file"));
+    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV File..."), _("Export as fixed CSV file"));
+    exportMenu->Append(MENU_EXPORT_XML, _("&XML File..."), _("Export as XML file"));
+    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF File..."), _("Export as QIF file"));
+    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON File..."), _("Export as JSON file"));
+    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML File..."), _("Export as HTML file"));
+    menu_file->Append(MENU_EXPORT, _("&Export as"), exportMenu);
 
     menu_file->AppendSeparator();
 
@@ -2362,17 +2363,17 @@ void mmGUIFrame::OnExportToXML(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
 {
-    mmQIFExportDialog dlg(this, mmQIFExportDialog::QIF);
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::QIF, gotoAccountID_);
     dlg.ShowModal();
 }
 void mmGUIFrame::OnExportToJSON(wxCommandEvent& /*event*/)
 {
-    mmQIFExportDialog dlg(this, mmQIFExportDialog::JSON);
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::JSON, gotoAccountID_);
     dlg.ShowModal();
 }
 void mmGUIFrame::OnExportToMMEX(wxCommandEvent& /*event*/)
 {
-    mmQIFExportDialog dlg(this, mmQIFExportDialog::CSV);
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::CSV, gotoAccountID_);
     dlg.ShowModal();
 }
 //----------------------------------------------------------------------------

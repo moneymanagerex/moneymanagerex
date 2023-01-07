@@ -100,7 +100,26 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
     CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
 
-    Create(parent, IsImporter() ? _("Import dialog") : _("Export dialog"), id, pos, size, style);
+    wxString header;
+    switch (dialogType_)
+    {
+    case DIALOG_TYPE_IMPORT_CSV:
+        header = _("Import from CSV file");
+        break;
+    case DIALOG_TYPE_EXPORT_CSV:
+        header = _("Export as CSV file");
+        break;
+    case DIALOG_TYPE_IMPORT_XML:
+        header = _("Import from XML file");
+        break;
+    case DIALOG_TYPE_EXPORT_XML:
+        header = _("Export as XML file");
+        break;
+    default:
+        break;
+    }
+
+    Create(parent, header, id, pos, size, style);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmUnivCSVDialog::changeFocus), nullptr, this);
 }
 

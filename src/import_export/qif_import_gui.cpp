@@ -1002,7 +1002,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         sMsg = _("Imported transactions discarded by user!"); //TODO: strange message may be _("Import has discarded by user!")
     }
-    wxMessageDialog(this, sMsg, _("QIF Import"), wxOK | wxICON_WARNING).ShowModal();
+    wxMessageDialog(this, sMsg, _("Import from QIF file"), wxOK | wxICON_WARNING).ShowModal();
     *log_field_ << sMsg << "\n";
 
     refreshTabs(ACC_TAB | PAYEE_TAB | CAT_TAB);
