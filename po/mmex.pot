@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 14:10+0300\n"
+"POT-Creation-Date: 2023-01-07 14:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7572,7 +7572,7 @@ msgid "MMEX is using the following support products:"
 msgstr ""
 
 #: util.cpp:1314
-msgid "Built width:"
+msgid "Built with:"
 msgstr ""
 
 #: util.cpp:1337
