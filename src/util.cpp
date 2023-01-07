@@ -1311,7 +1311,7 @@ const wxString getProgramDescription(int type)
         << bull + "apexcharts.js" << eol
         << eol
 
-        << (simple ? "Built width:" : _("Built width:")) << eol
+        << (simple ? "Built with:" : _("Built with:")) << eol
         << bull + CMAKE_VERSION << eol
         << bull + MAKE_VERSION << eol
 
