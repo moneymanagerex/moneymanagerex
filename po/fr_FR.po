@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 14:16+0300\n"
-"PO-Revision-Date: 2023-01-07 11:18\n"
+"PO-Revision-Date: 2023-01-07 12:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -7571,7 +7571,7 @@ msgstr "MMEX utilise les produits suivant:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Développé avec :"
 
 #: util.cpp:1337
 msgid "Running on:"
