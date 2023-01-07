@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 01:25+0300\n"
-"PO-Revision-Date: 2023-01-07 07:14\n"
+"PO-Revision-Date: 2023-01-07 08:45\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1549,7 +1549,7 @@ msgstr "Adaugă un an bugetar nou"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Adaugă o lună"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1623,7 +1623,7 @@ msgstr ""
 
 #: categdialog.cpp:302 maincurrencydialog.cpp:215 payeedialog.cpp:351
 msgid "Search:"
-msgstr ""
+msgstr "Caută:"
 
 #: categdialog.cpp:315
 msgid "Add a new category"
@@ -1663,7 +1663,7 @@ msgstr ""
 
 #: categdialog.cpp:355
 msgid "Add Category"
-msgstr ""
+msgstr "Adaugă o Categorie"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
