@@ -33,7 +33,7 @@ public:
     mmQIFExportDialog() {}
     //virtual ~mmQIFExportDialog() {}
 
-    mmQIFExportDialog(wxWindow* parent, int type);
+    mmQIFExportDialog(wxWindow* parent, int type, int account_id);
 
     bool Create(wxWindow* parent
         , const wxString& caption
@@ -45,6 +45,7 @@ public:
 private:
 
     int m_type;
+    int m_account_id;
     void mmExportQIF();
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));

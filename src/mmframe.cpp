@@ -673,6 +673,7 @@ void mmGUIFrame::createControls()
     m_nav_tree_ctrl->SetImages(navtree_images_list(navIconSize));
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+    m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
@@ -2362,17 +2363,17 @@ void mmGUIFrame::OnExportToXML(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
 {
-    mmQIFExportDialog dlg(this, mmQIFExportDialog::QIF);
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::QIF, gotoAccountID_);
     dlg.ShowModal();
 }
 void mmGUIFrame::OnExportToJSON(wxCommandEvent& /*event*/)
 {
-    mmQIFExportDialog dlg(this, mmQIFExportDialog::JSON);
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::JSON, gotoAccountID_);
     dlg.ShowModal();
 }
 void mmGUIFrame::OnExportToMMEX(wxCommandEvent& /*event*/)
 {
-    mmQIFExportDialog dlg(this, mmQIFExportDialog::CSV);
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::CSV, gotoAccountID_);
     dlg.ShowModal();
 }
 //----------------------------------------------------------------------------
