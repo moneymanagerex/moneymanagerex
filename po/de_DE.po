@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-08 11:58\n"
+"PO-Revision-Date: 2023-01-08 13:06\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4753,7 +4753,7 @@ msgstr "Passwort einer verschlüsselten Datenbank ändern"
 
 #: mmframe.cpp:1693
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Optimiere Datenbank..."
 
 #: mmframe.cpp:1694
 msgid "Optimize database space and performance"
@@ -4761,7 +4761,7 @@ msgstr "Speicherplatz und Leistung der Datenbank optimieren"
 
 #: mmframe.cpp:1696
 msgid "Database De&bug..."
-msgstr ""
+msgstr "Datenbank Fehlerbehe&bung..."
 
 #: mmframe.cpp:1697
 msgid "Generate database report or fix errors"
@@ -5724,22 +5724,22 @@ msgstr "Legende (kann als Variablen am Anfang des obigen Pfades verwendet werden
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Benutzerdokument-Verzeichnis"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Benutzerprofilordner"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Ordner der .MMB Datenbankdatei"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : MMEX-Anwendungsdatenordner"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5752,17 +5752,17 @@ msgstr "Noch nicht festgelegt"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Windows-Ordner: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Mac-Ordner: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Unix-Ordner: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -5973,27 +5973,27 @@ msgstr "Nein"
 
 #: optionsettingsmisc.cpp:148
 msgid "Default Date"
-msgstr ""
+msgstr "Standard Datum"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Standard-Zahlungsempfänger/Zahler"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Standard Einzahlung/Auszahlungskategorie"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Standard-Überweisungskategorie"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Standardstatus"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Massen-Transaktionen"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -6011,7 +6011,7 @@ msgstr "Wenn MMEX gestartet wird, \n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Datenbank beim Beenden sichern"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
@@ -7139,11 +7139,11 @@ msgstr "Akt. Gesamtwert"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Neue Wertpapieranlage..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Aktienbuchung hinzufügen..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7151,11 +7151,11 @@ msgstr "Aktienbuchung &anzeigen"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "W&ertpapieranlage bearbeiten..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "Wertpapieranlagen &löschen..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7558,22 +7558,22 @@ msgstr "Version: %s"
 #: util.cpp:1282
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "erstellt am: %s %s"
 
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Datenbankversion: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git-Eintrag: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git Zweig: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7581,7 +7581,7 @@ msgstr "MMEX verwendet folgene Unterstützungsprodukte:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "erstellt mit:"
 
 #: util.cpp:1337
 msgid "Running on:"
