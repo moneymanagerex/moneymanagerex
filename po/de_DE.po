@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-07 15:21\n"
+"PO-Revision-Date: 2023-01-08 11:58\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4737,7 +4737,7 @@ msgstr "Zeige Optionen"
 
 #: mmframe.cpp:1687
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Verschlüsselte &Datenbank konvertieren..."
 
 #: mmframe.cpp:1688
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4745,7 +4745,7 @@ msgstr "Verschlüsselte DB in nicht-verschlüsselte DB umwandeln"
 
 #: mmframe.cpp:1690
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Verschlüsseltes &Passwort ändern..."
 
 #: mmframe.cpp:1691
 msgid "Change the password of an encrypted database"
