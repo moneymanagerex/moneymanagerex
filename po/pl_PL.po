@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-07 15:21\n"
+"PO-Revision-Date: 2023-01-08 08:10\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2975,16 +2975,16 @@ msgstr "Transakcje"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1488
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Eksportuj jako plik QIF"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1489
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Eksportuj jako plik JSON"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:112
 #: mmframe.cpp:1485
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Eksportuj jako plik CSV"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3246,7 +3246,7 @@ msgstr "Importowane transakcje odrzucone przez użytkownika!"
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importuj z pliku QIF"
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3302,15 +3302,15 @@ msgstr "Bilans"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importuj z pliku CSV"
 
 #: import_export/univcsvdialog.cpp:115
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importuj z pliku XML"
 
 #: import_export/univcsvdialog.cpp:118 mmframe.cpp:1487
 msgid "Export as XML file"
-msgstr ""
+msgstr "Eksportuj jako plik XML"
 
 #: import_export/univcsvdialog.cpp:219
 msgid "Specify the order of fields in the file"
@@ -3935,39 +3935,39 @@ msgstr ""
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, poznaj swój przepływ pieniędzy (ustal budżet)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, spłać dług konsumencki - zwłaszcza karty kredytowe."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, ustaw swoją wartość netto jako główny miernik analizy."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, ustal swoje cele i priorytety."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, upewnij się, że rozumiesz podstawy inwestowania."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Powszechny błąd inwestorów: kupowanie tylko firm, które znasz."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Powszechny błąd inwestorów: kupowanie firm, które lubisz."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Powszechny błąd inwestorów: kupowanie spółek o dużej wartości."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Powszechny błąd inwestorów: zapominanie o przeciwwadze."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -4405,7 +4405,7 @@ msgstr ""
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "Import z pliku XML (format Excel)"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
@@ -4413,31 +4413,31 @@ msgstr ""
 
 #: mmframe.cpp:1323 mmframe.cpp:1482
 msgid "&Import from"
-msgstr ""
+msgstr "&Importuj z"
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&CSV File..."
-msgstr ""
+msgstr "Plik &CSV..."
 
 #: mmframe.cpp:1326 mmframe.cpp:1486
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "Plik &MMEX CSV..."
 
 #: mmframe.cpp:1327 mmframe.cpp:1487
 msgid "&XML File..."
-msgstr ""
+msgstr "&Plik XML..."
 
 #: mmframe.cpp:1328 mmframe.cpp:1488
 msgid "&QIF File..."
-msgstr ""
+msgstr "Plik &QIF..."
 
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&JSON File..."
-msgstr ""
+msgstr "Plik &JSON..."
 
 #: mmframe.cpp:1330 mmframe.cpp:1491
 msgid "&Export as"
-msgstr ""
+msgstr "&Eksportuj jako"
 
 #: mmframe.cpp:1355
 msgid "&Edit Filter..."
@@ -4533,15 +4533,15 @@ msgstr "Importuj z WebApp"
 
 #: mmframe.cpp:1486
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Eksportuj jako stały plik CSV"
 
 #: mmframe.cpp:1490
 msgid "&HTML File..."
-msgstr ""
+msgstr "Plik &HTML..."
 
 #: mmframe.cpp:1490
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Eksportuj jako plik HTML"
 
 #: mmframe.cpp:1496
 msgid "&Print..."
@@ -5758,22 +5758,22 @@ msgstr "Legenda (może być użyta jako zmienna na początku powyższej ścieżk
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Folder dokumentów użytkownika"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Folder profilu użytkownika"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Folder pliku bazy danych .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : Folder danych aplikacji MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5786,17 +5786,17 @@ msgstr "Jeszcze nie ustawione"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Folder Windows: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Folder Mac: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Folder Unix: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -7591,22 +7591,22 @@ msgstr "Wersja: %s"
 #: util.cpp:1282
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "Zbudowano: %s %s"
 
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Wersja bazy danych: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Zatwierdzenie Git: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Gałąź Git: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7614,7 +7614,7 @@ msgstr "MMEX wykorzystuje następujące produkty:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Wykorzystane technologie:"
 
 #: util.cpp:1337
 msgid "Running on:"
