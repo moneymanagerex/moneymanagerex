@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-08 20:49\n"
+"PO-Revision-Date: 2023-01-08 21:53\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -565,7 +565,7 @@ msgstr "&Elimina Cespite..."
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1377 mmframe.cpp:1397 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Gestisci Allegati..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -625,7 +625,7 @@ msgstr "&Elimina"
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
-msgstr "Cancella Cespite"
+msgstr "Elimina Cespite"
 
 #: assetspanel.cpp:499 billsdepositspanel.cpp:325 mmcheckingpanel.cpp:392
 #: stockspanel.cpp:162
@@ -1161,7 +1161,7 @@ msgstr "Valore non valido "
 #: import_export/univcsvdialog.cpp:1063 stockdialog.cpp:428 transdialog.cpp:595
 #: transdialog.cpp:669 usertransactionpanel.cpp:445 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr "La data di apertura del conto è successiva alla data di questa transazione"
+msgstr "La data di apertura del conto è successiva alla data di questa operazione"
 
 #: billsdepositsdialog.cpp:1181
 msgid "Specify the transfer amount in the From Account"
@@ -1321,7 +1321,7 @@ msgstr "Salta la prossima Operazione Ricorrente"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Inserire la Scadenza successiva..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1329,7 +1329,7 @@ msgstr "Ignora prossima Scadenza"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nuova Operazione Ricorrente..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
@@ -1733,7 +1733,7 @@ msgstr "Gestione Categorie: Errore di cancellazione"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr "Esistono transazioni cancellate che utilizzano questa categoria o uno dei suoi discendenti."
+msgstr "Esistono operazioni eliminate che utilizzano questa categoria o uno delle sue derivate."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
@@ -2821,7 +2821,7 @@ msgstr "Mostra/Nasconde il report nel pannello di navigazione principale"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr "Elimina Segnalazione..."
+msgstr "Elimina Resoconto..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -2834,7 +2834,7 @@ msgstr "Gestione Resoconti"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
-msgstr "Elimina il Resoconto:"
+msgstr "Elimina il Titolo del Resoconto:"
 
 #: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
@@ -3635,7 +3635,7 @@ msgstr "Aggiungere tasso di cambio allo storico"
 
 #: maincurrencydialog.cpp:303
 msgid "Delete selected Currency Values"
-msgstr "Eliminare i tassi di cambio selezionati"
+msgstr "Elimina i valori delle valute selezionate"
 
 #: maincurrencydialog.cpp:307
 msgid "Delete Currency Values history for unused currencies and days"
@@ -3706,7 +3706,7 @@ msgstr "Impossibile scaricare lo storico del simbolo %s. Cronologia dei tassi no
 
 #: maincurrencydialog.cpp:784 optionsettingsgeneral.cpp:289
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Il cambio di valuta base eliminerà lo storico dei tassi di cambio, procedere?"
+msgstr "Modificando la valuta di base saranno eliminati tutti i tassi storici, vuoi procedere?"
 
 #: maincurrencydialog.cpp:808
 msgid "Do you want to update today currency rates?"
@@ -3965,19 +3965,19 @@ msgstr "Ordinamento"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
-msgstr "Cancellata il"
+msgstr "Eliminata il"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Nuovo Prelievo..."
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Nuovo Deposito..."
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Nuovo trasferimento..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -4025,24 +4025,24 @@ msgstr ""
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] "&Ripristina la transazione selezionata..."
+msgstr[0] "&Ripristina l'operazione selezionata..."
 msgstr[1] "&Ripristina le transazioni selezionate..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr "Ripristina tutte le operazioni nella visuale corrente..."
+msgstr "Ripristina tutte le operazioni nella schermata attuale..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] "&Elimina la transazione selezionata..."
-msgstr[1] "&Elimina le transazioni selezionate..."
+msgstr[0] "&Elimina l'operazione selezionata..."
+msgstr[1] "&Elimina le operazioni selezionate..."
 
 #: mmchecking_list.cpp:487
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] "&Elimina definitivamente la transazione selezionata..."
-msgstr[1] "&Elimina definitivamente le transazioni selezionate..."
+msgstr[0] "&Elimina definitivamente l'operazione selezionata..."
+msgstr[1] "&Elimina definitivamente le operazioni selezionate..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
@@ -4058,7 +4058,7 @@ msgstr "Elimina Operazioni \"Da Monitorare\" Visualizzate..."
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Elimina Operazioni \"Non riconciliate\" Visualizzate..."
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
@@ -4081,11 +4081,11 @@ msgstr[1] "Vuoi davvero ripristinare %i transazioni selezionate?"
 
 #: mmchecking_list.cpp:1029
 msgid "Do you really want to delete all the transactions shown?"
-msgstr "Vuoi davvero eliminare tutte le transazioni mostrate?"
+msgstr "Vuoi davvero eliminare tutte le operazioni visualizzate?"
 
 #: mmchecking_list.cpp:1030
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr "Vuoi davvero eliminare definitivamente tutte le transazioni mostrate?"
+msgstr "Vuoi davvero eliminare definitivamente tutte le operazioni visualizzate?"
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1147
@@ -4177,7 +4177,7 @@ msgstr "&Ripristina "
 
 #: mmcheckingpanel.cpp:399
 msgid "Restore selected transaction"
-msgstr "Ripristina la transazione selezionata"
+msgstr "Ripristina l'operazione selezionata"
 
 #: mmcheckingpanel.cpp:414
 msgid "Enter any string to find it in the nearest transaction data"
@@ -4559,7 +4559,7 @@ msgstr "&Visualizza Transazioni Eliminate"
 
 #: mmframe.cpp:1514
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr "Mostra/Nasconde le transazioni eliminate nell'albero di navigazione"
+msgstr "Mostra/Nascondi le Operazioni eliminate nell'albero di navigazione"
 
 #: mmframe.cpp:1516
 msgid "Budgets: As Financial &Years"
@@ -4639,11 +4639,11 @@ msgstr "Aggiornamento tassi di cambio e valore azioni"
 
 #: mmframe.cpp:1610
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Gestisci &Categorie..."
 
 #: mmframe.cpp:1614
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Gestisci &Beneficiari..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1832 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4663,7 +4663,7 @@ msgstr "&Categorie..."
 
 #: mmframe.cpp:1625
 msgid "&Payees..."
-msgstr ""
+msgstr "&Beneficiari..."
 
 #: mmframe.cpp:1626
 msgid "Reassign all payees to another payee"
@@ -4679,7 +4679,7 @@ msgstr "Sostituisce Categorie && Beneficiari"
 
 #: mmframe.cpp:1639
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Impostazione del Budget..."
 
 #: mmframe.cpp:1643
 msgid "&Recurring Transactions"
@@ -5243,7 +5243,7 @@ msgstr "Scegliere il conto da eliminare"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Sicuro di voler cancellare il\n"
+msgstr "Sicuro di voler eliminare il\n"
 " %s conto: %s ?"
 
 #: mmframe.cpp:3356
@@ -5787,7 +5787,7 @@ msgstr "Quando l'allegato viene rimosso, spostarlo invece di eliminarlo"
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Selezionare per non eliminare il file se si rimuove  l'allegato, ma invece spostarlo nella sottocartella 'Deleted'"
+msgstr "Seleziona di non eliminare il file quando l'allegato viene rimosso, ma di spostarlo nella sottocartella \"Eliminati\""
 
 #: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
@@ -7167,7 +7167,7 @@ msgstr "Pagina &Web titolo"
 
 #: stocks_list.cpp:276
 msgid "Do you really want to delete the stock investment?"
-msgstr "Vuoi davvero cancellare questo investimento azionario?"
+msgstr "Vuoi davvero eliminare questo investimento azionario?"
 
 #: stocks_list.cpp:277
 msgid "Confirm Stock Investment Deletion"
@@ -7290,7 +7290,7 @@ msgstr "Sei sicuro di voler eliminare questo tema? Se volessi usarlo di nuovo, d
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
-msgstr "Qualcosa è andato storto nel tentativo di cancellare il tema."
+msgstr "Qualcosa è andato storto nel tentativo di eliminare il tema"
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
