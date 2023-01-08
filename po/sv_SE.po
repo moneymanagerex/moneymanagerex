@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-08 18:24\n"
+"PO-Revision-Date: 2023-01-08 19:42\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -6258,7 +6258,7 @@ msgstr "Dold"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Ange om betalningsmottagaren ska döljas och inte visas i betalningsmottagarlistan för nya transaktioner"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6270,23 +6270,23 @@ msgstr "Förvald kategori"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Kategorin som används som standard för denna betalningsmottagare"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "Referens"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "En referens att användas för betalningsmottagaren, t.ex. bankkontonummer"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "Webbplats"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "Webbadress kopplad till betalningsmottagaren"
 
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
@@ -6294,7 +6294,7 @@ msgstr "Avs/mot med samma namn finns redan"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "Webbplats"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -6875,7 +6875,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Redigera detaljer för delad betalning"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
@@ -7651,7 +7651,7 @@ msgstr "Fel webbapp-konto"
 
 #: webapp.cpp:565
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Idag kommer att användas som transaktionsdatum"
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
