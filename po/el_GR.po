@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-08 15:57\n"
+"PO-Revision-Date: 2023-01-08 17:16\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -7558,17 +7558,17 @@ msgstr ""
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Έκδοση βάσης δεδομένων: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Υποβολή: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Κλάδος Git: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7576,7 +7576,7 @@ msgstr "Το MMEX χρησιμοποιεί τα ακόλουθα προϊόντ�
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Δημιουργημένο με:"
 
 #: util.cpp:1337
 msgid "Running on:"
