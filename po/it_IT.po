@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-08 21:53\n"
+"PO-Revision-Date: 2023-01-08 23:03\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2298,7 +2298,7 @@ msgstr "Vita"
 
 #: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
 msgid "Home"
-msgstr "Abitazione"
+msgstr "Home"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -4099,7 +4099,7 @@ msgstr "Vuoi davvero eliminare tutte le \"%s\" operazioni visualizzate?"
 
 #: mmchecking_list.cpp:1143
 msgid " You cannot undo this action."
-msgstr " Non puoi annullare questa azione."
+msgstr "Non sarà possibile annullare questa azione."
 
 #: mmchecking_list.cpp:1219
 #, c-format
