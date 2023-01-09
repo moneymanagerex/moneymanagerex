@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-07 15:21\n"
+"POT-Creation-Date: 2023-01-09 12:16+0300\n"
+"PO-Revision-Date: 2023-01-09 09:18\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4085,8 +4085,16 @@ msgstr "Möchten Sie wirklich alle angezeigten Transaktionen löschen?"
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr "Möchten Sie wirklich alle angezeigten Transaktionen dauerhaft löschen?"
 
+#: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
+msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
+msgstr ""
+
+#: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
+msgid "You cannot undo this action."
+msgstr ""
+
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
-#: mmchecking_list.cpp:1147
+#: mmchecking_list.cpp:1148
 msgid "Confirm Transaction Deletion"
 msgstr "Löschen der Buchung bestätigen"
 
@@ -4095,61 +4103,71 @@ msgstr "Löschen der Buchung bestätigen"
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Sollen wirklich alle sichtbaren Buchungen \"%s\" gelöscht werden?"
 
-#: mmchecking_list.cpp:1143
-msgid " You cannot undo this action."
-msgstr " Sie können diese Aktion nicht rückgängig machen."
+#: mmchecking_list.cpp:1135
+#, c-format
+msgid "Do you really want to permanently delete the selected transaction?"
+msgid_plural "Do you really want to permanently delete %i selected transactions?"
+msgstr[0] ""
+msgstr[1] ""
 
-#: mmchecking_list.cpp:1219
+#: mmchecking_list.cpp:1139
+#, c-format
+msgid "Do you really want to delete the selected transaction?"
+msgid_plural "Do you really want to delete %i selected transactions?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mmchecking_list.cpp:1220
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Transaktion bis zum Datum gesperrt: %s\n\n"
 "Transaktionen ausgeglichen."
 
-#: mmchecking_list.cpp:1222 transdialog.cpp:690 transdialog.cpp:721
+#: mmchecking_list.cpp:1223 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
 msgstr "MMEX Transaktionsprüfung"
 
-#: mmchecking_list.cpp:1255
+#: mmchecking_list.cpp:1256
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Sie sind dabei, eine Transaktion mit einem geschlossenen Konto zu bearbeiten"
 msgstr[1] "Die Bearbeitung wirkt sich auf %i Transaktionen mit einem geschlossenen Konto aus."
 
-#: mmchecking_list.cpp:1257
+#: mmchecking_list.cpp:1258
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "Möchtest du die Bearbeitung trotzdem durchführen?"
 
-#: mmchecking_list.cpp:1258
+#: mmchecking_list.cpp:1259
 msgid "Closed Account Check"
 msgstr "Abgeschlossene Kontoprüfung"
 
-#: mmchecking_list.cpp:1449
+#: mmchecking_list.cpp:1450
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Möchten Sie die ausgewählte Buchung wirklich verschieben?"
 msgstr[1] "Möchten Sie wirklich %i ausgewählte Buchungen verschieben?"
 
-#: mmchecking_list.cpp:1454
+#: mmchecking_list.cpp:1455
 msgid "Confirm Transaction Move"
 msgstr "verschieben der Buchung bestätigen"
 
-#: mmchecking_list.cpp:1460
+#: mmchecking_list.cpp:1461
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "Verschiebung Buchung nach..."
 msgstr[1] "Verschiebung von %i Buchungen nach..."
 
-#: mmchecking_list.cpp:1464 stocks_list.cpp:299
+#: mmchecking_list.cpp:1465 stocks_list.cpp:299
 msgid "Select the destination Account "
 msgstr "Empfängerkonto wählen "
 
-#: mmchecking_list.cpp:1551
+#: mmchecking_list.cpp:1552
 msgid "Recurring Transaction saved."
 msgstr "Wiederkehrende Buchung gespeichert."
 
@@ -4737,7 +4755,7 @@ msgstr "Zeige Optionen"
 
 #: mmframe.cpp:1687
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Verschlüsselte &Datenbank konvertieren..."
 
 #: mmframe.cpp:1688
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4745,7 +4763,7 @@ msgstr "Verschlüsselte DB in nicht-verschlüsselte DB umwandeln"
 
 #: mmframe.cpp:1690
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Verschlüsseltes &Passwort ändern..."
 
 #: mmframe.cpp:1691
 msgid "Change the password of an encrypted database"
@@ -4753,7 +4771,7 @@ msgstr "Passwort einer verschlüsselten Datenbank ändern"
 
 #: mmframe.cpp:1693
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Optimiere Datenbank..."
 
 #: mmframe.cpp:1694
 msgid "Optimize database space and performance"
@@ -4761,7 +4779,7 @@ msgstr "Speicherplatz und Leistung der Datenbank optimieren"
 
 #: mmframe.cpp:1696
 msgid "Database De&bug..."
-msgstr ""
+msgstr "Datenbank Fehlerbehe&bung..."
 
 #: mmframe.cpp:1697
 msgid "Generate database report or fix errors"
@@ -5724,22 +5742,22 @@ msgstr "Legende (kann als Variablen am Anfang des obigen Pfades verwendet werden
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Benutzerdokument-Verzeichnis"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Benutzerprofilordner"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Ordner der .MMB Datenbankdatei"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : MMEX-Anwendungsdatenordner"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5752,17 +5770,17 @@ msgstr "Noch nicht festgelegt"
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Windows-Ordner: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Mac-Ordner: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Unix-Ordner: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -5973,27 +5991,27 @@ msgstr "Nein"
 
 #: optionsettingsmisc.cpp:148
 msgid "Default Date"
-msgstr ""
+msgstr "Standard Datum"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Standard-Zahlungsempfänger/Zahler"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Standard Einzahlung/Auszahlungskategorie"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Standard-Überweisungskategorie"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Standardstatus"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Massen-Transaktionen"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
@@ -6011,7 +6029,7 @@ msgstr "Wenn MMEX gestartet wird, \n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Datenbank beim Beenden sichern"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
@@ -7139,11 +7157,11 @@ msgstr "Akt. Gesamtwert"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Neue Wertpapieranlage..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Aktienbuchung hinzufügen..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7151,11 +7169,11 @@ msgstr "Aktienbuchung &anzeigen"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "W&ertpapieranlage bearbeiten..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "Wertpapieranlagen &löschen..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7558,22 +7576,22 @@ msgstr "Version: %s"
 #: util.cpp:1282
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "erstellt am: %s %s"
 
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Datenbankversion: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git-Eintrag: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git Zweig: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7581,7 +7599,7 @@ msgstr "MMEX verwendet folgene Unterstützungsprodukte:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "erstellt mit:"
 
 #: util.cpp:1337
 msgid "Running on:"

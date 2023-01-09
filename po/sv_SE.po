@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-07 15:21\n"
+"POT-Creation-Date: 2023-01-09 12:16+0300\n"
+"PO-Revision-Date: 2023-01-09 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2953,16 +2953,16 @@ msgstr "Transaktioner"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1488
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Exportera som QIF-fil"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1489
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Exportera som JSON-fil"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:112
 #: mmframe.cpp:1485
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Exportera som CSV-fil"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3224,7 +3224,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importera från QIF-fil"
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3280,15 +3280,15 @@ msgstr "Balans"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importera från CSV-fil"
 
 #: import_export/univcsvdialog.cpp:115
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importera från XML-fil"
 
 #: import_export/univcsvdialog.cpp:118 mmframe.cpp:1487
 msgid "Export as XML file"
-msgstr ""
+msgstr "Exportera som XML-fil"
 
 #: import_export/univcsvdialog.cpp:219
 msgid "Specify the order of fields in the file"
@@ -3946,7 +3946,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
-msgstr ""
+msgstr "Sorteringsordning"
 
 #: mmchecking_list.cpp:305
 msgid "Deleted On"
@@ -4072,8 +4072,16 @@ msgstr "Vill du verkligen ta bort alla transaktioner som visas?"
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr "Vill du verkligen ta bort alla transaktioner som visas permanent?"
 
+#: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
+msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
+msgstr ""
+
+#: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
+msgid "You cannot undo this action."
+msgstr ""
+
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
-#: mmchecking_list.cpp:1147
+#: mmchecking_list.cpp:1148
 msgid "Confirm Transaction Deletion"
 msgstr "Borttagning av transaktion"
 
@@ -4082,60 +4090,70 @@ msgstr "Borttagning av transaktion"
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1143
-msgid " You cannot undo this action."
-msgstr " Du kan inte ångra denna åtgärd."
+#: mmchecking_list.cpp:1135
+#, c-format
+msgid "Do you really want to permanently delete the selected transaction?"
+msgid_plural "Do you really want to permanently delete %i selected transactions?"
+msgstr[0] ""
+msgstr[1] ""
 
-#: mmchecking_list.cpp:1219
+#: mmchecking_list.cpp:1139
+#, c-format
+msgid "Do you really want to delete the selected transaction?"
+msgid_plural "Do you really want to delete %i selected transactions?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mmchecking_list.cpp:1220
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Låst transaktion till datum: %s\n\n"
 "Avstämda transaktioner."
 
-#: mmchecking_list.cpp:1222 transdialog.cpp:690 transdialog.cpp:721
+#: mmchecking_list.cpp:1223 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1255
+#: mmchecking_list.cpp:1256
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1257
+#: mmchecking_list.cpp:1258
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:1258
+#: mmchecking_list.cpp:1259
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1449
+#: mmchecking_list.cpp:1450
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Vill du verkligen flytta den valda transaktionen?"
 msgstr[1] "Vill du verkligen flytta %i valda transaktioner?"
 
-#: mmchecking_list.cpp:1454
+#: mmchecking_list.cpp:1455
 msgid "Confirm Transaction Move"
 msgstr "Bekräfta transaktionsflytt"
 
-#: mmchecking_list.cpp:1460
+#: mmchecking_list.cpp:1461
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "Flyttar transaktionen till..."
 msgstr[1] "Flyttar %i transaktioner till..."
 
-#: mmchecking_list.cpp:1464 stocks_list.cpp:299
+#: mmchecking_list.cpp:1465 stocks_list.cpp:299
 msgid "Select the destination Account "
 msgstr ""
 
-#: mmchecking_list.cpp:1551
+#: mmchecking_list.cpp:1552
 msgid "Recurring Transaction saved."
 msgstr "Återkommande transaktion sparad."
 
@@ -4358,7 +4376,7 @@ msgstr "&XML-filer..."
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "Importera från XML (Excel-format) fil"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
@@ -4366,31 +4384,31 @@ msgstr "&QIF-filer..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1482
 msgid "&Import from"
-msgstr ""
+msgstr "&Importera från"
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&CSV File..."
-msgstr ""
+msgstr "&CSV-fil..."
 
 #: mmframe.cpp:1326 mmframe.cpp:1486
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "&MMEX CSV-fil..."
 
 #: mmframe.cpp:1327 mmframe.cpp:1487
 msgid "&XML File..."
-msgstr ""
+msgstr "&XML-fil..."
 
 #: mmframe.cpp:1328 mmframe.cpp:1488
 msgid "&QIF File..."
-msgstr ""
+msgstr "&QIF-fil..."
 
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&JSON File..."
-msgstr ""
+msgstr "&JSON-fil..."
 
 #: mmframe.cpp:1330 mmframe.cpp:1491
 msgid "&Export as"
-msgstr ""
+msgstr "&Exportera som"
 
 #: mmframe.cpp:1355
 msgid "&Edit Filter..."
@@ -4486,15 +4504,15 @@ msgstr ""
 
 #: mmframe.cpp:1486
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Exportera som fast CSV-fil"
 
 #: mmframe.cpp:1490
 msgid "&HTML File..."
-msgstr ""
+msgstr "&HTML-fil..."
 
 #: mmframe.cpp:1490
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Exportera som HTML-fil"
 
 #: mmframe.cpp:1496
 msgid "&Print..."
@@ -5381,11 +5399,11 @@ msgstr ""
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Totalt nettovärde"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "Övriga tillgångar"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
@@ -5503,11 +5521,11 @@ msgstr "Sjunkande"
 
 #: model/Model_Asset.cpp:33
 msgid "Percentage"
-msgstr ""
+msgstr "Procentandel"
 
 #: model/Model_Asset.cpp:34
 msgid "Linear"
-msgstr ""
+msgstr "Linjär"
 
 #: model/Model_Asset.cpp:42
 msgid "Property"
@@ -5574,11 +5592,11 @@ msgstr ""
 
 #: model/Model_Currency.cpp:65
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: model/Model_Currency.cpp:66
 msgid "Crypto"
-msgstr ""
+msgstr "Krypto"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -6246,19 +6264,19 @@ msgstr ""
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "Redigera betalningsmottagare"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Ange namnet på betalningsmottagaren. Detta namn kan ändras när som helst."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "Dold"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Ange om betalningsmottagaren ska döljas och inte visas i betalningsmottagarlistan för nya transaktioner"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6270,23 +6288,23 @@ msgstr "Förvald kategori"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Kategorin som används som standard för denna betalningsmottagare"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
-msgstr ""
+msgstr "Referens"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "En referens att användas för betalningsmottagaren, t.ex. bankkontonummer"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
-msgstr ""
+msgstr "Webbplats"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "Webbadress kopplad till betalningsmottagaren"
 
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
@@ -6294,7 +6312,7 @@ msgstr "Avs/mot med samma namn finns redan"
 
 #: payeedialog.cpp:238
 msgid "Website"
-msgstr ""
+msgstr "Webbplats"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -6875,7 +6893,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Redigera detaljer för delad betalning"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
@@ -7541,7 +7559,7 @@ msgstr ""
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Byggd med:"
 
 #: util.cpp:1337
 msgid "Running on:"
@@ -7651,7 +7669,7 @@ msgstr "Fel webbapp-konto"
 
 #: webapp.cpp:565
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Idag kommer att användas som transaktionsdatum"
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."

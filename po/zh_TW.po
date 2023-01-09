@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-07 15:21\n"
+"POT-Creation-Date: 2023-01-09 12:16+0300\n"
+"PO-Revision-Date: 2023-01-09 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2345,7 +2345,7 @@ msgstr "轉帳"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX資料庫升級至版本%i失敗"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2353,26 +2353,27 @@ msgstr ""
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "MMEX資料庫升級"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "MMEX資料庫錯誤!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX資料庫版本%i無法執行在此MMEX版本下.\n"
+"請更新MMEX版本."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX資料庫成功升級至版本 %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "我們建議優化資料庫 在Tools → Database → Optimize"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2437,7 +2438,7 @@ msgstr ""
 
 #: dbwrapper.cpp:85 mmframe.cpp:1921
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "開啟MMEX資料庫-錯誤"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4044,8 +4045,16 @@ msgstr ""
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr ""
 
+#: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
+msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
+msgstr ""
+
+#: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
+msgid "You cannot undo this action."
+msgstr ""
+
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
-#: mmchecking_list.cpp:1147
+#: mmchecking_list.cpp:1148
 msgid "Confirm Transaction Deletion"
 msgstr "確定刪除交易"
 
@@ -4054,56 +4063,64 @@ msgstr "確定刪除交易"
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1143
-msgid " You cannot undo this action."
-msgstr ""
+#: mmchecking_list.cpp:1135
+#, c-format
+msgid "Do you really want to permanently delete the selected transaction?"
+msgid_plural "Do you really want to permanently delete %i selected transactions?"
+msgstr[0] ""
 
-#: mmchecking_list.cpp:1219
+#: mmchecking_list.cpp:1139
+#, c-format
+msgid "Do you really want to delete the selected transaction?"
+msgid_plural "Do you really want to delete %i selected transactions?"
+msgstr[0] ""
+
+#: mmchecking_list.cpp:1220
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1222 transdialog.cpp:690 transdialog.cpp:721
+#: mmchecking_list.cpp:1223 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1255
+#: mmchecking_list.cpp:1256
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 
-#: mmchecking_list.cpp:1257
+#: mmchecking_list.cpp:1258
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:1258
+#: mmchecking_list.cpp:1259
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1449
+#: mmchecking_list.cpp:1450
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] ""
 
-#: mmchecking_list.cpp:1454
+#: mmchecking_list.cpp:1455
 msgid "Confirm Transaction Move"
 msgstr ""
 
-#: mmchecking_list.cpp:1460
+#: mmchecking_list.cpp:1461
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] ""
 
-#: mmchecking_list.cpp:1464 stocks_list.cpp:299
+#: mmchecking_list.cpp:1465 stocks_list.cpp:299
 msgid "Select the destination Account "
 msgstr ""
 
-#: mmchecking_list.cpp:1551
+#: mmchecking_list.cpp:1552
 msgid "Recurring Transaction saved."
 msgstr ""
 
