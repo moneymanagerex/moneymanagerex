@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-09 12:16+0300\n"
-"PO-Revision-Date: 2023-01-09 09:19\n"
+"PO-Revision-Date: 2023-01-09 18:03\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4089,11 +4089,11 @@ msgstr "Wilt u echt alle getoonde transacties permanent verwijderen?"
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Verwijderde transacties worden tijdelijk opgeslagen en kunnen worden hersteld vanuit de weergave Verwijderde transacties."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "U kunt deze actie niet ongedaan maken."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4109,15 +4109,15 @@ msgstr "Wilt u werkelijk alle getoonde \"%s\" transacties verwijderen?"
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Weet u zeker dat u de geselecteerde transactie definitief wilt verwijderen?"
+msgstr[1] "Weet u zeker dat u de %i geselecteerde transacties definitief wilt verwijderen?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Weet u zeker dat u de geselecteerde transactie wilt verwijderen?"
+msgstr[1] "Weet u zeker dat u de %i geselecteerde transacties wilt verwijderen?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
