@@ -436,9 +436,10 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         if (full_tran.has_split())
         {
             bool catFilter = dlg.get()->mmIsCategoryChecked();
-            const auto& value = dlg.get()->mmGetCategoryPattern();
+            wxString value = dlg.get()->mmGetCategoryPattern();
+            if (dlg.get()->mmIsCategorySubCatChecked()) value = value + ".*";
             wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
-
+            
             for (const auto& split : full_tran.m_splits)
             {
                 const auto& categ = Model_Category::full_name(split.CATEGID);

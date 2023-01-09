@@ -293,6 +293,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     Value& j_categorySubCat = GetValueByPointerWithDefault(j_doc, "/SUBCATEGORYINCLUDE", "");
     bool subCatCheck = j_categorySubCat.IsBool() ? j_categorySubCat.GetBool() : false;
     categorySubCatCheckBox_->SetValue(subCatCheck);
+    categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked());
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
