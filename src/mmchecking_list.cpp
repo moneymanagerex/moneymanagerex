@@ -1031,8 +1031,8 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
         text += "\n\n";
         text += !(m_cp->isTrash_ || retainDays == 0)
-            ? "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-            : "You cannot undo this action.";
+            ? _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.")
+            : _("You cannot undo this action.");
 
         wxMessageDialog msgDlg(this
             , text
@@ -1132,15 +1132,16 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     //ask if they really want to delete
     wxString text = (m_cp->isTrash_ || retainDays == 0)?
-        wxPLURAL("Do you really want to permanently delete the selected transaction?"
-        , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel)
-        , wxString::Format("Do you really want to permanently delete %i selected transactions?", sel))
+        wxString::Format(wxPLURAL("Do you really want to permanently delete the selected transaction?"
+        , "Do you really want to permanently delete %i selected transactions?", sel)
+        , sel)
         :
-        wxPLURAL("Do you really want to delete the selected transaction?"
-            , wxString::Format("Do you really want to delete %i selected transactions?", sel)
-            , wxString::Format("Do you really want to delete %i selected transactions?", sel));
+        wxString::Format(wxPLURAL("Do you really want to delete the selected transaction?"
+            , "Do you really want to delete %i selected transactions?", sel)
+            , sel);
     text += "\n\n";
-    text += _((m_cp->isTrash_ || retainDays == 0) ? " You cannot undo this action." : " Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
+    text += _((m_cp->isTrash_ || retainDays == 0) ? _("You cannot undo this action.")
+        : _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));
 
     wxMessageDialog msgDlg(this
         , text
