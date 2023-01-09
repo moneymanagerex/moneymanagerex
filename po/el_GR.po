@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-08 17:16\n"
+"POT-Creation-Date: 2023-01-09 12:16+0300\n"
+"PO-Revision-Date: 2023-01-09 09:18\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4086,8 +4086,16 @@ msgstr "Θέλετε πραγματικά να διαγράψετε όλες τ�
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr "Θέλετε πραγματικά να διαγράψετε οριστικά όλες τις συναλλαγές που εμφανίζονται;"
 
+#: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
+msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
+msgstr ""
+
+#: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
+msgid "You cannot undo this action."
+msgstr ""
+
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
-#: mmchecking_list.cpp:1147
+#: mmchecking_list.cpp:1148
 msgid "Confirm Transaction Deletion"
 msgstr "Επιβεβαιώστε τη διαγραφή της συναλλαγής"
 
@@ -4096,60 +4104,70 @@ msgstr "Επιβεβαιώστε τη διαγραφή της συναλλαγή
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Θέλετε πραγματικά να διαγράψετε όλες τις \"%s\" συναλλαγές που εμφανίζονται;"
 
-#: mmchecking_list.cpp:1143
-msgid " You cannot undo this action."
-msgstr " Δεν μπορείτε να αναιρέσετε αυτήν την ενέργεια."
+#: mmchecking_list.cpp:1135
+#, c-format
+msgid "Do you really want to permanently delete the selected transaction?"
+msgid_plural "Do you really want to permanently delete %i selected transactions?"
+msgstr[0] ""
+msgstr[1] ""
 
-#: mmchecking_list.cpp:1219
+#: mmchecking_list.cpp:1139
+#, c-format
+msgid "Do you really want to delete the selected transaction?"
+msgid_plural "Do you really want to delete %i selected transactions?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mmchecking_list.cpp:1220
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Κλειδωμένη συναλλαγή μέχρι την ημερομηνία: %s."
 
-#: mmchecking_list.cpp:1222 transdialog.cpp:690 transdialog.cpp:721
+#: mmchecking_list.cpp:1223 transdialog.cpp:690 transdialog.cpp:721
 msgid "MMEX Transaction Check"
 msgstr "Έλεγχος Συναλλαγής MMEX"
 
-#: mmchecking_list.cpp:1255
+#: mmchecking_list.cpp:1256
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Πρόκειται να επεξεργαστείτε μια συναλλαγή που περιλαμβάνει έναν λογαριασμό που είναι κλειστός."
 msgstr[1] "Η επεξεργασία θα επηρεάσει %i συναλλαγές που περιλαμβάνουν ένα λογαριασμό που είναι κλειστός."
 
-#: mmchecking_list.cpp:1257
+#: mmchecking_list.cpp:1258
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "Θέλετε ακόμα να πραγματοποιήσετε την επεξεργασία;"
 
-#: mmchecking_list.cpp:1258
+#: mmchecking_list.cpp:1259
 msgid "Closed Account Check"
 msgstr "Έλεγχος Κλειστού Λογαριασμού"
 
-#: mmchecking_list.cpp:1449
+#: mmchecking_list.cpp:1450
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Θέλετε πραγματικά να μετακινήσετε την επιλεγμένη συναλλαγή;"
 msgstr[1] "Θέλετε πραγματικά να μετακινήσετε %i επιλεγμένες συναλλαγές;"
 
-#: mmchecking_list.cpp:1454
+#: mmchecking_list.cpp:1455
 msgid "Confirm Transaction Move"
 msgstr "Επιβεβαίωση Μετακίνησης Συναλλαγής"
 
-#: mmchecking_list.cpp:1460
+#: mmchecking_list.cpp:1461
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "Μετακίνηση συναλλαγής σε..."
 msgstr[1] "Μετακίνηση %i συναλλαγών σε..."
 
-#: mmchecking_list.cpp:1464 stocks_list.cpp:299
+#: mmchecking_list.cpp:1465 stocks_list.cpp:299
 msgid "Select the destination Account "
 msgstr "Επιλέξτε λογαριασμό προορισμού "
 
-#: mmchecking_list.cpp:1551
+#: mmchecking_list.cpp:1552
 msgid "Recurring Transaction saved."
 msgstr "Η επαναλαμβανόμενη συναλλαγή αποθηκεύτηκε."
 
