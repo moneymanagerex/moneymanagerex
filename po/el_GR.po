@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-09 12:16+0300\n"
-"PO-Revision-Date: 2023-01-09 10:24\n"
+"PO-Revision-Date: 2023-01-09 17:06\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -536,11 +536,11 @@ msgstr "Τρέχουσα Τιμή"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Νέο Περιουσιακό Στοιχείο..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "Δ&ιπλότυπο Περιουσιακό Στοιχείο..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
@@ -556,11 +556,11 @@ msgstr ""
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Επεξεργασία Περιουσιακού Στοιχείου..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Διαγραφή Περιουσιακού Στοιχείου..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1377 mmframe.cpp:1397 stocks_list.cpp:146
@@ -4382,11 +4382,11 @@ msgstr "MMEX: Σφάλμα ανάδυσης μενού"
 
 #: mmframe.cpp:1320 mmframe.cpp:1478
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV Αρχεία..."
 
 #: mmframe.cpp:1321 mmframe.cpp:1479
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML Αρχεία..."
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
@@ -4394,7 +4394,7 @@ msgstr "Εισαγωγή από αρχείο XML (μορφή excel)"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF Αρχεία..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1482
 msgid "&Import from"
@@ -4426,23 +4426,23 @@ msgstr "&Εξαγωγή ως"
 
 #: mmframe.cpp:1355
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Επεξεργασία Φίλτρου..."
 
 #: mmframe.cpp:1356
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Μετονομασία Φίλτρου..."
 
 #: mmframe.cpp:1357
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Διαγραφή Φίλτρου..."
 
 #: mmframe.cpp:1373 mmframe.cpp:1391 mmframe.cpp:1411 mmframe.cpp:1585
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Επεξεργασία Λογαριασμού..."
 
 #: mmframe.cpp:1374 mmframe.cpp:1394 mmframe.cpp:1414 mmframe.cpp:1591
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Διαγραφή Λογαριασμού..."
 
 #: mmframe.cpp:1376 mmframe.cpp:1396
 msgid "&Launch Account Website"
@@ -4450,11 +4450,11 @@ msgstr "&Εκκίνηση ιστοσελίδας του λογαριασμού"
 
 #: mmframe.cpp:1392 mmframe.cpp:1588
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Ανακατανομή Λογαριασμού..."
 
 #: mmframe.cpp:1410 mmframe.cpp:1582
 msgid "New &Account..."
-msgstr ""
+msgstr "Νέος &Λογαριασμός..."
 
 #: mmframe.cpp:1412
 msgid "Account &List (Home)"
@@ -4466,7 +4466,7 @@ msgstr "Λογαριασμοί ορατοί"
 
 #: mmframe.cpp:1463
 msgid "&New Database..."
-msgstr ""
+msgstr "&Νέα Βάση Δεδομένων..."
 
 #: mmframe.cpp:1463 mmframe.cpp:1823 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4530,7 +4530,7 @@ msgstr "Εξαγωγή ως αρχείο HTML"
 
 #: mmframe.cpp:1496
 msgid "&Print..."
-msgstr ""
+msgstr "&Εκτύπωση..."
 
 #: mmframe.cpp:1496 mmframe.cpp:1860
 msgid "Print current view"
@@ -4654,11 +4654,11 @@ msgstr "Κατεβάστε το νόμισμα και τις ισοτιμίες 
 
 #: mmframe.cpp:1610
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Οργάνωση &Κατηγοριών..."
 
 #: mmframe.cpp:1614
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Οργάνωση &Δικαιούχων..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1832 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4674,7 +4674,7 @@ msgstr "Οργάνωση των νομισμάτων"
 
 #: mmframe.cpp:1622
 msgid "&Categories..."
-msgstr ""
+msgstr "&Κατηγορίες..."
 
 #: mmframe.cpp:1625
 msgid "&Payees..."
