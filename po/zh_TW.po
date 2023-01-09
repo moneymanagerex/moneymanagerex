@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-07 15:21\n"
+"PO-Revision-Date: 2023-01-09 03:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2345,7 +2345,7 @@ msgstr "轉帳"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX資料庫升級至版本%i失敗"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2353,11 +2353,11 @@ msgstr ""
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "MMEX資料庫升級"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "MMEX資料庫錯誤!"
 
 #: dbupgrade.cpp:108
 #, c-format
