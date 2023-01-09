@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-09 12:16+0300\n"
-"PO-Revision-Date: 2023-01-09 17:06\n"
+"PO-Revision-Date: 2023-01-09 18:03\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -544,7 +544,7 @@ msgstr "Δ&ιπλότυπο Περιουσιακό Στοιχείο..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Προσθήκη Συναλλαγής Περιουσιακού Στοιχείου..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -552,7 +552,7 @@ msgstr "&Προβολή Συναλλαγών Περιουσιακού Στοιχ
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Άνοιγμα Λογαριασμού Περιουσιακού Στοιχείου..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
@@ -565,7 +565,7 @@ msgstr "&Διαγραφή Περιουσιακού Στοιχείου..."
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:471
 #: mmframe.cpp:1377 mmframe.cpp:1397 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Οργάνωση Συνημμένων..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1322,7 +1322,7 @@ msgstr "Παράλειψη Επόμενης Εμφάνισης Επαναλαμ�
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Εισάγετε την επόμενη Εμφάνιση..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1330,19 +1330,19 @@ msgstr "Παράκαμψη επόμενης εμφάνισης"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Νέα Επαναλαμβανόμενη Συναλλαγή..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Επεξεργασία Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "Δ%ημιουργία Αντιγράφου Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Διαγραφή Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -3966,15 +3966,15 @@ msgstr "Διαγράφηκε στις"
 
 #: mmchecking_list.cpp:434
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Νέα Ανάληψη..."
 
 #: mmchecking_list.cpp:435
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Νέα Κατάθεση..."
 
 #: mmchecking_list.cpp:437
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Νέα Μεταφορά..."
 
 #: mmchecking_list.cpp:441
 msgid "&Edit Transaction..."
@@ -4000,7 +4000,7 @@ msgstr "&Επικόλληση Συναλλαγών (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "Δ&ιπλότυπη Συναλλαγή..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4018,7 +4018,7 @@ msgstr "&Εμφάνιση διαιρεμένων κατηγοριών"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Δημιουργία Επαναλαμβανόμενης Σ&υναλλαγής..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4028,7 +4028,7 @@ msgstr[1] "&Επαναφορά επιλεγμένων συναλλαγών..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Επαναφορά όλων των συναλλαγών στην τρέχουσα προβολή..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4045,11 +4045,11 @@ msgstr[1] "&Μόνιμη διαγραφή επιλεγμένων συναλλα�
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Διαγράψτε όλες τις συναλλαγές στην τρέχουσα προβολή..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Μόνιμη διαγραφή όλων των συναλλαγών στην τρέχουσα προβολή..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
@@ -4474,7 +4474,7 @@ msgstr "Νέα βάση δεδομένων"
 
 #: mmframe.cpp:1464
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Άνοιγμα Βάσης Δεδομένων...\t Ctrl-O"
 
 #: mmframe.cpp:1464 mmframe.cpp:1824
 msgid "Open Database"
@@ -4482,7 +4482,7 @@ msgstr "Άνοιγμα  βάσης δεδομένων"
 
 #: mmframe.cpp:1465
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Αποθήκευση Βάσης Δεδομένων &Ως..."
 
 #: mmframe.cpp:1465
 msgid "Save Database As"
@@ -4510,7 +4510,7 @@ msgstr "Εισαγωγή από QIF"
 
 #: mmframe.cpp:1481
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1481
 msgid "Import from WebApp"
@@ -4666,7 +4666,7 @@ msgstr "Οργάνωση δικαιούχων"
 
 #: mmframe.cpp:1618
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Οργάνωση Νομισμά&των..."
 
 #: mmframe.cpp:1618 mmframe.cpp:1833
 msgid "Organize Currency"
@@ -4678,7 +4678,7 @@ msgstr "&Κατηγορίες..."
 
 #: mmframe.cpp:1625
 msgid "&Payees..."
-msgstr ""
+msgstr "&Δικαιούχοι..."
 
 #: mmframe.cpp:1626
 msgid "Reassign all payees to another payee"
@@ -4694,7 +4694,7 @@ msgstr "Μετατόπιση κατηγοριών && δικαιούχων"
 
 #: mmframe.cpp:1639
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "Διαμόρφωση &Προϋπολογισμού..."
 
 #: mmframe.cpp:1643
 msgid "&Recurring Transactions"
@@ -4710,7 +4710,7 @@ msgstr "&Περιουσιακά στοιχεία"
 
 #: mmframe.cpp:1653
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "Δ&ιαχειριστής Θεμάτων..."
 
 #: mmframe.cpp:1653 themes.cpp:143
 msgid "Theme Manager"
@@ -4718,7 +4718,7 @@ msgstr "Διαχειριστής Θεμάτων"
 
 #: mmframe.cpp:1659
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Φίλτρο Εκθέσεων Συναλλαγών..."
 
 #: mmframe.cpp:1659 mmframe.cpp:1835
 msgid "Transaction Report Filter"
@@ -4726,7 +4726,7 @@ msgstr "Φίλτρο εκθέσεων συναλλαγών"
 
 #: mmframe.cpp:1665
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "&Διαχείριση Γενικών Αναφορών..."
 
 #: mmframe.cpp:1669
 msgid "C&ustom Fields Manager..."
@@ -4762,7 +4762,7 @@ msgstr "Μετατροπή Κρυπτογραφημένης Βάσης Δεδο�
 
 #: mmframe.cpp:1690
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Αλλαγή Κρυπτογραφημένου &Κωδικού Πρόσβασης..."
 
 #: mmframe.cpp:1691
 msgid "Change the password of an encrypted database"
