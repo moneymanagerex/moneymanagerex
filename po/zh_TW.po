@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-07 18:18+0300\n"
-"PO-Revision-Date: 2023-01-09 03:32\n"
+"PO-Revision-Date: 2023-01-09 04:29\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2363,16 +2363,17 @@ msgstr "MMEX資料庫錯誤!"
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX資料庫版本%i無法執行在此MMEX版本下.\n"
+"請更新MMEX版本."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX資料庫成功升級至版本 %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "我們建議優化資料庫 在Tools → Database → Optimize"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2437,7 +2438,7 @@ msgstr ""
 
 #: dbwrapper.cpp:85 mmframe.cpp:1921
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "開啟MMEX資料庫-錯誤"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
