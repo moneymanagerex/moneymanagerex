@@ -1295,21 +1295,18 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
         {
             ShareTransactionDialog dlg(this, &translink, checking_entry);
-            if (dlg.ShowModal() == wxID_OK)
-            {
+            if (dlg.ShowModal() == wxID_OK) {
                 refreshVisualList(transaction_id);
             }
         }
         else if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::ASSET))
         {
             mmAssetDialog dlg(this, m_cp->m_frame, &translink, checking_entry);
-            if (dlg.ShowModal() == wxID_OK)
-            {
+            if (dlg.ShowModal() == wxID_OK) {
                 refreshVisualList(transaction_id);
             }
         }
-        else
-        {
+        else {
             wxASSERT(false);
         }
     }

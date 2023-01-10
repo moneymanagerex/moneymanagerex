@@ -341,24 +341,20 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
 {
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
-    if (Model_Checking::type(r) == Model_Checking::TRANSFER)
-    {
+    if (Model_Checking::type(r) == Model_Checking::TRANSFER) {
         TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
         PAYEENAME = TOACCOUNTNAME;
     }
-    else
-    {
+    else {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
     }
 
-    if (!m_splits.empty())
-    {
+    if (!m_splits.empty()) {
         for (const auto& entry : m_splits)
             this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
             + Model_Category::full_name(entry.CATEGID);
     }
-    else
-    {
+    else {
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID);
     }
 }
@@ -510,7 +506,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 {
     data.TRANSID = -1;
     data.PAYEEID = -1;
-    wxString today_date = wxDate::Today().FormatISODate();
+    const wxString today_date = wxDate::Today().FormatISODate();
     wxString max_trx_date;
     if (Option::instance().TransDateDefault() != Option::NONE)
     {
@@ -523,6 +519,10 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
                 max_trx_date = t.TRANSDATE;
             }
         }
+    }
+    else
+    {
+        max_trx_date = today_date;
     }
 
     data.TRANSDATE = max_trx_date;
