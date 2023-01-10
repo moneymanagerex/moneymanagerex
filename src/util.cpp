@@ -1278,7 +1278,7 @@ const wxString getProgramDescription(int type)
     build_date = wxGetTranslation(build_date.SubString(0, 2)) + build_date.Mid(3);
 
     wxString description;
-    description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
+    description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
         << bull << wxString::Format(simple ? "Built: %s %s" : _("Built on: %s %s"), build_date, BUILD_TIME) << eol
         << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
