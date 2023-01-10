@@ -510,29 +510,22 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 {
     data.TRANSID = -1;
     data.PAYEEID = -1;
-    wxDateTime todayDate = wxDate::Today();
-    wxDateTime trx_date = todayDate;
+    wxString today_date = wxDate::Today().FormatISODate();
+    wxString max_trx_date;
     if (Option::instance().TransDateDefault() != Option::NONE)
     {
-        auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(trx_date, LESS_OR_EQUAL) , DELETEDTIME(wxEmptyString, EQUAL));
-        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
-        std::reverse(trans.begin(), trans.end());
-        if (!trans.empty())
-            trx_date = to_date(trans.begin() ->TRANSDATE);
+        auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(today_date, LESS_OR_EQUAL));
+        auto trans_b = instance().find(TOACCOUNTID(accountID), TRANSDATE(today_date, LESS_OR_EQUAL));
+        trans.insert(trans.end(), trans_b.begin(), trans_b.end());
 
-        wxDateTime trx_date_b = todayDate;
-        auto trans_b = instance().find(TOACCOUNTID(accountID), TRANSDATE(trx_date_b, LESS_OR_EQUAL));
-        std::stable_sort(trans_b.begin(), trans_b.end(), SorterByTRANSDATE());
-        std::reverse(trans_b.begin(), trans_b.end());
-        if (!trans_b.empty())
-        {
-            trx_date_b = to_date(trans_b.begin()->TRANSDATE);
-            if (!trans.empty() && (trx_date_b > trx_date))
-                trx_date = trx_date_b;
+        for (const auto& t: trans) {
+            if (t.DELETEDTIME.IsNull() && max_trx_date < t.TRANSDATE) {
+                max_trx_date = t.TRANSDATE;
+            }
         }
     }
 
-    data.TRANSDATE = trx_date.FormatISODate();
+    data.TRANSDATE = max_trx_date;
     data.ACCOUNTID = accountID;
     data.STATUS = toShortStatus(all_status()[Option::instance().TransStatusReconciled()]);
     data.TRANSCODE = all_type()[WITHDRAWAL];
