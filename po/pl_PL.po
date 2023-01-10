@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-09 12:16+0300\n"
-"PO-Revision-Date: 2023-01-09 09:19\n"
+"POT-Creation-Date: 2023-01-10 11:29+0300\n"
+"PO-Revision-Date: 2023-01-10 08:34\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1823,6 +1823,10 @@ msgstr "Zamknij"
 #: constants.cpp:80
 msgid "&Close "
 msgstr "Zamknij"
+
+#: constants.cpp:96
+msgid "64-bit"
+msgstr ""
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -7638,7 +7642,7 @@ msgstr "MMEX wykorzystuje następujące produkty:"
 msgid "Built with:"
 msgstr "Wykorzystane technologie:"
 
-#: util.cpp:1337
+#: util.cpp:1335
 msgid "Running on:"
 msgstr "Działający na:"
 

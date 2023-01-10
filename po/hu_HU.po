@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-09 12:16+0300\n"
-"PO-Revision-Date: 2023-01-09 09:18\n"
+"POT-Creation-Date: 2023-01-10 11:29+0300\n"
+"PO-Revision-Date: 2023-01-10 08:33\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1816,6 +1816,10 @@ msgstr "Bezárás "
 msgid "&Close "
 msgstr "Bezárás"
 
+#: constants.cpp:96
+msgid "64-bit"
+msgstr ""
+
 #: constants.cpp:177
 msgid "View with Transaction Filter"
 msgstr "Ügyletszűrő nézete"
@@ -2963,16 +2967,16 @@ msgstr "Ügyletek"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1488
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Exportálás QIF-fájlként"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1489
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Exportálás JSON-fájlként"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:112
 #: mmframe.cpp:1485
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Exportálás CSV-fájlként"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3234,7 +3238,7 @@ msgstr "Importált tranzakciók a felhasználó elvetette!"
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importálás QIF-fájlból"
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3290,15 +3294,15 @@ msgstr "Egyenleg"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importálás CSV-fájlból"
 
 #: import_export/univcsvdialog.cpp:115
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importálás XML-fájlból"
 
 #: import_export/univcsvdialog.cpp:118 mmframe.cpp:1487
 msgid "Export as XML file"
-msgstr ""
+msgstr "Exportálás XML-fájlként"
 
 #: import_export/univcsvdialog.cpp:219
 msgid "Specify the order of fields in the file"
@@ -4088,11 +4092,11 @@ msgstr "Biztosan véglegesen törölni szeretné az összes megjelenített ügyl
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "A törölt ügyletek átmenetileg tárolásra kerülnek, és a Törölt ügyletek nézetből visszaállíthatók."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Ez a művelet nem vonható vissza."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4108,15 +4112,15 @@ msgstr "Biztosan törölni szeretné az összes megjelenített „%s” ügylete
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Biztosan véglegesen törölni szeretné a kijelölt ügyletet?"
+msgstr[1] "Biztosan véglegesen törölni szeretné a(z) %i kijelölt ügyletet?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Biztosan törölni szeretné a kijelölt ügyletet?"
+msgstr[1] "Biztosan törölni szeretné a(z) %i kijelölt ügyletet?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
@@ -4394,7 +4398,7 @@ msgstr "&XML-fájlok…"
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "Importálás Excel formátumú XML-fájlból"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
@@ -4402,31 +4406,31 @@ msgstr "&QIF-fájlok…"
 
 #: mmframe.cpp:1323 mmframe.cpp:1482
 msgid "&Import from"
-msgstr ""
+msgstr "&Importálás forrása"
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&CSV File..."
-msgstr ""
+msgstr "&CSV-fájl…"
 
 #: mmframe.cpp:1326 mmframe.cpp:1486
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "&MMEX CSV-fájl…"
 
 #: mmframe.cpp:1327 mmframe.cpp:1487
 msgid "&XML File..."
-msgstr ""
+msgstr "&XML-fájl…"
 
 #: mmframe.cpp:1328 mmframe.cpp:1488
 msgid "&QIF File..."
-msgstr ""
+msgstr "&QIF-fájl…"
 
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&JSON File..."
-msgstr ""
+msgstr "&JSON-fájl…"
 
 #: mmframe.cpp:1330 mmframe.cpp:1491
 msgid "&Export as"
-msgstr ""
+msgstr "&Exportálás másként"
 
 #: mmframe.cpp:1355
 msgid "&Edit Filter..."
@@ -4506,11 +4510,11 @@ msgstr "Importálás bármilyen CSV-fájlból"
 
 #: mmframe.cpp:1479
 msgid "Import from XML (Excel format)"
-msgstr "Importálás XML-ből (Excel formátum)"
+msgstr "Importálás Excel formátumú XML-fájlból"
 
 #: mmframe.cpp:1480
 msgid "Import from QIF"
-msgstr "Importálás QIF-ből"
+msgstr "Importálás QIF-fájlból"
 
 #: mmframe.cpp:1481
 msgid "&WebApp..."
@@ -4522,15 +4526,15 @@ msgstr "Importálás a Webalkalmazásból"
 
 #: mmframe.cpp:1486
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Exportálás rögzített CSV-fájlként"
 
 #: mmframe.cpp:1490
 msgid "&HTML File..."
-msgstr ""
+msgstr "&HTML-fájl…"
 
 #: mmframe.cpp:1490
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Exportálás HTML-fájlként"
 
 #: mmframe.cpp:1496
 msgid "&Print..."
@@ -7063,7 +7067,7 @@ msgstr "Részvényár időrendi kimutatásának importálása CSV-ben"
 
 #: stockdialog.cpp:572 stockdialog.cpp:588
 msgid "Quotes imported from CSV: "
-msgstr "CSV-ből importált bejegyzések: "
+msgstr "CSV-fájlból importált bejegyzések: "
 
 #: stockdialog.cpp:644
 #, c-format
@@ -7603,9 +7607,9 @@ msgstr "MMEX a következő támogatási termékeket használja:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Összeállítás a következőkkel:"
 
-#: util.cpp:1337
+#: util.cpp:1335
 msgid "Running on:"
 msgstr "Fut a következőn:"
 
