@@ -93,7 +93,7 @@ const wxString mmex::getTitleProgramVersion()
 {
     const wxString architecture =
 #if defined(_WIN64) || defined(__x86_64__)
-        "64-bit";
+        _("64-bit");
 #else
         "";
 #endif

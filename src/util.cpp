@@ -1327,14 +1327,17 @@ const wxString getProgramDescription(int type)
         << bull + "GCC " + __VERSION__ << eol
         << eol
 #endif
+
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
         << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << eol
 #endif
         << eol
+        << (simple ? "OS:" : _("Running on:")) << eol
+
 #ifdef LINUX_DISTRO_STRING
         << bull + LINUX_DISTRO_STRING
 #endif
-        << (simple ? "OS:" : _("Running on:")) << eol
+
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
