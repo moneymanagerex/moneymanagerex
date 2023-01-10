@@ -129,6 +129,11 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& d
     return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
 }
 
+DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME Model_Checking::DELETEDTIME(const wxString& date, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME(date, op);
+}
+
 DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString& date_iso_str, OP op)
 {
     return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
@@ -509,11 +514,11 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     wxDateTime trx_date = todayDate;
     if (Option::instance().TransDateDefault() != Option::NONE)
     {
-        auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(trx_date, LESS_OR_EQUAL));
+        auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(trx_date, LESS_OR_EQUAL) , DELETEDTIME(wxEmptyString, EQUAL));
         std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
         std::reverse(trans.begin(), trans.end());
         if (!trans.empty())
-            trx_date = to_date(trans.begin()->TRANSDATE);
+            trx_date = to_date(trans.begin() ->TRANSDATE);
 
         wxDateTime trx_date_b = todayDate;
         auto trans_b = instance().find(TOACCOUNTID(accountID), TRANSDATE(trx_date_b, LESS_OR_EQUAL));
