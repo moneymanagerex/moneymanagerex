@@ -510,18 +510,16 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     wxString max_trx_date;
     if (Option::instance().TransDateDefault() != Option::NONE)
     {
-        auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(today_date, LESS_OR_EQUAL));
-        auto trans_b = instance().find(TOACCOUNTID(accountID), TRANSDATE(today_date, LESS_OR_EQUAL));
-        trans.insert(trans.end(), trans_b.begin(), trans_b.end());
+        auto trans = instance().find_or(ACCOUNTID(accountID), TOACCOUNTID(accountID));
 
         for (const auto& t: trans) {
-            if (t.DELETEDTIME.IsNull() && max_trx_date < t.TRANSDATE) {
+            if (t.DELETEDTIME.IsNull() && max_trx_date < t.TRANSDATE && today_date >= t.TRANSDATE) {
                 max_trx_date = t.TRANSDATE;
             }
         }
     }
-    else
-    {
+
+    if (max_trx_date.empty()) {
         max_trx_date = today_date;
     }
 
