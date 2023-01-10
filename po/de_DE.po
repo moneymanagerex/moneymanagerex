@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-10 08:33\n"
+"PO-Revision-Date: 2023-01-10 09:49\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1816,7 +1816,7 @@ msgstr "&Schließen "
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -4091,11 +4091,11 @@ msgstr "Möchten Sie wirklich alle angezeigten Transaktionen dauerhaft löschen?
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Gelöschte Transaktionen werden vorübergehend gespeichert und können aus der Ansicht gelöschter Transaktionen wiederhergestellt werden."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Diese Aktion kann nicht rückgängig gemacht werden."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4111,15 +4111,15 @@ msgstr "Sollen wirklich alle sichtbaren Buchungen \"%s\" gelöscht werden?"
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Möchten Sie die ausgewählte Transaktion wirklich dauerhaft löschen?"
+msgstr[1] "Möchten Sie wirklich %i ausgewählte Transaktionen dauerhaft löschen?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Möchten Sie die ausgewählte Buchung wirklich löschen?"
+msgstr[1] "Möchten Sie wirklich %i ausgewählte Transaktionen löschen?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
