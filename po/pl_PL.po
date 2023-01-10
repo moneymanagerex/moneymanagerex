@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-10 08:34\n"
+"PO-Revision-Date: 2023-01-10 09:49\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1826,7 +1826,7 @@ msgstr "Zamknij"
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "wersja 64-bitowa"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -4117,11 +4117,11 @@ msgstr "Czy na pewno chcesz trwale usunąć wszystkie wyświetlane transakcje?"
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Usunięte transakcje będą tymczasowo przechowywane i mogą zostać przywrócone z widoku usuniętych transakcji."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Nie możesz cofnąć tej akcji."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4137,19 +4137,19 @@ msgstr "Czy na pewno chcesz usunąć wszystkie wyświetlane transakcje \"%s\"?"
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Czy na pewno chcesz trwale usunąć wybraną transakcję?"
+msgstr[1] "Czy na pewno chcesz trwale usunąć %i wybrane transakcje?"
+msgstr[2] "Czy na pewno chcesz trwale usunąć %i wybranych transakcji?"
+msgstr[3] "Czy na pewno chcesz trwale usunąć %i wybranych transakcji?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Czy na pewno chcesz usunąć wybraną transakcję?"
+msgstr[1] "Czy na pewno chcesz usunąć %i wybrane transakcje?"
+msgstr[2] "Czy na pewno chcesz usunąć %i wybranych transakcji?"
+msgstr[3] "Czy na pewno chcesz usunąć %i wybranych transakcji?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
