@@ -1,6 +1,7 @@
 ﻿## Active Developers
 Nikolay          [Nikolay]
 Whalley          [whalley]
+n-stein          [n-stein]
 Gabriele         [gabriele-v]
 Lisheng          [guanlisheng]
 James            [siena123]
@@ -115,6 +116,13 @@ Spanish
 ---------------------------------------
 ## Sponsors
 
+### 2023
+Michael Ellis
+Constantin Georgescu
+Juan De Arriba
+Francesco Orabona
+Michael Copeland
+
 ### 2022
 Renato
 Sven Wiesner
@@ -159,6 +167,8 @@ Antonio Navarro Sánchez
 Alain Barussaud
 Emanuele Pizzurno
 William McCracken
+Timur Yilmaz
+Jose Manuel Marrero León
 
 ### 2021
 Renato
