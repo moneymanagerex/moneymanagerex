@@ -1278,7 +1278,7 @@ const wxString getProgramDescription(int type)
     build_date = wxGetTranslation(build_date.SubString(0, 2)) + build_date.Mid(3);
 
     wxString description;
-    description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
+    description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
         << bull << wxString::Format(simple ? "Built: %s %s" : _("Built on: %s %s"), build_date, BUILD_TIME) << eol
         << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
@@ -1327,14 +1327,17 @@ const wxString getProgramDescription(int type)
         << bull + "GCC " + __VERSION__ << eol
         << eol
 #endif
+
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
         << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << eol
 #endif
         << eol
+        << (simple ? "OS:" : _("Running on:")) << eol
+
 #ifdef LINUX_DISTRO_STRING
         << bull + LINUX_DISTRO_STRING
 #endif
-        << (simple ? "OS:" : _("Running on:")) << eol
+
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"

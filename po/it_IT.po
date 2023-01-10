@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-09 12:16+0300\n"
-"PO-Revision-Date: 2023-01-09 09:19\n"
+"POT-Creation-Date: 2023-01-10 11:29+0300\n"
+"PO-Revision-Date: 2023-01-10 08:33\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1333,7 +1333,7 @@ msgstr "&Nuova Operazione Ricorrente..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Modifica Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
@@ -1341,7 +1341,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Elimina Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -1817,6 +1817,10 @@ msgstr "Chiudi"
 #: constants.cpp:80
 msgid "&Close "
 msgstr "&Chiudi"
+
+#: constants.cpp:96
+msgid "64-bit"
+msgstr ""
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -4089,11 +4093,11 @@ msgstr "Vuoi davvero eliminare definitivamente tutte le operazioni visualizzate?
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Le transazioni eliminate saranno temporaneamente memorizzate e potranno essere ripristinate dalla schermata Transazioni eliminate."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Non sarà possibile annullare questa azione."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4109,15 +4113,15 @@ msgstr "Vuoi davvero eliminare tutte le \"%s\" operazioni visualizzate?"
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vuoi davvero eliminare definitivamente la transazione selezionata?"
+msgstr[1] "Vuoi davvero eliminare in modo permanente %i transazioni selezionate?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vuoi davvero eliminare la transazione selezionata?"
+msgstr[1] "Vuoi davvero eliminare le %i transazioni selezionate?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
@@ -7605,7 +7609,7 @@ msgstr "MMEX utilizza i prodotti di supporto seguenti:"
 msgid "Built with:"
 msgstr "Realizzato con:"
 
-#: util.cpp:1337
+#: util.cpp:1335
 msgid "Running on:"
 msgstr "Eseguibile con:"
 
