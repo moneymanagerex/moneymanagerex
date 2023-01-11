@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-10 08:33\n"
+"PO-Revision-Date: 2023-01-10 15:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1818,7 +1818,7 @@ msgstr "&Cerrar "
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"

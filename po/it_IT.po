@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-10 08:33\n"
+"PO-Revision-Date: 2023-01-11 08:43\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1337,7 +1337,7 @@ msgstr "&Modifica Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplica Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
@@ -1820,7 +1820,7 @@ msgstr "&Chiudi"
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -4006,7 +4006,7 @@ msgstr "&Incolla Transazioni (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "D&uplica Transazione..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4024,7 +4024,7 @@ msgstr "&Visualizza Categorie suddivise"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Crea Transazione &Ricorrente..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4661,11 +4661,11 @@ msgstr "Aggiornamento tassi di cambio e valore azioni"
 
 #: mmframe.cpp:1610
 msgid "Organize &Categories..."
-msgstr "Gestisci &Categorie..."
+msgstr "&Gestisci Categorie..."
 
 #: mmframe.cpp:1614
 msgid "Organize &Payees..."
-msgstr "Gestisci &Beneficiari..."
+msgstr "Gestione &Beneficiari..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1832 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4673,7 +4673,7 @@ msgstr "Organizza i Beneficiari"
 
 #: mmframe.cpp:1618
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Gestione Va&luta..."
 
 #: mmframe.cpp:1618 mmframe.cpp:1833
 msgid "Organize Currency"
@@ -4717,7 +4717,7 @@ msgstr "&Cespiti"
 
 #: mmframe.cpp:1653
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "Gestione T&emi..."
 
 #: mmframe.cpp:1653 themes.cpp:143
 msgid "Theme Manager"
@@ -4725,7 +4725,7 @@ msgstr "Gestore dei temi"
 
 #: mmframe.cpp:1659
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Filtro Resoconto Operazioni..."
 
 #: mmframe.cpp:1659 mmframe.cpp:1835
 msgid "Transaction Report Filter"
@@ -4733,11 +4733,11 @@ msgstr "Filtro Resoconto Operazioni"
 
 #: mmframe.cpp:1665
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Gestione R&esoconti..."
 
 #: mmframe.cpp:1669
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Gestione C&ampi Personalizzati..."
 
 #: mmframe.cpp:1669
 msgid "Custom Fields Manager"
@@ -4745,7 +4745,7 @@ msgstr "Gestione campi personalizzati"
 
 #: mmframe.cpp:1675
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Aggiorna &WebApp..."
 
 #: mmframe.cpp:1675 mmframe.cpp:2694 mmframe.cpp:2697
 msgid "Refresh WebApp"
@@ -4761,7 +4761,7 @@ msgstr "Mostra la finestra Opzioni"
 
 #: mmframe.cpp:1687
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Converti &DB Criptato..."
 
 #: mmframe.cpp:1688
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4769,7 +4769,7 @@ msgstr "Converti DB criptato in DB non criptato"
 
 #: mmframe.cpp:1690
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Cambia &Password Criptata..."
 
 #: mmframe.cpp:1691
 msgid "Change the password of an encrypted database"
@@ -4777,7 +4777,7 @@ msgstr "Cambia password ad un database criptato"
 
 #: mmframe.cpp:1693
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Ottimizza Database..."
 
 #: mmframe.cpp:1694
 msgid "Optimize database space and performance"
@@ -4785,7 +4785,7 @@ msgstr "Ottimizza lo spazio e le performance del database"
 
 #: mmframe.cpp:1696
 msgid "Database De&bug..."
-msgstr ""
+msgstr "De&bug del Database..."
 
 #: mmframe.cpp:1697
 msgid "Generate database report or fix errors"
@@ -7165,11 +7165,11 @@ msgstr "Valore Totale Attuale"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Modifica Investimento in Titoli..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Aggiungi Operazioni Titoli..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
