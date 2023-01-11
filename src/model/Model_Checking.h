@@ -28,6 +28,7 @@ class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
 {
 public:
     using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
+    using Model<DB_Table_CHECKINGACCOUNT_V1>::save;
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
 
 public:
@@ -147,7 +148,9 @@ public:
 
 public:
     bool remove(int id);
-
+    int save(Data* r);
+    int save(std::vector<Data>& rows);
+    int save(std::vector<Data*>& rows);
 public:
     static const Model_Splittransaction::Data_Set splittransaction(const Data* r);
     static const Model_Splittransaction::Data_Set splittransaction(const Data& r);

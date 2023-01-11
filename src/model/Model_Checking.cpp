@@ -99,6 +99,42 @@ bool Model_Checking::remove(int id)
     return this->remove(id, db_);
 }
 
+int Model_Checking::save(Data* r)
+{
+    r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+    return this->save(r, db_);
+}
+
+int Model_Checking::save(std::vector<Data>& rows)
+{
+    this->Savepoint();
+    for (auto& r : rows)
+    {
+        if (r.id() < 0)
+            wxLogDebug("Incorrect function call to save %s", r.to_json().utf8_str());
+        r.LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        this->save(&r);
+    }
+    this->ReleaseSavepoint();
+
+    return rows.size();
+}
+
+int Model_Checking::save(std::vector<Data*>& rows)
+{
+    this->Savepoint();
+    for (auto& r : rows)
+    {
+        if (r->id() < 0)
+            wxLogDebug("Incorrect function call to save %s", r->to_json().utf8_str());
+        r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        this->save(r);
+    }
+    this->ReleaseSavepoint();
+
+    return rows.size();
+}
+
 const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data* r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r->TRANSID));
