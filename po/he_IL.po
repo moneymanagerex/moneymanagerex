@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-10 08:33\n"
+"PO-Revision-Date: 2023-01-11 08:43\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1671,7 +1671,7 @@ msgstr "הוספת סוג־אב"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "סוג־אב בעל שם דומה קיים כבר עבור הורה זה"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organise Categories: Adding Error"
@@ -1679,7 +1679,7 @@ msgstr "ניהול : הוספת שגיאה"
 
 #: categdialog.cpp:428
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "לא ניתן להעביר תת סוג־אב לסוג־אב שמכיל כבר תת סוג־אב בשם זהה. נא לשקול שינוי שם לפני ההעברה."
 
 #: categdialog.cpp:429
 msgid "Sub Category with same name exists"
@@ -1687,7 +1687,7 @@ msgstr "תת סוג־אב בשם זהה כבר קיים"
 
 #: categdialog.cpp:441
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "סוג־אב מטרה הוא צאצא"
 
 #: categdialog.cpp:448
 #, c-format
@@ -1738,11 +1738,11 @@ msgstr "ניהול : מחיקת שגיאה"
 
 #: categdialog.cpp:501
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "קיימות תנועות שנמחקו עם סוג־אב זה או אחד מצאצאיו."
 
 #: categdialog.cpp:502
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "מחיקת סוג־האב יטהרו באופן אוטומטי גם את התנועות המשוייכות שנמחקו."
 
 #: categdialog.cpp:503 payeedialog.cpp:485
 msgid "Do you wish to continue ?"
@@ -1763,7 +1763,7 @@ msgstr "עריכת סוג־אב"
 
 #: categdialog.cpp:625
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "סוג־אב בשם זהה קיים כבר עבור ההורה"
 
 #: categdialog.cpp:626
 msgid "Organise Categories: Editing Error"
@@ -1825,11 +1825,11 @@ msgstr "&סגירה "
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64 ביט"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
-msgstr ""
+msgstr "צפייה באמצעות מסנן תנועות"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -1919,7 +1919,7 @@ msgstr "סמל מטבע"
 
 #: currencydialog.cpp:212
 msgid "Symbol Location"
-msgstr ""
+msgstr "מיקום סמל"
 
 #: currencydialog.cpp:213
 msgid "Prefix"
@@ -4120,7 +4120,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "לא ניתן לבטל פעולה זו."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4232,7 +4232,7 @@ msgstr "&שחזור "
 
 #: mmcheckingpanel.cpp:399
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "שיחזור תנועה שנבחרה"
 
 #: mmcheckingpanel.cpp:414
 msgid "Enter any string to find it in the nearest transaction data"
@@ -4430,7 +4430,7 @@ msgstr "&קבצי XML..."
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "ייברא מקובץ XML (תבנית אקסל)"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
@@ -6078,7 +6078,7 @@ msgstr "מספר קבצים מירבי"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr "הדגרת מספר ימים שבמסגרתם ניתן לאחזור תנועות שנמחקו. תנועות מחוקות שחרגו ממספר ימים זה, ימחקו לצמיתות."
+msgstr "הדגרת מספר ימים שבמסגרתם ניתן לאחזור תנועות שנמחקו. תנועות מחוקות שחרגו ממספר ימים זה, יטוהרו לצמיתות."
 
 #: optionsettingsmisc.cpp:206
 msgid "Days to retain deleted transactions"
