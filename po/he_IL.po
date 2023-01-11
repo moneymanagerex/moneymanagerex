@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-11 08:43\n"
+"PO-Revision-Date: 2023-01-11 10:52\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1985,7 +1985,7 @@ msgstr "תנועה לא תקינה"
 
 #: currencydialog.cpp:295 currencydialog.cpp:320
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "תו קיבוץ לא יכול להיות זהה לתו עשרוני"
 
 #: currencydialog.cpp:342
 #, c-format
@@ -2568,7 +2568,7 @@ msgstr "נא להזין מחרוזת כל שהיא לחיפושה בהערות �
 
 #: filtertransdialog.cpp:640
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "שימוש בביטוי־רגיל (regex): להתאמה נא להשתמש בביטוי־רגיל."
 
 #: filtertransdialog.cpp:657
 msgid "Presentation Options"
@@ -2829,7 +2829,7 @@ msgstr "פעיל"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "הצגת/הסתרת הדוח בלוח הניווט הראשי"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
@@ -3934,43 +3934,43 @@ msgstr "דוגמה לסמל נייר (HSBC HLDG)  אנגלי:HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "לפני שמתחילים להשקיע, כדאי שתהיה קרן לשעת חירום במימון מלא."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "לפני שמתחילים להשקיע, כדאי לדעת את מצב תזרים המזומנים (ניהול תקציב)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "לפני שמתחילים להשקיע, כדאי לפרוע חובות שוטפים – במיוחד לחברות כרטיסי האשראי."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "לפני שמתחילים להשקיע, כדאי להשתמש ב'שווי נקי' כמדד מעקב עקרי."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "לפני שמתחילים להשקיע, כדאי להבהיר מטרות ועדיפויות."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "לפני שמתחילים להשקיע, כדאי מאוד להבין את יסודות תורת ההשקעה."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "שגיאות נפוצות אצל משקיעים: רכישת מנייות של חברות אותן אני מכיר."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "שגיאות נפוצות אצל משקיעים: רכישת מנייות של חברות שאני מחבב."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "שגיאות נפוצות אצל משקיעים: רכישת מנייות באזוורד (שהפכו אופנתיות בין ליל)."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "שגיאות נפוצות אצל משקיעים: לשכוח לאזן מחדש."
 
 #: mmchecking_list.cpp:209
 msgid "Sort Order"
@@ -4064,26 +4064,26 @@ msgstr[3] "&מחיקת תנועות שנבחרו..."
 #: mmchecking_list.cpp:487
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&מחיקת תנועה שנבחרה לצמיתות..."
+msgstr[1] "&מחיקת תנועות שנבחרו לצמיתות..."
+msgstr[2] "&מחיקת תנועות שנבחרו לצמיתות..."
+msgstr[3] "&מחיקת תנועות שנבחרו לצמיתות..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "מחיקת כל התנועות שבתצוגה הנוכחית..."
 
 #: mmchecking_list.cpp:490
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "מחיקת כל התנועות שבתצוגה הנוכחית לצמיתות..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "מחיקת תנועות 'מעקב' שמוצגות..."
 
 #: mmchecking_list.cpp:493
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "מחיקת תנועות 'לא הותאם' שמוצגות..."
 
 #: mmchecking_list.cpp:511
 msgid "Mark as"
@@ -4091,7 +4091,7 @@ msgstr "סימון כ־"
 
 #: mmchecking_list.cpp:949
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "האם לשחזר את כל התנועות המוצגות?"
 
 #: mmchecking_list.cpp:950 mmchecking_list.cpp:992
 msgid "Confirm Transaction Restore"
@@ -4116,7 +4116,7 @@ msgstr "האם למחוק לצמיתות את כל התנועות המוצגות
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "תנועות שנמחקו יאוחסנו באופן זמני וניתן לשחזרם ממצג 'תנועות שנמחקו'."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
@@ -4136,19 +4136,19 @@ msgstr "האם למחוק את כל \"%s\" התנועות המוצגות?"
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "האם למחוק לצמיתות את התנועה שנבחרה?"
+msgstr[1] "האם למחוק לצמיתות את %i התנועות שנבחרו?"
+msgstr[2] "האם למחוק לצמיתות את %i התנועות שנבחרו?"
+msgstr[3] "האם למחוק לצמיתות את %i התנועות שנבחרו?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "האם למחוק את התנועה שנבחרה?"
+msgstr[1] "האם למחוק את %i התנועות שנבחרו?"
+msgstr[2] "האם למחוק את %i התנועות שנבחרו?"
+msgstr[3] "האם למחוק את %i התנועות שנבחרו?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
@@ -4614,7 +4614,7 @@ msgstr "&הצגת תנועות שנמחקו"
 
 #: mmframe.cpp:1514
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "הצגת/הסתרת תנועות שנמחקו בעץ הניווט"
 
 #: mmframe.cpp:1516
 msgid "Budgets: As Financial &Years"
@@ -5229,7 +5229,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "חשבונות ניירות ערך מכילים תנועות בניירות ערך\n\n"
+"תנועות בניירות ערך נוצרות בצג 'תיק מניות', זאת\n"
+"לאחר בחירת החברה (מנפיקת המניה) מהמצג המשוייך.\n\n"
+"חשבונות אלה הופכים גלויים רק לאחר שיוך המניה לחשבון ניר ערך,\n"
+"או, מתוך תפריט תצוגה ← 'הצגת חשבונות ניירות ערך'\n"
+"חשבונות ניירות ערך יכולים להכיל גם תנועות רגילות לחשבון רגיל."
 
 #: mmframe.cpp:2495
 msgid "Share Account Creation"
@@ -6210,11 +6215,11 @@ msgstr "הצגת דוח תקציב סוגי־אב עם סיכומים"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "עקיפת תקציב שנתי בתקציב חודשי"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "במידה ותקציב חודשי קיים נא להשתמש בו לעקוף את התקציב השנתי; אחרת נא לצרף אותם"
 
 #: optionsettingsview.cpp:149
 msgid "Budget Offset (days):"
@@ -6394,11 +6399,11 @@ msgstr "ניהול מוטבים: מחיקת שגיאה"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "קיימות תנועות שנמחקו שעושות שימוש במוטב זה."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "מחיקת מוטב תטהר באופן אוטומטי גם את התנועות המשוייכות שנמחקו."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
