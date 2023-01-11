@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-10 11:29+0300\n"
-"PO-Revision-Date: 2023-01-11 07:28\n"
+"PO-Revision-Date: 2023-01-11 08:43\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1337,7 +1337,7 @@ msgstr "&Modifica Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplica Transazione Ricorrente..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
@@ -4006,7 +4006,7 @@ msgstr "&Incolla Transazioni (%d)"
 
 #: mmchecking_list.cpp:454
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "D&uplica Transazione..."
 
 #: mmchecking_list.cpp:457
 msgid "&Move Transaction..."
@@ -4024,7 +4024,7 @@ msgstr "&Visualizza Categorie suddivise"
 
 #: mmchecking_list.cpp:475
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Crea Transazione &Ricorrente..."
 
 #: mmchecking_list.cpp:479
 msgid "&Restore selected transaction..."
@@ -4673,7 +4673,7 @@ msgstr "Organizza i Beneficiari"
 
 #: mmframe.cpp:1618
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Gestione Va&luta..."
 
 #: mmframe.cpp:1618 mmframe.cpp:1833
 msgid "Organize Currency"
@@ -4717,7 +4717,7 @@ msgstr "&Cespiti"
 
 #: mmframe.cpp:1653
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "Gestione T&emi..."
 
 #: mmframe.cpp:1653 themes.cpp:143
 msgid "Theme Manager"
@@ -4725,7 +4725,7 @@ msgstr "Gestore dei temi"
 
 #: mmframe.cpp:1659
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Filtro Resoconto Operazioni..."
 
 #: mmframe.cpp:1659 mmframe.cpp:1835
 msgid "Transaction Report Filter"
@@ -4733,11 +4733,11 @@ msgstr "Filtro Resoconto Operazioni"
 
 #: mmframe.cpp:1665
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Gestione R&esoconti..."
 
 #: mmframe.cpp:1669
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Gestione C&ampi Personalizzati..."
 
 #: mmframe.cpp:1669
 msgid "Custom Fields Manager"
