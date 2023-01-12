@@ -82,10 +82,11 @@ const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
     const wxString def_date = wxDateTime::Today().FormatISODate();
 
     const std::vector<Model_Report::Values> v = {
-    {"&begin_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date: ")},
-    {"&single_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Date: ")},
-    {"&end_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _("End date: ")},
-    {"&only_years", "wxChoice", def_date, mmReportsPanel::RepPanel::ID_CHOICE_YEAR, _("Year: ")},
+    {"&begin_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date:")},
+    {"&single_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Date:")},
+    {"&end_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _("End date:")},
+    {"&single_time", "wxTimePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_TIME, _("Time:")},
+    {"&only_years", "wxChoice", def_date, mmReportsPanel::RepPanel::ID_CHOICE_YEAR, _("Year:")},
     };
     return v;
 };
@@ -205,6 +206,11 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
             {
                 mmDatePickerCtrl* date = static_cast<mmDatePickerCtrl*>(w);
                 value = date->GetValue().FormatISODate();
+            }
+            if (w && entry.type == "wxTimePickerCtrl")
+            {
+                wxTimePickerCtrl* time = static_cast<wxTimePickerCtrl*>(w);
+                value = time->GetValue().ToUTC().FormatISOTime();
             }
             if (w && entry.type == "wxChoice")
             {

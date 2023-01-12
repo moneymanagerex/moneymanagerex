@@ -24,6 +24,7 @@
 #include "mmSimpleDialogs.h"
 #include "reports/reportbase.h"
 #include <wx/spinctrl.h>
+#include <wx/timectrl.h>
 
 class mmGUIFrame;
 class mmDateRange;
@@ -64,6 +65,7 @@ public:
         ID_CHOICE_ACCOUNTS,
         ID_CHOICE_START_DATE,
         ID_CHOICE_END_DATE,
+        ID_CHOICE_TIME,
         ID_CHOICE_YEAR,
         ID_CHOICE_BUDGET,
         ID_CHOICE_CHART,
@@ -75,6 +77,7 @@ private:
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     wxChoice* m_date_ranges = nullptr;
     mmDatePickerCtrl *m_start_date = nullptr, *m_end_date = nullptr;
+    wxTimePickerCtrl *m_time = nullptr;
     wxWebView * browser_ = nullptr;
     mmPrintableBase* rb_ = nullptr;
     wxChoice* m_accounts = nullptr;

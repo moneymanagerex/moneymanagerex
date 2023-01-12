@@ -65,12 +65,13 @@ public:
         NONE = 0
         , SINGLE_DATE = 1
         , DATE_RANGE = 2
-        , MONTHES = 4
-        , BUDGET_DATES = 8
-        , ONLY_YEARS = 16
-        , ACCOUNTS_LIST = 32
-        , CHART = 64
-        , FORWARD_MONTHS = 128
+        , TIME = 4
+        , MONTHES = 8
+        , BUDGET_DATES = 16
+        , ONLY_YEARS = 32
+        , ACCOUNTS_LIST = 64
+        , CHART = 128
+        , FORWARD_MONTHS = 256
     };
 
     enum Reports {
