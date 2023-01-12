@@ -39,6 +39,7 @@ EVT_CHOICE(ID_CHOICE_YEAR, mmReportsPanel::OnYearChanged)
 EVT_CHOICE(ID_CHOICE_BUDGET, mmReportsPanel::OnBudgetChanged)
 EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
 EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
+EVT_TIME_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
 EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
 EVT_SPINCTRL(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedSpin)
 EVT_TEXT_ENTER(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedText)
@@ -55,6 +56,7 @@ mmReportsPanel::mmReportsPanel(
     , m_date_ranges(nullptr)
     , m_start_date(nullptr)
     , m_end_date(nullptr)
+    , m_time(nullptr)
     , m_accounts(nullptr)
     , m_chart(nullptr)
     , cleanup_(cleanupReport)
@@ -254,7 +256,7 @@ void mmReportsPanel::CreateControls()
         else if (rp & rb_->RepParams::SINGLE_DATE)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Date"));
+                , wxID_ANY, _("Date:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -264,15 +266,13 @@ void mmReportsPanel::CreateControls()
             m_start_date->SetValue(wxDateTime::Today());
             m_start_date->Enable(true);
 
-            m_end_date = nullptr;
-
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::MONTHES)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Date"));
+                , wxID_ANY, _("Date:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -282,6 +282,20 @@ void mmReportsPanel::CreateControls()
             rb_->setSelection(m_shift);
 
             itemBoxSizerHeader->Add(up_down_month, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
+
+        if (rp & rb_->RepParams::TIME)
+        {
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
+                , wxID_ANY, _("Time:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+
+            m_time = new wxTimePickerCtrl(itemPanel3, ID_CHOICE_TIME);
+
+            itemBoxSizerHeader->Add(m_time, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
 
@@ -346,8 +360,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
-            m_accounts->Append(_("All Accounts"));
-            m_accounts->Append(_("Specific Accounts"));
+            m_accounts->Append(_("All Accounts:"));
+            m_accounts->Append(_("Specific Accounts:"));
             for (const auto& e : Model_Account::instance().TYPE_CHOICES)
             {
                 if (e.first != Model_Account::INVESTMENT) {

@@ -44,7 +44,6 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
 
 mmPrintableBase::~mmPrintableBase()
 {
-
 }
 
 void mmPrintableBase::setReportParameters(int id)
@@ -348,6 +347,9 @@ int mmGeneralReport::report_parameters()
         params |= SINGLE_DATE;
     else if (content.Contains("&only_years"))
         params |= ONLY_YEARS;
+
+    if (content.Contains("&single_time"))
+        params |= TIME;
 
     return params;
 }
