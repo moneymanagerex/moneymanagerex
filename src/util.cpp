@@ -1322,10 +1322,8 @@ const wxString getProgramDescription(int type)
         << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << eol
 #elif defined(__clang__)
         << bull + "Clang " + __VERSION__ << eol
-        << eol
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
         << bull + "GCC " + __VERSION__ << eol
-        << eol
 #endif
 
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
@@ -1335,12 +1333,12 @@ const wxString getProgramDescription(int type)
         << (simple ? "OS:" : _("Running on:")) << eol
 
 #ifdef LINUX_DISTRO_STRING
-        << bull + LINUX_DISTRO_STRING
+        << bull + LINUX_DISTRO_STRING << eol
 #endif
 
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
-        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
+        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"" << eol
 #endif
         << bull + wxGetOsDescription() << eol
         << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
