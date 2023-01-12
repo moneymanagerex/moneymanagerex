@@ -101,7 +101,11 @@ bool Model_Checking::remove(int id)
 
 int Model_Checking::save(Data* r)
 {
-    r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+    Data* oldData = instance().read(r->TRANSID);
+    if (!oldData || (oldData && !oldData->equals(r)))
+    {
+        r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+    }
     this->save(r, db_);
     return r->TRANSID;
 }
@@ -113,8 +117,7 @@ int Model_Checking::save(std::vector<Data>& rows)
     {
         if (r.id() < 0)
             wxLogDebug("Incorrect function call to save %s", r.to_json().utf8_str());
-        r.LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        this->save(&r);
+        save(&r);
     }
     this->ReleaseSavepoint();
 
@@ -128,8 +131,7 @@ int Model_Checking::save(std::vector<Data*>& rows)
     {
         if (r->id() < 0)
             wxLogDebug("Incorrect function call to save %s", r->to_json().utf8_str());
-        r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        this->save(r);
+        save(r);
     }
     this->ReleaseSavepoint();
 

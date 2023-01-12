@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2022 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2022-12-18 13:00:45.607197.
+ *          AUTO GENERATED at 2023-01-12 17:54:42.144848.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -373,6 +373,32 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             return this->id() < r->id();
         }
 
+        bool equals(const Data* r) const
+        {
+            if(ACCOUNTID != r->ACCOUNTID) return false;
+            if(!ACCOUNTNAME.IsSameAs(r->ACCOUNTNAME)) return false;
+            if(!ACCOUNTTYPE.IsSameAs(r->ACCOUNTTYPE)) return false;
+            if(!ACCOUNTNUM.IsSameAs(r->ACCOUNTNUM)) return false;
+            if(!STATUS.IsSameAs(r->STATUS)) return false;
+            if(!NOTES.IsSameAs(r->NOTES)) return false;
+            if(!HELDAT.IsSameAs(r->HELDAT)) return false;
+            if(!WEBSITE.IsSameAs(r->WEBSITE)) return false;
+            if(!CONTACTINFO.IsSameAs(r->CONTACTINFO)) return false;
+            if(!ACCESSINFO.IsSameAs(r->ACCESSINFO)) return false;
+            if(INITIALBAL != r->INITIALBAL) return false;
+            if(!INITIALDATE.IsSameAs(r->INITIALDATE)) return false;
+            if(!FAVORITEACCT.IsSameAs(r->FAVORITEACCT)) return false;
+            if(CURRENCYID != r->CURRENCYID) return false;
+            if(STATEMENTLOCKED != r->STATEMENTLOCKED) return false;
+            if(!STATEMENTDATE.IsSameAs(r->STATEMENTDATE)) return false;
+            if(MINIMUMBALANCE != r->MINIMUMBALANCE) return false;
+            if(CREDITLIMIT != r->CREDITLIMIT) return false;
+            if(INTERESTRATE != r->INTERESTRATE) return false;
+            if(!PAYMENTDUEDATE.IsSameAs(r->PAYMENTDUEDATE)) return false;
+            if(MINIMUMPAYMENT != r->MINIMUMPAYMENT) return false;
+            return true;
+        }
+        
         explicit Data(Self* table = 0) 
         {
             table_ = table;
@@ -900,6 +926,44 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
                 entity = new Self::Data(q, this);
                 cache_.push_back(entity);
                 index_by_id_.insert(std::make_pair(id, entity));
+            }
+            stmt.Finalize();
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
+        }
+        
+        if (!entity) 
+        {
+            entity = this->fake_;
+            // wxLogError("%s: %d not found", this->name().utf8_str(), id);
+        }
+ 
+        return entity;
+    }
+    /**
+    * Search the database for the data record, bypassing the cache.
+    */
+    Self::Data* read(int id, wxSQLite3Database* db)
+    {
+        if (id <= 0) 
+        {
+            ++ skip_;
+            return 0;
+        }
+
+        Self::Data* entity = 0;
+        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
+        try
+        {
+            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
+            stmt.Bind(1, id);
+
+            wxSQLite3ResultSet q = stmt.ExecuteQuery();
+            if(q.NextRow())
+            {
+                entity = new Self::Data(q, this);
             }
             stmt.Finalize();
         }
