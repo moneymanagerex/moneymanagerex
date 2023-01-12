@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 16:53\n"
+"PO-Revision-Date: 2023-01-12 21:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1824,7 +1824,7 @@ msgstr "&Зачыніць "
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64-бітная"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -2977,16 +2977,16 @@ msgstr "Аперацыі"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1488
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Экспарт файла QIF"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1489
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Экспарт файла JSON"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:112
 #: mmframe.cpp:1485
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Экспарт файла CSV"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3248,7 +3248,7 @@ msgstr "Імпартаванне скасаванае карыстальніка
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Імпарт з QIF"
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3304,15 +3304,15 @@ msgstr "Баланс"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Імпарт з CSV"
 
 #: import_export/univcsvdialog.cpp:115
 msgid "Import from XML file"
-msgstr ""
+msgstr "Імпарт з XML"
 
 #: import_export/univcsvdialog.cpp:118 mmframe.cpp:1487
 msgid "Export as XML file"
-msgstr ""
+msgstr "Экспарт файла XML"
 
 #: import_export/univcsvdialog.cpp:219
 msgid "Specify the order of fields in the file"
@@ -4051,7 +4051,7 @@ msgstr[3] "А&днавіць абраныя аперацыі..."
 
 #: mmchecking_list.cpp:481
 msgid "Restore all transactions in current view..."
-msgstr "Аднавыць усе бачныя аперацыі..."
+msgstr "Аднавіць усе бачныя аперацыі..."
 
 #: mmchecking_list.cpp:486
 msgid "&Delete selected transaction..."
@@ -4120,7 +4120,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Гэта дзеянне немагчыма скасаваць."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4430,7 +4430,7 @@ msgstr "Файлы &XML..."
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "Імпартаваць з XML (фармат Excel)"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
@@ -4438,31 +4438,31 @@ msgstr "Файлы &QIF..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1482
 msgid "&Import from"
-msgstr ""
+msgstr "&Імпартаваць з"
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&CSV File..."
-msgstr ""
+msgstr "Файл &CSV..."
 
 #: mmframe.cpp:1326 mmframe.cpp:1486
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "Файл &MMEX CSV..."
 
 #: mmframe.cpp:1327 mmframe.cpp:1487
 msgid "&XML File..."
-msgstr ""
+msgstr "Файл &XML..."
 
 #: mmframe.cpp:1328 mmframe.cpp:1488
 msgid "&QIF File..."
-msgstr ""
+msgstr "Файл &QIF..."
 
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&JSON File..."
-msgstr ""
+msgstr "Файл &JSON..."
 
 #: mmframe.cpp:1330 mmframe.cpp:1491
 msgid "&Export as"
-msgstr ""
+msgstr "&Экспартаваць як"
 
 #: mmframe.cpp:1355
 msgid "&Edit Filter..."
@@ -4558,15 +4558,15 @@ msgstr "Імпартаваць з WebApp"
 
 #: mmframe.cpp:1486
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Экспарт у фіксаваны CSV"
 
 #: mmframe.cpp:1490
 msgid "&HTML File..."
-msgstr ""
+msgstr "Файл &HTML..."
 
 #: mmframe.cpp:1490
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Экспарт у HTML-файл"
 
 #: mmframe.cpp:1496
 msgid "&Print..."
@@ -5517,11 +5517,11 @@ msgstr "Перыяд:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:86
 msgid "Date:"
-msgstr ""
+msgstr "Дата:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:88
 msgid "Time:"
-msgstr ""
+msgstr "Час:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:89
 msgid "Year:"
@@ -5533,11 +5533,11 @@ msgstr "Бюджэт:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Усе рахункі:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "Пазначаныя рахункі:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5709,11 +5709,11 @@ msgstr "Памылка платніка"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date:"
-msgstr ""
+msgstr "Дата пачатка:"
 
 #: model/Model_Report.cpp:87
 msgid "End date:"
-msgstr ""
+msgstr "Дата заканчэння:"
 
 #: model/Model_Report.cpp:239
 msgid "Template is empty"
@@ -7645,7 +7645,7 @@ msgstr "MMEX выкарыстоўвае наступныя прадукты:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Сабрана з дапамогай:"
 
 #: util.cpp:1333
 msgid "Running on:"
