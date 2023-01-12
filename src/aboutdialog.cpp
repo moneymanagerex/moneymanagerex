@@ -48,7 +48,6 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo)
         ? _("License agreement")
         : wxString::Format("%s - %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
     createWindow(parent, caption, tabToOpenNo);
-    SetMinClientSize(wxSize(300, 400));
 }
 
 bool mmAboutDialog::createWindow(wxWindow* parent
@@ -69,8 +68,10 @@ bool mmAboutDialog::createWindow(wxWindow* parent
     {
         createControls(tabToOpenNo);
         initControls();
+        SetMinSize(wxSize(400, 600));
         this->SetIcon(::mmex::getProgramIcon());
-        this->Centre();
+        Fit();
+        Centre();
     }
 
     return ok;
@@ -249,8 +250,6 @@ void mmAboutDialog::createControls(int tabToOpenNo)
     buttonPanelSizer->Add(buttonOk, g_flagsCenter);
 
     aboutNotebook->ChangeSelection(tabToOpenNo);
-
-    GetSizer()->Fit(this);
 }
 
 void mmAboutDialog::handleLink(wxHtmlLinkEvent& event)
