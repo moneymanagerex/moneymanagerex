@@ -102,7 +102,8 @@ bool Model_Checking::remove(int id)
 int Model_Checking::save(Data* r)
 {
     r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-    return this->save(r, db_);
+    this->save(r, db_);
+    return r->TRANSID;
 }
 
 int Model_Checking::save(std::vector<Data>& rows)
