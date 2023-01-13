@@ -210,7 +210,7 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
             if (w && entry.type == "wxTimePickerCtrl")
             {
                 wxTimePickerCtrl* time = static_cast<wxTimePickerCtrl*>(w);
-                value = time->GetValue().ToUTC().FormatISOTime();
+                value = time->GetValue().FormatISOTime();
             }
             if (w && entry.type == "wxChoice")
             {
