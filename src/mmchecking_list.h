@@ -84,7 +84,6 @@ public:
     void setColumnImage(EColumn col, int image);
 public:
     void OnNewTransaction(wxCommandEvent& event);
-    void OnNewTransferTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
     void OnRestoreTransaction(wxCommandEvent& event);
     void OnDeleteViewedTransaction(wxCommandEvent& event);
@@ -154,9 +153,6 @@ private:
         MENU_ON_SET_UDC6, //User defined color 6
         MENU_ON_SET_UDC7, //User defined color 7
 
-        MENU_TREEPOPUP_NEW_WITHDRAWAL,
-        MENU_TREEPOPUP_NEW_DEPOSIT,
-        MENU_TREEPOPUP_NEW_TRANSFER,
         MENU_TREEPOPUP_EDIT2,
         MENU_TREEPOPUP_MOVE2,
         MENU_TREEPOPUP_DELETE2,
