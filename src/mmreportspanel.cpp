@@ -537,6 +537,17 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     const wxString uri = evt.GetURL();
     wxString sData;
 
+    auto idx = this->m_date_ranges->GetSelection();
+    const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(idx));
+    if (date_range)
+    {
+        this->m_start_date->SetValue(date_range->start_date());
+        this->m_end_date->SetValue(date_range->end_date());
+        rb_->setSelection(idx);
+        rb_->setReportSettings();
+        rb_->m_filter.setDateRange(date_range->start_date(), date_range->end_date());
+    }
+
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
     {
