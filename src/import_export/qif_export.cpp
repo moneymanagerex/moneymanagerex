@@ -133,9 +133,9 @@ void mmQIFExportDialog::CreateControls()
     // Type -------------------------------------------------
     wxStaticText* type = new wxStaticText(main_tab, wxID_STATIC, _("Type"));
     wxChoice* typeCheckBox = new wxChoice(main_tab, wxID_ANY);
-    typeCheckBox->AppendString(_("QIF"));
-    typeCheckBox->AppendString(_("JSON"));
     typeCheckBox->AppendString(_("CSV"));
+    typeCheckBox->AppendString(_("JSON"));
+    typeCheckBox->AppendString(_("QIF"));
     typeCheckBox->SetSelection(m_type);
     typeCheckBox->SetMinSize(min_size);
     flex_sizer->Add(type, g_flagsH);
@@ -378,7 +378,7 @@ void mmQIFExportDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 void mmQIFExportDialog::OnChoiceType(wxCommandEvent& event)
 {
     m_type = event.GetInt();
-    if (m_type < QIF || m_type > CSV) m_type = QIF;
+    if (m_type < CSV || m_type > QIF) m_type = QIF;
 }
 
 void mmQIFExportDialog::OnCheckboxClick( wxCommandEvent& WXUNUSED(event) )

@@ -29,7 +29,7 @@ class mmQIFExportDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum type { QIF = 0, JSON, CSV };
+    enum type { CSV = 0, JSON, QIF };
     mmQIFExportDialog() {}
     //virtual ~mmQIFExportDialog() {}
 

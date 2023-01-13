@@ -243,7 +243,7 @@ void OptionSettingsMisc::OnBackupChanged(wxCommandEvent& WXUNUSED(event))
 void OptionSettingsMisc::SaveStocksUrl()
 {
     wxComboBox* url = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL));
-    wxString stockURL = url->GetValue();
+    wxString stockURL = url->GetValue().Trim(false).Trim();
     if (!stockURL.IsEmpty())
     {
         Model_Infotable::instance().Set("STOCKURL", stockURL);
