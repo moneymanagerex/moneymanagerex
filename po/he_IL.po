@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 16:53\n"
+"PO-Revision-Date: 2023-01-13 06:53\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5513,11 +5513,11 @@ msgstr "תקופה:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:86
 msgid "Date:"
-msgstr ""
+msgstr "תאריך:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:88
 msgid "Time:"
-msgstr ""
+msgstr "שעה:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:89
 msgid "Year:"
@@ -5529,11 +5529,11 @@ msgstr "תקציב:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "כל החשבונות:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "חשבונות מסוימים:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5700,11 +5700,11 @@ msgstr "שגיאת  מוטב"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date:"
-msgstr ""
+msgstr "תאריך התחלה:"
 
 #: model/Model_Report.cpp:87
 msgid "End date:"
-msgstr ""
+msgstr "תאריך סיום:"
 
 #: model/Model_Report.cpp:239
 msgid "Template is empty"
