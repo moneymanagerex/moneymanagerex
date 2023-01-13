@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 16:53\n"
+"PO-Revision-Date: 2023-01-13 02:18\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1819,7 +1819,7 @@ msgstr "&Fechar"
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -2968,16 +2968,16 @@ msgstr "Transações"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1488
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Exportar como arquivo QIF"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1489
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Exportar como arquivo JSON"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:112
 #: mmframe.cpp:1485
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Exportar como arquivo CSV"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3239,7 +3239,7 @@ msgstr "Transações importadas descartadas pelo usuário!"
 
 #: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importar de um arquivo QIF"
 
 #: import_export/qif_import_gui.cpp:1084
 msgid "Transaction code is missing"
@@ -3295,15 +3295,15 @@ msgstr "Saldo"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importar de um arquivo CSV"
 
 #: import_export/univcsvdialog.cpp:115
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importar de um arquivo XML"
 
 #: import_export/univcsvdialog.cpp:118 mmframe.cpp:1487
 msgid "Export as XML file"
-msgstr ""
+msgstr "Exportar como arquivo XML"
 
 #: import_export/univcsvdialog.cpp:219
 msgid "Specify the order of fields in the file"
@@ -4092,11 +4092,11 @@ msgstr "Você realmente quer excluir permanentemente todas as transações exibi
 
 #: mmchecking_list.cpp:1034 mmchecking_list.cpp:1144
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Transações excluídas serão temporariamente armazenadas e podem ser restauradas da visualização de Transações Excluídas."
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1143
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Você não pode desfazer esta ação."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1050 mmchecking_list.cpp:1061
 #: mmchecking_list.cpp:1148
@@ -4112,15 +4112,15 @@ msgstr "Tem certeza de que deseja excluir todas as \"%s\" transações apresenta
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Você realmente deseja excluir permanentemente a transação selecionada?"
+msgstr[1] "Você realmente deseja excluir permanentemente as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Você realmente deseja excluir a transação selecionada?"
+msgstr[1] "Você realmente deseja excluir as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1220
 #, c-format
@@ -4396,7 +4396,7 @@ msgstr "Arquivos &XML..."
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "Importar de um arquivo XML (formato Excel)"
 
 #: mmframe.cpp:1322 mmframe.cpp:1480
 msgid "&QIF Files..."
@@ -4404,31 +4404,31 @@ msgstr "Arquivos &QIF..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1482
 msgid "&Import from"
-msgstr ""
+msgstr "&Importar de"
 
 #: mmframe.cpp:1325 mmframe.cpp:1485
 msgid "&CSV File..."
-msgstr ""
+msgstr "Arquivo &CSV..."
 
 #: mmframe.cpp:1326 mmframe.cpp:1486
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "Arquivo CSV &MMEX..."
 
 #: mmframe.cpp:1327 mmframe.cpp:1487
 msgid "&XML File..."
-msgstr ""
+msgstr "Arquivo &XML..."
 
 #: mmframe.cpp:1328 mmframe.cpp:1488
 msgid "&QIF File..."
-msgstr ""
+msgstr "Arquivo &QIF..."
 
 #: mmframe.cpp:1329 mmframe.cpp:1489
 msgid "&JSON File..."
-msgstr ""
+msgstr "Arquivo &JSON..."
 
 #: mmframe.cpp:1330 mmframe.cpp:1491
 msgid "&Export as"
-msgstr ""
+msgstr "&Exportar como"
 
 #: mmframe.cpp:1355
 msgid "&Edit Filter..."
@@ -4524,15 +4524,15 @@ msgstr "Importar do WebApp"
 
 #: mmframe.cpp:1486
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Exportar como arquivo CSV fixo"
 
 #: mmframe.cpp:1490
 msgid "&HTML File..."
-msgstr ""
+msgstr "Arquivo &HTML..."
 
 #: mmframe.cpp:1490
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Exportar como arquivo HTML"
 
 #: mmframe.cpp:1496
 msgid "&Print..."
@@ -5481,11 +5481,11 @@ msgstr "Período:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:86
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:88
 msgid "Time:"
-msgstr ""
+msgstr "Hora:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:89
 msgid "Year:"
@@ -5497,11 +5497,11 @@ msgstr "Orçamento:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Todas as Contas:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "Contas Específicas:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5673,11 +5673,11 @@ msgstr "Erro do Beneficiário"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date:"
-msgstr ""
+msgstr "Data inicial:"
 
 #: model/Model_Report.cpp:87
 msgid "End date:"
-msgstr ""
+msgstr "Data final:"
 
 #: model/Model_Report.cpp:239
 msgid "Template is empty"
@@ -7586,22 +7586,22 @@ msgstr "Versão: %s"
 #: util.cpp:1282
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "Construído em: %s %s"
 
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Versão do banco de dados: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git commit: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git branch: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7609,7 +7609,7 @@ msgstr "O MMEX está usando os seguintes produtos de suporte:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Construído com:"
 
 #: util.cpp:1333
 msgid "Running on:"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 16:53\n"
+"PO-Revision-Date: 2023-01-13 06:53\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5514,11 +5514,11 @@ msgstr "Okres:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:86
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:88
 msgid "Time:"
-msgstr ""
+msgstr "Czas:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:89
 msgid "Year:"
@@ -5530,11 +5530,11 @@ msgstr "Budżet:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Wszystkie konta:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "Wybrane konta:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5706,11 +5706,11 @@ msgstr "Błąd beneficjenta"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date:"
-msgstr ""
+msgstr "Data początkowa:"
 
 #: model/Model_Report.cpp:87
 msgid "End date:"
-msgstr ""
+msgstr "Data końcowa:"
 
 #: model/Model_Report.cpp:239
 msgid "Template is empty"

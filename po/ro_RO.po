@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 16:53\n"
+"PO-Revision-Date: 2023-01-12 19:47\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1820,7 +1820,7 @@ msgstr "&Închide "
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64-biți"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -5460,11 +5460,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:86
 msgid "Date:"
-msgstr ""
+msgstr "Dată:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:88
 msgid "Time:"
-msgstr ""
+msgstr "Timp:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:89
 msgid "Year:"
@@ -5476,11 +5476,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Toate Conturile:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "Conturi specifice:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5647,11 +5647,11 @@ msgstr ""
 
 #: model/Model_Report.cpp:85
 msgid "Begin date:"
-msgstr ""
+msgstr "Dată de început:"
 
 #: model/Model_Report.cpp:87
 msgid "End date:"
-msgstr ""
+msgstr "Dată de sfârșit:"
 
 #: model/Model_Report.cpp:239
 msgid "Template is empty"
