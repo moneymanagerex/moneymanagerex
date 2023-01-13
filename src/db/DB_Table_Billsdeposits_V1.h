@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-01-12 17:54:42.144848.
+ *          AUTO GENERATED at 2023-01-12 21:06:50.482915.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -832,7 +832,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* read(int id, wxSQLite3Database* db)
+    Self::Data* get_record(int id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

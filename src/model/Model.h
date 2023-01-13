@@ -104,7 +104,7 @@ public:
     using DB_TABLE::all;
     using DB_TABLE::get;
     using DB_TABLE::save;
-    using DB_TABLE::read;
+    using DB_TABLE::get_record;
     using DB_TABLE::remove;
 
     typedef typename DB_TABLE::COLUMN COLUMN;
@@ -159,9 +159,9 @@ public:
     /**
     * Return the Data record for the given ID directly from the database, bypassing the cache.
     */
-    typename DB_TABLE::Data* read(int id)
+    typename DB_TABLE::Data* get_record(int id)
     {
-        return this->read(id, this->db_);
+        return this->get_record(id, this->db_);
     }
 
     /** Save the Data record memory instance to the database. */

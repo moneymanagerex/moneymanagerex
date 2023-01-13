@@ -791,7 +791,7 @@ struct DB_Table_%s : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* read(int id, wxSQLite3Database* db)
+    Self::Data* get_record(int id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
