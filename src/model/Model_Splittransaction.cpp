@@ -121,11 +121,8 @@ int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
     }
 
     if (updateTimestamp)
-    {
-        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(transactionID);
-        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        Model_Checking::instance().save(checkingTxn);
-    }
+        Model_Checking::instance().updateTimestamp(transactionID);
+    
     return rows.size();
 }
 

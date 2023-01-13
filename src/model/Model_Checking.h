@@ -151,6 +151,7 @@ public:
     int save(Data* r);
     int save(std::vector<Data>& rows);
     int save(std::vector<Data*>& rows);
+    void updateTimestamp(int id);
 public:
     static const Model_Splittransaction::Data_Set splittransaction(const Data* r);
     static const Model_Splittransaction::Data_Set splittransaction(const Data& r);

@@ -500,12 +500,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     Model_CustomFieldData::instance().ReleaseSavepoint();
 
     if (updateTimestamp && m_ref_type == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
-    {
-        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(ref_id);
-        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        Model_Checking::instance().save(checkingTxn);
-        
-    }
+        Model_Checking::instance().updateTimestamp(ref_id);        
 
     return true;
 }
@@ -555,12 +550,7 @@ void mmCustomData::UpdateCustomValues(int ref_id)
     Model_CustomFieldData::instance().ReleaseSavepoint();
 
     if (updateTimestamp && m_ref_type == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
-    {
-        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(ref_id);
-        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        Model_Checking::instance().save(checkingTxn);
-        
-    }
+        Model_Checking::instance().updateTimestamp(ref_id);        
 }
 
 void mmCustomData::OnStringChanged(wxCommandEvent& event)

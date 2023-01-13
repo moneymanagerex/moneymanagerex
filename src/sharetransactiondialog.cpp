@@ -171,6 +171,8 @@ void ShareTransactionDialog::DataToControls()
                     , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
                 m_transaction_panel->SetTransactionAccount(Model_Account::get_account_name(checking_entry->ACCOUNTID));
                 m_transaction_panel->SetTransactionStatus(Model_Checking::status(checking_entry));
+                m_transaction_panel->SetTransactionPayee(checking_entry->PAYEEID);
+                m_transaction_panel->SetTransactionCategory(checking_entry->CATEGID);
                 if (checking_entry && !checking_entry->DELETEDTIME.IsEmpty()) {
                     m_share_num_ctrl->Enable(false);
                     m_share_price_ctrl->Enable(false);

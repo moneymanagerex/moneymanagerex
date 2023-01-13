@@ -407,6 +407,20 @@ void UserTransactionPanel::SetTransactionStatus(const int trans_status_enum)
     m_status_selector->SetSelection(trans_status_enum);
 }
 
+void UserTransactionPanel::SetTransactionPayee(const int payeeid)
+{
+    m_payee_id = payeeid;
+    Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id);
+    if (payee)
+        m_payee->SetLabelText(payee->PAYEENAME);
+}
+
+void UserTransactionPanel::SetTransactionCategory(const int categid)
+{
+    m_category_id = categid;
+    m_category->SetLabelText(Model_Category::full_name(m_category_id));
+}
+
 void UserTransactionPanel::SetTransactionAccount(const wxString& trans_account)
 {
     Model_Account::Data* account = Model_Account::instance().get(trans_account);
