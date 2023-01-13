@@ -22,21 +22,15 @@
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
-//#include "filtertransdialog.h"
 #include "images_list.h"
 #include "mmchecking_list.h"
 #include "mmcheckingpanel.h"
-//#include "mmex.h"
 #include "mmframe.h"
 #include "mmSimpleDialogs.h"
-//#include "paths.h"
-//#include "splittransactionsdialog.h"
 #include "sharetransactiondialog.h"
 #include "transactionsupdatedialog.h"
 #include "transdialog.h"
 #include "util.h"
-//#include "validators.h"
-//#include "model/allmodel.h"
 #include <wx/clipbrd.h>
 
 #include <wx/srchctrl.h>
@@ -57,8 +51,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
         , MENU_TREEPOPUP_MARKDELETE, TransactionListCtrl::OnMarkTransaction)
 
-    EVT_MENU_RANGE(MENU_TREEPOPUP_NEW_WITHDRAWAL, MENU_TREEPOPUP_NEW_DEPOSIT, TransactionListCtrl::OnNewTransaction)
-    EVT_MENU(MENU_TREEPOPUP_NEW_TRANSFER, TransactionListCtrl::OnNewTransferTransaction)
+    EVT_MENU_RANGE(Model_Checking::WITHDRAWAL, Model_Checking::TRANSFER, TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_DELETE2, TransactionListCtrl::OnDeleteTransaction)
     EVT_MENU(MENU_TREEPOPUP_RESTORE, TransactionListCtrl::OnRestoreTransaction)
     EVT_MENU(MENU_TREEPOPUP_RESTORE_VIEWED, TransactionListCtrl::OnRestoreViewedTransaction)
@@ -431,10 +424,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isTrash_) {
-        menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, _("&New Withdrawal..."));
-        menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, _("&New Deposit..."));
+        menu.Append(Model_Checking::WITHDRAWAL, _("&New Withdrawal..."));
+        menu.Append(Model_Checking::DEPOSIT, _("&New Deposit..."));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer..."));
+            menu.Append(Model_Checking::TRANSFER, _("&New Transfer..."));
 
         menu.AppendSeparator();
 
@@ -1323,7 +1316,21 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
-    int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
+    int type = event.GetId();
+
+    switch (type)
+    {
+    case Model_Checking::WITHDRAWAL:
+        break;
+    case Model_Checking::DEPOSIT:
+        break;
+    case Model_Checking::TRANSFER:
+        break;
+    default:
+        type = Model_Checking::WITHDRAWAL;
+        break;
+    }
+
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, type);
     int i = dlg.ShowModal();
     if (i != wxID_CANCEL)
@@ -1331,7 +1338,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
         m_selected_id.clear();
         m_pasted_id.push_back(dlg.GetTransactionID());
         m_cp->mmPlayTransactionSound();
-        refreshVisualList();
+        refreshVisualList(dlg.GetTransactionID());
 
         if (i == wxID_NEW) {
             OnNewTransaction(event);
@@ -1339,16 +1346,6 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     }
 }
 
-void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
-{
-    FindSelectedTransactions();
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, Model_Checking::TRANSFER);
-    if (dlg.ShowModal() != wxID_CANCEL)
-    {
-        m_cp->mmPlayTransactionSound();
-        refreshVisualList(dlg.GetTransactionID());
-    }
-}
 //----------------------------------------------------------------------------
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)

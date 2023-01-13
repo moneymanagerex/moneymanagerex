@@ -59,6 +59,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_MENU_RANGE(wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS, wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS + menu_labels().size()
         , mmCheckingPanel::OnViewPopupSelected)
+    EVT_MENU_RANGE(Model_Checking::WITHDRAWAL, Model_Checking::TRANSFER, mmCheckingPanel::OnNewTransaction)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -272,6 +273,14 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
         }
         break;
     }
+    case wxID_NEW:
+    {
+        wxMenu menu;
+        menu.Append(Model_Checking::WITHDRAWAL, _("&New Withdrawal..."));
+        menu.Append(Model_Checking::DEPOSIT, _("&New Deposit..."));
+        menu.Append(Model_Checking::TRANSFER, _("&New Transfer..."));
+        PopupMenu(&menu);
+    }
     default:
         break;
     }
@@ -415,6 +424,7 @@ void mmCheckingPanel::CreateControls()
         m_btnAttachment->Enable(false);
 
         m_btnAttachment->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
+        m_btnNew->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
     }
     else
     {
@@ -632,7 +642,7 @@ void mmCheckingPanel::OnRestoreTransaction(wxCommandEvent& event)
 
 void mmCheckingPanel::OnNewTransaction(wxCommandEvent& event)
 {
-   m_listCtrlAccount->OnNewTransaction(event);
+    m_listCtrlAccount->OnNewTransaction(event);
 }
 //----------------------------------------------------------------------------
 
