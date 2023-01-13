@@ -80,12 +80,13 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
 {
     const wxString def_date = wxDateTime::Today().FormatISODate();
+    const wxString def_time = wxDateTime::Now().FormatISOTime();
 
     const std::vector<Model_Report::Values> v = {
     {"&begin_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date:")},
     {"&single_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Date:")},
     {"&end_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _("End date:")},
-    {"&single_time", "wxTimePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_TIME, _("Time:")},
+    {"&single_time", "wxTimePickerCtrl", def_time, mmReportsPanel::RepPanel::ID_CHOICE_TIME, _("Time:")},
     {"&only_years", "wxChoice", def_date, mmReportsPanel::RepPanel::ID_CHOICE_YEAR, _("Year:")},
     };
     return v;
