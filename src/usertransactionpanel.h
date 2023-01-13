@@ -53,6 +53,7 @@ public:
     void SetTransactionValue(const double& trans_value, bool fixed_value = false);
     void SetTransactionNumber(const wxString& trans_number);
     void SetTransactionAccount(const wxString& trans_account);
+    void SetTransactionStatus(const int trans_status_enum);
 
     int TransactionType();
     Model_Translink::CHECKING_TYPE CheckingType();

@@ -18,6 +18,7 @@
  ********************************************************/
 
 #include "Model_Shareinfo.h"
+#include "Model_Checking.h"
 
 Model_Shareinfo::Model_Shareinfo()
 : Model<DB_Table_SHAREINFO_V1>()
@@ -74,6 +75,8 @@ void Model_Shareinfo::ShareEntry(int checking_id
     , double share_commission
     , const wxString& share_lot)
 {
+    bool updateTimestamp = false;
+    Data old_entry;
     Data* share_entry = NULL;
     Data_Set share_list = ShareList(checking_id);
 
@@ -81,9 +84,11 @@ void Model_Shareinfo::ShareEntry(int checking_id
     {
         share_entry = Model_Shareinfo::instance().create();
         share_entry->CHECKINGACCOUNTID = checking_id;
+        updateTimestamp = true;
     }
     else
     {
+        old_entry = share_list[0];
         share_entry = &share_list[0];
     }
 
@@ -92,6 +97,12 @@ void Model_Shareinfo::ShareEntry(int checking_id
     share_entry->SHARECOMMISSION = share_commission;
     share_entry->SHARELOT = share_lot;
     Model_Shareinfo::instance().save(share_entry);
+
+    if(updateTimestamp || !share_entry->equals(&old_entry)) {
+        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(checking_id);
+        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        Model_Checking::instance().save(checkingTxn);
+    }
 }
 
 void Model_Shareinfo::RemoveShareEntry(const int checking_id)

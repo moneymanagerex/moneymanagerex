@@ -462,14 +462,16 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
 
 bool mmCustomData::SaveCustomValues(int ref_id)
 {
+    bool updateTimestamp = false;
     Model_CustomFieldData::instance().Savepoint();
-
     for (const auto &field : m_fields)
     {
         wxWindowID controlID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+        Model_CustomFieldData::Data oldData;
+        if(fieldData) oldData = *fieldData;
         if (!data.empty())
         {
             if (!fieldData) {
@@ -483,22 +485,35 @@ bool mmCustomData::SaveCustomValues(int ref_id)
                 , controlID
                 , Model_CustomField::all_type()[Model_CustomField::type(field)]
                 , data);
+
+            if (!fieldData->equals(&oldData)) updateTimestamp = true;
+
             Model_CustomFieldData::instance().save(fieldData);
         }
         else if (fieldData)
         {
             Model_CustomFieldData::instance().remove(fieldData->FIELDATADID);
+            updateTimestamp = true;
         }
     }
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
+
+    if (updateTimestamp && m_ref_type == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    {
+        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(ref_id);
+        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        Model_Checking::instance().save(checkingTxn);
+        
+    }
+
     return true;
 }
 
 void mmCustomData::UpdateCustomValues(int ref_id)
 {
     Model_CustomFieldData::instance().Savepoint();
-
+    bool updateTimestamp = false;
     for (const auto& field : m_fields)
     {
         bool is_changed = false;
@@ -514,6 +529,8 @@ void mmCustomData::UpdateCustomValues(int ref_id)
         {
             const auto& data = GetWidgetData(controlID);
             Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+            Model_CustomFieldData::Data oldData;
+            if (fieldData) oldData = *fieldData;
             if (!data.empty())
             {
                 if (!fieldData) {
@@ -523,15 +540,27 @@ void mmCustomData::UpdateCustomValues(int ref_id)
                 fieldData->REFID = ref_id;
                 fieldData->FIELDID = field.FIELDID;
                 fieldData->CONTENT = data;
+
+                if (!fieldData->equals(&oldData)) updateTimestamp = true;
+
                 Model_CustomFieldData::instance().save(fieldData);
             }
             else if (fieldData) {
                 Model_CustomFieldData::instance().remove(fieldData->FIELDATADID);
+                updateTimestamp = true;
             }
         }
     }
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
+
+    if (updateTimestamp && m_ref_type == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    {
+        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(ref_id);
+        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        Model_Checking::instance().save(checkingTxn);
+        
+    }
 }
 
 void mmCustomData::OnStringChanged(wxCommandEvent& event)

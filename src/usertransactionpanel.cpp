@@ -402,6 +402,11 @@ void UserTransactionPanel::SetTransactionNumber(const wxString& trans_number)
     m_entered_number->SetValue(trans_number);
 }
 
+void UserTransactionPanel::SetTransactionStatus(const int trans_status_enum)
+{
+    m_status_selector->SetSelection(trans_status_enum);
+}
+
 void UserTransactionPanel::SetTransactionAccount(const wxString& trans_account)
 {
     Model_Account::Data* account = Model_Account::instance().get(trans_account);
@@ -456,7 +461,7 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[TransactionType()];
     m_checking_entry->TRANSAMOUNT = initial_amount;
-    m_checking_entry->STATUS = Model_Checking::all_status()[TransactionType()].Mid(0, 1);
+    m_checking_entry->STATUS = m_status_selector->GetStringSelection().Mid(0, 1);
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
