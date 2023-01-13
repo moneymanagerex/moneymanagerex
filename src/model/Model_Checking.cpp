@@ -667,3 +667,10 @@ bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
 {
     return foreignTransaction(data) && (data.TOACCOUNTID == Model_Translink::AS_TRANSFER);
 }
+
+void Model_Checking::updateTimestamp(int id)
+{
+    Data* r = instance().get(id);
+    r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+    this->save(r, db_);
+}
