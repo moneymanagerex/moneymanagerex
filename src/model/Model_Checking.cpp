@@ -101,7 +101,7 @@ bool Model_Checking::remove(int id)
 
 int Model_Checking::save(Data* r)
 {
-    Data* oldData = instance().get_record(r->TRANSID);
+    wxSharedPtr<Data> oldData(instance().get_record(r->TRANSID));
     if (!oldData || !oldData->equals(r))
     {
         r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
