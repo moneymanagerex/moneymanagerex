@@ -1317,17 +1317,20 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 void mmGUIFrame::AppendImportMenu(wxMenu& menu)
 {
     wxMenu* importFrom(new wxMenu);
+    menu.AppendSubMenu(importFrom, _("&Import from"));
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format) file"));
+    importFrom->AppendSeparator();
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
-    menu.AppendSubMenu(importFrom, _("&Import from"));
+
     wxMenu* exportTo(new wxMenu);
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV File..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV File..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML File..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF File..."));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON File..."));
     menu.AppendSubMenu(exportTo, _("&Export as"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML File..."));
+    exportTo->AppendSeparator();
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON File..."));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF File..."));
 }
 
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
@@ -1475,20 +1478,24 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenu* importMenu = new wxMenu;
+    menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
     importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
     importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
+    importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
+    importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
-    menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
 
     wxMenu* exportMenu = new wxMenu;
-    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV File..."), _("Export as CSV file"));
-    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV File..."), _("Export as fixed CSV file"));
-    exportMenu->Append(MENU_EXPORT_XML, _("&XML File..."), _("Export as XML file"));
-    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF File..."), _("Export as QIF file"));
-    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON File..."), _("Export as JSON file"));
-    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML File..."), _("Export as HTML file"));
     menu_file->Append(MENU_EXPORT, _("&Export as"), exportMenu);
+    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV File..."), _("Export as CSV file"));
+    exportMenu->Append(MENU_EXPORT_XML, _("&XML File..."), _("Export as XML file"));
+    exportMenu->AppendSeparator();
+    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV File..."), _("Export as fixed CSV file"));
+    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON File..."), _("Export as JSON file"));
+    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF File..."), _("Export as QIF file"));
+    exportMenu->AppendSeparator();
+    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML File..."), _("Export as HTML file"));
 
     menu_file->AppendSeparator();
 

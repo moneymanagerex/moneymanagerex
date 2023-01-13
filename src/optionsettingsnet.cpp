@@ -204,14 +204,14 @@ void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& WXUNUSED(event))
 
 bool OptionSettingsNet::SaveSettings()
 {
-    Model_Setting::instance().Set("PROXYIP", m_proxy_address->GetValue());
+    Model_Setting::instance().Set("PROXYIP", m_proxy_address->GetValue().Trim(false).Trim());
     Model_Setting::instance().Set("PROXYPORT", m_proxy_port->GetValue());
 
     wxTextCtrl* WebAppURL = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL));
-    Model_Infotable::instance().Set("WEBAPPURL", WebAppURL->GetValue());
+    Model_Infotable::instance().Set("WEBAPPURL", WebAppURL->GetValue().Trim(false).Trim());
 
     wxTextCtrl* WebAppGUID = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID));
-    Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
+    Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue().Trim(false).Trim());
 
     Option::instance().SendUsageStatistics(m_send_data->GetValue());
     Option::instance().CheckNewsOnStartup(m_check_news->GetValue());
