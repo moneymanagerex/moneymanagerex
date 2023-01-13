@@ -19,6 +19,7 @@
 
 #include "Model_Splittransaction.h"
 #include "Model_Category.h"
+#include "Model_Checking.h"
 
 Model_Splittransaction::Model_Splittransaction()
     : Model<DB_Table_SPLITTRANSACTIONS_V1>()
@@ -74,10 +75,33 @@ std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all(
 
 int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
 {
+    bool updateTimestamp = false;
+    std::map<int, int> row_id_map;
 
     Data_Set split = instance().find(TRANSID(transactionID));
+    if (split.size() != rows.size()) updateTimestamp = true;
+
     for (const auto& split_item : split)
     {
+        if (!updateTimestamp)
+        {
+            bool match = false;
+            for (int i = 0; i < rows.size(); i++)
+            {
+                match = (rows[i].CATEGID == split_item.CATEGID
+                        && rows[i].SPLITTRANSAMOUNT == split_item.SPLITTRANSAMOUNT
+                        && rows[i].NOTES.IsSameAs(split_item.NOTES))
+                    && (row_id_map.find(i) == row_id_map.end());
+                if (match)
+                {
+                    row_id_map[i] = split_item.SPLITTRANSID;
+                    break;
+                }
+                    
+            }
+            updateTimestamp = updateTimestamp || !match;
+        }
+
         instance().remove(split_item.SPLITTRANSID);
     }
 
@@ -94,6 +118,13 @@ int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
             split_items.push_back(*split_item);
         }
         instance().save(split_items);
+    }
+
+    if (updateTimestamp)
+    {
+        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(transactionID);
+        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        Model_Checking::instance().save(checkingTxn);
     }
     return rows.size();
 }
