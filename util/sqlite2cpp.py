@@ -388,6 +388,20 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
 
         s += '''
+        bool equals(const Data* r) const
+        {'''
+        for field in self._fields:
+            ftype = base_data_types_reverse[field['type']]
+            if ftype == 'int' or ftype == 'double':
+                s += '''
+            if(%s != r->%s) return false;''' % (field['name'], field['name'])
+            elif ftype == 'wxString':
+                s += '''
+            if(!%s.IsSameAs(r->%s)) return false;''' % (field['name'], field['name'])
+        s += '''
+            return true;
+        }
+        
         explicit Data(Self* table = 0) 
         {
             table_ = table;
@@ -758,6 +772,44 @@ struct DB_Table_%s : public DB_Table
                 entity = new Self::Data(q, this);
                 cache_.push_back(entity);
                 index_by_id_.insert(std::make_pair(id, entity));
+            }
+            stmt.Finalize();
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
+        }
+        
+        if (!entity) 
+        {
+            entity = this->fake_;
+            // wxLogError("%s: %d not found", this->name().utf8_str(), id);
+        }
+ 
+        return entity;
+    }
+    /**
+    * Search the database for the data record, bypassing the cache.
+    */
+    Self::Data* get_record(int id, wxSQLite3Database* db)
+    {
+        if (id <= 0) 
+        {
+            ++ skip_;
+            return 0;
+        }
+
+        Self::Data* entity = 0;
+        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
+        try
+        {
+            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
+            stmt.Bind(1, id);
+
+            wxSQLite3ResultSet q = stmt.ExecuteQuery();
+            if(q.NextRow())
+            {
+                entity = new Self::Data(q, this);
             }
             stmt.Finalize();
         }
