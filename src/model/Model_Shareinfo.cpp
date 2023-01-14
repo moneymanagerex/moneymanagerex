@@ -98,11 +98,8 @@ void Model_Shareinfo::ShareEntry(int checking_id
     share_entry->SHARELOT = share_lot;
     Model_Shareinfo::instance().save(share_entry);
 
-    if(updateTimestamp || !share_entry->equals(&old_entry)) {
-        Model_Checking::Data* checkingTxn = Model_Checking::instance().get(checking_id);
-        checkingTxn->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        Model_Checking::instance().save(checkingTxn);
-    }
+    if(updateTimestamp || !share_entry->equals(&old_entry))
+        Model_Checking::instance().updateTimestamp(checking_id);
 }
 
 void Model_Shareinfo::RemoveShareEntry(const int checking_id)
