@@ -243,8 +243,6 @@ TransactionListCtrl::TransactionListCtrl(
         wxAcceleratorEntry(wxACCEL_CTRL, 'A', MENU_ON_SELECT_ALL),
         wxAcceleratorEntry(wxACCEL_CTRL, 'C', MENU_ON_COPY_TRANSACTION),
         wxAcceleratorEntry(wxACCEL_CTRL, 'V', MENU_ON_PASTE_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_ALT,  'N', MENU_ON_NEW_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_ON_DUPLICATE_TRANSACTION),
         wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
         wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
         wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
@@ -874,13 +872,12 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 {
-    int key = event.GetKeyCode();
-    if (key == WXK_COMMAND || key == WXK_ALT || key == WXK_CONTROL) {
-        event.Skip();
-        return;
-    }
+    if (wxGetKeyState(WXK_SHIFT) || wxGetKeyState(WXK_ALT) || wxGetKeyState(WXK_CONTROL))
+        return event.Skip();
 
+    int key = event.GetKeyCode();
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
+
     if (!m_cp->isTrash_) {
         if (key == wxKeyCode('R')) {
             // Reconciled
