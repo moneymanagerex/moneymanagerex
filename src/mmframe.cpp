@@ -298,7 +298,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     const wxAcceleratorEntry entries[] =
     {
-        wxAcceleratorEntry(wxACCEL_CTRL, 'N', wxID_NEW),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, wxID_REFRESH),
     };
