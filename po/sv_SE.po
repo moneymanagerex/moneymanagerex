@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 22:33\n"
+"PO-Revision-Date: 2023-01-16 20:59\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -384,7 +384,7 @@ msgstr "systemstandardvärde"
 
 #: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: appstartdialog.cpp:221 mmframe.cpp:3605 optionsettingsgeneral.cpp:350
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -392,7 +392,7 @@ msgstr "Språket för denna applikation har ändrats. Ändringen kommer att trä
 
 #: appstartdialog.cpp:223 mmframe.cpp:3607 optionsettingsgeneral.cpp:352
 msgid "Language change"
-msgstr ""
+msgstr "Språkändring"
 
 #: assetdialog.cpp:50 assetdialog.cpp:393 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
@@ -1103,7 +1103,7 @@ msgstr "Organisera bilagor till denna återkommande transaktion"
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:534
 msgid "Color"
-msgstr ""
+msgstr "Färg"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:541 transdialog.cpp:1224
 #: usertransactionpanel.cpp:215
@@ -1113,7 +1113,7 @@ msgstr "Ange ev. noteringar du vill lägga till för transaktionen."
 #: billsdepositsdialog.cpp:637 filtertransdialog.cpp:740
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:557
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Visa/Dölj egna fält"
 
 #: billsdepositsdialog.cpp:797 billsdepositsdialog.cpp:820 transdialog.cpp:215
 #: transdialog.cpp:224
@@ -1122,7 +1122,7 @@ msgstr "Från"
 
 #: billsdepositsdialog.cpp:865
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Betalningsdatumet är efter förfallodagen, var detta din avsikt?"
 
 #: billsdepositsdialog.cpp:866
 msgid "Looks like a late payment"
