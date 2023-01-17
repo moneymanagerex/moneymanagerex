@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-12 19:36+0300\n"
-"PO-Revision-Date: 2023-01-12 16:53\n"
+"PO-Revision-Date: 2023-01-14 21:11\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4524,7 +4524,7 @@ msgstr "Importa da WebApp"
 
 #: mmframe.cpp:1486
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Esporta come file CSV fisso"
 
 #: mmframe.cpp:1490
 msgid "&HTML File..."
@@ -5481,11 +5481,11 @@ msgstr "Periodo:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:86
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:88
 msgid "Time:"
-msgstr ""
+msgstr "Tempo:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:89
 msgid "Year:"
@@ -5497,11 +5497,11 @@ msgstr "Budget:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Tutti i Conti:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "Conti specifici:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5673,11 +5673,11 @@ msgstr "Errore Beneficiario"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date:"
-msgstr ""
+msgstr "Data di inizio:"
 
 #: model/Model_Report.cpp:87
 msgid "End date:"
-msgstr ""
+msgstr "Data di fine:"
 
 #: model/Model_Report.cpp:239
 msgid "Template is empty"
@@ -7179,11 +7179,11 @@ msgstr "&Mostra Operazioni Titoli"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Modifica Investimento in Titoli..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Elimina Investimento in Titoli..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7596,12 +7596,12 @@ msgstr "Versione del Database: %d"
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git commit: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Ramo di Git: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
