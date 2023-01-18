@@ -187,6 +187,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC05);
         break;
+    case TransactionListCtrl::COL_UPDATEDTIME:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByLASTUPDATEDTIME())
+            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByLASTUPDATEDTIME());
+        break;
     default:
         break;
     }
@@ -318,6 +322,8 @@ TransactionListCtrl::TransactionListCtrl(
         }
         i++;
     }
+    m_columns.push_back(PANEL_COLUMN(_("Last Updated"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_UPDATEDTIME);
 
     // V2 used as now maps to real column names and this resets everything to default
     // to avoid strange column widths when this code version is first
@@ -1740,6 +1746,11 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return UDFCFormatHelper(tran.UDFC04_Type, tran.UDFC04);
     case TransactionListCtrl::COL_UDFC05:
         return UDFCFormatHelper(tran.UDFC05_Type, tran.UDFC05);
+    case TransactionListCtrl::COL_UPDATEDTIME:
+        datetime.ParseISOCombined(tran.LASTUPDATEDTIME);
+        if (!datetime.IsValid())
+            return wxString("");
+        return datetime.FromUTC().FormatISOCombined(' ');
     }
 
     bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
