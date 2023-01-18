@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-18 23:01+0300\n"
-"PO-Revision-Date: 2023-01-18 20:03\n"
+"PO-Revision-Date: 2023-01-18 20:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3981,7 +3981,7 @@ msgstr "Дата удаления"
 
 #: mmchecking_list.cpp:325
 msgid "Last Updated"
-msgstr ""
+msgstr "Изменено"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:279
 msgid "&New Withdrawal..."
