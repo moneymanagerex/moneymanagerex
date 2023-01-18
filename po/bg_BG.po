@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-18 23:01+0300\n"
-"PO-Revision-Date: 2023-01-18 20:02\n"
+"POT-Creation-Date: 2023-01-19 01:22+0300\n"
+"PO-Revision-Date: 2023-01-18 23:02\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Разреши, за да ни помогнеш с изпращанет�
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:127 currencydialog.cpp:269
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:733
-#: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:365
+#: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
 #: payeedialog.cpp:355 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:276
@@ -275,7 +275,7 @@ msgid "Account Name "
 msgstr "Име на акаунта"
 
 #: accountdialog.cpp:501 import_export/qif_export.cpp:614
-#: import_export/qif_import_gui.cpp:260 import_export/univcsvdialog.cpp:95
+#: import_export/qif_import_gui.cpp:259 import_export/univcsvdialog.cpp:95
 #: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:282
 #: reports/htmlbuilder.cpp:243
 msgid "Currency"
@@ -415,8 +415,8 @@ msgid "Asset Details"
 msgstr "Детайли за Актива"
 
 #: assetdialog.cpp:176 assetspanel.cpp:60 customfieldeditdialog.cpp:143
-#: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:258
-#: import_export/qif_import_gui.cpp:271 import_export/qif_import_gui.cpp:281
+#: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:257
+#: import_export/qif_import_gui.cpp:270 import_export/qif_import_gui.cpp:280
 #: maincurrencydialog.cpp:80 payeedialog.cpp:233 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "Име"
@@ -516,7 +516,7 @@ msgstr "Номер за идентификация"
 #: filtertransdialog.cpp:579 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:1518 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:609 import_export/qif_import_gui.cpp:104
-#: import_export/qif_import_gui.cpp:259 import_export/univcsvdialog.cpp:91
+#: import_export/qif_import_gui.cpp:258 import_export/univcsvdialog.cpp:91
 #: maincurrencydialog.cpp:260 mmhomepage.cpp:435 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:194 transactionsupdatedialog.cpp:148
 #: transdialog.cpp:427 usertransactionpanel.cpp:129 webappdialog.cpp:141
@@ -592,7 +592,7 @@ msgstr "Активи"
 msgid "All"
 msgstr "Всички"
 
-#: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:401
+#: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:402
 #: stockspanel.cpp:130
 msgid "&New "
 msgstr "&Нов"
@@ -611,13 +611,13 @@ msgstr "Преглед на транзакции с Актив"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:297
 #: categdialog.cpp:317 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:537
-#: mmcheckingpanel.cpp:405 payeedialog.cpp:614 stockspanel.cpp:144
+#: mmcheckingpanel.cpp:406 payeedialog.cpp:614 stockspanel.cpp:144
 msgid "&Edit "
 msgstr "&Промени"
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:307 budgetyeardialog.cpp:103
 #: categdialog.cpp:321 maincurrencydialog.cpp:302 mmchecking_list.cpp:492
-#: mmcheckingpanel.cpp:397 stockdialog.cpp:334 stockspanel.cpp:149
+#: mmcheckingpanel.cpp:398 stockdialog.cpp:334 stockspanel.cpp:149
 msgid "&Delete "
 msgstr "&Изтрий"
 
@@ -625,12 +625,12 @@ msgstr "&Изтрий"
 msgid "Delete Asset"
 msgstr "Изтрий актив"
 
-#: assetspanel.cpp:499 billsdepositspanel.cpp:325 mmcheckingpanel.cpp:422
+#: assetspanel.cpp:499 billsdepositspanel.cpp:325 mmcheckingpanel.cpp:423
 #: stockspanel.cpp:162
 msgid "Open attachments"
 msgstr "Отвори прикачени неща"
 
-#: assetspanel.cpp:506 assetspanel.cpp:507 mmcheckingpanel.cpp:444
+#: assetspanel.cpp:506 assetspanel.cpp:507 mmcheckingpanel.cpp:445
 msgid "Search"
 msgstr "Търсене"
 
@@ -638,19 +638,19 @@ msgstr "Търсене"
 msgid "Enter any string to find related assets"
 msgstr "Въведи низ, за да открием свързани активи"
 
-#: assetspanel.cpp:511 filtertransdialog.cpp:637 mmcheckingpanel.cpp:448
+#: assetspanel.cpp:511 filtertransdialog.cpp:637 mmcheckingpanel.cpp:449
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr ""
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:638 mmcheckingpanel.cpp:449
+#: assetspanel.cpp:512 filtertransdialog.cpp:638 mmcheckingpanel.cpp:450
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr ""
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:639 mmcheckingpanel.cpp:450
+#: assetspanel.cpp:513 filtertransdialog.cpp:639 mmcheckingpanel.cpp:451
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr ""
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:640 mmcheckingpanel.cpp:451
+#: assetspanel.cpp:514 filtertransdialog.cpp:640 mmcheckingpanel.cpp:452
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
 
@@ -979,8 +979,8 @@ msgstr "Посочи състояние на транзакцията"
 #: billsdepositsdialog.cpp:496 billsdepositspanel.cpp:136 filtertrans.cpp:193
 #: filtertransdialog.cpp:566 filtertransdialog.cpp:932
 #: filtertransdialog.cpp:1507 import_export/qif_export.cpp:608
-#: import_export/qif_import_gui.cpp:261 import_export/qif_import_gui.cpp:272
-#: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:90
+#: import_export/qif_import_gui.cpp:260 import_export/qif_import_gui.cpp:271
+#: import_export/qif_import_gui.cpp:281 import_export/univcsvdialog.cpp:90
 #: mmchecking_list.cpp:278 reports/transactions.cpp:192
 #: transactionsupdatedialog.cpp:133 transdialog.cpp:406
 #: usertransactionpanel.cpp:167 webappdialog.cpp:140 wizard_update.cpp:141
@@ -1019,8 +1019,8 @@ msgstr "Посочи суматаза трансфер в ДО Акаунт"
 #: billsdepositsdialog.cpp:819 billsdepositspanel.cpp:134 filtertrans.cpp:191
 #: filtertransdialog.cpp:59 filtertransdialog.cpp:500 filtertransdialog.cpp:863
 #: filtertransdialog.cpp:1434 import_export/qif_export.cpp:610
-#: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:172
-#: import_export/qif_import_gui.cpp:253 import_export/univcsvdialog.cpp:92
+#: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:171
+#: import_export/qif_import_gui.cpp:252 import_export/univcsvdialog.cpp:92
 #: mmchecking_list.cpp:273 reports/cashflow.cpp:418
 #: reports/transactions.cpp:190 transdialog.cpp:219 transdialog.cpp:223
 #: transdialog.cpp:451 transdialog.cpp:587 usertransactionpanel.cpp:103
@@ -1040,7 +1040,7 @@ msgstr "До"
 #: billsdepositspanel.cpp:135 filtertrans.cpp:192 filtertransdialog.cpp:60
 #: filtertransdialog.cpp:539 filtertransdialog.cpp:889
 #: filtertransdialog.cpp:1470 import_export/qif_export.cpp:611
-#: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:266
+#: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:265
 #: import_export/univcsvdialog.cpp:93 mmchecking_list.cpp:276
 #: model/Model_Attachment.cpp:29 payeedialog.cpp:79 payeedialog.cpp:169
 #: reports/cashflow.cpp:419 reports/payee.cpp:136 reports/transactions.cpp:191
@@ -1053,7 +1053,7 @@ msgstr "От/За кого"
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
 #: filtertransdialog.cpp:61 filtertransdialog.cpp:549 filtertransdialog.cpp:922
 #: filtertransdialog.cpp:1477 import_export/qif_export.cpp:612
-#: import_export/qif_import_gui.cpp:105 import_export/qif_import_gui.cpp:277
+#: import_export/qif_import_gui.cpp:105 import_export/qif_import_gui.cpp:276
 #: import_export/univcsvdialog.cpp:96 mmchecking_list.cpp:280
 #: mmhomepage.cpp:190 payeedialog.cpp:149 reports/budgetcategorysummary.cpp:185
 #: reports/budgetingperf.cpp:132 reports/cashflow.cpp:420
@@ -1098,7 +1098,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:613 filtertrans.cpp:188 filtertransdialog.cpp:645
 #: filtertransdialog.cpp:968 filtertransdialog.cpp:1562
-#: import_export/qif_import_gui.cpp:339 import_export/univcsvdialog.cpp:394
+#: import_export/qif_import_gui.cpp:338 import_export/univcsvdialog.cpp:394
 #: import_export/univcsvdialog.cpp:1002 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:534
@@ -1286,7 +1286,7 @@ msgstr "Съвет: Тези транзакции могат да бъдат н�
 msgid "Recurring Transactions"
 msgstr "Повтарящи се транзакции"
 
-#: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:413
+#: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:414
 msgid "D&uplicate "
 msgstr "Д&ублирай"
 
@@ -1912,7 +1912,7 @@ msgstr ""
 msgid "Suffix"
 msgstr ""
 
-#: currencydialog.cpp:220 import_export/qif_import_gui.cpp:327
+#: currencydialog.cpp:220 import_export/qif_import_gui.cpp:326
 #: import_export/univcsvdialog.cpp:362
 msgid "Decimal Char"
 msgstr "Десетичен знак"
@@ -2443,7 +2443,7 @@ msgid "An incorrect password given for an encrypted file\n"
 "attempt to open a File that is not a database file \n"
 msgstr ""
 
-#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:953 webapp.cpp:120
+#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:956 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "Грешка: %s"
@@ -2646,8 +2646,8 @@ msgstr ""
 
 #: filtertransdialog.cpp:1751 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
-#: images_list.cpp:494 import_export/qif_import_gui.cpp:737
-#: import_export/qif_import_gui.cpp:740
+#: images_list.cpp:494 import_export/qif_import_gui.cpp:736
+#: import_export/qif_import_gui.cpp:739
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -2963,7 +2963,7 @@ msgstr ""
 msgid "Parameters"
 msgstr "Параметри"
 
-#: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:224
+#: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:223
 msgid "Log"
 msgstr "Записки"
 
@@ -2984,15 +2984,15 @@ msgstr ""
 msgid "Accounts"
 msgstr "Акаунти"
 
-#: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:201
+#: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:200
 msgid "From Date"
 msgstr "От дата"
 
-#: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:211
+#: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:210
 msgid "To Date"
 msgstr "До дата"
 
-#: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:303
+#: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:302
 #: optionsettingsgeneral.cpp:103
 msgid "Date Format"
 msgstr "Формат на датите:"
@@ -3022,7 +3022,7 @@ msgstr "QIF Експорт"
 msgid "Choose QIF data file to Export"
 msgstr "Избери QIF файл за Експортиране"
 
-#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:793
+#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:792
 msgid "QIF Files (*.qif)"
 msgstr "QIF файлове (*.qif)"
 
@@ -3054,8 +3054,8 @@ msgstr "Дата 'до' е по-ранна от дата 'от'"
 msgid "Categories exported"
 msgstr "Експортирани са категории"
 
-#: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:399
-#: import_export/qif_import_gui.cpp:892
+#: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:398
+#: import_export/qif_import_gui.cpp:895
 msgid "Please wait"
 msgstr "Моля почакайте"
 
@@ -3087,28 +3087,28 @@ msgstr ""
 msgid "&Browse"
 msgstr "Преглед"
 
-#: import_export/qif_import_gui.cpp:160 import_export/univcsvdialog.cpp:328
+#: import_export/qif_import_gui.cpp:159 import_export/univcsvdialog.cpp:328
 msgid "Encoding:"
 msgstr "Знаков набор:"
 
-#: import_export/qif_import_gui.cpp:195
+#: import_export/qif_import_gui.cpp:194
 msgid "Filtering Details:"
 msgstr "Детайли за филтриране:"
 
-#: import_export/qif_import_gui.cpp:234
+#: import_export/qif_import_gui.cpp:233
 msgid "Data"
 msgstr "Данни"
 
-#: import_export/qif_import_gui.cpp:291
+#: import_export/qif_import_gui.cpp:290
 msgid "Use account number instead of account name"
 msgstr "Използвайте номер на сметка вместо име на сметка"
 
-#: import_export/qif_import_gui.cpp:295
+#: import_export/qif_import_gui.cpp:294
 msgid "Include payee field in notes"
 msgstr "Включвай поле \"Получател\" в бележки"
 
-#: import_export/qif_import_gui.cpp:390 import_export/qif_import_gui.cpp:393
-#: import_export/qif_import_gui.cpp:619 import_export/qif_import_gui.cpp:1233
+#: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
+#: import_export/qif_import_gui.cpp:618 import_export/qif_import_gui.cpp:1236
 #: import_export/univcsvdialog.cpp:776 import_export/univcsvdialog.cpp:910
 #: import_export/univcsvdialog.cpp:913 import_export/univcsvdialog.cpp:933
 #: import_export/univcsvdialog.cpp:940 themes.cpp:235 transdialog.cpp:273
@@ -3117,144 +3117,144 @@ msgstr "Включвай поле \"Получател\" в бележки"
 msgid "Unknown"
 msgstr "Непознато"
 
-#: import_export/qif_import_gui.cpp:399
+#: import_export/qif_import_gui.cpp:398
 msgid "Scanning"
 msgstr "Сканиране"
 
-#: import_export/qif_import_gui.cpp:428
+#: import_export/qif_import_gui.cpp:427
 #, c-format
 msgid "Reading line %zu, %lld ms"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:434
+#: import_export/qif_import_gui.cpp:433
 #, c-format
 msgid "Line %zu \t %s\n"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:521
+#: import_export/qif_import_gui.cpp:520
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:526 mmreportspanel.cpp:358
+#: import_export/qif_import_gui.cpp:525 mmreportspanel.cpp:358
 msgid "Accounts:"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:533 import_export/qif_import_gui.cpp:811
+#: import_export/qif_import_gui.cpp:532 import_export/qif_import_gui.cpp:814
 #: import_export/univcsvdialog.cpp:302
 msgid "Date Format: "
 msgstr "Формат на дата:"
 
-#: import_export/qif_import_gui.cpp:536
+#: import_export/qif_import_gui.cpp:535
 msgid "Press OK Button to continue"
 msgstr "Натисни бутона 'ДОБРЕ', за да продължиш"
 
-#: import_export/qif_import_gui.cpp:735 import_export/qif_import_gui.cpp:764
-#: import_export/qif_import_gui.cpp:781
+#: import_export/qif_import_gui.cpp:734 import_export/qif_import_gui.cpp:763
+#: import_export/qif_import_gui.cpp:780
 msgid "OK"
 msgstr "Добре"
 
-#: import_export/qif_import_gui.cpp:745 import_export/qif_import_gui.cpp:764
+#: import_export/qif_import_gui.cpp:744 import_export/qif_import_gui.cpp:763
 #: stockspanel.cpp:391
 msgid "Missing"
 msgstr "Липсващ/и"
 
-#: import_export/qif_import_gui.cpp:791
+#: import_export/qif_import_gui.cpp:790
 msgid "Choose QIF data file to Import"
 msgstr "Избери QIF файл за Импортиране"
 
-#: import_export/qif_import_gui.cpp:884
+#: import_export/qif_import_gui.cpp:887
 msgid "Do you want to import all transaction ?"
 msgstr "Искате ли да импортирате всички транзакции?"
 
-#: import_export/qif_import_gui.cpp:885
+#: import_export/qif_import_gui.cpp:888
 msgid "All missing account, payees and categories will be created."
 msgstr "Всички липсващи получатели и категории на акаунта ще бъдат създадени."
 
-#: import_export/qif_import_gui.cpp:886
+#: import_export/qif_import_gui.cpp:889
 msgid "Confirm Import"
 msgstr "Потвърдете импортирането"
 
-#: import_export/qif_import_gui.cpp:892
+#: import_export/qif_import_gui.cpp:895
 msgid "Importing"
 msgstr "Импортиране"
 
-#: import_export/qif_import_gui.cpp:894
+#: import_export/qif_import_gui.cpp:897
 msgid "Importing Accounts"
 msgstr "Импортира акаунти"
 
-#: import_export/qif_import_gui.cpp:897
+#: import_export/qif_import_gui.cpp:900
 msgid "Importing Payees"
 msgstr "Импортира получатели"
 
-#: import_export/qif_import_gui.cpp:900
+#: import_export/qif_import_gui.cpp:903
 msgid "Importing Categories"
 msgstr "Импортира категории"
 
-#: import_export/qif_import_gui.cpp:917
+#: import_export/qif_import_gui.cpp:920
 #, c-format
 msgid "Importing transaction %i of %i"
 msgstr "Импортиране транзакция %i от %i"
 
-#: import_export/qif_import_gui.cpp:964
+#: import_export/qif_import_gui.cpp:967
 msgid "Importing Transfers"
 msgstr "Импортира трансфери"
 
-#: import_export/qif_import_gui.cpp:989
+#: import_export/qif_import_gui.cpp:992
 msgid "Importing Split transactions"
 msgstr "Импортира разделени транзакции"
 
-#: import_export/qif_import_gui.cpp:993
+#: import_export/qif_import_gui.cpp:996
 msgid "Import finished successfully"
 msgstr "Импортирането приключи успешно"
 
-#: import_export/qif_import_gui.cpp:993
+#: import_export/qif_import_gui.cpp:996
 #, c-format
 msgid "Total Imported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1003 import_export/univcsvdialog.cpp:1139
+#: import_export/qif_import_gui.cpp:1006 import_export/univcsvdialog.cpp:1139
 msgid "Imported transactions discarded by user!"
 msgstr "Импортираните транзакции бяха отказани от потребителя!"
 
-#: import_export/qif_import_gui.cpp:1005 import_export/qif_import_gui.h:44
+#: import_export/qif_import_gui.cpp:1008 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1084
+#: import_export/qif_import_gui.cpp:1087
 msgid "Transaction code is missing"
 msgstr "Липсва код на транзакция"
 
-#: import_export/qif_import_gui.cpp:1104
+#: import_export/qif_import_gui.cpp:1107
 msgid "Transaction Payee is missing or incorrect"
 msgstr "Липсващ или неправилен \"Получател\""
 
-#: import_export/qif_import_gui.cpp:1116
+#: import_export/qif_import_gui.cpp:1119
 msgid "Date format or date mask is incorrect"
 msgstr "Маската или формата на дата е невалиден"
 
-#: import_export/qif_import_gui.cpp:1128
+#: import_export/qif_import_gui.cpp:1131
 msgid "Transaction Account is incorrect"
 msgstr "Невалидна сметка за тразакция"
 
-#: import_export/qif_import_gui.cpp:1137
+#: import_export/qif_import_gui.cpp:1140
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Неправилна сметка за трансфер"
 
-#: import_export/qif_import_gui.cpp:1167
+#: import_export/qif_import_gui.cpp:1170
 msgid "Transaction Amount is incorrect"
 msgstr "Сумата на транзакцията е невалидна"
 
-#: import_export/qif_import_gui.cpp:1192
+#: import_export/qif_import_gui.cpp:1195
 msgid "Transaction Category is incorrect"
 msgstr "Неправилна \"Категория\""
 
-#: import_export/qif_import_gui.cpp:1291
+#: import_export/qif_import_gui.cpp:1294
 #, c-format
 msgid "Added account: %s"
 msgstr "Добавени акаунти: %s"
 
-#: import_export/qif_import_gui.cpp:1332 import_export/univcsvdialog.cpp:917
+#: import_export/qif_import_gui.cpp:1335 import_export/univcsvdialog.cpp:917
 #, c-format
 msgid "Added payee: %s"
 msgstr "Добавен получател: %s"
@@ -3953,15 +3953,15 @@ msgstr ""
 msgid "Last Updated"
 msgstr ""
 
-#: mmchecking_list.cpp:431 mmcheckingpanel.cpp:279
+#: mmchecking_list.cpp:431 mmcheckingpanel.cpp:280
 msgid "&New Withdrawal..."
 msgstr ""
 
-#: mmchecking_list.cpp:432 mmcheckingpanel.cpp:280
+#: mmchecking_list.cpp:432 mmcheckingpanel.cpp:281
 msgid "&New Deposit..."
 msgstr ""
 
-#: mmchecking_list.cpp:434 mmcheckingpanel.cpp:281
+#: mmchecking_list.cpp:434 mmcheckingpanel.cpp:282
 msgid "&New Transfer..."
 msgstr ""
 
@@ -4157,78 +4157,78 @@ msgstr "Посочи желания Акаунт"
 msgid "Recurring Transaction saved."
 msgstr ""
 
-#: mmcheckingpanel.cpp:398
+#: mmcheckingpanel.cpp:399
 msgid "Delete selected transaction"
 msgstr "Изтрий избраната транзакция"
 
-#: mmcheckingpanel.cpp:402 mmframe.cpp:1835 transdialog.cpp:160
+#: mmcheckingpanel.cpp:403 mmframe.cpp:1835 transdialog.cpp:160
 msgid "New Transaction"
 msgstr "Нова транзакция"
 
-#: mmcheckingpanel.cpp:406
+#: mmcheckingpanel.cpp:407
 msgid "Edit selected transaction"
 msgstr "Промени избраната транзакция"
 
-#: mmcheckingpanel.cpp:414
+#: mmcheckingpanel.cpp:415
 msgid "Duplicate selected transaction"
 msgstr "Дублирай избраната транзакция"
 
-#: mmcheckingpanel.cpp:431
+#: mmcheckingpanel.cpp:432
 msgid "&Restore "
 msgstr ""
 
-#: mmcheckingpanel.cpp:432
+#: mmcheckingpanel.cpp:433
 msgid "Restore selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:447
+#: mmcheckingpanel.cpp:448
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:469
+#: mmcheckingpanel.cpp:470
 msgid "Full Transactions Report"
 msgstr ""
 
-#: mmcheckingpanel.cpp:471 mmframe.cpp:748
+#: mmcheckingpanel.cpp:472 mmframe.cpp:748
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:473
+#: mmcheckingpanel.cpp:474
 #, c-format
 msgid "Account View : %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:491
+#: mmcheckingpanel.cpp:492
 msgid "Account Bal: "
 msgstr "Баланс на акаунта:"
 
-#: mmcheckingpanel.cpp:493
+#: mmcheckingpanel.cpp:494
 msgid "Reconciled Bal: "
 msgstr "Помирен баланс:"
 
-#: mmcheckingpanel.cpp:495
+#: mmcheckingpanel.cpp:496
 msgid "Diff: "
 msgstr "Разлика:"
 
-#: mmcheckingpanel.cpp:497
+#: mmcheckingpanel.cpp:498
 msgid "Filtered View Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:562 webapp.cpp:619
+#: mmcheckingpanel.cpp:563 webapp.cpp:619
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:595
+#: mmcheckingpanel.cpp:596
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:598
+#: mmcheckingpanel.cpp:599
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:602
+#: mmcheckingpanel.cpp:603
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
