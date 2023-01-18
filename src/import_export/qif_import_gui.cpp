@@ -151,7 +151,6 @@ void mmQIFImportDialog::CreateControls()
     button_search_->Connect(wxID_OPEN, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnFileSearch), nullptr, this);
 
-
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //flex_sizer->AddGrowableCol(1);
     left_sizer->Add(flex_sizer, g_flagsExpand);
@@ -793,7 +792,11 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
         , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this); //TODO: Remove UI Blinking
 
-    if (!m_FileNameStr.IsEmpty()) {
+    if (m_FileNameStr.IsEmpty()) {
+        m_FileNameStr = file_name_ctrl_->GetValue();
+    }
+    else
+    {
         correctEmptyFileExt("qif", m_FileNameStr);
 
         log_field_->ChangeValue("");
@@ -1398,8 +1401,8 @@ void mmQIFImportDialog::OnFileNameChanged(wxCommandEvent& WXUNUSED(event))
 {
     const wxString file_name = file_name_ctrl_->GetValue();
 
-    wxFileName csv_file(file_name);
-    if (csv_file.FileExists()) {
+    wxFileName file(file_name);
+    if (file.FileExists()) {
         m_FileNameStr = file_name;
         log_field_->ChangeValue("");
         mmReadQIFFile();
@@ -1408,7 +1411,10 @@ void mmQIFImportDialog::OnFileNameChanged(wxCommandEvent& WXUNUSED(event))
 
 void mmQIFImportDialog::save_file_name()
 {
-    Model_Setting::instance().Prepend("RECENT_QIF_FILES", m_FileNameStr, 10);
+    wxFileName file(m_FileNameStr);
+    if (file.FileExists()) {
+        Model_Setting::instance().Prepend("RECENT_QIF_FILES", m_FileNameStr, 10);
+    }
 }
 
 void mmQIFImportDialog::OnMenuSelected(wxCommandEvent& event)

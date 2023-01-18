@@ -93,6 +93,8 @@ void Model_Setting::Set(const wxString& key, const wxString& value)
 
 void Model_Setting::Prepend(const wxString& key, const wxString& value, int limit)
 {
+    if (value.IsEmpty())
+        return;
     Data* setting = this->get_one(SETTINGNAME(key));
     if (!setting) // not cached
     {
