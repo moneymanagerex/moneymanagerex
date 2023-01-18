@@ -270,6 +270,7 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
             auto i = selected_id[0];
             mmAttachmentDialog dlg(this, RefType, i);
             dlg.ShowModal();
+            RefreshList();
         }
         break;
     }
