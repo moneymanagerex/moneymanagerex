@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-19 01:22+0300\n"
-"PO-Revision-Date: 2023-01-20 21:17\n"
+"PO-Revision-Date: 2023-01-21 20:36\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -215,7 +215,7 @@ msgstr "Bloccato"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr "Attiva o disattiva il blocco dell'operazione"
+msgstr "Abilita o disabilita il blocco delle transazioni"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
