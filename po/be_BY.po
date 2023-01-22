@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-19 01:22+0300\n"
-"PO-Revision-Date: 2023-01-21 23:14\n"
+"PO-Revision-Date: 2023-01-22 00:24\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6700,7 +6700,7 @@ msgstr "Прагноз"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %s %s"
-msgstr "Справаздача ёсць сгенераваная %s %s"
+msgstr "Справаздача ад %s %s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
