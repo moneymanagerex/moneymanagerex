@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-19 01:22+0300\n"
-"PO-Revision-Date: 2023-01-22 16:41\n"
+"PO-Revision-Date: 2023-01-22 17:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5335,7 +5335,7 @@ msgstr "Файл %s ня знойдзены"
 
 #: mmframereport.cpp:80
 msgid "General Group Report"
-msgstr "Дыспетчар справаздачаў"
+msgstr "Групавая справаздача"
 
 #: mmframereport.cpp:107 mmhomepage.cpp:858 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
