@@ -474,6 +474,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //WebApp check
     if (mmWebApp::WebApp_CheckEnabled())
     {
+        wxCommandEvent evt;
+        evt.SetInt(wxID_ABORT);
+        OnRefreshWebApp(evt);
         mmWebAppDialog dlg(this, true);
         dlg.ShowModal();
         if (dlg.getRefreshRequested())
@@ -2692,15 +2695,18 @@ void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 }
 
-void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& event)
 {
     if (mmWebApp::MMEX_WebApp_UpdateAccount()
         && mmWebApp::MMEX_WebApp_UpdateCategory()
-        && mmWebApp::MMEX_WebApp_UpdatePayee())
-        wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("Refresh WebApp"), wxOK | wxICON_INFORMATION);
-    else
+        && mmWebApp::MMEX_WebApp_UpdatePayee()) {
+        if (event.GetInt() != wxID_ABORT)
+            wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("Refresh WebApp"), wxOK | wxICON_INFORMATION);
+    }
+    else {
         wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
             _("Refresh WebApp"), wxOK | wxICON_ERROR);
+    }
 }
 
 //----------------------------------------------------------------------------
