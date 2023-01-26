@@ -474,13 +474,12 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //WebApp check
     if (mmWebApp::WebApp_CheckEnabled())
     {
-        wxCommandEvent evt;
-        evt.SetInt(wxID_ABORT);
-        OnRefreshWebApp(evt);
-        mmWebAppDialog dlg(this, true);
-        dlg.ShowModal();
-        if (dlg.getRefreshRequested())
-            refreshPanelData();
+        if (OnRefreshWebApp(true)) {
+            mmWebAppDialog dlg(this, true);
+            dlg.ShowModal();
+            if (dlg.getRefreshRequested())
+                refreshPanelData();
+        }
     }
 
     //Auto recurring transaction
@@ -2695,18 +2694,28 @@ void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 }
 
-void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& event)
+bool mmGUIFrame::OnRefreshWebApp(bool is_silent)
 {
     if (mmWebApp::MMEX_WebApp_UpdateAccount()
         && mmWebApp::MMEX_WebApp_UpdateCategory()
         && mmWebApp::MMEX_WebApp_UpdatePayee()) {
-        if (event.GetInt() != wxID_ABORT)
+        if (!is_silent) {
             wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("Refresh WebApp"), wxOK | wxICON_INFORMATION);
+        }
+        return true;
     }
     else {
-        wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
-            _("Refresh WebApp"), wxOK | wxICON_ERROR);
+        if (!is_silent) {
+            wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
+                _("Refresh WebApp"), wxOK | wxICON_ERROR);
+        }
     }
+    return false;
+}
+
+void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& event)
+{
+    OnRefreshWebApp(false);
 }
 
 //----------------------------------------------------------------------------

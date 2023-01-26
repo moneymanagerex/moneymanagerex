@@ -234,6 +234,7 @@ private:
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent& event);
     void OnRefreshWebApp(wxCommandEvent& event);
+    bool OnRefreshWebApp(bool is_silent);
 
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
