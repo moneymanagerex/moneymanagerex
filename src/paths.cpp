@@ -148,7 +148,7 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
     }
 
     wxString lang_code = Option::instance().getLanguageCode();
-    if (lang_code.empty()) {
+    if (lang_code.empty() || lang_code == "en_US") {
         lang_code = "en_GB";
     }
     path = wxString::Format(path, wxFileName::GetPathSeparator() + lang_code + wxFileName::GetPathSeparator());
@@ -159,13 +159,17 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
 
     if (!helpFullPath.FileExists()) // Load the help file for the given language
     {
+        section.clear();
         path = files[f];
         path.Replace("%s", wxFileName::GetPathSeparator());
         wxFileName help(GetDocDir());
         path.Prepend(help.GetPathWithSep());
     }
-    if (url)
+
+    if (url) {
         path.Prepend("file://");
+    }
+
     if (!section.empty()) {
         path.Append("#" + section);
     }
