@@ -312,7 +312,6 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
             m_splits_widgets.at(row).category->Enable(false);
             m_splits_widgets.at(row).amount->Enable(false);
             m_splits_widgets.at(row).other->Enable(false);
-            m_splits_widgets.at(row).category->SetFocus();
         }
 
         if (focusRow == row)
