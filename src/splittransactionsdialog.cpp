@@ -290,7 +290,7 @@ void mmSplitTransactionDialog::CreateControls()
 void mmSplitTransactionDialog::FillControls(int focusRow)
 {
     DoWindowsFreezeThaw(this);
-    for (int row = 0; row < m_splits_widgets.size(); row++)
+    for (int row = (focusRow == -1 ? 0 : focusRow); row < m_splits_widgets.size(); row++)
     {
         if (row < m_splits.size())
         {
@@ -330,8 +330,6 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
     ncbc->Enable(enabled);
     ncbc->Bind(wxEVT_CHAR_HOOK, &mmSplitTransactionDialog::OnComboKey, this);
     ncbc->SetMinSize(wxSize(250,-1));
-    if (enabled && row + 1 > m_splits.size())
-        ncbc->SetFocus();
 
     mmTextCtrl* nval = new mmTextCtrl(slider_, mmID_MAX + row, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
     nval->Enable(enabled);
@@ -352,9 +350,13 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
     SplitWidget sw = {ncbc, nval, nother};
     m_splits_widgets.push_back(sw);
 
-    slider_->FitInside();
-    wxScrollWinEvent evt(wxEVT_SCROLLWIN_BOTTOM);
-    slider_->GetEventHandler()->AddPendingEvent(evt);
+    if (enabled && row + 1 >= m_splits.size())
+    {
+        ncbc->SetFocus();
+        slider_->FitInside();
+        wxScrollWinEvent evt(wxEVT_SCROLLWIN_BOTTOM);
+        slider_->GetEventHandler()->AddPendingEvent(evt);
+    }
 }
 
 void mmSplitTransactionDialog::activateNewRow()  
