@@ -45,14 +45,15 @@ wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_CLOSE(mmAssetDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asset::Data* asset, bool trans_data)
+mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, const bool trans_data)
     : m_asset(asset)
     , m_dialog_heading (_("New Asset"))
 {
     if (m_asset || trans_data)
     {
         m_dialog_heading = _("Edit Asset");
-        if (trans_data) {
+        if (trans_data)
+        {
             m_hidden_trans_entry = false;
             m_dialog_heading = _("Add Asset Transaction");
         }
@@ -425,7 +426,7 @@ void mmAssetDialog::CreateAssetAccount()
     mmNewAcctDialog account_dialog(asset_account, this);
     account_dialog.ShowModal();
 
-    mmAssetDialog asset_dialog(this, m_gui_frame, m_asset, true);
+    mmAssetDialog asset_dialog(this, m_asset, true);
     asset_dialog.SetTransactionAccountName(m_asset->ASSETNAME);
     asset_dialog.SetTransactionDate();
     asset_dialog.ShowModal();

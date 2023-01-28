@@ -18,11 +18,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "myusage.h"
-#include "option.h"
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Usage.h"
-#include "model/Model_Report.h"
 
 mmReportMyUsage::mmReportMyUsage()
 : mmPrintableBase(wxTRANSLATE("MMEX Usage Frequency"))
@@ -106,7 +104,7 @@ wxString mmReportMyUsage::getHTMLText()
 
     std::map<int, wxString> usage_by_frequency;
     std::vector<std::pair<wxString, int>> usage_vector;
-    for (const auto i : usage_by_module) {
+    for (const auto &i : usage_by_module) {
         usage_by_frequency[i.second] = i.first;
         usage_vector.push_back(i);
     }

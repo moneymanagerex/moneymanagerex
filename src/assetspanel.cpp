@@ -167,7 +167,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 {
-    mmAssetDialog dlg(this, m_panel->m_frame, static_cast<Model_Asset::Data*>(nullptr));
+    mmAssetDialog dlg(this, static_cast<Model_Asset::Data*>(nullptr));
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.m_asset->ASSETID);
@@ -298,7 +298,7 @@ void mmAssetsListCtrl::OnListItemActivated(wxListEvent& event)
 
 bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
 {
-    mmAssetDialog dlg(this, m_panel->m_frame, pEntry);
+    mmAssetDialog dlg(this, pEntry);
     bool edit = true;
     if (dlg.ShowModal() == wxID_OK)
     {
@@ -769,7 +769,7 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
 void mmAssetsPanel::AddAssetTrans(const int selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
-    mmAssetDialog asset_dialog(this, m_frame, asset, true);
+    mmAssetDialog asset_dialog(this, asset, true);
     Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);
     if (account)
     {

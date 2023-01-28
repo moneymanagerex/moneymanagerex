@@ -86,7 +86,7 @@ int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
         if (!updateTimestamp)
         {
             bool match = false;
-            for (int i = 0; i < rows.size(); i++)
+            for (decltype(rows.size()) i = 0; i < rows.size(); i++)
             {
                 match = (rows[i].CATEGID == split_item.CATEGID
                         && rows[i].SPLITTRANSAMOUNT == split_item.SPLITTRANSAMOUNT
