@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-19 01:22+0300\n"
-"PO-Revision-Date: 2023-01-18 23:02\n"
+"PO-Revision-Date: 2023-01-28 02:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1816,7 +1816,7 @@ msgstr "关闭(&C)"
 
 #: constants.cpp:96
 msgid "64-bit"
-msgstr ""
+msgstr "64位"
 
 #: constants.cpp:177
 msgid "View with Transaction Filter"
@@ -2963,16 +2963,16 @@ msgstr "交易"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1495
 msgid "Export as QIF file"
-msgstr ""
+msgstr "导出为 QIF 文件"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1494
 msgid "Export as JSON file"
-msgstr ""
+msgstr "导出为 JSON 文件"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:112
 #: mmframe.cpp:1490
 msgid "Export as CSV file"
-msgstr ""
+msgstr "导出为 CSV 文件"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3234,7 +3234,7 @@ msgstr "导入的交易被用户丢弃！"
 
 #: import_export/qif_import_gui.cpp:1008 import_export/qif_import_gui.h:44
 msgid "Import from QIF file"
-msgstr ""
+msgstr "从 QIF 文件导入"
 
 #: import_export/qif_import_gui.cpp:1087
 msgid "Transaction code is missing"
@@ -3290,15 +3290,15 @@ msgstr "余额"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "Import from CSV file"
-msgstr ""
+msgstr "从 CSV 文件导入"
 
 #: import_export/univcsvdialog.cpp:115
 msgid "Import from XML file"
-msgstr ""
+msgstr "从 XML 文件导入"
 
 #: import_export/univcsvdialog.cpp:118 mmframe.cpp:1491
 msgid "Export as XML file"
-msgstr ""
+msgstr "导出为 XML 文件"
 
 #: import_export/univcsvdialog.cpp:219
 msgid "Specify the order of fields in the file"
@@ -3967,7 +3967,7 @@ msgstr "删除于"
 
 #: mmchecking_list.cpp:325
 msgid "Last Updated"
-msgstr ""
+msgstr "最后更新于"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:280
 msgid "&New Withdrawal..."
@@ -4387,7 +4387,7 @@ msgstr ""
 
 #: mmframe.cpp:1321
 msgid "Import from XML (Excel format) file"
-msgstr ""
+msgstr "从 XML (Excel 格式) 导入"
 
 #: mmframe.cpp:1323 mmframe.cpp:1484
 msgid "&QIF Files..."
