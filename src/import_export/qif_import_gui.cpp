@@ -437,7 +437,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
 
         const qifLineType lineType = mmQIFImport::lineType(lineStr);
         auto data = mmQIFImport::getLineData(lineStr);
-        if (lineType == EOTLT)
+        if (lineType == EOTLT || input.Eof())
         {
             if (trx.find(AcctType) != trx.end())
             {
@@ -462,6 +462,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
         //Parse Categories
         if (lineType == CategorySplit || lineType == Category)
         {
+            if (data.empty())
+                data = _("Unknown");
             m_QIFcategoryNames[data] = -1;
         }
 
@@ -500,6 +502,9 @@ bool mmQIFImportDialog::mmReadQIFFile()
 
     if (comma[","] > comma["."]) {
         m_choiceDecimalSeparator->SetDecimalChar(",");
+    }
+    if (comma["."] > comma[","]) {
+        m_choiceDecimalSeparator->SetDecimalChar(".");
     }
 
     if (!m_userDefinedDateMask)
@@ -912,6 +917,10 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         const auto begin_date = toDateCtrl_->GetValue().FormatISODate();
         const auto end_date = fromDateCtrl_->GetValue().FormatISODate();
+
+        wxCommandEvent evt;
+        OnDecimalChange(evt);
+
         for (const auto& entry : vQIF_trxs_)
         {
             if (count % 100 == 0 || count == nTransactions)
