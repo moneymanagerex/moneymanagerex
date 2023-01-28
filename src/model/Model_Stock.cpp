@@ -250,13 +250,19 @@ void Model_Stock::UpdateCurrentPrice(const wxString& symbol, const double price)
     double current_price = price;
     if (price == -1) {
         Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(symbol));
-        std::sort(histData.begin(), histData.end(), SorterByDATE());
-        current_price = histData.back().VALUE;
+        if (!histData.empty())
+        {
+            std::sort(histData.begin(), histData.end(), SorterByDATE());
+            current_price = histData.back().VALUE;
+        }
     }
-    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(symbol));
-    for (auto& stock : stocks) {
-        Model_Stock::Data* stockRecord = Model_Stock::instance().get(stock.STOCKID);
-        stockRecord->CURRENTPRICE = current_price;
-        Model_Stock::instance().save(stockRecord);
+    if (current_price != -1)
+    {
+        Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(symbol));
+        for (auto& stock : stocks) {
+            Model_Stock::Data* stockRecord = Model_Stock::instance().get(stock.STOCKID);
+            stockRecord->CURRENTPRICE = current_price;
+            Model_Stock::instance().save(stockRecord);
+        }
     }
 }

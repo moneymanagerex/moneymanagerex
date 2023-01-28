@@ -290,7 +290,7 @@ void mmSplitTransactionDialog::CreateControls()
 void mmSplitTransactionDialog::FillControls(int focusRow)
 {
     DoWindowsFreezeThaw(this);
-    for (int row=0; row<m_splits_widgets.size(); row++)
+    for (int row = (focusRow == -1 ? 0 : focusRow); row < m_splits_widgets.size(); row++)
     {
         if (row < m_splits.size())
         {
@@ -304,7 +304,6 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
             m_splits_widgets.at(row).category->Enable(!is_view_only_);
             m_splits_widgets.at(row).amount->Enable(!is_view_only_);
             m_splits_widgets.at(row).other->Enable(!is_view_only_);
-            m_splits_widgets.at(row).category->SetFocus();
         } else
         {
             m_splits_widgets.at(row).category->ChangeValue("");
@@ -315,7 +314,7 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
             m_splits_widgets.at(row).other->Enable(false);
         }
 
-        if (focusRow != -1)
+        if (focusRow == row)
             m_splits_widgets.at(focusRow).category->SetFocus();
     }
     DoWindowsFreezeThaw(this);
@@ -351,10 +350,13 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
     SplitWidget sw = {ncbc, nval, nother};
     m_splits_widgets.push_back(sw);
 
-    ncbc->SetFocus();
-    slider_->FitInside();
-    wxScrollWinEvent evt(wxEVT_SCROLLWIN_BOTTOM);
-    slider_->GetEventHandler()->AddPendingEvent(evt);
+    if (enabled && row + 1 >= m_splits.size())
+    {
+        ncbc->SetFocus();
+        slider_->FitInside();
+        wxScrollWinEvent evt(wxEVT_SCROLLWIN_BOTTOM);
+        slider_->GetEventHandler()->AddPendingEvent(evt);
+    }
 }
 
 void mmSplitTransactionDialog::activateNewRow()  
@@ -407,9 +409,10 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
-    for (int id=0; id<m_splits.size(); id++)
+    for (int id = 0; id < m_splits.size(); id++) {
         if (!mmDoCheckRow(id))
             return;
+    }
     
     activateNewRow();
     FillControls();

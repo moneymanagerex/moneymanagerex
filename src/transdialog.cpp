@@ -157,7 +157,17 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     SetEvtHandlerEnabled(false);
     CreateControls();
 
-    m_duplicate ? SetDialogTitle(_("Duplicate Transaction")) : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
+    wxString header = _("Edit Transaction");
+    if (m_duplicate) {
+        header = _("Duplicate Transaction");
+    }
+    else if (m_new_trx) {
+        header = _("New Transaction");
+    }
+    else if (!m_trx_data.DELETEDTIME.IsEmpty()) {
+        header = ""; //_("View Deleted Transaction");
+    }
+    SetDialogTitle(header);
 
     SetIcon(mmex::getProgramIcon());
 

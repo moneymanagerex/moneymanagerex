@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-19 01:22+0300\n"
-"PO-Revision-Date: 2023-01-18 23:02\n"
+"PO-Revision-Date: 2023-01-22 17:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2778,7 +2778,7 @@ msgstr "Запампаваць файл справаздачы:"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "General Report Manager files (*.grm)"
-msgstr "Файлы дыспетчара агульных справаздачаў (*.grm)"
+msgstr "Файлы дыспетчара справаздачаў (*.grm)"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
@@ -2793,7 +2793,7 @@ msgstr "Немагчыма адчыніць файл:\n"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
-msgstr "Дыспетчар агульных справаздачаў"
+msgstr "Дыспетчар справаздачаў"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
@@ -2842,7 +2842,7 @@ msgstr "Пакажыце назву справаздачы"
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:767 mmframe.cpp:1671 mmframe.cpp:1843
 msgid "General Report Manager"
-msgstr "Дыспетчар агульных справаздачаў"
+msgstr "Дыспетчар справаздачаў"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
@@ -3982,7 +3982,7 @@ msgstr "Дата выдалення"
 
 #: mmchecking_list.cpp:325
 msgid "Last Updated"
-msgstr ""
+msgstr "Апошняе абнаўленне"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:280
 msgid "&New Withdrawal..."
@@ -4770,7 +4770,7 @@ msgstr "Фільтраваць справаздачы па крытэрах"
 
 #: mmframe.cpp:1671
 msgid "General Report &Manager..."
-msgstr "Дыспетчар агульнай &справаздачы..."
+msgstr "Дыспетчар &справаздачы..."
 
 #: mmframe.cpp:1675
 msgid "C&ustom Fields Manager..."
@@ -5335,7 +5335,7 @@ msgstr "Файл %s ня знойдзены"
 
 #: mmframereport.cpp:80
 msgid "General Group Report"
-msgstr "Дыспетчар справаздачаў"
+msgstr "Групавая справаздача"
 
 #: mmframereport.cpp:107 mmhomepage.cpp:858 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
@@ -6700,7 +6700,7 @@ msgstr "Прагноз"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %s %s"
-msgstr "Справаздача ёсць сгенераваная %s %s"
+msgstr "Справаздача ад %s %s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format

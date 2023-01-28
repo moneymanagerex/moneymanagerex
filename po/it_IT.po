@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-19 01:22+0300\n"
-"PO-Revision-Date: 2023-01-18 23:02\n"
+"PO-Revision-Date: 2023-01-22 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -215,7 +215,7 @@ msgstr "Bloccato"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr "Attiva o disattiva il blocco dell'operazione"
+msgstr "Abilita o disabilita il blocco delle transazioni"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
@@ -2792,7 +2792,7 @@ msgstr "Asset..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr "Nuovo Rapporto Vuoto..."
+msgstr "Nuovo Resoconto Vuoto..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2812,7 +2812,7 @@ msgstr "Separa"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr "Rinomina Report..."
+msgstr "Rinomina Resoconto..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
@@ -4318,7 +4318,7 @@ msgstr "Conti Carta di Credito"
 #: mmframe.cpp:464 mmframe.cpp:728 mmhomepage.cpp:702 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr "Conti a Termine"
+msgstr "Conti Deposito"
 
 #: mmframe.cpp:465 mmframe.cpp:732
 msgid "Stock Portfolios"
@@ -5522,7 +5522,7 @@ msgstr "Mostra"
 #: model/Model_Account.cpp:33 model/Model_Asset.cpp:47 reports/summary.cpp:254
 #: reports/summary.cpp:298
 msgid "Cash"
-msgstr "Cassa contanti"
+msgstr "Contanti"
 
 #: model/Model_Account.cpp:34
 msgid "Checking"
@@ -6664,7 +6664,7 @@ msgstr "Previsione"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %s %s"
-msgstr "Rapporto generato %s %s"
+msgstr "Resoconto Generato %s %s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
@@ -7861,10 +7861,10 @@ msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr "Conti a termine e attività sono conti bancari specializzati.\n"
-"Sono destinati al monitoraggio di Asset or Term Deposits and Bonds\n"
-"dove in genere hai soldi regolari in arrivo e fuori, al di fuori del\n"
-"flusso di reddito generale."
+msgstr "I conti deposito e i conti cespite sono conti bancari speciali.\n"
+"Sono destinati al monitoraggio di Beni (Cespiti) o Depositi a Termine e/o Obbligazioni\n"
+"dove di solito c'è denaro regolare in entrata e in uscita, al di fuori del\n"
+"dal flusso di reddito generale."
 
 #: wizard_newaccount.cpp:165
 msgid "Base Account Currency Not set."
