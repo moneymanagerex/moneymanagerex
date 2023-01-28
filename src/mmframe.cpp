@@ -2713,7 +2713,7 @@ bool mmGUIFrame::OnRefreshWebApp(bool is_silent)
     return false;
 }
 
-void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& event)
+void mmGUIFrame::OnRefreshWebApp(wxCommandEvent&)
 {
     OnRefreshWebApp(false);
 }

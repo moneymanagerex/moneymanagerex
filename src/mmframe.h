@@ -233,7 +233,7 @@ private:
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent& event);
-    void OnRefreshWebApp(wxCommandEvent& event);
+    void OnRefreshWebApp(wxCommandEvent&);
     bool OnRefreshWebApp(bool is_silent);
 
     void OnHelp(wxCommandEvent& event);

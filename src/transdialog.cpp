@@ -130,7 +130,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
     m_advanced = m_transfer && !m_new_trx && (m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
 
-    int ref_id = (m_new_trx) ? NULL : m_trx_data.TRANSID;
+    int ref_id = (m_new_trx) ? 0 : m_trx_data.TRANSID;
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
     // If duplicate then we may need to copy the attachments

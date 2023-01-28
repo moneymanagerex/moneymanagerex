@@ -71,24 +71,24 @@ private:
     void CreateShareAccount(Model_Account::Data* stock_account, const wxString& name
                                     , const wxString& openingDate);
 
-    wxTextCtrl* m_stock_name_ctrl;
-    wxTextCtrl* m_stock_symbol_ctrl;
-    mmDatePickerCtrl* m_purchase_date_ctrl;
-    mmTextCtrl* m_num_shares_ctrl;
-    mmTextCtrl* m_purchase_price_ctrl;
-    wxTextCtrl* m_notes_ctrl;
-    mmTextCtrl* m_history_price_ctrl;
-    mmDatePickerCtrl* m_history_date_ctrl;
-    wxStaticText* m_value_investment;
-    mmTextCtrl* m_commission_ctrl;
-    mmTextCtrl* m_current_price_ctrl;
-    wxBitmapButton* m_bAttachments;
-    wxListCtrl* m_price_listbox;
+    wxTextCtrl* m_stock_name_ctrl = nullptr;
+    wxTextCtrl* m_stock_symbol_ctrl = nullptr;
+    mmDatePickerCtrl* m_purchase_date_ctrl = nullptr;
+    mmTextCtrl* m_num_shares_ctrl = nullptr;
+    mmTextCtrl* m_purchase_price_ctrl = nullptr;
+    wxTextCtrl* m_notes_ctrl = nullptr;
+    mmTextCtrl* m_history_price_ctrl = nullptr;
+    mmDatePickerCtrl* m_history_date_ctrl = nullptr;
+    wxStaticText* m_value_investment = nullptr;
+    mmTextCtrl* m_commission_ctrl = nullptr;
+    mmTextCtrl* m_current_price_ctrl = nullptr;
+    wxBitmapButton* m_bAttachments = nullptr;
+    wxListCtrl* m_price_listbox = nullptr;
 
-    Model_Stock::Data* m_stock;
+    Model_Stock::Data* m_stock = nullptr;
     bool m_edit;
     int m_account_id;
-    mmGUIFrame* m_gui_frame;
+    mmGUIFrame* m_gui_frame = nullptr;
     enum
     {
         ID_DPC_STOCK_PDATE = wxID_HIGHEST + 800,
