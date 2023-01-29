@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-29 22:11\n"
+"PO-Revision-Date: 2023-01-29 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1304,11 +1304,11 @@ msgstr "Izbriši ponavljajuću transakciju"
 
 #: billsdepositspanel.cpp:312
 msgid "Ente&r"
-msgstr ""
+msgstr "&Upiši"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Upiši sljedeći događaj ponavljajuće transakcije"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
@@ -1316,11 +1316,11 @@ msgstr "&Preskoči"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Preskoči sljedeći događaj ponavljajuće transakcije"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Upiši sljedeći događaj …"
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1727,7 +1727,7 @@ msgstr "Savjet: Promjeni sve transakcije koristeći ovu podkategoriju u\n"
 
 #: categdialog.cpp:476
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Alati → Premještanje → Kategorije"
 
 #: categdialog.cpp:478
 msgid "Organise Categories: Delete Error"
@@ -2106,7 +2106,7 @@ msgstr "Svojstva"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Personaliziraj prilagođena polja"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2547,11 +2547,11 @@ msgstr "Uplata"
 #: filtertransdialog.cpp:589 filtertransdialog.cpp:795
 #: filtertransdialog.cpp:1365
 msgid "Transfer Out"
-msgstr ""
+msgstr "Prijenos iz"
 
 #: filtertransdialog.cpp:591 filtertransdialog.cpp:1363
 msgid "Transfer In"
-msgstr ""
+msgstr "Prijenos u"
 
 #: filtertransdialog.cpp:603
 msgid "Amount Range"
@@ -3363,7 +3363,7 @@ msgstr "Pregled"
 
 #: import_export/univcsvdialog.cpp:456
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Odaberi datoteku XML podataka za uvoz"
 
 #: import_export/univcsvdialog.cpp:456
 msgid "Choose CSV data file to Import"
@@ -3371,7 +3371,7 @@ msgstr "Odaberi CSV datoteku, koju želiš uvesti"
 
 #: import_export/univcsvdialog.cpp:457
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Odaberi datoteku XML podataka za izvoz"
 
 #: import_export/univcsvdialog.cpp:457
 msgid "Choose CSV data file to Export"
@@ -4378,11 +4378,11 @@ msgstr "Pomoć"
 
 #: mmframe.cpp:1217
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Postavka s ovim imenom već postoji"
 
 #: mmframe.cpp:1219
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Odredi novo ime za postavku"
 
 #: mmframe.cpp:1221
 msgid "Name in use"
@@ -7330,7 +7330,7 @@ msgstr "Prijenos u"
 
 #: transactionsupdatedialog.cpp:225
 msgid "Append"
-msgstr ""
+msgstr "Priloži"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7364,7 +7364,7 @@ msgstr ""
 
 #: transdialog.cpp:1125
 msgid "Currencies are different"
-msgstr ""
+msgstr "Valute se razlikuju"
 
 #: transdialog.cpp:1212
 msgid "Specify account the money is taken from"
