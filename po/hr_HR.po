@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-29 20:42\n"
+"PO-Revision-Date: 2023-01-29 22:11\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -302,7 +302,7 @@ msgstr "Neispravan datum"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Transakcije za ovaj račun već postoje prije ovog datuma"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
@@ -535,15 +535,15 @@ msgstr "Aktualna vrijednost"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Nova imovina …"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&upliciraj imovinu …"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Dodaj imovinsku transakciju …"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -551,15 +551,15 @@ msgstr "&Prikaz imovinske transakcije"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Otvori imovinski račun …"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Uredi imovinu …"
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Izbriši imovinu …"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:468
 #: mmframe.cpp:1381 mmframe.cpp:1401 stocks_list.cpp:146
@@ -641,19 +641,19 @@ msgstr "Za pronalaženje povezane imovine, unesi bilo što"
 
 #: assetspanel.cpp:511 filtertransdialog.cpp:637 mmcheckingpanel.cpp:449
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Savjet: U kriterijima pretrage možeš koristiti zamjenske znakove – upitnik (?) i zvjezdicu (*)."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:638 mmcheckingpanel.cpp:450
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Koristi upitnik (?) za pronalaženje bilo kojeg znaka – na primjer s?b pronalazi „sub” i druge izraze koji počinju sa slovom „s” i završavaju sa slovom „b”."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:639 mmcheckingpanel.cpp:451
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Koristi asterisk (*) za pronalaženje bilo koji broj znakova – na primjer s*b pronalazi „sub” i druge izraze koji počinju sa slovom „s” i završavaju sa slovom „b”."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:640 mmcheckingpanel.cpp:452
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Koristi asterisk (*) za pronalaženje bilo kojeg niza znakova u rečenici."
 
 #: assetspanel.cpp:585 stockspanel.cpp:275 stockspanel.cpp:462
 #, c-format
@@ -1124,23 +1124,24 @@ msgstr "Od"
 
 #: billsdepositsdialog.cpp:865
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Datum plaćanja je nakon datuma dospijeća. Je li to namjerno?"
 
 #: billsdepositsdialog.cpp:866
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Izgleda kao zakašnjela plaćanje"
 
 #: billsdepositsdialog.cpp:918 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:636
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Ime ovog primaoca još nisi nikada koristio/la. Je li ime točno?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:919 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:637
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Potvrdi ime primaoca"
 
 #: billsdepositsdialog.cpp:938 billsdepositsdialog.cpp:1258
 #: filtertransdialog.cpp:863 filtertransdialog.cpp:873
@@ -1448,7 +1449,7 @@ msgstr "Unesi planirani iznos za ovu kategoriju."
 
 #: budgetentrydialog.cpp:158 payeedialog.cpp:115
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Upiši bilješke za opis ovog unosa budžeta"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -2566,7 +2567,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:658
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opcije za prezentaciju"
 
 #: filtertransdialog.cpp:672 filtertransdialog.cpp:976
 #: filtertransdialog.cpp:1589
@@ -2580,7 +2581,7 @@ msgstr "Grupiraj prema"
 
 #: filtertransdialog.cpp:692
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Odredi kako grupirati izvještaj"
 
 #: filtertransdialog.cpp:700
 msgid "Settings"
@@ -2605,7 +2606,9 @@ msgstr "Prazna vrijednost"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Ovo ime trenutačno ne odgovara nijednom primaocu.\n"
+"Želiš li ga nastaviti koristiti?\n"
+"%s"
 
 #: filtertransdialog.cpp:1039
 msgid "Hide Report Columns"
@@ -2788,7 +2791,7 @@ msgstr "Opći upravljač izvještaja"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Imovine …"
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
@@ -2820,7 +2823,7 @@ msgstr "Aktivno"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Prikaži/sakrij izvještaj u glavnoj ploči navigacije"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
@@ -2883,36 +2886,36 @@ msgstr "Parametri:"
 #: images_list.cpp:324
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "JSON metapodaci u temi „%s” se ne mogu obraditi i nisu ispravno konstruirani. Ispravi ih."
 
 #: images_list.cpp:412
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Datoteka „%s” nedostaje ili je neispravna u odabranoj temi „%s”"
 
 #: images_list.cpp:423
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Metapodaci „%s” nedostaju u odabranoj temi „%s”"
 
 #: images_list.cpp:456
 msgid "and more..."
-msgstr ""
+msgstr "i više …"
 
 #: images_list.cpp:458
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "U odabranoj temi „%s” se nalaze(i) %d nedostajuće ili neispravne ikone: %s"
 
 #: images_list.cpp:487
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s nije pronađena, možda više nije podržana. Vraćanje na standardnu temu"
 
 #: images_list.cpp:494
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Temi %s nedostaju stavke i nekompatibilna je. Vraćanje na standardnu temu"
 
 #: images_list.cpp:499
 msgid "No workable theme found, the installation may be corrupt"
@@ -3125,7 +3128,7 @@ msgstr "Koristi broj računa umjesto ime računa"
 
 #: import_export/qif_import_gui.cpp:294
 msgid "Include payee field in notes"
-msgstr "Uključi polje primatelja u napomene"
+msgstr "Uključi polje primaoca u napomene"
 
 #: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
 #: import_export/qif_import_gui.cpp:466 import_export/qif_import_gui.cpp:623
@@ -3190,7 +3193,7 @@ msgstr "Želiš li uvesti sve transakcije ?"
 
 #: import_export/qif_import_gui.cpp:893
 msgid "All missing account, payees and categories will be created."
-msgstr "Svi računi, primatelji i kategorije koje nedostaju biti će stvorene."
+msgstr "Svi nedostajući računi, primaoci i kategorije će biti stvoreni."
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Confirm Import"
@@ -3206,7 +3209,7 @@ msgstr "Uvoz računa"
 
 #: import_export/qif_import_gui.cpp:905
 msgid "Importing Payees"
-msgstr "Uvoz primatelja"
+msgstr "Uvoz primaoca"
 
 #: import_export/qif_import_gui.cpp:909
 msgid "Importing Categories"
@@ -3248,7 +3251,7 @@ msgstr "Transakcijska šifra nedostaje"
 
 #: import_export/qif_import_gui.cpp:1118
 msgid "Transaction Payee is missing or incorrect"
-msgstr "Primatelj transakcije nedostaje ili je netočan"
+msgstr "Primaoc transakcije nedostaje ili je netočan"
 
 #: import_export/qif_import_gui.cpp:1130
 msgid "Date format or date mask is incorrect"
@@ -3278,7 +3281,7 @@ msgstr "Dodan je račun: %s"
 #: import_export/qif_import_gui.cpp:1346 import_export/univcsvdialog.cpp:917
 #, c-format
 msgid "Added payee: %s"
-msgstr "Dodan je primatelj: %s"
+msgstr "Dodani primaoc: %s"
 
 #: import_export/univcsvdialog.cpp:97
 msgid "SubCategory"
@@ -3789,12 +3792,12 @@ msgstr "Aktiviranjem gumba se omogućuje korištenje izbornog okvira za odabir r
 
 #: mmSimpleDialogs.cpp:803
 msgid "Invalid Payee"
-msgstr "Nevaljani primatelj"
+msgstr "Neispravan primaoc"
 
 #: mmSimpleDialogs.cpp:804
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Unesi novog primatelja, ili odaberi\n"
+msgstr "Upiši novog primaoca ili odaberi\n"
 "pomoću gumba padajućeg popisa."
 
 #: mmSimpleDialogs.cpp:812 mmSimpleDialogs.cpp:824
@@ -4383,7 +4386,7 @@ msgstr ""
 
 #: mmframe.cpp:1221
 msgid "Name in use"
-msgstr ""
+msgstr "Korišteno ime"
 
 #: mmframe.cpp:1278
 msgid "Do you really want to delete the account?"
@@ -4471,7 +4474,7 @@ msgstr "&Otvori web stranicu računa"
 
 #: mmframe.cpp:1396 mmframe.cpp:1596
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Premjesti račun …"
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
 msgid "New &Account..."
@@ -4679,7 +4682,7 @@ msgstr "Organiziraj &kategorije …"
 
 #: mmframe.cpp:1622
 msgid "Organize &Payees..."
-msgstr "Organiziraj &primatelje …"
+msgstr "Organiziraj &primaoce …"
 
 #: mmframe.cpp:1622 mmframe.cpp:1840 payeedialog.cpp:274
 msgid "Organize Payees"
@@ -4699,19 +4702,19 @@ msgstr "&Kategorije …"
 
 #: mmframe.cpp:1633
 msgid "&Payees..."
-msgstr ""
+msgstr "&Primaoci …"
 
 #: mmframe.cpp:1634
 msgid "Reassign all payees to another payee"
-msgstr "Dodijeli sve primatelje nekom drugom primatelju"
+msgstr "Ponovo dodijeli sve primaoce jednom drugom primaocu"
 
 #: mmframe.cpp:1636
 msgid "Re&location of"
-msgstr ""
+msgstr "Pre&mještanje za"
 
 #: mmframe.cpp:1637
 msgid "Relocate Categories && Payees"
-msgstr "Premjestij kategorije &i primatelje"
+msgstr "Premjesti kategorije &i primaoce"
 
 #: mmframe.cpp:1647
 msgid "&Budget Setup..."
@@ -4731,11 +4734,11 @@ msgstr "&Imovina"
 
 #: mmframe.cpp:1661
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "&Upravljač tema …"
 
 #: mmframe.cpp:1661 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "Upravljač tema"
 
 #: mmframe.cpp:1667
 msgid "Transaction Report &Filter..."
@@ -5011,7 +5014,7 @@ msgstr "Prikaži dijalog za uređivanje kategorija"
 
 #: mmframe.cpp:1840
 msgid "Show Organize Payees Dialog"
-msgstr "Prikaži dijalog za uređivanje primatelja"
+msgstr "Prikaži dijalog za organiziranje primalaca"
 
 #: mmframe.cpp:1841
 msgid "Show Organize Currency Dialog"
@@ -5228,7 +5231,7 @@ msgstr "MMEX opcije"
 
 #: mmframe.cpp:2703
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Računi, promaoci i kategorije su aktualizirani"
 
 #: mmframe.cpp:2709
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -5400,7 +5403,7 @@ msgstr "Najveće isplate: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account / Payee"
-msgstr "Račun / Primatelj"
+msgstr "Račun / Primaoc"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -5436,23 +5439,23 @@ msgstr "Ukupno transakcija: "
 
 #: mmhomepage.cpp:545 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Dionica"
 
 #: mmhomepage.cpp:555
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Ukupna neto vrijednost"
 
 #: mmhomepage.cpp:626
 msgid "Other Assets"
-msgstr ""
+msgstr "Druge imovine"
 
 #: mmhomepage.cpp:703
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Investicijski računi"
 
 #: mmhomepage.cpp:704 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Imovinski računi"
 
 #: mmhomepage.cpp:844
 msgid "Currency Exchange Rates"
@@ -5597,7 +5600,7 @@ msgstr "Ostalo"
 
 #: model/Model_Asset.cpp:95
 msgid "Asset Error"
-msgstr ""
+msgstr "Greška u imovini"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5623,7 +5626,7 @@ msgstr ""
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Minimalno stanje"
 
 #: model/Model_Billsdeposits.cpp:321
 msgid "Credit Limit"
@@ -5869,7 +5872,7 @@ msgstr "Odredi format datuma za prikaz"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr ""
+msgstr "Primjer formata datuma:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
@@ -5983,11 +5986,11 @@ msgstr "Neupotrebljena"
 
 #: optionsettingsmisc.cpp:122
 msgid "Last used for payee"
-msgstr "Zadnje upotrijebljena za primatelja"
+msgstr "Zadnje korišteno za primaoca"
 
 #: optionsettingsmisc.cpp:123
 msgid "Use default for payee"
-msgstr ""
+msgstr "Koristi standardne postavke za primaoca"
 
 #: optionsettingsmisc.cpp:138
 msgid "Yes"
@@ -6003,7 +6006,7 @@ msgstr "Standardni datum"
 
 #: optionsettingsmisc.cpp:150
 msgid "Default Payee"
-msgstr ""
+msgstr "Standardni primaoc"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Deposit/Withdrawal Category"
@@ -6011,19 +6014,19 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Standardna kategorija prijenosa"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Status"
-msgstr ""
+msgstr "Standardno stanje"
 
 #: optionsettingsmisc.cpp:158
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Grupne transakcije"
 
 #: optionsettingsmisc.cpp:169
 msgid "Database Options"
-msgstr ""
+msgstr "Opcije baze podataka"
 
 #: optionsettingsmisc.cpp:176
 msgid "Create a new backup when MMEX Start"
@@ -6037,7 +6040,7 @@ msgstr "Kad se MMEX pokrene,\n"
 
 #: optionsettingsmisc.cpp:183
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Stvori sigurnosnu kopiju baze podataka prilikom zatvaranja"
 
 #: optionsettingsmisc.cpp:185
 msgid "When MMEX shuts down and changes made to database,\n"
@@ -6171,7 +6174,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Opcije transakcije/budžeta"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6303,19 +6306,19 @@ msgstr "Veličina drugih ikona"
 
 #: payeedialog.cpp:52
 msgid "Edit Payee"
-msgstr ""
+msgstr "Uredi primaoca"
 
 #: payeedialog.cpp:81
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Upiši ime primaoca. Ime možeš promijeniti bilo kada."
 
 #: payeedialog.cpp:85 payeedialog.cpp:234
 msgid "Hidden"
-msgstr ""
+msgstr "Skriven"
 
 #: payeedialog.cpp:87
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Odredi treba li se primaoc sakriti i ne prikazati u popisu primalaca za nove transakcije"
 
 #: payeedialog.cpp:92 payeedialog.cpp:236
 msgid "Last Used Category"
@@ -6327,7 +6330,7 @@ msgstr "Standardna kategorija"
 
 #: payeedialog.cpp:95
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Kategorija koja se koristi kao standardna za ovog primaoca"
 
 #: payeedialog.cpp:99 payeedialog.cpp:237
 msgid "Reference"
@@ -6335,7 +6338,7 @@ msgstr "Referenca"
 
 #: payeedialog.cpp:101
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Referenca koja se koristi za primaoca, npr. broj bankovnog računa"
 
 #: payeedialog.cpp:105
 msgid "Web Site"
@@ -6343,7 +6346,7 @@ msgstr "Web stranica"
 
 #: payeedialog.cpp:107
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "URL web stranice povezan s primaocem"
 
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
@@ -6355,31 +6358,31 @@ msgstr "Web stranica"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
-msgstr "Upotrijebljeni primatelj."
+msgstr "Korišteni primalac."
 
 #: payeedialog.cpp:475
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr "Savjet: Promijeni sve transakcije ovog primatelja u transakcije drugoga, koristeći naredbu za premještanje:"
+msgstr "Savjet: Promijeni sve transakcije ovog primaoca u transakcije jednog drugog primaoca, koristeći naredbu za premještanje:"
 
 #: payeedialog.cpp:477
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Alati → Premještanje → Primaoc"
 
 #: payeedialog.cpp:478
 msgid "Organize Payees: Delete Error"
-msgstr "Organiziraj primatelje: Greška prilikom brisanja"
+msgstr "Organiziraj primaoce: Greška prilikom brisanja"
 
 #: payeedialog.cpp:483
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Postoje izbrisane transakcije koje koriste ovog primaoca."
 
 #: payeedialog.cpp:484
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Brisanje primaoca će također zauvijek izbrisati povezane izbrisane transakcije."
 
 #: payeedialog.cpp:486
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Potvrdi brisanje primaoca"
 
 #: payeedialog.cpp:607
 msgid "Define Category"
@@ -6391,7 +6394,7 @@ msgstr "&Organiziraj priloge"
 
 #: payeedialog.cpp:624
 msgid "Relocate Payee"
-msgstr "Premjesti primatelja"
+msgstr "Premjesti primaoca"
 
 #: relocatecategorydialog.cpp:82
 msgid "Relocate source category to the destination category"
@@ -6411,7 +6414,7 @@ msgstr "u:"
 
 #: relocatecategorydialog.cpp:126 relocatepayeedialog.cpp:126
 msgid "Relocate"
-msgstr ""
+msgstr "Premjesti"
 
 #: relocatecategorydialog.cpp:146 relocatepayeedialog.cpp:146
 #, c-format
@@ -6449,7 +6452,7 @@ msgstr "Zapisi ponađeni u ponavljajućim podijeljenim transakcijama: %i"
 #: relocatecategorydialog.cpp:252
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "Pronađeni zapisi sa standardnom kategorijom primatelja: %i"
+msgstr "Pronađeni zapisi sa standardnom kategorijom primalaca: %i"
 
 #: relocatecategorydialog.cpp:253
 #, c-format
@@ -6462,19 +6465,19 @@ msgstr "Dijalog za premještanje kategorija"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr "Premjesti izvornog primatelja u odredišnog primatelja"
+msgstr "Premjesti izvornog primaoca u odredišnog primaoca"
 
 #: relocatepayeedialog.cpp:94
 msgid "Delete source payee after relocation"
-msgstr "Izbripi izvornog primatelja nakon premještanja"
+msgstr "Izbriši izvornog primaoca nakon premještanja"
 
 #: relocatepayeedialog.cpp:151
 msgid "Payee Relocation Confirmation"
-msgstr "Odobrenje premještanja primatelja"
+msgstr "Potvrda premještanja primaoca"
 
 #: relocatepayeedialog.h:41
 msgid "Relocate Payee Dialog"
-msgstr "Dijalog za premještanje primatelja"
+msgstr "Dijalog za premještanje primaoca"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6794,7 +6797,7 @@ msgstr "Učestalost korištenja MMEX-a"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr "Izvještaj o primateljima"
+msgstr "Izvještaj o primaocu"
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
@@ -7417,7 +7420,7 @@ msgstr "Odredi status za ovu transakciju"
 
 #: usertransactionpanel.cpp:172
 msgid "Select Payee"
-msgstr "Odaberi primtelja"
+msgstr "Odaberi primaoca"
 
 #: usertransactionpanel.cpp:173
 msgid "Specify a person, Company or Organisation for this transaction."
@@ -7561,7 +7564,7 @@ msgstr ""
 
 #: util.cpp:986
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Neuspjelo pronalaženje imovine za simbol"
 
 #: util.cpp:1021
 msgid "Could not get base currency!"
@@ -7577,7 +7580,7 @@ msgstr "Valuta „USD” nije pronađena, koja je potrebna za konverziju povijes
 
 #: util.cpp:1051
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Neuspjela obrada cijene u povijesti imovine"
 
 #: util.cpp:1281
 #, c-format
