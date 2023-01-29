@@ -111,7 +111,7 @@ EVT_MENU(MENU_BUDGETSETUPDIALOG, mmGUIFrame::OnBudgetSetupDialog)
 EVT_MENU(wxID_HELP, mmGUIFrame::OnHelp)
 EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
-EVT_MENU_RANGE(MENU_FACEBOOK, MENU_GOOGLEPLAY, mmGUIFrame::OnSimpleURLOpen)
+EVT_MENU_RANGE(MENU_FACEBOOK, MENU_TWITTER, mmGUIFrame::OnSimpleURLOpen)
 EVT_MENU(MENU_REPORT_BUG, mmGUIFrame::OnReportBug)
 EVT_MENU(MENU_DIAGNOSTICS, mmGUIFrame::OnDiagnostics)
 EVT_MENU(wxID_ABOUT, mmGUIFrame::OnAbout)
@@ -1726,6 +1726,8 @@ void mmGUIFrame::createMenu()
         , _("&Facebook"), _("Visit us on Facebook"));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
         , _("&Crowdin"), _("We use Crowdin to translate MMEX"));
+    wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
+        , _("&Twitter"), _("Follow us on Twitter"));
     wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
         , _("&YouTube"), _("Watch free video materials about MMEX"));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
@@ -1765,6 +1767,7 @@ void mmGUIFrame::createMenu()
     menuCommunity->Append(menuItemReportIssues);
     menuCommunity->Append(menuItemRSS);
     menuCommunity->Append(menuItemSlack);
+    menuCommunity->Append(menuItemTwitter);
     menuCommunity->Append(menuItemWebsite);
     menuCommunity->Append(menuItemWiki);
     menuCommunity->Append(menuItemYouTube);
@@ -2736,6 +2739,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
     switch (event.GetId())
     {
     case MENU_FACEBOOK: url = mmex::weblink::Facebook; break;
+    case MENU_TWITTER: url = mmex::weblink::Twitter; break;
     case MENU_WEBSITE: url = mmex::weblink::WebSite; break;
     case MENU_WIKI: url = mmex::weblink::Wiki; break;
     case MENU_DONATE: url = mmex::weblink::Donate; break;
