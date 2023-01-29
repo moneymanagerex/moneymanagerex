@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-29 19:16\n"
+"PO-Revision-Date: 2023-01-29 20:42\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1049,7 +1049,7 @@ msgstr "U"
 #: transactionsupdatedialog.cpp:179 transdialog.cpp:230 transdialog.cpp:481
 #: usertransactionpanel.cpp:171 webappdialog.cpp:142
 msgid "Payee"
-msgstr "Primatelj"
+msgstr "Primaoc"
 
 #: billsdepositsdialog.cpp:569 billsdepositsdialog.cpp:938
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
@@ -4683,7 +4683,7 @@ msgstr "Organiziraj &primatelje …"
 
 #: mmframe.cpp:1622 mmframe.cpp:1840 payeedialog.cpp:274
 msgid "Organize Payees"
-msgstr "Organiziraj primatelje"
+msgstr "Organiziraj primaoce"
 
 #: mmframe.cpp:1626
 msgid "Organize Curre&ncy..."
@@ -5289,11 +5289,11 @@ msgstr "Račun: %s – Odaberi novu vrstu."
 
 #: mmframe.cpp:3510 payeedialog.cpp:564
 msgid "Payee Relocation Completed."
-msgstr "Premještanje primatelja je završeno."
+msgstr "Premještanje primaoca završeno."
 
 #: mmframe.cpp:3514 payeedialog.cpp:568
 msgid "Payee Relocation Result"
-msgstr "Rezultat premještanja primatelja"
+msgstr "Rezultat premještanja primaoca"
 
 #: mmframe.cpp:3591
 #, c-format
@@ -5339,7 +5339,7 @@ msgstr "Moja statistika"
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
-msgstr "Primatelji"
+msgstr "Primaoci"
 
 #: mmframereport.cpp:195
 msgid "Summary of Accounts"
@@ -5671,7 +5671,7 @@ msgstr "Višestruki izbor"
 
 #: model/Model_Payee.cpp:81
 msgid "Payee Error"
-msgstr "Greška u primatelju"
+msgstr "Greška u primaocu"
 
 #: model/Model_Report.cpp:86
 msgid "Begin date:"
@@ -6347,7 +6347,7 @@ msgstr ""
 
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
-msgstr "Postoji primatelj s istim imenom"
+msgstr "Primaoc s istim imenom već postoji"
 
 #: payeedialog.cpp:238
 msgid "Website"
