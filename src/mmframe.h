@@ -314,7 +314,8 @@ private:
         MENU_CROWDIN,
         MENU_REPORTISSUES,
         MENU_BUY_COFFEE,
-        MENU_GOOGLEPLAY, // end range for OnSimpleURLOpen
+        MENU_GOOGLEPLAY,
+        MENU_TWITTER, // end range for OnSimpleURLOpen
         MENU_EXPORT_CSV,
         MENU_EXPORT_MMEX,
         MENU_EXPORT_XML,
