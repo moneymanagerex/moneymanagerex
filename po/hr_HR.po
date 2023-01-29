@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-28 22:59\n"
+"PO-Revision-Date: 2023-01-29 15:15\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -7518,31 +7518,31 @@ msgstr "Subota"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "Ned"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "Pon"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "Uto"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "Sri"
 
 #: util.cpp:303
 msgid "Thu"
-msgstr ""
+msgstr "Čet"
 
 #: util.cpp:303
 msgid "Fri"
-msgstr ""
+msgstr "Pet"
 
 #: util.cpp:304
 msgid "Sat"
-msgstr ""
+msgstr "Sub"
 
 #: util.cpp:732
 msgid "Currency rates have been updated"
@@ -7550,7 +7550,7 @@ msgstr "Valutni tečajevi su aktualizirani"
 
 #: util.cpp:831 util.cpp:947 util.cpp:1006
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Greška u JSON obradi"
 
 #: util.cpp:955 util.cpp:1014
 msgid "Expected response to contain a data or error string"
@@ -7562,15 +7562,15 @@ msgstr ""
 
 #: util.cpp:1021
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Neuspjelo dohvaćanje osnovne valute!"
 
 #: util.cpp:1027
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:1030
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Valuta „USD” nije pronađena, koja je potrebna za konverziju povijesnih cijena"
 
 #: util.cpp:1051
 msgid "Could not parse price in asset history"
@@ -7584,22 +7584,22 @@ msgstr "Verzija: %s"
 #: util.cpp:1282
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "Izgradnja: %s %s"
 
 #: util.cpp:1283
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Verzija baze podataka: %d"
 
 #: util.cpp:1290
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git promjena: %s (%s)"
 
 #: util.cpp:1293
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git grana: %s"
 
 #: util.cpp:1297
 msgid "MMEX is using the following support products:"
@@ -7607,7 +7607,7 @@ msgstr "MMEX koristi sljedeće proizvode podrške:"
 
 #: util.cpp:1314
 msgid "Built with:"
-msgstr ""
+msgstr "Izgrađeno pomoću:"
 
 #: util.cpp:1333
 msgid "Running on:"
@@ -7688,12 +7688,12 @@ msgstr "Pogrešna API verzija web aplikacije:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp API verzija: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Očekivana API verzija: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7717,7 +7717,7 @@ msgstr "Pogrešan račun web aplikacije"
 
 #: webapp.cpp:565
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Današnji dan će se koristiti kao datum transakcije"
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
@@ -7757,7 +7757,7 @@ msgstr "Stanje mreže (klikni za aktualiziranje)"
 
 #: webappdialog.cpp:123
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Traženje novih transakcija"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
