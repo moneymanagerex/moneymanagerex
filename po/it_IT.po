@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-30 15:08\n"
+"PO-Revision-Date: 2023-01-30 16:14\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1160,7 +1160,7 @@ msgstr "Valore non valido "
 #: import_export/univcsvdialog.cpp:1063 stockdialog.cpp:428 transdialog.cpp:605
 #: transdialog.cpp:679 usertransactionpanel.cpp:464 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr "La data di apertura del conto è successiva alla data di questa operazione"
+msgstr "La data di apertura del conto è successiva alla data di questa transazione"
 
 #: billsdepositsdialog.cpp:1181
 msgid "Specify the transfer amount in the From Account"
@@ -1181,25 +1181,25 @@ msgstr "Periodo: Mesi"
 #: billsdepositsdialog.cpp:1201
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr "Specifica il lasso di tempo in giorni prima dell'attivazione.\n"
-"Diventa bianco quando non è attivo."
+msgstr "Specifica il periodo in giorni per l'esecuzione.\n"
+"Diventa vuoto quando non è più attivo."
 
 #: billsdepositsdialog.cpp:1209
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr "Per attivare, specificare il periodo in mesi.\n"
-"Diventa vuoto se non attivo."
+msgstr "Specifica il periodo in Mesi per l'esecuzione.\n"
+"Diventa vuoto quando non è più attivo."
 
 #: billsdepositsdialog.cpp:1217
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr "Specificare il periodo in giorni per attivare.\n"
+msgstr "Specificare il periodo in Giorni per attivare.\n"
 "Lasciare vuoto se non attivo."
 
 #: billsdepositsdialog.cpp:1225
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr "Specificare il periodo in mesi per attivare.\n"
+msgstr "Specificare il periodo in Mesi per attivare.\n"
 "Lasciare vuoto se non attivo."
 
 #: billsdepositsdialog.cpp:1233
@@ -1223,15 +1223,15 @@ msgstr "Dividi Transazione"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr "Nuova operazione ricorrente"
+msgstr "Nuova Transazione Ricorrente"
 
 #: billsdepositsdialog.h:123
 msgid "Specify where the transaction is going to"
-msgstr "Specificare la destinazione dell'operazione"
+msgstr "Specificare la destinazione della transazione"
 
 #: billsdepositsdialog.h:124 transdialog.cpp:1226
 msgid "Specify where the transaction is coming from"
-msgstr "Specificare l'origine dell'operazione"
+msgstr "Specifica la provenienza della transazione"
 
 #: billsdepositsdialog.h:125
 msgid "Specify which account the transfer is going to"
@@ -1239,7 +1239,7 @@ msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
 #: billsdepositsdialog.h:126 transdialog.cpp:1221 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
-msgstr "Specificare l'importo di questa operazione"
+msgstr "Specificare l'importo di questa transazione"
 
 #: billsdepositsdialog.h:127
 msgid "Specify the amount to be transferred"
@@ -1248,22 +1248,22 @@ msgstr "Specifica l'importo da trasferire"
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr "Tra %s giorni"
+msgstr "Tra %s Giorni"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr "Tra %s mesi"
+msgstr "Tra %s Mesi"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr "Ogni %s giorni"
+msgstr "Ogni %s Giorni"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr "Ogni %s mesi"
+msgstr "Ogni %s Mesi"
 
 #: billsdepositspanel.cpp:140 budgetingpanel.cpp:301 reports/myusage.cpp:163
 msgid "Frequency"
@@ -1283,7 +1283,7 @@ msgstr "Pagamento"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "MMEX consente di impostare i pagamenti abituali come operazioni. Queste operazioni possono essere versamenti o trasferimenti che si prevede di effettuare in futuro. Tali operazioni attivano un promemoria che, in prossimità della scadenza, sarà visualizzato nella Pagina Principale 14 giorni prima della scadenza."
+msgstr "MMEX consente di impostare i pagamenti regolari come transazioni. Queste transazioni possono essere anche depositi o trasferimenti regolari che avverranno in un momento futuro. Queste transazioni servono a ricordare che un evento sta per verificarsi e vengono visualizzate sulla Pagina Iniziale 14 giorni prima della scadenza della transazione. "
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1292,7 +1292,7 @@ msgstr "Suggerimento: Queste operazioni possono essere impostate come da attivar
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:984 mmframe.cpp:746
 #: mmframe.cpp:2990 mmhomepagepanel.cpp:241
 msgid "Recurring Transactions"
-msgstr "Operazioni Ricorrenti"
+msgstr "Transazione Ricorrenti"
 
 #: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:414
 msgid "D&uplicate "
