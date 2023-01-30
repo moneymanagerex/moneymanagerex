@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-29 23:25\n"
+"PO-Revision-Date: 2023-01-30 15:08\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -991,7 +991,7 @@ msgstr "Stato"
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:1232
 msgid "Specify the type of transactions to be created."
-msgstr "Specificare il tipo di operazione da creare."
+msgstr "Specificare il tipo di transazioni da creare."
 
 #: billsdepositsdialog.cpp:503 transdialog.cpp:432
 msgid "&Advanced"
@@ -1135,8 +1135,8 @@ msgstr "Sembra un pagamento in ritardo"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr "Non hai usato questo nome del beneficiario prima. Il nome è corretto?\n"
-"%s"
+msgstr "In precedenza non hai mai utilizzato questo nome di beneficiario. Il nome è corretto?\n"
+"\"%s\""
 
 #: billsdepositsdialog.cpp:919 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:637
