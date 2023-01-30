@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-29 23:25\n"
+"PO-Revision-Date: 2023-01-30 13:26\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6202,7 +6202,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Omogućuje mijenjanje „prvog dana” u mjesecu (obično 1.) za izračunavanje proračuna"
 
 #: optionsettingsview.cpp:161
 msgid "Start day of month for reporting:"
@@ -6558,7 +6558,7 @@ msgstr "Ne uklanjaj informacije priložene ispod ovog teksta."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Koristi „Pomoć → Provjeri nadogradnje” u MMEX-u za preuzimanje najnovije verzije u kojoj su tvoji problemi možda već riješeni."
 
 #: reports/bugreport.h:75
 #, c-format
