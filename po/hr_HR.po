@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-30 13:26\n"
+"PO-Revision-Date: 2023-01-30 16:14\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2905,7 +2905,7 @@ msgstr "i više …"
 #: images_list.cpp:458
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr "U odabranoj temi „%s” se nalaze(i) %d nedostajuće ili neispravne ikone: %s"
+msgstr ""
 
 #: images_list.cpp:487
 #, c-format
@@ -4160,7 +4160,8 @@ msgstr[2] ""
 #: mmchecking_list.cpp:1254
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr "Želiš li još uvijek izvršiti promjenu?"
+msgstr "\n\n"
+"Želiš li još uvijek izvršiti promjenu?"
 
 #: mmchecking_list.cpp:1255
 msgid "Closed Account Check"
@@ -4742,7 +4743,7 @@ msgstr "Upravljač tema"
 
 #: mmframe.cpp:1667
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Filtar za izvještaje o transakcijama …"
 
 #: mmframe.cpp:1667 mmframe.cpp:1843
 msgid "Transaction Report Filter"
@@ -4750,11 +4751,11 @@ msgstr "Filtar za izvještaje o transakcijama"
 
 #: mmframe.cpp:1673
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "&Opći upravljač izvještaja …"
 
 #: mmframe.cpp:1677
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "&Upravljač prilagođenih polja …"
 
 #: mmframe.cpp:1677
 msgid "Custom Fields Manager"
@@ -6218,7 +6219,7 @@ msgstr "Zanemari buduće transakcije"
 
 #: optionsettingsview.cpp:176
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Boje transakcija"
 
 #: optionsettingsview.cpp:215
 msgid "UI Appearance"
@@ -6681,11 +6682,11 @@ msgstr "Kroz vrijeme"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"
-msgstr ""
+msgstr "Korisnički određen početni dan"
 
 #: reports/htmlbuilder.cpp:257
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Buduće transakcije su zanemarene"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
@@ -6705,7 +6706,7 @@ msgstr "Mjesečni prihod i rashod"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Kumulativno"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -6859,11 +6860,11 @@ msgstr "Dijagram rezultata vlasničkih udjela"
 
 #: reports/transactions.cpp:382
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Sve transakcije: isplate, uplate i prijenosi"
 
 #: reports/transactions.cpp:400
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Sve transakcije, ne uključujući prijenose"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
@@ -6939,19 +6940,19 @@ msgstr "Uredi dioničku transakciju"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Uredi detalj podjele"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Upiši bilješke za opis ove podijeljene transakcije"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
-msgstr ""
+msgstr "Dodaj podjelu"
 
 #: splittransactionsdialog.cpp:247
 msgid "Remove Split"
-msgstr ""
+msgstr "Ukloni podjelu"
 
 #: splittransactionsdialog.cpp:395
 msgid "Invalid Total Amount"
@@ -6959,7 +6960,7 @@ msgstr "Nevaljan ukupni iznos"
 
 #: splittransactionsdialog.cpp:553
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Unesi ispravan novčani iznos"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
@@ -7204,7 +7205,7 @@ msgstr "Potvrdi brisanje vlasničkog udjela"
 #: stocks_list.cpp:298
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Premještanje transakcije iz %s u"
 
 #: stockspanel.cpp:135
 msgid "Add Stock Transactions"
@@ -7306,23 +7307,23 @@ msgstr "Odaberi datoteku teme za učitavanje"
 
 #: themes.cpp:305
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Tema već postoji. Želiš li svejedno uvesti i prepisati postojeću temu?"
 
 #: themes.cpp:315
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Dogodila se greška prilikom uvoza teme"
 
 #: themes.cpp:327
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Stvarno želiš izbrisati ovu temu? Ako je želiš ponovo koristiti, morat ćeš je ponovo uvesti."
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Dogodila se greška prilikom pokušaja brisanja teme"
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Stvarno želiš koristiti ovu temu? Ova promjena će stupiti na snagu nakon ponovnog pokretanja MMEX-a."
 
 #: transactionsupdatedialog.cpp:191
 msgid "Transfer To"
