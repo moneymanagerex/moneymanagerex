@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-28 22:58\n"
+"PO-Revision-Date: 2023-01-29 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -884,19 +884,19 @@ msgstr "Quotidiana"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr "Tra %s giorni"
+msgstr "Tra (x) giorni"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr "Tra %s mesi"
+msgstr "Tra (x) mesi"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr "Ogni %s giorni"
+msgstr "Ogni (x) giorni"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr "Ogni %s mesi"
+msgstr "Ogni (x) mesi"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -912,15 +912,15 @@ msgstr "Duplica Transazione Ricorrente"
 
 #: billsdepositsdialog.cpp:301 billsdepositspanel.cpp:298
 msgid "Edit Recurring Transaction"
-msgstr "Modifica operazione ricorrente"
+msgstr "Modifica Transazione Ricorrente"
 
 #: billsdepositsdialog.cpp:306
 msgid "Enter Recurring Transaction"
-msgstr "Inserire operazione ricorrente"
+msgstr "Inserisci Transazione Ricorrente"
 
 #: billsdepositsdialog.cpp:401
 msgid "Recurring Transaction Details"
-msgstr "Dettagli operazione ricorrente"
+msgstr "Dettagli Transazione Ricorrente"
 
 #: billsdepositsdialog.cpp:415
 msgid "Specify the date when this bill or deposit is due"
@@ -948,11 +948,11 @@ msgstr "Pagamenti rimanenti"
 
 #: billsdepositsdialog.cpp:459
 msgid "Request user to enter payment"
-msgstr "Si richiede all'utente di inserire il pagamento"
+msgstr "Richiedi all'utente di inserire il pagamento"
 
 #: billsdepositsdialog.cpp:460
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "All'utente è richiesto di inserire questa operazione il giorno del pagamento"
+msgstr "All'utente viene richiesto di inserire questa transazione nella Data di pagamento."
 
 #: billsdepositsdialog.cpp:463
 msgid "Grant automatic execute"
@@ -1205,8 +1205,8 @@ msgstr "Specificare il periodo in mesi per attivare.\n"
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr "Specifica il numero di pagamenti da fare.\n"
-"Lascia in bianco se i pagamenti continuano all'infinito."
+msgstr "Specifica il numero di pagamenti da effettuare.\n"
+"Lascia in bianco se i pagamenti proseguiranno all'infinito."
 
 #: billsdepositsdialog.cpp:1258 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1186 maincurrencydialog.cpp:479
