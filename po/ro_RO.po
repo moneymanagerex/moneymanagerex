@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-01-29 01:56+0300\n"
-"PO-Revision-Date: 2023-01-28 22:58\n"
+"POT-Creation-Date: 2023-01-31 16:30+0300\n"
+"PO-Revision-Date: 2023-01-31 13:33\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1818,81 +1818,105 @@ msgstr "Închide"
 msgid "&Close "
 msgstr "&Închide "
 
-#: constants.cpp:96
+#: constants.cpp:84
+msgid "Undo"
+msgstr ""
+
+#: constants.cpp:85
+msgid "Redo"
+msgstr ""
+
+#: constants.cpp:86
+msgid "Cut"
+msgstr ""
+
+#: constants.cpp:87
+msgid "Copy"
+msgstr ""
+
+#: constants.cpp:88
+msgid "Paste"
+msgstr ""
+
+#: constants.cpp:89
+msgid "Select All"
+msgstr ""
+
+#: constants.cpp:105
 msgid "64-bit"
 msgstr "64-biți"
 
-#: constants.cpp:177
+#: constants.cpp:186
 msgid "View with Transaction Filter"
 msgstr "Vezi cu Filtru Tranzacție"
 
-#: constants.cpp:178
+#: constants.cpp:187
 msgid "View All Transactions"
 msgstr "Vezi Toate Tranzacțiile"
 
-#: constants.cpp:179
+#: constants.cpp:188
 msgid "View Today"
 msgstr "Vezi de Azi"
 
-#: constants.cpp:180
+#: constants.cpp:189
 msgid "View Current Month"
 msgstr "Vezi din Luna Curentă"
 
-#: constants.cpp:181
+#: constants.cpp:190
 msgid "View Last 30 days"
 msgstr "Vezi ultimele 30 de zile"
 
-#: constants.cpp:182
+#: constants.cpp:191
 msgid "View Last 90 days"
 msgstr "Vezi ultimele 90 de zile"
 
-#: constants.cpp:183
+#: constants.cpp:192
 msgid "View Last Month"
 msgstr "Vezi din Luna Trecută"
 
-#: constants.cpp:184
+#: constants.cpp:193
 msgid "View Last 3 Months"
 msgstr "Vezi ultimele 3 luni"
 
-#: constants.cpp:185
+#: constants.cpp:194
 msgid "View Last 12 Months"
 msgstr "Vezi ultimele 12 luni"
 
-#: constants.cpp:186
+#: constants.cpp:195
 msgid "View Current Year"
 msgstr "Vezi anul curent"
 
-#: constants.cpp:187
+#: constants.cpp:196
 msgid "View Current Financial Year"
 msgstr "Vezi anul financiar curent"
 
-#: constants.cpp:188
+#: constants.cpp:197
 msgid "View Last Year"
 msgstr "Vezi anul trecut"
 
-#: constants.cpp:189
+#: constants.cpp:198
 msgid "View Last Financial Year"
 msgstr "Vezi ultimul an financiar"
 
-#: constants.cpp:190
+#: constants.cpp:199
 msgid "View Since Statement Date"
 msgstr ""
 
-#: constants.cpp:192
+#: constants.cpp:201
 msgid "ALL"
 msgstr "TOATE"
 
-#: constants.cpp:193 mmframe.cpp:1427 mmframe.cpp:1832
+#: constants.cpp:202 mmframe.cpp:1427 mmframe.cpp:1832
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "Deschis"
 
-#: constants.cpp:194 mmframe.cpp:1428 model/Model_Account.cpp:28
+#: constants.cpp:203 mmframe.cpp:1428 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "Închis"
 
-#: constants.cpp:195 mmframe.cpp:1426
+#: constants.cpp:204 mmframe.cpp:1426
 msgid "Favorites"
 msgstr "Favorite"
 
