@@ -79,6 +79,15 @@ const wxString g_CloseLabel =
 #else
     wxTRANSLATE("&Close ");
 #endif
+
+//bug #5590
+const wxString grm_menu_undo = _("Undo");
+const wxString grm_menu_redo = _("Redo");
+const wxString grm_menu_cut = _("Cut");
+const wxString grm_menu_copy = _("Copy");
+const wxString grm_menu_paste = _("Paste");
+const wxString grm_menu_selall = _("Select All");
+
 //---------------------------------------------------------------------------
 int mmex::MIN_DATAVERSION = 2;
 const wxString mmex::DATAVERSION = "3";
