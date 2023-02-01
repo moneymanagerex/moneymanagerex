@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-01 12:31\n"
+"PO-Revision-Date: 2023-02-01 13:42\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -535,15 +535,15 @@ msgstr "当前价值"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr "新增资产(&N)..."
+msgstr "新增资产..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr "复制资产(&D)..."
+msgstr "复制资产..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr "新增资产交易(&A)..."
+msgstr "新增资产交易..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -551,20 +551,20 @@ msgstr "查看资产交易(&)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr "打开资产账户(&O)..."
+msgstr "打开资产账户..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr "编辑资产(&E)..."
+msgstr "编辑资产..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr "删除资产(&D)..."
+msgstr "删除资产..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:468
 #: mmframe.cpp:1381 mmframe.cpp:1401 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "管理附件(&O)..."
+msgstr "管理附件..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1328,19 +1328,19 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr "新建周期性交易(&N)..."
+msgstr "新建周期性交易..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr "编辑周期性交易(&E)..."
+msgstr "编辑周期性交易..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr "复制周期性交易(&D)..."
+msgstr "复制周期性交易..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr "删除周期性交易(&D)..."
+msgstr "删除周期性交易..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -4053,7 +4053,7 @@ msgstr[0] "恢复所选交易(&R)..."
 
 #: mmchecking_list.cpp:478
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "恢复当前视图中的所有交易..."
 
 #: mmchecking_list.cpp:483
 msgid "&Delete selected transaction..."
@@ -4067,19 +4067,19 @@ msgstr[0] "永久删除所选交易(&P)..."
 
 #: mmchecking_list.cpp:487
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "删除当前视图中的所有交易..."
 
 #: mmchecking_list.cpp:487
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "永久删除当前视图中的所有交易..."
 
 #: mmchecking_list.cpp:489
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "删除已查看“跟进”交易..."
 
 #: mmchecking_list.cpp:490
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "删除已查看“未核实”交易..."
 
 #: mmchecking_list.cpp:508
 msgid "Mark as"
@@ -4113,7 +4113,7 @@ msgstr "被删除的交易将被暂时保存，并可以从删除交易视图中
 
 #: mmchecking_list.cpp:1031 mmchecking_list.cpp:1139
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "您将无法撤销此操作。"
 
 #: mmchecking_list.cpp:1035 mmchecking_list.cpp:1046 mmchecking_list.cpp:1057
 #: mmchecking_list.cpp:1144
@@ -4432,27 +4432,27 @@ msgstr "XML 文件(&X)..."
 
 #: mmframe.cpp:1332 mmframe.cpp:1495
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "MMEX CSV 文件..."
 
 #: mmframe.cpp:1333 mmframe.cpp:1496
 msgid "&JSON File..."
-msgstr ""
+msgstr "JSON 文件..."
 
 #: mmframe.cpp:1334 mmframe.cpp:1497
 msgid "&QIF File..."
-msgstr ""
+msgstr "QIF 文件..."
 
 #: mmframe.cpp:1359
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "编辑筛选器..."
 
 #: mmframe.cpp:1360
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "重命名筛选器..."
 
 #: mmframe.cpp:1361
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "清除筛选器..."
 
 #: mmframe.cpp:1377 mmframe.cpp:1395 mmframe.cpp:1415 mmframe.cpp:1593
 msgid "&Edit Account..."
@@ -4528,7 +4528,7 @@ msgstr "导入QIF文件"
 
 #: mmframe.cpp:1488
 msgid "&WebApp..."
-msgstr ""
+msgstr "WebApp..."
 
 #: mmframe.cpp:1488
 msgid "Import from WebApp"
@@ -4540,7 +4540,7 @@ msgstr "导出为固定 CSV 文件"
 
 #: mmframe.cpp:1499
 msgid "&HTML File..."
-msgstr ""
+msgstr "HTML 文件..."
 
 #: mmframe.cpp:1499
 msgid "Export as HTML file"
@@ -4684,7 +4684,7 @@ msgstr "收款人管理"
 
 #: mmframe.cpp:1626
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "货币管理..."
 
 #: mmframe.cpp:1626 mmframe.cpp:1841
 msgid "Organize Currency"
@@ -4728,7 +4728,7 @@ msgstr "资产(&A)"
 
 #: mmframe.cpp:1661
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "主题管理器..."
 
 #: mmframe.cpp:1661 themes.cpp:143
 msgid "Theme Manager"
@@ -4748,7 +4748,7 @@ msgstr "通用报表管理器..."
 
 #: mmframe.cpp:1677
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "自定义字段管理器..."
 
 #: mmframe.cpp:1677
 msgid "Custom Fields Manager"
@@ -5206,7 +5206,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "分享账户持有股份交易\n\n"
+"共享交易是在关联视图中选择公司股票后在股票组合视图\n"
+"中创建的。\n\n"
+"这些账户只有在将库存关联到共享账户\n"
+"或者使用菜单视图→'显示共享账户'\n"
+"共享账户也可以保持正常交易到普通账户。"
 
 #: mmframe.cpp:2503
 msgid "Share Account Creation"
