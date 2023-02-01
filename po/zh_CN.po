@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-01 13:42\n"
+"PO-Revision-Date: 2023-02-01 19:54\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2321,7 +2321,7 @@ msgstr "生活"
 
 #: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
 msgid "Home"
-msgstr "家庭"
+msgstr "主页"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -4664,7 +4664,7 @@ msgstr "从数据库中删除账户"
 
 #: mmframe.cpp:1612
 msgid "Download Ra&tes"
-msgstr "下载速率​​(&T)"
+msgstr "下载费率(&T)"
 
 #: mmframe.cpp:1612 mmframe.cpp:1862
 msgid "Download Currency and Stock rates"
