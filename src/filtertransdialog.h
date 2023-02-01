@@ -211,6 +211,7 @@ private:
     //Selected accountns ID
     wxArrayInt m_selected_accounts_id;
     wxArrayInt m_selected_columns_id;
+    wxArrayInt m_selected_categories_id;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
     enum
