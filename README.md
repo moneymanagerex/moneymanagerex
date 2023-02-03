@@ -44,7 +44,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 Main features
 ================
 
-- Intuitive, functional, fast, clean
+- Fast, intuitive and functional
 - Checking, credit card, savings, stock investment, asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
