@@ -44,15 +44,15 @@ simplicity and user-friendliness – an application that can be used everyday.
 Main features
 ================
 
-- Intuitive, simple, fast, clean
+- Intuitive, functional, fast, clean
 - Checking, credit card, savings, stock investment, asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one click reporting with graphs and charts
 - Import data from CSV and QIF formats
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
-- Does not require installation: can run from a USB or flash drive
-- Non-Proprietary [SQLite](https://www.sqlite.org/) Database with AES Encryption
+- Installation not required: can run from a USB or a flash drive
+- Non-Proprietary [SQLite](https://www.sqlite.org/) Database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 - [International language support](https://crowdin.com/project/moneymanagerex) 
 
 
