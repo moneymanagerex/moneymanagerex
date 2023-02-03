@@ -26,6 +26,8 @@ simplicity and user-friendliness - an application that can be used everyday.
                  alt="Payee Report" 
                  title="Payee Report">
         </td>
+    </tr>
+    <tr>
         <td>
             <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" 
                  alt="Transaction Filter and Organize Categories" 
