@@ -69,8 +69,7 @@ Download
 Credits
 ================
 
-MMEX is mainly written in C++11.
-This software uses the following open-source packages:
+MMEX is mainly written in C++11 and uses the following open-source packages:
 * [wxWidgets] 3.0+ 
 * [wxSqlite3] 
 * [SQLite3] 
