@@ -69,24 +69,16 @@ Download
 Credits
 ================
 
-MMEX is mainly written in C++11.  
+MMEX is mainly written in C++11.
 This software uses the following open-source packages:
-
-[wxWidgets] 3.0+ 
-
-[wxSqlite3] 
-
-[SQLite3] 
-
-[RapidJSON]
-
-[ChartNew.JS] (outdated)
-
-[ApexCharts.js]
-
-[html-template] 
-
-[libcurl]
+* [wxWidgets] 3.0+ 
+* [wxSqlite3] 
+* [SQLite3] 
+* [RapidJSON]
+* [ChartNew.JS] (outdated)
+* [ApexCharts.js]
+* [html-template] 
+* [libcurl]
 
 Supported platforms
 ================
