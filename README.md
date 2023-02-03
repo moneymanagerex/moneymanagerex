@@ -45,14 +45,14 @@ Main features
 ================
 
 - Intuitive, simple, fast, clean
-- Checking, credit card, savings, stock investment, assets accounts
+- Checking, credit card, savings, stock investment, asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
-- Simple one click reporting with graphs and piecharts
+- Simple one click reporting with graphs and charts
 - Import data from any CSV format, QIF
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Does not require an install: can run from a USB key
-- Non-Proprietary SQLite Database with AES Encryption
+- Non-Proprietary [SQLite](https://www.sqlite.org/) Database with AES Encryption
 - [International language support](https://crowdin.com/project/moneymanagerex) 
 
 
