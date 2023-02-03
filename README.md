@@ -45,7 +45,6 @@ Main features
 ================
 
 - Fast, intuitive and functional
-- Cross-platform, runs on desktop and mobile operating systems
 - Checking, credit card, savings, stock investment, asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
@@ -54,6 +53,7 @@ Main features
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: can run from a USB or a flash drive
 - Non-Proprietary [SQLite](https://www.sqlite.org/) Database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+- Cross-platform, runs on desktop and mobile operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex) 
 
 
