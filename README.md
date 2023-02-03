@@ -49,9 +49,9 @@ Main features
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one click reporting with graphs and charts
-- Import data from any CSV format, QIF
+- Import data from CSV and QIF formats
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
-- Does not require an install: can run from a USB key
+- Does not require installation: can run from a USB or flash drive
 - Non-Proprietary [SQLite](https://www.sqlite.org/) Database with AES Encryption
 - [International language support](https://crowdin.com/project/moneymanagerex) 
 
@@ -59,7 +59,7 @@ Main features
 Download
 ================
 
-You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for GNU/Linux, macOS and Windows.
+[Download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for GNU/Linux, macOS and Windows.
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
@@ -101,10 +101,10 @@ External public resources
 Tips
 ================
 
-* You can open database file (both regular and encrypted) directly
+* Database file (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
-* You can download dozen of cool reports from [general reports] repository
-* Star it if you feel it is helpful [![st]][stargazers]
+* Download dozen of useful reports from the [general reports] repository
+* Star this repository if you feel it is helpful [![st]][stargazers]
 
 [website]: https://moneymanagerex.org "MMEX website"
 [AppVeyor]: https://ci.appveyor.com/project/whalley/moneymanagerex "AppVeyor CI"
@@ -136,7 +136,7 @@ Tips
 [html-template]: https://github.com/moneymanagerex/html-template
 [libcurl]: https://curl.haxx.se/libcurl/
 [wxsqliteplus]: https://github.com/guanlisheng/wxsqliteplus
-[general report]: https://github.com/moneymanagerex/general-reports
+[general reports]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers
 [a]: https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=windows&logoWidth=0.01
 [ci]: https://img.shields.io/circleci/build/github/moneymanagerex/moneymanagerex/master?label=linux/mac
