@@ -89,7 +89,7 @@ This software uses the following open-source packages:
 External public resources
 ================
 
-[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [crowdin.com] | [SourceForge] | [GitHub]
+[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Crowdin] | [SourceForge] | [GitHub]
 | [Docker images] | [Twitter] [![tw]][Twitter]
 
 Tips
