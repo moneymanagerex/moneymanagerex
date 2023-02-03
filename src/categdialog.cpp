@@ -168,7 +168,7 @@ bool mmCategDialog::AppendSubcategoryItems(wxTreeItemId parent, const Model_Cate
     bool catDisplayed = false;
     for (auto& subcat : m_categ_children[category->CATEGID]) {
         // Check if the subcategory should be shown
-        bool subcatDisplayed = (show_hidden_categs || subcat.ACTIVE || subcat.CATEGID == m_init_selected_categ_id) && subcat.CATEGNAME.Lower().Matches(m_maskStr + "*");
+        bool subcatDisplayed = (show_hidden_categs || subcat.ACTIVE || subcat.CATEGID == m_init_selected_categ_id) && Model_Category::full_name(subcat.CATEGID).Lower().Matches(m_maskStr + "*");
         // Append it to get the item ID
         wxTreeItemId newId = m_treeCtrl->AppendItem(parent, subcat.CATEGNAME);
         // Check if any subcategories are not filtered out
@@ -207,7 +207,7 @@ void mmCategDialog::fillControls()
     for (auto& category : m_categ_children[-1])
     {
         bool cat_bShow = categShowStatus(category.CATEGID);
-        bool catDisplayed = (show_hidden_categs || cat_bShow || category.CATEGID == m_init_selected_categ_id) && category.CATEGNAME.Lower().Matches(match);
+        bool catDisplayed = (show_hidden_categs || cat_bShow || category.CATEGID == m_init_selected_categ_id) && Model_Category::full_name(category.CATEGID).Lower().Matches(match);
 
         // Append top level category to root_ to get the item ID
         maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
