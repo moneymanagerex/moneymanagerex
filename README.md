@@ -8,19 +8,30 @@ Money Manager Ex
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
-finance software. It primarily helps organize one's finances and keeps track
-of where, when and how the money goes.
+finance software. It helps organize one's finances and track cash flow.
 
 MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
-simplicity and user-friendliness - something one can use everyday.
+simplicity and user-friendliness - software that can be used everyday.
 
 <table border="0">
     <tr>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" ></td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" 
+                 alt="Dashboard">
+        </td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" 
+                 alt="Payee Report">
+        </td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" 
+                 alt="Transaction Filter and Organize Categories">
+        </td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" 
+                 alt="Budget Setup">
+        </td>
     </tr>
 </table>
 
@@ -86,7 +97,7 @@ Tips
 
 * You can open database file (both regular and encrypted) directly
   with [wxsqliteplus]
-* You can download dozen of cool reports from [general report] repository
+* You can download dozen of cool reports from [general reports] repository
 * Star it if you feel it is helpful [![st]][stargazers]
 
 [website]: https://moneymanagerex.org "MMEX website"
