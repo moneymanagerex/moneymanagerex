@@ -45,6 +45,7 @@ Main features
 ================
 
 - Fast, intuitive and functional
+- Cross-platform, runs on desktop and mobile operating systems
 - Checking, credit card, savings, stock investment, asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
