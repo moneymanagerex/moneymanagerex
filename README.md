@@ -8,7 +8,7 @@ Money Manager Ex
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
-finance software. It helps organize one's finances and track cash flow.
+finance software. It helps organize finances and track cash flow.
 
 MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
