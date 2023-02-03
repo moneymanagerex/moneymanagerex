@@ -174,7 +174,7 @@ or
 You may also like…
 ================
 
-- [MoneyManager Ex for Android](https://github.com/moneymanagerex/android-money-manager-ex)
+- [MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
 
 
 License
