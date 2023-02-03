@@ -52,7 +52,7 @@ Main features
 - Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: can run from a USB or a flash drive
-- Non-Proprietary [SQLite](https://www.sqlite.org/) Database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+- Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 - Cross-platform, available for desktop and mobile operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex) 
 
