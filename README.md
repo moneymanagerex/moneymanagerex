@@ -180,7 +180,7 @@ You may also like…
 License
 ================
 
-[GPL](./moneymanagerex/blob/master/LICENSE)
+[GPL](LICENSE)
 
 ### Stargazers over time
 
