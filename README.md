@@ -88,7 +88,9 @@ This software uses the following open-source packages:
 
 [libcurl]
 
-#### Supported platforms ####
+Supported platforms
+================
+
 - Windows XP, 2003, Vista, 7, 8, 10 and 11
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
 - OS X (10.9 or newer) and macOS using Cocoa
