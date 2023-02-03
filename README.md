@@ -45,7 +45,7 @@ Main features
 ================
 
 - Fast, intuitive and functional
-- Checking, credit card, savings, stock investment, asset accounts
+- Checking, credit card, savings, stock investment and asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one click reporting with graphs and charts
