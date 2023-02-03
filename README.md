@@ -91,7 +91,7 @@ This software uses the following open-source packages:
 Supported platforms
 ================
 
-- Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
+- Most [Unix variants](https://en.wikipedia.org/wiki/Category:Unix_variants) using the GTK+ toolkit (version 2.6 or newer or 3.x)
 - OS X (10.9 or newer) and macOS using Cocoa
 - Windows XP, 2003, Vista, 7, 8, 10 and 11
 
