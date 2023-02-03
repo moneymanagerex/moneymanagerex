@@ -18,19 +18,23 @@ simplicity and user-friendliness - software that can be used everyday.
     <tr>
         <td>
             <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" 
-                 alt="Dashboard">
+                 alt="Dashboard" 
+                 title="Dashboard">
         </td>
         <td>
             <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" 
-                 alt="Payee Report">
+                 alt="Payee Report" 
+                 title="Payee Report">
         </td>
         <td>
             <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" 
-                 alt="Transaction Filter and Organize Categories">
+                 alt="Transaction Filter and Organize Categories" 
+                 title="Transaction Filter and Organize Categories">
         </td>
         <td>
             <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" 
-                 alt="Budget Setup">
+                 alt="Budget Setup" 
+                 title="Budget Setup">
         </td>
     </tr>
 </table>
