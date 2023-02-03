@@ -12,7 +12,7 @@ finance software. It helps organize finances and track cash flow.
 
 MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
-simplicity and user-friendliness - software that can be used everyday.
+simplicity and user-friendliness - an application that can be used everyday.
 
 <table border="0">
     <tr>
