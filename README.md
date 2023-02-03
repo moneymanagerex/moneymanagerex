@@ -7,7 +7,7 @@ MoneyManager Ex
 [![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
-[MoneyManager Ex (MMEX)](https://moneymanagerex.org/) is a free, open-source, cross-platform, easy-to-use personal
+[MoneyManager Ex (MMEX)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
 finance software. It helps organize finances and track cash flow.
 
 MMEX includes all the basic features that 90% of users would want to see in a
