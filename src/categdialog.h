@@ -123,6 +123,7 @@ private:
     int m_init_selected_categ_id;
     int m_dragSourceCATEGID;
     std::map<int, bool> m_categoryVisible;
+    std::map<int, std::vector<Model_Category::Data>> m_categ_children;
     bool m_processExpandCollapse;
     wxColour NormalColor_;
     bool m_refresh_requested;

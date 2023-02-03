@@ -166,13 +166,13 @@ void mmCategDialog::saveCurrentCollapseState()
 bool mmCategDialog::AppendSubcategoryItems(wxTreeItemId parent, const Model_Category::Data* category) {
     bool show_hidden_categs = m_tbShowAll->GetValue();
     bool catDisplayed = false;
-    for (const auto& subcat : Model_Category::sub_category(category)) {
+    for (auto& subcat : m_categ_children[category->CATEGID]) {
         // Check if the subcategory should be shown
         bool subcatDisplayed = (show_hidden_categs || subcat.ACTIVE || subcat.CATEGID == m_init_selected_categ_id) && subcat.CATEGNAME.Lower().Matches(m_maskStr + "*");
         // Append it to get the item ID
         wxTreeItemId newId = m_treeCtrl->AppendItem(parent, subcat.CATEGNAME);
         // Check if any subcategories are not filtered out
-        if (!Model_Category::sub_category(subcat).empty()) subcatDisplayed |= AppendSubcategoryItems(newId, &subcat);
+        subcatDisplayed |= AppendSubcategoryItems(newId, &subcat);
         if (subcatDisplayed)
         {
             m_treeCtrl->SetItemData(newId, new mmTreeItemCateg(subcat));
@@ -198,9 +198,13 @@ void mmCategDialog::fillControls()
     bool show_hidden_categs = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
 
     const wxString match = m_maskStr + "*";
-    const auto& categories = Model_Category::instance().find(Model_Category::PARENTID(-1));
     wxTreeItemId maincat = root_;
-    for (const Model_Category::Data& category : categories)
+    m_categ_children.clear();
+    for (Model_Category::Data cat : Model_Category::instance().all(Model_Category::COL_CATEGNAME)) {
+        m_categ_children[cat.PARENTID].push_back(cat);
+    }
+
+    for (auto& category : m_categ_children[-1])
     {
         bool cat_bShow = categShowStatus(category.CATEGID);
         bool catDisplayed = (show_hidden_categs || cat_bShow || category.CATEGID == m_init_selected_categ_id) && category.CATEGNAME.Lower().Matches(match);
@@ -208,10 +212,7 @@ void mmCategDialog::fillControls()
         // Append top level category to root_ to get the item ID
         maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
         // If the category has any subcategories, append them
-        if (!Model_Category::sub_category(category).empty()) {
-            // we will show the category if either the category matches the filter or at least one descendant does
-            catDisplayed |= AppendSubcategoryItems(maincat, &category);
-        }
+        catDisplayed |= AppendSubcategoryItems(maincat, &category);
         // If the main category or any subcategory are shown
         if (catDisplayed) {
             m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category));
@@ -219,7 +220,6 @@ void mmCategDialog::fillControls()
                 m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
             if (m_categ_id == category.CATEGID)
                 m_selectedItemId = maincat;
-            m_treeCtrl->SortChildren(maincat);
             if (m_maskStr.IsEmpty() && (m_categoryVisible.count(category.CATEGID) > 0) && !m_categoryVisible.at(category.CATEGID))
                 m_treeCtrl->CollapseAllChildren(maincat);
             else m_treeCtrl->ExpandAllChildren(maincat);
