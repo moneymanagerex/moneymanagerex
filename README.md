@@ -1,5 +1,5 @@
 [<img src="https://raw.githubusercontent.com/moneymanagerex/moneymanagerex/master/resources/mmexlogo.png" height="32"/>][website]
-Money Manager Ex
+MoneyManager Ex (MMEX)
 ================
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
@@ -7,42 +7,60 @@ Money Manager Ex
 [![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
-Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
-finance software. It primarily helps organize one's finances and keeps track
-of where, when and how the money goes.
+[MoneyManager Ex (MMEX)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
+finance software. It helps organize finances and track cash flow.
 
 MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
-simplicity and user-friendliness - something one can use everyday.
+simplicity and user-friendliness – an application that can be used everyday.
 
 <table border="0">
     <tr>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" ></td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" 
+                 alt="Dashboard" 
+                 title="Dashboard">
+        </td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" 
+                 alt="Payee Report" 
+                 title="Payee Report">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" 
+                 alt="Transaction Filter and Organize Categories" 
+                 title="Transaction Filter and Organize Categories">
+        </td>
+        <td>
+            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" 
+                 alt="Budget Setup" 
+                 title="Budget Setup">
+        </td>
     </tr>
 </table>
 
 Main features
 ================
 
-- Intuitive, simple, fast, clean
-- Checking, credit card, savings, stock investment, assets accounts
+- Fast, intuitive and functional
+- Checking, credit card, savings, stock investment and asset accounts
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
-- Simple one click reporting with graphs and piecharts
-- Import data from any CSV format, QIF
+- Simple one-click reporting with graphs and charts
+- Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
-- Does not require an install: can run from a USB key
-- Non-Proprietary SQLite Database with AES Encryption
+- Installation not required: portable versions run from a USB or a flash drive
+- Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+- Cross-platform, available for desktop and mobile operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex) 
 
 
 Download
 ================
 
-You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for Windows, macOS and Linux.
+[Download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest version of MMEX for GNU/Linux, macOS and Windows.
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
@@ -51,43 +69,36 @@ You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) t
 Credits
 ================
 
-MMEX is mainly written in C++11.  
-This software uses the following open source packages:
+MMEX is mainly written in C++11 and uses the following open-source packages:
+* [wxWidgets] 3.0+ 
+* [wxSqlite3] 
+* [SQLite3] 
+* [RapidJSON]
+* [ChartNew.JS] (outdated)
+* [ApexCharts.js]
+* [html-template] 
+* [libcurl]
 
-[wxWidgets] 3.0+ 
+Supported platforms
+================
 
-[wxSqlite3] 
-
-[SQLite3] 
-
-[RapidJSON]
-
-[ChartNew.JS] (outdated)
-
-[ApexCharts.js]
-
-[html-template] 
-
-[libcurl]
-
-#### Supported platforms ####
-- Windows XP, 2003, Vista, 7, 8 and 10
-- Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
+- Most [Unix variants](https://en.wikipedia.org/wiki/Category:Unix_variants) using the [GTK+ toolkit](https://www.gtk.org/) (version 2.6 or newer or 3.x)
 - OS X (10.9 or newer) and macOS using Cocoa
+- Windows XP, 2003, Vista, 7, 8, 10 and 11
 
 External public resources
 ================
 
-[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [crowdin.com] | [SourceForge] | [GitHub]
+[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Crowdin] | [SourceForge] | [GitHub]
 | [Docker images] | [Twitter] [![tw]][Twitter]
 
 Tips
 ================
 
-* You can open database file (both regular and encrypted) directly
+* Database file (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
-* You can download dozen of cool reports from [general report] repository
-* Star it if you feel it is helpful [![st]][stargazers]
+* Download dozens of useful reports from the [general reports] repository
+* Star this repository if you feel it is helpful [![st]][stargazers]
 
 [website]: https://moneymanagerex.org "MMEX website"
 [AppVeyor]: https://ci.appveyor.com/project/whalley/moneymanagerex "AppVeyor CI"
@@ -119,7 +130,7 @@ Tips
 [html-template]: https://github.com/moneymanagerex/html-template
 [libcurl]: https://curl.haxx.se/libcurl/
 [wxsqliteplus]: https://github.com/guanlisheng/wxsqliteplus
-[general report]: https://github.com/moneymanagerex/general-reports
+[general reports]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers
 [a]: https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=windows&logoWidth=0.01
 [ci]: https://img.shields.io/circleci/build/github/moneymanagerex/moneymanagerex/master?label=linux/mac
@@ -140,7 +151,7 @@ Tips
 [tw]: https://img.shields.io/twitter/follow/MoneyManagerEx.svg?style=social&label=follow
 [Buy us a Cofee]: https://cash.me/$guanlisheng/1
 [Donate via PayPal]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
-[crowdin.com]: https://crowdin.com/project/moneymanagerex
+[Crowdin]: https://crowdin.com/project/moneymanagerex
 
 Support
 ================
@@ -151,16 +162,16 @@ or
 
 [![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
 
-You may also like...
+You may also like…
 ================
 
-- [Money Manager Ex for Android](https://github.com/moneymanagerex/android-money-manager-ex)
+- [MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
 
 
 License
 ================
 
-GPL
+[GPL](LICENSE)
 
 ### Stargazers over time
 
