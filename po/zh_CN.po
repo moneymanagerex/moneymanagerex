@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-01 19:54\n"
+"PO-Revision-Date: 2023-02-03 10:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1320,7 +1320,7 @@ msgstr "跳过下一次重复发生的事务"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "确认下次交易..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -4044,7 +4044,7 @@ msgstr "查看所有预算类目(&V)"
 
 #: mmchecking_list.cpp:472
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "创建周期性交易..."
 
 #: mmchecking_list.cpp:476
 msgid "&Restore selected transaction..."
