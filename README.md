@@ -42,7 +42,7 @@ Main features
 Download
 ================
 
-You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for Windows, macOS and Linux.
+You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for GNU/Linux, macOS and Windows.
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
@@ -71,7 +71,7 @@ This software uses the following open source packages:
 [libcurl]
 
 #### Supported platforms ####
-- Windows XP, 2003, Vista, 7, 8 and 10
+- Windows XP, 2003, Vista, 7, 8, 10 and 11
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
 - OS X (10.9 or newer) and macOS using Cocoa
 
