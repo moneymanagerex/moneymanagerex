@@ -171,7 +171,7 @@ or
 
 [![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
 
-You may also like...
+You may also like…
 ================
 
 - [Money Manager Ex for Android](https://github.com/moneymanagerex/android-money-manager-ex)
