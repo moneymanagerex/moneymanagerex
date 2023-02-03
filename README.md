@@ -91,9 +91,9 @@ This software uses the following open-source packages:
 Supported platforms
 ================
 
-- Windows XP, 2003, Vista, 7, 8, 10 and 11
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
 - OS X (10.9 or newer) and macOS using Cocoa
+- Windows XP, 2003, Vista, 7, 8, 10 and 11
 
 External public resources
 ================
@@ -106,7 +106,7 @@ Tips
 
 * Database file (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
-* Download dozen of useful reports from the [general reports] repository
+* Download dozens of useful reports from the [general reports] repository
 * Star this repository if you feel it is helpful [![st]][stargazers]
 
 [website]: https://moneymanagerex.org "MMEX website"
