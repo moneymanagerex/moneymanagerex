@@ -94,7 +94,7 @@ public:
     };
 
     mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
-    mmGUIFrame* m_frame;
+    mmGUIFrame* m_frame = nullptr;
 
     void updateExtraAssetData(int selIndex);
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);

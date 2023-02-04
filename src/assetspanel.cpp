@@ -365,8 +365,8 @@ END_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
-    : m_filter_type(Model_Asset::TYPE(-1))
-    , m_frame(frame)
+    : m_frame(frame)
+    , m_filter_type(Model_Asset::TYPE(-1))
     , m_listCtrlAssets(nullptr)
     , m_bitmapTransFilter(nullptr)
     , header_text_(nullptr)
@@ -803,7 +803,7 @@ void mmAssetsPanel::ViewAssetTrans(const int selected_index)
 
     // TODO create a panel to display all the information on one screen
     wxString msg = _("Account \t Date\t   Value\n\n");
-    for (const auto asset_entry : asset_list)
+    for (const auto &asset_entry : asset_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);
         if (asset_trans)
@@ -828,7 +828,7 @@ void mmAssetsPanel::GotoAssetAccount(const int selected_index)
     else
     {
         Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::ASSET, asset->ASSETID);
-        for (const auto asset_entry : asset_list)
+        for (const auto &asset_entry : asset_list)
         {
             Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);
             if (asset_trans)
