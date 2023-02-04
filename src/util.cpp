@@ -543,7 +543,7 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
     if (!df.empty())
         return df;
 
-    std::vector<wxString> formats = {
+    std::vector<wxString> date_formats = {
         "%d %Mon %Y",
         "%d %Mon %y",
         "%d-%Mon-%Y",
@@ -553,6 +553,7 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
         "%d,%m,%y",
         "%d.%m.%y",
         "%d.%m.%Y",
+        "%d.%m'%Y",
         "%d,%m,%Y",
         "%d/%m %Y",
         "%d/%m/%y",
@@ -581,10 +582,10 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
     };
 
     const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
-    if (std::find(formats.begin(), formats.end(), local_date_fmt) == formats.end())
-        formats.push_back(local_date_fmt);
+    if (std::find(date_formats.begin(), date_formats.end(), local_date_fmt) == date_formats.end())
+        date_formats.push_back(local_date_fmt);
 
-    for (const auto& entry : formats)
+    for (const auto& entry : date_formats)
     {
         auto local_date_mask = entry;
         local_date_mask.Replace("%Y", "YYYY");

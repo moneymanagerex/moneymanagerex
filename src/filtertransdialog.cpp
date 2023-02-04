@@ -284,7 +284,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             }
         }
     }
-
+ 
     categoryCheckBox_->SetValue(!s_category.IsEmpty());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
     categoryComboBox_->ChangeValue(s_category);
@@ -294,6 +294,9 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     bool subCatCheck = j_categorySubCat.IsBool() ? j_categorySubCat.GetBool() : false;
     categorySubCatCheckBox_->SetValue(subCatCheck);
     categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked());
+
+    wxCommandEvent evt(wxEVT_COMBOBOX, mmID_CATEGORY);
+    OnCategoryChange(evt);
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
@@ -558,6 +561,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     // Category sub-category checkbox
     categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include all sub-categories")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    categorySubCatCheckBox_->Bind(wxEVT_CHECKBOX, &mmFilterTransactionsDialog::OnCategoryChange, this);
 
     itemPanelSizer->AddSpacer(1);
     itemPanelSizer->Add(categorySubCatCheckBox_, g_flagsExpand);
@@ -835,9 +839,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     categoryComboBox_->Enable(categoryCheckBox_->IsChecked());
-    categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
-        && (categoryComboBox_->mmGetCategoryId() != -1));
-    if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
+    categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
@@ -923,7 +925,8 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
             return false;
         }
         wxRegEx pattern(value, wxRE_ADVANCED);
-        if (!pattern.IsValid()) {
+        if (!pattern.IsValid() || m_selected_categories_id.empty()) {
+            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Invalid value"), _("Category"), wxICON_ERROR);
             return false;
         }
     }
@@ -1225,29 +1228,19 @@ bool mmFilterTransactionsDialog::mmIsNoteMatches(const DATA& tran)
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
-    wxArrayString trx_categories;
+    wxArrayInt trx_categories;
     const auto& it = splits.find(tran.id());
     if (it == splits.end()) {
-        trx_categories.Add(Model_Category::full_name(tran.CATEGID));
+        trx_categories.Add(tran.CATEGID);
     }
     else {
         for (const auto& split : it->second) {
-            trx_categories.Add(Model_Category::full_name(split.CATEGID));
+            trx_categories.Add(split.CATEGID);
         }
     }
 
-    auto value = categoryComboBox_->mmGetPattern();
-
-    if (!value.empty()) {
-        if (mmIsCategorySubCatChecked()) value = value + ".*";
-        for (const auto& item : trx_categories)
-        {
-            wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
-            if (pattern.IsValid() && pattern.Matches(item)) {
-                return true;
-            }
-        }
-    }
+    for (const auto& item : trx_categories)
+        if (m_selected_categories_id.Index(item) != wxNOT_FOUND) return true;
 
     return false;
 }
@@ -1486,8 +1479,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     }
 
     // Sub Category inclusion
-    if (categoryCheckBox_->IsChecked()
-        && (categoryComboBox_->mmGetCategoryId() != -1))
+    if (categoryCheckBox_->IsChecked())
     {
         json_writer.Key((i18n ? _("Include all sub-categories") : "SUBCATEGORYINCLUDE").utf8_str());
         json_writer.Bool(categorySubCatCheckBox_->GetValue());
@@ -1611,9 +1603,20 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
 
 void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
 {
-    categorySubCatCheckBox_->Enable(categoryCheckBox_->IsChecked()
-        && (categoryComboBox_->mmGetCategoryId() != -1));
-    if (!categorySubCatCheckBox_->IsEnabled()) categorySubCatCheckBox_->SetValue(false);
+    m_selected_categories_id.clear();
+    if (!categoryComboBox_->GetValue().IsEmpty())
+    {
+        wxRegEx  pattern("^(" + categoryComboBox_->mmGetPattern() + ")$", wxRE_ICASE | wxRE_ADVANCED);
+        if (pattern.IsValid())
+            for (const auto& category : Model_Category::instance().all_categories())
+                if (pattern.Matches(category.first))
+                {
+                    m_selected_categories_id.Add(category.second);
+                    if (mmIsCategorySubCatChecked())
+                        for (const auto& subcat : Model_Category::instance().sub_tree(Model_Category::instance().get(category.second)))
+                            m_selected_categories_id.Add(subcat.CATEGID);
+                }
+    }
     event.Skip();
 }
 
