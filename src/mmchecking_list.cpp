@@ -878,7 +878,7 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 {
-    if (wxGetKeyState(WXK_SHIFT) || wxGetKeyState(WXK_ALT) || wxGetKeyState(WXK_CONTROL))
+    if (wxGetKeyState(WXK_COMMAND) || wxGetKeyState(WXK_ALT) || wxGetKeyState(WXK_CONTROL))
         return event.Skip();
 
     int key = event.GetKeyCode();
