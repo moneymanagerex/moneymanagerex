@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-01-31 13:34\n"
+"PO-Revision-Date: 2023-01-31 16:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1817,27 +1817,27 @@ msgstr "&Cerrar "
 
 #: constants.cpp:84
 msgid "Undo"
-msgstr ""
+msgstr "Deshacer"
 
 #: constants.cpp:85
 msgid "Redo"
-msgstr ""
+msgstr "Rehacer"
 
 #: constants.cpp:86
 msgid "Cut"
-msgstr ""
+msgstr "Cortar"
 
 #: constants.cpp:87
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: constants.cpp:88
 msgid "Paste"
-msgstr ""
+msgstr "Pegar"
 
 #: constants.cpp:89
 msgid "Select All"
-msgstr ""
+msgstr "Seleccionar todo"
 
 #: constants.cpp:105
 msgid "64-bit"

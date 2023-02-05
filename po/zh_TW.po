@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-01-31 13:34\n"
+"PO-Revision-Date: 2023-02-05 07:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "輸入帳目最初的結算。"
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "開戶日期"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -283,7 +283,7 @@ msgstr "貨幣"
 
 #: accountdialog.cpp:507 payeedialog.cpp:146
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "請輸入有效的 URL"
 
 #: accountdialog.cpp:507 payeedialog.cpp:146
 msgid "Invalid URL"
@@ -291,14 +291,14 @@ msgstr "無效的連結"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "開戶日期不能是在未來。"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1016
 #: billsdepositsdialog.cpp:1019 stockdialog.cpp:428 transdialog.cpp:605
 #: transdialog.cpp:679 usertransactionpanel.cpp:464 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "無效的日期"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -787,7 +787,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "目的地檔案已存在"
 
 #: attachmentdialog.cpp:458
 msgid "File not found in attachments. Please delete or rename it."
@@ -850,7 +850,7 @@ msgstr "每月"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "每隔2個月"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -1151,7 +1151,7 @@ msgstr ""
 #: payeedialog.cpp:149 transactionsupdatedialog.cpp:393 transdialog.cpp:597
 #: transdialog.cpp:612 util.cpp:747
 msgid "Invalid value"
-msgstr ""
+msgstr "無效的值"
 
 #: billsdepositsdialog.cpp:1016 billsdepositsdialog.cpp:1019
 #: import_export/univcsvdialog.cpp:1063 stockdialog.cpp:428 transdialog.cpp:605
@@ -1211,7 +1211,7 @@ msgstr "錯誤"
 #: billsdepositsdialog.cpp:1328 splittransactionsdialog.h:82
 #: transdialog.cpp:320
 msgid "Split Transaction"
-msgstr ""
+msgstr "分割交易"
 
 #: billsdepositsdialog.h:57 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"

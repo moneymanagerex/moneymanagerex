@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-01-31 13:34\n"
+"PO-Revision-Date: 2023-02-01 15:41\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1292,7 +1292,7 @@ msgstr "Suggerimento: Queste operazioni possono essere impostate come da attivar
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:984 mmframe.cpp:746
 #: mmframe.cpp:2990 mmhomepagepanel.cpp:241
 msgid "Recurring Transactions"
-msgstr "Transazione Ricorrenti"
+msgstr "Transazioni Ricorrenti"
 
 #: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:414
 msgid "D&uplicate "
@@ -1819,27 +1819,27 @@ msgstr "&Chiudi"
 
 #: constants.cpp:84
 msgid "Undo"
-msgstr ""
+msgstr "Annulla"
 
 #: constants.cpp:85
 msgid "Redo"
-msgstr ""
+msgstr "Ripeti"
 
 #: constants.cpp:86
 msgid "Cut"
-msgstr ""
+msgstr "Taglia"
 
 #: constants.cpp:87
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: constants.cpp:88
 msgid "Paste"
-msgstr ""
+msgstr "Incolla"
 
 #: constants.cpp:89
 msgid "Select All"
-msgstr ""
+msgstr "Seleziona Tutto"
 
 #: constants.cpp:105
 msgid "64-bit"
@@ -4360,7 +4360,7 @@ msgstr "Conti di Prestiti"
 
 #: mmframe.cpp:500
 msgid "Auto Repeat Transactions"
-msgstr "Operazioni Ricorrenti"
+msgstr "Transazioni Ricorrenti"
 
 #: mmframe.cpp:702 mmframe.cpp:1835
 msgid "Home Page"
@@ -4733,7 +4733,7 @@ msgstr "&Impostazione del Budget..."
 
 #: mmframe.cpp:1651
 msgid "&Recurring Transactions"
-msgstr "Operazioni &Ricorrenti"
+msgstr "Transazioni &Ricorrenti"
 
 #: mmframe.cpp:1651
 msgid "Bills && Deposits"
@@ -6467,12 +6467,12 @@ msgstr "Records trovati nelle operazioni suddivise: %i"
 #: relocatecategorydialog.cpp:250 relocatepayeedialog.cpp:204
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr "Records trovati nelle operazioni ricorrenti: %i"
+msgstr "Record trovati nelle transazioni ricorrenti: %i"
 
 #: relocatecategorydialog.cpp:251
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "Records trovati in operazioni ricorrenti suddivise: %i"
+msgstr "Record trovati nelle transazioni ricorrenti suddivise: %i"
 
 #: relocatecategorydialog.cpp:252
 #, c-format
