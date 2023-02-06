@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-01-31 13:34\n"
+"PO-Revision-Date: 2023-02-01 22:21\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1824,27 +1824,27 @@ msgstr "&Зачыніць "
 
 #: constants.cpp:84
 msgid "Undo"
-msgstr ""
+msgstr "Адрабіць"
 
 #: constants.cpp:85
 msgid "Redo"
-msgstr ""
+msgstr "Вярнуць"
 
 #: constants.cpp:86
 msgid "Cut"
-msgstr ""
+msgstr "Выразаць"
 
 #: constants.cpp:87
 msgid "Copy"
-msgstr ""
+msgstr "Скапіяваць"
 
 #: constants.cpp:88
 msgid "Paste"
-msgstr ""
+msgstr "Уставіць"
 
 #: constants.cpp:89
 msgid "Select All"
-msgstr ""
+msgstr "Абраць усё"
 
 #: constants.cpp:105
 msgid "64-bit"

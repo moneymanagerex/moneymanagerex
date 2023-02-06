@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-01-31 13:34\n"
+"PO-Revision-Date: 2023-02-01 01:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1817,27 +1817,27 @@ msgstr "Bezárás"
 
 #: constants.cpp:84
 msgid "Undo"
-msgstr ""
+msgstr "Visszavonás"
 
 #: constants.cpp:85
 msgid "Redo"
-msgstr ""
+msgstr "Ismét"
 
 #: constants.cpp:86
 msgid "Cut"
-msgstr ""
+msgstr "Kivágás"
 
 #: constants.cpp:87
 msgid "Copy"
-msgstr ""
+msgstr "Másolás"
 
 #: constants.cpp:88
 msgid "Paste"
-msgstr ""
+msgstr "Beillesztés"
 
 #: constants.cpp:89
 msgid "Select All"
-msgstr ""
+msgstr "Összes kijelölése"
 
 #: constants.cpp:105
 msgid "64-bit"
@@ -4017,19 +4017,17 @@ msgstr[1] "Ügyletek s&zerkesztése…"
 #: mmchecking_list.cpp:441
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "Tranzakció másolása\n"
-"Tranzakciók másolása"
-msgstr[1] "Tranzakció másolása\n\n"
-"Tranzakció másolása"
+msgstr[0] "Ügylet &másolása"
+msgstr[1] "Ügyletek &másolása"
 
 #: mmchecking_list.cpp:446
 msgid "&Paste Transaction"
-msgstr "Ügylet beillesztése"
+msgstr "Ügylet &beillesztése"
 
 #: mmchecking_list.cpp:446
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr "Ügylet beillesztése (%d)"
+msgstr "Ügyletek &beillesztése (%d)"
 
 #: mmchecking_list.cpp:451
 msgid "D&uplicate Transaction..."
@@ -5195,7 +5193,7 @@ msgstr "Adatbázisfájl mentése másként"
 
 #: mmframe.cpp:2319
 msgid "Can't copy file to itself"
-msgstr "A fájl nem másolható önmagára."
+msgstr "Fájl önmagába nem másolható"
 
 #: mmframe.cpp:2332
 msgid "Enter password for new database"
