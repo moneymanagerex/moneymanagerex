@@ -145,6 +145,7 @@ void Model_Budget::getBudgetStats(
         monthlyBudgetValue[budget.CATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
         // Determine the yearly budgeted amounts
         yearlyBudgetValue[budget.CATEGID] = getEstimate(false, period(budget), budget.AMOUNT);
+        // Store the yearly budget to use in reporting. Monthly budgets are stored in index 0-11, so use index 12 for year
         budgetStats[budget.CATEGID][12] = yearlyBudgetValue[budget.CATEGID];
     }
     bool budgetOverride = Option::instance().BudgetOverride();
@@ -203,8 +204,8 @@ void Model_Budget::getBudgetStats(
         }
 
         for (const auto& cat : budgetStats)
-            for (const auto& month : cat.second)
-                yearlyBudgetStats[cat.first][0] += month.second;
+            for(int month = 0; month < 12; month++)
+                yearlyBudgetStats[cat.first][0] += cat.second.at(month);
 
         budgetStats = yearlyBudgetStats;
     }

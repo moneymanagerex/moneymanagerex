@@ -262,7 +262,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                     break;
                             }
                         }
-                        categLevel[subcats[i].CATEGID].second = "&nbsp&nbsp&nbsp&nbsp";
+                        categLevel[subcats[i].CATEGID].second = "";
                         for (int j = categLevel[subcats[i].CATEGID].first; j > 0; j--) {
                             categLevel[subcats[i].CATEGID].second.Prepend("&nbsp&nbsp&nbsp&nbsp");
                         }
