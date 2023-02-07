@@ -158,6 +158,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.endThead();
             hb.startTbody();
             {
+                bool budgetDeductMonthly = Option::instance().BudgetDeductMonthly();
                 for (const auto& category : Model_Category::all_categories())
                 {
                     const int catID = category.second;
@@ -173,8 +174,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         hb.startTableCell(" style='text-align:right;' nowrap");
 
                         const double estimate = budgetStats[catID][i.first];
+                        yearEstimate += estimate;
                         wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
-                        hb.addText(estimateVal);
+                        // If monthly budget is deducted and the monthly budgets have exceeded the yearly budget, show estimate in red color
+                        hb.startSpan(estimateVal, wxString::Format(" style='text-align:right;%s' nowrap"
+                            , (budgetDeductMonthly && estimate != 0 && round(yearEstimate/budgetStats[catID][12] * 100)/100 > 1) ? "color:red;" : ""));
+                        hb.endSpan();
                         hb.addLineBreak();
 
                         const double actual = i.second;
@@ -185,7 +190,6 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
                         hb.endTableCell();
                         yearActual += actual;
-                        yearEstimate += estimate;
                         actualTotal[totalMonth] += actual;
                         estimateTotal[totalMonth] += estimate;
                         totalMonth++;

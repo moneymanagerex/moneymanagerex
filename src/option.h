@@ -90,6 +90,10 @@ public:
     void BudgetOverride(bool value);
     bool BudgetOverride();
 
+    // Deduct monthly budget from yearly budget
+    void BudgetDeductMonthly(bool value);
+    bool BudgetDeductMonthly();
+
     void TransPayeeSelection(int value);
     int TransPayeeSelection();
 
@@ -182,6 +186,7 @@ private:
     bool m_budgetIncludeTransfers = false;                  //INIDB_BUDGET_INCLUDE_TRANSFERS
     bool m_budgetReportWithSummaries = true;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
     bool m_budgetOverride = false;                  //INIDB_BUDGET_OVERRIDE
+    bool m_budgetDeductMonthly = false;             //INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR
     bool m_ignoreFutureTransactions = false;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
     bool m_showToolTips = true;                    //INIDB_SHOW_TOOLTIPS
     bool m_showMoneyTips = true;                   //INIDB_SHOW_MONEYTIPS
