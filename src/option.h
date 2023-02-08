@@ -175,21 +175,21 @@ private:
     wxString m_localeNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
-    int m_baseCurrency;
+    int m_baseCurrency = -1;
     bool m_currencyHistoryEnabled = false;
     bool m_bulk_enter = false;
 
     bool m_databaseUpdated = false;
-    bool m_hideShareAccounts;                       //INIDB_HIDE_SHARE_ACCOUNTS
-    bool m_hideDeletedTransactions;                       //INIDB_HIDE_DELETED_TRANSACTIONS
+    bool m_hideShareAccounts = true;                //INIDB_HIDE_SHARE_ACCOUNTS
+    bool m_hideDeletedTransactions = false;         //INIDB_HIDE_DELETED_TRANSACTIONS
     bool m_budgetFinancialYears = false;            //INIDB_BUDGET_FINANCIAL_YEARS
-    bool m_budgetIncludeTransfers = false;                  //INIDB_BUDGET_INCLUDE_TRANSFERS
-    bool m_budgetReportWithSummaries = true;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
+    bool m_budgetIncludeTransfers = false;          //INIDB_BUDGET_INCLUDE_TRANSFERS
+    bool m_budgetReportWithSummaries = true;        //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
     bool m_budgetOverride = false;                  //INIDB_BUDGET_OVERRIDE
     bool m_budgetDeductMonthly = false;             //INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR
     bool m_ignoreFutureTransactions = false;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
-    bool m_showToolTips = true;                    //INIDB_SHOW_TOOLTIPS
-    bool m_showMoneyTips = true;                   //INIDB_SHOW_MONEYTIPS
+    bool m_showToolTips = true;                     //INIDB_SHOW_TOOLTIPS
+    bool m_showMoneyTips = true;                    //INIDB_SHOW_MONEYTIPS
 
     int m_transPayeeSelection = Option::NONE;
     int m_transCategorySelectionNonTransfer = Option::NONE;
@@ -197,8 +197,8 @@ private:
     int m_transStatusReconciled = Option::NONE;
     int m_transDateDefault = 0;
     bool m_usageStatistics = true;
-    bool m_newsChecking;                    //INIDB_CHECK_NEWS
-    int m_sharePrecision;
+    bool m_newsChecking = true;                    //INIDB_CHECK_NEWS
+    int m_sharePrecision = 4;
 
     int m_theme_mode = Option::AUTO;
     int m_html_font_size = 100;
@@ -210,7 +210,7 @@ private:
     int m_budget_days_offset = 0;
     int m_reporting_firstday = 1;
 
-    int m_homepage_incexp_range;
+    int m_homepage_incexp_range = 0;
 };
 
 inline int Option::getIconSize() { return m_ico_size; }

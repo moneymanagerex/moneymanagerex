@@ -51,7 +51,6 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     }
 
     long startYear;
-    int month = -1;
 
     wxString value = Model_Budgetyear::instance().Get(m_date_selection);
     wxString budget_year;
@@ -62,7 +61,6 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     {
         budget_year = pattern.GetMatch(value, 1);
         budget_month = pattern.GetMatch(value, 3);
-        month = wxAtoi(budget_month) - 1;
     }
 
     if (!budget_year.ToLong(&startYear)) {
@@ -181,7 +179,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         formattedNames[child.CATEGID] = wxString("&nbsp&nbsp&nbsp&nbsp").Append(formattedNames[catID]);
                         categ_stack.push_back(child);
                     }
-                    month = 0;
+                    int month = -1;
                     hb.startTableRow();
                     hb.startTableCell(" style='vertical-align:middle;'");
                     hb.addText(wxString::Format(formattedNames[catID] + "<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>"
@@ -190,6 +188,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     hb.endTableCell();
                     for (const auto& stat : categoryStats[catID])
                     {
+                        month++;
+
                         hb.startTableCell(" style='text-align:right;' nowrap");
 
                         estimate = budgetStats[catID][stat.first];
@@ -228,8 +228,6 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                             catTotalsEstimated[i->CATEGID][12] += estimate;
                             catTotalsActual[i->CATEGID][12] += actual;
                         }
-
-                        month++;
                     }
 
                     // year end
