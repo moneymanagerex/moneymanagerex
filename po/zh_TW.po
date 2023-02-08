@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-05 07:51\n"
+"PO-Revision-Date: 2023-02-08 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -344,7 +344,7 @@ msgstr "切換語系"
 #: appstartdialog.cpp:111 appstartdialog.cpp:214 mmframe.cpp:1562
 #: optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "改變 MMEX 介面顯示語言"
 
 #: appstartdialog.cpp:114
 msgid "Read Documentation"
@@ -478,7 +478,7 @@ msgstr "輸入資產每年的變化比率"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "整理此資產的附件"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -534,7 +534,7 @@ msgstr "當前值"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&新增資產..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
@@ -542,11 +542,11 @@ msgstr ""
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&新增資產交易紀錄..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&檢視資產交易紀錄"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
@@ -554,11 +554,11 @@ msgstr ""
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&編輯資產..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&刪除資產..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:468
 #: mmframe.cpp:1381 mmframe.cpp:1401 stocks_list.cpp:146
@@ -599,7 +599,7 @@ msgstr "&新增 "
 
 #: assetspanel.cpp:476 stockspanel.cpp:134
 msgid "&Add Trans "
-msgstr ""
+msgstr "&新增交易"
 
 #: assetspanel.cpp:481 stockspanel.cpp:139
 msgid "&View Trans "
