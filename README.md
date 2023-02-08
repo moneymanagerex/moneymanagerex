@@ -1,5 +1,5 @@
 [<img src="https://raw.githubusercontent.com/moneymanagerex/moneymanagerex/master/resources/mmexlogo.png" height="32"/>][website]
-Money Manager Extended (MMEx)
+Money Manager Ex (MMEX)
 ================
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
@@ -7,10 +7,10 @@ Money Manager Extended (MMEx)
 [![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
-[Money Manager Extended (MMEx)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
+[Money Manager Ex (MMEX)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
 finance software. It helps organize finances and track cash flow.
 
-MMEx includes all the basic features that 90% of users would want to see in a
+MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness – an application that can be used everyday.
 
@@ -69,7 +69,7 @@ Download
 Credits
 ================
 
-MMEx is mainly written in C++11 and uses the following open-source packages:
+MMEX is mainly written in C++11 and uses the following open-source packages:
 * [wxWidgets] 3.0+ 
 * [wxSqlite3] 
 * [SQLite3] 
@@ -100,7 +100,7 @@ Tips
 * Download dozens of useful reports from the [general reports] repository
 * Star this repository if you feel it is helpful [![st]][stargazers]
 
-[website]: https://moneymanagerex.org "MMEx website"
+[website]: https://moneymanagerex.org "MMEX website"
 [AppVeyor]: https://ci.appveyor.com/project/whalley/moneymanagerex "AppVeyor CI"
 [CircleCI]: https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex?branch=master "Circle CI"
 [OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
@@ -165,7 +165,7 @@ or
 You may also like…
 ================
 
-- [MMEx for Android](https://github.com/moneymanagerex/android-money-manager-ex)
+- [MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
 
 
 License
