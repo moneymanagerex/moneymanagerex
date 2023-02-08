@@ -1952,6 +1952,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         //Check if DB upgrade needed
         if (dbUpgrade::isUpgradeDBrequired(m_db.get()))
         {
+            ShutdownDatabase();
+            // reopen database in debug mode (bypassing SQLITE_CorruptRdOnly flag)
+            m_db = mmDBWrapper::Open(fileName, password, true);
             //DB backup is handled inside UpgradeDB
             if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
