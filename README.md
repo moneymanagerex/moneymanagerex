@@ -1,5 +1,5 @@
 [<img src="https://raw.githubusercontent.com/moneymanagerex/moneymanagerex/master/resources/mmexlogo.png" height="32"/>][website]
-Money Manager Ex (MMEx)
+Money Manager Extended (MMEx)
 ================
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
@@ -7,7 +7,7 @@ Money Manager Ex (MMEx)
 [![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
-[Money Manager Ex (MMEx)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
+[Money Manager Extended (MMEx)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
 finance software. It helps organize finances and track cash flow.
 
 MMEx includes all the basic features that 90% of users would want to see in a
