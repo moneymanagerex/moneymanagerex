@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-01 01:19\n"
+"PO-Revision-Date: 2023-02-09 19:56\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2006,7 +2006,7 @@ msgstr "A csoportosító karakter nem lehet azonos a decimális karakterrel"
 #: currencydialog.cpp:342
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr "%.2f Megjelenítve: %s"
+msgstr "%.2f megjelenítve: %s"
 
 #: currencydialog.cpp:344
 msgid "(Using Locale)"
@@ -5973,7 +5973,7 @@ msgstr "Területi beállítás"
 #: optionsettingsgeneral.cpp:335
 #, c-format
 msgid "Currency value sample: %s"
-msgstr "Példa a pénznem értékére: %s"
+msgstr "Pénznemérték minta: %s"
 
 #: optionsettingsgeneral.cpp:339
 msgid "bad locale name"
