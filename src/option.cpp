@@ -77,6 +77,7 @@ void Option::LoadOptions(bool include_infotable)
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
     m_budgetReportWithSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
     m_budgetOverride = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_OVERRIDE, false);
+    m_budgetDeductMonthly = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR, false);
     m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
     m_showToolTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_TOOLTIPS, true);
     m_showMoneyTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_MONEYTIPS, true);
@@ -263,6 +264,17 @@ bool Option::BudgetOverride()
     return m_budgetOverride;
 }
 
+void Option::BudgetDeductMonthly(bool value)
+{
+    Model_Setting::instance().Set(INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR, value);
+    m_budgetDeductMonthly = value;
+
+}
+
+bool Option::BudgetDeductMonthly()
+{
+    return m_budgetDeductMonthly;
+}
 
 void Option::IgnoreFutureTransactions(bool value)
 {

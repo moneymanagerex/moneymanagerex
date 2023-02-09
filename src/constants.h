@@ -125,6 +125,7 @@ extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
 extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
 extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
 extern const wxString INIDB_BUDGET_OVERRIDE;
+extern const wxString INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR;
 extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 extern const wxString INIDB_SHOW_TOOLTIPS;
 extern const wxString INIDB_SHOW_MONEYTIPS;

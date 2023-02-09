@@ -132,24 +132,69 @@ void Model_Budget::getBudgetStats(
     }
 
     //Calculations
-    std::map<int, double> yearBudgetValue;
+    std::map<int, double> monthlyBudgetValue;
+    std::map<int, double> yearlyBudgetValue;
+    std::map<int, double> yearDeduction;
+    std::map<int, bool> isBudgeted;
+    int budgetedMonths = 0;
     const wxString year = wxString::Format("%i", start_date.GetYear());
     int budgetYearID = Model_Budgetyear::instance().Get(year);
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
-        yearBudgetValue[budget.CATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
-
+    {
+        // Determine the monhly budgeted amounts
+        monthlyBudgetValue[budget.CATEGID] = getEstimate(true, period(budget), budget.AMOUNT);
+        // Determine the yearly budgeted amounts
+        yearlyBudgetValue[budget.CATEGID] = getEstimate(false, period(budget), budget.AMOUNT);
+        // Store the yearly budget to use in reporting. Monthly budgets are stored in index 0-11, so use index 12 for year
+        budgetStats[budget.CATEGID][12] = yearlyBudgetValue[budget.CATEGID];
+    }
+    bool budgetOverride = Option::instance().BudgetOverride();
+    bool budgetDeductMonthly = Option::instance().BudgetDeductMonthly();
     for (int month = 0; month < 12; month++)
     {
-        for (const auto& cat : yearBudgetValue)
-            budgetStats[cat.first][month] += cat.second;
-
         const wxString budgetYearMonth = wxString::Format("%s-%02d", year, month + 1);
         budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
+
+        //fill with amount from monthly budgets first
         for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
-            if (Option::instance().BudgetOverride())
-                budgetStats[budget.CATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
-            else
-                budgetStats[budget.CATEGID][month] += getEstimate(true, period(budget), budget.AMOUNT);
+        {
+            if (!isBudgeted[month])
+            {
+                isBudgeted[month] = true;
+                budgetedMonths++;
+            }
+            budgetStats[budget.CATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
+            yearDeduction[budget.CATEGID] += budgetStats[budget.CATEGID][month];
+        }
+    }
+    // Now go month by month and add the yearly budget
+    for (int month = 0; month < 12; month++)
+    {
+        // If user selected to deduct monthly budgeted amounts 
+        if (budgetDeductMonthly)
+            for (const auto& categoryBudget : yearlyBudgetValue)
+            {
+                if (yearDeduction[categoryBudget.first] / categoryBudget.second >= 1) continue;
+                //Deduct the monthly total from the yearly budget
+                double adjusted_amount = categoryBudget.second - yearDeduction[categoryBudget.first];
+                if (!budgetOverride)
+                    // If user doesn't override the budget, add 1/12 of the adjusted amount to every period
+                    budgetStats[categoryBudget.first][month] += adjusted_amount / 12;
+                else if (!isBudgeted[month])
+                    // Otherwise if n months have a defined budget, add 1/(12-n) of the adjusted amount only to the (12-n) non-budgeted periods
+                    budgetStats[categoryBudget.first][month] = adjusted_amount / (12 - budgetedMonths);
+            }
+        else
+            // If the user is not deducting the monthly budget from the yearly budget
+            for (const auto& categoryBudget : monthlyBudgetValue)
+            {
+                if (!budgetOverride)
+                    // If user doesn't override their budget, add 1/12 of the yearly amount to every period
+                    budgetStats[categoryBudget.first][month] += categoryBudget.second;
+                else if (!isBudgeted[month])
+                    // Otherwise fill 1/12 of the yearly amount only in non-budgeted periods
+                    budgetStats[categoryBudget.first][month] = categoryBudget.second;
+            }
     }
     if (!groupByMonth)
     {
@@ -159,8 +204,8 @@ void Model_Budget::getBudgetStats(
         }
 
         for (const auto& cat : budgetStats)
-            for (const auto& month : cat.second)
-                yearlyBudgetStats[cat.first][0] += month.second;
+            for(int month = 0; month < 12; month++)
+                yearlyBudgetStats[cat.first][0] += cat.second.at(month);
 
         budgetStats = yearlyBudgetStats;
     }
@@ -168,10 +213,42 @@ void Model_Budget::getBudgetStats(
 
 void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)
 {
+    std::map<int, double> yearDeduction;
+    int budgetedMonths = 0;
+    bool optionDeductMonthly = Option::instance().BudgetDeductMonthly();
+    const wxString baseBudgetYearName = Model_Budgetyear::instance().get(baseYearID)->BUDGETYEARNAME;
+    const wxString newBudgetYearName = Model_Budgetyear::instance().get(newYearID)->BUDGETYEARNAME;
+
+    // Only deduct monthly amounts if a monthly budget is being created based on a yearly budget
+    optionDeductMonthly &= (baseBudgetYearName.length() == 4 && newBudgetYearName.length() > 4);
+
+    if (optionDeductMonthly) {
+        for (int month = 0; month < 12; month++)
+        {
+            const wxString budgetYearMonth = wxString::Format("%s-%02d", newBudgetYearName.SubString(0,3), month + 1);
+            int budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
+            Model_Budget::Data_Set monthlyBudgetData = instance().find(BUDGETYEARID(budgetYearID));
+            if (!monthlyBudgetData.empty()) budgetedMonths++;
+            //calculate deduction
+            for (const auto& budget : monthlyBudgetData)
+            {
+                yearDeduction[budget.CATEGID] += getEstimate(true, period(budget), budget.AMOUNT);
+            }
+        }
+    }
+
     for (const Data& data : instance().find(BUDGETYEARID(baseYearID)))
     {
         Data* budgetEntry = instance().clone(&data);
         budgetEntry->BUDGETYEARID = newYearID;
+        double yearAmount = getEstimate(false, period(data), data.AMOUNT);
+        if (optionDeductMonthly && budgetedMonths > 0)
+        {
+            budgetEntry->PERIOD = PERIOD_ENUM_CHOICES[MONTHLY].second;
+            if (yearDeduction[budgetEntry->CATEGID] / yearAmount < 1)
+                budgetEntry->AMOUNT = (yearAmount - yearDeduction[budgetEntry->CATEGID]) / (12 - budgetedMonths);
+            else budgetEntry->AMOUNT = 0;
+        }
         instance().save(budgetEntry);
     }
 }
