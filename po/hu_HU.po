@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-09 19:56\n"
+"PO-Revision-Date: 2023-02-09 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5795,7 +5795,7 @@ msgstr "%s : az MMEX-alkalmazás adatkönyvtára"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
-msgstr "Többi Op. rendsz. könyvtárai"
+msgstr "Egyéb operációs rendszer mappák"
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
@@ -5952,7 +5952,7 @@ msgstr "Jelölje be, hogy másoláskor a tranzakció eredeti dátumát, vagy a j
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr "Ügyletek megkettőzésekor használja az eredeti dátumot"
+msgstr "Ügyletek megkettőzésekor az eredeti dátumot használja"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
@@ -5960,7 +5960,7 @@ msgstr "Jelölje be, hogy az eredeti ügylet dátumát vagy a jelenlegi dátumot
 
 #: optionsettingsgeneral.cpp:224
 msgid "Use Transaction Sound"
-msgstr "Hangjelzés az ügyletekhez."
+msgstr "Ügyletek hangjelzésének használata"
 
 #: optionsettingsgeneral.cpp:226
 msgid "Select whether to use sounds when entering transactions"
