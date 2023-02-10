@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 20:20+0300\n"
-"PO-Revision-Date: 2023-02-10 18:57\n"
+"POT-Creation-Date: 2023-02-10 23:43+0300\n"
+"PO-Revision-Date: 2023-02-10 22:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,7 @@ msgid "Open the previously opened database : %s"
 msgstr "פתיחת מסד הנתונים שהיה בשימוש לאחרונה: %s"
 
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
+#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "system default"
 msgstr "ברירת מחדל של המערכת"
 
@@ -386,11 +386,11 @@ msgstr "ברירת מחדל של המערכת"
 msgid "Language"
 msgstr "שפה"
 
-#: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:350
+#: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:352
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "שפת הייישומון השתנתה. השינוי ייכנס לתוקף באתחול הבא של הייישומון."
 
-#: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:352
+#: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:354
 msgid "Language change"
 msgstr "שינוי שפה"
 
@@ -6009,9 +6009,9 @@ msgstr "מיקום"
 msgid "Currency value sample: %s"
 msgstr "דוגמת ערך מטבע: %s"
 
-#: optionsettingsgeneral.cpp:339
-msgid "bad locale name"
-msgstr "שם מיקום לא תקין"
+#: optionsettingsgeneral.cpp:340
+msgid "Bad locale name"
+msgstr ""
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
