@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 20:20+0300\n"
-"PO-Revision-Date: 2023-02-10 20:28\n"
+"POT-Creation-Date: 2023-02-10 23:43+0300\n"
+"PO-Revision-Date: 2023-02-10 22:06\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,7 @@ msgid "Open the previously opened database : %s"
 msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
+#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "system default"
 msgstr "Rendszerbeli alapértelmezés"
 
@@ -386,11 +386,11 @@ msgstr "Rendszerbeli alapértelmezés"
 msgid "Language"
 msgstr "Nyelv"
 
-#: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:350
+#: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:352
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Megváltozott az alkalmazás nyelve. A módosítás az alkalmazás következő indításakor lép életbe."
 
-#: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:352
+#: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:354
 msgid "Language change"
 msgstr "Nyelv módosítása"
 
@@ -1907,7 +1907,7 @@ msgstr "MIND"
 #: constants.cpp:202 mmframe.cpp:1427 mmframe.cpp:1832
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Megnyit"
+msgstr "Megnyitás"
 
 #: constants.cpp:203 mmframe.cpp:1428 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
@@ -2328,7 +2328,7 @@ msgstr "Élet"
 
 #: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
 msgid "Home"
-msgstr "Lakás"
+msgstr "Kezdőlap"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -5980,8 +5980,8 @@ msgstr "Területi beállítás"
 msgid "Currency value sample: %s"
 msgstr "Pénznemérték minta: %s"
 
-#: optionsettingsgeneral.cpp:339
-msgid "bad locale name"
+#: optionsettingsgeneral.cpp:340
+msgid "Bad locale name"
 msgstr "Hibás területi beállítás neve"
 
 #: optionsettingsmisc.cpp:64
@@ -7781,7 +7781,7 @@ msgstr "Az ügylet nincs letöltve:"
 
 #: webapp.cpp:597
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "kérjük, javítsa ki a mellékletek könyvtárát, vagy törölje a mellékleteket a Webalkalmazásból"
+msgstr "Kérjük, javítsa ki a mellékletek könyvtárát, vagy törölje a mellékleteket a Webalkalmazásból"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
