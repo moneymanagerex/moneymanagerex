@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 20:20+0300\n"
-"PO-Revision-Date: 2023-02-10 18:57\n"
+"POT-Creation-Date: 2023-02-10 23:43+0300\n"
+"PO-Revision-Date: 2023-02-10 22:06\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,7 @@ msgid "Open the previously opened database : %s"
 msgstr "Öffne die zuvor geöffnete Datenbank: %s"
 
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
+#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "system default"
 msgstr "Systemstandard"
 
@@ -386,11 +386,11 @@ msgstr "Systemstandard"
 msgid "Language"
 msgstr "Sprache"
 
-#: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:350
+#: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:352
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Die Sprache für diese Anwendung wurde geändert. Die Änderung wird beim nächsten Start der Anwendung wirksam."
 
-#: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:352
+#: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:354
 msgid "Language change"
 msgstr "Sprache geändert"
 
@@ -1612,7 +1612,7 @@ msgstr "Alle ausklappen"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "Zeige alle"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2013,7 +2013,7 @@ msgstr "(Lokal verwenden)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Währungsverwaltung"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3658,7 +3658,7 @@ msgstr "Laden Sie den Verlauf der Währungswerte herunter"
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "Hinzufügen/Aktualisieren "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -5422,7 +5422,7 @@ msgstr "Top Auszahlungen: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account/Payee"
-msgstr ""
+msgstr "Konto / Zahlungsempfänger"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -5977,9 +5977,9 @@ msgstr "Lokal"
 msgid "Currency value sample: %s"
 msgstr "Währungswert Beispiel: %s"
 
-#: optionsettingsgeneral.cpp:339
-msgid "bad locale name"
-msgstr "falscher Gebietsschema"
+#: optionsettingsgeneral.cpp:340
+msgid "Bad locale name"
+msgstr "Falsches Gebietsschema"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6223,12 +6223,13 @@ msgstr "Wenn ein monatliches Budget vorhanden ist, wird das Jahresbudget damit �
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Subtraktion der monatlichen Budgets vom Jahresbudget in der Berichterstattung"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Das Jahresbudget wird um den monatlich veranschlagten Betrag gekürzt.\n"
+"Der Gesamtvoranschlag für das Jahr wird entweder als Jahresbudget ODER als Summe der Monatsbudgets angegeben, je nachdem, welcher Betrag höher ist."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7427,7 +7428,7 @@ msgstr "Datum der Buchung"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Transaktionsdialog"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
