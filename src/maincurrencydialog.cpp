@@ -99,6 +99,11 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, wxGetTranslation(caption), pos, size, style, name);
 
+    wxAcceleratorEntry entries[1];
+    entries[0].Set(wxACCEL_NORMAL, WXK_F5, wxID_EXECUTE);
+    wxAcceleratorTable accel(1, entries);
+    SetAcceleratorTable(accel);
+
     CreateControls();
     SetIcon(mmex::getProgramIcon());
     fillControls();
@@ -172,18 +177,20 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxBitmapButton* update_button = new wxBitmapButton(this, wxID_STATIC, mmBitmapBundle(png::CURRATES, mmBitmapButtonSize));
+    wxBitmapButton* update_button = new wxBitmapButton(this, wxID_EXECUTE, mmBitmapBundle(png::CURRATES, mmBitmapButtonSize));
     itemBoxSizer22->Add(update_button, g_flagsH);
-    update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
+    update_button->Connect(wxID_EXECUTE, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
     mmToolTip(update_button, _("Online update currency rate"));
     itemBoxSizer22->AddSpacer(4);
 
     itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC, _("Online Update")), g_flagsH);
 
     itemBoxSizer22->AddSpacer(15);
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show &All"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     mmToolTip(cbShowAll_, _("Show all even the unused currencies"));
-    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
+    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
+        , wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
 
     itemBoxSizer22->Add(cbShowAll_, g_flagsH);
 
@@ -297,7 +304,7 @@ void mmMainCurrencyDialog::CreateControls()
     mmToolTip(buttonDownloadHistory_, _("Download Currency Values history"));
     buttonDownloadHistory_->Disable();
 
-    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add/Update "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
+    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("Add/&Update "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
     mmToolTip(historyButtonAdd_, _("Add Currency Values to history"));
     historyButtonAdd_->Disable();
 
