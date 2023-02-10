@@ -671,7 +671,7 @@ bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
 void Model_Checking::updateTimestamp(int id)
 {
     Data* r = instance().get(id);
-    if (r) {
+    if (r && r->TRANSID == id) {
         r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
         this->save(r, db_);
     }
