@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-01-31 16:30+0300\n"
-"PO-Revision-Date: 2023-02-09 22:25\n"
+"PO-Revision-Date: 2023-02-10 00:45\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "A számla állapota: "
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Adja meg, hogy a számla használatban van-e. A legtöbb számításhoz és jelentéshez általában nem használnak lezárt számlákat."
+msgstr "Adja meg, hogy a számla használatban van-e. A legtöbb számításhoz és jelentéshez általában nem használnak bezárt számlákat."
 
 #: accountdialog.cpp:149
 #, c-format
@@ -1813,7 +1813,7 @@ msgstr "Bezárás "
 
 #: constants.cpp:80
 msgid "&Close "
-msgstr "Bezárás"
+msgstr "&Bezárás "
 
 #: constants.cpp:84
 msgid "Undo"
@@ -1911,7 +1911,7 @@ msgstr "Megnyit"
 #: constants.cpp:203 mmframe.cpp:1428 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
-msgstr "Zárolt"
+msgstr "Bezárt"
 
 #: constants.cpp:204 mmframe.cpp:1426
 msgid "Favorites"
@@ -4174,7 +4174,7 @@ msgstr "\n\n"
 
 #: mmchecking_list.cpp:1255
 msgid "Closed Account Check"
-msgstr "Zárolt számla ellenőrzése"
+msgstr "Bezárt folyószámla"
 
 #: mmchecking_list.cpp:1447
 #, c-format
@@ -5420,7 +5420,7 @@ msgstr "Legnagyobb kivétek: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account / Payee"
-msgstr "Számla / Kedvezményezett"
+msgstr "Számla/Kedvezményezett"
 
 #: mmhomepage.cpp:433
 #, c-format
