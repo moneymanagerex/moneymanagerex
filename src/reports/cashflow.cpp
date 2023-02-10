@@ -137,11 +137,8 @@ void mmReportCashFlow::getTransactions()
         wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;
 
-        int repeatsType = entry.REPEATS;
+        int repeatsType = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         int numRepeats = entry.NUMOCCURRENCES;
-
-        // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-        repeatsType %= BD_REPEATS_MULTIPLEX_BASE;
 
         bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
         if (repeatsType == 0)
