@@ -262,16 +262,16 @@ void OptionSettingsView::Create()
 
     // Font size
     wxArrayString font_choice;
-    font_choice.Add(wxTRANSLATE("Normal"));
-    font_choice.Add(wxTRANSLATE("Enlarged"));
-    font_choice.Add(wxTRANSLATE("Large"));
-    font_choice.Add(wxTRANSLATE("Huge"));
+    font_choice.Add(_("Normal"));
+    font_choice.Add(_("Enlarged"));
+    font_choice.Add(_("Large"));
+    font_choice.Add(_("Huge"));
 
     view_sizer2->Add(new wxStaticText(view_panel, wxID_STATIC, _("Font size")), g_flagsH);
-    m_font_size = new wxChoice(view_panel, wxID_RESIZE_FRAME, wxDefaultPosition
+    m_font_size_chooser = new wxChoice(view_panel, wxID_RESIZE_FRAME, wxDefaultPosition
         , wxDefaultSize, font_choice);
-    m_font_size->SetSelection(Option::instance().getFontSize());
-    view_sizer2->Add(m_font_size, g_flagsH);
+    m_font_size_chooser->SetSelection(Option::instance().getFontSize());
+    view_sizer2->Add(m_font_size_chooser, g_flagsH);
 
     // Icons
 
@@ -393,7 +393,7 @@ bool OptionSettingsView::SaveSettings()
     size = i[size];
     Option::instance().setIconSize(size);
 
-    size = m_font_size->GetSelection();
+    size = m_font_size_chooser->GetSelection();
     Option::instance().setFontSize(size);
 
     size = m_navigation_icon_size->GetSelection();
