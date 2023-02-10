@@ -127,7 +127,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);
 
-    double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
     Model_Category::Data_Set categs = Model_Category::instance().find(Model_Category::PARENTID(-1));
     std::stable_sort(categs.begin(), categs.end(), SorterByCATEGNAME());
 
@@ -176,6 +175,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     }
     hb.addDivContainer("shadow");
     {
+        double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
         hb.startTable();
         {
             hb.startThead();
@@ -225,7 +225,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         hb.endTableRow();
                     }
                     
-                    std::vector<int> totals_queue;
+                    std::vector<int> totals_stack;
                     Model_Category::Data_Set subcats = Model_Category::sub_tree(category);
                     for (int i = 0; i < subcats.size(); i++) {
                         categLevel[subcats[i].CATEGID].first = 1;
@@ -262,7 +262,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                     break;
                             }
                         }
-                        categLevel[subcats[i].CATEGID].second = "&nbsp&nbsp&nbsp&nbsp";
+                        categLevel[subcats[i].CATEGID].second = "";
                         for (int j = categLevel[subcats[i].CATEGID].first; j > 0; j--) {
                             categLevel[subcats[i].CATEGID].second.Prepend("&nbsp&nbsp&nbsp&nbsp");
                         }
@@ -278,12 +278,12 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                             hb.endTableRow();
                             
                             if (i < subcats.size() - 1) { //not the last subcategory
-                                if (subcats[i].CATEGID == subcats[i + 1].PARENTID) totals_queue.push_back(i); //if next subcategory is our child, queue the total for after the children
+                                if (subcats[i].CATEGID == subcats[i + 1].PARENTID) totals_stack.push_back(i); //if next subcategory is our child, queue the total for after the children
                                 else if (subcats[i].PARENTID != subcats[i + 1].PARENTID) { // last sibling -- we've exhausted this branch, so display all the totals we held on to
-                                    while (!totals_queue.empty() && subcats[totals_queue.back()].CATEGID != subcats[i + 1].PARENTID) {
+                                    while (!totals_stack.empty() && subcats[totals_stack.back()].CATEGID != subcats[i + 1].PARENTID) {
                                         hb.startAltTableRow();
                                         {
-                                            int index = totals_queue.back();
+                                            int index = totals_stack.back();
                                             hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
                                                 , subcats[index].CATEGID
                                                 , subcats[index].CATEGNAME));
@@ -291,16 +291,16 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                             hb.addMoneyCell(catTotalsActual[subcats[index].CATEGID]);
                                         }
                                         hb.endTableRow();
-                                        totals_queue.pop_back();
+                                        totals_stack.pop_back();
                                     }
                                 }
                             }
                             // the very last subcategory, so show the rest of the queued totals
                             else {
-                                while (!totals_queue.empty()) {
+                                while (!totals_stack.empty()) {
                                     hb.startAltTableRow();
                                     {
-                                        int index = totals_queue.back();
+                                        int index = totals_stack.back();
                                         hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
                                             , subcats[index].CATEGID
                                             , subcats[index].CATEGNAME));
@@ -308,7 +308,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                         hb.addMoneyCell(catTotalsActual[subcats[index].CATEGID]);
                                     }
                                     hb.endTableRow();
-                                    totals_queue.pop_back();
+                                    totals_stack.pop_back();
                                 }
                             }
                         }

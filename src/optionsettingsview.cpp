@@ -142,6 +142,14 @@ void OptionSettingsView::Create()
     m_budget_override->SetValue(Option::instance().BudgetOverride());
     trxStaticBoxSizer->Add(m_budget_override, g_flagsV);
 
+    // Option to deduct monthly budget from yearly budget for reporting
+    m_budget_deduct_monthly = new wxCheckBox(view_panel, wxID_STATIC
+        , _("Subtract monthly budgets from yearly budget in reporting")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    mmToolTip(m_budget_deduct_monthly, _("Yearly budget will be reduced by the amount budgeted monthly.\nTotal estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."));
+    m_budget_deduct_monthly->SetValue(Option::instance().BudgetDeductMonthly());
+    trxStaticBoxSizer->Add(m_budget_deduct_monthly, g_flagsV);
+
     // Allows a year or financial year to start before or after the 1st of the month.
     wxBoxSizer* budget_offset_sizer = new wxBoxSizer(wxHORIZONTAL);
     trxStaticBoxSizer->Add(budget_offset_sizer);
@@ -408,6 +416,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
     Option::instance().BudgetOverride(m_budget_override->GetValue());
+    Option::instance().BudgetDeductMonthly(m_budget_deduct_monthly->GetValue());
     Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
     Option::instance().setReportingFirstDay(m_reporting_firstday->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());

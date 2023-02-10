@@ -70,7 +70,7 @@ public:
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER);
-
+    
     int getCategId() const;
     bool getRefreshRequested() const;
     bool mmIsUsed() const;
@@ -81,7 +81,7 @@ private:
     void fillControls();
     void setTreeSelection(int category_id);
     void saveCurrentCollapseState();
-    void AppendSubcategoryItems(wxTreeItemId parentid, const Model_Category::Data* child);
+    bool AppendSubcategoryItems(wxTreeItemId parentid, const Model_Category::Data* child);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnAdd(wxCommandEvent& event);
@@ -123,6 +123,7 @@ private:
     int m_init_selected_categ_id;
     int m_dragSourceCATEGID;
     std::map<int, bool> m_categoryVisible;
+    std::map<int, std::vector<Model_Category::Data>> m_categ_children;
     bool m_processExpandCollapse;
     wxColour NormalColor_;
     bool m_refresh_requested;

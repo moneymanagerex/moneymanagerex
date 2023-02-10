@@ -214,7 +214,7 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
 {
     Data_Set trans_list = TranslinkList(Model_Attachment::REFTYPE::ASSET, asset_entry->ASSETID);
     double new_value = 0;
-    for (const auto trans : trans_list)
+    for (const auto &trans : trans_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
         if (asset_trans && asset_trans->DELETEDTIME.IsEmpty())

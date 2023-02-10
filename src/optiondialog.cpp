@@ -97,53 +97,53 @@ void mmOptionsDialog::CreateControls()
     wxBoxSizer* mainDialogPanelSizer = new wxBoxSizer(wxVERTICAL);
     mainDialogPanel->SetSizer(mainDialogPanelSizer);
 
-    m_notebook = new wxListbook(mainDialogPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_LEFT);
-    m_notebook->SetImages(images);
+    m_listbook = new wxListbook(mainDialogPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_LEFT);
+    m_listbook->SetImages(images);
 
     /*********************************************************************************************
      General Panel
     **********************************************************************************************/
-    OptionSettingsGeneral* general_panel = new OptionSettingsGeneral(m_notebook, m_app);
+    OptionSettingsGeneral* general_panel = new OptionSettingsGeneral(m_listbook, m_app);
     m_panel_list.push_back(general_panel);
 
     /*********************************************************************************************
      Views Panel
     **********************************************************************************************/
-    OptionSettingsView* views_panel = new OptionSettingsView(m_notebook);
+    OptionSettingsView* views_panel = new OptionSettingsView(m_listbook);
     m_panel_list.push_back(views_panel);
 
     /*********************************************************************************************
      Home Panel
     **********************************************************************************************/
-    OptionSettingsHome* home_panel = new OptionSettingsHome(m_notebook);
+    OptionSettingsHome* home_panel = new OptionSettingsHome(m_listbook);
     m_panel_list.push_back(home_panel);
 
     /*********************************************************************************************
      Attachments Panel
     **********************************************************************************************/
-    OptionSettingsAttachment* attachment_panel = new OptionSettingsAttachment(m_notebook);
+    OptionSettingsAttachment* attachment_panel = new OptionSettingsAttachment(m_listbook);
     m_panel_list.push_back(attachment_panel);
 
     /*********************************************************************************************
     Network Panel
     **********************************************************************************************/
-    OptionSettingsNet* network_panel = new OptionSettingsNet(m_notebook);
+    OptionSettingsNet* network_panel = new OptionSettingsNet(m_listbook);
     m_panel_list.push_back(network_panel);
 
     /*********************************************************************************************
     Others Panel
     **********************************************************************************************/
-    OptionSettingsMisc* others_panel = new OptionSettingsMisc(m_notebook);
+    OptionSettingsMisc* others_panel = new OptionSettingsMisc(m_listbook);
     m_panel_list.push_back(others_panel);
 
     /**********************************************************************************************
     Add the panels to the notebook
     **********************************************************************************************/
     for (int i = 0; i < m_panel_list.size(); i++) {
-        m_notebook->InsertPage(i, m_panel_list.at(i), wxGetTranslation(s_pagetitle[i]), i ? false : true, i);
+        m_listbook->InsertPage(i, m_panel_list.at(i), wxGetTranslation(s_pagetitle[i]), i ? false : true, i);
     }
 
-    mainDialogPanelSizer->Add(m_notebook, g_flagsExpand);
+    mainDialogPanelSizer->Add(m_listbook, g_flagsExpand);
     mainDialogPanelSizer->Layout();
 
     /**********************************************************************************************
@@ -201,8 +201,8 @@ void mmOptionsDialog::OnPageChange(wxBookCtrlEvent& event)
     if (old_page == 0 && !m_panel_list[old_page]->SaveSettings())
     {
         SetEvtHandlerEnabled(false);
-        m_notebook->GetEventHandler()->Disconnect();
-        m_notebook->SetSelection(old_page);
+        m_listbook->GetEventHandler()->Disconnect();
+        m_listbook->SetSelection(old_page);
         SetEvtHandlerEnabled(true);
         event.Veto();
     }
@@ -213,7 +213,7 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     Model_Infotable::instance().Savepoint();
     Model_Setting::instance().Savepoint();
 
-    int selected_page = m_notebook->GetSelection();
+    int selected_page = m_listbook->GetSelection();
     if (m_panel_list[selected_page]->SaveSettings())
     {
         const wxString& msg = wxString::Format(_("%s page has been saved."), _(s_pagetitle[selected_page]));
