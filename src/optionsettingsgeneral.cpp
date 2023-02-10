@@ -336,7 +336,9 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
     }
     catch (std::exception & ex) {
         result = wxString(ex.what());
-        result.Replace("std::locale::facet::_S_create_c_locale name not valid", wxTRANSLATE("bad locale name"));
+        if (result.Contains("locale name not valid")) {
+            result = wxTRANSLATE("Bad locale name");
+        }
         return false;
     }
 
