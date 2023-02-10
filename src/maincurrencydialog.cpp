@@ -201,6 +201,13 @@ void mmMainCurrencyDialog::CreateControls()
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
 
+    wxBoxSizer* itemBoxSizerS = new wxBoxSizer(wxHORIZONTAL);
+    itemBoxSizer2->Add(itemBoxSizerS, wxSizerFlags(g_flagsExpand).Proportion(0));
+    itemBoxSizerS->Add(new wxStaticText(this, wxID_STATIC, _("Search:")), g_flagsH);
+    m_maskTextCtrl = new wxSearchCtrl(this, wxID_FIND);
+    m_maskTextCtrl->SetFocus();
+    itemBoxSizerS->Add(m_maskTextCtrl, g_flagsExpand);
+
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
     itemBoxSizer2->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center());
 
@@ -211,11 +218,6 @@ void mmMainCurrencyDialog::CreateControls()
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
-
-    itemBoxSizer66->Add(new wxStaticText(buttonsPanel, wxID_STATIC, _("Search:")), g_flagsH);
-    m_maskTextCtrl = new wxSearchCtrl(buttonsPanel, wxID_FIND);
-    m_maskTextCtrl->SetFocus();
-    itemBoxSizer66->Add(m_maskTextCtrl, g_flagsExpand);
 
     m_select_btn = new wxButton(buttonsPanel, wxID_SELECTALL, _("&Select"));
     itemBoxSizer9->Add(m_select_btn, wxSizerFlags(g_flagsExpand).Proportion(4));
@@ -295,7 +297,7 @@ void mmMainCurrencyDialog::CreateControls()
     mmToolTip(buttonDownloadHistory_, _("Download Currency Values history"));
     buttonDownloadHistory_->Disable();
 
-    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
+    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add/Update "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
     mmToolTip(historyButtonAdd_, _("Add Currency Values to history"));
     historyButtonAdd_->Disable();
 

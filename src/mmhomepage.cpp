@@ -360,7 +360,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output += wxString::Format("<table class='table' id='%s'>\n", idStr);
         output += wxString::Format("<thead><tr><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr></thead>\n"
-            , _("Account / Payee"), _("Amount"), _("Payment"));
+            , _("Account/Payee"), _("Amount"), _("Payment"));
 
         for (const auto& item : bd_days)
         {
