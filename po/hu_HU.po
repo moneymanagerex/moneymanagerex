@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-10 20:20+0300\n"
-"PO-Revision-Date: 2023-02-10 18:57\n"
+"PO-Revision-Date: 2023-02-10 20:28\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -339,12 +339,12 @@ msgstr "Létező, (*.mmb) kiterjesztésű adatbázisfájl megnyitása"
 
 #: appstartdialog.cpp:110
 msgid "Change Language"
-msgstr "Nyelvválasztás"
+msgstr "Nyelv módosítása"
 
 #: appstartdialog.cpp:111 appstartdialog.cpp:214 mmframe.cpp:1562
 #: optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr "Az MMEX- kezelőfelülete nyelvének megváltoztatása"
+msgstr "Az MMEX- kezelőfelülete nyelvének módosítása"
 
 #: appstartdialog.cpp:114
 msgid "Read Documentation"
@@ -380,7 +380,7 @@ msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:360
 msgid "system default"
-msgstr "rendszer alapértelmezett"
+msgstr "Rendszerbeli alapértelmezés"
 
 #: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
 msgid "Language"
@@ -388,11 +388,11 @@ msgstr "Nyelv"
 
 #: appstartdialog.cpp:221 mmframe.cpp:3629 optionsettingsgeneral.cpp:350
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "Az alkalmazás nyelvét módosította. A változás az alkalmazás következő indításakor lép érvénybe."
+msgstr "Megváltozott az alkalmazás nyelve. A módosítás az alkalmazás következő indításakor lép életbe."
 
 #: appstartdialog.cpp:223 mmframe.cpp:3631 optionsettingsgeneral.cpp:352
 msgid "Language change"
-msgstr "Nyelv megváltoztatása"
+msgstr "Nyelv módosítása"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
@@ -614,13 +614,13 @@ msgstr "Eszközügyletek megjelenítése"
 #: categdialog.cpp:323 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:546
 #: mmcheckingpanel.cpp:406 payeedialog.cpp:614 stockspanel.cpp:144
 msgid "&Edit "
-msgstr "Szerkesztés"
+msgstr "S&zerkesztés "
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:307 budgetyeardialog.cpp:103
 #: categdialog.cpp:327 maincurrencydialog.cpp:311 mmchecking_list.cpp:492
 #: mmcheckingpanel.cpp:398 stockdialog.cpp:334 stockspanel.cpp:149
 msgid "&Delete "
-msgstr "Törlés"
+msgstr "&Törlés "
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
@@ -1614,7 +1614,7 @@ msgstr "Összes kibontása"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "Az összes &megjelenítése"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2015,7 +2015,7 @@ msgstr "(Területi beállítás használata)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Pénznemkezelő"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3658,7 +3658,7 @@ msgstr "Valutaárfolyam előzményeinek letöltése"
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "Hozzáadás/&Frissítés "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -3681,7 +3681,7 @@ msgstr "Biztosan törölni szeretné a kijelölt pénznemet?"
 #: maincurrencydialog.cpp:818 maincurrencydialog.h:76
 #: optionsettingsgeneral.cpp:290
 msgid "Currency Dialog"
-msgstr "Pénznem párbeszédpanel"
+msgstr "Pénznem"
 
 #: maincurrencydialog.cpp:401
 msgid "Base Currency Selection"
@@ -3903,11 +3903,11 @@ msgstr "Tipp: amennyiben több, eltérő pénznemben vezetett számlája van, á
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Kategóriák rendszerezése párbeszédpanel tippje: A „H” gomb megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
+msgstr "Kategóriák rendszerezése tippje: A „H” gomb megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "Kategóriák rendszerezése párbeszédpanel tippje: A 2 billentyűkombináció megnyomásával az adott billentyűkombinációtól kezdve az összes kategórián keresztül lépkedhet. Például: Az „LA” megnyomásával kiválasztja a „Lakás, Lakásadó, Lakberendezés, …” lehetőséget."
+msgstr "Kategóriák rendszerezése tippje: A 2 billentyűkombináció megnyomásával az adott billentyűkombinációtól kezdve az összes kategórián keresztül lépkedhet. Például: Az „LA” megnyomásával kiválasztja a „Lakás, Lakásadó, Lakberendezés, …” lehetőséget."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -5425,7 +5425,7 @@ msgstr "Legnagyobb kivétek: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account/Payee"
-msgstr ""
+msgstr "Számla/kedvezményezett"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -5445,7 +5445,7 @@ msgstr "Különbözet: "
 
 #: mmhomepage.cpp:451
 msgid "Income/Expenses"
-msgstr "Bevétel/Kiadások "
+msgstr "Bevétel/kiadások"
 
 #: mmhomepage.cpp:475
 msgid "Transaction Statistics"
@@ -5982,7 +5982,7 @@ msgstr "Pénznemérték minta: %s"
 
 #: optionsettingsgeneral.cpp:339
 msgid "bad locale name"
-msgstr "hibás területi beállítás neve"
+msgstr "Hibás területi beállítás neve"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6002,7 +6002,7 @@ msgstr "Részvényárak pontosságának beállítása"
 
 #: optionsettingsmisc.cpp:96
 msgid "New Transaction Dialog Settings"
-msgstr "Új tranzakció párbeszéd beállítása"
+msgstr "Új ügyletbeállítások"
 
 #: optionsettingsmisc.cpp:104
 msgid "Last Used"
@@ -6202,7 +6202,7 @@ msgstr "Kategóriaelválasztó"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr "Tranzakció- vagy Költségvetésopciók"
+msgstr "Ügylet/költségvetés beállításai"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6226,12 +6226,13 @@ msgstr "Ha létezik havi költségkeret, akkor használja ezt az éves költség
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "A jelentésekben a havi költségvetést le kell vonni az éves költségvetésből"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Az éves költségvetés a havi költségvetésben szereplő összeggel csökken.\n"
+"Az évre vonatkozó teljes becslés vagy az éves költségvetés VAGY a havi költségvetés összegeként jelenik meg, attól függően, hogy melyik a nagyobb."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -6498,7 +6499,7 @@ msgstr "Költségvetésben talált bejegyzések: %i"
 
 #: relocatecategorydialog.h:42
 msgid "Relocate Category Dialog"
-msgstr "Kategória áthelyezése párbeszédpanel"
+msgstr "Kategória áthelyezése"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
@@ -6514,7 +6515,7 @@ msgstr "Kedvezményezett áthelyezésének megerősítése"
 
 #: relocatepayeedialog.h:41
 msgid "Relocate Payee Dialog"
-msgstr "Kedvezményezett áthelyezése párbeszédablak"
+msgstr "Kedvezményezett áthelyezése"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -7429,7 +7430,7 @@ msgstr "Ügylet dátumának megadása"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Ügyletek"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
