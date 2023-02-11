@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:05\n"
+"PO-Revision-Date: 2023-02-11 07:14\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5984,7 +5984,7 @@ msgstr "Échantillon de valeur de la devise : %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "Mauvais nom de fichier"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
