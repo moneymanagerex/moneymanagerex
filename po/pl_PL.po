@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"PO-Revision-Date: 2023-02-11 11:16\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1620,7 +1620,7 @@ msgstr "Rozwiń wszystko"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "Pokaż &wszystko"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2023,7 +2023,7 @@ msgstr "(Lokalizacja)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Menedżer walut"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3670,7 +3670,7 @@ msgstr "Pobierz historię kursów walut"
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "Dodaj/&Aktualizuj "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -5460,7 +5460,7 @@ msgstr "Najważniejsze wypłaty: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account/Payee"
-msgstr ""
+msgstr "Konto/Beneficjent"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -6017,7 +6017,7 @@ msgstr "Przykład waluty bazowej: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "Błędna nazwa ustawień regionalnych"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6261,12 +6261,13 @@ msgstr "Jeśli istnieje budżet miesięczny, użyj go, aby zastąpić budżet ro
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Odejmij miesięczne budżety od budżetu rocznego w raportach"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Roczny budżet zostanie zmniejszony o kwotę zapisaną w budżecie miesięcznie.\n"
+"Całkowite oszacowanie na dany rok zostanie przekazane jako roczny budżet LUB jako suma budżetów miesięcznych, w zależności od tego, która z tych wartości jest większa."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7464,7 +7465,7 @@ msgstr "Określ datę transakcji"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Okno transakcji"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
