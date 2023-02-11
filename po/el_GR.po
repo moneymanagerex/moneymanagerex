@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"PO-Revision-Date: 2023-02-11 06:14\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1615,7 +1615,7 @@ msgstr "Ανάπτυξη Όλων"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "Προβολή &Όλων"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2018,7 +2018,7 @@ msgstr ""
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Διαχειριστής Νομίσματος"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3657,7 +3657,7 @@ msgstr "Λήψη ιστορικού τιμών νομισμάτων"
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "Προσθήκη/&Ενημέρωση "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -5420,7 +5420,7 @@ msgstr "Κορυφαίες Αποσύρσεις: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account/Payee"
-msgstr ""
+msgstr "Λογαριασμός/Δικαιούχος"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -5975,7 +5975,7 @@ msgstr "Δείγμα αξίας νομίσματος: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "Λάθος όνομα γλώσσας"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6219,12 +6219,13 @@ msgstr "Εάν υπάρχει μηνιαίος προϋπολογισμός τό
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Αφαίρεση μηνιαίων προϋπολογισμών από τον ετήσιο προϋπολογισμό στην πρόβολη εκθέσεων"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Ο ετήσιος προϋπολογισμός θα μειώνεται κατά το μηνιαίο ποσό που έχει προϋπολογιστεί.\n"
+"Η συνολική εκτίμηση για το έτος θα αναφέρεται είτε ως ο ετήσιος προϋπολογισμός ΕΊΤΕ ως το άθροισμα των μηνιαίων προϋπολογισμών, όποιο είναι μεγαλύτερο."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7422,7 +7423,7 @@ msgstr "Δηλώστε την ημερομηνία της συναλλαγής"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Διάλογος Συναλλαγών"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
