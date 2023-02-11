@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 23:46\n"
+"PO-Revision-Date: 2023-02-11 00:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2328,7 +2328,7 @@ msgstr "Élet"
 
 #: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
 msgid "Home"
-msgstr "Kezdőlap"
+msgstr "Irányítópult"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -4368,7 +4368,7 @@ msgstr "Automatikusan ismétlődő ügyletek"
 
 #: mmframe.cpp:702 mmframe.cpp:1835
 msgid "Home Page"
-msgstr "Kezdőlap"
+msgstr "Irányítópult"
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4497,7 +4497,7 @@ msgstr "Új s&zámla…"
 
 #: mmframe.cpp:1416
 msgid "Account &List (Home)"
-msgstr "Számlalista (Induló lap)"
+msgstr "S&zámlák"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4669,11 +4669,11 @@ msgstr "Felhasználói felület &nyelve"
 
 #: mmframe.cpp:1587
 msgid "&Home Page"
-msgstr "&Kezdőlap"
+msgstr "&Irányítópult"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Show Home Page"
-msgstr "Kezdőlap megjelenítése"
+msgstr "Irányítópult megnyitása"
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
