@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:35+0300\n"
-"PO-Revision-Date: 2023-02-12 19:51\n"
+"POT-Creation-Date: 2023-02-12 22:56+0300\n"
+"PO-Revision-Date: 2023-02-12 20:53\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -3387,7 +3387,7 @@ msgid "Move Up"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:464
-msgid "Move &Down"
+msgid "Move Down"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
@@ -4928,7 +4928,7 @@ msgid "Report an error in application to the developers"
 msgstr ""
 
 #: mmframe.cpp:1786
-msgid "View Diagnostics"
+msgid "View &Diagnostics"
 msgstr ""
 
 #: mmframe.cpp:1787
