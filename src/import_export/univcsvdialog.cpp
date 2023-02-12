@@ -466,6 +466,7 @@ void mmUnivCSVDialog::CreateControls()
     if (IsImporter()) mmToolTip(bImport_, _("Import File"));
     if (!IsImporter()) mmToolTip(bImport_, _("Export File"));
 
+    m_text_ctrl_->SetFocus();
 }
 
 void mmUnivCSVDialog::initDateMask()
@@ -484,7 +485,7 @@ void mmUnivCSVDialog::initDelimiter()
     if (delimit_.empty()) {
         delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
     }
-    m_textDelimiter->ChangeValue(delimit_);
+    m_textDelimiter->ChangeValue(delimit_ == "\t" ? "\\t" : delimit_);
 
 }
 
