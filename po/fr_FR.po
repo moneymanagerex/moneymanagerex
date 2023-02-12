@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-11 07:14\n"
+"POT-Creation-Date: 2023-02-12 15:56+0300\n"
+"PO-Revision-Date: 2023-02-12 12:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -377,8 +377,7 @@ msgstr "Quitter"
 msgid "Open the previously opened database : %s"
 msgstr "Ouvrir la dernière base de données : %s"
 
-#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:201
 msgid "system default"
 msgstr "défaut système"
 
@@ -2328,7 +2327,7 @@ msgstr "Automobile"
 msgid "Life"
 msgstr "Vie"
 
-#: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
+#: db/DB_Table_Category_V1.h:150
 msgid "Home"
 msgstr "Accueil"
 
@@ -4368,9 +4367,9 @@ msgstr "Comptes de prêts"
 msgid "Auto Repeat Transactions"
 msgstr "Opération auto-récurrente"
 
-#: mmframe.cpp:702 mmframe.cpp:1835
-msgid "Home Page"
-msgstr "Accueil"
+#: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
+msgid "Dashboard"
+msgstr ""
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4498,8 +4497,8 @@ msgid "New &Account..."
 msgstr "Nouveau compte..."
 
 #: mmframe.cpp:1416
-msgid "Account &List (Home)"
-msgstr "&Liste des comptes"
+msgid "Account &List"
+msgstr ""
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4669,13 +4668,18 @@ msgstr "Basculer en plein écran"
 msgid "Switch Application &Language"
 msgstr "Changer la langue de l'application"
 
-#: mmframe.cpp:1587
-msgid "&Home Page"
-msgstr "Page d'accueil"
+#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
+#: optionsettingsgeneral.cpp:362
+msgid "System default"
+msgstr ""
 
-#: mmframe.cpp:1587 mmframe.cpp:1835
-msgid "Show Home Page"
-msgstr "Afficher la page d'accueil"
+#: mmframe.cpp:1587
+msgid "&Dashboard"
+msgstr ""
+
+#: mmframe.cpp:1587
+msgid "Open Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -4998,8 +5002,8 @@ msgid "&About"
 msgstr "&À propos de"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
-msgid "Show about dialog"
-msgstr "Afficher la fenêtre \"À propos\""
+msgid "Show About dialog"
+msgstr ""
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5024,6 +5028,10 @@ msgstr "Ai&de"
 #: mmframe.cpp:1831 mmframe.cpp:1837
 msgid "New"
 msgstr "Nouveau"
+
+#: mmframe.cpp:1835
+msgid "Show Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -6380,8 +6388,8 @@ msgstr "Référence"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "Une référence à utiliser pour le bénéficiaire, par exemple le numéro de compte bancaire"
 
-#: payeedialog.cpp:105
-msgid "Web Site"
+#: payeedialog.cpp:105 payeedialog.cpp:238
+msgid "Website"
 msgstr "Site Internet"
 
 #: payeedialog.cpp:107
@@ -6391,10 +6399,6 @@ msgstr "URL du site Internet associée au bénéficiaire"
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
 msgstr "Un tiers avec le même nom existe déjà"
-
-#: payeedialog.cpp:238
-msgid "Website"
-msgstr "Site Internet"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -7783,8 +7787,8 @@ msgid "Transaction not downloaded:"
 msgstr "Opération non téléchargée:"
 
 #: webapp.cpp:597
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "Merci de définir le dossier des pièces jointes ou d'effacer les pièces jointes de l'application web"
+msgid "Please fix attachments folder or delete attachments from WebApp"
+msgstr ""
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
