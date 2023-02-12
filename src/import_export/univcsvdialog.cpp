@@ -461,7 +461,7 @@ void mmUnivCSVDialog::CreateControls()
     mmToolTip(itemButtonClear, _("Clear Settings"));
     mmToolTip(itemButton_standard, _("MMEX standard format"));
     mmToolTip(itemButton_MoveUp, _("Move Up"));
-    mmToolTip(itemButton_MoveDown, _("Move &Down"));
+    mmToolTip(itemButton_MoveDown, _("Move Down"));
     if (IsCSV()) mmToolTip(m_textDelimiter, _("Specify the delimiter to use when importing/exporting CSV files"));
     if (IsImporter()) mmToolTip(bImport_, _("Import File"));
     if (!IsImporter()) mmToolTip(bImport_, _("Export File"));
