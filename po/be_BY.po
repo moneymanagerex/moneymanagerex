@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"POT-Creation-Date: 2023-02-12 15:56+0300\n"
+"PO-Revision-Date: 2023-02-12 12:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -377,8 +377,7 @@ msgstr "В&ыйсці "
 msgid "Open the previously opened database : %s"
 msgstr "Адчыніць папярэднюю базу дадзеных: %s"
 
-#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:201
 msgid "system default"
 msgstr "Сістэмная"
 
@@ -2335,7 +2334,7 @@ msgstr "Аўта"
 msgid "Life"
 msgstr "Жыццё"
 
-#: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
+#: db/DB_Table_Category_V1.h:150
 msgid "Home"
 msgstr "Хатнія"
 
@@ -4401,9 +4400,9 @@ msgstr "Рахункі пазыкаў"
 msgid "Auto Repeat Transactions"
 msgstr "Аўтаматычны паўтор аперацыяў"
 
-#: mmframe.cpp:702 mmframe.cpp:1835
-msgid "Home Page"
-msgstr "Хатняя старонка"
+#: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
+msgid "Dashboard"
+msgstr ""
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4531,8 +4530,8 @@ msgid "New &Account..."
 msgstr "Новы &рахунак..."
 
 #: mmframe.cpp:1416
-msgid "Account &List (Home)"
-msgstr "Пачатковая &старонка (хатняя)"
+msgid "Account &List"
+msgstr ""
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4702,13 +4701,18 @@ msgstr "Зрабіць вакенца найвялікшым"
 msgid "Switch Application &Language"
 msgstr "&Мова дадатка"
 
-#: mmframe.cpp:1587
-msgid "&Home Page"
-msgstr "&Галоўная старонка"
+#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
+#: optionsettingsgeneral.cpp:362
+msgid "System default"
+msgstr ""
 
-#: mmframe.cpp:1587 mmframe.cpp:1835
-msgid "Show Home Page"
-msgstr "Паказаць хатнюю старонку"
+#: mmframe.cpp:1587
+msgid "&Dashboard"
+msgstr ""
+
+#: mmframe.cpp:1587
+msgid "Open Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -5031,8 +5035,8 @@ msgid "&About"
 msgstr "Пра &нас"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
-msgid "Show about dialog"
-msgstr "Паказаць звесткі пра дадатак"
+msgid "Show About dialog"
+msgstr ""
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5057,6 +5061,10 @@ msgstr "&Даведка"
 #: mmframe.cpp:1831 mmframe.cpp:1837
 msgid "New"
 msgstr "Стварыць"
+
+#: mmframe.cpp:1835
+msgid "Show Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -6415,8 +6423,8 @@ msgstr "Сувязь"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "Сувязь, што будзе выкарыстана для платніка, напрыклад нумар банкаўскага рахунка"
 
-#: payeedialog.cpp:105
-msgid "Web Site"
+#: payeedialog.cpp:105 payeedialog.cpp:238
+msgid "Website"
 msgstr "Вэб-сайт"
 
 #: payeedialog.cpp:107
@@ -6426,10 +6434,6 @@ msgstr "Спасылка на вэб-сайт, што звязаны з плат
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
 msgstr "Платнік з такім імем ужо існуе"
-
-#: payeedialog.cpp:238
-msgid "Website"
-msgstr "Вэб-сайт"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -7817,8 +7821,8 @@ msgid "Transaction not downloaded:"
 msgstr "Аперацыя не спампаваная:"
 
 #: webapp.cpp:597
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "Калі ласка, выпраўце тэчку з далучэннямі або выдаліце далучэнні ў WebApp"
+msgid "Please fix attachments folder or delete attachments from WebApp"
+msgstr ""
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
