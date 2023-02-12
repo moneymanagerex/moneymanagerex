@@ -486,16 +486,15 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     {
         int repeats = bill.REPEATS;
         wxString repeatSTR = _("Manual");
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)
+        if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)
         {
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
-            repeatSTR = _("Suggested");
-            if (repeats >= BD_REPEATS_MULTIPLEX_BASE)
-            {
-                repeats -= BD_REPEATS_MULTIPLEX_BASE;
-                repeatSTR = _("Automated");
-            }
+            repeatSTR = _("Automated");
         }
+        else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)
+        {
+            repeatSTR = _("Suggested");
+        }
+        
         return repeatSTR;
     }
     case COL_DAYS:
@@ -517,12 +516,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
 
 const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS;
-    // DeMultiplex the Auto Executable fields.
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats > 10 && repeats < 15)
@@ -532,12 +526,7 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
 
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS;
-    // DeMultiplex the Auto Executable fields.
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
 
     int daysRemaining = Model_Billsdeposits::TRANSDATE(item)
         .Subtract(this->getToday()).GetDays();
@@ -597,16 +586,16 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
     bool bd_repeat_auto = false;
     int repeats = m_bdp->bills_[item].REPEATS;
     // DeMultiplex the Auto Executable fields.
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+    if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
     {
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
-        bd_repeat_user = true;
-    }
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-    {
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
         bd_repeat_auto = true;
     }
+    else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+    {
+        bd_repeat_user = true;
+    }
+
+    repeats %= BD_REPEATS_MULTIPLEX_BASE;
 
     int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
         .Subtract(m_bdp->getToday()).GetDays();

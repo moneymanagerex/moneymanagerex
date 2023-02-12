@@ -219,19 +219,14 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
     int repeats = q1.REPEATS;
     int numRepeats = q1.NUMOCCURRENCES;
 
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+    if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+    {
+        m_autoExecuteSilent = true;
+    } else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
     {
         m_autoExecuteManual = true;
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
     }
-
-    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-    {
-        m_autoExecuteManual = false;               // Can only be manual or auto. Not both
-        m_autoExecuteSilent = true;
-        repeats -= BD_REPEATS_MULTIPLEX_BASE;
-    }
-
+    repeats %= BD_REPEATS_MULTIPLEX_BASE;
     if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
     {
         m_allowExecution = true;
@@ -343,12 +338,7 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
     Data* bill = get(bdID);
     if (bill)
     {
-        int repeats = bill->REPEATS;
-        // DeMultiplex the Auto Executable fields.
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
+        int repeats = bill->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
         int numRepeats = bill->NUMOCCURRENCES;
         const wxDateTime& payment_date_current = TRANSDATE(bill);
         const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);

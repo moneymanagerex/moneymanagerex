@@ -240,16 +240,16 @@ void mmBDDialog::dataToControls()
     m_date_due->SetValue(field_date);
 
     // Have used repeatSel to multiplex auto repeat fields.
-    switch (m_bill_data.REPEATS/BD_REPEATS_MULTIPLEX_BASE)
+    if (m_bill_data.REPEATS >= 2 * BD_REPEATS_MULTIPLEX_BASE)
     {
-    case 2:
         autoExecuteSilent_ = true;
         itemCheckBoxAutoExeSilent_->SetValue(true);
-        /* intentionally fall through */
-    case 1:
+        itemCheckBoxAutoExeUserAck_->Enable(false);
+    } else if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
+    {
         autoExecuteUserAck_ = true;
         itemCheckBoxAutoExeUserAck_->SetValue(true);
-        itemCheckBoxAutoExeSilent_->Enable(true);
+        itemCheckBoxAutoExeSilent_->Enable(false);
     }
     m_bill_data.REPEATS %= BD_REPEATS_MULTIPLEX_BASE;
 
@@ -462,7 +462,6 @@ void mmBDDialog::CreateControls()
     itemCheckBoxAutoExeSilent_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT
         , _("Grant automatic execute"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     mmToolTip(itemCheckBoxAutoExeSilent_, _("The requested payment will occur without user interaction"));
-    itemCheckBoxAutoExeSilent_->Disable();
 
     repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, g_flagsExpand);
     repeatTransBoxSizer->Add(itemCheckBoxAutoExeSilent_, g_flagsExpand);
@@ -975,9 +974,8 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (autoExecuteUserAck_) {
         m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
     }
-
-    if (autoExecuteSilent_) {
-        m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
+    else if (autoExecuteSilent_) {
+        m_bill_data.REPEATS += 2 * BD_REPEATS_MULTIPLEX_BASE;
     }
 
     const wxString& numRepeatStr = textNumRepeats_->GetValue();
@@ -1129,19 +1127,29 @@ void mmBDDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& WXUNUSED(event))
     autoExecuteUserAck_ = !autoExecuteUserAck_;
     if (autoExecuteUserAck_)
     {
-        itemCheckBoxAutoExeSilent_->Enable(true);
-    }
-    else
-    {
         itemCheckBoxAutoExeSilent_->SetValue(false);
         itemCheckBoxAutoExeSilent_->Enable(false);
         autoExecuteSilent_ = false;
+    }
+    else
+    {
+        itemCheckBoxAutoExeSilent_->Enable(true);
     }
 }
 
 void mmBDDialog::OnAutoExecutionSilentChecked(wxCommandEvent& WXUNUSED(event))
 {
     autoExecuteSilent_ = !autoExecuteSilent_;
+    if (autoExecuteSilent_)
+    {
+        itemCheckBoxAutoExeUserAck_->SetValue(false);
+        itemCheckBoxAutoExeUserAck_->Enable(false);
+        autoExecuteUserAck_ = false;
+    }
+    else
+    {
+        itemCheckBoxAutoExeUserAck_->Enable(true);
+    }
 }
 
 void mmBDDialog::OnAdvanceChecked(wxCommandEvent& WXUNUSED(event))
