@@ -669,7 +669,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
         }
         else
         {
-            wxString msg = wxString::Format(_("Unable to open file:\n%s\n\n"), reportFileName);
+            wxString msg = wxString() << _("Unable to open file:") << "\n" << "'" << reportFileName << "'" << "\n" << "\n";
             wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
             return false;
         }
