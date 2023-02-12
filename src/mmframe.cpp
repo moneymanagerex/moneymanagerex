@@ -1783,7 +1783,7 @@ void mmGUIFrame::createMenu()
     menuHelp->Append(menuItemReportBug);
 
     wxMenuItem* menuItemDiagnostics = new wxMenuItem(menuTools, MENU_DIAGNOSTICS
-        , _("View Diagnostics")
+        , _("View &Diagnostics")
         , _("Help provide information to the developers"));
     menuHelp->Append(menuItemDiagnostics);
 
