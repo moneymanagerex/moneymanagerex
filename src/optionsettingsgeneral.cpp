@@ -87,7 +87,7 @@ void OptionSettingsGeneral::Create()
 
     // Language
     auto language = Option::instance().getLanguageID(true);
-    const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
+    const auto langName = language == wxLANGUAGE_DEFAULT ? _("System default") : wxLocale::GetLanguageName(language);
 
     wxStaticBox* langStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _("Language"));
     SetBoldFont(langStaticBox);
@@ -359,7 +359,7 @@ void OptionSettingsGeneral::OnMouseLeftDown(wxCommandEvent& event)
     wxMenu menuLang;
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
     std::map<wxString, std::pair<int, wxString>> langs;
-    menuLang.AppendRadioItem(wxID_LAST + 1 + wxLANGUAGE_DEFAULT, _("system default"))
+    menuLang.AppendRadioItem(wxID_LAST + 1 + wxLANGUAGE_DEFAULT, _("System default"))
         ->Check(m_app->getGUILanguage() == wxLANGUAGE_DEFAULT);
     for (auto & file : lang_files)
     {
