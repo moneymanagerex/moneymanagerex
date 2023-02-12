@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-12 22:56+0300\n"
-"PO-Revision-Date: 2023-02-12 20:52\n"
+"PO-Revision-Date: 2023-02-12 21:58\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3415,7 +3415,7 @@ msgstr "Déplacer vers le haut"
 
 #: import_export/univcsvdialog.cpp:464
 msgid "Move Down"
-msgstr ""
+msgstr "Déplacer vers le bas"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -4964,7 +4964,7 @@ msgstr "Signaler une erreur dans l’application aux développeurs"
 
 #: mmframe.cpp:1786
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "Afficher les diagnostics"
 
 #: mmframe.cpp:1787
 msgid "Help provide information to the developers"
