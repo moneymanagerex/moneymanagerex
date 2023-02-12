@@ -315,8 +315,7 @@ void mmUnivCSVDialog::CreateControls()
         itemStaticText77->SetFont(staticBoxFontSetting);
         flex_sizer->Add(itemStaticText77, g_flagsH);
 
-        m_textDelimiter = new wxTextCtrl(itemPanel7, ID_UD_DELIMIT, "", wxDefaultPosition, wxDefaultSize
-            , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
+        m_textDelimiter = new wxTextCtrl(itemPanel7, ID_UD_DELIMIT);
         m_textDelimiter->SetMaxLength(1);
         m_textDelimiter->Connect(ID_UD_DELIMIT
             , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnDelimiterChange), nullptr, this);
@@ -1687,11 +1686,15 @@ void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)
 
 void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
 {
-    const wxString delimit = m_textDelimiter->GetValue();
-    event.Skip();
+    wxString delimit = m_textDelimiter->GetValue();
 
     if (!delimit.IsEmpty())
     {
+        if (delimit == "\\") {
+            delimit = "\t";
+            m_textDelimiter->ChangeValue("\\t");
+        }
+        m_textDelimiter->SelectAll();
         delimit_ = delimit;
         this->update_preview();
     }
