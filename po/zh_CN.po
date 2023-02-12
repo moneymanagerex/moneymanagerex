@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"POT-Creation-Date: 2023-02-12 15:56+0300\n"
+"PO-Revision-Date: 2023-02-12 13:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -377,8 +377,7 @@ msgstr "退出(&E) "
 msgid "Open the previously opened database : %s"
 msgstr "打开之前已打开的数据库： %s"
 
-#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:201
 msgid "system default"
 msgstr "系统默认"
 
@@ -2324,7 +2323,7 @@ msgstr "自动"
 msgid "Life"
 msgstr "生活"
 
-#: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
+#: db/DB_Table_Category_V1.h:150
 msgid "Home"
 msgstr "主页"
 
@@ -4350,9 +4349,9 @@ msgstr "贷款账户"
 msgid "Auto Repeat Transactions"
 msgstr "自动重复交易"
 
-#: mmframe.cpp:702 mmframe.cpp:1835
-msgid "Home Page"
-msgstr "主页"
+#: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
+msgid "Dashboard"
+msgstr ""
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4480,8 +4479,8 @@ msgid "New &Account..."
 msgstr "新建账户..."
 
 #: mmframe.cpp:1416
-msgid "Account &List (Home)"
-msgstr "账户列表(&L)"
+msgid "Account &List"
+msgstr ""
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4651,13 +4650,18 @@ msgstr "全屏"
 msgid "Switch Application &Language"
 msgstr "切换应用程序语言(&L)"
 
-#: mmframe.cpp:1587
-msgid "&Home Page"
-msgstr "主页(&H)"
+#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
+#: optionsettingsgeneral.cpp:362
+msgid "System default"
+msgstr ""
 
-#: mmframe.cpp:1587 mmframe.cpp:1835
-msgid "Show Home Page"
-msgstr "显示主页"
+#: mmframe.cpp:1587
+msgid "&Dashboard"
+msgstr ""
+
+#: mmframe.cpp:1587
+msgid "Open Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -4980,8 +4984,8 @@ msgid "&About"
 msgstr "关于(&A)"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
-msgid "Show about dialog"
-msgstr "显示”关于”"
+msgid "Show About dialog"
+msgstr ""
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5006,6 +5010,10 @@ msgstr "帮助(&H)"
 #: mmframe.cpp:1831 mmframe.cpp:1837
 msgid "New"
 msgstr "新增"
+
+#: mmframe.cpp:1835
+msgid "Show Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -6354,8 +6362,8 @@ msgstr "引用"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "用于收款人的引用，例如银行帐号"
 
-#: payeedialog.cpp:105
-msgid "Web Site"
+#: payeedialog.cpp:105 payeedialog.cpp:238
+msgid "Website"
 msgstr "网站"
 
 #: payeedialog.cpp:107
@@ -6365,10 +6373,6 @@ msgstr "与收款人关联的网站 URL"
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
 msgstr "收帐人名称已存在"
-
-#: payeedialog.cpp:238
-msgid "Website"
-msgstr "网站"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -7756,8 +7760,8 @@ msgid "Transaction not downloaded:"
 msgstr "交易未下载："
 
 #: webapp.cpp:597
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "请修复附件文件夹或从WebApp 中删除附件"
+msgid "Please fix attachments folder or delete attachments from WebApp"
+msgstr ""
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
