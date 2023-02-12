@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-12 09:56\n"
+"POT-Creation-Date: 2023-02-12 15:56+0300\n"
+"PO-Revision-Date: 2023-02-12 13:00\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -377,8 +377,7 @@ msgstr "&Avsluta "
 msgid "Open the previously opened database : %s"
 msgstr "Öppna den tidigare öppnade databasen : %s"
 
-#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:201
 msgid "system default"
 msgstr "systemstandardvärde"
 
@@ -2319,7 +2318,7 @@ msgstr "Bil"
 msgid "Life"
 msgstr "Liv"
 
-#: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
+#: db/DB_Table_Category_V1.h:150
 msgid "Home"
 msgstr "Hem"
 
@@ -4350,9 +4349,9 @@ msgstr "Lånekonton"
 msgid "Auto Repeat Transactions"
 msgstr ""
 
-#: mmframe.cpp:702 mmframe.cpp:1835
-msgid "Home Page"
-msgstr "Övergripande"
+#: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
+msgid "Dashboard"
+msgstr ""
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4480,7 +4479,7 @@ msgid "New &Account..."
 msgstr "Nytt &konto..."
 
 #: mmframe.cpp:1416
-msgid "Account &List (Home)"
+msgid "Account &List"
 msgstr ""
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
@@ -4651,12 +4650,17 @@ msgstr "Växla helskärm"
 msgid "Switch Application &Language"
 msgstr ""
 
-#: mmframe.cpp:1587
-msgid "&Home Page"
+#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
+#: optionsettingsgeneral.cpp:362
+msgid "System default"
 msgstr ""
 
-#: mmframe.cpp:1587 mmframe.cpp:1835
-msgid "Show Home Page"
+#: mmframe.cpp:1587
+msgid "&Dashboard"
+msgstr ""
+
+#: mmframe.cpp:1587
+msgid "Open Dashboard"
 msgstr ""
 
 #: mmframe.cpp:1596
@@ -4980,7 +4984,7 @@ msgid "&About"
 msgstr "&Om"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
-msgid "Show about dialog"
+msgid "Show About dialog"
 msgstr ""
 
 #: mmframe.cpp:1803
@@ -5006,6 +5010,10 @@ msgstr "&Hjälp"
 #: mmframe.cpp:1831 mmframe.cpp:1837
 msgid "New"
 msgstr "Ny"
+
+#: mmframe.cpp:1835
+msgid "Show Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -6344,8 +6352,8 @@ msgstr "Referens"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "En referens att användas för betalningsmottagaren, t.ex. bankkontonummer"
 
-#: payeedialog.cpp:105
-msgid "Web Site"
+#: payeedialog.cpp:105 payeedialog.cpp:238
+msgid "Website"
 msgstr "Webbplats"
 
 #: payeedialog.cpp:107
@@ -6355,10 +6363,6 @@ msgstr "Webbadress kopplad till betalningsmottagaren"
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
 msgstr "Avs/mot med samma namn finns redan"
-
-#: payeedialog.cpp:238
-msgid "Website"
-msgstr "Webbplats"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -7738,8 +7742,8 @@ msgid "Transaction not downloaded:"
 msgstr "Transaktionen laddades inte ner:"
 
 #: webapp.cpp:597
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "åtgärda mapp för bilagor eller ta bort bilagor från WebApp"
+msgid "Please fix attachments folder or delete attachments from WebApp"
+msgstr ""
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
