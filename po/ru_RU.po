@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-12 15:56+0300\n"
-"PO-Revision-Date: 2023-02-12 13:00\n"
+"PO-Revision-Date: 2023-02-12 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1618,7 +1618,7 @@ msgstr "Развернуть все"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "Показать &все"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2021,7 +2021,7 @@ msgstr "(Используется локаль)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Менеджер валют"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3668,7 +3668,7 @@ msgstr "Загрузить историю валют"
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "Добавить/&Обновить "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -4401,7 +4401,7 @@ msgstr "Автоматический повтор транзакций"
 
 #: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Сводная панель"
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4530,7 +4530,7 @@ msgstr "Новый счёт..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
-msgstr ""
+msgstr "Список &счетов"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4703,15 +4703,15 @@ msgstr "&Язык приложения"
 #: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
 #: optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "Системный"
 
 #: mmframe.cpp:1587
 msgid "&Dashboard"
-msgstr ""
+msgstr "&Панель"
 
 #: mmframe.cpp:1587
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Открыть панель"
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -5035,7 +5035,7 @@ msgstr "О програ&мме"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
 msgid "Show About dialog"
-msgstr ""
+msgstr "Показать диалог О программе"
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5063,7 +5063,7 @@ msgstr "С&оздать"
 
 #: mmframe.cpp:1835
 msgid "Show Dashboard"
-msgstr ""
+msgstr "Показать сводную панель"
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -5468,7 +5468,7 @@ msgstr "Самые расходные: %s"
 
 #: mmhomepage.cpp:363
 msgid "Account/Payee"
-msgstr ""
+msgstr "Счёт/получатель"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -6025,7 +6025,7 @@ msgstr "Пример валютного значения: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "Неверное название локали"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6269,12 +6269,13 @@ msgstr "Если существует месячный бюджет, испол�
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Вычитание ежемесячных бюджетов из годового бюджета при составлении отчетности"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Годовой бюджет будет сокращен на сумму бюджета ежемесячно.\n"
+"Общая оценка за год будет указана как годовой бюджет ИЛИ сумма ежемесячных бюджетов, в зависимости от того, что больше."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7468,7 +7469,7 @@ msgstr "Укажите дату транзакции"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Диалог транзакций"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
@@ -7819,7 +7820,7 @@ msgstr "Транзакция не загружена:"
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Пожалуйста, исправьте папку вложений или удалите вложения из WebApp"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
