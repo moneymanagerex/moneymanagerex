@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"PO-Revision-Date: 2023-02-12 09:56\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1609,7 +1609,7 @@ msgstr "Expandera alla"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "Visa &alla"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2010,7 +2010,7 @@ msgstr ""
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Valutahanterare"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3647,7 +3647,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "Lägg till/&uppdatera "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -5396,7 +5396,7 @@ msgstr ""
 
 #: mmhomepage.cpp:363
 msgid "Account/Payee"
-msgstr ""
+msgstr "Konto/betalningsmottagare"
 
 #: mmhomepage.cpp:433
 #, c-format
@@ -6192,12 +6192,13 @@ msgstr "Om den månatliga budgeten finns, använd denna för att åsidosätta de
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Subtrahera månadsbudgetar från årsbudgeten i rapporteringen"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Årlig budget kommer att minskas med det belopp som budgeteras varje månad.\n"
+"Den totala uppskattningen för året kommer att redovisas antingen som den årliga budgeten ELLER summan av de månatliga budgetarna, beroende på vilket som är större."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7387,7 +7388,7 @@ msgstr "Ange transaktionsdatumet"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Transaktionsdialog"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
