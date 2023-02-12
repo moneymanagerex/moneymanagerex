@@ -594,7 +594,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                 wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
                     << _("Attachments folder not set or unavailable") << "\n" << "\n"
                     << _("Transaction not downloaded:") << "\n"
-                    << _("please fix attachments folder or delete attachments from WebApp") << "\n";
+                    << _("Please fix attachments folder or delete attachments from WebApp") << "\n";
                 wxMessageBox(msgStr, _("Attachment folder error"), wxICON_ERROR);
             }
             else

@@ -102,7 +102,7 @@ void mmEditPayeeDialog::CreateControls()
     fgSizer1->Add(m_reference, g_flagsExpand);
 
     // Website
-    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Web Site")), g_flagsH);
+    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Website")), g_flagsH);
     m_website = new wxTextCtrl(this, wxID_ANY, "");
     mmToolTip(m_website, _("Website URL associated with the payee"));
     fgSizer1->Add(m_website, g_flagsExpand);

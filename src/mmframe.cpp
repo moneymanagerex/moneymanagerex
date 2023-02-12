@@ -699,8 +699,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     DoWindowsFreezeThaw(m_nav_tree_ctrl);
     resetNavTreeControl();
 
-    wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
-    m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Home Page"));
+    wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Dashboard"), img::HOUSE_PNG, img::HOUSE_PNG);
+    m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Dashboard"));
     m_nav_tree_ctrl->SetItemBold(root, true);
 
     wxTreeItemId alltransactions = m_nav_tree_ctrl->AppendItem(root, _("All Transactions"), img::ALLTRANSACTIONS_PNG, img::ALLTRANSACTIONS_PNG);
@@ -1413,7 +1413,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     {
         menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account..."));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account..."));
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List"));
         menu.AppendSeparator();
         menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account..."));
         menu.AppendSeparator();
@@ -1564,7 +1564,7 @@ void mmGUIFrame::createMenu()
 
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
     std::map<wxString, std::pair<int, wxString>> langs;
-    menuLang->AppendRadioItem(MENU_LANG + 1 + wxLANGUAGE_DEFAULT, _("system default"))
+    menuLang->AppendRadioItem(MENU_LANG + 1 + wxLANGUAGE_DEFAULT, _("System default"))
         ->Check(m_app->getGUILanguage() == wxLANGUAGE_DEFAULT);
     for (auto & file : lang_files)
     {
@@ -1584,7 +1584,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_HOMEPAGE
-        , _("&Home Page"), _("Show Home Page"));
+        , _("&Dashboard"), _("Open Dashboard"));
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
         , _("New &Account..."), _("New Account"));
@@ -1796,7 +1796,7 @@ void mmGUIFrame::createMenu()
     menuHelp->Append(menuItemCheck);
 
     wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT
-        , _("&About"), _("Show about dialog"));
+        , _("&About"), _("Show About dialog"));
     menuHelp->Append(menuItemAbout);
 
     menuBar_ = new wxMenuBar;
@@ -1832,7 +1832,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmapBundle(png::OPEN, toolbar_icon_size), _("Open Database"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmapBundle(png::NEW_ACC, toolbar_icon_size), _("New Account"));
-    toolBar_->AddTool(MENU_HOMEPAGE, _("Home Page"), mmBitmapBundle(png::HOME, toolbar_icon_size), _("Show Home Page"));
+    toolBar_->AddTool(MENU_HOMEPAGE, _("Dashboard"), mmBitmapBundle(png::HOME, toolbar_icon_size), _("Show Dashboard"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), mmBitmapBundle(png::NEW_TRX, toolbar_icon_size), _("New Transaction"));
     toolBar_->AddSeparator();
@@ -1868,7 +1868,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print current view"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("Show about dialog"));
+    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("Show About dialog"));
     toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmapBundle(png::HELP, toolbar_icon_size), _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
@@ -2832,7 +2832,7 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
     case wxID_SETUP:
     {
         auto language = Option::instance().getLanguageID(true);
-        const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
+        const auto langName = language == wxLANGUAGE_DEFAULT ? _("System default") : wxLocale::GetLanguageName(language);
         break;
     }
     case wxID_EXIT:
