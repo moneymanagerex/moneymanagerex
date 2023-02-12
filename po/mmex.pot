@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:26+0300\n"
+"POT-Creation-Date: 2023-02-12 22:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,8 +376,9 @@ msgstr ""
 msgid "Open the previously opened database : %s"
 msgstr ""
 
-#: appstartdialog.cpp:201
-msgid "system default"
+#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
+#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+msgid "System default"
 msgstr ""
 
 #: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
@@ -817,7 +818,7 @@ msgstr ""
 msgid "Delete attachment failed"
 msgstr ""
 
-#: attachmentdialog.cpp:526
+#: attachmentdialog.cpp:526 general_report_manager.cpp:672
 msgid "Unable to open file:"
 msgstr ""
 
@@ -2801,14 +2802,6 @@ msgstr ""
 msgid "ZIP files (*.zip)"
 msgstr ""
 
-#: general_report_manager.cpp:672
-#, c-format
-msgid ""
-"Unable to open file:\n"
-"%s\n"
-"\n"
-msgstr ""
-
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
 msgstr ""
@@ -4666,11 +4659,6 @@ msgstr ""
 
 #: mmframe.cpp:1561
 msgid "Switch Application &Language"
-msgstr ""
-
-#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
-#: optionsettingsgeneral.cpp:362
-msgid "System default"
 msgstr ""
 
 #: mmframe.cpp:1587

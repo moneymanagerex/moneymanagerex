@@ -198,7 +198,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
             langs[info->Description] = std::make_pair(info->Language, info->CanonicalName);
     }
 
-    langChoices.Add(_("system default"));
+    langChoices.Add(_("System default"));
     int current = -1;
     int i = 1;
     for (auto &lang : langs)
