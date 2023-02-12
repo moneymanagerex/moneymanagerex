@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:35+0300\n"
-"PO-Revision-Date: 2023-02-12 19:51\n"
+"POT-Creation-Date: 2023-02-12 22:56+0300\n"
+"PO-Revision-Date: 2023-02-12 20:52\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -287,7 +287,7 @@ msgstr "Adjon meg egy érvényes URL-címet"
 
 #: accountdialog.cpp:507 payeedialog.cpp:146
 msgid "Invalid URL"
-msgstr "Érvénytelen URL cím"
+msgstr "Érvénytelen URL-cím"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
@@ -1846,7 +1846,7 @@ msgstr "64 bites"
 
 #: constants.cpp:186
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Megtekintés ügyletszűrővel…"
 
 #: constants.cpp:187
 msgid "View All Transactions"
@@ -3411,8 +3411,8 @@ msgid "Move Up"
 msgstr "Mozgatás felfele"
 
 #: import_export/univcsvdialog.cpp:464
-msgid "Move &Down"
-msgstr "Mozgatás &lefelé"
+msgid "Move Down"
+msgstr "Mozgatás lefelé"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -4961,7 +4961,7 @@ msgid "Report an error in application to the developers"
 msgstr "Jelentsen be egy alkalmazás hibát a fejlesztőknek"
 
 #: mmframe.cpp:1786
-msgid "View Diagnostics"
+msgid "View &Diagnostics"
 msgstr "&Diagnosztika megtekintése"
 
 #: mmframe.cpp:1787
@@ -6099,7 +6099,7 @@ msgstr "Webalkalmazás-beállítások"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "Url"
-msgstr "URL"
+msgstr "URL-cím"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
