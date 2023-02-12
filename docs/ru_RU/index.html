@@ -56,7 +56,7 @@
             <p>Упрощенно это может быть показано, как на этом изображении:</p>
         </div>
         <div class="col-xs-8 text-info">
-        <img src="../ru_RU/mmex_concept.png" alt="">
+            <img src="../ru_RU/mmex_concept.png" alt="">
         </div>
     </div>
     <p>Еще одна важная вещь это валюта, которая используется для выполнения операций.</p>
@@ -251,15 +251,15 @@
                 <li>Можно смешивать доходы и расходы в разных категориях в пределах одной транзакции, при условии, что сумма по категориям будет положительной.</li>
             </ul>
         </div>
-	    <aside class="sticky notes">
+        <aside class="sticky notes">
             Не используйте одну и ту же категорию для доходов и расходов, так как это нарушит общие показатели баланса.
         </aside>
     </div>
 
     <a name="Number"></a>
     <p><b>Номер транзакции:</b> Это поле для ввода любой информации, связанной с операцией, такой как номер чека.</p>
-	
-	<aside class="sticky notes">
+
+    <aside class="sticky notes">
         Это поле может быть использовано для записи каких-либо специальных заметок в отношении сделки. Кнопку над этим полем можно использовать для выбора часто используемых заметок.
     </aside>
     <h3>Редактирование транзакции</h3>
@@ -287,15 +287,15 @@
         <div class="col-xs-9">
             <p>
                 Не выверенные транзакции:
-                </p><ul>
-                    <li>Это означает, что они не были сверены с выпиской от финансового учреждения.</li>
-                </ul>
+            </p><ul>
+                <li>Это означает, что они не были сверены с выпиской от финансового учреждения.</li>
+            </ul>
             <p></p>
             <p>
                 Выверенные транзакции:
-                </p><ul>
-                    <li>В MMEX, транзакции с разным статусом отмечаются различными значками. Пользователь может выбрать по умолчанию любой статус при создании транзакции в настройках.</li>
-                </ul>
+            </p><ul>
+                <li>В MMEX, транзакции с разным статусом отмечаются различными значками. Пользователь может выбрать по умолчанию любой статус при создании транзакции в настройках.</li>
+            </ul>
             <p></p>
             <p>В MMEX, транзакции с разным статусом отмечаются различными значками. Пользователь может выбрать по умолчанию любой статус при создании транзакции в настройках.</p>
         </div>
@@ -320,6 +320,52 @@
         При нажатии Ctrl+0 цвет вернётся обратно к цвету транзакции mmex по умолчанию.
     </p>
 
+    <h2>Поиск информации</h2>
+
+    <h3>Поиск транзакций</h3>
+    <aside class="sticky tips">
+        The most powerful tools for finding particular transaction information
+        are the <a href="#trx_report">Transaction Reports</a>.
+        Самым мощным инструментом для поиска информации о транзакциях
+        является <a href="#trx_report">Отчёт о транзакциях</a>.
+    </aside>
+    <p>
+        MMEX предоставляет несколько утилит, помогающих пользователям находить конкретные транзакции.
+        В поле <a href="#Notes">Примечания</a> по транзакциям можно выполнить поиск в окне счёта.
+        В нижней части списка транзакций введите свой поисковый запрос в текстовое поле справа от увеличительного стекла.
+        Нажмите на увеличительное стекло или нажмите клавишу <kbd><samp>Enter</samp></kbd> для
+        поиска транзакций в этом аккаунте. Поиск выполняется с учетом регистра.
+    </p>
+
+    <h3>Поиск получателей платежей</h3>
+    <p>
+        Чтобы найти конкретных получателей платежей, откройте Управление получателями платежей, используя пункт меню:
+        <kbd><samp>Инструменты</samp> &rarr; <samp>Редактор получателей...</samp></kbd>.
+    </p>
+    <p>
+        В окне управления получателем платежа используйте поле поиска внизу, чтобы ввести свой
+        запрос. Поиск не чувствителен к регистру, и по мере ввода список получателей платежа будет
+        отфильтровываться по любым совпадениям.
+    </p>
+    <p>
+        Если вы не знаете точного имени или правописания получателя платежа, вы можете использовать
+        подстановочный знак <kbd><kbd>?</kbd></kbd> (вопросительный знак) вместо одного
+        символ или подстановочный знак <kbd><kbd>*</kbd></kbd> (звездочка) в качестве замены
+        для одного или нескольких символов.
+    </p>
+    <h4>Примеры:</h4>
+    <ul>
+        <li>
+            Поиск <kbd>Кот?</kbd> найдёт <samp>Коты</samp> но не
+            <samp>Котельная</samp>
+        </li>
+        <li>
+            Поиск <kbd>Мар*</kbd> найдёт <samp>Март</samp> и
+            <samp>Маркет</samp>
+        </li>
+    </ul>
+
+
     <h2>Работа с валютами</h2>
     <div class="row">
         <div class="col-xs-9">
@@ -335,19 +381,19 @@
             <p>Вы можете управлять валютами с помощью пункта меню: Инструменты → Организация валюты.</p>
             <p>
                 Чтобы добавить новую валюту:
-                </p><ul>
-                    <li>Используйте кнопку 'Добавить' в валютном диалоге.</li>
-                    <li>
-                        Укажите подходящее имя для новой валюты.<br>
-                        Примечание: Это имя не может быть изменено, но валюта может быть удалена, если не используется.
-                    </li>
-                    <li>
-                        Отредактируйте данные валюты в менеджере валюты, если требуется.<br>
-                    </li>
-                    <li>
-                        Используйте кнопку 'Обновить', чтобы сохранить изменения перед закрытием диалога.<br>
-                    </li>
-                </ul>
+            </p><ul>
+                <li>Используйте кнопку 'Добавить' в валютном диалоге.</li>
+                <li>
+                    Укажите подходящее имя для новой валюты.<br>
+                    Примечание: Это имя не может быть изменено, но валюта может быть удалена, если не используется.
+                </li>
+                <li>
+                    Отредактируйте данные валюты в менеджере валюты, если требуется.<br>
+                </li>
+                <li>
+                    Используйте кнопку 'Обновить', чтобы сохранить изменения перед закрытием диалога.<br>
+                </li>
+            </ul>
             <p></p>
 
             <p>Если используется более чем одна валюта, надо задать обменные курсы. Это позволит правильно отражать стоимости в базовой валюте.</p>
@@ -369,12 +415,12 @@
         </aside>
 
         <aside class="sticky tips">
-                Use the toolbar icon for quick selection of the
-                Organize Currencies dialog.
+            Use the toolbar icon for quick selection of the
+            Organize Currencies dialog.
         </aside>
 
         <aside class="sticky tips">
-                Use the up/down keys to navigate the currency selection.
+            Use the up/down keys to navigate the currency selection.
         </aside>
 
 
@@ -438,11 +484,11 @@
     <div class="row">
         <div class="col-xs-9">
             <p style="color: rgb(170, 0, 0);">
-                    You can manage Categories by using the menu item:
-                    Tools→Organize Categories.
+                You can manage Categories by using the menu item:
+                Tools→Organize Categories.
                 <br>
-                    Once the category dialog opens, you can add new categories and
-                    subcategories.
+                Once the category dialog opens, you can add new categories and
+                subcategories.
             </p>
             <p>Чтобы добавить новую категорию:</p>
             <ol>
@@ -490,14 +536,14 @@
         </div>
 
         <aside class="sticky tips">
-                Use the toolbar icon for quick selection of the
-                Organize Categories dialog.
-                Use the up/down keys to navigate the tree selection.
+            Use the toolbar icon for quick selection of the
+            Organize Categories dialog.
+            Use the up/down keys to navigate the tree selection.
         </aside>
 
         <aside class="sticky tips">
-                Don't use the same category for Income and Expense,
-                as this will cause incorrect balance calculations.
+            Don't use the same category for Income and Expense,
+            as this will cause incorrect balance calculations.
         </aside>
 
     </div>
@@ -540,22 +586,25 @@
     <div>
         <span class="label label-info">Советы:</span>
         <table class="table">
-            <tbody><tr class="success">
-                <td>С помощью значка на панели инструментов можно быстро вызвать диалог Получатели.</td>
-            </tr>
-            <tr class="success">
-                <td>Используйте клавиши вверх/вниз для перемещения по списку получателей.</td>
-            </tr>
-            <tr class="success">
-                <td>Используйте * в качестве шаблона, чтобы соответствовать множеству символов в фильтре.</td>
-            </tr>
-            <tr class="success">
-                <td>Используйте ?, чтобы соответствовать любому символу в фильтре.</td>
-            </tr>
-        </tbody></table>
+            <tbody>
+                <tr class="success">
+                    <td>С помощью значка на панели инструментов можно быстро вызвать диалог Получатели.</td>
+                </tr>
+                <tr class="success">
+                    <td>Используйте клавиши вверх/вниз для перемещения по списку получателей.</td>
+                </tr>
+                <tr class="success">
+                    <td>Используйте * в качестве шаблона, чтобы соответствовать множеству символов в фильтре.</td>
+                </tr>
+                <tr class="success">
+                    <td>Используйте ?, чтобы соответствовать любому символу в фильтре.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <h2>Импорт из WebApp файлов</h2>
+    <h2>Импорт финансовых данных</h2>
+    <h3>Импорт из WebApp файлов</h3>
     <p>
         MMEX has a light WebApp that can be installed on every PHP
         webserver like NAS, shared hosting or other PHP local
@@ -598,34 +647,34 @@
         </a>.
     </p>
 
-    <h2>Импорт из QIF файлов</h2>
+    <h3>Импорт из QIF файлов</h3>
     <p>Quicken Interchange Format (QIF) является открытой спецификацией для чтения и записи финансовых данных. Файл QIF, как правило, имеет следующую структуру:</p><div class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10 text-info">
-                !Type:type identifier string<br>
-                [single character line code]Literal String Data<br>
-                ...<br>
-                ^<br>
-                [single character line code]Literal String Data<br>
-                ...<br>
-                ^<br>
-            </div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 text-info">
+            !Type:type identifier string<br>
+            [single character line code]Literal String Data<br>
+            ...<br>
+            ^<br>
+            [single character line code]Literal String Data<br>
+            ...<br>
+            ^<br>
         </div>
+    </div>
     <p></p>
     <p>Каждая запись заканчивается ^.</p>
     <p>
         Пример QIF транзакции:
-        </p><div class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10 text-info">
-                !Type:Bank Header<br>
-                D6/ 1/94 Date<br>
-                T-1,000.00 Amount<br>
-                N1005 number<br>
-                PBank Of Mortgage Payee<br>
-                ^ End of transaction
-            </div>
+    </p><div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 text-info">
+            !Type:Bank Header<br>
+            D6/ 1/94 Date<br>
+            T-1,000.00 Amount<br>
+            N1005 number<br>
+            PBank Of Mortgage Payee<br>
+            ^ End of transaction
         </div>
+    </div>
     <p></p>
     <p>
         QIF is older than Open Financial Exchange (OFX). The inability to
@@ -641,38 +690,40 @@
     <p>
         The types are the following: (You can find the type of QIF by
         opening in a text editor)
-        </p><div class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10 text-info">
-                !Type:Bank Bank account transactions<br>
-                !Type:Cash Cash account transactions<br>
-                !Type:CCard Credit card account transactions
-            </div>
+    </p><div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 text-info">
+            !Type:Bank Bank account transactions<br>
+            !Type:Cash Cash account transactions<br>
+            !Type:CCard Credit card account transactions
         </div>
+    </div>
     <p></p>
 
     <div>
         <span class="label label-danger">Заметки:</span>
         <table class="table">
-            <tbody><tr class="warning">
-                <td>
-                    The date format option has to match that of the
-                    date format in the QIF file, otherwise, date parsing by MMEX will
-                    fail and will result in transactions having incorrect dates.
-                </td>
-            </tr>
-            <tr class="warning">
-                <td>
-                    After importing from QIF, all transactions will
-                    have a <b>Follow Flag</b> as it its status. You can mark all
-                    transactions with this flag using the bulk status setting commands
-                    using the right click menu in the account view.
-                </td>
-            </tr>
-        </tbody></table>
+            <tbody>
+                <tr class="warning">
+                    <td>
+                        The date format option has to match that of the
+                        date format in the QIF file, otherwise, date parsing by MMEX will
+                        fail and will result in transactions having incorrect dates.
+                    </td>
+                </tr>
+                <tr class="warning">
+                    <td>
+                        After importing from QIF, all transactions will
+                        have a <b>Follow Flag</b> as it its status. You can mark all
+                        transactions with this flag using the bulk status setting commands
+                        using the right click menu in the account view.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <h2>Импорт из CSV файлов</h2>
+    <h3>Импорт из CSV файлов</h3>
     <p>
         To alleviate the problem of users having to pre-format their
         bank transaction CSV files into the fixed format MMEX requires,
@@ -700,66 +751,71 @@
         <a href="#Notes">Примечания</a> - Заметки по транзакции<br>
         <a href="#Number">Номер</a> - номер транзакции<br>
         Withdrawal - An +ive amount that is considered as a withdrawal. (Do
-            not use if specifying Amount (+/-))<br>
+        not use if specifying Amount (+/-))<br>
         Deposit - An +ive amount that is considered as a deposit. (Do not
-            use if specifying Amount (+/-))<br>
+        use if specifying Amount (+/-))<br>
         Не используется - игнорировать это поле
     </p>
 
     <div>
         <span class="label label-danger">Заметки:</span>
         <table class="table">
-            <tbody><tr class="warning">
-                <td>Обратите внимание, что транзакции из файла CSV можно импортировать только в один счет MMEX.</td>
-            </tr><tr class="warning">
-                <td>
-                    The date format option has to match that of the
-                    date format in the QIF file, otherwise, date parsing by MMEX will
-                    fail and will result in transactions having incorrect dates.
-                </td>
-            </tr>
-            <tr class="warning">
-                <td>
-                    After importing from QIF, all transactions will
-                    have a <b>Follow Flag</b> as it its status. You can mark all
-                    transactions with this flag using the bulk status setting commands
-                    using the right click menu in the account view.
-                </td>
-            </tr>
-        </tbody></table>
+            <tbody>
+                <tr class="warning">
+                    <td>Обратите внимание, что транзакции из файла CSV можно импортировать только в один счет MMEX.</td>
+                </tr>
+                <tr class="warning">
+                    <td>
+                        The date format option has to match that of the
+                        date format in the QIF file, otherwise, date parsing by MMEX will
+                        fail and will result in transactions having incorrect dates.
+                    </td>
+                </tr>
+                <tr class="warning">
+                    <td>
+                        After importing from QIF, all transactions will
+                        have a <b>Follow Flag</b> as it its status. You can mark all
+                        transactions with this flag using the bulk status setting commands
+                        using the right click menu in the account view.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- creating csv tips added by terry wick 9/14/2007 -->
     <div>
         <span class="label label-info">Советы:</span>
         <table class="table">
-            <tbody><tr class="success">
-                <td>
-                    When creating your CSV file be sure that you remove the
-                    commas from your deposits and withdrawals. This can be done
-                    easily through a program such as Excel or OpenOffice Calc.
-                </td>
-            </tr>
-            <tr class="success">
-                <td>
-                    Or you can change the delimiter to be used by MMEX by
-                    choosing Tools→Options and changing the <b>
-                        Import/Export
-                        Settings
-                    </b> in the <b>General</b> option settings.
-                </td>
-            </tr>
-            <tr class="success">
-                <td>
-                    You do not need to include balance values in your CSV File.
-                </td>
-            </tr>
-            <tr class="success">
-                <td>
-                    Note that the transactions from a CSV file can only be
-                    imported into a single MMEX account.
-                </td>
-            </tr>
-        </tbody></table>
+            <tbody>
+                <tr class="success">
+                    <td>
+                        When creating your CSV file be sure that you remove the
+                        commas from your deposits and withdrawals. This can be done
+                        easily through a program such as Excel or OpenOffice Calc.
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>
+                        Or you can change the delimiter to be used by MMEX by
+                        choosing Tools→Options and changing the <b>
+                            Import/Export
+                            Settings
+                        </b> in the <b>General</b> option settings.
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>
+                        You do not need to include balance values in your CSV File.
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>
+                        Note that the transactions from a CSV file can only be
+                        imported into a single MMEX account.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- end of tips addition from terry wick -->
 
@@ -773,7 +829,8 @@
         </aside>
     </div>
 
-    <h2>Экспорт в CSV файлы</h2>
+    <h2>Экспорт данных</h2>
+    <h3>Экспорт в CSV файлы</h3>
     <p>MMEX позволяет экспортировать в файл CSV фиксированного формата. Это формат который можно импортировать в MMEX. Так что это может быть полезно для перемещения данных из одного .mmb в другой файл базы данных .mmb. Чтобы увидеть формат такого файла CSV, вы можете экспортировать счёт в файл CSV, а затем проанализировать созданный файл.</p>
     <p>
         The general format is as follows:<br>
@@ -789,12 +846,12 @@
     </p>
     <p>Обратите внимание, что операции со счета могут быть экспортированы в один файл CSV.</p>
 
-    <h2>Экспорт в XML файлы</h2>
+    <h3>Экспорт в XML файлы</h3>
     <p>MMEX может экспортировать в XML файл. Формат XML совместим с Excel и может быть прочитан им.</p>
     <p>Общий формат такой же, как для CSV файлов.</p>
     <p>Обратите внимание, что операции со счета могут быть экспортированы в один файл XML.</p>
 
-    <h2>Экспорт в QIF файлы</h2>
+    <h3>Экспорт в QIF файлы</h3>
     <p>MMEX может экспортировать счета в файл формата: QIF.</p>
     <p>Этот формат также может быть использован для обмена данными между разными MMEX</p>
     <p>Внимание: На данный момент не поддерживаются начальные балансы счетов при импорте.</p>
@@ -879,16 +936,18 @@
     <div>
         <span class="label label-danger">Заметки:</span>
         <table class="table">
-            <tbody><tr class="warning">
-                <td>Когда мы вводим транзакцию, мы можем изменить сумму, дату, получателя, категорию, статус и пр., если требуется.</td>
-            </tr>
-            <tr class="warning">
-                <td>Транзакции введённые до наступления срока, будут серыми в соответствующем счете до наступления указанной даты.</td>
-            </tr>
-            <tr class="warning">
-                <td>Чтобы использовать отчеты о движении денежных средств, необходимо настроить повторяющиеся операции.</td>
-            </tr>
-        </tbody></table>
+            <tbody>
+                <tr class="warning">
+                    <td>Когда мы вводим транзакцию, мы можем изменить сумму, дату, получателя, категорию, статус и пр., если требуется.</td>
+                </tr>
+                <tr class="warning">
+                    <td>Транзакции введённые до наступления срока, будут серыми в соответствующем счете до наступления указанной даты.</td>
+                </tr>
+                <tr class="warning">
+                    <td>Чтобы использовать отчеты о движении денежных средств, необходимо настроить повторяющиеся операции.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <h2>Инвестиции</h2>
@@ -898,26 +957,40 @@
 
     <h2>Активы</h2>
     <p>MMEX позволяет отслеживать основные средства такие, как автомобили, дома, землю и другие. Каждый актив может иметь свое значение цены приведённое к определенному курсу валюты с учётом обесценивания за год. В итоге все активы добавляются в ваш общий объем денежных средств.</p>
-	<h3>Управление активами</h3>
-	<p>Assets are accessed via the <strong>Tools Menu</strong> or via the
-	    <strong>Navigation Menu</strong></p>
-	<ul>
-		<li>Активы создаются в окне 'Управление Активами'.</li>
-		<li>Новый актив позволит создать счет актива</li>
-		<li>&nbsp;A new asset will also create a new transaction to the Asset
-		Account or any other account.</li>
-		<li>Asset transactions are added to an asset and
-		tied to an account.</li>
-		<li>New Asset Transactions are achieved by selecting the Asset and
-		adding a transaction.</li>
-		<li>Editing an Asset transaction is achieved by editing the transaction from
-		the account the Asset transaction resides.</li>
-		<li>Normal transactions can be associated with an asset when an Asset
-		Account is created.</li>
-		<li>Asset Transactions can be treated as Income/expense or as transfers
-		depending on the state of the "Transfer" check box.</li>
-	</ul>
-	<p>&nbsp;</p>
+    <h3>Управление активами</h3>
+    <p>
+        Assets are accessed via the <strong>Tools Menu</strong> or via the
+        <strong>Navigation Menu</strong>
+    </p>
+    <ul>
+        <li>Активы создаются в окне 'Управление Активами'.</li>
+        <li>Новый актив позволит создать счет актива</li>
+        <li>
+            &nbsp;A new asset will also create a new transaction to the Asset
+            Account or any other account.
+        </li>
+        <li>
+            Asset transactions are added to an asset and
+            tied to an account.
+        </li>
+        <li>
+            New Asset Transactions are achieved by selecting the Asset and
+            adding a transaction.
+        </li>
+        <li>
+            Editing an Asset transaction is achieved by editing the transaction from
+            the account the Asset transaction resides.
+        </li>
+        <li>
+            Normal transactions can be associated with an asset when an Asset
+            Account is created.
+        </li>
+        <li>
+            Asset Transactions can be treated as Income/expense or as transfers
+            depending on the state of the "Transfer" check box.
+        </li>
+    </ul>
+    <p>&nbsp;</p>
 
     <h2>Бюджет</h2>
     <a href="../budget.html?lang=ru">Бюджет в MMEX</a>
@@ -962,7 +1035,7 @@
         </div>
 
         <aside class="sticky tips">
-                Use the page setup option to reformat the page if necessary.
+            Use the page setup option to reformat the page if necessary.
         </aside>
     </div>
 
@@ -977,49 +1050,51 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody><tr>
-            <td>
-                <p>Имя пользователя</p>
-            </td>
-            <td>
-                Значение этого поля используется в качестве заголовка на главной странице и в отчетах.<br>
-                Это поле можно оставить пустым.
-            </td>
-        </tr>
-        <tr>
-            <td>Язык</td>
-            <td>Это язык, используемый графической оболочкой MMEX. MMEX может потребоваться перезагрузка, прежде чем все элементы интерфейса будут переведены.</td>
-        </tr>
-        <tr>
-            <td>Базовая валюта</td>
-            <td>Установка базовой валюты используется для задания валюты базы данных. Индивидуальные счета будут использовать это в качестве значения по умолчанию.</td>
-        </tr>
-        <tr>
-            <td>Формат даты</td>
-            <td>Формат позволяет подобрать желаемое отображение датыю. Также это может влиять наимпорт QIF и CSV файлов.</td>
-        </tr>
-        <tr>
-            <td>Финансовый год</td>
-            <td>Устанавливает первый день и месяц финансового года. Это используется в бюджете и отчетах.</td>
-        </tr>
-        <tr>
-            <td>Резервное копирование данных</td>
-            <td>
-                Устанавливает параметры резервного копирования.
-                <ul>
-                    <li>
-                        Создать новую резервную копию, когда MMEX запускается.<br>
-                        База данных копируется в новый файл с текущей датой в названии, когда MMEX стартует.<br>
-                        Наиболее старые резервные файлы будут перезаписыватся при достижении заданного кол-ва резервных файлов.
-                    </li>
-                    <li>
-                        Можно делать копию базы данных при завершении работы программы.<br>
-                        Когда MMEX закрывается, существующая база данных будет скопирована в файл резервной копии на тот день, если изменения в базе данных были обнаружены. При внесении изменений в тот же день, существующий резервный файл перезаписывается.
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    </tbody></table>
+        <tbody>
+            <tr>
+                <td>
+                    <p>Имя пользователя</p>
+                </td>
+                <td>
+                    Значение этого поля используется в качестве заголовка на главной странице и в отчетах.<br>
+                    Это поле можно оставить пустым.
+                </td>
+            </tr>
+            <tr>
+                <td>Язык</td>
+                <td>Это язык, используемый графической оболочкой MMEX. MMEX может потребоваться перезагрузка, прежде чем все элементы интерфейса будут переведены.</td>
+            </tr>
+            <tr>
+                <td>Базовая валюта</td>
+                <td>Установка базовой валюты используется для задания валюты базы данных. Индивидуальные счета будут использовать это в качестве значения по умолчанию.</td>
+            </tr>
+            <tr>
+                <td>Формат даты</td>
+                <td>Формат позволяет подобрать желаемое отображение датыю. Также это может влиять наимпорт QIF и CSV файлов.</td>
+            </tr>
+            <tr>
+                <td>Финансовый год</td>
+                <td>Устанавливает первый день и месяц финансового года. Это используется в бюджете и отчетах.</td>
+            </tr>
+            <tr>
+                <td>Резервное копирование данных</td>
+                <td>
+                    Устанавливает параметры резервного копирования.
+                    <ul>
+                        <li>
+                            Создать новую резервную копию, когда MMEX запускается.<br>
+                            База данных копируется в новый файл с текущей датой в названии, когда MMEX стартует.<br>
+                            Наиболее старые резервные файлы будут перезаписыватся при достижении заданного кол-ва резервных файлов.
+                        </li>
+                        <li>
+                            Можно делать копию базы данных при завершении работы программы.<br>
+                            Когда MMEX закрывается, существующая база данных будет скопирована в файл резервной копии на тот день, если изменения в базе данных были обнаружены. При внесении изменений в тот же день, существующий резервный файл перезаписывается.
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <br>
     <br>
     <table class="table table-striped">
@@ -1029,15 +1104,17 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody><tr>
-            <td>Вид транзакции</td>
-            <td>Это определяет, какие операции будут отображаться в представлении счёта.</td>
-        </tr>
-        <tr>
-            <td>Размер шрифта</td>
-            <td>Это позволит установить шрифт используется на домашней странице и в отчетах.</td>
-        </tr>
-    </tbody></table>
+        <tbody>
+            <tr>
+                <td>Вид транзакции</td>
+                <td>Это определяет, какие операции будут отображаться в представлении счёта.</td>
+            </tr>
+            <tr>
+                <td>Размер шрифта</td>
+                <td>Это позволит установить шрифт используется на домашней странице и в отчетах.</td>
+            </tr>
+        </tbody>
+    </table>
     <br>
     <br>
     <table class="table table-striped">
@@ -1047,11 +1124,13 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody><tr>
-            <td></td>
-            <td>Позволяет пользователю изменять цвета в MMEX.</td>
-        </tr>
-    </tbody></table>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>Позволяет пользователю изменять цвета в MMEX.</td>
+            </tr>
+        </tbody>
+    </table>
     <br>
     <br>
     <table class="table table-striped">
@@ -1061,15 +1140,17 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody><tr>
-            <td>CSV разделитель</td>
-            <td>Разделитель в CSV файлах. Используется для изменения значения по умолчанию.</td>
-        </tr>
-        <tr>
-            <td>WebApp настройки</td>
-            <td>Установить URL и идентификатор GUID для веб-службы WebApp, чтобы разрешить синхронизацию данных. Параметры можно найти в странице WebApp.</td>
-        </tr>
-    </tbody></table>
+        <tbody>
+            <tr>
+                <td>CSV разделитель</td>
+                <td>Разделитель в CSV файлах. Используется для изменения значения по умолчанию.</td>
+            </tr>
+            <tr>
+                <td>WebApp настройки</td>
+                <td>Установить URL и идентификатор GUID для веб-службы WebApp, чтобы разрешить синхронизацию данных. Параметры можно найти в странице WebApp.</td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -1077,27 +1158,29 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody><tr>
-            <td>Новые транзакции</td>
-            <td>Изменение настроек по умолчанию для Диалога транзакций.</td>
-        </tr>
-        <tr>
-            <td>Веб страница ценных бумаг</td>
-            <td>Этот URL-адрес используется для отображения информации по ценным бумагам для конкретного тикера. По умолчанию это Yahoo Finance. В качестве альтернативы другие сайты могут быть использованы при необходимости.</td>
-        </tr>
-        <tr>
-            <td>Использовать первоначальную дату&hellip;</td>
-            <td>Активируйте, чтобы использовать текущую или последнюю в счете дату для новых транзакций.</td>
-        </tr>
-        <tr>
-            <td>Использовать звуки&hellip;</td>
-            <td>Активируйте, чтобы проигрывать звук, когда транзакция вводится.</td>
-        </tr>
-        <tr>
-            <td>Включить онлайн котировки валют&hellip;</td>
-            <td>Поозволяет активировать онлайн обновление валютных котировак.</td>
-        </tr>
-    </tbody></table>
+        <tbody>
+            <tr>
+                <td>Новые транзакции</td>
+                <td>Изменение настроек по умолчанию для Диалога транзакций.</td>
+            </tr>
+            <tr>
+                <td>Веб страница ценных бумаг</td>
+                <td>Этот URL-адрес используется для отображения информации по ценным бумагам для конкретного тикера. По умолчанию это Yahoo Finance. В качестве альтернативы другие сайты могут быть использованы при необходимости.</td>
+            </tr>
+            <tr>
+                <td>Использовать первоначальную дату&hellip;</td>
+                <td>Активируйте, чтобы использовать текущую или последнюю в счете дату для новых транзакций.</td>
+            </tr>
+            <tr>
+                <td>Использовать звуки&hellip;</td>
+                <td>Активируйте, чтобы проигрывать звук, когда транзакция вводится.</td>
+            </tr>
+            <tr>
+                <td>Включить онлайн котировки валют&hellip;</td>
+                <td>Поозволяет активировать онлайн обновление валютных котировак.</td>
+            </tr>
+        </tbody>
+    </table>
 
     <!--Frequently Asked Questions-->
     <h2>Часто задаваемые вопросы</h2>
@@ -1136,23 +1219,25 @@
 
     <h3>Мои данные в безопасности? Формат .mmb патентован?</h3>
     <table>
-        <tbody><tr>
-            <td>Нет</td>
-            <td>.mmb формат не патентованный.</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>MMEX использует SQLite базу данных для хранения данных пользователя. Это означает, что .mmb файл это обычные данные SQLite базы данных. SQLite одна из самых компактных и свободных реляционных систем управления данными. Существует множество утилит для доступа к этим данным. SQLiteSpy и SQLite Browser (https://sqlitebrowser.org/) две подобные утилиты. Если вы откроете данные посредством одной из этих утилит, то сможете  делать с данными всё что хотите.</td>
-        </tr>
-        <tr>
-            <td>Да</td>
-            <td>Ваши данные в безопасности.</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>Данные содержатся на вашем компьютере (или USB-стике, если вы используете портативный режим). Для дополнительной защиты данных, может быть применено шифрование. В этом случае будет использоваться пароль для доступа к данным.</td>
-        </tr>
-    </tbody></table>
+        <tbody>
+            <tr>
+                <td>Нет</td>
+                <td>.mmb формат не патентованный.</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>MMEX использует SQLite базу данных для хранения данных пользователя. Это означает, что .mmb файл это обычные данные SQLite базы данных. SQLite одна из самых компактных и свободных реляционных систем управления данными. Существует множество утилит для доступа к этим данным. SQLiteSpy и SQLite Browser (https://sqlitebrowser.org/) две подобные утилиты. Если вы откроете данные посредством одной из этих утилит, то сможете  делать с данными всё что хотите.</td>
+            </tr>
+            <tr>
+                <td>Да</td>
+                <td>Ваши данные в безопасности.</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Данные содержатся на вашем компьютере (или USB-стике, если вы используете портативный режим). Для дополнительной защиты данных, может быть применено шифрование. В этом случае будет использоваться пароль для доступа к данным.</td>
+            </tr>
+        </tbody>
+    </table>
 
     <h3>Может ли MMEX работать со сменного носителя?</h3>
     <p>Да.</p>
@@ -1190,40 +1275,44 @@
         Вы можете отключить эту функцию в меню Опции → Сеть<br>
         <br><br>
         Ниже приведен пример данных, которые будет посылать MMEX:<br>
-        </p><table class="table">
-            <thead>
-                <tr>
-                    <th>Version</th>
-                    <th>Operating System</th>
-                    <th>Language</th>
-                    <th>Country</th>
-                    <th>Resolution</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1.3.0 Portable</td>
-                    <td>Windows 8 (build 9200), 64-bit edition</td>
-                    <td>english</td>
-                    <td>United States</td>
-                    <td>1366x768</td>
-                    <td>2014-05-01 09:00:00</td>
-                    <td>2014-05-01 09:01:30</td>
-                </tr>
-            </tbody>
-        </table>
+    </p><table class="table">
+        <thead>
+            <tr>
+                <th>Version</th>
+                <th>Operating System</th>
+                <th>Language</th>
+                <th>Country</th>
+                <th>Resolution</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.3.0 Portable</td>
+                <td>Windows 8 (build 9200), 64-bit edition</td>
+                <td>english</td>
+                <td>United States</td>
+                <td>1366x768</td>
+                <td>2014-05-01 09:00:00</td>
+                <td>2014-05-01 09:01:30</td>
+            </tr>
+        </tbody>
+    </table>
     <p></p>
 
     <h3>Как распечатать выписки со счёта с использованием MMEX?</h3>
     <p>Чтобы распечатать выписку со счёта, постройте отчёт по транзакциям, используя фильтр транзакций. Затем распечатайте его через меню Файл -&gt; Печать.</p>
     <p>Этот инструмент доступен в дереве навигации, или в панели инструментов, расположенной в верхней части MMEX.</p>
 
-    <footer><p><small>
-        Copyright &copy; 2005-2009 Madhan Kanagavel<br>
-        Copyright &copy; 2013-2019 MMEX contributors<br>
-        <span id="translator">Перевод: Николай Акимов</span>
-    </small></p></footer>
+    <footer>
+        <p>
+            <small>
+                Copyright &copy; 2005-2009 Madhan Kanagavel<br>
+                Copyright &copy; 2013-2019 MMEX contributors<br>
+                <span id="translator">Перевод: Николай Акимов</span>
+            </small>
+        </p>
+    </footer>
 </body>
 </html>
