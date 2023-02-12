@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"POT-Creation-Date: 2023-02-12 15:56+0300\n"
+"PO-Revision-Date: 2023-02-12 13:00\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -377,8 +377,7 @@ msgstr "&Izlaz "
 msgid "Open the previously opened database : %s"
 msgstr "Otvori prethodno otvorenu bazu podataka: %s"
 
-#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:201
 msgid "system default"
 msgstr "sistemski zadano"
 
@@ -2330,7 +2329,7 @@ msgstr "Auto"
 msgid "Life"
 msgstr "Životno"
 
-#: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
+#: db/DB_Table_Category_V1.h:150
 msgid "Home"
 msgstr "Stambeno"
 
@@ -4381,9 +4380,9 @@ msgstr "Kreditni računi"
 msgid "Auto Repeat Transactions"
 msgstr "Automatski ponavljajuće transakcije"
 
-#: mmframe.cpp:702 mmframe.cpp:1835
-msgid "Home Page"
-msgstr "Početna stranica"
+#: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
+msgid "Dashboard"
+msgstr ""
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4511,8 +4510,8 @@ msgid "New &Account..."
 msgstr "Novi &račun …"
 
 #: mmframe.cpp:1416
-msgid "Account &List (Home)"
-msgstr "Kontni &plan (Home)"
+msgid "Account &List"
+msgstr ""
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4682,13 +4681,18 @@ msgstr "Uključi/Isključi cijeli zaslon"
 msgid "Switch Application &Language"
 msgstr "Zamijeni jezik programa"
 
-#: mmframe.cpp:1587
-msgid "&Home Page"
-msgstr "&Početna stranica"
+#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
+#: optionsettingsgeneral.cpp:362
+msgid "System default"
+msgstr ""
 
-#: mmframe.cpp:1587 mmframe.cpp:1835
-msgid "Show Home Page"
-msgstr "Prikaži početnu stranicu"
+#: mmframe.cpp:1587
+msgid "&Dashboard"
+msgstr ""
+
+#: mmframe.cpp:1587
+msgid "Open Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -5011,8 +5015,8 @@ msgid "&About"
 msgstr "&O programu"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
-msgid "Show about dialog"
-msgstr "Prikaži dijalog o programu"
+msgid "Show About dialog"
+msgstr ""
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5037,6 +5041,10 @@ msgstr "&Pomoć"
 #: mmframe.cpp:1831 mmframe.cpp:1837
 msgid "New"
 msgstr "Nova"
+
+#: mmframe.cpp:1835
+msgid "Show Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -6379,8 +6387,8 @@ msgstr "Referenca"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "Referenca koja se koristi za primaoca, npr. broj bankovnog računa"
 
-#: payeedialog.cpp:105
-msgid "Web Site"
+#: payeedialog.cpp:105 payeedialog.cpp:238
+msgid "Website"
 msgstr "Web stranica"
 
 #: payeedialog.cpp:107
@@ -6390,10 +6398,6 @@ msgstr "URL web stranice povezan s primaocem"
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
 msgstr "Primaoc s istim imenom već postoji"
-
-#: payeedialog.cpp:238
-msgid "Website"
-msgstr "Web stranica"
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -7781,8 +7785,8 @@ msgid "Transaction not downloaded:"
 msgstr "Transakcija nije preuzeta:"
 
 #: webapp.cpp:597
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "popravi mapu priloga ili izbriši priloge iz web aplikacije"
+msgid "Please fix attachments folder or delete attachments from WebApp"
+msgstr ""
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
