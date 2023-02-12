@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:53+0300\n"
+"POT-Creation-Date: 2023-02-12 22:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4962,7 +4962,7 @@ msgid "Report an error in application to the developers"
 msgstr ""
 
 #: mmframe.cpp:1786
-msgid "View Diagnostics"
+msgid "View &Diagnostics"
 msgstr ""
 
 #: mmframe.cpp:1787
