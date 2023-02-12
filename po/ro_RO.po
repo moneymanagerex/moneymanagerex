@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-12 15:56+0300\n"
-"PO-Revision-Date: 2023-02-12 12:59\n"
+"PO-Revision-Date: 2023-02-12 13:54\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -4363,7 +4363,7 @@ msgstr ""
 
 #: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Panou de control"
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4492,7 +4492,7 @@ msgstr ""
 
 #: mmframe.cpp:1416
 msgid "Account &List"
-msgstr ""
+msgstr "Lista de conturi"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4665,15 +4665,15 @@ msgstr ""
 #: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
 #: optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "Setări implicite ale sistemului"
 
 #: mmframe.cpp:1587
 msgid "&Dashboard"
-msgstr ""
+msgstr "Panou de control"
 
 #: mmframe.cpp:1587
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Deschide panoul de control"
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -5025,7 +5025,7 @@ msgstr "Nou"
 
 #: mmframe.cpp:1835
 msgid "Show Dashboard"
-msgstr ""
+msgstr "Deschide panoul de control"
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -7745,7 +7745,7 @@ msgstr ""
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Vă rugăm să remediați folderul de atașamente sau să ștergeți atașamentele din WebApp"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
