@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:35+0300\n"
-"PO-Revision-Date: 2023-02-12 19:51\n"
+"POT-Creation-Date: 2023-02-12 22:56+0300\n"
+"PO-Revision-Date: 2023-02-12 20:52\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1849,7 +1849,7 @@ msgstr "64-biți"
 
 #: constants.cpp:186
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Vezi cu Filtrul de Tranzacție..."
 
 #: constants.cpp:187
 msgid "View All Transactions"
@@ -3405,8 +3405,8 @@ msgid "Move Up"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:464
-msgid "Move &Down"
-msgstr "Mută în &Jos"
+msgid "Move Down"
+msgstr "Mută în jos"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -4958,8 +4958,8 @@ msgid "Report an error in application to the developers"
 msgstr ""
 
 #: mmframe.cpp:1786
-msgid "View Diagnostics"
-msgstr ""
+msgid "View &Diagnostics"
+msgstr "Vedeți Diagnosticare"
 
 #: mmframe.cpp:1787
 msgid "Help provide information to the developers"
