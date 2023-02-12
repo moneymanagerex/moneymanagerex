@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-10 23:43+0300\n"
-"PO-Revision-Date: 2023-02-10 22:06\n"
+"POT-Creation-Date: 2023-02-12 15:56+0300\n"
+"PO-Revision-Date: 2023-02-12 13:00\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -377,8 +377,7 @@ msgstr "U&končit "
 msgid "Open the previously opened database : %s"
 msgstr "Otevře naposled použitou databázi : %s "
 
-#: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
-#: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:201
 msgid "system default"
 msgstr "výchozí nastavení systému"
 
@@ -2330,7 +2329,7 @@ msgstr "Auto"
 msgid "Life"
 msgstr "Život"
 
-#: db/DB_Table_Category_V1.h:150 optiondialog.cpp:37
+#: db/DB_Table_Category_V1.h:150
 msgid "Home"
 msgstr "Domov"
 
@@ -4393,9 +4392,9 @@ msgstr "Úvěry"
 msgid "Auto Repeat Transactions"
 msgstr "Trvalé příkazy"
 
-#: mmframe.cpp:702 mmframe.cpp:1835
-msgid "Home Page"
-msgstr "Úvodní stránka"
+#: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
+msgid "Dashboard"
+msgstr ""
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4523,8 +4522,8 @@ msgid "New &Account..."
 msgstr ""
 
 #: mmframe.cpp:1416
-msgid "Account &List (Home)"
-msgstr "&Přehled účtů (úvodní stránka)"
+msgid "Account &List"
+msgstr ""
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4694,12 +4693,17 @@ msgstr "Celá obrazovka"
 msgid "Switch Application &Language"
 msgstr "Přepnout &jazyk aplikace"
 
-#: mmframe.cpp:1587
-msgid "&Home Page"
+#: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
+#: optionsettingsgeneral.cpp:362
+msgid "System default"
 msgstr ""
 
-#: mmframe.cpp:1587 mmframe.cpp:1835
-msgid "Show Home Page"
+#: mmframe.cpp:1587
+msgid "&Dashboard"
+msgstr ""
+
+#: mmframe.cpp:1587
+msgid "Open Dashboard"
 msgstr ""
 
 #: mmframe.cpp:1596
@@ -5023,8 +5027,8 @@ msgid "&About"
 msgstr ""
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
-msgid "Show about dialog"
-msgstr "Zobrazí dialog s informacemi o programu"
+msgid "Show About dialog"
+msgstr ""
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5049,6 +5053,10 @@ msgstr "Nápo&věda"
 #: mmframe.cpp:1831 mmframe.cpp:1837
 msgid "New"
 msgstr "Nový"
+
+#: mmframe.cpp:1835
+msgid "Show Dashboard"
+msgstr ""
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -6391,8 +6399,8 @@ msgstr ""
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr ""
 
-#: payeedialog.cpp:105
-msgid "Web Site"
+#: payeedialog.cpp:105 payeedialog.cpp:238
+msgid "Website"
 msgstr ""
 
 #: payeedialog.cpp:107
@@ -6402,10 +6410,6 @@ msgstr ""
 #: payeedialog.cpp:169
 msgid "Payee with same name exists"
 msgstr "Příjemce se stejným názvem již existuje"
-
-#: payeedialog.cpp:238
-msgid "Website"
-msgstr ""
 
 #: payeedialog.cpp:472
 msgid "Payee in use."
@@ -7793,8 +7797,8 @@ msgid "Transaction not downloaded:"
 msgstr "Transakce nebyly staženy:"
 
 #: webapp.cpp:597
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "opravte prosím složku příloh nebo odstraňte přílohy z WebApp"
+msgid "Please fix attachments folder or delete attachments from WebApp"
+msgstr ""
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
