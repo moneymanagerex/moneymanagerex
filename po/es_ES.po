@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-12 15:56+0300\n"
-"PO-Revision-Date: 2023-02-12 12:59\n"
+"PO-Revision-Date: 2023-02-12 13:54\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4366,7 +4366,7 @@ msgstr "Transacciones de repetición automática"
 
 #: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Panel de control"
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4495,7 +4495,7 @@ msgstr "Nueva &cuenta..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
-msgstr ""
+msgstr "Lista de &cuentas"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4668,15 +4668,15 @@ msgstr "Cambiar el &idioma de la aplicación"
 #: mmframe.cpp:1567 mmframe.cpp:2835 optionsettingsgeneral.cpp:90
 #: optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "Valor predeterminado del sistema"
 
 #: mmframe.cpp:1587
 msgid "&Dashboard"
-msgstr ""
+msgstr "&Panel de control"
 
 #: mmframe.cpp:1587
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Abrir panel de control"
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -5000,7 +5000,7 @@ msgstr "&Acerca de"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
 msgid "Show About dialog"
-msgstr ""
+msgstr "Mostrar ventana Acerca de"
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5028,7 +5028,7 @@ msgstr "Nuevo"
 
 #: mmframe.cpp:1835
 msgid "Show Dashboard"
-msgstr ""
+msgstr "Mostrar panel de control"
 
 #: mmframe.cpp:1839
 msgid "Show Organize Categories Dialog"
@@ -7786,7 +7786,7 @@ msgstr "Transacción no descargada:"
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Por favor, corrija la carpeta de adjuntos o borre adjuntos de la WebApp"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
