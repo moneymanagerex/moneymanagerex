@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:35+0300\n"
-"PO-Revision-Date: 2023-02-12 19:51\n"
+"POT-Creation-Date: 2023-02-12 22:56+0300\n"
+"PO-Revision-Date: 2023-02-12 20:53\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "打开之前已打开的数据库： %s"
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "系统默认"
 
 #: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
 msgid "Language"
@@ -539,7 +539,7 @@ msgstr "新增资产..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr "复制资产..."
+msgstr "重复资产(&D)..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
@@ -1611,7 +1611,7 @@ msgstr "全部展开"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:190
 msgid "Show &All"
-msgstr ""
+msgstr "显示全部"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -1845,7 +1845,7 @@ msgstr "64位"
 
 #: constants.cpp:186
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "使用交易筛选器查看..."
 
 #: constants.cpp:187
 msgid "View All Transactions"
@@ -2014,7 +2014,7 @@ msgstr "（使用语言环境）"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "货币管理器"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -2326,7 +2326,7 @@ msgstr "生活"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr "主页"
+msgstr "家庭"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -3408,8 +3408,8 @@ msgid "Move Up"
 msgstr "向上移动"
 
 #: import_export/univcsvdialog.cpp:464
-msgid "Move &Down"
-msgstr "向下移动(&D)"
+msgid "Move Down"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3648,7 +3648,7 @@ msgstr "下载货币值历史记录"
 
 #: maincurrencydialog.cpp:307
 msgid "Add/&Update "
-msgstr ""
+msgstr "添加/更新 "
 
 #: maincurrencydialog.cpp:308
 msgid "Add Currency Values to history"
@@ -4345,7 +4345,7 @@ msgstr "自动重复交易"
 
 #: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "仪表盘"
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4474,7 +4474,7 @@ msgstr "新建账户..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
-msgstr ""
+msgstr "账户列表"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4646,11 +4646,11 @@ msgstr "切换应用程序语言(&L)"
 
 #: mmframe.cpp:1587
 msgid "&Dashboard"
-msgstr ""
+msgstr "仪表盘(&D)"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
-msgstr ""
+msgstr "打开仪表盘"
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -4945,8 +4945,8 @@ msgid "Report an error in application to the developers"
 msgstr "向开发者报告应用程序错误"
 
 #: mmframe.cpp:1786
-msgid "View Diagnostics"
-msgstr "查看诊断信息"
+msgid "View &Diagnostics"
+msgstr ""
 
 #: mmframe.cpp:1787
 msgid "Help provide information to the developers"
@@ -4974,7 +4974,7 @@ msgstr "关于(&A)"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
 msgid "Show About dialog"
-msgstr ""
+msgstr "显示”关于”窗口"
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -5400,7 +5400,7 @@ msgstr "收支排行：%s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "账户/收款人"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -7395,7 +7395,7 @@ msgstr "指定交易日期"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "交易窗口"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
@@ -7746,7 +7746,7 @@ msgstr "交易未下载："
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "请修复附件文件夹或从 WebApp 中删除附件"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
