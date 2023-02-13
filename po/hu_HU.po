@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-13 21:24\n"
+"PO-Revision-Date: 2023-02-13 22:37\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -227,7 +227,7 @@ msgstr "Ügyletzárolás dátuma"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr "Minimális egy.:"
+msgstr "Legkisebb egyenleg:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
@@ -344,7 +344,7 @@ msgstr "Nyelv módosítása"
 #: appstartdialog.cpp:111 appstartdialog.cpp:214 mmframe.cpp:1562
 #: optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr "Az MMEX- kezelőfelülete nyelvének módosítása"
+msgstr "Az MMEX-kezelőfelülete nyelvének módosítása"
 
 #: appstartdialog.cpp:114
 msgid "Read Documentation"
@@ -781,7 +781,7 @@ msgstr "Mell."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "E könyvtárat és fájljait a MoneyManager Ex szoftver automatikusan kezeli."
+msgstr "Ezt a könyvtárat és fájljait önműködően az MMEX személyes pénzügyek és pénzkezelés szoftver kezeli."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -2677,19 +2677,19 @@ msgstr "Időszak"
 
 #: filtertransdialog.cpp:1529
 msgid "Amount Min."
-msgstr "Min. összeg"
+msgstr "Legkisebb összeg"
 
 #: filtertransdialog.cpp:1537
 msgid "Amount Max."
-msgstr "Max. összeg"
+msgstr "Legnagyobb összeg"
 
 #: filtertransdialog.cpp:1738 mmframe.cpp:1210
 msgid "Setting Name"
-msgstr "Név meghatározása"
+msgstr "Beállítás neve"
 
 #: filtertransdialog.cpp:1738 mmframe.cpp:1210
 msgid "Please Enter"
-msgstr "Kérem adja meg"
+msgstr "Kérjük, adja meg"
 
 #: filtertransdialog.cpp:1761
 msgid "The entered name is already in use"
@@ -2717,7 +2717,7 @@ msgstr "Műveletet megerősítése"
 #: filtertransdialog.cpp:1809 general_report_manager.cpp:907
 #: general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
-msgstr "Írjon be, vagy válasszon nevet az új jelentéscsoport számára"
+msgstr "Új jelentéscsoportnev megadása vagy kijelölése"
 
 #: filtertransdialog.cpp:1810 general_report_manager.cpp:908
 msgid "Change report group"
@@ -2874,7 +2874,7 @@ msgstr "Törölje a jelentés címét:"
 
 #: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
-msgstr "Írjon be, vagy válasszon nevet az új csoport számára "
+msgstr "Új csoportnev megadása vagy kijelölése"
 
 #: general_report_manager.cpp:925
 msgid "Rename Group"
@@ -3459,7 +3459,7 @@ msgstr "A dátummező kötelező."
 
 #: import_export/univcsvdialog.cpp:961
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Vagy Összeg mező vagy Kivétel és Betét mező kell."
+msgstr "Az összeg mezőt vagy mindkettőt a kivét és a betét mezők kitöltése kötelező."
 
 #: import_export/univcsvdialog.cpp:962 import_export/univcsvdialog.cpp:1108
 #: themes.cpp:189 webappdialog.cpp:408
@@ -3596,7 +3596,7 @@ msgstr "XML-fájlok (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1636
 msgid "All Files"
-msgstr "Minden Fájl"
+msgstr "Minden fájl"
 
 #: import_export/univcsvdialog.cpp:1921
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
@@ -3844,11 +3844,11 @@ msgstr "Érvénytelen érték"
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a positive or calculated value."
-msgstr "Kérem írjon be egy pozitív, vagy számított értéket."
+msgstr "Kérjük, adjon meg egy pozitív vagy számított értéket."
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a calculated value."
-msgstr "Egy számított értéket írjon be!"
+msgstr "Adjon meg egy számított értéket."
 
 #: mmTextCtrl.cpp:115
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
@@ -4392,7 +4392,7 @@ msgstr "Súgó"
 
 #: mmframe.cpp:1217
 msgid "A setting with this name already exists"
-msgstr "Már létezik ilyen nevű beállítás"
+msgstr "Egy beállítás neve már létezik ilyen névvel"
 
 #: mmframe.cpp:1219
 msgid "Please specify a new name for the setting"
@@ -4836,7 +4836,7 @@ msgstr "&Honlap"
 
 #: mmframe.cpp:1724
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr "Money Manager Ex honlap megnyitása a legfrissebb hírekért, frissítésekért stb."
+msgstr "Látogassa meg az MMEX személyes pénzügyek és pénzkezelés weboldalát hírekért, frissítésekért és egyebekért"
 
 #: mmframe.cpp:1726
 msgid "&Facebook"
@@ -4904,7 +4904,7 @@ msgstr "Látogasd meg az MMEX fórumát a felhasználói megjegyzések olvasás�
 
 #: mmframe.cpp:1743
 msgid "Money Manager Ex for &Android"
-msgstr "Money Manager Ex &Androidra"
+msgstr "MMEX személyes pénzügyek és pénzkezelés &Androidra"
 
 #: mmframe.cpp:1744
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5050,7 +5050,7 @@ msgstr "&Nyomtatás"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr "Írd be az adatbázis jelszavát\n\n"
+msgstr "Kérjük, adja meg az adatbázis jelszavát\n\n"
 "%s"
 
 #: mmframe.cpp:1924 mmframe.cpp:2202 mmframe.cpp:2335
@@ -6073,7 +6073,7 @@ msgstr "Biztonsági mentési fájlok legnagyobb számának megadása"
 
 #: optionsettingsmisc.cpp:196
 msgid "Max Files"
-msgstr "Max. fájl "
+msgstr "Fájlok legnagyobb száma"
 
 #: optionsettingsmisc.cpp:204
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
@@ -7148,7 +7148,7 @@ msgstr "10 év"
 
 #: stockdialog.cpp:694
 msgid "Max"
-msgstr "Max."
+msgstr "Legnagyobb"
 
 #: stockdialog.cpp:700
 msgid "Specify type frequency of stock history"
@@ -7796,7 +7796,7 @@ msgstr "Új ügyletek ellenőrzése"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
-msgstr "&Importálás mindent "
+msgstr "Összes &importálása "
 
 #: webappdialog.cpp:158
 msgid "Import and open all "
