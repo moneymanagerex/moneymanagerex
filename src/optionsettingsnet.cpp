@@ -71,7 +71,7 @@ void OptionSettingsNet::Create()
     networkPanelSizer->Add(WebAppStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(network_panel, wxID_STATIC, _("Url")), g_flagsH);
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(network_panel, wxID_STATIC, _("URL")), g_flagsH);
     wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(network_panel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         WebAppURL, wxDefaultPosition, wxSize(300, -1));

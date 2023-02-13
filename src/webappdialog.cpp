@@ -91,7 +91,7 @@ void mmWebAppDialog::CreateControls()
     mmToolTip(net_button_, _("Network status (click to refresh)"));
     flex_sizer->Add(net_button_, g_flagsCenter);
 
-    wxStaticText* url_label = new wxStaticText(this, wxID_STATIC, _("Url"));
+    wxStaticText* url_label = new wxStaticText(this, wxID_STATIC, _("URL"));
     url_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     url_text_->SetMinSize(wxSize(300, -1));
     url_text_->Enable(false);
