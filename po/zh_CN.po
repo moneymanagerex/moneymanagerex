@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-12 22:56+0300\n"
-"PO-Revision-Date: 2023-02-13 01:12\n"
+"POT-Creation-Date: 2023-02-13 17:25+0300\n"
+"PO-Revision-Date: 2023-02-13 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr "选择这是否是经常使用的账户。 此选项用于筛选显示�
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:607 billsdepositspanel.cpp:145
 #: budgetentrydialog.cpp:154 budgetingpanel.cpp:305 filtertrans.cpp:197
-#: filtertransdialog.cpp:632 filtertransdialog.cpp:1547
+#: filtertransdialog.cpp:632 filtertransdialog.cpp:1554
 #: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:107
 #: import_export/univcsvdialog.cpp:99 mmchecking_list.cpp:297
 #: payeedialog.cpp:111 payeedialog.cpp:239 reports/transactions.cpp:196
@@ -515,7 +515,7 @@ msgstr "ID"
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:511 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
 #: filtertransdialog.cpp:583 filtertransdialog.cpp:940
-#: filtertransdialog.cpp:1510 import_export/qif_export.cpp:134
+#: filtertransdialog.cpp:1517 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:609 import_export/qif_import_gui.cpp:104
 #: import_export/qif_import_gui.cpp:258 import_export/univcsvdialog.cpp:91
 #: maincurrencydialog.cpp:269 mmhomepage.cpp:430 reports/incexpenses.cpp:108
@@ -587,7 +587,7 @@ msgstr "资产"
 
 #: assetspanel.cpp:430 assetspanel.cpp:707 assetspanel.cpp:724
 #: filtertransdialog.cpp:223 filtertransdialog.cpp:507
-#: filtertransdialog.cpp:806 filtertransdialog.cpp:1822
+#: filtertransdialog.cpp:806 filtertransdialog.cpp:1859
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
 #: import_export/qif_export.cpp:154 mmframe.cpp:1425
 msgid "All"
@@ -980,7 +980,7 @@ msgstr "指定交易状态"
 
 #: billsdepositsdialog.cpp:495 billsdepositspanel.cpp:136 filtertrans.cpp:193
 #: filtertransdialog.cpp:570 filtertransdialog.cpp:935
-#: filtertransdialog.cpp:1499 import_export/qif_export.cpp:608
+#: filtertransdialog.cpp:1506 import_export/qif_export.cpp:608
 #: import_export/qif_import_gui.cpp:260 import_export/qif_import_gui.cpp:271
 #: import_export/qif_import_gui.cpp:281 import_export/univcsvdialog.cpp:90
 #: mmchecking_list.cpp:278 reports/transactions.cpp:192
@@ -1020,7 +1020,7 @@ msgstr "指定转账账户"
 #: billsdepositsdialog.cpp:538 billsdepositsdialog.cpp:805
 #: billsdepositsdialog.cpp:818 billsdepositspanel.cpp:134 filtertrans.cpp:191
 #: filtertransdialog.cpp:59 filtertransdialog.cpp:503 filtertransdialog.cpp:865
-#: filtertransdialog.cpp:1427 import_export/qif_export.cpp:610
+#: filtertransdialog.cpp:1434 import_export/qif_export.cpp:610
 #: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:171
 #: import_export/qif_import_gui.cpp:252 import_export/univcsvdialog.cpp:92
 #: mmchecking_list.cpp:273 reports/cashflow.cpp:415
@@ -1041,7 +1041,7 @@ msgstr "到"
 #: billsdepositsdialog.cpp:556 billsdepositsdialog.cpp:806
 #: billsdepositspanel.cpp:135 filtertrans.cpp:192 filtertransdialog.cpp:60
 #: filtertransdialog.cpp:542 filtertransdialog.cpp:891
-#: filtertransdialog.cpp:1463 import_export/qif_export.cpp:611
+#: filtertransdialog.cpp:1470 import_export/qif_export.cpp:611
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:265
 #: import_export/univcsvdialog.cpp:93 mmchecking_list.cpp:276
 #: model/Model_Attachment.cpp:29 payeedialog.cpp:79 payeedialog.cpp:169
@@ -1054,7 +1054,7 @@ msgstr "收款人"
 #: billsdepositsdialog.cpp:568 billsdepositsdialog.cpp:937
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
 #: filtertransdialog.cpp:61 filtertransdialog.cpp:552 filtertransdialog.cpp:924
-#: filtertransdialog.cpp:929 filtertransdialog.cpp:1470
+#: filtertransdialog.cpp:929 filtertransdialog.cpp:1477
 #: import_export/qif_export.cpp:612 import_export/qif_import_gui.cpp:105
 #: import_export/qif_import_gui.cpp:276 import_export/univcsvdialog.cpp:96
 #: mmchecking_list.cpp:280 mmhomepage.cpp:190 payeedialog.cpp:149
@@ -1077,7 +1077,7 @@ msgid "Specify any associated check number or transaction number"
 msgstr "指定相关的查询号或交易号"
 
 #: billsdepositsdialog.cpp:585 billsdepositspanel.cpp:144 filtertrans.cpp:190
-#: filtertransdialog.cpp:624 filtertransdialog.cpp:1539
+#: filtertransdialog.cpp:624 filtertransdialog.cpp:1546
 #: import_export/qif_export.cpp:615 import_export/qif_import_gui.cpp:102
 #: import_export/univcsvdialog.cpp:98 mmchecking_list.cpp:269
 #: reports/transactions.cpp:189 transdialog.cpp:515
@@ -1099,7 +1099,7 @@ msgid "Organize attachments of this recurring transaction"
 msgstr "管理此周期性交易的附件"
 
 #: billsdepositsdialog.cpp:612 filtertrans.cpp:188 filtertransdialog.cpp:649
-#: filtertransdialog.cpp:971 filtertransdialog.cpp:1554
+#: filtertransdialog.cpp:971 filtertransdialog.cpp:1561
 #: import_export/qif_import_gui.cpp:338 import_export/univcsvdialog.cpp:393
 #: import_export/univcsvdialog.cpp:1002 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
@@ -2533,7 +2533,7 @@ msgstr "跟进"
 msgid "Duplicate"
 msgstr "重复"
 
-#: filtertransdialog.cpp:54 filtertransdialog.cpp:1492
+#: filtertransdialog.cpp:54 filtertransdialog.cpp:1499
 msgid "All Except Reconciled"
 msgstr "除已对账以外的所有项目"
 
@@ -2549,7 +2549,7 @@ msgstr "周期范围"
 msgid "Date Range"
 msgstr "选择日期区间"
 
-#: filtertransdialog.cpp:562 filtertransdialog.cpp:1484
+#: filtertransdialog.cpp:562 filtertransdialog.cpp:1491
 msgid "Include all sub-categories"
 msgstr "包含所有子类别"
 
@@ -2593,12 +2593,12 @@ msgid "Presentation Options"
 msgstr "演示选项"
 
 #: filtertransdialog.cpp:676 filtertransdialog.cpp:979
-#: filtertransdialog.cpp:1581
+#: filtertransdialog.cpp:1588
 msgid "Hide Columns"
 msgstr "隐藏列"
 
 #: filtertransdialog.cpp:687 filtertransdialog.cpp:985
-#: filtertransdialog.cpp:1594
+#: filtertransdialog.cpp:1601
 msgid "Group By"
 msgstr "分组方式"
 
@@ -2657,58 +2657,71 @@ msgstr "过滤细节"
 msgid "Label"
 msgstr "标签"
 
-#: filtertransdialog.cpp:1440
+#: filtertransdialog.cpp:1427
+msgid "Group"
+msgstr ""
+
+#: filtertransdialog.cpp:1447
 msgid "Since"
 msgstr "从"
 
-#: filtertransdialog.cpp:1442
+#: filtertransdialog.cpp:1449
 msgid "Before"
 msgstr "之前"
 
-#: filtertransdialog.cpp:1454
+#: filtertransdialog.cpp:1461
 msgid "Period"
 msgstr "周期"
 
-#: filtertransdialog.cpp:1522
+#: filtertransdialog.cpp:1529
 msgid "Amount Min."
 msgstr "最小金额"
 
-#: filtertransdialog.cpp:1530
+#: filtertransdialog.cpp:1537
 msgid "Amount Max."
 msgstr "最大金额"
 
-#: filtertransdialog.cpp:1731 mmframe.cpp:1210
+#: filtertransdialog.cpp:1738 mmframe.cpp:1210
 msgid "Setting Name"
 msgstr "设置名称"
 
-#: filtertransdialog.cpp:1731 mmframe.cpp:1210
+#: filtertransdialog.cpp:1738 mmframe.cpp:1210
 msgid "Please Enter"
 msgstr "请输入"
 
-#: filtertransdialog.cpp:1754
+#: filtertransdialog.cpp:1761
 msgid "The entered name is already in use"
 msgstr "该名称已被占用"
 
-#: filtertransdialog.cpp:1754 images_list.cpp:325 images_list.cpp:413
+#: filtertransdialog.cpp:1761 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
 #: images_list.cpp:494 import_export/qif_import_gui.cpp:741
 #: import_export/qif_import_gui.cpp:744
 msgid "Warning"
 msgstr "警告"
 
-#: filtertransdialog.cpp:1772
+#: filtertransdialog.cpp:1779
 msgid "Filter settings have changed"
 msgstr "过滤器设置已更改"
 
-#: filtertransdialog.cpp:1773
+#: filtertransdialog.cpp:1780
 msgid "Do you want to save them before continuing?"
 msgstr "在继续之前要保存它们吗?"
 
-#: filtertransdialog.cpp:1774
+#: filtertransdialog.cpp:1781
 msgid "Please confirm"
 msgstr "请确认"
 
-#: filtertransdialog.cpp:1791 reports/reportbase.cpp:240
+#: filtertransdialog.cpp:1809 general_report_manager.cpp:907
+#: general_report_manager.cpp:991
+msgid "Enter or choose name for the new report group"
+msgstr "输入或选择新报表分组的名称"
+
+#: filtertransdialog.cpp:1810 general_report_manager.cpp:908
+msgid "Change report group"
+msgstr "更改报表分组"
+
+#: filtertransdialog.cpp:1828 reports/reportbase.cpp:240
 msgid "Choose Accounts"
 msgstr "选择账户"
 
@@ -2855,14 +2868,6 @@ msgstr "通用报表管理器"
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
 msgstr "删除报表标题："
-
-#: general_report_manager.cpp:907 general_report_manager.cpp:991
-msgid "Enter or choose name for the new report group"
-msgstr "输入或选择新报表分组的名称"
-
-#: general_report_manager.cpp:908
-msgid "Change report group"
-msgstr "更改报表分组"
 
 #: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
@@ -3256,6 +3261,7 @@ msgid "Imported transactions discarded by user!"
 msgstr "导入的交易被用户丢弃！"
 
 #: import_export/qif_import_gui.cpp:1019 import_export/qif_import_gui.h:44
+#: mmframe.cpp:1486
 msgid "Import from QIF file"
 msgstr "从 QIF 文件导入"
 
@@ -3311,7 +3317,7 @@ msgstr "不处理"
 msgid "Balance"
 msgstr "余额"
 
-#: import_export/univcsvdialog.cpp:109
+#: import_export/univcsvdialog.cpp:109 mmframe.cpp:1483
 msgid "Import from CSV file"
 msgstr "从 CSV 文件导入"
 
@@ -4400,11 +4406,11 @@ msgstr "MMEX：菜单弹出错误"
 msgid "&Import from"
 msgstr "导入自"
 
-#: mmframe.cpp:1322 mmframe.cpp:1483
+#: mmframe.cpp:1322
 msgid "&CSV Files..."
 msgstr "CSV 文件(&C)..."
 
-#: mmframe.cpp:1323 mmframe.cpp:1484
+#: mmframe.cpp:1323
 msgid "&XML Files..."
 msgstr "XML 文件(&X)..."
 
@@ -4412,7 +4418,7 @@ msgstr "XML 文件(&X)..."
 msgid "Import from XML (Excel format) file"
 msgstr "从 XML (Excel 格式) 导入"
 
-#: mmframe.cpp:1325 mmframe.cpp:1486
+#: mmframe.cpp:1325
 msgid "&QIF Files..."
 msgstr "QIF 文件(&Q)..."
 
@@ -4420,11 +4426,11 @@ msgstr "QIF 文件(&Q)..."
 msgid "&Export as"
 msgstr "导出为"
 
-#: mmframe.cpp:1329 mmframe.cpp:1492
+#: mmframe.cpp:1329 mmframe.cpp:1483 mmframe.cpp:1492
 msgid "&CSV File..."
 msgstr "CSV 文件(&C)..."
 
-#: mmframe.cpp:1330 mmframe.cpp:1493
+#: mmframe.cpp:1330 mmframe.cpp:1484 mmframe.cpp:1493
 msgid "&XML File..."
 msgstr "XML 文件(&X)..."
 
@@ -4436,7 +4442,7 @@ msgstr "MMEX CSV 文件..."
 msgid "&JSON File..."
 msgstr "JSON 文件..."
 
-#: mmframe.cpp:1334 mmframe.cpp:1497
+#: mmframe.cpp:1334 mmframe.cpp:1486 mmframe.cpp:1497
 msgid "&QIF File..."
 msgstr "QIF 文件..."
 
@@ -4469,8 +4475,8 @@ msgid "&Reallocate Account..."
 msgstr "更改账户类型..."
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
-msgid "New &Account..."
-msgstr "新建账户..."
+msgid "&New Account..."
+msgstr ""
 
 #: mmframe.cpp:1416
 msgid "Account &List"
@@ -4512,17 +4518,9 @@ msgstr "最近的文件(&R)"
 msgid "&Clear Recent Files"
 msgstr "清除最近打开文件纪录(&C)"
 
-#: mmframe.cpp:1483
-msgid "Import from any CSV file"
-msgstr "导入CSV文件"
-
 #: mmframe.cpp:1484
 msgid "Import from XML (Excel format)"
 msgstr "从 XML 导入(Excel 格式)"
-
-#: mmframe.cpp:1486
-msgid "Import from QIF"
-msgstr "导入QIF文件"
 
 #: mmframe.cpp:1488
 msgid "&WebApp..."
@@ -4645,8 +4643,8 @@ msgid "Switch Application &Language"
 msgstr "切换应用程序语言(&L)"
 
 #: mmframe.cpp:1587
-msgid "&Dashboard"
-msgstr "仪表盘(&D)"
+msgid "Dash&board"
+msgstr ""
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
@@ -6075,8 +6073,8 @@ msgid "WebApp Settings"
 msgstr "WebApp 设置"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
-msgid "Url"
-msgstr "网址"
+msgid "URL"
+msgstr ""
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
