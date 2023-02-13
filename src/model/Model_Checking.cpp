@@ -24,6 +24,8 @@
 #include "Model_Category.h"
 #include <queue>
 #include "Model_Translink.h"
+#include "Model_CustomFieldData.h"
+#include "attachmentdialog.h"
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES =
 {
@@ -96,6 +98,13 @@ bool Model_Checking::remove(int id)
     for (const auto& r : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)))
         Model_Splittransaction::instance().remove(r.SPLITTRANSID);
     if(foreignTransaction(*instance().get(id))) Model_Translink::RemoveTranslinkEntry(id);
+
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    // remove all attachments
+    mmAttachmentManage::DeleteAllAttachments(RefType, id);
+    // remove all custom fields for the transaction
+    Model_CustomFieldData::DeleteAllData(RefType, id);
+
     return this->remove(id, db_);
 }
 
