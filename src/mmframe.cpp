@@ -1480,10 +1480,10 @@ void mmGUIFrame::createMenu()
 
     wxMenu* importMenu = new wxMenu;
     menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
-    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
-    importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
+    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV File..."), _("Import from CSV file"));
+    importMenu->Append(MENU_IMPORT_XML, _("&XML File..."), _("Import from XML (Excel format)"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
+    importMenu->Append(MENU_IMPORT_QIF, _("&QIF File..."), _("Import from QIF file"));
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
 
