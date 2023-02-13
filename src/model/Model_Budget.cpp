@@ -205,7 +205,7 @@ void Model_Budget::getBudgetStats(
 
         for (const auto& cat : budgetStats)
             for(int month = 0; month < 12; month++)
-                yearlyBudgetStats[cat.first][0] += cat.second.at(month);
+                yearlyBudgetStats[cat.first][0] += budgetStats[cat.first][month];
 
         budgetStats = yearlyBudgetStats;
     }
