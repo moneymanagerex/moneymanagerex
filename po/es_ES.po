@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-12 22:56+0300\n"
-"PO-Revision-Date: 2023-02-12 22:56\n"
+"PO-Revision-Date: 2023-02-13 03:19\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgstr "Fecha de apertura:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr "La fecha en la que se abrió la cuenta"
+msgstr "Fecha de apertura de la cuenta"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:1912
 msgid "Currency:"
@@ -291,7 +291,7 @@ msgstr "URL no válida"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr "La fecha de apertura no puede ser en el futuro"
+msgstr "La fecha de apertura no puede ser futura"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1014
@@ -302,11 +302,11 @@ msgstr "Fecha no válida"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr "Existen transacciones para esta cuenta anteriores a esta fecha"
+msgstr "Ya existen transacciones para esta cuenta antes de esta fecha"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr "Existen compras de acciones para esta cuenta anteriores a esta fecha"
+msgstr "Las compra de acciones para esta cuenta ya existen antes de esta fecha"
 
 #: accountdialog.cpp:536
 msgid "Recurring transactions for this account are scheduled before this date"
@@ -1476,7 +1476,7 @@ msgstr "Ver resumen de categorías del presupuesto"
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr "Año fiscal: %s - %li"
+msgstr "Año Fiscal: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
@@ -1491,7 +1491,7 @@ msgstr "Mes: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr "%s    fecha de inicio de: %s"
+msgstr "%s    Fecha de inicio de: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1606,7 +1606,7 @@ msgstr "Reasignar todas las categorías a otra categoría"
 
 #: categdialog.cpp:266 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr "Contraer todo"
+msgstr "Contraer Todo"
 
 #: categdialog.cpp:271 reports/categexp.cpp:207
 msgid "Expand All"
