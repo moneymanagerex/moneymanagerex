@@ -1411,7 +1411,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::MENU_FAVORITES:
     case mmTreeItemData::ALL_TRANSACTIONS:
     {
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account..."));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("&New Account..."));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account..."));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List"));
         menu.AppendSeparator();
@@ -1480,10 +1480,10 @@ void mmGUIFrame::createMenu()
 
     wxMenu* importMenu = new wxMenu;
     menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
-    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
-    importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
+    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV File..."), _("Import from CSV file"));
+    importMenu->Append(MENU_IMPORT_XML, _("&XML File..."), _("Import from XML (Excel format)"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
+    importMenu->Append(MENU_IMPORT_QIF, _("&QIF File..."), _("Import from QIF file"));
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
 
@@ -1584,10 +1584,10 @@ void mmGUIFrame::createMenu()
     wxMenu* menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_HOMEPAGE
-        , _("&Dashboard"), _("Open Dashboard"));
+        , _("Dash&board"), _("Open Dashboard"));
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
-        , _("New &Account..."), _("New Account"));
+        , _("&New Account..."), _("New Account"));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account..."), _("Edit Account"));
