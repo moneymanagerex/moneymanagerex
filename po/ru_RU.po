@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-13 14:36\n"
+"PO-Revision-Date: 2023-02-13 15:21\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2670,7 +2670,7 @@ msgstr "Метка"
 
 #: filtertransdialog.cpp:1427
 msgid "Group"
-msgstr ""
+msgstr "Группа"
 
 #: filtertransdialog.cpp:1447
 msgid "Since"
@@ -4526,7 +4526,7 @@ msgstr "&Переопределить счёт..."
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
 msgid "&New Account..."
-msgstr ""
+msgstr "&Новый счёт..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
@@ -4694,7 +4694,7 @@ msgstr "&Язык приложения"
 
 #: mmframe.cpp:1587
 msgid "Dash&board"
-msgstr ""
+msgstr "&Панель управления"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
@@ -6132,7 +6132,7 @@ msgstr "WebApp Settings параметры"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
