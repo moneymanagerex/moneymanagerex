@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-13 20:05\n"
+"PO-Revision-Date: 2023-02-13 21:24\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2661,7 +2661,7 @@ msgstr "Címke"
 
 #: filtertransdialog.cpp:1427
 msgid "Group"
-msgstr ""
+msgstr "Csoport"
 
 #: filtertransdialog.cpp:1447
 msgid "Since"
@@ -4660,7 +4660,7 @@ msgstr "Felhasználói felület &nyelve"
 
 #: mmframe.cpp:1587
 msgid "Dash&board"
-msgstr ""
+msgstr "&Irányítópult"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
@@ -6097,7 +6097,7 @@ msgstr "Webalkalmazás-beállítások"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL-cím"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
