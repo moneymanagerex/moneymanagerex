@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-14 17:59\n"
+"PO-Revision-Date: 2023-02-14 18:59\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2099,16 +2099,16 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Selectează o valoare pentru a reprezenta elementul pe un panou"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Schimbarea tipului de câmp va șterge tot conținutul!"
 
 #: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2262
 #: mmframe.cpp:2281
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Dorești să continui?"
 
 #: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
 msgid "Custom Field Change"
@@ -2124,7 +2124,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
@@ -2136,11 +2136,11 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Ești sigur că dorești să ștergi acest câmp personalizat și toate datele acestuia?"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Confirmă ștergerea câmpului personalizat"
 
 #: customfieldlistdialog.cpp:190
 #, c-format
@@ -2884,11 +2884,11 @@ msgstr ""
 #: general_report_manager.cpp:1005
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Raport nou %s"
 
 #: general_report_manager.cpp:1018
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Numele raportului există deja"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -2896,7 +2896,7 @@ msgstr "Raport nou"
 
 #: general_report_manager.cpp:1057
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "Alege fișierul pentru a fi salvat ca raport"
 
 #: general_report_manager.cpp:1235
 msgid "Parameters:"
@@ -2952,7 +2952,7 @@ msgstr "Import CSV universal"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Nu am putut crea fișierul."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
@@ -2964,7 +2964,7 @@ msgstr "Eroare la export"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Fișierul nu este în formatul Excel XML Spreadsheet 2003."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
@@ -2973,7 +2973,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "Nu am găsit foaia de calcul."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
@@ -2981,7 +2981,7 @@ msgstr "Tabel"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Nu am găsit Tabelul."
 
 #: import_export/parsers.cpp:216 mmframereport.cpp:132
 msgid "Transactions"
@@ -3181,16 +3181,16 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:530 mmreportspanel.cpp:358
 msgid "Accounts:"
-msgstr ""
+msgstr "Conturi:"
 
 #: import_export/qif_import_gui.cpp:537 import_export/qif_import_gui.cpp:819
 #: import_export/univcsvdialog.cpp:302
 msgid "Date Format: "
-msgstr ""
+msgstr "Format dată: "
 
 #: import_export/qif_import_gui.cpp:540
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Apasă butonul OK pentru a continua"
 
 #: import_export/qif_import_gui.cpp:739 import_export/qif_import_gui.cpp:768
 #: import_export/qif_import_gui.cpp:785
