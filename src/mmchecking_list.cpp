@@ -441,12 +441,14 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
         if (is_nothing_selected) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
 
-        int toPaste = m_selectedForCopy.size();
-        menu.Append(MENU_ON_PASTE_TRANSACTION,
-            wxString::Format(wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)")
-                , (toPaste < 2) ? 1 : toPaste), toPaste)
-        );
-        if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+        if (!m_cp->isAllAccounts_)     // Disable paste in all accounts view
+        {
+            int toPaste = m_selectedForCopy.size();
+            menu.Append(MENU_ON_PASTE_TRANSACTION,
+                wxString::Format(wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)")
+                    , (toPaste < 2) ? 1 : toPaste), toPaste));
+            if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+        }
 
         menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction..."));
         if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -794,8 +796,8 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
-    // we can't paste deleted items or there is nothing to paste
-    if (m_cp->isTrash_ || m_selectedForCopy.size() < 1) return;
+    // we can't paste with multiple accounts open, deleted items, or if there is nothing to paste
+    if (m_cp->isAllAccounts_ || m_cp->isTrash_ || m_selectedForCopy.size() < 1) return;
     
     FindSelectedTransactions();
     Model_Checking::instance().Savepoint();
@@ -811,7 +813,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 
 int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 {
-    wxASSERT(!m_cp->isTrash_);
+    wxASSERT(!m_cp->isAllAccounts_ && !m_cp->isTrash_);
 
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
