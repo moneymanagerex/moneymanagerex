@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-13 18:53\n"
+"PO-Revision-Date: 2023-02-14 18:59\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "Open de eerder geopende database: %s"
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "Standaard systeeminstelling"
 
 #: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
 msgid "Language"
@@ -4368,7 +4368,7 @@ msgstr "Automatisch herhalende transacties"
 
 #: mmframe.cpp:702 mmframe.cpp:1835 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: mmframe.cpp:706
 msgid "All Transactions"
@@ -4497,7 +4497,7 @@ msgstr "&Nieuwe Rekening..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
-msgstr ""
+msgstr "Rekeningenoverzicht"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4665,7 +4665,7 @@ msgstr "Dash&board"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Dashboard openen"
 
 #: mmframe.cpp:1596
 msgid "Change the account type of an account."
@@ -4989,7 +4989,7 @@ msgstr "&Over"
 
 #: mmframe.cpp:1799 mmframe.cpp:1871
 msgid "Show About dialog"
-msgstr ""
+msgstr "Info venster tonen"
 
 #: mmframe.cpp:1803
 msgid "&File"
@@ -7770,7 +7770,7 @@ msgstr "Transactie niet gedownload:"
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Corrigeer de bijlagenmap of verwijder bijlagen uit de WebApp"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
