@@ -1082,16 +1082,8 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
         if (tran.STATUS == s || (s.empty() && status.empty()))
         {
             if (m_cp->isTrash_ || retainDays == 0) {
-                // remove also removes any split transactions & translink entries
+                // remove also removes any split transactions, translink entries, attachments, and custom field data
                 Model_Checking::instance().remove(tran.TRANSID);
-
-                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-
-                // remove also any attachments
-                mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
-
-                // remove also any custom fields for the transaction
-                Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
             }
             else {
                 Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
@@ -1163,17 +1155,8 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             }
 
             if (m_cp->isTrash_ || retainDays == 0) {
-                // remove also removes split transactions & translink entries
+                // remove also removes split transactions, translink entries, attachments, and custom field data
                 Model_Checking::instance().remove(i);
-
-                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-
-                // remove also any attachments
-                mmAttachmentManage::DeleteAllAttachments(RefType, i);
-                
-                // remove also any custom fields for the transaction
-                Model_CustomFieldData::DeleteAllData(RefType, i);
-
             }
             else {
                 trx->DELETEDTIME = deletionTime;
