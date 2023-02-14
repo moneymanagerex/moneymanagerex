@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-13 14:36\n"
+"PO-Revision-Date: 2023-02-14 07:56\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2662,7 +2662,7 @@ msgstr "Ετικέτα"
 
 #: filtertransdialog.cpp:1427
 msgid "Group"
-msgstr ""
+msgstr "Ομάδα"
 
 #: filtertransdialog.cpp:1447
 msgid "Since"
@@ -4491,7 +4491,7 @@ msgstr "&Ανακατανομή Λογαριασμού..."
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
 msgid "&New Account..."
-msgstr ""
+msgstr "&Νέος Λογαριασμός..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
@@ -6091,7 +6091,7 @@ msgstr "Ρυθμίσεις WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
