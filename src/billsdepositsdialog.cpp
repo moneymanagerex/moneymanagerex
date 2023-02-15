@@ -193,7 +193,7 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
     minWidth = std::max(minWidth,
         cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
-    SetSize(wxSize(minWidth + 460 + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() + 10 : 0), GetMinHeight()));
+    SetSize(wxSize(minWidth + 460 + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
     SetIcon(mmex::getProgramIcon());
     Centre();
 
@@ -1383,13 +1383,13 @@ void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     if (m_custom_fields->IsCustomPanelShown())
     {
-        SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth() + 10, min_size_.GetHeight()));
-        SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth() + 10, GetSize().GetHeight()));
+        SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth(), min_size_.GetHeight()));
+        SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
     }
     else
     {
         SetMinSize(min_size_);
-        SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth() - 10, GetSize().GetHeight()));
+        SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
     }
 }
 
