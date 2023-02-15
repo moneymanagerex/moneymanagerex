@@ -57,6 +57,7 @@ bool relocatePayeeDialog::Create(wxWindow* parent
     , wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style)
 {
+    style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
@@ -65,7 +66,7 @@ bool relocatePayeeDialog::Create(wxWindow* parent
 
     SetIcon(mmex::getProgramIcon());
 
-    SetMinSize(wxSize(500, 300));
+    SetSizeHints(500, 290, -1, 290);
     Fit();
     Centre();
     return TRUE;
@@ -101,7 +102,7 @@ void relocatePayeeDialog::CreateControls()
     request_sizer->AddGrowableCol(0, 1);
     request_sizer->AddGrowableCol(1, 1);
 
-    boxSizer->Add(headerText, flagsV);
+    boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flagsH);
