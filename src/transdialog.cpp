@@ -150,7 +150,9 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
     minWidth = std::max(minWidth,
         cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
-    SetSize(wxSize(minWidth + 185 + (m_custom_fields->IsCustomPanelShown() ? GetMinWidth() : 0), GetMinHeight()));
+    SetSize(wxSize(minWidth + 185 + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() + 10 : 0), GetMinHeight()));
+    if (m_custom_fields->IsCustomPanelShown())
+        SetMinSize(wxSize(GetMinWidth() + m_custom_fields->GetMinWidth() + 10, GetMinHeight()));
     Centre();
 }
 
@@ -390,16 +392,16 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* box_sizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* box_sizer1 = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer* box_sizer3 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
     box_sizer->Add(box_sizer1, g_flagsExpand);
     box_sizer1->Add(box_sizer2, g_flagsExpand);
-    box_sizer1->Add(box_sizer3, g_flagsH);
+    box_sizer1->Add(box_sizer3, wxSizerFlags(g_flagsV).Expand());
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Transaction Details"));
     wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 3, 0, 0);
     flex_sizer->AddGrowableCol(1, 0);
-    box_sizer_left->Add(flex_sizer, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 5));
+    box_sizer_left->Add(flex_sizer, wxSizerFlags(g_flagsV).Expand());
     box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
     // Date -------------------------------------------
@@ -592,7 +594,9 @@ void mmTransDialog::CreateControls()
     }
 
     this->SetSizerAndFit(box_sizer);
-    box_sizer3->SetMinSize(wxSize(GetMinSize().x - 10, GetMinSize().y));
+    min_size_ = GetMinSize();
+    box_sizer3->SetMinSize(min_size_);
+    m_custom_fields->SetMinSize(min_size_);
 }
 
 bool mmTransDialog::ValidateData()
@@ -1261,7 +1265,13 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     m_custom_fields->ShowHideCustomPanel();
     if (m_custom_fields->IsCustomPanelShown())
-        SetSize(wxSize(GetSize().GetX() + GetMinWidth(), GetSize().GetY()));
+    {
+        SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth() + 10, min_size_.GetHeight()));
+        SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth() + 10, GetSize().GetHeight()));
+    }
     else
-        SetSize(wxSize(GetSize().GetX() - GetMinWidth(), GetSize().GetY()));
+    {
+        SetMinSize(min_size_);
+        SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth() - 10, GetSize().GetHeight()));
+    }
 }

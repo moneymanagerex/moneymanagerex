@@ -116,6 +116,7 @@ private:
 
     bool m_transfer;
     int object_in_focus_;
+    wxSize min_size_;
     Model_Billsdeposits::Bill_Data m_bill_data;
 
     std::vector<wxString> frequentNotes_;
