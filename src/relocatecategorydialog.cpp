@@ -57,6 +57,7 @@ bool relocateCategoryDialog::Create(wxWindow* parent
     , const wxSize& size
     , long style)
 {
+    style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
@@ -65,7 +66,7 @@ bool relocateCategoryDialog::Create(wxWindow* parent
 
     SetIcon(mmex::getProgramIcon());
 
-    SetMinSize(wxSize(500, 300));
+    SetSizeHints(500, 350, -1, 350);
     Centre();
     Fit();
     return TRUE;
