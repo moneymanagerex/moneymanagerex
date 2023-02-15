@@ -150,7 +150,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
     minWidth = std::max(minWidth,
         cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
-    SetSize(wxSize(minWidth + 185, GetMinHeight()));
+    SetSize(wxSize(minWidth + 185 + (m_custom_fields->IsCustomPanelShown() ? GetMinWidth() : 0), GetMinHeight()));
     Centre();
 }
 
