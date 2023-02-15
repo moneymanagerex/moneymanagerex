@@ -145,12 +145,19 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     dataToControls();
 
     Fit();
+    // set the initial dialog size to expand the payee and category comboboxes to fit their text
+    int minWidth = std::max(cbPayee_->GetSize().GetX(),
+        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
+    minWidth = std::max(minWidth,
+        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
+    SetSize(wxSize(minWidth + 185, GetMinHeight()));
     Centre();
 }
 
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
+    style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style, name);
 
@@ -309,7 +316,6 @@ void mmTransDialog::dataToControls()
     payee_label_->Show(!m_transfer);
     to_acc_label_->Show(m_transfer);
     cbToAccount_->Show(m_transfer);
-    Layout();
 
     bool has_split = !m_local_splits.empty();
     if (!skip_category_init_)
@@ -330,7 +336,7 @@ void mmTransDialog::dataToControls()
                 , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
 
             if (!transactions.empty()
-                    && (!Model_Category::is_hidden(transactions.back().CATEGID)))
+                && (!Model_Category::is_hidden(transactions.back().CATEGID)))
             {
                 const int cat = transactions.back().CATEGID;
                 cbCategory_->ChangeValue(Model_Category::full_name(cat));
@@ -346,7 +352,6 @@ void mmTransDialog::dataToControls()
     m_textAmount->Enable(m_local_splits.empty());
     cbCategory_->Enable(!has_split);
     bSplit_->Enable(!m_transfer);
-    Fit();
 
     if (!skip_notes_init_) //Notes & Transaction Number
     {
@@ -387,13 +392,13 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* box_sizer3 = new wxBoxSizer(wxVERTICAL);
     box_sizer->Add(box_sizer1, g_flagsExpand);
     box_sizer1->Add(box_sizer2, g_flagsExpand);
-    box_sizer1->Add(box_sizer3, g_flagsExpand);
+    box_sizer1->Add(box_sizer3, g_flagsH);
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Transaction Details"));
     wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 3, 0, 0);
     flex_sizer->AddGrowableCol(1, 0);
-    box_sizer_left->Add(flex_sizer, g_flagsV);
+    box_sizer_left->Add(flex_sizer, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 5));
     box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
     // Date -------------------------------------------
@@ -448,8 +453,8 @@ void mmTransDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(m_textAmount, g_flagsExpand);
-    amountSizer->Add(toTextAmount_, g_flagsExpand);
+    amountSizer->Add(m_textAmount, g_flagsH);
+    amountSizer->Add(toTextAmount_, g_flagsH);
 
     wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _("Amount"));
     amount_label->SetFont(this->GetFont().Bold());
@@ -494,7 +499,7 @@ void mmTransDialog::CreateControls()
     categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label_->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
-                                            , m_trx_data.CATEGID, true);
+        , m_trx_data.CATEGID, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
@@ -585,7 +590,8 @@ void mmTransDialog::CreateControls()
         OnMoreFields(evt);
     }
 
-    this->SetSizer(box_sizer);
+    this->SetSizerAndFit(box_sizer);
+    box_sizer3->SetMinSize(wxSize(GetMinSize().x - 10, GetMinSize().y));
 }
 
 bool mmTransDialog::ValidateData()
@@ -604,7 +610,7 @@ bool mmTransDialog::ValidateData()
     {
         mmErrorDialogs::ToolTip4Object(cbAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
         return false;
-    }  
+    }
 
     if (m_local_splits.empty())
     {
@@ -655,7 +661,7 @@ bool mmTransDialog::ValidateData()
         }
 
         if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
-                    && (!Model_Category::is_hidden(m_trx_data.CATEGID)))
+            && (!Model_Category::is_hidden(m_trx_data.CATEGID)))
         {
             payee->CATEGID = m_trx_data.CATEGID;
             Model_Payee::instance().save(payee);
@@ -678,7 +684,7 @@ bool mmTransDialog::ValidateData()
         {
             mmErrorDialogs::ToolTip4Object(cbToAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
             return false;
-        }  
+        }
 
         if (m_advanced)
         {
@@ -954,7 +960,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
-         Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
+        Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
         && m_local_splits.empty() && m_new_trx && !m_duplicate
         && (!Model_Category::is_hidden(payee->CATEGID)))
     {
@@ -1253,7 +1259,8 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
         button->SetBitmap(mmBitmapBundle(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
 
     m_custom_fields->ShowHideCustomPanel();
-
-    this->SetMinSize(wxSize(0, 0));
-    this->Fit();
+    if (m_custom_fields->IsCustomPanelShown())
+        SetSize(wxSize(GetSize().GetX() + GetMinWidth(), GetSize().GetY()));
+    else
+        SetSize(wxSize(GetSize().GetX() - GetMinWidth(), GetSize().GetY()));
 }
