@@ -316,6 +316,7 @@ void mmTransDialog::dataToControls()
     payee_label_->Show(!m_transfer);
     to_acc_label_->Show(m_transfer);
     cbToAccount_->Show(m_transfer);
+    Layout();
 
     bool has_split = !m_local_splits.empty();
     if (!skip_category_init_)
