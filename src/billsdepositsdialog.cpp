@@ -174,6 +174,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
 bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style)
 {
+    style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
@@ -186,10 +187,14 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     wxDateEvent dateEventDue(m_date_due, m_date_due->GetValue(), wxEVT_DATE_CHANGED);
     GetEventHandler()->ProcessEvent(dateEventDue);
 
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
+    Fit();
+    // set the initial dialog size to expand the payee and category comboboxes to fit their text
+    int minWidth = std::max(cbPayee_->GetSize().GetX(),
+        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
+    minWidth = std::max(minWidth,
+        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
+    SetSize(wxSize(minWidth + 460 + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
     SetIcon(mmex::getProgramIcon());
-    this->SetInitialSize();
     Centre();
 
     return TRUE;
@@ -388,9 +393,8 @@ void mmBDDialog::SetDialogParameters(int trx_id)
 void mmBDDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizerOuter = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(mainBoxSizerOuter);
     wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* custom_fields_box_sizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* custom_fields_box_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     /**********************************************************************************************
      Determining where the controls go
@@ -404,7 +408,7 @@ void mmBDDialog::CreateControls()
     //mainBoxSizerInner will align contents horizontally
     mainBoxSizerInner->Add(repeatTransBoxSizer, g_flagsV);
     //mainBoxSizerOuter will align contents vertically
-    mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsV);
+    mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsExpand);
 
     wxFlexGridSizer* itemFlexGridSizer5 = new wxFlexGridSizer(0, 2, 0, 0);
     repeatTransBoxSizer->Add(itemFlexGridSizer5);
@@ -472,7 +476,7 @@ void mmBDDialog::CreateControls()
     wxStaticBoxSizer* transDetailsStaticBoxSizer = new wxStaticBoxSizer(transDetailsStaticBox, wxVERTICAL);
     wxFlexGridSizer* transPanelSizer = new wxFlexGridSizer(0, 3, 0, 0);
     transPanelSizer->AddGrowableCol(1, 0);
-    transDetailsStaticBoxSizer->Add(transPanelSizer, g_flagsV);
+    transDetailsStaticBoxSizer->Add(transPanelSizer, wxSizerFlags(g_flagsV).Expand());
     mainBoxSizerInner->Add(transDetailsStaticBoxSizer, g_flagsExpand);
 
     // Trans Date --------------------------------------------
@@ -527,8 +531,8 @@ void mmBDDialog::CreateControls()
     mmToolTip(toTextAmount_, _("Specify the transfer amount in the To Account"));
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(textAmount_, g_flagsExpand);
-    amountSizer->Add(toTextAmount_, g_flagsExpand);
+    amountSizer->Add(textAmount_, g_flagsH);
+    amountSizer->Add(toTextAmount_, g_flagsH);
 
     transPanelSizer->Add(amount_label, g_flagsH);
     transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
@@ -650,9 +654,11 @@ void mmBDDialog::CreateControls()
         this->GetEventHandler()->AddPendingEvent(evt);
     }
 
-    mainBoxSizerInner->Add(custom_fields_box_sizer, g_flagsExpand);
-
-    Center();
+    mainBoxSizerInner->Add(custom_fields_box_sizer, 0, wxEXPAND);
+    this->SetSizerAndFit(mainBoxSizerOuter);
+    min_size_ = GetMinSize();
+    custom_fields_box_sizer->SetMinSize(transDetailsStaticBoxSizer->GetSize());
+    m_custom_fields->SetMinSize(custom_fields_box_sizer->GetMinSize());
 }
 
 void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
@@ -1375,8 +1381,16 @@ void mmBDDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     m_custom_fields->ShowHideCustomPanel();
 
-    this->SetMinSize(wxSize(0, 0));
-    this->Fit();
+    if (m_custom_fields->IsCustomPanelShown())
+    {
+        SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth(), min_size_.GetHeight()));
+        SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
+    }
+    else
+    {
+        SetMinSize(min_size_);
+        SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
+    }
 }
 
 void mmBDDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
