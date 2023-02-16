@@ -535,7 +535,7 @@ void mmBDDialog::CreateControls()
     amountSizer->Add(toTextAmount_, g_flagsExpand);
 
     transPanelSizer->Add(amount_label, g_flagsH);
-    transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsH).Border(0));
+    transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
     transPanelSizer->AddSpacer(1);
 
     // Account ------------------------------------------------
