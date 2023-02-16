@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-16 13:12\n"
+"PO-Revision-Date: 2023-02-16 16:03\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2750,15 +2750,15 @@ msgstr ""
 
 #: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
-msgstr ""
+msgstr "&Salvează "
 
 #: general_report_manager.cpp:401
 msgid "Save changes."
-msgstr ""
+msgstr "Salvează modificările."
 
 #: general_report_manager.cpp:403
 msgid "&Run"
-msgstr ""
+msgstr "&Rulează"
 
 #: general_report_manager.cpp:405
 msgid "Run selected report."
@@ -2770,7 +2770,7 @@ msgstr ""
 
 #: general_report_manager.cpp:440
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:441
 msgid "Lua"
@@ -2778,11 +2778,11 @@ msgstr "Lua"
 
 #: general_report_manager.cpp:442
 msgid "Template"
-msgstr ""
+msgstr "Şablon"
 
 #: general_report_manager.cpp:495
 msgid "&Test"
-msgstr ""
+msgstr "&Test"
 
 #: general_report_manager.cpp:496
 msgid "Create Template"
@@ -2798,7 +2798,7 @@ msgstr[2] ""
 
 #: general_report_manager.cpp:575
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "Eroare de sintaxă SQL"
 
 #: general_report_manager.cpp:606
 msgid "Load report file:"
