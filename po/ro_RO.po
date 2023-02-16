@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-14 18:59\n"
+"PO-Revision-Date: 2023-02-16 13:12\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2551,7 +2551,7 @@ msgstr "Intervalul calendaristic"
 
 #: filtertransdialog.cpp:562 filtertransdialog.cpp:1491
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "Include toate sub-categoriile"
 
 #: filtertransdialog.cpp:589 filtertransdialog.cpp:1354
 #: import_export/univcsvdialog.cpp:101 mmchecking_list.cpp:282
@@ -2774,7 +2774,7 @@ msgstr ""
 
 #: general_report_manager.cpp:441
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:442
 msgid "Template"
