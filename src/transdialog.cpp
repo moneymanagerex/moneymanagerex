@@ -456,13 +456,13 @@ void mmTransDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(m_textAmount, g_flagsH);
-    amountSizer->Add(toTextAmount_, g_flagsH);
+    amountSizer->Add(m_textAmount, g_flagsExpand);
+    amountSizer->Add(toTextAmount_, g_flagsExpand);
 
     wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _("Amount"));
     amount_label->SetFont(this->GetFont().Bold());
     flex_sizer->Add(amount_label, g_flagsH);
-    flex_sizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
+    flex_sizer->Add(amountSizer, wxSizerFlags(g_flagsH).Border(0));
     flex_sizer->AddSpacer(1);
 
     // Account ---------------------------------------------
