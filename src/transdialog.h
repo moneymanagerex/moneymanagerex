@@ -139,6 +139,7 @@ private:
     bool skip_notes_init_;
     bool skip_category_init_;
     bool skip_tooltips_init_;
+    wxSize min_size_;
 
     enum
     {
