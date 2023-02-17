@@ -270,8 +270,7 @@ void mmTransDialog::dataToControls()
             {
                 Model_Checking::Data_Set transactions = Model_Checking::instance().find(
                     Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
-                    , Model_Checking::ACCOUNTID(accountID, EQUAL)
-                    , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
+                    , Model_Checking::ACCOUNTID(accountID, EQUAL));
 
                 if (!transactions.empty()) {
                     Model_Payee::Data* payee = Model_Payee::instance().get(transactions.back().PAYEEID);
@@ -326,8 +325,7 @@ void mmTransDialog::dataToControls()
             && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
         {
             Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-                Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
-                , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
+                Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL));
 
             if (!transactions.empty()
                     && (!Model_Category::is_hidden(transactions.back().CATEGID)))
