@@ -190,12 +190,12 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     Fit();
     // set the initial dialog size to expand the payee and category comboboxes to fit their text
     int minWidth = std::max(cbPayee_->GetSize().GetX(),
-        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
+        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX()) - cbPayee_->GetSize().GetWidth();
     minWidth = std::max(minWidth,
-        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
-    SetSize(wxSize(minWidth + 460 + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
+        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX() - cbCategory_->GetSize().GetWidth());
+    SetSize(wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
     SetIcon(mmex::getProgramIcon());
-    Centre();
+    Centre(wxCENTER_ON_SCREEN);
 
     return TRUE;
 }
@@ -573,7 +573,6 @@ void mmBDDialog::CreateControls()
     categ_label2->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
                                             , m_bill_data.CATEGID, true);
-    cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));

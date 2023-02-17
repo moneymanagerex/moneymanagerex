@@ -147,12 +147,12 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     Fit();
     // set the initial dialog size to expand the payee and category comboboxes to fit their text
     int minWidth = std::max(cbPayee_->GetSize().GetX(),
-        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX());
+        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX()) - cbPayee_->GetSize().GetWidth();
     minWidth = std::max(minWidth,
-        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX());
-    SetSize(wxSize(minWidth + 185 + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() + 10 : 0), GetMinHeight()));
+        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX() - cbCategory_->GetSize().GetWidth());
+    SetSize(wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
     if (m_custom_fields->IsCustomPanelShown())
-        SetMinSize(wxSize(GetMinWidth() + m_custom_fields->GetMinWidth() + 10, GetMinHeight()));
+        SetMinSize(wxSize(GetMinWidth() + m_custom_fields->GetMinWidth(), GetMinHeight()));
     Centre();
 }
 
@@ -394,8 +394,8 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
     box_sizer->Add(box_sizer1, g_flagsExpand);
-    box_sizer1->Add(box_sizer2, g_flagsExpand);
-    box_sizer1->Add(box_sizer3, wxSizerFlags(g_flagsV).Expand());
+    box_sizer1->Add(box_sizer2, wxSizerFlags(g_flagsExpand).Border(0));
+    box_sizer1->Add(box_sizer3, wxSizerFlags(g_flagsV).Expand().Border(0));
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Transaction Details"));
     wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
@@ -470,7 +470,6 @@ void mmTransDialog::CreateControls()
     account_label_->SetFont(this->GetFont().Bold());
 
     cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_trx_data.ACCOUNTID);
-    cbAccount_->SetMinSize(cbAccount_->GetSize());
 
     flex_sizer->Add(account_label_, g_flagsH);
     flex_sizer->Add(cbAccount_, g_flagsExpand);
@@ -481,7 +480,6 @@ void mmTransDialog::CreateControls()
     to_acc_label_->SetFont(this->GetFont().Bold());
     flex_sizer->Add(to_acc_label_, g_flagsH);
     cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME, wxDefaultSize, m_trx_data.TOACCOUNTID);
-    cbToAccount_->SetMinSize(cbToAccount_->GetSize());
     flex_sizer->Add(cbToAccount_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
 
@@ -490,7 +488,6 @@ void mmTransDialog::CreateControls()
     payee_label_->SetFont(this->GetFont().Bold());
 
     cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE, wxDefaultSize, m_trx_data.PAYEEID, true);
-    cbPayee_->SetMinSize(cbPayee_->GetSize());
 
     flex_sizer->Add(payee_label_, g_flagsH);
     flex_sizer->Add(cbPayee_, g_flagsExpand);
@@ -503,7 +500,6 @@ void mmTransDialog::CreateControls()
     categ_label_->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
         , m_trx_data.CATEGID, true);
-    cbCategory_->SetMinSize(cbCategory_->GetSize());
 
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
@@ -594,9 +590,10 @@ void mmTransDialog::CreateControls()
     }
 
     this->SetSizerAndFit(box_sizer);
-    min_size_ = GetMinSize();
-    box_sizer3->SetMinSize(min_size_);
-    m_custom_fields->SetMinSize(min_size_);
+    min_size_ = wxSize(box_sizer2->GetMinSize().GetWidth() + 20, GetMinHeight());
+    SetMinSize(min_size_);
+    box_sizer3->SetMinSize(box_sizer2->GetMinSize());
+    m_custom_fields->SetMinSize(box_sizer2->GetMinSize());
 }
 
 bool mmTransDialog::ValidateData()
@@ -1266,12 +1263,12 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     m_custom_fields->ShowHideCustomPanel();
     if (m_custom_fields->IsCustomPanelShown())
     {
-        SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth() + 10, min_size_.GetHeight()));
-        SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth() + 10, GetSize().GetHeight()));
+        SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth(), min_size_.GetHeight()));
+        SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
     }
     else
     {
         SetMinSize(min_size_);
-        SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth() - 10, GetSize().GetHeight()));
+        SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
     }
 }
