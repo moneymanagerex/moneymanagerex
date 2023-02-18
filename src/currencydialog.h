@@ -59,20 +59,20 @@ private:
     void OnDataChanged(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
-    Model_Currency::Data* m_currency;
-    int m_scale;
-    bool m_locale_used;
+    Model_Currency::Data* m_currency  = nullptr;
+    int m_scale = 9;
+    bool m_locale_used = false;
 
-    wxTextCtrl* mctrl_name;
-    wxTextCtrl* mctrl_code;
-    wxTextCtrl* mctrl_symbol;
-    wxRadioButton* mctrl_prefix;
-    wxRadioButton* mctrl_suffix;
-    wxChoice* mctrl_decimalSep;
-    wxChoice* mctrl_groupSep;
-    wxTextCtrl* mctrl_scale;
-    mmTextCtrl* mctrl_baseConvRate;
-    wxStaticText* mctrl_sampleText;
+    wxTextCtrl* mctrl_name = nullptr;
+    wxTextCtrl* mctrl_code = nullptr;
+    wxTextCtrl* mctrl_symbol = nullptr;
+    wxRadioButton* mctrl_prefix = nullptr;
+    wxRadioButton* mctrl_suffix = nullptr;
+    wxChoice* mctrl_decimalSep = nullptr;
+    wxChoice* mctrl_groupSep = nullptr;
+    wxTextCtrl* mctrl_scale = nullptr;
+    mmTextCtrl* mctrl_baseConvRate = nullptr;
+    wxStaticText* mctrl_sampleText = nullptr;
 
 };
 

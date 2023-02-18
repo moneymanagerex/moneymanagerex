@@ -58,16 +58,6 @@ mmCurrencyDialog::~mmCurrencyDialog()
 
 mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data * currency)
     : m_scale(SCALE)
-    , mctrl_name(nullptr)
-    , mctrl_sampleText(nullptr)
-    , mctrl_code(nullptr)
-    , mctrl_symbol(nullptr)
-    , mctrl_prefix(nullptr)
-    , mctrl_suffix(nullptr)
-    , mctrl_decimalSep(nullptr)
-    , mctrl_groupSep(nullptr)
-    , mctrl_scale(nullptr)
-    , mctrl_baseConvRate(nullptr)
 {
     if (currency)
     {
