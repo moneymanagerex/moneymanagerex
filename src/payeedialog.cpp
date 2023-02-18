@@ -348,7 +348,7 @@ void mmPayeeDialog::CreateControls()
     m_maskTextCtrl = new wxSearchCtrl(buttons_panel, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     tools_sizer2->Prepend(m_maskTextCtrl, g_flagsExpand);
-    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flagsH);
+    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _("Search")), g_flagsH);
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flagsV).Center());
