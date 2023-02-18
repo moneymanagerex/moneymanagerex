@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:35+0300\n"
-"PO-Revision-Date: 2023-02-18 13:38\n"
+"POT-Creation-Date: 2023-02-18 16:45+0300\n"
+"PO-Revision-Date: 2023-02-18 13:48\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4456,9 +4456,9 @@ msgstr "CSV &файлы..."
 msgid "&XML Files..."
 msgstr "&XML файлы..."
 
-#: mmframe.cpp:1323
-msgid "Import from XML (Excel format) file"
-msgstr "Импорт из XML (Excel формат) файла"
+#: mmframe.cpp:1323 mmframe.cpp:1484
+msgid "Import from XML file (Excel format)"
+msgstr ""
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -4559,10 +4559,6 @@ msgstr "&Последние файлы"
 #: mmframe.cpp:1477
 msgid "&Clear Recent Files"
 msgstr "О&чистить список"
-
-#: mmframe.cpp:1484
-msgid "Import from XML (Excel format)"
-msgstr "Импорт из XML  (Excel формат)"
 
 #: mmframe.cpp:1488
 msgid "&WebApp..."
