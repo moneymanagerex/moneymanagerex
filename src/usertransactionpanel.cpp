@@ -272,20 +272,21 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
 {
     if (Option::instance().TransPayeeSelection() == Option::LASTUSED)
     {
-        Model_Checking::Data_Set trans_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(account_id));
+        Model_Checking::Data_Set trans_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(account_id), Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
         if (!trans_list.empty())
         {
             int last_trans_pos = trans_list.size() - 1;
 
             Model_Payee::Data* last_payee = Model_Payee::instance().get(trans_list.at(last_trans_pos).PAYEEID);
-            m_payee->SetLabelText(last_payee->PAYEENAME);
-
-            if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
-                        && (!Model_Category::is_hidden(last_payee->CATEGID)))
-            {
+            if (last_payee) {
+                m_payee->SetLabelText(last_payee->PAYEENAME);
                 m_payee_id = last_payee->PAYEEID;
-                m_category_id = last_payee->CATEGID;
-                m_category->SetLabelText(Model_Category::full_name(last_payee->CATEGID));
+                if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+                    && (!Model_Category::is_hidden(last_payee->CATEGID)))
+                {
+                    m_category_id = last_payee->CATEGID;
+                    m_category->SetLabelText(Model_Category::full_name(last_payee->CATEGID));
+                }
             }
         }
     }
