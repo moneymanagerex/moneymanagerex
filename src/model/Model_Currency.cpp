@@ -335,7 +335,7 @@ const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data*
     wxRegEx pattern(R"([^0-9.,+-/*()])");
     pattern.ReplaceAll(&str, wxEmptyString);
 
-    auto locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US.UTF8");
+    auto locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
 
     if (locale.empty())
     {
