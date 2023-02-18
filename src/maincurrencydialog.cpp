@@ -65,12 +65,8 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent
     , int currencyID
     , bool bEnableSelect
-)   : currencyListBox_(nullptr)
-    , buttonDownloadHistory_(nullptr)
-    , buttonDelUnusedHistory_(nullptr)
-    , bHistoryEnabled_(false)
-    , bEnableSelect_(bEnableSelect)
-    , m_static_dialog(false)
+)   :
+    bEnableSelect_(bEnableSelect)
     , m_maskStr("")
 {
     bHistoryEnabled_ = Option::instance().getCurrencyHistoryEnabled();
