@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:35+0300\n"
+"POT-Creation-Date: 2023-02-18 16:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4423,8 +4423,8 @@ msgstr ""
 msgid "&XML Files..."
 msgstr ""
 
-#: mmframe.cpp:1323
-msgid "Import from XML (Excel format) file"
+#: mmframe.cpp:1323 mmframe.cpp:1484
+msgid "Import from XML file (Excel format)"
 msgstr ""
 
 #: mmframe.cpp:1325
@@ -4525,10 +4525,6 @@ msgstr ""
 
 #: mmframe.cpp:1477
 msgid "&Clear Recent Files"
-msgstr ""
-
-#: mmframe.cpp:1484
-msgid "Import from XML (Excel format)"
 msgstr ""
 
 #: mmframe.cpp:1488
