@@ -206,7 +206,7 @@ void mmMainCurrencyDialog::CreateControls()
 
     wxBoxSizer* itemBoxSizerS = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizerS, wxSizerFlags(g_flagsExpand).Proportion(0));
-    itemBoxSizerS->Add(new wxStaticText(this, wxID_STATIC, _("Search:")), g_flagsH);
+    itemBoxSizerS->Add(new wxStaticText(this, wxID_STATIC, _("Search")), g_flagsH);
     m_maskTextCtrl = new wxSearchCtrl(this, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     itemBoxSizerS->Add(m_maskTextCtrl, g_flagsExpand);
@@ -267,28 +267,28 @@ void mmMainCurrencyDialog::CreateControls()
     valueListBox_->InsertColumn(2, col2);
 
     //History Buttons
-    wxPanel* values_panel = new wxPanel(this, wxID_ANY);
-    historyStaticBox_Sizer->Add(values_panel, wxSizerFlags(g_flagsV).Centre());
-    wxStdDialogButtonSizer*  values_sizer = new wxStdDialogButtonSizer;
-    values_panel->SetSizer(values_sizer);
+    wxBoxSizer* itemBoxSizerD = new wxBoxSizer(wxHORIZONTAL);
+    historyStaticBox_Sizer->Add(itemBoxSizerD, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxStaticText* datePickerLabel = new wxStaticText(values_panel, wxID_STATIC, _("Date"));
-    values_sizer->Add(datePickerLabel, g_flagsH);
+    wxStaticText* datePickerLabel = new wxStaticText(this, wxID_STATIC, _("Date"));
+    itemBoxSizerD->Add(datePickerLabel, g_flagsH);
 
-    valueDatePicker_ = new mmDatePickerCtrl(values_panel, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    valueDatePicker_ = new mmDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     valueDatePicker_->SetMinSize(wxSize(120, -1));
-    values_sizer->Add(valueDatePicker_, g_flagsH);
+    itemBoxSizerD->Add(valueDatePicker_, g_flagsExpand);
     mmToolTip(valueDatePicker_, _("Specify the date of currency value"));
     valueDatePicker_->Disable();
 
-    wxStaticText* textBoxLabel = new wxStaticText(values_panel, wxID_STATIC, _("Value"));
-    values_sizer->Add(textBoxLabel, g_flagsH);
+    wxStaticText* textBoxLabel = new wxStaticText(this, wxID_STATIC, _("Value"));
+    itemBoxSizerD->Add(textBoxLabel, g_flagsH);
 
-    valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    valueTextBox_ = new mmTextCtrl(this, wxID_ANY, wxGetEmptyString()
+        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     valueTextBox_->SetAltPrecision(6);
     valueTextBox_->SetMinSize(wxSize(120, -1));
     mmToolTip(valueTextBox_, _("Enter the currency value"));
-    values_sizer->Add(valueTextBox_, g_flagsH);
+    itemBoxSizerD->Add(valueTextBox_, g_flagsExpand);
     valueTextBox_->Disable();
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);

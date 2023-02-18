@@ -83,6 +83,7 @@ void OptionSettingsNet::Create()
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(network_panel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
         WebAppGUID, wxDefaultPosition, wxSize(300, -1));
     mmToolTip(WebAppGUIDTextCtr, _("Specify the Web App GUID"));
+    WebAppGUIDTextCtr->SetHint("{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}");
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
     wxHyperlinkCtrl* WebAppLink = new wxHyperlinkCtrl(network_panel, wxID_STATIC, _("More information about WebApp"), mmex::weblink::WebApp);

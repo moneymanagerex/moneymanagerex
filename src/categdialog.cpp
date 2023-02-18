@@ -305,7 +305,7 @@ void mmCategDialog::CreateControls()
     searchPanel->SetSizer(search_sizer);
 
     m_maskTextCtrl = new wxSearchCtrl(searchPanel, wxID_FIND);
-    search_sizer->Add(new wxStaticText(searchPanel, wxID_STATIC, _("Search:")), g_flagsH);
+    search_sizer->Add(new wxStaticText(searchPanel, wxID_STATIC, _("Search")), g_flagsH);
     search_sizer->Add(m_maskTextCtrl, g_flagsExpand);
 
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
