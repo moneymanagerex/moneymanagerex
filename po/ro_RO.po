@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-16 16:03\n"
+"PO-Revision-Date: 2023-02-18 07:18\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2493,7 +2493,7 @@ msgstr "Eroare: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:1929
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "Deschiderea bazei de date MMEX - Eroare"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -2582,11 +2582,11 @@ msgstr "Intervalul pentru sumă"
 
 #: filtertransdialog.cpp:640
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Introduceți orice șir pentru a-l găsi în notele tranzacției"
 
 #: filtertransdialog.cpp:645
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Folosiți regex: pentru a găsi potriviri folosind expresii regulate."
 
 #: filtertransdialog.cpp:662
 msgid "Presentation Options"
@@ -2637,7 +2637,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1176 mmframe.cpp:1182
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Elementul selectat va fi șters"
 
 #: filtertransdialog.cpp:1177 mmframe.cpp:1183
 msgid "Do you wish to continue?"
@@ -2713,11 +2713,11 @@ msgstr "Te rugăm confirmă"
 #: filtertransdialog.cpp:1809 general_report_manager.cpp:907
 #: general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Introduceți sau alegeți numele noului grup de rapoarte"
 
 #: filtertransdialog.cpp:1810 general_report_manager.cpp:908
 msgid "Change report group"
-msgstr ""
+msgstr "Schimbă grupul de rapoarte"
 
 #: filtertransdialog.cpp:1828 reports/reportbase.cpp:240
 msgid "Choose Accounts"
@@ -2746,7 +2746,7 @@ msgstr "&Exportă"
 
 #: general_report_manager.cpp:396
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "Exportă raportul într-un fișier nou."
 
 #: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
@@ -2762,11 +2762,11 @@ msgstr "&Rulează"
 
 #: general_report_manager.cpp:405
 msgid "Run selected report."
-msgstr ""
+msgstr "Rulează raportul selectat."
 
 #: general_report_manager.cpp:417
 msgid "Output"
-msgstr ""
+msgstr "Ieșire"
 
 #: general_report_manager.cpp:440
 msgid "SQL"
@@ -2786,15 +2786,15 @@ msgstr "&Test"
 
 #: general_report_manager.cpp:496
 msgid "Create Template"
-msgstr ""
+msgstr "Creează șablon"
 
 #: general_report_manager.cpp:548
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%zu rânduri găsite, durata: %lld ms"
+msgstr[1] "%zu rânduri găsite, durata: %lld ms"
+msgstr[2] "%zu rânduri găsite, durata: %lld ms"
 
 #: general_report_manager.cpp:575
 msgid "SQL Syntax Error"
@@ -2810,19 +2810,19 @@ msgstr ""
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "Fișiere ZIP (*.zip)"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
-msgstr ""
+msgstr "Manager Rapoarte Generale"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Active..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Un nou raport gol..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2850,7 +2850,7 @@ msgstr "Activ"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Arată/ascunde raportul în panoul principal de navigare"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
@@ -2858,20 +2858,20 @@ msgstr "Șterge raportul..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "Introdu numele raportului"
 
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:769 mmframe.cpp:1673 mmframe.cpp:1845
 msgid "General Report Manager"
-msgstr ""
+msgstr "Manager Rapoarte Generale"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "Șterge titlul raportului:"
 
 #: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Introdu sau alege numele noului grup de rapoarte"
 
 #: general_report_manager.cpp:925
 msgid "Rename Group"
@@ -2879,7 +2879,7 @@ msgstr "Redenumește grupul"
 
 #: general_report_manager.cpp:992
 msgid "Add Report Group"
-msgstr ""
+msgstr "Adaugă grup de rapoarte"
 
 #: general_report_manager.cpp:1005
 #, c-format
@@ -2905,17 +2905,17 @@ msgstr "Parametrii:"
 #: images_list.cpp:324
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Metadatele JSON din Tema '%s' nu pot fi prelucrate și arată prost construite, te rog să le corectezi."
 
 #: images_list.cpp:412
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Fișierul '%s' lipsește sau este nevalid în tema aleasă '%s'"
 
 #: images_list.cpp:423
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Metadate '%s' lipsesc din tema aleasă '%s'"
 
 #: images_list.cpp:456
 msgid "and more..."
@@ -2924,17 +2924,17 @@ msgstr "și mai multe..."
 #: images_list.cpp:458
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Sunt %d pictograme lipsă sau nevalide în tema aleasă '%s': %s"
 
 #: images_list.cpp:487
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s nu a fost găsită, este posibil să nu mai fie acceptată. Revenire la tema implicită"
 
 #: images_list.cpp:494
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s are elemente lipsă și este incompatibilă. Revenire la tema implicită"
 
 #: images_list.cpp:499
 msgid "No workable theme found, the installation may be corrupt"
@@ -3127,27 +3127,27 @@ msgstr "Numărul de conturi exportate: %zu"
 
 #: import_export/qif_import_gui.cpp:149 import_export/univcsvdialog.cpp:187
 msgid "&Browse"
-msgstr ""
+msgstr "&Răsfoire"
 
 #: import_export/qif_import_gui.cpp:159 import_export/univcsvdialog.cpp:327
 msgid "Encoding:"
-msgstr ""
+msgstr "Codificare:"
 
 #: import_export/qif_import_gui.cpp:194
 msgid "Filtering Details:"
-msgstr ""
+msgstr "Filtrare detalii:"
 
 #: import_export/qif_import_gui.cpp:233
 msgid "Data"
-msgstr ""
+msgstr "Date"
 
 #: import_export/qif_import_gui.cpp:290
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Folosește numărul de cont în loc de numele contului"
 
 #: import_export/qif_import_gui.cpp:294
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Includeți câmpul pentru beneficiar în note"
 
 #: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
 #: import_export/qif_import_gui.cpp:466 import_export/qif_import_gui.cpp:623
@@ -3162,12 +3162,12 @@ msgstr "Necunoscut"
 
 #: import_export/qif_import_gui.cpp:398
 msgid "Scanning"
-msgstr ""
+msgstr "Scanează"
 
 #: import_export/qif_import_gui.cpp:427
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Citesc linia %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:433
 #, c-format
