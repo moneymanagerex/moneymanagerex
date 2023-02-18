@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-13 22:37\n"
+"PO-Revision-Date: 2023-02-18 02:14\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -596,7 +596,7 @@ msgstr "Összes"
 #: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:402
 #: stockspanel.cpp:130
 msgid "&New "
-msgstr "Új"
+msgstr "&Új "
 
 #: assetspanel.cpp:476 stockspanel.cpp:134
 msgid "&Add Trans "
