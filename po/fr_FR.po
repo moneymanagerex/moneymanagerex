@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:35+0300\n"
-"PO-Revision-Date: 2023-02-18 13:37\n"
+"POT-Creation-Date: 2023-02-18 16:45+0300\n"
+"PO-Revision-Date: 2023-02-18 13:48\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4424,9 +4424,9 @@ msgstr "Fichiers &CSV..."
 msgid "&XML Files..."
 msgstr "Fichiers &XML..."
 
-#: mmframe.cpp:1323
-msgid "Import from XML (Excel format) file"
-msgstr "Importer un fichier XML (format Excel)"
+#: mmframe.cpp:1323 mmframe.cpp:1484
+msgid "Import from XML file (Excel format)"
+msgstr ""
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -4527,10 +4527,6 @@ msgstr "Fichiers récents"
 #: mmframe.cpp:1477
 msgid "&Clear Recent Files"
 msgstr "Effacer les derniers fichiers utilisés"
-
-#: mmframe.cpp:1484
-msgid "Import from XML (Excel format)"
-msgstr "Importation XML (format Excel)"
 
 #: mmframe.cpp:1488
 msgid "&WebApp..."
