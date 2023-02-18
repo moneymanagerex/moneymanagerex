@@ -1320,7 +1320,7 @@ void mmGUIFrame::AppendImportMenu(wxMenu& menu)
     wxMenu* importFrom(new wxMenu);
     menu.AppendSubMenu(importFrom, _("&Import from"));
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format) file"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML file (Excel format)"));
     importFrom->AppendSeparator();
     importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
 
@@ -1481,7 +1481,7 @@ void mmGUIFrame::createMenu()
     wxMenu* importMenu = new wxMenu;
     menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
     importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV File..."), _("Import from CSV file"));
-    importMenu->Append(MENU_IMPORT_XML, _("&XML File..."), _("Import from XML (Excel format)"));
+    importMenu->Append(MENU_IMPORT_XML, _("&XML File..."), _("Import from XML file (Excel format)"));
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_QIF, _("&QIF File..."), _("Import from QIF file"));
     importMenu->AppendSeparator();
