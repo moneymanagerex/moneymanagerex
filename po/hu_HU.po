@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 13:48\n"
+"PO-Revision-Date: 2023-02-18 20:01\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1807,7 +1807,7 @@ msgstr "Mégse"
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:128
 #: relocatepayeedialog.cpp:128 themes.cpp:195
 msgid "Close"
-msgstr "Bezárás "
+msgstr "Bezárás"
 
 #: constants.cpp:80
 msgid "&Close "
@@ -3612,7 +3612,7 @@ msgstr "Rögzített árfolyam"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
-msgstr "N/A"
+msgstr "N. a."
 
 #: maincurrencydialog.cpp:180 maincurrencydialog.cpp:476
 msgid "Online update currency rate"
@@ -4424,7 +4424,7 @@ msgstr "&XML-fájlok…"
 
 #: mmframe.cpp:1323 mmframe.cpp:1484
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "Importálás Excel formátumú XML-fájlból"
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
