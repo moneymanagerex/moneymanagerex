@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-13 17:25+0300\n"
-"PO-Revision-Date: 2023-02-18 07:18\n"
+"PO-Revision-Date: 2023-02-18 08:15\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3172,7 +3172,7 @@ msgstr "Citesc linia %zu, %lld ms"
 #: import_export/qif_import_gui.cpp:433
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Linia %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:525
 #, c-format
