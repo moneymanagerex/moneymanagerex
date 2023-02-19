@@ -69,7 +69,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     itemBoxSizer2->Add(itemGridSizer2, 0, wxALL, 5);
     
-    wxStaticText* itemStaticText3 = new wxStaticText( this, wxID_STATIC, _("Budget Year:"));
+    wxStaticText* itemStaticText3 = new wxStaticText( this, wxID_STATIC, _("Budget Year"));
     itemGridSizer2->Add(itemStaticText3, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     int year = wxDate::GetCurrentYear();
@@ -83,7 +83,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     if (withMonth_)
     {
         wxStaticText* itemStaticTextMonth = new wxStaticText(this
-            , wxID_STATIC, _("Budget Month:"), wxDefaultPosition, wxDefaultSize, 0);
+            , wxID_STATIC, _("Budget Month"), wxDefaultPosition, wxDefaultSize, 0);
         itemGridSizer2->Add(itemStaticTextMonth, 0
             , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
@@ -99,7 +99,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     }
 
     wxStaticText* itemStaticText51 = new wxStaticText(this
-        , wxID_STATIC, _("Base Budget On:"));
+        , wxID_STATIC, _("Base Budget On"));
     itemGridSizer2->Add(itemStaticText51, 0
         , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
@@ -108,10 +108,11 @@ void mmBudgetYearEntryDialog::CreateControls()
     
     itemChoice_ = new wxChoice( this, wxID_ANY 
         , wxDefaultPosition, textYear_->GetSize(), itemYearStrings );
+    itemChoice_->SetSelection(0);
     itemGridSizer2->Add(itemChoice_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
-    mmToolTip(itemChoice_, _("Specify year to base budget on."));
+    mmToolTip(itemChoice_, _("Specify year to base budget on"));
 
-    int index = 1;
+    unsigned int index = 1;
     for (const auto& e : Model_Budgetyear::instance().all())
     {
         const wxString& budgetYearString = e.BUDGETYEARNAME;
@@ -155,7 +156,7 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
     else
     {
         Model_Budgetyear::instance().Add(currYearText);
-        if (baseYear != "None")
+        if (baseYear != "None" && !baseYear.empty())
         {
             int baseYearID = Model_Budgetyear::instance().Get(baseYear);
             int newYearID  = Model_Budgetyear::instance().Get(currYearText);
