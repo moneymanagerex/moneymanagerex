@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 13:48\n"
+"PO-Revision-Date: 2023-02-19 06:16\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -539,11 +539,11 @@ msgstr "新增资产..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr "重复资产(&D)..."
+msgstr "复制资产(D)..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr "新增资产交易..."
+msgstr "新增资产交易(A)..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -551,20 +551,20 @@ msgstr "查看资产交易(&)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr "打开资产账户..."
+msgstr "打开资产账户(O)..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr "编辑资产..."
+msgstr "编辑资产(E)..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr "删除资产..."
+msgstr "删除资产(D)..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1381 mmframe.cpp:1401 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "管理附件..."
+msgstr "管理附件(O)..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -1330,19 +1330,19 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr "新建周期性交易..."
+msgstr "新建周期性交易(N)..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr "编辑周期性交易..."
+msgstr "编辑周期性交易(E)..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr "复制周期性交易..."
+msgstr "复制周期性交易(U)..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr "删除周期性交易..."
+msgstr "删除周期性交易(D)..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -1612,7 +1612,7 @@ msgstr "全部展开"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr "显示全部"
+msgstr "显示全部(A)"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -1826,7 +1826,7 @@ msgstr "剪切"
 
 #: constants.cpp:87
 msgid "Copy"
-msgstr "拷贝"
+msgstr "复制"
 
 #: constants.cpp:88
 msgid "Paste"
@@ -3876,7 +3876,7 @@ msgstr "提示：要将交易标记为需要跟进，只需选择该交易并按
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "提示：MMEX 支持打印所有可以查看的报告。打印选项可在菜单栏，文件→打印。"
+msgstr "提示：MMEX 支持打印所有可以查看的报表。打印选项可在菜单栏，文件 → 打印。"
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -4408,7 +4408,7 @@ msgstr "XML 文件(&X)..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1484
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "从 XML 文件导入(Excel 格式)"
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -5938,7 +5938,7 @@ msgstr "货币值示例： %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "无效区域名"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6182,12 +6182,13 @@ msgstr "如果存在每月预算，则使用这个选项来替代年度预算；
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "在报表中从年度预算中减去月度预算"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "年度预算将按月预算的金额进行削减。\n"
+"年度总预算的报告将为年度预算或月度预算总和中的较大者。"
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
