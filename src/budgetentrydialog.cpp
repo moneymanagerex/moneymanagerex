@@ -101,6 +101,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemPanel7->SetSizer(itemGridSizer2);
     
     const Model_Category::Data* category = Model_Category::instance().get(budgetEntry_->CATEGID);
+    wxASSERT(category);
     
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
