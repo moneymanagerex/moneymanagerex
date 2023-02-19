@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 13:48\n"
+"PO-Revision-Date: 2023-02-19 05:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -539,7 +539,7 @@ msgstr "新增资产..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr "重复资产(&D)..."
+msgstr "复制资产(D)..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
