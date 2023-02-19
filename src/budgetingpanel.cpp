@@ -716,6 +716,10 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
      ***************************************************************************/
     Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(GetBudgetYearID())
         , Model_Budget::CATEGID(budget_[selectedIndex].second > 0 ? budget_[selectedIndex].second : budget_[selectedIndex].first));
+
+    if (budget_[selectedIndex].first == -1)
+        return;
+
     Model_Budget::Data* entry = 0;
     if (budget.empty())
     {
