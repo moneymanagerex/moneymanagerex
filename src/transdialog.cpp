@@ -1027,26 +1027,27 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         , isDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
         , m_trx_data.TRANSAMOUNT);
 
-    dlg.ShowModal();
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        m_local_splits = dlg.mmGetResult();
 
-    m_local_splits = dlg.mmGetResult();
+        if (m_local_splits.size() == 1) {
+            m_trx_data.CATEGID = m_local_splits[0].CATEGID;
+            m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
+            textNotes_->SetValue(m_local_splits[0].NOTES);
+            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+            m_local_splits.clear();
+        }
 
-    if (m_local_splits.size() == 1) {
-        m_trx_data.CATEGID = m_local_splits[0].CATEGID;
-        m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
-        textNotes_->SetValue(m_local_splits[0].NOTES);
-        m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
-        m_local_splits.clear();
+        if (!m_local_splits.empty()) {
+            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+        }
+
+        skip_category_init_ = false;
+        skip_amount_init_ = false;
+        skip_tooltips_init_ = false;
+        dataToControls();
     }
-
-    if (!m_local_splits.empty()) {
-        m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
-    }
-
-    skip_category_init_ = false;
-    skip_amount_init_ = false;
-    skip_tooltips_init_ = false;
-    dataToControls();
 }
 
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
