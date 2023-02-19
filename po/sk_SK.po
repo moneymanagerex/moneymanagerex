@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 13:48\n"
+"POT-Creation-Date: 2023-02-19 23:11+0300\n"
+"PO-Revision-Date: 2023-02-19 20:23\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Povolením nám umožníte zbierať anonymné dáta o používaní MMEX.
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:632
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:127 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:737
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
@@ -973,7 +973,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr "Dátum platby"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1238
 msgid "Specify the status for the transaction"
 msgstr "Upresnite stav transakcie"
 
@@ -988,7 +988,7 @@ msgstr "Upresnite stav transakcie"
 msgid "Status"
 msgstr "Stav"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1239
 msgid "Specify the type of transactions to be created."
 msgstr "Upresnite typ vytváranej transakcie."
 
@@ -996,7 +996,7 @@ msgstr "Upresnite typ vytváranej transakcie."
 msgid "&Advanced"
 msgstr "&Rozšírené"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1242
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Umožňuje nastaviť rôzne sumy na zdrojové a cieľové účty."
 
@@ -1012,7 +1012,7 @@ msgstr "Umožňuje nastaviť rôzne sumy na zdrojové a cieľové účty."
 msgid "Amount"
 msgstr "Suma"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1224
 msgid "Specify the transfer amount in the To Account"
 msgstr "Upresnite sumu prevodu na cieľový účet"
 
@@ -1067,11 +1067,11 @@ msgid "Category"
 msgstr "Kategória"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:1331 transdialog.cpp:503
-#: transdialog.cpp:1200
+#: transdialog.cpp:1201
 msgid "Use split Categories"
 msgstr "Použiť kategórie rozdelenia"
 
-#: billsdepositsdialog.cpp:586 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:586 transdialog.cpp:1240
 msgid "Specify any associated check number or transaction number"
 msgstr "Upresnite zodpovedajúce číslo šeku alebo číslo transakcie"
 
@@ -1106,7 +1106,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1241
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Zadajte ľubovolnú poznámku, ktorú chcete pridať k transakcii."
@@ -1223,7 +1223,7 @@ msgstr "Nová opakujúca sa transakcia"
 msgid "Specify where the transaction is going to"
 msgstr "Upresnite kam odchádza transakcia"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1232
+#: billsdepositsdialog.h:125 transdialog.cpp:1233
 msgid "Specify where the transaction is coming from"
 msgstr "Upresnite odkiaľ prichádza transakcia"
 
@@ -1231,7 +1231,7 @@ msgstr "Upresnite odkiaľ prichádza transakcia"
 msgid "Specify which account the transfer is going to"
 msgstr "Upresnite účet, na ktorý odchádza prevod"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1227 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:127 transdialog.cpp:1228 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Upresnite sumu pre túto transakciu"
 
@@ -1555,7 +1555,7 @@ msgstr "Pridať nový mesačný rozpočet"
 msgid "Delete existing budget"
 msgstr "Odstrániť existujúci rozpočet"
 
-#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "Detaily položky rozpočtu"
 
@@ -1564,8 +1564,8 @@ msgid "Budget Month Entry"
 msgstr "Položka mesačného rozpočtu"
 
 #: budgetyearentrydialog.cpp:72
-msgid "Budget Year:"
-msgstr "Rozpočet pre rok:"
+msgid "Budget Year"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1574,8 +1574,8 @@ msgstr "Upresnite požadovaný rok.\n"
 "Použite tlačidlá so šípkami na výber požadovaného roka."
 
 #: budgetyearentrydialog.cpp:86
-msgid "Budget Month:"
-msgstr "Rozpočet pre mesiac:"
+msgid "Budget Month"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1584,14 +1584,14 @@ msgstr "Upresnite požadovaný mesiac.\n"
 "Použije tlačidlá so šipkami na výber požadovaného mesiaca."
 
 #: budgetyearentrydialog.cpp:102
-msgid "Base Budget On:"
-msgstr "Rozpočet založený na:"
+msgid "Base Budget On"
+msgstr ""
 
-#: budgetyearentrydialog.cpp:112
-msgid "Specify year to base budget on."
-msgstr "Upresnite rok, na ktorom bude založený rozpočet."
+#: budgetyearentrydialog.cpp:113
+msgid "Specify year to base budget on"
+msgstr ""
 
-#: budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "Rozpočet na daný rok už existuje"
 
@@ -7347,35 +7347,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: transdialog.cpp:1130
+#: transdialog.cpp:1131
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1131
+#: transdialog.cpp:1132
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1218
+#: transdialog.cpp:1219
 msgid "Specify account the money is taken from"
 msgstr "Upresnite účet, z ktorého sa prevádzajú peniaze"
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1220
 msgid "Specify account the money is moved to"
 msgstr "Upresnite účet, na ktorý sa prevádzajú peniaze"
 
-#: transdialog.cpp:1220
+#: transdialog.cpp:1221
 msgid "Specify the transfer amount in the From Account."
 msgstr "Upresnite sumu prevodu zo zdrojového účtu."
 
-#: transdialog.cpp:1228
+#: transdialog.cpp:1229
 msgid "Specify account for the transaction"
 msgstr "Upresnite účet pre transakciu"
 
-#: transdialog.cpp:1230
+#: transdialog.cpp:1231
 msgid "Specify to whom the transaction is going to"
 msgstr "Upresnite kam odchádza transakcia"
 
-#: transdialog.cpp:1236 usertransactionpanel.cpp:94
+#: transdialog.cpp:1237 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Upresnite dátum transakcie"
 
