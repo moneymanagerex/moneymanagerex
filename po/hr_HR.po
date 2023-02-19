@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-19 20:23\n"
+"PO-Revision-Date: 2023-02-19 21:22\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "Otvori prethodno otvorenu bazu podataka: %s"
 #: appstartdialog.cpp:201 mmframe.cpp:1567 mmframe.cpp:2835
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "Standardna postavka sustava"
 
 #: appstartdialog.cpp:214 optionsettingsgeneral.cpp:92
 msgid "Language"
@@ -695,7 +695,7 @@ msgstr "Mapa priloga nije definirana."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Postavi u Alati → Opcije → Prilozi"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -1618,7 +1618,7 @@ msgstr "Rasklopi sve"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "&Pokaži sve"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -2017,7 +2017,7 @@ msgstr ""
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Upravljač valuta"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3415,7 +3415,7 @@ msgstr "Pomakni gore"
 
 #: import_export/univcsvdialog.cpp:464
 msgid "Move Down"
-msgstr ""
+msgstr "Premjesti prema dolje"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3654,7 +3654,7 @@ msgstr "Preuzmi povijest valutnih vrijednosti"
 
 #: maincurrencydialog.cpp:303
 msgid "Add/&Update "
-msgstr ""
+msgstr "Dodaj / &Aktualiziraj "
 
 #: maincurrencydialog.cpp:304
 msgid "Add Currency Values to history"
@@ -4499,11 +4499,11 @@ msgstr "&Premjesti račun …"
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
 msgid "&New Account..."
-msgstr ""
+msgstr "&Novi račun …"
 
 #: mmframe.cpp:1416
 msgid "Account &List"
-msgstr ""
+msgstr "&Popis računa"
 
 #: mmframe.cpp:1429 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -5412,7 +5412,7 @@ msgstr "Najveće isplate: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "Račun / Primaoc"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -6087,7 +6087,7 @@ msgstr "Postavke aplikacije WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
