@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-20 03:51\n"
+"PO-Revision-Date: 2023-02-20 07:37\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1587,11 +1587,11 @@ msgstr "Válassza ki a hónapot!\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Költségvetés a következőn alapul"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Adja meg a költségvetés alapjául szolgáló évet"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
