@@ -573,7 +573,7 @@ void mmBDDialog::CreateControls()
     categ_label2->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
                                             , m_bill_data.CATEGID, true);
-
+    cbCategory_->SetMinSize(cbCategory_->GetSize());
     bSplit_ = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONSPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
 

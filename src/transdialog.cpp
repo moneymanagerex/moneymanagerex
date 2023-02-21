@@ -498,7 +498,7 @@ void mmTransDialog::CreateControls()
     categ_label_->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
         , m_trx_data.CATEGID, true);
-
+    cbCategory_->SetMinSize(cbCategory_->GetSize());
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
 
@@ -588,8 +588,7 @@ void mmTransDialog::CreateControls()
     }
 
     this->SetSizerAndFit(box_sizer);
-    min_size_ = wxSize(box_sizer2->GetMinSize().GetWidth() + 20, GetMinHeight());
-    SetMinSize(min_size_);
+    min_size_ = GetMinSize();
     box_sizer3->SetMinSize(box_sizer2->GetMinSize());
     m_custom_fields->SetMinSize(box_sizer2->GetMinSize());
 }
