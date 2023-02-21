@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011, 2012 Stefano Giorgio
  Copyright (C) 2011, 2012, 2015, 2017, 2021 Nikolay Akimov
- Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 - 2023 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute transcation and/or modify
  transcation under the terms of the GNU General Public License as published by
@@ -193,9 +193,10 @@ table {
             if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
             if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
             if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-            if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
+            if (showColumnById(10)) hb.addTableHeaderCell(_("Rate"), "Rate text-right");
+            if (showColumnById(11)) hb.addTableHeaderCell(_("Notes"), "Notes");
             const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-            int colNo = 11;
+            int colNo = 12;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
             {
                 if (udfc_entry.empty()) continue;
@@ -260,12 +261,11 @@ table {
                 }
 
                 Model_Account::Data* acc;
-                const Model_Currency::Data* curr;
                 acc = Model_Account::instance().get(transaction.ACCOUNTID);
-                curr = Model_Account::currency(acc);
 
                 if (acc)
                 {
+                    const Model_Currency::Data* curr = Model_Account::currency(acc);
                     double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
@@ -291,6 +291,15 @@ table {
                     if (showColumnById(9)) hb.addEmptyTableCell();
                 }
 
+                // Exchange Rate
+                if (showColumnById(10))
+                {
+                    if (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT)
+                        hb.addMoneyCell(transaction.TOTRANSAMOUNT / transaction.TRANSAMOUNT);
+                    else
+                        hb.addEmptyTableCell();
+                }
+
                 // Attachments
                 wxString AttachmentsLink = "";
                 if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
@@ -300,7 +309,7 @@ table {
                 }
 
                 // Notes
-                if (showColumnById(10)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
+                if (showColumnById(11)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
                 // Custom Fields
 
@@ -344,15 +353,15 @@ table {
                     }
                 }
 
-                if (showColumnById(11))
-                    UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
                 if (showColumnById(12))
-                    UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
+                    UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
                 if (showColumnById(13))
-                    UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
+                    UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
                 if (showColumnById(14))
-                    UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
+                    UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
                 if (showColumnById(15))
+                    UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
+                if (showColumnById(16))
                     UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);
             }
             hb.endTableRow();

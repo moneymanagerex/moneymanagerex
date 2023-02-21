@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2013 - 2022 Nikolay Akimov
-Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021 - 2023 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1031,6 +1031,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("Category");
     column_names.Add("Type");
     column_names.Add("Amount");
+    column_names.Add("Rate");
     column_names.Add("Notes");
     column_names.Add("UDFC01");
     column_names.Add("UDFC02");
