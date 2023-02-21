@@ -294,7 +294,8 @@ table {
                 // Exchange Rate
                 if (showColumnById(10))
                 {
-                    if (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT)
+                    if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+                            && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
                         hb.addMoneyCell(transaction.TOTRANSAMOUNT / transaction.TRANSAMOUNT);
                     else
                         hb.addEmptyTableCell();
