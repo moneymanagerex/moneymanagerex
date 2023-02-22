@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-19 20:23\n"
+"PO-Revision-Date: 2023-02-22 02:56\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1564,7 +1564,7 @@ msgstr "预算月条目"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "预算年度"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1574,7 +1574,7 @@ msgstr "指定所需的年份。\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "预算月份"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1584,11 +1584,11 @@ msgstr "指定所需的月份。\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "预算基于："
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "指定预算基准年份"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
