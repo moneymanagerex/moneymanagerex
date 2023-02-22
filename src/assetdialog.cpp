@@ -394,7 +394,6 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
             , _("New Asset"), wxYES_NO | wxICON_INFORMATION) == wxYES)
         {
             CreateAssetAccount();
-            m_gui_frame->RefreshNavigationTree();
         }
     }
 
