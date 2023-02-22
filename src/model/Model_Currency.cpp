@@ -266,7 +266,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
     }
 
-    auto l = (use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8"));
+    auto l = (use_locale == "Y" ? std::locale(locale.c_str()) : (d == "Y" ? std::locale("en_US.UTF-8") : std::locale()));
     std::string s;
     value += LIMIT; //to ignore the negative sign on values of zero #564
 
