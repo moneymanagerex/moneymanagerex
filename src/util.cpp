@@ -351,7 +351,11 @@ const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dat
         const auto week = wxGetTranslation(g_short_days_of_week[d.GetWeekDay()]);
         date_str.Replace("%w", wxGetTranslation(week));
     }
-
+    if (iso_date.Length() == 19) {
+        date_str.Replace("%H", iso_date.Mid(11, 2));
+        date_str.Replace("%M", iso_date.Mid(14, 2));
+        date_str.Replace("%S", iso_date.Mid(17, 2));
+    }
     return dateLookup[iso_date] = date_str;
 }
 
