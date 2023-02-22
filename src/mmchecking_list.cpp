@@ -1689,6 +1689,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
 
     wxString value = wxEmptyString;
     wxDateTime datetime;
+    wxString dateFormat = Option::instance().getDateFormat();
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
@@ -1720,7 +1721,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         datetime.ParseISOCombined(tran.DELETEDTIME);        
         if(!datetime.IsValid())
             return wxString("");
-        return datetime.FromUTC().FormatISOCombined(' ');
+        return datetime.FromUTC().Format(dateFormat + " %H:%M:%S");
     case TransactionListCtrl::COL_UDFC01:
         return UDFCFormatHelper(tran.UDFC01_Type, tran.UDFC01);
     case TransactionListCtrl::COL_UDFC02:
@@ -1735,7 +1736,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         datetime.ParseISOCombined(tran.LASTUPDATEDTIME);
         if (!datetime.IsValid())
             return wxString("");
-        return datetime.FromUTC().FormatISOCombined(' ');
+        return datetime.FromUTC().Format(dateFormat + " %H:%M:%S");
     }
 
     bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
