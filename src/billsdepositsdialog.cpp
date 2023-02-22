@@ -543,6 +543,7 @@ void mmBDDialog::CreateControls()
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
     cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_bill_data.ACCOUNTID);
+    cbAccount_->SetMinSize(cbAccount_->GetSize());
     mmToolTip(cbAccount_, _("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(cbAccount_, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
@@ -552,6 +553,7 @@ void mmBDDialog::CreateControls()
     to_acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(to_acc_label, g_flagsH);
     cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME, wxDefaultSize, m_bill_data.TOACCOUNTID);
+    cbToAccount_->SetMinSize(cbToAccount_->GetSize());
     mmToolTip(cbToAccount_, payeeTransferTip_);
     transPanelSizer->Add(cbToAccount_, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
@@ -562,7 +564,7 @@ void mmBDDialog::CreateControls()
 
     cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE, wxDefaultSize, m_bill_data.PAYEEID, true);
     mmToolTip(cbPayee_, payeeWithdrawalTip_);
-
+    cbPayee_->SetMinSize(cbPayee_->GetSize());
     transPanelSizer->Add(payee_label, g_flagsH);
     transPanelSizer->Add(cbPayee_, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
