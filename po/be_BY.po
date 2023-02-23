@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-23 08:15\n"
+"PO-Revision-Date: 2023-02-23 09:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6248,7 +6248,7 @@ msgstr "Адняць штомесячныя бюджэты ад гадавога
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr "Гадавы бюджэт будзе паменшаны на суму штомесяц бюджэта.\n"
+msgstr "Гадавы бюджэт будзе паменшаны на суму штомесячнага бюджэта.\n"
 "Агульны каштарыс за год будзе прадстаўлены альбо як гадавы бюджэт АБО як сума месячных бюджэтаў, у залежнасці ад таго, што больш."
 
 #: optionsettingsview.cpp:157
