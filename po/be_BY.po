@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-19 20:23\n"
+"PO-Revision-Date: 2023-02-23 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1574,7 +1574,7 @@ msgstr "Бюджэт на месяц"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Бюджэтны год"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1584,7 +1584,7 @@ msgstr "Пакажыце жаданы год\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Бюджэтны месяц"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1594,11 +1594,11 @@ msgstr "Пакажыце патрэбны месяц.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Грунтавацца на бюджэце"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Пакажыце год, на якім грунтуецца новы бюджэт"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1622,7 +1622,7 @@ msgstr "Разгарнуць усе"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "Глядзець усе"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -1850,7 +1850,7 @@ msgstr "64-бітная"
 
 #: constants.cpp:186
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Глядзець праз фільтр аперацыяў..."
 
 #: constants.cpp:187
 msgid "View All Transactions"
@@ -2019,7 +2019,7 @@ msgstr "(Выкарыстоўваецца лакаль)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Дыспетчар валютаў"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3421,7 +3421,7 @@ msgstr "Перасунуць вышэй"
 
 #: import_export/univcsvdialog.cpp:464
 msgid "Move Down"
-msgstr ""
+msgstr "Перасунуць ніжэй"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3660,7 +3660,7 @@ msgstr "Спампаваць гісторыю валютаў"
 
 #: maincurrencydialog.cpp:303
 msgid "Add/&Update "
-msgstr ""
+msgstr "Д&адаць / &Абнавіць "
 
 #: maincurrencydialog.cpp:304
 msgid "Add Currency Values to history"
@@ -4459,7 +4459,7 @@ msgstr "Файлы &XML..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1484
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "Імпартаваць з XML (фармат Excel)"
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -4519,7 +4519,7 @@ msgstr "&Перасунуць рахунак..."
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
 msgid "&New Account..."
-msgstr ""
+msgstr "&Новы рахунак..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
@@ -4683,7 +4683,7 @@ msgstr "&Мова дадатка"
 
 #: mmframe.cpp:1587
 msgid "Dash&board"
-msgstr ""
+msgstr "Панэль &кіравання"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
@@ -4983,7 +4983,7 @@ msgstr "Паведаміць распрацоўшчыкам пра памылк�
 
 #: mmframe.cpp:1786
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "Глядзець &дыягностыку"
 
 #: mmframe.cpp:1787
 msgid "Help provide information to the developers"
@@ -5442,7 +5442,7 @@ msgstr "Найбольш спісанняў: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "Рахунак / Платнік"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -5999,7 +5999,7 @@ msgstr "Прыклад значэння валюты: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "Хібнае імя лакалі"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6123,7 +6123,7 @@ msgstr "Налады WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
@@ -7442,7 +7442,7 @@ msgstr "Пакажыце дату аперацыі"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Дыялог аперацыяў"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
