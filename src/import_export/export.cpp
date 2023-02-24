@@ -179,6 +179,13 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
+        if (!split_entry.NOTES.IsEmpty())
+        {
+            notes = split_entry.NOTES;
+            notes.Replace("''", "'");
+            notes.Replace("\n", "\nE");
+            buffer << "E" << notes << "\n";
+        }
     }
 
     buffer << "^" << "\n";
