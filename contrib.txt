@@ -117,6 +117,7 @@ Spanish
 ## Sponsors
 
 ### 2023
+Renato
 Michael Ellis
 Constantin Georgescu
 Juan De Arriba
@@ -134,6 +135,10 @@ Roger Gimbrere
 Francesco Orabona
 Jean Jacques Pons
 Giuseppe Maffione
+George Cucak
+Graham Young
+Jose Manuel Marrero León
+Morris Stout
 
 ### 2022
 Renato
