@@ -1215,10 +1215,16 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             amtSplit.ToCDouble(&amount);
 
             wxString memo;
-            if (!notes.empty()) {
+            while (!notes.empty()) {
                 wxRegEx pattern(wxString::Format("^%d:(.*)", split_id), wxRE_NEWLINE);
                 if (pattern.Matches(notes))
-                    memo = pattern.GetMatch(notes, 1);
+                {
+                    memo += (!memo.IsEmpty() ? "\n" : "" ) + pattern.GetMatch(notes, 1);
+                    pattern.ReplaceFirst(&notes, "");
+                    notes.Replace("\n", "", false);
+                }
+                else
+                    break;
             }
 
             s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
