@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 13:48\n"
+"POT-Creation-Date: 2023-02-19 23:11+0300\n"
+"PO-Revision-Date: 2023-02-19 20:23\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "有効にすると、MMEX の使用状況に関する匿名のデータ�
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:632
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:127 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:737
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
@@ -973,7 +973,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1238
 msgid "Specify the status for the transaction"
 msgstr "取引の状態を指定してください"
 
@@ -988,7 +988,7 @@ msgstr "取引の状態を指定してください"
 msgid "Status"
 msgstr "状態"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1239
 msgid "Specify the type of transactions to be created."
 msgstr "作成する取引の種類を指定してください。"
 
@@ -996,7 +996,7 @@ msgstr "作成する取引の種類を指定してください。"
 msgid "&Advanced"
 msgstr "高度(&A)"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1242
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "元と先のアカウントに、異なる金額を設定できます。"
 
@@ -1012,7 +1012,7 @@ msgstr "元と先のアカウントに、異なる金額を設定できます。
 msgid "Amount"
 msgstr "金額"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1224
 msgid "Specify the transfer amount in the To Account"
 msgstr "振替先のアカウントに振替する金額を指定してください"
 
@@ -1067,11 +1067,11 @@ msgid "Category"
 msgstr "カテゴリー"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:1331 transdialog.cpp:503
-#: transdialog.cpp:1200
+#: transdialog.cpp:1201
 msgid "Use split Categories"
 msgstr "分割カテゴリーを使用します"
 
-#: billsdepositsdialog.cpp:586 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:586 transdialog.cpp:1240
 msgid "Specify any associated check number or transaction number"
 msgstr "任意の関連する小切手番号または取引番号を指定してください"
 
@@ -1106,7 +1106,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1241
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "この取引に追加するテキストのメモを指定してください。"
@@ -1223,7 +1223,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr "取引を行う先を指定してください"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1232
+#: billsdepositsdialog.h:125 transdialog.cpp:1233
 msgid "Specify where the transaction is coming from"
 msgstr "取引がどこから来ているるか指定します"
 
@@ -1231,7 +1231,7 @@ msgstr "取引がどこから来ているるか指定します"
 msgid "Specify which account the transfer is going to"
 msgstr "振替先のアカウントを指定します"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1227 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:127 transdialog.cpp:1228 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "取引の金額を指定してください"
 
@@ -1546,7 +1546,7 @@ msgstr "新しい予算月を追加します"
 msgid "Delete existing budget"
 msgstr "既存の予算を削除"
 
-#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "予算エントリー詳細"
 
@@ -1555,8 +1555,8 @@ msgid "Budget Month Entry"
 msgstr "予算月エントリー"
 
 #: budgetyearentrydialog.cpp:72
-msgid "Budget Year:"
-msgstr "予算年度:"
+msgid "Budget Year"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1565,8 +1565,8 @@ msgstr "必要な年度を指定します。\n"
 "スピンボタンを使用して、年をプラスまたはマイナスします。"
 
 #: budgetyearentrydialog.cpp:86
-msgid "Budget Month:"
-msgstr "予算月:"
+msgid "Budget Month"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1575,14 +1575,14 @@ msgstr "必要な月を指定します。\n"
 "スピンボタンを使用して、月をプラスまたはマイナスします。"
 
 #: budgetyearentrydialog.cpp:102
-msgid "Base Budget On:"
-msgstr "基本予算オン:"
+msgid "Base Budget On"
+msgstr ""
 
-#: budgetyearentrydialog.cpp:112
-msgid "Specify year to base budget on."
-msgstr "基本予算にオンする年を指定します。"
+#: budgetyearentrydialog.cpp:113
+msgid "Specify year to base budget on"
+msgstr ""
 
-#: budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "予算年度はすでに存在します"
 
@@ -7297,35 +7297,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: transdialog.cpp:1130
+#: transdialog.cpp:1131
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1131
+#: transdialog.cpp:1132
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1218
+#: transdialog.cpp:1219
 msgid "Specify account the money is taken from"
 msgstr "お金を得る元のアカウントを指定します"
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1220
 msgid "Specify account the money is moved to"
 msgstr "お金を移動する先のアカウントを指定します"
 
-#: transdialog.cpp:1220
+#: transdialog.cpp:1221
 msgid "Specify the transfer amount in the From Account."
 msgstr "アカウントから振替する金額を指定します。"
 
-#: transdialog.cpp:1228
+#: transdialog.cpp:1229
 msgid "Specify account for the transaction"
 msgstr "取引のアカウントを指定します"
 
-#: transdialog.cpp:1230
+#: transdialog.cpp:1231
 msgid "Specify to whom the transaction is going to"
 msgstr "取引の相手先を指定します"
 
-#: transdialog.cpp:1236 usertransactionpanel.cpp:94
+#: transdialog.cpp:1237 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "取引の日付を指定してください"
 
