@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-20 10:36\n"
+"PO-Revision-Date: 2023-02-26 20:52\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5564,7 +5564,7 @@ msgstr "Pokaż"
 #: model/Model_Account.cpp:33 model/Model_Asset.cpp:47 reports/summary.cpp:254
 #: reports/summary.cpp:298
 msgid "Cash"
-msgstr "gotówka"
+msgstr "Gotówka"
 
 #: model/Model_Account.cpp:34
 msgid "Checking"
@@ -6821,7 +6821,7 @@ msgstr "ostatnie 365 dni"
 
 #: reports/mmDateRange.cpp:280
 msgid "Since Today"
-msgstr "Od dzisiaj"
+msgstr "od dzisiaj"
 
 #: reports/mmDateRange.cpp:289
 msgid "Since 30 days ago"
