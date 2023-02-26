@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-19 06:16\n"
+"POT-Creation-Date: 2023-02-19 23:11+0300\n"
+"PO-Revision-Date: 2023-02-22 02:56\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "启用以匿名发送关于 MMEX 使用情况的数据。"
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:632
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:127 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:737
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
@@ -975,7 +975,7 @@ msgstr "指定用户需要输入此交易的日期"
 msgid "Date Paid"
 msgstr "付款日期"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1238
 msgid "Specify the status for the transaction"
 msgstr "指定交易状态"
 
@@ -990,7 +990,7 @@ msgstr "指定交易状态"
 msgid "Status"
 msgstr "状态"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1239
 msgid "Specify the type of transactions to be created."
 msgstr "指定要创建的交易的类型"
 
@@ -998,7 +998,7 @@ msgstr "指定要创建的交易的类型"
 msgid "&Advanced"
 msgstr "高级(&A)"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1242
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "指定转账账户"
 
@@ -1014,7 +1014,7 @@ msgstr "指定转账账户"
 msgid "Amount"
 msgstr "金额"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1224
 msgid "Specify the transfer amount in the To Account"
 msgstr "指定转账账户"
 
@@ -1069,11 +1069,11 @@ msgid "Category"
 msgstr "类目"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:1331 transdialog.cpp:503
-#: transdialog.cpp:1200
+#: transdialog.cpp:1201
 msgid "Use split Categories"
 msgstr "拆分类目"
 
-#: billsdepositsdialog.cpp:586 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:586 transdialog.cpp:1240
 msgid "Specify any associated check number or transaction number"
 msgstr "指定相关的查询号或交易号"
 
@@ -1108,7 +1108,7 @@ msgstr "管理此周期性交易的附件"
 msgid "Color"
 msgstr "颜色"
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1241
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "添加关于该交易的备注。"
@@ -1231,7 +1231,7 @@ msgstr "新的周期性交易"
 msgid "Specify where the transaction is going to"
 msgstr "指定交易的对象"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1232
+#: billsdepositsdialog.h:125 transdialog.cpp:1233
 msgid "Specify where the transaction is coming from"
 msgstr "指定交易的对象"
 
@@ -1239,7 +1239,7 @@ msgstr "指定交易的对象"
 msgid "Specify which account the transfer is going to"
 msgstr "指定发生转账的账户"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1227 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:127 transdialog.cpp:1228 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "指定交易的金额"
 
@@ -1554,7 +1554,7 @@ msgstr "新增预算年"
 msgid "Delete existing budget"
 msgstr "删除已有的预算年"
 
-#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "预算入口详情"
 
@@ -1563,8 +1563,8 @@ msgid "Budget Month Entry"
 msgstr "预算月条目"
 
 #: budgetyearentrydialog.cpp:72
-msgid "Budget Year:"
-msgstr "预算年份："
+msgid "Budget Year"
+msgstr "预算年度"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1573,8 +1573,8 @@ msgstr "指定所需的年份。\n"
 "使用旋转按钮增加或减少年份。"
 
 #: budgetyearentrydialog.cpp:86
-msgid "Budget Month:"
-msgstr "预算月份："
+msgid "Budget Month"
+msgstr "预算月份"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1583,14 +1583,14 @@ msgstr "指定所需的月份。\n"
 "使用旋转按钮增加或减少月份。"
 
 #: budgetyearentrydialog.cpp:102
-msgid "Base Budget On:"
+msgid "Base Budget On"
 msgstr "预算基于："
 
-#: budgetyearentrydialog.cpp:112
-msgid "Specify year to base budget on."
-msgstr "指定预算基于的年份"
+#: budgetyearentrydialog.cpp:113
+msgid "Specify year to base budget on"
+msgstr "指定预算基准年份"
 
-#: budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "预算年已存在"
 
@@ -7348,35 +7348,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "此交易将超过您的账户限额。\n\n"
 "您想要继续吗？"
 
-#: transdialog.cpp:1130
+#: transdialog.cpp:1131
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "这两个账户有不同的货币，但您没有定义高级交易。这是否正确？"
 
-#: transdialog.cpp:1131
+#: transdialog.cpp:1132
 msgid "Currencies are different"
 msgstr "货币是不同的"
 
-#: transdialog.cpp:1218
+#: transdialog.cpp:1219
 msgid "Specify account the money is taken from"
 msgstr "指定钱来自于的账户"
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1220
 msgid "Specify account the money is moved to"
 msgstr "指定钱被移动到的账户"
 
-#: transdialog.cpp:1220
+#: transdialog.cpp:1221
 msgid "Specify the transfer amount in the From Account."
 msgstr "指定转账来源账户。"
 
-#: transdialog.cpp:1228
+#: transdialog.cpp:1229
 msgid "Specify account for the transaction"
 msgstr "指定交易的账户"
 
-#: transdialog.cpp:1230
+#: transdialog.cpp:1231
 msgid "Specify to whom the transaction is going to"
 msgstr "指定交易的对象"
 
-#: transdialog.cpp:1236 usertransactionpanel.cpp:94
+#: transdialog.cpp:1237 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "指定交易日期"
 

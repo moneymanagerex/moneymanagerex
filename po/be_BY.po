@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 13:48\n"
+"POT-Creation-Date: 2023-02-19 23:11+0300\n"
+"PO-Revision-Date: 2023-02-23 09:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Уключыць, каб дапамагчы нам праз дасыла
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:632
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:127 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:737
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
@@ -977,7 +977,7 @@ msgstr "Пакажыце дату, калі карыстальніку прап�
 msgid "Date Paid"
 msgstr "Дата аплаты"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1238
 msgid "Specify the status for the transaction"
 msgstr "Пакажыце стан аперацыі"
 
@@ -992,7 +992,7 @@ msgstr "Пакажыце стан аперацыі"
 msgid "Status"
 msgstr "Стан"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1239
 msgid "Specify the type of transactions to be created."
 msgstr "Пакажыце тып новай аперацыі."
 
@@ -1000,7 +1000,7 @@ msgstr "Пакажыце тып новай аперацыі."
 msgid "&Advanced"
 msgstr "&Сума «куды»"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1242
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Ручное пазначэнне сумы, што будзе пералічаная на рахунак «куды»."
 
@@ -1016,7 +1016,7 @@ msgstr "Ручное пазначэнне сумы, што будзе перал
 msgid "Amount"
 msgstr "Сума"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1224
 msgid "Specify the transfer amount in the To Account"
 msgstr "Пакажыце суму для рахунка, куды робіцца пераказ"
 
@@ -1071,11 +1071,11 @@ msgid "Category"
 msgstr "Катыгорыя"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:1331 transdialog.cpp:503
-#: transdialog.cpp:1200
+#: transdialog.cpp:1201
 msgid "Use split Categories"
 msgstr "Распадзяліць агульную суму па розных катыгорыях"
 
-#: billsdepositsdialog.cpp:586 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:586 transdialog.cpp:1240
 msgid "Specify any associated check number or transaction number"
 msgstr "Пакажыце нумар чэка або нумар аперацыі"
 
@@ -1110,7 +1110,7 @@ msgstr "Дыспетчар далучэнняў запланаванай апе�
 msgid "Color"
 msgstr "Колер"
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1241
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Увядзіце тэкставыя нататкі да гэтай аперацыі."
@@ -1232,7 +1232,7 @@ msgstr "Дадаць новую запланаваную аперацыя"
 msgid "Specify where the transaction is going to"
 msgstr "Пакажыце, куды будзе зробленае пералічэнне"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1232
+#: billsdepositsdialog.h:125 transdialog.cpp:1233
 msgid "Specify where the transaction is coming from"
 msgstr "Пакажыце адкуль будзе зробленае пералічэнне"
 
@@ -1240,7 +1240,7 @@ msgstr "Пакажыце адкуль будзе зробленае пералі
 msgid "Specify which account the transfer is going to"
 msgstr "Пакажыце рахунак, куды будзе зроблены пераказ"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1227 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:127 transdialog.cpp:1228 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Пакажыце суму для дадзенай аперацыі"
 
@@ -1564,7 +1564,7 @@ msgstr "Дадаць новы бюджэтны месяц"
 msgid "Delete existing budget"
 msgstr "Выдаліць бюджэт"
 
-#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "Бюджэт"
 
@@ -1573,8 +1573,8 @@ msgid "Budget Month Entry"
 msgstr "Бюджэт на месяц"
 
 #: budgetyearentrydialog.cpp:72
-msgid "Budget Year:"
-msgstr "Бюджэтны год:"
+msgid "Budget Year"
+msgstr "Бюджэтны год"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1583,8 +1583,8 @@ msgstr "Пакажыце жаданы год\n"
 "Выкарыстоўвайце кнопкі са стрэлкамі для змены значэння."
 
 #: budgetyearentrydialog.cpp:86
-msgid "Budget Month:"
-msgstr "Бюджэтны месяц:"
+msgid "Budget Month"
+msgstr "Бюджэтны месяц"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1593,14 +1593,14 @@ msgstr "Пакажыце патрэбны месяц.\n"
 "Выкарыстоўвайце кнопкі для павелічэння або памяншэння месяца."
 
 #: budgetyearentrydialog.cpp:102
-msgid "Base Budget On:"
-msgstr "Грунтавацца на бюджэце:"
+msgid "Base Budget On"
+msgstr "Грунтавацца на бюджэце"
 
-#: budgetyearentrydialog.cpp:112
-msgid "Specify year to base budget on."
-msgstr "Пакажыце год, на якім грунтуецца новы бюджэт."
+#: budgetyearentrydialog.cpp:113
+msgid "Specify year to base budget on"
+msgstr "Пакажыце год, на якім грунтуецца новы бюджэт"
 
-#: budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "Бюджэт на гэты год ужо існуе"
 
@@ -1622,7 +1622,7 @@ msgstr "Разгарнуць усе"
 
 #: categdialog.cpp:276 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "Глядзець усе"
 
 #: categdialog.cpp:278
 msgid "Show all hidden categories"
@@ -1850,7 +1850,7 @@ msgstr "64-бітная"
 
 #: constants.cpp:186
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Глядзець праз фільтр аперацыяў..."
 
 #: constants.cpp:187
 msgid "View All Transactions"
@@ -2019,7 +2019,7 @@ msgstr "(Выкарыстоўваецца лакаль)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Дыспетчар валютаў"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -3421,7 +3421,7 @@ msgstr "Перасунуць вышэй"
 
 #: import_export/univcsvdialog.cpp:464
 msgid "Move Down"
-msgstr ""
+msgstr "Перасунуць ніжэй"
 
 #: import_export/univcsvdialog.cpp:465 optionsettingsmisc.cpp:224
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3660,7 +3660,7 @@ msgstr "Спампаваць гісторыю валютаў"
 
 #: maincurrencydialog.cpp:303
 msgid "Add/&Update "
-msgstr ""
+msgstr "Д&адаць / &Абнавіць "
 
 #: maincurrencydialog.cpp:304
 msgid "Add Currency Values to history"
@@ -4459,7 +4459,7 @@ msgstr "Файлы &XML..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1484
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "Імпартаваць з XML (фармат Excel)"
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -4519,7 +4519,7 @@ msgstr "&Перасунуць рахунак..."
 
 #: mmframe.cpp:1414 mmframe.cpp:1590
 msgid "&New Account..."
-msgstr ""
+msgstr "&Новы рахунак..."
 
 #: mmframe.cpp:1416
 msgid "Account &List"
@@ -4683,7 +4683,7 @@ msgstr "&Мова дадатка"
 
 #: mmframe.cpp:1587
 msgid "Dash&board"
-msgstr ""
+msgstr "Панэль &кіравання"
 
 #: mmframe.cpp:1587 mmframe.cpp:1835
 msgid "Open Dashboard"
@@ -4983,7 +4983,7 @@ msgstr "Паведаміць распрацоўшчыкам пра памылк�
 
 #: mmframe.cpp:1786
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "Глядзець &дыягностыку"
 
 #: mmframe.cpp:1787
 msgid "Help provide information to the developers"
@@ -5442,7 +5442,7 @@ msgstr "Найбольш спісанняў: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "Рахунак / Платнік"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -5999,7 +5999,7 @@ msgstr "Прыклад значэння валюты: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
-msgstr ""
+msgstr "Хібнае імя лакалі"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6123,7 +6123,7 @@ msgstr "Налады WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
@@ -6243,12 +6243,13 @@ msgstr "Калі існуе месячны бюджэт, выкарыстаць 
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Адняць штомесячныя бюджэты ад гадавога бюджэту ў справаздачнасці"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Гадавы бюджэт будзе паменшаны на суму штомесячнага бюджэта.\n"
+"Агульны каштарыс за год будзе прадстаўлены альбо як гадавы бюджэт АБО як сума месячных бюджэтаў, у залежнасці ад таго, што больш."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7408,41 +7409,41 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "Гэтая аперацыя перавысіць ліміт рахунка.\n\n"
 "Вы жадаеце працягнуць?"
 
-#: transdialog.cpp:1130
+#: transdialog.cpp:1131
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "У абодвух рахунках розныя валюты, але вы не вызначылі суму пераказа. Ці гэта слушна?"
 
-#: transdialog.cpp:1131
+#: transdialog.cpp:1132
 msgid "Currencies are different"
 msgstr "Валюты не супадаюць"
 
-#: transdialog.cpp:1218
+#: transdialog.cpp:1219
 msgid "Specify account the money is taken from"
 msgstr "Пазначце рахунак-крыніцу"
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1220
 msgid "Specify account the money is moved to"
 msgstr "Пазначце рахунак-прызначэнне"
 
-#: transdialog.cpp:1220
+#: transdialog.cpp:1221
 msgid "Specify the transfer amount in the From Account."
 msgstr "Пакажыце суму для рахунка, адкуль робіцца пераказ."
 
-#: transdialog.cpp:1228
+#: transdialog.cpp:1229
 msgid "Specify account for the transaction"
 msgstr "Пакажыце рахунак для дадзенай аперацыі"
 
-#: transdialog.cpp:1230
+#: transdialog.cpp:1231
 msgid "Specify to whom the transaction is going to"
 msgstr "Пакажыце, каму будзе зробленае пералічэнне"
 
-#: transdialog.cpp:1236 usertransactionpanel.cpp:94
+#: transdialog.cpp:1237 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Пакажыце дату аперацыі"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Дыялог аперацыяў"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"

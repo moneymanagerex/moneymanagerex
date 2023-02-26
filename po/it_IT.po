@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-18 21:15\n"
+"POT-Creation-Date: 2023-02-19 23:11+0300\n"
+"PO-Revision-Date: 2023-02-19 20:23\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Aiutaci inviando statistiche anonime sull'utilizzo di MMEX"
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:632
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:127 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:737
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
@@ -975,7 +975,7 @@ msgstr "Specificare la data in cui sarà richiesto all'utente di inserire questa
 msgid "Date Paid"
 msgstr "Data Pagamento"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1238
 msgid "Specify the status for the transaction"
 msgstr "Indicare lo stato dell'operazione"
 
@@ -990,7 +990,7 @@ msgstr "Indicare lo stato dell'operazione"
 msgid "Status"
 msgstr "Stato"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1239
 msgid "Specify the type of transactions to be created."
 msgstr "Specificare il tipo di transazioni da creare."
 
@@ -998,7 +998,7 @@ msgstr "Specificare il tipo di transazioni da creare."
 msgid "&Advanced"
 msgstr "&Avanzate"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1242
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Consente di impostare diversi importi nei conti di Origine e Destinazione"
 
@@ -1014,7 +1014,7 @@ msgstr "Consente di impostare diversi importi nei conti di Origine e Destinazion
 msgid "Amount"
 msgstr "Importo"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1224
 msgid "Specify the transfer amount in the To Account"
 msgstr "Specificare l'importo da trasferire al Conto Destinazione"
 
@@ -1069,11 +1069,11 @@ msgid "Category"
 msgstr "Categoria"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:1331 transdialog.cpp:503
-#: transdialog.cpp:1200
+#: transdialog.cpp:1201
 msgid "Use split Categories"
 msgstr "Usa Categorie suddivise"
 
-#: billsdepositsdialog.cpp:586 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:586 transdialog.cpp:1240
 msgid "Specify any associated check number or transaction number"
 msgstr "Inserire il numero di controllo o il numero dell'operazione"
 
@@ -1108,7 +1108,7 @@ msgstr "Gestisce gli allegati per questa operazione ricorrente"
 msgid "Color"
 msgstr "Colore"
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1241
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Inserire una nota per questa operazione."
@@ -1231,7 +1231,7 @@ msgstr "Nuova Transazione Ricorrente"
 msgid "Specify where the transaction is going to"
 msgstr "Specificare la destinazione della transazione"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1232
+#: billsdepositsdialog.h:125 transdialog.cpp:1233
 msgid "Specify where the transaction is coming from"
 msgstr "Specifica la provenienza della transazione"
 
@@ -1239,7 +1239,7 @@ msgstr "Specifica la provenienza della transazione"
 msgid "Specify which account the transfer is going to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1227 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:127 transdialog.cpp:1228 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Specificare l'importo di questa transazione"
 
@@ -1557,7 +1557,7 @@ msgstr "Inserire un nuovo budget mensile"
 msgid "Delete existing budget"
 msgstr "Eliminare un budget esistente"
 
-#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "Dettagli del Budget"
 
@@ -1566,8 +1566,8 @@ msgid "Budget Month Entry"
 msgstr "Inserire Budget mensile"
 
 #: budgetyearentrydialog.cpp:72
-msgid "Budget Year:"
-msgstr "Budget Anno:"
+msgid "Budget Year"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1576,8 +1576,8 @@ msgstr "Specificare l'anno desiderato.\n"
 "Usa i pulsanti per selezionare l'anno"
 
 #: budgetyearentrydialog.cpp:86
-msgid "Budget Month:"
-msgstr "Budget Mese:"
+msgid "Budget Month"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1586,14 +1586,14 @@ msgstr "Specificare il mese desiderato.\n"
 "Usa il pulsanti per scegliere il mese"
 
 #: budgetyearentrydialog.cpp:102
-msgid "Base Budget On:"
-msgstr "Utilizza Budget dell'anno:"
+msgid "Base Budget On"
+msgstr ""
 
-#: budgetyearentrydialog.cpp:112
-msgid "Specify year to base budget on."
-msgstr "Indicare l'anno su cui basare il budget."
+#: budgetyearentrydialog.cpp:113
+msgid "Specify year to base budget on"
+msgstr ""
 
-#: budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "Budget annuale già esistente!"
 
@@ -7373,35 +7373,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "Questa operazione supererà il limite del conto.\n\n"
 "Vuoi continuare?"
 
-#: transdialog.cpp:1130
+#: transdialog.cpp:1131
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "I due conti hanno valute diverse ma non hai definito una transazione avanzata. È corretto?"
 
-#: transdialog.cpp:1131
+#: transdialog.cpp:1132
 msgid "Currencies are different"
 msgstr "Le valute sono diverse"
 
-#: transdialog.cpp:1218
+#: transdialog.cpp:1219
 msgid "Specify account the money is taken from"
 msgstr "Specificare il Conto dal quale si effettua il trasferimento"
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1220
 msgid "Specify account the money is moved to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: transdialog.cpp:1220
+#: transdialog.cpp:1221
 msgid "Specify the transfer amount in the From Account."
 msgstr "Specificare l'importo da trasferire dal Conto Origine."
 
-#: transdialog.cpp:1228
+#: transdialog.cpp:1229
 msgid "Specify account for the transaction"
 msgstr "Specificare il conto per questa operazione"
 
-#: transdialog.cpp:1230
+#: transdialog.cpp:1231
 msgid "Specify to whom the transaction is going to"
 msgstr "Specificare la destinazione dell'operazione"
 
-#: transdialog.cpp:1236 usertransactionpanel.cpp:94
+#: transdialog.cpp:1237 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Specificare la data dell'operazione"
 

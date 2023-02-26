@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-18 16:45+0300\n"
-"PO-Revision-Date: 2023-02-19 18:08\n"
+"POT-Creation-Date: 2023-02-19 23:11+0300\n"
+"PO-Revision-Date: 2023-02-23 19:02\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:140
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:632
 #: budgetentrydialog.cpp:163 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:127 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:737
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
 #: mmSimpleDialogs.cpp:861 optiondialog.cpp:160 payeedialog.cpp:120
@@ -973,7 +973,7 @@ msgstr "Ange det datum som användaren är uppmanad att ange denna transaktion"
 msgid "Date Paid"
 msgstr "Betald datum"
 
-#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:497 filtertransdialog.cpp:580 transdialog.cpp:1238
 msgid "Specify the status for the transaction"
 msgstr "Ange status för transaktionen"
 
@@ -988,7 +988,7 @@ msgstr "Ange status för transaktionen"
 msgid "Status"
 msgstr "Status"
 
-#: billsdepositsdialog.cpp:505 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:505 transdialog.cpp:1239
 msgid "Specify the type of transactions to be created."
 msgstr "Ange vilken typ av transaktion som ska skapas."
 
@@ -996,7 +996,7 @@ msgstr "Ange vilken typ av transaktion som ska skapas."
 msgid "&Advanced"
 msgstr "&Avancerat"
 
-#: billsdepositsdialog.cpp:509 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:509 transdialog.cpp:1242
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -1012,7 +1012,7 @@ msgstr ""
 msgid "Amount"
 msgstr "Summa"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1224
 msgid "Specify the transfer amount in the To Account"
 msgstr "Ange överföringsbeloppet i till-kontot"
 
@@ -1067,11 +1067,11 @@ msgid "Category"
 msgstr "Kategori"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:1331 transdialog.cpp:503
-#: transdialog.cpp:1200
+#: transdialog.cpp:1201
 msgid "Use split Categories"
 msgstr "Använd delade kategorier"
 
-#: billsdepositsdialog.cpp:586 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:586 transdialog.cpp:1240
 msgid "Specify any associated check number or transaction number"
 msgstr "Ange ev. check- eller transaktionsnummer."
 
@@ -1106,7 +1106,7 @@ msgstr "Organisera bilagor till denna återkommande transaktion"
 msgid "Color"
 msgstr "Färg"
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:622 transdialog.cpp:553 transdialog.cpp:1241
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Ange ev. noteringar du vill lägga till för transaktionen."
@@ -1228,7 +1228,7 @@ msgstr "Ny återkommande transaktion"
 msgid "Specify where the transaction is going to"
 msgstr "Ange var transaktionen ska"
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1232
+#: billsdepositsdialog.h:125 transdialog.cpp:1233
 msgid "Specify where the transaction is coming from"
 msgstr "Ange var transaktionen kommer från"
 
@@ -1236,7 +1236,7 @@ msgstr "Ange var transaktionen kommer från"
 msgid "Specify which account the transfer is going to"
 msgstr "Ange vilket konto överföringen ska gå till"
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1227 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:127 transdialog.cpp:1228 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Ange beloppet för transaktionen"
 
@@ -1554,7 +1554,7 @@ msgstr "Lägg till en ny budgetmånad"
 msgid "Delete existing budget"
 msgstr "Ta bort befintlig budget"
 
-#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "Detaljer för budgetpost"
 
@@ -1563,8 +1563,8 @@ msgid "Budget Month Entry"
 msgstr ""
 
 #: budgetyearentrydialog.cpp:72
-msgid "Budget Year:"
-msgstr "Budgetår:"
+msgid "Budget Year"
+msgstr "Budgetår"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1572,8 +1572,8 @@ msgid "Specify the required year.\n"
 msgstr ""
 
 #: budgetyearentrydialog.cpp:86
-msgid "Budget Month:"
-msgstr "Budgetmånad:"
+msgid "Budget Month"
+msgstr "Budgetmånad"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1581,14 +1581,14 @@ msgid "Specify the required month.\n"
 msgstr ""
 
 #: budgetyearentrydialog.cpp:102
-msgid "Base Budget On:"
-msgstr "Basera budget på:"
+msgid "Base Budget On"
+msgstr "Basera budget på"
 
-#: budgetyearentrydialog.cpp:112
-msgid "Specify year to base budget on."
+#: budgetyearentrydialog.cpp:113
+msgid "Specify year to base budget on"
 msgstr "Ange året du vill basera budgeten på"
 
-#: budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "Budgetår finns redan"
 
@@ -7329,35 +7329,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "Denna transaktion kommer att överskrida din kontogräns.\n\n"
 "Vill du fortsätta?"
 
-#: transdialog.cpp:1130
+#: transdialog.cpp:1131
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "De två kontona har olika valutor, men du har inte definierat en avancerad transaktion. Är detta korrekt?"
 
-#: transdialog.cpp:1131
+#: transdialog.cpp:1132
 msgid "Currencies are different"
 msgstr "Valutorna är olika"
 
-#: transdialog.cpp:1218
+#: transdialog.cpp:1219
 msgid "Specify account the money is taken from"
 msgstr "Ange konto pengarna tas från"
 
-#: transdialog.cpp:1219
+#: transdialog.cpp:1220
 msgid "Specify account the money is moved to"
 msgstr "Ange konto pengarna flyttas till"
 
-#: transdialog.cpp:1220
+#: transdialog.cpp:1221
 msgid "Specify the transfer amount in the From Account."
 msgstr "Ange överföringsbeloppet i från-kontot."
 
-#: transdialog.cpp:1228
+#: transdialog.cpp:1229
 msgid "Specify account for the transaction"
 msgstr "Ange konto för transaktionen"
 
-#: transdialog.cpp:1230
+#: transdialog.cpp:1231
 msgid "Specify to whom the transaction is going to"
 msgstr "Ange till vem transaktionen ska"
 
-#: transdialog.cpp:1236 usertransactionpanel.cpp:94
+#: transdialog.cpp:1237 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Ange transaktionsdatumet"
 
