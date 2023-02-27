@@ -2087,7 +2087,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
 void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
-    wxString title = wxString::Format("%s - %s", mmex::getProgramName(), fileName);
+    wxFileName fname(fileName);
+    wxString title = wxString::Format("%s - %s", fname.GetFullName(), mmex::getProgramName());
     if (mmex::isPortableMode())
         title = wxString::Format("%s - %s", title, (" [" + _("portable mode") + ']'));
 
