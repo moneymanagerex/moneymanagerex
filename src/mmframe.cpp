@@ -2090,7 +2090,7 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
     wxFileName fname(fileName);
     wxString title = wxString::Format("%s - %s", fname.GetFullName(), mmex::getProgramName());
     if (mmex::isPortableMode())
-        title = wxString::Format("%s %s", title, ("[" + _("portable mode") + ']'));
+        title = wxString::Format("%s [%s]", title, _("portable mode"));
 
     SetTitle(title);
 
