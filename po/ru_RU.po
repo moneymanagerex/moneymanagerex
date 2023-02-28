@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-28 17:34+0300\n"
-"PO-Revision-Date: 2023-02-28 14:43\n"
+"PO-Revision-Date: 2023-02-28 17:34\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Новый счёт"
 
 #: appstartdialog.cpp:99
 msgid "&Open Last Opened Database"
-msgstr ""
+msgstr "&Открыть последнюю открытую базу данных"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Новая база данных"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Создание нового файла базы данных"
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Открыть &существующую базу данных"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "Открыть существующую базу данных с рас�
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Язык интерфейса пользователя"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Изменить язык интерфейса пользователя"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "&Руководство пользователя"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "&Web-сайт"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Посетить сайт %s"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Показывать это диалоговое окно при запуске"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "В&ыход "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -6905,7 +6905,7 @@ msgstr "Представление которовок"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Курс"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
