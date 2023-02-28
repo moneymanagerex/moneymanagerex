@@ -116,7 +116,7 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton10 = new wxButton(this, wxID_INDEX, _("&Website"));
-    const wxString s = wxString::Format(_("Open the %s website for latest news, updates etc")
+    const wxString s = wxString::Format(_("Visit the %s website")
         , mmex::getProgramName());
     mmToolTip(itemButton10, s);
     itemBoxSizer5->Add(itemButton10, 0, wxGROW | wxALL, 5);
