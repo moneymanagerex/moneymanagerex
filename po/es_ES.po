@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-28 17:34+0300\n"
-"PO-Revision-Date: 2023-02-28 14:43\n"
+"PO-Revision-Date: 2023-02-28 16:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Nueva Cuenta"
 
 #: appstartdialog.cpp:99
 msgid "&Open Last Opened Database"
-msgstr ""
+msgstr "&Abrir la última base de datos utilizada"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Nueva base de datos"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Crear un nuevo archivo de base de datos para empezar"
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Abrir &base de datos existente"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "Abrir un fichero de base de datos existente con extensión (*.mmb)"
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Idioma de la interfaz de usuario"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Cambiar el idioma de la interfaz"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "Manual de &usuario"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "&Sitio web"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Visitar el sitio web de %s"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Mostrar este cuadro de diálogo al iniciar"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "S&alir "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -6870,7 +6870,7 @@ msgstr "Gráficos de rendimiento de acciones"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Tasa"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
