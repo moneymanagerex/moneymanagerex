@@ -31,7 +31,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmAppStartDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
     EVT_BUTTON(wxID_NEW, mmAppStartDialog::OnButtonAppstartNewDatabaseClick)
     EVT_BUTTON(wxID_OPEN, mmAppStartDialog::OnButtonAppstartOpenDatabaseClick)
-    EVT_BUTTON(wxID_SETUP , mmAppStartDialog::OnButtonAppstartChangeLanguage)
+    EVT_BUTTON(wxID_SETUP, mmAppStartDialog::OnButtonAppstartChangeLanguage)
     EVT_BUTTON(wxID_HELP, mmAppStartDialog::OnButtonAppstartHelpClick)
     EVT_BUTTON(wxID_INDEX, mmAppStartDialog::OnButtonAppstartWebsiteClick)
     EVT_BUTTON(wxID_FILE1, mmAppStartDialog::OnButtonAppstartLastDatabaseClick)
