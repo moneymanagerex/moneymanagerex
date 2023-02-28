@@ -31,7 +31,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmAppStartDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
     EVT_BUTTON(wxID_NEW, mmAppStartDialog::OnButtonAppstartNewDatabaseClick)
     EVT_BUTTON(wxID_OPEN, mmAppStartDialog::OnButtonAppstartOpenDatabaseClick)
-    EVT_BUTTON(wxID_SETUP , mmAppStartDialog::OnButtonAppstartChangeLanguage)
+    EVT_BUTTON(wxID_SETUP, mmAppStartDialog::OnButtonAppstartChangeLanguage)
     EVT_BUTTON(wxID_HELP, mmAppStartDialog::OnButtonAppstartHelpClick)
     EVT_BUTTON(wxID_INDEX, mmAppStartDialog::OnButtonAppstartWebsiteClick)
     EVT_BUTTON(wxID_FILE1, mmAppStartDialog::OnButtonAppstartLastDatabaseClick)
@@ -43,7 +43,7 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, mmGUIApp* app, const wxStri
     : m_app(app)
 {
     this->SetFont(parent->GetFont());
-    const auto caption = wxString::Format("%s - %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
+    const auto caption = wxString::Format("%s %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, style, name);
     SetMinSize(wxSize(400, 300));
@@ -96,27 +96,27 @@ void mmAppStartDialog::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _("Open Last Opened Database"));
+    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _("&Open Last Opened Database"));
     itemBoxSizer5->Add(itemButton61, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton6 = new wxButton(this, wxID_NEW, _("Create a New Database"));
+    wxButton* itemButton6 = new wxButton(this, wxID_NEW, _("&New Database"));
     mmToolTip(itemButton6, _("Create a new database file to get started"));
     itemBoxSizer5->Add(itemButton6, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _("Open Existing Database"));
+    wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _("Open &Existing Database"));
     mmToolTip(itemButton7, _("Open an already created database file with extension (*.mmb)"));
     itemBoxSizer5->Add(itemButton7, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton8 = new wxButton(this, wxID_SETUP , _("Change Language"));
-    mmToolTip(itemButton8, _("Change language used for MMEX GUI"));
+    wxButton* itemButton8 = new wxButton(this, wxID_SETUP , _("User Interface &Language"));
+    mmToolTip(itemButton8, _("Change user interface language"));
     itemBoxSizer5->Add(itemButton8, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton9 = new wxButton(this, wxID_HELP, _("Read Documentation"));
+    wxButton* itemButton9 = new wxButton(this, wxID_HELP, _("&User Manual"));
     mmToolTip(itemButton9, _("Read the user manual"));
     itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton10 = new wxButton(this, wxID_INDEX, _("Visit Website for more information"));
-    const wxString s = wxString::Format(_("Open the %s website for latest news, updates etc")
+    wxButton* itemButton10 = new wxButton(this, wxID_INDEX, _("&Website"));
+    const wxString s = wxString::Format(_("Visit the %s website")
         , mmex::getProgramName());
     mmToolTip(itemButton10, s);
     itemBoxSizer5->Add(itemButton10, 0, wxGROW | wxALL, 5);
@@ -124,10 +124,7 @@ void mmAppStartDialog::CreateControls()
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);
 
-    const wxString showAppStartString = wxString::Format(_("Show this window next time %s starts")
-        , mmex::getProgramName());
-
-    itemCheckBox = new wxCheckBox(this, wxID_STATIC, showAppStartString, wxDefaultPosition,
+    itemCheckBox = new wxCheckBox(this, wxID_STATIC, _("&Show this dialog box at startup"), wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE);
     bool showBeginApp = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
     itemCheckBox->SetValue(showBeginApp);
@@ -138,7 +135,7 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
 
     m_buttonClose = new wxButton(this, wxID_OK, _("&OK "));
-    m_buttonExit = new wxButton(this, wxID_EXIT, _("&Exit "));
+    m_buttonExit = new wxButton(this, wxID_EXIT, _("E&xit "));
 
     m_buttonClose->Show(true);
     m_buttonExit->Show(false);

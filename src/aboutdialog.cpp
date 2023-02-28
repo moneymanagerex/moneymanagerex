@@ -46,7 +46,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo)
 {
     const wxString caption = (tabToOpenNo == 4)
         ? _("License agreement")
-        : wxString::Format("%s - %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
+        : wxString::Format("%s %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
     createWindow(parent, caption, tabToOpenNo);
 }
 
