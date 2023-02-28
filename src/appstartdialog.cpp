@@ -138,7 +138,7 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
 
     m_buttonClose = new wxButton(this, wxID_OK, _("&OK "));
-    m_buttonExit = new wxButton(this, wxID_EXIT, _("&Exit "));
+    m_buttonExit = new wxButton(this, wxID_EXIT, _("E&xit "));
 
     m_buttonClose->Show(true);
     m_buttonExit->Show(false);
