@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-19 23:11+0300\n"
-"PO-Revision-Date: 2023-02-19 20:23\n"
+"PO-Revision-Date: 2023-02-28 12:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4447,7 +4447,7 @@ msgstr "顯示帳目"
 
 #: mmframe.cpp:1467
 msgid "&New Database..."
-msgstr ""
+msgstr "新增資料庫(&N)..."
 
 #: mmframe.cpp:1467 mmframe.cpp:1831 wizard_newdb.cpp:137
 msgid "New Database"
