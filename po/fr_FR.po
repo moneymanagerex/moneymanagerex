@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-28 17:34+0300\n"
-"PO-Revision-Date: 2023-02-28 14:43\n"
+"PO-Revision-Date: 2023-02-28 16:08\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Nouveau compte"
 
 #: appstartdialog.cpp:99
 msgid "&Open Last Opened Database"
-msgstr ""
+msgstr "&Ouvrir la dernière base de données utilisée"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Nouvelle base de données"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Créez un nouveau fichier pour la base de données pour commencer"
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Ouvrir une base de données existante"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "Ouvre une base de données \"Money Manager Ex\" existante (fichier *.mmb
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Langue de l'interface utilisateur"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Changer la langue d'interface utilisateur"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "&Manuel de l'utilisateur"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "Site Internet"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Visiter le site web %s"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Afficher cette boîte de dialogue au démarrage"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "Q&uitter "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -6873,7 +6873,7 @@ msgstr "Graphique de la performance des titres"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Vitesse"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
