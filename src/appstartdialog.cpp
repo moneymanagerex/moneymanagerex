@@ -96,7 +96,7 @@ void mmAppStartDialog::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _("&Open Last Opened Database"));
+    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _("Open Last Opened &Database"));
     itemBoxSizer5->Add(itemButton61, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton6 = new wxButton(this, wxID_NEW, _("&New Database"));
