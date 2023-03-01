@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-01 09:27\n"
+"PO-Revision-Date: 2023-03-01 19:41\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Nova Conta"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Abrir o &Arquivo de Dados mais recente"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Novo Arquivo de dados"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Cria um novo arquivo de dados para iniciar"
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Abrir um Arquivo de Dados &Existente"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "Abrir um Arquivo de Dados já criado com a extensão (*.mmb)"
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Idioma da Interface do Usuário"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Alterar idioma da interface do usuário"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "Manual do &Usuário"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "&Website"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Visite o site %s"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Mostrar esta caixa de diálogo na inicialização"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "Sai&r "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -1569,7 +1569,7 @@ msgstr "Registro do Orçamento Mensal"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Orçamento do Ano"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1579,7 +1579,7 @@ msgstr "Especifique o ano desejado.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Orçamento do Mês"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1589,11 +1589,11 @@ msgstr "Especifique o mês desejado.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Basear-se no Orçamento"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Informe o ano em que quer basear o orçamento"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -4427,7 +4427,7 @@ msgstr "Arquivos &XML..."
 
 #: mmframe.cpp:1323 mmframe.cpp:1484
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "Importar de um arquivo XML (formato Excel)"
 
 #: mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -6872,7 +6872,7 @@ msgstr "Gráficos de Desempenho de Ações"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Taxa"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
