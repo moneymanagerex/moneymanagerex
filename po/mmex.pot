@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-02-28 17:34+0300\n"
+"POT-Creation-Date: 2023-03-01 11:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,7 +317,7 @@ msgid "New Account"
 msgstr ""
 
 #: appstartdialog.cpp:99
-msgid "&Open Last Opened Database"
+msgid "Open Last Opened &Database"
 msgstr ""
 
 #: appstartdialog.cpp:102
