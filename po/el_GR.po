@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-02-28 17:34+0300\n"
-"PO-Revision-Date: 2023-02-28 14:43\n"
+"PO-Revision-Date: 2023-03-01 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Νέος λογαριασμός"
 
 #: appstartdialog.cpp:99
 msgid "&Open Last Opened Database"
-msgstr ""
+msgstr "&Άνοιγμα της Τελευταίας Ανοιγμένης Βάσης Δεδομένων"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Νέα Βάση Δεδομένων"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Δημιουργήστε μια νέα βάση δεδομένων γι�
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Άνοιγμα Υπάρχουσας Βάσης Δεδομένων"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "Άνοιγμα μιας ήδη δημιουργημένης βάσης �
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Γλώσσα περιβάλλοντος χρήστη"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Αλλαγή ρυθμίσεων περιβάλλοντος χρήστη"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "Ε&γχειρίδιο"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "&Ιστοσελίδα"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Επισκεφθείτε την ιστοσελίδα %s"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Εμφάνιση αυτού του πλαισίου διαλόγου κατά την εκκίνηση"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "&Έξοδος "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -6864,7 +6864,7 @@ msgstr "Χάρτες Απόδοσης Αποθεμάτων"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Τιμή"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
