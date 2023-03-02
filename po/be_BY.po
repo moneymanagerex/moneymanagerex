@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-02 09:53\n"
+"PO-Revision-Date: 2023-03-02 20:19\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -339,7 +339,7 @@ msgstr "Адчыніць існуючую базу дадзеных з пашы�
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr "&Мова карыстальніцкага інтэрфэйсу"
+msgstr "&Мова карыстальніцкага інтэрфэйса"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
