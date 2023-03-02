@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-01 09:26\n"
+"PO-Revision-Date: 2023-03-02 09:53\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Новы рахунак"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Адчыніць базу дадзеных з &мінулага раза"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Новая база дадзеных"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Стварыць новы файл базы дадзеных і пача
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Адчыніць &існуючую базу дадзеных"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "Адчыніць існуючую базу дадзеных з пашы�
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Мова карыстальніцкага інтэрфэйсу"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Змяніць мову карыстальніцкага інтэрфейса"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "&Кіраўніцтва карыстальніка"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "&Вэб-сайт"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Наведаць сайт %s"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Паказваць гэта акно падчас старта"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "&Выйсці "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -2494,7 +2494,7 @@ msgid "An incorrect password given for an encrypted file\n"
 "attempt to open a File that is not a database file \n"
 msgstr "Для шыфраванага файла паказаны хібны пароль \n"
 "або\n"
-"спроба адкрыць файл, што не з'яўляецца базай дадзеных\n"
+"спроба адчыніць файл, што не з'яўляецца базай дадзеных\n"
 
 #: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:967 webapp.cpp:120
 #, c-format
@@ -6908,7 +6908,7 @@ msgstr "Прадстаўленне каціровак"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Ацаніце"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
