@@ -15,6 +15,31 @@ personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness – an application that can be used everyday.
 
 
+Features
+================
+
+- Fast, intuitive and functional
+- Checking, credit card, savings, stock investment and asset accounts
+- Unlimited nested multi-level category support
+- Reminders for recurring bills and deposits
+- Budgeting and cash flow forecasting
+- Simple one-click reporting with graphs and charts
+- Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files
+- [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
+- Installation not required: portable versions run from a USB or a flash drive
+- Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+- Cross-platform, available for desktop and mobile operating systems
+- [International language support](https://crowdin.com/project/moneymanagerex)
+
+
+Download
+================
+
+[Download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest version of MMEX for GNU/Linux, macOS and Windows.
+
+[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+
+
 Screenshots
 ================
 
@@ -44,31 +69,6 @@ Screenshots
         </td>
     </tr>
 </table>
-
-
-Main features
-================
-
-- Fast, intuitive and functional
-- Checking, credit card, savings, stock investment and asset accounts
-- Unlimited nested multi-level category support
-- Reminders for recurring bills and deposits
-- Budgeting and cash flow forecasting
-- Simple one-click reporting with graphs and charts
-- Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files
-- [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
-- Installation not required: portable versions run from a USB or a flash drive
-- Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for desktop and mobile operating systems
-- [International language support](https://crowdin.com/project/moneymanagerex)
-
-
-Download
-================
-
-[Download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest version of MMEX for GNU/Linux, macOS and Windows.
-
-[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
 
 Credits
