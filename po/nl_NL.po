@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-01 17:14\n"
+"PO-Revision-Date: 2023-03-04 12:50\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4759,7 +4759,7 @@ msgstr "Aangepaste Velden Manager"
 
 #: mmframe.cpp:1683
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Vernieuwen &WebApp..."
 
 #: mmframe.cpp:1683 mmframe.cpp:2707 mmframe.cpp:2714
 msgid "Refresh WebApp"
@@ -4775,7 +4775,7 @@ msgstr "Toon het opties venster"
 
 #: mmframe.cpp:1695
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Converteer versleutelde &DB..."
 
 #: mmframe.cpp:1696
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4783,7 +4783,7 @@ msgstr "Versleutelde DB omzetten naar niet-versleutelde DB"
 
 #: mmframe.cpp:1698
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Versleuteld &wachtwoord wijzigen..."
 
 #: mmframe.cpp:1699
 msgid "Change the password of an encrypted database"
@@ -4791,7 +4791,7 @@ msgstr "Wijzig het wachtwoord van een versleutelde database"
 
 #: mmframe.cpp:1701
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "Database &optimaliseren..."
 
 #: mmframe.cpp:1702
 msgid "Optimize database space and performance"
@@ -4799,7 +4799,7 @@ msgstr "Optimaliseer database en prestaties"
 
 #: mmframe.cpp:1704
 msgid "Database De&bug..."
-msgstr ""
+msgstr "Database De&bug..."
 
 #: mmframe.cpp:1705
 msgid "Generate database report or fix errors"
@@ -5725,7 +5725,7 @@ msgstr "Netwerk"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Toepassen "
 
 #: optiondialog.cpp:219
 #, c-format
@@ -7188,11 +7188,11 @@ msgstr "Huidige waarde"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Nieuwe effecten investering..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Effectentransactie toevoegen..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7200,11 +7200,11 @@ msgstr "Effectentransacties &tonen"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Wijzig effecten investering..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Verwijder effecten investering..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
