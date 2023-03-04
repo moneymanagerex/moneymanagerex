@@ -28,7 +28,7 @@ Features
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: portable versions run from a USB or a flash drive
 - Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) and mobile operating systems
+- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) and [mobile](https://github.com/moneymanagerex/android-money-manager-ex) operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex)
 
 
@@ -160,12 +160,6 @@ Support
 [![Donate via PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";)
 
 [![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
-
-
-You may also like…
-================
-
-[MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
 
 
 License
