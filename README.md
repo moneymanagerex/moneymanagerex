@@ -51,7 +51,7 @@ Main features
 
 - Fast, intuitive and functional
 - Checking, credit card, savings, stock investment and asset accounts
-- Nested multilevel categories support
+- Unlimited nested multi-level category support
 - Reminders for recurring bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one-click reporting with graphs and charts
