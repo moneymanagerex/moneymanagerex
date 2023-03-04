@@ -1,6 +1,5 @@
 [<img src="https://raw.githubusercontent.com/moneymanagerex/moneymanagerex/master/resources/mmexlogo.png" height="32"/>][website]
-Money Manager Ex (MMEX)
-================
+# Money Manager Ex (MMEX)
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
 [![ci]][CircleCI] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
@@ -15,8 +14,7 @@ personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness – an application that can be used everyday.
 
 
-Features
-================
+## Features
 
 - Fast, intuitive and functional
 - Checking, credit card, savings, stock investment and asset accounts
@@ -32,16 +30,15 @@ Features
 - [International language support](https://crowdin.com/project/moneymanagerex)
 
 
-Download
-================
+## Download
 
-[Download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest version of MMEX for GNU/Linux, macOS and Windows.
+* [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS and Windows
+* [Download developmental release](https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex) for GNU/Linux
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
 
-Screenshots
-================
+## Screenshots
 
 <table border="0">
     <tr>
@@ -71,8 +68,7 @@ Screenshots
 </table>
 
 
-Credits
-================
+## Credits
 
 MMEX is mainly written in C++11 and uses the following open-source packages:
 * [wxWidgets] 3.0+ 
@@ -85,15 +81,13 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 * [libcurl]
 
 
-External public resources
-================
+## External public resources
 
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Crowdin] | [SourceForge] | [GitHub]
 | [Docker images] | [Twitter] [![tw]][Twitter]
 
 
-Tips
-================
+## Tips
 
 * Database file (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
@@ -154,16 +148,14 @@ Tips
 [Crowdin]: https://crowdin.com/project/moneymanagerex
 
 
-Support
-================
+## Support
 
 [![Donate via PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";)
 
 [![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
 
 
-License
-================
+## License
 
 [GPL](LICENSE)
 
