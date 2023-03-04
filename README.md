@@ -28,7 +28,7 @@ Features
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: portable versions run from a USB or a flash drive
 - Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) and [mobile](https://github.com/moneymanagerex/android-money-manager-ex) operating systems
+- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) and [Android](https://android.moneymanagerex.org/) operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex)
 
 
