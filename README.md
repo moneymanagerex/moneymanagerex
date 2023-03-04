@@ -167,15 +167,13 @@ Support
 
 [![Donate via PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";)
 
-or
-
 [![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
 
 
 You may also like…
 ================
 
-- [MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
+[MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
 
 
 License
