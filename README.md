@@ -28,7 +28,7 @@ Features
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: portable versions run from a USB or a flash drive
 - Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for desktop and mobile operating systems
+- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) and mobile operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex)
 
 
@@ -83,14 +83,6 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 * [ApexCharts.js]
 * [html-template] 
 * [libcurl]
-
-
-Supported platforms
-================
-
-- Most [Unix variants](https://en.wikipedia.org/wiki/Category:Unix_variants) using the [GTK+ toolkit](https://www.gtk.org/) (version 2.6 or newer or 3.x)
-- OS X (10.9 or newer) and macOS using Cocoa
-- Windows XP, 2003, Vista, 7, 8, 10 and 11
 
 
 External public resources
