@@ -32,8 +32,8 @@ simplicity and user-friendliness – an application that can be used everyday.
 
 ## Download
 
-* [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS and Windows
-* [Download developmental release](https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex) for GNU/Linux
+* [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS, or Windows
+* Download developmental release for [GNU/Linux](https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
