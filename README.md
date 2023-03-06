@@ -26,7 +26,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: portable versions run from a USB or a flash drive
 - Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) and [Android](https://android.moneymanagerex.org/) operating systems
+- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) ([GNU/Linux](https://moneymanagerex.org/docs/downloads/compatibility/#linux), [macOS](https://moneymanagerex.org/docs/downloads/compatibility/#macos--osx), [Windows](https://moneymanagerex.org/docs/downloads/compatibility/#windows)) and mobile ([Android](https://android.moneymanagerex.org/)) operating systems
 - [International language support](https://crowdin.com/project/moneymanagerex)
 
 
