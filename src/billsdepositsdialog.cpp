@@ -97,6 +97,11 @@ mmBDDialog::mmBDDialog()
 {
 }
 
+mmBDDialog::~mmBDDialog()
+{
+    Model_Infotable::instance().Set("RECURRINGTRANS_DIALOG_SIZE", GetSize());
+}
+
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOccur)
     : m_dup_bill(duplicate)
     , m_enter_occur(enterOccur)
@@ -172,11 +177,11 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
 }
 
 bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     CreateControls();
     dataToControls();
@@ -187,13 +192,14 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     wxDateEvent dateEventDue(m_date_due, m_date_due->GetValue(), wxEVT_DATE_CHANGED);
     GetEventHandler()->ProcessEvent(dateEventDue);
 
-    Fit();
+    mmSetSize(this);
     // set the initial dialog size to expand the payee and category comboboxes to fit their text
     int minWidth = std::max(cbPayee_->GetSize().GetX(),
         cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX()) - cbPayee_->GetSize().GetWidth();
     minWidth = std::max(minWidth,
         cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX() - cbCategory_->GetSize().GetWidth());
-    SetSize(wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
+    wxSize sz = wxSize(wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
+    if (sz.GetWidth() > GetSize().GetWidth()) SetSize(sz);
     SetIcon(mmex::getProgramIcon());
     Centre(wxCENTER_ON_SCREEN);
 

@@ -43,6 +43,7 @@ class mmBDDialog : public wxDialog
 
 public:
     mmBDDialog();
+    ~mmBDDialog();
     mmBDDialog(wxWindow* parent, int bdD, bool duplicate, bool enterOccur);
     int GetTransID()
     {
@@ -57,7 +58,8 @@ private:
         const wxString& caption = _("New Recurring Transaction"),
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
-        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
+        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX,
+        const wxString& name = "Recurring Transaction Dialog");
 
     void CreateControls();
 
