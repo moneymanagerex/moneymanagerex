@@ -35,6 +35,7 @@ class relocateCategoryDialog : public wxDialog
 
 public:
     relocateCategoryDialog();
+    ~relocateCategoryDialog();
     relocateCategoryDialog(wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1);
 
     bool Create(wxWindow* parent
@@ -42,7 +43,8 @@ public:
         , const wxString& caption = _("Relocate Category Dialog")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX );
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+        , const wxString& name = "Relocate Categories");
 
     void CreateControls();
 

@@ -24,6 +24,7 @@
 #include "webapp.h"
 #include "paths.h"
 #include "constants.h"
+#include "util.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
@@ -42,6 +43,11 @@ relocatePayeeDialog::relocatePayeeDialog( )
 {
 }
 
+relocatePayeeDialog::~relocatePayeeDialog()
+{
+    Model_Infotable::instance().Set("RELOCATEPAYEE_DIALOG_SIZE", GetSize());
+}
+
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
     : destPayeeID_(-1)
     , m_changed_records(0)
@@ -55,11 +61,11 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
 
 bool relocatePayeeDialog::Create(wxWindow* parent
     , wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create( parent, id, caption, pos, size, style, name);
 
     CreateControls();
     IsOkOk();
@@ -67,7 +73,7 @@ bool relocatePayeeDialog::Create(wxWindow* parent
     SetIcon(mmex::getProgramIcon());
 
     SetSizeHints(500, 290, -1, 290);
-    Fit();
+    mmSetSize(this);
     Centre();
     return TRUE;
 }

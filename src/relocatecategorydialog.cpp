@@ -24,6 +24,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "webapp.h"
+#include "util.h"
 #include "model/allmodel.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocateCategoryDialog, wxDialog);
@@ -36,8 +37,13 @@ wxBEGIN_EVENT_TABLE(relocateCategoryDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, relocateCategoryDialog::OnCancel)
 wxEND_EVENT_TABLE()
 
-relocateCategoryDialog::relocateCategoryDialog( )
+relocateCategoryDialog::relocateCategoryDialog()
 {}
+
+relocateCategoryDialog::~relocateCategoryDialog()
+{
+    Model_Infotable::instance().Set("RELOCATECATEG_DIALOG_SIZE", GetSize());
+}
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , int sourceCatID, int sourceSubCatID)
@@ -55,11 +61,12 @@ bool relocateCategoryDialog::Create(wxWindow* parent
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
-    , long style)
+    , long style
+    , const wxString& name)
 {
     style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     CreateControls();
     IsOkOk();
@@ -68,7 +75,7 @@ bool relocateCategoryDialog::Create(wxWindow* parent
 
     SetSizeHints(500, 350, -1, 350);
     Centre();
-    Fit();
+    mmSetSize(this);
     return TRUE;
 }
 

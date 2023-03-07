@@ -31,6 +31,7 @@ class relocatePayeeDialog : public wxDialog
 
 public:
     relocatePayeeDialog();
+    ~relocatePayeeDialog();
     relocatePayeeDialog(wxWindow* parent, int source_payee_id = -1);
 
     int updatedPayeesCount() const;
@@ -41,7 +42,8 @@ private:
         , const wxString& caption = _("Relocate Payee Dialog")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+        , const wxString& name = "Relocate Payees");
 
     void CreateControls();
     void IsOkOk();
