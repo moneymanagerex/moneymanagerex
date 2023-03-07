@@ -1,6 +1,5 @@
 [<img src="https://raw.githubusercontent.com/moneymanagerex/moneymanagerex/master/resources/mmexlogo.png" height="32"/>][website]
-Money Manager Ex (MMEX)
-================
+# Money Manager Ex (MMEX)
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
 [![ci]][CircleCI] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
@@ -13,6 +12,33 @@ finance software. It helps organize finances and track cash flow.
 MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness – an application that can be used everyday.
+
+
+## Features
+
+- Fast, intuitive and functional
+- Checking, credit card, savings, stock investment and asset accounts
+- Unlimited nested multi-level category support
+- Reminders for recurring bills and deposits
+- Budgeting and cash flow forecasting
+- Simple one-click reporting with graphs and charts
+- Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files
+- [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
+- Installation not required: portable versions run from a USB or a flash drive
+- Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) ([GNU/Linux](https://moneymanagerex.org/docs/downloads/compatibility/#linux), [macOS](https://moneymanagerex.org/docs/downloads/compatibility/#macos--osx), [Windows](https://moneymanagerex.org/docs/downloads/compatibility/#windows)) and mobile ([Android](https://android.moneymanagerex.org/)) operating systems
+- [International language support](https://crowdin.com/project/moneymanagerex)
+
+
+## Download
+
+* [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS, or Windows
+* Download developmental release for [GNU/Linux](https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
+
+[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+
+
+## Screenshots
 
 <table border="0">
     <tr>
@@ -41,33 +67,8 @@ simplicity and user-friendliness – an application that can be used everyday.
     </tr>
 </table>
 
-Main features
-================
 
-- Fast, intuitive and functional
-- Checking, credit card, savings, stock investment and asset accounts
-- Reminders for recurring bills and deposits
-- Budgeting and cash flow forecasting
-- Simple one-click reporting with graphs and charts
-- Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files
-- [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
-- Installation not required: portable versions run from a USB or a flash drive
-- Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for desktop and mobile operating systems
-- [International language support](https://crowdin.com/project/moneymanagerex) 
-
-
-Download
-================
-
-[Download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest version of MMEX for GNU/Linux, macOS and Windows.
-
-[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
-
-
-
-Credits
-================
+## Credits
 
 MMEX is mainly written in C++11 and uses the following open-source packages:
 * [wxWidgets] 3.0+ 
@@ -79,21 +80,14 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 * [html-template] 
 * [libcurl]
 
-Supported platforms
-================
 
-- Most [Unix variants](https://en.wikipedia.org/wiki/Category:Unix_variants) using the [GTK+ toolkit](https://www.gtk.org/) (version 2.6 or newer or 3.x)
-- OS X (10.9 or newer) and macOS using Cocoa
-- Windows XP, 2003, Vista, 7, 8, 10 and 11
-
-External public resources
-================
+## External public resources
 
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Crowdin] | [SourceForge] | [GitHub]
 | [Docker images] | [Twitter] [![tw]][Twitter]
 
-Tips
-================
+
+## Tips
 
 * Database file (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
@@ -153,23 +147,15 @@ Tips
 [Donate via PayPal]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 [Crowdin]: https://crowdin.com/project/moneymanagerex
 
-Support
-================
+
+## Support
 
 [![Donate via PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";)
 
-or
-
 [![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
 
-You may also like…
-================
 
-- [MMEX for Android](https://github.com/moneymanagerex/android-money-manager-ex)
-
-
-License
-================
+## License
 
 [GPL](LICENSE)
 
