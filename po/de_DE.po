@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-08 20:35\n"
+"PO-Revision-Date: 2023-03-08 21:34\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -343,11 +343,11 @@ msgstr "&Sprache der Benutzeroberfläche"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
-msgstr ""
+msgstr "Sprache der Benutzeroberfläche ändern"
 
 #: appstartdialog.cpp:114
 msgid "&User Manual"
-msgstr ""
+msgstr "&Benutzerhandbuch"
 
 #: appstartdialog.cpp:115
 msgid "Read the user manual"
@@ -360,15 +360,15 @@ msgstr "&Webseite"
 #: appstartdialog.cpp:119
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Besuchen der %s -Website"
 
 #: appstartdialog.cpp:127
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Dieses Dialogfenster beim Start anzeigen"
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "&Beenden "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -6868,7 +6868,7 @@ msgstr "Aktienkursentwicklung"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Satz"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
