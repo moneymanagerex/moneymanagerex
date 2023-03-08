@@ -198,7 +198,7 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX()) - cbPayee_->GetSize().GetWidth();
     minWidth = std::max(minWidth,
         cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX() - cbCategory_->GetSize().GetWidth());
-    wxSize sz = wxSize(wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight()));
+    wxSize sz = wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight());
     if (sz.GetWidth() > GetSize().GetWidth()) SetSize(sz);
     SetIcon(mmex::getProgramIcon());
     Centre(wxCENTER_ON_SCREEN);
