@@ -154,6 +154,10 @@ void mmAppStartDialog::CreateControls()
     {
         mmToolTip(itemButton61, wxString::Format(_("Open the previously opened database : %s"), val));
     }
+    wxButton* ok = static_cast<wxButton*>(FindWindow(wxID_OK));
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 }
 
 void mmAppStartDialog::SetCloseButtonToExit()
