@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-08 04:19\n"
+"PO-Revision-Date: 2023-03-08 05:29\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1483,7 +1483,7 @@ msgstr ""
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    開始日期: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -3155,7 +3155,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:537 import_export/qif_import_gui.cpp:819
 #: import_export/univcsvdialog.cpp:302
 msgid "Date Format: "
-msgstr ""
+msgstr "日期格式: "
 
 #: import_export/qif_import_gui.cpp:540
 msgid "Press OK Button to continue"
@@ -5805,7 +5805,7 @@ msgstr "指定欲顯示的資料格式"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr ""
+msgstr "日期格式範例:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
