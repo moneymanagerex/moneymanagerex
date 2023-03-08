@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-01 09:27\n"
+"PO-Revision-Date: 2023-03-08 20:35\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Neues Konto"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Letzte &Datenbank öffnen"
 
 #: appstartdialog.cpp:102
 msgid "&New Database"
-msgstr ""
+msgstr "&Neue Datenbank"
 
 #: appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Erstellen Sie eine neue Datenbankdatei, um zu beginnen"
 
 #: appstartdialog.cpp:106
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "&Bestehende Datenbank öffnen"
 
 #: appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,7 +339,7 @@ msgstr "Öffnet eine bereits erstellte Datenbank mit der Dateiendung (*.mmb)"
 
 #: appstartdialog.cpp:110
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Sprache der Benutzeroberfläche"
 
 #: appstartdialog.cpp:111
 msgid "Change user interface language"
