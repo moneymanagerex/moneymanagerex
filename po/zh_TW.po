@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-08 05:29\n"
+"PO-Revision-Date: 2023-03-08 06:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -5822,7 +5822,8 @@ msgstr ""
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "使用本機格式\n"
+"空白則使用'貨幣設定|編輯'設定格式"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -5883,7 +5884,7 @@ msgstr ""
 #: optionsettingsgeneral.cpp:335
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "貨幣數字範例: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
