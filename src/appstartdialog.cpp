@@ -22,7 +22,7 @@
 #include "mmSimpleDialogs.h"
 #include "util.h"
 #include "model/Model_Setting.h"
-//#include "../resources/money.xpm"
+#include "mmSimpleDialogs.h"
 
 /*******************************************************/
 
@@ -209,9 +209,10 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
     if ((current < 0)) // Must be wxLANGUAGE_DEFAULT
         current = 0;
 
-    wxString selected = wxGetSingleChoice(_("Change language used for MMEX GUI"),  _("Language"), langChoices, current,this);
-    if (!selected.IsEmpty())
+    mmSingleChoiceDialog lang_choice(this, _("Change language used for MMEX GUI"), _("Language"), langChoices);
+    if (lang_choice.ShowModal() == wxID_OK)
     {
+        auto selected = lang_choice.GetStringSelection();
         int langNo = (langs.count(selected) == 1) ? langs[selected].first : wxLANGUAGE_DEFAULT;
         wxLanguage lang = static_cast<wxLanguage>(langNo);
         if (lang != m_app->getGUILanguage() && m_app->setGUILanguage(lang))
