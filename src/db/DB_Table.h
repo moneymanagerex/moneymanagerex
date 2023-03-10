@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-01-12 21:06:50.482915.
+ *          AUTO GENERATED at 2023-03-10 09:16:48.384520.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -750,6 +750,15 @@ struct SorterByPARENTID
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.PARENTID) < (y.PARENTID);
+    }
+};
+
+struct SorterByPATTERN
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.PATTERN) < (y.PATTERN);
     }
 };
 

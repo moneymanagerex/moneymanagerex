@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-01-12 21:06:50.482915.
+ *          AUTO GENERATED at 2023-03-10 09:16:48.384520.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, NUMBER TEXT, WEBSITE TEXT, NOTES TEXT, ACTIVE integer)");
+                db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, NUMBER TEXT, WEBSITE TEXT, NOTES TEXT, ACTIVE integer, PATTERN TEXT DEFAULT '')");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -154,6 +154,12 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
+    struct PATTERN : public DB_Column<wxString>
+    { 
+        static wxString name() { return "PATTERN"; } 
+        explicit PATTERN(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
     typedef PAYEEID PRIMARY;
     enum COLUMN
     {
@@ -164,6 +170,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         , COL_WEBSITE = 4
         , COL_NOTES = 5
         , COL_ACTIVE = 6
+        , COL_PATTERN = 7
     };
 
     /** Returns the column name as a string*/
@@ -178,6 +185,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             case COL_WEBSITE: return "WEBSITE";
             case COL_NOTES: return "NOTES";
             case COL_ACTIVE: return "ACTIVE";
+            case COL_PATTERN: return "PATTERN";
             default: break;
         }
         
@@ -194,6 +202,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         else if ("WEBSITE" == name) return COL_WEBSITE;
         else if ("NOTES" == name) return COL_NOTES;
         else if ("ACTIVE" == name) return COL_ACTIVE;
+        else if ("PATTERN" == name) return COL_PATTERN;
 
         return COLUMN(-1);
     }
@@ -212,6 +221,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         wxString WEBSITE;
         wxString NOTES;
         int ACTIVE;
+        wxString PATTERN;
 
         int id() const
         {
@@ -242,6 +252,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             if(!WEBSITE.IsSameAs(r->WEBSITE)) return false;
             if(!NOTES.IsSameAs(r->NOTES)) return false;
             if(ACTIVE != r->ACTIVE) return false;
+            if(!PATTERN.IsSameAs(r->PATTERN)) return false;
             return true;
         }
         
@@ -265,6 +276,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             WEBSITE = q.GetString(4); // WEBSITE
             NOTES = q.GetString(5); // NOTES
             ACTIVE = q.GetInt(6); // ACTIVE
+            PATTERN = q.GetString(7); // PATTERN
         }
 
         Data& operator=(const Data& other)
@@ -278,6 +290,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             WEBSITE = other.WEBSITE;
             NOTES = other.NOTES;
             ACTIVE = other.ACTIVE;
+            PATTERN = other.PATTERN;
             return *this;
         }
 
@@ -322,6 +335,11 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             return this->ACTIVE == in.v_;
         }
 
+        bool match(const Self::PATTERN &in) const
+        {
+            return this->PATTERN.CmpNoCase(in.v_) == 0;
+        }
+
         // Return the data record as a json string
         wxString to_json() const
         {
@@ -352,6 +370,8 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("ACTIVE");
             json_writer.Int(this->ACTIVE);
+            json_writer.Key("PATTERN");
+            json_writer.String(this->PATTERN.utf8_str());
         }
 
         row_t to_row_t() const
@@ -364,6 +384,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             row(L"WEBSITE") = WEBSITE;
             row(L"NOTES") = NOTES;
             row(L"ACTIVE") = ACTIVE;
+            row(L"PATTERN") = PATTERN;
             return row;
         }
 
@@ -376,6 +397,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             t(L"WEBSITE") = WEBSITE;
             t(L"NOTES") = NOTES;
             t(L"ACTIVE") = ACTIVE;
+            t(L"PATTERN") = PATTERN;
         }
 
         /** Save the record instance in memory to the database. */
@@ -411,7 +433,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 7
+        NUM_COLUMNS = 8
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -421,7 +443,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
     DB_Table_PAYEE_V1() : fake_(new Data())
     {
-        query_ = "SELECT PAYEEID, PAYEENAME, CATEGID, NUMBER, WEBSITE, NOTES, ACTIVE FROM PAYEE_V1 ";
+        query_ = "SELECT PAYEEID, PAYEENAME, CATEGID, NUMBER, WEBSITE, NOTES, ACTIVE, PATTERN FROM PAYEE_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -451,11 +473,11 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO PAYEE_V1(PAYEENAME, CATEGID, NUMBER, WEBSITE, NOTES, ACTIVE) VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO PAYEE_V1(PAYEENAME, CATEGID, NUMBER, WEBSITE, NOTES, ACTIVE, PATTERN) VALUES(?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE PAYEE_V1 SET PAYEENAME = ?, CATEGID = ?, NUMBER = ?, WEBSITE = ?, NOTES = ?, ACTIVE = ? WHERE PAYEEID = ?";
+            sql = "UPDATE PAYEE_V1 SET PAYEENAME = ?, CATEGID = ?, NUMBER = ?, WEBSITE = ?, NOTES = ?, ACTIVE = ?, PATTERN = ? WHERE PAYEEID = ?";
         }
 
         try
@@ -468,8 +490,9 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             stmt.Bind(4, entity->WEBSITE);
             stmt.Bind(5, entity->NOTES);
             stmt.Bind(6, entity->ACTIVE);
+            stmt.Bind(7, entity->PATTERN);
             if (entity->id() > 0)
-                stmt.Bind(7, entity->PAYEEID);
+                stmt.Bind(8, entity->PAYEEID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

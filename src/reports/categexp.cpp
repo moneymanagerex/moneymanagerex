@@ -357,14 +357,13 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // structure for sorting of data
     struct html_data_holder { int catID; int subCatID; wxString name; double period[MONTHS_IN_PERIOD]; double overall; } line;
     std::vector<html_data_holder> data;
-    Model_Category::Data_Set categories = Model_Category::instance().all();
-    std::stable_sort(categories.begin(), categories.end(), Model_Category::SorterByFULLNAME());
+    std::map<wxString,int> categories = Model_Category::all_categories();
     for (const auto& category : categories)
     {
-        int categID = category.CATEGID;
+        int categID = category.second;
         line.catID = categID;
         line.subCatID = -1;
-        line.name = Model_Category::full_name(category.CATEGID);
+        line.name = category.first;
         line.overall = 0;
         unsigned month = 0;
         for (const auto& i : categoryStats[categID])

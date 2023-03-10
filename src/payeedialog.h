@@ -25,6 +25,7 @@
 #include "Model_Payee.h"
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
+#include <wx/grid.h>
 #include <map>
 #include "mmSimpleDialogs.h"
 
@@ -46,12 +47,19 @@ private:
     wxTextCtrl* m_reference;
     wxTextCtrl* m_website;
     wxTextCtrl* m_Notes;
+    wxGrid* m_patternTable;
+    wxBoxSizer* patternButton_Arranger;
 
     void CreateControls();
     void fillControls();
+    void ResizeDialog();
     void OnComboKey(wxKeyEvent& event);
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
+    void OnMoveUp(wxCommandEvent& /*event*/);
+    void OnMoveDown(wxCommandEvent& /*event*/);
+    void OnPatternTableChanged(wxGridEvent& event);
+    void OnPatternTableSize(wxSizeEvent& event);
 
 };
 
@@ -62,7 +70,7 @@ class mmPayeeDialog : public wxDialog
 
 public:
     ~mmPayeeDialog();
-    mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString &name = "mmPayeeDialog");
+    mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name = "mmPayeeDialog", const wxString& payee_selected = wxEmptyString);
     void DisableTools();
     int getPayeeId() const;
     bool getRefreshRequested() const;
@@ -75,7 +83,8 @@ private:
         PAYEE_CATEGORY,
         PAYEE_NUMBER,
         PAYEE_WEBSITE,
-        PAYEE_NOTES
+        PAYEE_NOTES,
+        PAYEE_PATTERN
     };
 
     enum menu_items
@@ -94,6 +103,7 @@ private:
     wxBitmapButton* m_magicButton;
 
     int m_payee_id;
+    wxString m_init_selected_payee;
     int m_payee_rename;
     bool m_payee_choose;
     wxString m_maskStr;

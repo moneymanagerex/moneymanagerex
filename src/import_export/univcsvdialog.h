@@ -22,6 +22,7 @@
 #include <vector>
 #include <map>
 #include <wx/dialog.h>
+#include <wx/dataview.h>
 #include "Model_Checking.h"
 #include "mmSimpleDialogs.h"
 class wxSpinCtrl;
@@ -137,6 +138,7 @@ private:
         wxString Number;
         wxString Notes;
         bool valid = true;
+        wxString PayeeMatchNotes;
     };
 private:
     EDialogType dialogType_;
@@ -151,6 +153,7 @@ private:
     wxButton* m_button_add_ = nullptr;
     wxButton* m_button_remove_ = nullptr;
     wxChoice* m_choice_account_ = nullptr;
+    wxNotebook* m_preview_notebook = nullptr;
     wxListCtrl* m_list_ctrl_ = nullptr; //preview
     wxTextCtrl* m_text_ctrl_ = nullptr;
     wxTextCtrl* m_setting_name_ctrl_ = nullptr;
@@ -178,6 +181,15 @@ private:
     int m_object_in_focus;
     bool m_reverce_sign = false;
     wxString depositType_;
+    std::unordered_map <wxString, std::tuple<int, wxString, wxString>> m_CSVpayeeNames;
+    wxArrayString m_payee_names;
+    std::unordered_map <wxString, int> m_CSVcategoryNames;
+    std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
+    bool payeeRegExInitialized_;
+    wxCheckBox* payeeMatchCheckBox_ = nullptr;
+    wxCheckBox* payeeMatchAddNotes_ = nullptr;
+    wxDataViewListCtrl* payeeListBox_ = nullptr;
+    wxDataViewListCtrl* categoryListBox_ = nullptr;
 
     /// Creation
     bool Create(wxWindow* parent,
@@ -196,7 +208,7 @@ private:
     void OnRemove(wxCommandEvent& event);
     bool isIndexPresent(int index) const;
     const wxString getCSVFieldName(int index) const;
-    void parseToken(int index, const wxString& token, tran_holder & holder);
+    void parseToken(int index, const wxString& token, tran_holder& holder);
     void OnSettingsSave(wxCommandEvent& event);
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
@@ -214,12 +226,18 @@ private:
     void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
     void OnCheckboxClick(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
+    void OnShowPayeeDialog(wxMouseEvent& event);
+    void OnShowCategDialog(wxMouseEvent& event);
 private:
     void OnLoad();
     void UpdateListItemBackground();
     void update_preview();
     void initDelimiter();
     void initDateMask();
+    void refreshTabs(int tabs);
+    void compilePayeeRegEx();
+    void validatePayees();
+    void validateCategories();
 
     bool ShowToolTips();
     void OnSettingsSelected(wxCommandEvent& event);

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-01-12 21:06:50.482915.
+ *          AUTO GENERATED at 2023-03-10 09:16:48.384520.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -301,7 +301,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
 
         template<typename C>
-        bool match(const C&) const
+        bool match(const C &c) const
         {
             return false;
         }

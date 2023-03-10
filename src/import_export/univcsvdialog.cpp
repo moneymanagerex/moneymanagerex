@@ -32,6 +32,8 @@
 #include "util.h"
 #include "webapp.h"
 #include "parsers.h"
+#include "payeedialog.h"
+#include "categdialog.h"
 
 #include "Model_Setting.h"
 #include "Model_Payee.h"
@@ -46,6 +48,12 @@
 
 #include <wx/xml/xml.h>
 #include <wx/spinctrl.h>
+
+enum tab_id {
+    DATA_TAB = 1,
+    PAYEE_TAB = 2,
+    CAT_TAB = 4,
+};
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 
@@ -294,7 +302,7 @@ void mmUnivCSVDialog::CreateControls()
         , Model_Account::instance().all_checking_account_names(), 0);
     m_choice_account_->SetMinSize(wxSize(210, -1));
     flex_sizer->Add(m_choice_account_, g_flagsH);
-    
+
     wxStaticLine*  m_staticline2 = new wxStaticLine(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(m_staticline2, flagsExpand);
@@ -397,6 +405,19 @@ void mmUnivCSVDialog::CreateControls()
         itemBoxSizer111->Add(colorButton_, g_flagsH);
         colorButton_->Enable(false);
 
+        // Payee Match
+        wxBoxSizer* payeeMatchSizer = new wxBoxSizer(wxVERTICAL);
+        payeeMatchCheckBox_ = new wxCheckBox(this, mmID_PAYEE, _("Pattern match Payees")
+            , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        payeeMatchSizer->Add(payeeMatchCheckBox_, g_flagsV);
+        payeeMatchCheckBox_->Disable();
+        payeeRegExInitialized_ = false;
+
+        payeeMatchAddNotes_ = new wxCheckBox(this, wxID_ANY, _("Add match details to Notes")
+            , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        payeeMatchSizer->Add(payeeMatchAddNotes_, g_flagsV);
+        payeeMatchAddNotes_->Disable();
+        itemBoxSizer111->Add(payeeMatchSizer, wxSizerFlags(g_flagsH).Border(wxALL, 0));
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
@@ -414,9 +435,42 @@ void mmUnivCSVDialog::CreateControls()
     wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this
         , wxID_STATIC, _("Preview")), wxVERTICAL);
 
-    m_list_ctrl_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
-    m_staticbox->Add(m_list_ctrl_, 1, wxGROW | wxALL, 5);
+    m_preview_notebook = new wxNotebook(this
+        , wxID_PREVIEW, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+    m_staticbox->Add(m_preview_notebook, g_flagsExpand);
+
+    wxPanel* data_tab = new wxPanel(m_preview_notebook, wxID_ANY);
+    m_preview_notebook->AddPage(data_tab, _("Data"));
+    wxBoxSizer* data_sizer = new wxBoxSizer(wxVERTICAL);
+    data_tab->SetSizer(data_sizer);
+
+    m_list_ctrl_ = new wxListCtrl(data_tab, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
+    data_sizer->Add(m_list_ctrl_, g_flagsExpand);
     itemBoxSizer0->Add(m_staticbox, 2, wxALL | wxEXPAND, 5);
+
+    //Payees
+    wxPanel* payee_tab = new wxPanel(m_preview_notebook, wxID_ANY);
+    m_preview_notebook->AddPage(payee_tab, _("Payee"));
+    wxBoxSizer* payee_sizer = new wxBoxSizer(wxHORIZONTAL);
+    payee_tab->SetSizer(payee_sizer);
+
+    payeeListBox_ = new wxDataViewListCtrl(payee_tab, wxID_FILE1);
+    payeeListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
+    payeeListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
+    payee_sizer->Add(payeeListBox_, g_flagsExpand);
+
+    //Category
+    wxPanel* categ_tab = new wxPanel(m_preview_notebook, wxID_ANY);
+    m_preview_notebook->AddPage(categ_tab, _("Category"));
+    wxBoxSizer* category_sizer = new wxBoxSizer(wxHORIZONTAL);
+    categ_tab->SetSizer(category_sizer);
+    categoryListBox_ = new wxDataViewListCtrl(categ_tab, wxID_FILE2);
+    categoryListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
+    categoryListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
+    category_sizer->Add(categoryListBox_, g_flagsExpand);
+
+    payeeListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowPayeeDialog, this);
+    categoryListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowCategDialog, this);
 
     //Import File button
     wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
@@ -487,6 +541,51 @@ void mmUnivCSVDialog::initDelimiter()
     }
     m_textDelimiter->ChangeValue(delimit_ == "\t" ? "\\t" : delimit_);
 
+}
+
+void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent& event)
+{
+    wxString payeeName;
+    if (payeeListBox_->GetSelectedRow() >= 0) {
+        wxVariant value;
+        payeeListBox_->GetValue(value, payeeListBox_->GetSelectedRow(), 0);
+        payeeName = (std::get<0>(m_CSVpayeeNames[value.GetString()]) != -1) ?
+            std::get<1>(m_CSVpayeeNames[value.GetString()]) :
+            value.GetString();
+    }
+    mmPayeeDialog dlg(this, false, "mmPayeeDialog", payeeName);
+    dlg.ShowModal();
+    if (dlg.getRefreshRequested())
+    {
+        payeeRegExInitialized_ = false;
+        refreshTabs(PAYEE_TAB);
+    } 
+}
+
+void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent& event)
+{
+    int id = -1;
+    if (categoryListBox_->GetSelectedRow() >= 0)
+    {
+        wxVariant value;
+        categoryListBox_->GetValue(value, categoryListBox_->GetSelectedRow(), 0);
+        wxString selectedCategname = value.GetString();
+        id = m_CSVcategoryNames[selectedCategname];
+        if (id == -1) {
+            std::map<wxString, int > categories = Model_Category::all_categories();
+            for (const auto& category : categories)
+            {
+                if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
+                else break;
+            }
+        }
+    }
+    mmCategDialog dlg(this, false, id);
+    dlg.ShowModal();
+    if (dlg.getRefreshRequested())
+    {
+        refreshTabs(CAT_TAB);
+    }   
 }
 
 void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
@@ -666,6 +765,16 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
                 , std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
             m_spinIgnoreLastRows_->SetValue(val);
         }
+
+        if (json_doc.HasMember("PAYEE_PATTERN_MATCH"))
+            payeeMatchCheckBox_->SetValue(json_doc["PAYEE_PATTERN_MATCH"].GetBool());
+        else
+            payeeMatchCheckBox_->SetValue(false);
+
+        if (json_doc.HasMember("PAYEE_PATTERN_MATCH_ADD_NOTES"))
+            payeeMatchAddNotes_->SetValue(json_doc["PAYEE_PATTERN_MATCH_ADD_NOTES"].GetBool());
+        else
+            payeeMatchAddNotes_->SetValue(false);
     }
     else
     {
@@ -714,9 +823,18 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
             }
         }
 
-        if (IsImporter() && i->getIndex()== UNIV_CSV_TYPE) {
-            m_choiceAmountFieldSign->Append(wxString::Format(_("Positive if type has '%s'"), depositType_));
-            m_choiceAmountFieldSign->Select(DefindByType);
+        if (IsImporter())
+        {
+            if (i->getIndex() == UNIV_CSV_TYPE) {
+                m_choiceAmountFieldSign->Append(wxString::Format(_("Positive if type has '%s'"), depositType_));
+                m_choiceAmountFieldSign->Select(DefindByType);
+            }
+            else if (i->getIndex() == UNIV_CSV_PAYEE)
+            {
+                payeeMatchCheckBox_->Enable();
+                payeeMatchAddNotes_->Enable();
+            }
+
         }
 
         this->update_preview();
@@ -747,9 +865,20 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
             csvFieldCandicate_->Insert(wxGetTranslation(item_name), pos, new mmListBoxItem(item_index, item_name));
         }
 
-        if (IsImporter() && item_index == UNIV_CSV_TYPE) {
-            m_choiceAmountFieldSign->Delete(DefindByType);
-            m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
+        if (IsImporter())
+        {
+            if (item_index == UNIV_CSV_TYPE)
+            {
+                m_choiceAmountFieldSign->Delete(DefindByType);
+                m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
+            }
+            else if (item_index == UNIV_CSV_PAYEE)
+            {
+                payeeMatchCheckBox_->SetValue(false);
+                payeeMatchCheckBox_->Disable();
+                payeeMatchAddNotes_->SetValue(false);
+                payeeMatchAddNotes_->Disable();
+            }
         }
 
         csvListBox_->Delete(index);
@@ -783,12 +912,20 @@ void mmUnivCSVDialog::OnLoad()
     {
         const wxString& item_name = CSVFieldName_[entry];
         csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(entry, item_name));
-        if (IsImporter() && entry == UNIV_CSV_TYPE) {
-            unsigned int i = m_choiceAmountFieldSign->GetCount();
-            if ( i <= DefindByType) {
-                m_choiceAmountFieldSign->AppendString(wxString::Format(_("Positive if type has '%s'"), depositType_));
+        if (IsImporter())
+        {
+            if (entry == UNIV_CSV_TYPE) {
+                unsigned int i = m_choiceAmountFieldSign->GetCount();
+                if (i <= DefindByType) {
+                    m_choiceAmountFieldSign->AppendString(wxString::Format(_("Positive if type has '%s'"), depositType_));
+                }
+                m_choiceAmountFieldSign->SetSelection(DefindByType);
             }
-            m_choiceAmountFieldSign->SetSelection(DefindByType);
+            if (entry == UNIV_CSV_PAYEE)
+            {
+                payeeMatchCheckBox_->Enable();
+                payeeMatchAddNotes_->Enable();
+            }
         }
     }
     // update csvFieldCandicate_
@@ -875,6 +1012,13 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
         const auto ilr = m_spinIgnoreLastRows_->GetValue();
         json_writer.Key("IGNORE_LAST_ROWS");
         json_writer.Int(ilr);
+
+        // Payee matching
+        json_writer.Key("PAYEE_PATTERN_MATCH");
+        json_writer.Bool(payeeMatchCheckBox_->IsChecked());
+
+        json_writer.Key("PAYEE_PATTERN_MATCH_ADD_NOTES");
+        json_writer.Bool(payeeMatchAddNotes_->IsChecked());
     }
     else
     {
@@ -1057,10 +1201,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         account = Model_Account::instance().get(accountID_);
         const Model_Account::Data* toAccount = Model_Account::instance().get(holder.ToAccountID);
         if ((trxDate < account->INITIALDATE) ||
-               (toAccount && (trxDate < toAccount->INITIALDATE)))
+            (toAccount && (trxDate < toAccount->INITIALDATE)))
         {
             wxString msg = wxString::Format(_("Line %ld: %s"), nLines + 1,
-                    _("The opening date for the account is later than the date of this transaction"));
+                _("The opening date for the account is later than the date of this transaction"));
             log << msg << endl;
             *log_field_ << msg << "\n";
             continue;
@@ -1078,6 +1222,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         pTransaction->STATUS = holder.Status;
         pTransaction->TRANSACTIONNUMBER = holder.Number;
         pTransaction->NOTES = holder.Notes;
+        if (payeeMatchAddNotes_->IsChecked() && !holder.PayeeMatchNotes.IsEmpty())
+            pTransaction->NOTES.Append(holder.PayeeMatchNotes);
         pTransaction->FOLLOWUPID = color_id;
 
         Model_Checking::instance().save(pTransaction);
@@ -1148,6 +1294,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     /*if (!canceledbyuser && nImportedLines > 0)
         Close(); // bugfix #3877 */
     bImport_->Disable();
+
+    refreshTabs(PAYEE_TAB | CAT_TAB);
 }
 
 void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
@@ -1318,6 +1466,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 void mmUnivCSVDialog::update_preview()
 {
     this->m_list_ctrl_->ClearAll();
+    m_payee_names.clear();
+    m_CSVcategoryNames.clear();
+    m_CSVpayeeNames.clear();
     unsigned long colCount = 0;
     this->m_list_ctrl_->InsertColumn(colCount, "#");
     this->m_list_ctrl_->SetColumnWidth(colCount, 30);
@@ -1325,9 +1476,10 @@ void mmUnivCSVDialog::update_preview()
 
     const int MAX_ROWS_IN_PREVIEW = 50;
     const int MAX_COLS = 30; // Not including line number col.
-
     int date_col = -1;
-
+    int payee_col = -1;
+    int cat_col = -1;
+    int subcat_col = -1;
     for (const auto& it : csvFieldOrder_)
     {
         const wxString& item_name = this->getCSVFieldName(it);
@@ -1335,6 +1487,16 @@ void mmUnivCSVDialog::update_preview()
         if (it == UNIV_CSV_DATE) {
             date_col = colCount - 1;
         }
+        if (it == UNIV_CSV_PAYEE) {
+            payee_col = colCount - 1;
+            compilePayeeRegEx();
+        }
+        if (it == UNIV_CSV_CATEGORY)
+            cat_col = colCount - 1;
+
+        if (it == UNIV_CSV_SUBCATEGORY)
+            subcat_col = colCount - 1;
+
         ++colCount;
     }
 
@@ -1370,7 +1532,8 @@ void mmUnivCSVDialog::update_preview()
             long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
             buf.Printf("%d", row + 1);
             m_list_ctrl_->SetItem(itemIndex, col, buf);
-
+            wxString categ_name;
+            wxString subcat_name;
             // Cols
             while (col < pImporter->GetItemsCount(row) && col + 1 <= MAX_COLS)
             {
@@ -1383,6 +1546,42 @@ void mmUnivCSVDialog::update_preview()
 
                 const auto content = pImporter->GetItem(row, col);
 
+                // add payee names to list
+                if (row >= firstRow
+                    && row < lastRow
+                    && col == static_cast<unsigned>(payee_col))
+
+                {
+                    if (!content.IsEmpty())
+                    {
+                        if (m_payee_names.Index(content, false) == wxNOT_FOUND)
+                            m_payee_names.Add(content);
+                    } else if (m_payee_names.Index(_("Unknown"), false) == wxNOT_FOUND)
+                    {
+                        m_payee_names.Add(_("Unknown"));
+                        m_CSVpayeeNames[_("Unknown")] = std::make_tuple(-1, "", "");
+                    }
+                }
+
+                if (row >= firstRow
+                    && row < lastRow
+                    && col == static_cast<unsigned>(cat_col))
+                {
+                    if (!content.IsEmpty())
+                    {
+                        m_CSVcategoryNames[content] = -1;
+                        categ_name = content;
+                    } else
+                        m_CSVcategoryNames[_("Unknown")] = -1;
+                }                    
+
+                if (row >= firstRow
+                    && row < lastRow
+                    && col == static_cast<unsigned>(subcat_col))
+                {
+                    subcat_name = content;
+                }
+
                 if (!m_userDefinedDateMask
                     && row >= firstRow
                     && row < lastRow
@@ -1393,6 +1592,13 @@ void mmUnivCSVDialog::update_preview()
 
                 ++col;
                 m_list_ctrl_->SetItem(itemIndex, col, content);
+            }
+
+            if (!subcat_name.IsEmpty())
+            {
+                subcat_name.Replace(":", "|");
+                categ_name.Append((!categ_name.IsEmpty() ? ":" : "") + subcat_name);
+                m_CSVcategoryNames[categ_name] = -1;
             }
         }
 
@@ -1539,6 +1745,54 @@ void mmUnivCSVDialog::update_preview()
                 if (++count >= MAX_ROWS_IN_PREVIEW) break;
                 ++row;
             }
+        }
+    }
+    refreshTabs(PAYEE_TAB | CAT_TAB);
+}
+
+// refresh data in payee & category tabs
+void mmUnivCSVDialog::refreshTabs(int tabs) {
+    int num = 0;
+    if (tabs & DATA_TAB)
+        update_preview();
+    if (tabs & PAYEE_TAB)
+    {
+        validatePayees();
+        payeeListBox_->DeleteAllItems();
+        for (const auto& payee : m_payee_names)
+        {
+            wxVector<wxVariant> data;
+            data.push_back(wxVariant(payee));
+            if (payee == _("Unknown") || (m_CSVpayeeNames.find(payee) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[payee]) != -1))
+            {
+                if (std::get<2>(m_CSVpayeeNames[payee]) == wxEmptyString)
+                    data.push_back(wxVariant(_("OK")));
+                else
+                    data.push_back(wxVariant(wxString::Format(_("Matched to %s by pattern %s"),
+                        std::get<1>(m_CSVpayeeNames[payee]),
+                        std::get<2>(m_CSVpayeeNames[payee])
+                    )));
+            }
+            else
+                data.push_back(wxVariant(_("Missing")));
+            payeeListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
+        }
+    }
+    if (tabs & CAT_TAB)
+    {
+        validateCategories();
+        num = 0;
+        const auto& c(Model_Category::all_categories());
+        categoryListBox_->DeleteAllItems();
+        for (const auto& categ : m_CSVcategoryNames)
+        {
+            wxVector<wxVariant> data;
+            data.push_back(wxVariant(categ.first));
+            if (c.find(categ.first) == c.end())
+                data.push_back(wxVariant("Missing"));
+            else
+                data.push_back(wxVariant(_("OK")));
+            categoryListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 }
@@ -1712,6 +1966,94 @@ void mmUnivCSVDialog::OnDecimalChange(wxCommandEvent& event)
     event.Skip();
 }
 
+void mmUnivCSVDialog::compilePayeeRegEx() {
+    // pre-compile all payee match strings if not already done
+    if (payeeMatchCheckBox_->IsChecked() && !payeeRegExInitialized_) {
+        // only look at payees that have a match pattern set
+        Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PATTERN(wxEmptyString, NOT_EQUAL));
+        for (const auto& payee : payees) {
+            Document json_doc;
+            if (json_doc.Parse(payee.PATTERN.utf8_str()).HasParseError()) {
+                continue;
+            }
+            int key = -1;
+            // loop over all keys in the pattern json data
+            for (const auto& member : json_doc.GetObject()) {
+                key++;
+                wxString pattern = member.value.GetString();
+                // add the pattern string (for non-regex match, match notes, and the payee tab preview)
+                payeeMatchPatterns_[std::make_pair(payee.PAYEEID, payee.PAYEENAME)][key].first = pattern;
+                // complie the regex if necessary
+                if (pattern.StartsWith("regex:")) {
+                    payeeMatchPatterns_[std::make_pair(payee.PAYEEID, payee.PAYEENAME)][key].second.Compile(pattern.Right(pattern.length() - 6), wxRE_ICASE | wxRE_EXTENDED);
+                }
+            }
+        }
+        payeeRegExInitialized_ = true;
+    }
+}
+
+void mmUnivCSVDialog::validatePayees() {
+    if (!payeeRegExInitialized_) compilePayeeRegEx();
+
+    for (const auto& payee_name : m_payee_names) {
+        bool payee_found = false;
+        // initialize
+        m_CSVpayeeNames[payee_name] = std::make_tuple(-1, "", "");
+        // perform pattern match
+        if (payeeMatchCheckBox_->IsChecked()) {
+            // loop over all the precompiled patterns
+            for (const auto& payeeId : payeeMatchPatterns_) {
+                for (const auto& pattern : payeeId.second) {
+                    bool match = false;
+                    // match against regex if the pattern begins with "regex:"
+                    if (pattern.second.first.StartsWith("regex:"))
+                        match = pattern.second.second.Matches(payee_name);
+                    else // use the normal wxString match for non-regex patterns
+                        match = payee_name.Lower().Matches(pattern.second.first.Lower());
+                    if (match)
+                    {
+                        payee_found = true;
+                        // save the target payee ID, name, and match details
+                        m_CSVpayeeNames[payee_name] = std::make_tuple(payeeId.first.first, payeeId.first.second, pattern.second.first);
+                        break;
+                    }
+                }
+                if (payee_found) break;
+            }
+        }
+        if (!payee_found) {
+            Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
+            if (payee) {
+                m_CSVpayeeNames[payee_name] = std::make_tuple(payee->PAYEEID, payee->PAYEENAME, "");
+            }
+        }
+    }
+}
+
+void mmUnivCSVDialog::validateCategories() {
+    for(const auto& catname : m_CSVcategoryNames)
+    {
+        wxString search_name = catname.first;
+        int parentID = -1;
+        // delimit string by ":"
+        wxStringTokenizer categs = wxStringTokenizer(search_name, ":");
+        // check each level of category exists
+        Model_Category::Data* category = nullptr;
+        while (categs.HasMoreTokens()) {
+            wxString categname = categs.GetNextToken();
+            category = Model_Category::instance().get(categname, parentID);
+            if (!category)
+            {
+                break;
+            }
+            parentID = category->CATEGID;
+        }
+
+        if (category) m_CSVcategoryNames[search_name] = category->CATEGID;
+    }
+}
+
 void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder& holder)
 {
     if (orig_token.IsEmpty()) return;
@@ -1735,16 +2077,15 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_PAYEE:
-        payee = Model_Payee::instance().get(token);
-        if (!payee)
+        if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[token]) != -1)
+            holder.PayeeID = std::get<0>(m_CSVpayeeNames[token]);
+        else
         {
             payee = Model_Payee::instance().create();
             payee->PAYEENAME = token;
             payee->ACTIVE = 1;
-            Model_Payee::instance().save(payee);
+            holder.PayeeID = Model_Payee::instance().save(payee);
         }
-
-        holder.PayeeID = payee->PAYEEID;
         break;
 
     case UNIV_CSV_AMOUNT:
@@ -1760,23 +2101,28 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_CATEGORY:
-        categs = new wxStringTokenizer(token, ":");
-        token.Replace(":", "|");
-        while (categs->HasMoreTokens()) {
-            categname = categs->GetNextToken();
-            category = Model_Category::instance().get(categname, parentID);
-            if (!category)
-            {
-                category = Model_Category::instance().create();
-                category->CATEGNAME = categname;
-                category->PARENTID = parentID;
-                category->ACTIVE = 1;
-                Model_Category::instance().save(category);
+        // check if we already have this category
+        if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() && m_CSVcategoryNames[token] != -1)
+            holder.CategoryID = m_CSVcategoryNames[token];
+        else // create category and any missing parent categories
+        {
+            categs = new wxStringTokenizer(token, ":");
+            while (categs->HasMoreTokens()) {
+                categname = categs->GetNextToken();
+                category = Model_Category::instance().get(categname, parentID);
+                if (!category)
+                {
+                    category = Model_Category::instance().create();
+                    category->CATEGNAME = categname;
+                    category->PARENTID = parentID;
+                    category->ACTIVE = 1;
+                    Model_Category::instance().save(category);
+                }
+                parentID = category->CATEGID;
             }
-            parentID = category->CATEGID;
-        }
 
-        if (category) holder.CategoryID = category->CATEGID;
+            if (category) holder.CategoryID = category->CATEGID;
+        }
         break;
 
     case UNIV_CSV_SUBCATEGORY:
@@ -1784,16 +2130,19 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             return;
 
         token.Replace(":", "|");
-        category = (!token.IsEmpty() ? Model_Category::instance().get(token, holder.CategoryID) : nullptr);
-        if (!category)
-        {
+        categname = Model_Category::full_name(holder.CategoryID);
+        categname.Append(":" + token);
+        if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() && m_CSVcategoryNames[categname] != -1)
+            holder.CategoryID = m_CSVcategoryNames[categname];
+        else {
             category = Model_Category::instance().create();
             category->PARENTID = holder.CategoryID;
             category->CATEGNAME = token;
             category->ACTIVE = 1;
             Model_Category::instance().save(category);
+            
+            holder.CategoryID = category->CATEGID;
         }
-        holder.CategoryID = category->CATEGID;
         break;
 
     case UNIV_CSV_TRANSNUM:
@@ -1981,8 +2330,16 @@ ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()
 void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     auto id = event.GetId();
-    if (IsImporter() && id == mmID_COLOR && colorButton_) {
-        colorButton_->Enable(colorCheckBox_->IsChecked());
+    if (IsImporter())
+    {
+        if (id == mmID_COLOR && colorButton_)
+            colorButton_->Enable(colorCheckBox_->IsChecked());
+        else if (id == mmID_PAYEE)
+        {
+            payeeMatchAddNotes_->Enable(payeeMatchCheckBox_->IsChecked());
+            payeeMatchAddNotes_->SetValue(false);
+            refreshTabs(PAYEE_TAB);
+        }
     }
 }
 
