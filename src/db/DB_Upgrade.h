@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-03-10 09:16:55.958349.
+ *          AUTO GENERATED at 2023-03-10 12:15:10.274357.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -159,6 +159,8 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 15
     R"(
+        -- db tidy, fix corrupt indices
+        REINDEX;
         
         -- Will fail if v8-14 by recreating a column that exists in those versions
         -- so only upgrade from v1-v7 possible. Need to downgrade other versions prior to upgrade 
@@ -234,6 +236,9 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 16
     R"(
+        -- db tidy, fix corrupt indices
+        REINDEX;
+        
         alter table CHECKINGACCOUNT_V1 add column LASTUPDATEDTIME text;
         alter table CHECKINGACCOUNT_V1 add column DELETEDTIME text;
         
@@ -241,13 +246,13 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 17
     R"(
+        -- db tidy, fix corrupt indices
+        REINDEX;
+        
         -- DB Tidy, redundant views
         DROP VIEW IF EXISTS alldata;
         DROP VIEW IF EXISTS alldatax;
         DROP VIEW IF EXISTS budget;
-        
-        -- DB Tidy, fix corrupt indices
-        REINDEX;
         
         -- Nested Categories
         -- https://github.com/moneymanagerex/moneymanagerex/issues/1477
@@ -283,6 +288,7 @@ const std::vector<wxString> dbUpgradeQuery =
         UPDATE SPLITTRANSACTIONS_V1 SET CATEGID = (SELECT TARGET FROM TEMP_RENAME_CATEGORY WHERE SOURCE = CATEGID) WHERE CATEGID IN (SELECT SOURCE FROM TEMP_RENAME_CATEGORY);
         UPDATE BUDGETTABLE_V1 SET CATEGID = (SELECT TARGET FROM TEMP_RENAME_CATEGORY WHERE SOURCE = CATEGID) WHERE CATEGID IN (SELECT SOURCE FROM TEMP_RENAME_CATEGORY);
         UPDATE PAYEE_V1 SET CATEGID = (SELECT TARGET FROM TEMP_RENAME_CATEGORY WHERE SOURCE = CATEGID) WHERE CATEGID IN (SELECT SOURCE FROM TEMP_RENAME_CATEGORY);
+        UPDATE SUBCATEGORY_V1 SET CATEGID = (SELECT TARGET FROM TEMP_RENAME_CATEGORY WHERE SOURCE = CATEGID) WHERE CATEGID IN (SELECT SOURCE FROM TEMP_RENAME_CATEGORY);
         
         DELETE FROM CATEGORY_V1 WHERE CATEGID IN (SELECT SOURCE FROM TEMP_RENAME_CATEGORY);
         DROP TABLE TEMP_RENAME_CATEGORY;
@@ -369,6 +375,9 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 18
     R"(
+        -- db tidy, fix corrupt indices
+        REINDEX;
+        
         -- db tidy -- remove blank records caused by https://github.com/moneymanagerex/moneymanagerex/issues/5630
         DELETE FROM CHECKINGACCOUNT_V1 WHERE ACCOUNTID = '-1';
         
