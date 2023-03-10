@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-01 11:51+0300\n"
-"PO-Revision-Date: 2023-03-01 09:27\n"
+"PO-Revision-Date: 2023-03-06 00:51\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -368,7 +368,7 @@ msgstr ""
 
 #: appstartdialog.cpp:138
 msgid "E&xit "
-msgstr ""
+msgstr "יציאה "
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -378,7 +378,7 @@ msgstr "פתיחת מסד הנתונים שהיה בשימוש לאחרונה: %
 #: appstartdialog.cpp:198 mmframe.cpp:1567 mmframe.cpp:2836
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "ברירת מחדל של המערכת"
 
 #: appstartdialog.cpp:211 mmframe.cpp:1562 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
@@ -1574,7 +1574,7 @@ msgstr "הזנת חודש תקציב"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "שנת תקציב"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1584,7 +1584,7 @@ msgstr "הגדרת השנה הנדרשת.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "חודש תקציב"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
