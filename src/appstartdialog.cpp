@@ -210,8 +210,6 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
         current = 0;
 
     mmSingleChoiceDialog lang_choice(this, _("Change language used for MMEX GUI"), _("Language"), langChoices);
-    lang_choice.FindWindow(wxID_OK)->SetLabel(_("OK "));
-    lang_choice.FindWindow(wxID_CANCEL)->SetLabel(_("Cancel "));
     if (lang_choice.ShowModal() == wxID_OK)
     {
         auto selected = lang_choice.GetStringSelection();
