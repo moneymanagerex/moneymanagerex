@@ -592,24 +592,6 @@ void mmChoiceAmountMask::SetDecimalChar(const wxString& str)
 
 /*/////////////////////////////////////////////////////////////*/
 
-mmSingleChoiceDialog::mmSingleChoiceDialog()
-{
-}
-mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow *parent, const wxString& message,
-    const wxString& caption, const wxArrayString& choices)
-{
-    wxSingleChoiceDialog::Create(parent, message, caption, choices);
-}
-mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
-    const wxString& caption, const Model_Account::Data_Set& accounts)
-{
-    wxArrayString choices;
-    for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
-    wxSingleChoiceDialog::Create(parent, message, caption, choices);
-}
-
-/* --------------------------------------------------------- */
-
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 {
 }
@@ -859,6 +841,42 @@ mmMultiChoiceDialog::mmMultiChoiceDialog(
 
     wxButton* ok = static_cast<wxButton*>(FindWindow(wxID_OK));
     if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+    Fit();
+}
+
+/* --------------------------------------------------------- */
+
+mmSingleChoiceDialog::mmSingleChoiceDialog()
+{
+}
+mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
+    const wxString& caption, const wxArrayString& choices)
+{
+    if (parent) this->SetFont(parent->GetFont());
+    wxSingleChoiceDialog::Create(parent, message, caption, choices);
+    SetMinSize(wxSize(220, 384));
+    SetIcon(mmex::getProgramIcon());
+
+    wxButton* ok = static_cast<wxButton*>(FindWindow(wxID_OK));
+    if (ok) ok->SetLabel(wxGetTranslation(g_OkLabel));
+    wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+    Fit();
+}
+mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
+    const wxString& caption, const Model_Account::Data_Set& accounts)
+{
+    if (parent) this->SetFont(parent->GetFont());
+    wxArrayString choices;
+    for (const auto& item : accounts) choices.Add(item.ACCOUNTNAME);
+    wxSingleChoiceDialog::Create(parent, message, caption, choices);
+    SetMinSize(wxSize(220, 384));
+    SetIcon(mmex::getProgramIcon());
+
+    wxButton* ok = static_cast<wxButton*>(FindWindow(wxID_OK));
+    if (ok) ok->SetLabel(wxGetTranslation(g_OkLabel));
     wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
     Fit();

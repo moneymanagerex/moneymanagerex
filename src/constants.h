@@ -33,6 +33,7 @@ extern const wxSizerFlags g_flagsExpand;
 extern const wxSizerFlags g_flagsExpandBorder1;
 
 extern const wxString g_CancelLabel;
+extern const wxString g_OkLabel;
 extern const wxString g_CloseLabel;
 
 namespace mmex

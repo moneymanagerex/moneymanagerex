@@ -79,6 +79,12 @@ const wxString g_CloseLabel =
 #else
     wxTRANSLATE("&Close ");
 #endif
+const wxString g_OkLabel =
+#if defined(__APPLE__)
+wxTRANSLATE("OK");
+#else
+wxTRANSLATE("&OK ");
+#endif
 
 //bug #5590
 const wxString grm_menu_undo = _("Undo");
