@@ -40,6 +40,9 @@ wxBEGIN_EVENT_TABLE(mmEditPayeeDialog, wxDialog)
     EVT_CHAR_HOOK(mmEditPayeeDialog::OnComboKey)
     EVT_BUTTON(wxID_CANCEL, mmEditPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmEditPayeeDialog::OnOk)
+    EVT_BUTTON(wxID_UP, mmEditPayeeDialog::OnMoveUp)
+    EVT_BUTTON(wxID_DOWN, mmEditPayeeDialog::OnMoveDown)
+    EVT_GRID_CELL_CHANGED(mmEditPayeeDialog::OnPatternTableChanged)
 wxEND_EVENT_TABLE()
 
 mmEditPayeeDialog::mmEditPayeeDialog()
@@ -64,6 +67,7 @@ m_payee(payee)
 mmEditPayeeDialog::~mmEditPayeeDialog()
 {
     Model_Infotable::instance().Set("EDITPAYEE_DIALOG_SIZE", GetSize());
+    m_patternTable->GetGridWindow()->Unbind(wxEVT_SIZE, &mmEditPayeeDialog::OnPatternTableSize, this);
 }
 
 void mmEditPayeeDialog::CreateControls()
@@ -114,6 +118,40 @@ void mmEditPayeeDialog::CreateControls()
     fgSizer1->Add(m_Notes, g_flagsExpand);
     mmToolTip(m_Notes, _("Enter notes to describe this budget entry"));
 
+    // Patterns
+    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Match Patterns\non Import")), g_flagsH);
+    wxBoxSizer* patternTable_Arranger = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* patternTable_Sizer = new wxBoxSizer(wxVERTICAL);
+    m_patternTable = new wxGrid(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+    m_patternTable->CreateGrid(1, 1);
+    m_patternTable->HideColLabels();
+    m_patternTable->SetRowLabelSize(20);
+    m_patternTable->DisableDragRowSize();
+    m_patternTable->GetGridWindow()->SetSize(m_patternTable->GetSize());
+    m_patternTable->SetColSize(0, m_patternTable->GetGridWindow()->GetSize().x);
+    m_patternTable->GetGridWindow()->Bind(wxEVT_SIZE, &mmEditPayeeDialog::OnPatternTableSize, this);
+    patternTable_Sizer->Add(m_patternTable, wxSizerFlags(g_flagsV).Expand().Proportion(0));
+    patternTable_Arranger->Add(patternTable_Sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
+    mmToolTip(m_patternTable->GetGridWindow(),
+        _("Enter any string to match this payee on import.\nPatterns are tested in the order entered here.") + "\n\n" +
+        _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
+        _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
+        _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
+        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.") + "\n" +
+        _("Use regex: to match using regular expressions."));
+
+    patternButton_Arranger = new wxBoxSizer(wxVERTICAL);
+    //Move up button
+    wxButton* itemButton_MoveUp = new wxButton(this, wxID_UP, wxString::FromUTF8("\u2B9D"), wxDefaultPosition, wxSize(20, -1));
+    patternButton_Arranger->Add(itemButton_MoveUp, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxBOTTOM,5));
+    
+    //Move down button
+    wxButton* itemButton_MoveDown = new wxButton(this, wxID_DOWN, wxString::FromUTF8("\u2B9F"), wxDefaultPosition, wxSize(20, -1));
+    patternButton_Arranger->Add(itemButton_MoveDown, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxTOP, 5));
+    patternTable_Arranger->Add(patternButton_Arranger, g_flagsH);
+    patternButton_Arranger->Show(false);
+    fgSizer1->Add(patternTable_Arranger, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
+
     //Buttons
     wxBoxSizer* bSizer3 = new wxBoxSizer(wxHORIZONTAL);
     bSizer1->Add(bSizer3, wxSizerFlags(g_flagsV).Center());
@@ -136,8 +174,22 @@ void mmEditPayeeDialog::fillControls()
     m_reference->SetValue(m_payee->NUMBER);
     m_website->SetValue(m_payee->WEBSITE);
     m_Notes->SetValue(m_payee->NOTES);
+    if (!m_payee->PATTERN.IsEmpty())
+    {
+        Document json_doc;
+        if (json_doc.Parse(m_payee->PATTERN.utf8_str()).HasParseError()) {
+            json_doc.Parse("{}");
+        }
+        int row = 0;
+        for (const auto& member : json_doc.GetObject()) {
+            m_patternTable->AppendRows();
+            m_patternTable->SetCellValue(row++, 0, member.value.GetString());
+        }
+
+    }
     const wxString category = Model_Category::full_name(m_payee->CATEGID);
-        m_category->ChangeValue(category);
+    m_category->ChangeValue(category);
+    ResizeDialog();
 }
 
 void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
@@ -162,6 +214,23 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
         m_payee->WEBSITE = m_website->GetValue();
         m_payee->NOTES = m_Notes->GetValue();
         m_payee->CATEGID = m_category->mmGetCategoryId();
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
+        int key = 0;
+        json_writer.StartObject();
+        for (int row = 0; row < m_patternTable->GetNumberRows(); row++)
+        {
+            wxString pattern = m_patternTable->GetCellValue(row, 0);
+            if (pattern == wxEmptyString) continue;
+            if (pattern.StartsWith("regex:")) {
+                wxRegEx regex(pattern.Right(pattern.length() - 6), wxRE_ICASE | wxRE_EXTENDED);
+                if (!regex.IsValid()) return;
+            }
+            json_writer.Key(wxString::Format("%i", key++).utf8_str());
+            json_writer.String(pattern.utf8_str());
+        }
+        json_writer.EndObject();
+        m_payee->PATTERN = wxString::FromUTF8(json_buffer.GetString());
         Model_Payee::instance().save(m_payee);
         mmWebApp::MMEX_WebApp_UpdatePayee();
     }
@@ -174,6 +243,116 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
 void mmEditPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_OK);
+}
+
+void mmEditPayeeDialog::OnMoveUp(wxCommandEvent& /*event*/)
+{
+    // ignore the last row
+    m_patternTable->DeselectRow(m_patternTable->GetNumberRows() - 1);
+
+    //wxGrid row and cell selections do not overlap, so need to get both and combine them
+    wxArrayInt selectedRows = m_patternTable->GetSelectedRows();
+    wxGridCellCoordsArray selectedCells = m_patternTable->GetSelectedCells();
+    for (int i = 0; i < selectedCells.GetCount(); i++) {
+        int row = selectedCells[i].GetRow();
+        if(selectedRows.Index(row) == wxNOT_FOUND)
+            selectedRows.Add(row);
+    }
+
+    // last movable row
+    int maxRow = m_patternTable->GetNumberRows() - 2;
+
+    // add the current working row (not always included in SelectedCells)
+    int cursorRow = m_patternTable->GetGridCursorRow();
+    if (cursorRow <= maxRow)
+    {
+        if (selectedRows.Index(cursorRow) == wxNOT_FOUND) selectedRows.Add(cursorRow);
+        // the cursor will move up one cell if not already at the top
+        if (cursorRow > 0) m_patternTable->MoveCursorUp(false);
+    }
+
+    //Loop over all rows
+    for (int i = 0; i < selectedRows.GetCount(); i++) {
+        // reselect the row (cleared by cursor move)
+        m_patternTable->SelectRow(selectedRows[i], true);
+        // we only want to move the cell up if the row above is not selected (so that selected blocks stay in order)
+        // and the cell isn't already in the first row
+        if (selectedRows[i] > 0 && selectedRows[i] <= maxRow && selectedRows.Index(selectedRows[i] - 1) == wxNOT_FOUND) {
+            // swap the cell contents with the cell above
+            wxString swapString = m_patternTable->GetCellValue(selectedRows[i] - 1, 0);
+            m_patternTable->SetCellValue(selectedRows[i] - 1, 0, m_patternTable->GetCellValue(selectedRows[i], 0));
+            m_patternTable->SetCellValue(selectedRows[i], 0, swapString);
+            // deselect old row & select row above
+            m_patternTable->DeselectRow(selectedRows[i]);
+            m_patternTable->SelectRow(selectedRows[i] - 1, true);
+            // remove the row from the array so that it is available for the next row
+            selectedRows.Remove(selectedRows[i]);
+            i--;
+        }
+    }
+
+    // If bottom row is now empty, remove it
+    if (m_patternTable->GetCellValue(maxRow, 0) == wxEmptyString)
+    {
+        m_patternTable->DeleteRows(m_patternTable->GetNumberRows() - 1);
+        m_patternTable->DeselectRow(m_patternTable->GetNumberRows() - 1);
+        ResizeDialog();
+    }
+}
+
+void mmEditPayeeDialog::OnMoveDown(wxCommandEvent& /*event*/)
+{
+    // ignore the last row
+    m_patternTable->DeselectRow(m_patternTable->GetNumberRows() - 1);
+
+    //wxGrid row and cell selections do not overlap, so need to get both and combine them
+    wxArrayInt selectedRows = m_patternTable->GetSelectedRows();
+    wxGridCellCoordsArray selectedCells = m_patternTable->GetSelectedCells();
+    for (int i = 0; i < selectedCells.GetCount(); i++) {
+        int row = selectedCells[i].GetRow();
+        if (selectedRows.Index(row) == wxNOT_FOUND)
+            selectedRows.Add(row);
+    }
+
+    // last movable row
+    int maxRow = m_patternTable->GetNumberRows() - 2;
+
+    // add the current working row (not always included in SelectedCells)
+    int cursorRow = m_patternTable->GetGridCursorRow();
+    if (cursorRow < maxRow)
+    {
+        if (selectedRows.Index(cursorRow) == wxNOT_FOUND) selectedRows.Add(cursorRow);
+        // the cursor will move down one cell if not already at the bottom
+        m_patternTable->MoveCursorDown(false);
+    }
+    else if (cursorRow == maxRow) m_patternTable->SelectRow(cursorRow);
+
+    //Loop over all rows (in reverse order)
+    for (int i = selectedRows.GetCount() - 1; i >= 0; i--) {
+        // reselect the row (cleared by cursor move)
+        m_patternTable->SelectRow(selectedRows[i], true);
+        // we only want to move the cell up if the row below is not selected (so that selected blocks stay in order)
+        // and the cell isn't already in the last row
+        if (selectedRows[i] < maxRow && selectedRows.Index(selectedRows[i] + 1) == wxNOT_FOUND) {
+            // swap the cell contents with the cell below
+            wxString swapString = m_patternTable->GetCellValue(selectedRows[i] + 1, 0);
+            m_patternTable->SetCellValue(selectedRows[i] + 1, 0, m_patternTable->GetCellValue(selectedRows[i], 0));
+            m_patternTable->SetCellValue(selectedRows[i], 0, swapString);
+            // deselect old row & select row below
+            m_patternTable->DeselectRow(selectedRows[i]);
+            m_patternTable->SelectRow(selectedRows[i] + 1, true);
+            // remove the row from the array so that it is available for the next row
+            selectedRows.Remove(selectedRows[i]);
+        }
+    }
+
+    // If bottom row is now empty, remove it
+    if (m_patternTable->GetCellValue(maxRow, 0) == wxEmptyString)
+    {
+        m_patternTable->DeleteRows(m_patternTable->GetNumberRows() - 1);
+        m_patternTable->DeselectRow(m_patternTable->GetNumberRows() - 1);
+        ResizeDialog();
+    }
 }
 
 void mmEditPayeeDialog::OnComboKey(wxKeyEvent& event)
@@ -193,6 +372,47 @@ void mmEditPayeeDialog::OnComboKey(wxKeyEvent& event)
         }
     }
     event.Skip();
+}
+
+void mmEditPayeeDialog::OnPatternTableChanged(wxGridEvent& event)
+{
+    int row = event.GetRow();
+    // Reset cell text color
+    m_patternTable->SetCellTextColour(row, 0, m_patternTable->GetDefaultCellTextColour());
+    // Check the regex and format the text red if it is invalid
+    wxString pattern = m_patternTable->GetCellValue(row, 0);
+    if (pattern.StartsWith("regex:")) {
+        wxRegEx regex(pattern.Right(pattern.length() - 6), wxRE_ICASE | wxRE_EXTENDED);
+        if (!regex.IsValid())
+            m_patternTable->SetCellTextColour(row, 0, *wxRED);
+    }
+
+    // if text was entered in the last row, add a row
+    if (row == m_patternTable->GetNumberRows() - 1 && m_patternTable->GetCellValue(row, 0) != wxEmptyString)
+        m_patternTable->AppendRows();
+    // if text was deleted from the second to last row, delete a row so only one blank row is at the bottom
+    else if (row == m_patternTable->GetNumberRows() - 2 && m_patternTable->GetCellValue(row, 0) == wxEmptyString)
+        m_patternTable->DeleteRows(m_patternTable->GetNumberRows() - 1);
+    ResizeDialog();
+}
+
+void mmEditPayeeDialog::OnPatternTableSize(wxSizeEvent& event)
+{
+    m_patternTable->SetColSize(0, m_patternTable->GetGridWindow()->GetSize().x);
+}
+
+void mmEditPayeeDialog::ResizeDialog()
+{
+    // remove current size limits
+    SetSizeHints(GetMinWidth(), -1, -1, -1);
+
+    // show/hide the move buttons if there is more than one pattern
+    patternButton_Arranger->Show(m_patternTable->GetNumberRows() > 2);
+    Layout();
+    int width = GetSize().GetWidth();
+    wxSize bestSize = GetBestSize();
+    SetSizeHints(GetMinWidth(), bestSize.GetHeight(), -1, bestSize.GetHeight());
+    SetSize(wxSize((bestSize.GetWidth() > width ? bestSize.GetWidth() : width), bestSize.GetHeight()));
 }
 
 // mmPayeeDialog
@@ -218,7 +438,7 @@ mmPayeeDialog::~mmPayeeDialog()
     Model_Infotable::instance().Set("PAYEES_DIALOG_SIZE", GetSize());
 }
 
-mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString &name) :
+mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :
     m_payee_id(-1)
     , m_maskTextCtrl(nullptr)
     , payeeListBox_(nullptr)
@@ -226,9 +446,10 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     , m_payee_rename(-1)
     , m_payee_choose(payee_choose)
     , refreshRequested_(false)
-    , m_sort (PAYEE_NAME)
-    , m_lastSort (PAYEE_NAME)
-    , m_sortReverse (false)
+    , m_sort(PAYEE_NAME)
+    , m_lastSort(PAYEE_NAME)
+    , m_sortReverse(false)
+    , m_init_selected_payee(payee_selected)
 {
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_HIDDEN] = _("Hidden");
@@ -237,6 +458,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     ColName_[PAYEE_NUMBER] = _("Reference");
     ColName_[PAYEE_WEBSITE] = _("Website");
     ColName_[PAYEE_NOTES] = _("Notes");
+    ColName_[PAYEE_PATTERN] = _("Match Pattern");
 
 
     this->SetFont(parent->GetFont());
@@ -297,7 +519,7 @@ void mmPayeeDialog::CreateControls()
         wxLC_REPORT | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
     payeeListBox_->SetMinSize(wxSize(250, 100));
 
-    wxListItem col0, col1, col2, col3, col4, col5;
+    wxListItem col0, col1, col2, col3, col4, col5, col6;
 
     col0.SetId(PAYEE_NAME);
     col0.SetText(ColName_[PAYEE_NAME]);
@@ -330,6 +552,11 @@ void mmPayeeDialog::CreateControls()
     col5.SetWidth(150);
     payeeListBox_->InsertColumn(5, col5);
 
+    col6.SetId(PAYEE_PATTERN);
+    col6.SetText(ColName_[PAYEE_PATTERN]);
+    col6.SetWidth(150);
+    payeeListBox_->InsertColumn(6, col6);
+
     mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -358,7 +585,7 @@ void mmPayeeDialog::CreateControls()
     buttons_sizer->Add(buttonOK, g_flagsH);
     buttons_sizer->Add(btnCancel, g_flagsH);
 
-    this->SetSizer(mainBoxSizer);
+    this->SetSizerAndFit(mainBoxSizer);
 }
 
 void mmPayeeDialog::fillControls()
@@ -391,7 +618,10 @@ void mmPayeeDialog::fillControls()
         break;   
     case PAYEE_NOTES:
         std::stable_sort(payees.begin(), payees.end(), SorterByNOTES());
-        break;    
+        break;
+    case PAYEE_PATTERN:
+        std::stable_sort(payees.begin(), payees.end(), SorterByPATTERN());
+        break;
     case PAYEE_NAME:
     default:
         std::stable_sort(payees.begin(), payees.end(), SorterByPAYEENAME());
@@ -410,6 +640,9 @@ void mmPayeeDialog::fillControls()
         payeeListBox_->InsertItem(item);
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID);
         payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);
+        if (!m_init_selected_payee.IsEmpty() && payee.PAYEENAME.CmpNoCase(m_init_selected_payee) <= 0) {
+            payeeListBox_->Select(idx);
+        }
         payeeListBox_->SetItem(idx, 1, payee.ACTIVE == 0 ? L"\u2713" : L"");        
         payeeListBox_->SetItem(idx, 2, full_category_name);
         payeeListBox_->SetItem(idx, 3, payee.NUMBER);
@@ -417,9 +650,23 @@ void mmPayeeDialog::fillControls()
         wxString value = payee.NOTES;
         value.Replace("\n", " ");
         payeeListBox_->SetItem(idx, 5, value);
-
+        value = "";
+        if (!payee.PATTERN.IsEmpty())
+        {
+            Document json_doc;
+            if (json_doc.Parse(payee.PATTERN.utf8_str()).HasParseError()) {
+                json_doc.Parse("{}");
+            }
+            for (auto& member : json_doc.GetObject()) {
+                if (!value.IsEmpty()) value.Append(" ");
+                value.Append(member.value.GetString());
+            }
+        }
+        payeeListBox_->SetItem(idx, 6, value);
+        
         idx++;
     }
+    payeeListBox_->EnsureVisible(payeeListBox_->GetFirstSelected());
     this->Thaw();
 }
 

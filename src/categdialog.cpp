@@ -143,6 +143,10 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     mmSetSize(this);
     Centre();
     SetIcon(mmex::getProgramIcon());
+
+    m_treeCtrl->EnsureVisible(m_selectedItemId);
+    m_treeCtrl->SelectItem(m_selectedItemId);
+    if (m_init_selected_categ_id != -1) m_treeCtrl->SetFocus();
     return TRUE;
 }
 

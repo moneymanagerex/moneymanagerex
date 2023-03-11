@@ -63,6 +63,8 @@ private:
     void OnDecimalChange(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
+    void OnShowPayeeDialog(wxMouseEvent& event);
+    void OnShowCategDialog(wxMouseEvent& event);
     void save_file_name();
     bool mmReadQIFFile();
     int getOrCreateAccounts();
@@ -76,12 +78,14 @@ private:
     void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
     void saveSplit();
     void refreshTabs(int tabs);
+    void compilePayeeRegEx();
+    void validatePayees();
 
     //QIF paragraphs represented like maps type = data
     std::vector <std::unordered_map <int, wxString> > vQIF_trxs_;
     std::unordered_map <wxString, std::unordered_map <int, wxString> > m_QIFaccounts;
     std::unordered_map <wxString, int> m_QIFaccountsID;
-    std::unordered_map <wxString, int> m_QIFpayeeNames;
+    std::unordered_map <wxString, std::tuple<int, wxString, wxString>> m_QIFpayeeNames;
     wxArrayString m_payee_names;
     std::unordered_map <wxString, int> m_QIFcategoryNames;
     std::vector <Model_Splittransaction::Cache> m_splitDataSets;
@@ -112,12 +116,16 @@ private:
     wxChoice* accountDropDown_;
     wxCheckBox* accountNumberCheckBox_;
     wxCheckBox* payeeIsNotesCheckBox_;
+    wxCheckBox* payeeMatchCheckBox_;
+    wxCheckBox* payeeMatchAddNotes_;
     wxButton* btnOK_;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
     wxCheckBox* colorCheckBox_;
     mmColorButton* mmColorBtn_;
 
     bool payeeIsNotes_; //Include payee field in notes
+    std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
+    bool payeeRegExInitialized_;
 
     enum EColumn
     {
