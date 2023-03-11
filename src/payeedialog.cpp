@@ -183,7 +183,7 @@ void mmEditPayeeDialog::fillControls()
         int row = 0;
         for (const auto& member : json_doc.GetObject()) {
             m_patternTable->AppendRows();
-            m_patternTable->SetCellValue(row++, 0, member.value.GetString());
+            m_patternTable->SetCellValue(row++, 0, wxString::FromUTF8(member.value.GetString()));
         }
 
     }
@@ -658,8 +658,8 @@ void mmPayeeDialog::fillControls()
                 json_doc.Parse("{}");
             }
             for (auto& member : json_doc.GetObject()) {
-                if (!value.IsEmpty()) value.Append(" ");
-                value.Append(member.value.GetString());
+                if (!value.IsEmpty()) { value.Append(" "); }
+                value.Append(wxString::FromUTF8(member.value.GetString()));
             }
         }
         payeeListBox_->SetItem(idx, 6, value);

@@ -951,24 +951,28 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
 void mmQIFImportDialog::compilePayeeRegEx() {
 
     // pre-compile all payee match strings if not already done
-    if (payeeMatchCheckBox_->IsChecked() && !payeeRegExInitialized_) {
+    if (payeeMatchCheckBox_->IsChecked() && !payeeRegExInitialized_)
+    {
         // only look at payees that have a match pattern set
         Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PATTERN(wxEmptyString, NOT_EQUAL));
-        for (auto& payee : payees) {
+        for (const auto& payee : payees)
+        {
             Document json_doc;
             if (json_doc.Parse(payee.PATTERN.utf8_str()).HasParseError()) {
                 continue;
             }
             int key = -1;
             // loop over all keys in the pattern json data
-            for (auto& member : json_doc.GetObject()) {
+            for (const auto& member : json_doc.GetObject())
+            {
                 key++;
-                wxString pattern = member.value.GetString();
+                const auto pattern = wxString::FromUTF8(member.value.GetString());
                 // add the pattern string (for non-regex match, match notes, and the payee tab preview)
                 payeeMatchPatterns_[std::make_pair(payee.PAYEEID, payee.PAYEENAME)][key].first = pattern;
                 // complie the regex if necessary
                 if (pattern.StartsWith("regex:")) {
-                    payeeMatchPatterns_[std::make_pair(payee.PAYEEID, payee.PAYEENAME)][key].second.Compile(pattern.Right(pattern.length() - 6), wxRE_ICASE | wxRE_EXTENDED);
+                    payeeMatchPatterns_[std::make_pair(payee.PAYEEID, payee.PAYEENAME)][key].second
+                        .Compile(pattern.Right(pattern.length() - 6), wxRE_ICASE | wxRE_EXTENDED);
                 }
             }
         }
