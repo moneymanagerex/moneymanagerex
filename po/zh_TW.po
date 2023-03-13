@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-11 14:00+0300\n"
-"PO-Revision-Date: 2023-03-11 11:08\n"
+"PO-Revision-Date: 2023-03-13 07:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -5827,7 +5827,7 @@ msgstr "使用本機格式\n"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
-msgstr ""
+msgstr "使用貨幣歷史"
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
@@ -5835,11 +5835,11 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
-msgstr ""
+msgstr "財務年度"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
-msgstr ""
+msgstr "起始日期"
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
@@ -5847,7 +5847,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:197
 msgid "Start Month"
-msgstr ""
+msgstr "起始月份"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Specify month for start of financial year"
@@ -5863,7 +5863,7 @@ msgstr "選擇當複製/貼上交易時使用原始交易時間或者目前交�
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "複製交易時使用原始日期"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
@@ -6102,7 +6102,7 @@ msgstr "指定欲顯示的帳目"
 
 #: optionsettingsview.cpp:89
 msgid "Category Delimiter"
-msgstr ""
+msgstr "類別間隔符號"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
