@@ -142,11 +142,11 @@ void mmEditPayeeDialog::CreateControls()
 
     patternButton_Arranger = new wxBoxSizer(wxVERTICAL);
     //Move up button
-    wxButton* itemButton_MoveUp = new wxButton(this, wxID_UP, wxString::FromUTF8("\u2B9D"), wxDefaultPosition, wxSize(20, -1));
+    wxBitmapButton* itemButton_MoveUp = new wxBitmapButton(this, wxID_UP, mmBitmapBundle(png::UPARROW, mmBitmapButtonSize));
     patternButton_Arranger->Add(itemButton_MoveUp, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxBOTTOM,5));
     
     //Move down button
-    wxButton* itemButton_MoveDown = new wxButton(this, wxID_DOWN, wxString::FromUTF8("\u2B9F"), wxDefaultPosition, wxSize(20, -1));
+    wxBitmapButton* itemButton_MoveDown = new wxBitmapButton(this, wxID_DOWN, mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
     patternButton_Arranger->Add(itemButton_MoveDown, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxTOP, 5));
     patternTable_Arranger->Add(patternButton_Arranger, g_flagsH);
     patternButton_Arranger->Show(false);
