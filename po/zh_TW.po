@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-11 14:00+0300\n"
-"PO-Revision-Date: 2023-03-13 07:51\n"
+"PO-Revision-Date: 2023-03-13 08:53\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,7 @@ msgstr "帳戶餘額少於限制, 不能為0"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
-msgstr "鳴謝"
+msgstr "額度"
 
 #: accountdialog.cpp:258
 msgid "Credit Limit:"
@@ -764,7 +764,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:242 maincurrencydialog.cpp:541
 #: payeedialog.cpp:613 stockdialog.cpp:336
 msgid "&Add "
-msgstr "添加 "
+msgstr "新增(&A) "
 
 #: attachmentdialog.cpp:356
 msgid "&Open "
@@ -2959,7 +2959,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:216 mmframereport.cpp:132
 msgid "Transactions"
-msgstr ""
+msgstr "交易紀錄"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1497
@@ -4286,7 +4286,7 @@ msgstr "銀行帳目"
 #: mmframe.cpp:463 mmframe.cpp:718 mmhomepage.cpp:695 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "信用卡帳戶"
 
 #: mmframe.cpp:464 mmframe.cpp:730 mmhomepage.cpp:697 reports/summary.cpp:262
 #: reports/summary.cpp:302
@@ -4581,7 +4581,7 @@ msgstr ""
 
 #: mmframe.cpp:1532 optionsettingsview.cpp:104
 msgid "Show Tooltips"
-msgstr ""
+msgstr "顯示功能提示"
 
 #: mmframe.cpp:1534 optionsettingsview.cpp:110
 msgid "Show Money Tips"
@@ -4685,7 +4685,7 @@ msgstr ""
 
 #: mmframe.cpp:1661 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "主題管理"
 
 #: mmframe.cpp:1667
 msgid "Transaction Report &Filter..."
@@ -5343,7 +5343,7 @@ msgstr ""
 #: mmhomepage.cpp:428
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "收入 vs 支出: %s"
 
 #: mmhomepage.cpp:438 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:426 reports/categexp.cpp:497 reports/incexpenses.cpp:88
@@ -5358,7 +5358,7 @@ msgstr "盈 / 虧:"
 
 #: mmhomepage.cpp:446
 msgid "Income/Expenses"
-msgstr ""
+msgstr "收入/支出"
 
 #: mmhomepage.cpp:470
 msgid "Transaction Statistics"
@@ -5374,11 +5374,11 @@ msgstr ""
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "股票"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
-msgstr ""
+msgstr "總資產"
 
 #: mmhomepage.cpp:621
 msgid "Other Assets"
@@ -5471,7 +5471,7 @@ msgstr "支票/存款/信用卡"
 
 #: model/Model_Account.cpp:35
 msgid "Credit Card"
-msgstr ""
+msgstr "信用卡"
 
 #: model/Model_Account.cpp:36
 msgid "Loan"
@@ -5565,7 +5565,7 @@ msgstr ""
 
 #: model/Model_Billsdeposits.cpp:316
 msgid "Credit Limit"
-msgstr ""
+msgstr "信用額度"
 
 #: model/Model_Billsdeposits.cpp:322
 msgid "MMEX Recurring Transaction Check"
@@ -5652,7 +5652,7 @@ msgstr ""
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "套用(&A) "
 
 #: optiondialog.cpp:219
 #, c-format
