@@ -97,7 +97,7 @@ private:
     template<class MODEL, class DATA = typename MODEL::Data>
     bool mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
     template<class MODEL, class DATA = typename MODEL::DATA>
-    bool mmIsNoteMatches(const DATA& tran);
+    bool mmIsNoteMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
 
     void setTransferTypeCheckBoxes();
 
