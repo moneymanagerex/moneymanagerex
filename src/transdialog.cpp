@@ -67,7 +67,10 @@ wxEND_EVENT_TABLE()
 
 mmTransDialog::~mmTransDialog()
 {
-    Model_Infotable::instance().Set("TRANSACTION_DIALOG_SIZE", GetSize());
+    wxSize size = GetSize();
+    if (m_custom_fields->IsCustomPanelShown())
+        size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
+    Model_Infotable::instance().Set("TRANSACTION_DIALOG_SIZE", size);
 }
 
 void mmTransDialog::SetEventHandlers()
