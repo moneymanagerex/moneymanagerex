@@ -47,10 +47,14 @@ public:
 
     virtual int ShowModal();
 
-    bool mmIsRecordMatches(const Model_Checking::Data &tran
+    int mmIsRecordMatches(const Model_Checking::Data &tran
         , const std::map<int, Model_Splittransaction::Data_Set>& split);
-    bool mmIsRecordMatches(const Model_Billsdeposits::Data &tran
+    int mmIsRecordMatches(const Model_Billsdeposits::Data &tran
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
+    template<class MODEL, class DATA = typename MODEL::DATA>
+    bool mmIsRecordMatches(const DATA& tran);
+    template<class MODEL, class DATA = typename MODEL::DATA>
+    bool mmIsSplitMatches(const DATA& split);
     const wxString mmGetDescriptionToolTip() const;
     const wxString mmGetCategoryPattern() const;
     void mmGetDescription(mmHTMLBuilder &hb);
@@ -92,12 +96,9 @@ private:
     double mmGetAmountMax() const;
     double mmGetAmountMin() const;
 
-    template<class MODEL, class DATA = typename MODEL::DATA>
-    bool mmIsPayeeMatches(const DATA &tran);
-    template<class MODEL, class DATA = typename MODEL::Data>
-    bool mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
-    template<class MODEL, class DATA = typename MODEL::DATA>
-    bool mmIsNoteMatches(const DATA& tran);
+    bool mmIsPayeeMatches(int payeeid);
+    bool mmIsCategoryMatches(int categid);
+    bool mmIsNoteMatches(const wxString& note);
 
     void setTransferTypeCheckBoxes();
 
@@ -121,7 +122,7 @@ private:
     bool mmIsNotesChecked() const;
     bool mmIsColorChecked() const;
     bool mmIsCustomFieldChecked() const;
-    bool mmIsCustomFieldMatches(const Model_Checking::Data& tran) const;
+    bool mmIsCustomFieldMatches(int transid) const;
 
     /// Creation
     bool Create(wxWindow* parent
