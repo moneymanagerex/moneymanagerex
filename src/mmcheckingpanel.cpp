@@ -254,9 +254,10 @@ void mmCheckingPanel::filterTable()
             }
             else
             {
+                int splitIndex = 1;
                 for (const auto& split : full_tran.m_splits)
                 {
-                    full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", split.SPLITTRANSID));
+                    full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
                     full_tran.CATEGID = split.CATEGID;
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;

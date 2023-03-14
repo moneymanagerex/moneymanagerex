@@ -444,9 +444,10 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())
         {
+            int splitIndex = 1;
             for (const auto& split : full_tran.m_splits)
             {
-                full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", split.SPLITTRANSID));
+                full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
                 full_tran.CATEGID = split.CATEGID;
                 full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
