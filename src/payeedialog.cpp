@@ -125,7 +125,7 @@ void mmEditPayeeDialog::CreateControls()
     m_patternTable = new wxGrid(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_patternTable->CreateGrid(1, 1);
     m_patternTable->HideColLabels();
-    m_patternTable->SetRowLabelSize(20);
+    m_patternTable->SetRowLabelSize(wxGRID_AUTOSIZE);
     m_patternTable->DisableDragRowSize();
     m_patternTable->GetGridWindow()->SetSize(m_patternTable->GetSize());
     m_patternTable->SetColSize(0, m_patternTable->GetGridWindow()->GetSize().x);
