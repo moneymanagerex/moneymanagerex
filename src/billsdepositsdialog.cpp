@@ -99,7 +99,10 @@ mmBDDialog::mmBDDialog()
 
 mmBDDialog::~mmBDDialog()
 {
-    Model_Infotable::instance().Set("RECURRINGTRANS_DIALOG_SIZE", GetSize());
+    wxSize size = GetSize();
+    if (m_custom_fields->IsCustomPanelShown())
+        size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
+    Model_Infotable::instance().Set("RECURRINGTRANS_DIALOG_SIZE", size);
 }
 
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOccur)
