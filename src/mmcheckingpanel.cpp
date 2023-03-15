@@ -261,11 +261,13 @@ void mmCheckingPanel::filterTable()
                     full_tran.CATEGID = split.CATEGID;
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-                    full_tran.NOTES = split.NOTES;
+                    full_tran.NOTES = tran.NOTES;
                     Model_Checking::Data split_tran = full_tran;
-                    if (m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(split_tran))
+                    if (m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(split_tran) ||
+                        m_trans_filter_dlg->mmIsSplitMatches<Model_Splittransaction>(split))
                     {
                         full_tran.AMOUNT = Model_Checking::amount(split_tran, m_AccountID);
+                        full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
                         m_listCtrlAccount->m_trans.push_back(full_tran);
                         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
                             m_filteredBalance += full_tran.AMOUNT;
