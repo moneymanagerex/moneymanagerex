@@ -51,7 +51,7 @@ public:
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-
+        wxString displayID;
         double AMOUNT;
         double BALANCE;
         wxArrayString ATTACHMENT_DESCRIPTION;

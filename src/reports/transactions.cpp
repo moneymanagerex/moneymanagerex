@@ -240,7 +240,7 @@ table {
                     && m_transDialog->getTypeCheckBox() && */
                 if (showColumnById(0)) {
                     hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
-                        , wxString::Format("%i", transaction.TRANSID), true);
+                        , transaction.displayID, true);
                 }
                 if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString(), true);
                 if (showColumnById(2)) hb.addTableCellDate(transaction.TRANSDATE);
@@ -439,31 +439,24 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all())
     {
-        if (!dlg.get()->mmIsRecordMatches(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())
         {
-            bool catFilter = dlg.get()->mmIsCategoryChecked();
-            wxString value = dlg.get()->mmGetCategoryPattern();
-            if (dlg.get()->mmIsCategorySubCatChecked()) value = value + ".*";
-            wxRegEx pattern("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
-            
+            int splitIndex = 1;
             for (const auto& split : full_tran.m_splits)
             {
-                const auto& categ = Model_Category::full_name(split.CATEGID);
-
-                if (!catFilter || pattern.Matches(categ)) {
-                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
-                    full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-                    trans_.push_back(full_tran);
-                    trans_.back().NOTES += (full_tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES;
-                }
+                full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
+                full_tran.CATEGID = split.CATEGID;
+                full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
+                full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+                full_tran.NOTES = split.NOTES;
+                Model_Checking::Data split_tran = full_tran;
+                if (dlg.get()->mmIsRecordMatches<Model_Checking>(split_tran)) trans_.push_back(full_tran);
             }
         }
-        else
-            trans_.push_back(full_tran);
+        else if (dlg.get()->mmIsRecordMatches<Model_Checking>(tran)) trans_.push_back(full_tran);
     }
 
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());

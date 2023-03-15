@@ -175,11 +175,14 @@ void mmCheckingPanel::filterTable()
         if (ignore_future) {
             if (tran.TRANSDATE > today_date_string) continue;
         }
-
+        Model_Checking::Full_Data full_tran(tran, splits);
+        bool expandSplits = false;
         if (m_transFilterActive)
-        {
-            if (!m_trans_filter_dlg->mmIsRecordMatches(tran, splits))
+        { 
+            int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(tran, splits);
+            if (!txnMatch)
                 continue;
+            else expandSplits = txnMatch < full_tran.m_splits.size() + 1;
         }
         else
         {
@@ -190,7 +193,6 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        Model_Checking::Full_Data full_tran(tran, splits);
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
@@ -201,9 +203,6 @@ void mmCheckingPanel::filterTable()
                 full_tran.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
             }
         }
-
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
-            m_filteredBalance += transaction_amount;
 
         full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
         full_tran.UDFC02_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
@@ -247,7 +246,33 @@ void mmCheckingPanel::filterTable()
             }
         }
         if ((isTrash_ && !full_tran.DELETEDTIME.IsEmpty()) || !(isTrash_ || !full_tran.DELETEDTIME.IsEmpty()))
-            m_listCtrlAccount->m_trans.push_back(full_tran);
+        {
+            if (!expandSplits) {
+                m_listCtrlAccount->m_trans.push_back(full_tran);
+                if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
+                    m_filteredBalance += transaction_amount;
+            }
+            else
+            {
+                int splitIndex = 1;
+                for (const auto& split : full_tran.m_splits)
+                {
+                    full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
+                    full_tran.CATEGID = split.CATEGID;
+                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
+                    full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+                    full_tran.NOTES = split.NOTES;
+                    Model_Checking::Data split_tran = full_tran;
+                    if (m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(split_tran))
+                    {
+                        full_tran.AMOUNT = Model_Checking::amount(split_tran, m_AccountID);
+                        m_listCtrlAccount->m_trans.push_back(full_tran);
+                        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
+                            m_filteredBalance += full_tran.AMOUNT;
+                    }
+                }
+            }
+        }
     }
 }
 

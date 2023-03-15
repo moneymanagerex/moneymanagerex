@@ -386,7 +386,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
 , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
-
+    displayID = wxString::Format("%i", r.TRANSID);
     if (Model_Checking::type(r) == Model_Checking::TRANSFER) {
         TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
         PAYEENAME = TOACCOUNTNAME;
@@ -413,6 +413,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     if (it != splits.end()) m_splits = it->second;
 
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
+    displayID = wxString::Format("%i", r.TRANSID);
     if (Model_Checking::type(r) == Model_Checking::TRANSFER)
     {
         TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);

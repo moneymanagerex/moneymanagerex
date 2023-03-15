@@ -1693,7 +1693,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
-        return wxString::Format("%i", tran.TRANSID).Trim();
+        return tran.displayID;
     case TransactionListCtrl::COL_ACCOUNT:
         return tran.ACCOUNTNAME;
     case TransactionListCtrl::COL_DATE:
@@ -1709,9 +1709,12 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_NOTES:
     {
         value = tran.NOTES;
-        auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(tran.TRANSID));
-        for (const auto& split : splits)
-            value += wxString::Format(" %s", split.NOTES);
+        if (!tran.displayID.Contains("."))
+        {
+            auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(tran.TRANSID));
+            for (const auto& split : splits)
+                value += wxString::Format(" %s", split.NOTES);
+        }
         value.Replace("\n", " ");
         if (tran.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());

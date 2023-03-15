@@ -635,7 +635,6 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
-    notesEdit_->SetHint("*");
     mmToolTip(notesEdit_,
         _("Enter any string to find it in transaction notes") + "\n\n" +
         _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
@@ -1195,10 +1194,9 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     }
 }
 
-template<class MODEL, class DATA>
-bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
+bool mmFilterTransactionsDialog::mmIsPayeeMatches(int payeeID)
 {
-    const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+    const Model_Payee::Data* payee = Model_Payee::instance().get(payeeID);
     if (payee) {
         const wxString value = cbPayee_->mmGetPattern();
         if (!value.empty()) {
@@ -1211,43 +1209,28 @@ bool mmFilterTransactionsDialog::mmIsPayeeMatches(const DATA &tran)
     return false;
 }
 
-template<class MODEL, class DATA>
-bool mmFilterTransactionsDialog::mmIsNoteMatches(const DATA& tran)
+bool mmFilterTransactionsDialog::mmIsNoteMatches(const wxString& note)
 {
     const wxString value = mmGetNotes();
     if (!value.empty()) {
-        if (value.StartsWith("regex:")) {
+        if (value.StartsWith("regex:"))
+        {
             wxRegEx pattern("^(" + value.Right(value.length() - 6).ToStdString() + ")$", wxRE_ICASE | wxRE_EXTENDED);
-            if (pattern.IsValid() && pattern.Matches(tran.NOTES)) return true;
-            else return false;
+            return (pattern.IsValid() && pattern.Matches(note));
         }
-        else return tran.NOTES.Lower().Matches(value.Lower());
+        else
+            return note.Lower().Matches(value.Lower());
     }
-    else return tran.NOTES.empty();
+    else return note.IsEmpty();
+}
+
+bool mmFilterTransactionsDialog::mmIsCategoryMatches(int categid)
+{
+    return m_selected_categories_id.Index(categid) != wxNOT_FOUND;
 }
 
 template<class MODEL, class DATA>
-bool mmFilterTransactionsDialog::mmIsCategoryMatches(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
-{
-    wxArrayInt trx_categories;
-    const auto& it = splits.find(tran.id());
-    if (it == splits.end()) {
-        trx_categories.Add(tran.CATEGID);
-    }
-    else {
-        for (const auto& split : it->second) {
-            trx_categories.Add(split.CATEGID);
-        }
-    }
-
-    for (const auto& item : trx_categories)
-        if (m_selected_categories_id.Index(item) != wxNOT_FOUND) return true;
-
-    return false;
-}
-
-bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &tran
-    , const std::map<int, Model_Splittransaction::Data_Set>& split)
+bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
@@ -1257,8 +1240,8 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
         ok = false;
     else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
-    else if (mmIsPayeeChecked() && !mmIsPayeeMatches<Model_Checking>(tran)) ok = false;
-    else if (mmIsCategoryChecked() && !mmIsCategoryMatches<Model_Checking>(tran, split)) ok = false;
+    else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.PAYEEID)) ok = false;
+    else if (mmIsCategoryChecked() && !mmIsCategoryMatches(tran.CATEGID)) ok = false;
     else if (mmIsStatusChecked() && !mmIsStatusMatches(tran.STATUS)) ok = false;
     else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.ACCOUNTID, tran.TOACCOUNTID)) ok = false;
     else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > tran.TRANSAMOUNT) ok = false;
@@ -1266,33 +1249,45 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data &t
     else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
-    else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Checking>(tran)) ok = false;
+    else if (mmIsNotesChecked() && !mmIsNoteMatches(tran.NOTES)) ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
         ok = false;
-    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran))
-        ok = false;
+    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id())) ok = false;
     return ok;
 }
-bool mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
+
+template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::mmIsSplitMatches(const DATA& split)
 {
     bool ok = true;
-    if (mmIsAccountChecked()
-        && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND
-        && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
-        ok = false;
-    else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date && tran.TRANSDATE > m_end_date))
-        ok = false;
-    else if (mmIsPayeeChecked() && !mmIsPayeeMatches<Model_Billsdeposits>(tran)) ok = false;
-    else if (mmIsCategoryChecked() && !mmIsCategoryMatches<Model_Billsdeposits>(tran, split)) ok = false;
-    else if (mmIsStatusChecked() && !mmIsStatusMatches(tran.STATUS)) ok = false;
-    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.ACCOUNTID, tran.TOACCOUNTID)) ok = false;
-    else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > tran.TRANSAMOUNT) ok = false;
-    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < tran.TRANSAMOUNT) ok = false;
-    else if (mmIsNumberChecked() && (mmGetNumber().empty()
-        ? !tran.TRANSACTIONNUMBER.empty()
-        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
-        ok = false;
-    else if (mmIsNotesChecked() && !mmIsNoteMatches<Model_Billsdeposits>(tran)) ok = false;
+    if (mmIsCategoryChecked() && !mmIsCategoryMatches(split.CATEGID)) ok = false;
+    else if (mmIsNotesChecked() && !mmIsNoteMatches(split.NOTES)) ok = false;
+    else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > split.SPLITTRANSAMOUNT) ok = false;
+    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < split.SPLITTRANSAMOUNT) ok = false;
+    return ok;
+}
+
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
+{
+    int ok = mmIsRecordMatches<Model_Checking>(tran);
+    const auto& it = splits.find(tran.id());
+    if (it != splits.end()) {
+        for (const auto& split : it->second) {
+            ok += mmIsSplitMatches<Model_Splittransaction>(split);
+        }
+    }
+    return ok;
+}
+
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data& tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits)
+{
+    int ok = mmIsRecordMatches<Model_Billsdeposits>(tran);
+    const auto& it = splits.find(tran.id());
+    if (it != splits.end()) {
+        for (const auto& split : it->second) {
+            ok += mmIsSplitMatches<Model_Budgetsplittransaction>(split);
+        }
+    }
     return ok;
 }
 
@@ -1651,13 +1646,13 @@ bool mmFilterTransactionsDialog::mmIsCustomFieldChecked() const
     return (cf.size() > 0);
 }
 
-bool mmFilterTransactionsDialog::mmIsCustomFieldMatches(const Model_Checking::Data& tran) const
+bool mmFilterTransactionsDialog::mmIsCustomFieldMatches(int transid) const
 {
     const auto cf = m_custom_fields->GetActiveCustomFields();
     int matched = 0;
     for (const auto& i : cf)
     {
-        auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(tran.TRANSID));
+        auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(transid));
         for (const auto& j : DataSet)
         {
             if (i.first == j.FIELDID)
