@@ -1273,7 +1273,10 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            ok += mmIsSplitMatches<Model_Splittransaction>(split);
+            Model_Splittransaction::Data splitWithTranNote = split;
+            splitWithTranNote.NOTES = tran.NOTES;
+            ok += (mmIsSplitMatches<Model_Splittransaction>(split) ||
+                mmIsSplitMatches<Model_Splittransaction>(splitWithTranNote));
         }
     }
     return ok;
@@ -1285,7 +1288,10 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Dat
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            ok += mmIsSplitMatches<Model_Budgetsplittransaction>(split);
+            Model_Budgetsplittransaction::Data splitWithTranNote = split;
+            splitWithTranNote.NOTES = tran.NOTES;
+            ok += (mmIsSplitMatches<Model_Budgetsplittransaction>(split) ||
+                mmIsSplitMatches<Model_Budgetsplittransaction>(splitWithTranNote));
         }
     }
     return ok;
