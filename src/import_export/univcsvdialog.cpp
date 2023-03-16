@@ -1519,13 +1519,9 @@ void mmUnivCSVDialog::update_preview()
 
         std::unique_ptr<mmDates> dParser(new mmDates);
 
-        int i = m_spinIgnoreLastRows_->GetValue();
-
         // Import- Add rows to preview
         for (unsigned int row = 0; row < totalLines; row++)
         {
-            if (row >= MAX_ROWS_IN_PREVIEW && row < (totalLines - MAX_ROWS_IN_PREVIEW - i))
-                continue;
             unsigned int col = 0;
             wxString buf;
             buf.Printf("%d", col);
