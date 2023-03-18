@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-11 14:00+0300\n"
-"PO-Revision-Date: 2023-03-11 11:07\n"
+"PO-Revision-Date: 2023-03-18 17:03\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "חשבון חדש"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "פתיחת מסד נתונים שנפתח לאחרונה"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&מסד נתונים חדש"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "על מנת להתחיל, יש ליצור קובץ מסד נתונים �
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "פתיחת מסד נתונים &קיים"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -339,15 +339,15 @@ msgstr "פתיחת מסד נתונים קיים,  קובץ עם סיומת (mmb.
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&שפת מנשק משתמש"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "החלפת שפת מנשק משתמש"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&מדריך למשתמש"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -360,7 +360,7 @@ msgstr "&אתר מרשתת"
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "ביקור באתר %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
