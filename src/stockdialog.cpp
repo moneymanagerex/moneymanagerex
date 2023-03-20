@@ -903,10 +903,13 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_history_date_ctrl->GetValue().FormatISODate()));
         m_price_listbox->SetItem(i, 1, listStr);
     }
-    //refresh m_stock to get updated attributes
-    m_stock = Model_Stock::instance().get(m_stock->STOCKID);
-    m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, Option::instance().SharePrecision());
-    m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), account));
+    if (i == m_price_listbox->GetNextItem(-1)) // changed the current price/value
+    {
+        //refresh m_stock to get updated attributes
+        m_stock = Model_Stock::instance().get(m_stock->STOCKID);
+        m_current_price_ctrl->SetValue(Model_Account::toString(m_stock->CURRENTPRICE, account, Option::instance().SharePrecision()));
+        m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), account));
+    }
 }
 
 void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
@@ -926,11 +929,6 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();
-    Model_Stock::UpdateCurrentPrice(m_stock->SYMBOL);
-    //refresh m_stock to get updated attributes
-    m_stock = Model_Stock::instance().get(m_stock->STOCKID);
-    m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, Option::instance().SharePrecision());
-    m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), Model_Account::instance().get(m_stock->HELDAT)));
 }
 
 void mmStockDialog::ShowStockHistory()
@@ -962,6 +960,14 @@ void mmStockDialog::ShowStockHistory()
             {
                 m_history_date_ctrl->SetValue(dtdt);
                 m_history_price_ctrl->SetValue(dispAmount);
+                m_current_price_ctrl->SetValue(dispAmount);
+                // if the latest share price is not the current stock price, update it.
+                if (m_stock->CURRENTPRICE != histData.at(idx).VALUE)
+                {
+                    Model_Stock::UpdateCurrentPrice(m_stock->SYMBOL, histData.at(idx).VALUE);
+                    m_stock = Model_Stock::instance().get(m_stock->STOCKID);
+                    m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), Model_Account::instance().get(m_stock->HELDAT)));
+                }
             }
         }
         m_price_listbox->RefreshItems(0, rows);

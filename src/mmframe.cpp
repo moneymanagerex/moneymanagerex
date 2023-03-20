@@ -3573,6 +3573,11 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         autocleanDeletedTransactions();
         DoRecreateNavTreeControl(true);
         mmLoadColorsFromDatabase();
+        if (Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
+            this->GetEventHandler()->AddPendingEvent(evt);
+        }
     }
     else
     {

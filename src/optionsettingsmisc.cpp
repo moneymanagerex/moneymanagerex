@@ -81,7 +81,7 @@ void OptionSettingsMisc::Create()
     mmToolTip(itemListOfURL, _("Clear the field to Reset the value to system default."));
 
     // Share Precision
-    wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 3, 0, 0);
     share_precision_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Share Precision")), g_flagsH);
 
     m_share_precision = new wxSpinCtrl(misc_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
@@ -90,6 +90,10 @@ void OptionSettingsMisc::Create()
     mmToolTip(m_share_precision, _("Set the precision for Share prices"));
 
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_refresh_quotes_on_open = new wxCheckBox(misc_panel, wxID_REFRESH, _("Refresh at Startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_refresh_quotes_on_open->SetValue(Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false));
+    share_precision_sizer->Add(m_refresh_quotes_on_open, wxSizerFlags(g_flagsH).Border(wxLEFT, 20));
     othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
 
     // New transaction dialog settings
@@ -287,6 +291,7 @@ bool OptionSettingsMisc::SaveSettings()
 
     Model_Setting::instance().Set("MAX_BACKUP_FILES", m_max_files->GetValue());
     Model_Setting::instance().Set("DELETED_TRANS_RETAIN_DAYS", m_deleted_trans_retain_days->GetValue());
+    Model_Setting::instance().Set("REFRESH_STOCK_QUOTES_ON_OPEN", m_refresh_quotes_on_open->IsChecked());
 
     wxTextCtrl* st = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4));
     const wxString& delim = st->GetValue();
