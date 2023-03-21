@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-21 20:24\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3162,7 +3162,7 @@ msgstr "Incluir campo de beneficiario en las notas"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "El patrón coincide con beneficiarios"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
@@ -3294,7 +3294,7 @@ msgstr "Falta el código de transacción"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s coincide con %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6009,7 +6009,7 @@ msgstr "Configure la precisión de los precios de las acciones"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Actualizar al iniciar"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6400,7 +6400,8 @@ msgstr "Enlace de la página web asociada con el beneficiario"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Coincidir patrones\n"
+"al importar"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
@@ -6413,7 +6414,7 @@ msgstr "Ya existe un beneficiario con ese nombre"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Coincidencia de patrón"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
