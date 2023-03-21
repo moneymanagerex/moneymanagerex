@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:45\n"
+"PO-Revision-Date: 2023-03-21 14:07\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3173,7 +3173,7 @@ msgstr "Включить получателя платежа поле в при�
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Шаблон совпадения Получателей"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
@@ -3305,7 +3305,7 @@ msgstr "Код транзакции отсутствует"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s соответствует %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6044,7 +6044,7 @@ msgstr "Установить точность для цен на акции"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Обновить при запуске"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6435,12 +6435,14 @@ msgstr "URL сайта, связанный с получателем плате�
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Шаблон соответствия\n"
+"при импорте"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Введите любую строку для соответствия этому получателю при импорте.\n"
+"Шаблоны проверяются в порядке, указанном здесь."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6448,7 +6450,7 @@ msgstr "Получатель с таким именем уже существу�
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Шаблон соответствия"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
