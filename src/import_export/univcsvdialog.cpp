@@ -448,30 +448,32 @@ void mmUnivCSVDialog::CreateControls()
     data_sizer->Add(m_list_ctrl_, g_flagsExpand);
     itemBoxSizer0->Add(m_staticbox, 2, wxALL | wxEXPAND, 5);
 
-    //Payees
-    wxPanel* payee_tab = new wxPanel(m_preview_notebook, wxID_ANY);
-    m_preview_notebook->AddPage(payee_tab, _("Payee"));
-    wxBoxSizer* payee_sizer = new wxBoxSizer(wxHORIZONTAL);
-    payee_tab->SetSizer(payee_sizer);
+    if (IsImporter())
+    {
+        //Payees
+        wxPanel* payee_tab = new wxPanel(m_preview_notebook, wxID_ANY);
+        m_preview_notebook->AddPage(payee_tab, _("Payee"));
+        wxBoxSizer* payee_sizer = new wxBoxSizer(wxHORIZONTAL);
+        payee_tab->SetSizer(payee_sizer);
 
-    payeeListBox_ = new wxDataViewListCtrl(payee_tab, wxID_FILE1);
-    payeeListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
-    payeeListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
-    payee_sizer->Add(payeeListBox_, g_flagsExpand);
+        payeeListBox_ = new wxDataViewListCtrl(payee_tab, wxID_FILE1);
+        payeeListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
+        payeeListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
+        payee_sizer->Add(payeeListBox_, g_flagsExpand);
 
-    //Category
-    wxPanel* categ_tab = new wxPanel(m_preview_notebook, wxID_ANY);
-    m_preview_notebook->AddPage(categ_tab, _("Category"));
-    wxBoxSizer* category_sizer = new wxBoxSizer(wxHORIZONTAL);
-    categ_tab->SetSizer(category_sizer);
-    categoryListBox_ = new wxDataViewListCtrl(categ_tab, wxID_FILE2);
-    categoryListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
-    categoryListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
-    category_sizer->Add(categoryListBox_, g_flagsExpand);
+        //Category
+        wxPanel* categ_tab = new wxPanel(m_preview_notebook, wxID_ANY);
+        m_preview_notebook->AddPage(categ_tab, _("Category"));
+        wxBoxSizer* category_sizer = new wxBoxSizer(wxHORIZONTAL);
+        categ_tab->SetSizer(category_sizer);
+        categoryListBox_ = new wxDataViewListCtrl(categ_tab, wxID_FILE2);
+        categoryListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
+        categoryListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
+        category_sizer->Add(categoryListBox_, g_flagsExpand);
 
-    payeeListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowPayeeDialog, this);
-    categoryListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowCategDialog, this);
-
+        payeeListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowPayeeDialog, this);
+        categoryListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowCategDialog, this);
+    }
     //Import File button
     wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
@@ -1489,7 +1491,6 @@ void mmUnivCSVDialog::update_preview()
         }
         if (it == UNIV_CSV_PAYEE) {
             payee_col = colCount - 1;
-            compilePayeeRegEx();
         }
         if (it == UNIV_CSV_CATEGORY)
             cat_col = colCount - 1;
@@ -1508,6 +1509,8 @@ void mmUnivCSVDialog::update_preview()
         if (fileName.IsEmpty() || !csv_file.FileExists()) {
             return;
         }
+
+        if (payee_col >= 0) compilePayeeRegEx();
 
         // Open and parse file
         std::unique_ptr <ITransactionsFile> pImporter(CreateFileHandler());
@@ -1612,6 +1615,7 @@ void mmUnivCSVDialog::update_preview()
                 m_userDefinedDateMask = true;
             }
         }
+        refreshTabs(PAYEE_TAB | CAT_TAB);
     }
     else // exporter preview
     {
@@ -1743,7 +1747,6 @@ void mmUnivCSVDialog::update_preview()
             }
         }
     }
-    refreshTabs(PAYEE_TAB | CAT_TAB);
 }
 
 // refresh data in payee & category tabs
