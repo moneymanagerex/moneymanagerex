@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:45\n"
+"PO-Revision-Date: 2023-03-21 16:38\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3164,11 +3164,11 @@ msgstr "Het begunstigde veld in notities opnemen"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Zoek begunstigden met patroon"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Voeg overeenkomende details toe aan notities"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3224,7 +3224,7 @@ msgstr "Ontbreekt"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Overeengekomen met %s door patroon %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3296,7 +3296,7 @@ msgstr "De transactiecode ontbreekt"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s komt overeen met %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6011,7 +6011,7 @@ msgstr "Precisie voor de aandelenprijzen invoeren"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Vernieuwen bij opstarten"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6402,12 +6402,14 @@ msgstr "Website URL gekoppeld aan de begunstigde"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Vergelijk met patronen\n"
+"bij import"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Voer een tekenreeks in die overeenkomt met deze begunstigde bij het importeren.\n"
+"Patronen worden getest in de hier ingevoerde volgorde."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6415,7 +6417,7 @@ msgstr "Begunstigde met deze naam bestaat al"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Vergelijk op patroon"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
