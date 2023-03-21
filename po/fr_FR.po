@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 16:38\n"
+"PO-Revision-Date: 2023-03-21 17:34\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6408,7 +6408,7 @@ msgstr "Schémas de correspondance en importation"
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
 msgstr "Saisissez n'importe quelle chaîne de caractères pour faire correspondre ce bénéficiaire lors de l'importation.\n"
-"Les modèles sont testés dans l'ordre saisi ici."
+"Les schémas sont testés dans l'ordre saisi ici."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6416,7 +6416,7 @@ msgstr "Un tiers avec le même nom existe déjà"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr "Modèle de correspondance"
+msgstr "Schéma de correspondance"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
