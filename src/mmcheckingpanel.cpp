@@ -603,12 +603,15 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
             wxString maxDate;
             wxString minDate;
             double balance = 0;
-            for (const auto& i : s)
+            long item = -1;
+            while(true)
             {
-                const Model_Checking::Data* trx = Model_Checking::instance().get(i);
-                balance += Model_Checking::balance(trx, m_AccountID);
-                if (minDate > trx->TRANSDATE || maxDate.empty()) minDate = trx->TRANSDATE;
-                if (maxDate < trx->TRANSDATE || maxDate.empty()) maxDate = trx->TRANSDATE;
+                item = m_listCtrlAccount->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                if (item == -1) break;
+                balance += Model_Checking::balance(m_listCtrlAccount->m_trans[item], m_AccountID);
+                wxString transdate = m_listCtrlAccount->m_trans[item].TRANSDATE;
+                if (minDate > transdate || maxDate.empty()) minDate = transdate;
+                if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
             }
 
             wxDateTime min_date, max_date;

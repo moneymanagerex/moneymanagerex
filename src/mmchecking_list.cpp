@@ -735,9 +735,14 @@ void TransactionListCtrl::OnSelectAll(wxCommandEvent& WXUNUSED(event))
 {
     m_selected_id.clear();
     SetEvtHandlerEnabled(false);
+    std::set<int> unique_ids;
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        m_selected_id.push_back(m_trans[row].TRANSID);
+        if (unique_ids.find(m_trans[row].TRANSID) == unique_ids.end())
+        {
+            m_selected_id.push_back(m_trans[row].TRANSID);
+            unique_ids.insert(m_trans[row].TRANSID);
+        }
     }
     SetEvtHandlerEnabled(true);
     setExtraTransactionData(GetSelectedItemCount() == 1);
@@ -1783,9 +1788,14 @@ void TransactionListCtrl::FindSelectedTransactions()
     // find the selected transactions
     long x = 0;
     m_selected_id.clear();
+    std::set<int> unique_ids;
     for (const auto& i : m_trans)
-        if (GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+        if (GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED
+            && unique_ids.find(i.TRANSID) == unique_ids.end())
+        {
             m_selected_id.push_back(i.TRANSID);
+            unique_ids.insert(i.TRANSID);
+        }
 }
 
 void TransactionListCtrl::setSelectedID(int v)
