@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-03-21 13:19+0300\n"
-"PO-Revision-Date: 2023-03-21 12:34\n"
+"POT-Creation-Date: 2023-03-21 15:43+0300\n"
+"PO-Revision-Date: 2023-03-21 12:44\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3165,15 +3165,15 @@ msgstr "Inclure le champ tiers dans les notes"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Modèle des correspondants bénéficiaires"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Ajouter les détails de la correspondance aux Notes"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
-#: import_export/qif_import_gui.cpp:783 import_export/qif_import_gui.cpp:1401
+#: import_export/qif_import_gui.cpp:783 import_export/qif_import_gui.cpp:1403
 #: import_export/univcsvdialog.cpp:905 import_export/univcsvdialog.cpp:1054
 #: import_export/univcsvdialog.cpp:1057 import_export/univcsvdialog.cpp:1077
 #: import_export/univcsvdialog.cpp:1084 import_export/univcsvdialog.cpp:1555
@@ -3225,7 +3225,7 @@ msgstr "Manquant"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Correspond à %s par le modèle %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3294,40 +3294,41 @@ msgstr "Importer un fichier QIF"
 msgid "Transaction code is missing"
 msgstr "Code de transaction manquant"
 
-#: import_export/qif_import_gui.cpp:1256
-msgid "matched by"
+#: import_export/qif_import_gui.cpp:1257
+#, c-format
+msgid "%s matched by %s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1267
+#: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
 msgstr "Le bénéficiaire de la transaction est manquant ou incorrect"
 
-#: import_export/qif_import_gui.cpp:1279
+#: import_export/qif_import_gui.cpp:1281
 msgid "Date format or date mask is incorrect"
 msgstr "Le format de la date ou le masque est incorrect"
 
-#: import_export/qif_import_gui.cpp:1291
+#: import_export/qif_import_gui.cpp:1293
 msgid "Transaction Account is incorrect"
 msgstr "Le compte de la transaction est incorrect"
 
-#: import_export/qif_import_gui.cpp:1300
+#: import_export/qif_import_gui.cpp:1302
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Le compte de transfert de la transaction est incorrect"
 
-#: import_export/qif_import_gui.cpp:1329
+#: import_export/qif_import_gui.cpp:1331
 msgid "Transaction Amount is incorrect"
 msgstr "Le montant de la transaction est incorrect"
 
-#: import_export/qif_import_gui.cpp:1354
+#: import_export/qif_import_gui.cpp:1356
 msgid "Transaction Category is incorrect"
 msgstr "La catégorie de la transaction est incorrecte"
 
-#: import_export/qif_import_gui.cpp:1459
+#: import_export/qif_import_gui.cpp:1461
 #, c-format
 msgid "Added account: %s"
 msgstr "Compte ajouté: %s"
 
-#: import_export/qif_import_gui.cpp:1490 import_export/univcsvdialog.cpp:1061
+#: import_export/qif_import_gui.cpp:1492 import_export/univcsvdialog.cpp:1061
 #, c-format
 msgid "Added payee: %s"
 msgstr "Tier ajouté: %s"
@@ -6010,7 +6011,7 @@ msgstr "Indiquez la precision des prix de l'action"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Rafraîchir au démarrage"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
