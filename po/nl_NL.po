@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-03-21 13:19+0300\n"
-"PO-Revision-Date: 2023-03-21 12:35\n"
+"POT-Creation-Date: 2023-03-21 15:43+0300\n"
+"PO-Revision-Date: 2023-03-21 12:45\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3172,7 +3172,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
-#: import_export/qif_import_gui.cpp:783 import_export/qif_import_gui.cpp:1401
+#: import_export/qif_import_gui.cpp:783 import_export/qif_import_gui.cpp:1403
 #: import_export/univcsvdialog.cpp:905 import_export/univcsvdialog.cpp:1054
 #: import_export/univcsvdialog.cpp:1057 import_export/univcsvdialog.cpp:1077
 #: import_export/univcsvdialog.cpp:1084 import_export/univcsvdialog.cpp:1555
@@ -3293,40 +3293,41 @@ msgstr "Importeren uit QIF-bestand"
 msgid "Transaction code is missing"
 msgstr "De transactiecode ontbreekt"
 
-#: import_export/qif_import_gui.cpp:1256
-msgid "matched by"
+#: import_export/qif_import_gui.cpp:1257
+#, c-format
+msgid "%s matched by %s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1267
+#: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
 msgstr "Transactie begunstigde ontbreekt of is onjuist"
 
-#: import_export/qif_import_gui.cpp:1279
+#: import_export/qif_import_gui.cpp:1281
 msgid "Date format or date mask is incorrect"
 msgstr "Datumopmaak of datummasker is foutief"
 
-#: import_export/qif_import_gui.cpp:1291
+#: import_export/qif_import_gui.cpp:1293
 msgid "Transaction Account is incorrect"
 msgstr "Transactie rekening is incorrect"
 
-#: import_export/qif_import_gui.cpp:1300
+#: import_export/qif_import_gui.cpp:1302
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Transactie rekening voor overboeking is incorrect"
 
-#: import_export/qif_import_gui.cpp:1329
+#: import_export/qif_import_gui.cpp:1331
 msgid "Transaction Amount is incorrect"
 msgstr "Transactie berag is incorrect"
 
-#: import_export/qif_import_gui.cpp:1354
+#: import_export/qif_import_gui.cpp:1356
 msgid "Transaction Category is incorrect"
 msgstr "Transactie categorie is incorrect"
 
-#: import_export/qif_import_gui.cpp:1459
+#: import_export/qif_import_gui.cpp:1461
 #, c-format
 msgid "Added account: %s"
 msgstr "Toegevoegd rekening: %s"
 
-#: import_export/qif_import_gui.cpp:1490 import_export/univcsvdialog.cpp:1061
+#: import_export/qif_import_gui.cpp:1492 import_export/univcsvdialog.cpp:1061
 #, c-format
 msgid "Added payee: %s"
 msgstr "Toegevoegde begunstigde: %s"
