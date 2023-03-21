@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-21 14:07\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3162,11 +3162,11 @@ msgstr "Fügen Sie das Zahlungsempfängerfeld in Notizen ein"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Muster mit Zahlungsempfängern"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Spieldetails zu Notizen hinzufügen"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3222,7 +3222,7 @@ msgstr "Fehlend"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Übereinstimmung zu %s nach Muster %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3294,7 +3294,7 @@ msgstr "Transaktionscode fehlt"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s entspricht %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6006,7 +6006,7 @@ msgstr "Genauigkeit für Aktienkurse festlegen"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Beim Start aktualisieren"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6397,12 +6397,14 @@ msgstr "URL der Website des Zahlungsempfängers"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Match Patterns\n"
+"beim Import"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Geben Sie jede Zeichenkette ein, um diesen Zahlungsempfänger beim Import zu finden.\n"
+"Muster werden in der hier eingegebenen Reihenfolge getestet."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6410,7 +6412,7 @@ msgstr "Empfänger/Zahler mit diesem Namen existiert bereits"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Muster abgleichen"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
