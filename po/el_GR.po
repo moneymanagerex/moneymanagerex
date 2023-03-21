@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-03-21 13:19+0300\n"
-"PO-Revision-Date: 2023-03-21 12:35\n"
+"POT-Creation-Date: 2023-03-21 15:43+0300\n"
+"PO-Revision-Date: 2023-03-21 12:44\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3171,7 +3171,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
-#: import_export/qif_import_gui.cpp:783 import_export/qif_import_gui.cpp:1401
+#: import_export/qif_import_gui.cpp:783 import_export/qif_import_gui.cpp:1403
 #: import_export/univcsvdialog.cpp:905 import_export/univcsvdialog.cpp:1054
 #: import_export/univcsvdialog.cpp:1057 import_export/univcsvdialog.cpp:1077
 #: import_export/univcsvdialog.cpp:1084 import_export/univcsvdialog.cpp:1555
@@ -3292,40 +3292,41 @@ msgstr "Εισαγωγή από αρχείο QIF"
 msgid "Transaction code is missing"
 msgstr "Ο κωδικός συναλλαγής λείπει"
 
-#: import_export/qif_import_gui.cpp:1256
-msgid "matched by"
+#: import_export/qif_import_gui.cpp:1257
+#, c-format
+msgid "%s matched by %s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1267
+#: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
 msgstr "Ο δικαιούχος συναλλαγής λείπει ή είναι λανθασμένος"
 
-#: import_export/qif_import_gui.cpp:1279
+#: import_export/qif_import_gui.cpp:1281
 msgid "Date format or date mask is incorrect"
 msgstr "Μορφή ημερομηνίας ή μάσκα ημερομηνίας είναι λανθασμένη"
 
-#: import_export/qif_import_gui.cpp:1291
+#: import_export/qif_import_gui.cpp:1293
 msgid "Transaction Account is incorrect"
 msgstr "Ο Λογαριασμός συναλλαγής είναι εσφαλμένος"
 
-#: import_export/qif_import_gui.cpp:1300
+#: import_export/qif_import_gui.cpp:1302
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Ο Λογαριασμός συναλλαγής για μεταφορά είναι εσφαλμένος"
 
-#: import_export/qif_import_gui.cpp:1329
+#: import_export/qif_import_gui.cpp:1331
 msgid "Transaction Amount is incorrect"
 msgstr "Το ποσό της συναλλαγής είναι λανθασμένο"
 
-#: import_export/qif_import_gui.cpp:1354
+#: import_export/qif_import_gui.cpp:1356
 msgid "Transaction Category is incorrect"
 msgstr "Η Κατηγορία συναλλαγής είναι λανθασμένη"
 
-#: import_export/qif_import_gui.cpp:1459
+#: import_export/qif_import_gui.cpp:1461
 #, c-format
 msgid "Added account: %s"
 msgstr "Προστέθηκε λογαριασμός: %s"
 
-#: import_export/qif_import_gui.cpp:1490 import_export/univcsvdialog.cpp:1061
+#: import_export/qif_import_gui.cpp:1492 import_export/univcsvdialog.cpp:1061
 #, c-format
 msgid "Added payee: %s"
 msgstr "Προστιθέμενος δικαιούχος: %s"
