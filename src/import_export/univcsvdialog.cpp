@@ -1489,7 +1489,6 @@ void mmUnivCSVDialog::update_preview()
         }
         if (it == UNIV_CSV_PAYEE) {
             payee_col = colCount - 1;
-            compilePayeeRegEx();
         }
         if (it == UNIV_CSV_CATEGORY)
             cat_col = colCount - 1;
@@ -1508,6 +1507,8 @@ void mmUnivCSVDialog::update_preview()
         if (fileName.IsEmpty() || !csv_file.FileExists()) {
             return;
         }
+
+        if (payee_col >= 0) compilePayeeRegEx();
 
         // Open and parse file
         std::unique_ptr <ITransactionsFile> pImporter(CreateFileHandler());

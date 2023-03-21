@@ -666,7 +666,8 @@ void mmPayeeDialog::fillControls()
         
         idx++;
     }
-    payeeListBox_->EnsureVisible(payeeListBox_->GetFirstSelected());
+    if (payeeListBox_->GetSelectedItemCount() > 0)
+        payeeListBox_->EnsureVisible(payeeListBox_->GetFirstSelected());
     this->Thaw();
 }
 
