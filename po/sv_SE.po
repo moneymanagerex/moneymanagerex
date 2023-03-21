@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:45\n"
+"PO-Revision-Date: 2023-03-21 22:41\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3152,11 +3152,11 @@ msgstr "Inkludera fält för betalningsmottagare i anteckningar"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Mönster matchar Betalningsmottagare"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Lägg till matchningsdetaljer till anteckningar"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3212,7 +3212,7 @@ msgstr "Saknas"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Matchade till %s efter mönster %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -5977,7 +5977,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Uppdatera vid start"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6366,12 +6366,14 @@ msgstr "Webbadress kopplad till betalningsmottagaren"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Matcha mönster\n"
+"vid import"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Ange en sträng för att matcha denna betalningsmottagare vid import.\n"
+"Mönster testas i den ordning som anges här."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6379,7 +6381,7 @@ msgstr "Avs/mot med samma namn finns redan"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Matchningsmönster"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
