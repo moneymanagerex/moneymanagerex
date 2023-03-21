@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-21 20:24\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3167,7 +3167,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Προσθέστε τις λεπτομέρειες του ταιριάσματος στις σημειώσεις"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3223,7 +3223,7 @@ msgstr "Λείπει"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Ταιριάζει με %s με μοτίβο %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3295,7 +3295,7 @@ msgstr "Ο κωδικός συναλλαγής λείπει"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s ταίριαξε από %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6003,7 +6003,7 @@ msgstr "Ορίστε την ακρίβεια για τις τιμές Share"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Ανανέωση κατά την εκκίνηση"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6394,12 +6394,14 @@ msgstr "URL ιστοσελίδας που σχετίζεται με τον δι�
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Ταίριασμα Μοτίβων\n"
+"κατά την εισαγωγή"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Εισάγετε οποιαδήποτε συμβολοσειρά που θα ταιριάζει με αυτόν τον δικαιούχο κατά την εισαγωγή.\n"
+"Τα μοτίβα ελέγχονται με την σειρά που εισάγονται εδώ."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6407,7 +6409,7 @@ msgstr "Υπάρχει δικαιούχος με το ίδιο όνομα"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Ταίριασμα πρότυπου"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
