@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-21 14:07\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3297,7 +3297,7 @@ msgstr "Code de transaction manquant"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s correspond à %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6402,12 +6402,14 @@ msgstr "URL du site Internet associée au bénéficiaire"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Correspondance des modèles\n"
+"à l'importation"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Saisissez n'importe quelle chaîne de caractères pour faire correspondre ce bénéficiaire lors de l'importation.\n"
+"Les modèles sont testés dans l'ordre saisi ici."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6415,7 +6417,7 @@ msgstr "Un tiers avec le même nom existe déjà"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Modèle de correspondance"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
