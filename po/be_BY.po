@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-21 14:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3173,11 +3173,11 @@ msgstr "Уключыць поле платніка плацяжа ў натат�
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Шаблон супадзення Платнікоў"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Дадаць дадзеныя, што супалі, да Нататак"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3233,7 +3233,7 @@ msgstr "Адсутнічае"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Супадае з %s па шаблоне %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3305,7 +3305,7 @@ msgstr "Адсутнічае код аперацыі"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s супадае з %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6047,7 +6047,7 @@ msgstr "Усталяваць дакладнасць для коштаў на а�
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Абнавіць падчас запуску"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6438,12 +6438,13 @@ msgstr "Спасылка на вэб-сайт, што звязаны з плат
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Пераверыць па шаблонах падчас імпарта"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Пакажыце будзь-якія дадзеныя, каб знайсці гэтага платніка падчас імпарта.\n"
+"Шаблоны перавяраюцца ў паказаным тут парадку."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6451,7 +6452,7 @@ msgstr "Платнік з такім імем ужо існуе"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Шаблон супадзення"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
