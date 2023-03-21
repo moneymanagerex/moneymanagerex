@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 14:07\n"
+"PO-Revision-Date: 2023-03-21 16:38\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3165,11 +3165,11 @@ msgstr "Inclure le champ tiers dans les notes"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr "Modèle des correspondants bénéficiaires"
+msgstr "Schéma de correspondance des bénéficiaires"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr "Ajouter les détails de la correspondance aux Notes"
+msgstr "Ajouter des détails de la correspondance sur les Notes"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3225,7 +3225,7 @@ msgstr "Manquant"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr "Correspond à %s par le modèle %s"
+msgstr "Correspondant à %s sur le schéma %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -6402,8 +6402,7 @@ msgstr "URL du site Internet associée au bénéficiaire"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr "Correspondance des modèles\n"
-"à l'importation"
+msgstr "Schémas de correspondance en importation"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
