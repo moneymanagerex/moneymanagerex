@@ -304,6 +304,18 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
+
+    if (m_db) {
+        // Clean up deleted transactions
+        autocleanDeletedTransactions();
+
+        // Refresh stock quotes
+        if (!Model_Stock::instance().all().empty() && Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
+            this->GetEventHandler()->AddPendingEvent(evt);
+        }
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -2189,6 +2201,12 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     {
         SetDatabaseFile(fileName);
         saveSettings();
+        autocleanDeletedTransactions();
+        if (!Model_Stock::instance().all().empty() && Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
+            this->GetEventHandler()->AddPendingEvent(evt);
+        }
     }
 }
 //----------------------------------------------------------------------------
@@ -3570,14 +3588,8 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 
     if (openFile(dbFileName, newDatabase))
     {
-        autocleanDeletedTransactions();
         DoRecreateNavTreeControl(true);
         mmLoadColorsFromDatabase();
-        if (Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
-        {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
-            this->GetEventHandler()->AddPendingEvent(evt);
-        }
     }
     else
     {
