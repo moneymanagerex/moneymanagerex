@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:45\n"
+"PO-Revision-Date: 2023-03-22 06:06\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -3174,11 +3174,11 @@ msgstr "Dołącz pole beneficjenta do notatek"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Wzorzec pasujący do beneficjentów"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Dodaj szczegóły dopasowania do notatek"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3234,7 +3234,7 @@ msgstr "Brakujące"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Dopasowane do %s według wzorca %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3306,7 +3306,7 @@ msgstr "Brak kodu transakcji"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s dopasowane przez %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6044,7 +6044,7 @@ msgstr "Ustaw dokładność dla cen akcji"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Odśwież przy uruchomieniu"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6435,12 +6435,14 @@ msgstr "Adres witryny powiązany z beneficjentem"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Wzorce dopasowań\n"
+"przy imporcie"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Wprowadź dowolny ciąg, aby dopasować tego beneficjenta podczas importu.\n"
+"Wzory są testowane w kolejności wprowadzonej tutaj."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6448,7 +6450,7 @@ msgstr "Beneficjent o tej nazwie już istnieje"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Wzorzec dopasowania"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
