@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-22 08:31\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3172,11 +3172,11 @@ msgstr "כלול שדה מוטב בהערות"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "התאמת דפוס מוטבים"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "הוספת פרטי התאמה להערות"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3233,7 +3233,7 @@ msgstr "חסר"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "התאמה ל־%s באמצאות דפוס %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -6038,7 +6038,7 @@ msgstr "הגדרה דיוק עשרוני למחיר המניה"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "רענון העת אתחול"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6429,12 +6429,13 @@ msgstr "אתר מרשתת שמשוייך למוטב זה"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "התאמת דפוס בייבוא"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "הזנת מחרוזת כל שהיא להתאמת מוטב זה בייבוא.\n"
+"דפוסים נבחנים על פי סדר הזנתם כאן."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6442,7 +6443,7 @@ msgstr "קיים כבר מוטב בעל שם זהה"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "דפוס התאמה"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
