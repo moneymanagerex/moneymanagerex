@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-23 19:24\n"
+"PO-Revision-Date: 2023-03-23 20:28\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1585,7 +1585,8 @@ msgstr "Anul bugetar"
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "Specificați anul necesar.\n"
+"Utilizați butoanele pentru a crește sau a scădea anul."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
@@ -1594,7 +1595,8 @@ msgstr "Luna bugetară"
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "Specificați luna necesară.\n"
+"Utilizați butoanele pentru a crește sau micșora luna."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
@@ -1614,7 +1616,7 @@ msgstr "Categorii"
 
 #: categdialog.cpp:268 mmframe.cpp:1631
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "Reatribuire toate categoriile la o altă categorie"
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
@@ -1741,11 +1743,11 @@ msgstr "Organizează Categoriile: Eroare de ștergere"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Există tranzacții șterse care utilizează această categorie sau unul dintre descendenții săi."
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Ștergerea categoriei va șterge automat și tranzacțiile șterse asociate."
 
 #: categdialog.cpp:512 payeedialog.cpp:732
 msgid "Do you wish to continue ?"
@@ -2027,7 +2029,7 @@ msgstr ""
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Folosind Locale)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
@@ -2035,7 +2037,7 @@ msgstr "Managerul de Valute"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Detaliile câmpului personalizat"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
@@ -2047,7 +2049,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Introduceți numele câmpului personalizat"
 
 #: customfieldeditdialog.cpp:150
 msgid "Field Type"
@@ -2055,7 +2057,7 @@ msgstr "Tip camp"
 
 #: customfieldeditdialog.cpp:154
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Selectați tipul câmpului personalizat"
 
 #: customfieldeditdialog.cpp:157
 msgid "ToolTip"
@@ -2063,7 +2065,7 @@ msgstr "Sugestie"
 
 #: customfieldeditdialog.cpp:159
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Introduceți indiciile care vor fi afișate"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
@@ -2071,7 +2073,7 @@ msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Introduceți RegEx pentru a valida câmpul"
 
 #: customfieldeditdialog.cpp:167
 msgid "Autocomplete"
@@ -2079,7 +2081,7 @@ msgstr "Autocompletare"
 
 #: customfieldeditdialog.cpp:170
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Activează autocompletarea pentru câmpul personalizat"
 
 #: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:609
 msgid "Default"
@@ -2088,7 +2090,8 @@ msgstr "Implicit"
 #: customfieldeditdialog.cpp:175
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Introduceți valoarea implicită pentru acest câmp\n"
+"Pentru data/ora inserați „Now” pentru a seta data/ora curentă ca implicită"
 
 #: customfieldeditdialog.cpp:179
 msgid "Choices"
@@ -2096,7 +2099,7 @@ msgstr "Alegeri"
 
 #: customfieldeditdialog.cpp:181
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Introduceți opțiunile pentru acest câmp, separate cu punct și virgulă"
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
