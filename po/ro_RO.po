@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:44\n"
+"PO-Revision-Date: 2023-03-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1352,7 +1352,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Șterge tranzacția recurentă..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -1572,11 +1572,11 @@ msgstr "Șterge bugetul existent"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "Detalii intrare în Buget"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "Intrare lunară în Buget"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
@@ -3291,7 +3291,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s se potrivește cu %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
