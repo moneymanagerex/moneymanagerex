@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-21 15:43+0300\n"
-"PO-Revision-Date: 2023-03-21 12:45\n"
+"PO-Revision-Date: 2023-03-24 16:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3164,11 +3164,11 @@ msgstr "Incluir campo beneficiário nas notas"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Padrão de correspondência de beneficiários"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Adicionar detalhes de correspondência às notas"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3224,7 +3224,7 @@ msgstr "Faltando"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1767
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Correspondido para %s por padrão %s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3296,7 +3296,7 @@ msgstr "Falta o código da transação"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s correspondido por %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6011,7 +6011,7 @@ msgstr "Definir a precisão dos preços das ações"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Atualizar na inicialização"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6402,12 +6402,14 @@ msgstr "URL do site associado ao beneficiário"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Parear padrões\n"
+"na importação"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Digite qualquer sequência de caracteres que corresponda a este beneficiário na importação.\n"
+"Padrões são testados na ordem digitada aqui."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6415,7 +6417,7 @@ msgstr "Já existe um Beneficiário com este nome"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Padrão de correspondência"
 
 #: payeedialog.cpp:719
 msgid "Payee in use."
