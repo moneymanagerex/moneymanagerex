@@ -830,6 +830,9 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
             if (i->getIndex() == UNIV_CSV_TYPE) {
                 m_choiceAmountFieldSign->Append(wxString::Format(_("Positive if type has '%s'"), depositType_));
                 m_choiceAmountFieldSign->Select(DefindByType);
+                wxCommandEvent evt(wxEVT_CHOICE, wxID_ANY);
+                evt.SetId(wxID_REPLACE);
+                GetEventHandler()->AddPendingEvent(evt);
             }
             else if (i->getIndex() == UNIV_CSV_PAYEE)
             {
@@ -910,6 +913,7 @@ const wxString mmUnivCSVDialog::getCSVFieldName(int index) const
 void mmUnivCSVDialog::OnLoad()
 {
     csvListBox_->Clear();
+    if (IsImporter() && m_choiceAmountFieldSign->GetCount() > DefindByType) m_choiceAmountFieldSign->Delete(DefindByType);
     for (const auto& entry : csvFieldOrder_)
     {
         const wxString& item_name = CSVFieldName_[entry];
@@ -2192,10 +2196,21 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         // A number of type options are supported to make amount positive 
         // ('debit' seems odd but is there for backwards compatability!)
     case UNIV_CSV_TYPE:
-        for (const wxString& entry : { "debit", "deposit", "+" }) {
-            if (entry.CmpNoCase(token) == 0) {
+        if (m_choiceAmountFieldSign->GetSelection() == DefindByType)
+        {
+            if (depositType_.CmpNoCase(token) == 0)
+            {
                 holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
                 break;
+            }
+        }
+        else
+        {
+            for (const wxString& entry : { "debit", "deposit", "+" }) {
+                if (entry.CmpNoCase(token) == 0) {
+                    holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                    break;
+                }
             }
         }
         break;
@@ -2266,12 +2281,18 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     else if (i == wxID_REPLACE)
     {
         if (m_choiceAmountFieldSign->GetSelection() == DefindByType) {
-            depositType_ = wxGetTextFromUser(_("Please, type the word indicating positive values in your CSV file, e.g. 'debit'"), _("Enter a value"), depositType_);
-            if (depositType_.empty()) {
-                depositType_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            wxString depositType = wxGetTextFromUser(_("Please, type the word indicating positive values in your CSV file, e.g. 'credit'"), _("Enter a value"), depositType_);
+            if (!depositType.empty()) {
+                depositType_ = depositType;
             }
             m_choiceAmountFieldSign->SetString(DefindByType, wxString::Format(_("Positive if type has '%s'"), depositType_));
             m_choiceAmountFieldSign->SetSelection(DefindByType);
+        }
+        else if (std::find(csvFieldOrder_.begin(), csvFieldOrder_.end(), UNIV_CSV_TYPE) != csvFieldOrder_.end()) {
+            m_choiceAmountFieldSign->Select(DefindByType);
+            mmErrorDialogs::ToolTip4Object(m_choiceAmountFieldSign
+                , _("Amount sign must be defined by type when 'Type' is selected for import")
+                , _("Invalid Entry"), wxICON_WARNING);
         }
     }
     m_userDefinedDateMask = true;
