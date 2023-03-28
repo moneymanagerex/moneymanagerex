@@ -30,6 +30,8 @@
 #include <fmt/format.h>
 
 constexpr auto LIMIT = 1e-10;
+static wxString locale;
+static wxString use_locale;
 
 Model_Currency::Model_Currency()
     : Model<DB_Table_CURRENCYFORMATS_V1>()
@@ -51,6 +53,8 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
     ins.ensure(db);
     ins.destroy_cache();
     ins.preload();
+    locale = wxEmptyString;
+    use_locale = wxEmptyString;
     return ins;
 }
 
@@ -226,9 +230,7 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    static wxString locale;
     static wxString d; //default Locale Support Y/N
-    static wxString use_locale;
 
     if (locale.empty()) {
         locale = Model_Infotable::instance().GetStringInfo("LOCALE", " ");
