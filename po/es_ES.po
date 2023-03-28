@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-03-28 12:36+0300\n"
-"PO-Revision-Date: 2023-03-28 19:34\n"
+"POT-Creation-Date: 2023-03-28 23:13+0300\n"
+"PO-Revision-Date: 2023-03-28 20:15\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5675,11 +5675,11 @@ msgstr "Límite de crédito"
 msgid "MMEX Recurring Transaction Check"
 msgstr "Verificación de transacciones periódicas"
 
-#: model/Model_Currency.cpp:65
+#: model/Model_Currency.cpp:69
 msgid "Fiat"
 msgstr "Dinero por decreto"
 
-#: model/Model_Currency.cpp:66
+#: model/Model_Currency.cpp:70
 msgid "Crypto"
 msgstr "Criptomoneda"
 
