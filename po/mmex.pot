@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-03-28 12:36+0300\n"
+"POT-Creation-Date: 2023-03-28 23:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5675,11 +5675,11 @@ msgstr ""
 msgid "MMEX Recurring Transaction Check"
 msgstr ""
 
-#: model/Model_Currency.cpp:65
+#: model/Model_Currency.cpp:69
 msgid "Fiat"
 msgstr ""
 
-#: model/Model_Currency.cpp:66
+#: model/Model_Currency.cpp:70
 msgid "Crypto"
 msgstr ""
 
