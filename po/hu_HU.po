@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-28 23:30\n"
+"PO-Revision-Date: 2023-03-29 00:37\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3163,11 +3163,11 @@ msgstr "Kedvezményezett mező belefoglalása a megjegyzésekben"
 
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:410
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Megfelelőségi minta: kedvezményezettek"
 
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:416
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Mérkőzés részletei hozzáadásának a Jegyzetekhez"
 
 #: import_export/qif_import_gui.cpp:403 import_export/qif_import_gui.cpp:406
 #: import_export/qif_import_gui.cpp:480 import_export/qif_import_gui.cpp:637
@@ -3223,7 +3223,7 @@ msgstr "Hiányzó"
 #: import_export/qif_import_gui.cpp:788 import_export/univcsvdialog.cpp:1774
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Egyezve a következővel: %s a(z) %s minta alapján"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3295,7 +3295,7 @@ msgstr "A tranzakció kódja hiányzik"
 #: import_export/qif_import_gui.cpp:1257
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s megfelelt a következővel: %s"
 
 #: import_export/qif_import_gui.cpp:1269
 msgid "Transaction Payee is missing or incorrect"
@@ -6410,7 +6410,8 @@ msgstr "Megfelelőségi minták az importálásnál"
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Adjon meg bármilyen karakterláncot, amely megfelel a kedvezményezettnek az importáláskor.\n"
+"A minták tesztelése az itt megadott sorrendben történik."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
