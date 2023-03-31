@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-28 20:15\n"
+"PO-Revision-Date: 2023-03-30 16:48\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3636,7 +3636,7 @@ msgstr "Усе файлы"
 
 #: import_export/univcsvdialog.cpp:2284
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "Калі ласка, пакажыце слова, якое паказвае станоўчыя значэння ў вашым файле CSV, напрыклад, 'крыдыт'"
 
 #: import_export/univcsvdialog.cpp:2284
 msgid "Enter a value"
@@ -3644,7 +3644,7 @@ msgstr "Пакажыце значэнне"
 
 #: import_export/univcsvdialog.cpp:2294
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "Знак сумы мае вызначацца тыпам, калі ён абраны для імпарту"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
