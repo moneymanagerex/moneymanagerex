@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-28 20:16\n"
+"PO-Revision-Date: 2023-03-31 07:42\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3622,7 +3622,7 @@ msgstr "所有文件"
 
 #: import_export/univcsvdialog.cpp:2284
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "请在您的 CSV 文件中输入表示正值的单词，例如'credit'"
 
 #: import_export/univcsvdialog.cpp:2284
 msgid "Enter a value"
@@ -3630,7 +3630,7 @@ msgstr "输入值："
 
 #: import_export/univcsvdialog.cpp:2294
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "当选择要导入的“类型”时，必须按类型定义数量标志"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
