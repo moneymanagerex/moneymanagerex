@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-28 20:15\n"
+"PO-Revision-Date: 2023-04-01 06:54\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1332,7 +1332,7 @@ msgstr "Omite următoarea tranzacție recurentă"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Introdu următoarea apariție..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1340,15 +1340,15 @@ msgstr "Omite următoarea apariție"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "Tranzacție recurentă &nouă..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Editează tranzacție recurentă..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplică tranzacția recurentă..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
@@ -2416,11 +2416,11 @@ msgstr "Transfer"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Actualizarea bazei de date MMEX la versiunea %i a eșuat!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "Restaurați DB din copia de rezervă autocreată și încercați din nou sau contactați serviciul de suport MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
