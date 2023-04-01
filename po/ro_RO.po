@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-01 06:54\n"
+"PO-Revision-Date: 2023-04-01 08:06\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2424,7 +2424,7 @@ msgstr "Restaurați DB din copia de rezervă autocreată și încercați din nou
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Actualizarea bazei de date MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
@@ -2587,11 +2587,11 @@ msgstr "Depunere"
 #: filtertransdialog.cpp:593 filtertransdialog.cpp:798
 #: filtertransdialog.cpp:1360
 msgid "Transfer Out"
-msgstr ""
+msgstr "Transfer extern"
 
 #: filtertransdialog.cpp:595 filtertransdialog.cpp:1358
 msgid "Transfer In"
-msgstr ""
+msgstr "Transfer intern"
 
 #: filtertransdialog.cpp:607
 msgid "Amount Range"
@@ -2830,11 +2830,11 @@ msgstr "Un nou raport gol..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
-msgstr ""
+msgstr "Un raport nou"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "Schimbă Grupul..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
@@ -2981,7 +2981,7 @@ msgstr "Fișierul nu este în formatul Excel XML Spreadsheet 2003."
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Eroare de analiză"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
@@ -3247,20 +3247,20 @@ msgstr "Importă"
 
 #: import_export/qif_import_gui.cpp:1047
 msgid "Importing Accounts"
-msgstr ""
+msgstr "Se importă Conturi"
 
 #: import_export/qif_import_gui.cpp:1050
 msgid "Importing Payees"
-msgstr ""
+msgstr "Se importă Beneficiari"
 
 #: import_export/qif_import_gui.cpp:1054
 msgid "Importing Categories"
-msgstr ""
+msgstr "Se importă Categorii"
 
 #: import_export/qif_import_gui.cpp:1076
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "Se importă tranzacția %i din %i"
 
 #: import_export/qif_import_gui.cpp:1123
 msgid "Importing Transfers"
@@ -3475,15 +3475,15 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1109
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Câmpuri incorecte specificate pentru import!"
 
 #: import_export/univcsvdialog.cpp:1110
 msgid "Date field is required."
-msgstr ""
+msgstr "Câmpul dată este necesar."
 
 #: import_export/univcsvdialog.cpp:1111
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Câmpul Sumă sau amândouă câmpurile de Retragere și Depunere sunt necesare."
 
 #: import_export/univcsvdialog.cpp:1112 import_export/univcsvdialog.cpp:1260
 #: themes.cpp:189 webappdialog.cpp:408
@@ -3493,162 +3493,162 @@ msgstr "Importă"
 #: import_export/univcsvdialog.cpp:1168
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Tranzacții importate în contul %s: %ld"
 
 #: import_export/univcsvdialog.cpp:1179
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Linia %ld: goală"
 
 #: import_export/univcsvdialog.cpp:1193
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Linia %ld: Eroare:"
 
 #: import_export/univcsvdialog.cpp:1195
 msgid "Invalid Date."
-msgstr ""
+msgstr "Dată incorectă."
 
 #: import_export/univcsvdialog.cpp:1196 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
-msgstr ""
+msgstr "Sumă incorectă."
 
 #: import_export/univcsvdialog.cpp:1198
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Tip (retragere/depunere) necunoscut."
 
 #: import_export/univcsvdialog.cpp:1212
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Linia %ld %s"
 
 #: import_export/univcsvdialog.cpp:1238
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Linia %ld: OK, importată."
 
 #: import_export/univcsvdialog.cpp:1245
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Total linii: %ld"
 
 #: import_export/univcsvdialog.cpp:1247
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Linii selectate pentru import: %ld"
 
 #: import_export/univcsvdialog.cpp:1249
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Linii goale: %ld"
 
 #: import_export/univcsvdialog.cpp:1251
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importat: %ld"
 
 #: import_export/univcsvdialog.cpp:1253
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Cu eroare: %ld"
 
 #: import_export/univcsvdialog.cpp:1256
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Fișierul jurnal scris la: %s"
 
 #: import_export/univcsvdialog.cpp:1259 stockdialog.cpp:652
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Te rog să confirmi înainte de a salva"
 
 #: import_export/univcsvdialog.cpp:1292
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Nici o tranzacție importată!"
 
 #: import_export/univcsvdialog.cpp:1314
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Câmpuri incorecte selectate pentru export! Necesită cel puțin Data și Suma."
 
 #: import_export/univcsvdialog.cpp:1315 import_export/univcsvdialog.cpp:1468
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
 #: import_export/univcsvdialog.cpp:1325
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Suprascrieți fișierul existent?"
 
 #: import_export/univcsvdialog.cpp:1325
 msgid "File exists"
-msgstr ""
+msgstr "Fișierul există"
 
 #: import_export/univcsvdialog.cpp:1331
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Ștergerea fișierului existent nu a reușit. Fișierul poate fi blocat de un alt program."
 
 #: import_export/univcsvdialog.cpp:1332
 msgid "Destination file error"
-msgstr ""
+msgstr "Eroare a fișierului de destinație"
 
 #: import_export/univcsvdialog.cpp:1340 mmSimpleDialogs.cpp:766
 msgid "Invalid Account"
-msgstr ""
+msgstr "Cont incorect"
 
 #: import_export/univcsvdialog.cpp:1467
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "Tranzacții exportate: %ld"
 
 #: import_export/univcsvdialog.cpp:1876 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
-msgstr ""
+msgstr "Alegeți fișierul CSV pentru import"
 
 #: import_export/univcsvdialog.cpp:1879
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Alegeți fișierul CSV pentru export"
 
 #: import_export/univcsvdialog.cpp:1882
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Alegeți fișierul XML pentru import"
 
 #: import_export/univcsvdialog.cpp:1885
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Alegeți fișierul XML pentru export"
 
 #: import_export/univcsvdialog.cpp:1893
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "Fișiere XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1893
 msgid "All Files"
-msgstr ""
+msgstr "Toate fişierele"
 
 #: import_export/univcsvdialog.cpp:2284
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "Te rog, introdu cuvântul care indică valori pozitive în fişierul CSV, ex. 'credit'"
 
 #: import_export/univcsvdialog.cpp:2284
 msgid "Enter a value"
-msgstr ""
+msgstr "Introdu o valoare"
 
 #: import_export/univcsvdialog.cpp:2294
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "Semnul sumei trebuie să fie definit de tip atunci când 'Tip' este selectat pentru import"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "Cod"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
-msgstr ""
+msgstr "Ultima rată"
 
 #: maincurrencydialog.cpp:77
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Rată fixă"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: maincurrencydialog.cpp:180 maincurrencydialog.cpp:476
 msgid "Online update currency rate"
@@ -3656,15 +3656,15 @@ msgstr "Actualizează cursul valutar prin internet"
 
 #: maincurrencydialog.cpp:183
 msgid "Online Update"
-msgstr ""
+msgstr "Actualizare online"
 
 #: maincurrencydialog.cpp:187
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Arată-le pe toate, inclusiv valutele nefolosite"
 
 #: maincurrencydialog.cpp:241
 msgid "Currency History Options"
-msgstr ""
+msgstr "Opțiuni Istoric Valutar"
 
 #: maincurrencydialog.cpp:259 stockdialog.cpp:300 stockdialog.cpp:319
 #: stockdialog.cpp:648
@@ -3673,15 +3673,15 @@ msgstr "Preț"
 
 #: maincurrencydialog.cpp:280
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Specifică data pentru valoarea valutei"
 
 #: maincurrencydialog.cpp:290
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Introdu valoarea valutei"
 
 #: maincurrencydialog.cpp:300
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "Descarcă istoricul valorilor valutare"
 
 #: maincurrencydialog.cpp:303
 msgid "Add/&Update "
@@ -3689,19 +3689,19 @@ msgstr "&Adăugare/Actualizare "
 
 #: maincurrencydialog.cpp:304
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "Adaugă valorile valutare la istoric"
 
 #: maincurrencydialog.cpp:308
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "Șterge valorile valutei selectate"
 
 #: maincurrencydialog.cpp:312
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Șterge istoricul valorilor pentru valutele și zilele neutilizate"
 
 #: maincurrencydialog.cpp:368
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "Ești sigur că vrei să ștergi Valuta selectată?"
 
 #: maincurrencydialog.cpp:369 maincurrencydialog.cpp:439
 #: maincurrencydialog.cpp:665 maincurrencydialog.cpp:790
@@ -4324,34 +4324,36 @@ msgstr ""
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "Fals"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "Adevărat"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
-msgstr ""
+msgstr "Selectează"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
-msgstr ""
+msgstr "Alegere multiplă"
 
 #: mmcustomdata.cpp:770
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Nu pot salva câmpul personalizat \" \"%s\":\n"
+"valoarea \"%s\" nu se potrivește cu RegEx validare \"%s\""
 
 #: mmcustomdata.cpp:773
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Eroare de validare a câmpului personalizat"
 
 #: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "A apărut o eroare fatală.\n"
+"Aplicația va fi terminată."
 
 #: mmframe.cpp:263
 msgid "Navigation"
@@ -4359,11 +4361,11 @@ msgstr "Arborele de Navigare"
 
 #: mmframe.cpp:264
 msgid "Toolbar"
-msgstr ""
+msgstr "Bară de unelte"
 
 #: mmframe.cpp:473 mmframe.cpp:722
 msgid "Favourites"
-msgstr ""
+msgstr "Favorite"
 
 #: mmframe.cpp:474 mmframe.cpp:726 mmhomepage.cpp:694 reports/summary.cpp:256
 #: reports/summary.cpp:299
@@ -4373,29 +4375,29 @@ msgstr "Conturi"
 #: mmframe.cpp:475 mmframe.cpp:730 mmhomepage.cpp:695 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Conturi de card de credit"
 
 #: mmframe.cpp:476 mmframe.cpp:742 mmhomepage.cpp:697 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr ""
+msgstr "Conturi la termen"
 
 #: mmframe.cpp:477 mmframe.cpp:746
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "Portofolii bursiere"
 
 #: mmframe.cpp:478 mmframe.cpp:734 mmhomepage.cpp:693
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Conturi de numerar"
 
 #: mmframe.cpp:479 mmframe.cpp:738 mmhomepage.cpp:696 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Conturi de împrumuturi"
 
 #: mmframe.cpp:512
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Repetare automată a tranzacțiilor"
 
 #: mmframe.cpp:714 mmframe.cpp:1847 optiondialog.cpp:37
 msgid "Dashboard"
@@ -4403,12 +4405,12 @@ msgstr "Panou de control"
 
 #: mmframe.cpp:718
 msgid "All Transactions"
-msgstr ""
+msgstr "Toate tranzacţiile"
 
 #: mmframe.cpp:750 mmhomepage.cpp:700 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
-msgstr ""
+msgstr "Conturi partajate"
 
 #: mmframe.cpp:766 mmframe.cpp:1659 mmframe.cpp:2671
 msgid "Budget Setup"
@@ -4424,15 +4426,15 @@ msgstr "Ajutor"
 
 #: mmframe.cpp:1229
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "O setare cu acest nume există deja"
 
 #: mmframe.cpp:1231
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Vă rugăm să specificați un nume nou pentru setare"
 
 #: mmframe.cpp:1233
 msgid "Name in use"
-msgstr ""
+msgstr "Nume în uz"
 
 #: mmframe.cpp:1290
 msgid "Do you really want to delete the account?"
@@ -4444,7 +4446,7 @@ msgstr "Confirmă Ștergerea Contului"
 
 #: mmframe.cpp:1316
 msgid "MMEX has been opened without an active database."
-msgstr ""
+msgstr "MMEX a fost deschis fără o bază de date activă."
 
 #: mmframe.cpp:1317
 msgid "MMEX: Menu Popup Error"
@@ -4564,43 +4566,43 @@ msgstr ""
 
 #: mmframe.cpp:1489
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "Șterge fișierele re&cente"
 
 #: mmframe.cpp:1500
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1500
 msgid "Import from WebApp"
-msgstr ""
+msgstr "Importă din WebApp"
 
 #: mmframe.cpp:1507
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Exportă ca fișier CSV fix"
 
 #: mmframe.cpp:1511
 msgid "&HTML File..."
-msgstr ""
+msgstr "Fișier &HTML..."
 
 #: mmframe.cpp:1511
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Exportă ca fișier HTML"
 
 #: mmframe.cpp:1516
 msgid "&Print..."
-msgstr ""
+msgstr "Im&primare..."
 
 #: mmframe.cpp:1516 mmframe.cpp:1880
 msgid "Print current view"
-msgstr ""
+msgstr "Imprimă vizualizarea curentă"
 
 #: mmframe.cpp:1522
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "Ieșire Alt-&X"
 
 #: mmframe.cpp:1522
 msgid "Quit this program"
-msgstr ""
+msgstr "Ieșire din acest program"
 
 #: mmframe.cpp:1528
 msgid "&Toolbar"
@@ -4620,7 +4622,7 @@ msgstr "Arată/Ascunde Arborele de Navigare"
 
 #: mmframe.cpp:1532
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "Afișează conturile &de partajate"
 
 #: mmframe.cpp:1532
 msgid "Show/Hide Share Accounts in the navigation tree"
@@ -4668,7 +4670,7 @@ msgstr ""
 
 #: mmframe.cpp:1544 optionsettingsview.cpp:104
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Arată ponturi"
 
 #: mmframe.cpp:1546 optionsettingsview.cpp:110
 msgid "Show Money Tips"
