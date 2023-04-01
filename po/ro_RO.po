@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-01 15:46\n"
+"PO-Revision-Date: 2023-04-01 16:51\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -5314,33 +5314,34 @@ msgstr "Alege contul de șters"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "Eşti sigur că dorești să ștergi \n"
+"%s contul: %s?"
 
 #: mmframe.cpp:3404
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "Selectează contul pentru a realoca"
 
 #: mmframe.cpp:3404 mmframe.cpp:3427
 msgid "Account Reallocation"
-msgstr ""
+msgstr "Realocarea contului"
 
 #: mmframe.cpp:3426
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Cont: %s - Selectați un nou tip."
 
 #: mmframe.cpp:3537 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
-msgstr ""
+msgstr "Relocarea beneficiarului completă."
 
 #: mmframe.cpp:3541 payeedialog.cpp:816
 msgid "Payee Relocation Result"
-msgstr ""
+msgstr "Rezultatul relocării beneficiarului"
 
 #: mmframe.cpp:3617
 #, c-format
 msgid "File %s not found"
-msgstr ""
+msgstr "Fișierul %s nu a fost găsit"
 
 #: mmframereport.cpp:80
 msgid "General Group Report"
