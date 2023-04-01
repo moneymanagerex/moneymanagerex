@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-01 11:10\n"
+"PO-Revision-Date: 2023-04-01 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -5279,15 +5279,15 @@ msgstr ""
 
 #: mmframe.cpp:2876
 msgid "Choose HTML file to Export"
-msgstr ""
+msgstr "Alege fișierul HTML pentru export"
 
 #: mmframe.cpp:3289 mmframe.cpp:3296
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Se descarcă prețurile acțiunilor de la Yahoo"
 
 #: mmframe.cpp:3290
 msgid "Please wait..."
-msgstr ""
+msgstr "Te rog așteaptă..."
 
 #: mmframe.cpp:3339 stockspanel.cpp:401
 #, c-format
@@ -5296,7 +5296,7 @@ msgstr "%s pe %s"
 
 #: mmframe.cpp:3356
 msgid "No account available to edit!"
-msgstr ""
+msgstr "Nici un cont disponibil pentru editare!"
 
 #: mmframe.cpp:3360
 msgid "Choose Account to Edit"
@@ -5304,7 +5304,7 @@ msgstr "Alege contul de editat"
 
 #: mmframe.cpp:3377
 msgid "No account available to delete!"
-msgstr ""
+msgstr "Nici un cont disponibil pentru ștergere!"
 
 #: mmframe.cpp:3381
 msgid "Choose Account to Delete"
