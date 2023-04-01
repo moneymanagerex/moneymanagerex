@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-01 10:00\n"
+"PO-Revision-Date: 2023-04-01 11:10\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -4894,7 +4894,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1744
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Urmăriți materiale video gratuite despre MMEX"
 
 #: mmframe.cpp:1746
 msgid "&Slack"
@@ -4902,7 +4902,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1746
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Comunicați online cu echipa MMEX de pe desktop sau dispozitivul mobil"
 
 #: mmframe.cpp:1748
 msgid "&GitHub"
@@ -4910,7 +4910,7 @@ msgstr "&GitHub"
 
 #: mmframe.cpp:1748
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Accesează depozitul de cod open source și urmărește starea erorilor raportate"
 
 #: mmframe.cpp:1750
 msgid "W&iki pages"
@@ -4938,51 +4938,51 @@ msgstr "Obține versiunea gratuită de Android și rulează MMEX pe smartphone s
 
 #: mmframe.cpp:1758
 msgid "&Newsletter"
-msgstr ""
+msgstr "Buletin i&nformativ"
 
 #: mmframe.cpp:1759
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "Abonați-vă la buletinul informativ prin e-mail sau vizualizați anunțurile existente"
 
 #: mmframe.cpp:1761
 msgid "&RSS Feed"
-msgstr ""
+msgstr "Flux &RSS"
 
 #: mmframe.cpp:1761
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "Conectează fluxul RSS la agregatorul de știri"
 
 #: mmframe.cpp:1763
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Donează prin PayPal"
 
 #: mmframe.cpp:1764
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Donează echipa pentru a sprijini infrastructura, etc."
 
 #: mmframe.cpp:1766
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Cumpără-ne o cafea"
 
 #: mmframe.cpp:1767
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Cumpără unui dezvoltator cheie o cafea"
 
 #: mmframe.cpp:1770
 msgid "&Community"
-msgstr ""
+msgstr "&Comunitate"
 
 #: mmframe.cpp:1771
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Păstrează legătura cu comunitatea MMEX"
 
 #: mmframe.cpp:1793
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Ra&portează o eroare"
 
 #: mmframe.cpp:1794
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Raportează către dezvoltatori o eroare a aplicației"
 
 #: mmframe.cpp:1798
 msgid "View &Diagnostics"
@@ -4990,15 +4990,15 @@ msgstr "Vedeți Diagnosticare"
 
 #: mmframe.cpp:1799
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Ajută la furnizarea de informații către dezvoltatori"
 
 #: mmframe.cpp:1803
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "Arată &dialogul de pornire al aplicației"
 
 #: mmframe.cpp:1803
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Dialogul de pornire al aplicației"
 
 #: mmframe.cpp:1807
 msgid "Check for &Updates"
@@ -5131,23 +5131,23 @@ msgstr "Verificarea instanțelor MMEX"
 
 #: mmframe.cpp:2170
 msgid "Choose database file to create"
-msgstr ""
+msgstr "Alege fişierul bazei de date pentru al crea"
 
 #: mmframe.cpp:2193
 msgid "Choose database file to open"
-msgstr ""
+msgstr "Alege fişierul bazei de date pentru al deschide"
 
 #: mmframe.cpp:2216
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Alege fişierul bazei de date criptate pentru al deschide"
 
 #: mmframe.cpp:2226
 msgid "Enter password for database"
-msgstr ""
+msgstr "Introdu parola pentru baza de date"
 
 #: mmframe.cpp:2231
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Alege fişierul bazei de date pentru a fi salvat ca"
 
 #: mmframe.cpp:2253
 msgid "Converted DB!"
@@ -5186,7 +5186,7 @@ msgstr "Confirmarea parolei a eșuat."
 
 #: mmframe.cpp:2286
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Asigură-te că ai o copie de rezervă a bazei de date înainte de a o optimiza"
 
 #: mmframe.cpp:2287 mmframe.cpp:2297
 msgid "DB Optimization"
