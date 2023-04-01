@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-01 08:06\n"
+"PO-Revision-Date: 2023-04-01 09:03\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -355,7 +355,7 @@ msgstr "Citește manualul de utilizare"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1735
 msgid "&Website"
-msgstr ""
+msgstr "&Website"
 
 #: appstartdialog.cpp:120
 #, c-format
@@ -394,7 +394,7 @@ msgstr "Limba acestei aplicații a fost schimbată. Schimbarea va avea efect dat
 
 #: appstartdialog.cpp:222 mmframe.cpp:3654 optionsettingsgeneral.cpp:354
 msgid "Language change"
-msgstr "Schimbare limbă"
+msgstr "Schimbă limba"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
@@ -513,7 +513,7 @@ msgstr "Contul de Active nu a fost găsit.\n\n"
 #: import_export/qif_export.cpp:606 import_export/univcsvdialog.cpp:96
 #: mmchecking_list.cpp:265 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr "Document de identitate"
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:524 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
@@ -3286,7 +3286,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:1164 import_export/qif_import_gui.h:44
 #: mmframe.cpp:1498
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importă din fișierul QIF"
 
 #: import_export/qif_import_gui.cpp:1243
 msgid "Transaction code is missing"
@@ -3884,15 +3884,15 @@ msgstr ""
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "Recomandare: Faceți în mod regulat copii de rezervă a fișierul .mmb."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "Recomandare: Dacă faceți upgrade la o nouă versiune MMEX, asigurați-vă că ați făcut o copie de rezervă a fișierului .mmb înainte de a face acest lucru."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "Recomandare: Utilizați copiază (Ctrl+C) și lipește (Ctrl+V) pentru tranzacțiile utilizate frecvent."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
@@ -4276,7 +4276,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:499 mmframe.cpp:762
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Tranzacții șterse"
 
 #: mmcheckingpanel.cpp:501
 #, c-format
@@ -4285,7 +4285,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:519
 msgid "Account Bal: "
-msgstr ""
+msgstr "Sold: "
 
 #: mmcheckingpanel.cpp:521
 msgid "Reconciled Bal: "
@@ -4450,19 +4450,19 @@ msgstr "MMEX a fost deschis fără o bază de date activă."
 
 #: mmframe.cpp:1317
 msgid "MMEX: Menu Popup Error"
-msgstr ""
+msgstr "MMEX: Eroare meniu pop-up"
 
 #: mmframe.cpp:1333 mmframe.cpp:1494
 msgid "&Import from"
-msgstr ""
+msgstr "&Importă din"
 
 #: mmframe.cpp:1334
 msgid "&CSV Files..."
-msgstr ""
+msgstr "Fișiere &CSV..."
 
 #: mmframe.cpp:1335
 msgid "&XML Files..."
-msgstr ""
+msgstr "Fișiere &XML..."
 
 #: mmframe.cpp:1335 mmframe.cpp:1496
 msgid "Import from XML file (Excel format)"
@@ -4470,51 +4470,51 @@ msgstr "Importă din fișierul XML (în format Excel)"
 
 #: mmframe.cpp:1337
 msgid "&QIF Files..."
-msgstr ""
+msgstr "Fișiere &QIF..."
 
 #: mmframe.cpp:1340 mmframe.cpp:1503
 msgid "&Export as"
-msgstr ""
+msgstr "&Exportă ca"
 
 #: mmframe.cpp:1341 mmframe.cpp:1495 mmframe.cpp:1504
 msgid "&CSV File..."
-msgstr ""
+msgstr "Fișier &CSV..."
 
 #: mmframe.cpp:1342 mmframe.cpp:1496 mmframe.cpp:1505
 msgid "&XML File..."
-msgstr ""
+msgstr "Fișier &XML..."
 
 #: mmframe.cpp:1344 mmframe.cpp:1507
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "Fișier &MMEX CSV..."
 
 #: mmframe.cpp:1345 mmframe.cpp:1508
 msgid "&JSON File..."
-msgstr ""
+msgstr "Fişier &JSON..."
 
 #: mmframe.cpp:1346 mmframe.cpp:1498 mmframe.cpp:1509
 msgid "&QIF File..."
-msgstr ""
+msgstr "Fișier &QIF..."
 
 #: mmframe.cpp:1371
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Editează filtre..."
 
 #: mmframe.cpp:1372
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Redenumește filtru..."
 
 #: mmframe.cpp:1373
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "Ște&rge filtru..."
 
 #: mmframe.cpp:1389 mmframe.cpp:1407 mmframe.cpp:1427 mmframe.cpp:1605
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Editează Contul..."
 
 #: mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1430 mmframe.cpp:1611
 msgid "&Delete Account..."
-msgstr ""
+msgstr "Șter&ge Contul..."
 
 #: mmframe.cpp:1392 mmframe.cpp:1412
 msgid "&Launch Account Website"
@@ -4522,7 +4522,7 @@ msgstr "&Lansează Situl Contului"
 
 #: mmframe.cpp:1408 mmframe.cpp:1608
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Realocă Contul..."
 
 #: mmframe.cpp:1426 mmframe.cpp:1602
 msgid "&New Account..."
@@ -4538,7 +4538,7 @@ msgstr "Conturi Vizibile"
 
 #: mmframe.cpp:1479
 msgid "&New Database..."
-msgstr ""
+msgstr "Bază de date &nouă..."
 
 #: mmframe.cpp:1479 mmframe.cpp:1843 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4546,7 +4546,7 @@ msgstr "Bază de Date Nouă"
 
 #: mmframe.cpp:1480
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Deschide baza de date...\tCtrl-O"
 
 #: mmframe.cpp:1480 mmframe.cpp:1844
 msgid "Open Database"
@@ -4554,7 +4554,7 @@ msgstr "Deschide Baza de Date"
 
 #: mmframe.cpp:1481
 msgid "Save Database &As..."
-msgstr ""
+msgstr "S&alvează baza de date ca..."
 
 #: mmframe.cpp:1481
 msgid "Save Database As"
@@ -4562,7 +4562,7 @@ msgstr "Salvează Baza de Date Ca..."
 
 #: mmframe.cpp:1488
 msgid "&Recent Files"
-msgstr ""
+msgstr "Fişiere &recente"
 
 #: mmframe.cpp:1489
 msgid "&Clear Recent Files"
@@ -4606,7 +4606,7 @@ msgstr "Ieșire din acest program"
 
 #: mmframe.cpp:1528
 msgid "&Toolbar"
-msgstr "&Bara de Unelte"
+msgstr "&Bara de unelte"
 
 #: mmframe.cpp:1528
 msgid "Show/Hide the toolbar"
@@ -4626,11 +4626,11 @@ msgstr "Afișează conturile &de partajate"
 
 #: mmframe.cpp:1532
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Arată/ascunde Conturile de Partajate în arborele de navigare"
 
 #: mmframe.cpp:1534
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "Afișează &tranzacțiile șterse"
 
 #: mmframe.cpp:1534
 msgid "Show/Hide Deleted Transactions in the navigation tree"
@@ -5646,7 +5646,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "O tranzacție recurentă va depăși limita contului dvs.\n\n"
+"Cont: %s\n"
+"Soldul curent: %6.2f\n"
+"Valoarea tranzacției: %6.2f\n"
+"%s: %6.2f\n\n"
+"Vrei să continui?"
 
 #: model/Model_Billsdeposits.cpp:310
 msgid "Minimum Balance"
@@ -6853,7 +6858,7 @@ msgstr ""
 #: reports/summary.cpp:133
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "Balanța conturilor - %s"
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
@@ -6990,7 +6995,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Introduceți note pentru a descrie această tranzacție divizată"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
@@ -7361,7 +7366,7 @@ msgstr ""
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Sunteți sigur că doriți să utilizați această temă? Reține că acest lucru va avea efect doar atunci când MMEX va fi repornit."
 
 #: transactionsupdatedialog.cpp:191
 msgid "Transfer To"
