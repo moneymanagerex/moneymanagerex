@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-02 17:35\n"
+"PO-Revision-Date: 2023-04-02 18:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4826,7 +4826,7 @@ msgstr "Alterar a senha de um banco de dados criptografado"
 
 #: mmframe.cpp:1713
 msgid "&Optimize Database..."
-msgstr "&Otimizar Base de Dados..."
+msgstr "&Optimizar Base de Dados..."
 
 #: mmframe.cpp:1714
 msgid "Optimize database space and performance"
@@ -4834,7 +4834,7 @@ msgstr "Otimizar o espaço e o desempenho do banco de dados"
 
 #: mmframe.cpp:1716
 msgid "Database De&bug..."
-msgstr ""
+msgstr "&Depuração de Base de Dados..."
 
 #: mmframe.cpp:1717
 msgid "Generate database report or fix errors"
@@ -7243,11 +7243,11 @@ msgstr "Valor Total Atual"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Novo Investimento..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Adicionar Transações de Ações..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7255,11 +7255,11 @@ msgstr "&Ver Transações de Ações"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Editar Investimento..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Eliminar Investimento..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
