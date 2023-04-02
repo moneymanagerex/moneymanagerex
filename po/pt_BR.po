@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-29 18:08\n"
+"PO-Revision-Date: 2023-04-02 17:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4794,7 +4794,7 @@ msgstr "Gerenciador de Campos Personalizados"
 
 #: mmframe.cpp:1695
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Atualizar &WebApp..."
 
 #: mmframe.cpp:1695 mmframe.cpp:2730 mmframe.cpp:2737
 msgid "Refresh WebApp"
@@ -4810,7 +4810,7 @@ msgstr "Mostrar Tela de Opções"
 
 #: mmframe.cpp:1707
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Converter &BD Encriptada..."
 
 #: mmframe.cpp:1708
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4818,7 +4818,7 @@ msgstr "Converter BD criptografado para BD não criptografado"
 
 #: mmframe.cpp:1710
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Alterar &Senha Encriptada..."
 
 #: mmframe.cpp:1711
 msgid "Change the password of an encrypted database"
@@ -4826,7 +4826,7 @@ msgstr "Alterar a senha de um banco de dados criptografado"
 
 #: mmframe.cpp:1713
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Otimizar Base de Dados..."
 
 #: mmframe.cpp:1714
 msgid "Optimize database space and performance"
