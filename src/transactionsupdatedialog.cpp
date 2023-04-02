@@ -476,7 +476,7 @@ void transactionsUpdateDialog::SetPayeeTransferControls()
     }
 }
 
-void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
+void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent&)
 {
     SetPayeeTransferControls();
 }

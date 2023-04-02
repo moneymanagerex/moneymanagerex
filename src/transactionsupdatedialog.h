@@ -50,7 +50,7 @@ private:
     void OnComboKey(wxKeyEvent& event);
     void onFocusChange(wxChildFocusEvent& event);
     void SetPayeeTransferControls();
-    void OnTransTypeChanged(wxCommandEvent& event);
+    void OnTransTypeChanged(wxCommandEvent&);
     void OnMoreFields(wxCommandEvent& event);
 
 private:
