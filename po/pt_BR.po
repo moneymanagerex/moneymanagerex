@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-02 18:45\n"
+"PO-Revision-Date: 2023-04-03 12:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2344,7 +2344,7 @@ msgstr "Vida"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr "Casa"
+msgstr "Início"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
