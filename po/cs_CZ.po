@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-03 08:31\n"
+"PO-Revision-Date: 2023-04-03 09:38\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Nový účet"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Otevřít poslední"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nová databáze"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Vytvořit nový databázový soubor"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Otevřít &existující databázi"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -4612,7 +4612,7 @@ msgstr ""
 
 #: mmframe.cpp:1516
 msgid "&Print..."
-msgstr ""
+msgstr "&Tisk..."
 
 #: mmframe.cpp:1516 mmframe.cpp:1880
 msgid "Print current view"
@@ -5092,7 +5092,7 @@ msgstr "Celá obrazovka\tF11"
 
 #: mmframe.cpp:1880
 msgid "&Print"
-msgstr ""
+msgstr "&Tisk"
 
 #: mmframe.cpp:1935
 #, c-format
