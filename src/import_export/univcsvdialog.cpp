@@ -673,7 +673,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             m_account_id = -1;
     }
 
-    if (m_account_id < 0)
+    if (m_account_id < 0 && m_file_path == wxEmptyString)
     {
         Value& account_name = GetValueByPointerWithDefault(json_doc, "/ACCOUNT_NAME", "");
         an = wxString::FromUTF8(account_name.IsString() ? account_name.GetString() : "");

@@ -1008,7 +1008,8 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 
 void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
 {
-    if (panelCurrent_->GetId() != mmID_CHECKING) return;
+    int id = panelCurrent_->GetId();
+    if (!(id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS)) return;
     
     if (event.GetNumberOfFiles() > 0) {
         wxString* dropped = event.GetFiles();
@@ -1122,7 +1123,10 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::BILLS:
         return OnBillsDeposits(e);
     case  mmTreeItemData::ALL_TRANSACTIONS:
+    {
+        DragAcceptFiles(true);
         return createAllTransactionsPage();
+    }
     case  mmTreeItemData::TRASH:
         return createDeletedTransactionsPage();
     case mmTreeItemData::BUDGET:
