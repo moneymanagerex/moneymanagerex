@@ -71,6 +71,29 @@ class wxCheckBox;
 
 class ITransactionsFile;
 
+class mmCSVSettingSaveDialog : public wxDialog
+{
+public:
+    mmCSVSettingSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name);
+    inline wxString mmCSVSettingSaveDialog::GetSettingName() const
+    {
+        if(setting_name_)
+            return setting_name_->GetValue();
+        return wxEmptyString;
+    }
+
+    inline bool mmCSVSettingSaveDialog::IsAccountDefault() const
+    {
+        if (set_account_default_)
+            return set_account_default_->IsChecked();
+        return false;
+    }
+
+private:
+    wxCheckBox* set_account_default_;
+    wxTextCtrl* setting_name_;
+};
+
 class mmUnivCSVDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmUnivCSVDialog);
@@ -158,7 +181,7 @@ private:
     wxNotebook* m_preview_notebook = nullptr;
     wxListCtrl* m_list_ctrl_ = nullptr; //preview
     wxTextCtrl* m_text_ctrl_ = nullptr;
-    wxTextCtrl* m_setting_name_ctrl_ = nullptr;
+    wxChoice* m_setting_name = nullptr;
     wxTextCtrl* log_field_ = nullptr;
     wxTextCtrl* m_textDelimiter = nullptr;
     wxSpinCtrl* m_spinIgnoreFirstRows_ = nullptr;
@@ -192,6 +215,7 @@ private:
     wxCheckBox* payeeMatchAddNotes_ = nullptr;
     wxDataViewListCtrl* payeeListBox_ = nullptr;
     wxDataViewListCtrl* categoryListBox_ = nullptr;
+    std::map<wxString, wxString> m_preset_id;
 
     /// Creation
     bool Create(wxWindow* parent,
@@ -230,6 +254,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnShowPayeeDialog(wxMouseEvent& event);
     void OnShowCategDialog(wxMouseEvent& event);
+    void saveAccountPreset(int account_id, const wxString& preset_name);
 private:
     void OnLoad();
     void UpdateListItemBackground();
