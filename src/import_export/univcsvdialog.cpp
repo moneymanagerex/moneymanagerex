@@ -83,6 +83,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     wxWindow* parent,
     EDialogType dialogType,
     int account_id,
+    const wxString& file_path,
     wxWindowID id,
     const wxPoint& pos,
     const wxSize& size,
@@ -90,6 +91,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     m_account_id(account_id),
+    m_file_path(file_path),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
     depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
 {
@@ -184,7 +186,7 @@ void mmUnivCSVDialog::CreateControls()
     itemStaticText5->SetFont(staticBoxFontSetting);
 
     m_text_ctrl_ = new wxTextCtrl(itemPanel6
-        , ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+        , ID_FILE_NAME, m_file_path, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
     m_text_ctrl_->SetMinSize(wxSize(300, -1));
     itemBoxSizer7->Add(m_text_ctrl_, 1, wxALL | wxGROW, 5);
     m_text_ctrl_->Connect(ID_FILE_NAME
@@ -608,6 +610,8 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 {
     if (json_data.empty()) {
         m_setting_name_ctrl_->ChangeValue("");
+        if (m_file_path != wxEmptyString)
+            update_preview();
         return;
     }
 
@@ -645,9 +649,12 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
         m_userDefinedDateMask = false;
 
     //File
-    Value& file_name = GetValueByPointerWithDefault(json_doc, "/FILE_NAME", "");
-    const auto fn = wxString::FromUTF8(file_name.IsString() ? file_name.GetString() : "");
-    m_text_ctrl_->ChangeValue(fn);
+    if (m_file_path == wxEmptyString)
+    {
+        Value& file_name = GetValueByPointerWithDefault(json_doc, "/FILE_NAME", "");
+        const auto fn = wxString::FromUTF8(file_name.IsString() ? file_name.GetString() : "");
+        m_text_ctrl_->ChangeValue(fn);
+    }
 
     // Account
     wxString an;
