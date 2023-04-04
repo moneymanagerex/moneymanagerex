@@ -790,6 +790,22 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             payeeMatchAddNotes_->SetValue(json_doc["PAYEE_PATTERN_MATCH_ADD_NOTES"].GetBool());
         else
             payeeMatchAddNotes_->SetValue(false);
+
+        if (json_doc.HasMember("APPLY_COLOR"))
+        {
+            colorCheckBox_->SetValue(json_doc["APPLY_COLOR"].GetBool());
+            colorButton_->Enable(colorCheckBox_->IsChecked());
+        }
+        else
+        {
+            colorCheckBox_->SetValue(false);
+            colorButton_->Disable();
+        }
+
+        if (json_doc.HasMember("COLOR_SELECTION"))
+            colorButton_->SetBackgroundColor(json_doc["COLOR_SELECTION"].GetInt());
+        else
+            colorButton_->SetBackgroundColor(-1);
     }
     else
     {
@@ -1038,6 +1054,12 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
         json_writer.Key("PAYEE_PATTERN_MATCH_ADD_NOTES");
         json_writer.Bool(payeeMatchAddNotes_->IsChecked());
+
+        json_writer.Key("APPLY_COLOR");
+        json_writer.Bool(colorCheckBox_->IsChecked());
+
+        json_writer.Key("COLOR_SELECTION");
+        json_writer.Int(colorButton_->GetColorId());
     }
     else
     {
