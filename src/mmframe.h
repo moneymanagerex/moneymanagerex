@@ -258,6 +258,8 @@ private:
     void OnTreeItemCollapsing(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
 
+    void OnDropFiles(wxDropFilesEvent& event);
+
     void navTreeStateToJson();
     void processPendingEvents();
     void ReallocateAccount(int accountID);

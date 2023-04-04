@@ -54,7 +54,7 @@ EVT_CHOICE(ID_ACCOUNT, mmQIFImportDialog::OnAccountChanged)
 EVT_CLOSE(mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
+mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id, const wxString& file_path)
     : m_userDefinedDateMask(false)
     , m_today(wxDate::Today())
     , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
@@ -75,6 +75,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
     , accountDropDown_(nullptr)
     , btnOK_(nullptr)
     , m_choiceDecimalSeparator(nullptr)
+    , m_FileNameStr(file_path)
 {
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     payeeIsNotes_ = false;
@@ -109,7 +110,10 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_NOTES] = _("Notes");
 
     CreateControls();
-    fillControls();
+    if (m_FileNameStr != wxEmptyString)
+        mmReadQIFFile();
+    else
+        fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
@@ -137,7 +141,7 @@ void mmQIFImportDialog::CreateControls()
     itemBoxSizer7->Add(file_name_label, g_flagsH);
 
     wxArrayString files = Model_Setting::instance().GetArrayStringSetting("RECENT_QIF_FILES");
-    file_name_ctrl_ = new  wxComboBox(file_panel, wxID_FILE, "", wxDefaultPosition, wxDefaultSize, files, wxTE_PROCESS_ENTER);
+    file_name_ctrl_ = new  wxComboBox(file_panel, wxID_FILE, m_FileNameStr, wxDefaultPosition, wxDefaultSize, files, wxTE_PROCESS_ENTER);
     file_name_ctrl_->SetMinSize(wxSize(300, -1));
     itemBoxSizer7->Add(file_name_ctrl_, 1, wxALL | wxGROW, 5);
     file_name_ctrl_->Connect(wxID_FILE
