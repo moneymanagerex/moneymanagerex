@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-04-03 12:20\n"
+"PO-Revision-Date: 2023-04-04 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -231,7 +231,7 @@ msgstr "Balanço Min:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Limite inferior ao saldo da conta. Zero para desativar"
+msgstr "Limite inferior do saldo da conta. Zero para desativar"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -1913,7 +1913,7 @@ msgstr "Ver Último Ano Financeiro"
 
 #: constants.cpp:205
 msgid "View Since Statement Date"
-msgstr "Ver desde a data da declaração"
+msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:207
 msgid "ALL"
@@ -5042,7 +5042,7 @@ msgstr "Mostra Lista de Categorias"
 
 #: mmframe.cpp:1852
 msgid "Show Organize Payees Dialog"
-msgstr "Mostrar Lista de Favorecidos"
+msgstr "Mostrar Lista de Beneficiários"
 
 #: mmframe.cpp:1853
 msgid "Show Organize Currency Dialog"
@@ -5310,8 +5310,8 @@ msgstr "Escolha a Conta para Exclusão"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Tem ser certeza que você deseja excluir\n"
-"%s conta: %s ?"
+msgstr "Tem certeza que deseja eliminar a\n"
+"conta %s: %s ?"
 
 #: mmframe.cpp:3404
 msgid "Select the account to reallocate"
