@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-29 18:08\n"
+"PO-Revision-Date: 2023-04-04 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -231,7 +231,7 @@ msgstr "Balanço Min:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Limite inferior ao saldo da conta. Zero para desativar"
+msgstr "Limite inferior do saldo da conta. Zero para desativar"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -1913,7 +1913,7 @@ msgstr "Ver Último Ano Financeiro"
 
 #: constants.cpp:205
 msgid "View Since Statement Date"
-msgstr "Ver desde a data da declaração"
+msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:207
 msgid "ALL"
@@ -2344,7 +2344,7 @@ msgstr "Vida"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr "Casa"
+msgstr "Início"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -4794,7 +4794,7 @@ msgstr "Gerenciador de Campos Personalizados"
 
 #: mmframe.cpp:1695
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Atualizar &WebApp..."
 
 #: mmframe.cpp:1695 mmframe.cpp:2730 mmframe.cpp:2737
 msgid "Refresh WebApp"
@@ -4810,7 +4810,7 @@ msgstr "Mostrar Tela de Opções"
 
 #: mmframe.cpp:1707
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Converter &BD Encriptada..."
 
 #: mmframe.cpp:1708
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4818,7 +4818,7 @@ msgstr "Converter BD criptografado para BD não criptografado"
 
 #: mmframe.cpp:1710
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Alterar &Senha Encriptada..."
 
 #: mmframe.cpp:1711
 msgid "Change the password of an encrypted database"
@@ -4826,7 +4826,7 @@ msgstr "Alterar a senha de um banco de dados criptografado"
 
 #: mmframe.cpp:1713
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Optimizar Base de Dados..."
 
 #: mmframe.cpp:1714
 msgid "Optimize database space and performance"
@@ -4834,7 +4834,7 @@ msgstr "Otimizar o espaço e o desempenho do banco de dados"
 
 #: mmframe.cpp:1716
 msgid "Database De&bug..."
-msgstr ""
+msgstr "&Depuração de Base de Dados..."
 
 #: mmframe.cpp:1717
 msgid "Generate database report or fix errors"
@@ -5042,7 +5042,7 @@ msgstr "Mostra Lista de Categorias"
 
 #: mmframe.cpp:1852
 msgid "Show Organize Payees Dialog"
-msgstr "Mostrar Lista de Favorecidos"
+msgstr "Mostrar Lista de Beneficiários"
 
 #: mmframe.cpp:1853
 msgid "Show Organize Currency Dialog"
@@ -5310,8 +5310,8 @@ msgstr "Escolha a Conta para Exclusão"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Tem ser certeza que você deseja excluir\n"
-"%s conta: %s ?"
+msgstr "Tem certeza que deseja eliminar a\n"
+"conta %s: %s ?"
 
 #: mmframe.cpp:3404
 msgid "Select the account to reallocate"
@@ -7243,11 +7243,11 @@ msgstr "Valor Total Atual"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Novo Investimento..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Adicionar Transações de Ações..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7255,11 +7255,11 @@ msgstr "&Ver Transações de Ações"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Editar Investimento..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Eliminar Investimento..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"

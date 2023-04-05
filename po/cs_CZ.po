@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-03-28 23:13+0300\n"
-"PO-Revision-Date: 2023-03-28 20:15\n"
+"PO-Revision-Date: 2023-04-03 09:38\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -319,11 +319,11 @@ msgstr "Nový účet"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Otevřít poslední"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nová databáze"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -331,7 +331,7 @@ msgstr "Vytvořit nový databázový soubor"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Otevřít &existující databázi"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -4532,7 +4532,7 @@ msgstr ""
 
 #: mmframe.cpp:1389 mmframe.cpp:1407 mmframe.cpp:1427 mmframe.cpp:1605
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Upravit účet..."
 
 #: mmframe.cpp:1390 mmframe.cpp:1410 mmframe.cpp:1430 mmframe.cpp:1611
 msgid "&Delete Account..."
@@ -4544,11 +4544,11 @@ msgstr "Přejít na &stránku účtu"
 
 #: mmframe.cpp:1408 mmframe.cpp:1608
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Změnit typ účtu..."
 
 #: mmframe.cpp:1426 mmframe.cpp:1602
 msgid "&New Account..."
-msgstr ""
+msgstr "&Nový účet..."
 
 #: mmframe.cpp:1428
 msgid "Account &List"
@@ -4612,7 +4612,7 @@ msgstr ""
 
 #: mmframe.cpp:1516
 msgid "&Print..."
-msgstr ""
+msgstr "&Tisk..."
 
 #: mmframe.cpp:1516 mmframe.cpp:1880
 msgid "Print current view"
@@ -4736,11 +4736,11 @@ msgstr "Stáhnout kurzy měn a akcií"
 
 #: mmframe.cpp:1630
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Spravovat &kategorie..."
 
 #: mmframe.cpp:1634
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Spravovat &příjemce..."
 
 #: mmframe.cpp:1634 mmframe.cpp:1852 payeedialog.cpp:496
 msgid "Organize Payees"
@@ -4748,7 +4748,7 @@ msgstr "Správce příjemců"
 
 #: mmframe.cpp:1638
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Spravovat mě&ny..."
 
 #: mmframe.cpp:1638 mmframe.cpp:1853
 msgid "Organize Currency"
@@ -5092,7 +5092,7 @@ msgstr "Celá obrazovka\tF11"
 
 #: mmframe.cpp:1880
 msgid "&Print"
-msgstr ""
+msgstr "&Tisk"
 
 #: mmframe.cpp:1935
 #, c-format
