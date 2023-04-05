@@ -207,12 +207,11 @@ void mmUnivCSVDialog::CreateControls()
     settings_box_sizer->AddSpacer(5);
 
     Document account_default_presets;
-    wxString init_preset;
     if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo("CSV_ACCOUNT_PRESETS", "{}").utf8_str()).HasParseError())
     {
-        const Pointer ptr(wxString::Format("%i", m_account_id).Prepend("/").mb_str());
-        Value& preset_id_value = GetValueByPointerWithDefault(account_default_presets, ptr, "");
-        init_preset = preset_id_value.IsString() ? wxString::FromUTF8(preset_id_value.GetString()) : "";
+        for (const auto& member : account_default_presets.GetObject()) {
+            m_acct_default_preset[std::stoi(member.name.GetString())] = member.value.GetString();
+        }
     }
 
     m_setting_name = new wxChoice(this, wxID_APPLY, wxDefaultPosition, wxDefaultSize, wxArrayString(), wxCB_SORT);
@@ -230,7 +229,7 @@ void mmUnivCSVDialog::CreateControls()
         const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
         m_setting_name->Append(setting_name);
         m_preset_id[setting_name] = setting.SETTINGNAME;
-        if (!init_preset.IsEmpty() && init_preset == setting.SETTINGNAME) init_preset_name = setting_name;
+        if (!m_acct_default_preset[m_account_id].IsEmpty() && m_acct_default_preset[m_account_id] == setting.SETTINGNAME) init_preset_name = setting_name;
     }
 
     if (!init_preset_name.IsEmpty())
@@ -996,7 +995,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 {
     const wxString label = m_setting_name->GetStringSelection();
 
-    mmCSVSettingSaveDialog dlg(this, m_choice_account_->GetStringSelection(), label);
+    mmCSVSettingSaveDialog dlg(this, m_choice_account_->GetStringSelection(), label, m_preset_id[label] == m_acct_default_preset[m_account_id]);
     if (dlg.ShowModal() != wxID_OK) return;
 
     wxString user_label = dlg.GetSettingName();
@@ -1128,28 +1127,28 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
     Model_Setting::instance().Set(setting_id, json_data);
 
-    saveAccountPreset(m_account_id, (dlg.IsAccountDefault() ? m_preset_id[user_label] : ""));
+    if (dlg.IsAccountDefault())
+        m_acct_default_preset[m_account_id] = m_preset_id[user_label];
+    else
+        m_acct_default_preset[m_account_id] = "";
+
+    saveAccountPresets();
     
 }
 
-void mmUnivCSVDialog::saveAccountPreset(int account_id, const wxString& preset_name)
+void mmUnivCSVDialog::saveAccountPresets()
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    Document json_doc;
-    if (json_doc.Parse(Model_Infotable::instance().GetStringInfo("CSV_ACCOUNT_PRESETS", "{}").utf8_str()).HasParseError()) {
-        return;
-    }
-
     json_writer.StartObject();
-    for (const auto& member : json_doc.GetObject()) {
-        if (member.name.GetString() == std::to_string(account_id)) continue;
-        json_writer.Key(member.name.GetString());
-        json_writer.String(member.value.GetString());
+    for (const auto& preset : m_acct_default_preset) {
+        if (preset.first == m_account_id) continue;
+        json_writer.Key(wxString::Format("%i", preset.first).utf8_str());
+        json_writer.String(preset.second.utf8_str());
     }
-    json_writer.Key(wxString::Format("%i", account_id).utf8_str());
-    json_writer.String(preset_name.utf8_str());
+    json_writer.Key(wxString::Format("%i", m_account_id).utf8_str());
+    json_writer.String(m_acct_default_preset[m_account_id].utf8_str());
     json_writer.EndObject();
 
     Model_Infotable::instance().Set("CSV_ACCOUNT_PRESETS", wxString::FromUTF8(json_buffer.GetString()));
@@ -1981,9 +1980,17 @@ void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
         {
             return;
         }
-        Model_Setting::Data_Set data = Model_Setting::instance().find(Model_Setting::SETTINGNAME(m_preset_id[m_setting_name->GetStringSelection()]));
+        wxString preset = m_preset_id[m_setting_name->GetStringSelection()];
+        Model_Setting::Data_Set data = Model_Setting::instance().find(Model_Setting::SETTINGNAME(preset));
         if (data.size() > 0)
             Model_Setting::instance().remove(data[0].SETTINGID);
+
+        // update default presets to remove any that reference the deleted item
+        for (auto& member : m_acct_default_preset)
+            if (member.second == preset)
+                member.second = "";
+        saveAccountPresets();
+
         m_setting_name->Delete(sel);
         m_setting_name->SetSelection(-1);
     }
@@ -2399,6 +2406,13 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
         m_account_id = account->ACCOUNTID;
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
+
+        for (const auto& preset : m_preset_id)
+            if (preset.second == m_acct_default_preset[m_account_id])
+            {
+                m_setting_name->SetStringSelection(preset.first);
+                break;
+            }
     }
     else if (i == ID_ENCODING)
     {
@@ -2495,7 +2509,7 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
     colorCheckBox_->SetValue(false);
 }
 
-mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name) : wxDialog(parent, -1, _("Please Enter"))
+mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default) : wxDialog(parent, -1, _("Please Enter"))
 {
     wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
     topsizer->Add(CreateTextSizer(_("Setting Name")), wxSizerFlags().DoubleBorder());
@@ -2509,25 +2523,7 @@ mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString&
 
     set_account_default_ = new wxCheckBox(this, wxID_ANY, wxString::Format(_("Associate preset with account: %s"), account_name));
 
-    Model_Account::Data* account = Model_Account::instance().get(account_name);
-    if (account)
-    {
-        Document account_default_presets;
-        account_default_presets.Parse(Model_Infotable::instance().GetStringInfo("CSV_ACCOUNT_PRESETS", "{}").utf8_str());
-        const Pointer ptr(wxString::Format("%i", account->ACCOUNTID).Prepend("/").mb_str());
-        Value& preset_id_value = GetValueByPointerWithDefault(account_default_presets, ptr, "");
-        const wxString account_preset = preset_id_value.IsString() ? wxString::FromUTF8(preset_id_value.GetString()) : "";
-
-        if (!account_preset.IsEmpty())
-        {
-            Document preset_settings;
-            if (!preset_settings.Parse(Model_Setting::instance().GetStringSetting(account_preset, "{}").utf8_str()).HasParseError()) {
-                Value& name_value = GetValueByPointerWithDefault(preset_settings, "/SETTING_NAME", "");
-                const wxString account_preset_name = name_value.IsString() ? wxString::FromUTF8(name_value.GetString()) : "";
-                if (!account_preset_name.IsEmpty()) set_account_default_->SetValue(account_preset_name == setting_name);
-            }
-        }
-    }
+    set_account_default_->SetValue(is_default);
 
     topsizer->Add(set_account_default_,
         wxSizerFlags().
