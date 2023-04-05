@@ -199,12 +199,9 @@ void mmUnivCSVDialog::CreateControls()
 
     // Predefined settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* settings_sizer = new wxBoxSizer(wxVERTICAL);
-    settings_sizer->Add(settings_box_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
-    wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Settings"));
+    wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Presets:"), wxDefaultPosition, itemStaticText5->GetSize());
     settings_box_sizer->Add(settings, g_flagsH);
-    settings_box_sizer->AddSpacer(5);
 
     Document account_default_presets;
     if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo("CSV_ACCOUNT_PRESETS", "{}").utf8_str()).HasParseError())
@@ -239,16 +236,16 @@ void mmUnivCSVDialog::CreateControls()
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
-    settings_box_sizer->AddSpacer(5);
+    wxBoxSizer* setting_button_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxBitmapButton* itemButton_Save = new wxBitmapButton(this, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
-    settings_box_sizer->Add(itemButton_Save, g_flagsH);
-    mmToolTip(itemButton_Save, _("Save active values into current Preset selection"));
+    setting_button_sizer->Add(itemButton_Save, wxSizerFlags(g_flagsH).Border(wxLEFT, 0));
+    setting_button_sizer->AddSpacer(5);
 
     wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
-    mmToolTip(itemButtonClear, _("Delete current Preset selection"));
-    settings_box_sizer->Add(itemButtonClear, g_flagsH);
-
-    itemBoxSizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
+    setting_button_sizer->Add(itemButtonClear, g_flagsH);
+    setting_button_sizer->SetMinSize(button_browse->GetSize());
+    settings_box_sizer->Add(setting_button_sizer, wxSizerFlags(g_flagsH).Border(wxALL, 0).Border(wxLEFT | wxRIGHT, 5));
+    itemBoxSizer2->Add(settings_box_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
     //
     wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
@@ -540,9 +537,9 @@ void mmUnivCSVDialog::CreateControls()
         : (IsXML() ? _("Choose XML data file to Export") : _("Choose CSV data file to Export"));
     mmToolTip(button_browse, file_tooltip);
 
-    mmToolTip(m_setting_name, _("Template name"));
-    mmToolTip(itemButton_Save, _("Save Template"));
-    mmToolTip(itemButtonClear, _("Clear Settings"));
+    mmToolTip(m_setting_name, _("Preset name"));
+    mmToolTip(itemButton_Save, _("Save active values into current Preset selection"));
+    mmToolTip(itemButtonClear, _("Delete current Preset selection"));
     mmToolTip(itemButton_standard, _("MMEX standard format"));
     mmToolTip(itemButton_MoveUp, _("Move Up"));
     mmToolTip(itemButton_MoveDown, _("Move Down"));
