@@ -2507,7 +2507,7 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
 mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default) : wxDialog(parent, -1, _("Please Enter"))
 {
     wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
-    topsizer->Add(CreateTextSizer(_("Setting Name")), wxSizerFlags().DoubleBorder());
+    topsizer->Add(CreateTextSizer(_("Preset Name")), wxSizerFlags().DoubleBorder());
     setting_name_ = new wxTextCtrl(this, wxID_ANY, setting_name,
         wxDefaultPosition, wxSize(300, wxDefaultCoord));
 
@@ -2516,7 +2516,7 @@ mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString&
         Expand().
         TripleBorder(wxLEFT | wxRIGHT));
 
-    set_account_default_ = new wxCheckBox(this, wxID_ANY, wxString::Format(_("Associate preset with account: %s"), account_name));
+    set_account_default_ = new wxCheckBox(this, wxID_ANY, wxString::Format(_("Associate Preset with account: %s"), account_name));
 
     set_account_default_->SetValue(is_default);
 
