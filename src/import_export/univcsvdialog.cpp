@@ -1143,12 +1143,10 @@ void mmUnivCSVDialog::saveAccountPresets()
 
     json_writer.StartObject();
     for (const auto& preset : m_acct_default_preset) {
-        if (preset.first == m_account_id) continue;
+        if (preset.second.IsEmpty()) continue;
         json_writer.Key(wxString::Format("%i", preset.first).utf8_str());
         json_writer.String(preset.second.utf8_str());
     }
-    json_writer.Key(wxString::Format("%i", m_account_id).utf8_str());
-    json_writer.String(m_acct_default_preset[m_account_id].utf8_str());
     json_writer.EndObject();
 
     Model_Infotable::instance().Set("CSV_ACCOUNT_PRESETS", wxString::FromUTF8(json_buffer.GetString()));
