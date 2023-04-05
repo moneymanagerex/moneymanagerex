@@ -71,18 +71,18 @@ class wxCheckBox;
 
 class ITransactionsFile;
 
-class mmCSVSettingSaveDialog : public wxDialog
+class mmCSVPresetSaveDialog : public wxDialog
 {
 public:
-    mmCSVSettingSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default = false);
-    inline wxString mmCSVSettingSaveDialog::GetSettingName() const
+    mmCSVPresetSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default = false);
+    inline wxString mmCSVPresetSaveDialog::GetSettingName() const
     {
         if(setting_name_)
             return setting_name_->GetValue();
         return wxEmptyString;
     }
 
-    inline bool mmCSVSettingSaveDialog::IsAccountDefault() const
+    inline bool mmCSVPresetSaveDialog::IsAccountDefault() const
     {
         if (set_account_default_)
             return set_account_default_->IsChecked();

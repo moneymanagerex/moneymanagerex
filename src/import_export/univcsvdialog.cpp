@@ -992,7 +992,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 {
     const wxString label = m_setting_name->GetStringSelection();
 
-    mmCSVSettingSaveDialog dlg(this, m_choice_account_->GetStringSelection(), label, m_preset_id[label] == m_acct_default_preset[m_account_id]);
+    mmCSVPresetSaveDialog dlg(this, m_choice_account_->GetStringSelection(), label, m_preset_id[label] == m_acct_default_preset[m_account_id]);
     if (dlg.ShowModal() != wxID_OK) return;
 
     wxString user_label = dlg.GetSettingName();
@@ -2504,7 +2504,7 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
     colorCheckBox_->SetValue(false);
 }
 
-mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default) : wxDialog(parent, -1, _("Please Enter"))
+mmCSVPresetSaveDialog::mmCSVPresetSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default) : wxDialog(parent, -1, _("Please Enter"))
 {
     wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
     topsizer->Add(CreateTextSizer(_("Preset Name")), wxSizerFlags().DoubleBorder());
@@ -2516,7 +2516,7 @@ mmCSVSettingSaveDialog::mmCSVSettingSaveDialog(wxWindow* parent, const wxString&
         Expand().
         TripleBorder(wxLEFT | wxRIGHT));
 
-    set_account_default_ = new wxCheckBox(this, wxID_ANY, wxString::Format(_("Associate Preset with account: %s"), account_name));
+    set_account_default_ = new wxCheckBox(this, wxID_ANY, wxString::Format(_("Load this Preset when the account is: %s"), account_name));
 
     set_account_default_->SetValue(is_default);
 
