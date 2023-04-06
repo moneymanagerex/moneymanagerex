@@ -1126,7 +1126,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
     if (dlg.IsAccountDefault())
         m_acct_default_preset[m_account_id] = m_preset_id[user_label];
-    else
+    else if (label == user_label)
         m_acct_default_preset[m_account_id] = "";
 
     saveAccountPresets();
