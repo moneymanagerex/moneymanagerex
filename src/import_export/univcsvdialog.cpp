@@ -146,7 +146,6 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    SetSettings(GetStoredSettings(-1));
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
@@ -199,30 +198,54 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer7->Add(button_browse, g_flagsH);
 
     // Predefined settings
-    wxPanel* itemPanel67 = new wxPanel(this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    wxBoxSizer* itemBoxSizer76 = new wxBoxSizer(wxHORIZONTAL);
-    itemPanel67->SetSizer(itemBoxSizer76);
-    itemBoxSizer2->Add(itemPanel67, wxSizerFlags(g_flagsExpand).Proportion(0).Border(0));
-    const wxString settings_choice[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-    wxRadioBox* radio_box = new wxRadioBox(itemPanel67
-        , wxID_APPLY, "", wxDefaultPosition, wxDefaultSize
-        , sizeof(settings_choice) / sizeof(wxString)
-        , settings_choice, 10, wxRA_SPECIFY_COLS);
-    itemBoxSizer76->Add(radio_box, wxSizerFlags(g_flagsH).Center().Proportion(0));
-    radio_box->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
+    wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
+
+    wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Presets:"), wxDefaultPosition, itemStaticText5->GetSize());
+    settings_box_sizer->Add(settings, g_flagsH);
+
+    Document account_default_presets;
+    if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
+    {
+        for (const auto& member : account_default_presets.GetObject()) {
+            m_acct_default_preset[std::stoi(member.name.GetString())] = member.value.GetString();
+        }
+    }
+
+    m_setting_name = new wxChoice(this, wxID_APPLY, wxDefaultPosition, wxDefaultSize, wxArrayString(), wxCB_SORT);
+    wxString prefix = GetSettingsPrfix();
+    prefix.Replace("%d", "");
+    wxString init_preset_name;
+    for (const auto& setting : Model_Setting::instance().find(Model_Setting::SETTINGNAME(prefix + "0", GREATER_OR_EQUAL), Model_Setting::SETTINGNAME(prefix + "A", LESS)))
+    {
+        Document json_doc;
+        if (json_doc.Parse(setting.SETTINGVALUE.utf8_str()).HasParseError()) {
+            continue;
+        }
+
+        Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
+        const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
+        m_setting_name->Append(setting_name);
+        m_preset_id[setting_name] = setting.SETTINGNAME;
+        if (!m_acct_default_preset[m_account_id].IsEmpty() && m_acct_default_preset[m_account_id] == setting.SETTINGNAME) init_preset_name = setting_name;
+    }
+
+    if (!init_preset_name.IsEmpty())
+        m_setting_name->SetStringSelection(init_preset_name);
+
+    settings_box_sizer->Add(m_setting_name, g_flagsExpand);
+    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
-    m_setting_name_ctrl_ = new wxTextCtrl(itemPanel67, ID_FILE_NAME);
-    itemBoxSizer76->Add(m_setting_name_ctrl_, wxSizerFlags(g_flagsH).Center().Proportion(1));
+    wxBoxSizer* setting_button_sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBitmapButton* itemButton_Save = new wxBitmapButton(this, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
+    setting_button_sizer->Add(itemButton_Save, wxSizerFlags(g_flagsH).Border(wxLEFT, 0));
+    setting_button_sizer->AddSpacer(5);
 
-    wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
-        , wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
-    itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
-
-    wxBitmapButton* itemButtonClear = new wxBitmapButton(itemPanel67
-        , wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
-    itemBoxSizer76->Add(itemButtonClear, wxSizerFlags(g_flagsH).Center().Proportion(0));
+    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
+    setting_button_sizer->Add(itemButtonClear, g_flagsH);
+    setting_button_sizer->SetMinSize(button_browse->GetSize());
+    settings_box_sizer->Add(setting_button_sizer, wxSizerFlags(g_flagsH).Border(wxALL, 0).Border(wxLEFT | wxRIGHT, 5));
+    itemBoxSizer2->Add(settings_box_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
     //
     wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
@@ -514,9 +537,9 @@ void mmUnivCSVDialog::CreateControls()
         : (IsXML() ? _("Choose XML data file to Export") : _("Choose CSV data file to Export"));
     mmToolTip(button_browse, file_tooltip);
 
-    mmToolTip(m_setting_name_ctrl_, _("Template name"));
-    mmToolTip(itemButton_Save, _("Save Template"));
-    mmToolTip(itemButtonClear, _("Clear Settings"));
+    mmToolTip(m_setting_name, _("Preset name"));
+    mmToolTip(itemButton_Save, _("Save active values into current Preset selection"));
+    mmToolTip(itemButtonClear, _("Delete current Preset selection"));
     mmToolTip(itemButton_standard, _("MMEX standard format"));
     mmToolTip(itemButton_MoveUp, _("Move Up"));
     mmToolTip(itemButton_MoveDown, _("Move Down"));
@@ -525,6 +548,8 @@ void mmUnivCSVDialog::CreateControls()
     if (!IsImporter()) mmToolTip(bImport_, _("Export File"));
 
     m_text_ctrl_->SetFocus();
+
+    SetSettings(GetStoredSettings(m_setting_name->GetSelection()));
 }
 
 void mmUnivCSVDialog::initDateMask()
@@ -594,13 +619,13 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent& event)
 
 void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
 {
-    SetSettings(GetStoredSettings(event.GetSelection()));
+    SetSettings(GetStoredSettings(m_setting_name->GetSelection()));
 }
 
 const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 {
-    if (id < 0) id = 0;
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
+    if (id < 0) return wxEmptyString;
+    const wxString& setting_id = m_preset_id.at(m_setting_name->GetString(id));
     const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
     wxLogDebug("%s \n %s", setting_id, settings_string);
     return settings_string;
@@ -609,7 +634,7 @@ const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 {
     if (json_data.empty()) {
-        m_setting_name_ctrl_->ChangeValue("");
+        m_setting_name->SetSelection(-1);
         if (m_account_id > 0)
         {
             const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
@@ -629,7 +654,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     //Setting name
     Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
     const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
-    m_setting_name_ctrl_->ChangeValue(setting_name);
+    m_setting_name->SetStringSelection(setting_name);
 
     //Date Mask
     Value& date_mask = GetValueByPointerWithDefault(json_doc, "/DATE_MASK", "");
@@ -688,7 +713,11 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
                     "Please select a new account."), an)
                 , _("Account does not exist"));
         else
+        {
             m_choice_account_->Select(itemIndex);
+            if (m_account_id < 0)
+                m_account_id = Model_Account::instance().get(an)->ACCOUNTID;
+        }
     }
     else {
         m_choice_account_->Select(-1);
@@ -977,13 +1006,48 @@ void mmUnivCSVDialog::OnLoad()
 //Saves the field order to a template file
 void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 {
+    const wxString label = m_setting_name->GetStringSelection();
+
+    mmCSVPresetSaveDialog dlg(this, m_choice_account_->GetStringSelection(), label, m_preset_id[label] == m_acct_default_preset[m_account_id]);
+    if (dlg.ShowModal() != wxID_OK) return;
+
+    wxString user_label = dlg.GetSettingName();
+
+    if (user_label.empty())
+        return;
+
+    wxString setting_id = m_preset_id[user_label];
+    wxArrayString label_names;
+
+    for (unsigned int i = 0; i < m_setting_name->GetCount(); i++) {
+        label_names.Add(m_setting_name->GetString(i));
+    }
+
+    if (label_names.Index(user_label) == wxNOT_FOUND)
+    {
+        m_setting_name->Append(user_label);
+        // find first available setting id to add a new setting
+        int i = 0;
+        for (; i < std::max({ static_cast<int>(m_setting_name->GetCount()), 10 }); i++)
+        {
+            setting_id = wxString::Format(GetSettingsPrfix(), i);
+            if (!Model_Setting::instance().ContainsSetting(setting_id))
+                break;
+        }
+        m_preset_id[user_label] = setting_id;
+    }
+    else if (label != user_label)
+    {
+        if (wxMessageBox(_("The entered name is already in use"), _("Warning"), wxOK | wxICON_WARNING) == wxOK)
+        {
+        }
+    }
+
+    m_setting_name->SetStringSelection(user_label);
+
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
-
-    wxRadioBox* c = static_cast<wxRadioBox*>(FindWindow(wxID_APPLY));
-    int id = c->GetSelection();
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
 
     const auto fileName = m_text_ctrl_->GetValue();
     if (!fileName.empty())
@@ -992,7 +1056,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
         json_writer.String(fileName.utf8_str());
     }
 
-    const auto s_name = m_setting_name_ctrl_->GetValue();
+    const auto s_name = user_label;
     if (!s_name.empty())
     {
         json_writer.Key("SETTING_NAME");
@@ -1081,6 +1145,31 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     const wxString json_data = wxString::FromUTF8(json_buffer.GetString());
 
     Model_Setting::instance().Set(setting_id, json_data);
+
+    if (dlg.IsAccountDefault())
+        m_acct_default_preset[m_account_id] = m_preset_id[user_label];
+    else if (label == user_label)
+        m_acct_default_preset[m_account_id] = "";
+
+    saveAccountPresets();
+    
+}
+
+void mmUnivCSVDialog::saveAccountPresets()
+{
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    for (const auto& preset : m_acct_default_preset) {
+        if (preset.second.IsEmpty()) continue;
+        json_writer.Key(wxString::Format("%i", preset.first).utf8_str());
+        json_writer.String(preset.second.utf8_str());
+    }
+    json_writer.EndObject();
+
+    Model_Infotable::instance().Set((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), wxString::FromUTF8(json_buffer.GetString()));
+
 }
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder)
@@ -1897,6 +1986,31 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
 
 void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
 {
+    int sel = m_setting_name->GetSelection();
+    int size = m_setting_name->GetCount();
+    if (sel >= 0 && size > 0)
+    {
+        if (wxMessageBox(
+            _("The selected item will be deleted") + "\n\n" +
+            _("Do you wish to continue?")
+            , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
+        {
+            return;
+        }
+        wxString preset = m_preset_id[m_setting_name->GetStringSelection()];
+        Model_Setting::Data_Set data = Model_Setting::instance().find(Model_Setting::SETTINGNAME(preset));
+        if (data.size() > 0)
+            Model_Setting::instance().remove(data[0].SETTINGID);
+
+        // update default presets to remove any that reference the deleted item
+        for (auto& member : m_acct_default_preset)
+            if (member.second == preset)
+                member.second = "";
+        saveAccountPresets();
+
+        m_setting_name->Delete(sel);
+        m_setting_name->SetSelection(-1);
+    }
     SetSettings("{}");
 }
 
@@ -2306,8 +2420,16 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     {
         wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
+        m_account_id = account->ACCOUNTID;
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
+
+        for (const auto& preset : m_preset_id)
+            if (preset.second == m_acct_default_preset[m_account_id])
+            {
+                m_setting_name->SetStringSelection(preset.first);
+                break;
+            }
     }
     else if (i == ID_ENCODING)
     {
@@ -2402,4 +2524,37 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
 {
     colorButton_->Enable(false);
     colorCheckBox_->SetValue(false);
+}
+
+mmCSVPresetSaveDialog::mmCSVPresetSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default) : wxDialog(parent, -1, _("Please Enter"))
+{
+    wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
+    topsizer->Add(CreateTextSizer(_("Preset Name")), wxSizerFlags().DoubleBorder());
+    setting_name_ = new wxTextCtrl(this, wxID_ANY, setting_name,
+        wxDefaultPosition, wxSize(300, wxDefaultCoord));
+
+    topsizer->Add(setting_name_,
+        wxSizerFlags().
+        Expand().
+        TripleBorder(wxLEFT | wxRIGHT));
+
+    set_account_default_ = new wxCheckBox(this, wxID_ANY, wxString::Format(_("Load this Preset when the account is: %s"), account_name));
+
+    set_account_default_->SetValue(is_default);
+
+    topsizer->Add(set_account_default_,
+        wxSizerFlags().
+        Expand().
+        TripleBorder(wxLEFT | wxRIGHT | wxTOP));
+    wxSizer* buttonSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
+    if (buttonSizer)
+    {
+        topsizer->Add(buttonSizer, wxSizerFlags().Expand().DoubleBorder());
+    }
+
+    SetSizer(topsizer);
+
+    topsizer->SetSizeHints(this);
+
+    Centre(wxBOTH);
 }
