@@ -204,7 +204,7 @@ void mmUnivCSVDialog::CreateControls()
     settings_box_sizer->Add(settings, g_flagsH);
 
     Document account_default_presets;
-    if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo("CSV_ACCOUNT_PRESETS", "{}").utf8_str()).HasParseError())
+    if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
     {
         for (const auto& member : account_default_presets.GetObject()) {
             m_acct_default_preset[std::stoi(member.name.GetString())] = member.value.GetString();
@@ -1146,7 +1146,7 @@ void mmUnivCSVDialog::saveAccountPresets()
     }
     json_writer.EndObject();
 
-    Model_Infotable::instance().Set("CSV_ACCOUNT_PRESETS", wxString::FromUTF8(json_buffer.GetString()));
+    Model_Infotable::instance().Set((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), wxString::FromUTF8(json_buffer.GetString()));
 
 }
 
