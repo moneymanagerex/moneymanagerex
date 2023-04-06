@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 18:22\n"
+"PO-Revision-Date: 2023-04-06 23:47\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3364,7 +3364,7 @@ msgstr "Számla: "
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Preset:"
-msgstr ""
+msgstr "Előbeállítás:"
 
 #: import_export/univcsvdialog.cpp:261 import_export/univcsvdialog.cpp:563
 #: import_export/univcsvdialog.cpp:2417
@@ -3438,7 +3438,7 @@ msgstr "Válasszon CSV-adatájlt az exportáláshoz"
 
 #: import_export/univcsvdialog.cpp:546
 msgid "Preset name"
-msgstr ""
+msgstr "Előbeállítás neve"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
@@ -3446,7 +3446,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
-msgstr ""
+msgstr "Előbeállítás törlése"
 
 #: import_export/univcsvdialog.cpp:549
 msgid "MMEX standard format"
@@ -3496,11 +3496,11 @@ msgstr "Pozitív, ha a típusnak ez van '%s'"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Preset Name"
-msgstr ""
+msgstr "Előbeállítás neve"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Save Preset"
-msgstr ""
+msgstr "Előbeállítás mentése"
 
 #: import_export/univcsvdialog.cpp:1218
 msgid "Incorrect fields specified for import!"
@@ -3630,7 +3630,7 @@ msgstr "Exportált ügyletek: %ld"
 #: import_export/univcsvdialog.cpp:1980
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "A(z) „%s” előbeállítás törlődik"
 
 #: import_export/univcsvdialog.cpp:2013 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
