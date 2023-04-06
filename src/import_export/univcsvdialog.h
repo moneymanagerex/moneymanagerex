@@ -71,29 +71,6 @@ class wxCheckBox;
 
 class ITransactionsFile;
 
-class mmCSVPresetSaveDialog : public wxDialog
-{
-public:
-    mmCSVPresetSaveDialog(wxWindow* parent, const wxString& account_name, const wxString& setting_name, bool is_default = false);
-    inline wxString mmCSVPresetSaveDialog::GetSettingName() const
-    {
-        if(setting_name_)
-            return setting_name_->GetValue();
-        return wxEmptyString;
-    }
-
-    inline bool mmCSVPresetSaveDialog::IsAccountDefault() const
-    {
-        if (set_account_default_)
-            return set_account_default_->IsChecked();
-        return false;
-    }
-
-private:
-    wxCheckBox* set_account_default_;
-    wxTextCtrl* setting_name_;
-};
-
 class mmUnivCSVDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmUnivCSVDialog);
@@ -181,7 +158,7 @@ private:
     wxNotebook* m_preview_notebook = nullptr;
     wxListCtrl* m_list_ctrl_ = nullptr; //preview
     wxTextCtrl* m_text_ctrl_ = nullptr;
-    wxChoice* m_setting_name = nullptr;
+    wxChoice* m_choice_preset_name = nullptr;
     wxTextCtrl* log_field_ = nullptr;
     wxTextCtrl* m_textDelimiter = nullptr;
     wxSpinCtrl* m_spinIgnoreFirstRows_ = nullptr;
@@ -194,6 +171,7 @@ private:
     wxString date_format_;
     mmColorButton* colorButton_ = nullptr;
     wxCheckBox* colorCheckBox_ = nullptr;
+    wxCheckBox* m_checkbox_preset_default = nullptr;
 
     wxChoice* m_choiceAmountFieldSign;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
