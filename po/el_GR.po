@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 18:22\n"
+"PO-Revision-Date: 2023-04-07 06:49\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3365,13 +3365,13 @@ msgstr "Λογαριασμός: "
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Preset:"
-msgstr ""
+msgstr "Προκαθορισμένο:"
 
 #: import_export/univcsvdialog.cpp:261 import_export/univcsvdialog.cpp:563
 #: import_export/univcsvdialog.cpp:2417
 #, c-format
 msgid "Load this Preset when Account is: %s"
-msgstr ""
+msgstr "Φόρτωση αυτής της προεπιλογής όταν ο Λογαριασμός είναι: %s"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Specify the order of fields in the file"
@@ -3439,15 +3439,15 @@ msgstr "Επιλέξτε ένα αρχείο CSV για εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:546
 msgid "Preset name"
-msgstr ""
+msgstr "Προκαθορισμένο Όνομα"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Αποθήκευση των τρεχουσών ρυθμίσεων ως προεπιλογή"
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
-msgstr ""
+msgstr "Διαγραφή προκαθορισμένου"
 
 #: import_export/univcsvdialog.cpp:549
 msgid "MMEX standard format"
@@ -3476,7 +3476,7 @@ msgstr "Εξαγωγή αρχείου"
 #: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2424
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "Η προεπιλογή '%s' φορτώθηκε επειδή ο Λογαριασμός '%s' επιλέχθηκε"
 
 #: import_export/univcsvdialog.cpp:712
 #, c-format
@@ -3496,11 +3496,11 @@ msgstr "Θετικό αν ο τύπος έχει %s"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Preset Name"
-msgstr ""
+msgstr "Προκαθορισμένο Όνομα"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Save Preset"
-msgstr ""
+msgstr "Αποθήκευση Προεπιλογής"
 
 #: import_export/univcsvdialog.cpp:1218
 msgid "Incorrect fields specified for import!"
@@ -3630,7 +3630,7 @@ msgstr "Συναλλαγές που εξήχθησαν: %ld"
 #: import_export/univcsvdialog.cpp:1980
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Η Προεπιλογή %s θα διαγραφεί"
 
 #: import_export/univcsvdialog.cpp:2013 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
