@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 18:22\n"
+"PO-Revision-Date: 2023-04-07 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3366,13 +3366,13 @@ msgstr "Rekening:"
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Preset:"
-msgstr ""
+msgstr "Vooraf ingesteld:"
 
 #: import_export/univcsvdialog.cpp:261 import_export/univcsvdialog.cpp:563
 #: import_export/univcsvdialog.cpp:2417
 #, c-format
 msgid "Load this Preset when Account is: %s"
-msgstr ""
+msgstr "Laad deze instelling wanneer account is: %s"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Specify the order of fields in the file"
@@ -3440,15 +3440,15 @@ msgstr "Selecteer CSV-bestand om te exporteren"
 
 #: import_export/univcsvdialog.cpp:546
 msgid "Preset name"
-msgstr ""
+msgstr "Vooraf ingestelde naam"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Huidige instellingen als standaard opslaan"
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
-msgstr ""
+msgstr "Verwijder Voorkeursinstelling"
 
 #: import_export/univcsvdialog.cpp:549
 msgid "MMEX standard format"
@@ -3477,7 +3477,7 @@ msgstr "Exporteer bestand"
 #: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2424
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "Voorinstelling '%s' geladen omdat account '%s' geselecteerd is"
 
 #: import_export/univcsvdialog.cpp:712
 #, c-format
@@ -3498,11 +3498,11 @@ msgstr "Positief als type '%s ' heeft"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Preset Name"
-msgstr ""
+msgstr "Voor ingestelde naam"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Save Preset"
-msgstr ""
+msgstr "Opslaan instelling"
 
 #: import_export/univcsvdialog.cpp:1218
 msgid "Incorrect fields specified for import!"
@@ -3632,7 +3632,7 @@ msgstr "Transactie rapport: %ld"
 #: import_export/univcsvdialog.cpp:1980
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Instelling '%s' zal worden verwijderd"
 
 #: import_export/univcsvdialog.cpp:2013 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
