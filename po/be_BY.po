@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 18:22\n"
+"PO-Revision-Date: 2023-04-07 07:53\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3375,7 +3375,7 @@ msgstr "Рахунак: "
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Preset:"
-msgstr ""
+msgstr "Шаблон:"
 
 #: import_export/univcsvdialog.cpp:261 import_export/univcsvdialog.cpp:563
 #: import_export/univcsvdialog.cpp:2417
