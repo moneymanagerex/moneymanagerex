@@ -637,7 +637,7 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent& event)
 void mmUnivCSVDialog::OnColumnResize(wxListEvent& event)
 {
     int col = event.GetColumn();
-    if (col == 0) return;
+    if (col == 0 || col > csvFieldOrder_.size()) return;
     csvFieldOrder_.at(col - 1).second = m_list_ctrl_->GetColumnWidth(col);
 }
 
@@ -1071,6 +1071,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     m_choice_preset_name->SetStringSelection(user_label);
 
     m_checkbox_preset_default->SetValue(m_preset_id[user_label] == m_acct_default_preset[m_account_id]);
+    m_checkbox_preset_default->Enable(m_choice_account_->GetSelection() > -1);
 
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -2262,6 +2263,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             payee->PAYEENAME = token;
             payee->ACTIVE = 1;
             holder.PayeeID = Model_Payee::instance().save(payee);
+            m_CSVpayeeNames[token] = std::make_tuple(holder.PayeeID, token, wxEmptyString);
         }
         break;
 
