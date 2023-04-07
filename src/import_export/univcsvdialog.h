@@ -148,7 +148,7 @@ private:
     wxString delimit_ = ",";
     wxString decimal_;
 
-    std::vector<int> csvFieldOrder_;
+    std::vector < std::pair <int, int>> csvFieldOrder_;
     wxListBox* csvFieldCandicate_ = nullptr;
     wxListBox* csvListBox_ = nullptr;
 
@@ -221,6 +221,7 @@ private:
     void OnButtonClearClick(wxCommandEvent& event);
     void OnFileBrowse(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
+    void OnColumnResize(wxListEvent& event);
     void OnDelimiterChange(wxCommandEvent& event);
     void OnDecimalChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
