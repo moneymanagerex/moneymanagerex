@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 23:47\n"
+"PO-Revision-Date: 2023-04-07 01:02\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3370,7 +3370,7 @@ msgstr "Előbeállítás:"
 #: import_export/univcsvdialog.cpp:2417
 #, c-format
 msgid "Load this Preset when Account is: %s"
-msgstr ""
+msgstr "Az előbeállítás betöltése, ha a fiók: %s"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Specify the order of fields in the file"
@@ -3442,7 +3442,7 @@ msgstr "Előbeállítás neve"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Jelenlegi beállítások mentése előre beállított értékként"
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
@@ -3475,7 +3475,7 @@ msgstr "Fájlexportálás"
 #: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2424
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "Előre beállított „%s” betöltve, mert a(z) „%s” fiók kiválasztva"
 
 #: import_export/univcsvdialog.cpp:712
 #, c-format
