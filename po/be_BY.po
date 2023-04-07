@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-07 07:53\n"
+"PO-Revision-Date: 2023-04-07 09:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3375,13 +3375,13 @@ msgstr "Рахунак: "
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Preset:"
-msgstr "Шаблон:"
+msgstr "Набор наладаў:"
 
 #: import_export/univcsvdialog.cpp:261 import_export/univcsvdialog.cpp:563
 #: import_export/univcsvdialog.cpp:2417
 #, c-format
 msgid "Load this Preset when Account is: %s"
-msgstr ""
+msgstr "Выкарыстаць гэты набор наладаў, калі рахунак: %s"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Specify the order of fields in the file"
@@ -3449,15 +3449,15 @@ msgstr "Абярыце файл CSV для экспарта"
 
 #: import_export/univcsvdialog.cpp:546
 msgid "Preset name"
-msgstr ""
+msgstr "Назва набора наладаў"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Захаваць бягучыя налады як набор"
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
-msgstr ""
+msgstr "Выдаліць набор наладаў"
 
 #: import_export/univcsvdialog.cpp:549
 msgid "MMEX standard format"
@@ -3486,7 +3486,7 @@ msgstr "Экспартаваць файл"
 #: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2424
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "Быў ужыты набор наладаў '%s' таму што абраны рахунак '%s'"
 
 #: import_export/univcsvdialog.cpp:712
 #, c-format
@@ -3507,11 +3507,11 @@ msgstr "Станоўчы, калі тып мае '%s'"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Preset Name"
-msgstr ""
+msgstr "Назва набора наладаў"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Save Preset"
-msgstr ""
+msgstr "Захаваць набора наладаў"
 
 #: import_export/univcsvdialog.cpp:1218
 msgid "Incorrect fields specified for import!"
@@ -3641,7 +3641,7 @@ msgstr "Аперацыяў экспартавана: %ld"
 #: import_export/univcsvdialog.cpp:1980
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Набор наладаў '%s' будзе выдалены"
 
 #: import_export/univcsvdialog.cpp:2013 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
