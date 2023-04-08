@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-08 18:36\n"
+"PO-Revision-Date: 2023-04-08 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Privacidade"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr "Enviar dados anônimos de estatísticas de uso"
+msgstr "Enviar estatísticas de utilização anônimas"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -191,7 +191,7 @@ msgstr "Contato:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
-msgstr "Insira qualquer informação de contato para a instituição financeira."
+msgstr "Insira informação de contato para a instituição financeira."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
@@ -199,7 +199,7 @@ msgstr "Info de Acesso:"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Insira o login de usuário para acesso para a instituição financeira. Isso não é seguro já que qualquer um com acesso ao arquivo mmb poderá ver."
+msgstr "Insira os dados de acesso para a instituição financeira. Isto não é seguro já que qualquer um com acesso ao arquivo mmb poderá ver."
 
 #: accountdialog.cpp:225
 msgid "Statement"
@@ -2344,7 +2344,7 @@ msgstr "Vida"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr "Casa"
+msgstr "Habitação"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
