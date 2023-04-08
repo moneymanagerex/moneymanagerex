@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-08 17:27\n"
+"PO-Revision-Date: 2023-04-08 18:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "Editar Conta"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "Nome da Conta:"
+msgstr "Conta:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -86,7 +86,7 @@ msgstr "Tipo de Conta:"
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:129
 msgid "Specify the type of account to be created."
-msgstr "Especifique o tipo da conta a ser criada"
+msgstr "Especifique o tipo de conta a ser criado."
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
@@ -789,7 +789,7 @@ msgstr "Anex."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "Este diretório e seus respectivos arquivos são administrados automaticamente pelo software Money Manager EX."
+msgstr "Este diretório e respectivos ficheiros são geridos automaticamente pelo Money Manager EX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -2344,7 +2344,7 @@ msgstr "Vida"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr "Início"
+msgstr "Casa"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
