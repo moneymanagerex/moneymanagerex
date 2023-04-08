@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-08 21:52\n"
+"PO-Revision-Date: 2023-04-08 23:00\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -627,7 +627,7 @@ msgstr "&Excluir "
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
-msgstr "Excluir Bem"
+msgstr "Apagar Bem"
 
 #: assetspanel.cpp:499 billsdepositspanel.cpp:325 mmcheckingpanel.cpp:450
 #: stockspanel.cpp:162
@@ -637,11 +637,11 @@ msgstr "Abrir anexos"
 #: assetspanel.cpp:506 assetspanel.cpp:507 categdialog.cpp:312
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:472 payeedialog.cpp:578
 msgid "Search"
-msgstr "Localizar"
+msgstr "Pesquisar"
 
 #: assetspanel.cpp:510
 msgid "Enter any string to find related assets"
-msgstr "Insira qualquer sequência de caractere para encontrar ativos relacionados."
+msgstr "Digite uma sequência de caracteres para encontrar bens relacionados"
 
 #: assetspanel.cpp:511 filtertransdialog.cpp:640 mmcheckingpanel.cpp:476
 #: payeedialog.cpp:137
@@ -694,7 +694,7 @@ msgstr "Descrição"
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:196
 msgid "File"
-msgstr "Arquivo"
+msgstr "Ficheiro"
 
 #: attachmentdialog.cpp:65
 msgid "Attachment folder not defined."
@@ -781,7 +781,7 @@ msgstr "&Abrir"
 #: import_export/univcsvdialog.cpp:295 maincurrencydialog.cpp:543
 #: payeedialog.cpp:864
 msgid "&Remove "
-msgstr "&Remover"
+msgstr "&Remover "
 
 #: attachmentdialog.cpp:401
 msgid "Att."
@@ -793,11 +793,11 @@ msgstr "Este diretório e respectivos ficheiros são geridos automaticamente pel
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Por favor, não remova, renomeie ou modifique manualmente diretórios e arquivos."
+msgstr "Por favor, não remova, renomeie ou modifique manualmente diretórios e ficheiros."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
-msgstr "O arquivo de destino já existe:"
+msgstr "O ficheiro de destino já existe:"
 
 #: attachmentdialog.cpp:458
 msgid "File not found in attachments. Please delete or rename it."
@@ -805,7 +805,7 @@ msgstr "Arquivo não encontrado nos anexos. Por favor, apague-o ou renomeie-o."
 
 #: attachmentdialog.cpp:459 attachmentdialog.cpp:467
 msgid "Destination file already exist"
-msgstr "O arquivo de destino já existe"
+msgstr "O ficheiro de destino já existe"
 
 #: attachmentdialog.cpp:466
 msgid "File already found in attachments"
@@ -829,7 +829,7 @@ msgstr "Impossível abrir o arquivo:"
 
 #: attachmentdialog.cpp:529
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Por favor, certifique-se que o arquivo existe e o usuário tem permissões para carregá-lo."
+msgstr "Por favor, certifique-se que o ficheiro existe e o usuário tem permissões para o ler."
 
 #: attachmentdialog.cpp:530
 msgid "Open attachment failed"
@@ -892,11 +892,11 @@ msgstr "Diário"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr "Em (x) Dias"
+msgstr "Daqui a (x) Dias"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr "Em (x) Meses"
+msgstr "Daqui a (x) Meses"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
@@ -924,7 +924,7 @@ msgstr "Editar Transação Recorrente"
 
 #: billsdepositsdialog.cpp:320
 msgid "Enter Recurring Transaction"
-msgstr "Entrar Transação Recorrente"
+msgstr "Introduzir Transação Recorrente"
 
 #: billsdepositsdialog.cpp:414
 msgid "Recurring Transaction Details"
@@ -976,7 +976,7 @@ msgstr "Detalhes da Transação"
 
 #: billsdepositsdialog.cpp:493
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr "Especificar a data em que o usuário será solicitado a inserir essa transação"
+msgstr "Especificar a data em que o usuário será solicitado a inserir esta transação"
 
 #: billsdepositsdialog.cpp:494 billsdepositspanel.cpp:132
 msgid "Date Paid"
@@ -984,7 +984,7 @@ msgstr "Data de pagamento"
 
 #: billsdepositsdialog.cpp:506 filtertransdialog.cpp:580 transdialog.cpp:1243
 msgid "Specify the status for the transaction"
-msgstr "Especifique a situação da transação"
+msgstr "Especifique o estado da transação"
 
 #: billsdepositsdialog.cpp:508 billsdepositspanel.cpp:136 filtertrans.cpp:193
 #: filtertransdialog.cpp:570 filtertransdialog.cpp:934
@@ -996,11 +996,11 @@ msgstr "Especifique a situação da transação"
 #: transactionsupdatedialog.cpp:133 transdialog.cpp:427
 #: usertransactionpanel.cpp:167 webappdialog.cpp:140 wizard_update.cpp:141
 msgid "Status"
-msgstr "Situação"
+msgstr "Estado"
 
 #: billsdepositsdialog.cpp:514 transdialog.cpp:1244
 msgid "Specify the type of transactions to be created."
-msgstr "Especifique o tipo da transação a ser criada."
+msgstr "Especifique o tipo das transações a criar."
 
 #: billsdepositsdialog.cpp:515 transdialog.cpp:443
 msgid "&Advanced"
@@ -1260,12 +1260,12 @@ msgstr "Especifique o valor para transferência"
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr "Em %s Dias"
+msgstr "Daqui a %s Dias"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr "Em %s Meses"
+msgstr "Daqui a %s Meses"
 
 #: billsdepositspanel.cpp:63
 #, c-format
@@ -1324,7 +1324,7 @@ msgstr "Registrar a transação selecionada"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
-msgstr "&Pular"
+msgstr "&Saltar"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
@@ -1336,7 +1336,7 @@ msgstr "Inserir próxima Ocorrência..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
-msgstr "Pular próxima Ocorrência"
+msgstr "Saltar próxima Ocorrência"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
@@ -1466,7 +1466,7 @@ msgstr "Visualizar Todas as Categorias de Orçamento"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
-msgstr "Visualizar somente Categorias Orçadas"
+msgstr "Visualizar somente Categorias do Orçamento definidas"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
@@ -1474,15 +1474,15 @@ msgstr "Visualizar Categorias do Orçamento planejadas"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
-msgstr "Visualizar somente as Receitas Orçadas"
+msgstr "Visualizar Categorias do Orçamento de Receitas"
 
 #: budgetingpanel.cpp:56
 msgid "View Expense Budget Categories"
-msgstr "Visualizar somente as Despesas Orçadas"
+msgstr "Visualizar Categorias do Orçamento de Despesas"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr "Visualizar Orçamento sem subtotal de Categoria"
+msgstr "Visualizar Resumo do Orçamento por Categorias"
 
 #: budgetingpanel.cpp:173
 #, c-format
@@ -1565,7 +1565,7 @@ msgstr "Adicionar um novo Orçamento Mensal"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr "Excluir um Orçamento existente"
+msgstr "Apagar um Orçamento existente"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
@@ -1778,7 +1778,7 @@ msgstr "Realocação de Categoria finalizada."
 #: categdialog.cpp:693 mmframe.cpp:3564 mmframe.cpp:3579 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr "Os registros foram atualizados no arquivo de dados: %i"
+msgstr "Os registros foram atualizados na Base de Dados: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3566
 msgid "Category Relocation Result"
@@ -2051,11 +2051,11 @@ msgstr "Digite o nome do campo personalizado"
 
 #: customfieldeditdialog.cpp:150
 msgid "Field Type"
-msgstr "Tipo do Campo"
+msgstr "Tipo de Campo"
 
 #: customfieldeditdialog.cpp:154
 msgid "Select type of custom field"
-msgstr "Selecionar tipo do campo personalizado"
+msgstr "Selecionar tipo de campo personalizado"
 
 #: customfieldeditdialog.cpp:157
 msgid "ToolTip"
