@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 20:43\n"
+"PO-Revision-Date: 2023-04-08 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3372,7 +3372,7 @@ msgstr "Predefinição:"
 #: import_export/univcsvdialog.cpp:2417
 #, c-format
 msgid "Load this Preset when Account is: %s"
-msgstr "Carregar esta predefinição quando a conta é: %s"
+msgstr "Carregar esta predefinição quando a conta for: %s"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Specify the order of fields in the file"
@@ -3444,7 +3444,7 @@ msgstr "Nome da predefinição"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
-msgstr "Guardar as configurações atuais como predefinição"
+msgstr "Salvar as configurações atuais como predefinição"
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
