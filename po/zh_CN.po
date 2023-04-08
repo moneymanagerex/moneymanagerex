@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 18:23\n"
+"PO-Revision-Date: 2023-04-08 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3161,11 +3161,11 @@ msgstr "在备注中包含收款人字段"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:441
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "匹配收款人"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:447
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "将匹配详细信息添加到备注"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
