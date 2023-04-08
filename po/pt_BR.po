@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-08 20:49\n"
+"PO-Revision-Date: 2023-04-08 21:52\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -90,11 +90,11 @@ msgstr "Especifique o tipo de conta a ser criado."
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr "Status da Conta:"
+msgstr "Estado da Conta:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Especifique se a conta está fechada. Contas fechadas não aparecem na maioria dos cálculos, relatórios etc."
+msgstr "Especifique se a conta foi fechada. Contas fechadas estão inativas na maioria dos cálculos, relatórios, etc."
 
 #: accountdialog.cpp:149
 #, c-format
@@ -123,7 +123,7 @@ msgstr "Selecione a Moeda"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
-msgstr "Especifique a moeda a ser utilizada por esta conta."
+msgstr "Especifique a moeda a utilizar nesta conta."
 
 #: accountdialog.cpp:171
 msgid "Favorite Account"
@@ -131,7 +131,7 @@ msgstr "Conta Favorita"
 
 #: accountdialog.cpp:173
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "Selecione caso esta conta seja utilizada com frequência. Isto é usado para filtrar as contas que aparecem na tela."
+msgstr "Indique se esta conta é utilizada com frequência. Isto é usado para filtrar a vista de contas."
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145
@@ -149,13 +149,13 @@ msgstr "Observações"
 
 #: accountdialog.cpp:186
 msgid "Enter user notes and details about this account."
-msgstr "Insira qualquer observação ou detalhe sobre esta conta."
+msgstr "Insira observações e detalhes sobre esta conta."
 
 #: accountdialog.cpp:190 db/DB_Table_Category_V1.h:136
 #: db/DB_Table_Category_V1.h:140 db/DB_Table_Category_V1.h:160
 #: optiondialog.cpp:37
 msgid "Others"
-msgstr "Outros"
+msgstr "Outras"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
@@ -163,19 +163,19 @@ msgstr "Número do Cartão:"
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
-msgstr "Número da Conta:"
+msgstr "Número de Conta:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
-msgstr "Entre com o número da conta."
+msgstr "Introduza o Número desta Conta."
 
 #: accountdialog.cpp:203
 msgid "Held At:"
-msgstr "Mantida no(a):"
+msgstr "Instituição Financeira:"
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "Insira o nome da instituição financeira em que esta conta é mantida."
+msgstr "Insira o nome da instituição financeira onde esta conta é mantida."
 
 #: accountdialog.cpp:208
 msgid "Website:"
@@ -183,7 +183,7 @@ msgstr "Site:"
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Insira a endereço do site da instituição financeira."
+msgstr "Insira o endereço do site da instituição financeira."
 
 #: accountdialog.cpp:213
 msgid "Contact:"
@@ -195,7 +195,7 @@ msgstr "Insira informação de contato para a instituição financeira."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
-msgstr "Info de Acesso:"
+msgstr "Informação de Acesso:"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
@@ -203,11 +203,11 @@ msgstr "Insira os dados de acesso para a instituição financeira. Isto não é 
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr "Fatura"
+msgstr "Extrato"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr "Situação:"
+msgstr "Extrato:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -247,7 +247,7 @@ msgstr "Limite de crédito para a conta. Zero para desativar"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr "Taxa de Juros:"
+msgstr "Taxa de Juro:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
@@ -272,7 +272,7 @@ msgstr "Imagem #%i"
 
 #: accountdialog.cpp:496
 msgid "Account Name "
-msgstr "Nome da Conta "
+msgstr "Nome de Conta "
 
 #: accountdialog.cpp:501 import_export/qif_export.cpp:614
 #: import_export/qif_import_gui.cpp:262 import_export/univcsvdialog.cpp:105
@@ -335,7 +335,7 @@ msgstr "Abrir um Arquivo de Dados &Existente"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "Abrir um Arquivo de Dados já criado com a extensão (*.mmb)"
+msgstr "Abrir uma Base de Dados já criada com a extensão (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
@@ -351,7 +351,7 @@ msgstr "Manual do &Usuário"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
-msgstr "Ler o manual do usuário"
+msgstr "Leia o manual do usuário"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1776
 msgid "&Website"
@@ -382,7 +382,7 @@ msgstr "Padrão do sistema"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1615 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr "Alterar o idioma usado para a GUI do MMEX"
+msgstr "Alterar o idioma usado no MMEX"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
@@ -398,19 +398,19 @@ msgstr "Mudança de idioma"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
-msgstr "Novo Bem"
+msgstr "Novo Ativo"
 
 #: assetdialog.cpp:54 assetspanel.cpp:487
 msgid "Edit Asset"
-msgstr "Editar Bem"
+msgstr "Editar Ativo"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:477
 msgid "Add Asset Transaction"
-msgstr "Adicionar Transação de Ativo"
+msgstr "Adicionar Transação do Bem"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr "Editar Transação de Ativo"
+msgstr "Editar Transação do Bem"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -426,7 +426,7 @@ msgstr "Nome"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
-msgstr "Coloque o nome do bem"
+msgstr "Introduza o nome do bem"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:189
 #: filtertransdialog.cpp:874 filtertransdialog.cpp:880
@@ -448,7 +448,7 @@ msgstr "Especifique a data de compra do bem"
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
-msgstr "Tipo do Bem"
+msgstr "Tipo de Bem"
 
 #: assetdialog.cpp:196
 msgid "Select type of asset"
@@ -461,7 +461,7 @@ msgstr "Valor"
 
 #: assetdialog.cpp:207
 msgid "Enter the current value of the asset"
-msgstr "Entre com o valor atual do bem"
+msgstr "Introduza o valor atual do bem"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
@@ -481,7 +481,7 @@ msgstr "Introduza a taxa à qual o valor do ativo se altera em porcentagem por a
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr "Organize documentos deste ativo"
+msgstr "Organize anexos deste ativo"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -550,7 +550,7 @@ msgstr "&Adicionar Transação de Ativo..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "&Ver Transações de Ativo"
+msgstr "&Ver Transações do Bem"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
@@ -575,7 +575,7 @@ msgstr "Tem certeza de que deseja excluir este Bem?"
 
 #: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
-msgstr "Confirmar a exclusão do Bem"
+msgstr "Confirmar a eliminação do Bem"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -607,7 +607,7 @@ msgstr "&Adicionar Trans"
 
 #: assetspanel.cpp:481 stockspanel.cpp:139
 msgid "&View Trans "
-msgstr "&Ver Trans"
+msgstr "&Ver Trans "
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
