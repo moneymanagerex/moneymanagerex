@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-08 23:00\n"
+"PO-Revision-Date: 2023-04-09 00:10\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2063,7 +2063,7 @@ msgstr "Dica"
 
 #: customfieldeditdialog.cpp:159
 msgid "Enter the tooltip that will be shown"
-msgstr "Digite a dica de ferramenta que será mostrada"
+msgstr "Digite a dica de informação que será mostrada"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
@@ -2079,7 +2079,7 @@ msgstr "Autocompletar"
 
 #: customfieldeditdialog.cpp:170
 msgid "Enables autocomplete on custom field"
-msgstr "Ativar autocompletar no campo personalizado"
+msgstr "Ativa autocompletar no campo personalizado"
 
 #: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:609
 msgid "Default"
