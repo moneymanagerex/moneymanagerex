@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-09 10:52\n"
+"PO-Revision-Date: 2023-04-09 11:54\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1462,7 +1462,7 @@ msgstr "Insira observações para descrever esta entrada de orçamento"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
-msgstr "Visualizar Todas as Categorias de Orçamento"
+msgstr "Ver Todas as Categorias de Orçamento"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
@@ -1527,7 +1527,7 @@ msgstr "Diferença: "
 
 #: budgetingpanel.cpp:256
 msgid "Expenses: "
-msgstr "Despesas: "
+msgstr "Despesa: "
 
 #: budgetingpanel.cpp:299
 msgid "Icon"
@@ -1582,8 +1582,8 @@ msgstr "Orçamento do Ano"
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "Especifique o ano desejado.\n"
-"Use as setinhas para aumentar ou diminuir o ano."
+msgstr "Indique o ano desejado.\n"
+"Use as setas para aumentar ou diminuir o ano."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
@@ -1613,7 +1613,7 @@ msgstr "Categorias"
 
 #: categdialog.cpp:268 mmframe.cpp:1684
 msgid "Reassign all categories to another category"
-msgstr "Transferir todas as categorias para outra categoria"
+msgstr "Reatribuir todas as categorias a outra categoria"
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
@@ -1665,7 +1665,7 @@ msgstr "Organizar Categorias: Nome Inválido"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
-msgstr "Informe o nome para a nova categoria:"
+msgstr "Digite o nome da nova categoria:"
 
 #: categdialog.cpp:365
 msgid "Add Category"
@@ -1712,11 +1712,11 @@ msgstr "Confirmar movimentação"
 
 #: categdialog.cpp:477
 msgid "Category in use."
-msgstr "Esta Categoria está em uso."
+msgstr "Categoria em utilização."
 
 #: categdialog.cpp:477
 msgid "Sub-Category in use."
-msgstr "Esta Subcategoria está em uso."
+msgstr "Subcategoria em utilização."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1865,19 +1865,19 @@ msgstr "Ver com filtro de transação..."
 
 #: constants.cpp:193
 msgid "View All Transactions"
-msgstr "Exibir Todas as Transações"
+msgstr "Ver Todas as Transações"
 
 #: constants.cpp:194
 msgid "View Today"
-msgstr "Exibir Hoje"
+msgstr "Ver Hoje"
 
 #: constants.cpp:195
 msgid "View Current Month"
-msgstr "Exibir Mês atual"
+msgstr "Ver Mês atual"
 
 #: constants.cpp:196
 msgid "View Last 30 days"
-msgstr "Exibir últimos 30 dias"
+msgstr "Ver últimos 30 dias"
 
 #: constants.cpp:197
 msgid "View Last 90 days"
@@ -1889,15 +1889,15 @@ msgstr "Exibir mês anterior"
 
 #: constants.cpp:199
 msgid "View Last 3 Months"
-msgstr "Exibir últimos 3 meses"
+msgstr "Ver últimos 3 meses"
 
 #: constants.cpp:200
 msgid "View Last 12 Months"
-msgstr "Exibir últimos 12 meses"
+msgstr "Ver últimos 12 meses"
 
 #: constants.cpp:201
 msgid "View Current Year"
-msgstr "Exibir Ano Atual"
+msgstr "Ver Ano Atual"
 
 #: constants.cpp:202
 msgid "View Current Financial Year"
@@ -1976,7 +1976,7 @@ msgstr "Virgula"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
-msgstr "Separador de Milhar"
+msgstr "Separador dos Milhares"
 
 #: currencydialog.cpp:222
 msgid "Space"
@@ -2004,7 +2004,7 @@ msgstr "Exemplo de formato de moeda:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
-msgstr "Salvar qualquer alteração realizada"
+msgstr "Gravar qualquer alteração realizada"
 
 #: currencydialog.cpp:265
 msgid "Any changes will be lost without update"
@@ -2150,11 +2150,11 @@ msgstr "Editar campos personalizados"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr "Você realmente deseja excluir este campo personalizado e todos os seus dados?"
+msgstr "Você realmente deseja apagar este campo personalizado e todos os seus dados?"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
-msgstr "Confirma Exclusão do Campo Personalizado"
+msgstr "Confirma Eliminação do Campo Personalizado"
 
 #: customfieldlistdialog.cpp:190
 #, c-format
@@ -2419,21 +2419,21 @@ msgstr "Atualização do banco de dados do MMEX para versão %i falhou!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr "Por favor, restaure o DB do backup de pré-atualização e tente novamente ou entre em contato com o suporte MMEX"
+msgstr "Por favor, restaure a BD do backup de pré-atualização e tente novamente ou entre em contato com o suporte MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr "Atualização do Banco de Dados MMEX"
+msgstr "Atualização da Base de Dados MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr "Erro de banco de dados MMEX!"
+msgstr "Erro na base de dados MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "Versão %i do banco de dados MMEX não funciona com esta versão MMEX.\n"
+msgstr "Versão %i da base de dados MMEX não funciona com esta versão MMEX.\n"
 "Por favor, atualize o MMEX para uma versão mais recente."
 
 #: dbupgrade.cpp:120
@@ -2482,7 +2482,7 @@ msgstr "Salvar arquivo de depuração"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr "Manutenção de banco de dados concluída, feche e reabra o MMEX!"
+msgstr "Manutenção da base de dados concluída, feche e reabra o MMEX!"
 
 #: dbwrapper.cpp:74
 msgid "When database file opening:"
@@ -2494,7 +2494,7 @@ msgstr "Impossível abrir o arquivo"
 
 #: dbwrapper.cpp:78
 msgid "You must specify path to another database file"
-msgstr "Você precisa especificar o caminho para outro arquivo de dados"
+msgstr "Você precisa especificar o caminho para outra base de dados"
 
 #: dbwrapper.cpp:82
 msgid "An incorrect password given for an encrypted file\n"
@@ -2511,7 +2511,7 @@ msgstr "Erro: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:1982
 msgid "Opening MMEX Database - Error"
-msgstr "Erro ao abrir Arquivo de Dados do MMEX"
+msgstr "Erro ao abrir a Base de Dados do MMEX"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -2874,7 +2874,7 @@ msgstr "Gerenciador Geral de Relatórios"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
-msgstr "Excluir o Título do Relatório:"
+msgstr "Apagar o Título do Relatório:"
 
 #: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
@@ -3614,7 +3614,7 @@ msgstr "Arquivo já existente"
 
 #: import_export/univcsvdialog.cpp:1440
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr "Falha ao excluir o arquivo existente. O arquivo pode estar bloqueado por outro programa."
+msgstr "Falha ao eliminar o arquivo existente. O arquivo pode estar bloqueado por outro programa."
 
 #: import_export/univcsvdialog.cpp:1441
 msgid "Destination file error"
@@ -3729,7 +3729,7 @@ msgstr "Adicionar valores de moeda ao histórico"
 
 #: maincurrencydialog.cpp:308
 msgid "Delete selected Currency Values"
-msgstr "Excluir valores de moeda selecionados"
+msgstr "Eliminar valores de moeda selecionados"
 
 #: maincurrencydialog.cpp:312
 msgid "Delete Currency Values history for unused currencies and days"
@@ -3737,7 +3737,7 @@ msgstr "Excluir histórico de valores de moeda para dias e moedas não utilizada
 
 #: maincurrencydialog.cpp:368
 msgid "Do you really want to delete the selected Currency?"
-msgstr "Você realmente deseja excluir a moeda selecionada?"
+msgstr "Você realmente deseja eliminar a moeda selecionada?"
 
 #: maincurrencydialog.cpp:369 maincurrencydialog.cpp:439
 #: maincurrencydialog.cpp:665 maincurrencydialog.cpp:790
@@ -3867,7 +3867,7 @@ msgstr "Por favor, selecione a conta para esta transação."
 
 #: mmSimpleDialogs.cpp:771
 msgid "Please specify which account the transfer is going to."
-msgstr "Por favor, especifique a conta para onde a transferência está indo."
+msgstr "Por favor, indique a conta para onde a transferência está indo."
 
 #: mmSimpleDialogs.cpp:773
 msgid "Selection can be made by using the dropdown button."
