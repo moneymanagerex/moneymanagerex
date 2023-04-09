@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-09 11:54\n"
+"PO-Revision-Date: 2023-04-09 12:51\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4007,7 +4007,7 @@ msgstr "Utilizando o MMEX é possível acompanhar investimentos em Ações e Fun
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Para criar novas ações será necessário colocar os respectivos Símbolos, Número de ações e os Preços de compra das ações."
+msgstr "Para registrar novas ações será necessário indicar os respectivos Símbolos, quantidade e Preços de compra."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -4273,7 +4273,7 @@ msgstr "Transação Recorrente salva."
 
 #: mmcheckingpanel.cpp:426
 msgid "Delete selected transaction"
-msgstr "Excluir transação selecionada"
+msgstr "Apagar transação selecionada"
 
 #: mmcheckingpanel.cpp:430 mmframe.cpp:1890 transdialog.cpp:179
 msgid "New Transaction"
@@ -4467,7 +4467,7 @@ msgstr "Nome em uso"
 
 #: mmframe.cpp:1331
 msgid "Do you really want to delete the account?"
-msgstr "Tem certeza de que deseja excluir esta conta?"
+msgstr "Tem certeza de que deseja apagar esta conta?"
 
 #: mmframe.cpp:1338 mmframe.cpp:3430
 msgid "Confirm Account Deletion"
@@ -4475,7 +4475,7 @@ msgstr "Confirmar a Exclusão da Conta"
 
 #: mmframe.cpp:1357
 msgid "MMEX has been opened without an active database."
-msgstr "O MMEX foi aberto sem um arquivo de dados ativo."
+msgstr "O MMEX foi aberto sem uma base de dados ativa."
 
 #: mmframe.cpp:1358
 msgid "MMEX: Menu Popup Error"
@@ -4579,7 +4579,7 @@ msgstr "&Abrir Arquivo de Dados... \tCtrl-O"
 
 #: mmframe.cpp:1521 mmframe.cpp:1885
 msgid "Open Database"
-msgstr "Abrir Arquivo de Dados"
+msgstr "Abrir Base de Dados"
 
 #: mmframe.cpp:1522
 msgid "Save Database &As..."
@@ -4587,7 +4587,7 @@ msgstr "Salvar Arquivo de Dados &Como..."
 
 #: mmframe.cpp:1522
 msgid "Save Database As"
-msgstr "Salvar Arquivo de Dados Como"
+msgstr "Salvar Base de Dados Como"
 
 #: mmframe.cpp:1529
 msgid "&Recent Files"
@@ -4731,7 +4731,7 @@ msgstr "Altere o tipo de conta de uma conta."
 
 #: mmframe.cpp:1652
 msgid "Delete Account from database"
-msgstr "Excluir Conta do arquivo de dados"
+msgstr "Eliminar Conta da base de dados"
 
 #: mmframe.cpp:1665
 msgid "Download Ra&tes"
@@ -4863,7 +4863,7 @@ msgstr "&Optimizar Base de Dados..."
 
 #: mmframe.cpp:1755
 msgid "Optimize database space and performance"
-msgstr "Otimizar o espaço e o desempenho do banco de dados"
+msgstr "Otimizar o espaço e o desempenho da base de dados"
 
 #: mmframe.cpp:1757
 msgid "Database De&bug..."
@@ -4871,7 +4871,7 @@ msgstr "&Depuração de Base de Dados..."
 
 #: mmframe.cpp:1758
 msgid "Generate database report or fix errors"
-msgstr "Gerar relatório do banco de dados ou corrigir erros"
+msgstr "Gerar relatório da base de dados ou corrigir erros"
 
 #: mmframe.cpp:1763
 msgid "Databa&se"
@@ -4879,7 +4879,7 @@ msgstr "Banco de Dados"
 
 #: mmframe.cpp:1764
 msgid "Database management"
-msgstr "Gerenciamento  do Banco de Dados"
+msgstr "Gerenciamento da Base de Dados"
 
 #: mmframe.cpp:1771 mmframe.cpp:1925
 msgid "&Help\tF1"
@@ -5236,7 +5236,7 @@ msgstr "Por favor, use esta função somente se explicitamente solicitado pelo s
 
 #: mmframe.cpp:2347
 msgid "DB Debug"
-msgstr "Depuração do BD"
+msgstr "Depuração da BD"
 
 #: mmframe.cpp:2366 mmframe.cpp:2387
 msgid "Save database file as"
