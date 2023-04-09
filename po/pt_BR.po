@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-09 00:10\n"
+"PO-Revision-Date: 2023-04-09 09:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -571,7 +571,7 @@ msgstr "&Organizar Anexos..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
-msgstr "Tem certeza de que deseja excluir este Bem?"
+msgstr "Tem certeza de que deseja apagar o Ativo?"
 
 #: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
