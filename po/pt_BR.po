@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-09 09:36\n"
+"PO-Revision-Date: 2023-04-09 10:52\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "Editar Conta"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "Conta:"
+msgstr "Nome da Conta:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -223,7 +223,7 @@ msgstr "Data Reconciliada:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr "A data do bloqueio de transação"
+msgstr "A data do bloqueio da transação"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
@@ -414,7 +414,7 @@ msgstr "Editar Transação do Bem"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
-msgstr "Detalhes do Bem"
+msgstr "Detalhes do Ativo"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:143
 #: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:260
@@ -444,7 +444,7 @@ msgstr "Data"
 
 #: assetdialog.cpp:188
 msgid "Specify the date of purchase of asset"
-msgstr "Especifique a data de compra do bem"
+msgstr "Especifique a data de compra do ativo"
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
@@ -452,7 +452,7 @@ msgstr "Tipo de Bem"
 
 #: assetdialog.cpp:196
 msgid "Select type of asset"
-msgstr "Selecione o tipo do bem"
+msgstr "Selecione o tipo de ativo"
 
 #: assetdialog.cpp:200 import_export/qif_import_gui.cpp:109
 #: maincurrencydialog.cpp:283
@@ -469,7 +469,7 @@ msgstr "Variação de Valor"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
-msgstr "Especifique se o valor do bem se altera com o tempo"
+msgstr "Especifique se o valor do ativo se altera com o tempo"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
@@ -611,7 +611,7 @@ msgstr "&Ver Trans "
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
-msgstr "Ver Transações de Ativo"
+msgstr "Ver Transações do Ativo"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:297
 #: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:542
@@ -623,7 +623,7 @@ msgstr "&Editar "
 #: categdialog.cpp:331 maincurrencydialog.cpp:307 mmchecking_list.cpp:494
 #: mmcheckingpanel.cpp:425 stockdialog.cpp:334 stockspanel.cpp:149
 msgid "&Delete "
-msgstr "&Excluir "
+msgstr "&Apagar "
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
@@ -960,7 +960,7 @@ msgstr "Solicitar que o usuário registre o pagamento"
 
 #: billsdepositsdialog.cpp:473
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "Usuário solicitou inserir esta transação na 'Data do Pagamento'"
+msgstr "Usuário solicitou inserir esta transação na 'Data de Vencimento'"
 
 #: billsdepositsdialog.cpp:476
 msgid "Grant automatic execute"
@@ -1121,7 +1121,7 @@ msgstr "Cor"
 #: billsdepositsdialog.cpp:633 transdialog.cpp:559 transdialog.cpp:1246
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Introduza qualquer comentário para esta transação."
+msgstr "Introduza quaisquer notas que pretenda adicionar a esta transação."
 
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:743
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:575
@@ -1239,15 +1239,15 @@ msgstr "Nova Transação Recorrente"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
-msgstr "Especifique para onde esta transação está indo"
+msgstr "Indique para onde esta transação está indo"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1238
 msgid "Specify where the transaction is coming from"
-msgstr "Especifique de onde esta transação está vindo"
+msgstr "Indique de onde esta transação está vindo"
 
 #: billsdepositsdialog.h:128
 msgid "Specify which account the transfer is going to"
-msgstr "Especificar para qual conta a transferência está indo"
+msgstr "Indique a conta para onde a transferência está indo"
 
 #: billsdepositsdialog.h:129 transdialog.cpp:1233 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
@@ -1255,7 +1255,7 @@ msgstr "Especifique o valor desta transação"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
-msgstr "Especifique o valor para transferência"
+msgstr "Indique o montante a ser transferido"
 
 #: billsdepositspanel.cpp:61
 #, c-format
@@ -1299,7 +1299,7 @@ msgstr "MMEX permite que pagamentos regulares sejam definidos como transações.
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr "Dica: Essas transações podem ser configuradas para ativação - permitindo que o usuário ajuste quaisquer valores na data de vencimento."
+msgstr "Dica: Essas transações podem ser configuradas para ativação — permitindo que o usuário ajuste quaisquer valores na data de vencimento."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
 #: mmframe.cpp:3058 mmhomepagepanel.cpp:241
@@ -1511,7 +1511,7 @@ msgstr "Configuração do Orçamento para %s"
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
-msgstr "Receitas: "
+msgstr "Receita: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
@@ -5075,7 +5075,7 @@ msgstr "Mostra Lista de Categorias"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Payees Dialog"
-msgstr "Mostrar Lista de Beneficiários"
+msgstr "Mostra Lista de Beneficiários"
 
 #: mmframe.cpp:1894
 msgid "Show Organize Currency Dialog"
@@ -5411,7 +5411,7 @@ msgstr "Minha Utilização"
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
-msgstr "Favorecidos"
+msgstr "Beneficiários"
 
 #: mmframereport.cpp:195
 msgid "Summary of Accounts"
@@ -5996,7 +5996,7 @@ msgstr "Especifique o mês de início do exercício financeiro"
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Pasting Transactions"
-msgstr "Usar data original quando colar transações"
+msgstr "Usar Data Original quando Colar Transações"
 
 #: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
@@ -6471,7 +6471,7 @@ msgstr "Ferramentas → Realocação de → Beneficiários"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr "Favorecidos: Erro ao excluir"
+msgstr "Organizar Beneficiários: Erro ao excluir"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
@@ -6898,7 +6898,7 @@ msgstr "Frequência de Uso do MMEX"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr "Relatório de Favorecidos"
+msgstr "Relatório de Beneficiários"
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
@@ -6976,7 +6976,7 @@ msgstr "Adicionar Transação de Ação"
 
 #: sharetransactiondialog.cpp:213 stockdialog.cpp:182
 msgid "Stock Investment Details"
-msgstr "Detalhes do Investimento"
+msgstr "Detalhes do Investimento em Ações"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
 msgid "Company Name"
@@ -7068,7 +7068,7 @@ msgstr "Por favor, informe um valor monetário válido"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:145
 msgid "Edit Stock Investment"
-msgstr "Editar Investimento"
+msgstr "Editar Investimento em Ações"
 
 #: stockdialog.cpp:138 stockdialog.cpp:494 stockspanel.cpp:131
 msgid "New Stock Investment"
@@ -7343,8 +7343,8 @@ msgstr "Atualizar os preços das Ações pelo Yahoo"
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
-msgstr "Lista de ações temporária:: %s\n\n"
-"Data          Lote          Ação          Preço        Custo\n\n"
+msgstr "Lista de Ações temporária: %s\n\n"
+"Data          Lote          Ações          Preço        Comissão\n\n"
 
 #: stockspanel.cpp:230
 #, c-format
@@ -7529,7 +7529,7 @@ msgstr "Especifique o status para esta transação"
 
 #: usertransactionpanel.cpp:172
 msgid "Select Payee"
-msgstr "Selecione o Favorecido"
+msgstr "Selecione o Beneficiário"
 
 #: usertransactionpanel.cpp:173
 msgid "Specify a person, Company or Organisation for this transaction."
