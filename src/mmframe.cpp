@@ -1351,6 +1351,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
 {
     wxTreeItemId selectedItem = event.GetItem();
+    m_nav_tree_ctrl->SelectItem(selectedItem);
     if (menuBar_->FindItem(MENU_ORGCATEGS)->IsEnabled())
         showTreePopupMenu(selectedItem, event.GetPoint());
     else
