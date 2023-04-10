@@ -1256,27 +1256,19 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
     return ok;
 }
 
-template<class MODEL, class DATA>
-bool mmFilterTransactionsDialog::mmIsSplitMatches(const DATA& split)
-{
-    bool ok = true;
-    if (mmIsCategoryChecked() && !mmIsCategoryMatches(split.CATEGID)) ok = false;
-    else if (mmIsNotesChecked() && !mmIsNoteMatches(split.NOTES)) ok = false;
-    else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > split.SPLITTRANSAMOUNT) ok = false;
-    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < split.SPLITTRANSAMOUNT) ok = false;
-    return ok;
-}
-
 int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
 {
     int ok = mmIsRecordMatches<Model_Checking>(tran);
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            Model_Splittransaction::Data splitWithTranNote = split;
-            splitWithTranNote.NOTES = tran.NOTES;
-            ok += (mmIsSplitMatches<Model_Splittransaction>(split) ||
-                mmIsSplitMatches<Model_Splittransaction>(splitWithTranNote));
+            Model_Checking::Data splitWithTranNotes = tran;
+            splitWithTranNotes.CATEGID = split.CATEGID;
+            splitWithTranNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            Model_Checking::Data splitWithSplitNotes = splitWithTranNotes;
+            splitWithSplitNotes.NOTES = split.NOTES;
+            ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes) ||
+                mmIsRecordMatches<Model_Checking>(splitWithTranNotes));
         }
     }
     return ok;
@@ -1288,10 +1280,13 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Dat
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            Model_Budgetsplittransaction::Data splitWithTranNote = split;
-            splitWithTranNote.NOTES = tran.NOTES;
-            ok += (mmIsSplitMatches<Model_Budgetsplittransaction>(split) ||
-                mmIsSplitMatches<Model_Budgetsplittransaction>(splitWithTranNote));
+            Model_Billsdeposits::Data splitWithTranNotes = tran;
+            splitWithTranNotes.CATEGID = split.CATEGID;
+            splitWithTranNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            Model_Billsdeposits::Data splitWithSplitNotes = splitWithTranNotes;
+            splitWithSplitNotes.NOTES = split.NOTES;
+            ok += (mmIsRecordMatches<Model_Billsdeposits>(splitWithSplitNotes) ||
+                mmIsRecordMatches<Model_Billsdeposits>(splitWithTranNotes));
         }
     }
     return ok;

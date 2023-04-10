@@ -452,9 +452,11 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                 full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                 full_tran.NOTES = tran.NOTES;
-                Model_Checking::Data split_tran = full_tran;
-                if (dlg.get()->mmIsRecordMatches<Model_Checking>(split_tran) ||
-                    dlg.get()->mmIsSplitMatches<Model_Splittransaction>(split))
+                Model_Checking::Data splitWithTranNotes = full_tran;
+                Model_Checking::Data splitWithSplitNotes = splitWithTranNotes;
+                splitWithSplitNotes.NOTES = split.NOTES;
+                if (dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes) ||
+                    dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTranNotes))
                 {
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
                     trans_.push_back(full_tran);
