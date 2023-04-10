@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-10 15:33+0300\n"
-"PO-Revision-Date: 2023-04-10 17:24\n"
+"PO-Revision-Date: 2023-04-10 18:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4845,7 +4845,7 @@ msgstr "更改加密数据库的密码"
 
 #: mmframe.cpp:1755
 msgid "&Optimize Database..."
-msgstr "优化数据库(&O)...\n"
+msgstr "优化数据库(&O)..."
 
 #: mmframe.cpp:1756
 msgid "Optimize database space and performance"
