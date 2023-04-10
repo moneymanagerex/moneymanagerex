@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-06 21:21+0300\n"
-"PO-Revision-Date: 2023-04-06 18:22\n"
+"PO-Revision-Date: 2023-04-09 16:17\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3307,7 +3307,7 @@ msgstr "קוד תנועה חסר"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s מתאים ל־%s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3375,13 +3375,13 @@ msgstr ":חשבון "
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Preset:"
-msgstr ""
+msgstr "הגדרות קבועות מראש:"
 
 #: import_export/univcsvdialog.cpp:261 import_export/univcsvdialog.cpp:563
 #: import_export/univcsvdialog.cpp:2417
 #, c-format
 msgid "Load this Preset when Account is: %s"
-msgstr ""
+msgstr "טעינת הגדרות קבועות מראש אלו כאשר החשבון הוא: %s"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Specify the order of fields in the file"
@@ -3449,15 +3449,15 @@ msgstr "בחירת קובץ נתונים CSV ליצוא"
 
 #: import_export/univcsvdialog.cpp:546
 msgid "Preset name"
-msgstr ""
+msgstr "שם הגדרה קבועה מראש"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "שמירת הגדרות נוכחיות כהגדרות קבועות מראש"
 
 #: import_export/univcsvdialog.cpp:548 import_export/univcsvdialog.cpp:1982
 msgid "Delete Preset"
-msgstr ""
+msgstr "מחיקת הגדרה קבועה מראש"
 
 #: import_export/univcsvdialog.cpp:549
 msgid "MMEX standard format"
@@ -3507,11 +3507,11 @@ msgstr "חיובי אם מסוג '%s'"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Preset Name"
-msgstr ""
+msgstr "שם הגדרה קבועה מראש"
 
 #: import_export/univcsvdialog.cpp:1013
 msgid "Save Preset"
-msgstr ""
+msgstr "שמירת הגדרה קבועה מראש"
 
 #: import_export/univcsvdialog.cpp:1218
 msgid "Incorrect fields specified for import!"
@@ -3641,7 +3641,7 @@ msgstr "תנועות יוצאו:  %ld"
 #: import_export/univcsvdialog.cpp:1980
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "הגדרות קבועות מראש '%s'תמחק"
 
 #: import_export/univcsvdialog.cpp:2013 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
@@ -3669,7 +3669,7 @@ msgstr "כל הקבצים"
 
 #: import_export/univcsvdialog.cpp:2435
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "נא להזין את המילה המציינת סימן חיובי בקובץ ה־CSV, כלומר, 'debit'"
 
 #: import_export/univcsvdialog.cpp:2435
 msgid "Enter a value"
@@ -3677,7 +3677,7 @@ msgstr "נא להזין ערך"
 
 #: import_export/univcsvdialog.cpp:2445
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "סימן סכום חייב להיות שונה לפי סוג כאשר בוחרים ב'סוג' באפשרויות הייבוא"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
