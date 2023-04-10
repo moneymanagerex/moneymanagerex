@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-10 15:33+0300\n"
-"PO-Revision-Date: 2023-04-10 21:16\n"
+"PO-Revision-Date: 2023-04-10 22:16\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4754,7 +4754,7 @@ msgstr "Organizar &Beneficiários..."
 
 #: mmframe.cpp:1676 mmframe.cpp:1894 payeedialog.cpp:496
 msgid "Organize Payees"
-msgstr "Organizar Favorecidos"
+msgstr "Organizar Beneficiários"
 
 #: mmframe.cpp:1680
 msgid "Organize Curre&ncy..."
@@ -4862,7 +4862,7 @@ msgstr "Alterar a senha de um banco de dados criptografado"
 
 #: mmframe.cpp:1755
 msgid "&Optimize Database..."
-msgstr "&Optimizar Base de Dados..."
+msgstr "&Otimizar Base de Dados..."
 
 #: mmframe.cpp:1756
 msgid "Optimize database space and performance"
@@ -5129,7 +5129,7 @@ msgstr "Nenhum arquivo aberto"
 
 #: mmframe.cpp:2044
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr "Desculpe. A versão do banco de dados é muito antiga ou a senha do banco de dados está incorreta"
+msgstr "Desculpe. A versão da base de dados é muito antiga ou a senha está incorreta"
 
 #: mmframe.cpp:2118
 msgid "&Next →"
@@ -5303,7 +5303,7 @@ msgstr "Opções do MMEX"
 
 #: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
-msgstr "Contas, Favorecidos e Categorias Atualizadas"
+msgstr "Contas, Beneficiários e Categorias Atualizadas"
 
 #: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -6200,7 +6200,7 @@ msgstr "Porta"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage statistics"
-msgstr "Estatísticas de uso"
+msgstr "Estatísticas de utilização"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6897,7 +6897,7 @@ msgstr "Desde o início do exercício financeiro"
 
 #: reports/myusage.cpp:26
 msgid "MMEX Usage Frequency"
-msgstr "Frequência de Uso do MMEX"
+msgstr "Frequência de Utilização do MMEX"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
@@ -7109,7 +7109,7 @@ msgstr "Digite o preço inicial por ação.\n"
 
 #: stockdialog.cpp:239
 msgid "*Commission"
-msgstr "*Custo"
+msgstr "*Comissão"
 
 #: stockdialog.cpp:244
 msgid "Enter any commission paid.\n"
@@ -7159,7 +7159,7 @@ msgstr "Adicionar preço da ação ao histórico"
 
 #: stockdialog.cpp:415
 msgid "Held At"
-msgstr "Realizado em"
+msgstr "Instituição Financeira"
 
 #: stockdialog.cpp:492
 msgid "Share Account not found.\n\n"
