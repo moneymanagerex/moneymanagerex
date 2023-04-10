@@ -454,10 +454,10 @@ void mmTransDialog::CreateControls()
     // Amount Fields --------------------------------------------
     m_textAmount = new mmTextCtrl(this, mmID_TEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-
+    m_textAmount->SetMinSize(m_textAmount->GetSize());
     toTextAmount_ = new mmTextCtrl( this, mmID_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-
+    toTextAmount_->SetMinSize(toTextAmount_->GetSize());
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(m_textAmount, g_flagsExpand);
     amountSizer->Add(toTextAmount_, g_flagsExpand);
