@@ -428,6 +428,10 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
     bGroupBy_->SetStringSelection(s_groupBy);
 
+    Value& j_combineSplits = GetValueByPointerWithDefault(j_doc, "/COMBINE_SPLITS", "");
+    const bool& b_combineSplits = j_combineSplits.IsBool() ? j_combineSplits.GetBool() : false;
+    combineSplitsCheckBox_->SetValue(b_combineSplits);
+
     if (is_custom_found) {
         m_custom_fields->ShowCustomPanel();
     }
@@ -694,6 +698,13 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     presPanelSizer->Add(bGroupBy_, g_flagsExpand);
     mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
 
+    //Compress Splits
+    combineSplitsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Combine Splits")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    combineSplitsCheckBox_->SetMinSize(wxSize(180, bGroupBy_->GetSize().GetHeight()));
+    presPanelSizer->Add(combineSplitsCheckBox_, g_flagsH);
+    mmToolTip(combineSplitsCheckBox_, _("Display split transactions as a single row"));
+
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* settings_sizer = new wxBoxSizer(wxVERTICAL);
@@ -778,6 +789,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         bGroupBy_->Hide();
         showColumnsCheckBox_->Hide();
         bHideColumns_->Hide();
+        combineSplitsCheckBox_->Hide();
     }
     Fit();
 
@@ -1591,6 +1603,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
             json_writer.Key((i18n ? _("Group By") : "GROUPBY").utf8_str());
             json_writer.String(groupBy.utf8_str());
         }
+    }
+
+    // Compress Splits
+    const bool combineSplits = combineSplitsCheckBox_->IsChecked();
+    if (combineSplits)
+    {
+        json_writer.Key((i18n ? _("Combine Splits") : "COMBINE_SPLITS").utf8_str());
+        json_writer.Bool(combineSplits);
     }
 
     json_writer.EndObject();

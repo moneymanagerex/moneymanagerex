@@ -437,6 +437,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
+    bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& tran : Model_Checking::instance().all())
     {
         Model_Checking::Full_Data full_tran(tran, splits);
@@ -444,7 +445,10 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())
         {
+            Model_Checking::Full_Data single_tran = full_tran;
+            single_tran.TRANSAMOUNT = 0;
             int splitIndex = 1;
+            bool match = false;
             for (const auto& split : full_tran.m_splits)
             {
                 full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
@@ -458,10 +462,13 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                 if (dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes) ||
                     dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTranNotes))
                 {
+                    match = true;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
-                    trans_.push_back(full_tran);
+                    if (!combine_splits) trans_.push_back(full_tran);
+                    else single_tran.TRANSAMOUNT += full_tran.TRANSAMOUNT;
                 }
             }
+            if (match && combine_splits) trans_.push_back(single_tran);
         }
         else if (dlg.get()->mmIsRecordMatches<Model_Checking>(tran)) trans_.push_back(full_tran);
     }
