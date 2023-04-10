@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-10 15:33+0300\n"
-"PO-Revision-Date: 2023-04-10 12:36\n"
+"PO-Revision-Date: 2023-04-10 17:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2935,7 +2935,7 @@ msgstr "及更多..."
 #: images_list.cpp:458
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr "所选主题 %s 中有 '%d' 个缺失或无效的图标： %s"
+msgstr "在选定的主题中有 %d 个缺失或无效的图标%s': %s"
 
 #: images_list.cpp:487
 #, c-format
