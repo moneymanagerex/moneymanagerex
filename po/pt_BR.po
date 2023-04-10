@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-10 15:33+0300\n"
-"PO-Revision-Date: 2023-04-10 20:11\n"
+"PO-Revision-Date: 2023-04-10 21:16\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -662,7 +662,7 @@ msgstr "Use o asterisco (*) para localizar qualquer número de caracteres - por 
 #: assetspanel.cpp:514 filtertransdialog.cpp:643 mmcheckingpanel.cpp:479
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr "Use o asterisco (*) no começo para encontrar qualquer string no meio da frase."
+msgstr "Use o asterisco (*) no começo para encontrar quaisquer caracteres no meio da frase."
 
 #: assetspanel.cpp:585 stockspanel.cpp:275 stockspanel.cpp:462
 #, c-format
@@ -677,8 +677,8 @@ msgstr "Variação de Valor: %s %s"
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr "Este ativo não tem sua própria conta\n\n"
-"Várias transações para este ativo não são recomendadas."
+msgstr "Este ativo não tem conta própria\n\n"
+"Transações múltiplas para este ativo não são recomendadas."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
@@ -695,7 +695,7 @@ msgstr "Descrição"
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:197
 msgid "File"
-msgstr "Ficheiro"
+msgstr "Arquivo"
 
 #: attachmentdialog.cpp:65
 msgid "Attachment folder not defined."
@@ -806,7 +806,7 @@ msgstr "Arquivo não encontrado nos anexos. Por favor, apague-o ou renomeie-o."
 
 #: attachmentdialog.cpp:459 attachmentdialog.cpp:467
 msgid "Destination file already exist"
-msgstr "O ficheiro de destino já existe"
+msgstr "O arquivo de destino já existe"
 
 #: attachmentdialog.cpp:466
 msgid "File already found in attachments"
@@ -830,7 +830,7 @@ msgstr "Impossível abrir o arquivo:"
 
 #: attachmentdialog.cpp:529
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Por favor, certifique-se que o ficheiro existe e o usuário tem permissões para o ler."
+msgstr "Por favor, certifique-se que o arquivo existe e o usuário tem permissões para o ler."
 
 #: attachmentdialog.cpp:530
 msgid "Open attachment failed"
@@ -1284,7 +1284,7 @@ msgstr "Periodicidade"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr "Parcelas"
+msgstr "Período de Recorrência"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
@@ -1321,7 +1321,7 @@ msgstr "&Registrar"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr "Registrar a transação selecionada"
+msgstr "Registrar a Próxima Ocorrência da Transação Recorrente"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
@@ -1329,7 +1329,7 @@ msgstr "&Saltar"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "Pular Próxima Ocorrência de Transação Recorrente"
+msgstr "Pular Próxima Ocorrência da Transação Recorrente"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
@@ -1886,7 +1886,7 @@ msgstr "Exibir últimos 90 dias"
 
 #: constants.cpp:198
 msgid "View Last Month"
-msgstr "Exibir mês anterior"
+msgstr "Ver mês anterior"
 
 #: constants.cpp:199
 msgid "View Last 3 Months"
@@ -2440,7 +2440,7 @@ msgstr "Versão %i da base de dados MMEX não funciona com esta versão MMEX.\n"
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr "Atualização do banco de dados do MMEX para a versão %i instalada com sucesso"
+msgstr "Atualização da base de dados do MMEX para a versão %i instalada com sucesso"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
