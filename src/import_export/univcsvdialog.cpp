@@ -432,9 +432,9 @@ void mmUnivCSVDialog::CreateControls()
         // Colour
         colorCheckBox_ = new wxCheckBox(this, mmID_COLOR, _("Color")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-        itemBoxSizer111->Add(colorCheckBox_, g_flagsH);
+        itemBoxSizer111->Add(colorCheckBox_, wxSizerFlags(g_flagsH).Border(wxLEFT | wxTOP | wxBOTTOM, 5));
         colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(itemButton_Save->GetSize().GetY(), itemButton_Save->GetSize().GetY()));
-        itemBoxSizer111->Add(colorButton_, g_flagsH);
+        itemBoxSizer111->Add(colorButton_, wxSizerFlags(g_flagsH).Border(wxRIGHT | wxTOP | wxBOTTOM, 5));
         colorButton_->Enable(false);
 
         // Payee Match
@@ -449,7 +449,7 @@ void mmUnivCSVDialog::CreateControls()
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         payeeMatchSizer->Add(payeeMatchAddNotes_, g_flagsV);
         payeeMatchAddNotes_->Disable();
-        itemBoxSizer111->Add(payeeMatchSizer, wxSizerFlags(g_flagsH).Border(wxALL, 0));
+        itemBoxSizer111->Add(payeeMatchSizer, wxSizerFlags(g_flagsH).Border(wxLEFT, 10));
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
