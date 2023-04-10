@@ -216,14 +216,6 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             bSelectedAccounts_->SetLabelText("...");
         }
     }
-    else
-    {
-        Model_Account::Data* acc = Model_Account::instance().get(accountID_);
-        accountCheckBox_->SetValue(acc);
-        bSelectedAccounts_->SetLabelText(acc ? acc->ACCOUNTNAME : _("All"));
-        bSelectedAccounts_->Enable(acc);
-        m_selected_accounts_id.Add(accountID_);
-    }
 
     //Dates
     const wxString& begin_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE1", "").GetString());
