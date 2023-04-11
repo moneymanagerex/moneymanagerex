@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-11 17:14+0300\n"
-"PO-Revision-Date: 2023-04-11 14:17\n"
+"PO-Revision-Date: 2023-04-11 17:13\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2615,11 +2615,11 @@ msgstr "Ange hur rapporten ska grupperas"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "Kombinera delningar"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Visa delade transaktioner som en enda rad"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
