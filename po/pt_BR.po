@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-11 17:14+0300\n"
-"PO-Revision-Date: 2023-04-11 18:13\n"
+"PO-Revision-Date: 2023-04-11 19:21\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2627,11 +2627,11 @@ msgstr "Especifique como o relatório deve ser agrupado"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr "Juntar Transações Múltiplas"
+msgstr "Combinar Transações Divididas"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr "Mostrar transações múltiplas como uma linha única"
+msgstr "Mostrar transações divididas como uma linha única"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
@@ -3281,7 +3281,7 @@ msgstr "Importando Transferências"
 
 #: import_export/qif_import_gui.cpp:1152
 msgid "Importing Split transactions"
-msgstr "Importando transações com múltiplas categorias"
+msgstr "Importando transações Divididas"
 
 #: import_export/qif_import_gui.cpp:1156
 msgid "Import finished successfully"
@@ -4125,7 +4125,7 @@ msgstr "&Visualizar em outra conta"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr "&Visualizar Transações com múltiplas categorias"
+msgstr "&Ver Categorias Divididas"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
