@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-10 15:33+0300\n"
-"PO-Revision-Date: 2023-04-10 18:05\n"
+"PO-Revision-Date: 2023-04-11 10:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3370,7 +3370,7 @@ msgstr "预设："
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "当帐户为 %s 时加载此预设"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
