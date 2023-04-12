@@ -271,6 +271,11 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
     , accountID_(accountID)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    Set(choices);
 }
 
 /* --------------------------------------------------------- */
@@ -291,6 +296,11 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
     , payeeID_(payeeID)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    Set(choices);
 }
 
 void mmComboBoxUsedPayee::init()
@@ -302,6 +312,11 @@ mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize
     : mmComboBox(parent, id, size)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    Set(choices);
 }
 
 /* --------------------------------------------------------- */
@@ -315,6 +330,11 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     : mmComboBox(parent, id, size)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    Set(choices);
 }
 
 /* --------------------------------------------------------- */
@@ -341,6 +361,11 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
     , catID_(catID)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    Set(choices);
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const
