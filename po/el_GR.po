@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-11 17:14+0300\n"
-"PO-Revision-Date: 2023-04-11 14:16\n"
+"PO-Revision-Date: 2023-04-12 05:59\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2628,11 +2628,11 @@ msgstr "Καθορίστε τον τρόπο ομαδοποίησης της έ�
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "Συνδυασμός Διαχωρισμών"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Εμφάνιση χωρισμένων συναλλαγών ως μία γραμμή"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
