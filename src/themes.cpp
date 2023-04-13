@@ -284,7 +284,7 @@ void mmThemesDialog::OnImport(wxCommandEvent& event)
 {
     wxString fileName = wxFileSelector(_("Choose theme file to import")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "MMX Theme (*.mmxtheme)|*.mmextheme"
+        , "MMX Theme (*.mmextheme)|*.mmextheme"
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );

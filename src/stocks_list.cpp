@@ -151,6 +151,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
+    menu.Enable(wxID_INDEX, !hide_menu_item);
 
     PopupMenu(&menu, event.GetPosition());
 

@@ -72,6 +72,7 @@ EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
 EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
 EVT_CHECKBOX(wxID_ANY, mmUnivCSVDialog::OnCheckboxClick)
 EVT_MENU(wxID_HIGHEST, mmUnivCSVDialog::OnMenuSelected)
+EVT_LIST_COL_END_DRAG(wxID_ANY, mmUnivCSVDialog::OnColumnResize)
 wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -83,6 +84,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     wxWindow* parent,
     EDialogType dialogType,
     int account_id,
+    const wxString& file_path,
     wxWindowID id,
     const wxPoint& pos,
     const wxSize& size,
@@ -90,6 +92,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     m_account_id(account_id),
+    m_file_path(file_path),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
     depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
 {
@@ -144,7 +147,6 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    SetSettings(GetStoredSettings(-1));
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
@@ -184,7 +186,7 @@ void mmUnivCSVDialog::CreateControls()
     itemStaticText5->SetFont(staticBoxFontSetting);
 
     m_text_ctrl_ = new wxTextCtrl(itemPanel6
-        , ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+        , ID_FILE_NAME, m_file_path, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
     m_text_ctrl_->SetMinSize(wxSize(300, -1));
     itemBoxSizer7->Add(m_text_ctrl_, 1, wxALL | wxGROW, 5);
     m_text_ctrl_->Connect(ID_FILE_NAME
@@ -196,31 +198,71 @@ void mmUnivCSVDialog::CreateControls()
     wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
     itemBoxSizer7->Add(button_browse, g_flagsH);
 
+    // Account to import/export
+    wxFlexGridSizer* preset_flex_sizer = new wxFlexGridSizer(0,3,0,0);
+
+    wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_ANY, _("Account: "), wxDefaultPosition, itemStaticText5->GetSize());
+    preset_flex_sizer->Add(itemStaticText6, g_flagsH);
+    itemStaticText6->SetFont(staticBoxFontSetting);
+
+    m_choice_account_ = new wxChoice(this, wxID_ACCOUNT, wxDefaultPosition, wxDefaultSize, Model_Account::instance().all_checking_account_names(), 0);
+    m_choice_account_->SetMinSize(wxSize(210, -1));
+    preset_flex_sizer->Add(m_choice_account_, g_flagsExpand);
+    preset_flex_sizer->AddSpacer(0);
+
     // Predefined settings
-    wxPanel* itemPanel67 = new wxPanel(this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    wxBoxSizer* itemBoxSizer76 = new wxBoxSizer(wxHORIZONTAL);
-    itemPanel67->SetSizer(itemBoxSizer76);
-    itemBoxSizer2->Add(itemPanel67, wxSizerFlags(g_flagsExpand).Proportion(0).Border(0));
-    const wxString settings_choice[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-    wxRadioBox* radio_box = new wxRadioBox(itemPanel67
-        , wxID_APPLY, "", wxDefaultPosition, wxDefaultSize
-        , sizeof(settings_choice) / sizeof(wxString)
-        , settings_choice, 10, wxRA_SPECIFY_COLS);
-    itemBoxSizer76->Add(radio_box, wxSizerFlags(g_flagsH).Center().Proportion(0));
-    radio_box->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
+    wxStaticText* preset_label = new wxStaticText(this, wxID_ANY, _("Preset:"), wxDefaultPosition, itemStaticText5->GetSize());
+    preset_flex_sizer->Add(preset_label, g_flagsH);
+
+    Document account_default_presets;
+    if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
+    {
+        for (const auto& member : account_default_presets.GetObject()) {
+            m_acct_default_preset[std::stoi(member.name.GetString())] = member.value.GetString();
+        }
+    }
+
+    wxArrayString preset_choices;
+    wxString prefix = GetSettingsPrfix();
+    prefix.Replace("%d", "");
+    wxString init_preset_name;
+    for (const auto& setting : Model_Setting::instance().find(Model_Setting::SETTINGNAME(prefix + "0", GREATER_OR_EQUAL), Model_Setting::SETTINGNAME(prefix + "A", LESS)))
+    {
+        Document json_doc;
+        if (json_doc.Parse(setting.SETTINGVALUE.utf8_str()).HasParseError()) {
+            continue;
+        }
+
+        Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
+        const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
+        preset_choices.Add(setting_name);
+        m_preset_id[setting_name] = setting.SETTINGNAME;
+        if (!m_acct_default_preset[m_account_id].IsEmpty() && m_acct_default_preset[m_account_id] == setting.SETTINGNAME) init_preset_name = setting_name;
+    }
+
+    m_choice_preset_name = new wxChoice(this, wxID_APPLY, wxDefaultPosition, wxDefaultSize, preset_choices, wxCB_SORT);
+    m_choice_preset_name->SetMinSize(wxSize(210, -1));
+    m_choice_preset_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
-    m_setting_name_ctrl_ = new wxTextCtrl(itemPanel67, ID_FILE_NAME);
-    itemBoxSizer76->Add(m_setting_name_ctrl_, wxSizerFlags(g_flagsH).Center().Proportion(1));
+    wxBoxSizer* preset_box_sizer = new wxBoxSizer(wxHORIZONTAL);
+    preset_box_sizer->Add(m_choice_preset_name, g_flagsH);
+    
 
-    wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
-        , wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
-    itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
+    if (!init_preset_name.IsEmpty())
+        m_choice_preset_name->SetStringSelection(init_preset_name);
 
-    wxBitmapButton* itemButtonClear = new wxBitmapButton(itemPanel67
-        , wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
-    itemBoxSizer76->Add(itemButtonClear, wxSizerFlags(g_flagsH).Center().Proportion(0));
+    wxBitmapButton* itemButton_Save = new wxBitmapButton(this, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
+    preset_box_sizer->Add(itemButton_Save, g_flagsH);
+
+    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
+    preset_box_sizer->Add(itemButtonClear, g_flagsH);
+
+    preset_flex_sizer->Add(preset_box_sizer, wxSizerFlags(g_flagsExpand).Border(0).Proportion(0));
+    m_checkbox_preset_default = new wxCheckBox(this, wxID_DEFAULT, wxString::Format(_("Load this Preset when Account is:\n%s"), wxEmptyString));
+    m_checkbox_preset_default->Enable(m_account_id > -1 && !init_preset_name.IsEmpty());
+    preset_flex_sizer->Add(m_checkbox_preset_default, g_flagsH);
+    itemBoxSizer2->Add(preset_flex_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
     //
     wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
@@ -283,25 +325,12 @@ void mmUnivCSVDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(m_staticline1, flagsExpand);
 
-    // account to import or export
+    // Date Format
     wxPanel* itemPanel7 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel7, 0, wxEXPAND | wxALL, 1);
 
-    wxBoxSizer* itemBoxSizer08 = new wxBoxSizer(wxVERTICAL);
-    itemPanel7->SetSizer(itemBoxSizer08);
-
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 4, 0, 0);
-    itemBoxSizer08->Add(flex_sizer);
-
-    wxStaticText* itemStaticText6 = new wxStaticText(itemPanel7
-        , wxID_ANY, _("Account: "));
-    flex_sizer->Add(itemStaticText6, g_flagsH);
-    itemStaticText6->SetFont(staticBoxFontSetting);
-
-    m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxDefaultSize
-        , Model_Account::instance().all_checking_account_names(), 0);
-    m_choice_account_->SetMinSize(wxSize(210, -1));
-    flex_sizer->Add(m_choice_account_, g_flagsH);
+    itemPanel7->SetSizer(flex_sizer);
 
     wxStaticLine*  m_staticline2 = new wxStaticLine(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
@@ -315,6 +344,9 @@ void mmUnivCSVDialog::CreateControls()
     choiceDateFormat_ = new wxChoice(itemPanel7, ID_DATE_FORMAT);
     flex_sizer->Add(choiceDateFormat_, g_flagsH);
     initDateMask();
+
+    flex_sizer->AddSpacer(0);
+    flex_sizer->AddSpacer(0);
 
     // CSV Delimiter
     if (IsCSV())
@@ -400,9 +432,9 @@ void mmUnivCSVDialog::CreateControls()
         // Colour
         colorCheckBox_ = new wxCheckBox(this, mmID_COLOR, _("Color")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-        itemBoxSizer111->Add(colorCheckBox_, g_flagsH);
+        itemBoxSizer111->Add(colorCheckBox_, wxSizerFlags(g_flagsH).Border(wxLEFT | wxTOP | wxBOTTOM, 5));
         colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(itemButton_Save->GetSize().GetY(), itemButton_Save->GetSize().GetY()));
-        itemBoxSizer111->Add(colorButton_, g_flagsH);
+        itemBoxSizer111->Add(colorButton_, wxSizerFlags(g_flagsH).Border(wxRIGHT | wxTOP | wxBOTTOM, 5));
         colorButton_->Enable(false);
 
         // Payee Match
@@ -417,7 +449,7 @@ void mmUnivCSVDialog::CreateControls()
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         payeeMatchSizer->Add(payeeMatchAddNotes_, g_flagsV);
         payeeMatchAddNotes_->Disable();
-        itemBoxSizer111->Add(payeeMatchSizer, wxSizerFlags(g_flagsH).Border(wxALL, 0));
+        itemBoxSizer111->Add(payeeMatchSizer, wxSizerFlags(g_flagsH).Border(wxLEFT, 10));
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
@@ -512,9 +544,9 @@ void mmUnivCSVDialog::CreateControls()
         : (IsXML() ? _("Choose XML data file to Export") : _("Choose CSV data file to Export"));
     mmToolTip(button_browse, file_tooltip);
 
-    mmToolTip(m_setting_name_ctrl_, _("Template name"));
-    mmToolTip(itemButton_Save, _("Save Template"));
-    mmToolTip(itemButtonClear, _("Clear Settings"));
+    mmToolTip(m_choice_preset_name, _("Preset name"));
+    mmToolTip(itemButton_Save, _("Save current settings as a Preset"));
+    mmToolTip(itemButtonClear, _("Delete Preset"));
     mmToolTip(itemButton_standard, _("MMEX standard format"));
     mmToolTip(itemButton_MoveUp, _("Move Up"));
     mmToolTip(itemButton_MoveDown, _("Move Down"));
@@ -523,6 +555,18 @@ void mmUnivCSVDialog::CreateControls()
     if (!IsImporter()) mmToolTip(bImport_, _("Export File"));
 
     m_text_ctrl_->SetFocus();
+
+    SetSettings(GetStoredSettings(m_choice_preset_name->GetSelection()));
+
+    if (m_choice_account_->GetSelection() >= 0)
+    {
+        wxString acct_name = m_choice_account_->GetStringSelection();
+        m_checkbox_preset_default->SetLabelText(wxString::Format(_("Load this Preset when Account is:\n%s"), acct_name));
+        *log_field_ << _("Currency:") << " " <<
+            wxGetTranslation(Model_Account::currency(Model_Account::instance().get(acct_name))->CURRENCYNAME) << "\n";
+        if (!init_preset_name.IsEmpty())
+            *log_field_ << wxString::Format(_("Preset '%s' loaded because Account '%s' selected"), init_preset_name, acct_name) << "\n";
+    }
 }
 
 void mmUnivCSVDialog::initDateMask()
@@ -590,15 +634,22 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent& event)
     }   
 }
 
+void mmUnivCSVDialog::OnColumnResize(wxListEvent& event)
+{
+    int col = event.GetColumn();
+    if (col == 0 || col > csvFieldOrder_.size()) return;
+    csvFieldOrder_.at(col - 1).second = m_list_ctrl_->GetColumnWidth(col);
+}
+
 void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
 {
-    SetSettings(GetStoredSettings(event.GetSelection()));
+    SetSettings(GetStoredSettings(m_choice_preset_name->GetSelection()));
 }
 
 const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 {
-    if (id < 0) id = 0;
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
+    if (id < 0) return wxEmptyString;
+    const wxString& setting_id = m_preset_id.at(m_choice_preset_name->GetString(id));
     const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
     wxLogDebug("%s \n %s", setting_id, settings_string);
     return settings_string;
@@ -607,7 +658,15 @@ const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 {
     if (json_data.empty()) {
-        m_setting_name_ctrl_->ChangeValue("");
+        m_choice_preset_name->SetSelection(-1);
+        if (m_account_id > 0)
+        {
+            const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+            if (account)
+                m_choice_account_->SetStringSelection(account->ACCOUNTNAME);
+        }
+        if (m_file_path != wxEmptyString)
+            update_preview();
         return;
     }
 
@@ -619,7 +678,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     //Setting name
     Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
     const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
-    m_setting_name_ctrl_->ChangeValue(setting_name);
+    m_choice_preset_name->SetStringSelection(setting_name);
 
     //Date Mask
     Value& date_mask = GetValueByPointerWithDefault(json_doc, "/DATE_MASK", "");
@@ -644,11 +703,6 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     else
         m_userDefinedDateMask = false;
 
-    //File
-    Value& file_name = GetValueByPointerWithDefault(json_doc, "/FILE_NAME", "");
-    const auto fn = wxString::FromUTF8(file_name.IsString() ? file_name.GetString() : "");
-    m_text_ctrl_->ChangeValue(fn);
-
     // Account
     wxString an;
     if (m_account_id > -1)
@@ -660,12 +714,6 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             m_account_id = -1;
     }
 
-    if (m_account_id < 0)
-    {
-        Value& account_name = GetValueByPointerWithDefault(json_doc, "/ACCOUNT_NAME", "");
-        an = wxString::FromUTF8(account_name.IsString() ? account_name.GetString() : "");
-    }
-
     if (!an.empty())
     {
         int itemIndex = m_choice_account_->FindString(an);
@@ -675,10 +723,15 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
                     "Please select a new account."), an)
                 , _("Account does not exist"));
         else
+        {
             m_choice_account_->Select(itemIndex);
+            m_checkbox_preset_default->SetValue(m_preset_id[setting_name] == m_acct_default_preset[m_account_id]);
+            m_checkbox_preset_default->Enable();
+        }
     }
     else {
         m_choice_account_->Select(-1);
+        m_checkbox_preset_default->Disable();
     }
 
     //Delimiter
@@ -723,10 +776,24 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
                     if (entry.second == value || wxGetTranslation(entry.second) == value)
                     {
                         int key = entry.first;
-                        csvFieldOrder_.push_back(key);
+                        csvFieldOrder_.push_back(std::make_pair(key,-1));
                         break;
                     }
                 }
+            }
+        }
+    }
+
+    if (json_doc.HasMember("FIELD_WIDTHS") && json_doc["FIELD_WIDTHS"].IsArray())
+    {
+        Value a = json_doc["FIELD_WIDTHS"].GetArray();
+        if (a.IsArray())
+        {
+            int col = 0;
+            for (auto& v : a.GetArray())
+            {
+                const auto value = v.GetInt();
+                csvFieldOrder_.at(col++).second = value;
             }
         }
     }
@@ -777,6 +844,22 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             payeeMatchAddNotes_->SetValue(json_doc["PAYEE_PATTERN_MATCH_ADD_NOTES"].GetBool());
         else
             payeeMatchAddNotes_->SetValue(false);
+
+        if (json_doc.HasMember("APPLY_COLOR"))
+        {
+            colorCheckBox_->SetValue(json_doc["APPLY_COLOR"].GetBool());
+            colorButton_->Enable(colorCheckBox_->IsChecked());
+        }
+        else
+        {
+            colorCheckBox_->SetValue(false);
+            colorButton_->Disable();
+        }
+
+        if (json_doc.HasMember("COLOR_SELECTION"))
+            colorButton_->SetBackgroundColor(json_doc["COLOR_SELECTION"].GetInt());
+        else
+            colorButton_->SetBackgroundColor(-1);
     }
     else
     {
@@ -788,6 +871,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
     OnLoad();
     this->update_preview();
+    Fit();
 }
 
 //Selection dialog for fields to be added to listbox
@@ -811,7 +895,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         csvListBox_->SetSelection(target_position);
 
         auto itPos = csvFieldOrder_.begin() + target_position;
-        csvFieldOrder_.insert(itPos, item->getIndex());
+        csvFieldOrder_.insert(itPos, std::make_pair(item->getIndex(), -1));
 
         if (item->getIndex() != UNIV_CSV_DONTCARE
             && (item->getIndex() != UNIV_CSV_NOTES || !IsImporter()))
@@ -916,18 +1000,18 @@ void mmUnivCSVDialog::OnLoad()
     if (IsImporter() && m_choiceAmountFieldSign->GetCount() > DefindByType) m_choiceAmountFieldSign->Delete(DefindByType);
     for (const auto& entry : csvFieldOrder_)
     {
-        const wxString& item_name = CSVFieldName_[entry];
-        csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(entry, item_name));
+        const wxString& item_name = CSVFieldName_[entry.first];
+        csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(entry.first, item_name));
         if (IsImporter())
         {
-            if (entry == UNIV_CSV_TYPE) {
+            if (entry.first == UNIV_CSV_TYPE) {
                 unsigned int i = m_choiceAmountFieldSign->GetCount();
                 if (i <= DefindByType) {
                     m_choiceAmountFieldSign->AppendString(wxString::Format(_("Positive if type has '%s'"), depositType_));
                 }
                 m_choiceAmountFieldSign->SetSelection(DefindByType);
             }
-            if (entry == UNIV_CSV_PAYEE)
+            if (entry.first == UNIV_CSV_PAYEE)
             {
                 payeeMatchCheckBox_->Enable();
                 payeeMatchAddNotes_->Enable();
@@ -938,7 +1022,7 @@ void mmUnivCSVDialog::OnLoad()
     csvFieldCandicate_->Clear();
     for (const auto& entry : CSVFieldName_)
     {
-        std::vector<int>::const_iterator loc = find(csvFieldOrder_.begin(), csvFieldOrder_.end(), entry.first);
+        std::vector<std::pair<int, int>>::const_iterator loc = find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [&entry](const std::pair<int, int> &element) {return element.first == entry.first; });
         if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE || entry.first == UNIV_CSV_NOTES) {
             csvFieldCandicate_->Append(wxGetTranslation(entry.second), new mmListBoxItem(entry.first, entry.second));
         }
@@ -948,22 +1032,52 @@ void mmUnivCSVDialog::OnLoad()
 //Saves the field order to a template file
 void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 {
+    const wxString label = m_choice_preset_name->GetStringSelection();
+
+    wxString user_label = wxGetTextFromUser(_("Preset Name"), _("Save Preset"), label);
+
+    if (user_label.empty())
+        return;
+
+    user_label.Trim(false).Trim();
+
+    wxString setting_id = m_preset_id[user_label];
+    wxArrayString label_names;
+
+    for (unsigned int i = 0; i < m_choice_preset_name->GetCount(); i++) {
+        label_names.Add(m_choice_preset_name->GetString(i));
+    }
+
+    if (label_names.Index(user_label) == wxNOT_FOUND)
+    {
+        m_choice_preset_name->Append(user_label);
+        // find first available setting id to add a new setting
+        int i = 0;
+        for (; i < std::max({ static_cast<int>(m_choice_preset_name->GetCount()), 10 }); i++)
+        {
+            setting_id = wxString::Format(GetSettingsPrfix(), i);
+            if (!Model_Setting::instance().ContainsSetting(setting_id))
+                break;
+        }
+        m_preset_id[user_label] = setting_id;
+    }
+    else if (label != user_label)
+    {
+        if (wxMessageBox(_("The entered name is already in use"), _("Warning"), wxOK | wxICON_WARNING) == wxOK)
+        {
+        }
+    }
+
+    m_choice_preset_name->SetStringSelection(user_label);
+
+    m_checkbox_preset_default->SetValue(m_preset_id[user_label] == m_acct_default_preset[m_account_id]);
+    m_checkbox_preset_default->Enable(m_choice_account_->GetSelection() > -1);
+
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
-    wxRadioBox* c = static_cast<wxRadioBox*>(FindWindow(wxID_APPLY));
-    int id = c->GetSelection();
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix(), id);
-
-    const auto fileName = m_text_ctrl_->GetValue();
-    if (!fileName.empty())
-    {
-        json_writer.Key("FILE_NAME");
-        json_writer.String(fileName.utf8_str());
-    }
-
-    const auto s_name = m_setting_name_ctrl_->GetValue();
+    const auto s_name = user_label;
     if (!s_name.empty())
     {
         json_writer.Key("SETTING_NAME");
@@ -1025,6 +1139,12 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
         json_writer.Key("PAYEE_PATTERN_MATCH_ADD_NOTES");
         json_writer.Bool(payeeMatchAddNotes_->IsChecked());
+
+        json_writer.Key("APPLY_COLOR");
+        json_writer.Bool(colorCheckBox_->IsChecked());
+
+        json_writer.Key("COLOR_SELECTION");
+        json_writer.Int(colorButton_->GetColorId());
     }
     else
     {
@@ -1035,10 +1155,18 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
     json_writer.Key("FIELDS");
     json_writer.StartArray();
-    for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
+    for (std::vector<std::pair<int, int>>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
-        int i = *it;
+        int i = (*it).first;
         json_writer.String(CSVFieldName_[i].utf8_str());
+    }
+    json_writer.EndArray();
+
+    json_writer.Key("FIELD_WIDTHS");
+    json_writer.StartArray();
+    for (int i = 1; i < m_list_ctrl_->GetColumnCount(); i++)
+    {
+        json_writer.Int(m_list_ctrl_->GetColumnWidth(i));
     }
     json_writer.EndArray();
     json_writer.EndObject();
@@ -1046,6 +1174,22 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     const wxString json_data = wxString::FromUTF8(json_buffer.GetString());
 
     Model_Setting::instance().Set(setting_id, json_data);
+}
+
+void mmUnivCSVDialog::saveAccountPresets()
+{
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    for (const auto& preset : m_acct_default_preset) {
+        if (preset.second.IsEmpty()) continue;
+        json_writer.Key(wxString::Format("%i", preset.first).utf8_str());
+        json_writer.String(preset.second.utf8_str());
+    }
+    json_writer.EndObject();
+
+    Model_Infotable::instance().Set((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), wxString::FromUTF8(json_buffer.GetString()));
 }
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder)
@@ -1185,7 +1329,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         tran_holder holder;
         for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i) {
-            parseToken(csvFieldOrder_[i], pParser->GetItem(nLines, i).Trim(false /*from left*/), holder);
+            parseToken(csvFieldOrder_[i].first, pParser->GetItem(nLines, i).Trim(false /*from left*/), holder);
         }
 
         if (!validateData(holder))
@@ -1351,9 +1495,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     if (m_checkBoxExportTitles->IsChecked())
     {
         pTxFile->AddNewLine();
-        for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
+        for (std::vector<std::pair<int, int>>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
         {
-            pTxFile->AddNewItem(wxGetTranslation(CSVFieldName_[*sit]));
+            pTxFile->AddNewItem(wxGetTranslation(CSVFieldName_[(*sit).first]));
         }
     }
 
@@ -1397,7 +1541,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             {
                 wxString entry = "";
                 ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
-                switch (it)
+                switch (it.first)
                 {
                 case UNIV_CSV_DATE:
                     entry = mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
@@ -1486,10 +1630,12 @@ void mmUnivCSVDialog::update_preview()
     int payee_col = -1;
     int cat_col = -1;
     int subcat_col = -1;
-    for (const auto& it : csvFieldOrder_)
+    for (const auto& field : csvFieldOrder_)
     {
+        int it = field.first;
         const wxString& item_name = this->getCSVFieldName(it);
         this->m_list_ctrl_->InsertColumn(colCount, wxGetTranslation(item_name));
+        if (field.second != -1) m_list_ctrl_->SetColumnWidth(colCount, field.second);
         if (it == UNIV_CSV_DATE) {
             date_col = colCount - 1;
         }
@@ -1677,8 +1823,9 @@ void mmUnivCSVDialog::update_preview()
                     const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
                     const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
 
-                    for (const auto& it : csvFieldOrder_)
+                    for (const auto& field : csvFieldOrder_)
                     {
+                        int it = field.first;
                         wxString text;
                         switch (it)
                         {
@@ -1792,7 +1939,7 @@ void mmUnivCSVDialog::refreshTabs(int tabs) {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
             if (c.find(categ.first) == c.end())
-                data.push_back(wxVariant("Missing"));
+                data.push_back(wxVariant(_("Missing")));
             else
                 data.push_back(wxVariant(_("OK")));
             categoryListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
@@ -1847,7 +1994,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
     for (const auto i : standard)
     {
         csvListBox_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
-        csvFieldOrder_.push_back(i);
+        csvFieldOrder_.push_back(std::make_pair(i, -1));
     }
 
     csvFieldCandicate_->Clear();
@@ -1862,7 +2009,35 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
 
 void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
 {
+    int sel = m_choice_preset_name->GetSelection();
+    int size = m_choice_preset_name->GetCount();
+    if (sel >= 0 && size > 0)
+    {
+        wxString preset_name = m_choice_preset_name->GetStringSelection();
+        if (wxMessageBox(
+            wxString::Format(_("Preset '%s' will be deleted"), preset_name) + "\n\n" +
+            _("Do you wish to continue?")
+            , _("Delete Preset"), wxYES_NO | wxICON_WARNING) == wxNO)
+        {
+            return;
+        }
+        wxString preset_id = m_preset_id[preset_name];
+        Model_Setting::Data_Set data = Model_Setting::instance().find(Model_Setting::SETTINGNAME(preset_id));
+        if (data.size() > 0)
+            Model_Setting::instance().remove(data[0].SETTINGID);
+
+        // update default presets to remove any that reference the deleted item
+        for (auto& member : m_acct_default_preset)
+            if (member.second == preset_id)
+                member.second = "";
+        saveAccountPresets();
+
+        m_choice_preset_name->Delete(sel);
+        m_choice_preset_name->SetSelection(-1);
+    }
     SetSettings("{}");
+    m_checkbox_preset_default->SetValue(false);
+    m_checkbox_preset_default->Disable();
 }
 
 
@@ -2088,13 +2263,14 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             payee->PAYEENAME = token;
             payee->ACTIVE = 1;
             holder.PayeeID = Model_Payee::instance().save(payee);
+            m_CSVpayeeNames[token] = std::make_tuple(holder.PayeeID, token, wxEmptyString);
         }
         break;
 
     case UNIV_CSV_AMOUNT:
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
-        if (std::find(csvFieldOrder_.begin(), csvFieldOrder_.end(), UNIV_CSV_TYPE) == csvFieldOrder_.end()) {
+        if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [](const std::pair<int, int>& element) {return element.first == UNIV_CSV_TYPE; }) == csvFieldOrder_.end()) {
             if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
                 holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
             }
@@ -2271,8 +2447,22 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     {
         wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
+        m_account_id = account->ACCOUNTID;
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
+
+        m_checkbox_preset_default->Enable(m_choice_preset_name->GetSelection() >= 0);
+        m_checkbox_preset_default->SetValue(false);
+        m_checkbox_preset_default->SetLabelText(wxString::Format(_("Load this Preset when Account is:\n%s"), acctName));
+        Fit();
+        for (const auto& preset : m_preset_id)
+            if (preset.second == m_acct_default_preset[m_account_id])
+            {
+                m_choice_preset_name->SetStringSelection(preset.first);
+                SetSettings(GetStoredSettings(m_choice_preset_name->GetSelection()));
+                *log_field_ << wxString::Format(_("Preset '%s' loaded because Account '%s' selected"), preset.first, acctName) << "\n";
+                break;
+            }
     }
     else if (i == ID_ENCODING)
     {
@@ -2288,7 +2478,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
             m_choiceAmountFieldSign->SetString(DefindByType, wxString::Format(_("Positive if type has '%s'"), depositType_));
             m_choiceAmountFieldSign->SetSelection(DefindByType);
         }
-        else if (std::find(csvFieldOrder_.begin(), csvFieldOrder_.end(), UNIV_CSV_TYPE) != csvFieldOrder_.end()) {
+        else if (std::find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [](const std::pair<int, int>& element) {return element.first == UNIV_CSV_TYPE; }) != csvFieldOrder_.end()) {
             m_choiceAmountFieldSign->Select(DefindByType);
             mmErrorDialogs::ToolTip4Object(m_choiceAmountFieldSign
                 , _("Amount sign must be defined by type when 'Type' is selected for import")
@@ -2324,9 +2514,9 @@ void mmUnivCSVDialog::UpdateListItemBackground()
 
 bool mmUnivCSVDialog::isIndexPresent(int index) const
 {
-    for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
+    for (std::vector<std::pair<int, int>>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
-        if (*it == index) return true;
+        if ((*it).first == index) return true;
     }
 
     return false;
@@ -2359,6 +2549,17 @@ void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
             payeeMatchAddNotes_->Enable(payeeMatchCheckBox_->IsChecked());
             payeeMatchAddNotes_->SetValue(false);
             refreshTabs(PAYEE_TAB);
+        }
+        else if (id == wxID_DEFAULT)
+        {
+            wxString preset_name = m_choice_preset_name->GetStringSelection();
+
+            if (m_checkbox_preset_default->IsChecked())
+                m_acct_default_preset[m_account_id] = m_preset_id[preset_name];
+            else if (m_acct_default_preset[m_account_id] == m_preset_id[preset_name])
+                m_acct_default_preset[m_account_id] = "";
+
+            saveAccountPresets();
         }
     }
 }

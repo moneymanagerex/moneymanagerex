@@ -53,8 +53,6 @@ public:
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool mmIsRecordMatches(const DATA& tran);
-    template<class MODEL, class DATA = typename MODEL::DATA>
-    bool mmIsSplitMatches(const DATA& split);
     const wxString mmGetDescriptionToolTip() const;
     const wxString mmGetCategoryPattern() const;
     void mmGetDescription(mmHTMLBuilder &hb);
@@ -68,6 +66,8 @@ public:
     bool mmIsRangeChecked() const;
     bool mmIsDateRangeChecked() const;
     bool mmIsHideColumnsChecked() const;
+    bool mmIsCombineSplitsChecked() const;
+
 public:
     enum groupBy {
         GROUPBY_ACCOUNT,
@@ -195,6 +195,7 @@ private:
     wxButton* bHideColumns_;
     wxCheckBox* groupByCheckBox_;
     wxChoice* bGroupBy_;
+    wxCheckBox* combineSplitsCheckBox_;
 private:
     wxString m_settings_json;
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
@@ -249,6 +250,7 @@ inline bool mmFilterTransactionsDialog::mmIsCategorySubCatChecked() const { retu
 inline bool mmFilterTransactionsDialog::mmIsStatusChecked() const { return statusCheckBox_->IsChecked(); }
 inline const wxString mmFilterTransactionsDialog::mmGetLabelString() const { return  m_setting_name->GetStringSelection(); }
 inline const wxString mmFilterTransactionsDialog::mmGetCategoryPattern() const { return categoryComboBox_->mmGetPattern(); }
+inline bool mmFilterTransactionsDialog::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
 
 #endif
 // FILTERTRANSDIALOG_H_

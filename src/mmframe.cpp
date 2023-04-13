@@ -166,6 +166,8 @@ EVT_TREE_ITEM_COLLAPSING(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsing)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
 EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
+EVT_DROP_FILES(mmGUIFrame::OnDropFiles)
+
 EVT_MENU(MENU_GOTOACCOUNT, mmGUIFrame::OnGotoAccount)
 EVT_MENU(MENU_STOCKS, mmGUIFrame::OnGotoStocksAccount)
 
@@ -687,7 +689,7 @@ void mmGUIFrame::createControls()
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
-
+    
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
 
@@ -1004,6 +1006,41 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
     navTreeStateToJson();
 }
 
+void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
+{
+    int id = panelCurrent_->GetId();
+    if (!(id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS)) return;
+    
+    if (event.GetNumberOfFiles() > 0) {
+        wxString* dropped = event.GetFiles();
+        wxASSERT(dropped);
+
+        wxString name;
+        wxArrayString files;
+
+        for (int i = 0; i < event.GetNumberOfFiles(); i++) {
+            name = dropped[i];
+            if (wxFileExists(name))
+                files.push_back(name);
+            else if (wxDirExists(name))
+                wxDir::GetAllFiles(name, &files);
+        }
+
+        for (size_t i = 0; i < files.size(); i++) {
+            wxString ext = wxFileName(files[i]).GetExt().MakeLower();
+            if (ext == "csv" || ext == "xml")
+            {
+                mmUnivCSVDialog(this, (ext == "csv" ? mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV : mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML), gotoAccountID_, files[i]).ShowModal();
+            }
+            else if (ext == "qif")
+            {
+                mmQIFImportDialog(this, gotoAccountID_, files[i]).ShowModal();
+            }
+        }
+
+    }
+}
+
 void mmGUIFrame::navTreeStateToJson()
 {
     StringBuffer json_buffer;
@@ -1060,7 +1097,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     selectedItemData_ = iData;
     activeReport_ = false;
     gotoAccountID_ = -1;
-
+    DragAcceptFiles(false);
     wxCommandEvent e;
     switch (iData->getType())
     {
@@ -1086,7 +1123,10 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::BILLS:
         return OnBillsDeposits(e);
     case  mmTreeItemData::ALL_TRANSACTIONS:
+    {
+        DragAcceptFiles(true);
         return createAllTransactionsPage();
+    }
     case  mmTreeItemData::TRASH:
         return createDeletedTransactionsPage();
     case mmTreeItemData::BUDGET:
@@ -1106,6 +1146,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     }
     case mmTreeItemData::ACCOUNT:
     {
+        DragAcceptFiles(true);
         Model_Account::Data* account = Model_Account::instance().get(iData->getData());
         gotoAccountID_ = account->ACCOUNTID;
         return createCheckingAccountPage(gotoAccountID_);
@@ -1310,6 +1351,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
 {
     wxTreeItemId selectedItem = event.GetItem();
+    m_nav_tree_ctrl->SelectItem(selectedItem);
     if (menuBar_->FindItem(MENU_ORGCATEGS)->IsEnabled())
         showTreePopupMenu(selectedItem, event.GetPoint());
     else

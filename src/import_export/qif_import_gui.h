@@ -38,7 +38,7 @@ class mmQIFImportDialog : public wxDialog
 
 public:
     mmQIFImportDialog() {}
-    mmQIFImportDialog(wxWindow* parent, int account_id);
+    mmQIFImportDialog(wxWindow* parent, int account_id, const wxString& file_path = wxEmptyString);
 
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY
         , const wxString& caption = _("Import from QIF file")

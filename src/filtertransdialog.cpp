@@ -216,14 +216,6 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             bSelectedAccounts_->SetLabelText("...");
         }
     }
-    else
-    {
-        Model_Account::Data* acc = Model_Account::instance().get(accountID_);
-        accountCheckBox_->SetValue(acc);
-        bSelectedAccounts_->SetLabelText(acc ? acc->ACCOUNTNAME : _("All"));
-        bSelectedAccounts_->Enable(acc);
-        m_selected_accounts_id.Add(accountID_);
-    }
 
     //Dates
     const wxString& begin_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE1", "").GetString());
@@ -427,6 +419,10 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     groupByCheckBox_->SetValue(!s_groupBy.empty());
     bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
     bGroupBy_->SetStringSelection(s_groupBy);
+
+    Value& j_combineSplits = GetValueByPointerWithDefault(j_doc, "/COMBINE_SPLITS", "");
+    const bool& b_combineSplits = j_combineSplits.IsBool() ? j_combineSplits.GetBool() : false;
+    combineSplitsCheckBox_->SetValue(b_combineSplits);
 
     if (is_custom_found) {
         m_custom_fields->ShowCustomPanel();
@@ -694,6 +690,13 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     presPanelSizer->Add(bGroupBy_, g_flagsExpand);
     mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
 
+    //Compress Splits
+    combineSplitsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Combine Splits")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    combineSplitsCheckBox_->SetMinSize(wxSize(180, bGroupBy_->GetSize().GetHeight()));
+    presPanelSizer->Add(combineSplitsCheckBox_, g_flagsH);
+    mmToolTip(combineSplitsCheckBox_, _("Display split transactions as a single row"));
+
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* settings_sizer = new wxBoxSizer(wxVERTICAL);
@@ -778,6 +781,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         bGroupBy_->Hide();
         showColumnsCheckBox_->Hide();
         bHideColumns_->Hide();
+        combineSplitsCheckBox_->Hide();
     }
     Fit();
 
@@ -1256,27 +1260,19 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
     return ok;
 }
 
-template<class MODEL, class DATA>
-bool mmFilterTransactionsDialog::mmIsSplitMatches(const DATA& split)
-{
-    bool ok = true;
-    if (mmIsCategoryChecked() && !mmIsCategoryMatches(split.CATEGID)) ok = false;
-    else if (mmIsNotesChecked() && !mmIsNoteMatches(split.NOTES)) ok = false;
-    else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > split.SPLITTRANSAMOUNT) ok = false;
-    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < split.SPLITTRANSAMOUNT) ok = false;
-    return ok;
-}
-
 int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
 {
     int ok = mmIsRecordMatches<Model_Checking>(tran);
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            Model_Splittransaction::Data splitWithTranNote = split;
-            splitWithTranNote.NOTES = tran.NOTES;
-            ok += (mmIsSplitMatches<Model_Splittransaction>(split) ||
-                mmIsSplitMatches<Model_Splittransaction>(splitWithTranNote));
+            Model_Checking::Data splitWithTranNotes = tran;
+            splitWithTranNotes.CATEGID = split.CATEGID;
+            splitWithTranNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            Model_Checking::Data splitWithSplitNotes = splitWithTranNotes;
+            splitWithSplitNotes.NOTES = split.NOTES;
+            ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes) ||
+                mmIsRecordMatches<Model_Checking>(splitWithTranNotes));
         }
     }
     return ok;
@@ -1288,10 +1284,13 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Dat
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            Model_Budgetsplittransaction::Data splitWithTranNote = split;
-            splitWithTranNote.NOTES = tran.NOTES;
-            ok += (mmIsSplitMatches<Model_Budgetsplittransaction>(split) ||
-                mmIsSplitMatches<Model_Budgetsplittransaction>(splitWithTranNote));
+            Model_Billsdeposits::Data splitWithTranNotes = tran;
+            splitWithTranNotes.CATEGID = split.CATEGID;
+            splitWithTranNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            Model_Billsdeposits::Data splitWithSplitNotes = splitWithTranNotes;
+            splitWithSplitNotes.NOTES = split.NOTES;
+            ok += (mmIsRecordMatches<Model_Billsdeposits>(splitWithSplitNotes) ||
+                mmIsRecordMatches<Model_Billsdeposits>(splitWithTranNotes));
         }
     }
     return ok;
@@ -1596,6 +1595,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
             json_writer.Key((i18n ? _("Group By") : "GROUPBY").utf8_str());
             json_writer.String(groupBy.utf8_str());
         }
+    }
+
+    // Compress Splits
+    const bool combineSplits = combineSplitsCheckBox_->IsChecked();
+    if (combineSplits)
+    {
+        json_writer.Key((i18n ? _("Combine Splits") : "COMBINE_SPLITS").utf8_str());
+        json_writer.Bool(combineSplits);
     }
 
     json_writer.EndObject();
