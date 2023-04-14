@@ -275,7 +275,9 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
     for (const auto& item : all_elements_) {
         choices.Add(item.first);
     }
+    parent->SetEvtHandlerEnabled(false);
     Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 /* --------------------------------------------------------- */
@@ -300,7 +302,9 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
     for (const auto& item : all_elements_) {
         choices.Add(item.first);
     }
+    parent->SetEvtHandlerEnabled(false);
     Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 void mmComboBoxUsedPayee::init()
@@ -316,7 +320,9 @@ mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize
     for (const auto& item : all_elements_) {
         choices.Add(item.first);
     }
+    parent->SetEvtHandlerEnabled(false);
     Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 /* --------------------------------------------------------- */
@@ -334,7 +340,9 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     for (const auto& item : all_elements_) {
         choices.Add(item.first);
     }
+    parent->SetEvtHandlerEnabled(false);
     Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 /* --------------------------------------------------------- */
@@ -365,7 +373,9 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
     for (const auto& item : all_elements_) {
         choices.Add(item.first);
     }
+    parent->SetEvtHandlerEnabled(false);
     Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const
