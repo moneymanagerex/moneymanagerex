@@ -27,6 +27,8 @@
 
 #include "model/allmodel.h"
 
+#include <wx/clipbrd.h>
+
 class mmStocksPanel;
 
 /*******************************************************/
@@ -233,6 +235,36 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
         }
     }
+
+    stockTxnListCtrl->Bind(wxEVT_CHAR, [stockTxnListCtrl](wxKeyEvent& event) {
+        if (event.GetKeyCode() == WXK_CONTROL_C) {
+            if (wxTheClipboard->Open())
+            {
+                const wxString seperator = "\t";
+                wxString data = "";
+                for (int row = 0; row < stockTxnListCtrl->GetItemCount(); row++)
+                {
+                    if (stockTxnListCtrl->GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+                    {
+                        for (int column = 0; column < stockTxnListCtrl->GetColumnCount(); column++)
+                        {
+                            if (stockTxnListCtrl->GetColumnWidth(column) > 0) {
+                                data += inQuotes(stockTxnListCtrl->GetItemText(row, column), seperator);
+                                data += seperator;
+                            }
+                        }
+                        data += "\n";
+                    }
+                }
+                wxTheClipboard->SetData(new wxTextDataObject(data));
+                wxTheClipboard->Close();
+            }
+        }
+        else if (event.GetKeyCode() == WXK_CONTROL_A) {
+            for (int row = 0; row < stockTxnListCtrl->GetItemCount(); row++)
+                stockTxnListCtrl->SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        }
+    });
 
     wxSizer* buttonSizer = dlg.CreateSeparatedButtonSizer(wxOK);
     if (buttonSizer)
