@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-14 19:58\n"
+"PO-Revision-Date: 2023-04-14 21:21\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -7352,7 +7352,7 @@ msgstr "Actualiser le Cours des Actions depuis Yahoo"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Lot"
 
 #: stockspanel.cpp:282
 #, c-format
