@@ -201,28 +201,47 @@ void mmStocksPanel::OnListItemActivated(int selectedIndex)
 void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
-    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
+    
+    wxDialog dlg(this, wxID_ANY, _("View Stock Transactions") + wxString::Format(": %s - %s", Model_Account::get_account_name(stock->HELDAT), stock->SYMBOL), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+    dlg.SetIcon(mmex::getProgramIcon());
+    wxWindow* parent = dlg.GetMainWindowOfCompositeControl();
+    wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
+    wxListCtrl* stockTxnListCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
+    stockTxnListCtrl->AppendColumn(_("Date"));
+    stockTxnListCtrl->AppendColumn(_("Lot"));
+    stockTxnListCtrl->AppendColumn(_("Shares"));
+    stockTxnListCtrl->AppendColumn(_("Price"));
+    stockTxnListCtrl->AppendColumn(_("Commission"));
+    topsizer->Add(stockTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
-    // TODO create a panel to display all the information on one screen
-    wxString msg = wxString::Format(_("Temporary Stock list: %s\n\n"
-        "Date          Lot          Shares          Price        Commission\n\n"), Model_Account::get_account_name(stock->HELDAT));
-    for (const auto &stock_link : stock_list)
+    const Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
+
+    int row = 0;
+    for (const auto& stock_link : stock_list)
     {
+        long index = stockTxnListCtrl->InsertItem(row++, "");
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_link.CHECKINGACCOUNTID);
-            wxString sd = mmGetDateForDisplay(stock_trans->TRANSDATE);
-            wxString sl = share_entry->SHARELOT;
+            stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(stock_trans->TRANSDATE));
+            stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
             int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
-            wxString sn = wxString::FromDouble(share_entry->SHARENUMBER, precision);
-            wxString su = wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision());
-            wxString sc = wxString::FromDouble(share_entry->SHARECOMMISSION, 2);
-            msg << wxString::Format("%s     %s          %s               %s          %s\n", sd, sl, sn, su, sc);
+            stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
+            stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision()));
+            stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
         }
     }
-    wxMessageBox(msg, "View Stock Transactions");
+
+    wxSizer* buttonSizer = dlg.CreateSeparatedButtonSizer(wxOK);
+    if (buttonSizer)
+    {
+        topsizer->Add(buttonSizer, wxSizerFlags().Expand().DoubleBorder(wxLEFT | wxRIGHT | wxBOTTOM));
+    }
+    dlg.SetSizerAndFit(topsizer);
+    dlg.SetInitialSize(wxSize(470, -1));
+    dlg.ShowModal();
 }
 
 wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
