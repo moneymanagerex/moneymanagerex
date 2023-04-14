@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-14 19:58\n"
+"PO-Revision-Date: 2023-04-14 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2634,11 +2634,11 @@ msgstr "Абраць, як групаваць справаздачу"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "Аб'яднаць састаўныя аперацыі"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Адлюстраваць састаўныя аперацыі на адным радку"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
@@ -7388,7 +7388,7 @@ msgstr "Абнавіць каціроўкі з Yahoo"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Лот"
 
 #: stockspanel.cpp:282
 #, c-format
