@@ -241,6 +241,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     }
     dlg.SetSizerAndFit(topsizer);
     dlg.SetInitialSize(wxSize(470, -1));
+    dlg.Center();
     dlg.ShowModal();
 }
 
