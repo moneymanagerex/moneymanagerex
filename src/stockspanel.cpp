@@ -209,9 +209,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     wxListCtrl* stockTxnListCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
     stockTxnListCtrl->AppendColumn(_("Date"));
     stockTxnListCtrl->AppendColumn(_("Lot"));
-    stockTxnListCtrl->AppendColumn(_("Shares"));
-    stockTxnListCtrl->AppendColumn(_("Price"));
-    stockTxnListCtrl->AppendColumn(_("Commission"));
+    stockTxnListCtrl->AppendColumn(_("Shares"), wxLIST_FORMAT_RIGHT);
+    stockTxnListCtrl->AppendColumn(_("Price"), wxLIST_FORMAT_RIGHT);
+    stockTxnListCtrl->AppendColumn(_("Commission"), wxLIST_FORMAT_RIGHT);
     topsizer->Add(stockTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
     const Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
