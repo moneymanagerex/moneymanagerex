@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-14 19:59\n"
+"PO-Revision-Date: 2023-04-15 04:20\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -7331,7 +7331,7 @@ msgstr "从 Yahoo 刷新股票价格"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "批次号"
 
 #: stockspanel.cpp:282
 #, c-format
