@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-14 22:25\n"
+"PO-Revision-Date: 2023-04-15 10:31\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -204,11 +204,11 @@ msgstr "Adja meg a pénzintézethez tartozó bejelentkezési és elérési adata
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr "Kimutatás"
+msgstr "Számlakivonat"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr "Kimutatás:"
+msgstr "Számlakivonat:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
