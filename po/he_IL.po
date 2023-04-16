@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-14 19:59\n"
+"PO-Revision-Date: 2023-04-16 16:55\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2633,11 +2633,11 @@ msgstr "הגדרת אופן קיבוץ הדוח"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "איחוד פיצולים"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "הצגת פיצול תנועות כשורה בודדת"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
@@ -3392,7 +3392,8 @@ msgstr "הגדרות קבועות מראש:"
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "טעינת הגדרות קבועות מראש אלו כאשר החשבון הוא:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
@@ -3497,7 +3498,7 @@ msgstr "יצוא קובץ"
 #: import_export/univcsvdialog.cpp:568 import_export/univcsvdialog.cpp:2463
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "הגדרה קבועה מראש '%s' נטענה ממכיוון שחשבון '%s' נבחר"
 
 #: import_export/univcsvdialog.cpp:722
 #, c-format
@@ -7378,7 +7379,7 @@ msgstr "רענן שערי נירות ערך מ Yahoo"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "מנה"
 
 #: stockspanel.cpp:282
 #, c-format
