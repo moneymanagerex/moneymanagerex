@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-15 04:20\n"
+"PO-Revision-Date: 2023-04-16 07:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2623,11 +2623,11 @@ msgstr "指定报告的分组方式"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "组合拆分"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "将拆分交易显示为一行"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
