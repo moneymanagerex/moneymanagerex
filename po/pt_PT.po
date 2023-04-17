@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-17 19:32\n"
+"PO-Revision-Date: 2023-04-17 20:33\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -399,11 +399,11 @@ msgstr ""
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
-msgstr "Novo Bem"
+msgstr "Novo Ativo"
 
 #: assetdialog.cpp:54 assetspanel.cpp:487
 msgid "Edit Asset"
-msgstr "Editar o Bem"
+msgstr "Editar o Ativo"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:477
 msgid "Add Asset Transaction"
@@ -415,7 +415,7 @@ msgstr ""
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
-msgstr "Detalhes do Bem"
+msgstr "Detalhes do Ativo"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:143
 #: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:260
@@ -427,7 +427,7 @@ msgstr "Nome"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
-msgstr "Escreva o nome do Bem"
+msgstr "Escreva o nome do Ativo"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:189
 #: filtertransdialog.cpp:878 filtertransdialog.cpp:884
@@ -445,15 +445,15 @@ msgstr "Data"
 
 #: assetdialog.cpp:188
 msgid "Specify the date of purchase of asset"
-msgstr "Especifique a data de compra do objecto"
+msgstr "Especifique a data de compra do ativo"
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
-msgstr "Tipo de Bem"
+msgstr "Tipo de Ativo"
 
 #: assetdialog.cpp:196
 msgid "Select type of asset"
-msgstr "Selecione o tipo de Bem"
+msgstr "Selecione o tipo de Ativo"
 
 #: assetdialog.cpp:200 import_export/qif_import_gui.cpp:109
 #: maincurrencydialog.cpp:283
@@ -462,15 +462,15 @@ msgstr "Valor"
 
 #: assetdialog.cpp:207
 msgid "Enter the current value of the asset"
-msgstr "Escreva o valor actual do Bem"
+msgstr "Escreva o valor atual do Ativo"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
-msgstr "Valor de Reposição"
+msgstr "Alteração de Valor"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
-msgstr "Especifique se o valor do Bem se altera com o tempo"
+msgstr "Especifique se o valor do Ativo muda com o tempo"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
@@ -486,7 +486,7 @@ msgstr ""
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
-msgstr "Escreva qualquer comentário que deseje fazer para este Bem"
+msgstr "Escreva notas relativas a este ativo"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
@@ -571,11 +571,11 @@ msgstr ""
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
-msgstr "Tem certeza de que deseja apagar este Bem?"
+msgstr "Deseja realmente apagar este Ativo?"
 
 #: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
-msgstr "Confirmar a exclusão do Bem"
+msgstr "Confirmar a eliminação do Ativo"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -586,7 +586,7 @@ msgstr ""
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:235
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
-msgstr "Património"
+msgstr "Ativos"
 
 #: assetspanel.cpp:430 assetspanel.cpp:707 assetspanel.cpp:724
 #: filtertransdialog.cpp:503 filtertransdialog.cpp:809
@@ -594,7 +594,7 @@ msgstr "Património"
 #: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
 #: mmframe.cpp:1479
 msgid "All"
-msgstr "Todas"
+msgstr "Todos"
 
 #: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:431
 #: stockspanel.cpp:132
@@ -627,7 +627,7 @@ msgstr ""
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
-msgstr "Apagar o Bem"
+msgstr "Apagar Ativo"
 
 #: assetspanel.cpp:499 billsdepositspanel.cpp:325 mmcheckingpanel.cpp:452
 #: stockspanel.cpp:164
