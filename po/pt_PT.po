@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-17 17:28\n"
+"PO-Revision-Date: 2023-04-17 18:30\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -176,7 +176,7 @@ msgstr "Mantida no(a):"
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "Digite o nome da instituição financeira."
+msgstr "Digite o nome da instituição financeira onde a conta é mantida."
 
 #: accountdialog.cpp:208
 msgid "Website:"
@@ -192,15 +192,15 @@ msgstr "Contacto:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
-msgstr "Digite com o contacto da instituição financeira."
+msgstr "Indique alguma informação de contacto da instituição financeira."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
-msgstr "Informação para Acesso:"
+msgstr "Informação para acesso:"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Digite o login para acesso à conta. Isto não é seguro já que qualquer um pode ler o ficheiro .mmb."
+msgstr "Digite as credenciais de acesso à conta. Isto não é seguro já que qualquer um pode ler o ficheiro (*.mmb)."
 
 #: accountdialog.cpp:225
 msgid "Statement"
