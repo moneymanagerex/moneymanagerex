@@ -129,7 +129,9 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 
        this->AutoComplete(auto_complete);
        if (!auto_complete.empty()) {
+           wxString selection = GetValue();
            Set(auto_complete);
+           SetStringSelection(selection);
        }
        if (auto_complete.GetCount() == 1) {
            Select(0);
