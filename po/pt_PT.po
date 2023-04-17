@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-17 21:32\n"
+"PO-Revision-Date: 2023-04-17 22:53\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1624,7 +1624,7 @@ msgstr ""
 
 #: categdialog.cpp:325
 msgid "Add a new category"
-msgstr "Adiciona uma nova categoria"
+msgstr "Adicionar uma nova categoria"
 
 #: categdialog.cpp:329
 msgid "Edit the name of an existing category"
@@ -1676,7 +1676,7 @@ msgstr ""
 
 #: categdialog.cpp:438
 msgid "Sub Category with same name exists"
-msgstr "Ja existe uma subcategoria com este nome"
+msgstr "Já existe uma subcategoria com este nome"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1796,7 +1796,7 @@ msgstr ""
 
 #: categdialog.h:68 mmframe.cpp:1672 mmframe.cpp:1893
 msgid "Organize Categories"
-msgstr "Categorias"
+msgstr "Gerir Categorias"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1851,7 +1851,7 @@ msgstr ""
 
 #: constants.cpp:193
 msgid "View All Transactions"
-msgstr "Visualizar Todas as Transacções"
+msgstr "Ver Todas as Transações"
 
 #: constants.cpp:194
 msgid "View Today"
