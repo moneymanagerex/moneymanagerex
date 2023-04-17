@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-17 20:33\n"
+"PO-Revision-Date: 2023-04-17 21:32\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -939,7 +939,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
 msgid "Repeats"
-msgstr "Frequência"
+msgstr "Repete-se"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
@@ -971,7 +971,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:484 filtertrans.cpp:177 transdialog.cpp:403
 msgid "Transaction Details"
-msgstr "Detalhes da Transacção"
+msgstr "Detalhes da Transação"
 
 #: billsdepositsdialog.cpp:493
 msgid "Specify the date the user is requested to enter this transaction"
@@ -983,7 +983,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:506 filtertransdialog.cpp:576 transdialog.cpp:1243
 msgid "Specify the status for the transaction"
-msgstr "Especifique a situação da transacção"
+msgstr "Especifique o estado da transação"
 
 #: billsdepositsdialog.cpp:508 billsdepositspanel.cpp:136 filtertrans.cpp:193
 #: filtertransdialog.cpp:566 filtertransdialog.cpp:938
@@ -995,11 +995,11 @@ msgstr "Especifique a situação da transacção"
 #: transactionsupdatedialog.cpp:133 transdialog.cpp:427
 #: usertransactionpanel.cpp:167 webappdialog.cpp:140 wizard_update.cpp:141
 msgid "Status"
-msgstr "Situação"
+msgstr "Estado"
 
 #: billsdepositsdialog.cpp:514 transdialog.cpp:1244
 msgid "Specify the type of transactions to be created."
-msgstr "Especifique o tipo da transacção a ser criada."
+msgstr "Especifique o tipo de transação a criar."
 
 #: billsdepositsdialog.cpp:515 transdialog.cpp:443
 msgid "&Advanced"
@@ -1019,7 +1019,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:215 transactionsupdatedialog.cpp:166
 #: transdialog.cpp:465 usertransactionpanel.cpp:133 webappdialog.cpp:144
 msgid "Amount"
-msgstr "Montante"
+msgstr "Valor"
 
 #: billsdepositsdialog.cpp:540 transdialog.cpp:1229
 msgid "Specify the transfer amount in the To Account"
@@ -1058,7 +1058,7 @@ msgstr "Para"
 #: transdialog.cpp:244 transdialog.cpp:491 usertransactionpanel.cpp:171
 #: webappdialog.cpp:142
 msgid "Payee"
-msgstr "Favorecido"
+msgstr "Beneficiário"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:953
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
@@ -1084,7 +1084,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1245
 msgid "Specify any associated check number or transaction number"
-msgstr "Especifique o número do cheque ou da transacção"
+msgstr "Especifique o número do cheque ou da transação"
 
 #: billsdepositsdialog.cpp:599 billsdepositspanel.cpp:144 filtertrans.cpp:190
 #: filtertransdialog.cpp:620 filtertransdialog.cpp:1540
@@ -1120,7 +1120,7 @@ msgstr ""
 #: billsdepositsdialog.cpp:633 transdialog.cpp:559 transdialog.cpp:1246
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Escreve qualquer comentário que deseje fazer para esta transacção"
+msgstr "Escreva qualquer comentário que entenda fazer para esta transação."
 
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:746
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:575
@@ -1244,7 +1244,7 @@ msgstr ""
 
 #: billsdepositsdialog.h:129 transdialog.cpp:1233 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
-msgstr "Especifique o montante desta transacção"
+msgstr "Especifique o valor desta transação"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
@@ -1420,18 +1420,18 @@ msgstr "Tipo:"
 
 #: budgetentrydialog.cpp:131
 msgid "Expense"
-msgstr "Gasto"
+msgstr "Despesa"
 
 #: budgetentrydialog.cpp:132 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr "Entrada"
+msgstr "Receita"
 
 #: budgetentrydialog.cpp:137
 msgid "Specify whether this category is an income or an expense category"
-msgstr "Informe se esta categoria é de Gasto ou Rendimento"
+msgstr "Indique se esta é uma categoria de Despesa ou de Receita"
 
 #: budgetentrydialog.cpp:139
 msgid "Frequency:"
@@ -1439,15 +1439,15 @@ msgstr "Frequência:"
 
 #: budgetentrydialog.cpp:144
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Informe a frequência do gasto ou rendimento"
+msgstr "Indique a frequência da despesa ou receita"
 
 #: budgetentrydialog.cpp:147 import_export/univcsvdialog.cpp:390
 msgid "Amount:"
-msgstr "Montante:"
+msgstr "Valor:"
 
 #: budgetentrydialog.cpp:152
 msgid "Enter the amount budgeted for this category."
-msgstr "Informe o montante do orçamento para esta categoria."
+msgstr "Indique o valor orçamentado para esta categoria."
 
 #: budgetentrydialog.cpp:159 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
@@ -1455,11 +1455,11 @@ msgstr ""
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
-msgstr "Visualizar Todas as Categorias"
+msgstr "Ver Todas as Categorias de Orçamento"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
-msgstr "Visualizar as Categorias não Zeradas"
+msgstr "Ver as Categorias de Orçamento não Nulas"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
@@ -1467,11 +1467,11 @@ msgstr ""
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
-msgstr "Visualizar Todas as Categorias de Rendimentos"
+msgstr "Ver as Categorias de Orçamento de Receita"
 
 #: budgetingpanel.cpp:56
 msgid "View Expense Budget Categories"
-msgstr "Visualizar Todas as Categorias de Despesas"
+msgstr "Ver as Categorias de Orçamento de Despesa"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
@@ -1529,7 +1529,7 @@ msgstr ""
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
 msgid "Estimated"
-msgstr "Estimado"
+msgstr "Estimativa"
 
 #: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
@@ -1596,7 +1596,7 @@ msgstr ""
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
-msgstr "O Orçamento Anual ja existe"
+msgstr "Orçamento Anual já existe"
 
 #: categdialog.cpp:197 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
