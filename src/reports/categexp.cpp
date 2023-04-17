@@ -254,14 +254,14 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
                     if(group_counter[entry.catID]){
                         hb.startTableRow("toggle' data-row-id='" + row_id + "' data-row-pid='" + row_pid);
-                        hb.addTableCell(wxString::Format(indent + "<a>+&nbsp%s</a>", entry.name));
+                        hb.addTableCell(wxString::Format(indent + "<a>+&nbsp;%s</a>", entry.name));
                         hb.addEmptyTableCell();
                         hb.addMoneyCell(group_total[entry.categs][entry.catID]);
                         hb.endTableRow();
                     }
                     if (entry.amount != 0) {
                         if (group_counter[entry.catID]) {
-                            indent.Append("&nbsp&nbsp&nbsp&nbsp");
+                            indent.Append("&nbsp;&nbsp;&nbsp;&nbsp;");
                         }
                         hb.startTableRow("xtoggle' data-row-id='" + row_id + "' data-row-pid='" + (group_counter[entry.catID] ? row_id : row_pid));
                         hb.addTableCell(wxString::Format(indent +"<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>", entry.catID, entry.name));
