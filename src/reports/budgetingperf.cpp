@@ -176,7 +176,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     double estimate = 0;
                     double actual = 0;
                     for (auto child : categ_children[catID]) {
-                        formattedNames[child.CATEGID] = wxString("&nbsp&nbsp&nbsp&nbsp").Append(formattedNames[catID]);
+                        formattedNames[child.CATEGID] = wxString("&nbsp;&nbsp;&nbsp;&nbsp;").Append(formattedNames[catID]);
                         categ_stack.push_back(child);
                     }
                     int month = -1;
