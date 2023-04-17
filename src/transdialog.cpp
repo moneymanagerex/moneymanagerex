@@ -150,13 +150,16 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
     mmSetSize(this);
     // set the initial dialog size to expand the payee and category comboboxes to fit their text
-    int minWidth = std::max(cbPayee_->GetSize().GetX(),
-        cbPayee_->GetSizeFromTextSize(cbPayee_->GetTextExtent(cbPayee_->GetValue()).GetX()).GetX()) - cbPayee_->GetSize().GetWidth();
+    int minWidth = std::max(0,
+        cbPayee_->GetSizeFromText(cbPayee_->GetValue()).GetWidth() - 2 * cbPayee_->GetMinWidth());
     minWidth = std::max(minWidth,
-        cbCategory_->GetSizeFromTextSize(cbCategory_->GetTextExtent(cbCategory_->GetValue()).GetX()).GetX() - cbCategory_->GetSize().GetWidth());
-    wxSize size = wxSize(GetMinWidth() + minWidth + (m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0), GetMinHeight());
-    if (size.GetWidth() > GetSize().GetWidth()) SetSize(size);
-    if (m_custom_fields->IsCustomPanelShown())
+        cbCategory_->GetSizeFromText(cbCategory_->GetValue()).GetWidth() - 2 * cbCategory_->GetMinWidth());
+
+    int custom_fields_width = m_custom_fields->IsCustomPanelShown() ? m_custom_fields->GetMinWidth() : 0;
+    wxSize size = wxSize(GetMinWidth() + minWidth + custom_fields_width, GetSize().GetHeight());
+    if (size.GetWidth() > GetSize().GetWidth())
+        SetSize(size);
+    if (custom_fields_width)
         SetMinSize(wxSize(GetMinWidth() + m_custom_fields->GetMinWidth(), GetMinHeight()));
     Centre();
 }
@@ -594,9 +597,11 @@ void mmTransDialog::CreateControls()
     }
 
     this->SetSizerAndFit(box_sizer);
-    min_size_ = GetMinSize();
-    box_sizer3->SetMinSize(box_sizer2->GetMinSize());
-    m_custom_fields->SetMinSize(box_sizer2->GetMinSize());
+    wxSize panelSize = box_sizer2->GetMinSize();
+    min_size_ = wxSize(panelSize.GetWidth() + 20, panelSize.GetHeight());
+    SetMinSize(min_size_);
+    box_sizer3->SetMinSize(panelSize);
+    m_custom_fields->SetMinSize(panelSize);
 }
 
 bool mmTransDialog::ValidateData()
