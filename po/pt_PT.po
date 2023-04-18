@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-18 11:37\n"
+"PO-Revision-Date: 2023-04-18 16:59\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -303,7 +303,7 @@ msgstr "Data Inválida"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Já existem transações nesta conta antes desta data"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
