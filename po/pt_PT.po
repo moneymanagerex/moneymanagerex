@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-17 22:53\n"
+"PO-Revision-Date: 2023-04-18 11:37\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -25,35 +25,35 @@ msgstr ""
 
 #: aboutdialog.cpp:48
 msgid "License agreement"
-msgstr ""
+msgstr "Licenciamento"
 
 #: aboutdialog.cpp:181
 msgid "About"
-msgstr ""
+msgstr "Sobre"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
-msgstr ""
+msgstr "Autores"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
-msgstr ""
+msgstr "Patrocinadores"
 
 #: aboutdialog.cpp:196
 msgid "License"
-msgstr ""
+msgstr "Licença"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr ""
+msgstr "Privacidade"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Enviar estatísticas anónimas de utilização"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Ative para enviar dados anónimos de utilização do MMEX, ajudando-nos."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:643
@@ -66,7 +66,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:276
 #: transactionsupdatedialog.cpp:248 transdialog.cpp:571 wizard_update.cpp:216
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: accountdialog.cpp:95 mmframe.cpp:1647
 msgid "Edit Account"
@@ -99,7 +99,7 @@ msgstr "Especifique se a conta está fechada. Contas fechadas não aparecem na m
 #: accountdialog.cpp:149
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Saldo inicial: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
@@ -107,11 +107,11 @@ msgstr "Introduza o saldo inicial desta conta."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Data de Abertura:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "A data de abertura da conta"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:565
 #: import_export/univcsvdialog.cpp:2452
@@ -160,7 +160,7 @@ msgstr "Outros"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
-msgstr ""
+msgstr "Número do Cartão:"
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
@@ -204,72 +204,72 @@ msgstr "Digite as credenciais de acesso à conta. Isto não é seguro já que qu
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "Extrato"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "Extrato:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
-msgstr ""
+msgstr "Bloqueado"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Ativar ou desativar o bloqueio de transação"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Data Reconciliada:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "A data do bloqueio de transação"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Balanço Min:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Limite inferior do saldo da conta. Zero para desativar"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
-msgstr ""
+msgstr "Crédito"
 
 #: accountdialog.cpp:258
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Limite de Crédito:"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Limite de crédito para a Conta. Zero para desativar"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Taxa de Juro:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Data de vencimento:"
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Pagamento Mínimo:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Organizar anexos desta conta"
 
 #: accountdialog.cpp:430
 msgid "Default Image"
-msgstr ""
+msgstr "Imagem Padrão"
 
 #: accountdialog.cpp:438
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Imagem #%i"
 
 #: accountdialog.cpp:496
 msgid "Account Name "
@@ -284,22 +284,22 @@ msgstr "Moeda"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Por favor, insira uma URL válida"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL inválida"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Data de abertura não pode ser no futuro"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1030
 #: billsdepositsdialog.cpp:1033 stockdialog.cpp:428 transdialog.cpp:616
 #: transdialog.cpp:690 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Data Inválida"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
