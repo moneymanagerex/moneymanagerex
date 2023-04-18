@@ -2147,6 +2147,7 @@ void mmUnivCSVDialog::OnDecimalChange(wxCommandEvent& event)
 void mmUnivCSVDialog::compilePayeeRegEx() {
     // pre-compile all payee match strings if not already done
     if (payeeMatchCheckBox_->IsChecked() && !payeeRegExInitialized_) {
+        payeeMatchPatterns_.clear();
         // only look at payees that have a match pattern set
         Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PATTERN(wxEmptyString, NOT_EQUAL));
         for (const auto& payee : payees) {
