@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-18 18:14\n"
+"PO-Revision-Date: 2023-04-18 20:14\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -482,7 +482,7 @@ msgstr "Introduza a taxa a que o valor do ativo muda em percentagem por ano"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Organizar documentos deste ativo"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -490,30 +490,31 @@ msgstr "Escreva notas relativas a este ativo"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Detalhes da Nova Transação"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Editar Detalhes da Transação"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
-msgstr ""
+msgstr "&Cancelar "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:438
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Transação Inválida"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Conta de ativo não encontrada.\n\n"
+"Gostaria de criar uma?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:187
 #: import_export/qif_export.cpp:606 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:265 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:524 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
@@ -529,45 +530,45 @@ msgstr "Tipo"
 
 #: assetspanel.cpp:63 mmhomepage.cpp:586 reports/summarystocks.cpp:116
 msgid "Initial Value"
-msgstr ""
+msgstr "Valor Inicial"
 
 #: assetspanel.cpp:64 mmhomepage.cpp:587 reports/summarystocks.cpp:121
 #: stockdialog.cpp:255
 msgid "Current Value"
-msgstr ""
+msgstr "Valor Atual"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Novo Ativo..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&uplicar Ativo..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Adicionar Transação de Ativo..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Ver Transações de Ativo"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Abrir Conta de Ativo..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Editar Ativo..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "Eliminar Ativo..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1435 mmframe.cpp:1455 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Organizar Documentos Anexos..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
