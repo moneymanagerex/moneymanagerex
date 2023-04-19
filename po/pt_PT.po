@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 12:06\n"
+"PO-Revision-Date: 2023-04-19 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -790,15 +790,15 @@ msgstr "Anx."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Este diretório e os seus ficheiros são geridos automaticamente pelo software Money Manager EX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Por favor, não remova, renomeie ou modifique manualmente diretórios e ficheiros."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "O ficheiro de destino já existe:"
 
 #: attachmentdialog.cpp:458
 msgid "File not found in attachments. Please delete or rename it."
@@ -806,7 +806,7 @@ msgstr "Ficheiro não encontrado nos anexos. Por favor, apague-o ou renomeie-o."
 
 #: attachmentdialog.cpp:459 attachmentdialog.cpp:467
 msgid "Destination file already exist"
-msgstr ""
+msgstr "O ficheiro de destino já existe"
 
 #: attachmentdialog.cpp:466
 msgid "File already found in attachments"
@@ -826,11 +826,11 @@ msgstr "Eliminação do anexo falhou"
 
 #: attachmentdialog.cpp:526 general_report_manager.cpp:672
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Não é possível abrir o ficheiro:"
 
 #: attachmentdialog.cpp:529
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Por favor, verifique se o ficheiro existe e o utilizador tem permissões para o ler."
 
 #: attachmentdialog.cpp:530
 msgid "Open attachment failed"
@@ -1108,7 +1108,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:616
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Gerir os anexos desta transação recorrente"
 
 #: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:974 filtertransdialog.cpp:1555
@@ -4311,7 +4311,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:592 webapp.cpp:619
 msgid "Attachment"
-msgstr ""
+msgstr "Anexo"
 
 #: mmcheckingpanel.cpp:628
 #, c-format
@@ -5471,7 +5471,7 @@ msgstr ""
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Ação"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
@@ -5584,7 +5584,7 @@ msgstr "Investimento"
 
 #: model/Model_Account.cpp:39 model/Model_Attachment.cpp:26
 msgid "Asset"
-msgstr ""
+msgstr "Ativo"
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
@@ -5636,15 +5636,15 @@ msgstr ""
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Transação"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Conta Bancária"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Transação Recorrente"
 
 #: model/Model_Billsdeposits.cpp:297
 #, c-format
@@ -5741,7 +5741,7 @@ msgstr "Visualizar Opções"
 
 #: optiondialog.cpp:37 webappdialog.cpp:146
 msgid "Attachments"
-msgstr ""
+msgstr "Anexos"
 
 #: optiondialog.cpp:37
 msgid "Network"
@@ -5842,39 +5842,39 @@ msgstr "Quando remover o anexo, mover em vez de eliminar o ficheiro"
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr ""
+msgstr "Selecione para não apagar o ficheiro quando o anexo for removido, mas alternativamente movê-lo para a subpasta 'Eliminados'"
 
 #: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "Ao duplicar transações duplicar também os anexos"
 
 #: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Selecione caso pretenda copiar os anexos para as novas transações quando estas forem duplicadas ou coladas"
 
 #: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "Escolha a pasta que servirá como arquivo de anexos"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Pasta de anexos não permite escrita!"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
-msgstr ""
+msgstr "Pasta de anexos"
 
 #: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "O caminho dos anexos foi alterado!"
 
 #: optionsettingsattachment.cpp:248 optionsettingsattachment.cpp:257
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "Migração da pasta de Anexos"
 
 #: optionsettingsattachment.cpp:254
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "Erro ao mover a pasta de anexos: por favor, mova-a manualmente!"
 
 #: optionsettingsattachment.cpp:255
 msgid "Origin"
@@ -6441,7 +6441,7 @@ msgstr ""
 
 #: payeedialog.cpp:868
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "&Gerir Anexos"
 
 #: payeedialog.cpp:872
 msgid "Relocate Payee"
@@ -6974,7 +6974,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"
-msgstr ""
+msgstr "Gerir os anexos desta ação"
 
 #: sharetransactiondialog.cpp:298 stockdialog.cpp:266
 msgid "Display the web page for the specified Stock symbol"
@@ -7395,7 +7395,7 @@ msgstr "Transacção #"
 
 #: transdialog.cpp:545 usertransactionpanel.cpp:199
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "Gerir anexos desta transação"
 
 #: transdialog.cpp:745
 msgid "This transaction will exceed your account limit.\n\n"
@@ -7774,11 +7774,11 @@ msgstr ""
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
-msgstr ""
+msgstr "Não foi possível descarregar anexos da aplicação web."
 
 #: webapp.cpp:595
 msgid "Attachments folder not set or unavailable"
-msgstr ""
+msgstr "Pasta de anexos não definida ou indisponível"
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded:"
@@ -7786,11 +7786,11 @@ msgstr ""
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Por favor, corrija a pasta de anexos ou elimine anexos da WebApp"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
-msgstr ""
+msgstr "Erro na pasta de anexos"
 
 #: webapp.cpp:630
 msgid "Transaction not downloaded: please retry to download transactions"
@@ -7798,7 +7798,7 @@ msgstr ""
 
 #: webapp.cpp:631 webappdialog.cpp:339
 msgid "Attachment download error"
-msgstr ""
+msgstr "Erro ao descarregar o anexo"
 
 #: webappdialog.cpp:68
 msgid "Import WebApp transactions"
@@ -7838,7 +7838,7 @@ msgstr ""
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
-msgstr ""
+msgstr "Abrir Anexo"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
