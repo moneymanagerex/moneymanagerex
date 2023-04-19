@@ -670,10 +670,6 @@ void htmlWidgetAccounts::get_account_stats()
 
     for (const auto& trx : all_trans)
     {
-        // Do not include asset or stock transfers in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(trx))
-            continue;
-
         accountStats_[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats_[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
