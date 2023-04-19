@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 14:52\n"
+"PO-Revision-Date: 2023-04-19 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -961,15 +961,15 @@ msgstr "Solicitar ao utilizador a inserção do pagamento"
 
 #: billsdepositsdialog.cpp:473
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "O utilizador solicitou a inserção desta transação na 'Data de Pagamento'"
 
 #: billsdepositsdialog.cpp:476
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Definir execução automática"
 
 #: billsdepositsdialog.cpp:477
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "O pagamento solicitado ocorrerá sem interação do utilizador"
 
 #: billsdepositsdialog.cpp:484 filtertrans.cpp:177 transdialog.cpp:406
 msgid "Transaction Details"
@@ -977,11 +977,11 @@ msgstr "Detalhes da Transação"
 
 #: billsdepositsdialog.cpp:493
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Indique a data em que o utilizador deverá inserir essa transação"
 
 #: billsdepositsdialog.cpp:494 billsdepositspanel.cpp:132
 msgid "Date Paid"
-msgstr ""
+msgstr "Data de Pagamento"
 
 #: billsdepositsdialog.cpp:506 filtertransdialog.cpp:576 transdialog.cpp:1248
 msgid "Specify the status for the transaction"
