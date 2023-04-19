@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 11:03\n"
+"PO-Revision-Date: 2023-04-19 18:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -790,15 +790,15 @@ msgstr "Anex."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "Este diretório e respectivos ficheiros são geridos automaticamente pelo Money Manager EX."
+msgstr "Este diretório e respectivos arquivos são geridos automaticamente pelo Money Manager EX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Por favor, não remova, renomeie ou modifique manualmente diretórios e ficheiros."
+msgstr "Por favor, não remova, renomeie ou modifique manualmente diretórios e arquivos."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
-msgstr "O ficheiro de destino já existe:"
+msgstr "O arquivo de destino já existe:"
 
 #: attachmentdialog.cpp:458
 msgid "File not found in attachments. Please delete or rename it."
@@ -1177,7 +1177,7 @@ msgstr "A data de abertura da conta é posterior à data desta transação"
 
 #: billsdepositsdialog.cpp:1205
 msgid "Specify the transfer amount in the From Account"
-msgstr "Especifique o valor da transferência na Conta Origem"
+msgstr "Especifique o valor da transferência na Conta De"
 
 #: billsdepositsdialog.cpp:1215
 msgid "Activates"
@@ -7489,7 +7489,7 @@ msgstr "Especifique em qual conta o dinheiro foi depositado"
 
 #: transdialog.cpp:1231
 msgid "Specify the transfer amount in the From Account."
-msgstr "Especifique o valor da transferência na Conta de Origem."
+msgstr "Especifique o valor da transferência na Conta De."
 
 #: transdialog.cpp:1239
 msgid "Specify account for the transaction"
