@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-19 18:49\n"
+"PO-Revision-Date: 2023-04-19 21:11\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1244,11 +1244,11 @@ msgstr "Indique o destino desta transação"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1243
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Indique de onde esta transação está vir"
 
 #: billsdepositsdialog.h:128
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Indique para que conta está a ser efetuada a transferência"
 
 #: billsdepositsdialog.h:129 transdialog.cpp:1238 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
@@ -1256,27 +1256,27 @@ msgstr "Especifique o valor desta transação"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Indique o montante a ser transferido"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "Daqui a %s Dias"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "Daqui a %s Meses"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "A cada %s Dias"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "A cada %s Meses"
 
 #: billsdepositspanel.cpp:140 budgetingpanel.cpp:301 reports/myusage.cpp:163
 msgid "Frequency"
@@ -1284,40 +1284,40 @@ msgstr "Frequência"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr ""
+msgstr "Repetições"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
-msgstr ""
+msgstr "Repetir automaticamente"
 
 #: billsdepositspanel.cpp:143 mmhomepage.cpp:358
 msgid "Payment"
-msgstr ""
+msgstr "Pagamento"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "O MMEX permite que pagamentos regulares sejam configurados como transações. Estas transacções também podem ser depósitos regulares, ou transferências que ocorrerão num futuro próximo. Essas transações atuam como um lembrete de que um evento está prestes a ocorrer, e aparece na Página inicial 14 dias antes da transação ser devida. "
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Dica: Estas transações podem ser configuradas para ativar — permitindo que o utilizador ajuste quaisquer valores na data de vencimento."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
 #: mmframe.cpp:3059 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Transações Recorrentes"
 
 #: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:443
 msgid "D&uplicate "
-msgstr ""
+msgstr "D&uplicado "
 
 #: billsdepositspanel.cpp:308
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Eliminar Transação Recorrente"
 
 #: billsdepositspanel.cpp:312
 msgid "Ente&r"
-msgstr ""
+msgstr "&Escrever"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
