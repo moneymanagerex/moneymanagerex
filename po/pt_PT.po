@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 17:11\n"
+"PO-Revision-Date: 2023-04-19 18:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1177,44 +1177,49 @@ msgstr "A data de abertura da conta é posterior à data desta transação"
 
 #: billsdepositsdialog.cpp:1205
 msgid "Specify the transfer amount in the From Account"
-msgstr "Especifique o montante da transferência na Conta De"
+msgstr "Indique o montante da transferência na Conta De"
 
 #: billsdepositsdialog.cpp:1215
 msgid "Activates"
-msgstr ""
+msgstr "Ativa"
 
 #: billsdepositsdialog.cpp:1217
 msgid "Period: Days"
-msgstr ""
+msgstr "Período: Dias"
 
 #: billsdepositsdialog.cpp:1218
 msgid "Period: Months"
-msgstr ""
+msgstr "Período: Meses"
 
 #: billsdepositsdialog.cpp:1225
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Defina o período em Dias para ativar.\n"
+"Deixar em branco quando não estiver ativo."
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Defina o período em Meses para ativar.\n"
+"Deixar em branco quando não estiver ativo."
 
 #: billsdepositsdialog.cpp:1241
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Defina o período em Dias para ativar.\n"
+"Deixar em branco quando não estiver ativo."
 
 #: billsdepositsdialog.cpp:1249
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Defina o período em Meses para ativar.\n"
+"Deixar em branco quando não estiver ativo."
 
 #: billsdepositsdialog.cpp:1257
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Especifique o número de pagamentos a serem feitos.\n"
+"Deixe em branco se os pagamentos continuarem indefinidamente."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
@@ -1227,15 +1232,15 @@ msgstr "Erro"
 #: billsdepositsdialog.cpp:1352 splittransactionsdialog.h:82
 #: transdialog.cpp:336
 msgid "Split Transaction"
-msgstr ""
+msgstr "Transação Separada"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Nova Transação Recorrente"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Indique o destino desta transação"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1243
 msgid "Specify where the transaction is coming from"
@@ -1523,11 +1528,11 @@ msgstr ""
 
 #: budgetingpanel.cpp:256
 msgid "Expenses: "
-msgstr ""
+msgstr "Despesa: "
 
 #: budgetingpanel.cpp:299
 msgid "Icon"
-msgstr ""
+msgstr "Ícone"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
