@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-14 22:56+0300\n"
-"PO-Revision-Date: 2023-04-18 21:09\n"
+"PO-Revision-Date: 2023-04-19 09:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -703,66 +703,66 @@ msgstr "Pasta de documentos não definida."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Por favor, defina-o em Ferramentas → Opções → Anexos"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Pasta de documentos anexos não definida"
 
 #: attachmentdialog.cpp:71
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Não foi possível encontrar pasta de anexos:"
 
 #: attachmentdialog.cpp:74
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Por favor, verifique se o caminho acima está correto"
 
 #: attachmentdialog.cpp:75
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Pasta de documentos anexos não encontrada"
 
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Gerir Anexos | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Gerir Anexos | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Gerir Anexos | Novo %s"
 
 #: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:572
 msgid "Other tools"
-msgstr ""
+msgstr "Outras Ferramentas"
 
 #: attachmentdialog.cpp:191
 msgid "Import attachment:"
-msgstr ""
+msgstr "Importar anexo:"
 
 #: attachmentdialog.cpp:202
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Insira uma descrição para o novo anexo:"
 
 #: attachmentdialog.cpp:203
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Gerir Anexos: Adicionar Anexo"
 
 #: attachmentdialog.cpp:249
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Insira uma nova descrição para o anexo:"
 
 #: attachmentdialog.cpp:250
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Gerir Anexos: Editar Anexo"
 
 #: attachmentdialog.cpp:277
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Deseja realmente apagar este documento anexo?"
 
 #: attachmentdialog.cpp:278
 msgid "Confirm Attachment Deletion"
