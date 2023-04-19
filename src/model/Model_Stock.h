@@ -60,10 +60,15 @@ public:
     static double CurrentValue(const Data* r);
     static double CurrentValue(const Data& r);
 
-    /** Realized gain/loss from sales */
-    static double RealGainLoss(const Data* r);
-    /** Realized gain/loss from sales */
-    static double RealGainLoss(const Data& r);
+    /** Realized gain/loss from sales, optionally converted to base currency */
+    static double RealGainLoss(const Data* r, bool base_curr = false);
+    /** Realized gain/loss from sales, optionally converted to base currency */
+    static double RealGainLoss(const Data& r, bool base_curr = false);
+
+    /** The current unrealized gain/loss, optionally converted to base currency */
+    static double UnrealGainLoss(const Data* r, bool base_curr = false);
+    /** The current unrealized gain/loss, optionally converted to base currency */
+    static double UnrealGainLoss(const Data& r, bool base_curr = false);
 
     /** Update current price across accounts */
     static void UpdateCurrentPrice(const wxString& symbol, const double price = -1);

@@ -138,7 +138,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
         {
             grand_total_ += current_value * conv_rate;
-            grand_gain_lost_ += gain_lost * conv_rate;
+            grand_gain_lost_ += Model_Stock::UnrealGainLoss(stock, true);
         }
     }
 }

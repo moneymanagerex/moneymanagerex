@@ -21,6 +21,7 @@
 #include "Model_StockHistory.h"
 #include "Model_Translink.h"
 #include "Model_Shareinfo.h"
+#include "Model_CurrencyHistory.h"
 
 Model_Stock::Model_Stock()
 : Model<DB_Table_STOCK_V1>()
@@ -206,27 +207,40 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
 }
 
 /**
-Returns the realized gain/loss of the stock due to sold shares
+Returns the realized gain/loss of the stock due to sold shares.
+If the optional parameter to_base_curr = true is passed values are converted
+to base currency.
 */
-double Model_Stock::RealGainLoss(const Data* r)
+double Model_Stock::RealGainLoss(const Data* r, bool to_base_curr)
 {
+    Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(r->HELDAT));
     Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE::STOCK, r->STOCKID);
     double real_gain_loss = 0;
     double total_shares = 0;
     double total_initial_value = 0;
     double avg_share_price = 0;
+    double conv_rate = 1;
+
+    Model_Checking::Data_Set checking_list;
     for (const auto trans : trans_list)
     {
-        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
+        Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
+        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+    }
+    std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
+    for (const auto trans : checking_list)
+    {
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
+        conv_rate = to_base_curr ? Model_CurrencyHistory::getDayRate(currency->CURRENCYID, trans.TRANSDATE) : 1;
         total_shares += share_entry->SHARENUMBER;
 
         if (share_entry->SHARENUMBER > 0) {
-            total_initial_value += share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION;
+            total_initial_value += (share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION) * conv_rate;
         }
         else {
             total_initial_value += share_entry->SHARENUMBER * avg_share_price;
-            real_gain_loss += -share_entry->SHARENUMBER * (share_entry->SHAREPRICE - avg_share_price) - share_entry->SHARECOMMISSION;
+            real_gain_loss += -share_entry->SHARENUMBER * (share_entry->SHAREPRICE * conv_rate - avg_share_price) - share_entry->SHARECOMMISSION * conv_rate;
         }
 
         if (total_shares < 0) total_shares = 0;
@@ -238,10 +252,73 @@ double Model_Stock::RealGainLoss(const Data* r)
     return real_gain_loss;
 }
 
-/** Realized gain/loss due to sales */
-double Model_Stock::RealGainLoss(const Data& r)
+/**
+Returns the realized gain/loss of the stock due to sold shares.
+If the optional parameter to_base_curr = true is passed values are converted
+to base currency.
+*/
+double Model_Stock::RealGainLoss(const Data& r, bool to_base_curr)
 {
-    return RealGainLoss(&r);
+    return RealGainLoss(&r, to_base_curr);
+}
+
+/**
+Returns the current unrealized gain/loss.
+If the optional parameter to_base_curr = true is passed values are converted
+to base currency.
+*/
+double Model_Stock::UnrealGainLoss(const Data& r, bool to_base_curr)
+{
+    return UnrealGainLoss(&r, to_base_curr);
+}
+
+/**
+Returns the current unrealized gain/loss.
+If the optional parameter to_base_curr = true is passed values are converted
+to base currency.
+*/
+double Model_Stock::UnrealGainLoss(const Data* r, bool to_base_curr)
+{
+    if (!to_base_curr)
+        return CurrentValue(r) - InvestmentValue(r);
+    else
+    {
+        Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(r->HELDAT));
+        Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE::STOCK, r->STOCKID);
+        double total_shares = 0;
+        double total_initial_value = 0;
+        double avg_share_price = 0;
+        double conv_rate = 1;
+        wxString earliest_date = wxDate::Today().FormatISODate();
+
+        Model_Checking::Data_Set checking_list;
+        for (const auto trans : trans_list)
+        {
+            Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
+            if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+        }
+        std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
+
+        for (const auto trans : checking_list)
+        {
+            Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
+            conv_rate = to_base_curr ? Model_CurrencyHistory::getDayRate(currency->CURRENCYID, trans.TRANSDATE) : 1;
+            total_shares += share_entry->SHARENUMBER;
+            if (total_shares < 0) total_shares = 0;
+
+            if (share_entry->SHARENUMBER > 0) {
+                total_initial_value += (share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION) * conv_rate;
+            }
+            else {
+                total_initial_value += share_entry->SHARENUMBER * avg_share_price;
+            }
+
+            if (total_initial_value < 0) total_initial_value = 0;
+            if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
+        }
+        conv_rate = to_base_curr ? Model_CurrencyHistory::getDayRate(currency->CURRENCYID) : 1;
+        return CurrentValue(r) * conv_rate - total_initial_value;
+    }
 }
 
 /** Updates the current price across all accounts which hold the stock */

@@ -38,6 +38,8 @@ private:
     std::vector<account_holder> m_stocks;
     double m_real_gain_loss_sum_total;
     double m_unreal_gain_loss_sum_total;
+    double m_real_gain_loss_excl_forex;
+    double m_unreal_gain_loss_excl_forex;
     double m_stock_balance;
 };
 
