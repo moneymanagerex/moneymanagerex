@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 16:06\n"
+"PO-Revision-Date: 2023-04-19 17:11\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1005,11 +1005,11 @@ msgstr "Especifique o tipo de transação a criar."
 
 #: billsdepositsdialog.cpp:515 transdialog.cpp:446
 msgid "&Advanced"
-msgstr ""
+msgstr "&Avançado"
 
 #: billsdepositsdialog.cpp:518 transdialog.cpp:1252
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
+msgstr "Permite a configuração de diferentes montantes nas contas DE e PARA."
 
 #: billsdepositsdialog.cpp:529 billsdepositspanel.cpp:139
 #: budgetingpanel.cpp:302 filtertrans.cpp:196 filtertransdialog.cpp:956
@@ -1025,7 +1025,7 @@ msgstr "Valor"
 
 #: billsdepositsdialog.cpp:540 transdialog.cpp:1234
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Especifique o montante da transferência na Conta Para"
 
 #: billsdepositsdialog.cpp:551 billsdepositsdialog.cpp:821
 #: billsdepositsdialog.cpp:834 billsdepositspanel.cpp:134 filtertrans.cpp:191
@@ -1042,7 +1042,7 @@ msgstr "Conta"
 
 #: billsdepositsdialog.cpp:556
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Especifique a conta que possuirá a transação recorrente"
 
 #: billsdepositsdialog.cpp:561 transdialog.cpp:243 transdialog.cpp:485
 msgid "To"
@@ -1082,7 +1082,7 @@ msgstr "Categoria"
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:512
 #: transdialog.cpp:1211
 msgid "Use split Categories"
-msgstr ""
+msgstr "Usar Categorias separadas"
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1250
 msgid "Specify any associated check number or transaction number"
@@ -1099,12 +1099,12 @@ msgstr "Número"
 
 #: billsdepositsdialog.cpp:606 transdialog.cpp:533 usertransactionpanel.cpp:206
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "Selecione uma das notas usadas com frequência"
 
 #: billsdepositsdialog.cpp:612 transactionsupdatedialog.cpp:217
 #: transdialog.cpp:540
 msgid "User Colors"
-msgstr ""
+msgstr "Cores do Utilizador"
 
 #: billsdepositsdialog.cpp:616
 msgid "Organize attachments of this recurring transaction"
@@ -1117,7 +1117,7 @@ msgstr "Gerir os anexos desta transação recorrente"
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:555
 msgid "Color"
-msgstr ""
+msgstr "Cor"
 
 #: billsdepositsdialog.cpp:633 transdialog.cpp:562 transdialog.cpp:1251
 #: usertransactionpanel.cpp:215
@@ -1127,7 +1127,7 @@ msgstr "Escreva qualquer comentário que entenda fazer para esta transação."
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:746
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:578
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Mostrar/Ocultar a janela de campos personalizados"
 
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:242
 #: transdialog.cpp:251
@@ -1136,23 +1136,24 @@ msgstr "De"
 
 #: billsdepositsdialog.cpp:880
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "A data de pagamento é posterior à data de vencimento. É isto o pretendido?"
 
 #: billsdepositsdialog.cpp:881
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Parece um pagamento atrasado"
 
 #: billsdepositsdialog.cpp:933 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:652
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Este nome de beneficiário não foi utilizado antes. O nome está correto?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:653
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Confirme o nome do beneficiário"
 
 #: billsdepositsdialog.cpp:953 billsdepositsdialog.cpp:1282
 #: filtertransdialog.cpp:868 filtertransdialog.cpp:878
@@ -1166,17 +1167,17 @@ msgstr ""
 #: transactionsupdatedialog.cpp:393 transdialog.cpp:613 transdialog.cpp:628
 #: util.cpp:753
 msgid "Invalid value"
-msgstr ""
+msgstr "Valor inválido"
 
 #: billsdepositsdialog.cpp:1030 billsdepositsdialog.cpp:1033
 #: import_export/univcsvdialog.cpp:1357 stockdialog.cpp:428 transdialog.cpp:621
 #: transdialog.cpp:695 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "A data de abertura da conta é posterior à data desta transação"
 
 #: billsdepositsdialog.cpp:1205
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "Especifique o montante da transferência na Conta De"
 
 #: billsdepositsdialog.cpp:1215
 msgid "Activates"
