@@ -167,13 +167,16 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     double total_commission = 0;
     double avg_share_price = 0;
     wxString earliest_date = wxDate::Today().FormatISODate();
-
+    Model_Checking::Data_Set checking_list;
     for (const auto trans : trans_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (!checking_entry->DELETEDTIME.IsEmpty()) continue;
-
-        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
+        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+    }
+    std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
+    for (const auto trans : checking_list)
+    {
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
 
         total_shares += share_entry->SHARENUMBER;
         if (total_shares < 0) total_shares = 0;
@@ -190,7 +193,7 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
 
         total_commission += share_entry->SHARECOMMISSION;
 
-        wxString transdate = checking_entry->TRANSDATE;
+        wxString transdate = trans.TRANSDATE;
         if (transdate < earliest_date) earliest_date = transdate;
     }
 
