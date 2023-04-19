@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 11:03\n"
+"POT-Creation-Date: 2023-04-19 21:45+0300\n"
+"PO-Revision-Date: 2023-04-19 18:50\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -583,7 +583,7 @@ msgstr ""
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
-#: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:235
+#: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:238
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
 msgstr "சொத்துக்கள்"
@@ -663,7 +663,7 @@ msgstr ""
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:585 stockspanel.cpp:327 stockspanel.cpp:514
+#: assetspanel.cpp:585 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
 msgid "Total: %s"
 msgstr "மொத்தம்: %s"
@@ -1215,8 +1215,8 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
-#: mmframe.cpp:3659 splittransactionsdialog.cpp:395 stockspanel.cpp:378
-#: stockspanel.cpp:379 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3659 splittransactionsdialog.cpp:395 stockspanel.cpp:384
+#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "தவறு"
@@ -1295,7 +1295,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr ""
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
-#: mmframe.cpp:3059 mmhomepagepanel.cpp:241
+#: mmframe.cpp:3059 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
 msgstr ""
 
@@ -2508,7 +2508,7 @@ msgid "Unreconciled"
 msgstr ""
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:502 mmhomepage.cpp:534
-#: mmhomepage.cpp:709 model/Model_Billsdeposits.cpp:40
+#: mmhomepage.cpp:705 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:40
 msgid "Reconciled"
 msgstr "சரிபார்க்கப்பட்டது"
@@ -3203,7 +3203,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:767 import_export/qif_import_gui.cpp:798
 #: import_export/univcsvdialog.cpp:1927 import_export/univcsvdialog.cpp:1942
-#: stockspanel.cpp:443
+#: stockspanel.cpp:449
 msgid "Missing"
 msgstr ""
 
@@ -3327,7 +3327,7 @@ msgid "Don't Care"
 msgstr "கவலையில்லை"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:288
-#: mmhomepage.cpp:543 mmhomepage.cpp:710 reports/cashflow.cpp:419
+#: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:419
 #: reports/summary.cpp:272 reports/summary.cpp:308
 msgid "Balance"
 msgstr "இருப்பு"
@@ -3794,7 +3794,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
-#: maincurrencydialog.cpp:877 stockspanel.cpp:389 util.cpp:681
+#: maincurrencydialog.cpp:877 stockspanel.cpp:395 util.cpp:681
 msgid "Could not find base currency symbol!"
 msgstr ""
 
@@ -4373,17 +4373,17 @@ msgstr ""
 msgid "Favourites"
 msgstr ""
 
-#: mmframe.cpp:476 mmframe.cpp:728 mmhomepage.cpp:694 reports/summary.cpp:256
+#: mmframe.cpp:476 mmframe.cpp:728 mmhomepage.cpp:690 reports/summary.cpp:256
 #: reports/summary.cpp:299
 msgid "Bank Accounts"
 msgstr "வங்கிக் கணக்குகள்"
 
-#: mmframe.cpp:477 mmframe.cpp:732 mmhomepage.cpp:695 reports/summary.cpp:258
+#: mmframe.cpp:477 mmframe.cpp:732 mmhomepage.cpp:691 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:697 reports/summary.cpp:262
+#: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
 msgstr ""
@@ -4392,11 +4392,11 @@ msgstr ""
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:480 mmframe.cpp:736 mmhomepage.cpp:693
+#: mmframe.cpp:480 mmframe.cpp:736 mmhomepage.cpp:689
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:481 mmframe.cpp:740 mmhomepage.cpp:696 reports/summary.cpp:260
+#: mmframe.cpp:481 mmframe.cpp:740 mmhomepage.cpp:692 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
 msgstr ""
@@ -4413,7 +4413,7 @@ msgstr ""
 msgid "All Transactions"
 msgstr ""
 
-#: mmframe.cpp:752 mmhomepage.cpp:700 reports/summary.cpp:266
+#: mmframe.cpp:752 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
 msgstr ""
@@ -5280,7 +5280,7 @@ msgstr ""
 msgid "Please wait..."
 msgstr ""
 
-#: mmframe.cpp:3381 stockspanel.cpp:453
+#: mmframe.cpp:3381 stockspanel.cpp:459
 #, c-format
 msgid "%s on %s"
 msgstr "%s மேல் %s"
@@ -5337,7 +5337,7 @@ msgstr ""
 msgid "General Group Report"
 msgstr ""
 
-#: mmframereport.cpp:107 mmhomepage.cpp:853 model/Model_Report.cpp:410
+#: mmframereport.cpp:107 mmhomepage.cpp:849 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr ""
@@ -5420,7 +5420,7 @@ msgstr "லாப/நட்டம்"
 msgid "Total"
 msgstr "மொத்தம்"
 
-#: mmhomepage.cpp:108 mmhomepage.cpp:629 mmhomepage.cpp:748
+#: mmhomepage.cpp:108 mmhomepage.cpp:629 mmhomepage.cpp:744
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:168 splittransactionsdialog.cpp:254
 msgid "Total:"
@@ -5479,19 +5479,19 @@ msgstr ""
 msgid "Other Assets"
 msgstr ""
 
-#: mmhomepage.cpp:698
+#: mmhomepage.cpp:694
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:699 reports/summary.cpp:264 reports/summary.cpp:303
+#: mmhomepage.cpp:695 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:839
+#: mmhomepage.cpp:835
 msgid "Currency Exchange Rates"
 msgstr ""
 
-#: mmhomepagepanel.cpp:187
+#: mmhomepagepanel.cpp:190
 msgid "Upcoming Transactions"
 msgstr "இனிவரும் பரிமாற்றங்கள் பார்வைக்கு"
 
@@ -7284,49 +7284,49 @@ msgstr "பங்கு விலையை யாஹூவிலிருந்�
 msgid "Lot"
 msgstr ""
 
-#: stockspanel.cpp:282
+#: stockspanel.cpp:288
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr ""
 
-#: stockspanel.cpp:326
+#: stockspanel.cpp:332
 #, c-format
 msgid "Total Shares: %s"
 msgstr ""
 
-#: stockspanel.cpp:328
+#: stockspanel.cpp:334
 #, c-format
 msgid "Invested: %s"
 msgstr ""
 
-#: stockspanel.cpp:329
+#: stockspanel.cpp:335
 #, c-format
 msgid "Gain: %s"
 msgstr ""
 
-#: stockspanel.cpp:329
+#: stockspanel.cpp:335
 #, c-format
 msgid "Loss: %s"
 msgstr ""
 
-#: stockspanel.cpp:367
+#: stockspanel.cpp:373
 msgid "Stock prices successfully updated"
 msgstr ""
 
-#: stockspanel.cpp:369 stockspanel.cpp:555
+#: stockspanel.cpp:375 stockspanel.cpp:561
 #, c-format
 msgid "Last updated %s"
 msgstr ""
 
-#: stockspanel.cpp:395 util.cpp:705 util.cpp:861
+#: stockspanel.cpp:401 util.cpp:705 util.cpp:861
 msgid "Nothing to update"
 msgstr ""
 
-#: stockspanel.cpp:409
+#: stockspanel.cpp:415
 msgid "Connecting..."
 msgstr ""
 
-#: stockspanel.cpp:513
+#: stockspanel.cpp:519
 #, c-format
 msgid "Symbol: %s"
 msgstr ""
