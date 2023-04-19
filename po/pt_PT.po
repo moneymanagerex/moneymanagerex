@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 11:02\n"
+"PO-Revision-Date: 2023-04-19 12:06\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5763,11 +5763,11 @@ msgstr "Configurações de Anexos"
 #: optionsettingsattachment.cpp:72
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "Pasta de arquivo de anexos para %s apenas:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Todos os tipos de SO (Win,Mac,Unix) têm a sua pasta de anexos"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
@@ -5826,7 +5826,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
-msgstr ""
+msgstr "Criar e utilizar subpasta de anexos"
 
 #: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
@@ -5834,11 +5834,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "Selecione para eliminar o ficheiro da pasta de anexos após a sua importação"
 
 #: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
-msgstr ""
+msgstr "Quando remover o anexo, mover em vez de eliminar o ficheiro"
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
