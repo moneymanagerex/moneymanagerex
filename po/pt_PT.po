@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 13:33+0300\n"
-"PO-Revision-Date: 2023-04-19 13:28\n"
+"PO-Revision-Date: 2023-04-19 14:52\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -260,7 +260,7 @@ msgstr "Pagamento Mínimo:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
-msgstr "Organizar anexos desta conta"
+msgstr "Gerir anexos desta conta"
 
 #: accountdialog.cpp:430
 msgid "Default Image"
@@ -482,7 +482,7 @@ msgstr "Introduza a taxa a que o valor do ativo muda em percentagem por ano"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr "Organizar documentos deste ativo"
+msgstr "Gerir documentos deste ativo"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -568,7 +568,7 @@ msgstr "Eliminar Ativo..."
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1435 mmframe.cpp:1455 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "&Organizar Documentos Anexos..."
+msgstr "&Gerir Documentos Anexos..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -850,7 +850,7 @@ msgstr "Semanal"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "Quinzenal"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -861,7 +861,7 @@ msgstr "Mensal"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "A cada 2 Meses"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -893,51 +893,51 @@ msgstr "Diário"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "Daqui a (x) Dias"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "Daqui a (x) Meses"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "A cada (x) Dias"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "A cada (x) Meses"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Mensalmente (último dia)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Mensalmente (último dia útil)"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:303
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Duplicar Transação Recorrente"
 
 #: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:298
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Editar Transação Recorrente"
 
 #: billsdepositsdialog.cpp:320
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Inserir Transação Recorrente"
 
 #: billsdepositsdialog.cpp:414
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Detalhes da Transação Recorrente"
 
 #: billsdepositsdialog.cpp:428
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Indique a data em que esta conta ou depósito vence"
 
 #: billsdepositsdialog.cpp:429 billsdepositspanel.cpp:133
 msgid "Date Due"
-msgstr ""
+msgstr "Data de vencimento"
 
 #: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
 msgid "Repeats"
@@ -945,19 +945,19 @@ msgstr "Repete-se"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Voltar para a última data de ocorrência com os valores especificados"
 
 #: billsdepositsdialog.cpp:447
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Avançar a próxima data de ocorrência com os valores especificados"
 
 #: billsdepositsdialog.cpp:458 billsdepositsdialog.cpp:1256
 msgid "Payments Left"
-msgstr ""
+msgstr "Pagamentos Restantes"
 
 #: billsdepositsdialog.cpp:472
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Solicitar ao utilizador a inserção do pagamento"
 
 #: billsdepositsdialog.cpp:473
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -5771,30 +5771,30 @@ msgstr "Todos os tipos de SO (Win,Mac,Unix) têm a sua pasta de anexos"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
-msgstr ""
+msgstr "Procurar pasta"
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
-msgstr ""
+msgstr "Caminho real:"
 
 #: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legenda (podem ser usadas como variáveis no início do caminho acima)"
 
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Diretório de documentos do utilizador"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Pasta do perfil do utilizador"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : Pasta do ficheiro da base de dados .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
