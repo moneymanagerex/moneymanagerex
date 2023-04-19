@@ -137,7 +137,8 @@ void mmHomePagePanel::insertDataIntoTemplate()
     double termBalance = 0.0, termReconciled = 0.0;
     double cashBalance = 0.0, cashReconciled = 0.0;
     double loanBalance = 0.0, loanReconciled = 0.0;
-    //double shareBalance = 0.0, assetBalance = 0.0;
+    double shareBalance = 0.0, shareReconciled = 0.0;
+    double assetBalance = 0.0, assetReconciled = 0.0;
 
     htmlWidgetAccounts account_stats;
     m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::CHECKING);
@@ -158,11 +159,13 @@ void mmHomePagePanel::insertDataIntoTemplate()
     tBalance += termBalance;
     tReconciled += termReconciled;
 
-    //m_frames["ASSET_ACCOUNTS_INFO"] = account_stats.displayAccounts(assetBalance, Model_Account::ASSET);
-    //tBalance += assetBalance;
+    account_stats.displayAccounts(assetBalance, assetReconciled, Model_Account::ASSET);
+    tBalance += assetBalance;
+    tReconciled += assetReconciled;
 
-    //m_frames["SHARE_ACCOUNTS_INFO"] = account_stats.displayAccounts(shareBalance, Model_Account::SHARES);
-    //tBalance += shareBalance;
+    account_stats.displayAccounts(shareBalance, shareReconciled, Model_Account::SHARES);
+    tBalance += shareBalance;
+    tReconciled += shareReconciled;
 
     //Stocks
     htmlWidgetStocks stocks_widget;
