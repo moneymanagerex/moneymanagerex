@@ -264,14 +264,13 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     const wxString& delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":"))
     {
-        wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
-        wxRegEx regex;
-        const auto& categ_name = categ_token.GetNextToken();
-        Model_Category::Data_Set categs = Model_Category::instance().all();
-        for (const auto& categ : categs) {
-            if (categ.CATEGNAME == categ_name) {
-                regex.Compile(categ_name + " ?: ?");
-                regex.Replace(&s_category, categ_name + delimiter);
+        for (const auto& category : Model_Category::all_categories()) {
+            wxString full_name = category.first;
+            wxRegEx regex(delimiter);
+            regex.Replace(&full_name, ":");
+            if (s_category == full_name)
+            {
+                s_category = category.first;
                 break;
             }
         }
