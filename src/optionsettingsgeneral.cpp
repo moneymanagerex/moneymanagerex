@@ -221,10 +221,21 @@ void OptionSettingsGeneral::Create()
     mmToolTip(m_use_org_date_duplicate, _("Select whether to use the original transaction date or current date when duplicating transactions"));
     generalPanelSizer->Add(m_use_org_date_duplicate, g_flagsV);
 
-    m_use_sound = new wxCheckBox(general_panel, wxID_STATIC, _("Use Transaction Sound"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_use_sound->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND, true));
+
+    wxArrayString sounds;
+    sounds.Add(_("None"));
+    sounds.Add("drop.wav");
+    sounds.Add("cash.wav");
+
+    wxBoxSizer* soundBaseSizer = new wxBoxSizer(wxHORIZONTAL);
+    generalPanelSizer->Add(soundBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
+    soundBaseSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _("Use Transaction Sound")), g_flagsH);
+    m_use_sound = new wxChoice(general_panel, wxID_STATIC
+        , wxDefaultPosition, wxSize(100, -1)
+        , sounds);
+    m_use_sound->SetSelection(Model_Setting::instance().GetIntSetting(INIDB_USE_TRANSACTION_SOUND, 0));
     mmToolTip(m_use_sound, _("Select whether to use sounds when entering transactions"));
-    generalPanelSizer->Add(m_use_sound, g_flagsV);
+    soundBaseSizer->Add(m_use_sound, g_flagsV);
 
     Fit();
     general_panel->SetMinSize(general_panel->GetBestVirtualSize());
@@ -315,7 +326,7 @@ bool OptionSettingsGeneral::SaveSettings()
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
-    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetValue());
+    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
 
     return true;
 }

@@ -612,7 +612,8 @@ install(FILES
     resources/sorttable.js
     resources/jquery.min.js
     resources/home_page.htt
-    resources/kaching.wav
+    resources/drop.wav
+    resources/cash.wav
     resources/mmex.png
     resources/mmex.svg
     DESTINATION "${MMEX_RES_DIR}")

@@ -920,10 +920,19 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
 
 void mmCheckingPanel::mmPlayTransactionSound()
 {
-    bool play = Model_Setting::instance().GetBoolSetting(INIDB_USE_TRANSACTION_SOUND, true);
+    int play = Model_Setting::instance().GetIntSetting(INIDB_USE_TRANSACTION_SOUND, 0);
     if (play)
     {
-        wxString wav_path = mmex::getPathResource(mmex::TRANS_SOUND);
+        wxString wav_path;
+        switch (play) {
+        case 2:
+            wav_path = mmex::getPathResource(mmex::TRANS_SOUND2);
+            break;
+        default:
+            wav_path = mmex::getPathResource(mmex::TRANS_SOUND1);
+            break;
+        }
+
         wxLogDebug("%s", wav_path);
         wxSound registerSound(wav_path);
 

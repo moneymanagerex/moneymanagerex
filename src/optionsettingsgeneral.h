@@ -69,7 +69,7 @@ private:
 
     wxCheckBox* m_use_org_date_copy_paste;
     wxCheckBox* m_use_org_date_duplicate;
-    wxCheckBox* m_use_sound;
+    wxChoice* m_use_sound;
 
     enum
     {
