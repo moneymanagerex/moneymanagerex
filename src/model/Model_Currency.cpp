@@ -30,8 +30,8 @@
 #include <fmt/format.h>
 
 constexpr auto LIMIT = 1e-10;
-static wxString locale;
-static wxString use_locale;
+static wxString s_locale;
+static wxString s_use_locale;
 
 Model_Currency::Model_Currency()
     : Model<DB_Table_CURRENCYFORMATS_V1>()
@@ -53,8 +53,8 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
     ins.ensure(db);
     ins.destroy_cache();
     ins.preload();
-    locale = wxEmptyString;
-    use_locale = wxEmptyString;
+    s_locale = wxEmptyString;
+    s_use_locale = wxEmptyString;
     return ins;
 }
 
@@ -232,23 +232,23 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 {
     static wxString d; //default Locale Support Y/N
 
-    if (locale.empty()) {
-        locale = Model_Infotable::instance().GetStringInfo("LOCALE", " ");
-        if (locale.empty()) {
-            locale = " ";
+    if (s_locale.empty()) {
+        s_locale = Model_Infotable::instance().GetStringInfo("LOCALE", " ");
+        if (s_locale.empty()) {
+            s_locale = " ";
         }
     }
 
-    if (use_locale.empty()) {
-        use_locale = locale == " " ? "N" : "Y";
-        if (use_locale == "Y")
+    if (s_use_locale.empty()) {
+        s_use_locale = s_locale == " " ? "N" : "Y";
+        if (s_use_locale == "Y")
         {
             try {
-                fmt::format(std::locale(locale.c_str()), "{:L}", 123);
+                fmt::format(std::locale(s_locale.c_str()), "{:L}", 123);
             }
             catch (...) {
-                locale = " ";
-                use_locale = "N";
+                s_locale = " ";
+                s_use_locale = "N";
             }
         }
     }
@@ -268,7 +268,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
     }
 
-    auto l = (use_locale == "Y" ? std::locale(locale.c_str()) : (d == "Y" ? std::locale("en_US.UTF-8") : std::locale()));
+    auto l = (s_use_locale == "Y" ? std::locale(s_locale.c_str()) : (d == "Y" ? std::locale("en_US.UTF-8") : std::locale()));
     std::string s;
     value += LIMIT; //to ignore the negative sign on values of zero #564
 
@@ -315,7 +315,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     }
 #endif
 
-    if (use_locale == "N")
+    if (s_use_locale == "N")
     {
         wxString out(s);
         out.Replace(".", "\x05");
