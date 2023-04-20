@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-20 07:09\n"
+"PO-Revision-Date: 2023-04-20 12:21\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -941,7 +941,7 @@ msgstr "Vencimento"
 
 #: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
 msgid "Repeats"
-msgstr "Frequência"
+msgstr "Se repete"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
