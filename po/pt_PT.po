@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-20 15:30\n"
+"PO-Revision-Date: 2023-04-20 20:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1321,7 +1321,7 @@ msgstr "&Escrever"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Insira a Próxima Iteração da Transação Recorrente"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
