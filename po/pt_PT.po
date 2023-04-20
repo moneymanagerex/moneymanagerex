@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-20 20:49\n"
+"PO-Revision-Date: 2023-04-20 22:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1325,82 +1325,82 @@ msgstr "Insira a Próxima Iteração da Transação Recorrente"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
-msgstr ""
+msgstr "&Saltar"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Saltar a Próxima Iteração da Transação Recorrente"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Inserir a próxima Iteração..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "Saltar a próxima Iteração"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nova Transação Recorrente..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Editar Transação Recorrente..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&uplicar Transação Recorrente..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Eliminar Transação Recorrente..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: billsdepositspanel.cpp:491
 msgid "Automated"
-msgstr ""
+msgstr "Automatizado"
 
 #: billsdepositspanel.cpp:495
 msgid "Suggested"
-msgstr ""
+msgstr "Sugerido"
 
 #: billsdepositspanel.cpp:535 billsdepositspanel.cpp:602 mmhomepage.cpp:313
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d dias remanescentes"
 
 #: billsdepositspanel.cpp:540 billsdepositspanel.cpp:547
 #: billsdepositspanel.cpp:554 billsdepositspanel.cpp:607
 #: billsdepositspanel.cpp:614 billsdepositspanel.cpp:618
 msgid "Inactive"
-msgstr ""
+msgstr "Inativo"
 
 #: billsdepositspanel.cpp:545 mmhomepage.cpp:314
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Atraso de %d dias!"
 
 #: billsdepositspanel.cpp:552 billsdepositspanel.cpp:612 mmhomepage.cpp:316
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d dias vencidos!"
 
 #: billsdepositspanel.cpp:673
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Deseja realmente eliminar a transação recorrente?"
 
 #: billsdepositspanel.cpp:674
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Confirmar Eliminação"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1408,19 +1408,19 @@ msgstr "Orçamento Anual"
 
 #: budgetentrydialog.cpp:109
 msgid "Category: "
-msgstr ""
+msgstr "Categoria: "
 
 #: budgetentrydialog.cpp:116
 msgid "Sub Category: "
-msgstr ""
+msgstr "Subcategoria: "
 
 #: budgetentrydialog.cpp:123 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr ""
+msgstr "Orçamentado:"
 
 #: budgetentrydialog.cpp:125 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr ""
+msgstr "Realizado:"
 
 #: budgetentrydialog.cpp:128
 msgid "Type:"
@@ -1459,7 +1459,7 @@ msgstr "Indique o valor orçamentado para esta categoria."
 
 #: budgetentrydialog.cpp:159 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Introduza texto descritivo desta entrada de orçamento"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1471,7 +1471,7 @@ msgstr "Ver as Categorias de Orçamento não Nulas"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "Ver Categorias do Orçamento"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1483,7 +1483,7 @@ msgstr "Ver as Categorias de Orçamento de Despesa"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "Ver Resumo das Categorias Orçamentais"
 
 #: budgetingpanel.cpp:173
 #, c-format
