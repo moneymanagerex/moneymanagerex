@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-19 18:49\n"
+"PO-Revision-Date: 2023-04-20 07:09\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1284,7 +1284,7 @@ msgstr "Periodicidade"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr "Período de Recorrência"
+msgstr "Repetições"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
