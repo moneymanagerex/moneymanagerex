@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-21 10:30\n"
+"PO-Revision-Date: 2023-04-21 18:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6562,7 +6562,7 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:340
 msgid "Estimated Income:"
-msgstr ""
+msgstr "Receita estimada:"
 
 #: reports/budgetcategorysummary.cpp:342
 msgid "Actual Income:"
@@ -6574,7 +6574,7 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:351
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "Despesa Estimada:"
 
 #: reports/budgetcategorysummary.cpp:353
 msgid "Actual Expenses:"
