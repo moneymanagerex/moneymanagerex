@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-21 18:49\n"
+"PO-Revision-Date: 2023-04-21 19:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1508,7 +1508,7 @@ msgstr "%s    Data de Início de: %s"
 #: budgetingpanel.cpp:191
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "Configurado Orçamento para %s"
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
@@ -1516,7 +1516,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
-msgstr ""
+msgstr "Orçamentado: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
@@ -6558,7 +6558,7 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
-msgstr ""
+msgstr "( Orçamento Vs Realizado )"
 
 #: reports/budgetcategorysummary.cpp:340
 msgid "Estimated Income:"
