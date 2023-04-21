@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-20 22:20\n"
+"PO-Revision-Date: 2023-04-21 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1488,22 +1488,22 @@ msgstr "Ver Resumo das Categorias Orçamentais"
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Ano Financeiro: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Ano: %s"
 
 #: budgetingpanel.cpp:182
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Mês: %s"
 
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Data de Início de: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
