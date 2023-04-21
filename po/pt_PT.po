@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-21 19:47\n"
+"PO-Revision-Date: 2023-04-21 20:59\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1512,7 +1512,7 @@ msgstr "Configurado Orçamento para %s"
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
-msgstr ""
+msgstr "Receita: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
@@ -1520,11 +1520,11 @@ msgstr "Orçamentado: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
-msgstr ""
+msgstr "Realizado: "
 
 #: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr ""
+msgstr "Diferença: "
 
 #: budgetingpanel.cpp:256
 msgid "Expenses: "
@@ -1542,57 +1542,59 @@ msgstr "Estimativa"
 #: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
 msgid "Actual"
-msgstr ""
+msgstr "Realizado"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Editor de Orçamento"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Adicionar Ano"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr "Adicionar um novo Orçamento Anual"
+msgstr "Adicionar um novo ano orçamental"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Adicionar Mês"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "Adicionar um novo mês orçamental"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "Apagar orçamento existente"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "Detalhes da rubrica Orçamental"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "Rubrica de orçamento mensal"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Orçamento Anual"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "Especifique o ano pretendido.\n"
+"Use os botões direcionais para aumentar ou diminuir o ano."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Orçamento Mensal"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "Especifique o mês pretendido.\n"
+"Use os botões direcionais para aumentar ou diminuir o mês."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
