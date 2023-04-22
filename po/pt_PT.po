@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-22 20:38\n"
+"PO-Revision-Date: 2023-04-22 21:51\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2238,31 +2238,31 @@ msgstr "Água"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Groceries"
-msgstr ""
+msgstr "Mercearias"
 
 #: db/DB_Table_Category_V1.h:123
 msgid "Dining out"
-msgstr ""
+msgstr "Jantar fora"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Leisure"
-msgstr ""
+msgstr "Lazer"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Movies"
-msgstr ""
+msgstr "Filmes"
 
 #: db/DB_Table_Category_V1.h:126
 msgid "Video Rental"
-msgstr ""
+msgstr "Aluguer de vídeo"
 
 #: db/DB_Table_Category_V1.h:127
 msgid "Magazines"
-msgstr ""
+msgstr "Revistas"
 
 #: db/DB_Table_Category_V1.h:128 model/Model_Asset.cpp:43
 msgid "Automobile"
@@ -2270,111 +2270,111 @@ msgstr "Automóvel"
 
 #: db/DB_Table_Category_V1.h:129
 msgid "Maintenance"
-msgstr ""
+msgstr "Manutenção"
 
 #: db/DB_Table_Category_V1.h:131
 msgid "Parking"
-msgstr ""
+msgstr "Estacionamento"
 
 #: db/DB_Table_Category_V1.h:132
 msgid "Registration"
-msgstr ""
+msgstr "Inscrições"
 
 #: db/DB_Table_Category_V1.h:133
 msgid "Education"
-msgstr ""
+msgstr "Educação"
 
 #: db/DB_Table_Category_V1.h:134
 msgid "Books"
-msgstr ""
+msgstr "Livros"
 
 #: db/DB_Table_Category_V1.h:135
 msgid "Tuition"
-msgstr ""
+msgstr "Propinas"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
-msgstr ""
+msgstr "Itens para casa"
 
 #: db/DB_Table_Category_V1.h:138
 msgid "Clothing"
-msgstr ""
+msgstr "Roupas"
 
 #: db/DB_Table_Category_V1.h:139
 msgid "Furnishing"
-msgstr ""
+msgstr "Mobiliário"
 
 #: db/DB_Table_Category_V1.h:141
 msgid "Healthcare"
-msgstr ""
+msgstr "Cuidados de Saúde"
 
 #: db/DB_Table_Category_V1.h:142 db/DB_Table_Category_V1.h:151
 msgid "Health"
-msgstr ""
+msgstr "Saúde"
 
 #: db/DB_Table_Category_V1.h:143
 msgid "Dental"
-msgstr ""
+msgstr "Saúde oral"
 
 #: db/DB_Table_Category_V1.h:144
 msgid "Eyecare"
-msgstr ""
+msgstr "Saúde ocular"
 
 #: db/DB_Table_Category_V1.h:145
 msgid "Physician"
-msgstr ""
+msgstr "Médico"
 
 #: db/DB_Table_Category_V1.h:146
 msgid "Prescriptions"
-msgstr ""
+msgstr "Receitas"
 
 #: db/DB_Table_Category_V1.h:147
 msgid "Insurance"
-msgstr ""
+msgstr "Seguros"
 
 #: db/DB_Table_Category_V1.h:148 optionsettingsview.cpp:241
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: db/DB_Table_Category_V1.h:149
 msgid "Life"
-msgstr ""
+msgstr "Vida"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr ""
+msgstr "Casa"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
-msgstr ""
+msgstr "Férias"
 
 #: db/DB_Table_Category_V1.h:153
 msgid "Travel"
-msgstr ""
+msgstr "Viagens"
 
 #: db/DB_Table_Category_V1.h:154
 msgid "Lodging"
-msgstr ""
+msgstr "Alojamento"
 
 #: db/DB_Table_Category_V1.h:155
 msgid "Sightseeing"
-msgstr ""
+msgstr "Passeios turísticos"
 
 #: db/DB_Table_Category_V1.h:156
 msgid "Taxes"
-msgstr ""
+msgstr "Impostos"
 
 #: db/DB_Table_Category_V1.h:157
 msgid "Income Tax"
-msgstr ""
+msgstr "Imposto Sobre o Rendimento"
 
 #: db/DB_Table_Category_V1.h:158
 msgid "House Tax"
-msgstr ""
+msgstr "Imposto Imobiliário"
 
 #: db/DB_Table_Category_V1.h:159
 msgid "Water Tax"
-msgstr ""
+msgstr "Imposto da Água"
 
 #: db/DB_Table_Category_V1.h:161
 msgid "Miscellaneous"
@@ -2632,37 +2632,39 @@ msgstr ""
 
 #: filtertransdialog.cpp:720
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Gravar os valores na predefinição atual"
 
 #: filtertransdialog.cpp:725
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Eliminar seleção de predefinição atual"
 
 #: filtertransdialog.cpp:894 filtertransdialog.cpp:927
 #: filtertransdialog.cpp:1306 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "Valor vazio"
 
 #: filtertransdialog.cpp:911
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Este nome não corresponde a nenhum beneficiário.\n"
+"Pretende continuar a utilizá-lo?\n"
+"%s"
 
 #: filtertransdialog.cpp:1046
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Ocultar Colunas do Relatório"
 
 #: filtertransdialog.cpp:1180 mmframe.cpp:1235
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "O item selecionado será eliminado"
 
 #: filtertransdialog.cpp:1181 import_export/univcsvdialog.cpp:2019
 #: mmframe.cpp:1236
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Deseja continuar?"
 
 #: filtertransdialog.cpp:1182 mmframe.cpp:1237
 msgid "Settings item deletion"
