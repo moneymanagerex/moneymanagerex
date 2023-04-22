@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-21 21:57\n"
+"PO-Revision-Date: 2023-04-22 18:25\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1602,7 +1602,7 @@ msgstr "Basear Orçamento em"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Indique o ano em que baseará o orçamento"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1614,15 +1614,15 @@ msgstr "Categorias"
 
 #: categdialog.cpp:268 mmframe.cpp:1685
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "Reatribuir todas as categorias a outra categoria"
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr ""
+msgstr "Colapsar tudo"
 
 #: categdialog.cpp:275 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "Expandir tudo"
 
 #: categdialog.cpp:280 maincurrencydialog.cpp:186
 msgid "Show &All"
