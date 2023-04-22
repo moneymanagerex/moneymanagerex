@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-22 18:25\n"
+"PO-Revision-Date: 2023-04-22 19:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1626,11 +1626,11 @@ msgstr "Expandir tudo"
 
 #: categdialog.cpp:280 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "Mostrar &Todas"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Mostrar todas as categorias ocultas"
 
 #: categdialog.cpp:325
 msgid "Add a new category"
@@ -1642,11 +1642,11 @@ msgstr "Editar o nome de uma categoria existente"
 
 #: categdialog.cpp:333
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Apagar uma categoria existente. A categoria não pode ser usada por transações existentes."
 
 #: categdialog.cpp:338 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr ""
+msgstr "&Selecionar"
 
 #: categdialog.cpp:340
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -1654,35 +1654,35 @@ msgstr "Utilizar a categoria selecionada na transacção"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "Nome contém o delimitador de categoria. "
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "O símbolo dois-pontos (:) é usado para separar categorias e subcategorias logo não deve ser usado no nome"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Gerir Categorias: Nome Inválido"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Digite o nome para a nova categoria:"
 
 #: categdialog.cpp:365
 msgid "Add Category"
-msgstr ""
+msgstr "Adicionar Categoria"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Existe uma categoria com o mesmo nome para este pai"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "Gerir Categorias: Erro ao Adicionar"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Não se pode mover uma subcategoria para uma categoria que já tem outra com o mesmo nome. Pondere renomear antes de mover."
 
 #: categdialog.cpp:438
 msgid "Sub Category with same name exists"
@@ -1690,7 +1690,7 @@ msgstr "Já existe uma subcategoria com este nome"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "A categoria alvo é descendente"
 
 #: categdialog.cpp:457
 #, c-format
@@ -1698,83 +1698,88 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Tem certeza que deseja mover\n"
+" \"%s\"\n"
+"para:\n"
+"\"%s\" ?"
 
 #: categdialog.cpp:459
 msgid "Top level"
-msgstr ""
+msgstr "Nível superior"
 
 #: categdialog.cpp:460
 msgid "Confirm Move"
-msgstr ""
+msgstr "Confirmar Movimento"
 
 #: categdialog.cpp:477
 msgid "Category in use."
-msgstr ""
+msgstr "Categoria em utilização."
 
 #: categdialog.cpp:477
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "Subcategoria em utilização."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "Dica: Mude todas as transações que usam esta Categoria para\n"
+"outra utilizando o comando realocar:"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "Dica: Mude todas as transações que usam esta Subcategoria para\n"
+"outra utilizando o comando realocar:"
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Ferramentas → Realocação de → Categorias"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "Gerir Categorias: Erro ao Eliminar"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Existem transações eliminadas que usam esta categoria ou uma das suas descendentes."
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Apagar a categoria removerá também, automaticamente, as transações eliminadas associadas."
 
 #: categdialog.cpp:512 payeedialog.cpp:733
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Deseja continuar ?"
 
 #: categdialog.cpp:513
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Confirmar Eliminação da Categoria"
 
 #: categdialog.cpp:622
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Introduza um novo nome para '%s'"
 
 #: categdialog.cpp:623
 msgid "Edit Category"
-msgstr ""
+msgstr "Editar Categoria"
 
 #: categdialog.cpp:634
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Existe uma categoria com o mesmo nome para o pai"
 
 #: categdialog.cpp:635
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "Gerir Categorias: Erro ao Editar"
 
 #: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
-msgstr ""
+msgstr "Realocação de Categoria concluída."
 
 #: categdialog.cpp:693 mmframe.cpp:3565 mmframe.cpp:3580 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "Os registos foram atualizados na base de dados: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3567
 msgid "Category Relocation Result"
@@ -3958,11 +3963,11 @@ msgstr ""
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr ""
+msgstr "Dica da Lista de Categorias: Pressionando a tecla 'h' alternará por todas as categorias começadas pela letra 'h'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Dica da Lista de Categorias: Pressionando uma combinação de 2 teclas alternará por todas as categorias começadas por essa combinação de teclas. Exemplo: Pressionar 'ca' irá selecionar, Casa, Carro, etc..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4730,11 +4735,11 @@ msgstr ""
 
 #: mmframe.cpp:1672
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Gerir &Categorias..."
 
 #: mmframe.cpp:1676
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Gerir &Beneficiários..."
 
 #: mmframe.cpp:1676 mmframe.cpp:1894 payeedialog.cpp:496
 msgid "Organize Payees"
@@ -4742,7 +4747,7 @@ msgstr "Favorecidos"
 
 #: mmframe.cpp:1680
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Gerir Mo&edas..."
 
 #: mmframe.cpp:1680 mmframe.cpp:1895
 msgid "Organize Currency"
@@ -6429,7 +6434,7 @@ msgstr ""
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "Gerir Beneficiários: Erro ao Eliminar"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
