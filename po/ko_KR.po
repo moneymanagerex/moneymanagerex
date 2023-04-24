@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-24 13:36\n"
+"PO-Revision-Date: 2023-04-24 14:54\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -374,16 +374,16 @@ msgstr "종료(&X) "
 #: appstartdialog.cpp:155
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "이전에 열었던 데이터베이스 열기: %s"
 
 #: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2901
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:362
 msgid "System default"
-msgstr ""
+msgstr "시스템 기본값"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1616 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "MMEX GUI에 사용되는 언어 변경"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
@@ -391,27 +391,27 @@ msgstr "언어"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3694 optionsettingsgeneral.cpp:352
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "이 응용 프로그램의 언어가 변경되었습니다. 변경사항은 다음에 응용 프로그램을 시작할 때 적용됩니다."
 
 #: appstartdialog.cpp:222 mmframe.cpp:3696 optionsettingsgeneral.cpp:354
 msgid "Language change"
-msgstr ""
+msgstr "언어 변경"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
-msgstr ""
+msgstr "새 자산"
 
 #: assetdialog.cpp:54 assetspanel.cpp:487
 msgid "Edit Asset"
-msgstr ""
+msgstr "자산 편집"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:477
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "자산 거래 추가"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "자산 거래 편집"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -693,36 +693,36 @@ msgstr ""
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:197
 msgid "File"
-msgstr ""
+msgstr "파일"
 
 #: attachmentdialog.cpp:65
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "첨부 파일 폴더가 정의되지 않았습니다."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "도구 → 옵션 → 첨부 파일에서 설정하십시오"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "첨부 파일 폴더가 정의되지 않음"
 
 #: attachmentdialog.cpp:71
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "첨부 파일 폴더를 찾을 수 없음:"
 
 #: attachmentdialog.cpp:74
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "위 경로가 올바른지 확인하십시오"
 
 #: attachmentdialog.cpp:75
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "첨부 파일 폴더를 찾을 수 없음"
 
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "첨부 파일 구성 | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
@@ -744,154 +744,154 @@ msgstr ""
 
 #: attachmentdialog.cpp:202
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "새 첨부 파일에 대한 설명을 입력:"
 
 #: attachmentdialog.cpp:203
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "첨부 파일 구성: 첨부 파일 추가"
 
 #: attachmentdialog.cpp:249
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "첨부 파일에 대한 설명을 입력:"
 
 #: attachmentdialog.cpp:250
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "첨부 파일 구성: 첨부 파일 편집"
 
 #: attachmentdialog.cpp:277
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "첨부 파일을 삭제하시겠습니까?"
 
 #: attachmentdialog.cpp:278
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "첨부 파일 삭제 확인"
 
 #: attachmentdialog.cpp:354 categdialog.cpp:323 customfieldlistdialog.cpp:261
 #: import_export/univcsvdialog.cpp:292 maincurrencydialog.cpp:541
 #: payeedialog.cpp:861 stockdialog.cpp:336
 msgid "&Add "
-msgstr ""
+msgstr "추가(&A)"
 
 #: attachmentdialog.cpp:356
 msgid "&Open "
-msgstr ""
+msgstr "열기(&O)"
 
 #: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:296 maincurrencydialog.cpp:543
 #: payeedialog.cpp:864
 msgid "&Remove "
-msgstr ""
+msgstr "제거(&R)"
 
 #: attachmentdialog.cpp:401
 msgid "Att."
-msgstr ""
+msgstr "첨부."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "이 디렉터리와 해당 파일은 Money Manager EX 소프트웨어에 의해 자동으로 관리됩니다."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "디렉터리 및 파일을 임의로 제거, 이름 변경 또는 수정하지 마십시오."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "대상 파일이 이미 있음:"
 
 #: attachmentdialog.cpp:458
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "첨부에서 파일을 찾을 수 없습니다. 삭제하거나 이름을 변경하십시오."
 
 #: attachmentdialog.cpp:459 attachmentdialog.cpp:467
 msgid "Destination file already exist"
-msgstr ""
+msgstr "대상 파일이 이미 있음"
 
 #: attachmentdialog.cpp:466
 msgid "File already found in attachments"
-msgstr ""
+msgstr "첨부에 이미 있는 파일"
 
 #: attachmentdialog.cpp:509
 msgid "Attachment not found:"
-msgstr ""
+msgstr "첨부 파일을 찾을 수 없음:"
 
 #: attachmentdialog.cpp:512
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "데이터베이스에서 첨부 파일을 계속 삭제하시겠습니까?"
 
 #: attachmentdialog.cpp:513
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "첨부 파일 삭제 실패"
 
 #: attachmentdialog.cpp:526 general_report_manager.cpp:672
 msgid "Unable to open file:"
-msgstr ""
+msgstr "파일을 열 수 없음:"
 
 #: attachmentdialog.cpp:529
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "파일이 존재하고 사용자가 파일 읽기 권한이 있는지 확인하십시오."
 
 #: attachmentdialog.cpp:530
 msgid "Open attachment failed"
-msgstr ""
+msgstr "첨부 파일 열기 실패"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
 #: mmSimpleDialogs.cpp:606 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsmisc.cpp:107 reports/reportbase.cpp:211
 msgid "None"
-msgstr ""
+msgstr "없음"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:59
 msgid "Weekly"
-msgstr ""
+msgstr "주간"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "격주"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
 #: model/Model_Budget.cpp:61
 msgid "Monthly"
-msgstr ""
+msgstr "월간"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "2개월마다"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
 msgid "Quarterly"
-msgstr ""
+msgstr "분기별"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:56
 #: model/Model_Budget.cpp:64
 msgid "Half-Yearly"
-msgstr ""
+msgstr "반년마다"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:57 mmframereport.cpp:201
 #: model/Model_Budget.cpp:65
 msgid "Yearly"
-msgstr ""
+msgstr "연간"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:58
 msgid "Four Months"
-msgstr ""
+msgstr "4개월"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:59
 msgid "Four Weeks"
-msgstr ""
+msgstr "4주"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:60 mmframereport.cpp:126
 #: model/Model_Budget.cpp:66
 msgid "Daily"
-msgstr ""
+msgstr "일간"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "(x)일 동안"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
@@ -899,15 +899,15 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "매 (x)일"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "매 (x)개월"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "매월 (마지막 날)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
@@ -1170,28 +1170,29 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1357 stockdialog.cpp:428 transdialog.cpp:621
 #: transdialog.cpp:695 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "계정의 시작 날짜가 거래 날짜보다 이후입니다"
 
 #: billsdepositsdialog.cpp:1205
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "출금 계정에서 이체할 금액 기입"
 
 #: billsdepositsdialog.cpp:1215
 msgid "Activates"
-msgstr ""
+msgstr "활성화"
 
 #: billsdepositsdialog.cpp:1217
 msgid "Period: Days"
-msgstr ""
+msgstr "기간: 일"
 
 #: billsdepositsdialog.cpp:1218
 msgid "Period: Months"
-msgstr ""
+msgstr "기간: 월"
 
 #: billsdepositsdialog.cpp:1225
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "활성화할 기간(일)을 지정합니다.\n"
+"활성화되지 않으면 공백이 됩니다."
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify period in Months to activate.\n"
@@ -1219,16 +1220,16 @@ msgstr ""
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
-msgstr ""
+msgstr "오류"
 
 #: billsdepositsdialog.cpp:1352 splittransactionsdialog.h:82
 #: transdialog.cpp:336
 msgid "Split Transaction"
-msgstr ""
+msgstr "분할 거래"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "새 반복 거래"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
