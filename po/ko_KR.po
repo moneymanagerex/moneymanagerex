@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-24 12:36\n"
+"PO-Revision-Date: 2023-04-24 13:36\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -45,15 +45,15 @@ msgstr "라이선스"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr ""
+msgstr "개인정보처리방침"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "익명 통계 사용 데이터 전송"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "MMEX 사용에 대한 데이터를 익명으로 보낼 수 있습니다."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:643
@@ -66,7 +66,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:276
 #: transactionsupdatedialog.cpp:248 transdialog.cpp:574 wizard_update.cpp:216
 msgid "&OK "
-msgstr ""
+msgstr "확인(&O)"
 
 #: accountdialog.cpp:95 mmframe.cpp:1647
 msgid "Edit Account"
@@ -107,11 +107,11 @@ msgstr "이 계좌에 최초 잔액을 입력하세요."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "시작 날짜:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "계정 사용이 시작되는 날짜입니다."
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:565
 #: import_export/univcsvdialog.cpp:2453
@@ -132,7 +132,7 @@ msgstr "자주 사용하는 계좌"
 
 #: accountdialog.cpp:173
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr ""
+msgstr "자주 사용하는 계정인지 여부를 선택합니다. 계정 표시 보기를 필터링하는 데 사용됩니다."
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145
@@ -160,7 +160,7 @@ msgstr "그 외"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
-msgstr ""
+msgstr "카드번호:"
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
@@ -204,59 +204,59 @@ msgstr "금융기관에 접속하기 위한 정보를 입력하세요. 이 정�
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "상태"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "상태:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
-msgstr ""
+msgstr "잠김"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "거래 잠금을 사용 또는 사용 안 함"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "정산 날짜:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "거래가 잠긴 날짜"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "최소 잔액:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "계정 잔액 하한입니다. 사용하지 않으려면 0으로 설정"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
-msgstr ""
+msgstr "신용"
 
 #: accountdialog.cpp:258
 msgid "Credit Limit:"
-msgstr ""
+msgstr "신용 한도:"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "계정에 대한 신용 한도입니다. 사용하지 않으려면 0으로 설정"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr ""
+msgstr "이자율:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "지불 만기일:"
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "최소 지불액:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
@@ -284,34 +284,34 @@ msgstr "통화"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "올바른 URL을 입력하십시오"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "잘못된 URL"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "거래 시작 날짜는 미래일 수 없습니다"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1030
 #: billsdepositsdialog.cpp:1033 stockdialog.cpp:428 transdialog.cpp:621
 #: transdialog.cpp:695 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "잘못된 날짜"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "이 계정에 대한 거래 내역이 이 날짜 이전에 이미 존재합니다"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "이 계정의 주식 매입은 이 날짜 이전에 이미 존재합니다"
 
 #: accountdialog.cpp:536
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "이 계정에 대한 반복 거래는 이 날짜 이전에 예약되었습니다"
 
 #: accountdialog.h:41 mmframe.cpp:1644 mmframe.cpp:1888
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -320,11 +320,11 @@ msgstr "새 계좌"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "가장 최근 열었던 데이터베이스 열기"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "새 데이터베이스(&N)"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "시작하기 위해 새 데이터베이스를 생성하세요."
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "기존 데이터 베이스 열기(&E)"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "이미 생성된 mmb 확장자를 가진 데이터베이스 파일을 �
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "사용자 인터페이스 언어(&L):"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "사용자 인터페이스 언어 변경"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "사용자 메뉴얼(&U)"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -356,16 +356,16 @@ msgstr "사용자 메뉴얼을 읽습니다."
 
 #: appstartdialog.cpp:119 mmframe.cpp:1777
 msgid "&Website"
-msgstr ""
+msgstr "웹사이트(&W)"
 
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "%s 웹사이트 방문"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "시작 시 대화 상자 표시(&S)"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
