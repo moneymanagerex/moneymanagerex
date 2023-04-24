@@ -61,8 +61,8 @@ simplicity and user-friendliness – an application that can be used everyday.
         </td>
         <td>
             <img src="https://user-images.githubusercontent.com/17465872/233927390-21a3bd99-06d7-4455-b96f-ae98b39a7358.png" 
-                 alt="User Interface Language - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="User Interface Language - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+                 alt="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
     </tr>
     <tr>
