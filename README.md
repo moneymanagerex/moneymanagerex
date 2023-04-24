@@ -80,13 +80,13 @@ simplicity and user-friendliness – an application that can be used everyday.
     <tr>
         <td>
             <img src="https://user-images.githubusercontent.com/17465872/233931375-051e7c9f-d4c4-4baa-9586-7ad10ef48aba.png" 
-                 alt="Import from CSV file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Import from CSV file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+                 alt="Import from Comma-Separated Values (CSV) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Import from Comma-Separated Values (CSV) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
         <td>
             <img src="https://user-images.githubusercontent.com/17465872/233931411-d7a92fed-272f-446d-b86a-89f99b66683a.png" 
-                 alt="Import from QIF file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Import from QIF file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+                 alt="Import from Quicken Interchange Format (QIF) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Import from Quicken Interchange Format (QIF) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
     <tr>
         <td>
