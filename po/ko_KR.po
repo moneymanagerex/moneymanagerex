@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-24 08:58\n"
+"PO-Revision-Date: 2023-04-24 12:36\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "이것에 관하여"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
-msgstr ""
+msgstr "작성자"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
@@ -369,7 +369,7 @@ msgstr ""
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "종료(&X) "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -387,7 +387,7 @@ msgstr ""
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3694 optionsettingsgeneral.cpp:352
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
