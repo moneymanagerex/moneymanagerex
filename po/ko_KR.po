@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-24 14:54\n"
+"PO-Revision-Date: 2023-04-24 16:09\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1233,23 +1233,23 @@ msgstr "새 반복 거래"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "거래 대상을 지정합니다"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1243
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "거래의 수입원을 지정합니다"
 
 #: billsdepositsdialog.h:128
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "입금 계정을 지정합니다"
 
 #: billsdepositsdialog.h:129 transdialog.cpp:1238 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
-msgstr ""
+msgstr "거래 금액을 지정합니다"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "이체 금액을 지정합니다"
 
 #: billsdepositspanel.cpp:61
 #, c-format
@@ -1273,19 +1273,19 @@ msgstr ""
 
 #: billsdepositspanel.cpp:140 budgetingpanel.cpp:301 reports/myusage.cpp:163
 msgid "Frequency"
-msgstr ""
+msgstr "빈도"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr ""
+msgstr "반복"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
-msgstr ""
+msgstr "자동 반복"
 
 #: billsdepositspanel.cpp:143 mmhomepage.cpp:358
 msgid "Payment"
-msgstr ""
+msgstr "결제"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
@@ -1298,19 +1298,19 @@ msgstr ""
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
 #: mmframe.cpp:3059 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "반복 거래"
 
 #: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:443
 msgid "D&uplicate "
-msgstr ""
+msgstr "복제(&D)"
 
 #: billsdepositspanel.cpp:308
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "반복 거래 삭제"
 
 #: billsdepositspanel.cpp:312
 msgid "Ente&r"
-msgstr ""
+msgstr "입력(&R)"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -1318,7 +1318,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
-msgstr ""
+msgstr "건너뛰기(&S)"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
@@ -1390,7 +1390,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:674
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "삭제 확인"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1502,7 +1502,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
-msgstr ""
+msgstr "수입: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
@@ -1510,15 +1510,15 @@ msgstr ""
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
-msgstr ""
+msgstr "실제: "
 
 #: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr ""
+msgstr "차이: "
 
 #: budgetingpanel.cpp:256
 msgid "Expenses: "
-msgstr ""
+msgstr "비용: "
 
 #: budgetingpanel.cpp:299
 msgid "Icon"
@@ -1532,35 +1532,35 @@ msgstr ""
 #: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
 msgid "Actual"
-msgstr ""
+msgstr "실제"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "예산 편집기"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "년 추가(&A)"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr ""
+msgstr "새 예산 연도 추가"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "월 추가"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "새 예산 월 추가"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "기존 예산 삭제"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "예산 상세 정보"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
@@ -1598,7 +1598,7 @@ msgstr ""
 
 #: categdialog.cpp:197 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
-msgstr ""
+msgstr "분류"
 
 #: categdialog.cpp:268 mmframe.cpp:1685
 msgid "Reassign all categories to another category"
