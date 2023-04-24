@@ -43,9 +43,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 <table border="0">
     <tr>
         <td>
-            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" 
-                 alt="Dashboard" 
-                 title="Dashboard">
+            ![MMEX Dashboard](https://user-images.githubusercontent.com/17465872/233908939-bf9cc23e-67e6-42b1-9f70-add3f8262546.png)
         </td>
         <td>
             <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" 
