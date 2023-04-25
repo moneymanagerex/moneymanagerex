@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 05:29\n"
+"PO-Revision-Date: 2023-04-25 07:55\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -3179,7 +3179,7 @@ msgstr ""
 #: transdialog.cpp:948 transdialog.cpp:952 transdialog.cpp:959 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
-msgstr ""
+msgstr "알 수 없음"
 
 #: import_export/qif_import_gui.cpp:416
 msgid "Scanning"
@@ -3397,220 +3397,221 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:396
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "양수 값은 수입입니다"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "양수 값은 지출입니다"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Rows to ignore"
-msgstr ""
+msgstr "무시할 행"
 
 #: import_export/univcsvdialog.cpp:421
 msgid "From start: "
-msgstr ""
+msgstr "앞에서부터: "
 
 #: import_export/univcsvdialog.cpp:456
 msgid "From end: "
-msgstr ""
+msgstr "끝에서부터: "
 
 #: import_export/univcsvdialog.cpp:468
 msgid "Preview"
-msgstr ""
+msgstr "미리보기"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "가져올 XML 데이터 파일 선택"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "가져올 CSV 데이터 파일 선택"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "내보낼 XML 데이터 파일 선택"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose CSV data file to Export"
-msgstr ""
+msgstr "내보낼 CSV 데이터 파일 선택"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
-msgstr ""
+msgstr "프리셋 이름"
 
 #: import_export/univcsvdialog.cpp:548
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "현재 설정을 프리셋으로 저장"
 
 #: import_export/univcsvdialog.cpp:549 import_export/univcsvdialog.cpp:2020
 msgid "Delete Preset"
-msgstr ""
+msgstr "프리셋 삭제"
 
 #: import_export/univcsvdialog.cpp:550
 msgid "MMEX standard format"
-msgstr ""
+msgstr "MMEX 표준 형식"
 
 #: import_export/univcsvdialog.cpp:551
 msgid "Move Up"
-msgstr ""
+msgstr "위로 이동"
 
 #: import_export/univcsvdialog.cpp:552
 msgid "Move Down"
-msgstr ""
+msgstr "아래로 이동"
 
 #: import_export/univcsvdialog.cpp:553 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr ""
+msgstr "CSV 파일을 가져오거나 내보낼 때 사용할 구분 기호 지정"
 
 #: import_export/univcsvdialog.cpp:554
 msgid "Import File"
-msgstr ""
+msgstr "파일 가져오기"
 
 #: import_export/univcsvdialog.cpp:555
 msgid "Export File"
-msgstr ""
+msgstr "파일 내보내기"
 
 #: import_export/univcsvdialog.cpp:568 import_export/univcsvdialog.cpp:2464
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "'%s' 계정이 선택되었기 때문에 '%s' 프리셋이 로드되었습니다"
 
 #: import_export/univcsvdialog.cpp:722
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "이 템플릿의 기본 계정('%s')이 없습니다.\n"
+"새 계정을 선택하십시오."
 
 #: import_export/univcsvdialog.cpp:724
 msgid "Account does not exist"
-msgstr ""
+msgstr "계정이 존재하지 않습니다"
 
 #: import_export/univcsvdialog.cpp:915 import_export/univcsvdialog.cpp:1010
 #: import_export/univcsvdialog.cpp:2479
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "유형이 '%s'이면 양수"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Preset Name"
-msgstr ""
+msgstr "프리셋 이름"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Save Preset"
-msgstr ""
+msgstr "프리셋 저장"
 
 #: import_export/univcsvdialog.cpp:1253
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "가져오기에 잘못된 필드가 지정되었습니다!"
 
 #: import_export/univcsvdialog.cpp:1254
 msgid "Date field is required."
-msgstr ""
+msgstr "날짜 필드는 필수 항목입니다."
 
 #: import_export/univcsvdialog.cpp:1255
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "금액 필드 또는 수입 및 지출 필드가 모두 필요합니다."
 
 #: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
-msgstr ""
+msgstr "가져오기"
 
 #: import_export/univcsvdialog.cpp:1312
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "%s 계정으로 가져온 거래 내역: %ld"
 
 #: import_export/univcsvdialog.cpp:1323
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "줄 %ld: 비어 있음"
 
 #: import_export/univcsvdialog.cpp:1337
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "줄 %ld: 오류:"
 
 #: import_export/univcsvdialog.cpp:1339
 msgid "Invalid Date."
-msgstr ""
+msgstr "잘못된 날짜."
 
 #: import_export/univcsvdialog.cpp:1340 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
-msgstr ""
+msgstr "잘못된 금액."
 
 #: import_export/univcsvdialog.cpp:1342
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "거래 유형(지출/수입)을 알 수 없습니다."
 
 #: import_export/univcsvdialog.cpp:1356
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "줄 %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "줄 %ld: 가져오기 정상."
 
 #: import_export/univcsvdialog.cpp:1389
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "총 줄 수: %ld"
 
 #: import_export/univcsvdialog.cpp:1391
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "가져올 줄 선택: %ld"
 
 #: import_export/univcsvdialog.cpp:1393
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "빈 줄: %ld"
 
 #: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "가져온 항목: %ld"
 
 #: import_export/univcsvdialog.cpp:1397
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "오류 항목: %ld"
 
 #: import_export/univcsvdialog.cpp:1400
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "로그 파일 쓰기 대상: %s"
 
 #: import_export/univcsvdialog.cpp:1403 stockdialog.cpp:652
 msgid "Please confirm saving"
-msgstr ""
+msgstr "저장을 확인하십시오"
 
 #: import_export/univcsvdialog.cpp:1436
 msgid "No imported transactions!"
-msgstr ""
+msgstr "가져온 거래내역이 없습니다!"
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "내보내기에 잘못된 필드가 지정되었습니다! 최소한 날짜 및 금액이 필요합니다."
 
 #: import_export/univcsvdialog.cpp:1459 import_export/univcsvdialog.cpp:1612
 msgid "Export"
-msgstr ""
+msgstr "내보내기"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "기존 파일을 덮어쓰시겠습니까?"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "File exists"
-msgstr ""
+msgstr "파일 있음"
 
 #: import_export/univcsvdialog.cpp:1475
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "기존 파일을 삭제하지 못했습니다. 파일이 다른 프로그램에 의해 잠겨 있을 수 있습니다."
 
 #: import_export/univcsvdialog.cpp:1476
 msgid "Destination file error"
@@ -3842,89 +3843,91 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:790
 msgid "Please select an existing category"
-msgstr ""
+msgstr "기존 분류를 선택하십시오"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Invalid Category"
-msgstr ""
+msgstr "잘못된 분류"
 
 #: mmSimpleDialogs.cpp:795
 msgid "File name is empty."
-msgstr ""
+msgstr "파일명이 비어있습니다."
 
 #: mmSimpleDialogs.cpp:796
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "이 작업에 대한 파일을 선택하십시오."
 
 #: mmSimpleDialogs.cpp:806
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "이 거래에 대한 계정을 선택하십시오."
 
 #: mmSimpleDialogs.cpp:808
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "이체할 계정을 지정하십시오."
 
 #: mmSimpleDialogs.cpp:810
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "드롭다운 버튼을 사용하여 선택할 수 있습니다."
 
 #: mmSimpleDialogs.cpp:813
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "버튼을 활성화하면 계정을 선택할 수 있는 선택 상자가 제공됩니다."
 
 #: mmSimpleDialogs.cpp:822
 msgid "Invalid Payee"
-msgstr ""
+msgstr "잘못된 거래처"
 
 #: mmSimpleDialogs.cpp:823
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "새 거래처를 입력하십시오,\n"
+"또는 드롭다운 버튼을 사용하여 선택합니다."
 
 #: mmSimpleDialogs.cpp:831 mmSimpleDialogs.cpp:843
 msgid "Invalid Name"
-msgstr ""
+msgstr "잘못된 이름"
 
 #: mmSimpleDialogs.cpp:834 mmSimpleDialogs.cpp:846
 msgid "Already exist!"
-msgstr ""
+msgstr "이미 존재합니다!"
 
 #: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty name."
-msgstr ""
+msgstr "비어 있지 않은 이름을 입력하십시오."
 
 #: mmSimpleDialogs.cpp:848
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "비어 있지 않은 기호를 입력하십시오."
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:553
 msgid "Invalid Value"
-msgstr ""
+msgstr "잘못된 값"
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "양수 또는 계산된 값을 입력하십시오."
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "계산된 값을 입력하십시오."
 
 #: mmTextCtrl.cpp:115
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "팁: 계산을 위해 (2+2)*(2+2) 와 같은 식을 입력합니다\n"
+"계산식으로 값이 구해지고 그 결과 값이 사용됩니다."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "권장 사항: .mmb 데이터베이스 파일은 항상 정기적으로 백업합니다."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "권장 사항: MMEX의 새 버전으로 업그레이드하기 전에, .mmb 데이터베이스 파일을 백업하십시오."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "권장 사항: 자주 사용하는 거래는 복사(Ctrl+C) 및 붙여넣기(Ctrl+V)를 사용합니다."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
