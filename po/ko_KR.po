@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 01:11\n"
+"PO-Revision-Date: 2023-04-25 02:21\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -494,7 +494,7 @@ msgstr "새 거래 세부 정보"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "거래 상세 정보 편집"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
@@ -580,7 +580,7 @@ msgstr "자산 삭제 확인"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX를 사용하면 자동차, 주택, 토지 등과 같은 고정 자산을 추적할 수 있습니다. 각 자산은 매년 특정 비율만큼 가치를 상승시키거나, 매년 특정 비율만큼 가치를 하락시키거나, 가치의 변화를 일으키지 않을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
@@ -600,7 +600,7 @@ msgstr "전체"
 #: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:431
 #: stockspanel.cpp:132
 msgid "&New "
-msgstr ""
+msgstr "신규(&N) "
 
 #: assetspanel.cpp:476 stockspanel.cpp:136
 msgid "&Add Trans "
@@ -737,11 +737,11 @@ msgstr ""
 
 #: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:572
 msgid "Other tools"
-msgstr ""
+msgstr "기타 도구"
 
 #: attachmentdialog.cpp:191
 msgid "Import attachment:"
-msgstr ""
+msgstr "첨부 파일 가져오기:"
 
 #: attachmentdialog.cpp:202
 msgid "Enter a description for the new attachment:"
@@ -916,31 +916,31 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:303
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "반복 거래 복제"
 
 #: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:298
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "반복 거래 편집"
 
 #: billsdepositsdialog.cpp:320
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "반복 거래 입력"
 
 #: billsdepositsdialog.cpp:414
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "반복 거래 상세 정보"
 
 #: billsdepositsdialog.cpp:428
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "청구서 또는 예금의 만기일을 지정"
 
 #: billsdepositsdialog.cpp:429 billsdepositspanel.cpp:133
 msgid "Date Due"
-msgstr ""
+msgstr "마감일"
 
 #: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
 msgid "Repeats"
-msgstr ""
+msgstr "반복"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
@@ -1131,27 +1131,28 @@ msgstr "사용자 지정 필드 창 표시/숨기기"
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:242
 #: transdialog.cpp:251
 msgid "From"
-msgstr ""
+msgstr "출금 대상"
 
 #: billsdepositsdialog.cpp:880
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "결제일이 마감일 이후인데, 이것이 당신의 계획입니까?"
 
 #: billsdepositsdialog.cpp:881
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "연체금처럼 보입니다"
 
 #: billsdepositsdialog.cpp:933 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:652
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "이전에 이 거래처 이름을 사용한 적이 없습니다. 이름이 정확합니까?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:653
 msgid "Confirm payee name"
-msgstr ""
+msgstr "거래처 이름 확인"
 
 #: billsdepositsdialog.cpp:953 billsdepositsdialog.cpp:1282
 #: filtertransdialog.cpp:868 filtertransdialog.cpp:878
@@ -1165,7 +1166,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:393 transdialog.cpp:613 transdialog.cpp:628
 #: util.cpp:753
 msgid "Invalid value"
-msgstr ""
+msgstr "잘못된 값"
 
 #: billsdepositsdialog.cpp:1030 billsdepositsdialog.cpp:1033
 #: import_export/univcsvdialog.cpp:1357 stockdialog.cpp:428 transdialog.cpp:621
@@ -1198,22 +1199,26 @@ msgstr "활성화할 기간(일)을 지정합니다.\n"
 #: billsdepositsdialog.cpp:1233
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "활성화할 기간(개월)을 지정합니다.\n"
+"활성화되지 않으면 공백이 됩니다."
 
 #: billsdepositsdialog.cpp:1241
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "활성화할 기간(일)을 지정합니다.\n"
+"활성화되지 않으면 공백이 됩니다."
 
 #: billsdepositsdialog.cpp:1249
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "활성화할 기간(개월)을 지정합니다.\n"
+"비활성화하려면 공백으로 둡니다."
 
 #: billsdepositsdialog.cpp:1257
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "지불 횟수를 지정합니다.\n"
+"지불 영원히 계속되는 경우 공백으로 두십시오."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
@@ -1290,11 +1295,11 @@ msgstr "결제"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "MMEX를 사용하면 정기 결제를 거래로 설정할 수 있습니다. 이러한 거래는 정기 예금일 수도 있고 미래에 발생할 이체일 수도 있습니다. 이러한 거래는 예정일을 알려주는 이벤트가 발생하며, 거래가 만료되기 14일 전에 홈 페이지에 나타납니다. "
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "팁: 이러한 거래는 활성화되도록 설정할 수 있습니다. 이를 통해 사용자는 만기일에 모든 값을 조정할 수 있습니다."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
 #: mmframe.cpp:3059 mmhomepagepanel.cpp:244
@@ -1315,7 +1320,7 @@ msgstr "입력(&R)"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "다음 반복 거래 발생 입력"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
@@ -1323,31 +1328,31 @@ msgstr "건너뛰기(&S)"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "다음 반복 거래 발생 건너뛰기"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "다음 발생 항목 입력..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "다음 발생을 건너뛰기"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "새 반복 거래(&N)..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "반복 거래 편집(&E)..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "반복 거래 복제(&U)..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "반복 거래 삭제(&D)..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -1359,7 +1364,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:495
 msgid "Suggested"
-msgstr ""
+msgstr "제안됨"
 
 #: billsdepositspanel.cpp:535 billsdepositspanel.cpp:602 mmhomepage.cpp:313
 #, c-format
@@ -1371,23 +1376,23 @@ msgstr[0] ""
 #: billsdepositspanel.cpp:554 billsdepositspanel.cpp:607
 #: billsdepositspanel.cpp:614 billsdepositspanel.cpp:618
 msgid "Inactive"
-msgstr ""
+msgstr "비활성화"
 
 #: billsdepositspanel.cpp:545 mmhomepage.cpp:314
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "%d일 지연!"
 
 #: billsdepositspanel.cpp:552 billsdepositspanel.cpp:612 mmhomepage.cpp:316
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "%d일 연체!"
 
 #: billsdepositspanel.cpp:673
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "반복 거래를 삭제하시겠습니까?"
 
 #: billsdepositspanel.cpp:674
 msgid "Confirm Deletion"
@@ -1395,15 +1400,15 @@ msgstr "삭제 확인"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
-msgstr ""
+msgstr "예산 연도 입력"
 
 #: budgetentrydialog.cpp:109
 msgid "Category: "
-msgstr ""
+msgstr "분류: "
 
 #: budgetentrydialog.cpp:116
 msgid "Sub Category: "
-msgstr ""
+msgstr "하위 분류: "
 
 #: budgetentrydialog.cpp:123 reports/budgetingperf.cpp:342
 msgid "Estimated:"
@@ -1411,58 +1416,58 @@ msgstr ""
 
 #: budgetentrydialog.cpp:125 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr ""
+msgstr "실제:"
 
 #: budgetentrydialog.cpp:128
 msgid "Type:"
-msgstr ""
+msgstr "유형:"
 
 #: budgetentrydialog.cpp:131
 msgid "Expense"
-msgstr ""
+msgstr "지출"
 
 #: budgetentrydialog.cpp:132 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr ""
+msgstr "수입"
 
 #: budgetentrydialog.cpp:137
 msgid "Specify whether this category is an income or an expense category"
-msgstr ""
+msgstr "분류가 수입 유형인지, 지출 유형인지 지정하세요"
 
 #: budgetentrydialog.cpp:139
 msgid "Frequency:"
-msgstr ""
+msgstr "주기:"
 
 #: budgetentrydialog.cpp:144
 msgid "Specify the frequency of the expense or deposit"
-msgstr ""
+msgstr "지출 또는 예금 주기를 지정합니다"
 
 #: budgetentrydialog.cpp:147 import_export/univcsvdialog.cpp:390
 msgid "Amount:"
-msgstr ""
+msgstr "금액:"
 
 #: budgetentrydialog.cpp:152
 msgid "Enter the amount budgeted for this category."
-msgstr ""
+msgstr "이 분류에 대한 예산 금액을 입력합니다."
 
 #: budgetentrydialog.cpp:159 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "예산 항목을 설명하는 참고 사항을 입력합니다"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
-msgstr ""
+msgstr "모든 예산 분류 보기"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
-msgstr ""
+msgstr "0이 아닌 예산 분류 보기"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "계획된 예산 분류 보기"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1699,29 +1704,29 @@ msgstr ""
 
 #: categdialog.cpp:477
 msgid "Category in use."
-msgstr ""
+msgstr "사용 중인 분류입니다."
 
 #: categdialog.cpp:477
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "사용 중인 하위 분류입니다."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "팁: 재배치 명령을 사용하여 이 분류를 사용하는 모든 거래를 다른 분류로 변경합니다"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "팁: 재배치 명령을 사용하여 이 하위 분류를 사용하는 모든 거래를 다른 하위 분류로 변경합니다"
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "도구 → 재배치 → 분류"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "분류 구성: 삭제 오류"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
