@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 09:13\n"
+"PO-Revision-Date: 2023-04-25 10:13\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -4805,47 +4805,47 @@ msgstr "사용자 지정 필드 관리자(&U)..."
 
 #: mmframe.cpp:1731
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "사용자 지정 필드 관리자"
 
 #: mmframe.cpp:1737
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "WebApp 새로 고침(&W)..."
 
 #: mmframe.cpp:1737 mmframe.cpp:2772 mmframe.cpp:2779
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "WebApp 새로 고침"
 
 #: mmframe.cpp:1742
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "옵션(&O)...\tCtrl-,"
 
 #: mmframe.cpp:1742 mmframe.cpp:1901
 msgid "Show the Options Dialog"
-msgstr ""
+msgstr "옵션 대화 상자 표시"
 
 #: mmframe.cpp:1749
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "암호화된 &DB 변환..."
 
 #: mmframe.cpp:1750
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "암호화된 DB를 비암호화된 DB로 변환"
 
 #: mmframe.cpp:1752
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "암호화 암호 변경(&P)..."
 
 #: mmframe.cpp:1753
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "암호화된 데이터베이스의 암호 변경"
 
 #: mmframe.cpp:1755
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "데이터베이스 최적화(&O)..."
 
 #: mmframe.cpp:1756
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "데이터베이스 공간 및 성능 최적화"
 
 #: mmframe.cpp:1758
 msgid "Database De&bug..."
@@ -5045,31 +5045,31 @@ msgstr ""
 
 #: mmframe.cpp:1861
 msgid "&Help"
-msgstr ""
+msgstr "도움말(&H)"
 
 #: mmframe.cpp:1885 mmframe.cpp:1891
 msgid "New"
-msgstr ""
+msgstr "신규"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Categories Dialog"
-msgstr ""
+msgstr "분류 구성 대화상자 표시"
 
 #: mmframe.cpp:1894
 msgid "Show Organize Payees Dialog"
-msgstr ""
+msgstr "거래처 구성 대화상자 표시"
 
 #: mmframe.cpp:1895
 msgid "Show Organize Currency Dialog"
-msgstr ""
+msgstr "통화 구성 대화 상자 표시"
 
 #: mmframe.cpp:1901
 msgid "&Options"
-msgstr ""
+msgstr "옵션(&O)"
 
 #: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2838 optionsettingsnet.cpp:132
 msgid "News"
-msgstr ""
+msgstr "새로운 소식"
 
 #: mmframe.cpp:1916
 msgid "Download rates"
@@ -5077,21 +5077,22 @@ msgstr ""
 
 #: mmframe.cpp:1919
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "전체 화면 전환\tF11"
 
 #: mmframe.cpp:1922
 msgid "&Print"
-msgstr ""
+msgstr "인쇄(&P)"
 
 #: mmframe.cpp:1977
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "데이터베이스의 암호를 입력하십시오\n\n"
+"%s"
 
 #: mmframe.cpp:1978 mmframe.cpp:2268 mmframe.cpp:2401
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: 암호화된 데이터베이스"
 
 #: mmframe.cpp:2015
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -5099,146 +5100,154 @@ msgstr ""
 
 #: mmframe.cpp:2015
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "MMEX 업그레이드"
 
 #: mmframe.cpp:2042 mmframe.cpp:2128
 msgid "No File opened"
-msgstr ""
+msgstr "열려 있는 파일 없음"
 
 #: mmframe.cpp:2044
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "죄송합니다. 데이터베이스 버전이 너무 오래되었거나 데이터베이스 암호가 잘못되었습니다"
 
 #: mmframe.cpp:2118
 msgid "&Next →"
-msgstr ""
+msgstr "다음(&N) →"
 
 #: mmframe.cpp:2131
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "이전에 열었던 데이터베이스를 찾을 수 없습니다.\n"
 
 #: mmframe.cpp:2133
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "암호화된 데이터베이스에 대한 암호가 입력되지 않았습니다.\n"
 
 #: mmframe.cpp:2152
 msgid "portable mode"
-msgstr ""
+msgstr "포터블 모드"
 
 #: mmframe.cpp:2188
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "열려는 데이터베이스가 MMEX의 다른 인스턴스에 의해 열려 있는 것으로 표시되었습니다.\n"
+"데이터 손실이나 충돌을 방지하려면 데이터베이스를 사용할 수 있는 다른 모든 응용프로그램을 닫는 것이 좋습니다.\n\n"
+"실행 중인 다른 작업이 없으면 이전 MMEX 사용 중 충돌로 인해 데이터베이스가 열린 상태로 남아 있을 수 있습니다.\n\n"
+"이 데이터베이스를 계속 여시겠습니까?"
 
 #: mmframe.cpp:2192
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "MMEX 인스턴스 확인"
 
 #: mmframe.cpp:2212
 msgid "Choose database file to create"
-msgstr ""
+msgstr "작성할 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2235
 msgid "Choose database file to open"
-msgstr ""
+msgstr "열려는 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2258
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "열려는 암호화된 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2268
 msgid "Enter password for database"
-msgstr ""
+msgstr "데이터베이스 암호 입력"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "다른 이름으로 저장할 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2295
 msgid "Converted DB!"
-msgstr ""
+msgstr "DB 변환됨!"
 
 #: mmframe.cpp:2295
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX 메시지"
 
 #: mmframe.cpp:2301
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: 암호화 암호 변경"
 
 #: mmframe.cpp:2302
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "데이터베이스의 새 암호"
 
 #: mmframe.cpp:2307
 msgid "New password must not be empty."
-msgstr ""
+msgstr "새 암호는 비워 둘 수 없습니다."
 
 #: mmframe.cpp:2311
 msgid "Please confirm new password"
-msgstr ""
+msgstr "새 암호를 확인하십시오"
 
 #: mmframe.cpp:2315
 msgid "Password change completed."
-msgstr ""
+msgstr "암호 변경이 완료되었습니다."
 
 #: mmframe.cpp:2319
 msgid "Confirm password failed."
-msgstr ""
+msgstr "암호 확인에 실패했습니다."
 
 #: mmframe.cpp:2328
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "최적화하기 전에 DB 백업이 있는지 확인합니다"
 
 #: mmframe.cpp:2329 mmframe.cpp:2339
 msgid "DB Optimization"
-msgstr ""
+msgstr "DB 최적화"
 
 #: mmframe.cpp:2336
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "데이터베이스 최적화 완료!\n\n"
+"이전 크기: %s\n"
+"다음 크기: %s\n"
 
 #: mmframe.cpp:2347
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
+msgstr "MMEX 지원에서 명시적으로 요청한 경우에만 이 기능을 사용하십시오"
 
 #: mmframe.cpp:2348
 msgid "DB Debug"
-msgstr ""
+msgstr "DB 디버그"
 
 #: mmframe.cpp:2367 mmframe.cpp:2388
 msgid "Save database file as"
-msgstr ""
+msgstr "데이터베이스 파일을 다음으로 저장"
 
 #: mmframe.cpp:2388
 msgid "Can't copy file to itself"
-msgstr ""
+msgstr "같은 파일에 복사할 수 없습니다"
 
 #: mmframe.cpp:2401
 msgid "Enter password for new database"
-msgstr ""
+msgstr "새 데이터베이스의 암호 입력"
 
 #: mmframe.cpp:2488 mmframe.cpp:2507
 msgid "No account available to import"
-msgstr ""
+msgstr "가져올 수 있는 계정이 없습니다"
 
 #: mmframe.cpp:2556
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr ""
+msgstr "자산 계정 보유 자산 거래\n\n"
+"자산 거래는 자산 보기 내에 생성됩니다\n"
+"해당 보기에서 자산을 선택한 후.\n\n"
+"자산 계정은 일반 계정에 대한 정상적인 거래를 유지할 수도 있습니다."
 
 #: mmframe.cpp:2560
 msgid "Asset Account Creation"
-msgstr ""
+msgstr "자산 계정 생성"
 
 #: mmframe.cpp:2566
 msgid "Share Accounts hold Share transactions\n\n"
@@ -5247,19 +5256,24 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "주식 계정 보유 공유 트랜잭션\n\n"
+"주식 거래는 주식 포트폴리오 보기 내에 생성됩니다\n"
+"관련 보기 내에서 회사 주식을 선택한 후.\n\n"
+"이러한 계정은 주식을 주식 계정에 연결한 후에만 표시됩니다\n"
+"또는 메뉴 보기 → '주식 계정 표시'를 사용\n"
+"주식 계정은 일반 계정에 대한 정상적인 거래를 유지할 수도 있습니다."
 
 #: mmframe.cpp:2572
 msgid "Share Account Creation"
-msgstr ""
+msgstr "주식 계정 생성"
 
 #: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
-msgstr ""
+msgstr "MMEX 옵션이 업데이트되었습니다."
 
 #: mmframe.cpp:2746
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "일부 설정은 응용 프로그램을 다시 시작한 후에만 적용됩니다."
 
 #: mmframe.cpp:2747 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
@@ -5470,184 +5484,184 @@ msgstr ""
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
-msgstr ""
+msgstr "모든 거래 내역: "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "주식"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
-msgstr ""
+msgstr "총 순자산"
 
 #: mmhomepage.cpp:621
 msgid "Other Assets"
-msgstr ""
+msgstr "기타 자산"
 
 #: mmhomepage.cpp:694
 msgid "Investment Accounts"
-msgstr ""
+msgstr "투자 계정"
 
 #: mmhomepage.cpp:695 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
-msgstr ""
+msgstr "자산 계정"
 
 #: mmhomepage.cpp:835
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "환율"
 
 #: mmhomepagepanel.cpp:190
 msgid "Upcoming Transactions"
-msgstr ""
+msgstr "예정된 거래"
 
 #: mmpanelbase.cpp:136
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "열 숨기기/보이기"
 
 #: mmpanelbase.cpp:137
 msgid "Hide this column"
-msgstr ""
+msgstr "열 숨기기"
 
 #: mmpanelbase.cpp:139
 msgid "Order by this column"
-msgstr ""
+msgstr "열 정렬"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
-msgstr ""
+msgstr "열 초기화"
 
 #: mmreportspanel.cpp:146
 msgid "Report"
-msgstr ""
+msgstr "보고서"
 
 #: mmreportspanel.cpp:203
 msgid "Period:"
-msgstr ""
+msgstr "기간:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:87
 msgid "Date:"
-msgstr ""
+msgstr "날짜:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:89
 msgid "Time:"
-msgstr ""
+msgstr "시간:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:90
 msgid "Year:"
-msgstr ""
+msgstr "연도:"
 
 #: mmreportspanel.cpp:330
 msgid "Budget:"
-msgstr ""
+msgstr "예산:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "모든 계정:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "특정 계정:"
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
-msgstr ""
+msgstr "다음 달:"
 
 #: mmreportspanel.cpp:395
 msgid "Chart:"
-msgstr ""
+msgstr "차트:"
 
 #: mmreportspanel.cpp:400
 msgid "Show"
-msgstr ""
+msgstr "표시"
 
 #: model/Model_Account.cpp:33 model/Model_Asset.cpp:47 reports/summary.cpp:254
 #: reports/summary.cpp:298
 msgid "Cash"
-msgstr ""
+msgstr "현금"
 
 #: model/Model_Account.cpp:34
 msgid "Checking"
-msgstr ""
+msgstr "확인 중"
 
 #: model/Model_Account.cpp:35
 msgid "Credit Card"
-msgstr ""
+msgstr "신용 카드"
 
 #: model/Model_Account.cpp:36
 msgid "Loan"
-msgstr ""
+msgstr "대출"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr ""
+msgstr "기한"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
-msgstr ""
+msgstr "투자"
 
 #: model/Model_Account.cpp:39 model/Model_Attachment.cpp:26
 msgid "Asset"
-msgstr ""
+msgstr "자산"
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
-msgstr ""
+msgstr "주식"
 
 #: model/Model_Account.cpp:147
 msgid "Account Error"
-msgstr ""
+msgstr "계정 오류"
 
 #: model/Model_Asset.cpp:27
 msgid "Appreciates"
-msgstr ""
+msgstr "가치 상승"
 
 #: model/Model_Asset.cpp:28
 msgid "Depreciates"
-msgstr ""
+msgstr "가치 하락"
 
 #: model/Model_Asset.cpp:33
 msgid "Percentage"
-msgstr ""
+msgstr "백분율"
 
 #: model/Model_Asset.cpp:34
 msgid "Linear"
-msgstr ""
+msgstr "선형"
 
 #: model/Model_Asset.cpp:42
 msgid "Property"
-msgstr ""
+msgstr "속성"
 
 #: model/Model_Asset.cpp:44
 msgid "Household Object"
-msgstr ""
+msgstr "가구"
 
 #: model/Model_Asset.cpp:45
 msgid "Art"
-msgstr ""
+msgstr "예술"
 
 #: model/Model_Asset.cpp:46
 msgid "Jewellery"
-msgstr ""
+msgstr "보석류"
 
 #: model/Model_Asset.cpp:48
 msgid "Other"
-msgstr ""
+msgstr "기타"
 
 #: model/Model_Asset.cpp:95
 msgid "Asset Error"
-msgstr ""
+msgstr "자산 오류"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "거래"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "은행 계정"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "반복 거래"
 
 #: model/Model_Billsdeposits.cpp:297
 #, c-format
@@ -5657,23 +5671,28 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "반복 거래가 계정 제한을 초과합니다.\n\n"
+"계정: %s\n"
+"현재 잔액: %6.2f\n"
+"거래 금액: %6.2f\n"
+"%s: %6.2f\n\n"
+"계속하시겠습니까?"
 
 #: model/Model_Billsdeposits.cpp:310
 msgid "Minimum Balance"
-msgstr ""
+msgstr "최소 잔액"
 
 #: model/Model_Billsdeposits.cpp:316
 msgid "Credit Limit"
-msgstr ""
+msgstr "신용 한도"
 
 #: model/Model_Billsdeposits.cpp:322
 msgid "MMEX Recurring Transaction Check"
-msgstr ""
+msgstr "MMEX 반복 거래 확인"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
-msgstr ""
+msgstr "지시"
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
@@ -5889,11 +5908,11 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
-msgstr ""
+msgstr "표제 표시"
 
 #: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:118
 msgid "User Name"
-msgstr ""
+msgstr "사용지 이름"
 
 #: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
