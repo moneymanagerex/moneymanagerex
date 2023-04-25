@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 07:55\n"
+"PO-Revision-Date: 2023-04-25 09:13\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -3931,63 +3931,63 @@ msgstr "권장 사항: 자주 사용하는 거래는 복사(Ctrl+C) 및 붙여�
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr ""
+msgstr "팁: .mmb를 백업하는 것을 잊지 마십시오."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "팁: .mmb 파일이 암호화되지 않았습니다. 이는 적절한 지식을 가진 다른 사람이 실제로 파일을 열고 내용을 읽을 수 있다는 것을 의미합니다. 따라서 중요한 재무 정보를 저장하는 경우 적절한 보호를 받아야 합니다."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "팁: 거래내역을 조정된 것으로 표시하려면 거래를 선택하고 'R' 키를 누르십시오. 거래내역을 조정되지 않음으로 표시하려면 거래를 선택하고 'U' 키를 누릅니다."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr ""
+msgstr "팁: 추가 작업이 필요한 거래로 표시하려면 거래를 선택하고 'F' 키를 누릅니다."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "팁: MMEX는 볼 수 있는 모든 보고서의 인쇄를 지원합니다. 인쇄 옵션은 파일 → 인쇄 메뉴에서 사용할 수 있습니다."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr ""
+msgstr "팁: 옵션 대화 상자에서 옵션을 변경하여 MMEX의 일부 런타임 동작을 수정할 수 있습니다. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "팁: 임의 조건 집합의 거래내역이 있는 대차표를 인쇄하려면 거래 필터를 사용하여 원하는 거래내역을 선택한 다음 메뉴에서 인쇄를 수행합니다."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr ""
+msgstr "팁: 다른 통화의 계정을 가지고 있는 경우에 대비하여 통화의 환율을 설정합니다."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr ""
+msgstr "분류 구성 대화상자 팁: h 키를 누르면 h 문자로 시작하는 모든 범주가 순환됩니다"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "분류 구성 대화상자 팁: 2개의 키 조합을 누르면 해당 키 조합을 시작으로 모든 범주가 순환됩니다. 예: ho를 누르면 Home Needs, Home, House Tax 등이 선택됩니다."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "빚에서 벗어나기 위한 팁: 먼저 자신에게 10%를 지불하세요. 이것을 만지기 어려운 계좌로 넣어주세요. 돈을 꺼내는 것이 귀찮은 일인지 확인하십시오(차를 타고 은행에 가야 합니다). 그래야 의식적으로 큰 비용을 위해서만 지불할 것니다."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr ""
+msgstr "빚을 면하기 위한 팁: 비상금을 마련하세요."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr ""
+msgstr "빚을 갚기 위한 팁: 신규 채무 취득을 중단합니다."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "빚에서 벗어나기 위한 팁: 지출을 위한 현실적인 예산을 만드십시오."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
+msgstr "빚에서 벗어나기 위한 팁: 버는 것보다 적게 쓰세요."
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
@@ -3995,31 +3995,31 @@ msgstr ""
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr ""
+msgstr "상점에 가서 무언가를 사기 전에: 여러분이 정말 필요로 하는 것의 목록을 만드는 데 시간을 들입니다. 가게에서 당신의 목록에 있는 것을 사세요."
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
+msgstr "MMEX를 사용하여 주식/상호 펀드 투자를 추적할 수 있습니다."
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr ""
+msgstr "새 주식을 만들려면 종목명, 주식 수 및 매입 가격을 입력해야 합니다."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
+msgstr "영국(HSBC HLDG) 주식 예: HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "투자를 시작하기 전에, 모든 자금이 지원되는 비상금을 준비하세요."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "투자를 시작하기 전에 현금 흐름을 파악해야 합니다(예산이 있어야 함)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "투자를 시작하기 전에 소비자 부채, 특히 신용카드를 갚으세요."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -4027,11 +4027,11 @@ msgstr ""
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "투자를 시작하기 전에 목표와 우선순위를 명확히 하세요."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "투자를 시작하기 전에 투자 기본 사항을 이해해야 합니다."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
@@ -4237,209 +4237,211 @@ msgstr[0] ""
 
 #: mmchecking_list.cpp:1443
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "거래 이동 확인"
 
 #: mmchecking_list.cpp:1449
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
+msgstr[0] "%i 거래를 이동하는 중..."
 
 #: mmchecking_list.cpp:1453 stocks_list.cpp:300
 msgid "Select the destination Account "
-msgstr ""
+msgstr "대상 계정 선택 "
 
 #: mmchecking_list.cpp:1540
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "반복 거래가 저장되었습니다."
 
 #: mmcheckingpanel.cpp:428
 msgid "Delete selected transaction"
-msgstr ""
+msgstr "선택한 거래 삭제"
 
 #: mmcheckingpanel.cpp:432 mmframe.cpp:1891 transdialog.cpp:182
 msgid "New Transaction"
-msgstr ""
+msgstr "새 거래"
 
 #: mmcheckingpanel.cpp:436
 msgid "Edit selected transaction"
-msgstr ""
+msgstr "선택한 거래 편집"
 
 #: mmcheckingpanel.cpp:444
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "선택한 거래 복제"
 
 #: mmcheckingpanel.cpp:461
 msgid "&Restore "
-msgstr ""
+msgstr "복원(&R) "
 
 #: mmcheckingpanel.cpp:462
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "선택한 거래 복원"
 
 #: mmcheckingpanel.cpp:477
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "가장 가까운 거래 데이터에서 찾을 문자열을 입력"
 
 #: mmcheckingpanel.cpp:499
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "전체 거래 내역 보고서"
 
 #: mmcheckingpanel.cpp:501 mmframe.cpp:764
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "삭제된 거래"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "계정 보기: %s"
 
 #: mmcheckingpanel.cpp:521
 msgid "Account Bal: "
-msgstr ""
+msgstr "계정 잔액: "
 
 #: mmcheckingpanel.cpp:523
 msgid "Reconciled Bal: "
-msgstr ""
+msgstr "조정된 잔액: "
 
 #: mmcheckingpanel.cpp:525
 msgid "Diff: "
-msgstr ""
+msgstr "차이: "
 
 #: mmcheckingpanel.cpp:527
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "필터링된 보기 잔액: "
 
 #: mmcheckingpanel.cpp:592 webapp.cpp:619
 msgid "Attachment"
-msgstr ""
+msgstr "첨부 파일"
 
 #: mmcheckingpanel.cpp:628
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "선택한 거래: %zu"
 
 #: mmcheckingpanel.cpp:631
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "선택한 거래 잔액: %s"
 
 #: mmcheckingpanel.cpp:635
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "선택한 거래 사이의 일 수: %d"
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
-msgstr ""
+msgstr "사용자 지정 필드"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "거짓"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "참"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
-msgstr ""
+msgstr "선택하십시오"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
-msgstr ""
+msgstr "다중 선택"
 
 #: mmcustomdata.cpp:770
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "사용자 지정 \"%s\" 필드를 저장할 수 없음:\n"
+"%s 값이 %s 정규표현식과 일치하지 않습니다"
 
 #: mmcustomdata.cpp:773
 msgid "CustomField validation error"
-msgstr ""
+msgstr "사용자 지정 필드 유효성 검사 오류"
 
 #: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "치명적인 오류가 발생했습니다.\n"
+"프로그램이 종료됩니다."
 
 #: mmframe.cpp:265
 msgid "Navigation"
-msgstr ""
+msgstr "내비게이션"
 
 #: mmframe.cpp:266
 msgid "Toolbar"
-msgstr ""
+msgstr "도구 모음"
 
 #: mmframe.cpp:475 mmframe.cpp:724
 msgid "Favourites"
-msgstr ""
+msgstr "즐겨찾기"
 
 #: mmframe.cpp:476 mmframe.cpp:728 mmhomepage.cpp:690 reports/summary.cpp:256
 #: reports/summary.cpp:299
 msgid "Bank Accounts"
-msgstr ""
+msgstr "은행 계정"
 
 #: mmframe.cpp:477 mmframe.cpp:732 mmhomepage.cpp:691 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "신용 카드 계정"
 
 #: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr ""
+msgstr "기간 계정"
 
 #: mmframe.cpp:479 mmframe.cpp:748
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "주식 포트폴리오"
 
 #: mmframe.cpp:480 mmframe.cpp:736 mmhomepage.cpp:689
 msgid "Cash Accounts"
-msgstr ""
+msgstr "현금 계정"
 
 #: mmframe.cpp:481 mmframe.cpp:740 mmhomepage.cpp:692 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
-msgstr ""
+msgstr "대출 계정"
 
 #: mmframe.cpp:514
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "자동 반복 거래"
 
 #: mmframe.cpp:716 mmframe.cpp:1889 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "대시보드"
 
 #: mmframe.cpp:720
 msgid "All Transactions"
-msgstr ""
+msgstr "모든 거래"
 
 #: mmframe.cpp:752 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
-msgstr ""
+msgstr "주식 계정"
 
 #: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
-msgstr ""
+msgstr "예산 설정"
 
 #: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2698
 msgid "Transaction Report"
-msgstr ""
+msgstr "거래 내역 보고서"
 
 #: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2795 mmhelppanel.cpp:69
 msgid "Help"
-msgstr ""
+msgstr "도움말"
 
 #: mmframe.cpp:1270
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "동일한 이름의 설정이 이미 존재함"
 
 #: mmframe.cpp:1272
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "설정에 대한 새 이름을 지정하십시오"
 
 #: mmframe.cpp:1274
 msgid "Name in use"
@@ -4447,7 +4449,7 @@ msgstr ""
 
 #: mmframe.cpp:1331
 msgid "Do you really want to delete the account?"
-msgstr ""
+msgstr "정말 계정을 삭제하시겠습니까?"
 
 #: mmframe.cpp:1338 mmframe.cpp:3431
 msgid "Confirm Account Deletion"
@@ -4647,23 +4649,23 @@ msgstr ""
 
 #: mmframe.cpp:1578
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "예산: 재무 및 연도로"
 
 #: mmframe.cpp:1578
 msgid "Display Budgets in Financial Year Format"
-msgstr ""
+msgstr "회계연도 형식으로 예산 표시"
 
 #: mmframe.cpp:1580
 msgid "Budgets: &Include Transfers in Totals"
-msgstr ""
+msgstr "예산: 총 합계에 이체 포함(&I)"
 
 #: mmframe.cpp:1580
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr ""
+msgstr "예산 총액에 이체 거래 포함"
 
 #: mmframe.cpp:1582
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "예산 분류 보고서: 요약 포함(&S)"
 
 #: mmframe.cpp:1582
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4671,47 +4673,47 @@ msgstr ""
 
 #: mmframe.cpp:1584
 msgid "Ignore F&uture Transactions"
-msgstr ""
+msgstr "미래 거래 내역 무시(&U)"
 
 #: mmframe.cpp:1584
 msgid "Ignore Future transactions"
-msgstr ""
+msgstr "미래 거래 내역 무시"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
-msgstr ""
+msgstr "툴팁 표시"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
-msgstr ""
+msgstr "금전 팁 표시"
 
 #: mmframe.cpp:1608
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "전체화면 전환(&F)\tShift+F11"
 
 #: mmframe.cpp:1609 mmframe.cpp:1919
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "전체 화면 전환"
 
 #: mmframe.cpp:1615
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "응용 프로그램 언어 변경((&L)"
 
 #: mmframe.cpp:1641
 msgid "Dash&board"
-msgstr ""
+msgstr "대시보드(&B)"
 
 #: mmframe.cpp:1641 mmframe.cpp:1889
 msgid "Open Dashboard"
-msgstr ""
+msgstr "대시보드 열기"
 
 #: mmframe.cpp:1650
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "계정 유형을 변경합니다."
 
 #: mmframe.cpp:1653
 msgid "Delete Account from database"
-msgstr ""
+msgstr "데이터베이스에서 계정 삭제"
 
 #: mmframe.cpp:1666
 msgid "Download Ra&tes"
@@ -4719,87 +4721,87 @@ msgstr ""
 
 #: mmframe.cpp:1666 mmframe.cpp:1916
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1672
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "분류 구성(&C)..."
 
 #: mmframe.cpp:1676
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "거래처 구성(&P)..."
 
 #: mmframe.cpp:1676 mmframe.cpp:1894 payeedialog.cpp:496
 msgid "Organize Payees"
-msgstr ""
+msgstr "거래처 구성"
 
 #: mmframe.cpp:1680
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "통화 구성(&N)..."
 
 #: mmframe.cpp:1680 mmframe.cpp:1895
 msgid "Organize Currency"
-msgstr ""
+msgstr "통화 구성"
 
 #: mmframe.cpp:1684
 msgid "&Categories..."
-msgstr ""
+msgstr "분류(&C)..."
 
 #: mmframe.cpp:1687
 msgid "&Payees..."
-msgstr ""
+msgstr "거래처(&P)..."
 
 #: mmframe.cpp:1688
 msgid "Reassign all payees to another payee"
-msgstr ""
+msgstr "모든 거래처를 다른 거래처에 재할당"
 
 #: mmframe.cpp:1690
 msgid "Re&location of"
-msgstr ""
+msgstr "재배치(&R)"
 
 #: mmframe.cpp:1691
 msgid "Relocate Categories && Payees"
-msgstr ""
+msgstr "분류 & 거래처 재배치"
 
 #: mmframe.cpp:1701
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "예산 설정(&B)..."
 
 #: mmframe.cpp:1705
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "반복 거래(&R)"
 
 #: mmframe.cpp:1705
 msgid "Bills && Deposits"
-msgstr ""
+msgstr "청구서 && 보증금"
 
 #: mmframe.cpp:1709
 msgid "&Assets"
-msgstr ""
+msgstr "자산(&A)"
 
 #: mmframe.cpp:1715
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "테마 관리자(&H)..."
 
 #: mmframe.cpp:1715 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "테마 관리자"
 
 #: mmframe.cpp:1721
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "거래 내역 보고서 필터(&F)..."
 
 #: mmframe.cpp:1721 mmframe.cpp:1897
 msgid "Transaction Report Filter"
-msgstr ""
+msgstr "거래 내역 보고서 필터"
 
 #: mmframe.cpp:1727
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "일반 보고서 관리자(&M)..."
 
 #: mmframe.cpp:1731
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "사용자 지정 필드 관리자(&U)..."
 
 #: mmframe.cpp:1731
 msgid "Custom Fields Manager"
