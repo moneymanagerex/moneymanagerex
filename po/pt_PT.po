@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 09:13\n"
+"PO-Revision-Date: 2023-04-25 10:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2119,51 +2119,53 @@ msgstr "Selecione um valor para representar o item num painel"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Alterar o tipo de campo irá apagar todo o conteúdo!"
 
 #: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2328
 #: mmframe.cpp:2347
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Pretende continuar?"
 
 #: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Alteração de Campo Personalizado"
 
 #: customfieldeditdialog.cpp:258
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "As opções foram modificadas: as removidas serão limpas!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Novo/Editar Campo Personalizado"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
-msgstr ""
+msgstr "Propriedades"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Gerir Campos Personalizados"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Pretende mesmo eliminar este campo personalizado e todos os seus dados?"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Confirmar Eliminação do Campo Personalizado"
 
 #: customfieldlistdialog.cpp:190
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Esta função irá procurar e substituir em massa \"%s\" valores do campo personalizado\n"
+"Irá corresponder e substituir apenas valores de campos completos, não são permitidas substituições de valores intermédios ou parciais\n"
+"Por favor, considere que não há nenhuma validação!"
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
@@ -2380,31 +2382,31 @@ msgstr "Imposto da Água"
 
 #: db/DB_Table_Category_V1.h:161
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diversos"
 
 #: db/DB_Table_Category_V1.h:162
 msgid "Gifts"
-msgstr ""
+msgstr "Ofertas"
 
 #: db/DB_Table_Category_V1.h:164
 msgid "Salary"
-msgstr ""
+msgstr "Vencimento"
 
 #: db/DB_Table_Category_V1.h:165
 msgid "Reimbursement/Refunds"
-msgstr ""
+msgstr "Reembolsos"
 
 #: db/DB_Table_Category_V1.h:166
 msgid "Investment Income"
-msgstr ""
+msgstr "Rendimento de Investimento"
 
 #: db/DB_Table_Category_V1.h:167
 msgid "Other Income"
-msgstr ""
+msgstr "Outras Receitas"
 
 #: db/DB_Table_Category_V1.h:168
 msgid "Other Expenses"
-msgstr ""
+msgstr "Outros Despesas"
 
 #: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:812
 #: filtertransdialog.cpp:1359 model/Model_Billsdeposits.cpp:34
@@ -2415,90 +2417,94 @@ msgstr "Transferência"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Falha ao atualizar a base de dados MMEX para a versão %i!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "Por favor, restaure a BD a partir da cópia de segurança criada automaticamente antes da atualização e tente novamente, ou contacte o suporte MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Atualização da base de dados MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Erro de base de dados MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "A versão %i da base de dados MMEX não funciona com esta versão MMEX.\n"
+"Por favor, atualize o MMEX para uma versão mais recente."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Base de dados MMEX atualizada com sucesso para a versão %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Sugerimos uma otimização da base de dados em Ferramentas → Base de dados → Otimizar"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
-msgstr ""
+msgstr "Carregar ficheiro de depuração"
 
 #: dbupgrade.cpp:190
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Tipo de ficheiro incorreto!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
 #: dbupgrade.cpp:289
 msgid "MMEX debug error"
-msgstr ""
+msgstr "Erro de depuração MMEX"
 
 #: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "Erro de consulta BD, por favor contacte o suporte MMEX!"
 
 #: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Conteúdo do ficheiro inválido, por favor entre em contacto com o suporte MMEX!"
 
 #: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "Envie este registo para a equipa de suporte MMEX:\n"
+"pressione OK para gravar no ficheiro ou Cancelar para sair"
 
 #: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
-msgstr ""
+msgstr "Depuração MMEX"
 
 #: dbupgrade.cpp:245
 msgid "Save debug file"
-msgstr ""
+msgstr "Gravar ficheiro de depuração"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "Manutenção da base de dados concluída, por favor feche e reabra o MMEX!"
 
 #: dbwrapper.cpp:74
 msgid "When database file opening:"
-msgstr ""
+msgstr "Aquando da abertura do ficheiro de base de dados:"
 
 #: dbwrapper.cpp:78
 msgid "Can't open file"
-msgstr ""
+msgstr "Não é possível abrir o ficheiro"
 
 #: dbwrapper.cpp:78
 msgid "You must specify path to another database file"
-msgstr ""
+msgstr "Deve indicar o caminho para outro ficheiro de base de dados"
 
 #: dbwrapper.cpp:82
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Indicada palavra passe errada para um ficheiro encriptado\n"
+"ou\n"
+"tentativa de abertura de um ficheiro que não é de base de dados \n"
 
 #: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1116 webapp.cpp:120
 #, c-format
@@ -2507,15 +2513,15 @@ msgstr "Erro: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:1983
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "A abrir base de dados do MMEX — Erro"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnósticos"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Os programadores podem solicitar as informações aqui apresentadas para ajudar a diagnosticar problemas que possa reportar sobre o programa."
 
 #: filtertrans.cpp:181
 msgid "Back"
