@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 17:47\n"
+"PO-Revision-Date: 2023-04-25 18:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4307,36 +4307,36 @@ msgstr "Restaurar a transação selecionada"
 
 #: mmcheckingpanel.cpp:477
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Escreva algo para procurar nos dados das transações mais próximos"
 
 #: mmcheckingpanel.cpp:499
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Relatório de Transações completo"
 
 #: mmcheckingpanel.cpp:501 mmframe.cpp:764
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Transações Eliminadas"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Visão da Conta: %s"
 
 #: mmcheckingpanel.cpp:521
 msgid "Account Bal: "
-msgstr ""
+msgstr "Saldo da Conta: "
 
 #: mmcheckingpanel.cpp:523
 msgid "Reconciled Bal: "
-msgstr ""
+msgstr "Saldo Reconciliado: "
 
 #: mmcheckingpanel.cpp:525
 msgid "Diff: "
-msgstr ""
+msgstr "Dif: "
 
 #: mmcheckingpanel.cpp:527
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Saldo Vista Filtrada: "
 
 #: mmcheckingpanel.cpp:592 webapp.cpp:619
 msgid "Attachment"
@@ -4345,52 +4345,54 @@ msgstr "Anexo"
 #: mmcheckingpanel.cpp:628
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Transações selecionadas: %zu"
 
 #: mmcheckingpanel.cpp:631
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Saldo das transações selecionadas: %s"
 
 #: mmcheckingpanel.cpp:635
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Dias entre transações selecionadas: %d"
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
-msgstr ""
+msgstr "Campos personalizados"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "Falso"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "Verdadeiro"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
-msgstr ""
+msgstr "Por favor selecione"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
-msgstr ""
+msgstr "Escolha Múltipla"
 
 #: mmcustomdata.cpp:770
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Não foi possível gravar o campo personalizado \"%s\":\n"
+"valor \"%s\" não corresponde à validação RegEx \"%s\""
 
 #: mmcustomdata.cpp:773
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Erro na validação de Campo Personalizado"
 
 #: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Ocorreu um erro fatal.\n"
+"A aplicação será encerrada."
 
 #: mmframe.cpp:265
 msgid "Navigation"
@@ -4398,11 +4400,11 @@ msgstr "Navegação"
 
 #: mmframe.cpp:266
 msgid "Toolbar"
-msgstr ""
+msgstr "Barra de Ferramentas"
 
 #: mmframe.cpp:475 mmframe.cpp:724
 msgid "Favourites"
-msgstr ""
+msgstr "Favoritas"
 
 #: mmframe.cpp:476 mmframe.cpp:728 mmhomepage.cpp:690 reports/summary.cpp:256
 #: reports/summary.cpp:299
@@ -4412,25 +4414,25 @@ msgstr "Contas Bancárias"
 #: mmframe.cpp:477 mmframe.cpp:732 mmhomepage.cpp:691 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Contas de Cartão de Crédito"
 
 #: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr ""
+msgstr "Depósitos a prazo"
 
 #: mmframe.cpp:479 mmframe.cpp:748
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "Carteiras de Ações"
 
 #: mmframe.cpp:480 mmframe.cpp:736 mmhomepage.cpp:689
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Contas de Dinheiro"
 
 #: mmframe.cpp:481 mmframe.cpp:740 mmhomepage.cpp:692 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Empréstimos Bancários"
 
 #: mmframe.cpp:514
 msgid "Auto Repeat Transactions"
@@ -4438,16 +4440,16 @@ msgstr "Transações de Repetição Automática"
 
 #: mmframe.cpp:716 mmframe.cpp:1889 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Painel Administração"
 
 #: mmframe.cpp:720
 msgid "All Transactions"
-msgstr ""
+msgstr "Todas as Transações"
 
 #: mmframe.cpp:752 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
-msgstr ""
+msgstr "Contas de Ações"
 
 #: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
@@ -4463,15 +4465,15 @@ msgstr "Ajuda"
 
 #: mmframe.cpp:1270
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Já existe uma configuração com este nome"
 
 #: mmframe.cpp:1272
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Indique por favor um novo nome para a configuração"
 
 #: mmframe.cpp:1274
 msgid "Name in use"
-msgstr ""
+msgstr "Nome em uso"
 
 #: mmframe.cpp:1331
 msgid "Do you really want to delete the account?"
@@ -4483,59 +4485,59 @@ msgstr "Confirmar a exclusão de Conta"
 
 #: mmframe.cpp:1358
 msgid "MMEX has been opened without an active database."
-msgstr ""
+msgstr "O MMEX foi aberto sem uma base de dados ativa."
 
 #: mmframe.cpp:1359
 msgid "MMEX: Menu Popup Error"
-msgstr ""
+msgstr "MMEX: Erro no Menu instantâneo"
 
 #: mmframe.cpp:1375 mmframe.cpp:1536
 msgid "&Import from"
-msgstr ""
+msgstr "&Importar de"
 
 #: mmframe.cpp:1376
 msgid "&CSV Files..."
-msgstr ""
+msgstr "Ficheiros &CSV..."
 
 #: mmframe.cpp:1377
 msgid "&XML Files..."
-msgstr ""
+msgstr "Ficheiros &XML..."
 
 #: mmframe.cpp:1377 mmframe.cpp:1538
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "Importar de um ficheiro XML (formato Excel)"
 
 #: mmframe.cpp:1379
 msgid "&QIF Files..."
-msgstr ""
+msgstr "Ficheiros &QIF..."
 
 #: mmframe.cpp:1382 mmframe.cpp:1545
 msgid "&Export as"
-msgstr ""
+msgstr "&Exportar como"
 
 #: mmframe.cpp:1383 mmframe.cpp:1537 mmframe.cpp:1546
 msgid "&CSV File..."
-msgstr ""
+msgstr "Ficheiro &CSV..."
 
 #: mmframe.cpp:1384 mmframe.cpp:1538 mmframe.cpp:1547
 msgid "&XML File..."
-msgstr ""
+msgstr "Ficheiro &XML..."
 
 #: mmframe.cpp:1386 mmframe.cpp:1549
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "Ficheiro CSV &MMEX..."
 
 #: mmframe.cpp:1387 mmframe.cpp:1550
 msgid "&JSON File..."
-msgstr ""
+msgstr "Ficheiro &JSON..."
 
 #: mmframe.cpp:1388 mmframe.cpp:1540 mmframe.cpp:1551
 msgid "&QIF File..."
-msgstr ""
+msgstr "Ficheiro &QIF..."
 
 #: mmframe.cpp:1413
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Editar Filtro..."
 
 #: mmframe.cpp:1414
 msgid "&Rename Filter..."
