@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 11:14\n"
+"PO-Revision-Date: 2023-04-25 12:14\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2598,7 +2598,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:603
 msgid "Amount Range"
-msgstr ""
+msgstr "Intervalo de Valores"
 
 #: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
@@ -2700,11 +2700,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:1523
 msgid "Amount Min."
-msgstr ""
+msgstr "Valor Mín."
 
 #: filtertransdialog.cpp:1531
 msgid "Amount Max."
-msgstr ""
+msgstr "Valor Max."
 
 #: filtertransdialog.cpp:1740 mmframe.cpp:1263
 msgid "Setting Name"
@@ -2994,57 +2994,57 @@ msgstr "O ficheiro não está no formato XML do Microsoft Excel 2003."
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Erro de interpretação"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "Não foi possível encontrar a Folha de Cálculo."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Tabela"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Não foi possível encontrar a Tabela."
 
 #: import_export/parsers.cpp:216 mmframereport.cpp:132
 msgid "Transactions"
-msgstr ""
+msgstr "Transações"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1551
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Exportar como ficheiro QIF"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1550
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Exportar como ficheiro JSON"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
 #: mmframe.cpp:1546
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Exportar como ficheiro CSV"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
-msgstr ""
+msgstr "Parâmetros"
 
 #: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:226
 msgid "Log"
-msgstr ""
+msgstr "Registo"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:152 mmframe.cpp:3398 mmframe.cpp:3402
 #: mmframe.cpp:3419 mmframe.cpp:3423
@@ -3053,11 +3053,11 @@ msgstr "Contas"
 
 #: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:203
 msgid "From Date"
-msgstr ""
+msgstr "Data Início"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:213
 msgid "To Date"
-msgstr ""
+msgstr "Data Fim"
 
 #: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:317
 #: optionsettingsgeneral.cpp:103
@@ -3066,16 +3066,16 @@ msgstr "Formato da Data"
 
 #: import_export/qif_export.cpp:199
 msgid "Write to File"
-msgstr ""
+msgstr "Escrever para Ficheiro"
 
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:140
 #: import_export/univcsvdialog.cpp:184
 msgid "File Name:"
-msgstr ""
+msgstr "Nome do Ficheiro:"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:537
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose Account to Export from:"
@@ -3083,7 +3083,7 @@ msgstr "Escolha a conta a Exportar:"
 
 #: import_export/qif_export.cpp:259 import_export/qif_export.cpp:365
 msgid "QIF Export"
-msgstr ""
+msgstr "Exportar para QIF"
 
 #: import_export/qif_export.cpp:318 import_export/qif_export.cpp:334
 msgid "Choose QIF data file to Export"
@@ -3317,19 +3317,19 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1285
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "O formato de data ou de máscara desta está incorreto"
 
 #: import_export/qif_import_gui.cpp:1297
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "A Conta da Transação está incorreta"
 
 #: import_export/qif_import_gui.cpp:1306
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "A Conta da Transação para a transferência está incorreta"
 
 #: import_export/qif_import_gui.cpp:1335
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "O Montante da Transação está incorreto"
 
 #: import_export/qif_import_gui.cpp:1360
 msgid "Transaction Category is incorrect"
@@ -3361,86 +3361,87 @@ msgstr "Saldo"
 
 #: import_export/univcsvdialog.cpp:120 mmframe.cpp:1537
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importar de um ficheiro CSV"
 
 #: import_export/univcsvdialog.cpp:126
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importar de um ficheiro XML"
 
 #: import_export/univcsvdialog.cpp:129 mmframe.cpp:1547
 msgid "Export as XML file"
-msgstr ""
+msgstr "Exportar como ficheiro XML"
 
 #: import_export/univcsvdialog.cpp:204
 msgid "Account: "
-msgstr ""
+msgstr "Conta: "
 
 #: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
-msgstr ""
+msgstr "Predefinição:"
 
 #: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:564
 #: import_export/univcsvdialog.cpp:2457
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "Carregar esta Predefinição quando a conta for:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Indique a ordem dos campos no ficheiro"
 
 #: import_export/univcsvdialog.cpp:300
 msgid "&MMEX format"
-msgstr ""
+msgstr "Formato &MMEX"
 
 #: import_export/univcsvdialog.cpp:317
 msgid "&Up"
-msgstr ""
+msgstr "&Cima"
 
 #: import_export/univcsvdialog.cpp:321
 msgid "&Down"
-msgstr ""
+msgstr "&Baixo"
 
 #: import_export/univcsvdialog.cpp:354
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "Delimitador CSV:"
 
 #: import_export/univcsvdialog.cpp:381
 msgid "Export column titles"
-msgstr ""
+msgstr "Exportar títulos de coluna"
 
 #: import_export/univcsvdialog.cpp:396
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Valores positivos são depósitos"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Valores positivos são levantamentos"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Linhas a ignorar"
 
 #: import_export/univcsvdialog.cpp:421
 msgid "From start: "
-msgstr ""
+msgstr "Do início: "
 
 #: import_export/univcsvdialog.cpp:456
 msgid "From end: "
-msgstr ""
+msgstr "Do final: "
 
 #: import_export/univcsvdialog.cpp:468
 msgid "Preview"
-msgstr ""
+msgstr "Pré-visualização"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Escolha o ficheiro de dados XML a importar"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "Escolha o arquivo CSV a importar"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose XML data file to Export"
@@ -3525,7 +3526,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1255
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "O campo Valor ou ambos os campos Levantamento e Depósito são obrigatórios."
 
 #: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
 #: themes.cpp:189 webappdialog.cpp:408
@@ -3553,7 +3554,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1340 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
-msgstr ""
+msgstr "Valor Inválido."
 
 #: import_export/univcsvdialog.cpp:1342
 msgid "Type (withdrawal/deposit) unknown."
@@ -3609,7 +3610,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Especificados campos incorretos para exportação! Requer pelo menos Data e Valor."
 
 #: import_export/univcsvdialog.cpp:1459 import_export/univcsvdialog.cpp:1612
 msgid "Export"
@@ -3679,7 +3680,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2485
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "O sinal do valor deve ser definido pelo tipo quando o 'Tipo' é selecionado para importação"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -5679,7 +5680,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %6.2f\n"
 "%s: %6.2f\n\n"
 "Do you wish to continue ?"
-msgstr ""
+msgstr "Uma transação recorrente excederá o limite da sua conta.\n\n"
+"Conta: %s\n"
+"Saldo atual: %6.2f\n"
+"Valor da transação: %6.2f\n"
+"%s: %6.2f\n\n"
+"Deseja continuar?"
 
 #: model/Model_Billsdeposits.cpp:310
 msgid "Minimum Balance"
@@ -6260,7 +6266,8 @@ msgstr ""
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "O orçamento anual será reduzido pelo montante orçamentado mensalmente.\n"
+"A estimativa total para o ano OU a soma dos orçamentos mensais será reportada como orçamento anual, o que for maior."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -7035,11 +7042,11 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:395
 msgid "Invalid Total Amount"
-msgstr ""
+msgstr "Valor Total Inválido"
 
 #: splittransactionsdialog.cpp:553
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Por favor, insira um valor monetário válido"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:147
 msgid "Edit Stock Investment"
@@ -7445,7 +7452,7 @@ msgstr ""
 
 #: transdialog.cpp:1231
 msgid "Specify the transfer amount in the From Account."
-msgstr ""
+msgstr "Especifique o valor da transferência na Conta Origem."
 
 #: transdialog.cpp:1239
 msgid "Specify account for the transaction"
