@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 13:35\n"
+"PO-Revision-Date: 2023-04-25 14:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3971,7 +3971,7 @@ msgstr "Dica: Pode-se modificar algum comportamento de execução do MMEX altera
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "Dica: Para imprimir um extrato com transações a partir de um conjunto arbitrário de critérios, use o filtro de transações para selecionar as desejadas e, em seguida, imprima a partir do menu."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
