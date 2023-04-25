@@ -43,26 +43,61 @@ simplicity and user-friendliness – an application that can be used everyday.
 <table border="0">
     <tr>
         <td>
-            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" 
-                 alt="Dashboard" 
-                 title="Dashboard">
+            <img src="https://user-images.githubusercontent.com/17465872/233927369-03eabcaa-0e29-4730-8be0-462c3e1c9a01.png" 
+                 alt="Dashboard (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Dashboard (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
         <td>
-            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" 
-                 alt="Payee Report" 
-                 title="Payee Report">
+            <img src="https://user-images.githubusercontent.com/17465872/233927379-268bd999-9093-4de9-ad72-02e0781b56ec.png" 
+                 alt="Payee Report (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Payee Report (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
     </tr>
     <tr>
         <td>
-            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" 
-                 alt="Transaction Filter and Organize Categories" 
-                 title="Transaction Filter and Organize Categories">
+            <img src="https://user-images.githubusercontent.com/17465872/233927385-0f5a551f-494b-43b6-92ef-8fa1ba91e3ed.png" 
+                 alt="Budget Setup (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Budget Setup (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
         <td>
-            <img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" 
-                 alt="Budget Setup" 
-                 title="Budget Setup">
+            <img src="https://user-images.githubusercontent.com/17465872/233927390-21a3bd99-06d7-4455-b96f-ae98b39a7358.png" 
+                 alt="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://user-images.githubusercontent.com/17465872/233927396-7470f433-2756-4a68-b709-9a8834b6347d.png" 
+                 alt="Organize Categories - unlimited nested multi-level category support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Organize Categories - unlimited nested multi-level category support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+        </td>
+        <td>
+            <img src="https://user-images.githubusercontent.com/17465872/233927401-597ea9bc-a890-44df-b6eb-d26ce8369551.png" 
+                 alt="Transaction Filter (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Transaction Filter (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://user-images.githubusercontent.com/17465872/233931375-051e7c9f-d4c4-4baa-9586-7ad10ef48aba.png" 
+                 alt="Import from CSV (Comma-Separated Values) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Import from CSV (Comma-Separated Values) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+        </td>
+        <td>
+            <img src="https://user-images.githubusercontent.com/17465872/233931411-d7a92fed-272f-446d-b86a-89f99b66683a.png" 
+                 alt="Import from QIF (Quicken Interchange Format) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Import from QIF (Quicken Interchange Format) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+        </td>
+    <tr>
+        <td>
+            <img src="https://user-images.githubusercontent.com/17465872/233931435-825fa069-f182-4b50-970d-21755c90f1da.png" 
+                 alt="Export as XML (eXtensible Markup Language) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Export as XML (eXtensible Markup Language) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+        </td>
+        <td>
+            <img src="https://user-images.githubusercontent.com/17465872/233931456-85f10a2f-c546-445e-966a-647d10919904.png" 
+                 alt="Multi Currency Support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
+                 title="Multi Currency Support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
     </tr>
 </table>
