@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 18:49\n"
+"PO-Revision-Date: 2023-04-25 19:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4793,7 +4793,7 @@ msgstr ""
 
 #: mmframe.cpp:1701
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "Configurar &Orçamentos..."
 
 #: mmframe.cpp:1705
 msgid "&Recurring Transactions"
