@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 04:28\n"
+"PO-Revision-Date: 2023-04-25 05:29\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -3038,130 +3038,130 @@ msgstr "계정"
 
 #: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:203
 msgid "From Date"
-msgstr ""
+msgstr "시작 날짜"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:213
 msgid "To Date"
-msgstr ""
+msgstr "끝 날짜"
 
 #: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:317
 #: optionsettingsgeneral.cpp:103
 msgid "Date Format"
-msgstr ""
+msgstr "날짜 형식"
 
 #: import_export/qif_export.cpp:199
 msgid "Write to File"
-msgstr ""
+msgstr "파일로 쓰기"
 
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:140
 #: import_export/univcsvdialog.cpp:184
 msgid "File Name:"
-msgstr ""
+msgstr "파일명:"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:537
 msgid "Clear"
-msgstr ""
+msgstr "지우기"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose Account to Export from:"
-msgstr ""
+msgstr "내보낼 계정 선택:"
 
 #: import_export/qif_export.cpp:259 import_export/qif_export.cpp:365
 msgid "QIF Export"
-msgstr ""
+msgstr "QIF 내보내기"
 
 #: import_export/qif_export.cpp:318 import_export/qif_export.cpp:334
 msgid "Choose QIF data file to Export"
-msgstr ""
+msgstr "내보낼 QIF 데이터 파일 선택"
 
 #: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:872
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF 파일 (*.qif)"
 
 #: import_export/qif_export.cpp:326
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "내보낼 JSON 데이터 파일 선택"
 
 #: import_export/qif_export.cpp:328
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON 파일 (*.json)"
 
 #: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2069
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV 파일 (*.csv)"
 
 #: import_export/qif_export.cpp:354
 msgid "No Account available for export"
-msgstr ""
+msgstr "내보낼 수 있는 계정이 없습니다"
 
 #: import_export/qif_export.cpp:356
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "내보낼 계정을 선택하지 않았습니다"
 
 #: import_export/qif_export.cpp:358
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "시작 날짜보다 작은 종료 날짜"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr ""
+msgstr "내보낸 분류"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:416
 #: import_export/qif_import_gui.cpp:1049
 msgid "Please wait"
-msgstr ""
+msgstr "기다려 주세요"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "내보내는 중"
 
 #: import_export/qif_export.cpp:512
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "%zu 거래내역을 내보내는 중입니다"
 
 #: import_export/qif_export.cpp:656
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "내보낸 분류 개수: %zu\n"
 
 #: import_export/qif_export.cpp:658
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "내보낸 거래내역 개수: %zu\n"
 
 #: import_export/qif_export.cpp:659
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "내보낸 계정 개수: %zu"
 
 #: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:197
 msgid "&Browse"
-msgstr ""
+msgstr "찾아보기(&B)"
 
 #: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:367
 msgid "Encoding:"
-msgstr ""
+msgstr "인코딩:"
 
 #: import_export/qif_import_gui.cpp:197
 msgid "Filtering Details:"
-msgstr ""
+msgstr "필터링 상세:"
 
 #: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:475
 msgid "Data"
-msgstr ""
+msgstr "자료"
 
 #: import_export/qif_import_gui.cpp:296
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "계정 이름 대신 계정 번호 사용"
 
 #: import_export/qif_import_gui.cpp:300
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "내용에 거래처 필드 포함"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "거래처 패턴 일치"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
