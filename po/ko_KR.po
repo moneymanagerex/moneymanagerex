@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 11:14\n"
+"PO-Revision-Date: 2023-04-25 12:14\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -124,11 +124,11 @@ msgstr "통화 선택"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
-msgstr "이 계좌에서 사용될 화폐를 선택하세요."
+msgstr "이 계정에서 사용될 통화를 선택하세요."
 
 #: accountdialog.cpp:171
 msgid "Favorite Account"
-msgstr "자주 사용하는 계좌"
+msgstr "자주 사용하는 계정"
 
 #: accountdialog.cpp:173
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
@@ -150,7 +150,7 @@ msgstr "비고"
 
 #: accountdialog.cpp:186
 msgid "Enter user notes and details about this account."
-msgstr "이 계좌에 대한 간략한 노트나 설명을 입력하세요."
+msgstr "이 계정에 대한 간략한 노트나 설명을 입력하세요."
 
 #: accountdialog.cpp:190 db/DB_Table_Category_V1.h:136
 #: db/DB_Table_Category_V1.h:140 db/DB_Table_Category_V1.h:160
@@ -260,7 +260,7 @@ msgstr "최소 지불액:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
-msgstr "이 계좌의 첨부파일 관리"
+msgstr "이 계정의 첨부파일 관리"
 
 #: accountdialog.cpp:430
 msgid "Default Image"
@@ -316,7 +316,7 @@ msgstr "이 계정에 대한 반복 거래는 이 날짜 이전에 예약되었�
 #: accountdialog.h:41 mmframe.cpp:1644 mmframe.cpp:1888
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
 msgid "New Account"
-msgstr "새 계좌"
+msgstr "새 계정"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
@@ -604,11 +604,11 @@ msgstr "신규(&N) "
 
 #: assetspanel.cpp:476 stockspanel.cpp:136
 msgid "&Add Trans "
-msgstr ""
+msgstr "거래 추가(&A) "
 
 #: assetspanel.cpp:481 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr ""
+msgstr "거래 보기(&V) "
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
@@ -1528,12 +1528,12 @@ msgstr "비용: "
 
 #: budgetingpanel.cpp:299
 msgid "Icon"
-msgstr ""
+msgstr "아이콘"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
 msgid "Estimated"
-msgstr ""
+msgstr "추정"
 
 #: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
@@ -1574,12 +1574,13 @@ msgstr ""
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "예산 연도"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "필요한 연도를 지정합니다.\n"
+"회전 버튼을 사용하여 연도를 늘리거나 줄입니다."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
@@ -1612,47 +1613,47 @@ msgstr ""
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr ""
+msgstr "모두 축소"
 
 #: categdialog.cpp:275 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "모두 확장"
 
 #: categdialog.cpp:280 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "모두 표시(&A)"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "숨겨진 모든 분류 표시"
 
 #: categdialog.cpp:325
 msgid "Add a new category"
-msgstr ""
+msgstr "새 분류 추가"
 
 #: categdialog.cpp:329
 msgid "Edit the name of an existing category"
-msgstr ""
+msgstr "기존 범주의 이름 편집"
 
 #: categdialog.cpp:333
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "기존 범주를 삭제합니다. 기존 거래에서 범주를 사용할 수 없습니다."
 
 #: categdialog.cpp:338 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr ""
+msgstr "선택(&S)"
 
 #: categdialog.cpp:340
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr ""
+msgstr "현재 선택된 범주를 거래에 대한 선택된 범주로 선택"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "이름에 범주 구분 기호가 있습니다. "
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "콜론(:) 문자는 범주와 하위 범주를 구분하는 데 사용되므로 이름에 사용하면 안 됩니다"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1966,58 +1967,58 @@ msgstr ""
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "쉼표"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
-msgstr ""
+msgstr "그룹화 문자"
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "공백"
 
 #: currencydialog.cpp:227
 msgid "Scale"
-msgstr ""
+msgstr "배율"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "기준 금리로 전환"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "해당 통화에 대한 통화 이력이 없는 경우 환율이 사용됩니다"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "고정 환전율"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "통화 형식 예제:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
-msgstr ""
+msgstr "변경 내용 저장"
 
 #: currencydialog.cpp:265
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "모든 변경 사항은 업데이트 없이 손실됩니다"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2486 maincurrencydialog.cpp:627
 #: mmSimpleDialogs.cpp:785
 msgid "Invalid Entry"
-msgstr ""
+msgstr "잘못된 항목"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "그룹화 문자는 소수점 문자와 같을 수 없습니다"
 
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f 은 %s 로 표시됨"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
@@ -2025,76 +2026,77 @@ msgstr ""
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "통화 관리자"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr ""
+msgstr "사용자 지정 필드 상세 정보"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "속성"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "사용자 지정 필드와 연결된 항목 선택"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "사용자 지정 필드의 이름 입력"
 
 #: customfieldeditdialog.cpp:150
 msgid "Field Type"
-msgstr ""
+msgstr "필드 유형"
 
 #: customfieldeditdialog.cpp:154
 msgid "Select type of custom field"
-msgstr ""
+msgstr "사용자 지정 필드 유형 선택"
 
 #: customfieldeditdialog.cpp:157
 msgid "ToolTip"
-msgstr ""
+msgstr "툴팁"
 
 #: customfieldeditdialog.cpp:159
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "표시될 툴팁 입력"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
-msgstr ""
+msgstr "정규 표현식"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "검증할 필드에 정규 표현식을 적용합니다"
 
 #: customfieldeditdialog.cpp:167
 msgid "Autocomplete"
-msgstr ""
+msgstr "자동 완성"
 
 #: customfieldeditdialog.cpp:170
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "사용자 지정 필드에서 자동 완성 사용"
 
 #: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:610
 msgid "Default"
-msgstr ""
+msgstr "기본값"
 
 #: customfieldeditdialog.cpp:175
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "이 필드의 기본값 입력\n"
+"날짜/시간에 대해 'Now'를 입력하여 현재 날짜/시간을 기본값으로 설정합니다"
 
 #: customfieldeditdialog.cpp:179
 msgid "Choices"
-msgstr ""
+msgstr "선택사항"
 
 #: customfieldeditdialog.cpp:181
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "이 필드에 대한 선택 사항을 세미콜론으로 구분하여 입력하십시오"
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
-msgstr ""
+msgstr "자릿수 배율"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
@@ -2564,7 +2566,7 @@ msgstr "모든 하위 분류 포함"
 #: model/Model_Billsdeposits.cpp:32 model/Model_Checking.cpp:32
 #: reports/forecast.cpp:81
 msgid "Withdrawal"
-msgstr "지출"
+msgstr "출금"
 
 #: filtertransdialog.cpp:587 filtertransdialog.cpp:1356
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:284
@@ -3401,7 +3403,7 @@ msgstr "양수 값은 수입입니다"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
-msgstr "양수 값은 지출입니다"
+msgstr "양수 값은 출금 항목입니다"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Rows to ignore"
@@ -3511,7 +3513,7 @@ msgstr "날짜 필드는 필수 항목입니다."
 
 #: import_export/univcsvdialog.cpp:1255
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "금액 필드 또는 수입 및 지출 필드가 모두 필요합니다."
+msgstr "금액 필드 또는 입금 및 출금 필드가 모두 필요합니다."
 
 #: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
 #: themes.cpp:189 webappdialog.cpp:408
@@ -3543,7 +3545,7 @@ msgstr "잘못된 금액."
 
 #: import_export/univcsvdialog.cpp:1342
 msgid "Type (withdrawal/deposit) unknown."
-msgstr "거래 유형(지출/수입)을 알 수 없습니다."
+msgstr "거래 유형(출금/입금)을 알 수 없습니다."
 
 #: import_export/univcsvdialog.cpp:1356
 #, c-format
@@ -4063,7 +4065,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:309
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "신규 출금(&N)..."
 
 #: mmchecking_list.cpp:432 mmcheckingpanel.cpp:310
 msgid "&New Deposit..."
@@ -6939,7 +6941,7 @@ msgstr "비율"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "모든 거래: 출금, 입금 및 이체"
 
 #: reports/transactions.cpp:410
 msgid "All Transactions excluding Transfers"
