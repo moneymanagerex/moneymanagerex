@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 12:14\n"
+"PO-Revision-Date: 2023-04-25 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -2100,7 +2100,7 @@ msgstr "자릿수 배율"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "허용되는 소수 자릿수를 입력하세요"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
@@ -2318,55 +2318,55 @@ msgstr "안과"
 
 #: db/DB_Table_Category_V1.h:145
 msgid "Physician"
-msgstr ""
+msgstr "의사"
 
 #: db/DB_Table_Category_V1.h:146
 msgid "Prescriptions"
-msgstr ""
+msgstr "처방전"
 
 #: db/DB_Table_Category_V1.h:147
 msgid "Insurance"
-msgstr ""
+msgstr "보험료"
 
 #: db/DB_Table_Category_V1.h:148 optionsettingsview.cpp:241
 msgid "Auto"
-msgstr ""
+msgstr "자동차"
 
 #: db/DB_Table_Category_V1.h:149
 msgid "Life"
-msgstr ""
+msgstr "생명"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr ""
+msgstr "집"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
-msgstr ""
+msgstr "휴가"
 
 #: db/DB_Table_Category_V1.h:153
 msgid "Travel"
-msgstr ""
+msgstr "여행"
 
 #: db/DB_Table_Category_V1.h:154
 msgid "Lodging"
-msgstr ""
+msgstr "숙박"
 
 #: db/DB_Table_Category_V1.h:155
 msgid "Sightseeing"
-msgstr ""
+msgstr "관광"
 
 #: db/DB_Table_Category_V1.h:156
 msgid "Taxes"
-msgstr ""
+msgstr "세금"
 
 #: db/DB_Table_Category_V1.h:157
 msgid "Income Tax"
-msgstr ""
+msgstr "소득세"
 
 #: db/DB_Table_Category_V1.h:158
 msgid "House Tax"
-msgstr ""
+msgstr "재산세"
 
 #: db/DB_Table_Category_V1.h:159
 msgid "Water Tax"
@@ -2374,15 +2374,15 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:161
 msgid "Miscellaneous"
-msgstr ""
+msgstr "잡화"
 
 #: db/DB_Table_Category_V1.h:162
 msgid "Gifts"
-msgstr ""
+msgstr "선물"
 
 #: db/DB_Table_Category_V1.h:164
 msgid "Salary"
-msgstr ""
+msgstr "급여"
 
 #: db/DB_Table_Category_V1.h:165
 msgid "Reimbursement/Refunds"
@@ -2814,120 +2814,120 @@ msgstr ""
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP 파일 (*.zip)"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
-msgstr ""
+msgstr "일반 보고서 관리자"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "자산..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "빈 보고서 새로 만들기..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
-msgstr ""
+msgstr "새 샘플 보고서"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "그룹 변경..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "그룹명 변경..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
-msgstr ""
+msgstr "그룹 해제"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "보고서 이름 바꾸기..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "활성화"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "메인 탐색 패널에서 보고서 표시/숨기기"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "보고서 삭제..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "보고서 이름 입력"
 
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:783 mmframe.cpp:1727 mmframe.cpp:1899
 msgid "General Report Manager"
-msgstr ""
+msgstr "일반 보고서 관리자"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "보고서 제목 삭제:"
 
 #: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "새 보고서 그룹의 이름 입력 또는 선택"
 
 #: general_report_manager.cpp:908
 msgid "Change report group"
-msgstr ""
+msgstr "보고서 그룹 변경"
 
 #: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "새 그룹의 이름 입력 또는 선택"
 
 #: general_report_manager.cpp:925
 msgid "Rename Group"
-msgstr ""
+msgstr "그룹명 변경"
 
 #: general_report_manager.cpp:992
 msgid "Add Report Group"
-msgstr ""
+msgstr "보고서 그룹 추가"
 
 #: general_report_manager.cpp:1005
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "새 보고서 %s"
 
 #: general_report_manager.cpp:1018
 msgid "Report Name already exists"
-msgstr ""
+msgstr "보고서 이름이 이미 있습니다"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
-msgstr ""
+msgstr "새 보고서"
 
 #: general_report_manager.cpp:1057
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "보고서로 저장할 파일 선택"
 
 #: general_report_manager.cpp:1235
 msgid "Parameters:"
-msgstr ""
+msgstr "매개변수:"
 
 #: images_list.cpp:324
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "'%s' 테마의 메타데이터 JSON을 구문 분석할 수 없으며 잘못 구성된 것 같습니다. 수정하십시오."
 
 #: images_list.cpp:412
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "선택한 '%s' 테마에서 '%s' 파일이 없거나 잘못되었습니다."
 
 #: images_list.cpp:423
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "선택한 '%s' 테마에 '%s' 메타데이터가 없습니다"
 
 #: images_list.cpp:456
 msgid "and more..."
