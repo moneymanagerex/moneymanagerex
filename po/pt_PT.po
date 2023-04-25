@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 12:14\n"
+"PO-Revision-Date: 2023-04-25 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3441,11 +3441,11 @@ msgstr "Escolha o ficheiro de dados XML a importar"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose CSV data file to Import"
-msgstr "Escolha o arquivo CSV a importar"
+msgstr "Escolha o ficheiro CSV a importar"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Escolha o ficheiro de dados XML a exportar"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose CSV data file to Export"
@@ -3453,27 +3453,27 @@ msgstr "Escolha o Ficheiro CVS para Exportar"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
-msgstr ""
+msgstr "Nome Predefinido"
 
 #: import_export/univcsvdialog.cpp:548
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Gravar as configurações atuais como Predefinição"
 
 #: import_export/univcsvdialog.cpp:549 import_export/univcsvdialog.cpp:2020
 msgid "Delete Preset"
-msgstr ""
+msgstr "Eliminar Predefinição"
 
 #: import_export/univcsvdialog.cpp:550
 msgid "MMEX standard format"
-msgstr ""
+msgstr "Formato MMEX padrão"
 
 #: import_export/univcsvdialog.cpp:551
 msgid "Move Up"
-msgstr ""
+msgstr "Mover Acima"
 
 #: import_export/univcsvdialog.cpp:552
 msgid "Move Down"
-msgstr ""
+msgstr "Mover Abaixo"
 
 #: import_export/univcsvdialog.cpp:553 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3481,48 +3481,49 @@ msgstr "Especifique o delimitador utilizado na importação/exportação de fich
 
 #: import_export/univcsvdialog.cpp:554
 msgid "Import File"
-msgstr ""
+msgstr "Importar Ficheiro"
 
 #: import_export/univcsvdialog.cpp:555
 msgid "Export File"
-msgstr ""
+msgstr "Exportar Ficheiro"
 
 #: import_export/univcsvdialog.cpp:568 import_export/univcsvdialog.cpp:2464
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "Predefinição '%s' carregada porque a Conta '%s' foi selecionada"
 
 #: import_export/univcsvdialog.cpp:722
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Conta padrão '%s' para este modelo não existe.\n"
+"Por favor, selecione uma nova conta."
 
 #: import_export/univcsvdialog.cpp:724
 msgid "Account does not exist"
-msgstr ""
+msgstr "Conta não existe"
 
 #: import_export/univcsvdialog.cpp:915 import_export/univcsvdialog.cpp:1010
 #: import_export/univcsvdialog.cpp:2479
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positivo se o tipo tiver '%s'"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Preset Name"
-msgstr ""
+msgstr "Nome Predefinido"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Save Preset"
-msgstr ""
+msgstr "Gravar Predefinição"
 
 #: import_export/univcsvdialog.cpp:1253
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Campos incorretos especificados para importação!"
 
 #: import_export/univcsvdialog.cpp:1254
 msgid "Date field is required."
-msgstr ""
+msgstr "O campo Data é obrigatório."
 
 #: import_export/univcsvdialog.cpp:1255
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3531,26 +3532,26 @@ msgstr "O campo Valor ou ambos os campos Levantamento e Depósito são obrigató
 #: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
-msgstr ""
+msgstr "Importação"
 
 #: import_export/univcsvdialog.cpp:1312
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Transações importadas para a conta %s: %ld"
 
 #: import_export/univcsvdialog.cpp:1323
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Linha %ld: Vazia"
 
 #: import_export/univcsvdialog.cpp:1337
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Linha %ld: Erro:"
 
 #: import_export/univcsvdialog.cpp:1339
 msgid "Invalid Date."
-msgstr ""
+msgstr "Data Inválida."
 
 #: import_export/univcsvdialog.cpp:1340 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
@@ -3558,42 +3559,42 @@ msgstr "Valor Inválido."
 
 #: import_export/univcsvdialog.cpp:1342
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Tipo (levantamento/depósito) desconhecido."
 
 #: import_export/univcsvdialog.cpp:1356
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Linha %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Linha %ld: OK, importada."
 
 #: import_export/univcsvdialog.cpp:1389
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Total de Linhas: %ld"
 
 #: import_export/univcsvdialog.cpp:1391
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Linhas Selecionadas para Importação: %ld"
 
 #: import_export/univcsvdialog.cpp:1393
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Linhas Vazias: %ld"
 
 #: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importadas: %ld"
 
 #: import_export/univcsvdialog.cpp:1397
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Erradas: %ld"
 
 #: import_export/univcsvdialog.cpp:1400
 #, c-format
@@ -3833,138 +3834,140 @@ msgstr ""
 #: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:566
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Cor #%i"
 
 #: mmSimpleDialogs.cpp:725
 msgid "Subtract one year"
-msgstr ""
+msgstr "Subtrair um ano"
 
 #: mmSimpleDialogs.cpp:726
 msgid "Subtract one month"
-msgstr ""
+msgstr "Subtrair um mês"
 
 #: mmSimpleDialogs.cpp:727
 msgid "Add one month"
-msgstr ""
+msgstr "Adicionar um mês"
 
 #: mmSimpleDialogs.cpp:728
 msgid "Add one year"
-msgstr ""
+msgstr "Adicionar um ano"
 
 #: mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "Registo %s é inválido"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Por favor, selecione uma categoria existente"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Invalid Category"
-msgstr ""
+msgstr "Categoria inválida"
 
 #: mmSimpleDialogs.cpp:795
 msgid "File name is empty."
-msgstr ""
+msgstr "O nome do ficheiro está vazio."
 
 #: mmSimpleDialogs.cpp:796
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Por favor, selecione o ficheiro para esta operação."
 
 #: mmSimpleDialogs.cpp:806
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Por favor, selecione a conta para esta transação."
 
 #: mmSimpleDialogs.cpp:808
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "Indique para que conta será efetuada a transferência."
 
 #: mmSimpleDialogs.cpp:810
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "A seleção pode ser feita através do botão de lista pendente."
 
 #: mmSimpleDialogs.cpp:813
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "Ativar o botão abrirá uma caixa de seleção onde a conta poderá ser selecionada."
 
 #: mmSimpleDialogs.cpp:822
 msgid "Invalid Payee"
-msgstr ""
+msgstr "Beneficiário inválido"
 
 #: mmSimpleDialogs.cpp:823
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "Por favor, digite um novo beneficiário,\n"
+"ou selecione com o botão de lista suspensa."
 
 #: mmSimpleDialogs.cpp:831 mmSimpleDialogs.cpp:843
 msgid "Invalid Name"
-msgstr ""
+msgstr "Nome inválido"
 
 #: mmSimpleDialogs.cpp:834 mmSimpleDialogs.cpp:846
 msgid "Already exist!"
-msgstr ""
+msgstr "Já existe!"
 
 #: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty name."
-msgstr ""
+msgstr "Por favor, digite um nome não vazio."
 
 #: mmSimpleDialogs.cpp:848
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "Por favor, digite um símbolo não vazio."
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:553
 msgid "Invalid Value"
-msgstr ""
+msgstr "Valor inválido"
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Por favor, insira um valor positivo ou calculado."
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "Por favor, insira um valor calculado."
 
 #: mmTextCtrl.cpp:115
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "Dica: Para cálculos, utilize expressões como (2+2)*(2+2)\n"
+"Os cálculos serão avaliados e o resultado será usado como se inserido."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "Recomendação: Faça uma cópia de segurança do seu ficheiro '.mmb' regularmente."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "Recomendação: Se estiver a atualizar para uma nova versão do MMEX, certifique-se de fazer uma cópia de segurança do seu ficheiro '.mmb' previamente."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "Recomendação: Utilize a função copiar (Ctrl+C) e colar (Ctrl+V) para transações utilizadas frequentemente."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr ""
+msgstr "Dica: Lembre-se de fazer cópias de segurança do seu ficheiro '.mmb'."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Dica: O ficheiro '.mmb' não é encriptado. Isto significa que qualquer um com competências apropriadas saberá como abrir o ficheiro e ler o conteúdo. Portanto, certifique-se que, caso esteja a armazenar informação financeira sensível, a mesma esteja devidamente protegida."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "Dica: Para marcar a transação como reconciliada, selecione simplesmente a transação e pressione a tecla 'r' ou 'R'. Para a marcar como não reconciliada, selecione e pressione 'u' ou 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr ""
+msgstr "Dica: Para marcar uma transação como requerendo acompanhamento, basta selecioná-la e pressionar a tecla 'f' ou 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Dica: O MMEX suporta a impressão de todos os relatórios que possam ser visualizados. As opções de impressão estão disponíveis no menu, Arquivo → Impressão."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr ""
+msgstr "Dica: Pode-se modificar algum comportamento de execução do MMEX alterando as opções na Caixa de Opções. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
