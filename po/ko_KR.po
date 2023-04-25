@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 03:17\n"
+"PO-Revision-Date: 2023-04-25 04:28\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1882,15 +1882,15 @@ msgstr "지난달 보기"
 
 #: constants.cpp:199
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "최근 3개월 보기"
 
 #: constants.cpp:200
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "최근 12개월 보기"
 
 #: constants.cpp:201
 msgid "View Current Year"
-msgstr ""
+msgstr "현재년 보기"
 
 #: constants.cpp:202
 msgid "View Current Financial Year"
@@ -2102,213 +2102,217 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
-msgstr ""
+msgstr "패널 열"
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "패널에 나타낼 항목 값을 선택"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "필드 유형을 변경하면 모든 내용이 삭제됩니다!"
 
 #: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2328
 #: mmframe.cpp:2347
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "계속하시겠습니까?"
 
 #: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
 msgid "Custom Field Change"
-msgstr ""
+msgstr "사용자 지정 필드 변경"
 
 #: customfieldeditdialog.cpp:258
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "선택한 항목이 수정되었습니다. 제거된 항목이 지워집니다!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "사용자 정의 필드 새로 만들기/편집"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
-msgstr ""
+msgstr "속성"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "사용자 지정 필드 개인화"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "정말로 사용자 지정 필드와 그 안의 모든 데이터를 삭제하시겠습니까?"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "사용자 지정 필드 삭제 확인"
 
 #: customfieldlistdialog.cpp:190
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "이 기능은 사용자 지정 필드 값이 \"%s\"인 것을 대량 검색하고 대체합니다\n"
+"필드 값과 일치하는 것만 바꾸기가 되며, 부분 또는 중간 값 바꾸기는 허용되지 않습니다\n"
+"유효성 검사가 없다는 점을 고려해 주십시오!"
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "사용자 지정 필드 내용 업데이트 확인"
 
 #: customfieldlistdialog.cpp:198
 msgid "Find what"
-msgstr ""
+msgstr "찾을 내용"
 
 #: customfieldlistdialog.cpp:198 customfieldlistdialog.cpp:204
 #: customfieldlistdialog.cpp:210 customfieldlistdialog.cpp:216
 #: customfieldlistdialog.cpp:231
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "사용자 지정 필드 내용 업데이트"
 
 #: customfieldlistdialog.cpp:202
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "빈 내용을 업데이트하시겠습니까?\n"
+"교체 절차를 중단하려면 아니오를 누릅니다!"
 
 #: customfieldlistdialog.cpp:210
 msgid "Replace with"
-msgstr ""
+msgstr "대체할 텍스트"
 
 #: customfieldlistdialog.cpp:214
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "공백으로 갱신하시겠습니까?\n"
+"교체 절차를 중단하려면 아니오를 누릅니다!"
 
 #: customfieldlistdialog.cpp:230
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "%zu 항목이 발견 및 교체되었습니다!"
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
-msgstr ""
+msgstr "대량 내용 업데이트(&B) "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
-msgstr ""
+msgstr "청구서"
 
 #: db/DB_Table_Category_V1.h:114
 msgid "Telephone"
-msgstr ""
+msgstr "통신비"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Electricity"
-msgstr ""
+msgstr "전기요금"
 
 #: db/DB_Table_Category_V1.h:116 db/DB_Table_Category_V1.h:130
 msgid "Gas"
-msgstr ""
+msgstr "가스요금"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Internet"
-msgstr ""
+msgstr "인터넷요금"
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Rent"
-msgstr ""
+msgstr "임대료"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Cable TV"
-msgstr ""
+msgstr "케이블TV요금"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Water"
-msgstr ""
+msgstr "수도요금"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Food"
-msgstr ""
+msgstr "음식"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Groceries"
-msgstr ""
+msgstr "식료품"
 
 #: db/DB_Table_Category_V1.h:123
 msgid "Dining out"
-msgstr ""
+msgstr "외식비"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Leisure"
-msgstr ""
+msgstr "여가"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Movies"
-msgstr ""
+msgstr "영화"
 
 #: db/DB_Table_Category_V1.h:126
 msgid "Video Rental"
-msgstr ""
+msgstr "비디오 대여"
 
 #: db/DB_Table_Category_V1.h:127
 msgid "Magazines"
-msgstr ""
+msgstr "잡지"
 
 #: db/DB_Table_Category_V1.h:128 model/Model_Asset.cpp:43
 msgid "Automobile"
-msgstr ""
+msgstr "자동차"
 
 #: db/DB_Table_Category_V1.h:129
 msgid "Maintenance"
-msgstr ""
+msgstr "정비"
 
 #: db/DB_Table_Category_V1.h:131
 msgid "Parking"
-msgstr ""
+msgstr "주차비"
 
 #: db/DB_Table_Category_V1.h:132
 msgid "Registration"
-msgstr ""
+msgstr "등록비"
 
 #: db/DB_Table_Category_V1.h:133
 msgid "Education"
-msgstr ""
+msgstr "교육비"
 
 #: db/DB_Table_Category_V1.h:134
 msgid "Books"
-msgstr ""
+msgstr "도서구입비"
 
 #: db/DB_Table_Category_V1.h:135
 msgid "Tuition"
-msgstr ""
+msgstr "수업료"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
-msgstr ""
+msgstr "생활용품"
 
 #: db/DB_Table_Category_V1.h:138
 msgid "Clothing"
-msgstr ""
+msgstr "의류비"
 
 #: db/DB_Table_Category_V1.h:139
 msgid "Furnishing"
-msgstr ""
+msgstr "가구"
 
 #: db/DB_Table_Category_V1.h:141
 msgid "Healthcare"
-msgstr ""
+msgstr "건강관리"
 
 #: db/DB_Table_Category_V1.h:142 db/DB_Table_Category_V1.h:151
 msgid "Health"
-msgstr ""
+msgstr "헬스"
 
 #: db/DB_Table_Category_V1.h:143
 msgid "Dental"
-msgstr ""
+msgstr "치과"
 
 #: db/DB_Table_Category_V1.h:144
 msgid "Eyecare"
-msgstr ""
+msgstr "안과"
 
 #: db/DB_Table_Category_V1.h:145
 msgid "Physician"
@@ -2528,63 +2532,63 @@ msgstr ""
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:506 mmchecking_list.cpp:1053
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:42
 msgid "Follow Up"
-msgstr ""
+msgstr "따르기"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
 msgid "Duplicate"
-msgstr ""
+msgstr "복제"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:1493
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "조정된 항목을 모두 제외"
 
 #: filtertransdialog.cpp:484 transactionsupdatedialog.cpp:117
 msgid "Specify"
-msgstr ""
+msgstr "조건"
 
 #: filtertransdialog.cpp:510
 msgid "Period Range"
-msgstr ""
+msgstr "기간 범위"
 
 #: filtertransdialog.cpp:522 reports/mmDateRange.cpp:35
 msgid "Date Range"
-msgstr ""
+msgstr "날짜 범위"
 
 #: filtertransdialog.cpp:558 filtertransdialog.cpp:1485
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "모든 하위 분류 포함"
 
 #: filtertransdialog.cpp:585 filtertransdialog.cpp:1355
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:282
 #: model/Model_Billsdeposits.cpp:32 model/Model_Checking.cpp:32
 #: reports/forecast.cpp:81
 msgid "Withdrawal"
-msgstr ""
+msgstr "지출"
 
 #: filtertransdialog.cpp:587 filtertransdialog.cpp:1356
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:284
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:33
 #: reports/forecast.cpp:79
 msgid "Deposit"
-msgstr ""
+msgstr "수입"
 
 #: filtertransdialog.cpp:589 filtertransdialog.cpp:802
 #: filtertransdialog.cpp:1359
 msgid "Transfer Out"
-msgstr ""
+msgstr "출금"
 
 #: filtertransdialog.cpp:591 filtertransdialog.cpp:1357
 msgid "Transfer In"
-msgstr ""
+msgstr "입금"
 
 #: filtertransdialog.cpp:603
 msgid "Amount Range"
-msgstr ""
+msgstr "금액 범위"
 
 #: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "거래 내용에서 찾을 문자열 입력"
 
 #: filtertransdialog.cpp:640 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
@@ -2592,159 +2596,161 @@ msgstr ""
 
 #: filtertransdialog.cpp:657
 msgid "Presentation Options"
-msgstr ""
+msgstr "출력물 옵션"
 
 #: filtertransdialog.cpp:671 filtertransdialog.cpp:982
 #: filtertransdialog.cpp:1582
 msgid "Hide Columns"
-msgstr ""
+msgstr "열 숨기기"
 
 #: filtertransdialog.cpp:682 filtertransdialog.cpp:988
 #: filtertransdialog.cpp:1595
 msgid "Group By"
-msgstr ""
+msgstr "그룹화"
 
 #: filtertransdialog.cpp:691
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "보고서를 그룹화할 항목을 지정합니다"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "분할 결합"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "분할 거래를 단일 행으로 표시"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
-msgstr ""
+msgstr "설정"
 
 #: filtertransdialog.cpp:720
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "활성 값을 현재 프리셋 선택 항목에 저장"
 
 #: filtertransdialog.cpp:725
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "현재 프리셋 선택을 삭제합니다"
 
 #: filtertransdialog.cpp:894 filtertransdialog.cpp:927
 #: filtertransdialog.cpp:1306 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "빈 값"
 
 #: filtertransdialog.cpp:911
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "처음 사용하는 거래처 이름입니다.\n"
+"계속 사용하시겠습니까?\n"
+"%s"
 
 #: filtertransdialog.cpp:1046
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "보고서 열 숨기기"
 
 #: filtertransdialog.cpp:1180 mmframe.cpp:1235
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "선택한 항목이 삭제됩니다"
 
 #: filtertransdialog.cpp:1181 import_export/univcsvdialog.cpp:2019
 #: mmframe.cpp:1236
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "계속하시겠습니까?"
 
 #: filtertransdialog.cpp:1182 mmframe.cpp:1237
 msgid "Settings item deletion"
-msgstr ""
+msgstr "설정 항목 삭제"
 
 #: filtertransdialog.cpp:1321
 msgid "Filtering Details: "
-msgstr ""
+msgstr "필터링 상세: "
 
 #: filtertransdialog.cpp:1421
 msgid "Label"
-msgstr ""
+msgstr "라벨"
 
 #: filtertransdialog.cpp:1441
 msgid "Since"
-msgstr ""
+msgstr "시작일"
 
 #: filtertransdialog.cpp:1443
 msgid "Before"
-msgstr ""
+msgstr "이전"
 
 #: filtertransdialog.cpp:1455
 msgid "Period"
-msgstr ""
+msgstr "기간"
 
 #: filtertransdialog.cpp:1523
 msgid "Amount Min."
-msgstr ""
+msgstr "최소 금액"
 
 #: filtertransdialog.cpp:1531
 msgid "Amount Max."
-msgstr ""
+msgstr "최대 금액"
 
 #: filtertransdialog.cpp:1740 mmframe.cpp:1263
 msgid "Setting Name"
-msgstr ""
+msgstr "프리셋 이름 설정"
 
 #: filtertransdialog.cpp:1740 mmframe.cpp:1263
 msgid "Please Enter"
-msgstr ""
+msgstr "입력하세요"
 
 #: filtertransdialog.cpp:1763 import_export/univcsvdialog.cpp:1066
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "이미 사용 중인 이름입니다"
 
 #: filtertransdialog.cpp:1763 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
 #: images_list.cpp:494 import_export/qif_import_gui.cpp:759
 #: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1066
 msgid "Warning"
-msgstr ""
+msgstr "경고"
 
 #: filtertransdialog.cpp:1781
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "필터 설정이 변경되었습니다"
 
 #: filtertransdialog.cpp:1782
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "계속하기 전에 저장하시겠습니까?"
 
 #: filtertransdialog.cpp:1783
 msgid "Please confirm"
-msgstr ""
+msgstr "확인해 주세요"
 
 #: filtertransdialog.cpp:1800 reports/reportbase.cpp:240
 msgid "Choose Accounts"
-msgstr ""
+msgstr "계정 선택"
 
 #: filtertransdialog.h:130
 msgid "Transaction Filter"
-msgstr ""
+msgstr "거래 필터"
 
 #: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2845
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
-msgstr ""
+msgstr "보고서"
 
 #: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:518
 msgid "&Import"
-msgstr ""
+msgstr "가져오기(&I)"
 
 #: general_report_manager.cpp:392
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "보고서 파일을 찾아 로드합니다."
 
 #: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:520
 msgid "&Export"
-msgstr ""
+msgstr "내보내기(&E)"
 
 #: general_report_manager.cpp:396
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "보고서를 새 파일로 내보냅니다."
 
 #: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
@@ -2956,79 +2962,79 @@ msgstr ""
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "파일을 생성할 수 없습니다."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "파일을 저장할 수 없습니다."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "내보내기 오류"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "파일이 Excel XML 스프레드시트 2003 형식이 아닙니다."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "구문 분석 오류"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "워크시트를 찾을 수 없습니다."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "표"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "테이블을 찾을 수 없습니다."
 
 #: import_export/parsers.cpp:216 mmframereport.cpp:132
 msgid "Transactions"
-msgstr ""
+msgstr "거래"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1551
 msgid "Export as QIF file"
-msgstr ""
+msgstr "QIF 파일로 내보내기"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1550
 msgid "Export as JSON file"
-msgstr ""
+msgstr "JSON 파일로 내보내기"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
 #: mmframe.cpp:1546
 msgid "Export as CSV file"
-msgstr ""
+msgstr "CSV 파일로 내보내기"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
-msgstr ""
+msgstr "매개변수"
 
 #: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:226
 msgid "Log"
-msgstr ""
+msgstr "로그"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:152 mmframe.cpp:3398 mmframe.cpp:3402
 #: mmframe.cpp:3419 mmframe.cpp:3423
 msgid "Accounts"
-msgstr ""
+msgstr "계정"
 
 #: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:203
 msgid "From Date"
