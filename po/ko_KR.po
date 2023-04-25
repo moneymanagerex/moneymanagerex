@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 10:13\n"
+"PO-Revision-Date: 2023-04-25 11:14\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -70,31 +70,31 @@ msgstr "확인(&O)"
 
 #: accountdialog.cpp:95 mmframe.cpp:1647
 msgid "Edit Account"
-msgstr "계좌 편집"
+msgstr "계정 편집"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "계좌 이름"
+msgstr "계정 이름:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "계좌의 이름을 입력하세요. 계좌 이름은 언제든지 수정할 수 있습니다."
+msgstr "계정의 이름을 입력하세요. 계정 이름은 언제든지 수정할 수 있습니다."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
-msgstr "계좌 종류:"
+msgstr "계정 유형:"
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:129
 msgid "Specify the type of account to be created."
-msgstr "생성될 계좌의 종류를 선택하세요."
+msgstr "생성될 계정의 유형을 선택하세요."
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr "계좌 상태:"
+msgstr "계정 상태:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "이 계좌가 휴면상태인지 아닌지를 선택하세요. 휴면계좌는 잔액 계산이나 보고서 등에 포함되지 않습니다."
+msgstr "이 계정이 휴면상태인지 아닌지를 선택하세요. 휴면계정은 잔액 계산이나 보고서 등에 포함되지 않습니다."
 
 #: accountdialog.cpp:149
 #, c-format
@@ -103,7 +103,7 @@ msgstr "최초 잔액: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
-msgstr "이 계좌에 최초 잔액을 입력하세요."
+msgstr "이 계정에 최초 잔액을 입력하세요."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
@@ -5073,7 +5073,7 @@ msgstr "새로운 소식"
 
 #: mmframe.cpp:1916
 msgid "Download rates"
-msgstr ""
+msgstr "환율 내려받기"
 
 #: mmframe.cpp:1919
 msgid "Toggle Fullscreen\tF11"
@@ -5916,44 +5916,45 @@ msgstr "사용지 이름"
 
 #: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
-msgstr ""
+msgstr "사용자 이름은 데이터베이스의 제목으로 사용됩니다."
 
 #: optionsettingsgeneral.cpp:114
 msgid "Specify the date format for display"
-msgstr ""
+msgstr "표시할 날짜 형식 지정"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr ""
+msgstr "날짜 형식 예제:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
-msgstr ""
+msgstr "기준 통화"
 
 #: optionsettingsgeneral.cpp:133 wizard_newdb.cpp:91
 msgid "Set Currency"
-msgstr ""
+msgstr "통화 설정"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "'통화 대화 상자'를 사용하여 데이터베이스 기본 통화를 설정합니다"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "로케일에서 파생된 형식입니다.\n"
+"'통화 대화 상자 | 편집'을 통해 형식을 수동으로 설정하려면 공백으로 두십시오"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
-msgstr ""
+msgstr "통화 이력 사용"
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "매일 한 개의 통화 이력을 사용하려면 선택하고, 고정 환율을 사용하려면 선택 취소합니다"
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
-msgstr ""
+msgstr "회계 연도"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
@@ -5961,39 +5962,39 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "회계연도 시작일 지정"
 
 #: optionsettingsgeneral.cpp:197
 msgid "Start Month"
-msgstr ""
+msgstr "시작 월"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "회계연도 시작 월 지정"
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Pasting Transactions"
-msgstr ""
+msgstr "거래를 붙여넣을 때 원래 날짜 사용"
 
 #: optionsettingsgeneral.cpp:216
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr ""
+msgstr "거래 복사/붙여넣기 시 원본 거래 날짜 또는 현재 날짜를 사용할지 선택"
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "거래 복제 시 원래 날짜 사용"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "거래 복제 시 원래 거래 날짜 또는 현재 날짜를 사용할지 선택"
 
 #: optionsettingsgeneral.cpp:224
 msgid "Use Transaction Sound"
-msgstr ""
+msgstr "거래 사운드 효과 사용"
 
 #: optionsettingsgeneral.cpp:226
 msgid "Select whether to use sounds when entering transactions"
-msgstr ""
+msgstr "거래 입력 시 사운드 효과 사용 여부 선택"
 
 #: optionsettingsgeneral.cpp:307
 msgid "Locale"
@@ -6002,7 +6003,7 @@ msgstr ""
 #: optionsettingsgeneral.cpp:335
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "통화 값 예제: %s"
 
 #: optionsettingsgeneral.cpp:340
 msgid "Bad locale name"
@@ -6010,157 +6011,159 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
-msgstr ""
+msgstr "주가 정보 웹 페이지"
 
 #: optionsettingsmisc.cpp:81
 msgid "Clear the field to Reset the value to system default."
-msgstr ""
+msgstr "필드의 값을 시스템 기본값으로 재설정합니다."
 
 #: optionsettingsmisc.cpp:85
 msgid "Share Precision"
-msgstr ""
+msgstr "주가 정밀도"
 
 #: optionsettingsmisc.cpp:90
 msgid "Set the precision for Share prices"
-msgstr ""
+msgstr "주가에 대한 정밀도 설정"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "시작할 때 새로 고침"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
-msgstr ""
+msgstr "새 거래 대화 상자 설정"
 
 #: optionsettingsmisc.cpp:108
 msgid "Last Used"
-msgstr ""
+msgstr "마지막에 사용됨"
 
 #: optionsettingsmisc.cpp:120
 msgid "Unused"
-msgstr ""
+msgstr "사용되지 않음"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
-msgstr ""
+msgstr "거래처에 마지막으로 사용됨"
 
 #: optionsettingsmisc.cpp:127
 msgid "Use default for payee"
-msgstr ""
+msgstr "거래처에 기본값 사용"
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "네"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "아니오"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
-msgstr ""
+msgstr "기본 날짜"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Payee"
-msgstr ""
+msgstr "기본 거래처"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "기본 입금/출금 분류"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "기본 이체 분류"
 
 #: optionsettingsmisc.cpp:160
 msgid "Default Status"
-msgstr ""
+msgstr "기본 상태"
 
 #: optionsettingsmisc.cpp:162
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "대량 거래"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database Options"
-msgstr ""
+msgstr "데이터베이스 옵션"
 
 #: optionsettingsmisc.cpp:180
 msgid "Create a new backup when MMEX Start"
-msgstr ""
+msgstr "MOMEX 시작 시 새 백업 생성"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "MMEX가 시작되면,\n"
+"백업 데이터베이스 생성: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
-msgstr ""
+msgstr "종료 시 데이터베이스 백업"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "MMEX가 종료되고 데이터베이스가 변경되면,\n"
+"백업 데이터베이스 생성 또는 업데이트: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "최대 백업 파일 수 지정"
 
 #: optionsettingsmisc.cpp:200
 msgid "Max Files"
-msgstr ""
+msgstr "최대 파일"
 
 #: optionsettingsmisc.cpp:208
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "삭제된 거래를 보관할 일 수를 지정합니다. 이보다 오래된 거래는 데이터베이스가 열리면 자동으로 삭제됩니다."
 
 #: optionsettingsmisc.cpp:210
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "삭제된 거래를 보관할 기간(일)"
 
 #: optionsettingsmisc.cpp:217
 msgid "CSV Settings"
-msgstr ""
+msgstr "CSV 설정"
 
 #: optionsettingsmisc.cpp:225
 msgid "Delimiter"
-msgstr ""
+msgstr "구분 기호"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp Settings"
-msgstr ""
+msgstr "WebApp 설정"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "최종 슬래시 없이 Web App URL 지정"
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Web App GUID 지정"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
-msgstr ""
+msgstr "WebApp에 대한 자세한 정보"
 
 #: optionsettingsnet.cpp:93
 msgid "Proxy Settings"
-msgstr ""
+msgstr "프록시 설정"
 
 #: optionsettingsnet.cpp:101
 msgid "Specify the proxy IP address"
-msgstr ""
+msgstr "프록시 IP 주소 지정"
 
 #: optionsettingsnet.cpp:107
 msgid "Specify proxy port number"
-msgstr ""
+msgstr "프록시 포트 번호 지정"
 
 #: optionsettingsnet.cpp:111
 msgid "Proxy"
@@ -6357,31 +6360,31 @@ msgstr ""
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "도구모음 아이콘 크기"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "내비게이션 아이콘 크기"
 
 #: optionsettingsview.cpp:309
 msgid "Others Icon Size"
-msgstr ""
+msgstr "다른 아이콘 크기"
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
-msgstr ""
+msgstr "거래처 편집"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "거래처 이름을 입력합니다. 이 이름은 언제든지 변경할 수 있습니다."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
-msgstr ""
+msgstr "숨김"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "거래처가 새 거래의 거래처 목록에 표시되지 않고 숨겨야 하는지 여부를 나타냅니다"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
@@ -6932,7 +6935,7 @@ msgstr ""
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "비율"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
