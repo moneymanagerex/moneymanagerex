@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 15:42\n"
+"PO-Revision-Date: 2023-04-25 17:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3987,63 +3987,63 @@ msgstr "Dica da Lista de Categorias: Pressionando uma combinação de 2 teclas a
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Dica para acabar com as dívidas: Primeiro pague-se a si próprio 10 porcento. Coloque-os numa conta que seja difícil de tocar. Certifique-se de que é uma tarefa árdua tirar o dinheiro (tem que se deslocar ao banco), por isso só o utilizará conscientemente e para grandes despesas."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr ""
+msgstr "Dica para acabar com as dívidas: Estabeleça um fundo de emergência."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr ""
+msgstr "Dica para acabar com as dívidas: Pare de contrair novas dívidas."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Dica para acabar com as dívidas: Crie um orçamento realista para as suas despesas."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
+msgstr "Dica para acabar com as dívidas: Gaste menos do que aufere."
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr ""
+msgstr "Dica para acabar com as dívidas: Pague mais do que o mínimo."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr ""
+msgstr "Antes de ir a uma loja comprar algo: reserve algum tempo para fazer uma lista do que realmente precisa. Na loja compre o que estiver na sua lista."
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
+msgstr "Utilizando o MMEX é possível seguir investimentos em ações/fundos de investimento."
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr ""
+msgstr "Para criar novas ações será necessário inserir o Símbolo, Número de participações e Preços de compra."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
+msgstr "Exemplo da ação do Reino Unido (HSBC HLDG): HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Antes de começar a investir, assegure um fundo de emergência totalmente financiado."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Antes de começar a investir, conheça o seu fluxo de caixa (tem um orçamento)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Antes de começar a investir, liquide as dívidas de consumo — especialmente os cartões de crédito."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Antes de começar a investir, torne o valor líquido a sua métrica de rastreamento primário."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Antes de começar a investir, clarifique os seus objetivos e prioridades."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
@@ -4291,7 +4291,7 @@ msgstr "Adicionar uma nova Transacção"
 
 #: mmcheckingpanel.cpp:436
 msgid "Edit selected transaction"
-msgstr ""
+msgstr "Editar a transação selecionada"
 
 #: mmcheckingpanel.cpp:444
 msgid "Duplicate selected transaction"
@@ -4299,11 +4299,11 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:461
 msgid "&Restore "
-msgstr ""
+msgstr "&Restaurar "
 
 #: mmcheckingpanel.cpp:462
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Restaurar a transação selecionada"
 
 #: mmcheckingpanel.cpp:477
 msgid "Enter any string to find it in the nearest transaction data"
