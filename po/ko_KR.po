@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-24 16:09\n"
+"PO-Revision-Date: 2023-04-25 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -453,44 +453,44 @@ msgstr "자산 종류"
 
 #: assetdialog.cpp:196
 msgid "Select type of asset"
-msgstr ""
+msgstr "자산 유형 선택"
 
 #: assetdialog.cpp:200 import_export/qif_import_gui.cpp:109
 #: maincurrencydialog.cpp:283
 msgid "Value"
-msgstr ""
+msgstr "값"
 
 #: assetdialog.cpp:207
 msgid "Enter the current value of the asset"
-msgstr ""
+msgstr "자산의 현재 가치를 입력하세요"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
-msgstr ""
+msgstr "감가상각"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
-msgstr ""
+msgstr "자산의 가치가 시간에 따라 변경되는지 여부를 지정합니다"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
-msgstr ""
+msgstr "감가상각률"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "자산의 가치가 매년 변경되는 비율을 백분율로 입력합니다"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "이 자산의 첨부 파일 관리"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
-msgstr ""
+msgstr "자산과 관련된 내용 입력"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "새 거래 세부 정보"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
@@ -502,18 +502,19 @@ msgstr "&취소 "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:438
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "유효하지 않은 거래"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "자산 계정을 찾을 수 없습니다.\n\n"
+"생성하시겠습니까?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:187
 #: import_export/qif_export.cpp:606 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:265 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:524 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
@@ -525,57 +526,57 @@ msgstr ""
 #: reports/transactions.cpp:194 transactionsupdatedialog.cpp:148
 #: transdialog.cpp:451 usertransactionpanel.cpp:129 webappdialog.cpp:141
 msgid "Type"
-msgstr ""
+msgstr "거래 유형"
 
 #: assetspanel.cpp:63 mmhomepage.cpp:586 reports/summarystocks.cpp:121
 msgid "Initial Value"
-msgstr ""
+msgstr "초기 값"
 
 #: assetspanel.cpp:64 mmhomepage.cpp:587 reports/summarystocks.cpp:126
 #: stockdialog.cpp:255
 msgid "Current Value"
-msgstr ""
+msgstr "현재 값"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "새 자산(&N)..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "자산 복제(&U)..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "자산 거래 추가(&A)..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "자산 거래 보기(&V)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "자산 계정 열기(&O)..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "자산 편집(&E)..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "자산 삭제(&D)..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1435 mmframe.cpp:1455 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "첨부 파일 구성(&O)..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
-msgstr ""
+msgstr "자산을 삭제하시겠습니까?"
 
 #: assetspanel.cpp:207
 msgid "Confirm Asset Deletion"
-msgstr ""
+msgstr "자산 삭제 확인"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -586,7 +587,7 @@ msgstr ""
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:238
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
-msgstr ""
+msgstr "자산"
 
 #: assetspanel.cpp:430 assetspanel.cpp:707 assetspanel.cpp:724
 #: filtertransdialog.cpp:503 filtertransdialog.cpp:809
@@ -594,7 +595,7 @@ msgstr ""
 #: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
 #: mmframe.cpp:1479
 msgid "All"
-msgstr ""
+msgstr "전체"
 
 #: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:431
 #: stockspanel.cpp:132
@@ -611,62 +612,62 @@ msgstr ""
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "자산 거래 보기"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:297
 #: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:542
 #: mmcheckingpanel.cpp:435 payeedialog.cpp:862 stockspanel.cpp:146
 msgid "&Edit "
-msgstr ""
+msgstr "편집(&E) "
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:307 budgetyeardialog.cpp:103
 #: categdialog.cpp:331 maincurrencydialog.cpp:307 mmchecking_list.cpp:494
 #: mmcheckingpanel.cpp:427 stockdialog.cpp:334 stockspanel.cpp:151
 msgid "&Delete "
-msgstr ""
+msgstr "삭제(&D) "
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
-msgstr ""
+msgstr "자산 삭제"
 
 #: assetspanel.cpp:499 billsdepositspanel.cpp:325 mmcheckingpanel.cpp:452
 #: stockspanel.cpp:164
 msgid "Open attachments"
-msgstr ""
+msgstr "첨부 파일 열기"
 
 #: assetspanel.cpp:506 assetspanel.cpp:507 categdialog.cpp:312
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:474 payeedialog.cpp:578
 msgid "Search"
-msgstr ""
+msgstr "검색"
 
 #: assetspanel.cpp:510
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "관련 자산을 찾으려면 문자열을 입력하십시오"
 
 #: assetspanel.cpp:511 filtertransdialog.cpp:636 mmcheckingpanel.cpp:478
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "팁: 와일드카드 문자(?, *)를 검색 조건에 사용할 수 있습니다."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:637 mmcheckingpanel.cpp:479
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "물음표(?)를 사용하여 단일 문자를 찾습니다. 예를 들어 s?t는 'sat' 및 'set'을 찾습니다."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:638 mmcheckingpanel.cpp:480
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "별표(*)를 사용하여 여러개의 문자를 찾습니다. 예를 들어 s*d는 'sad' 및 'started'를 찾습니다."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:639 mmcheckingpanel.cpp:481
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "문장 중간에 있는 문자열을 찾으려면 시작 부분 별표(*)를 사용합니다."
 
 #: assetspanel.cpp:585 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "합계: %s"
 
 #: assetspanel.cpp:668
 #, c-format
@@ -680,15 +681,15 @@ msgstr ""
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
-msgstr ""
+msgstr "자산 관리"
 
 #: assetspanel.cpp:805
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "계정 \t 날짜\t   값\n\n"
 
 #: attachmentdialog.cpp:56 general_report_manager.cpp:443
 msgid "Description"
-msgstr ""
+msgstr "설명"
 
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:197
@@ -1125,7 +1126,7 @@ msgstr ""
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:746
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:578
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "사용자 지정 필드 창 표시/숨기기"
 
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:242
 #: transdialog.cpp:251
