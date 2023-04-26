@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-19 18:49\n"
+"PO-Revision-Date: 2023-04-24 08:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -941,7 +941,7 @@ msgstr "Vencimento"
 
 #: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
 msgid "Repeats"
-msgstr "Frequência"
+msgstr "Se repete"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
@@ -1284,7 +1284,7 @@ msgstr "Periodicidade"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr "Período de Recorrência"
+msgstr "Repetições"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
@@ -1917,6 +1917,7 @@ msgid "View Since Statement Date"
 msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:207
+msgctxt "https://github.com/moneymanagerex/moneymanagerex/blob/master/src/constants.cpp#L207-210"
 msgid "ALL"
 msgstr "TODOS"
 
