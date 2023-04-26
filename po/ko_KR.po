@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 06:52\n"
+"PO-Revision-Date: 2023-04-26 07:49\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "MMEX 사용에 대한 데이터를 익명으로 보낼 수 있습니다.
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:276
 #: transactionsupdatedialog.cpp:248 transdialog.cpp:574 wizard_update.cpp:216
 msgid "&OK "
-msgstr "확인(&O)"
+msgstr "확인(&O) "
 
 #: accountdialog.cpp:95 mmframe.cpp:1647
 msgid "Edit Account"
@@ -474,7 +474,7 @@ msgstr "자산의 가치가 시간에 따라 변경되는지 여부를 지정합
 
 #: assetdialog.cpp:220
 msgid "% Rate"
-msgstr "감가상각률"
+msgstr "감가상각률(%)"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
