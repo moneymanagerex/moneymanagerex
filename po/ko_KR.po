@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 02:31\n"
+"PO-Revision-Date: 2023-04-26 03:32\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -4981,47 +4981,47 @@ msgstr "커피 사주기(&B)"
 
 #: mmframe.cpp:1809
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "주요 개발자에게 커피 사주기"
 
 #: mmframe.cpp:1812
 msgid "&Community"
-msgstr ""
+msgstr "커뮤니티(&C)"
 
 #: mmframe.cpp:1813
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "MMEX 커뮤니티와 지속적으로 연락하기"
 
 #: mmframe.cpp:1835
 msgid "Report a &Bug"
-msgstr ""
+msgstr "버그 보고(&B)"
 
 #: mmframe.cpp:1836
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "응용 프로그램 오류를 개발자에게 보고합니다"
 
 #: mmframe.cpp:1840
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "진단 보기(&D)"
 
 #: mmframe.cpp:1841
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "개발자에게 정보를 제공하는 데 도움이 됩니다"
 
 #: mmframe.cpp:1845
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "앱 시작 대화 상자 표시(&S)"
 
 #: mmframe.cpp:1845
 msgid "App Start Dialog"
-msgstr ""
+msgstr "앱 시작 대화 상자"
 
 #: mmframe.cpp:1849
 msgid "Check for &Updates"
-msgstr ""
+msgstr "업데이트 확인(&U)"
 
 #: mmframe.cpp:1849
 msgid "Check For Updates"
-msgstr ""
+msgstr "업데이트 확인"
 
 #: mmframe.cpp:1853 mmframe.cpp:1925
 msgid "&About"
@@ -5468,23 +5468,23 @@ msgstr ""
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
-msgstr ""
+msgstr "지출"
 
 #: mmhomepage.cpp:442 reports/incexpenses.cpp:117
 msgid "Difference:"
-msgstr ""
+msgstr "차이:"
 
 #: mmhomepage.cpp:446
 msgid "Income/Expenses"
-msgstr ""
+msgstr "수입/지출"
 
 #: mmhomepage.cpp:470
 msgid "Transaction Statistics"
-msgstr ""
+msgstr "거래 통계"
 
 #: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
-msgstr ""
+msgstr "거래에 대한 후속 조치: "
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
@@ -5700,195 +5700,197 @@ msgstr "지시"
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
-msgstr ""
+msgstr "암호화"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "문자열"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "정수형"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "10진수"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "부울형"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:141
 msgid "Time"
-msgstr ""
+msgstr "시간"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "단일 선택"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "다중 선택"
 
 #: model/Model_Payee.cpp:81
 msgid "Payee Error"
-msgstr ""
+msgstr "거래처 오류"
 
 #: model/Model_Report.cpp:86
 msgid "Begin date:"
-msgstr ""
+msgstr "시작 날짜:"
 
 #: model/Model_Report.cpp:88
 msgid "End date:"
-msgstr ""
+msgstr "종료 날짜:"
 
 #: model/Model_Report.cpp:240
 msgid "Template is empty"
-msgstr ""
+msgstr "템플릿이 비어 있음"
 
 #: model/Model_Report.cpp:254
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
+msgstr "SQL 스크립트:\n"
+"%s \n"
+"데이터베이스를 수정합니다! 중단되었습니다!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
-msgstr ""
+msgstr "주식 오류"
 
 #: optiondialog.cpp:37
 msgid "General"
-msgstr ""
+msgstr "일반"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View Options"
-msgstr ""
+msgstr "옵션 보기"
 
 #: optiondialog.cpp:37 webappdialog.cpp:146
 msgid "Attachments"
-msgstr ""
+msgstr "첨부 파일"
 
 #: optiondialog.cpp:37
 msgid "Network"
-msgstr ""
+msgstr "네트워크"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "적용(&A) "
 
 #: optiondialog.cpp:219
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s 페이지가 저장되었습니다."
 
 #: optionsettingsattachment.cpp:65
 msgid "Attachments Settings"
-msgstr ""
+msgstr "첨부 파일 설정"
 
 #: optionsettingsattachment.cpp:72
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "%s 전용 첨부 파일 보관 폴더:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "모든 OS 유형(Win, Mac, Unix)에는 첨부 폴더가 있습니다"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
-msgstr ""
+msgstr "폴더 찾아보기"
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
-msgstr ""
+msgstr "실제 경로:"
 
 #: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "범례(위 경로의 시작 부분에서 변수로 사용할 수 있음)"
 
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : 사용자 문서 디렉터리"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : 사용자 프로필 폴더"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : .MMB 데이터베이스 파일의 폴더"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : MMEX 응용 프로그램 데이터 폴더"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
-msgstr ""
+msgstr "기타 OS 폴더 "
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
-msgstr ""
+msgstr "설정되지 않음"
 
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Windows 폴더: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Mac 폴더: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Unix 폴더: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
-msgstr ""
+msgstr "첨부 파일의 하위 폴더 만들기 및 사용"
 
 #: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
-msgstr ""
+msgstr "가져오기 후 파일 삭제"
 
 #: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "첨부 파일 보관에서 가져온 후 파일을 삭제하려면 선택합니다"
 
 #: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
-msgstr ""
+msgstr "첨부 파일을 제거할 때 삭제 대신 파일 이동"
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr ""
+msgstr "첨부 파일을 제거할 때 파일을 삭제하지 않고 'Deleted' 하위 폴더로 이동하려면 선택합니다"
 
 #: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "거래내역을 복제할 때 첨부 파일도 복제합니다"
 
 #: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "새 거래를 복제하거나 붙여넣을 때 첨부 파일을 복사하려면 선택합니다"
 
 #: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "첨부 파일 보관으로 설정할 폴더 선택"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "첨부 파일 폴더에 쓸 수 없습니다!"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
-msgstr ""
+msgstr "첨부 파일 폴더"
 
 #: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
@@ -6340,27 +6342,27 @@ msgstr ""
 
 #: optionsettingsview.cpp:276
 msgid "Huge"
-msgstr ""
+msgstr "아주 크게"
 
 #: optionsettingsview.cpp:278
 msgid "Font size"
-msgstr ""
+msgstr "글꼴 크기"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
-msgstr ""
+msgstr "작게 (16 px)"
 
 #: optionsettingsview.cpp:291
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "보통 (24 px)"
 
 #: optionsettingsview.cpp:292
 msgid "Large (32 px)"
-msgstr ""
+msgstr "크게 (32 px)"
 
 #: optionsettingsview.cpp:293
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "더 크게 (48 px)"
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
@@ -6392,192 +6394,194 @@ msgstr "거래처가 새 거래의 거래처 목록에 표시되지 않고 숨�
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
-msgstr ""
+msgstr "마지막으로 사용한 범주"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Default Category"
-msgstr ""
+msgstr "기본 분류"
 
 #: payeedialog.cpp:99
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "이 거래처에 기본값으로 사용할 범주"
 
 #: payeedialog.cpp:103 payeedialog.cpp:458
 msgid "Reference"
-msgstr ""
+msgstr "참조"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "거래처에 사용할 참조(예: 은행 계좌 번호)"
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
-msgstr ""
+msgstr "웹사이트"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "거래처와 연관된 웹 사이트 URL"
 
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "가져올 때\n"
+"패턴 일치"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "가져올 때 이 거래처와 일치하는 문자열을 입력합니다.\n"
+"패턴은 여기에 입력된 순서대로 테스트됩니다."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
-msgstr ""
+msgstr "동일한 이름의 거래처가 존재합니다"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "패턴 일치"
 
 #: payeedialog.cpp:720
 msgid "Payee in use."
-msgstr ""
+msgstr "사용 중인 거래처입니다."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "팁: 재배치 명령을 사용하여, 이 거래처를 사용하는 모든 거래를 다른 거래처로 변경합니다"
 
 #: payeedialog.cpp:725
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "도구 → 재배치 → 거래처"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "거래처 구성: 삭제 오류"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "이 거래처를 사용하는 삭제된 거래가 있습니다."
 
 #: payeedialog.cpp:732
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "거래처를 삭제하면 삭제된 거래에서도 자동으로 제거됩니다."
 
 #: payeedialog.cpp:734
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "거래처 삭제 확인"
 
 #: payeedialog.cpp:855
 msgid "Define Category"
-msgstr ""
+msgstr "범주 정의"
 
 #: payeedialog.cpp:868
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "첨부 파일 구성(&O)"
 
 #: payeedialog.cpp:872
 msgid "Relocate Payee"
-msgstr ""
+msgstr "거래처 재배치"
 
 #: relocatecategorydialog.cpp:90
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "원본 범주를 대상 범주로 재배치"
 
 #: relocatecategorydialog.cpp:103
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "재배치 후 원본 범주 삭제(하위 범주가 없는 경우)"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:114
 msgid "Relocate:"
-msgstr ""
+msgstr "재배치:"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 msgid "to:"
-msgstr ""
+msgstr "대상:"
 
 #: relocatecategorydialog.cpp:134 relocatepayeedialog.cpp:133
 msgid "Relocate"
-msgstr ""
+msgstr "재배치"
 
 #: relocatecategorydialog.cpp:154 relocatepayeedialog.cpp:153
 #, c-format
 msgid "From %s to %s"
-msgstr ""
+msgstr "%s에서 %s까지"
 
 #: relocatecategorydialog.cpp:158 relocatepayeedialog.cpp:157
 msgid "Please Confirm:"
-msgstr ""
+msgstr "확인 요청:"
 
 #: relocatecategorydialog.cpp:159
 msgid "Category Relocation Confirmation"
-msgstr ""
+msgstr "범주 재배치 확인"
 
 #: relocatecategorydialog.cpp:256 relocatepayeedialog.cpp:210
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr ""
+msgstr "거래내역에서 발견된 레코드: %i"
 
 #: relocatecategorydialog.cpp:257
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr ""
+msgstr "분할 거래내역에서 발견된 레코드: %i"
 
 #: relocatecategorydialog.cpp:258 relocatepayeedialog.cpp:211
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "반복 거래내역에서 발견된 레코드: %i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "반복 분할 거래내역에서 발견된 레코드: %i"
 
 #: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr ""
+msgstr "기본 거래처 범주로 발견된 레코드: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found in budget: %i"
-msgstr ""
+msgstr "예산에서 발견된 레코드: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category Dialog"
-msgstr ""
+msgstr "범주 재배치 대화 상자"
 
 #: relocatepayeedialog.cpp:89
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "모든 원본 거래처를 대상 거래처로 재배치"
 
 #: relocatepayeedialog.cpp:101
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "재배치 후 원본 거래처 삭제"
 
 #: relocatepayeedialog.cpp:158
 msgid "Payee Relocation Confirmation"
-msgstr ""
+msgstr "거래처 재배치 확인"
 
 #: relocatepayeedialog.h:42
 msgid "Relocate Payee Dialog"
-msgstr ""
+msgstr "거래처 재배치 대화상자"
 
 #: reports/budget.cpp:90
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "회계연도: %s - %i"
 
 #: reports/budget.cpp:100
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "연도: %i 월: %s"
 
 #: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Categories for %s"
-msgstr ""
+msgstr "%s에 대한 예산 범주"
 
 #: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr ""
+msgstr "%s에 대한 예산 범주 요약"
 
 #: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
@@ -6793,149 +6797,149 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:82
 msgid "Today"
-msgstr ""
+msgstr "오늘"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
-msgstr ""
+msgstr "이번 달 1일부터 오늘까지"
 
 #: reports/mmDateRange.cpp:100
 msgid "Last Month"
-msgstr ""
+msgstr "지난 달"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
-msgstr ""
+msgstr "지난 30일"
 
 #: reports/mmDateRange.cpp:120
 msgid "Last 90 Days"
-msgstr ""
+msgstr "지난 90일"
 
 #: reports/mmDateRange.cpp:134
 msgid "Last 3 Months"
-msgstr ""
+msgstr "지난 3개월"
 
 #: reports/mmDateRange.cpp:148
 msgid "Last 12 Months"
-msgstr ""
+msgstr "지난 12개월"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
-msgstr ""
+msgstr "올해"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:693
 msgid "Current Year to Date"
-msgstr ""
+msgstr "올해 초부터 오늘까지"
 
 #: reports/mmDateRange.cpp:185
 msgid "Last Year"
-msgstr ""
+msgstr "작년"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
-msgstr ""
+msgstr "당기 회계 연도"
 
 #: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
-msgstr ""
+msgstr "당기 회계 연도부터 오늘까지"
 
 #: reports/mmDateRange.cpp:236
 msgid "Last Financial Year"
-msgstr ""
+msgstr "지난 회계 연도"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
-msgstr ""
+msgstr "사용자 정의"
 
 #: reports/mmDateRange.cpp:274
 msgid "Last 365 Days"
-msgstr ""
+msgstr "지난 365일"
 
 #: reports/mmDateRange.cpp:280
 msgid "Since Today"
-msgstr ""
+msgstr "오늘 부터"
 
 #: reports/mmDateRange.cpp:289
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "30일전부터"
 
 #: reports/mmDateRange.cpp:298
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "90일전부터"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "올해 초부터"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "회계연도 시작부터"
 
 #: reports/myusage.cpp:26
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "MMEX 사용 빈도"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr ""
+msgstr "거래처 보고서"
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
-msgstr ""
+msgstr "모든 계정"
 
 #: reports/reportbase.cpp:213 reports/transactions.cpp:125
 msgid "Accounts: "
-msgstr ""
+msgstr "계정: "
 
 #: reports/summary.cpp:133
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "계정 잔액 - %s"
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
-msgstr ""
+msgstr "월간 보고서"
 
 #: reports/summary.cpp:133
 msgid "Yearly Report"
-msgstr ""
+msgstr "연간 보고서"
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
-msgstr ""
+msgstr "주식 요약"
 
 #: reports/summarystocks.cpp:118 stockdialog.cpp:422 stocks_list.cpp:90
 msgid "Symbol"
-msgstr ""
+msgstr "기호"
 
 #: reports/summarystocks.cpp:119
 msgid "Purchase Date"
-msgstr ""
+msgstr "구매 날짜"
 
 #: reports/summarystocks.cpp:120
 msgid "Quantity"
-msgstr ""
+msgstr "수량"
 
 #: reports/summarystocks.cpp:122
 msgid "Current Price"
-msgstr ""
+msgstr "현재 가격"
 
 #: reports/summarystocks.cpp:123 sharetransactiondialog.cpp:267
 #: stocks_list.cpp:99 stockspanel.cpp:216
 msgid "Commission"
-msgstr ""
+msgstr "수수료"
 
 #: reports/summarystocks.cpp:124 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "실현 손익"
 
 #: reports/summarystocks.cpp:125 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "미실현 손익"
 
 #: reports/summarystocks.cpp:246
 msgid "Stocks Performance Charts"
-msgstr ""
+msgstr "주식 실적 차트"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
@@ -6947,59 +6951,59 @@ msgstr "모든 거래: 출금, 입금 및 이체"
 
 #: reports/transactions.cpp:410
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "이체를 제외한 모든 거래 내역"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "주식 거래 추가"
 
 #: sharetransactiondialog.cpp:213 stockdialog.cpp:182
 msgid "Stock Investment Details"
-msgstr ""
+msgstr "주식 투자 상세 정보"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
 msgid "Company Name"
-msgstr ""
+msgstr "회사 이름"
 
 #: sharetransactiondialog.cpp:227 stockdialog.cpp:196
 msgid "Enter the stock company name"
-msgstr ""
+msgstr "회사 이름을 입력하세요"
 
 #: sharetransactiondialog.cpp:230 stockdialog.cpp:199
 msgid "Stock Symbol"
-msgstr ""
+msgstr "주식 종목"
 
 #: sharetransactiondialog.cpp:237 stockdialog.cpp:206
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
+msgstr "주식 종목을 입력합니다. (선택사항) 거래소 포함. 예: 삼성전자우.코스피"
 
 #: sharetransactiondialog.cpp:240
 msgid "Share Number"
-msgstr ""
+msgstr "종목 코드"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter number of shares held"
-msgstr ""
+msgstr "보유 주식 수를 입력하세요"
 
 #: sharetransactiondialog.cpp:253
 msgid "Share Price"
-msgstr ""
+msgstr "주가"
 
 #: sharetransactiondialog.cpp:261
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "단일 주식 단위에 대한 현재 주가 입력"
 
 #: sharetransactiondialog.cpp:273
 msgid "Enter any commission paid"
-msgstr ""
+msgstr "지급된 수수료 입력"
 
 #: sharetransactiondialog.cpp:279
 msgid "Share Lot"
-msgstr ""
+msgstr "주식 단위"
 
 #: sharetransactiondialog.cpp:286
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "이 주식에 대한 매매 단위"
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"
@@ -7212,88 +7216,88 @@ msgstr ""
 
 #: stockdialog.cpp:714
 msgid "1 Day"
-msgstr ""
+msgstr "1일"
 
 #: stockdialog.cpp:716
 msgid "1 Week"
-msgstr ""
+msgstr "1주"
 
 #: stockdialog.cpp:724
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "주식 이력 간격 지정"
 
 #: stockdialog.cpp:739 stockdialog.cpp:743
 msgid "Stock history not found!"
-msgstr ""
+msgstr "주식 이력을 찾을 수 없습니다!"
 
 #: stockdialog.cpp:740 stockdialog.cpp:852
 msgid "Stock History Error"
-msgstr ""
+msgstr "주식 이력 오류"
 
 #: stocks_list.cpp:91
 msgid "Share Total"
-msgstr ""
+msgstr "주식 합계"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "평균 주가"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "총 비용"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
-msgstr ""
+msgstr "현재 총 값"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "신규 주식 투자(&N)..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "주식 거래 추가(&A)..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr ""
+msgstr "주식 거래 보기(&V)"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "주식 투자 편집(&E)..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "주식 투자 삭제(&D)..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
-msgstr ""
+msgstr "주가 정보 웹 페이지(&W)"
 
 #: stocks_list.cpp:277
 msgid "Do you really want to delete the stock investment?"
-msgstr ""
+msgstr "주식 투자를 삭제하시겠습니까?"
 
 #: stocks_list.cpp:278
 msgid "Confirm Stock Investment Deletion"
-msgstr ""
+msgstr "주식 투자 삭제 확인"
 
 #: stocks_list.cpp:299
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "거래를 %s에서 이동하는 중"
 
 #: stockspanel.cpp:137
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "주식 거래 추가"
 
 #: stockspanel.cpp:142 stockspanel.cpp:207
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "주식 거래 보기"
 
 #: stockspanel.cpp:152
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "주식 투자 삭제"
 
 #: stockspanel.cpp:156
 msgid "&Move"
