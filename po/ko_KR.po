@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 05:55\n"
+"PO-Revision-Date: 2023-04-26 06:52\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "라이선스"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr "개인정보처리방침"
+msgstr "개인정보"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
@@ -94,12 +94,12 @@ msgstr "계정 상태:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "이 계정이 휴면상태인지 아닌지를 선택하세요. 휴면계정은 잔액 계산이나 보고서 등에 포함되지 않습니다."
+msgstr "이 계정이 휴면 상태인지 선택하세요. 휴면 계정은 잔액 계산이나 보고서 등에 포함되지 않습니다."
 
 #: accountdialog.cpp:149
 #, c-format
 msgid "Initial Balance: %s"
-msgstr "최초 잔액: %s"
+msgstr "초기 잔액: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
@@ -146,7 +146,7 @@ msgstr "자주 사용하는 계정인지 여부를 선택합니다. 계정 표�
 #: transactionsupdatedialog.cpp:223 transdialog.cpp:550
 #: usertransactionpanel.cpp:195 webappdialog.cpp:145
 msgid "Notes"
-msgstr "비고"
+msgstr "노트"
 
 #: accountdialog.cpp:186
 msgid "Enter user notes and details about this account."
@@ -168,7 +168,7 @@ msgstr "계좌 번호:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
-msgstr "계좌 번호를 입력하세요."
+msgstr "이 계정과 연결된 계좌 번호를 입력합니다."
 
 #: accountdialog.cpp:203
 msgid "Held At:"
@@ -180,7 +180,7 @@ msgstr "해당 금융기관의 이름을 입력하세요."
 
 #: accountdialog.cpp:208
 msgid "Website:"
-msgstr "홈페이지:"
+msgstr "웹사이트:"
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
@@ -196,7 +196,7 @@ msgstr "해당 금융기관의 연락처를 입력하세요."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
-msgstr "접근정보"
+msgstr "접근정보:"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
@@ -232,7 +232,7 @@ msgstr "최소 잔액:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "계정 잔액 하한입니다. 사용하지 않으려면 0으로 설정"
+msgstr "계정 잔액이 하한입니다. 0은 사용하지 않음"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -248,7 +248,7 @@ msgstr "계정에 대한 신용 한도입니다. 사용하지 않으려면 0으�
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr "이자율:"
+msgstr "이율:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
@@ -328,7 +328,7 @@ msgstr "새 데이터베이스(&N)"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "시작하기 위해 새 데이터베이스를 생성하세요."
+msgstr "시작하려면 새 데이터베이스 파일을 만드세요"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
@@ -336,11 +336,11 @@ msgstr "기존 데이터 베이스 열기(&E)"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "이미 생성된 mmb 확장자를 가진 데이터베이스 파일을 열기"
+msgstr "확장자(*.mmb)로 이미 생성된 데이터베이스 파일을 열기"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr "사용자 인터페이스 언어(&L):"
+msgstr "사용자 인터페이스 언어(&L)"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
@@ -348,7 +348,7 @@ msgstr "사용자 인터페이스 언어 변경"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr "사용자 메뉴얼(&U)"
+msgstr "사용자 설명서(&U)"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -445,7 +445,7 @@ msgstr "날짜"
 
 #: assetdialog.cpp:188
 msgid "Specify the date of purchase of asset"
-msgstr "자산을 구매한 날짜를 입력하세요."
+msgstr "자산 구입 날짜를 지정합니다"
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
@@ -498,7 +498,7 @@ msgstr "거래 상세 정보 편집"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
-msgstr "&취소 "
+msgstr "취소(&C) "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:438
 msgid "Invalid Transaction"
@@ -4893,7 +4893,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1780
 msgid "Visit us on Facebook"
-msgstr "페이스북 페이지에 방문하기"
+msgstr "Facebook으로 방문하기"
 
 #: mmframe.cpp:1782
 msgid "&Crowdin"
@@ -5460,11 +5460,11 @@ msgstr "합계:"
 #: mmhomepage.cpp:162
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr ""
+msgstr "상위 출금: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "계정/거래처"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -6671,134 +6671,134 @@ msgstr "<a href='%s'>Slack</a> 커뮤니티에 가입하세요. 여기에서 질
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "유용한 정보는 <a href='%s'>효과적으로 버그를 보고하는 방법</a>을 읽어보십시오."
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "문제를 설명할 수 있는 이름을 제시하십시오."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "문제를 재현하는 단계를 포함하고 필요한 경우 스크린샷을 첨부합니다."
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "다음 링크를 클릭하기 전에 이미 <a href='%s'>GitHub</a>에 로그인했는지 확인하십시오."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "마지막으로 웹 브라우저에서 열린 GitHub <a href='%s'>온라인 양식</a>을 사용하여 버그를 보고하십시오."
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "새 버그 보고서를 제출하기 전에 다음 지침을 따르십시오:"
 
 #: reports/cashflow.cpp:257 reports/cashflow.cpp:385
 msgid "months"
-msgstr ""
+msgstr "개월"
 
 #: reports/cashflow.cpp:288 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
-msgstr ""
+msgstr "차이"
 
 #: reports/cashflow.cpp:289 reports/cashflow.cpp:420
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "누적 차이"
 
 #: reports/cashflow.cpp:344
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "현금 흐름 - 일별"
 
 #: reports/cashflow.cpp:358
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "현금 흐름 - 월별"
 
 #: reports/cashflow.cpp:372
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "현금 흐름 - 거래별"
 
 #: reports/categexp.cpp:283
 msgid "Total Expenses:"
-msgstr ""
+msgstr "총 지출:"
 
 #: reports/categexp.cpp:284
 msgid "Total Income:"
-msgstr ""
+msgstr "총 수입:"
 
 #: reports/categexp.cpp:286 reports/summarystocks.cpp:186
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
-msgstr ""
+msgstr "총 계:"
 
 #: reports/categexp.cpp:315
 msgid "Categories Summary"
-msgstr ""
+msgstr "범주 요약"
 
 #: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
-msgstr ""
+msgstr "범주 수입/지출"
 
 #: reports/categexp.cpp:464
 msgid "Overall"
-msgstr ""
+msgstr "종합"
 
 #: reports/categexp.cpp:495 reports/payee.cpp:137
 msgid "Incomes"
-msgstr ""
+msgstr "수입"
 
 #: reports/forecast.cpp:30
 msgid "Forecast"
-msgstr ""
+msgstr "예상"
 
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "보고서 생성됨 %s %s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %s till %s"
-msgstr ""
+msgstr "%s에서 %s까지"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
-msgstr ""
+msgstr "미래"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:249
 msgid "Over Time"
-msgstr ""
+msgstr "시간 경과"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"
-msgstr ""
+msgstr "사용자가 지정한 시작일"
 
 #: reports/htmlbuilder.cpp:257
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "향후 거래가 무시되었습니다"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "수입 대 지출 요약"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
-msgstr ""
+msgstr "수입:"
 
 #: reports/incexpenses.cpp:116
 msgid "Expenses:"
-msgstr ""
+msgstr "지출:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "월 소득 vs 지출"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "누적"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -7228,7 +7228,7 @@ msgstr "주식 이력의 유형 빈도 지정"
 
 #: stockdialog.cpp:701 stockdialog.cpp:725
 msgid "Stock History Update"
-msgstr ""
+msgstr "주식 이력 업데이트"
 
 #: stockdialog.cpp:714
 msgid "1 Day"
@@ -7440,200 +7440,201 @@ msgstr "거래 복제"
 
 #: transdialog.cpp:524
 msgid "Populate Transaction #"
-msgstr ""
+msgstr "거래 채우기 #"
 
 #: transdialog.cpp:545 usertransactionpanel.cpp:199
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "이 거래의 첨부 파일 구성"
 
 #: transdialog.cpp:745
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "이 거래는 계정 제한을 초과합니다.\n\n"
+"계속하시겠습니까?"
 
 #: transdialog.cpp:1141
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "두 계정의 통화는 다르지만 고급 거래를 정의하지 않았습니다. 이거 맞는건가요?"
 
 #: transdialog.cpp:1142
 msgid "Currencies are different"
-msgstr ""
+msgstr "통화가 다릅니다"
 
 #: transdialog.cpp:1229
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "돈을 인출한 계정을 지정합니다"
 
 #: transdialog.cpp:1230
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "돈을 입금할 계정을 지정합니다"
 
 #: transdialog.cpp:1231
 msgid "Specify the transfer amount in the From Account."
-msgstr ""
+msgstr "출금 계정에서 이체 금액을 지정합니다."
 
 #: transdialog.cpp:1239
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "거래에 대한 계정을 지정합니다"
 
 #: transdialog.cpp:1241
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "거래 대상을 지정합니다"
 
 #: transdialog.cpp:1247 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
-msgstr ""
+msgstr "거래 날짜를 지정합니다"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "거래 대화 상자"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
-msgstr ""
+msgstr "계정 선택"
 
 #: usertransactionpanel.cpp:106
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "이 거래를 포함할 연결된 계정을 지정합니다"
 
 #: usertransactionpanel.cpp:118
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "이 계정에서 자금을 인출하거나 이 계정에 자금을 입금합니다."
 
 #: usertransactionpanel.cpp:120
 msgid "&Transfer"
-msgstr ""
+msgstr "이체(&T)"
 
 #: usertransactionpanel.cpp:123
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
-msgstr ""
+msgstr "이 계정에서 또는 이 계정으로 자금이 이체됩니다. 지출/수입으로 설정하려면 이 항목을 선택 취소합니다."
 
 #: usertransactionpanel.cpp:146
 msgid "Currency used for this transaction."
-msgstr ""
+msgstr "이 거래에 사용되는 통화입니다."
 
 #: usertransactionpanel.cpp:165
 msgid "Specify the status for this transaction"
-msgstr ""
+msgstr "이 거래 상태를 지정합니다"
 
 #: usertransactionpanel.cpp:172
 msgid "Select Payee"
-msgstr ""
+msgstr "거래처 선택"
 
 #: usertransactionpanel.cpp:173
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr ""
+msgstr "이 거래에 대한 개인, 회사 또는 조직을 지정합니다."
 
 #: usertransactionpanel.cpp:179
 msgid "Select Category"
-msgstr ""
+msgstr "범주 선택"
 
 #: usertransactionpanel.cpp:181
 msgid "Specify the category for this transaction"
-msgstr ""
+msgstr "이 거래의 범주 지정"
 
 #: usertransactionpanel.cpp:189
 msgid "Specify a transaction code or associated check details"
-msgstr ""
+msgstr "추적 코드 또는 관련 검사 상세 정보 지정"
 
 #: usertransactionpanel.cpp:299
 msgid "Select the required account"
-msgstr ""
+msgstr "필요한 계정을 선택"
 
 #: usertransactionpanel.cpp:300
 msgid "Account Selection"
-msgstr ""
+msgstr "계정 선택"
 
 #: util.cpp:287
 msgid "Jan"
-msgstr ""
+msgstr "1월"
 
 #: util.cpp:287
 msgid "Feb"
-msgstr ""
+msgstr "2월"
 
 #: util.cpp:287
 msgid "Mar"
-msgstr ""
+msgstr "3월"
 
 #: util.cpp:288
 msgid "Apr"
-msgstr ""
+msgstr "4월"
 
 #: util.cpp:288 util.h:181
 msgid "May"
-msgstr ""
+msgstr "5월"
 
 #: util.cpp:288
 msgid "Jun"
-msgstr ""
+msgstr "6월"
 
 #: util.cpp:289
 msgid "Jul"
-msgstr ""
+msgstr "7월"
 
 #: util.cpp:289
 msgid "Aug"
-msgstr ""
+msgstr "8월"
 
 #: util.cpp:289
 msgid "Sep"
-msgstr ""
+msgstr "9월"
 
 #: util.cpp:290
 msgid "Oct"
-msgstr ""
+msgstr "10월"
 
 #: util.cpp:290
 msgid "Nov"
-msgstr ""
+msgstr "11월"
 
 #: util.cpp:290
 msgid "Dec"
-msgstr ""
+msgstr "12월"
 
 #: util.cpp:295
 msgid "Sunday"
-msgstr ""
+msgstr "일요일"
 
 #: util.cpp:295
 msgid "Monday"
-msgstr ""
+msgstr "월요일"
 
 #: util.cpp:295
 msgid "Tuesday"
-msgstr ""
+msgstr "화요일"
 
 #: util.cpp:296
 msgid "Wednesday"
-msgstr ""
+msgstr "수요일"
 
 #: util.cpp:296
 msgid "Thursday"
-msgstr ""
+msgstr "목요일"
 
 #: util.cpp:296
 msgid "Friday"
-msgstr ""
+msgstr "금요일"
 
 #: util.cpp:297
 msgid "Saturday"
-msgstr ""
+msgstr "토요일"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "일"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "월"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "화"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "수"
 
 #: util.cpp:303
 msgid "Thu"
@@ -8047,7 +8048,7 @@ msgstr "현재 버전: %s"
 #: wizard_update.cpp:209
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr "이 창을 다음에 %s를 시작할 때 보여줍니다."
+msgstr "다음에 %s가 시작될 때 이 창 표시"
 
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "Unable to check for updates!"
