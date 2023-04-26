@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 00:30\n"
+"PO-Revision-Date: 2023-04-26 01:33\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -729,12 +729,12 @@ msgstr "첨부 파일 구성 | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "첨부 파일 구성 | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "첨부 파일 구성 | 신규 %s"
 
 #: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:572
 msgid "Other tools"
@@ -897,7 +897,7 @@ msgstr "(x)일 동안"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "(x) 개월 후"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
@@ -913,7 +913,7 @@ msgstr "매월 (마지막 날)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "월별 (마지막 영업일)"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:303
 msgid "Duplicate Recurring Transaction"
@@ -945,11 +945,11 @@ msgstr "반복"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "지정된 값을 사용하여 마지막 발생 날짜로 돌아가기"
 
 #: billsdepositsdialog.cpp:447
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "지정된 값으로 다음 발생 날짜를 앞당깁니다"
 
 #: billsdepositsdialog.cpp:458 billsdepositsdialog.cpp:1256
 msgid "Payments Left"
@@ -977,7 +977,7 @@ msgstr "거래 상세 정보"
 
 #: billsdepositsdialog.cpp:493
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "사용자가 이 거래를 입력하도록 요청받은 날짜를 지정하십시오"
 
 #: billsdepositsdialog.cpp:494 billsdepositspanel.cpp:132
 msgid "Date Paid"
@@ -1261,22 +1261,22 @@ msgstr "이체 금액을 지정합니다"
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "%s일 후"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "%s개월 후"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "%s일마다"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "%s개월마다"
 
 #: billsdepositspanel.cpp:140 budgetingpanel.cpp:301 reports/myusage.cpp:163
 msgid "Frequency"
@@ -1357,11 +1357,11 @@ msgstr "반복 거래 삭제(&D)..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
-msgstr ""
+msgstr "수동"
 
 #: billsdepositspanel.cpp:491
 msgid "Automated"
-msgstr ""
+msgstr "자동화"
 
 #: billsdepositspanel.cpp:495
 msgid "Suggested"
@@ -1371,7 +1371,7 @@ msgstr "제안됨"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "%d일 남음"
 
 #: billsdepositspanel.cpp:540 billsdepositspanel.cpp:547
 #: billsdepositspanel.cpp:554 billsdepositspanel.cpp:607
@@ -1413,7 +1413,7 @@ msgstr "하위 분류: "
 
 #: budgetentrydialog.cpp:123 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr ""
+msgstr "추정:"
 
 #: budgetentrydialog.cpp:125 reports/budgetingperf.cpp:343
 msgid "Actual:"
@@ -1472,40 +1472,40 @@ msgstr "계획된 예산 분류 보기"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
-msgstr ""
+msgstr "수입 예산 범주 보기"
 
 #: budgetingpanel.cpp:56
 msgid "View Expense Budget Categories"
-msgstr ""
+msgstr "지출 예산 범주 보기"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "예산 범주 요약 보기"
 
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "회계연도: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "연도: %s"
 
 #: budgetingpanel.cpp:182
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "월: %s"
 
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s 시작 날짜: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "%s에 대한 예산 설정"
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
@@ -1513,7 +1513,7 @@ msgstr "수입: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
-msgstr ""
+msgstr "추정: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
@@ -1571,7 +1571,7 @@ msgstr "예산 상세 정보"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "예산 월 항목"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
@@ -1585,24 +1585,25 @@ msgstr "필요한 연도를 지정합니다.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "예산 월"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "필요한 월을 지정합니다.\n"
+"스핀 버튼을 사용하여 월을 늘리거나 줄입니다."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "기본 예산 사용"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "예산의 기준이 되는 연도 지정"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
-msgstr ""
+msgstr "예산 연도가 이미 존재합니다"
 
 #: categdialog.cpp:197 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
@@ -1610,7 +1611,7 @@ msgstr "분류"
 
 #: categdialog.cpp:268 mmframe.cpp:1685
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "모든 범주를 다른 범주로 재할당"
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
@@ -1896,11 +1897,11 @@ msgstr "현재년 보기"
 
 #: constants.cpp:202
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "현재 회계 연도 보기"
 
 #: constants.cpp:203
 msgid "View Last Year"
-msgstr ""
+msgstr "작년 보기"
 
 #: constants.cpp:204
 msgid "View Last Financial Year"
