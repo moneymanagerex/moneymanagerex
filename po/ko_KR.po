@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 14:14\n"
+"PO-Revision-Date: 2023-04-26 15:38\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -5593,7 +5593,7 @@ msgstr "현금"
 
 #: model/Model_Account.cpp:34
 msgid "Checking"
-msgstr "확인 중"
+msgstr "자유입출금"
 
 #: model/Model_Account.cpp:35
 msgid "Credit Card"
