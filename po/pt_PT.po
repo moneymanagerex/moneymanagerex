@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 19:47\n"
+"PO-Revision-Date: 2023-04-26 19:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2594,7 +2594,7 @@ msgstr "Transferência a débito"
 
 #: filtertransdialog.cpp:591 filtertransdialog.cpp:1357
 msgid "Transfer In"
-msgstr ""
+msgstr "Transferência a Crédito"
 
 #: filtertransdialog.cpp:603
 msgid "Amount Range"
@@ -2602,29 +2602,29 @@ msgstr "Intervalo de Valores"
 
 #: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Digite qualquer texto para o encontrar nas notas das transações"
 
 #: filtertransdialog.cpp:640 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Use regex: para pesquisar com expressões regulares."
 
 #: filtertransdialog.cpp:657
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opções de Apresentação"
 
 #: filtertransdialog.cpp:671 filtertransdialog.cpp:982
 #: filtertransdialog.cpp:1582
 msgid "Hide Columns"
-msgstr ""
+msgstr "Ocultar Colunas"
 
 #: filtertransdialog.cpp:682 filtertransdialog.cpp:988
 #: filtertransdialog.cpp:1595
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar Por"
 
 #: filtertransdialog.cpp:691
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Indique como deve ser agrupado o relatório"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
