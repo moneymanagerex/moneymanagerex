@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 13:35\n"
+"PO-Revision-Date: 2023-04-26 00:30\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -672,12 +672,13 @@ msgstr "합계: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "값 변화: %s %s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "이 자산에는 자체 계정이 없습니다\n\n"
+"이 자산에 대해 여러 번의 거래는 수행하지 않는 것이 좋습니다."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
