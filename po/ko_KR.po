@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 07:49\n"
+"PO-Revision-Date: 2023-04-26 14:14\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1060,7 +1060,7 @@ msgstr "입금 계정"
 #: transdialog.cpp:247 transdialog.cpp:494 usertransactionpanel.cpp:171
 #: webappdialog.cpp:142
 msgid "Payee"
-msgstr "거래처"
+msgstr "수취인"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:953
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
@@ -1077,7 +1077,7 @@ msgstr "거래처"
 #: transdialog.cpp:506 transdialog.cpp:628 usertransactionpanel.cpp:178
 #: webappdialog.cpp:143
 msgid "Category"
-msgstr "분류"
+msgstr "범주"
 
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:512
 #: transdialog.cpp:1211
@@ -1147,13 +1147,13 @@ msgstr "연체금처럼 보입니다"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr "이전에 이 거래처 이름을 사용한 적이 없습니다. 이름이 정확합니까?\n"
+msgstr "이전에 이 수취인 이름을 사용한 적이 없습니다. 이름이 정확합니까?\n"
 "%s"
 
 #: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:653
 msgid "Confirm payee name"
-msgstr "거래처 이름 확인"
+msgstr "수취인 이름 확인"
 
 #: billsdepositsdialog.cpp:953 billsdepositsdialog.cpp:1282
 #: filtertransdialog.cpp:868 filtertransdialog.cpp:878
@@ -1405,11 +1405,11 @@ msgstr "예산 연도 입력"
 
 #: budgetentrydialog.cpp:109
 msgid "Category: "
-msgstr "분류: "
+msgstr "범주: "
 
 #: budgetentrydialog.cpp:116
 msgid "Sub Category: "
-msgstr "하위 분류: "
+msgstr "하위 범주: "
 
 #: budgetentrydialog.cpp:123 reports/budgetingperf.cpp:342
 msgid "Estimated:"
@@ -1436,7 +1436,7 @@ msgstr "수입"
 
 #: budgetentrydialog.cpp:137
 msgid "Specify whether this category is an income or an expense category"
-msgstr "분류가 수입 유형인지, 지출 유형인지 지정하세요"
+msgstr "범주가 수입 유형인지, 지출 유형인지 지정하세요"
 
 #: budgetentrydialog.cpp:139
 msgid "Frequency:"
@@ -1452,7 +1452,7 @@ msgstr "금액:"
 
 #: budgetentrydialog.cpp:152
 msgid "Enter the amount budgeted for this category."
-msgstr "이 분류에 대한 예산 금액을 입력합니다."
+msgstr "이 범주에 대한 예산 금액을 입력합니다."
 
 #: budgetentrydialog.cpp:159 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
@@ -1631,7 +1631,7 @@ msgstr "숨겨진 모든 분류 표시"
 
 #: categdialog.cpp:325
 msgid "Add a new category"
-msgstr "새 분류 추가"
+msgstr "새 범주 추가"
 
 #: categdialog.cpp:329
 msgid "Edit the name of an existing category"
@@ -1663,15 +1663,15 @@ msgstr "분류 구성: 잘못된 이름"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
-msgstr "새 분류 이름을 입력하세요:"
+msgstr "새 범주 이름을 입력하세요:"
 
 #: categdialog.cpp:365
 msgid "Add Category"
-msgstr "분류 추가"
+msgstr "범주 추가"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Category with same name exists for this parent"
-msgstr "상위 항목에 동일한 이름을 가진 분류가 있습니다"
+msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organise Categories: Adding Error"
@@ -1679,15 +1679,15 @@ msgstr "분류 구성: 오류 추가 중"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr "하위 분류는 이미 같은 이름의 하위 분류가 있는 분류로 이동할 수 없습니다. 이동하기 전에 이름을 바꾸는 것이 좋습니다."
+msgstr "하위 범주는 이미 같은 이름의 하위 범주가 있는 범주로 이동할 수 없습니다. 이동하기 전에 이름을 바꾸는 것이 좋습니다."
 
 #: categdialog.cpp:438
 msgid "Sub Category with same name exists"
-msgstr "동일한 이름을 가진 하위 분류가 있습니다"
+msgstr "동일한 이름을 가진 하위 범주가 있습니다"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
-msgstr "대상 분류가 하위 분류입니다"
+msgstr "대상 범주가 하위 범주입니다"
 
 #: categdialog.cpp:457
 #, c-format
@@ -1710,21 +1710,21 @@ msgstr "이동 확인"
 
 #: categdialog.cpp:477
 msgid "Category in use."
-msgstr "사용 중인 분류입니다."
+msgstr "사용 중인 범주입니다."
 
 #: categdialog.cpp:477
 msgid "Sub-Category in use."
-msgstr "사용 중인 하위 분류입니다."
+msgstr "사용 중인 하위 범주입니다."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "팁: 재배치 명령을 사용하여 이 분류를 사용하는 모든 거래를 다른 분류로 변경합니다"
+msgstr "팁: 재배치 명령을 사용하여 이 범주를 사용하는 모든 거래를 다른 범주로 변경합니다"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "팁: 재배치 명령을 사용하여 이 하위 분류를 사용하는 모든 거래를 다른 하위 분류로 변경합니다"
+msgstr "팁: 재배치 명령을 사용하여 이 하위 범주를 사용하는 모든 거래를 다른 하위 범주로 변경합니다"
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
@@ -1736,11 +1736,11 @@ msgstr "분류 구성: 삭제 오류"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr "이 분류 또는 하위 분류 중 하나를 사용하는 삭제된 거래가 있습니다."
+msgstr "이 범주 또는 하위 범주 중 하나를 사용하는 삭제된 거래가 있습니다."
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr "분류를 삭제하면 삭제된 거래도 자동으로 제거됩니다."
+msgstr "범주를 삭제하면 삭제된 거래도 자동으로 제거됩니다."
 
 #: categdialog.cpp:512 payeedialog.cpp:733
 msgid "Do you wish to continue ?"
@@ -1748,7 +1748,7 @@ msgstr "계속하시겠습니까?"
 
 #: categdialog.cpp:513
 msgid "Confirm Category Deletion"
-msgstr "분류 삭제 확인"
+msgstr "범주 삭제 확인"
 
 #: categdialog.cpp:622
 #, c-format
@@ -1757,11 +1757,11 @@ msgstr "'%s'에 대한 새 이름 입력"
 
 #: categdialog.cpp:623
 msgid "Edit Category"
-msgstr "분류 편집"
+msgstr "범주 편집"
 
 #: categdialog.cpp:634
 msgid "Category with same name exists for the parent"
-msgstr "상위 항목에 동일한 이름을 가진 분류가 있습니다"
+msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:635
 msgid "Organise Categories: Editing Error"
@@ -1769,7 +1769,7 @@ msgstr "분류 구성: 편집 오류"
 
 #: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
-msgstr "분류 재배치가 완료되었습니다."
+msgstr "범주 재배치가 완료되었습니다."
 
 #: categdialog.cpp:693 mmframe.cpp:3565 mmframe.cpp:3580 payeedialog.cpp:813
 #, c-format
@@ -1778,7 +1778,7 @@ msgstr "데이터베이스에서 레코드가 업데이트되었습니다: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3567
 msgid "Category Relocation Result"
-msgstr "분류 재배치 결과"
+msgstr "범주 재배치 결과"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -1790,15 +1790,15 @@ msgstr "모든 분류 보이기"
 
 #: categdialog.cpp:800
 msgid "Hide Selected Category"
-msgstr "선택된 분류 숨기기"
+msgstr "선택된 범주 숨기기"
 
 #: categdialog.cpp:801
 msgid "Unhide Selected Category"
-msgstr "선택된 분류 보이기"
+msgstr "선택된 범주 보이기"
 
 #: categdialog.cpp:803 payeedialog.cpp:857
 msgid "Remove Category"
-msgstr "분류 제거"
+msgstr "범주 제거"
 
 #: categdialog.cpp:806
 msgid "Clear Settings"
@@ -2651,7 +2651,7 @@ msgstr "빈 값"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr "처음 사용하는 거래처 이름입니다.\n"
+msgstr "처음 사용하는 수취인 이름입니다.\n"
 "계속 사용하시겠습니까?\n"
 "%s"
 
@@ -3165,11 +3165,11 @@ msgstr "계정 이름 대신 계정 번호 사용"
 
 #: import_export/qif_import_gui.cpp:300
 msgid "Include payee field in notes"
-msgstr "내용에 거래처 필드 포함"
+msgstr "내용에 수취인 필드 포함"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr "거래처 패턴 일치"
+msgstr "수취인 패턴 일치"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
@@ -3242,7 +3242,7 @@ msgstr "모든 거래내역을 가져오시겠습니까?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
-msgstr "누락된 계정, 거래처 및 범주가 모두 생성됩니다."
+msgstr "누락된 계정, 수취인 및 범주가 모두 생성됩니다."
 
 #: import_export/qif_import_gui.cpp:1043
 msgid "Confirm Import"
@@ -3258,7 +3258,7 @@ msgstr "계정을 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1054
 msgid "Importing Payees"
-msgstr "거래처를 가져오는 중"
+msgstr "수취인을 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1058
 msgid "Importing Categories"
@@ -3306,7 +3306,7 @@ msgstr "%s이(가) %s과(와) 일치"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
-msgstr "거래처가 누락되었거나 잘못되었습니다"
+msgstr "수취인이 누락되었거나 잘못되었습니다"
 
 #: import_export/qif_import_gui.cpp:1285
 msgid "Date format or date mask is incorrect"
@@ -3336,11 +3336,11 @@ msgstr "추가된 계정: %s"
 #: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1211
 #, c-format
 msgid "Added payee: %s"
-msgstr "추가된 거래처: %s"
+msgstr "추가된 수취인: %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
-msgstr "하위 분류"
+msgstr "하위 범주"
 
 #: import_export/univcsvdialog.cpp:111
 msgid "Don't Care"
@@ -3853,11 +3853,11 @@ msgstr "%s 항목이 잘못되었습니다"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Please select an existing category"
-msgstr "기존 분류를 선택하십시오"
+msgstr "기존 범주를 선택하십시오"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Invalid Category"
-msgstr "잘못된 분류"
+msgstr "잘못된 범주"
 
 #: mmSimpleDialogs.cpp:795
 msgid "File name is empty."
@@ -3885,12 +3885,12 @@ msgstr "버튼을 활성화하면 계정을 선택할 수 있는 선택 상자�
 
 #: mmSimpleDialogs.cpp:822
 msgid "Invalid Payee"
-msgstr "잘못된 거래처"
+msgstr "잘못된 수취인"
 
 #: mmSimpleDialogs.cpp:823
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "새 거래처를 입력하십시오,\n"
+msgstr "새 수취인을 입력하십시오,\n"
 "또는 드롭다운 버튼을 사용하여 선택합니다."
 
 #: mmSimpleDialogs.cpp:831 mmSimpleDialogs.cpp:843
@@ -4677,7 +4677,7 @@ msgstr "예산 총액에 이체 거래 포함"
 
 #: mmframe.cpp:1582
 msgid "Budget Category Report: with &Summaries"
-msgstr "예산 분류 보고서: 요약 포함(&S)"
+msgstr "예산 범주 보고서: 요약 포함(&S)"
 
 #: mmframe.cpp:1582
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4741,11 +4741,11 @@ msgstr "분류 구성(&C)..."
 
 #: mmframe.cpp:1676
 msgid "Organize &Payees..."
-msgstr "거래처 구성(&P)..."
+msgstr "수취인 구성(&P)..."
 
 #: mmframe.cpp:1676 mmframe.cpp:1894 payeedialog.cpp:496
 msgid "Organize Payees"
-msgstr "거래처 구성"
+msgstr "수취인 구성"
 
 #: mmframe.cpp:1680
 msgid "Organize Curre&ncy..."
@@ -4761,11 +4761,11 @@ msgstr "분류(&C)..."
 
 #: mmframe.cpp:1687
 msgid "&Payees..."
-msgstr "거래처(&P)..."
+msgstr "수취인(&P)..."
 
 #: mmframe.cpp:1688
 msgid "Reassign all payees to another payee"
-msgstr "모든 거래처를 다른 거래처에 재할당"
+msgstr "모든 수취인을 다른 수취인에 재할당"
 
 #: mmframe.cpp:1690
 msgid "Re&location of"
@@ -4773,7 +4773,7 @@ msgstr "재배치(&R)"
 
 #: mmframe.cpp:1691
 msgid "Relocate Categories && Payees"
-msgstr "분류 & 거래처 재배치"
+msgstr "분류 & 수취인 재배치"
 
 #: mmframe.cpp:1701
 msgid "&Budget Setup..."
@@ -5069,7 +5069,7 @@ msgstr "분류 구성 대화상자 표시"
 
 #: mmframe.cpp:1894
 msgid "Show Organize Payees Dialog"
-msgstr "거래처 구성 대화상자 표시"
+msgstr "수취인 구성 대화상자 표시"
 
 #: mmframe.cpp:1895
 msgid "Show Organize Currency Dialog"
@@ -5293,7 +5293,7 @@ msgstr "MMEX 옵션"
 
 #: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
-msgstr "계정, 거래처 및 범주 업데이트"
+msgstr "계정, 수취인 및 범주 업데이트"
 
 #: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -5353,11 +5353,11 @@ msgstr "계정: %s - 새 유형을 선택합니다."
 
 #: mmframe.cpp:3579 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
-msgstr "거래처 재배치가 완료되었습니다."
+msgstr "수취인 재배치가 완료되었습니다."
 
 #: mmframe.cpp:3583 payeedialog.cpp:816
 msgid "Payee Relocation Result"
-msgstr "거래처 재배치 결과"
+msgstr "수취인 재배치 결과"
 
 #: mmframe.cpp:3659
 #, c-format
@@ -5403,7 +5403,7 @@ msgstr "나의 사용량"
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
-msgstr "거래처"
+msgstr "수취인"
 
 #: mmframereport.cpp:195
 msgid "Summary of Accounts"
@@ -5464,7 +5464,7 @@ msgstr "상위 출금: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr "계정/거래처"
+msgstr "계정/수취인"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -5740,7 +5740,7 @@ msgstr "다중 선택"
 
 #: model/Model_Payee.cpp:81
 msgid "Payee Error"
-msgstr "거래처 오류"
+msgstr "수취인 오류"
 
 #: model/Model_Report.cpp:86
 msgid "Begin date:"
@@ -6057,11 +6057,11 @@ msgstr "사용되지 않음"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
-msgstr "거래처에 마지막으로 사용됨"
+msgstr "수취인에 마지막으로 사용됨"
 
 #: optionsettingsmisc.cpp:127
 msgid "Use default for payee"
-msgstr "거래처에 기본값 사용"
+msgstr "수취인에 기본값 사용"
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
@@ -6077,15 +6077,15 @@ msgstr "기본 날짜"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Payee"
-msgstr "기본 거래처"
+msgstr "기본 수취인"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr "기본 입금/출금 분류"
+msgstr "기본 입금/출금 범주"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
-msgstr "기본 이체 분류"
+msgstr "기본 이체 범주"
 
 #: optionsettingsmisc.cpp:160
 msgid "Default Status"
@@ -6387,11 +6387,11 @@ msgstr "다른 아이콘 크기"
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
-msgstr "거래처 편집"
+msgstr "수취인 편집"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr "거래처 이름을 입력합니다. 이 이름은 언제든지 변경할 수 있습니다."
+msgstr "수취인 이름을 입력합니다. 이 이름은 언제든지 변경할 수 있습니다."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
@@ -6399,7 +6399,7 @@ msgstr "숨김"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr "거래처가 새 거래의 거래처 목록에 표시되지 않고 숨겨야 하는지 여부를 나타냅니다"
+msgstr "수취인이 새 거래의 수취인 목록에 표시되지 않고 숨겨야 하는지 여부를 나타냅니다"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
@@ -6407,11 +6407,11 @@ msgstr "마지막으로 사용한 범주"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Default Category"
-msgstr "기본 분류"
+msgstr "기본 범주"
 
 #: payeedialog.cpp:99
 msgid "The category used as default for this payee"
-msgstr "이 거래처에 기본값으로 사용할 범주"
+msgstr "이 수취인에 기본값으로 사용할 범주"
 
 #: payeedialog.cpp:103 payeedialog.cpp:458
 msgid "Reference"
@@ -6419,7 +6419,7 @@ msgstr "참조"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr "거래처에 사용할 참조(예: 은행 계좌 번호)"
+msgstr "수취인에 사용할 참조(예: 은행 계좌 번호)"
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
@@ -6427,7 +6427,7 @@ msgstr "웹사이트"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
-msgstr "거래처와 연관된 웹 사이트 URL"
+msgstr "수취인과 연관된 웹 사이트 URL"
 
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
@@ -6438,12 +6438,12 @@ msgstr "가져올 때\n"
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr "가져올 때 이 거래처와 일치하는 문자열을 입력합니다.\n"
+msgstr "가져올 때 이 수취인과 일치하는 문자열을 입력합니다.\n"
 "패턴은 여기에 입력된 순서대로 테스트됩니다."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
-msgstr "동일한 이름의 거래처가 존재합니다"
+msgstr "동일한 이름의 수취인이 존재합니다"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6451,31 +6451,31 @@ msgstr "패턴 일치"
 
 #: payeedialog.cpp:720
 msgid "Payee in use."
-msgstr "사용 중인 거래처입니다."
+msgstr "사용 중인 수취인입니다."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr "팁: 재배치 명령을 사용하여, 이 거래처를 사용하는 모든 거래를 다른 거래처로 변경합니다"
+msgstr "팁: 재배치 명령을 사용하여, 이 수취인을 사용하는 모든 거래를 다른 수취인으로 변경합니다"
 
 #: payeedialog.cpp:725
 msgid "Tools → Relocation of → Payees"
-msgstr "도구 → 재배치 → 거래처"
+msgstr "도구 → 재배치 → 수취인"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr "거래처 구성: 삭제 오류"
+msgstr "수취인 구성: 삭제 오류"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
-msgstr "이 거래처를 사용하는 삭제된 거래가 있습니다."
+msgstr "이 수취인을 사용하는 삭제된 거래가 있습니다."
 
 #: payeedialog.cpp:732
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr "거래처를 삭제하면 삭제된 거래에서도 자동으로 제거됩니다."
+msgstr "수취인을 삭제하면 삭제된 거래에서도 자동으로 제거됩니다."
 
 #: payeedialog.cpp:734
 msgid "Confirm Payee Deletion"
-msgstr "거래처 삭제 확인"
+msgstr "수취인 삭제 확인"
 
 #: payeedialog.cpp:855
 msgid "Define Category"
@@ -6487,7 +6487,7 @@ msgstr "첨부 파일 구성(&O)"
 
 #: payeedialog.cpp:872
 msgid "Relocate Payee"
-msgstr "거래처 재배치"
+msgstr "수취인 재배치"
 
 #: relocatecategorydialog.cpp:90
 msgid "Relocate source category to the destination category"
@@ -6545,7 +6545,7 @@ msgstr "반복 분할 거래내역에서 발견된 레코드: %i"
 #: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "기본 거래처 범주로 발견된 레코드: %i"
+msgstr "기본 수취인 범주로 발견된 레코드: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
@@ -6558,19 +6558,19 @@ msgstr "범주 재배치 대화 상자"
 
 #: relocatepayeedialog.cpp:89
 msgid "Relocate all source payee to the destination payee"
-msgstr "모든 원본 거래처를 대상 거래처로 재배치"
+msgstr "모든 원본 수취인을 대상 수취인으로 재배치"
 
 #: relocatepayeedialog.cpp:101
 msgid "Delete source payee after relocation"
-msgstr "재배치 후 원본 거래처 삭제"
+msgstr "재배치 후 원본 수취인 삭제"
 
 #: relocatepayeedialog.cpp:158
 msgid "Payee Relocation Confirmation"
-msgstr "거래처 재배치 확인"
+msgstr "수취인 재배치 확인"
 
 #: relocatepayeedialog.h:42
 msgid "Relocate Payee Dialog"
-msgstr "거래처 재배치 대화상자"
+msgstr "수취인 재배치 대화상자"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6890,7 +6890,7 @@ msgstr "MMEX 사용 빈도"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr "거래처 보고서"
+msgstr "수취인 보고서"
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
@@ -7518,7 +7518,7 @@ msgstr "이 거래 상태를 지정합니다"
 
 #: usertransactionpanel.cpp:172
 msgid "Select Payee"
-msgstr "거래처 선택"
+msgstr "수취인 선택"
 
 #: usertransactionpanel.cpp:173
 msgid "Specify a person, Company or Organisation for this transaction."
