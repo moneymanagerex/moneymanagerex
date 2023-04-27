@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 20:45\n"
+"PO-Revision-Date: 2023-04-27 15:59\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1917,9 +1917,8 @@ msgid "View Since Statement Date"
 msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:207
-msgctxt "https://github.com/moneymanagerex/moneymanagerex/blob/master/src/constants.cpp#L207-210"
 msgid "ALL"
-msgstr "TODAS"
+msgstr ""
 
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -2684,19 +2683,19 @@ msgstr "Detalhes do Filtro: "
 
 #: filtertransdialog.cpp:1421
 msgid "Label"
-msgstr ""
+msgstr "Designação"
 
 #: filtertransdialog.cpp:1441
 msgid "Since"
-msgstr ""
+msgstr "Desde"
 
 #: filtertransdialog.cpp:1443
 msgid "Before"
-msgstr ""
+msgstr "Antes"
 
 #: filtertransdialog.cpp:1455
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: filtertransdialog.cpp:1523
 msgid "Amount Min."
@@ -2708,34 +2707,34 @@ msgstr "Valor Max."
 
 #: filtertransdialog.cpp:1740 mmframe.cpp:1263
 msgid "Setting Name"
-msgstr ""
+msgstr "Nome da configuração"
 
 #: filtertransdialog.cpp:1740 mmframe.cpp:1263
 msgid "Please Enter"
-msgstr ""
+msgstr "Insira por favor"
 
 #: filtertransdialog.cpp:1763 import_export/univcsvdialog.cpp:1066
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "O nome inserido já é utilizado"
 
 #: filtertransdialog.cpp:1763 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
 #: images_list.cpp:494 import_export/qif_import_gui.cpp:759
 #: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1066
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: filtertransdialog.cpp:1781
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Configurações do filtro alteradas"
 
 #: filtertransdialog.cpp:1782
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Deseja gravar as alterações antes de sair?"
 
 #: filtertransdialog.cpp:1783
 msgid "Please confirm"
-msgstr ""
+msgstr "Confirme por favor"
 
 #: filtertransdialog.cpp:1800 reports/reportbase.cpp:240
 msgid "Choose Accounts"
@@ -2752,11 +2751,11 @@ msgstr "Relatórios"
 
 #: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:518
 msgid "&Import"
-msgstr ""
+msgstr "&Importar"
 
 #: general_report_manager.cpp:392
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "Localizar e carregar um relatório."
 
 #: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:520
 msgid "&Export"
@@ -2764,94 +2763,94 @@ msgstr "&Exportar"
 
 #: general_report_manager.cpp:396
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "Exportar o relatório para um novo ficheiro."
 
 #: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
-msgstr ""
+msgstr "&Gravar "
 
 #: general_report_manager.cpp:401
 msgid "Save changes."
-msgstr ""
+msgstr "Gravar alterações."
 
 #: general_report_manager.cpp:403
 msgid "&Run"
-msgstr ""
+msgstr "&Executar"
 
 #: general_report_manager.cpp:405
 msgid "Run selected report."
-msgstr ""
+msgstr "Executar relatório selecionado."
 
 #: general_report_manager.cpp:417
 msgid "Output"
-msgstr ""
+msgstr "Saída"
 
 #: general_report_manager.cpp:440
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:441
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:442
 msgid "Template"
-msgstr ""
+msgstr "Modelo"
 
 #: general_report_manager.cpp:495
 msgid "&Test"
-msgstr ""
+msgstr "&Teste"
 
 #: general_report_manager.cpp:496
 msgid "Create Template"
-msgstr ""
+msgstr "Criar Modelo"
 
 #: general_report_manager.cpp:548
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%zu linhas retornadas, duração: %lld ms"
 
 #: general_report_manager.cpp:575
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "Erro de sintaxe SQL"
 
 #: general_report_manager.cpp:606
 msgid "Load report file:"
-msgstr ""
+msgstr "Carregar ficheiro de relatório:"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Ficheiros do Gestor de Relatórios Personalizados (*.grm)"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "Ficheiros ZIP (*.zip)"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
-msgstr ""
+msgstr "Gestor de Relatórios"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Ativos..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Novo Relatório Vazio..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
-msgstr ""
+msgstr "Novo Relatório Exemplo"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "Alterar Grupo..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "Renomear Grupo..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -3087,68 +3086,68 @@ msgstr "Exportar para QIF"
 
 #: import_export/qif_export.cpp:318 import_export/qif_export.cpp:334
 msgid "Choose QIF data file to Export"
-msgstr ""
+msgstr "Escolha o ficheiro QIF a Exportar"
 
 #: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:872
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "Ficheiros QIF (*.qif)"
 
 #: import_export/qif_export.cpp:326
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Escolha o ficheiro JSON a Exportar"
 
 #: import_export/qif_export.cpp:328
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Ficheiros JSON (*.json)"
 
 #: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2069
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "Ficheiros CSV (*.csv)"
 
 #: import_export/qif_export.cpp:354
 msgid "No Account available for export"
-msgstr ""
+msgstr "Nenhuma Conta disponível para exportação"
 
 #: import_export/qif_export.cpp:356
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "Não há contas selecionadas para exportação"
 
 #: import_export/qif_export.cpp:358
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "Data Fim inferior à Data Início"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr ""
+msgstr "Categorias exportadas"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:416
 #: import_export/qif_import_gui.cpp:1049
 msgid "Please wait"
-msgstr ""
+msgstr "Aguarde por favor"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "A exportar"
 
 #: import_export/qif_export.cpp:512
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "A exportar transação %zu"
 
 #: import_export/qif_export.cpp:656
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "Número de categorias exportadas: %zu \n"
 
 #: import_export/qif_export.cpp:658
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "Número de transações exportadas: %zu \n"
 
 #: import_export/qif_export.cpp:659
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Número de contas exportadas: %zu"
 
 #: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:197
 msgid "&Browse"
@@ -3445,11 +3444,11 @@ msgstr "Escolha o ficheiro CSV a importar"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose XML data file to Export"
-msgstr "Escolha o ficheiro de dados XML a exportar"
+msgstr "Escolha o ficheiro de dados XML a Exportar"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose CSV data file to Export"
-msgstr "Escolha o Ficheiro CVS para Exportar"
+msgstr "Escolha o Ficheiro CVS a Exportar"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
@@ -3653,31 +3652,31 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2054
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Escolha o ficheiro CSV a Exportar"
 
 #: import_export/univcsvdialog.cpp:2057
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Escolha o ficheiro de dados XML a importar"
 
 #: import_export/univcsvdialog.cpp:2060
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Escolha o ficheiro de dados XML a Exportar"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "Ficheiros XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "All Files"
-msgstr ""
+msgstr "Todos os Ficheiros"
 
 #: import_export/univcsvdialog.cpp:2475
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "Digite por favor a palavra que assinala valores positivos no seu ficheiro CSV, por exemplo, 'crédito'"
 
 #: import_export/univcsvdialog.cpp:2475
 msgid "Enter a value"
-msgstr ""
+msgstr "Introduza um valor"
 
 #: import_export/univcsvdialog.cpp:2485
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
@@ -3685,19 +3684,19 @@ msgstr "O sinal do valor deve ser definido pelo tipo quando o 'Tipo' é selecion
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
-msgstr ""
+msgstr "Último câmbio"
 
 #: maincurrencydialog.cpp:77
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Câmbio Fixo"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: maincurrencydialog.cpp:180 maincurrencydialog.cpp:476
 msgid "Online update currency rate"
@@ -3705,7 +3704,7 @@ msgstr "Actualização online das taxas de câmbio"
 
 #: maincurrencydialog.cpp:183
 msgid "Online Update"
-msgstr ""
+msgstr "Atualização Online"
 
 #: maincurrencydialog.cpp:187
 msgid "Show all even the unused currencies"
