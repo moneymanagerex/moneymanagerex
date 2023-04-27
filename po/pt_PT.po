@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 18:02\n"
+"PO-Revision-Date: 2023-04-27 19:02\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4063,47 +4063,47 @@ msgstr "Erro comum dos investidores: comprar empresas que dão nas vistas."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Erro comum dos investidores: esquecerem-se de reequilibrar."
 
 #: mmchecking_list.cpp:206
 msgid "Sort Order"
-msgstr ""
+msgstr "Ordenação"
 
 #: mmchecking_list.cpp:300
 msgid "Deleted On"
-msgstr ""
+msgstr "Eliminado em"
 
 #: mmchecking_list.cpp:325
 msgid "Last Updated"
-msgstr ""
+msgstr "Última Atualização"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:309
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Novo Levantamento..."
 
 #: mmchecking_list.cpp:432 mmcheckingpanel.cpp:310
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Novo Depósito..."
 
 #: mmchecking_list.cpp:434 mmcheckingpanel.cpp:311
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Nova Transferência..."
 
 #: mmchecking_list.cpp:438
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Editar Transação..."
+msgstr[1] "&Editar Transações..."
 
 #: mmchecking_list.cpp:441
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Copiar Transações"
 
 #: mmchecking_list.cpp:448
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Colar Transação"
 
 #: mmchecking_list.cpp:448
 #, c-format
@@ -4617,31 +4617,31 @@ msgstr ""
 
 #: mmframe.cpp:1549
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Exportar como ficheiro CSV fixo"
 
 #: mmframe.cpp:1553
 msgid "&HTML File..."
-msgstr ""
+msgstr "Ficheiro &HTML..."
 
 #: mmframe.cpp:1553
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Exportar como ficheiro HTML"
 
 #: mmframe.cpp:1558
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimir..."
 
 #: mmframe.cpp:1558 mmframe.cpp:1922
 msgid "Print current view"
-msgstr ""
+msgstr "Imprimir vista atual"
 
 #: mmframe.cpp:1564
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "Sai&r\tAlt-R"
 
 #: mmframe.cpp:1564
 msgid "Quit this program"
-msgstr ""
+msgstr "Sair deste programa"
 
 #: mmframe.cpp:1570
 msgid "&Toolbar"
@@ -4653,7 +4653,7 @@ msgstr "Ver/Esconder a Barra de Ferramentas"
 
 #: mmframe.cpp:1572
 msgid "&Navigation"
-msgstr ""
+msgstr "&Navegação"
 
 #: mmframe.cpp:1572
 msgid "Show/Hide the Navigation tree control"
@@ -4661,7 +4661,7 @@ msgstr "Ver/Esconder a Árvore de Navegação"
 
 #: mmframe.cpp:1574
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "&Exibir Contas de Ações"
 
 #: mmframe.cpp:1574
 msgid "Show/Hide Share Accounts in the navigation tree"
