@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 08:15\n"
+"PO-Revision-Date: 2023-04-27 09:32\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -4557,7 +4557,7 @@ msgstr "계정 목록(&L)"
 
 #: mmframe.cpp:1483 optionsettingsview.cpp:69
 msgid "Accounts Visible"
-msgstr "보이는 계정"
+msgstr "계정 보이기"
 
 #: mmframe.cpp:1521
 msgid "&New Database..."
@@ -5268,12 +5268,11 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "주식 계정 보유 공유 트랜잭션\n\n"
-"주식 거래는 주식 포트폴리오 보기 내에 생성됩니다\n"
-"관련 보기 내에서 회사 주식을 선택한 후.\n\n"
-"이러한 계정은 주식을 주식 계정에 연결한 후에만 표시됩니다\n"
-"또는 메뉴 보기 → '주식 계정 표시'를 사용\n"
-"주식 계정은 일반 계정에 대한 정상적인 거래를 유지할 수도 있습니다."
+msgstr "주식 거래를 보유하는 주식 계정이 있습니다.\n\n"
+"주식 거래는 연결된 뷰에서 회사 주식을 선택한 후 주식 포트폴리오 뷰에서 생성됩니다.\n\n"
+"이러한 계정은 주식 계정에 주식을 연결한 후에만 볼 수 있습니다. \n"
+"또는 보기 → '주식 계정 표시' 메뉴를 사용하여 볼 수도 있습니다.\n"
+"주식 계정은 일반 계정에 대한 일반 거래도 보유할 수 있습니다."
 
 #: mmframe.cpp:2572
 msgid "Share Account Creation"
@@ -5926,7 +5925,7 @@ msgstr "표제 표시"
 
 #: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:118
 msgid "User Name"
-msgstr "사용지 이름"
+msgstr "사용자 이름"
 
 #: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
