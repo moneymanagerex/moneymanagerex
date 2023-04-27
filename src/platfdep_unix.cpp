@@ -20,6 +20,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "platfdep.h"
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
+#include <wx/settings.h>
+
 //----------------------------------------------------------------------------
 
 namespace
@@ -109,4 +111,4 @@ const wxString mmex::GetAppName()
 }
 //----------------------------------------------------------------------------
 
-bool mmex::isDarkMode() { return false; }   // Not implemented yet
+bool mmex::isDarkMode() { return wxSystemSettings::GetAppearance().IsDark(); }
