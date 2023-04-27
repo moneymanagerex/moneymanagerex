@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 15:59\n"
+"PO-Revision-Date: 2023-04-27 18:02\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3708,48 +3708,48 @@ msgstr "Atualização Online"
 
 #: maincurrencydialog.cpp:187
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Mostrar todas as moedas, mesmo que não utilizadas"
 
 #: maincurrencydialog.cpp:241
 msgid "Currency History Options"
-msgstr ""
+msgstr "Opções do Histórico de Moedas"
 
 #: maincurrencydialog.cpp:259 stockdialog.cpp:300 stockdialog.cpp:319
 #: stockdialog.cpp:648 stockspanel.cpp:215
 msgid "Price"
-msgstr ""
+msgstr "Preço"
 
 #: maincurrencydialog.cpp:280
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Indique a data do câmbio da moeda"
 
 #: maincurrencydialog.cpp:290
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Digite o câmbio da moeda"
 
 #: maincurrencydialog.cpp:300
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "Descarregar histórico de Câmbios de Moedas"
 
 #: maincurrencydialog.cpp:303
 msgid "Add/&Update "
-msgstr ""
+msgstr "Adicionar/&Atualizar "
 
 #: maincurrencydialog.cpp:304
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "Adicionar Câmbios de Moedas ao histórico"
 
 #: maincurrencydialog.cpp:308
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "Eliminar Câmbios de Moeda selecionados"
 
 #: maincurrencydialog.cpp:312
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Eliminar histórico de Câmbios de Moeda para moedas e dias não utilizados"
 
 #: maincurrencydialog.cpp:368
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "Deseja realmente apagar a Moeda selecionada?"
 
 #: maincurrencydialog.cpp:369 maincurrencydialog.cpp:439
 #: maincurrencydialog.cpp:665 maincurrencydialog.cpp:790
@@ -3760,67 +3760,68 @@ msgstr "Moeda"
 
 #: maincurrencydialog.cpp:397
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Seleção da Moeda Base"
 
 #: maincurrencydialog.cpp:437
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Taxas de câmbio históricas para %s encontradas, mas \"Usar histórico de moedas\" está desativado nas opções:\n"
+"clique em 'não' e ative-o, ou em 'sim,' para remover todas as taxas históricas de %s"
 
 #: maincurrencydialog.cpp:449
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "Opções do Histórico da Moeda: %s "
 
 #: maincurrencydialog.cpp:505
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Não foi possível atualizar o histórico de taxas de câmbio. Atualize-o manualmente por favor!"
 
 #: maincurrencydialog.cpp:506 maincurrencydialog.cpp:658
 #: maincurrencydialog.cpp:693 maincurrencydialog.cpp:729
 #: maincurrencydialog.cpp:835
 msgid "Currency history error"
-msgstr ""
+msgstr "Erro no histórico da moeda"
 
 #: maincurrencydialog.cpp:538
 msgid "Set as Base Currency"
-msgstr ""
+msgstr "Definir como Moeda Base"
 
 #: maincurrencydialog.cpp:539
 msgid "Online Update Currency Rate"
-msgstr ""
+msgstr "Atualizar Câmbio de Moeda Online"
 
 #: maincurrencydialog.cpp:658
 msgid "No currency selected!"
-msgstr ""
+msgstr "Nenhuma moeda selecionada!"
 
 #: maincurrencydialog.cpp:664
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Pretende adicionar também datas sem qualquer transação?"
 
 #: maincurrencydialog.cpp:691
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Não é possível descarregar as taxas de câmbio %s"
 
 #: maincurrencydialog.cpp:727
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "Não foi possível descarregar o histórico para o símbolo %s. Taxas históricas indisponíveis!"
 
 #: maincurrencydialog.cpp:789 optionsettingsgeneral.cpp:289
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Alterar a moeda base irá apagar todas as taxas do histórico, continuar?"
 
 #: maincurrencydialog.cpp:813
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Deseja atualizar as taxas de câmbio de hoje?"
 
 #: maincurrencydialog.cpp:834
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Não foi possível descarregar o histórico para o símbolo base %s. Taxas históricas indisponíveis!"
 
 #: maincurrencydialog.cpp:877 stockspanel.cpp:395 util.cpp:681
 msgid "Could not find base currency symbol!"
@@ -3828,7 +3829,7 @@ msgstr "Não consigo achar o símbolo da moeda!"
 
 #: mmSimpleDialogs.cpp:549 mmSimpleDialogs.cpp:561
 msgid "Clear color"
-msgstr ""
+msgstr "Limpar cor"
 
 #: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:566
 #, c-format
@@ -4046,19 +4047,19 @@ msgstr "Antes de começar a investir, clarifique os seus objetivos e prioridades
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Antes de começar a investir, certifique-se de que possui conhecimentos básicos sobre investimento."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Erro comum dos investidores: comprar apenas empresas conhecidas."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Erro comum dos investidores: comprar empresas de que gostam."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Erro comum dos investidores: comprar empresas que dão nas vistas."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
