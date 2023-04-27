@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-24 08:58\n"
+"PO-Revision-Date: 2023-04-27 16:00\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "MIME-Version: 1.0\n"
@@ -1908,7 +1908,6 @@ msgid "View Since Statement Date"
 msgstr ""
 
 #: constants.cpp:207
-msgctxt "https://github.com/moneymanagerex/moneymanagerex/blob/master/src/constants.cpp#L207-210"
 msgid "ALL"
 msgstr ""
 
