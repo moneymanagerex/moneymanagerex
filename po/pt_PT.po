@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 20:58\n"
+"PO-Revision-Date: 2023-04-27 21:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4721,23 +4721,23 @@ msgstr "Alternar &Ecrã Inteiro\tShift+F11"
 
 #: mmframe.cpp:1609 mmframe.cpp:1919
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Alternar Ecrã Inteiro"
 
 #: mmframe.cpp:1615
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Alterar &Idioma da Aplicação"
 
 #: mmframe.cpp:1641
 msgid "Dash&board"
-msgstr ""
+msgstr "&Painel"
 
 #: mmframe.cpp:1641 mmframe.cpp:1889
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Abrir Painel"
 
 #: mmframe.cpp:1650
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Altere o tipo de conta de uma conta."
 
 #: mmframe.cpp:1653
 msgid "Delete Account from database"
