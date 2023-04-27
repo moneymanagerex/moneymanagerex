@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 19:02\n"
+"PO-Revision-Date: 2023-04-27 20:01\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4665,51 +4665,51 @@ msgstr "&Exibir Contas de Ações"
 
 #: mmframe.cpp:1574
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Mostrar/ocultar Contas de Ações na árvore de navegação"
 
 #: mmframe.cpp:1576
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "&Exibir Transações Eliminadas"
 
 #: mmframe.cpp:1576
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "Mostrar/ocultar Transações eliminadas na árvore de navegação"
 
 #: mmframe.cpp:1578
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Orçamentos: Como &Anos Financeiros"
 
 #: mmframe.cpp:1578
 msgid "Display Budgets in Financial Year Format"
-msgstr ""
+msgstr "Exibir Orçamentos no Formato de Ano Financeiro"
 
 #: mmframe.cpp:1580
 msgid "Budgets: &Include Transfers in Totals"
-msgstr ""
+msgstr "Orçamentos: &Incluir Transferências nos Totais"
 
 #: mmframe.cpp:1580
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr ""
+msgstr "Incluir as transferências nos Totais do Orçamento"
 
 #: mmframe.cpp:1582
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "Relatório de Categorias Orçamentais: com &Resumos"
 
 #: mmframe.cpp:1582
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "Incluir os resumos das categorias no Resumo de Categorias do Orçamento"
 
 #: mmframe.cpp:1584
 msgid "Ignore F&uture Transactions"
-msgstr ""
+msgstr "Ignorar Transações &Futuras"
 
 #: mmframe.cpp:1584
 msgid "Ignore Future transactions"
-msgstr ""
+msgstr "Ignorar Transações Futuras"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Mostrar Dicas"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
