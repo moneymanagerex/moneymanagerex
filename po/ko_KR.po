@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-26 15:38\n"
+"PO-Revision-Date: 2023-04-27 01:21\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -494,7 +494,7 @@ msgstr "새 거래 세부 정보"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr "거래 상세 정보 편집"
+msgstr "거래 세부 정보 편집"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
@@ -929,7 +929,7 @@ msgstr "반복 거래 입력"
 
 #: billsdepositsdialog.cpp:414
 msgid "Recurring Transaction Details"
-msgstr "반복 거래 상세 정보"
+msgstr "반복 거래 세부 정보"
 
 #: billsdepositsdialog.cpp:428
 msgid "Specify the date when this bill or deposit is due"
@@ -973,7 +973,7 @@ msgstr "요청된 지불은 사용자의 개입 없이 발생합니다"
 
 #: billsdepositsdialog.cpp:484 filtertrans.cpp:177 transdialog.cpp:406
 msgid "Transaction Details"
-msgstr "거래 상세 정보"
+msgstr "거래 세부 정보"
 
 #: billsdepositsdialog.cpp:493
 msgid "Specify the date the user is requested to enter this transaction"
@@ -1567,7 +1567,7 @@ msgstr "기존 예산 삭제"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
-msgstr "예산 상세 정보"
+msgstr "예산 세부 정보"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
@@ -1919,7 +1919,7 @@ msgstr "전부"
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "열기"
+msgstr "열림"
 
 #: constants.cpp:209 mmframe.cpp:1482 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
@@ -2032,7 +2032,7 @@ msgstr "통화 관리자"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr "사용자 지정 필드 상세 정보"
+msgstr "사용자 지정 필드 세부 정보"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
@@ -2674,7 +2674,7 @@ msgstr "설정 항목 삭제"
 
 #: filtertransdialog.cpp:1321
 msgid "Filtering Details: "
-msgstr "필터링 상세: "
+msgstr "세부 정보 필터링: "
 
 #: filtertransdialog.cpp:1421
 msgid "Label"
@@ -3153,7 +3153,7 @@ msgstr "인코딩:"
 
 #: import_export/qif_import_gui.cpp:197
 msgid "Filtering Details:"
-msgstr "필터링 상세:"
+msgstr "세부 정보 필터링:"
 
 #: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:475
 msgid "Data"
@@ -3173,7 +3173,7 @@ msgstr "수취인 패턴 일치"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
-msgstr "노트에 일치하는 상세 정보 추가"
+msgstr "노트에 일치하는 세부 정보 추가"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
@@ -6968,7 +6968,7 @@ msgstr "주식 거래 추가"
 
 #: sharetransactiondialog.cpp:213 stockdialog.cpp:182
 msgid "Stock Investment Details"
-msgstr "주식 투자 상세 정보"
+msgstr "주식 투자 세부 정보"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
 msgid "Company Name"
@@ -7028,7 +7028,7 @@ msgstr "이 투자와 관련된 내용 입력"
 
 #: sharetransactiondialog.cpp:313
 msgid "Add Transaction Details"
-msgstr "거래 상세 정보 추가"
+msgstr "거래 세부 정보 추가"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
@@ -7036,7 +7036,7 @@ msgstr "주식 거래 편집"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr "분할 상세 정보 편집"
+msgstr "분할 세부 정보 편집"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
@@ -7534,7 +7534,7 @@ msgstr "이 거래의 범주 지정"
 
 #: usertransactionpanel.cpp:189
 msgid "Specify a transaction code or associated check details"
-msgstr "추적 코드 또는 관련 검사 상세 정보 지정"
+msgstr "추적 코드 또는 관련 검사 세부 정보 지정"
 
 #: usertransactionpanel.cpp:299
 msgid "Select the required account"
