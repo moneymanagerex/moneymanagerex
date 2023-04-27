@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 03:20\n"
+"PO-Revision-Date: 2023-04-27 08:15\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -897,7 +897,7 @@ msgstr "(x)일 동안"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr "(x) 개월 후"
+msgstr "(x) 개월 동안"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
@@ -1261,12 +1261,12 @@ msgstr "이체 금액을 지정합니다"
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr "%s일 후"
+msgstr "%s일 동안"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr "%s개월 후"
+msgstr "%s개월 동안"
 
 #: billsdepositspanel.cpp:63
 #, c-format
