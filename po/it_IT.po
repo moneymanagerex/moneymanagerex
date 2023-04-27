@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 15:59\n"
+"PO-Revision-Date: 2023-04-27 21:56\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1918,7 +1918,7 @@ msgstr "Mostra dalla data dell'estratto conto"
 
 #: constants.cpp:207
 msgid "ALL"
-msgstr ""
+msgstr "TUTTO"
 
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3679,7 +3679,7 @@ msgstr "Immettere un valore"
 
 #: import_export/univcsvdialog.cpp:2485
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "Il segno dell'importo deve essere definito per tipo quando si seleziona \"Tipo\" per l'importazione"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -6060,7 +6060,7 @@ msgstr "Imposta la precisione per i prezzi delle azioni"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Aggiorna all'avvio"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6451,12 +6451,14 @@ msgstr "URL del sito web associato al beneficiario"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Schemi di corrispondenza\n"
+"sull'importazione"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Inserisci una stringa qualsiasi per abbinare questo beneficiario all'importazione.\n"
+"Gli schemi vengono testati nell'ordine in cui sono stati inseriti."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6464,7 +6466,7 @@ msgstr "Beneficiario già esistente!"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Schema di Corrispondenza"
 
 #: payeedialog.cpp:720
 msgid "Payee in use."
@@ -7350,7 +7352,7 @@ msgstr "Aggiorna le quotazioni dei Titoli da Yahoo"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Lotto"
 
 #: stockspanel.cpp:288
 #, c-format
