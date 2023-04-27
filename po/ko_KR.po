@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 01:21\n"
+"PO-Revision-Date: 2023-04-27 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -316,7 +316,7 @@ msgstr "이 계정에 대한 반복 거래는 이 날짜 이전에 예약되었�
 #: accountdialog.h:41 mmframe.cpp:1644 mmframe.cpp:1888
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
 msgid "New Account"
-msgstr "새 계정"
+msgstr "계정 추가"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
@@ -324,7 +324,7 @@ msgstr "가장 최근 열었던 데이터베이스 열기"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr "새 데이터베이스(&N)"
+msgstr "데이터베이스 만들기(&N)"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -399,7 +399,7 @@ msgstr "언어 변경"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
-msgstr "새 자산"
+msgstr "자산 추가"
 
 #: assetdialog.cpp:54 assetspanel.cpp:487
 msgid "Edit Asset"
@@ -490,7 +490,7 @@ msgstr "자산과 관련된 내용 입력"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr "새 거래 세부 정보"
+msgstr "거래 세부 정보 추가"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
@@ -539,7 +539,7 @@ msgstr "현재 값"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr "새 자산(&N)..."
+msgstr "자산 추가(&N)..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
@@ -600,7 +600,7 @@ msgstr "전체"
 #: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:431
 #: stockspanel.cpp:132
 msgid "&New "
-msgstr "신규(&N) "
+msgstr "추가(&N) "
 
 #: assetspanel.cpp:476 stockspanel.cpp:136
 msgid "&Add Trans "
@@ -1236,7 +1236,7 @@ msgstr "분할 거래"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr "새 반복 거래"
+msgstr "반복 거래 추가"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
@@ -1341,7 +1341,7 @@ msgstr "다음 발생을 건너뛰기"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr "새 반복 거래(&N)..."
+msgstr "반복 거래 추가(&N)..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
@@ -2131,7 +2131,7 @@ msgstr "선택한 항목이 수정되었습니다. 제거된 항목이 지워집
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr "사용자 정의 필드 새로 만들기/편집"
+msgstr "사용자 정의 필드 추가/편집"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
@@ -2832,11 +2832,11 @@ msgstr "자산..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr "빈 보고서 새로 만들기..."
+msgstr "빈 보고서 만들기..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
-msgstr "새 샘플 보고서"
+msgstr "샘플 보고서 만들기"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
@@ -4073,15 +4073,15 @@ msgstr "마지막 업데이트"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:309
 msgid "&New Withdrawal..."
-msgstr "신규 출금(&N)..."
+msgstr "출금 추가(&N)..."
 
 #: mmchecking_list.cpp:432 mmcheckingpanel.cpp:310
 msgid "&New Deposit..."
-msgstr "새 입금(&N)..."
+msgstr "입금 추가(&N)..."
 
 #: mmchecking_list.cpp:434 mmcheckingpanel.cpp:311
 msgid "&New Transfer..."
-msgstr "새 이체(&N)..."
+msgstr "이체 추가(&N)..."
 
 #: mmchecking_list.cpp:438
 msgid "&Edit Transaction..."
@@ -4271,7 +4271,7 @@ msgstr "선택한 거래 삭제"
 
 #: mmcheckingpanel.cpp:432 mmframe.cpp:1891 transdialog.cpp:182
 msgid "New Transaction"
-msgstr "새 거래"
+msgstr "거래 새로 만들기"
 
 #: mmcheckingpanel.cpp:436
 msgid "Edit selected transaction"
@@ -4549,7 +4549,7 @@ msgstr "계정 재할당(&R)..."
 
 #: mmframe.cpp:1468 mmframe.cpp:1644
 msgid "&New Account..."
-msgstr "새 계정(&N)..."
+msgstr "계정 추가(&N)..."
 
 #: mmframe.cpp:1470
 msgid "Account &List"
@@ -4561,11 +4561,11 @@ msgstr "보이는 계정"
 
 #: mmframe.cpp:1521
 msgid "&New Database..."
-msgstr "새 데이터베이스(&N)..."
+msgstr "데이터베이스 만들기(&N)..."
 
 #: mmframe.cpp:1521 mmframe.cpp:1885 wizard_newdb.cpp:137
 msgid "New Database"
-msgstr "새 데이터베이스"
+msgstr "데이터베이스 새로 만들기"
 
 #: mmframe.cpp:1522
 msgid "&Open Database...\tCtrl-O"
@@ -5061,7 +5061,7 @@ msgstr "도움말(&H)"
 
 #: mmframe.cpp:1885 mmframe.cpp:1891
 msgid "New"
-msgstr "신규"
+msgstr "추가"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Categories Dialog"
@@ -7064,7 +7064,7 @@ msgstr "주식 투자 편집"
 
 #: stockdialog.cpp:138 stockdialog.cpp:494 stockspanel.cpp:133
 msgid "New Stock Investment"
-msgstr "신규 주식 투자"
+msgstr "주식 투자 새로 만들기"
 
 #: stockdialog.cpp:209 stocks_list.cpp:88
 msgid "*Date"
@@ -7268,7 +7268,7 @@ msgstr "현재 총 값"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr "신규 주식 투자(&N)..."
+msgstr "주식 투자 추가(&N)..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
@@ -7972,7 +7972,7 @@ msgstr "먼저 도구 → 옵션 메뉴를 설정한 다음 새 계정을 추가
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
-msgstr "새 데이터베이스 마법사"
+msgstr "데이터베이스 생성 마법사"
 
 #: wizard_newdb.cpp:35
 msgid "The next pages will help you create a new database.\n\n"
