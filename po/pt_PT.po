@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 20:01\n"
+"PO-Revision-Date: 2023-04-27 20:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4713,11 +4713,11 @@ msgstr "Mostrar Dicas"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Mostrar Dicas sobre Dinheiro"
 
 #: mmframe.cpp:1608
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Alternar &Ecrã Inteiro\tShift+F11"
 
 #: mmframe.cpp:1609 mmframe.cpp:1919
 msgid "Toggle Fullscreen"
