@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 09:32\n"
+"PO-Revision-Date: 2023-04-27 15:59\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -132,7 +132,7 @@ msgstr "자주 사용하는 계정"
 
 #: accountdialog.cpp:173
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "자주 사용하는 계정인지 여부를 선택합니다. 계정 표시 보기를 필터링하는 데 사용됩니다."
+msgstr "자주 사용하는 계정인지 선택하세요. 이것은 계정 표시 보기를 필터링하는 데 사용됩니다."
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145
@@ -168,15 +168,15 @@ msgstr "계좌 번호:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
-msgstr "이 계정과 연결된 계좌 번호를 입력합니다."
+msgstr "이 계정과 연관된 계정 번호를 입력하세요."
 
 #: accountdialog.cpp:203
 msgid "Held At:"
-msgstr "개설처"
+msgstr "보유 위치:"
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "해당 금융기관의 이름을 입력하세요."
+msgstr "계정이 있는 금융 기관 이름을 입력하세요."
 
 #: accountdialog.cpp:208
 msgid "Website:"
@@ -184,7 +184,7 @@ msgstr "웹사이트:"
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
-msgstr "해당 금융기관의 홈페이지 주소를 입력하세요."
+msgstr "금융 기관의 웹 사이트 URL을 입력하세요."
 
 #: accountdialog.cpp:213
 msgid "Contact:"
@@ -192,15 +192,15 @@ msgstr "연락처:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
-msgstr "해당 금융기관의 연락처를 입력하세요."
+msgstr "금융 기관의 연락처 정보를 입력하세요."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
-msgstr "접근정보:"
+msgstr "접근 정보:"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "금융기관에 접속하기 위한 정보를 입력하세요. 이 정보는 mmb 파일에 접근하는 누구나 볼 수 있으므로 안전하지 않습니다."
+msgstr "금융 기관의 로그인/접근 정보를 입력하세요. 이는 mmb 파일에 접근할 수 있는 모든 사람이 접근할 수 있기 때문에 안전하지 않습니다."
 
 #: accountdialog.cpp:225
 msgid "Statement"
@@ -232,7 +232,7 @@ msgstr "최소 잔액:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "계정 잔액이 하한입니다. 0은 사용하지 않음"
+msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0 입력하세요."
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -391,7 +391,7 @@ msgstr "언어"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3694 optionsettingsgeneral.cpp:352
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "이 응용 프로그램의 언어가 변경되었습니다. 변경사항은 다음에 응용 프로그램을 시작할 때 적용됩니다."
+msgstr "이 응용 프로그램의 언어가 변경되었습니다. 변경 사항은 응용 프로그램이 다음번에 시작될 때 적용됩니다."
 
 #: appstartdialog.cpp:222 mmframe.cpp:3696 optionsettingsgeneral.cpp:354
 msgid "Language change"
@@ -427,7 +427,7 @@ msgstr "이름"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
-msgstr "해당 자산의 이름을 입력하세요."
+msgstr "자산의 이름을 입력하세요."
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:189
 #: filtertransdialog.cpp:878 filtertransdialog.cpp:884
@@ -445,7 +445,7 @@ msgstr "날짜"
 
 #: assetdialog.cpp:188
 msgid "Specify the date of purchase of asset"
-msgstr "자산 구입 날짜를 지정합니다"
+msgstr "자산을 구매한 날짜를 지정하세요."
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
@@ -466,7 +466,7 @@ msgstr "자산의 현재 가치를 입력하세요"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
-msgstr "감가상각"
+msgstr "가치 변화"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
@@ -474,7 +474,7 @@ msgstr "자산의 가치가 시간에 따라 변경되는지 여부를 지정합
 
 #: assetdialog.cpp:220
 msgid "% Rate"
-msgstr "감가상각률(%)"
+msgstr "% 비율"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
@@ -647,7 +647,7 @@ msgstr "관련 자산을 찾으려면 문자열을 입력하십시오"
 #: assetspanel.cpp:511 filtertransdialog.cpp:636 mmcheckingpanel.cpp:478
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr "팁: 와일드카드 문자(?, *)를 검색 조건에 사용할 수 있습니다."
+msgstr "팁: 검색 기준에 와일드카드 문자 - 물음표(?), 별표(*) - 를 사용할 수 있습니다."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:637 mmcheckingpanel.cpp:479
 #: payeedialog.cpp:138
@@ -657,12 +657,12 @@ msgstr "물음표(?)를 사용하여 단일 문자를 찾습니다. 예를 들�
 #: assetspanel.cpp:513 filtertransdialog.cpp:638 mmcheckingpanel.cpp:480
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr "별표(*)를 사용하여 여러개의 문자를 찾습니다. 예를 들어 s*d는 'sad' 및 'started'를 찾습니다."
+msgstr "별표(*)를 사용하여 임의의 문자를 찾을 수 있습니다. 예를 들어 s*d는 'sad' 와 'started'를 찾을 수 있습니다."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:639 mmcheckingpanel.cpp:481
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr "문장 중간에 있는 문자열을 찾으려면 시작 부분 별표(*)를 사용합니다."
+msgstr "문장 중간에 있는 모든 문자열을 찾으려면 별표(*)를 앞에 사용하세요."
 
 #: assetspanel.cpp:585 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
@@ -1086,7 +1086,7 @@ msgstr "분할 분류 사용"
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1250
 msgid "Specify any associated check number or transaction number"
-msgstr "체크 번호와 같은 거래와 관련된 모든 종류의 번호를 입력합니다"
+msgstr "관련된 수표 번호 또는 거래 번호를 지정하세요."
 
 #: billsdepositsdialog.cpp:599 billsdepositspanel.cpp:144 filtertrans.cpp:190
 #: filtertransdialog.cpp:620 filtertransdialog.cpp:1540
@@ -1207,19 +1207,19 @@ msgstr "활성화할 기간(개월)을 지정합니다.\n"
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr "활성화할 기간(일)을 지정합니다.\n"
-"활성화되지 않으면 공백이 됩니다."
+"활성화되지 않은 경우 공백으로 두세요."
 
 #: billsdepositsdialog.cpp:1249
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr "활성화할 기간(개월)을 지정합니다.\n"
-"비활성화하려면 공백으로 둡니다."
+"활성화되지 않은 경우 공백으로 두세요."
 
 #: billsdepositsdialog.cpp:1257
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr "지불 횟수를 지정합니다.\n"
-"지불 영원히 계속되는 경우 공백으로 두십시오."
+msgstr "수행 할 지불 횟수를 지정하세요.\n"
+"지불이 계속되는 경우 공백으로 두세요."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
@@ -1912,9 +1912,8 @@ msgid "View Since Statement Date"
 msgstr "대차표 날짜 이후 보기"
 
 #: constants.cpp:207
-msgctxt "https://github.com/moneymanagerex/moneymanagerex/blob/master/src/constants.cpp#L207-210"
 msgid "ALL"
-msgstr "전부"
+msgstr ""
 
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3131,7 +3130,7 @@ msgstr "%zu 거래내역을 내보내는 중입니다"
 #: import_export/qif_export.cpp:656
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr "내보낸 분류 개수: %zu\n"
+msgstr "내보낸 범주 개수: %zu\n"
 
 #: import_export/qif_export.cpp:658
 #, c-format
@@ -4013,7 +4012,7 @@ msgstr "MMEX를 사용하여 주식/상호 펀드 투자를 추적할 수 있습
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "새 주식을 만들려면 종목명, 주식 수 및 매입 가격을 입력해야 합니다."
+msgstr "새로운 주식 항목을 만들려면 심볼, 주식 수 및 매수 가격을 입력해야 합니다."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -6983,7 +6982,7 @@ msgstr "주식 종목"
 
 #: sharetransactiondialog.cpp:237 stockdialog.cpp:206
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "주식 종목을 입력합니다. (선택사항) 거래소 포함. 예: 삼성전자우.코스피"
+msgstr "주식 심벌을 입력하세요. (선택 사항) 거래소를 포함하세요. 예: IBM.BE"
 
 #: sharetransactiondialog.cpp:240
 msgid "Share Number"
