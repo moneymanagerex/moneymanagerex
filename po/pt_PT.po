@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-25 19:47\n"
+"PO-Revision-Date: 2023-04-26 20:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2594,7 +2594,7 @@ msgstr "Transferência a débito"
 
 #: filtertransdialog.cpp:591 filtertransdialog.cpp:1357
 msgid "Transfer In"
-msgstr ""
+msgstr "Transferência a Crédito"
 
 #: filtertransdialog.cpp:603
 msgid "Amount Range"
@@ -2602,41 +2602,41 @@ msgstr "Intervalo de Valores"
 
 #: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Digite qualquer texto para o encontrar nas notas das transações"
 
 #: filtertransdialog.cpp:640 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Use regex: para pesquisar com expressões regulares."
 
 #: filtertransdialog.cpp:657
 msgid "Presentation Options"
-msgstr ""
+msgstr "Opções de Apresentação"
 
 #: filtertransdialog.cpp:671 filtertransdialog.cpp:982
 #: filtertransdialog.cpp:1582
 msgid "Hide Columns"
-msgstr ""
+msgstr "Ocultar Colunas"
 
 #: filtertransdialog.cpp:682 filtertransdialog.cpp:988
 #: filtertransdialog.cpp:1595
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar Por"
 
 #: filtertransdialog.cpp:691
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Indique como deve ser agrupado o relatório"
 
 #: filtertransdialog.cpp:694 filtertransdialog.cpp:1604
 msgid "Combine Splits"
-msgstr ""
+msgstr "Combinar Transações Separadas"
 
 #: filtertransdialog.cpp:698
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Exibir transações separadas como uma única linha"
 
 #: filtertransdialog.cpp:706
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: filtertransdialog.cpp:720
 msgid "Save active values into current Preset selection"
@@ -2676,11 +2676,11 @@ msgstr "Deseja continuar?"
 
 #: filtertransdialog.cpp:1182 mmframe.cpp:1237
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Eliminação de item nas configurações"
 
 #: filtertransdialog.cpp:1321
 msgid "Filtering Details: "
-msgstr ""
+msgstr "Detalhes do Filtro: "
 
 #: filtertransdialog.cpp:1421
 msgid "Label"
@@ -3282,7 +3282,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1152
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "Importando Transações Separadas"
 
 #: import_export/qif_import_gui.cpp:1156
 msgid "Import finished successfully"
@@ -4126,7 +4126,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr ""
+msgstr "&Ver Categorias Separadas"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
@@ -5457,7 +5457,7 @@ msgstr ""
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:168 splittransactionsdialog.cpp:254
 msgid "Total:"
-msgstr ""
+msgstr "Total:"
 
 #: mmhomepage.cpp:162
 #, c-format
@@ -6525,7 +6525,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:257
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr ""
+msgstr "Registos encontrados em transações separadas: %i"
 
 #: relocatecategorydialog.cpp:258 relocatepayeedialog.cpp:211
 #, c-format
@@ -6535,7 +6535,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "Registos encontrados em transações separadas recorrentes: %i"
 
 #: relocatecategorydialog.cpp:260
 #, c-format
@@ -7031,19 +7031,19 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Editar Detalhe da Transação Separada"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Digite as notas para descrever esta transação separada"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
-msgstr ""
+msgstr "Adicionar Transação Separada"
 
 #: splittransactionsdialog.cpp:247
 msgid "Remove Split"
-msgstr ""
+msgstr "Remover Transação Separada"
 
 #: splittransactionsdialog.cpp:395
 msgid "Invalid Total Amount"
