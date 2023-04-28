@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 12:08+0300\n"
-"PO-Revision-Date: 2023-04-28 09:11\n"
+"POT-Creation-Date: 2023-04-28 12:11+0300\n"
+"PO-Revision-Date: 2023-04-28 09:13\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -376,7 +376,7 @@ msgstr ""
 msgid "Open the previously opened database : %s"
 msgstr "Отвори претходно отварану базу података: %s"
 
-#: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2902
+#: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2901
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr ""
@@ -389,11 +389,11 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: appstartdialog.cpp:220 mmframe.cpp:3695 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:220 mmframe.cpp:3694 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: appstartdialog.cpp:222 mmframe.cpp:3697 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:222 mmframe.cpp:3696 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr ""
 
@@ -583,7 +583,7 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr "MMEX Вам омогућава да пратите сталну имовину попут аутомобила, некретнина, земљишта и остало. Вредност сваке имовине може да се увећава или смањује према годишњој стопи, или да остане непромењена. Збир вредности имовине се додаје Вашем нето богатству."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
-#: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3308
+#: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:238
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
@@ -1223,7 +1223,7 @@ msgstr "Наведи број плаћања који треба да се из�
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
-#: mmframe.cpp:3660 splittransactionsdialog.cpp:395 stockspanel.cpp:384
+#: mmframe.cpp:3659 splittransactionsdialog.cpp:395 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -1303,7 +1303,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Савет: Ове трансакције могу да се подесе да се активирају, тако да омогућавају кориснику да унесу било коју вредност на дан доспевања."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
-#: mmframe.cpp:3060 mmhomepagepanel.cpp:244
+#: mmframe.cpp:3059 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
 msgstr "Понављајуће трансакције"
 
@@ -1770,16 +1770,16 @@ msgstr ""
 msgid "Organise Categories: Editing Error"
 msgstr "Уреди категорије: Грешка у изменама"
 
-#: categdialog.cpp:692 mmframe.cpp:3565
+#: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
 msgstr "Премештање категорије завршено."
 
-#: categdialog.cpp:693 mmframe.cpp:3566 mmframe.cpp:3581 payeedialog.cpp:813
+#: categdialog.cpp:693 mmframe.cpp:3565 mmframe.cpp:3580 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Записи у бази податка су ажурирани: %i"
 
-#: categdialog.cpp:695 mmframe.cpp:3568
+#: categdialog.cpp:695 mmframe.cpp:3567
 msgid "Category Relocation Result"
 msgstr "Резултат премештања категорије"
 
@@ -2732,7 +2732,7 @@ msgstr "Одабери рачуне"
 msgid "Transaction Filter"
 msgstr "Филтер трансакција"
 
-#: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2846
+#: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2845
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Извештаји"
@@ -3034,8 +3034,8 @@ msgstr ""
 msgid "QIF"
 msgstr ""
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3399 mmframe.cpp:3403
-#: mmframe.cpp:3420 mmframe.cpp:3424
+#: import_export/qif_export.cpp:152 mmframe.cpp:3398 mmframe.cpp:3402
+#: mmframe.cpp:3419 mmframe.cpp:3423
 msgid "Accounts"
 msgstr "Рачуни"
 
@@ -4445,15 +4445,15 @@ msgstr ""
 msgid "Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2714
+#: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
 msgstr "Буџетирање"
 
-#: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2699
+#: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2698
 msgid "Transaction Report"
 msgstr "Извештај трансакције"
 
-#: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2796 mmhelppanel.cpp:69
+#: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2795 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Помоћ"
 
@@ -4473,7 +4473,7 @@ msgstr ""
 msgid "Do you really want to delete the account?"
 msgstr "Стварно избрисати овај рачун?"
 
-#: mmframe.cpp:1338 mmframe.cpp:3432
+#: mmframe.cpp:1338 mmframe.cpp:3431
 msgid "Confirm Account Deletion"
 msgstr "Потврда брисања рачуна"
 
@@ -4833,7 +4833,7 @@ msgstr ""
 msgid "Refresh &WebApp..."
 msgstr ""
 
-#: mmframe.cpp:1737 mmframe.cpp:2773 mmframe.cpp:2780
+#: mmframe.cpp:1737 mmframe.cpp:2772 mmframe.cpp:2779
 msgid "Refresh WebApp"
 msgstr ""
 
@@ -5089,7 +5089,7 @@ msgstr "Прикажи организовање валуте"
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2839 optionsettingsnet.cpp:132
+#: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2838 optionsettingsnet.cpp:132
 msgid "News"
 msgstr ""
 
@@ -5275,87 +5275,87 @@ msgstr ""
 msgid "Share Account Creation"
 msgstr ""
 
-#: mmframe.cpp:2746
+#: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
 msgstr ""
 
-#: mmframe.cpp:2747
+#: mmframe.cpp:2746
 msgid "Some settings take effect only after an application restart."
 msgstr ""
 
-#: mmframe.cpp:2748 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2747 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr ""
 
-#: mmframe.cpp:2773
+#: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
 msgstr ""
 
-#: mmframe.cpp:2779
+#: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr ""
 
-#: mmframe.cpp:2919
+#: mmframe.cpp:2918
 msgid "Choose HTML file to Export"
 msgstr ""
 
-#: mmframe.cpp:3332 mmframe.cpp:3339
+#: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
 msgstr ""
 
-#: mmframe.cpp:3333
+#: mmframe.cpp:3332
 msgid "Please wait..."
 msgstr ""
 
-#: mmframe.cpp:3382 stockspanel.cpp:459
+#: mmframe.cpp:3381 stockspanel.cpp:459
 #, c-format
 msgid "%s on %s"
 msgstr "%s на %s"
 
-#: mmframe.cpp:3399
+#: mmframe.cpp:3398
 msgid "No account available to edit!"
 msgstr ""
 
-#: mmframe.cpp:3403
+#: mmframe.cpp:3402
 msgid "Choose Account to Edit"
 msgstr "Одабрати рачун за уређивање"
 
-#: mmframe.cpp:3420
+#: mmframe.cpp:3419
 msgid "No account available to delete!"
 msgstr ""
 
-#: mmframe.cpp:3424
+#: mmframe.cpp:3423
 msgid "Choose Account to Delete"
 msgstr "Одабрати рачун за брисање"
 
-#: mmframe.cpp:3429
+#: mmframe.cpp:3428
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr ""
 
-#: mmframe.cpp:3447
+#: mmframe.cpp:3446
 msgid "Select the account to reallocate"
 msgstr ""
 
-#: mmframe.cpp:3447 mmframe.cpp:3470
+#: mmframe.cpp:3446 mmframe.cpp:3469
 msgid "Account Reallocation"
 msgstr ""
 
-#: mmframe.cpp:3469
+#: mmframe.cpp:3468
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr ""
 
-#: mmframe.cpp:3580 payeedialog.cpp:812
+#: mmframe.cpp:3579 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
 msgstr ""
 
-#: mmframe.cpp:3584 payeedialog.cpp:816
+#: mmframe.cpp:3583 payeedialog.cpp:816
 msgid "Payee Relocation Result"
 msgstr ""
 
-#: mmframe.cpp:3660
+#: mmframe.cpp:3659
 #, c-format
 msgid "File %s not found"
 msgstr ""
