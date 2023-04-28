@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 09:12\n"
+"PO-Revision-Date: 2023-04-28 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -6016,7 +6016,7 @@ msgstr "Επιλέξτε αν θα χρησιμοποιηθεί η αρχική 
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Ήχος Συναλλαγής"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6327,7 +6327,7 @@ msgstr "Πρότυπο Στυλ"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Σύστημα"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
