@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:12\n"
+"PO-Revision-Date: 2023-04-28 18:49\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1912,7 +1912,7 @@ msgstr ""
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "ALLA"
 
 #: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -5991,7 +5991,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Transaktionsljud"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6300,7 +6300,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
