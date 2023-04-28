@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 09:12\n"
+"PO-Revision-Date: 2023-04-28 11:19\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1924,7 +1924,7 @@ msgstr "Глядзець ад даты ўзгаднення"
 
 #: constants.cpp:207
 msgid "ALL"
-msgstr ""
+msgstr "УСЕ"
 
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -6061,7 +6061,7 @@ msgstr "Выкарыстоўваць зыходную або бягучую да
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Гук аперацыі"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6372,7 +6372,7 @@ msgstr "Шаблон стыля"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Сістэмны"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
