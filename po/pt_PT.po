@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 10:14\n"
+"PO-Revision-Date: 2023-04-28 13:48\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3245,40 +3245,40 @@ msgstr "Escolha o ficheiro QIF a importar"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction ?"
-msgstr ""
+msgstr "Deseja importar todas as transações?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Todas as contas, beneficiários e categorias que faltam serão criados."
 
 #: import_export/qif_import_gui.cpp:1043
 msgid "Confirm Import"
-msgstr ""
+msgstr "Confirmar Importação"
 
 #: import_export/qif_import_gui.cpp:1049
 msgid "Importing"
-msgstr ""
+msgstr "A Importar"
 
 #: import_export/qif_import_gui.cpp:1051
 msgid "Importing Accounts"
-msgstr ""
+msgstr "A Importar Contas"
 
 #: import_export/qif_import_gui.cpp:1054
 msgid "Importing Payees"
-msgstr ""
+msgstr "A Importar Beneficiários"
 
 #: import_export/qif_import_gui.cpp:1058
 msgid "Importing Categories"
-msgstr ""
+msgstr "A Importar Categorias"
 
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "A Importar a transação %i de %i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
-msgstr ""
+msgstr "A Importar Transferências"
 
 #: import_export/qif_import_gui.cpp:1152
 msgid "Importing Split transactions"
@@ -3286,34 +3286,34 @@ msgstr "Importando Transações Separadas"
 
 #: import_export/qif_import_gui.cpp:1156
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Importação concluída com sucesso"
 
 #: import_export/qif_import_gui.cpp:1156
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total Importado: %zu"
 
 #: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1435
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "Transações importadas descartadas pelo utilizador!"
 
 #: import_export/qif_import_gui.cpp:1168 import_export/qif_import_gui.h:44
 #: mmframe.cpp:1540
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importar de um ficheiro QIF"
 
 #: import_export/qif_import_gui.cpp:1247
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Falta o código da transação"
 
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s correspondido por %s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "O Beneficiário da Transação está em falta ou incorreto"
 
 #: import_export/qif_import_gui.cpp:1285
 msgid "Date format or date mask is incorrect"
@@ -3333,17 +3333,17 @@ msgstr "O Montante da Transação está incorreto"
 
 #: import_export/qif_import_gui.cpp:1360
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "A Categoria da Transação está incorreta"
 
 #: import_export/qif_import_gui.cpp:1465
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "Conta %s adicionada"
 
 #: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1211
 #, c-format
 msgid "Added payee: %s"
-msgstr ""
+msgstr "Beneficiário adicionado: %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
@@ -3449,7 +3449,7 @@ msgstr "Escolha o ficheiro de dados XML a Exportar"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose CSV data file to Export"
-msgstr "Escolha o Ficheiro CVS a Exportar"
+msgstr "Escolha o Ficheiro CSV a Exportar"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
@@ -3599,15 +3599,15 @@ msgstr "Erradas: %ld"
 #: import_export/univcsvdialog.cpp:1400
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Ficheiro de log gravado para: %s"
 
 #: import_export/univcsvdialog.cpp:1403 stockdialog.cpp:652
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Confirme a gravação por favor"
 
 #: import_export/univcsvdialog.cpp:1436
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Nenhuma transação importada!"
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
@@ -3615,41 +3615,41 @@ msgstr "Especificados campos incorretos para exportação! Requer pelo menos Dat
 
 #: import_export/univcsvdialog.cpp:1459 import_export/univcsvdialog.cpp:1612
 msgid "Export"
-msgstr ""
+msgstr "Exportação"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Substituir o ficheiro existente?"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "File exists"
-msgstr ""
+msgstr "O ficheiro já existe"
 
 #: import_export/univcsvdialog.cpp:1475
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Falha ao eliminar o ficheiro existente. O ficheiro pode estar bloqueado por outro programa."
 
 #: import_export/univcsvdialog.cpp:1476
 msgid "Destination file error"
-msgstr ""
+msgstr "Erro no ficheiro de destino"
 
 #: import_export/univcsvdialog.cpp:1484 mmSimpleDialogs.cpp:803
 msgid "Invalid Account"
-msgstr ""
+msgstr "Conta Inválida"
 
 #: import_export/univcsvdialog.cpp:1611
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "Transações exportadas: %ld"
 
 #: import_export/univcsvdialog.cpp:2018
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Predefinição '%s' será eliminada"
 
 #: import_export/univcsvdialog.cpp:2051 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
-msgstr ""
+msgstr "Escolha o ficheiro CSV a importar"
 
 #: import_export/univcsvdialog.cpp:2054
 msgid "Choose CSV data file to export"
@@ -4109,21 +4109,21 @@ msgstr "&Colar Transação"
 #: mmchecking_list.cpp:448
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Colar Transações (%d)"
 
 #: mmchecking_list.cpp:453
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "D&uplicar Transação..."
 
 #: mmchecking_list.cpp:456
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Mover Transações..."
 
 #: mmchecking_list.cpp:462
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Ver noutra conta"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
@@ -4131,33 +4131,33 @@ msgstr "&Ver Categorias Separadas"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "Criar T&ransação Recorrente..."
 
 #: mmchecking_list.cpp:478
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Restaurar as transações selecionadas..."
 
 #: mmchecking_list.cpp:480
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Restaurar todas as transações na vista atual..."
 
 #: mmchecking_list.cpp:485
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Eliminar as transações selecionadas..."
 
 #: mmchecking_list.cpp:486
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eliminar &permanentemente a transação selecionada..."
+msgstr[1] "Eliminar &permanentemente as transações selecionadas..."
 
 #: mmchecking_list.cpp:489
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Eliminar todas as transações da vista atual..."
 
 #: mmchecking_list.cpp:489
 msgid "Permanently delete all transactions in current view..."
@@ -6004,7 +6004,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Som de Transação"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6313,7 +6313,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
