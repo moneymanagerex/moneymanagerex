@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 09:12\n"
+"PO-Revision-Date: 2023-04-28 15:05\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6023,7 +6023,7 @@ msgstr "Seleccione si desea utilizar la fecha original de la transacción o la f
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Sonido de transacción"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6334,7 +6334,7 @@ msgstr "Plantilla de estilo"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
