@@ -238,7 +238,7 @@ void OptionSettingsView::Create()
 
     //
     wxArrayString theme_mode_values;
-    theme_mode_values.Add(_("Auto"));
+    theme_mode_values.Add(_("System"));
     theme_mode_values.Add(_("Light"));
     theme_mode_values.Add(_("Dark"));
 
