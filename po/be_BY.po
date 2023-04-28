@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 12:08+0300\n"
-"PO-Revision-Date: 2023-04-28 09:11\n"
+"POT-Creation-Date: 2023-04-28 12:11+0300\n"
+"PO-Revision-Date: 2023-04-28 09:12\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -376,7 +376,7 @@ msgstr "&Выйсці "
 msgid "Open the previously opened database : %s"
 msgstr "Адчыніць папярэднюю базу дадзеных: %s"
 
-#: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2902
+#: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2901
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr "Прадвызначэнні сістэмы"
@@ -389,11 +389,11 @@ msgstr "Змяніць мову для MMEX GUI"
 msgid "Language"
 msgstr "Мова"
 
-#: appstartdialog.cpp:220 mmframe.cpp:3695 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:220 mmframe.cpp:3694 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Мова дадатка змененая. Аднак ўступіць у моц пры наступным запуску дадатка."
 
-#: appstartdialog.cpp:222 mmframe.cpp:3697 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:222 mmframe.cpp:3696 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr "Выбар мовы"
 
@@ -585,7 +585,7 @@ msgstr "MMEX дазваляе адсочваць актывы і пасівы, �
 "Сумарны кошт актываў будзе дададзены ў фінансавую зводку."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
-#: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3308
+#: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:238
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
@@ -1225,7 +1225,7 @@ msgstr "Увядзіце колькасць паўтораў. Пакіньце �
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
-#: mmframe.cpp:3660 splittransactionsdialog.cpp:395 stockspanel.cpp:384
+#: mmframe.cpp:3659 splittransactionsdialog.cpp:395 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -1305,7 +1305,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстальніку паказаць любыя значэнні ў дату сплаты."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
-#: mmframe.cpp:3060 mmhomepagepanel.cpp:244
+#: mmframe.cpp:3059 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
 msgstr "Планаванне"
 
@@ -1778,16 +1778,16 @@ msgstr "Катыгорыя з такім імем ужо існуе для гэ�
 msgid "Organise Categories: Editing Error"
 msgstr "Дыспетчар катыгорыяў: памылка рыдагавання"
 
-#: categdialog.cpp:692 mmframe.cpp:3565
+#: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
 msgstr "Замена катыгорыяў зробленая."
 
-#: categdialog.cpp:693 mmframe.cpp:3566 mmframe.cpp:3581 payeedialog.cpp:813
+#: categdialog.cpp:693 mmframe.cpp:3565 mmframe.cpp:3580 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "У базе дадзеных абноўлена запісаў: %i"
 
-#: categdialog.cpp:695 mmframe.cpp:3568
+#: categdialog.cpp:695 mmframe.cpp:3567
 msgid "Category Relocation Result"
 msgstr "Вынік перасоўвання катыгорыі"
 
@@ -2752,7 +2752,7 @@ msgstr "Абярыце рахункі"
 msgid "Transaction Filter"
 msgstr "Фільтр аперацыяў"
 
-#: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2846
+#: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2845
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Справаздачы"
@@ -3055,8 +3055,8 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3399 mmframe.cpp:3403
-#: mmframe.cpp:3420 mmframe.cpp:3424
+#: import_export/qif_export.cpp:152 mmframe.cpp:3398 mmframe.cpp:3402
+#: mmframe.cpp:3419 mmframe.cpp:3423
 msgid "Accounts"
 msgstr "Рахункі"
 
@@ -4488,15 +4488,15 @@ msgstr "Усе аперацыі"
 msgid "Share Accounts"
 msgstr "Паявыя Рахункі (рахункі акцыяў)"
 
-#: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2714
+#: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
 msgstr "Бюджэт"
 
-#: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2699
+#: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2698
 msgid "Transaction Report"
 msgstr "Фильтр аперацыяў"
 
-#: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2796 mmhelppanel.cpp:69
+#: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2795 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Даведка"
 
@@ -4516,7 +4516,7 @@ msgstr "Назва ўжо занятая"
 msgid "Do you really want to delete the account?"
 msgstr "Сапраўды жадаеце выдаліць рахунак?"
 
-#: mmframe.cpp:1338 mmframe.cpp:3432
+#: mmframe.cpp:1338 mmframe.cpp:3431
 msgid "Confirm Account Deletion"
 msgstr "Спраўдзіце выдаленне рахунка"
 
@@ -4876,7 +4876,7 @@ msgstr "Дыспетчар карыстальніцкіх палёў"
 msgid "Refresh &WebApp..."
 msgstr "Абнавіць &WebApp..."
 
-#: mmframe.cpp:1737 mmframe.cpp:2773 mmframe.cpp:2780
+#: mmframe.cpp:1737 mmframe.cpp:2772 mmframe.cpp:2779
 msgid "Refresh WebApp"
 msgstr "Экспарт дадзеных з дадатка у WebApp"
 
@@ -5132,7 +5132,7 @@ msgstr "Адчыніць дыспетчар валютаў"
 msgid "&Options"
 msgstr "&Налады"
 
-#: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2839 optionsettingsnet.cpp:132
+#: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2838 optionsettingsnet.cpp:132
 msgid "News"
 msgstr "Навіны"
 
@@ -5335,88 +5335,88 @@ msgstr "Паявыя рахункі ўтрымліваюць аперацыі з
 msgid "Share Account Creation"
 msgstr "Стварэнне паявога рахунка"
 
-#: mmframe.cpp:2746
+#: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
 msgstr "Налады MMEX абноўленыя."
 
-#: mmframe.cpp:2747
+#: mmframe.cpp:2746
 msgid "Some settings take effect only after an application restart."
 msgstr "Некаторыя налады ўступяць у моц толькі пасля перазапуска дадатка."
 
-#: mmframe.cpp:2748 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2747 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "Налады MMEX"
 
-#: mmframe.cpp:2773
+#: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "Абноўленыя рахункі, платнікі і катыгорыі"
 
-#: mmframe.cpp:2779
+#: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "Сталася перашкода падчас абнаўлення WebApp. Пераверце вэб-паслужнік і налады WebApp"
 
-#: mmframe.cpp:2919
+#: mmframe.cpp:2918
 msgid "Choose HTML file to Export"
 msgstr "Абярыце файл HTML для экспарта"
 
-#: mmframe.cpp:3332 mmframe.cpp:3339
+#: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
 msgstr "Спампоўваю каціроўкі з Yahoo"
 
-#: mmframe.cpp:3333
+#: mmframe.cpp:3332
 msgid "Please wait..."
 msgstr "Калі ласка, пачакайце..."
 
-#: mmframe.cpp:3382 stockspanel.cpp:459
+#: mmframe.cpp:3381 stockspanel.cpp:459
 #, c-format
 msgid "%s on %s"
 msgstr "%s на %s"
 
-#: mmframe.cpp:3399
+#: mmframe.cpp:3398
 msgid "No account available to edit!"
 msgstr "Нямае рахунка для рыдагавання!"
 
-#: mmframe.cpp:3403
+#: mmframe.cpp:3402
 msgid "Choose Account to Edit"
 msgstr "Абярыце рахунак для рыдагавання"
 
-#: mmframe.cpp:3420
+#: mmframe.cpp:3419
 msgid "No account available to delete!"
 msgstr "Нямае рахунка для выдалення!"
 
-#: mmframe.cpp:3424
+#: mmframe.cpp:3423
 msgid "Choose Account to Delete"
 msgstr "Абярыце рахунак для выдалення"
 
-#: mmframe.cpp:3429
+#: mmframe.cpp:3428
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "Вы ўпэўненыя, што жадаеце выдаліць\n"
 " %s рахунак: %s ?"
 
-#: mmframe.cpp:3447
+#: mmframe.cpp:3446
 msgid "Select the account to reallocate"
 msgstr "Абярыце рахунак прызначэння"
 
-#: mmframe.cpp:3447 mmframe.cpp:3470
+#: mmframe.cpp:3446 mmframe.cpp:3469
 msgid "Account Reallocation"
 msgstr "Перасоўванне рахунка"
 
-#: mmframe.cpp:3469
+#: mmframe.cpp:3468
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "Рахунак: %s — Абярыце новы тып."
 
-#: mmframe.cpp:3580 payeedialog.cpp:812
+#: mmframe.cpp:3579 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
 msgstr "Замена платніка зробленая."
 
-#: mmframe.cpp:3584 payeedialog.cpp:816
+#: mmframe.cpp:3583 payeedialog.cpp:816
 msgid "Payee Relocation Result"
 msgstr "Вынік замены платніка"
 
-#: mmframe.cpp:3660
+#: mmframe.cpp:3659
 #, c-format
 msgid "File %s not found"
 msgstr "Файл %s ня знойдзены"
