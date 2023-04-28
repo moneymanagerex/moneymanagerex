@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 12:08+0300\n"
-"PO-Revision-Date: 2023-04-28 09:11\n"
+"POT-Creation-Date: 2023-04-28 12:11+0300\n"
+"PO-Revision-Date: 2023-04-28 09:12\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -376,7 +376,7 @@ msgstr "종료(&X) "
 msgid "Open the previously opened database : %s"
 msgstr "이전에 열었던 데이터베이스 열기: %s"
 
-#: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2902
+#: appstartdialog.cpp:199 mmframe.cpp:1621 mmframe.cpp:2901
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr "시스템 기본값"
@@ -389,11 +389,11 @@ msgstr "MMEX GUI에 사용되는 언어 변경"
 msgid "Language"
 msgstr "언어"
 
-#: appstartdialog.cpp:220 mmframe.cpp:3695 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:220 mmframe.cpp:3694 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "이 응용 프로그램의 언어가 변경되었습니다. 변경 사항은 응용 프로그램이 다음번에 시작될 때 적용됩니다."
 
-#: appstartdialog.cpp:222 mmframe.cpp:3697 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:222 mmframe.cpp:3696 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr "언어 변경"
 
@@ -583,7 +583,7 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr "MMEX를 사용하면 자동차, 주택, 토지 등과 같은 고정 자산을 추적할 수 있습니다. 각 자산은 매년 특정 비율만큼 가치를 상승시키거나, 매년 특정 비율만큼 가치를 하락시키거나, 가치의 변화를 일으키지 않을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
-#: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3308
+#: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:238
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
@@ -1224,7 +1224,7 @@ msgstr "수행 할 지불 횟수를 지정하세요.\n"
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
-#: mmframe.cpp:3660 splittransactionsdialog.cpp:395 stockspanel.cpp:384
+#: mmframe.cpp:3659 splittransactionsdialog.cpp:395 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -1304,7 +1304,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "팁: 이러한 거래는 활성화되도록 설정할 수 있습니다. 이를 통해 사용자는 만기일에 모든 값을 조정할 수 있습니다."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:760
-#: mmframe.cpp:3060 mmhomepagepanel.cpp:244
+#: mmframe.cpp:3059 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
 msgstr "반복 거래"
 
@@ -1768,16 +1768,16 @@ msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 msgid "Organise Categories: Editing Error"
 msgstr "분류 구성: 편집 오류"
 
-#: categdialog.cpp:692 mmframe.cpp:3565
+#: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
 msgstr "범주 재배치가 완료되었습니다."
 
-#: categdialog.cpp:693 mmframe.cpp:3566 mmframe.cpp:3581 payeedialog.cpp:813
+#: categdialog.cpp:693 mmframe.cpp:3565 mmframe.cpp:3580 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "데이터베이스에서 레코드가 업데이트되었습니다: %i"
 
-#: categdialog.cpp:695 mmframe.cpp:3568
+#: categdialog.cpp:695 mmframe.cpp:3567
 msgid "Category Relocation Result"
 msgstr "범주 재배치 결과"
 
@@ -2739,7 +2739,7 @@ msgstr "계정 선택"
 msgid "Transaction Filter"
 msgstr "거래 필터"
 
-#: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2846
+#: general_report_manager.cpp:293 mmframe.cpp:778 mmframe.cpp:2845
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "보고서"
@@ -3039,8 +3039,8 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3399 mmframe.cpp:3403
-#: mmframe.cpp:3420 mmframe.cpp:3424
+#: import_export/qif_export.cpp:152 mmframe.cpp:3398 mmframe.cpp:3402
+#: mmframe.cpp:3419 mmframe.cpp:3423
 msgid "Accounts"
 msgstr "계정"
 
@@ -4435,15 +4435,15 @@ msgstr "모든 거래"
 msgid "Share Accounts"
 msgstr "주식 계정"
 
-#: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2714
+#: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
 msgstr "예산 설정"
 
-#: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2699
+#: mmframe.cpp:773 mmframe.cpp:1296 mmframe.cpp:1313 mmframe.cpp:2698
 msgid "Transaction Report"
 msgstr "거래 내역 보고서"
 
-#: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2796 mmhelppanel.cpp:69
+#: mmframe.cpp:790 mmframe.cpp:2529 mmframe.cpp:2795 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "도움말"
 
@@ -4463,7 +4463,7 @@ msgstr "사용 중인 이름"
 msgid "Do you really want to delete the account?"
 msgstr "정말 계정을 삭제하시겠습니까?"
 
-#: mmframe.cpp:1338 mmframe.cpp:3432
+#: mmframe.cpp:1338 mmframe.cpp:3431
 msgid "Confirm Account Deletion"
 msgstr "계정 삭제 확인"
 
@@ -4823,7 +4823,7 @@ msgstr "사용자 지정 필드 관리자"
 msgid "Refresh &WebApp..."
 msgstr "WebApp 새로 고침(&W)..."
 
-#: mmframe.cpp:1737 mmframe.cpp:2773 mmframe.cpp:2780
+#: mmframe.cpp:1737 mmframe.cpp:2772 mmframe.cpp:2779
 msgid "Refresh WebApp"
 msgstr "WebApp 새로 고침"
 
@@ -5079,7 +5079,7 @@ msgstr "통화 구성 대화 상자 표시"
 msgid "&Options"
 msgstr "옵션(&O)"
 
-#: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2839 optionsettingsnet.cpp:132
+#: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2838 optionsettingsnet.cpp:132
 msgid "News"
 msgstr "새로운 소식"
 
@@ -5278,87 +5278,87 @@ msgstr "주식 거래를 보유하는 주식 계정이 있습니다.\n\n"
 msgid "Share Account Creation"
 msgstr "주식 계정 생성"
 
-#: mmframe.cpp:2746
+#: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
 msgstr "MMEX 옵션이 업데이트되었습니다."
 
-#: mmframe.cpp:2747
+#: mmframe.cpp:2746
 msgid "Some settings take effect only after an application restart."
 msgstr "일부 설정은 응용 프로그램을 다시 시작한 후에만 적용됩니다."
 
-#: mmframe.cpp:2748 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2747 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "MMEX 옵션"
 
-#: mmframe.cpp:2773
+#: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "계정, 수취인 및 범주 업데이트"
 
-#: mmframe.cpp:2779
+#: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "WebApp 업데이트 중 문제가 발생했습니다. 웹 서버 및 WebApp 설정을 확인하십시오"
 
-#: mmframe.cpp:2919
+#: mmframe.cpp:2918
 msgid "Choose HTML file to Export"
 msgstr "내보낼 HTML 파일 선택"
 
-#: mmframe.cpp:3332 mmframe.cpp:3339
+#: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
 msgstr "Yahoo에서 주가 다운로드"
 
-#: mmframe.cpp:3333
+#: mmframe.cpp:3332
 msgid "Please wait..."
 msgstr "잠시 기다려 주십시오..."
 
-#: mmframe.cpp:3382 stockspanel.cpp:459
+#: mmframe.cpp:3381 stockspanel.cpp:459
 #, c-format
 msgid "%s on %s"
 msgstr "%s on %s"
 
-#: mmframe.cpp:3399
+#: mmframe.cpp:3398
 msgid "No account available to edit!"
 msgstr "편집할 수 있는 계정이 없습니다!"
 
-#: mmframe.cpp:3403
+#: mmframe.cpp:3402
 msgid "Choose Account to Edit"
 msgstr "편집할 계정 선택"
 
-#: mmframe.cpp:3420
+#: mmframe.cpp:3419
 msgid "No account available to delete!"
 msgstr "삭제할 수 있는 계정이 없습니다!"
 
-#: mmframe.cpp:3424
+#: mmframe.cpp:3423
 msgid "Choose Account to Delete"
 msgstr "삭제할 계정 선택"
 
-#: mmframe.cpp:3429
+#: mmframe.cpp:3428
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "%s 계정을 삭제하시겠습니까: %s?"
 
-#: mmframe.cpp:3447
+#: mmframe.cpp:3446
 msgid "Select the account to reallocate"
 msgstr "재할당할 계정 선택"
 
-#: mmframe.cpp:3447 mmframe.cpp:3470
+#: mmframe.cpp:3446 mmframe.cpp:3469
 msgid "Account Reallocation"
 msgstr "계정 재할당"
 
-#: mmframe.cpp:3469
+#: mmframe.cpp:3468
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "계정: %s - 새 유형을 선택합니다."
 
-#: mmframe.cpp:3580 payeedialog.cpp:812
+#: mmframe.cpp:3579 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
 msgstr "수취인 재배치가 완료되었습니다."
 
-#: mmframe.cpp:3584 payeedialog.cpp:816
+#: mmframe.cpp:3583 payeedialog.cpp:816
 msgid "Payee Relocation Result"
 msgstr "수취인 재배치 결과"
 
-#: mmframe.cpp:3660
+#: mmframe.cpp:3659
 #, c-format
 msgid "File %s not found"
 msgstr "%s 파일을 찾을 수 없음"
