@@ -229,7 +229,7 @@ void OptionSettingsGeneral::Create()
 
     wxBoxSizer* soundBaseSizer = new wxBoxSizer(wxHORIZONTAL);
     generalPanelSizer->Add(soundBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
-    soundBaseSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _("Use Transaction Sound")), g_flagsH);
+    soundBaseSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _("Transaction Sound")), g_flagsH);
     m_use_sound = new wxChoice(general_panel, wxID_STATIC
         , wxDefaultPosition, wxSize(100, -1)
         , sounds);
