@@ -66,6 +66,7 @@ namespace weblink
     extern const wxString GA;
     extern const wxString WebSite;
     extern const wxString Releases;
+    extern const wxString Latest;
     extern const wxString Download;
     extern const wxString News;
     extern const wxString NewsRSS;

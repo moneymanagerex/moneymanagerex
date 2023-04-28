@@ -144,6 +144,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
 const wxString mmex::weblink::GA             = "http://www.google-analytics.com/collect?";
 const wxString mmex::weblink::WebSite        = mmex::weblink::addReferralToURL("https://moneymanagerex.org", "Website");
 const wxString mmex::weblink::Releases       = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
+const wxString mmex::weblink::Latest         = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases/latest";
 const wxString mmex::weblink::Download       = mmex::weblink::addReferralToURL("https://moneymanagerex.org/docs/downloads/latest", "Download");
 const wxString mmex::weblink::News           = mmex::weblink::addReferralToURL("https://moneymanagerex.org/blog/", "News");
 const wxString mmex::weblink::NewsRSS        = "https://moneymanagerex.org/blog/index.xml";
