@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 10:14\n"
+"POT-Creation-Date: 2023-04-28 18:11+0300\n"
+"PO-Revision-Date: 2023-04-28 15:12\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1861,77 +1861,77 @@ msgstr "Tout sélectionner"
 msgid "64-bit"
 msgstr "64 bits"
 
-#: constants.cpp:192
+#: constants.cpp:193
 msgid "View with Transaction Filter..."
 msgstr "Vue avec le filtre d'opérations..."
 
-#: constants.cpp:193
+#: constants.cpp:194
 msgid "View All Transactions"
 msgstr "Afficher toutes les transactions"
 
-#: constants.cpp:194
+#: constants.cpp:195
 msgid "View Today"
 msgstr "Voir aujourd'hui"
 
-#: constants.cpp:195
+#: constants.cpp:196
 msgid "View Current Month"
 msgstr "Mois en cours"
 
-#: constants.cpp:196
+#: constants.cpp:197
 msgid "View Last 30 days"
 msgstr "Voir les 30 derniers jours"
 
-#: constants.cpp:197
+#: constants.cpp:198
 msgid "View Last 90 days"
 msgstr "Voir les 90 derniers jours"
 
-#: constants.cpp:198
+#: constants.cpp:199
 msgid "View Last Month"
 msgstr "Dernier mois"
 
-#: constants.cpp:199
+#: constants.cpp:200
 msgid "View Last 3 Months"
 msgstr "Voir les 3 derniers mois"
 
-#: constants.cpp:200
+#: constants.cpp:201
 msgid "View Last 12 Months"
 msgstr "Voir les 12 derniers mois"
 
-#: constants.cpp:201
+#: constants.cpp:202
 msgid "View Current Year"
 msgstr "Voir l'année courante"
 
-#: constants.cpp:202
+#: constants.cpp:203
 msgid "View Current Financial Year"
 msgstr "Voir année fiscale en cours"
 
-#: constants.cpp:203
+#: constants.cpp:204
 msgid "View Last Year"
 msgstr "Voir l'année passée"
 
-#: constants.cpp:204
+#: constants.cpp:205
 msgid "View Last Financial Year"
 msgstr "Voir année suivante"
 
-#: constants.cpp:205
+#: constants.cpp:206
 msgid "View Since Statement Date"
 msgstr "Voir depuis la date du relevé"
 
-#: constants.cpp:207
+#: constants.cpp:208
 msgid "ALL"
 msgstr "Tout/tous/toutes"
 
-#: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
+#: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "Ouvrir"
 
-#: constants.cpp:209 mmframe.cpp:1482 model/Model_Account.cpp:28
+#: constants.cpp:210 mmframe.cpp:1482 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "Fermé"
 
-#: constants.cpp:210 mmframe.cpp:1480
+#: constants.cpp:211 mmframe.cpp:1480
 msgid "Favorites"
 msgstr "Comptes favoris"
 
@@ -3245,8 +3245,8 @@ msgid "Choose QIF data file to Import"
 msgstr "Choisir un fichier QIF à importer."
 
 #: import_export/qif_import_gui.cpp:1041
-msgid "Do you want to import all transaction ?"
-msgstr "Souhaitez-vous réellement importer toutes les transactions?"
+msgid "Do you want to import all transaction?"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -7704,40 +7704,40 @@ msgstr "Impossible de trouver la devise 'USD', nécessaire à la conversion des 
 msgid "Could not parse price in asset history"
 msgstr "Impossible d'analyser le prix dans l'historique de l'actif"
 
-#: util.cpp:1287
+#: util.cpp:1288
 #, c-format
 msgid "Version: %s"
 msgstr "Version: %s"
 
-#: util.cpp:1288
+#: util.cpp:1289
 #, c-format
 msgid "Built on: %s %s"
 msgstr "Basé sur : %s %s"
 
-#: util.cpp:1289
+#: util.cpp:1290
 #, c-format
 msgid "Database version: %d"
 msgstr "Version de la base de données : %d"
 
-#: util.cpp:1296
+#: util.cpp:1297
 #, c-format
 msgid "Git commit: %s (%s)"
 msgstr "Git commit : %s (%s)"
 
-#: util.cpp:1299
+#: util.cpp:1300
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git branch : %s"
 
-#: util.cpp:1303
+#: util.cpp:1304
 msgid "MMEX is using the following support products:"
 msgstr "MMEX utilise les produits suivant:"
 
-#: util.cpp:1320
+#: util.cpp:1321
 msgid "Built with:"
 msgstr "Développé avec :"
 
-#: util.cpp:1339
+#: util.cpp:1340
 msgid "Running on:"
 msgstr "Mis en marche le:"
 
@@ -8070,15 +8070,15 @@ msgstr "Votre version est la %s"
 msgid "Show this window next time %s starts"
 msgstr "Afficher cette fenêtre au prochain démarrage de %s"
 
-#: wizard_update.cpp:326 wizard_update.cpp:341
+#: wizard_update.cpp:329 wizard_update.cpp:345
 msgid "Unable to check for updates!"
 msgstr "Recheche des mises à jour impossible!"
 
-#: wizard_update.cpp:327 wizard_update.cpp:342
+#: wizard_update.cpp:330 wizard_update.cpp:346
 msgid "Error: "
 msgstr "Erreur: "
 
-#: wizard_update.cpp:328 wizard_update.cpp:344
+#: wizard_update.cpp:331 wizard_update.cpp:348
 msgid "MMEX Update Check"
 msgstr "Vérification des mises à jour."
 
