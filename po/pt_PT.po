@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 09:13\n"
+"PO-Revision-Date: 2023-04-28 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1919,7 +1919,7 @@ msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:207
 msgid "ALL"
-msgstr ""
+msgstr "TODAS"
 
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3152,35 +3152,35 @@ msgstr "Número de contas exportadas: %zu"
 
 #: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:197
 msgid "&Browse"
-msgstr ""
+msgstr "&Navegar"
 
 #: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:367
 msgid "Encoding:"
-msgstr ""
+msgstr "Codificação:"
 
 #: import_export/qif_import_gui.cpp:197
 msgid "Filtering Details:"
-msgstr ""
+msgstr "Detalhes do Filtro:"
 
 #: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:475
 msgid "Data"
-msgstr ""
+msgstr "Dados"
 
 #: import_export/qif_import_gui.cpp:296
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Utilize o número da conta em vez do nome"
 
 #: import_export/qif_import_gui.cpp:300
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Incluir campo beneficiário nas notas"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Corresponder Beneficiários com uma máscara"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Adicionar detalhes da correspondência às Notas"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
@@ -3198,50 +3198,50 @@ msgstr "Desconhecido"
 
 #: import_export/qif_import_gui.cpp:416
 msgid "Scanning"
-msgstr ""
+msgstr "A analisar"
 
 #: import_export/qif_import_gui.cpp:445
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "A ler linha %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:451
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Linha %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:543
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Número de linhas lidas do ficheiro QIF: %zu em %lld ms"
 
 #: import_export/qif_import_gui.cpp:548 mmreportspanel.cpp:358
 msgid "Accounts:"
-msgstr ""
+msgstr "Contas:"
 
 #: import_export/qif_import_gui.cpp:555 import_export/qif_import_gui.cpp:894
 #: import_export/univcsvdialog.cpp:339
 msgid "Date Format: "
-msgstr ""
+msgstr "Formato de Data: "
 
 #: import_export/qif_import_gui.cpp:558
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Pressione o botão 'OK' para continuar"
 
 #: import_export/qif_import_gui.cpp:767 import_export/qif_import_gui.cpp:798
 #: import_export/univcsvdialog.cpp:1927 import_export/univcsvdialog.cpp:1942
 #: stockspanel.cpp:449
 msgid "Missing"
-msgstr ""
+msgstr "Em falta"
 
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:1921
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Correspondeu a %s pela máscara %s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "Escolha o ficheiro QIF a importar"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction ?"
