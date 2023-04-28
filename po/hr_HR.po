@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 09:13\n"
+"POT-Creation-Date: 2023-04-28 18:11+0300\n"
+"PO-Revision-Date: 2023-04-28 15:13\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1864,77 +1864,77 @@ msgstr "Odaberi sve"
 msgid "64-bit"
 msgstr "64-bitni"
 
-#: constants.cpp:192
+#: constants.cpp:193
 msgid "View with Transaction Filter..."
 msgstr ""
 
-#: constants.cpp:193
+#: constants.cpp:194
 msgid "View All Transactions"
 msgstr "Prikaz svih transakcija"
 
-#: constants.cpp:194
+#: constants.cpp:195
 msgid "View Today"
 msgstr "Prikaz današnjeg dana"
 
-#: constants.cpp:195
+#: constants.cpp:196
 msgid "View Current Month"
 msgstr "Prikaz tekućeg mjeseca"
 
-#: constants.cpp:196
+#: constants.cpp:197
 msgid "View Last 30 days"
 msgstr "Prikaz zadnjih 30 dana"
 
-#: constants.cpp:197
+#: constants.cpp:198
 msgid "View Last 90 days"
 msgstr "Prikaz zadnjih 90 dana"
 
-#: constants.cpp:198
+#: constants.cpp:199
 msgid "View Last Month"
 msgstr "Prikaz prošlog mjeseca"
 
-#: constants.cpp:199
+#: constants.cpp:200
 msgid "View Last 3 Months"
 msgstr "Prikaz zadnjih 3 mjeseca"
 
-#: constants.cpp:200
+#: constants.cpp:201
 msgid "View Last 12 Months"
 msgstr "Prikaz zadnjih 12 mjeseci"
 
-#: constants.cpp:201
+#: constants.cpp:202
 msgid "View Current Year"
 msgstr "Prikaz tekuće godine"
 
-#: constants.cpp:202
+#: constants.cpp:203
 msgid "View Current Financial Year"
 msgstr "Prikaz tekuće fiskalne godine"
 
-#: constants.cpp:203
+#: constants.cpp:204
 msgid "View Last Year"
 msgstr "Prikaz prošle godine"
 
-#: constants.cpp:204
+#: constants.cpp:205
 msgid "View Last Financial Year"
 msgstr "Prikaz zadnje fiskalne godine"
 
-#: constants.cpp:205
+#: constants.cpp:206
 msgid "View Since Statement Date"
 msgstr "Prikaz od datuma izvatka"
 
-#: constants.cpp:207
+#: constants.cpp:208
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
+#: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "Otvoreni"
 
-#: constants.cpp:209 mmframe.cpp:1482 model/Model_Account.cpp:28
+#: constants.cpp:210 mmframe.cpp:1482 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "Zatvoreni"
 
-#: constants.cpp:210 mmframe.cpp:1480
+#: constants.cpp:211 mmframe.cpp:1480
 msgid "Favorites"
 msgstr "Favoriti"
 
@@ -3247,8 +3247,8 @@ msgid "Choose QIF data file to Import"
 msgstr "Odaberi QIF datoteku koju želiš uvesti"
 
 #: import_export/qif_import_gui.cpp:1041
-msgid "Do you want to import all transaction ?"
-msgstr "Želiš li uvesti sve transakcije ?"
+msgid "Do you want to import all transaction?"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -7701,40 +7701,40 @@ msgstr "Valuta „USD” nije pronađena, koja je potrebna za konverziju povijes
 msgid "Could not parse price in asset history"
 msgstr "Neuspjela obrada cijene u povijesti imovine"
 
-#: util.cpp:1287
+#: util.cpp:1288
 #, c-format
 msgid "Version: %s"
 msgstr "Verzija: %s"
 
-#: util.cpp:1288
+#: util.cpp:1289
 #, c-format
 msgid "Built on: %s %s"
 msgstr "Izgradnja: %s %s"
 
-#: util.cpp:1289
+#: util.cpp:1290
 #, c-format
 msgid "Database version: %d"
 msgstr "Verzija baze podataka: %d"
 
-#: util.cpp:1296
+#: util.cpp:1297
 #, c-format
 msgid "Git commit: %s (%s)"
 msgstr "Git promjena: %s (%s)"
 
-#: util.cpp:1299
+#: util.cpp:1300
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git grana: %s"
 
-#: util.cpp:1303
+#: util.cpp:1304
 msgid "MMEX is using the following support products:"
 msgstr "MMEX koristi sljedeće proizvode podrške:"
 
-#: util.cpp:1320
+#: util.cpp:1321
 msgid "Built with:"
 msgstr "Izgrađeno pomoću:"
 
-#: util.cpp:1339
+#: util.cpp:1340
 msgid "Running on:"
 msgstr "Pokreće se na:"
 
@@ -8069,15 +8069,15 @@ msgstr "Tvoja verzija: %s"
 msgid "Show this window next time %s starts"
 msgstr "Prikaži ovaj prozor prilikom sljedećeg pokretanja %s‑a"
 
-#: wizard_update.cpp:326 wizard_update.cpp:341
+#: wizard_update.cpp:329 wizard_update.cpp:345
 msgid "Unable to check for updates!"
 msgstr "Provjera nadogradnje nije moguća!"
 
-#: wizard_update.cpp:327 wizard_update.cpp:342
+#: wizard_update.cpp:330 wizard_update.cpp:346
 msgid "Error: "
 msgstr "Greška: "
 
-#: wizard_update.cpp:328 wizard_update.cpp:344
+#: wizard_update.cpp:331 wizard_update.cpp:348
 msgid "MMEX Update Check"
 msgstr "MMEX provjera nadogradnji"
 
