@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:12\n"
+"PO-Revision-Date: 2023-04-28 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3243,7 +3243,7 @@ msgstr "Válasszon QIF-fájlt az importáláshoz"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Importálni szeretné az összes ügyletet?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -6023,7 +6023,7 @@ msgstr "Jelölje be, hogy az eredeti ügylet dátumát vagy a jelenlegi dátumot
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Ügylethang"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6334,7 +6334,7 @@ msgstr "Stílussablon"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Rendszer"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
