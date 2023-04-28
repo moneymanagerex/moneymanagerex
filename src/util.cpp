@@ -1192,6 +1192,7 @@ CURLcode http_get_data(const wxString& sSite, wxString& sOutput, const wxString&
     curl_set_writedata_options(curl, chunk);
 
     curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
 
     CURLcode err_code = curl_easy_perform(curl);
     if (err_code == CURLE_OK)
