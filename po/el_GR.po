@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 10:14\n"
+"POT-Creation-Date: 2023-04-28 18:11+0300\n"
+"PO-Revision-Date: 2023-04-28 15:12\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1862,77 +1862,77 @@ msgstr "Επιλογή όλων"
 msgid "64-bit"
 msgstr "64-bit"
 
-#: constants.cpp:192
+#: constants.cpp:193
 msgid "View with Transaction Filter..."
 msgstr "Προβολή με Φίλτρο Συναλλαγής..."
 
-#: constants.cpp:193
+#: constants.cpp:194
 msgid "View All Transactions"
 msgstr "Εμφάνιση όλων των συναλλαγών"
 
-#: constants.cpp:194
+#: constants.cpp:195
 msgid "View Today"
 msgstr "Εμφάνιση σημερινής ημερομηνίας"
 
-#: constants.cpp:195
+#: constants.cpp:196
 msgid "View Current Month"
 msgstr "Εμφάνιση τρέχοντος μηνός"
 
-#: constants.cpp:196
+#: constants.cpp:197
 msgid "View Last 30 days"
 msgstr "Εμφάνιση προηγούμενων 30 ημερών"
 
-#: constants.cpp:197
+#: constants.cpp:198
 msgid "View Last 90 days"
 msgstr "Εμφάνιση προηγούμενων 90 ημερών"
 
-#: constants.cpp:198
+#: constants.cpp:199
 msgid "View Last Month"
 msgstr "Εμφάνιση προηγούμενου μήνα"
 
-#: constants.cpp:199
+#: constants.cpp:200
 msgid "View Last 3 Months"
 msgstr "Εμφάνιση προηγούμενων 3 μηνών"
 
-#: constants.cpp:200
+#: constants.cpp:201
 msgid "View Last 12 Months"
 msgstr "Προβολή Τελευταίων 12 Μηνών"
 
-#: constants.cpp:201
+#: constants.cpp:202
 msgid "View Current Year"
 msgstr "Προβολή Τρέχοντος Έτους"
 
-#: constants.cpp:202
+#: constants.cpp:203
 msgid "View Current Financial Year"
 msgstr "Προβολή Τρέχοντος Οικονομικού Έτους"
 
-#: constants.cpp:203
+#: constants.cpp:204
 msgid "View Last Year"
 msgstr "Δείτε Το Τελευταίο Έτος"
 
-#: constants.cpp:204
+#: constants.cpp:205
 msgid "View Last Financial Year"
 msgstr "Δείτε Το Τελευταίο Οικονομικό Έτος"
 
-#: constants.cpp:205
+#: constants.cpp:206
 msgid "View Since Statement Date"
 msgstr "Προβολή Από Ημερομηνία Δήλωσης"
 
-#: constants.cpp:207
+#: constants.cpp:208
 msgid "ALL"
 msgstr "ΟΛΑ"
 
-#: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
+#: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "Ανοικτοί"
 
-#: constants.cpp:209 mmframe.cpp:1482 model/Model_Account.cpp:28
+#: constants.cpp:210 mmframe.cpp:1482 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "Κλειστός"
 
-#: constants.cpp:210 mmframe.cpp:1480
+#: constants.cpp:211 mmframe.cpp:1480
 msgid "Favorites"
 msgstr "Αγαπημένοι"
 
@@ -3243,8 +3243,8 @@ msgid "Choose QIF data file to Import"
 msgstr "Επιλέξτε αρχείο δεδομένων QIF για εισαγωγή"
 
 #: import_export/qif_import_gui.cpp:1041
-msgid "Do you want to import all transaction ?"
-msgstr "Θέλετε να εισαγάγετε όλες τις συναλλαγές ;"
+msgid "Do you want to import all transaction?"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -7696,40 +7696,40 @@ msgstr "Αδυναμία εύρεσης του νομίσματος 'USD', πο�
 msgid "Could not parse price in asset history"
 msgstr "Αδύνατη η ανάλυση της τιμής στο ιστορικό περιουσιακών στοιχείων"
 
-#: util.cpp:1287
+#: util.cpp:1288
 #, c-format
 msgid "Version: %s"
 msgstr "Έκδοση: %s"
 
-#: util.cpp:1288
+#: util.cpp:1289
 #, c-format
 msgid "Built on: %s %s"
 msgstr ""
 
-#: util.cpp:1289
+#: util.cpp:1290
 #, c-format
 msgid "Database version: %d"
 msgstr "Έκδοση βάσης δεδομένων: %d"
 
-#: util.cpp:1296
+#: util.cpp:1297
 #, c-format
 msgid "Git commit: %s (%s)"
 msgstr "Υποβολή: %s (%s)"
 
-#: util.cpp:1299
+#: util.cpp:1300
 #, c-format
 msgid "Git branch: %s"
 msgstr "Κλάδος Git: %s"
 
-#: util.cpp:1303
+#: util.cpp:1304
 msgid "MMEX is using the following support products:"
 msgstr "Το MMEX χρησιμοποιεί τα ακόλουθα προϊόντα υποστήριξης:"
 
-#: util.cpp:1320
+#: util.cpp:1321
 msgid "Built with:"
 msgstr "Δημιουργημένο με:"
 
-#: util.cpp:1339
+#: util.cpp:1340
 msgid "Running on:"
 msgstr "Εκτελείται στις:"
 
@@ -8067,15 +8067,15 @@ msgstr "Η έκδοσή σας είναι %s"
 msgid "Show this window next time %s starts"
 msgstr "Άνοιγμα αυτού του παραθύρου την επόμενη φορά που θα εκκινήσει το %s"
 
-#: wizard_update.cpp:326 wizard_update.cpp:341
+#: wizard_update.cpp:329 wizard_update.cpp:345
 msgid "Unable to check for updates!"
 msgstr "Αδυναμία ελέγχου για ενημερώσεις!"
 
-#: wizard_update.cpp:327 wizard_update.cpp:342
+#: wizard_update.cpp:330 wizard_update.cpp:346
 msgid "Error: "
 msgstr "Σφάλμα: "
 
-#: wizard_update.cpp:328 wizard_update.cpp:344
+#: wizard_update.cpp:331 wizard_update.cpp:348
 msgid "MMEX Update Check"
 msgstr "Έλεγχος Ενημέρωσης Mmex"
 
