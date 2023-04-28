@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:13\n"
+"PO-Revision-Date: 2023-04-28 16:24\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1919,7 +1919,7 @@ msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "TODOS"
 
 #: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3245,7 +3245,7 @@ msgstr "Escolha o arquivo QIF que deseja importar"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Você deseja importar toda a transação?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -6024,7 +6024,7 @@ msgstr "Selecione se deve usar a data original da transação ou a data atual ao
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Som de Transação"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6335,7 +6335,7 @@ msgstr "Estilo do Modelo"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
