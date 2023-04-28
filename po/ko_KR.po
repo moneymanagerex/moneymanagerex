@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-19 21:45+0300\n"
-"PO-Revision-Date: 2023-04-27 15:59\n"
+"PO-Revision-Date: 2023-04-28 00:47\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -352,7 +352,7 @@ msgstr "사용자 설명서(&U)"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
-msgstr "사용자 메뉴얼을 읽습니다."
+msgstr "사용자 설명서를 읽어보세요."
 
 #: appstartdialog.cpp:119 mmframe.cpp:1777
 msgid "&Website"
@@ -1913,7 +1913,7 @@ msgstr "대차표 날짜 이후 보기"
 
 #: constants.cpp:207
 msgid "ALL"
-msgstr ""
+msgstr "전체"
 
 #: constants.cpp:208 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
