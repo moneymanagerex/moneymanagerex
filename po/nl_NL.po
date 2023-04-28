@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 09:13\n"
+"PO-Revision-Date: 2023-04-28 12:37\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -6024,7 +6024,7 @@ msgstr "Selecteer of de originele transactiedatum of de huidige datum gebruikt w
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Transactie geluid"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6335,7 +6335,7 @@ msgstr "Stijl template"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
