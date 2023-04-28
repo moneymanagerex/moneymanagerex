@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 12:11+0300\n"
-"PO-Revision-Date: 2023-04-28 13:48\n"
+"PO-Revision-Date: 2023-04-28 15:05\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4161,11 +4161,11 @@ msgstr "Eliminar todas as transações da vista atual..."
 
 #: mmchecking_list.cpp:489
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Eliminar permanentemente todas as transações na vista atual..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Eliminar Transações \"Acompanhar\" Visualizadas..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
