@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 11:32\n"
+"PO-Revision-Date: 2023-04-29 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3730,7 +3730,7 @@ msgstr "Digite o câmbio da moeda"
 
 #: maincurrencydialog.cpp:300
 msgid "Download Currency Values history"
-msgstr "Descarregar histórico de Câmbios de Moedas"
+msgstr "Transferir histórico de Cotações de Moedas"
 
 #: maincurrencydialog.cpp:303
 msgid "Add/&Update "
@@ -3804,12 +3804,12 @@ msgstr "Pretende adicionar também datas sem qualquer transação?"
 #: maincurrencydialog.cpp:691
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr "Não é possível descarregar as taxas de câmbio %s"
+msgstr "Não foi possível transferir as taxas de câmbio %s"
 
 #: maincurrencydialog.cpp:727
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "Não foi possível descarregar o histórico para o símbolo %s. Taxas históricas indisponíveis!"
+msgstr "Não foi possível transferir o histórico do símbolo %s. Taxas históricas indisponíveis!"
 
 #: maincurrencydialog.cpp:789 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all history rates, proceed?"
@@ -3822,7 +3822,7 @@ msgstr "Deseja atualizar as taxas de câmbio de hoje?"
 #: maincurrencydialog.cpp:834
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "Não foi possível descarregar o histórico para o símbolo base %s. Taxas históricas indisponíveis!"
+msgstr "Não foi possível transferir o histórico do símbolo base %s. Taxas históricas indisponíveis!"
 
 #: maincurrencydialog.cpp:877 stockspanel.cpp:395 util.cpp:681
 msgid "Could not find base currency symbol!"
@@ -4748,11 +4748,11 @@ msgstr "Apagar a Conta da Base de Dados"
 
 #: mmframe.cpp:1666
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "Velocidades de &Transferência"
 
 #: mmframe.cpp:1666 mmframe.cpp:1916
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Transferir cotações de Moeda e Ações"
 
 #: mmframe.cpp:1672
 msgid "Organize &Categories..."
@@ -4776,23 +4776,23 @@ msgstr "Moedas"
 
 #: mmframe.cpp:1684
 msgid "&Categories..."
-msgstr ""
+msgstr "&Categorias..."
 
 #: mmframe.cpp:1687
 msgid "&Payees..."
-msgstr ""
+msgstr "&Beneficiários..."
 
 #: mmframe.cpp:1688
 msgid "Reassign all payees to another payee"
-msgstr ""
+msgstr "Reatribuir todos os Beneficiários a outro Beneficiário"
 
 #: mmframe.cpp:1690
 msgid "Re&location of"
-msgstr ""
+msgstr "Rea&locação de"
 
 #: mmframe.cpp:1691
 msgid "Relocate Categories && Payees"
-msgstr ""
+msgstr "Realocar Categorias && Beneficiários"
 
 #: mmframe.cpp:1701
 msgid "&Budget Setup..."
@@ -4800,7 +4800,7 @@ msgstr "Configurar &Orçamentos..."
 
 #: mmframe.cpp:1705
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "Transações &Recorrentes"
 
 #: mmframe.cpp:1705
 msgid "Bills && Deposits"
@@ -4808,35 +4808,35 @@ msgstr "Contas && Depósitos"
 
 #: mmframe.cpp:1709
 msgid "&Assets"
-msgstr ""
+msgstr "&Ativos"
 
 #: mmframe.cpp:1715
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "Gestor de &Temas..."
 
 #: mmframe.cpp:1715 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "Gestor de Temas"
 
 #: mmframe.cpp:1721
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Filtro do Relatório de Transações..."
 
 #: mmframe.cpp:1721 mmframe.cpp:1897
 msgid "Transaction Report Filter"
-msgstr ""
+msgstr "Filtro do Relatório de Transações"
 
 #: mmframe.cpp:1727
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "&Gestor Geral de Relatórios..."
 
 #: mmframe.cpp:1731
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Gestor de &Campos Personalizados..."
 
 #: mmframe.cpp:1731
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Gestor de Campos Personalizados"
 
 #: mmframe.cpp:1737
 msgid "Refresh &WebApp..."
@@ -4848,7 +4848,7 @@ msgstr "Atualizar Aplicação Web"
 
 #: mmframe.cpp:1742
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Opções... Ctrl-,"
 
 #: mmframe.cpp:1742 mmframe.cpp:1901
 msgid "Show the Options Dialog"
@@ -4856,47 +4856,47 @@ msgstr "Opções"
 
 #: mmframe.cpp:1749
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Converter &BD Encriptada..."
 
 #: mmframe.cpp:1750
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Converter BD Encriptada para Desencriptada"
 
 #: mmframe.cpp:1752
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Alterar &Palavra-passe Encriptada..."
 
 #: mmframe.cpp:1753
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Alterar a palavra-passe de uma base de dados encriptada"
 
 #: mmframe.cpp:1755
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Otimizar Base de Dados..."
 
 #: mmframe.cpp:1756
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Otimizar o desempenho e o espaço da base de dados"
 
 #: mmframe.cpp:1758
 msgid "Database De&bug..."
-msgstr ""
+msgstr "&Depuração de Base de Dados..."
 
 #: mmframe.cpp:1759
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "Corrigir erros ou gerar relatório da base de dados"
 
 #: mmframe.cpp:1764
 msgid "Databa&se"
-msgstr ""
+msgstr "&Base de Dados"
 
 #: mmframe.cpp:1765
 msgid "Database management"
-msgstr ""
+msgstr "Gestão da Base de Dados"
 
 #: mmframe.cpp:1772 mmframe.cpp:1926
 msgid "&Help\tF1"
-msgstr ""
+msgstr "&Ajuda\tF1"
 
 #: mmframe.cpp:1772 mmframe.cpp:1926
 msgid "Show the Help file"
@@ -4904,143 +4904,143 @@ msgstr "Ver a Ajuda"
 
 #: mmframe.cpp:1778
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Abra o site do Money Manager EX para as últimas notícias, atualizações, etc"
 
 #: mmframe.cpp:1780
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1780
 msgid "Visit us on Facebook"
-msgstr ""
+msgstr "Visite-nos no Facebook"
 
 #: mmframe.cpp:1782
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1782
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Usamos o Crowdin para traduzir o MMEX"
 
 #: mmframe.cpp:1784
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1784
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Siga-nos no Twitter"
 
 #: mmframe.cpp:1786
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1786
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Veja vídeos gratuitos sobre o MMEX"
 
 #: mmframe.cpp:1788
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1788
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Comunique com a equipa MMEX online, a partir do seu computador ou dispositivo móvel"
 
 #: mmframe.cpp:1790
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1790
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Aceda ao repositório de código aberto e siga o estado dos erros reportados"
 
 #: mmframe.cpp:1792
 msgid "W&iki pages"
-msgstr ""
+msgstr "Páginas &Wiki"
 
 #: mmframe.cpp:1792
 msgid "Read and update wiki pages"
-msgstr ""
+msgstr "Consulte e atualize as páginas wiki"
 
 #: mmframe.cpp:1794
 msgid "F&orum"
-msgstr ""
+msgstr "&Fórum"
 
 #: mmframe.cpp:1795
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr ""
+msgstr "Visite o fórum MMEX para ver comentários de utilizadores correntes ou relatar novos problemas com o software"
 
 #: mmframe.cpp:1797
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex para &Android"
 
 #: mmframe.cpp:1798
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr ""
+msgstr "Obtenha a versão Android gratuita e corra o MMEX no seu smartphone ou tablet"
 
 #: mmframe.cpp:1800
 msgid "&Newsletter"
-msgstr ""
+msgstr "&Newsletter"
 
 #: mmframe.cpp:1801
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "Assine a newsletter por e-mail ou veja os anúncios existentes"
 
 #: mmframe.cpp:1803
 msgid "&RSS Feed"
-msgstr ""
+msgstr "Lista &RSS"
 
 #: mmframe.cpp:1803
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "Conectar a lista RSS online ao agregador de notícias"
 
 #: mmframe.cpp:1805
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Doe via PayPal"
 
 #: mmframe.cpp:1806
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Doe à equipa para suportar a infraestrutura, etc"
 
 #: mmframe.cpp:1808
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Compre-nos um Café"
 
 #: mmframe.cpp:1809
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Compre um café para o programador principal"
 
 #: mmframe.cpp:1812
 msgid "&Community"
-msgstr ""
+msgstr "&Comunidade"
 
 #: mmframe.cpp:1813
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Mantenha-se em contacto com a comunidade MMEX"
 
 #: mmframe.cpp:1835
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Reportar um &Bug"
 
 #: mmframe.cpp:1836
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Relatar aos programadores um erro na aplicação"
 
 #: mmframe.cpp:1840
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "Ver &Diagnósticos"
 
 #: mmframe.cpp:1841
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Ajude a fornecer informações aos programadores"
 
 #: mmframe.cpp:1845
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&Mostrar Diálogo Início da Aplicação"
 
 #: mmframe.cpp:1845
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Diálogo Início da Aplicação"
 
 #: mmframe.cpp:1849
 msgid "Check for &Updates"
@@ -5048,15 +5048,15 @@ msgstr "Verificar Act&ualizações"
 
 #: mmframe.cpp:1849
 msgid "Check For Updates"
-msgstr ""
+msgstr "Verificar Atualizações"
 
 #: mmframe.cpp:1853 mmframe.cpp:1925
 msgid "&About"
-msgstr ""
+msgstr "&Sobre"
 
 #: mmframe.cpp:1853 mmframe.cpp:1925
 msgid "Show About dialog"
-msgstr ""
+msgstr "Mostrar diálogo Sobre"
 
 #: mmframe.cpp:1857
 msgid "&File"
@@ -5096,57 +5096,58 @@ msgstr "Moedas"
 
 #: mmframe.cpp:1901
 msgid "&Options"
-msgstr ""
+msgstr "&Opções"
 
 #: mmframe.cpp:1909 mmframe.cpp:1914 mmframe.cpp:2838 optionsettingsnet.cpp:132
 msgid "News"
-msgstr ""
+msgstr "Novidades"
 
 #: mmframe.cpp:1916
 msgid "Download rates"
-msgstr ""
+msgstr "Velocidades de Transferência"
 
 #: mmframe.cpp:1919
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Alternar Ecrã Inteiro\tF11"
 
 #: mmframe.cpp:1922
 msgid "&Print"
-msgstr ""
+msgstr "&Imprimir"
 
 #: mmframe.cpp:1977
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Insira a palavra-passe para a Base de Dados, por favor\n\n"
+"%s"
 
 #: mmframe.cpp:1978 mmframe.cpp:2268 mmframe.cpp:2401
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Base de Dados Encriptada"
 
 #: mmframe.cpp:2015
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "O suporte MMEX forneceu-lhe um ficheiro de depuração/correção?"
 
 #: mmframe.cpp:2015
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "Atualização MMEX"
 
 #: mmframe.cpp:2042 mmframe.cpp:2128
 msgid "No File opened"
-msgstr ""
+msgstr "Nenhum Ficheiro aberto"
 
 #: mmframe.cpp:2044
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Desculpe. A versão da Base de Dados é muito antiga ou a palavra-passe está incorreta"
 
 #: mmframe.cpp:2118
 msgid "&Next →"
-msgstr ""
+msgstr "&Próximo →"
 
 #: mmframe.cpp:2131
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Não foi possível localizar bases de dados abertas anteriormente.\n"
 
 #: mmframe.cpp:2133
 msgid "Password not entered for encrypted Database.\n"
@@ -5310,7 +5311,7 @@ msgstr ""
 
 #: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "A transferir as cotações das ações do Yahoo"
 
 #: mmframe.cpp:3332
 msgid "Please wait..."
@@ -6193,11 +6194,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Verifique as últimas novidades na inicialização"
 
 #: optionsettingsnet.cpp:140
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Habilite para que as novidades possam ser verificadas ao iniciar a aplicação"
 
 #: optionsettingsnet.cpp:145
 msgid "Timeout"
@@ -6668,7 +6669,7 @@ msgstr ""
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Por favor, junte-se à nossa comunidade em <a href='%s'>Slack</a>. Aqui poderá também colocar as suas perguntas e consultar as últimas novidades."
 
 #: reports/bugreport.h:79
 #, c-format
@@ -7130,7 +7131,7 @@ msgstr ""
 
 #: stockdialog.cpp:331
 msgid "Download Stock Price history"
-msgstr ""
+msgstr "Transferir o histórico de Cotações de Ações"
 
 #: stockdialog.cpp:333
 msgid "Import Stock Price history (CSV Format)"
@@ -7819,7 +7820,7 @@ msgstr "Hoje será usado como data da transação"
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
-msgstr "Não foi possível descarregar anexos da aplicação web."
+msgstr "Não foi possível transferir anexos da aplicação web."
 
 #: webapp.cpp:595
 msgid "Attachments folder not set or unavailable"
@@ -7827,7 +7828,7 @@ msgstr "Pasta de anexos não definida ou indisponível"
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded:"
-msgstr "Transação não descarregada:"
+msgstr "Transação não transferida:"
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
@@ -7839,11 +7840,11 @@ msgstr "Erro na pasta de anexos"
 
 #: webapp.cpp:630
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr "Transação não descarregada: tente por favor descarregar as transações novamente"
+msgstr "Transação não transferida: tente por favor transferir as transações novamente"
 
 #: webapp.cpp:631 webappdialog.cpp:339
 msgid "Attachment download error"
-msgstr "Erro ao descarregar o anexo"
+msgstr "Erro ao transferir o anexo"
 
 #: webappdialog.cpp:68
 msgid "Import WebApp transactions"
@@ -7859,23 +7860,23 @@ msgstr "A verificar novas transações"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
-msgstr ""
+msgstr "&Importar todas "
 
 #: webappdialog.cpp:158
 msgid "Import and open all "
-msgstr ""
+msgstr "Importar e abrir todas "
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from webapp."
-msgstr "Não foi possível descarregar transações da aplicação web."
+msgstr "Não foi possível transferir transações da aplicação web."
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
-msgstr ""
+msgstr "Erro ao transferir transações"
 
 #: webappdialog.cpp:311
 msgid "Unable to insert transaction in MMEX database"
-msgstr ""
+msgstr "Não foi possível inserir transação na base de dados MMEX"
 
 #: webappdialog.cpp:312
 msgid "WebApp communication error"
@@ -7887,7 +7888,7 @@ msgstr "Abrir Anexo"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
-msgstr ""
+msgstr "Importar e abrir"
 
 #: wizard_newaccount.cpp:31
 msgid "Add Account Wizard"
