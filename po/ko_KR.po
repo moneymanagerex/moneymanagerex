@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:12\n"
+"PO-Revision-Date: 2023-04-29 02:06\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -3238,7 +3238,7 @@ msgstr "가져올 QIF 데이터 파일 선택"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "모든 거래를 가져오시겠습니까?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -6003,11 +6003,11 @@ msgstr "거래 복제 시 원래 거래 날짜 또는 현재 날짜를 사용할
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "거래 효과음"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
-msgstr "거래 입력 시 사운드 효과 사용 여부 선택"
+msgstr "거래 입력 시 효과음 사용 여부 선택"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
@@ -6314,7 +6314,7 @@ msgstr "스타일 서식"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "시스템"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
