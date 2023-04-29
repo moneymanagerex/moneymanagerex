@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 17:57\n"
+"PO-Revision-Date: 2023-04-29 19:02\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5279,7 +5279,7 @@ msgstr "Contas de Ativos contêm transações de Ativos\n\n"
 
 #: mmframe.cpp:2560
 msgid "Asset Account Creation"
-msgstr "Criação da Conta de Ativo"
+msgstr "Criação de Conta de Ativo"
 
 #: mmframe.cpp:2566
 msgid "Share Accounts hold Share transactions\n\n"
@@ -5288,27 +5288,32 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Contas de Ações contêm transações de Ações\n\n"
+"As transações de Ações são criadas dentro da Vista do Portfólio de Ações\n"
+"mediante a seleção da Ação de uma Empresa dentro da vista associada.\n\n"
+"Estas contas só se tornam visíveis depois de associar uma Ação à Conta de Ações\n"
+"Ou usando a Vista de Menu → 'Exibir Contas de Ações'\n"
+"Contas de Ações também podem conter transações normais, para contas normais."
 
 #: mmframe.cpp:2572
 msgid "Share Account Creation"
-msgstr ""
+msgstr "Criação de Conta de Ações"
 
 #: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
-msgstr ""
+msgstr "As definições do MMEX foram atualizadas."
 
 #: mmframe.cpp:2746
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Algumas configurações só surtirão efeito após uma reinicialização da aplicação."
 
 #: mmframe.cpp:2747 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
-msgstr ""
+msgstr "Definições do MMEX"
 
 #: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Contas, Beneficiários e Categorias Atualizados"
 
 #: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -5316,7 +5321,7 @@ msgstr "Problema encontrado ao atualizar a Aplicação Web, verifique o servidor
 
 #: mmframe.cpp:2918
 msgid "Choose HTML file to Export"
-msgstr ""
+msgstr "Escolha o Ficheiro HTML a Exportar"
 
 #: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
@@ -5324,7 +5329,7 @@ msgstr "A transferir as cotações das ações do Yahoo"
 
 #: mmframe.cpp:3332
 msgid "Please wait..."
-msgstr ""
+msgstr "Aguarde, por favor..."
 
 #: mmframe.cpp:3381 stockspanel.cpp:459
 #, c-format
@@ -5333,7 +5338,7 @@ msgstr "%s no %s"
 
 #: mmframe.cpp:3398
 msgid "No account available to edit!"
-msgstr ""
+msgstr "Nenhuma conta disponível para editar!"
 
 #: mmframe.cpp:3402
 msgid "Choose Account to Edit"
@@ -5341,7 +5346,7 @@ msgstr "Escolha a Conta para Editar"
 
 #: mmframe.cpp:3419
 msgid "No account available to delete!"
-msgstr ""
+msgstr "Nenhuma conta disponível para eliminar!"
 
 #: mmframe.cpp:3423
 msgid "Choose Account to Delete"
@@ -5935,7 +5940,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
-msgstr ""
+msgstr "Exibir Título"
 
 #: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:118
 msgid "User Name"
@@ -5947,7 +5952,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:114
 msgid "Specify the date format for display"
-msgstr "Especifique o formato da data"
+msgstr "Indique o formato da data para exibição"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
@@ -7032,7 +7037,7 @@ msgstr "Gerir os anexos desta ação"
 
 #: sharetransactiondialog.cpp:298 stockdialog.cpp:266
 msgid "Display the web page for the specified Stock symbol"
-msgstr ""
+msgstr "Exibir a página web do símbolo da Ação especificado"
 
 #: sharetransactiondialog.cpp:308 stockdialog.cpp:273
 msgid "Enter notes associated with this investment"
@@ -8001,7 +8006,7 @@ msgstr ""
 
 #: wizard_newdb.cpp:126
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
+msgstr "Usado como título de uma base de dados para relatórios exibidos e impressos."
 
 #: wizard_newdb.cpp:137
 msgid "Base Currency Not Set"
