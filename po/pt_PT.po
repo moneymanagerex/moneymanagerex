@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 10:23\n"
+"PO-Revision-Date: 2023-04-29 11:32\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4196,7 +4196,7 @@ msgstr "Deseja realmente eliminar todas as transações exibidas?"
 
 #: mmchecking_list.cpp:1034
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Pretende mesmo eliminar permanentemente todas as transações exibidas?"
 
 #: mmchecking_list.cpp:1038 mmchecking_list.cpp:1140
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
@@ -4204,7 +4204,7 @@ msgstr "Transações apagadas serão temporariamente armazenadas e podem ser rep
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1139
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Não pode anular esta ação."
 
 #: mmchecking_list.cpp:1043 mmchecking_list.cpp:1054 mmchecking_list.cpp:1065
 #: mmchecking_list.cpp:1144
@@ -4214,77 +4214,79 @@ msgstr "Confirmar a exclusão de Transacção"
 #: mmchecking_list.cpp:1053 mmchecking_list.cpp:1064
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Pretende mesmo eliminar todas as \"%s\" transações exibidas?"
 
 #: mmchecking_list.cpp:1131
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Deseja mesmo eliminar permanentemente a transação selecionada?"
+msgstr[1] "Deseja mesmo eliminar permanentemente as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1135
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Deseja realmente eliminar a transação selecionada?"
+msgstr[1] "Deseja realmente eliminar as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1207
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Transação bloqueada até a data: %s\n\n"
+"Transações reconciliadas."
 
 #: mmchecking_list.cpp:1210 transdialog.cpp:716 transdialog.cpp:747
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "Verificação de Transação MMEX"
 
 #: mmchecking_list.cpp:1243
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Está prestes a editar uma transação que envolve uma conta fechada."
+msgstr[1] "Esta edição afetará %i transações que envolvem uma conta fechada."
 
 #: mmchecking_list.cpp:1245
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Ainda pretende editar?"
 
 #: mmchecking_list.cpp:1246
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Verificação de Conta Fechada"
 
 #: mmchecking_list.cpp:1438
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Deseja realmente mover a transação selecionada?"
+msgstr[1] "Deseja realmente mover as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1443
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Confirmar Movimentação da Transação"
 
 #: mmchecking_list.cpp:1449
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A mover a transação para..."
+msgstr[1] "A mover %i transações para..."
 
 #: mmchecking_list.cpp:1453 stocks_list.cpp:300
 msgid "Select the destination Account "
-msgstr ""
+msgstr "Selecione a Conta Destino "
 
 #: mmchecking_list.cpp:1540
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Transação Recorrente gravada."
 
 #: mmcheckingpanel.cpp:428
 msgid "Delete selected transaction"
-msgstr ""
+msgstr "Eliminar transação selecionada"
 
 #: mmcheckingpanel.cpp:432 mmframe.cpp:1891 transdialog.cpp:182
 msgid "New Transaction"
@@ -4296,7 +4298,7 @@ msgstr "Editar a transação selecionada"
 
 #: mmcheckingpanel.cpp:444
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "Duplicar transação selecionada"
 
 #: mmcheckingpanel.cpp:461
 msgid "&Restore "
@@ -4542,19 +4544,19 @@ msgstr "&Editar Filtro..."
 
 #: mmframe.cpp:1414
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Renomear Filtro..."
 
 #: mmframe.cpp:1415
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "&Eliminar Filtro..."
 
 #: mmframe.cpp:1431 mmframe.cpp:1449 mmframe.cpp:1469 mmframe.cpp:1647
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Editar Conta..."
 
 #: mmframe.cpp:1432 mmframe.cpp:1452 mmframe.cpp:1472 mmframe.cpp:1653
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Eliminar Conta..."
 
 #: mmframe.cpp:1434 mmframe.cpp:1454
 msgid "&Launch Account Website"
@@ -4562,15 +4564,15 @@ msgstr "&Ir Para a Página Web da Conta"
 
 #: mmframe.cpp:1450 mmframe.cpp:1650
 msgid "&Reallocate Account..."
-msgstr ""
+msgstr "&Realocar Conta..."
 
 #: mmframe.cpp:1468 mmframe.cpp:1644
 msgid "&New Account..."
-msgstr ""
+msgstr "&Nova Conta..."
 
 #: mmframe.cpp:1470
 msgid "Account &List"
-msgstr ""
+msgstr "&Lista de Contas"
 
 #: mmframe.cpp:1483 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4578,7 +4580,7 @@ msgstr "Contas Visíveis"
 
 #: mmframe.cpp:1521
 msgid "&New Database..."
-msgstr ""
+msgstr "&Nova Base de Dados..."
 
 #: mmframe.cpp:1521 mmframe.cpp:1885 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4586,7 +4588,7 @@ msgstr "Nova Base de Dados"
 
 #: mmframe.cpp:1522
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Abrir Base de Dados... Ctrl-A"
 
 #: mmframe.cpp:1522 mmframe.cpp:1886
 msgid "Open Database"
@@ -4594,7 +4596,7 @@ msgstr "&Abrir Base de Dados\tCtrl-O"
 
 #: mmframe.cpp:1523
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Gravar Base de Dados &Como..."
 
 #: mmframe.cpp:1523
 msgid "Save Database As"
@@ -4602,19 +4604,19 @@ msgstr "&Gravar Base de Dados\tCtrl-S"
 
 #: mmframe.cpp:1530
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Ficheiros Recentes"
 
 #: mmframe.cpp:1531
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "&Limpar Ficheiros Recentes"
 
 #: mmframe.cpp:1542
 msgid "&WebApp..."
-msgstr ""
+msgstr "App &Web..."
 
 #: mmframe.cpp:1542
 msgid "Import from WebApp"
-msgstr ""
+msgstr "Importar da App Web"
 
 #: mmframe.cpp:1549
 msgid "Export as fixed CSV file"
@@ -4838,11 +4840,11 @@ msgstr ""
 
 #: mmframe.cpp:1737
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Atualizar Aplicação &Web..."
 
 #: mmframe.cpp:1737 mmframe.cpp:2772 mmframe.cpp:2779
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "Atualizar Aplicação Web"
 
 #: mmframe.cpp:1742
 msgid "&Options...\tCtrl-,"
@@ -5300,7 +5302,7 @@ msgstr ""
 
 #: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Problema encontrado ao atualizar a Aplicação Web, verifique o servidor Web e as configurações da Aplicação"
 
 #: mmframe.cpp:2918
 msgid "Choose HTML file to Export"
@@ -6143,11 +6145,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp Settings"
-msgstr ""
+msgstr "Configurações da Aplicação Web"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
@@ -6155,7 +6157,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
@@ -6163,7 +6165,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
-msgstr ""
+msgstr "Mais informações sobre a Aplicação Web"
 
 #: optionsettingsnet.cpp:93
 msgid "Proxy Settings"
@@ -7377,7 +7379,7 @@ msgstr ""
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: themes.cpp:193
 msgid "Use"
@@ -7755,50 +7757,50 @@ msgstr "Dezembro"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "Identificador Global Único (GUID) da Aplicação Web errado:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "verifique por favor nas opções de rede."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "Configurações da Aplicação Web erradas"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr ""
+msgstr "Não foi possível estabelecer conexão com a Aplicação Web:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr ""
+msgstr "verifique por favor as configurações de rede e/ou a ligação à internet."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr ""
+msgstr "Erro de conexão com a Aplicação Web"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "Versão errada da API da Aplicação Web:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "Versão da API da Aplicação Web: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Versão esperada da API: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "Versão errada da API da Aplicação Web"
 
 #: webapp.cpp:494
 #, c-format
 msgid "Account '%s' not found!"
-msgstr ""
+msgstr "Conta '%s' não encontrada!"
 
 #: webapp.cpp:496
 #, c-format
@@ -7809,11 +7811,11 @@ msgstr "A transação será inserida com a primeira conta bancária:\n"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
-msgstr ""
+msgstr "Conta da Aplicação Web errada"
 
 #: webapp.cpp:565
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "Hoje será usado como data da transação"
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
@@ -7825,7 +7827,7 @@ msgstr "Pasta de anexos não definida ou indisponível"
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded:"
-msgstr ""
+msgstr "Transação não descarregada:"
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
@@ -7837,7 +7839,7 @@ msgstr "Erro na pasta de anexos"
 
 #: webapp.cpp:630
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transação não descarregada: tente por favor descarregar as transações novamente"
 
 #: webapp.cpp:631 webappdialog.cpp:339
 msgid "Attachment download error"
@@ -7845,15 +7847,15 @@ msgstr "Erro ao descarregar o anexo"
 
 #: webappdialog.cpp:68
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "Importação de transações da Aplicação Web"
 
 #: webappdialog.cpp:91
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Status da rede (clique para atualizar)"
 
 #: webappdialog.cpp:123
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "A verificar novas transações"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
@@ -7865,7 +7867,7 @@ msgstr ""
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Não foi possível descarregar transações da aplicação web."
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
@@ -7877,7 +7879,7 @@ msgstr ""
 
 #: webappdialog.cpp:312
 msgid "WebApp communication error"
-msgstr ""
+msgstr "Erro de comunicação com a Aplicação Web"
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
