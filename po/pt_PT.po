@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 19:02\n"
+"PO-Revision-Date: 2023-04-29 20:01\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5356,46 +5356,47 @@ msgstr "Escolha a Conta para Apagar"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "Tem certeza que deseja eliminar a conta de\n"
+" %s : %s?"
 
 #: mmframe.cpp:3446
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "Selecione a conta a realocar"
 
 #: mmframe.cpp:3446 mmframe.cpp:3469
 msgid "Account Reallocation"
-msgstr ""
+msgstr "Realocação de Conta"
 
 #: mmframe.cpp:3468
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Conta: %s — Selecione o novo tipo."
 
 #: mmframe.cpp:3579 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
-msgstr ""
+msgstr "Realocação de Beneficiário Concluída."
 
 #: mmframe.cpp:3583 payeedialog.cpp:816
 msgid "Payee Relocation Result"
-msgstr ""
+msgstr "Resultado da Realocação de Beneficiário"
 
 #: mmframe.cpp:3659
 #, c-format
 msgid "File %s not found"
-msgstr ""
+msgstr "Ficheiro '%s' não encontrado"
 
 #: mmframereport.cpp:80
 msgid "General Group Report"
-msgstr ""
+msgstr "Relatório Geral do Grupo"
 
 #: mmframereport.cpp:107 mmhomepage.cpp:849 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
-msgstr ""
+msgstr "Exceção recebida"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
-msgstr ""
+msgstr "Fluxo de Caixa"
 
 #: mmframereport.cpp:146 mmframereport.cpp:233 mmhomepage.cpp:190
 msgid "Summary"
@@ -5411,7 +5412,7 @@ msgstr "De Onde o Dinheiro Vem"
 
 #: mmframereport.cpp:160
 msgid "Forecast Report"
-msgstr ""
+msgstr "Relatório Previsional"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:75
 msgid "Income vs Expenses"
@@ -5419,11 +5420,11 @@ msgstr "Rendimento vs Despesas"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
-msgstr ""
+msgstr "A minha Utilização"
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
-msgstr ""
+msgstr "Beneficiários"
 
 #: mmframereport.cpp:195
 msgid "Summary of Accounts"
@@ -5431,31 +5432,31 @@ msgstr "Resumo das Contas"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Orçamentos"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
-msgstr ""
+msgstr "Desempenho Orçamental"
 
 #: mmframereport.cpp:218
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Resumo Categorias Orçamentais"
 
 #: mmframereport.cpp:230
 msgid "Stocks Report"
-msgstr ""
+msgstr "Relatório de Ações"
 
 #: mmframereport.cpp:316 mmreportspanel.cpp:401
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr ""
+msgstr "&Voltar"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr ""
+msgstr "&Avançar"
 
 #: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:270
 #: reports/summary.cpp:307
@@ -5469,7 +5470,7 @@ msgstr "Ganho/Perda"
 #: mmhomepage.cpp:82 reports/budgetingperf.cpp:141 reports/cashflow.cpp:287
 #: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:305
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: mmhomepage.cpp:108 mmhomepage.cpp:629 mmhomepage.cpp:744
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
@@ -5480,16 +5481,16 @@ msgstr "Total:"
 #: mmhomepage.cpp:162
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr ""
+msgstr "Maiores Levantamentos: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "Conta/Beneficiário"
 
 #: mmhomepage.cpp:428
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "Receitas vs Despesas: %s"
 
 #: mmhomepage.cpp:438 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -5504,7 +5505,7 @@ msgstr "Diferença:"
 
 #: mmhomepage.cpp:446
 msgid "Income/Expenses"
-msgstr ""
+msgstr "Receitas/Despesas"
 
 #: mmhomepage.cpp:470
 msgid "Transaction Statistics"
@@ -5516,7 +5517,7 @@ msgstr "Seguimento das Transações: "
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
-msgstr ""
+msgstr "Total de Transações: "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
@@ -5524,23 +5525,23 @@ msgstr "Ação"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
-msgstr ""
+msgstr "Valor Líquido Total"
 
 #: mmhomepage.cpp:621
 msgid "Other Assets"
-msgstr ""
+msgstr "Outros Ativos"
 
 #: mmhomepage.cpp:694
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Contas de Investimento"
 
 #: mmhomepage.cpp:695 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Contas de Ativos"
 
 #: mmhomepage.cpp:835
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Taxas de Câmbio"
 
 #: mmhomepagepanel.cpp:190
 msgid "Upcoming Transactions"
@@ -5548,47 +5549,47 @@ msgstr "Próximas Transacções"
 
 #: mmpanelbase.cpp:136
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Ocultar/Mostrar Colunas"
 
 #: mmpanelbase.cpp:137
 msgid "Hide this column"
-msgstr ""
+msgstr "Ocultar esta coluna"
 
 #: mmpanelbase.cpp:139
 msgid "Order by this column"
-msgstr ""
+msgstr "Ordenar por esta coluna"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
-msgstr ""
+msgstr "Repor colunas"
 
 #: mmreportspanel.cpp:146
 msgid "Report"
-msgstr ""
+msgstr "Relatório"
 
 #: mmreportspanel.cpp:203
 msgid "Period:"
-msgstr ""
+msgstr "Período:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:87
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:89
 msgid "Time:"
-msgstr ""
+msgstr "Hora:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:90
 msgid "Year:"
-msgstr ""
+msgstr "Ano:"
 
 #: mmreportspanel.cpp:330
 msgid "Budget:"
-msgstr ""
+msgstr "Orçamento:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Todas as Contas:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
@@ -5993,15 +5994,15 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "Indique o Dia inicial do exercício financeiro"
 
 #: optionsettingsgeneral.cpp:197
 msgid "Start Month"
-msgstr ""
+msgstr "Mês de Início"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "Indique o Mês inicial do exercício financeiro"
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Pasting Transactions"
@@ -6013,11 +6014,11 @@ msgstr "Selecionar se quer usar a data original da transacção ou a data actual
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Usar a Data Original quando Duplicar Transações"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Selecionar a utilização da data original da transacção ou a data actual quando copiar/colar transacções"
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
