@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 12:43\n"
+"PO-Revision-Date: 2023-04-29 13:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5151,115 +5151,121 @@ msgstr "Não foi possível localizar bases de dados abertas anteriormente.\n"
 
 #: mmframe.cpp:2133
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Palavra-passe não indicada para base de dados encriptada.\n"
 
 #: mmframe.cpp:2152
 msgid "portable mode"
-msgstr ""
+msgstr "modo portátil"
 
 #: mmframe.cpp:2188
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "A base de dados que está a tentar abrir foi marcada como aberta por outra instância do MMEX.\n"
+"Para evitar perda de dados ou conflito, é altamente recomendável que feche todas as outras aplicações que possam estar a usar a base de dados.\n\n"
+"Se nada mais estiver em execução, é possível que a base de dados tenha sido deixada aberta como resultado de uma falha na utilização anterior do MMEX.\n\n"
+"Gostaria de continuar a abrir esta base de dados?"
 
 #: mmframe.cpp:2192
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "Verificação da instância MMEX"
 
 #: mmframe.cpp:2212
 msgid "Choose database file to create"
-msgstr ""
+msgstr "Escolha o ficheiro de base de dados para criar"
 
 #: mmframe.cpp:2235
 msgid "Choose database file to open"
-msgstr ""
+msgstr "Escolha o ficheiro de base de dados para abrir"
 
 #: mmframe.cpp:2258
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Escolha o ficheiro de base de dados Encriptada para abrir"
 
 #: mmframe.cpp:2268
 msgid "Enter password for database"
-msgstr ""
+msgstr "Insira a palavra-passe para a base de dados"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Escolha o ficheiro de base de dados para Gravar Como"
 
 #: mmframe.cpp:2295
 msgid "Converted DB!"
-msgstr ""
+msgstr "BD convertido!"
 
 #: mmframe.cpp:2295
 msgid "MMEX message"
-msgstr ""
+msgstr "Mensagem MMEX"
 
 #: mmframe.cpp:2301
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Alteração da Palavra-passe de Encriptação"
 
 #: mmframe.cpp:2302
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nova palavra-passe para base de dados\n\n"
+"%s"
 
 #: mmframe.cpp:2307
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Nova palavra-passe não pode estar vazia."
 
 #: mmframe.cpp:2311
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Confirme a nova palavra-passe por favor"
 
 #: mmframe.cpp:2315
 msgid "Password change completed."
-msgstr ""
+msgstr "Alteração de palavra-passe concluída."
 
 #: mmframe.cpp:2319
 msgid "Confirm password failed."
-msgstr ""
+msgstr "Confirmação da palavra-passe falhou."
 
 #: mmframe.cpp:2328
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Certifique-se que tem uma cópia de segurança da base de dados antes de a otimizar"
 
 #: mmframe.cpp:2329 mmframe.cpp:2339
 msgid "DB Optimization"
-msgstr ""
+msgstr "Otimização de BD"
 
 #: mmframe.cpp:2336
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "Otimização da base de dados concluída!\n\n"
+"Tamanho antes: %s\n"
+"Tamanho depois: %s\n"
 
 #: mmframe.cpp:2347
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
+msgstr "Use por favor esta função apenas se solicitado explicitamente pelo suporte MMEX"
 
 #: mmframe.cpp:2348
 msgid "DB Debug"
-msgstr ""
+msgstr "Depuração BD"
 
 #: mmframe.cpp:2367 mmframe.cpp:2388
 msgid "Save database file as"
-msgstr ""
+msgstr "Gravar ficheiro de base de dados como"
 
 #: mmframe.cpp:2388
 msgid "Can't copy file to itself"
-msgstr ""
+msgstr "Não é possível copiar ficheiro para ele próprio"
 
 #: mmframe.cpp:2401
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Insira a palavra-passe para a nova base de dados"
 
 #: mmframe.cpp:2488 mmframe.cpp:2507
 msgid "No account available to import"
-msgstr ""
+msgstr "Nenhuma conta disponível para importação"
 
 #: mmframe.cpp:2556
 msgid "Asset Accounts hold Asset transactions\n\n"
