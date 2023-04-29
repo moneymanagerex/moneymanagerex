@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:12\n"
+"PO-Revision-Date: 2023-04-29 10:23\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2421,7 +2421,7 @@ msgstr "Falha ao atualizar a base de dados MMEX para a versão %i!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr "Por favor, restaure a BD a partir da cópia de segurança criada automaticamente antes da atualização e tente novamente, ou contacte o suporte MMEX"
+msgstr "Por favor, reponha a BD a partir da cópia de segurança criada automaticamente antes da atualização e tente novamente, ou contacte o suporte MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
@@ -3245,7 +3245,7 @@ msgstr "Escolha o ficheiro QIF a importar"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Deseja importar todas as transações?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -4136,12 +4136,12 @@ msgstr "Criar T&ransação Recorrente..."
 #: mmchecking_list.cpp:478
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
-msgstr[1] "&Restaurar as transações selecionadas..."
+msgstr[0] "&Repor a transação selecionada..."
+msgstr[1] "&Repor as transações selecionadas..."
 
 #: mmchecking_list.cpp:480
 msgid "Restore all transactions in current view..."
-msgstr "Restaurar todas as transações na vista atual..."
+msgstr "Repor todas as transações na vista atual..."
 
 #: mmchecking_list.cpp:485
 msgid "&Delete selected transaction..."
@@ -4169,30 +4169,30 @@ msgstr "Eliminar Transações \"Acompanhar\" Visualizadas..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Eliminar Transações \"Não reconciliadas\" Visualizadas..."
 
 #: mmchecking_list.cpp:510
 msgid "Mark as"
-msgstr ""
+msgstr "Marcar como"
 
 #: mmchecking_list.cpp:953
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Deseja realmente repor todas as transações exibidas?"
 
 #: mmchecking_list.cpp:954 mmchecking_list.cpp:996
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Confirmar Reposição da Transação"
 
 #: mmchecking_list.cpp:991
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Deseja realmente repor a transação selecionada?"
+msgstr[1] "Deseja realmente repor as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1033
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Deseja realmente eliminar todas as transações exibidas?"
 
 #: mmchecking_list.cpp:1034
 msgid "Do you really want to permanently delete all the transactions shown?"
@@ -4200,7 +4200,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:1038 mmchecking_list.cpp:1140
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Transações apagadas serão temporariamente armazenadas e podem ser repostas a partir da vista de Transações Eliminadas."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1139
 msgid "You cannot undo this action."
@@ -4300,11 +4300,11 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:461
 msgid "&Restore "
-msgstr "&Restaurar "
+msgstr "&Repor "
 
 #: mmcheckingpanel.cpp:462
 msgid "Restore selected transaction"
-msgstr "Restaurar a transação selecionada"
+msgstr "Repor a transação selecionada"
 
 #: mmcheckingpanel.cpp:477
 msgid "Enter any string to find it in the nearest transaction data"
@@ -5495,7 +5495,7 @@ msgstr "Estatísticas de Transacções"
 
 #: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
-msgstr ""
+msgstr "Seguimento das Transações: "
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
@@ -7699,7 +7699,7 @@ msgstr ""
 
 #: util.cpp:1304
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "O MMEX utiliza os seguintes produtos de suporte:"
 
 #: util.cpp:1321
 msgid "Built with:"
@@ -7804,7 +7804,8 @@ msgstr ""
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
+msgstr "A transação será inserida com a primeira conta bancária:\n"
+"'%s' e marcada como 'Acompanhar'"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
