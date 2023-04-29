@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 20:01\n"
+"PO-Revision-Date: 2023-04-29 21:24\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5957,7 +5957,7 @@ msgstr "Indique o formato da data para exibição"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr ""
+msgstr "Exemplo do formato de Data:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
@@ -6030,12 +6030,12 @@ msgstr "Especifique a situação da transacção"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr ""
+msgstr "Localização"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Exemplo de cotação de Moeda: %s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
@@ -6047,79 +6047,79 @@ msgstr "Página Web com os Preços das Acções"
 
 #: optionsettingsmisc.cpp:81
 msgid "Clear the field to Reset the value to system default."
-msgstr ""
+msgstr "Limpar o campo para Inicializar com o valor padrão do sistema."
 
 #: optionsettingsmisc.cpp:85
 msgid "Share Precision"
-msgstr ""
+msgstr "Precisão Ações"
 
 #: optionsettingsmisc.cpp:90
 msgid "Set the precision for Share prices"
-msgstr ""
+msgstr "Definir a precisão (número de casas decimais) das cotações de Ações"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Atualizar na Inicialização"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
-msgstr ""
+msgstr "Definições do Diálogo 'Novas Transações'"
 
 #: optionsettingsmisc.cpp:108
 msgid "Last Used"
-msgstr ""
+msgstr "Última utilização"
 
 #: optionsettingsmisc.cpp:120
 msgid "Unused"
-msgstr ""
+msgstr "Sem utilização"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
-msgstr ""
+msgstr "Última utilização para Beneficiário"
 
 #: optionsettingsmisc.cpp:127
 msgid "Use default for payee"
-msgstr ""
+msgstr "Usar padrão para Beneficiário"
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
-msgstr ""
+msgstr "Data Padrão"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Payee"
-msgstr ""
+msgstr "Beneficiário por defeito"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Categoria Depósito/Levantamento Padrão"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Categoria Transferência Padrão"
 
 #: optionsettingsmisc.cpp:160
 msgid "Default Status"
-msgstr ""
+msgstr "Estado Padrão"
 
 #: optionsettingsmisc.cpp:162
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Transações em Massa"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database Options"
-msgstr ""
+msgstr "Configurações da Base de Dados"
 
 #: optionsettingsmisc.cpp:180
 msgid "Create a new backup when MMEX Start"
-msgstr ""
+msgstr "Criar uma cópia de segurança quando o MMEX iniciar"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX Starts,\n"
