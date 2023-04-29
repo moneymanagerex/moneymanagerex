@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 21:24\n"
+"PO-Revision-Date: 2023-04-29 22:43\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6124,11 +6124,12 @@ msgstr "Criar uma cópia de segurança quando o MMEX iniciar"
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Quando o MMEX inicia,\n"
+"cria a cópia de segurança da base de dados: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Cópia de segurança da base de dados na saída"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes made to database,\n"
