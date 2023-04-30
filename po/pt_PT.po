@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-30 13:00\n"
+"PO-Revision-Date: 2023-04-30 23:03\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5951,7 +5951,7 @@ msgstr "Nome do Utilizador"
 
 #: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
-msgstr ""
+msgstr "O Nome de Utilizador é usado como título para a base de dados."
 
 #: optionsettingsgeneral.cpp:114
 msgid "Specify the date format for display"
@@ -5971,28 +5971,29 @@ msgstr "Selecionar Moeda"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Define a Moeda padrão da base de dados através da \"Janela de Moedas\""
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Formato derivado da localidade.\n"
+"Deixe em branco para definir o formato manualmente através da 'Janela de Moedas | Editar'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
-msgstr ""
+msgstr "Usar histórico de moedas"
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Selecione para usar o histórico da moeda (uma taxa para cada dia), desmarque para usar uma taxa fixa"
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
-msgstr ""
+msgstr "Exercício Financeiro"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
-msgstr ""
+msgstr "Dia de Início"
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
@@ -6032,7 +6033,7 @@ msgstr "Especifique a situação da transacção"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr "Localisation"
+msgstr "Localização"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
@@ -6041,7 +6042,7 @@ msgstr "Exemplo de cotação de Moeda: %s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
-msgstr ""
+msgstr "Nome de localidade inválido"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6136,31 +6137,32 @@ msgstr "Cópia de segurança da base de dados na saída"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Quando o MMEX fechar e tiverem sido feitas alterações na base de dados,\n"
+"cria ou atualiza a base de dados cópia de segurança: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "Indique o número máximo de ficheiros cópia de segurança"
 
 #: optionsettingsmisc.cpp:200
 msgid "Max Files"
-msgstr ""
+msgstr "Máximo de ficheiros"
 
 #: optionsettingsmisc.cpp:208
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Indique o número de dias de retenção de transações eliminadas. As transações mais antigas que isso serão removidas automaticamente na abertura da base de dados."
 
 #: optionsettingsmisc.cpp:210
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Dias de retenção de transações eliminadas"
 
 #: optionsettingsmisc.cpp:217
 msgid "CSV Settings"
-msgstr ""
+msgstr "Configurações CSV"
 
 #: optionsettingsmisc.cpp:225
 msgid "Delimiter"
-msgstr ""
+msgstr "Delimitador"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp Settings"
@@ -6172,7 +6174,7 @@ msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "Indicar a URL da Aplicação Web sem barra final"
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
@@ -6180,7 +6182,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Indicar o GUID da Aplicação Web"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
@@ -6188,27 +6190,27 @@ msgstr "Mais informações sobre a Aplicação Web"
 
 #: optionsettingsnet.cpp:93
 msgid "Proxy Settings"
-msgstr ""
+msgstr "Definições de Proxy"
 
 #: optionsettingsnet.cpp:101
 msgid "Specify the proxy IP address"
-msgstr ""
+msgstr "Indique o endereço IP do proxy"
 
 #: optionsettingsnet.cpp:107
 msgid "Specify proxy port number"
-msgstr ""
+msgstr "Indique o porto do proxy"
 
 #: optionsettingsnet.cpp:111
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: optionsettingsnet.cpp:113
 msgid "Port"
-msgstr ""
+msgstr "Porto"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage statistics"
-msgstr ""
+msgstr "Estatísticas de Utilização"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6220,7 +6222,7 @@ msgstr "Habilite para que as novidades possam ser verificadas ao iniciar a aplic
 
 #: optionsettingsnet.cpp:145
 msgid "Timeout"
-msgstr ""
+msgstr "Tempo esgotado"
 
 #: optionsettingsnet.cpp:154
 msgid "Specify a network communication timeout value to use."
