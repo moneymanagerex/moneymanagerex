@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:13\n"
+"PO-Revision-Date: 2023-04-30 21:45\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -4521,7 +4521,7 @@ msgstr "&XML datoteke …"
 
 #: mmframe.cpp:1377 mmframe.cpp:1538
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "Uvezi iz XML datoteke (Excel format)"
 
 #: mmframe.cpp:1379
 msgid "&QIF Files..."
