@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 18:49\n"
+"PO-Revision-Date: 2023-04-30 23:03\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -324,7 +324,7 @@ msgstr "Öppna senast öppnade &databas"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Ny databas"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "Skapa en ny databas för att komma igång"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Öppna &befintlig databas"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "Öppna en tidigare skapad databasfil med filändelsen (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Språk för användargränssnitt"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Ändra användargränssnittets språk"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Användarmanual"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -361,15 +361,15 @@ msgstr ""
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Besök webbplatsen %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Visa denna dialogruta vid start"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "&Avsluta "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -6941,7 +6941,7 @@ msgstr ""
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Betygsätt"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
