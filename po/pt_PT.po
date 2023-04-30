@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-30 11:33\n"
+"PO-Revision-Date: 2023-04-30 13:00\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5605,7 +5605,7 @@ msgstr "Gráfico:"
 
 #: mmreportspanel.cpp:400
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: model/Model_Account.cpp:33 model/Model_Asset.cpp:47 reports/summary.cpp:254
 #: reports/summary.cpp:298
@@ -5618,15 +5618,15 @@ msgstr "Verificando"
 
 #: model/Model_Account.cpp:35
 msgid "Credit Card"
-msgstr ""
+msgstr "Cartão de Crédito"
 
 #: model/Model_Account.cpp:36
 msgid "Loan"
-msgstr ""
+msgstr "Empréstimo"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr ""
+msgstr "Depósito a Prazo"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
@@ -5638,11 +5638,11 @@ msgstr "Ativo"
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
-msgstr ""
+msgstr "Ações"
 
 #: model/Model_Account.cpp:147
 msgid "Account Error"
-msgstr ""
+msgstr "Erro de Conta"
 
 #: model/Model_Asset.cpp:27
 msgid "Appreciates"
@@ -5654,11 +5654,11 @@ msgstr "Deprecia"
 
 #: model/Model_Asset.cpp:33
 msgid "Percentage"
-msgstr ""
+msgstr "Percentagem"
 
 #: model/Model_Asset.cpp:34
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 #: model/Model_Asset.cpp:42
 msgid "Property"
@@ -5682,7 +5682,7 @@ msgstr "Outro"
 
 #: model/Model_Asset.cpp:95
 msgid "Asset Error"
-msgstr ""
+msgstr "Erro de Ativo"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
@@ -5713,78 +5713,80 @@ msgstr "Uma transação recorrente excederá o limite da sua conta.\n\n"
 
 #: model/Model_Billsdeposits.cpp:310
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Saldo Mínimo"
 
 #: model/Model_Billsdeposits.cpp:316
 msgid "Credit Limit"
-msgstr ""
+msgstr "Limite de Crédito"
 
 #: model/Model_Billsdeposits.cpp:322
 msgid "MMEX Recurring Transaction Check"
-msgstr ""
+msgstr "Verificação de Transação Recorrente MMEX"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
-msgstr ""
+msgstr "Fiduciária"
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
-msgstr ""
+msgstr "Criptomoeda"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Texto"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Inteiro"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Booleano"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:141
 msgid "Time"
-msgstr ""
+msgstr "Hora"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "Escolha Única"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "Escolha Múltipla"
 
 #: model/Model_Payee.cpp:81
 msgid "Payee Error"
-msgstr ""
+msgstr "Erro de Beneficiário"
 
 #: model/Model_Report.cpp:86
 msgid "Begin date:"
-msgstr ""
+msgstr "Data Início:"
 
 #: model/Model_Report.cpp:88
 msgid "End date:"
-msgstr ""
+msgstr "Data Fim:"
 
 #: model/Model_Report.cpp:240
 msgid "Template is empty"
-msgstr ""
+msgstr "Modelo está vazio"
 
 #: model/Model_Report.cpp:254
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
+msgstr "O script SQL:\n"
+"%s \n"
+"modificará a base de dados! abortado!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
-msgstr ""
+msgstr "Erro de Ação"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -5800,16 +5802,16 @@ msgstr "Anexos"
 
 #: optiondialog.cpp:37
 msgid "Network"
-msgstr ""
+msgstr "Rede"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Aplicar "
 
 #: optiondialog.cpp:219
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s página foi gravada."
 
 #: optionsettingsattachment.cpp:65
 msgid "Attachments Settings"
@@ -5854,30 +5856,30 @@ msgstr "%s : Pasta do ficheiro da base de dados .MMB"
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : Pasta de dados da aplicação MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
-msgstr ""
+msgstr "Pastas de outros SO "
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
-msgstr ""
+msgstr "Ainda não definido"
 
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Pasta Windows: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Pasta Mac: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Pasta Unix: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -5885,7 +5887,7 @@ msgstr "Criar e utilizar subpasta de anexos"
 
 #: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
-msgstr ""
+msgstr "Eliminar ficheiros após a importação"
 
 #: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
@@ -5933,11 +5935,11 @@ msgstr "Erro ao mover a pasta de anexos: por favor, mova-a manualmente!"
 
 #: optionsettingsattachment.cpp:255
 msgid "Origin"
-msgstr ""
+msgstr "Origem"
 
 #: optionsettingsattachment.cpp:256
 msgid "Destination"
-msgstr ""
+msgstr "Destino"
 
 #: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
