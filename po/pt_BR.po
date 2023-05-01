@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 14:36\n"
+"PO-Revision-Date: 2023-05-01 18:50\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -7522,7 +7522,7 @@ msgstr "Especifique a Conta associada que conterá esta transação"
 
 #: usertransactionpanel.cpp:118
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr "Retirar fundos ou depositar fundos nesta conta."
+msgstr "Retirar ou depositar fundos nesta conta."
 
 #: usertransactionpanel.cpp:120
 msgid "&Transfer"
@@ -7558,7 +7558,7 @@ msgstr "Especifique a categoria desta transação"
 
 #: usertransactionpanel.cpp:189
 msgid "Specify a transaction code or associated check details"
-msgstr "Especifique um código de transação ou detalhes de verificação associados"
+msgstr "Especifique um código de transação ou detalhes do cheque associado"
 
 #: usertransactionpanel.cpp:299
 msgid "Select the required account"
@@ -7702,7 +7702,7 @@ msgstr "Não foi possível encontrar a moeda 'USD', necessária para converter o
 
 #: util.cpp:1057
 msgid "Could not parse price in asset history"
-msgstr "Não foi possível analisar o preço no histórico de ativos"
+msgstr "Não foi possível analisar o preço no histórico do ativo"
 
 #: util.cpp:1288
 #, c-format
