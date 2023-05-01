@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 19:46\n"
+"PO-Revision-Date: 2023-05-01 20:43\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -4456,7 +4456,7 @@ msgstr "Automatski ponavljajuće transakcije"
 
 #: mmframe.cpp:716 mmframe.cpp:1889 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Nadzorna ploča"
 
 #: mmframe.cpp:720
 msgid "All Transactions"
@@ -4745,11 +4745,11 @@ msgstr "Zamijeni jezik programa"
 
 #: mmframe.cpp:1641
 msgid "Dash&board"
-msgstr ""
+msgstr "Nadzorna &ploča"
 
 #: mmframe.cpp:1641 mmframe.cpp:1889
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Otvori nadzornu ploču"
 
 #: mmframe.cpp:1650
 msgid "Change the account type of an account."
@@ -5041,7 +5041,7 @@ msgstr "Razvijateljima prijavi grešku u programu"
 
 #: mmframe.cpp:1840
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "Prikaži &dijagnozu"
 
 #: mmframe.cpp:1841
 msgid "Help provide information to the developers"
@@ -5069,7 +5069,7 @@ msgstr "&O programu"
 
 #: mmframe.cpp:1853 mmframe.cpp:1925
 msgid "Show About dialog"
-msgstr ""
+msgstr "Prikaži dijalog o programu"
 
 #: mmframe.cpp:1857
 msgid "&File"
@@ -6334,7 +6334,7 @@ msgstr "Stilski predložak"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Sustav"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
