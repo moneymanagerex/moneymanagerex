@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 14:36\n"
+"PO-Revision-Date: 2023-05-01 17:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7469,19 +7469,20 @@ msgstr "Gerir anexos desta transação"
 #: transdialog.cpp:745
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Esta transação excederá o seu limite de conta.\n\n"
+"Deseja continuar?"
 
 #: transdialog.cpp:1141
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "As duas contas têm moedas diferentes, mas não definiu uma transação avançada. Está correto?"
 
 #: transdialog.cpp:1142
 msgid "Currencies are different"
-msgstr ""
+msgstr "As Moedas são diferentes"
 
 #: transdialog.cpp:1229
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "Indique a conta de onde é retirado o dinheiro"
 
 #: transdialog.cpp:1230
 msgid "Specify account the money is moved to"
