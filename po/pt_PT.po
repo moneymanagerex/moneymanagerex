@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 17:28\n"
+"PO-Revision-Date: 2023-05-01 18:50\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -365,7 +365,7 @@ msgstr "Visite a página web %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr "&Mostrar esta caixa de diálogo na inicialização"
+msgstr "&Mostrar esta janela de diálogo na inicialização"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
@@ -5036,11 +5036,11 @@ msgstr "Ajude a fornecer informações aos programadores"
 
 #: mmframe.cpp:1845
 msgid "&Show App Start Dialog"
-msgstr "&Mostrar Diálogo Início da Aplicação"
+msgstr "&Mostrar Janela Início da Aplicação"
 
 #: mmframe.cpp:1845
 msgid "App Start Dialog"
-msgstr "Diálogo Início da Aplicação"
+msgstr "Janela Início da Aplicação"
 
 #: mmframe.cpp:1849
 msgid "Check for &Updates"
@@ -5056,7 +5056,7 @@ msgstr "&Sobre"
 
 #: mmframe.cpp:1853 mmframe.cpp:1925
 msgid "Show About dialog"
-msgstr "Mostrar diálogo Sobre"
+msgstr "Mostrar Janela Sobre"
 
 #: mmframe.cpp:1857
 msgid "&File"
@@ -6066,7 +6066,7 @@ msgstr "Atualizar na Inicialização"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
-msgstr "Definições do Diálogo 'Novas Transações'"
+msgstr "Definições da Janela 'Novas Transações'"
 
 #: optionsettingsmisc.cpp:108
 msgid "Last Used"
@@ -7486,7 +7486,7 @@ msgstr "Indique a conta de onde é retirado o dinheiro"
 
 #: transdialog.cpp:1230
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "Indique a conta para onde é transferido o dinheiro"
 
 #: transdialog.cpp:1231
 msgid "Specify the transfer amount in the From Account."
@@ -7494,11 +7494,11 @@ msgstr "Especifique o valor da transferência na Conta Origem."
 
 #: transdialog.cpp:1239
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "Especifique a conta da transação"
 
 #: transdialog.cpp:1241
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "Indique para quem segue esta transação"
 
 #: transdialog.cpp:1247 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
@@ -7506,7 +7506,7 @@ msgstr "Especifique a data da transacção"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Janela de Transações"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
@@ -7514,27 +7514,27 @@ msgstr "Selecionar a Conta"
 
 #: usertransactionpanel.cpp:106
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Indique a Conta associada que irá conter esta transação"
 
 #: usertransactionpanel.cpp:118
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "Retirar ou depositar fundos nesta conta."
 
 #: usertransactionpanel.cpp:120
 msgid "&Transfer"
-msgstr ""
+msgstr "&Transferência"
 
 #: usertransactionpanel.cpp:123
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
-msgstr ""
+msgstr "Transferência de fundos de/para esta conta. Desmarque para definir como Despesa/Receita."
 
 #: usertransactionpanel.cpp:146
 msgid "Currency used for this transaction."
-msgstr ""
+msgstr "Moeda usada para esta transação."
 
 #: usertransactionpanel.cpp:165
 msgid "Specify the status for this transaction"
-msgstr ""
+msgstr "Indique o estado desta transação"
 
 #: usertransactionpanel.cpp:172
 msgid "Select Payee"
@@ -7542,7 +7542,7 @@ msgstr "Selecione o Favorecido"
 
 #: usertransactionpanel.cpp:173
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr ""
+msgstr "Indique uma pessoa, empresa ou organização para esta transação."
 
 #: usertransactionpanel.cpp:179
 msgid "Select Category"
@@ -7554,63 +7554,63 @@ msgstr "Especifique a categoria desta transacção"
 
 #: usertransactionpanel.cpp:189
 msgid "Specify a transaction code or associated check details"
-msgstr ""
+msgstr "Indique um código de transação ou detalhes do cheque associado"
 
 #: usertransactionpanel.cpp:299
 msgid "Select the required account"
-msgstr ""
+msgstr "Selecione a conta requerida"
 
 #: usertransactionpanel.cpp:300
 msgid "Account Selection"
-msgstr ""
+msgstr "Seleção de Conta"
 
 #: util.cpp:287
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: util.cpp:287
 msgid "Feb"
-msgstr ""
+msgstr "Fev"
 
 #: util.cpp:287
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:288
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: util.cpp:288 util.h:181
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: util.cpp:288
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: util.cpp:289
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: util.cpp:289
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: util.cpp:289
 msgid "Sep"
-msgstr ""
+msgstr "Set"
 
 #: util.cpp:290
 msgid "Oct"
-msgstr ""
+msgstr "Out"
 
 #: util.cpp:290
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:290
 msgid "Dec"
-msgstr ""
+msgstr "Dez"
 
 #: util.cpp:295
 msgid "Sunday"
@@ -7642,88 +7642,88 @@ msgstr "Sábado"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "Seg"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "Ter"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "Qua"
 
 #: util.cpp:303
 msgid "Thu"
-msgstr ""
+msgstr "Qui"
 
 #: util.cpp:303
 msgid "Fri"
-msgstr ""
+msgstr "Sex"
 
 #: util.cpp:304
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 #: util.cpp:738
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "Taxas de câmbio atualizadas"
 
 #: util.cpp:837 util.cpp:953 util.cpp:1012
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Erro de análise JSON"
 
 #: util.cpp:961 util.cpp:1020
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Esperava-se uma resposta que contivesse uma sequência de dados ou de uma mensagem de erro"
 
 #: util.cpp:992
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Não foi possível encontrar o ativo do símbolo"
 
 #: util.cpp:1027
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Não foi possível obter a moeda base!"
 
 #: util.cpp:1033
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:1036
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Não foi possível encontrar a divisa 'USD', necessária para converter os preços do histórico"
 
 #: util.cpp:1057
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Não foi possível analisar o preço no histórico do ativo"
 
 #: util.cpp:1288
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Versão: %s"
 
 #: util.cpp:1289
 #, c-format
 msgid "Built on: %s %s"
-msgstr ""
+msgstr "Construído em: %s %s"
 
 #: util.cpp:1290
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Versão da Base de Dados: %d"
 
 #: util.cpp:1297
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr ""
+msgstr "Git commit: %s (%s)"
 
 #: util.cpp:1300
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git branch: %s"
 
 #: util.cpp:1304
 msgid "MMEX is using the following support products:"
@@ -7731,11 +7731,11 @@ msgstr "O MMEX utiliza os seguintes produtos de suporte:"
 
 #: util.cpp:1321
 msgid "Built with:"
-msgstr ""
+msgstr "Construído com:"
 
 #: util.cpp:1340
 msgid "Running on:"
-msgstr ""
+msgstr "A executar em:"
 
 #: util.h:180
 msgid "January"
@@ -7922,7 +7922,7 @@ msgstr "Ajudante para Adicionar Conta"
 #: wizard_newaccount.cpp:40
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s modela todas as transações como pertencentes a contas."
 
 #: wizard_newaccount.cpp:41
 msgid "The next pages will help you create a new account.\n"
