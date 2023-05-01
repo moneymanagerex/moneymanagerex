@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 18:50\n"
+"PO-Revision-Date: 2023-05-01 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgstr "Selecione caso esta conta seja utilizada frequentemente. Isto é usado p
 #: transactionsupdatedialog.cpp:223 transdialog.cpp:550
 #: usertransactionpanel.cpp:195 webappdialog.cpp:145
 msgid "Notes"
-msgstr "Observações"
+msgstr "Notas"
 
 #: accountdialog.cpp:186
 msgid "Enter user notes and details about this account."
@@ -7928,7 +7928,9 @@ msgstr "%s modela todas as transações como pertencentes a contas."
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "As próximas páginas ajudá-lo-ão a criar uma nova conta.\n"
+"Para o ajudar a iniciar, comece por fazer uma lista de todas as\n"
+"instituições financeiras onde possui uma conta."
 
 #: wizard_newaccount.cpp:88
 msgid "Account Name Invalid"
@@ -7944,12 +7946,13 @@ msgstr "Nome da Conta"
 
 #: wizard_newaccount.cpp:113
 msgid "Specify a descriptive name for the account."
-msgstr ""
+msgstr "Indique um nome descritivo para a conta."
 
 #: wizard_newaccount.cpp:114
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
+msgstr "Isto é geralmente o nome da instituição financeira\n"
+"onde é mantida a conta. Por exemplo: 'Caixa Geral de Depósitos'."
 
 #: wizard_newaccount.cpp:134
 msgid "Type of Account"
@@ -7957,28 +7960,32 @@ msgstr "Tipo de Conta"
 
 #: wizard_newaccount.cpp:138
 msgid "Select the type of account you want to create:"
-msgstr ""
+msgstr "Selecione o tipo de conta que deseja criar:"
 
 #: wizard_newaccount.cpp:139
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "As contas bancárias gerais cobrem uma grande variedade de tipos de contas\n"
+"como Contas à Ordem, Empréstimos, e Cartões de Crédito."
 
 #: wizard_newaccount.cpp:144
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Contas de Investimento e de Ações são especializadas em investimentos como fundos mútuos e ações, respetivamente."
 
 #: wizard_newaccount.cpp:149
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Contas a Prazo e de Ativos são contas bancárias especializadas.\n"
+"Destinam-se a monitorizar Ativos ou Depósitos a Prazo e Obrigações\n"
+"onde tipicamente entra e sai dinheiro regularmente, fora do\n"
+"fluxo de receitas geral."
 
 #: wizard_newaccount.cpp:165
 msgid "Base Account Currency Not set."
-msgstr ""
+msgstr "Moeda Base da Conta Não Definida."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
