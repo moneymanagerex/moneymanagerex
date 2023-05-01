@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 11:47\n"
+"PO-Revision-Date: 2023-05-01 13:04\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2513,7 +2513,7 @@ msgstr "Erro: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:1983
 msgid "Opening MMEX Database - Error"
-msgstr "A abrir base de dados do MMEX — Erro"
+msgstr "A abrir base de dados do MMEX - Erro"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -5370,7 +5370,7 @@ msgstr "Realocação de Conta"
 #: mmframe.cpp:3468
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr "Conta: %s — Selecione o novo tipo."
+msgstr "Conta: %s - Selecione o novo tipo."
 
 #: mmframe.cpp:3579 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
@@ -6282,15 +6282,15 @@ msgstr "Ver Relatório de Categorias Orçamentais com Resumos"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Substituir orçamento anual por orçamento mensal"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Se existir orçamento mensal, utilizá-lo para substituir o orçamento anual; caso contrário, combiná-los"
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Subtraia orçamentos mensais ao orçamento anual nos relatórios"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
@@ -6300,39 +6300,39 @@ msgstr "O orçamento anual será reduzido pelo montante orçamentado mensalmente
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Compensação Orçamental (dias):"
 
 #: optionsettingsview.cpp:161
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Permite que o 'primeiro dia' do mês (normalmente dia 1) seja ajustado para fins de cálculos orçamentais"
 
 #: optionsettingsview.cpp:169
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Dia início de mês para relatórios:"
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Permite que o 'primeiro dia' do mês seja ajustado para fins de relatórios"
 
 #: optionsettingsview.cpp:178
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ignorar Transações Futuras"
 
 #: optionsettingsview.cpp:184
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Cores de Transação"
 
 #: optionsettingsview.cpp:223
 msgid "UI Appearance"
-msgstr ""
+msgstr "Aparência da interface com o utilizador"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Abrir Gestor de Temas"
 
 #: optionsettingsview.cpp:236
 msgid "Style Template"
-msgstr ""
+msgstr "Modelo de Estilo"
 
 #: optionsettingsview.cpp:241
 msgid "System"
@@ -6340,103 +6340,103 @@ msgstr "Sistema"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: optionsettingsview.cpp:243
 msgid "Dark"
-msgstr ""
+msgstr "Escuro"
 
 #: optionsettingsview.cpp:247
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Indicar variante de tema preferida a utilizar se suportado"
 
 #: optionsettingsview.cpp:249
 msgid "Theme Mode"
-msgstr ""
+msgstr "Modo Tema"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Fator de Escala HTML"
 
 #: optionsettingsview.cpp:268
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "Indicar que fator de escala é utilizado para as páginas de relatórios"
 
 #: optionsettingsview.cpp:273
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: optionsettingsview.cpp:274
 msgid "Enlarged"
-msgstr ""
+msgstr "Alargado"
 
 #: optionsettingsview.cpp:275
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: optionsettingsview.cpp:276
 msgid "Huge"
-msgstr ""
+msgstr "Enorme"
 
 #: optionsettingsview.cpp:278
 msgid "Font size"
-msgstr ""
+msgstr "Tamanho da Fonte"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Pequeno (16 px)"
 
 #: optionsettingsview.cpp:291
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:292
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Grande (32 px)"
 
 #: optionsettingsview.cpp:293
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Tamanho dos Ícones na Barra de Ferramentas"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Tamanho dos Ícones de Navegação"
 
 #: optionsettingsview.cpp:309
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Tamanho de Outros Ícones"
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
-msgstr ""
+msgstr "Editar Beneficiário"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Digite o nome do Beneficiário. Este nome pode ser alterado a qualquer momento."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
-msgstr ""
+msgstr "Oculto"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Indique se o beneficiário deve ser ocultado e não apresentado na lista de beneficiários para novas transações"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
-msgstr ""
+msgstr "Última Categoria Utilizada"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Default Category"
-msgstr ""
+msgstr "Categoria Padrão"
 
 #: payeedialog.cpp:99
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "A categoria usada como padrão para este beneficiário"
 
 #: payeedialog.cpp:103 payeedialog.cpp:458
 msgid "Reference"
@@ -6694,33 +6694,33 @@ msgstr "Por favor, junte-se à nossa comunidade em <a href='%s'>Slack</a>. Aqui 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Leia <a href='%s'>Como relatar erros de forma efetiva</a> para dicas úteis."
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Crie um nome descritivo para o seu problema."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Inclua etapas para reproduzir o seu problema, anexando capturas de ecrã quando apropriado."
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Antes de clicar no link a seguir, certifique-se que já fez login no <a href='%s'>GitHub</a>."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Finalmente, relate um erro através do formulário online <a href='%s'>GitHub</a> aberto no seu navegador web."
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Por favor, siga estas instruções antes de submeter o relato de um novo erro:"
 
 #: reports/cashflow.cpp:257 reports/cashflow.cpp:385
 msgid "months"
-msgstr ""
+msgstr "meses"
 
 #: reports/cashflow.cpp:288 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6730,40 +6730,40 @@ msgstr "Diferença"
 
 #: reports/cashflow.cpp:289 reports/cashflow.cpp:420
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Diferença Acumulada"
 
 #: reports/cashflow.cpp:344
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Fluxo de Caixa - Diário"
 
 #: reports/cashflow.cpp:358
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Fluxo de Caixa - Mensal"
 
 #: reports/cashflow.cpp:372
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Fluxo de Caixa - Transações"
 
 #: reports/categexp.cpp:283
 msgid "Total Expenses:"
-msgstr ""
+msgstr "Despesas Totais:"
 
 #: reports/categexp.cpp:284
 msgid "Total Income:"
-msgstr ""
+msgstr "Receitas Totais:"
 
 #: reports/categexp.cpp:286 reports/summarystocks.cpp:186
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
-msgstr ""
+msgstr "Total Geral:"
 
 #: reports/categexp.cpp:315
 msgid "Categories Summary"
-msgstr ""
+msgstr "Resumo de Categorias"
 
 #: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
-msgstr ""
+msgstr "Categoria Receitas/Despesas"
 
 #: reports/categexp.cpp:464
 msgid "Overall"
@@ -6771,41 +6771,41 @@ msgstr "Somatório"
 
 #: reports/categexp.cpp:495 reports/payee.cpp:137
 msgid "Incomes"
-msgstr ""
+msgstr "Receitas"
 
 #: reports/forecast.cpp:30
 msgid "Forecast"
-msgstr ""
+msgstr "Previsão"
 
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "Relatório Gerado %s %s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %s till %s"
-msgstr ""
+msgstr "Desde %s até %s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
-msgstr ""
+msgstr "Futuro"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:249
 msgid "Over Time"
-msgstr ""
+msgstr "Ao longo do Tempo"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"
-msgstr ""
+msgstr "Dia de início especificado pelo utilizador"
 
 #: reports/htmlbuilder.cpp:257
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "As Transações Futuras foram ignoradas"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Resumo de Receitas e Despesas"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -6817,11 +6817,11 @@ msgstr "Gastos:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Receitas e Despesas Mensais"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Acumulado"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -6829,15 +6829,15 @@ msgstr "Mês Actual"
 
 #: reports/mmDateRange.cpp:82
 msgid "Today"
-msgstr ""
+msgstr "Hoje"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
-msgstr ""
+msgstr "Mês Atual à Data"
 
 #: reports/mmDateRange.cpp:100
 msgid "Last Month"
-msgstr ""
+msgstr "Último Mês"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
@@ -6845,15 +6845,15 @@ msgstr "Últimos 30 dias"
 
 #: reports/mmDateRange.cpp:120
 msgid "Last 90 Days"
-msgstr ""
+msgstr "Últimos 90 Dias"
 
 #: reports/mmDateRange.cpp:134
 msgid "Last 3 Months"
-msgstr ""
+msgstr "Últimos 3 Meses"
 
 #: reports/mmDateRange.cpp:148
 msgid "Last 12 Months"
-msgstr ""
+msgstr "Últimos 12 Meses"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6861,7 +6861,7 @@ msgstr "Ano Actual"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:693
 msgid "Current Year to Date"
-msgstr ""
+msgstr "Ano corrente até à Data"
 
 #: reports/mmDateRange.cpp:185
 msgid "Last Year"
@@ -6869,72 +6869,72 @@ msgstr "Último Ano"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
-msgstr ""
+msgstr "Exercício Financeiro Atual"
 
 #: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
-msgstr ""
+msgstr "Exercício Financeiro Atual até à Data"
 
 #: reports/mmDateRange.cpp:236
 msgid "Last Financial Year"
-msgstr ""
+msgstr "Último Exercício Financeiro"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: reports/mmDateRange.cpp:274
 msgid "Last 365 Days"
-msgstr ""
+msgstr "Últimos 365 Dias"
 
 #: reports/mmDateRange.cpp:280
 msgid "Since Today"
-msgstr ""
+msgstr "Desde Hoje"
 
 #: reports/mmDateRange.cpp:289
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "Desde há 30 dias"
 
 #: reports/mmDateRange.cpp:298
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "Desde há 90 dias"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Desde o Início Deste Ano"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Desde o Início do Exercício Financeiro"
 
 #: reports/myusage.cpp:26
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "Frequência de Utilização do MMEX"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr ""
+msgstr "Relatório de Beneficiários"
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
-msgstr ""
+msgstr "Todas as Contas"
 
 #: reports/reportbase.cpp:213 reports/transactions.cpp:125
 msgid "Accounts: "
-msgstr ""
+msgstr "Contas: "
 
 #: reports/summary.cpp:133
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "Saldo de Contas - %s"
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
-msgstr ""
+msgstr "Relatório Mensal"
 
 #: reports/summary.cpp:133
 msgid "Yearly Report"
-msgstr ""
+msgstr "Relatório Anual"
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
@@ -6946,11 +6946,11 @@ msgstr "Símbolo"
 
 #: reports/summarystocks.cpp:119
 msgid "Purchase Date"
-msgstr ""
+msgstr "Data de Compra"
 
 #: reports/summarystocks.cpp:120
 msgid "Quantity"
-msgstr ""
+msgstr "Quantidade"
 
 #: reports/summarystocks.cpp:122
 msgid "Current Price"
