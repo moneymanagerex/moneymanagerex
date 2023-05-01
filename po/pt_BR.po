@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 16:24\n"
+"PO-Revision-Date: 2023-05-01 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -7452,7 +7452,7 @@ msgstr "Anexar"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr "Atualização de Múltiplas Transações"
+msgstr "Atualização de Transações Múltiplas"
 
 #: transdialog.cpp:177
 msgid "Edit Transaction"
@@ -7460,7 +7460,7 @@ msgstr "Editar Transação"
 
 #: transdialog.cpp:179
 msgid "Duplicate Transaction"
-msgstr "Transação Duplicada"
+msgstr "Duplicar Transação"
 
 #: transdialog.cpp:524
 msgid "Populate Transaction #"
