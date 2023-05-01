@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 13:04\n"
+"PO-Revision-Date: 2023-05-01 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6963,31 +6963,31 @@ msgstr "Comissão"
 
 #: reports/summarystocks.cpp:124 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Ganhos/Perdas Realizadas"
 
 #: reports/summarystocks.cpp:125 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Ganhos/Perdas por realizar"
 
 #: reports/summarystocks.cpp:246
 msgid "Stocks Performance Charts"
-msgstr ""
+msgstr "Gráficos de Desempenho de Ações"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Taxa"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Todas as Transações: Pagamentos, Depósitos e Transferências"
 
 #: reports/transactions.cpp:410
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Todas as Transações menos Transferências"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "Adicionar Transação de Ações"
 
 #: sharetransactiondialog.cpp:213 stockdialog.cpp:182
 msgid "Stock Investment Details"
@@ -6995,7 +6995,7 @@ msgstr "Detalhes do Investimento"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
 msgid "Company Name"
-msgstr ""
+msgstr "Nome da Empresa"
 
 #: sharetransactiondialog.cpp:227 stockdialog.cpp:196
 msgid "Enter the stock company name"
@@ -7003,15 +7003,15 @@ msgstr "Digite o nome da empresa"
 
 #: sharetransactiondialog.cpp:230 stockdialog.cpp:199
 msgid "Stock Symbol"
-msgstr ""
+msgstr "Símbolo da Ação"
 
 #: sharetransactiondialog.cpp:237 stockdialog.cpp:206
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
+msgstr "Digite o símbolo bolsista. (Opcional) Inclua a bolsa. Ex: EDP.XLIS"
 
 #: sharetransactiondialog.cpp:240
 msgid "Share Number"
-msgstr ""
+msgstr "Número de Ações"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter number of shares held"
@@ -7019,11 +7019,11 @@ msgstr "Digite o número de acções"
 
 #: sharetransactiondialog.cpp:253
 msgid "Share Price"
-msgstr ""
+msgstr "Preço da Ação"
 
 #: sharetransactiondialog.cpp:261
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "Introduza o valor atual para uma única unidade da ação"
 
 #: sharetransactiondialog.cpp:273
 msgid "Enter any commission paid"
@@ -7031,11 +7031,11 @@ msgstr "Digite qualquer comissão paga"
 
 #: sharetransactiondialog.cpp:279
 msgid "Share Lot"
-msgstr ""
+msgstr "Lote de Ações"
 
 #: sharetransactiondialog.cpp:286
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "Insira o LOTE ao qual esta parcela de ações pertence"
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"
@@ -7051,11 +7051,11 @@ msgstr "Digite qualquer comentário que deseje fazer para este investimento"
 
 #: sharetransactiondialog.cpp:313
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "Adicionar Detalhes da Transação"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
-msgstr ""
+msgstr "Editar Transação de Ações"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
@@ -7091,63 +7091,67 @@ msgstr "Novo Investimento"
 
 #: stockdialog.cpp:209 stocks_list.cpp:88
 msgid "*Date"
-msgstr ""
+msgstr "*Data"
 
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Indique a data inicial do investimento em ações\n"
+"Usada ao criar a transação inicial de ações."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
-msgstr ""
+msgstr "*Número de Ações"
 
 #: stockdialog.cpp:225
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Digite o número de ações.\n"
+"Utilizado ao criar a transação de ações inicial."
 
 #: stockdialog.cpp:229
 msgid "*Share Price"
-msgstr ""
+msgstr "*Preço da Ação"
 
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Digite o preço por ação inicial.\n"
+"Utilizado ao criar a transação inicial de ações."
 
 #: stockdialog.cpp:239
 msgid "*Commission"
-msgstr ""
+msgstr "*Comissão"
 
 #: stockdialog.cpp:244
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Introduza qualquer comissão paga.\n"
+"Utilizada ao criar a transação inicial de ações."
 
 #: stockdialog.cpp:247 stocks_list.cpp:96
 msgid "Curr. Share Price"
-msgstr ""
+msgstr "Cotação Atual"
 
 #: stockdialog.cpp:251
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Insira o preço atual da ação."
 
 #: stockdialog.cpp:281
 msgid "Stock History Options"
-msgstr ""
+msgstr "Opções do Histórico de Ações"
 
 #: stockdialog.cpp:288
 msgid "Stock Price History"
-msgstr ""
+msgstr "Histórico do Preço da Ação"
 
 #: stockdialog.cpp:312 stocks_list.cpp:98
 msgid "Price Date"
-msgstr ""
+msgstr "Data do Preço"
 
 #: stockdialog.cpp:316
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Especifique a data do preço da ação."
 
 #: stockdialog.cpp:331
 msgid "Download Stock Price history"
@@ -7383,20 +7387,20 @@ msgstr ""
 #: stockspanel.cpp:375 stockspanel.cpp:561
 #, c-format
 msgid "Last updated %s"
-msgstr ""
+msgstr "Última atualização %s"
 
 #: stockspanel.cpp:401 util.cpp:705 util.cpp:861
 msgid "Nothing to update"
-msgstr ""
+msgstr "Nada para atualizar"
 
 #: stockspanel.cpp:415
 msgid "Connecting..."
-msgstr ""
+msgstr "Conectando..."
 
 #: stockspanel.cpp:519
 #, c-format
 msgid "Symbol: %s"
-msgstr ""
+msgstr "Símbolo: %s"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
@@ -7404,47 +7408,47 @@ msgstr "Eliminar"
 
 #: themes.cpp:193
 msgid "Use"
-msgstr ""
+msgstr "Usar"
 
 #: themes.cpp:239
 msgid "No description available"
-msgstr ""
+msgstr "Nenhuma descrição disponível"
 
 #: themes.cpp:285
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Escolha um ficheiro de tema para importar"
 
 #: themes.cpp:305
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "O tema já existe, ainda deseja importar e substituir o tema existente?"
 
 #: themes.cpp:315
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Algo correu mal ao importar o tema"
 
 #: themes.cpp:327
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Tem certeza que deseja eliminar este tema? Se quiser utilizá-lo novamente terá que o reimportar."
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Algo correu mal ao tentar remover o tema"
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Tem certeza que deseja utilizar este tema? Note, por favor, que isso só terá efeito quando o MMEX for reiniciado."
 
 #: transactionsupdatedialog.cpp:191
 msgid "Transfer To"
-msgstr ""
+msgstr "Transferir Para"
 
 #: transactionsupdatedialog.cpp:225
 msgid "Append"
-msgstr ""
+msgstr "Anexar"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Atualização de Transações Múltiplas"
 
 #: transdialog.cpp:177
 msgid "Edit Transaction"
@@ -7452,7 +7456,7 @@ msgstr "Editar a Transacção"
 
 #: transdialog.cpp:179
 msgid "Duplicate Transaction"
-msgstr ""
+msgstr "Duplicar Transação"
 
 #: transdialog.cpp:524
 msgid "Populate Transaction #"
