@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-30 23:03\n"
+"PO-Revision-Date: 2023-05-01 11:47\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6226,35 +6226,35 @@ msgstr "Tempo esgotado"
 
 #: optionsettingsnet.cpp:154
 msgid "Specify a network communication timeout value to use."
-msgstr ""
+msgstr "Indique o limite tempo de comunicação em rede a utilizar."
 
 #: optionsettingsnet.cpp:157
 msgid "Seconds"
-msgstr ""
+msgstr "Segundos"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
-msgstr ""
+msgstr "Atualizações"
 
 #: optionsettingsnet.cpp:169
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Verificar se há atualizações na Inicialização"
 
 #: optionsettingsnet.cpp:171
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
+msgstr "Habilite para verificar automaticamente se uma nova versão do MMEX está disponível na Inicialização"
 
 #: optionsettingsnet.cpp:174 wizard_update.cpp:114
 msgid "Stable"
-msgstr ""
+msgstr "Estável"
 
 #: optionsettingsnet.cpp:175 wizard_update.cpp:114
 msgid "Unstable"
-msgstr ""
+msgstr "Instável"
 
 #: optionsettingsnet.cpp:180
 msgid "Updates source"
-msgstr ""
+msgstr "Fonte das atualizações"
 
 #: optionsettingsview.cpp:86
 msgid "Specify which accounts are visible"
@@ -6262,23 +6262,23 @@ msgstr "Especifique as contas que são visíveis"
 
 #: optionsettingsview.cpp:89
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Delimitador de Categoria"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Opções Transação/Orçamento"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Ver Orçamentos como Anos Financeiros"
 
 #: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Ver Orçamentos com transações de 'transferência'"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Ver Relatório de Categorias Orçamentais com Resumos"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
