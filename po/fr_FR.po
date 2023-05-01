@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 16:24\n"
+"PO-Revision-Date: 2023-05-01 02:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6032,7 +6032,7 @@ msgstr "Cocher pour générer des sons en introduisant des opérations"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr "Local.e"
+msgstr "Localisation"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
