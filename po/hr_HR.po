@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-30 21:45\n"
+"PO-Revision-Date: 2023-05-01 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -320,11 +320,11 @@ msgstr "Novi račun"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Otvori zadnju otvorenu bazu po&dataka"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nova baza podataka"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "Stvori novu datoteku bazu podataka"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Otvori postoj&eću bazu podataka"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "Otvori već stvorenu datoteku baze podataka s nastavkom (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Jezik korisničkog sučelja"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Promijeni jezik korisničkog sučelja"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Korisnički priručnik"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -361,15 +361,15 @@ msgstr "&Web stranica"
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Posjeti web stranicu %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Prikaži ovaj dijalog pri pokretanju"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "&Zatvori "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -1582,7 +1582,7 @@ msgstr "Unos za mjesečni budžet"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Godišnji budžet"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1592,7 +1592,7 @@ msgstr "Odredi godinu.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Mjesečni budžet"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1602,11 +1602,11 @@ msgstr "Odredi mjesec.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Baziraj budžet na"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Odredi godinu za baziranje budžeta"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1922,7 +1922,7 @@ msgstr "Prikaz od datuma izvatka"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "SVE"
 
 #: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3248,7 +3248,7 @@ msgstr "Odaberi QIF datoteku koju želiš uvesti"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Želiš li uvesti sve transakcije?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -6973,7 +6973,7 @@ msgstr "Dijagram rezultata vlasničkih udjela"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Stopa"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7507,7 +7507,7 @@ msgstr "Odredi datum transakcije"
 
 #: transdialog.h:59
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "Dijalog transakcija"
 
 #: usertransactionpanel.cpp:104
 msgid "Select Account"
