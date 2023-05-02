@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 17:11\n"
+"PO-Revision-Date: 2023-05-02 18:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6550,7 +6550,7 @@ msgstr "Confirmação de Realocação de Categoria"
 #: relocatecategorydialog.cpp:256 relocatepayeedialog.cpp:210
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr ""
+msgstr "Registos encontrados em transações: %i"
 
 #: relocatecategorydialog.cpp:257
 #, c-format
@@ -6560,7 +6560,7 @@ msgstr "Registos encontrados em transações separadas: %i"
 #: relocatecategorydialog.cpp:258 relocatepayeedialog.cpp:211
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "Registos encontrados em transações recorrentes: %i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
@@ -6570,42 +6570,42 @@ msgstr "Registos encontrados em transações separadas recorrentes: %i"
 #: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr ""
+msgstr "Registos encontrados como Categoria Padrão de Beneficiário: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found in budget: %i"
-msgstr ""
+msgstr "Registos encontrados no orçamento: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category Dialog"
-msgstr ""
+msgstr "Realocar Categoria"
 
 #: relocatepayeedialog.cpp:89
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "Realocar a totalidade do beneficiário de origem ao beneficiário de destino"
 
 #: relocatepayeedialog.cpp:101
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Eliminar o beneficiário origem após a realocação"
 
 #: relocatepayeedialog.cpp:158
 msgid "Payee Relocation Confirmation"
-msgstr ""
+msgstr "Confirmação de Realocação de Beneficiário"
 
 #: relocatepayeedialog.h:42
 msgid "Relocate Payee Dialog"
-msgstr ""
+msgstr "Realocar Beneficiário"
 
 #: reports/budget.cpp:90
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Ano Financeiro: %s - %i"
 
 #: reports/budget.cpp:100
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Ano: %i Mês: %s"
 
 #: reports/budgetcategorysummary.cpp:120
 #, c-format
