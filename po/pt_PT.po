@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 16:15\n"
+"PO-Revision-Date: 2023-05-02 17:11\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6463,7 +6463,8 @@ msgstr "Corresponder Padrões\n"
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Digite qualquer sequência de caracteres que corresponda a este beneficiário na importação.\n"
+"Os padrões são testados pela ordem aqui digitada."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6471,19 +6472,19 @@ msgstr "Já existe um Beneficiário com este nome"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Padrão de Correspondência"
 
 #: payeedialog.cpp:720
 msgid "Payee in use."
-msgstr ""
+msgstr "Beneficiário em uso."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "Dica: Transfira todas as transações deste beneficiário para outro beneficiário usando o comando realocar:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "Ferramentas → Realocação de → Beneficiários"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6491,19 +6492,19 @@ msgstr "Gerir Beneficiários: Erro ao Eliminar"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Existem transações eliminadas deste beneficiário."
 
 #: payeedialog.cpp:732
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Eliminar o beneficiário também apagará automaticamente as transações eliminadas associadas."
 
 #: payeedialog.cpp:734
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Confirmar Eliminação do Beneficiário"
 
 #: payeedialog.cpp:855
 msgid "Define Category"
-msgstr ""
+msgstr "Definir Categoria"
 
 #: payeedialog.cpp:868
 msgid "&Organize Attachments"
@@ -6511,40 +6512,40 @@ msgstr "&Gerir Anexos"
 
 #: payeedialog.cpp:872
 msgid "Relocate Payee"
-msgstr ""
+msgstr "Realocar Beneficiário"
 
 #: relocatecategorydialog.cpp:90
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "Realocar a categoria de origem à categoria de destino"
 
 #: relocatecategorydialog.cpp:103
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "Eliminar a categoria de origem após a realocação (se não tiver subcategorias)"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:114
 msgid "Relocate:"
-msgstr ""
+msgstr "Realocar:"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 msgid "to:"
-msgstr ""
+msgstr "a:"
 
 #: relocatecategorydialog.cpp:134 relocatepayeedialog.cpp:133
 msgid "Relocate"
-msgstr ""
+msgstr "Realocar"
 
 #: relocatecategorydialog.cpp:154 relocatepayeedialog.cpp:153
 #, c-format
 msgid "From %s to %s"
-msgstr ""
+msgstr "De %s a %s"
 
 #: relocatecategorydialog.cpp:158 relocatepayeedialog.cpp:157
 msgid "Please Confirm:"
-msgstr ""
+msgstr "Confirme por favor:"
 
 #: relocatecategorydialog.cpp:159
 msgid "Category Relocation Confirmation"
-msgstr ""
+msgstr "Confirmação de Realocação de Categoria"
 
 #: relocatecategorydialog.cpp:256 relocatepayeedialog.cpp:210
 #, c-format
