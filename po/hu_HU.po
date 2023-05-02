@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 21:26\n"
+"PO-Revision-Date: 2023-05-02 22:36\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1128,7 +1128,7 @@ msgstr "Adja meg, milyen szöveges megjegyzést akar az ügylethez adni."
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:745
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:578
 msgid "Show/Hide custom fields window"
-msgstr "Egyéni mezők megjelenítése/elrejtése ablak"
+msgstr "Egyéni mezők megjelenítése/elrejtése"
 
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:242
 #: transdialog.cpp:251
