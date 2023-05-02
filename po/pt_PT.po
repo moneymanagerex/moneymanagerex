@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 19:46\n"
+"PO-Revision-Date: 2023-05-02 10:38\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6440,7 +6440,7 @@ msgstr "A categoria usada como padrão para este beneficiário"
 
 #: payeedialog.cpp:103 payeedialog.cpp:458
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
