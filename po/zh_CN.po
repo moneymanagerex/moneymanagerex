@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:12\n"
+"PO-Revision-Date: 2023-05-02 09:20\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1916,7 +1916,7 @@ msgstr "查看自对账单日期"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "全部"
 
 #: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3240,7 +3240,7 @@ msgstr "选择要导入的 QIF 数据文件"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "您想要导入所有交易吗？"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -6004,7 +6004,7 @@ msgstr "复制交易时选择是使用原始交易日期还是当前日期"
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "交易明细"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6315,7 +6315,7 @@ msgstr "样式模板"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "系统"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
