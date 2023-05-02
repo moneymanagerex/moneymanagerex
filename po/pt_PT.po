@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 20:34\n"
+"PO-Revision-Date: 2023-05-02 21:40\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7293,27 +7293,27 @@ msgstr "Valor Total Atual"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Novo Investimento em Ações..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Adicionar Transações de Ações..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr ""
+msgstr "&Ver Transações de Ações"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Editar Investimento em Ações..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Eliminar Investimento em Ações..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
-msgstr ""
+msgstr "Página &Web da Ação"
 
 #: stocks_list.cpp:277
 msgid "Do you really want to delete the stock investment?"
