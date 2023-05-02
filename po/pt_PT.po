@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 10:38\n"
+"PO-Revision-Date: 2023-05-02 15:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4904,7 +4904,7 @@ msgstr "Ver a Ajuda"
 
 #: mmframe.cpp:1778
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr "Abra o site do Money Manager EX para as últimas notícias, atualizações, etc"
+msgstr "Abra a página web do Money Manager EX para as últimas notícias, atualizações, etc"
 
 #: mmframe.cpp:1780
 msgid "&Facebook"
@@ -6444,15 +6444,15 @@ msgstr "Referência"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Uma referência a utilizar pelo beneficiário, por exemplo, número de conta bancária"
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
-msgstr ""
+msgstr "Página Web"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "URL da página web associada ao beneficiário"
 
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
