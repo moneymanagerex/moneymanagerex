@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 01:34\n"
+"PO-Revision-Date: 2023-05-02 02:45\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr "이 계정에 대한 간략한 노트나 설명을 입력하세요."
 #: db/DB_Table_Category_V1.h:140 db/DB_Table_Category_V1.h:160
 #: optiondialog.cpp:37
 msgid "Others"
-msgstr "그 외"
+msgstr "기타"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
@@ -316,7 +316,7 @@ msgstr "이 계정에 대한 반복 거래는 이 날짜 이전에 예약되었�
 #: accountdialog.h:41 mmframe.cpp:1644 mmframe.cpp:1888
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
 msgid "New Account"
-msgstr "계정 추가"
+msgstr "계정 만들기"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
@@ -2131,7 +2131,7 @@ msgstr "선택한 항목이 수정되었습니다. 제거된 항목이 지워집
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr "사용자 정의 필드 추가/편집"
+msgstr "사용자 정의 필드 생성/편집"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
@@ -2868,7 +2868,7 @@ msgstr "보고서 삭제..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
-msgstr "보고서 이름 입력"
+msgstr "보고서 이름을 입력하세요."
 
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:783 mmframe.cpp:1727 mmframe.cpp:1899
@@ -4073,15 +4073,15 @@ msgstr "마지막 업데이트"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:309
 msgid "&New Withdrawal..."
-msgstr "출금 추가(&N)..."
+msgstr "출금 생성(&N)..."
 
 #: mmchecking_list.cpp:432 mmcheckingpanel.cpp:310
 msgid "&New Deposit..."
-msgstr "입금 추가(&N)..."
+msgstr "입금 생성(&N)..."
 
 #: mmchecking_list.cpp:434 mmcheckingpanel.cpp:311
 msgid "&New Transfer..."
-msgstr "이체 추가(&N)..."
+msgstr "이체 생성(&N)..."
 
 #: mmchecking_list.cpp:438
 msgid "&Edit Transaction..."
@@ -4549,7 +4549,7 @@ msgstr "계정 재할당(&R)..."
 
 #: mmframe.cpp:1468 mmframe.cpp:1644
 msgid "&New Account..."
-msgstr "계정 추가(&N)..."
+msgstr "계정 만들기(&N)..."
 
 #: mmframe.cpp:1470
 msgid "Account &List"
@@ -5061,7 +5061,7 @@ msgstr "도움말(&H)"
 
 #: mmframe.cpp:1885 mmframe.cpp:1891
 msgid "New"
-msgstr "추가"
+msgstr "생성"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Categories Dialog"
