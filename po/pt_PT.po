@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 18:07\n"
+"PO-Revision-Date: 2023-05-02 19:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1525,7 +1525,7 @@ msgstr "Realizado: "
 
 #: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr "Diferença: "
+msgstr "Desvio: "
 
 #: budgetingpanel.cpp:256
 msgid "Expenses: "
@@ -6610,12 +6610,12 @@ msgstr "Ano: %i Mês: %s"
 #: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Categories for %s"
-msgstr ""
+msgstr "Categorias Orçamentais de %s"
 
 #: reports/budgetcategorysummary.cpp:120
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr ""
+msgstr "Resumo de Categorias Orçamentais de %s"
 
 #: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
@@ -6627,11 +6627,11 @@ msgstr "Receita estimada:"
 
 #: reports/budgetcategorysummary.cpp:342
 msgid "Actual Income:"
-msgstr ""
+msgstr "Receita Realizada:"
 
 #: reports/budgetcategorysummary.cpp:344
 msgid "Difference Income:"
-msgstr ""
+msgstr "Desvio Receitas:"
 
 #: reports/budgetcategorysummary.cpp:351
 msgid "Estimated Expenses:"
@@ -6639,40 +6639,40 @@ msgstr "Despesa Estimada:"
 
 #: reports/budgetcategorysummary.cpp:353
 msgid "Actual Expenses:"
-msgstr ""
+msgstr "Despesas Realizadas:"
 
 #: reports/budgetcategorysummary.cpp:355
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "Desvio Despesas:"
 
 #: reports/budgetingperf.cpp:108
 #, c-format
 msgid "Budget Performance for %s"
-msgstr ""
+msgstr "Desempenho Orçamental para %s"
 
 #: reports/budgetingperf.cpp:149 reports/budgetingperf.cpp:151
 msgid "Est."
-msgstr ""
+msgstr "Est."
 
 #: reports/budgetingperf.cpp:149 reports/budgetingperf.cpp:151
 msgid "Act."
-msgstr ""
+msgstr "Real."
 
 #: reports/budgetingperf.cpp:152
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr ""
+msgstr "Relatório de Erros"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Substitua este texto (marcado com '>') pela descrição detalhada do seu problema."
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Por favor, não remova a informação abaixo anexada a este texto."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
