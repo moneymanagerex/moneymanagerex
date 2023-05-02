@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 18:50\n"
+"PO-Revision-Date: 2023-05-02 18:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6582,11 +6582,11 @@ msgstr "Realocar Categoria"
 
 #: relocatepayeedialog.cpp:89
 msgid "Relocate all source payee to the destination payee"
-msgstr "Transferir todo o beneficiário de origem para o beneficiário de destino"
+msgstr "Realocar a totalidade do beneficiário de origem ao beneficiário de destino"
 
 #: relocatepayeedialog.cpp:101
 msgid "Delete source payee after relocation"
-msgstr "Excluir o beneficiário pesquisado após a realocação"
+msgstr "Excluir o beneficiário origem após a realocação"
 
 #: relocatepayeedialog.cpp:158
 msgid "Payee Relocation Confirmation"
