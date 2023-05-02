@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 19:20\n"
+"PO-Revision-Date: 2023-05-02 20:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6676,17 +6676,17 @@ msgstr "Por favor, não remova a informação abaixo anexada a este texto."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Use Ajuda → Verificar Atualizações no MMEX para obter a versão mais recente, onde o seu problema pode já ter sido corrigido."
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Pesquise <a href='%s'>uma lista de questões conhecidas</a> por um problema semelhante. Caso encontre, atualize a questão existente em vez de criar outra."
 
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Como sabe, está disponível <a href='%s'>um fórum</a> para utilizadores onde pode discutir problemas e encontrar soluções."
 
 #: reports/bugreport.h:78
 #, c-format
@@ -7161,15 +7161,15 @@ msgstr "Transferir o histórico de Cotações de Ações"
 
 #: stockdialog.cpp:333
 msgid "Import Stock Price history (CSV Format)"
-msgstr ""
+msgstr "Importar Histórico de Preços das Ações (Formato CSV)"
 
 #: stockdialog.cpp:335
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Eliminar o Preço da Ação selecionado"
 
 #: stockdialog.cpp:337
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Adicionar Preço da Ação ao histórico"
 
 #: stockdialog.cpp:415
 msgid "Held At"
@@ -7178,115 +7178,118 @@ msgstr "Mantido na"
 #: stockdialog.cpp:492
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Conta de Ações não encontrada.\n\n"
+"Pretende criar uma?"
 
 #: stockdialog.cpp:502
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "A Empresa não possui uma Conta de Ações associada.\n\n"
+"Pode querer renomear a Empresa para a reajustar a uma Conta de Ações existente com o mesmo nome. Se esta for uma Ação existente sem uma Conta de Ações, é recomendável que seja criada uma.\n\n"
+"Deseja criar uma Conta de Ações?\n"
 
 #: stockdialog.cpp:571
 msgid "Stock History CSV Import"
-msgstr ""
+msgstr "Importação CSV do Histórico de Ações"
 
 #: stockdialog.cpp:572 stockdialog.cpp:588
 msgid "Quotes imported from CSV: "
-msgstr ""
+msgstr "Cotações importadas do CSV: "
 
 #: stockdialog.cpp:644
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Total de Linhas: %ld"
 
 #: stockdialog.cpp:646
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Total Importado: %ld"
 
 #: stockdialog.cpp:654
 msgid "Importing CSV"
-msgstr ""
+msgstr "A importar CSV"
 
 #: stockdialog.cpp:685 stockdialog.cpp:715
 msgid "5 Days"
-msgstr ""
+msgstr "5 Dias"
 
 #: stockdialog.cpp:686 stockdialog.cpp:717
 msgid "1 Month"
-msgstr ""
+msgstr "1 Mês"
 
 #: stockdialog.cpp:687 stockdialog.cpp:718
 msgid "3 Months"
-msgstr ""
+msgstr "3 Meses"
 
 #: stockdialog.cpp:688
 msgid "6 Months"
-msgstr ""
+msgstr "6 Meses"
 
 #: stockdialog.cpp:689
 msgid "1 Year"
-msgstr ""
+msgstr "1 Ano"
 
 #: stockdialog.cpp:690
 msgid "2 Years"
-msgstr ""
+msgstr "2 Anos"
 
 #: stockdialog.cpp:691
 msgid "5 Years"
-msgstr ""
+msgstr "5 Anos"
 
 #: stockdialog.cpp:692
 msgid "10 Years"
-msgstr ""
+msgstr "10 Anos"
 
 #: stockdialog.cpp:694
 msgid "Max"
-msgstr ""
+msgstr "Máx"
 
 #: stockdialog.cpp:700
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "Indique a frequência do histórico de ações"
 
 #: stockdialog.cpp:701 stockdialog.cpp:725
 msgid "Stock History Update"
-msgstr ""
+msgstr "Atualização do Histórico de Ações"
 
 #: stockdialog.cpp:714
 msgid "1 Day"
-msgstr ""
+msgstr "1 Dia"
 
 #: stockdialog.cpp:716
 msgid "1 Week"
-msgstr ""
+msgstr "1 Semana"
 
 #: stockdialog.cpp:724
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "Indique o intervalo do histórico de ações"
 
 #: stockdialog.cpp:739 stockdialog.cpp:743
 msgid "Stock history not found!"
-msgstr ""
+msgstr "Histórico de ações não encontrado!"
 
 #: stockdialog.cpp:740 stockdialog.cpp:852
 msgid "Stock History Error"
-msgstr ""
+msgstr "Erro do Histórico de Ações"
 
 #: stocks_list.cpp:91
 msgid "Share Total"
-msgstr ""
+msgstr "Total de Ações"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Cotação Média"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "Custo Total"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
-msgstr ""
+msgstr "Valor Total Atual"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
