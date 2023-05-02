@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 02:06\n"
+"PO-Revision-Date: 2023-05-02 01:34\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -399,7 +399,7 @@ msgstr "언어 변경"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
-msgstr "자산 추가"
+msgstr "자산 생성"
 
 #: assetdialog.cpp:54 assetspanel.cpp:487
 msgid "Edit Asset"
@@ -490,7 +490,7 @@ msgstr "자산과 관련된 내용 입력"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr "거래 세부 정보 추가"
+msgstr "거래 세부 정보 만들기"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
@@ -539,7 +539,7 @@ msgstr "현재 값"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr "자산 추가(&N)..."
+msgstr "자산 생성(&N)..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
@@ -600,7 +600,7 @@ msgstr "전체"
 #: assetspanel.cpp:472 billsdepositspanel.cpp:293 mmcheckingpanel.cpp:431
 #: stockspanel.cpp:132
 msgid "&New "
-msgstr "추가(&N) "
+msgstr "생성(&N) "
 
 #: assetspanel.cpp:476 stockspanel.cpp:136
 msgid "&Add Trans "
@@ -1237,7 +1237,7 @@ msgstr "분할 거래"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr "반복 거래 추가"
+msgstr "반복 거래 만들기"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
@@ -1342,7 +1342,7 @@ msgstr "다음 발생을 건너뛰기"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr "반복 거래 추가(&N)..."
+msgstr "반복 거래 생성(&N)..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
@@ -2910,7 +2910,7 @@ msgstr "보고서 이름이 이미 있습니다"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
-msgstr "새 보고서"
+msgstr "보고서 만들기"
 
 #: general_report_manager.cpp:1057
 msgid "Choose file to Save As Report"
