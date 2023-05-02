@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 15:07\n"
+"PO-Revision-Date: 2023-05-02 16:15\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3176,7 +3176,7 @@ msgstr "Incluir campo beneficiário nas notas"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr "Corresponder Beneficiários com uma máscara"
+msgstr "Corresponder Beneficiários com padrões"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
@@ -3237,7 +3237,7 @@ msgstr "Em falta"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:1921
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr "Correspondeu a %s pela máscara %s"
+msgstr "Correspondeu a %s pelo padrão %s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -6457,7 +6457,8 @@ msgstr "URL da página web associada ao beneficiário"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Corresponder Padrões\n"
+"na Importação"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
