@@ -22,7 +22,7 @@ Brazilian Portuguese
 Bulgarian
 -- Ivan Gyokov, Poltargaista
 Catalan
--- 
+-- linuxdcat
 Chinese
 -- 
 Croatian
