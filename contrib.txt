@@ -10,7 +10,7 @@ Pat              [omalleypat]
 
 =======================================
 
-## Translations
+## Translators
 Albanian
 -- Artur Gjevori
 Arabic
