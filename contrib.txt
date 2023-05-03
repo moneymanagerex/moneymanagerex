@@ -14,7 +14,7 @@ Pat              [omalleypat]
 Albanian
 -- Artur Gjevori
 Arabic
--- 
+-- Ali AlMubarak
 Belarusian
 --
 Brazilian Portuguese
@@ -63,7 +63,7 @@ Italian
 Japanese
 -- 
 Korean
--- DevAny KR (devany.kr)
+-- DevAny KR
 Lithuanian
 -- akmc
 Norwegian
