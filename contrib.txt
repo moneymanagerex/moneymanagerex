@@ -13,10 +13,18 @@ Pat              [omalleypat]
 ## Translations
 Albanian
 -- Artur Gjevori
+Arabic
+-- 
+Belarusian
+--
 Brazilian Portuguese
 -- Jose Carlos, Daniel Cunha de Almeida
 Bulgarian
 -- Ivan Gyokov, Poltargaista
+Catalan
+-- 
+Chinese
+-- 
 Croatian
 -- Goran Bobanovic
 Czech
@@ -41,16 +49,21 @@ Greek
 -- Polvar
 Hebrew
 -- Avi Markovitz
+Hindi
+-- Ankur Jain
 Hungarian
 -- Csaba, Zoltan Levardy [zlevardy]
 -- Toroka
-Hindi
--- Ankur Jain
+-- Óvári
 Indonesian
 -- Dindin
 Italian
 -- Maurizio [Mau13]
 -- Claudio
+Japanese
+-- 
+Korean
+-- 
 Lithuanian
 -- akmc
 Norwegian
