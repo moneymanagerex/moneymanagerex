@@ -63,7 +63,7 @@ Italian
 Japanese
 -- 
 Korean
--- 
+-- DevAny KR (devany.kr)
 Lithuanian
 -- akmc
 Norwegian
