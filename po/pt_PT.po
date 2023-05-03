@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 21:40\n"
+"PO-Revision-Date: 2023-05-03 08:18\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7326,31 +7326,31 @@ msgstr "Confirmar o Apagar do Investimento"
 #: stocks_list.cpp:299
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "Mover Transação de %s para"
 
 #: stockspanel.cpp:137
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Adicionar Transações de Ações"
 
 #: stockspanel.cpp:142 stockspanel.cpp:207
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Ver Transações de Ações"
 
 #: stockspanel.cpp:152
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Eliminar Investimento em Ações"
 
 #: stockspanel.cpp:156
 msgid "&Move"
-msgstr ""
+msgstr "&Mover"
 
 #: stockspanel.cpp:157
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Mover a transação selecionada para outra conta"
 
 #: stockspanel.cpp:170
 msgid "Refresh"
-msgstr ""
+msgstr "Atualizar"
 
 #: stockspanel.cpp:171
 msgid "Refresh Stock Prices from Yahoo"
@@ -7358,36 +7358,36 @@ msgstr "Actualizar Preços das Acções (Yahoo)"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Lote"
 
 #: stockspanel.cpp:288
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr ""
+msgstr "Carteira de Ações: %s"
 
 #: stockspanel.cpp:332
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Total de Ações: %s"
 
 #: stockspanel.cpp:334
 #, c-format
 msgid "Invested: %s"
-msgstr ""
+msgstr "Investido: %s"
 
 #: stockspanel.cpp:335
 #, c-format
 msgid "Gain: %s"
-msgstr ""
+msgstr "Ganho: %s"
 
 #: stockspanel.cpp:335
 #, c-format
 msgid "Loss: %s"
-msgstr ""
+msgstr "Perda: %s"
 
 #: stockspanel.cpp:373
 msgid "Stock prices successfully updated"
-msgstr ""
+msgstr "Cotações das ações atualizadas com sucesso"
 
 #: stockspanel.cpp:375 stockspanel.cpp:561
 #, c-format
