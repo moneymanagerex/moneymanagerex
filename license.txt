@@ -1,68 +1,58 @@
 ================================================
-             Money Manager Ex License
+Money Manager Ex (MMEX) License
 ================================================
 
-WARNING:  This software is under constant development.
-If upgrading from a previous version, backup your old data file first! 
+WARNING: This software is under constant development. Backup data files before upgrading!
 
-If you find bugs/issues, please use the support forum to let us know.
-The support forum links are located in the MMEX Help menu.
+Please report any bugs or issues with MMEX using the links in the MMEX Help menu.
 
 ================================================
-           GNU GENERAL PUBLIC LICENSE
+GNU GENERAL PUBLIC LICENSE
 ================================================
 
-Copyright (C) 2009-2022 Nikolay [Nikolay]
-Copyright (C) 2020-2022 Mark Whalley [whalley]
-Copyright (C) 2011-2020 LiSheng [guanlisheng]
-Copyright (C) 2013-2017 James [siena123]
-Copyright (C) 2013-2017 Gabriele [gabriele-v]
-Copyright (C) 2010-2017 Stefano [stef145g]
-Copyright (C) 2009-2010 VaDiM, Wesley Ellis
-Copyright (C) 2005-2009 Madhan Kanagavel
+Copyright © 2009-2022 Nikolay [Nikolay]
+Copyright © 2020-2022 Mark Whalley [whalley]
+Copyright © 2011-2020 LiSheng [guanlisheng]
+Copyright © 2013-2017 James [siena123]
+Copyright © 2013-2017 Gabriele [gabriele-v]
+Copyright © 2010-2017 Stefano [stef145g]
+Copyright © 2009-2010 VaDiM, Wesley Ellis
+Copyright © 2005-2009 Madhan Kanagavel
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor,
-Boston, MA  02110-1301, USA
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 ------------------------------------------------
 
 ================================================
-               Privacy Policy
+Privacy Policy
 ================================================
 
-We can collect information from you when you install or use Money Manager EX application.
+We can collect information when the Money Manager Ex (MMEX) application is installed or used.
 People have different privacy concerns: our goal is to be clear about what information we collect, so that you can make meaningful choices about how it is used.
  
-1. Using Money Manager EX application
-When starting and using  Money Manager EX application, we might collect ANONYMOUS usage statistics like version, geo-location, language, platform and most used functions. No private or financial information is collected.
+1. Using the MMEX application
+When starting and using the MMEX application, we might collect ANONYMOUS usage statistics like version, geo-location, language, platform and most used functions. No private or financial information is collected.
  
-2. What do we use your information for?
-Any of the information we collect from you may be used in one of the following ways: make statistics about software usage and distribution; personalize your experience (your information helps us to better respond to your individual needs); improve our application (we continually improve our offerings based on the information and feedback we receive from you)
+2. What is the collected information used for?
+Any of the information we collect may be used in one of the following ways: make statistics about software usage and distribution; personalize user experiences (information collected helps to better respond to individual needs); improve the application (MMEX is improved based on the information and feedback received)
  
-3. Do we disclose any information to outside parties?
-We use Google Analytics for collecting anonymous data. Other than for the above mentioned usage statistics collection, we do not sell, trade, or otherwise transfer to outside parties.
+3. Is information disclosed to third-parties?
+Google Analytics is used to collect anonymous data. Other than for the above mentioned usage statistics collection, information is not sold, traded, or otherwise transferred to third-parties.
 https://support.google.com/analytics/answer/7318509
  
-4. Disable statistics sending
-You can turn of at any moment sending of stats simply removing corresponding flag under Options → Network.
+4. Can the sending of usage statistics be disabled?
+Yes, by unselecting “Send anonymous statistics usage data” found using Menu Bar → Tools… → Options → Network.
  
 5. Your consent
-By installing or using Money Manager EX, you consent to our Privacy policy.
+By installing or using MMEX, you consent to this Privacy policy.
   
 6. Changes to our Privacy policy
-If we decide to change our Privacy policy, we will update the Privacy policy modification date below.
- 
-This policy was last modified on 2022-10-12.
-- Money Manager EX team
+Any changes to this Privacy policy will correspond to an update to the date below.
+
+This policy was last modified on 2023-05-03.
+- MMEX team
