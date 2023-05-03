@@ -16,7 +16,7 @@ Albanian
 Arabic
 -- Ali AlMubarak
 Belarusian
---
+-- maximax
 Brazilian Portuguese
 -- Jose Carlos, Daniel Cunha de Almeida
 Bulgarian
