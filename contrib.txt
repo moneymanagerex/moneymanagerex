@@ -72,7 +72,7 @@ Italian
 -- Maurizio [Mau13]
 -- Claudio
 Japanese
--- 
+-- Tasuku Sasaki
 Korean
 -- DevAny KR
 Lithuanian
