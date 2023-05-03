@@ -74,6 +74,7 @@ Polish
 -- Jerzy Machnicki 
 Portuguese (Portugal)
 -- Fatela
+-- Nuno Santos
 Romanian
 -- Munteanu & Florin
 Russian
