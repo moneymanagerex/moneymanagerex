@@ -10,103 +10,182 @@ Pat              [omalleypat]
 
 =======================================
 
-## Translations
-Albanian
--- Artur Gjevori
-Brazilian Portuguese
--- Jose Carlos, Daniel Cunha de Almeida
-Bulgarian
--- Ivan Gyokov, Poltargaista
-Croatian
--- Goran Bobanovic
-Czech
--- Josef Remes, PepaR
-Dutch
--- Theo Kamphuis, PeCe
-Dutch (Belgian)
--- Rol, wimvhs
-Englsh (UK)
--- mcrossley
-French
--- Berry As, Jean-Christophe, bipop,
--- drambeau, Ben, Ghislain Baudichaud
--- phira
-German
--- Renato
--- Schrempfi, goe, STiGMaTa_ch,
--- Kai Kajus Noack
-Greek
--- Panagiotis Pentzeridis
--- Panagiotis Sapikas
--- Polvar
-Hebrew
--- Avi Markovitz
-Hungarian
--- Csaba, Zoltan Levardy [zlevardy]
--- Toroka
-Hindi
--- Ankur Jain
-Indonesian
--- Dindin
-Italian
--- Maurizio [Mau13]
--- Claudio
-Lithuanian
--- akmc
-Norwegian
--- Fredrik Strand, Torbjorn Kvande
-Polish
--- Damian_pl
--- Andrzej
--- Jerzy Machnicki 
-Portuguese (Portugal)
--- Fatela
-Romanian
--- Munteanu & Florin
-Russian
--- KarmaSV, Nikolay, Churzzz, Vadim
-Simple Chinese
--- Liu Ming
-Slovak
--- Abadyba, Misko B
-Spanish
--- jorgeb
--- Javier, Roberto
-Swedish
--- tomastomas
-Tr. Chinese
--- Kysouke
-Tamil
--- Gopi Gopalakrishnan,
--- Muguntharaj Subramanian
-Turkish
--- Murat Bilgen
-Ukrainian
--- Leonid Shturma
-Vietnamese
--- Nicky, Luu Cong Thanh, Toan [nktvnvn]
+## Translators
+
+### Albanian
+Artur Gjevori
+
+### Arabic
+Ali AlMubarak
+
+### Belarusian
+maximax
+
+### Brazilian Portuguese
+Jose Carlos
+Daniel Cunha de Almeida
+
+### Bulgarian
+Ivan Gyokov
+Poltargaista
+
+### Catalan
+linuxdcat
+
+### Chinese (Simplified)
+Liu Ming
+
+### Chinese (Traditional)
+Kysouke
+
+### Croatian
+Goran Bobanovic
+
+### Czech
+Josef Remes
+PepaR
+
+### Dutch
+Theo Kamphuis
+PeCe
+
+### Dutch (Belgian)
+Rol
+wimvhs
+
+### English (UK)
+mcrossley
+
+### French
+Berry As
+Jean-Christophe
+bipop
+drambeau
+Ben
+Ghislain Baudichaud
+phira
+
+### German
+Renato
+Schrempfi
+goe
+STiGMaTa_ch
+Kai Kajus Noack
+
+### Greek
+Panagiotis Pentzeridis
+Panagiotis Sapikas
+Polvar
+
+### Hebrew
+Avi Markovitz
+
+### Hindi
+Ankur Jain
+
+### Hungarian
+Csaba
+Zoltan Levardy [zlevardy]
+Toroka
+Óvári
+
+### Indonesian
+Dindin
+
+### Italian
+Maurizio [Mau13]
+Claudio
+
+### Japanese
+Tasuku Sasaki
+
+### Korean
+DevAny KR
+
+### Lithuanian
+akmc
+
+### Norwegian
+Fredrik Strand
+Torbjorn Kvande
+
+### Polish
+Damian_pl
+Andrzej
+Jerzy Machnicki 
+
+### Portuguese (Portugal)
+Fatela
+Nuno Santos
+
+### Romanian
+Munteanu
+Florin
+
+### Russian
+KarmaSV
+Nikolay
+Churzzz
+Vadim
+
+### Slovak
+Abadyba
+Misko B
+
+### Spanish
+jorgeb
+Javier
+Roberto
+
+### Swedish
+tomastomas
+
+### Tamil
+Gopi Gopalakrishnan
+Muguntharaj Subramanian
+
+### Turkish
+Murat Bilgen
+
+### Ukrainian
+Leonid Shturma
+
+### Vietnamese
+Nicky
+Luu Cong Thanh
+Toan [nktvnvn]
 
 =======================================
 
 ## User Manual
-English
--- Stefano 	 [stef145g]
--- Tina P, Terry Wick
-Italian
--- Maurizio 	 [Mau13]
-French
--- catacotox
--- phira 	 [phira]
-Gernam
--- Renato 	 [Renato]
-Hungarian
--- Toroka 	 [Toroka]
-Russian 
--- Nikolay 	 [Nikolay]
-Polish
--- Damian_pl
-Spanish
--- jorgeb, kolmo7
+
+### English
+Stefano 	 [stef145g]
+Tina P
+Terry Wick
+
+### French
+catacotox
+phira 	 [phira]
+
+### German
+Renato 	 [Renato]
+
+### Hungarian
+Toroka 	 [Toroka]
+
+### Italian
+Maurizio 	 [Mau13]
+
+### Polish
+Damian_pl
+
+### Russian 
+Nikolay 	 [Nikolay]
+
+### Spanish
+jorgeb
+kolmo7
 
 =======================================
 
