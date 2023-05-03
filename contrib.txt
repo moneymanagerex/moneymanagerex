@@ -18,30 +18,41 @@ Arabic
 Belarusian
 -- maximax
 Brazilian Portuguese
--- Jose Carlos, Daniel Cunha de Almeida
+-- Jose Carlos
+-- Daniel Cunha de Almeida
 Bulgarian
--- Ivan Gyokov, Poltargaista
+-- Ivan Gyokov
+-- Poltargaista
 Catalan
 -- linuxdcat
-Chinese
--- 
+Chinese (Traditional)
+-- Kysouke
 Croatian
 -- Goran Bobanovic
 Czech
--- Josef Remes, PepaR
+-- Josef Remes
+-- PepaR
 Dutch
--- Theo Kamphuis, PeCe
+-- Theo Kamphuis
+-- PeCe
 Dutch (Belgian)
--- Rol, wimvhs
+-- Rol
+-- wimvhs
 Englsh (UK)
 -- mcrossley
 French
--- Berry As, Jean-Christophe, bipop,
--- drambeau, Ben, Ghislain Baudichaud
+-- Berry As
+-- Jean-Christophe
+-- bipop
+-- drambeau
+-- Ben
+-- Ghislain Baudichaud
 -- phira
 German
 -- Renato
--- Schrempfi, goe, STiGMaTa_ch,
+-- Schrempfi
+-- goe
+-- STiGMaTa_ch
 -- Kai Kajus Noack
 Greek
 -- Panagiotis Pentzeridis
@@ -67,7 +78,8 @@ Korean
 Lithuanian
 -- akmc
 Norwegian
--- Fredrik Strand, Torbjorn Kvande
+-- Fredrik Strand
+-- Torbjorn Kvande
 Polish
 -- Damian_pl
 -- Andrzej
@@ -78,20 +90,23 @@ Portuguese (Portugal)
 Romanian
 -- Munteanu & Florin
 Russian
--- KarmaSV, Nikolay, Churzzz, Vadim
+-- KarmaSV
+-- Nikolay
+-- Churzzz
+-- Vadim
 Simple Chinese
 -- Liu Ming
 Slovak
--- Abadyba, Misko B
+-- Abadyba
+-- Misko B
 Spanish
 -- jorgeb
--- Javier, Roberto
+-- Javier
+-- Roberto
 Swedish
 -- tomastomas
-Tr. Chinese
--- Kysouke
 Tamil
--- Gopi Gopalakrishnan,
+-- Gopi Gopalakrishnan
 -- Muguntharaj Subramanian
 Turkish
 -- Murat Bilgen
