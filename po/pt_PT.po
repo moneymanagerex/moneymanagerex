@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-04 09:11\n"
+"PO-Revision-Date: 2023-05-04 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1372,7 +1372,7 @@ msgstr "Sugerido"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "%d dia remanescente"
 msgstr[1] "%d dias remanescentes"
 
 #: billsdepositspanel.cpp:540 billsdepositspanel.cpp:547
@@ -1385,14 +1385,14 @@ msgstr "Inativo"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "Atraso de %d dia!"
 msgstr[1] "Atraso de %d dias!"
 
 #: billsdepositspanel.cpp:552 billsdepositspanel.cpp:612 mmhomepage.cpp:316
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "%d dia vencido!"
 msgstr[1] "%d dias vencidos!"
 
 #: billsdepositspanel.cpp:673
@@ -2201,7 +2201,7 @@ msgstr "Pretende atualizar para branco?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "%zu ocorrência encontrada e substituída!"
 msgstr[1] "%zu ocorrências encontradas e substituídas!"
 
 #: customfieldlistdialog.cpp:265
@@ -2810,7 +2810,7 @@ msgstr "Criar Modelo"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "%zu linha retornada, duração: %lld ms"
 msgstr[1] "%zu linhas retornadas, duração: %lld ms"
 
 #: general_report_manager.cpp:575
@@ -4099,7 +4099,7 @@ msgstr[1] "&Editar Transações..."
 #: mmchecking_list.cpp:441
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "&Copiar Transação"
 msgstr[1] "&Copiar Transações"
 
 #: mmchecking_list.cpp:448
@@ -4118,7 +4118,7 @@ msgstr "D&uplicar Transação..."
 #: mmchecking_list.cpp:456
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
+msgstr[0] "&Mover Transação..."
 msgstr[1] "&Mover Transações..."
 
 #: mmchecking_list.cpp:462
@@ -4146,8 +4146,8 @@ msgstr "Repor todas as transações na vista atual..."
 #: mmchecking_list.cpp:485
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
-msgstr[1] "&Eliminar as transações selecionadas..."
+msgstr[0] "&Eliminar transação selecionada..."
+msgstr[1] "&Eliminar transações selecionadas..."
 
 #: mmchecking_list.cpp:486
 msgid "&Permanently delete selected transaction..."
@@ -8086,5 +8086,5 @@ msgstr "Erro: "
 
 #: wizard_update.cpp:331 wizard_update.cpp:348
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "Verificação de Atualizações MMEX"
 
