@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-04 13:57\n"
+"PO-Revision-Date: 2023-05-04 22:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2831,7 +2831,7 @@ msgstr "Ficheiros ZIP (*.zip)"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
-msgstr "Gestor de Relatórios"
+msgstr "Gestor de Relatórios Personalizados"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
@@ -2880,7 +2880,7 @@ msgstr "Escreva o nome do relatório"
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:783 mmframe.cpp:1727 mmframe.cpp:1899
 msgid "General Report Manager"
-msgstr "Gestor de Relatórios"
+msgstr "Gestor de Relatórios Personalizados"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
@@ -4828,7 +4828,7 @@ msgstr "Filtro do Relatório de Transações"
 
 #: mmframe.cpp:1727
 msgid "General Report &Manager..."
-msgstr "&Gestor Geral de Relatórios..."
+msgstr "&Gestor de Relatórios Personalizados..."
 
 #: mmframe.cpp:1731
 msgid "C&ustom Fields Manager..."
