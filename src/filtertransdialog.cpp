@@ -692,7 +692,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     //Compress Splits
     combineSplitsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Combine Splits")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    combineSplitsCheckBox_->SetMinSize(wxSize(180, bGroupBy_->GetSize().GetHeight()));
+    combineSplitsCheckBox_->SetMinSize(wxSize(-1, bGroupBy_->GetSize().GetHeight()));
     presPanelSizer->Add(combineSplitsCheckBox_, g_flagsH);
     mmToolTip(combineSplitsCheckBox_, _("Display split transactions as a single row"));
 
