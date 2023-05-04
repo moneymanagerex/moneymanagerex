@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-04 12:57\n"
+"PO-Revision-Date: 2023-05-04 13:57\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1547,7 +1547,7 @@ msgstr "Realizado"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr "Editor de Orçamento"
+msgstr "Editor de Orçamentos"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
