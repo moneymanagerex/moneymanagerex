@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-04 06:56\n"
+"PO-Revision-Date: 2023-05-04 07:53\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -352,7 +352,7 @@ msgstr "사용자 설명서(&U)"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
-msgstr "사용자 설명서를 읽어보세요."
+msgstr "사용자 설명서를 읽어보세요"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1777
 msgid "&Website"
@@ -427,7 +427,7 @@ msgstr "이름"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
-msgstr "자산의 이름을 입력하세요."
+msgstr "자산의 이름을 입력하세요"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:189
 #: filtertransdialog.cpp:877 filtertransdialog.cpp:883
@@ -445,7 +445,7 @@ msgstr "날짜"
 
 #: assetdialog.cpp:188
 msgid "Specify the date of purchase of asset"
-msgstr "자산을 구매한 날짜를 지정하세요."
+msgstr "자산을 구매한 날짜를 지정하세요"
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
