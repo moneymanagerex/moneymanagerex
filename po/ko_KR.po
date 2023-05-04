@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-02 02:45\n"
+"PO-Revision-Date: 2023-05-04 06:56\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr "이 계정이 휴면 상태인지 선택하세요. 휴면 계정은 잔�
 #: accountdialog.cpp:149
 #, c-format
 msgid "Initial Balance: %s"
-msgstr "초기 잔액: %s"
+msgstr "기초 잔액: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
