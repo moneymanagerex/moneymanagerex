@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-28 15:12\n"
+"PO-Revision-Date: 2023-05-04 18:09\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -4583,7 +4583,7 @@ msgstr "Conturi Vizibile"
 
 #: mmframe.cpp:1521
 msgid "&New Database..."
-msgstr "Bază de date &nouă..."
+msgstr "&Bază de date nouă..."
 
 #: mmframe.cpp:1521 mmframe.cpp:1885 wizard_newdb.cpp:137
 msgid "New Database"
@@ -5063,7 +5063,7 @@ msgstr "Arată dialogul despre soft"
 
 #: mmframe.cpp:1857
 msgid "&File"
-msgstr "&Filă"
+msgstr "&Fișier"
 
 #: mmframe.cpp:1858
 msgid "&Accounts"
@@ -5304,23 +5304,23 @@ msgstr ""
 
 #: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
-msgstr ""
+msgstr "Opțiunile MMEX au fost actualizate."
 
 #: mmframe.cpp:2746
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Unele setări vor avea efect numai după repornirea aplicației."
 
 #: mmframe.cpp:2747 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
-msgstr ""
+msgstr "Opțiuni MMEX"
 
 #: mmframe.cpp:2772
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Conturi, Beneficiari și Categorii actualizate"
 
 #: mmframe.cpp:2778
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Problemă cu actualizarea WebApp, verifică setările serverului Web și ale WebApp"
 
 #: mmframe.cpp:2918
 msgid "Choose HTML file to Export"
