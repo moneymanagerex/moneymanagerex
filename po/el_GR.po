@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-05 09:51\n"
+"PO-Revision-Date: 2023-05-05 11:05\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -6315,7 +6315,7 @@ msgstr "Χρώματα Συναλλαγής"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Περιβάλλον Χρήστη"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6343,7 +6343,7 @@ msgstr "Καθορίστε την προτιμώμενη παραλλαγή θέ
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "Θέμα"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6371,7 +6371,7 @@ msgstr "Τεράστιο"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "Μέγεθος Γραμματοσειράς"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
