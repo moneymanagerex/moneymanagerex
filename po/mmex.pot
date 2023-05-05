@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 18:11+0300\n"
+"POT-Creation-Date: 2023-05-05 11:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6320,7 +6320,7 @@ msgid "Transaction Colors"
 msgstr ""
 
 #: optionsettingsview.cpp:223
-msgid "UI Appearance"
+msgid "User Interface"
 msgstr ""
 
 #: optionsettingsview.cpp:234
@@ -6348,7 +6348,7 @@ msgid "Specify preferred theme variant to use if supported"
 msgstr ""
 
 #: optionsettingsview.cpp:249
-msgid "Theme Mode"
+msgid "Theme"
 msgstr ""
 
 #: optionsettingsview.cpp:253
@@ -6376,7 +6376,7 @@ msgid "Huge"
 msgstr ""
 
 #: optionsettingsview.cpp:278
-msgid "Font size"
+msgid "Font Size"
 msgstr ""
 
 #: optionsettingsview.cpp:290
