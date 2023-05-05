@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-05 09:51\n"
+"PO-Revision-Date: 2023-05-05 12:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -344,7 +344,7 @@ msgstr "&Язык интерфейса пользователя"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr "Изменить язык интерфейса пользователя"
+msgstr "Изменить язык интерфейса"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
@@ -6357,7 +6357,7 @@ msgstr "Цвет транзакций"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Интерфейс пользователя"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6385,7 +6385,7 @@ msgstr "Укажите предпочтительный вариант темы,
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6413,7 +6413,7 @@ msgstr "Огромный"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "Размер Шрифта"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
