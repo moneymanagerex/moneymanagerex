@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-04-29 12:43\n"
+"POT-Creation-Date: 2023-05-05 11:53+0300\n"
+"PO-Revision-Date: 2023-05-05 09:51\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -6322,8 +6322,8 @@ msgid "Transaction Colors"
 msgstr "Transactie kleuren"
 
 #: optionsettingsview.cpp:223
-msgid "UI Appearance"
-msgstr "UI uiterlijk"
+msgid "User Interface"
+msgstr ""
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6350,8 +6350,8 @@ msgid "Specify preferred theme variant to use if supported"
 msgstr "Geef de gewenste themavariant op die u wilt gebruiken indien ondersteund"
 
 #: optionsettingsview.cpp:249
-msgid "Theme Mode"
-msgstr "Themamodus"
+msgid "Theme"
+msgstr ""
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6378,8 +6378,8 @@ msgid "Huge"
 msgstr "Zeer groot"
 
 #: optionsettingsview.cpp:278
-msgid "Font size"
-msgstr "Lettertype grootte"
+msgid "Font Size"
+msgstr ""
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
