@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-01 20:43\n"
+"POT-Creation-Date: 2023-05-05 11:53+0300\n"
+"PO-Revision-Date: 2023-05-05 09:51\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6321,8 +6321,8 @@ msgid "Transaction Colors"
 msgstr "Boje transakcija"
 
 #: optionsettingsview.cpp:223
-msgid "UI Appearance"
-msgstr "Izgeld korisničkog sučelja"
+msgid "User Interface"
+msgstr ""
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6349,8 +6349,8 @@ msgid "Specify preferred theme variant to use if supported"
 msgstr ""
 
 #: optionsettingsview.cpp:249
-msgid "Theme Mode"
-msgstr "Modus teme"
+msgid "Theme"
+msgstr ""
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6377,8 +6377,8 @@ msgid "Huge"
 msgstr "Ogromno"
 
 #: optionsettingsview.cpp:278
-msgid "Font size"
-msgstr "Veličina fonta"
+msgid "Font Size"
+msgstr ""
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
