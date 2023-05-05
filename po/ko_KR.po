@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-04-28 18:11+0300\n"
-"PO-Revision-Date: 2023-05-04 07:53\n"
+"POT-Creation-Date: 2023-05-05 11:53+0300\n"
+"PO-Revision-Date: 2023-05-05 09:51\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -6301,8 +6301,8 @@ msgid "Transaction Colors"
 msgstr "거래 색상"
 
 #: optionsettingsview.cpp:223
-msgid "UI Appearance"
-msgstr "UI 모양"
+msgid "User Interface"
+msgstr ""
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6329,8 +6329,8 @@ msgid "Specify preferred theme variant to use if supported"
 msgstr "지원되는 경우 사용할 기본 테마 변형 지정"
 
 #: optionsettingsview.cpp:249
-msgid "Theme Mode"
-msgstr "테마 모드"
+msgid "Theme"
+msgstr ""
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6357,8 +6357,8 @@ msgid "Huge"
 msgstr "아주 크게"
 
 #: optionsettingsview.cpp:278
-msgid "Font size"
-msgstr "글꼴 크기"
+msgid "Font Size"
+msgstr ""
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
