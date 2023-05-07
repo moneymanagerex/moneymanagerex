@@ -1,4 +1,5 @@
 ﻿## Active Developers
+
 Nikolay          [Nikolay]
 Whalley          [whalley]
 n-stein          [n-stein]
@@ -12,6 +13,8 @@ Pat              [omalleypat]
 
 ## Translators
 
+Visit [Crowdin](https://crowdin.com/project/moneymanagerex/) to add new, or contribute to existing, translations.
+
 ### Albanian
 Artur Gjevori
 
@@ -20,10 +23,6 @@ Ali AlMubarak
 
 ### Belarusian
 maximax
-
-### Brazilian Portuguese
-Jose Carlos
-Daniel Cunha de Almeida
 
 ### Bulgarian
 Ivan Gyokov
@@ -53,7 +52,7 @@ PeCe
 Rol
 wimvhs
 
-### English (UK)
+### English (United Kingdom)
 mcrossley
 
 ### French
@@ -114,6 +113,10 @@ Damian_pl
 Andrzej
 Jerzy Machnicki 
 
+### Portuguese (Brazilian)
+Jose Carlos
+Daniel Cunha de Almeida
+
 ### Portuguese (Portugal)
 Fatela
 Nuno Santos
@@ -127,6 +130,9 @@ KarmaSV
 Nikolay
 Churzzz
 Vadim
+
+### Serbian (Cyrillic)
+Anonymous
 
 ### Slovak
 Abadyba
