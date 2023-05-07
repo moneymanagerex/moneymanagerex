@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-07 12:45\n"
+"PO-Revision-Date: 2023-05-07 15:01\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7882,7 +7882,7 @@ msgstr "Importação de transações da Aplicação Web"
 
 #: webappdialog.cpp:91
 msgid "Network status (click to refresh)"
-msgstr "Status da rede (clique para atualizar)"
+msgstr "Estado da rede (clique para atualizar)"
 
 #: webappdialog.cpp:123
 msgid "Checking for new transactions"
