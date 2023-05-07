@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-07 16:35\n"
+"PO-Revision-Date: 2023-05-07 18:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -260,7 +260,7 @@ msgstr "Pagamento Mínimo:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
-msgstr "Gerir anexos desta conta"
+msgstr "Organizar anexos desta conta"
 
 #: accountdialog.cpp:430
 msgid "Default Image"
@@ -482,7 +482,7 @@ msgstr "Introduza a taxa a que o valor do ativo muda em percentagem por ano"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr "Gerir documentos deste ativo"
+msgstr "Organizar documentos deste ativo"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -568,7 +568,7 @@ msgstr "Eliminar Ativo..."
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1435 mmframe.cpp:1455 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "&Gerir Documentos Anexos..."
+msgstr "&Organizar Documentos Anexos..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -724,17 +724,17 @@ msgstr "Pasta de documentos anexos não encontrada"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr "Gerir Anexos | %s | %i"
+msgstr "Organizar Anexos | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr "Gerir Anexos | %s | %s"
+msgstr "Organizar Anexos | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Gerir Anexos | Novo %s"
+msgstr "Organizar Anexos | Novo %s"
 
 #: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:572
 msgid "Other tools"
@@ -750,7 +750,7 @@ msgstr "Insira uma descrição para o novo anexo:"
 
 #: attachmentdialog.cpp:203
 msgid "Organize Attachments: Add Attachment"
-msgstr "Gerir Anexos: Adicionar Anexo"
+msgstr "Organizar Anexos: Adicionar Anexo"
 
 #: attachmentdialog.cpp:249
 msgid "Enter a new description for the attachment:"
@@ -758,7 +758,7 @@ msgstr "Insira uma nova descrição para o anexo:"
 
 #: attachmentdialog.cpp:250
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Gerir Anexos: Editar Anexo"
+msgstr "Organizar Anexos: Editar Anexo"
 
 #: attachmentdialog.cpp:277
 msgid "Do you really want to delete this attachment?"
@@ -1109,7 +1109,7 @@ msgstr "Cores do Utilizador"
 
 #: billsdepositsdialog.cpp:616
 msgid "Organize attachments of this recurring transaction"
-msgstr "Gerir os anexos desta transação recorrente"
+msgstr "Organizar os anexos desta transação recorrente"
 
 #: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:643
 #: filtertransdialog.cpp:973 filtertransdialog.cpp:1554
@@ -1663,7 +1663,7 @@ msgstr "O símbolo dois-pontos (:) é usado para separar categorias e subcategor
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr "Gerir Categorias: Nome Inválido"
+msgstr "Organizar Categorias: Nome Inválido"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1812,7 +1812,7 @@ msgstr "Limpar as configurações"
 
 #: categdialog.h:68 mmframe.cpp:1672 mmframe.cpp:1893
 msgid "Organize Categories"
-msgstr "Gerir Categorias"
+msgstr "Organizar Categorias"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -3980,11 +3980,11 @@ msgstr "Dica: Defina taxas de câmbio monetário caso tenha contas com diferente
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Dica da Lista de Categorias: Pressionando a tecla 'h' alternará por todas as categorias começadas pela letra 'h'"
+msgstr "Dica para Organizar Categorias: Pressionando a tecla 'h' alternará por todas as categorias começadas pela letra 'h'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "Dica da Lista de Categorias: Pressionando uma combinação de 2 teclas alternará por todas as categorias começadas por essa combinação de teclas. Exemplo: Pressionar 'ca' irá selecionar, Casa, Carro, etc..."
+msgstr "Dica para Organizar Categorias: Pressionando uma combinação de 2 teclas alternará por todas as categorias começadas por essa combinação de teclas. Exemplo: Pressionar 'ca' irá selecionar, Casa, Carro, etc..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4756,15 +4756,15 @@ msgstr "Transferir cotações de Moeda e Ações"
 
 #: mmframe.cpp:1672
 msgid "Organize &Categories..."
-msgstr "Gerir &Categorias..."
+msgstr "Organizar &Categorias..."
 
 #: mmframe.cpp:1676
 msgid "Organize &Payees..."
-msgstr "Gerir &Beneficiários..."
+msgstr "Organizar &Beneficiários..."
 
 #: mmframe.cpp:1676 mmframe.cpp:1894 payeedialog.cpp:496
 msgid "Organize Payees"
-msgstr "Favorecidos"
+msgstr "Organizar Beneficiários"
 
 #: mmframe.cpp:1680
 msgid "Organize Curre&ncy..."
@@ -4772,7 +4772,7 @@ msgstr "Gerir Mo&edas..."
 
 #: mmframe.cpp:1680 mmframe.cpp:1895
 msgid "Organize Currency"
-msgstr "Moedas"
+msgstr "Organizar Moedas"
 
 #: mmframe.cpp:1684
 msgid "&Categories..."
@@ -5084,15 +5084,15 @@ msgstr "Novo"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Categories Dialog"
-msgstr "Categorias"
+msgstr "Mostrar Organizar Categorias"
 
 #: mmframe.cpp:1894
 msgid "Show Organize Payees Dialog"
-msgstr "Beneficiários"
+msgstr "Mostrar Organizar Beneficiários"
 
 #: mmframe.cpp:1895
 msgid "Show Organize Currency Dialog"
-msgstr "Moedas"
+msgstr "Mostrar Organizar Moedas"
 
 #: mmframe.cpp:1901
 msgid "&Options"
@@ -6488,7 +6488,7 @@ msgstr "Ferramentas → Realocação de → Beneficiários"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr "Gerir Beneficiários: Erro ao Eliminar"
+msgstr "Organizar Beneficiários: Erro ao Eliminar"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
@@ -6508,7 +6508,7 @@ msgstr "Definir Categoria"
 
 #: payeedialog.cpp:868
 msgid "&Organize Attachments"
-msgstr "&Gerir Anexos"
+msgstr "&Organizar Anexos"
 
 #: payeedialog.cpp:872
 msgid "Relocate Payee"
@@ -7041,7 +7041,7 @@ msgstr "Insira o LOTE ao qual esta parcela de ações pertence"
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"
-msgstr "Gerir os anexos desta ação"
+msgstr "Organizar os anexos desta ação"
 
 #: sharetransactiondialog.cpp:298 stockdialog.cpp:266
 msgid "Display the web page for the specified Stock symbol"
@@ -7469,7 +7469,7 @@ msgstr "Transacção #"
 
 #: transdialog.cpp:545 usertransactionpanel.cpp:199
 msgid "Organize attachments of this transaction"
-msgstr "Gerir anexos desta transação"
+msgstr "Organizar anexos desta transação"
 
 #: transdialog.cpp:745
 msgid "This transaction will exceed your account limit.\n\n"
