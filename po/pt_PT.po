@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-07 11:24\n"
+"PO-Revision-Date: 2023-05-07 12:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4422,7 +4422,7 @@ msgstr "Contas de Cartão de Crédito"
 #: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr "Depósitos a prazo"
+msgstr "Contas a Prazo"
 
 #: mmframe.cpp:479 mmframe.cpp:748
 msgid "Stock Portfolios"
@@ -5614,7 +5614,7 @@ msgstr "Numerário"
 
 #: model/Model_Account.cpp:34
 msgid "Checking"
-msgstr "Verificando"
+msgstr "À Ordem"
 
 #: model/Model_Account.cpp:35
 msgid "Credit Card"
@@ -5626,7 +5626,7 @@ msgstr "Empréstimo"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr "Depósito a Prazo"
+msgstr "A Prazo"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
@@ -7933,7 +7933,7 @@ msgstr "%s modela todas as transações como pertencentes a contas."
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr "As próximas páginas ajudá-lo-ão a criar uma nova conta.\n"
+msgstr "As próximas páginas ajudá-lo-ão a criar uma conta nova.\n"
 "Para o ajudar a iniciar, comece por fazer uma lista de todas as\n"
 "instituições financeiras onde possui uma conta."
 
@@ -7994,7 +7994,7 @@ msgstr "Moeda Base da Conta Não Definida."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr "Defina-a primeiro através do menu Ferramentas → Opções e, seguidamente, adicione uma nova conta."
+msgstr "Defina-a primeiro através do menu Ferramentas → Opções e, seguidamente, adicione uma conta nova."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
