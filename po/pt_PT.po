@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-07 15:01\n"
+"PO-Revision-Date: 2023-05-07 16:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5794,7 +5794,7 @@ msgstr "Geral"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View Options"
-msgstr "Visualizar Opções"
+msgstr "Opções de Visualização"
 
 #: optiondialog.cpp:37 webappdialog.cpp:146
 msgid "Attachments"
