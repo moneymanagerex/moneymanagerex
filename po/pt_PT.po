@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-07 10:17\n"
+"PO-Revision-Date: 2023-05-07 11:24\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7922,7 +7922,7 @@ msgstr "Importar e abrir"
 
 #: wizard_newaccount.cpp:31
 msgid "Add Account Wizard"
-msgstr "Ajudante para Adicionar Conta"
+msgstr "Assistente Adicionar Conta"
 
 #: wizard_newaccount.cpp:40
 #, c-format
