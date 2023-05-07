@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-05 09:51\n"
+"PO-Revision-Date: 2023-05-07 10:17\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7998,7 +7998,7 @@ msgstr "Defina-a primeiro através do menu Ferramentas → Opções e, seguidame
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
-msgstr "Ajudante para criar uma nova Base de Dados"
+msgstr "Assistente Nova Base de Dados"
 
 #: wizard_newdb.cpp:35
 msgid "The next pages will help you create a new database.\n\n"
