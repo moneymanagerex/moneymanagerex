@@ -80,7 +80,6 @@ public:
         , bool group_by_month = true
         , std::map<int, double >*budgetAmt = nullptr
         , bool fin_months = false);
-private:
     static const wxString full_name(const Data* category);
 
 };
