@@ -844,83 +844,99 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 
     if (json_doc.HasMember("finance") && json_doc["finance"].IsObject()) {
         Value e = json_doc["finance"].GetObject();
-        if (e.HasMember("error") && e["error"].IsObject()) {
-            Value err = e["error"].GetObject();
-            if (err.HasMember("description") && err["description"].IsString()) {
-                output = wxString::FromUTF8(err["description"].GetString());
-                return false;
+        if (e.HasMember("error")) {
+            if (e["error"].IsObject()) {
+                Value err = e["error"].GetObject();
+                if (err.HasMember("description") && err["description"].IsString()) {
+                    output = wxString::FromUTF8(err["description"].GetString());
+                    return false;
+                }
             }
         }
     }
 
+    /*{"quoteResponse":{"result":[{"currency":"USD","regularMarketPrice":173.57,"shortName":"Apple Inc.","regularMarketTime":1683316804,"symbol":"AAPL"}],"error":null}}*/
 
-    Value r = json_doc["quoteResponse"].GetObject();
-    Value e = r["result"].GetArray();
+    if (json_doc.HasMember("quoteResponse") && json_doc["quoteResponse"].IsObject()) {
+        Value r = json_doc["quoteResponse"].GetObject();
+        if (r.HasMember("result") && r["result"].IsArray()) {
+            Value e = r["result"].GetArray();
 
-    if (e.Empty()) {
-        output = _("Nothing to update");
-        return false;
-    }
-
-    if (type == yahoo_price_type::FIAT)
-    {
-        for (rapidjson::SizeType i = 0; i < e.Size(); i++)
-        {
-            if (!e[i].IsObject()) continue;
-            Value v = e[i].GetObject();
-
-            if (!v.HasMember("symbol") || !v["symbol"].IsString())
-                continue;
-            auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
-
-            double price = 0.0;
-            wxRegEx pattern("^([A-Z]{3})[A-Z]{3}=X$");
-            if (pattern.Matches(currency_symbol))
-            {
-                if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
-                    continue;
-                price = v["regularMarketPrice"].GetFloat();
-                currency_symbol = pattern.GetMatch(currency_symbol, 1);
-            }
-            wxRegEx crypto_pattern("^([A-Z]{3,})-[A-Z]{3}$");
-            if (crypto_pattern.Matches(currency_symbol))
-            {
-                if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
-                    continue;
-                price = v["regularMarketPrice"].GetFloat();
-                currency_symbol = crypto_pattern.GetMatch(currency_symbol, 1);
+            if (e.Empty()) {
+                output = _("Nothing to update");
+                return false;
             }
 
-            if (currency_symbol == base_currency_symbol)
-                conversion_factor = price;
+            if (type == yahoo_price_type::FIAT)
+            {
+                for (rapidjson::SizeType i = 0; i < e.Size(); i++)
+                {
+                    if (!e[i].IsObject()) continue;
+                    Value v = e[i].GetObject();
+
+                    if (!v.HasMember("symbol") || !v["symbol"].IsString())
+                        continue;
+                    auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
+
+                    double price = 0.0;
+                    wxRegEx pattern("^([A-Z]{3})[A-Z]{3}=X$");
+                    if (pattern.Matches(currency_symbol))
+                    {
+                        if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
+                            continue;
+                        price = v["regularMarketPrice"].GetFloat();
+                        currency_symbol = pattern.GetMatch(currency_symbol, 1);
+                    }
+                    wxRegEx crypto_pattern("^([A-Z]{3,})-[A-Z]{3}$");
+                    if (crypto_pattern.Matches(currency_symbol))
+                    {
+                        if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
+                            continue;
+                        price = v["regularMarketPrice"].GetFloat();
+                        currency_symbol = crypto_pattern.GetMatch(currency_symbol, 1);
+                    }
+
+                    if (currency_symbol == base_currency_symbol)
+                        conversion_factor = price;
+                    else
+                        out[currency_symbol] = (price <= 0.0 ? 0.0 : price);
+
+                }
+            }
             else
-                out[currency_symbol] = (price <= 0.0 ? 0.0 : price);
+            {
+                for (rapidjson::SizeType i = 0; i < e.Size(); i++)
+                {
+                    if (!e[i].IsObject()) continue;
+                    Value v = e[i].GetObject();
 
+                    if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
+                        continue;
+                    auto price = v["regularMarketPrice"].GetFloat();
+
+                    if (!v.HasMember("symbol") || !v["symbol"].IsString())
+                        continue;
+                    const auto symbol = wxString::FromUTF8(v["symbol"].GetString());
+
+                    if (!v.HasMember("currency") || !v["currency"].IsString())
+                        continue;
+                    const auto currency = wxString::FromUTF8(v["currency"].GetString());
+                    double k = currency == "GBp" ? 100 : 1;
+
+                    wxLogDebug("item: %u %s %f", i, symbol, price);
+                    out[symbol] = price <= 0 ? 0 : price / k;
+                }
+            }
+        }
+        else {
+            output = _("JSON Parse Error");
+            return false;
         }
     }
     else
     {
-        for (rapidjson::SizeType i = 0; i < e.Size(); i++)
-        {
-            if (!e[i].IsObject()) continue;
-            Value v = e[i].GetObject();
-
-            if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
-                continue;
-            auto price = v["regularMarketPrice"].GetFloat();
-
-            if (!v.HasMember("symbol") || !v["symbol"].IsString())
-                continue;
-            const auto symbol = wxString::FromUTF8(v["symbol"].GetString());
-
-            if (!v.HasMember("currency") || !v["currency"].IsString())
-                continue;
-            const auto currency = wxString::FromUTF8(v["currency"].GetString());
-            double k = currency == "GBp" ? 100 : 1;
-
-            wxLogDebug("item: %u %s %f", i, symbol, price);
-            out[symbol] = price <= 0 ? 0 : price / k;
-        }
+        output = _("JSON Parse Error");
+        return false;
     }
 
     for (auto& item : out)
