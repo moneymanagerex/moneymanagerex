@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-05 14:25\n"
+"PO-Revision-Date: 2023-05-08 08:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2425,7 +2425,7 @@ msgstr "Por favor, restaure a BD do backup de pré-atualização e tente novamen
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr "Atualização da Base de Dados MMEX"
+msgstr "Atualização do Banco de Dados MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
@@ -2435,13 +2435,13 @@ msgstr "Erro na base de dados MMEX!"
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "Versão %i da base de dados MMEX não funciona com esta versão MMEX.\n"
+msgstr "Versão %i do banco de dados MMEX não funciona com esta versão MMEX.\n"
 "Por favor, atualize o MMEX para uma versão mais recente."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr "Atualização da base de dados do MMEX para a versão %i instalada com sucesso"
+msgstr "Atualização do banco de dados do MMEX para a versão %i instalada com sucesso"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
