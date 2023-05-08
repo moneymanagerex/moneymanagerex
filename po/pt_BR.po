@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-08 08:56\n"
+"PO-Revision-Date: 2023-05-08 09:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -328,7 +328,7 @@ msgstr "&Novo Arquivo de dados"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Crie uma base de dados para iniciar"
+msgstr "Crie um novo arquivo do banco de dados para iniciar"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
@@ -336,7 +336,7 @@ msgstr "Abrir um Arquivo de Dados &Existente"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "Abrir uma Base de Dados já criada com a extensão (*.mmb)"
+msgstr "Abrir um Arquivo de Dados já criado com a extensão (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
@@ -1780,7 +1780,7 @@ msgstr "Realocação de Categoria finalizada."
 #: categdialog.cpp:693 mmframe.cpp:3565 mmframe.cpp:3580 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr "Os registros foram atualizados na Base de Dados: %i"
+msgstr "Os registros foram atualizados no arquivo de dados: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3567
 msgid "Category Relocation Result"
@@ -2429,7 +2429,7 @@ msgstr "Atualização do Banco de Dados MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr "Erro na base de dados MMEX!"
+msgstr "Erro de banco de dados MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
@@ -2496,7 +2496,7 @@ msgstr "Impossível abrir o arquivo"
 
 #: dbwrapper.cpp:78
 msgid "You must specify path to another database file"
-msgstr "Você precisa especificar o caminho para outra base de dados"
+msgstr "Você precisa especificar o caminho para outro arquivo de dados"
 
 #: dbwrapper.cpp:82
 msgid "An incorrect password given for an encrypted file\n"
@@ -2513,7 +2513,7 @@ msgstr "Erro: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:1983
 msgid "Opening MMEX Database - Error"
-msgstr "Erro ao abrir a Base de Dados do MMEX"
+msgstr "Erro ao abrir Arquivo de Dados do MMEX"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4487,7 +4487,7 @@ msgstr "Confirmar a Exclusão da Conta"
 
 #: mmframe.cpp:1358
 msgid "MMEX has been opened without an active database."
-msgstr "O MMEX foi aberto sem uma base de dados ativa."
+msgstr "O MMEX foi aberto sem um arquivo de dados ativo."
 
 #: mmframe.cpp:1359
 msgid "MMEX: Menu Popup Error"
@@ -4583,7 +4583,7 @@ msgstr "&Novo Arquivo de dados..."
 
 #: mmframe.cpp:1521 mmframe.cpp:1885 wizard_newdb.cpp:137
 msgid "New Database"
-msgstr "Nova Base de Dados"
+msgstr "Novo Arquivo de Dados"
 
 #: mmframe.cpp:1522
 msgid "&Open Database...\tCtrl-O"
@@ -4591,7 +4591,7 @@ msgstr "&Abrir Arquivo de Dados... \tCtrl-O"
 
 #: mmframe.cpp:1522 mmframe.cpp:1886
 msgid "Open Database"
-msgstr "Abrir Base de Dados"
+msgstr "Abrir Arquivo de Dados"
 
 #: mmframe.cpp:1523
 msgid "Save Database &As..."
@@ -4599,7 +4599,7 @@ msgstr "Salvar Arquivo de Dados &Como..."
 
 #: mmframe.cpp:1523
 msgid "Save Database As"
-msgstr "Salvar Base de Dados Como"
+msgstr "Salvar Banco de Dados Como"
 
 #: mmframe.cpp:1530
 msgid "&Recent Files"
@@ -4743,7 +4743,7 @@ msgstr "Altere o tipo de conta de uma conta."
 
 #: mmframe.cpp:1653
 msgid "Delete Account from database"
-msgstr "Eliminar Conta da base de dados"
+msgstr "Eliminar Conta do banco de dados"
 
 #: mmframe.cpp:1666
 msgid "Download Ra&tes"
@@ -4871,19 +4871,19 @@ msgstr "Alterar a senha de um banco de dados criptografado"
 
 #: mmframe.cpp:1755
 msgid "&Optimize Database..."
-msgstr "&Otimizar Base de Dados..."
+msgstr "&Otimizar Banco de Dados..."
 
 #: mmframe.cpp:1756
 msgid "Optimize database space and performance"
-msgstr "Otimizar o espaço e o desempenho da base de dados"
+msgstr "Otimizar o espaço e o desempenho do banco de dados"
 
 #: mmframe.cpp:1758
 msgid "Database De&bug..."
-msgstr "&Depuração de Base de Dados..."
+msgstr "&Depuração de Banco de Dados..."
 
 #: mmframe.cpp:1759
 msgid "Generate database report or fix errors"
-msgstr "Gerar relatório da base de dados ou corrigir erros"
+msgstr "Gerar relatório do banco de dados ou corrigir erros"
 
 #: mmframe.cpp:1764
 msgid "Databa&se"
@@ -4891,7 +4891,7 @@ msgstr "Banco de Dados"
 
 #: mmframe.cpp:1765
 msgid "Database management"
-msgstr "Gerenciamento da Base de Dados"
+msgstr "Gerenciamento  do Banco de Dados"
 
 #: mmframe.cpp:1772 mmframe.cpp:1926
 msgid "&Help\tF1"
@@ -5138,7 +5138,7 @@ msgstr "Nenhum arquivo aberto"
 
 #: mmframe.cpp:2044
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr "Desculpe. A versão da base de dados é muito antiga ou a senha está incorreta"
+msgstr "Desculpe. A versão do banco de dados é muito antiga ou a senha está incorreta"
 
 #: mmframe.cpp:2118
 msgid "&Next →"
