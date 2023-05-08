@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-07 18:56\n"
+"PO-Revision-Date: 2023-05-08 09:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "&OK "
 
 #: accountdialog.cpp:95 mmframe.cpp:1647
 msgid "Edit Account"
-msgstr "Editar"
+msgstr "Editar Conta"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
@@ -4492,7 +4492,7 @@ msgstr "O MMEX foi aberto sem uma base de dados ativa."
 
 #: mmframe.cpp:1359
 msgid "MMEX: Menu Popup Error"
-msgstr "MMEX: Erro no Menu instantâneo"
+msgstr "MMEX: Erro no Menu Instantâneo"
 
 #: mmframe.cpp:1375 mmframe.cpp:1536
 msgid "&Import from"
