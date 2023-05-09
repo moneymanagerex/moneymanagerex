@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-08 09:58\n"
+"PO-Revision-Date: 2023-05-09 11:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1083,7 +1083,7 @@ msgstr "Categoria"
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:512
 #: transdialog.cpp:1211
 msgid "Use split Categories"
-msgstr "Usar Categorias separadas"
+msgstr "Usar Categorias fracionadas"
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1250
 msgid "Specify any associated check number or transaction number"
@@ -1233,7 +1233,7 @@ msgstr "Erro"
 #: billsdepositsdialog.cpp:1352 splittransactionsdialog.h:82
 #: transdialog.cpp:336
 msgid "Split Transaction"
-msgstr "Transação Separada"
+msgstr "Transação Fracionada"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
@@ -2628,11 +2628,11 @@ msgstr "Indique como deve ser agrupado o relatório"
 
 #: filtertransdialog.cpp:693 filtertransdialog.cpp:1603
 msgid "Combine Splits"
-msgstr "Combinar Transações Separadas"
+msgstr "Combinar Transações Fracionadas"
 
 #: filtertransdialog.cpp:697
 msgid "Display split transactions as a single row"
-msgstr "Exibir transações separadas como uma única linha"
+msgstr "Exibir transações fracionadas como uma única linha"
 
 #: filtertransdialog.cpp:705
 msgid "Settings"
@@ -3282,7 +3282,7 @@ msgstr "A Importar Transferências"
 
 #: import_export/qif_import_gui.cpp:1152
 msgid "Importing Split transactions"
-msgstr "Importando Transações Separadas"
+msgstr "Importando Transações Fracionadas"
 
 #: import_export/qif_import_gui.cpp:1156
 msgid "Import finished successfully"
@@ -4127,7 +4127,7 @@ msgstr "&Ver noutra conta"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr "&Ver Categorias Separadas"
+msgstr "&Ver Categorias Fracionadas"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
@@ -6555,7 +6555,7 @@ msgstr "Registos encontrados em transações: %i"
 #: relocatecategorydialog.cpp:257
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "Registos encontrados em transações separadas: %i"
+msgstr "Registos encontrados em transações fracionadas: %i"
 
 #: relocatecategorydialog.cpp:258 relocatepayeedialog.cpp:211
 #, c-format
@@ -6565,7 +6565,7 @@ msgstr "Registos encontrados em transações recorrentes: %i"
 #: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "Registos encontrados em transações separadas recorrentes: %i"
+msgstr "Registos encontrados em transações fracionadas recorrentes: %i"
 
 #: relocatecategorydialog.cpp:260
 #, c-format
@@ -7061,19 +7061,19 @@ msgstr "Editar Transação de Ações"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr "Editar Detalhe da Transação Separada"
+msgstr "Editar Detalhe da Transação Fracionada"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr "Digite as notas para descrever esta transação separada"
+msgstr "Digite as notas para descrever esta transação fracionada"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
-msgstr "Adicionar Transação Separada"
+msgstr "Adicionar Fração"
 
 #: splittransactionsdialog.cpp:247
 msgid "Remove Split"
-msgstr "Remover Transação Separada"
+msgstr "Remover Fração"
 
 #: splittransactionsdialog.cpp:395
 msgid "Invalid Total Amount"
