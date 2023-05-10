@@ -109,7 +109,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Category: ")), g_flagsH);
     wxString categname = Model_Category::full_name(category);
     wxStaticText* categNameLabel = new wxStaticText(itemPanel7, wxID_STATIC,
-        (categname.size() > 50 ? "..." + categname.substr(categname.size() - 50) : categname));
+        (categname.size() > 50 ? wxString::FromUTF8("\u2026") + categname.substr(categname.size() - 50) : categname));
     if (categname.size() > 50) categNameLabel->SetToolTip(categname);
     itemGridSizer2->Add(categNameLabel, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Estimated:")), g_flagsH);
