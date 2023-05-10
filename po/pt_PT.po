@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-09 11:34\n"
+"POT-Creation-Date: 2023-05-10 10:27+0300\n"
+"PO-Revision-Date: 2023-05-10 07:43\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Ative para enviar dados anónimos de utilização do MMEX, ajudando-nos.
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:643
-#: budgetentrydialog.cpp:164 budgetyeardialog.cpp:116
+#: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:738
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
@@ -136,7 +136,7 @@ msgstr "Selecione caso esta conta seja utilizada frequentemente. Isto é usado p
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145
-#: budgetentrydialog.cpp:155 budgetingpanel.cpp:305 filtertrans.cpp:197
+#: budgetentrydialog.cpp:147 budgetingpanel.cpp:305 filtertrans.cpp:197
 #: filtertransdialog.cpp:627 filtertransdialog.cpp:1547
 #: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:110
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:297
@@ -1411,54 +1411,50 @@ msgstr "Orçamento Anual"
 msgid "Category: "
 msgstr "Categoria: "
 
-#: budgetentrydialog.cpp:116
-msgid "Sub Category: "
-msgstr "Subcategoria: "
-
-#: budgetentrydialog.cpp:123 reports/budgetingperf.cpp:342
+#: budgetentrydialog.cpp:115 reports/budgetingperf.cpp:342
 msgid "Estimated:"
 msgstr "Orçamentado:"
 
-#: budgetentrydialog.cpp:125 reports/budgetingperf.cpp:343
+#: budgetentrydialog.cpp:117 reports/budgetingperf.cpp:343
 msgid "Actual:"
 msgstr "Realizado:"
 
-#: budgetentrydialog.cpp:128
+#: budgetentrydialog.cpp:120
 msgid "Type:"
 msgstr "Tipo:"
 
-#: budgetentrydialog.cpp:131
+#: budgetentrydialog.cpp:123
 msgid "Expense"
 msgstr "Despesa"
 
-#: budgetentrydialog.cpp:132 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
+#: budgetentrydialog.cpp:124 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
 msgstr "Receita"
 
-#: budgetentrydialog.cpp:137
+#: budgetentrydialog.cpp:129
 msgid "Specify whether this category is an income or an expense category"
 msgstr "Indique se esta é uma categoria de Despesa ou de Receita"
 
-#: budgetentrydialog.cpp:139
+#: budgetentrydialog.cpp:131
 msgid "Frequency:"
 msgstr "Frequência:"
 
-#: budgetentrydialog.cpp:144
+#: budgetentrydialog.cpp:136
 msgid "Specify the frequency of the expense or deposit"
 msgstr "Indique a frequência da despesa ou receita"
 
-#: budgetentrydialog.cpp:147 import_export/univcsvdialog.cpp:390
+#: budgetentrydialog.cpp:139 import_export/univcsvdialog.cpp:390
 msgid "Amount:"
 msgstr "Valor:"
 
-#: budgetentrydialog.cpp:152
+#: budgetentrydialog.cpp:144
 msgid "Enter the amount budgeted for this category."
 msgstr "Indique o valor orçamentado para esta categoria."
 
-#: budgetentrydialog.cpp:159 payeedialog.cpp:119
+#: budgetentrydialog.cpp:151 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
 msgstr "Introduza texto descritivo desta entrada de orçamento"
 
@@ -7394,7 +7390,7 @@ msgstr "Cotações das ações atualizadas com sucesso"
 msgid "Last updated %s"
 msgstr "Última atualização %s"
 
-#: stockspanel.cpp:401 util.cpp:705 util.cpp:861
+#: stockspanel.cpp:401 util.cpp:705 util.cpp:866
 msgid "Nothing to update"
 msgstr "Nada para atualizar"
 
@@ -7677,68 +7673,68 @@ msgstr "Sáb"
 msgid "Currency rates have been updated"
 msgstr "Taxas de câmbio atualizadas"
 
-#: util.cpp:837 util.cpp:953 util.cpp:1012
+#: util.cpp:837 util.cpp:932 util.cpp:938 util.cpp:969 util.cpp:1028
 msgid "JSON Parse Error"
 msgstr "Erro de análise JSON"
 
-#: util.cpp:961 util.cpp:1020
+#: util.cpp:977 util.cpp:1036
 msgid "Expected response to contain a data or error string"
 msgstr "Esperava-se uma resposta que contivesse uma sequência de dados ou de uma mensagem de erro"
 
-#: util.cpp:992
+#: util.cpp:1008
 msgid "Could not find asset for symbol"
 msgstr "Não foi possível encontrar o ativo do símbolo"
 
-#: util.cpp:1027
+#: util.cpp:1043
 msgid "Could not get base currency!"
 msgstr "Não foi possível obter a moeda base!"
 
-#: util.cpp:1033
+#: util.cpp:1049
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1036
+#: util.cpp:1052
 msgid "Could not find currency 'USD', needed for converting history prices"
 msgstr "Não foi possível encontrar a divisa 'USD', necessária para converter os preços do histórico"
 
-#: util.cpp:1057
+#: util.cpp:1073
 msgid "Could not parse price in asset history"
 msgstr "Não foi possível analisar o preço no histórico do ativo"
 
-#: util.cpp:1288
+#: util.cpp:1304
 #, c-format
 msgid "Version: %s"
 msgstr "Versão: %s"
 
-#: util.cpp:1289
+#: util.cpp:1305
 #, c-format
 msgid "Built on: %s %s"
 msgstr "Construído em: %s %s"
 
-#: util.cpp:1290
+#: util.cpp:1306
 #, c-format
 msgid "Database version: %d"
 msgstr "Versão da Base de Dados: %d"
 
-#: util.cpp:1297
+#: util.cpp:1313
 #, c-format
 msgid "Git commit: %s (%s)"
 msgstr "Git commit: %s (%s)"
 
-#: util.cpp:1300
+#: util.cpp:1316
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git branch: %s"
 
-#: util.cpp:1304
+#: util.cpp:1320
 msgid "MMEX is using the following support products:"
 msgstr "O MMEX utiliza os seguintes produtos de suporte:"
 
-#: util.cpp:1321
+#: util.cpp:1337
 msgid "Built with:"
 msgstr "Construído com:"
 
-#: util.cpp:1340
+#: util.cpp:1356
 msgid "Running on:"
 msgstr "A executar em:"
 
