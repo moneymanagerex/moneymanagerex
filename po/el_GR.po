@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-05-05 11:53+0300\n"
-"PO-Revision-Date: 2023-05-05 11:05\n"
+"POT-Creation-Date: 2023-05-10 10:27+0300\n"
+"PO-Revision-Date: 2023-05-10 07:42\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Ενεργοποιήστε για να μας βοηθήσετε να σ
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:643
-#: budgetentrydialog.cpp:164 budgetyeardialog.cpp:116
+#: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:738
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
@@ -136,7 +136,7 @@ msgstr "Δηλώστε εάν αυτός ο λογαριασμός χρησιμ�
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145
-#: budgetentrydialog.cpp:155 budgetingpanel.cpp:305 filtertrans.cpp:197
+#: budgetentrydialog.cpp:147 budgetingpanel.cpp:305 filtertrans.cpp:197
 #: filtertransdialog.cpp:627 filtertransdialog.cpp:1547
 #: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:110
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:297
@@ -1412,54 +1412,50 @@ msgstr "Εισαγωγή έτους προϋπολογισμού"
 msgid "Category: "
 msgstr "Κατηγορία: "
 
-#: budgetentrydialog.cpp:116
-msgid "Sub Category: "
-msgstr "Υποκατηγορία: "
-
-#: budgetentrydialog.cpp:123 reports/budgetingperf.cpp:342
+#: budgetentrydialog.cpp:115 reports/budgetingperf.cpp:342
 msgid "Estimated:"
 msgstr "Εκτιμώμενο:"
 
-#: budgetentrydialog.cpp:125 reports/budgetingperf.cpp:343
+#: budgetentrydialog.cpp:117 reports/budgetingperf.cpp:343
 msgid "Actual:"
 msgstr "Πραγματικό:"
 
-#: budgetentrydialog.cpp:128
+#: budgetentrydialog.cpp:120
 msgid "Type:"
 msgstr "Τύπος:"
 
-#: budgetentrydialog.cpp:131
+#: budgetentrydialog.cpp:123
 msgid "Expense"
 msgstr "Έξοδα"
 
-#: budgetentrydialog.cpp:132 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
+#: budgetentrydialog.cpp:124 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
 msgstr "Έσοδα"
 
-#: budgetentrydialog.cpp:137
+#: budgetentrydialog.cpp:129
 msgid "Specify whether this category is an income or an expense category"
 msgstr "Επιλέξτε αν η αυτή η κατηγορία είναι κατηγορία εσόδων ή εξόδων"
 
-#: budgetentrydialog.cpp:139
+#: budgetentrydialog.cpp:131
 msgid "Frequency:"
 msgstr "Συχνότητα:"
 
-#: budgetentrydialog.cpp:144
+#: budgetentrydialog.cpp:136
 msgid "Specify the frequency of the expense or deposit"
 msgstr "Καθορίστε την συχνότητα ενός εξόδου ή κατάθεσης"
 
-#: budgetentrydialog.cpp:147 import_export/univcsvdialog.cpp:390
+#: budgetentrydialog.cpp:139 import_export/univcsvdialog.cpp:390
 msgid "Amount:"
 msgstr "Ποσό:"
 
-#: budgetentrydialog.cpp:152
+#: budgetentrydialog.cpp:144
 msgid "Enter the amount budgeted for this category."
 msgstr "Εισάγετε το προϋπολογισμένο ποσό για αυτήν την κατηγορία."
 
-#: budgetentrydialog.cpp:159 payeedialog.cpp:119
+#: budgetentrydialog.cpp:151 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
 msgstr "Εισάγετε σημειώσεις για να περιγράψετε αυτή την εγγραφή προϋπολογισμού"
 
@@ -7385,7 +7381,7 @@ msgstr "Οι τιμές των μετοχών ενημερώθηκαν επιτ�
 msgid "Last updated %s"
 msgstr "Τελευταία ενημέρωση %s"
 
-#: stockspanel.cpp:401 util.cpp:705 util.cpp:861
+#: stockspanel.cpp:401 util.cpp:705 util.cpp:866
 msgid "Nothing to update"
 msgstr "Τίποτα για ενημέρωση"
 
@@ -7668,68 +7664,68 @@ msgstr "Σαβ"
 msgid "Currency rates have been updated"
 msgstr "Οι ισοτιμίες συναλλάγματος έχουν ενημερωθεί"
 
-#: util.cpp:837 util.cpp:953 util.cpp:1012
+#: util.cpp:837 util.cpp:932 util.cpp:938 util.cpp:969 util.cpp:1028
 msgid "JSON Parse Error"
 msgstr "Σφάλμα Ανάλυσης Json"
 
-#: util.cpp:961 util.cpp:1020
+#: util.cpp:977 util.cpp:1036
 msgid "Expected response to contain a data or error string"
 msgstr "Η Αναμενόμενη απάντηση να περιέχει δεδομένα ή συμβολοσειρά σφάλματος"
 
-#: util.cpp:992
+#: util.cpp:1008
 msgid "Could not find asset for symbol"
 msgstr "Αδυναμία εύρεσης περιουσιακού στοιχείου για το σύμβολο"
 
-#: util.cpp:1027
+#: util.cpp:1043
 msgid "Could not get base currency!"
 msgstr "Αδυναμία λήψης του βασικού νομίσματος!"
 
-#: util.cpp:1033
+#: util.cpp:1049
 msgid "USD"
 msgstr "Δολάριο ΗΠΑ"
 
-#: util.cpp:1036
+#: util.cpp:1052
 msgid "Could not find currency 'USD', needed for converting history prices"
 msgstr "Αδυναμία εύρεσης του νομίσματος 'USD', που απαιτείται για τη μετατροπή των τιμών ιστορικού"
 
-#: util.cpp:1057
+#: util.cpp:1073
 msgid "Could not parse price in asset history"
 msgstr "Αδύνατη η ανάλυση της τιμής στο ιστορικό περιουσιακών στοιχείων"
 
-#: util.cpp:1288
+#: util.cpp:1304
 #, c-format
 msgid "Version: %s"
 msgstr "Έκδοση: %s"
 
-#: util.cpp:1289
+#: util.cpp:1305
 #, c-format
 msgid "Built on: %s %s"
 msgstr ""
 
-#: util.cpp:1290
+#: util.cpp:1306
 #, c-format
 msgid "Database version: %d"
 msgstr "Έκδοση βάσης δεδομένων: %d"
 
-#: util.cpp:1297
+#: util.cpp:1313
 #, c-format
 msgid "Git commit: %s (%s)"
 msgstr "Υποβολή: %s (%s)"
 
-#: util.cpp:1300
+#: util.cpp:1316
 #, c-format
 msgid "Git branch: %s"
 msgstr "Κλάδος Git: %s"
 
-#: util.cpp:1304
+#: util.cpp:1320
 msgid "MMEX is using the following support products:"
 msgstr "Το MMEX χρησιμοποιεί τα ακόλουθα προϊόντα υποστήριξης:"
 
-#: util.cpp:1321
+#: util.cpp:1337
 msgid "Built with:"
 msgstr "Δημιουργημένο με:"
 
-#: util.cpp:1340
+#: util.cpp:1356
 msgid "Running on:"
 msgstr "Εκτελείται στις:"
 
