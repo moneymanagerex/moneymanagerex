@@ -608,6 +608,8 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
             idx++;
         }
         valueListBox_->RefreshItems(0, --idx);
+        valueListBox_->SetColumnWidth(0, wxLIST_AUTOSIZE);
+        valueListBox_->SetColumnWidth(1, wxLIST_AUTOSIZE);
     }
 }
 
