@@ -101,13 +101,13 @@ void OptionSettingsView::Create()
     view_sizer1->Add(m_categ_delimiter_list, g_flagsH);
 
     m_showToolTips = new wxCheckBox(view_panel, wxID_STATIC
-        , _("Show Tooltips")
+        , _("Show T&ooltips")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_showToolTips->SetValue(Option::instance().getShowToolTips());
     view_sizer1->Add(m_showToolTips, g_flagsH);
 
     m_showMoneyTips = new wxCheckBox(view_panel, wxID_STATIC
-        , _("Show Money Tips")
+        , _("Show &Money Tips")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     view_sizer1->Add(m_showMoneyTips, g_flagsH);
