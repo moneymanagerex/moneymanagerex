@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 11:14\n"
+"PO-Revision-Date: 2023-05-15 16:20\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2624,11 +2624,11 @@ msgstr "Specifica come raggruppare la relazione"
 
 #: filtertransdialog.cpp:693 filtertransdialog.cpp:1603
 msgid "Combine Splits"
-msgstr ""
+msgstr "Combina Transazioni Suddivise"
 
 #: filtertransdialog.cpp:697
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Visualizza le transazioni suddivise in una singola riga"
 
 #: filtertransdialog.cpp:705
 msgid "Settings"
@@ -3172,7 +3172,7 @@ msgstr "Includere il campo beneficiario nelle note"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Schema di mappatura dei beneficiari"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
@@ -3373,14 +3373,15 @@ msgstr "Conto: "
 
 #: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
-msgstr ""
+msgstr "Preset:"
 
 #: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:564
 #: import_export/univcsvdialog.cpp:2457
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "Carica questo Preset quando l'account è:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
@@ -3448,15 +3449,15 @@ msgstr "Selezionare file da esportare in CSV"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
-msgstr ""
+msgstr "Nome Preset"
 
 #: import_export/univcsvdialog.cpp:548
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Salva le impostazioni correnti come Preset"
 
 #: import_export/univcsvdialog.cpp:549 import_export/univcsvdialog.cpp:2020
 msgid "Delete Preset"
-msgstr ""
+msgstr "Elimina Preset"
 
 #: import_export/univcsvdialog.cpp:550
 msgid "MMEX standard format"
@@ -4707,7 +4708,7 @@ msgstr "Ignora le operazioni future"
 
 #: mmframe.cpp:1586
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "Mostra Su&ggerimenti"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
@@ -4715,7 +4716,7 @@ msgstr "Mostra Suggerimenti"
 
 #: mmframe.cpp:1588
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "Mostra Suggerimenti &Finanziari"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
@@ -6028,7 +6029,7 @@ msgstr "Nel duplicare le operazioni selezionare se utilizzare la data originale 
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Suono Transazione"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6327,7 +6328,7 @@ msgstr "Colori Operazioni"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Interfaccia Utente"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6355,7 +6356,7 @@ msgstr "Specifica la variante del tema preferito da usare se supportata"
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6383,7 +6384,7 @@ msgstr "Enorme"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "Dimensione Carattere"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
