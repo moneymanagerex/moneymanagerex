@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-05-10 10:27+0300\n"
-"PO-Revision-Date: 2023-05-10 07:43\n"
+"POT-Creation-Date: 2023-05-15 14:09+0300\n"
+"PO-Revision-Date: 2023-05-15 11:15\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -433,7 +433,7 @@ msgstr "Introduza o nome do bem"
 #: filtertransdialog.cpp:877 filtertransdialog.cpp:883
 #: import_export/qif_export.cpp:607 import_export/qif_import_gui.cpp:104
 #: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
-#: maincurrencydialog.cpp:273 mmchecking_list.cpp:267
+#: maincurrencydialog.cpp:270 mmchecking_list.cpp:267
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:286
 #: reports/cashflow.cpp:414 reports/incexpenses.cpp:244 reports/summary.cpp:297
 #: reports/transactions.cpp:188 stockdialog.cpp:293 stockdialog.cpp:648
@@ -456,7 +456,7 @@ msgid "Select type of asset"
 msgstr "Selecione o tipo de ativo"
 
 #: assetdialog.cpp:200 import_export/qif_import_gui.cpp:109
-#: maincurrencydialog.cpp:283
+#: maincurrencydialog.cpp:280
 msgid "Value"
 msgstr "Valor"
 
@@ -522,7 +522,7 @@ msgstr "ID"
 #: filtertransdialog.cpp:1510 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:609 import_export/qif_import_gui.cpp:107
 #: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:102
-#: maincurrencydialog.cpp:265 mmhomepage.cpp:430 reports/incexpenses.cpp:108
+#: maincurrencydialog.cpp:263 mmhomepage.cpp:430 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:194 transactionsupdatedialog.cpp:148
 #: transdialog.cpp:451 usertransactionpanel.cpp:129 webappdialog.cpp:141
 msgid "Type"
@@ -615,13 +615,13 @@ msgid "View Asset Transactions"
 msgstr "Ver Transações do Ativo"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:297
-#: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:542
+#: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:539
 #: mmcheckingpanel.cpp:435 payeedialog.cpp:862 stockspanel.cpp:146
 msgid "&Edit "
 msgstr "&Editar "
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:307 budgetyeardialog.cpp:103
-#: categdialog.cpp:331 maincurrencydialog.cpp:307 mmchecking_list.cpp:494
+#: categdialog.cpp:331 maincurrencydialog.cpp:304 mmchecking_list.cpp:494
 #: mmcheckingpanel.cpp:427 stockdialog.cpp:334 stockspanel.cpp:151
 msgid "&Delete "
 msgstr "&Apagar "
@@ -769,7 +769,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Confirmar a Exclusão do Anexo"
 
 #: attachmentdialog.cpp:354 categdialog.cpp:323 customfieldlistdialog.cpp:261
-#: import_export/univcsvdialog.cpp:292 maincurrencydialog.cpp:541
+#: import_export/univcsvdialog.cpp:292 maincurrencydialog.cpp:538
 #: payeedialog.cpp:861 stockdialog.cpp:336
 msgid "&Add "
 msgstr "&Adicionar "
@@ -779,7 +779,7 @@ msgid "&Open "
 msgstr "&Abrir"
 
 #: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:296 maincurrencydialog.cpp:543
+#: import_export/univcsvdialog.cpp:296 maincurrencydialog.cpp:540
 #: payeedialog.cpp:864
 msgid "&Remove "
 msgstr "&Remover "
@@ -1015,7 +1015,7 @@ msgstr "Permite a configuração de diferentes montantes nas contas de Origem e 
 #: billsdepositsdialog.cpp:529 billsdepositspanel.cpp:139
 #: budgetingpanel.cpp:302 filtertrans.cpp:196 filtertransdialog.cpp:955
 #: filtertransdialog.cpp:964 import_export/qif_export.cpp:613
-#: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:627
+#: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
 #: mmhomepage.cpp:358 mmhomepage.cpp:432 reports/cashflow.cpp:418
 #: reports/categexp.cpp:218 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:195 splittransactionsdialog.cpp:87
@@ -1223,7 +1223,7 @@ msgstr "Especifique o número de pagamentos a serem feitos.\n"
 "Deixe em branco se os pagamentos continuarem para sempre."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
-#: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:484
+#: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:481
 #: mmframe.cpp:3659 splittransactionsdialog.cpp:395 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
@@ -2009,7 +2009,7 @@ msgid "Any changes will be lost without update"
 msgstr "Quaisquer alterações serão perdidas sem atualização"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2486 maincurrencydialog.cpp:627
+#: import_export/univcsvdialog.cpp:2486 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:785
 msgid "Invalid Entry"
 msgstr "Informação Inválida"
@@ -3694,7 +3694,7 @@ msgstr "Taxa fixa"
 msgid "N/A"
 msgstr "N/D"
 
-#: maincurrencydialog.cpp:180 maincurrencydialog.cpp:476
+#: maincurrencydialog.cpp:180 maincurrencydialog.cpp:473
 msgid "Online update currency rate"
 msgstr "Atualização de taxa de câmbio online"
 
@@ -3710,116 +3710,116 @@ msgstr "Mostrar todas as moedas, incluindo as não utilizadas"
 msgid "Currency History Options"
 msgstr "Opções de Histórico de Moeda"
 
-#: maincurrencydialog.cpp:259 stockdialog.cpp:300 stockdialog.cpp:319
+#: maincurrencydialog.cpp:258 stockdialog.cpp:300 stockdialog.cpp:319
 #: stockdialog.cpp:648 stockspanel.cpp:215
 msgid "Price"
 msgstr "Preço"
 
-#: maincurrencydialog.cpp:280
+#: maincurrencydialog.cpp:277
 msgid "Specify the date of currency value"
 msgstr "Digite a data do valor da moeda"
 
-#: maincurrencydialog.cpp:290
+#: maincurrencydialog.cpp:287
 msgid "Enter the currency value"
 msgstr "Digite o valor da moeda"
 
-#: maincurrencydialog.cpp:300
+#: maincurrencydialog.cpp:297
 msgid "Download Currency Values history"
 msgstr "Download do histórico de valores da moeda"
 
-#: maincurrencydialog.cpp:303
+#: maincurrencydialog.cpp:300
 msgid "Add/&Update "
 msgstr "Adicionar/&Atualizar "
 
-#: maincurrencydialog.cpp:304
+#: maincurrencydialog.cpp:301
 msgid "Add Currency Values to history"
 msgstr "Adicionar valores de moeda ao histórico"
 
-#: maincurrencydialog.cpp:308
+#: maincurrencydialog.cpp:305
 msgid "Delete selected Currency Values"
 msgstr "Eliminar valores de moeda selecionados"
 
-#: maincurrencydialog.cpp:312
+#: maincurrencydialog.cpp:309
 msgid "Delete Currency Values history for unused currencies and days"
 msgstr "Excluir histórico de valores de moeda para dias e moedas não utilizadas"
 
-#: maincurrencydialog.cpp:368
+#: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Você realmente deseja eliminar a moeda selecionada?"
 
-#: maincurrencydialog.cpp:369 maincurrencydialog.cpp:439
-#: maincurrencydialog.cpp:665 maincurrencydialog.cpp:790
-#: maincurrencydialog.cpp:814 maincurrencydialog.h:76
+#: maincurrencydialog.cpp:366 maincurrencydialog.cpp:436
+#: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
+#: maincurrencydialog.cpp:813 maincurrencydialog.h:76
 #: optionsettingsgeneral.cpp:301
 msgid "Currency Dialog"
 msgstr "Janela de Moeda"
 
-#: maincurrencydialog.cpp:397
+#: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
 msgstr "Seleção de Moeda Base"
 
-#: maincurrencydialog.cpp:437
+#: maincurrencydialog.cpp:434
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
 msgstr "Taxas históricas para %s encontradas, mas \"Usar histórico de moedas\" nas opções está desativado:\n"
 "clique em não e habilite a opção ou clique em sim para remover todas as taxas históricas de %s"
 
-#: maincurrencydialog.cpp:449
+#: maincurrencydialog.cpp:446
 #, c-format
 msgid "Currency History Options: %s "
 msgstr "Opções do Histórico da Moeda: %s"
 
-#: maincurrencydialog.cpp:505
+#: maincurrencydialog.cpp:502
 msgid "Unable to update history currency rates. Please update them manually!"
 msgstr "Não foi possível atualizar o histórico de taxas de câmbios. Por favor, atualize-os manualmente!"
 
-#: maincurrencydialog.cpp:506 maincurrencydialog.cpp:658
-#: maincurrencydialog.cpp:693 maincurrencydialog.cpp:729
-#: maincurrencydialog.cpp:835
+#: maincurrencydialog.cpp:503 maincurrencydialog.cpp:657
+#: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
+#: maincurrencydialog.cpp:834
 msgid "Currency history error"
 msgstr "Erro no histórico da moeda"
 
-#: maincurrencydialog.cpp:538
+#: maincurrencydialog.cpp:535
 msgid "Set as Base Currency"
 msgstr "Definir como moeda principal"
 
-#: maincurrencydialog.cpp:539
+#: maincurrencydialog.cpp:536
 msgid "Online Update Currency Rate"
 msgstr "Atualizar Taxa de Câmbio Online"
 
-#: maincurrencydialog.cpp:658
+#: maincurrencydialog.cpp:657
 msgid "No currency selected!"
 msgstr "Nenhuma moeda selecionada!"
 
-#: maincurrencydialog.cpp:664
+#: maincurrencydialog.cpp:663
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Você quer adicionar datas também sem nenhuma transação?"
 
-#: maincurrencydialog.cpp:691
+#: maincurrencydialog.cpp:690
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr "Não é possível fazer o download %s das taxas de câmbio"
 
-#: maincurrencydialog.cpp:727
+#: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr "Não é possível fazer o download do histórico para o símbolo %s. Taxas de histórico não disponíveis!"
 
-#: maincurrencydialog.cpp:789 optionsettingsgeneral.cpp:300
+#: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr "Alterar a moeda base irá apagar todas as taxas de histórico, continuar?"
 
-#: maincurrencydialog.cpp:813
+#: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
 msgstr "Você quer atualizar as taxas de câmbio de hoje?"
 
-#: maincurrencydialog.cpp:834
+#: maincurrencydialog.cpp:833
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Não foi possível baixar histórico para o símbolo de base %s. Taxas de histórico não estão disponíveis!"
 
-#: maincurrencydialog.cpp:877 stockspanel.cpp:395 util.cpp:681
+#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:681
 msgid "Could not find base currency symbol!"
 msgstr "Não foi possível encontrar o símbolo padrão da moeda!"
 
@@ -4705,9 +4705,17 @@ msgstr "Ignorar Transações &Futuras"
 msgid "Ignore Future transactions"
 msgstr "Ignorar Transações Futuras"
 
+#: mmframe.cpp:1586
+msgid "Show T&ooltips"
+msgstr ""
+
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
 msgstr "Mostrar Dicas"
+
+#: mmframe.cpp:1588
+msgid "Show &Money Tips"
+msgstr ""
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
