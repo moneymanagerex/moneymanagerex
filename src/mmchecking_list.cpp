@@ -1599,7 +1599,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
     long last = static_cast<long>(GetItemCount() - 1);
     if (m_selected_id.size() > 1) {
-
+        SetEvtHandlerEnabled(false);
         for (long i = 0; i < last; i++)
         {
             long cursel = GetNextItem(-1
@@ -1608,6 +1608,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
                 SetItemState(cursel, 0
                     , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
         }
+        SetEvtHandlerEnabled(true);
     }
 
     long selectedItem = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
