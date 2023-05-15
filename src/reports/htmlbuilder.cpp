@@ -623,17 +623,23 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         htmlChart += ", plotOptions: { pie: { customScale: 0.8 } }";
 
         const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return chart_%s[opts.dataPointIndex] }\n", divid);
-        toolTipFormatter = wxString::Format(", y: { formatter: %s }", pieFunctionToolTip); 
+        toolTipFormatter = wxString::Format(", y: { formatter: %s }", pieFunctionToolTip);
     }
-
+    
     htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }\n", toolTipFormatter);
-
+    
     // Turn off data labels for bar charts when they get too cluttered
     if ((gd.type == GraphData::BAR || gd.type == GraphData::STACKEDAREA) && gd.labels.size() > 10) 
     {
         htmlChart += ", dataLabels: { enabled: false }";
     } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
     {
+        htmlChart += ", legend: { formatter: function(seriesName, opts){ "
+            "var percent = (+opts.w.globals.seriesPercent[opts.seriesIndex]).toFixed(1); "
+            "percent = new Array((5 - percent.length)*2).join('&nbsp;') + percent; "
+            + wxString::Format("var valueLength = chart_%s.reduce(function(a, b) {return (a.toString().length > b.toString().length ? a : b) }, []).toString().length; var value = chart_%s[opts.seriesIndex]; ", divid, divid)
+            + "if (valueLength > value.toString().length) { value = new Array((valueLength - value.toString().length)*2).join('&nbsp;') + (parseInt(value) == value ? value : '&nbsp;' + value); } "
+            "return['<strong>', percent + '%&nbsp;', value, '&nbsp;</strong>', seriesName] } }\n";
         htmlChart += ", dataLabels: { enabled: true, style: { fontSize: '16px' }, dropShadow: { enabled: false } }\n";
     }
 
