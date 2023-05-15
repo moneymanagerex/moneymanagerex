@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 11:14\n"
+"PO-Revision-Date: 2023-05-15 12:21\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4707,7 +4707,7 @@ msgstr "Jövőbeni ügyletek figyelmen kívül hagyása"
 
 #: mmframe.cpp:1586
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "Elem&leírások megjelenítése"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
@@ -4715,7 +4715,7 @@ msgstr "Elemleírások megjelenítése"
 
 #: mmframe.cpp:1588
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "&Pénzzel kapcsolatos tippek megjelenítése"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
