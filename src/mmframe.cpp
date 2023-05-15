@@ -1583,9 +1583,9 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
         _("Ignore F&uture Transactions"), _("Ignore Future transactions"), wxITEM_CHECK);
     wxMenuItem* menuItemShowToolTips = new wxMenuItem(menuView, MENU_VIEW_SHOW_TOOLTIPS,
-        _("Show Tooltips"), _("Show Tooltips"), wxITEM_CHECK);
+        _("Show T&ooltips"), _("Show Tooltips"), wxITEM_CHECK);
     wxMenuItem* menuItemShowMoneyTips = new wxMenuItem(menuView, MENU_VIEW_SHOW_MONEYTIPS,
-        _("Show Money Tips"), _("Show Money Tips"), wxITEM_CHECK);
+        _("Show &Money Tips"), _("Show Money Tips"), wxITEM_CHECK);
 
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
