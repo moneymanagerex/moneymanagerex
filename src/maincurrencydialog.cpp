@@ -427,6 +427,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                     buttonDelUnusedHistory_->Enable(m_currency_id != baseCurrencyID);
                     valueDatePicker_->Enable(m_currency_id != baseCurrencyID);
                     valueTextBox_->Enable(m_currency_id != baseCurrencyID);
+                    valueTextBox_->SetValue(0, Model_Currency::instance().get(m_currency_id), 6);
                 }
                 else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id)).size() > 0)
                 {
@@ -621,7 +622,7 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
     wxDateTime dt;
     double dPrice = 0.0;
     wxString currentPriceStr = valueTextBox_->GetValue().Trim();
-    if (!Model_Currency::fromString(currentPriceStr, dPrice, Model_Currency::GetBaseCurrency()) || (dPrice < 0.0))
+    if (!Model_Currency::fromString(currentPriceStr, dPrice, Model_Currency::instance().get(m_currency_id)) || (dPrice < 0.0))
         return mmErrorDialogs::ToolTip4Object(valueTextBox_, _("Invalid Entry"), _("Amount"));
     Model_CurrencyHistory::instance().addUpdate(m_currency_id, valueDatePicker_->GetValue(), dPrice, Model_CurrencyHistory::MANUAL);
 
