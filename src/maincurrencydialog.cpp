@@ -620,9 +620,8 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
     wxString listStr;
     wxDateTime dt;
     double dPrice = 0.0;
-    Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     wxString currentPriceStr = valueTextBox_->GetValue().Trim();
-    if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
+    if (!Model_Currency::fromString(currentPriceStr, dPrice, Model_Currency::GetBaseCurrency()) || (dPrice < 0.0))
         return mmErrorDialogs::ToolTip4Object(valueTextBox_, _("Invalid Entry"), _("Amount"));
     Model_CurrencyHistory::instance().addUpdate(m_currency_id, valueDatePicker_->GetValue(), dPrice, Model_CurrencyHistory::MANUAL);
 
