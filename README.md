@@ -194,6 +194,12 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 
 [GPL](LICENSE)
 
+
+## Translations
+
+[![CrowdIn](https://badges.awesome-crowdin.com/translation-12682419-342055.png)](https://crowdin.com/project/moneymanagerex)
+
+
 ### Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/moneymanagerex/moneymanagerex.svg)](https://starchart.cc/moneymanagerex/moneymanagerex)
