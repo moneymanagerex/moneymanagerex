@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 11:14\n"
+"PO-Revision-Date: 2023-05-20 10:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5261,7 +5261,7 @@ msgstr "Gravar ficheiro de base de dados como"
 
 #: mmframe.cpp:2388
 msgid "Can't copy file to itself"
-msgstr "Não é possível copiar ficheiro para ele próprio"
+msgstr "Não é possível copiar ficheiro para si próprio"
 
 #: mmframe.cpp:2401
 msgid "Enter password for new database"
