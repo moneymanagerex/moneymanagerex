@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-23 13:13\n"
+"PO-Revision-Date: 2023-05-23 14:10\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4716,7 +4716,7 @@ msgstr "Mostrar Sugestões"
 
 #: mmframe.cpp:1588
 msgid "Show &Money Tips"
-msgstr "Mostrar &Sugestões sobre Dinheiro"
+msgstr "Mostrar Sugestões sobre &Dinheiro"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
