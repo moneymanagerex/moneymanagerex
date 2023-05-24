@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-23 14:10\n"
+"PO-Revision-Date: 2023-05-24 09:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1485,7 +1485,7 @@ msgstr "Ver Resumo das Categorias Orçamentais"
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr "Ano Financeiro: %s - %li"
+msgstr "Ano Fiscal: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
@@ -1899,7 +1899,7 @@ msgstr "Ver Ano Atual"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr "Ver Ano Financeiro Atual"
+msgstr "Ver Ano Fiscal Atual"
 
 #: constants.cpp:204
 msgid "View Last Year"
@@ -1907,7 +1907,7 @@ msgstr "Ver Último Ano"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr "Ver Último Ano Financeiro"
+msgstr "Ver Último Ano Fiscal"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
@@ -4676,11 +4676,11 @@ msgstr "Mostrar/ocultar Transações eliminadas na árvore de navegação"
 
 #: mmframe.cpp:1578
 msgid "Budgets: As Financial &Years"
-msgstr "Orçamentos: Como &Anos Financeiros"
+msgstr "Orçamentos: Como &Anos Fiscais"
 
 #: mmframe.cpp:1578
 msgid "Display Budgets in Financial Year Format"
-msgstr "Exibir Orçamentos no Formato de Ano Financeiro"
+msgstr "Exibir Orçamentos no Formato de Ano Fiscal"
 
 #: mmframe.cpp:1580
 msgid "Budgets: &Include Transfers in Totals"
@@ -5993,7 +5993,7 @@ msgstr "Selecione para usar o histórico da moeda (uma taxa para cada dia), desm
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
-msgstr "Exercício Financeiro"
+msgstr "Ano Fiscal"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
@@ -6001,7 +6001,7 @@ msgstr "Dia de Início"
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
-msgstr "Indique o Dia inicial do exercício financeiro"
+msgstr "Indique o Dia inicial do ano fiscal"
 
 #: optionsettingsgeneral.cpp:197
 msgid "Start Month"
@@ -6009,7 +6009,7 @@ msgstr "Mês de Início"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Specify month for start of financial year"
-msgstr "Indique o Mês inicial do exercício financeiro"
+msgstr "Indique o Mês inicial do ano fiscal"
 
 #: optionsettingsgeneral.cpp:214
 msgid "Use Original Date when Pasting Transactions"
@@ -6274,7 +6274,7 @@ msgstr "Opções Transação/Orçamento"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
-msgstr "Ver Orçamentos como Anos Financeiros"
+msgstr "Ver Orçamentos como Anos Fiscais"
 
 #: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
@@ -6604,7 +6604,7 @@ msgstr "Realocar Beneficiário"
 #: reports/budget.cpp:90
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr "Ano Financeiro: %s - %i"
+msgstr "Ano Fiscal: %s - %i"
 
 #: reports/budget.cpp:100
 #, c-format
@@ -6875,15 +6875,15 @@ msgstr "Último Ano"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
-msgstr "Exercício Financeiro Atual"
+msgstr "Ano Fiscal Atual"
 
 #: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
-msgstr "Exercício Financeiro Atual até à Data"
+msgstr "Ano Fiscal Atual até à Data"
 
 #: reports/mmDateRange.cpp:236
 msgid "Last Financial Year"
-msgstr "Último Exercício Financeiro"
+msgstr "Último Ano Fiscal"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6911,7 +6911,7 @@ msgstr "Desde o Início Deste Ano"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr "Desde o Início do Exercício Financeiro"
+msgstr "Desde o Início do Ano Fiscal"
 
 #: reports/myusage.cpp:26
 msgid "MMEX Usage Frequency"
