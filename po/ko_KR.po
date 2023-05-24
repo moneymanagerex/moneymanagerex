@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-24 15:12\n"
+"PO-Revision-Date: 2023-05-24 16:15\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -2536,7 +2536,7 @@ msgstr "무효"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:506 mmchecking_list.cpp:1053
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:42
 msgid "Follow Up"
-msgstr "따르기"
+msgstr "후속조치"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
@@ -2575,7 +2575,7 @@ msgstr "출금"
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:33
 #: reports/forecast.cpp:79
 msgid "Deposit"
-msgstr "수입"
+msgstr "입금"
 
 #: filtertransdialog.cpp:588 filtertransdialog.cpp:801
 #: filtertransdialog.cpp:1358
@@ -3402,7 +3402,7 @@ msgstr "열 제목 내보내기"
 
 #: import_export/univcsvdialog.cpp:396
 msgid "Positive values are deposits"
-msgstr "양수 값은 수입입니다"
+msgstr "양수 값은 입금입니다"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
@@ -5608,7 +5608,7 @@ msgstr "대출"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr "기한"
+msgstr "정기"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
