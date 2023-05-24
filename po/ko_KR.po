@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 14:17\n"
+"PO-Revision-Date: 2023-05-24 15:12\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -5975,7 +5975,7 @@ msgstr "회계 연도"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
-msgstr "시작일"
+msgstr "시작 일"
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
@@ -6228,7 +6228,7 @@ msgstr "시작 시 새 MMEX 버전을 사용할 수 있는지 자동으로 확�
 
 #: optionsettingsnet.cpp:174 wizard_update.cpp:114
 msgid "Stable"
-msgstr "안정된된"
+msgstr "안정된"
 
 #: optionsettingsnet.cpp:175 wizard_update.cpp:114
 msgid "Unstable"
