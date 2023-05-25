@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-25 06:27\n"
+"PO-Revision-Date: 2023-05-25 07:36\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -5386,7 +5386,7 @@ msgstr "요약"
 
 #: mmframereport.cpp:149 reports/categexp.cpp:303
 msgid "Where the Money Goes"
-msgstr "돈이 가는 곳"
+msgstr "나가는 돈"
 
 #: mmframereport.cpp:152 reports/categexp.cpp:309
 msgid "Where the Money Comes From"
@@ -7431,7 +7431,7 @@ msgstr "이체 대상"
 
 #: transactionsupdatedialog.cpp:225
 msgid "Append"
-msgstr "첨부부"
+msgstr "첨부"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
