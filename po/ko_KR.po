@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-24 16:15\n"
+"PO-Revision-Date: 2023-05-25 02:10\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "계좌 번호:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
-msgstr "이 계정과 연관된 계정 번호를 입력하세요."
+msgstr "이 계정과 연관된 계좌 번호를 입력하세요."
 
 #: accountdialog.cpp:203
 msgid "Held At:"
@@ -232,7 +232,7 @@ msgstr "최소 잔액:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0 입력하세요."
+msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0으로 설정"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -580,7 +580,7 @@ msgstr "자산 삭제 확인"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX를 사용하면 자동차, 주택, 토지 등과 같은 고정 자산을 추적할 수 있습니다. 각 자산은 매년 특정 비율만큼 가치를 상승시키거나, 매년 특정 비율만큼 가치를 하락시키거나, 가치의 변화를 일으키지 않을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
+msgstr "MMEX를 사용하면 자동차, 집, 토지 등의 고정 자산을 추적할 수 있습니다. 각 자산은 연간 일정 비율로 가치 상승, 연간 일정 비율로 가치 하락 또는 가치 변동이 없을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
@@ -657,7 +657,7 @@ msgstr "물음표(?)를 사용하여 단일 문자를 찾습니다. 예를 들�
 #: assetspanel.cpp:513 filtertransdialog.cpp:637 mmcheckingpanel.cpp:480
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr "별표(*)를 사용하여 임의의 문자를 찾을 수 있습니다. 예를 들어 s*d는 'sad' 와 'started'를 찾을 수 있습니다."
+msgstr "별표(*)를 사용하여 임의의 문자를 찾을 수 있습니다. 예를 들어 s*d는 'sad'와 'started'를 찾을 수 있습니다."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:638 mmcheckingpanel.cpp:481
 #: payeedialog.cpp:140
@@ -4376,7 +4376,7 @@ msgstr "치명적인 오류가 발생했습니다.\n"
 
 #: mmframe.cpp:265
 msgid "Navigation"
-msgstr "내비게이션"
+msgstr "탐색기"
 
 #: mmframe.cpp:266
 msgid "Toolbar"
@@ -4399,7 +4399,7 @@ msgstr "신용 카드 계정"
 #: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr "기간 계정"
+msgstr "정기 계정"
 
 #: mmframe.cpp:479 mmframe.cpp:748
 msgid "Stock Portfolios"
@@ -4633,7 +4633,7 @@ msgstr "툴바 보이기/숨기기"
 
 #: mmframe.cpp:1572
 msgid "&Navigation"
-msgstr "내비게이션(&N)"
+msgstr "탐색기(&N)"
 
 #: mmframe.cpp:1572
 msgid "Show/Hide the Navigation tree control"
@@ -6386,7 +6386,7 @@ msgstr "도구모음 아이콘 크기"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
-msgstr "내비게이션 아이콘 크기"
+msgstr "탐색기 아이콘 크기"
 
 #: optionsettingsview.cpp:309
 msgid "Others Icon Size"
@@ -7965,9 +7965,9 @@ msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr "기간 및 자산 계정은 전문 은행 계정입니다.\n"
-"일반적으로 일반적인 수입원 밖에서 정기적으로 돈이 들어오고 나가는 \n"
-"자산 또는 정기 예금 및 채권을 모니터링하기 위한 것입니다."
+msgstr "정기 및 자산 계정은 전문화된 은행 계정입니다.\n"
+"이들은 보통 일반 수입 스트림 외부에서 주기적인 입출금이 발생하는 \n"
+"자산 또는 정기 예금 및 채권을 모니터링하는 데 사용됩니다."
 
 #: wizard_newaccount.cpp:165
 msgid "Base Account Currency Not set."
