@@ -199,7 +199,7 @@ void mmMainCurrencyDialog::CreateControls()
 
     currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE | wxDATAVIEW_COL_RESIZABLE);
     currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, wxLIST_AUTOSIZE_USEHEADER);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
@@ -251,19 +251,16 @@ void mmMainCurrencyDialog::CreateControls()
     // Add first column
     col0.SetId(0);
     col0.SetText(_("Date"));
-    col0.SetWidth(90);
     valueListBox_->InsertColumn(0, col0);
 
     // Add second column
     col1.SetId(1);
     col1.SetText(_("Price"));
-    col1.SetWidth(100);
     valueListBox_->InsertColumn(1, col1);
 
     // Add third column
     col2.SetId(2);
     col2.SetText(_("Type"));
-    col2.SetWidth(90);
     valueListBox_->InsertColumn(2, col2);
 
     //History Buttons
@@ -430,6 +427,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                     buttonDelUnusedHistory_->Enable(m_currency_id != baseCurrencyID);
                     valueDatePicker_->Enable(m_currency_id != baseCurrencyID);
                     valueTextBox_->Enable(m_currency_id != baseCurrencyID);
+                    valueTextBox_->SetValue(0, Model_Currency::instance().get(m_currency_id), 6);
                 }
                 else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id)).size() > 0)
                 {
@@ -611,6 +609,8 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
             idx++;
         }
         valueListBox_->RefreshItems(0, --idx);
+        valueListBox_->SetColumnWidth(0, wxLIST_AUTOSIZE);
+        valueListBox_->SetColumnWidth(1, wxLIST_AUTOSIZE);
     }
 }
 
@@ -621,9 +621,8 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
     wxString listStr;
     wxDateTime dt;
     double dPrice = 0.0;
-    Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     wxString currentPriceStr = valueTextBox_->GetValue().Trim();
-    if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
+    if (!Model_Currency::fromString(currentPriceStr, dPrice, Model_Currency::instance().get(m_currency_id)) || (dPrice < 0.0))
         return mmErrorDialogs::ToolTip4Object(valueTextBox_, _("Invalid Entry"), _("Amount"));
     Model_CurrencyHistory::instance().addUpdate(m_currency_id, valueDatePicker_->GetValue(), dPrice, Model_CurrencyHistory::MANUAL);
 

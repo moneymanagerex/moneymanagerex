@@ -1038,7 +1038,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     wxString sMsg;
-    wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?")
+    wxMessageDialog msgDlg(this, _("Do you want to import all transaction?")
         + "\n" + _("All missing account, payees and categories will be created.")
         , _("Confirm Import")
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);

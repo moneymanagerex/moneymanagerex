@@ -218,9 +218,9 @@ void OptionSettingsView::Create()
     wxButton* reset = new wxButton(view_panel, wxID_REDO, _("Default"), wxDefaultPosition, wxDefaultSize, 0);
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(reset, g_flagsH);
-    // UI Appearance
+    // User Interface (UI) Appearance
 
-    wxStaticBox* iconStaticBox = new wxStaticBox(view_panel, wxID_STATIC, _("UI Appearance"));
+    wxStaticBox* iconStaticBox = new wxStaticBox(view_panel, wxID_STATIC, _("User Interface"));
     SetBoldFont(iconStaticBox);
 
     wxStaticBoxSizer* iconStaticBoxSizer = new wxStaticBoxSizer(iconStaticBox, wxVERTICAL);
@@ -238,7 +238,7 @@ void OptionSettingsView::Create()
 
     //
     wxArrayString theme_mode_values;
-    theme_mode_values.Add(_("Auto"));
+    theme_mode_values.Add(_("System"));
     theme_mode_values.Add(_("Light"));
     theme_mode_values.Add(_("Dark"));
 
@@ -246,7 +246,7 @@ void OptionSettingsView::Create()
                         , wxDefaultSize, theme_mode_values);
     mmToolTip(m_theme_mode, _("Specify preferred theme variant to use if supported"));
     m_theme_mode->SetSelection(Option::instance().getThemeMode());
-    view_sizer2->Add(new wxStaticText(view_panel, wxID_STATIC, _("Theme Mode")), g_flagsH);
+    view_sizer2->Add(new wxStaticText(view_panel, wxID_STATIC, _("Theme")), g_flagsH);
     view_sizer2->Add(m_theme_mode, g_flagsH);
 
     //
@@ -275,7 +275,7 @@ void OptionSettingsView::Create()
     font_choice.Add(_("Large"));
     font_choice.Add(_("Huge"));
 
-    view_sizer2->Add(new wxStaticText(view_panel, wxID_STATIC, _("Font size")), g_flagsH);
+    view_sizer2->Add(new wxStaticText(view_panel, wxID_STATIC, _("Font Size")), g_flagsH);
     m_font_size_chooser = new wxChoice(view_panel, wxID_RESIZE_FRAME, wxDefaultPosition
         , wxDefaultSize, font_choice);
     m_font_size_chooser->SetSelection(Option::instance().getFontSize());

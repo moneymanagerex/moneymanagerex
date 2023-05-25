@@ -144,6 +144,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
 const wxString mmex::weblink::GA             = "http://www.google-analytics.com/collect?";
 const wxString mmex::weblink::WebSite        = mmex::weblink::addReferralToURL("https://moneymanagerex.org", "Website");
 const wxString mmex::weblink::Releases       = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
+const wxString mmex::weblink::Latest         = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases/latest";
 const wxString mmex::weblink::Download       = mmex::weblink::addReferralToURL("https://moneymanagerex.org/docs/downloads/latest", "Download");
 const wxString mmex::weblink::News           = mmex::weblink::addReferralToURL("https://moneymanagerex.org/blog/", "News");
 const wxString mmex::weblink::NewsRSS        = "https://moneymanagerex.org/blog/index.xml";
@@ -167,7 +168,7 @@ const wxString mmex::weblink::Crowdin        = "https://crowdin.com/project/mone
 const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";
 
 // Yahoo API
-const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
+const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v6/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
 /*"ValidRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]
    Valid intervals: [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo]*/
 const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo.com/v8/finance/chart/%s?%s&fields=currency";

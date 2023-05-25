@@ -317,8 +317,11 @@ struct Version
 //--------------
 void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
 {
+    bool is_stable = mmex::version::isStable();
+    const auto url = is_stable ? mmex::weblink::Latest : mmex::weblink::Releases;
+
     wxString resp;
-    CURLcode err_code = http_get_data(mmex::weblink::Releases, resp);
+    CURLcode err_code = http_get_data(url, resp);
     if (err_code != CURLE_OK)
     {
         if (!bSilent)
@@ -332,6 +335,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
 
     // https://developer.github.com/v3/repos/releases/#list-releases-for-a-repository
 
+    resp = is_stable ? wxString::Format("[%s]", resp) : resp;
     Document json_releases;
     ParseResult res = json_releases.Parse(resp.utf8_str());
     if (!res || !json_releases.IsArray())
@@ -348,7 +352,6 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
 
     wxLogDebug("======= mmUpdate::checkUpdates =======");
 
-    bool is_stable = mmex::version::isStable();
     bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
     const int _stable = is_stable ? update_stable : 0;
     const wxString current_tag = ("v" + mmex::version::string).Lower();

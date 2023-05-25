@@ -129,7 +129,9 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 
        this->AutoComplete(auto_complete);
        if (!auto_complete.empty()) {
-           this->Insert(auto_complete, 0);
+           wxString selection = GetValue();
+           Set(auto_complete);
+           if (!selection.IsEmpty()) SetStringSelection(selection);
        }
        if (auto_complete.GetCount() == 1) {
            Select(0);
@@ -271,6 +273,13 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
     , accountID_(accountID)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    parent->SetEvtHandlerEnabled(false);
+    Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 /* --------------------------------------------------------- */
@@ -291,6 +300,13 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
     , payeeID_(payeeID)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    parent->SetEvtHandlerEnabled(false);
+    Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 void mmComboBoxUsedPayee::init()
@@ -302,6 +318,13 @@ mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize
     : mmComboBox(parent, id, size)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    parent->SetEvtHandlerEnabled(false);
+    Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 /* --------------------------------------------------------- */
@@ -315,6 +338,13 @@ mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize s
     : mmComboBox(parent, id, size)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    parent->SetEvtHandlerEnabled(false);
+    Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 /* --------------------------------------------------------- */
@@ -341,6 +371,13 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
     , catID_(catID)
 {
     init();
+    wxArrayString choices;
+    for (const auto& item : all_elements_) {
+        choices.Add(item.first);
+    }
+    parent->SetEvtHandlerEnabled(false);
+    Set(choices);
+    parent->SetEvtHandlerEnabled(true);
 }
 
 int mmComboBoxCategory::mmGetCategoryId() const

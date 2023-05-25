@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 set(MMEX_VERSION 1.6.4)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 4)
+SET(MMEX_VERSION_BETA 6)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
@@ -612,7 +612,8 @@ install(FILES
     resources/sorttable.js
     resources/jquery.min.js
     resources/home_page.htt
-    resources/kaching.wav
+    resources/drop.wav
+    resources/cash.wav
     resources/mmex.png
     resources/mmex.svg
     DESTINATION "${MMEX_RES_DIR}")
