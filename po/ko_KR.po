@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-25 05:30\n"
+"PO-Revision-Date: 2023-05-25 06:27\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1604,7 +1604,7 @@ msgstr "예산 연도가 이미 존재합니다"
 
 #: categdialog.cpp:197 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
-msgstr "분류"
+msgstr "범주"
 
 #: categdialog.cpp:268 mmframe.cpp:1685
 msgid "Reassign all categories to another category"
@@ -5390,7 +5390,7 @@ msgstr "돈이 가는 곳"
 
 #: mmframereport.cpp:152 reports/categexp.cpp:309
 msgid "Where the Money Comes From"
-msgstr "돈의 출처"
+msgstr "들어오는 돈"
 
 #: mmframereport.cpp:160
 msgid "Forecast Report"
