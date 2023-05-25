@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-25 02:10\n"
+"PO-Revision-Date: 2023-05-25 03:28\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -2541,7 +2541,7 @@ msgstr "후속조치"
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
 msgid "Duplicate"
-msgstr "복제"
+msgstr "중복"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:1492
 msgid "All Except Reconciled"
@@ -7695,7 +7695,7 @@ msgstr "버전: %s"
 #: util.cpp:1305
 #, c-format
 msgid "Built on: %s %s"
-msgstr "빌드 됨: %s %s"
+msgstr "빌드 시점: %s %s"
 
 #: util.cpp:1306
 #, c-format
@@ -7705,7 +7705,7 @@ msgstr "데이터베이스 버전: %d"
 #: util.cpp:1313
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr "Git 명령: %s (%s)"
+msgstr "Git 커밋: %s (%s)"
 
 #: util.cpp:1316
 #, c-format
