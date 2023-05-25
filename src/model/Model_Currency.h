@@ -85,7 +85,7 @@ public:
     /** convert value to a string with required precision. Currency is used only for percision */
     static const wxString toStringNoFormatting(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** convert value to a currency formatted string with required precision */
-    static const wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
+    static const wxString toString(const double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** Reset currency string like 1.234,56 to standard number format like 1234.56 */
     static const wxString fromString2CLocale(const wxString &s, const Data* currency = Model_Currency::GetBaseCurrency());
     static bool fromString(wxString s, double& val, const Data* currency = GetBaseCurrency());
