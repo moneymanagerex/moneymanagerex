@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-25 04:30\n"
+"PO-Revision-Date: 2023-05-25 05:30\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -962,7 +962,7 @@ msgstr "사용자에게 지불 입력 요청"
 
 #: billsdepositsdialog.cpp:473
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "사용자가 '지급된 날짜'에 이 거래를 입력하도록 요청했습니다"
+msgstr "사용자가 '지불 날짜'에 이 거래를 입력하도록 요청했습니다"
 
 #: billsdepositsdialog.cpp:476
 msgid "Grant automatic execute"
@@ -7011,7 +7011,7 @@ msgstr "단일 주식 단위에 대한 현재 주가 입력"
 
 #: sharetransactiondialog.cpp:273
 msgid "Enter any commission paid"
-msgstr "지급된 수수료 입력"
+msgstr "지불한 수수료 입력"
 
 #: sharetransactiondialog.cpp:279
 msgid "Share Lot"
