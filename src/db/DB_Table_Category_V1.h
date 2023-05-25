@@ -301,7 +301,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
 
         template<typename C>
-        bool match(const C &c) const
+        bool match(const C &) const
         {
             return false;
         }

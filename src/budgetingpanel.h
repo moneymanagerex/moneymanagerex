@@ -101,7 +101,7 @@ private:
         ICON_FOLLOWUP
     };
 
-    mmGUIFrame* m_frame;
+    mmGUIFrame* m_frame = nullptr;
     std::vector<std::pair<int, int> > budget_;
     std::map<int, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
     std::map<int, std::pair<double, double> > budgetTotals_;
