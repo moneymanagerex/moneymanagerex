@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-24 17:14\n"
+"PO-Revision-Date: 2023-05-25 08:41\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1914,11 +1914,11 @@ msgstr "Vezi ultimul an financiar"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Vizualizează începând de la data ultimului extras"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "TOATE"
 
 #: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -2024,7 +2024,7 @@ msgstr "Caracterul de grupare nu poate fi identic cu caracterul zecimal"
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Afișat ca: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
@@ -2044,7 +2044,7 @@ msgstr "Atributul lui"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Selectați elementul cu care este asociat câmpul personalizat"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -2102,15 +2102,15 @@ msgstr "Introduceți opțiunile pentru acest câmp, separate cu punct și virgul
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
-msgstr ""
+msgstr "Scalare zecimale"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Introduceți scala de zecimale permisă"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
-msgstr ""
+msgstr "Coloana panoului"
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
@@ -2127,15 +2127,15 @@ msgstr "Dorești să continui?"
 
 #: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Modificare câmp personalizat"
 
 #: customfieldeditdialog.cpp:258
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Ați modificat opțiunile: cele eliminate vor fi șterse!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Câmp personalizat nou/editare"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
@@ -2147,7 +2147,7 @@ msgstr "Proprietăți"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Personalizare câmpuri personalizate"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2168,7 +2168,7 @@ msgstr "Această funcție va căuta și înlocui în masă valorile câmpului pe
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "Confirmați actualizarea conținutului câmpului personalizat"
 
 #: customfieldlistdialog.cpp:198
 msgid "Find what"
@@ -2178,12 +2178,13 @@ msgstr "Găsește"
 #: customfieldlistdialog.cpp:210 customfieldlistdialog.cpp:216
 #: customfieldlistdialog.cpp:231
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Actualizare conținut câmp personalizat"
 
 #: customfieldlistdialog.cpp:202
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Doriți să actualizați conținutul gol?\n"
+"Apăsați \"nu\" dacă doriți să întrerupeți procedura de înlocuire!"
 
 #: customfieldlistdialog.cpp:210
 msgid "Replace with"
@@ -2199,13 +2200,13 @@ msgstr "Doriți să actualizați la gol?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%zu apariție găsită și înlocuită!"
+msgstr[1] "%zu apariții găsite și înlocuite!"
+msgstr[2] "%zu apariții găsite și înlocuite!"
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&Actualizare conținut în masă "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2529,7 +2530,7 @@ msgstr "Înapoi"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:500 mmchecking_list.cpp:1064
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:39
 msgid "Unreconciled"
-msgstr ""
+msgstr "Nereconciliat"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:502 mmhomepage.cpp:534
 #: mmhomepage.cpp:705 model/Model_Billsdeposits.cpp:40
@@ -2545,7 +2546,7 @@ msgstr "Nulă"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:506 mmchecking_list.cpp:1053
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:42
 msgid "Follow Up"
-msgstr ""
+msgstr "Urmărire"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
@@ -2554,7 +2555,7 @@ msgstr "Duplicată"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:1492
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "Toate cu excepția celor reconciliate"
 
 #: filtertransdialog.cpp:483 transactionsupdatedialog.cpp:117
 msgid "Specify"
@@ -2627,11 +2628,11 @@ msgstr "Specificați cum ar trebui grupat raportul"
 
 #: filtertransdialog.cpp:693 filtertransdialog.cpp:1603
 msgid "Combine Splits"
-msgstr ""
+msgstr "Combinați înregistrările divizate"
 
 #: filtertransdialog.cpp:697
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Afișați tranzacțiile divizate ca o singură linie"
 
 #: filtertransdialog.cpp:705
 msgid "Settings"
@@ -2639,11 +2640,11 @@ msgstr "Setări"
 
 #: filtertransdialog.cpp:719
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Salvați valorile active în selecția actuală de presetări"
 
 #: filtertransdialog.cpp:724
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Ștergeți selecția curentă de presetări"
 
 #: filtertransdialog.cpp:893 filtertransdialog.cpp:926
 #: filtertransdialog.cpp:1305 reports/myusage.cpp:102 webappdialog.cpp:185
@@ -2662,7 +2663,7 @@ msgstr "Această denumire nu se potrivește în prezent cu niciun beneficiar.\n"
 
 #: filtertransdialog.cpp:1045
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Ascunde coloanele raportului"
 
 #: filtertransdialog.cpp:1179 mmframe.cpp:1235
 msgid "The selected item will be deleted"
