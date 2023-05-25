@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-25 07:36\n"
+"PO-Revision-Date: 2023-05-25 09:46\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1906,7 +1906,7 @@ msgstr "지난 회계연도 보기"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr "대차표 날짜 이후 보기"
+msgstr "정산 날짜 이후 보기"
 
 #: constants.cpp:208
 msgid "ALL"
@@ -3961,7 +3961,7 @@ msgstr "팁: 옵션 대화 상자에서 옵션을 변경하여 MMEX의 일부 �
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "팁: 임의 조건 집합의 거래내역이 있는 대차표를 인쇄하려면 거래 필터를 사용하여 원하는 거래내역을 선택한 다음 메뉴에서 인쇄를 수행합니다."
+msgstr "팁: 임의 조건 집합의 거래내역이 있는 명세서를 인쇄하려면 거래 필터를 사용하여 원하는 거래내역을 선택한 다음 메뉴에서 인쇄를 수행합니다."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
