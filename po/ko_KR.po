@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-27 00:43\n"
+"PO-Revision-Date: 2023-05-28 04:17\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -5308,7 +5308,7 @@ msgstr "내보낼 HTML 파일 선택"
 
 #: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
-msgstr "Yahoo에서 주가 다운로드"
+msgstr "Yahoo에서 주가 내려받기"
 
 #: mmframe.cpp:3332
 msgid "Please wait..."
