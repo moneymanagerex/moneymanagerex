@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-24 18:14\n"
+"PO-Revision-Date: 2023-05-28 15:26\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4448,7 +4448,7 @@ msgstr "Todas as Transações"
 #: mmframe.cpp:752 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
-msgstr "Contas de Ações"
+msgstr "Contas de Participações"
 
 #: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
@@ -4660,11 +4660,11 @@ msgstr "Ver/Esconder a Árvore de Navegação"
 
 #: mmframe.cpp:1574
 msgid "&Display Share Accounts"
-msgstr "&Exibir Contas de Ações"
+msgstr "&Exibir Contas de Participações"
 
 #: mmframe.cpp:1574
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "Mostrar/ocultar Contas de Ações na árvore de navegação"
+msgstr "Mostrar/ocultar Contas de Participações na árvore de navegação"
 
 #: mmframe.cpp:1576
 msgid "&Display Deleted Transactions"
@@ -7980,7 +7980,7 @@ msgstr "As contas bancárias gerais cobrem uma grande variedade de tipos de cont
 #: wizard_newaccount.cpp:144
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Contas de Investimento e de Ações são especializadas em investimentos como fundos mútuos e ações, respetivamente."
+msgstr "Contas de Investimento e de Participações são contas especializadas em investimentos como fundos mútuos e ações, associados a estas."
 
 #: wizard_newaccount.cpp:149
 msgid "Term and Asset accounts are specialized bank accounts.\n"
