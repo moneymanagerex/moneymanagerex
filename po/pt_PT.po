@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-28 15:26\n"
+"PO-Revision-Date: 2023-05-28 16:38\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4448,7 +4448,7 @@ msgstr "Todas as Transações"
 #: mmframe.cpp:752 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
-msgstr "Contas de Participações"
+msgstr "Contas de Títulos"
 
 #: mmframe.cpp:768 mmframe.cpp:1701 mmframe.cpp:2713
 msgid "Budget Setup"
@@ -4660,11 +4660,11 @@ msgstr "Ver/Esconder a Árvore de Navegação"
 
 #: mmframe.cpp:1574
 msgid "&Display Share Accounts"
-msgstr "&Exibir Contas de Participações"
+msgstr "&Exibir Contas de Títulos"
 
 #: mmframe.cpp:1574
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "Mostrar/ocultar Contas de Participações na árvore de navegação"
+msgstr "Mostrar/ocultar Contas de Títulos na árvore de navegação"
 
 #: mmframe.cpp:1576
 msgid "&Display Deleted Transactions"
@@ -5292,16 +5292,16 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "Contas de Ações contêm transações de Ações\n\n"
-"As transações de Ações são criadas dentro da Vista do Portfólio de Ações\n"
-"mediante a seleção da Ação de uma Empresa dentro da vista associada.\n\n"
-"Estas contas só se tornam visíveis depois de associar uma Ação à Conta de Ações\n"
-"Ou usando a Vista de Menu → 'Exibir Contas de Ações'\n"
-"Contas de Ações também podem conter transações normais, para contas normais."
+msgstr "Contas de Títulos contêm transações de Títulos Financeiros\n\n"
+"As transações de títulos são criadas na Vista da Carteira de Ações\n"
+"mediante a seleção da Ação da Empresa dentro da vista associada.\n\n"
+"Estas contas só se tornam visíveis depois de associar uma Ação à Conta de Títulos\n"
+"Ou usando a Vista de Menu → 'Exibir Contas de Títulos'\n"
+"Contas de Títulos também podem conter transações normais, para contas normais."
 
 #: mmframe.cpp:2572
 msgid "Share Account Creation"
-msgstr "Criação de Conta de Ações"
+msgstr "Criação de Conta de Títulos"
 
 #: mmframe.cpp:2745
 msgid "MMEX Options have been updated."
@@ -5642,7 +5642,7 @@ msgstr "Ativo"
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
-msgstr "Ações"
+msgstr "Títulos"
 
 #: model/Model_Account.cpp:147
 msgid "Account Error"
@@ -7182,16 +7182,16 @@ msgstr "Mantido na"
 #: stockdialog.cpp:492
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr "Conta de Ações não encontrada.\n\n"
+msgstr "Conta de Títulos não encontrada.\n\n"
 "Pretende criar uma?"
 
 #: stockdialog.cpp:502
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr "A Empresa não possui uma Conta de Ações associada.\n\n"
-"Pode querer renomear a Empresa para a reajustar a uma Conta de Ações existente com o mesmo nome. Se esta for uma Ação existente sem uma Conta de Ações, é recomendável que seja criada uma.\n\n"
-"Deseja criar uma Conta de Ações?\n"
+msgstr "A Empresa não possui uma Conta de Títulos associada.\n\n"
+"Pode querer renomear a Empresa para a reajustar a uma Conta de Títulos existente com o mesmo nome. Se esta for uma Ação existente sem uma Conta de Títulos, é recomendada a criação desta última.\n\n"
+"Deseja criar uma Conta de Títulos?\n"
 
 #: stockdialog.cpp:571
 msgid "Stock History CSV Import"
