@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-28 04:17\n"
+"PO-Revision-Date: 2023-05-30 01:36\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1083,7 +1083,7 @@ msgstr "범주"
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:512
 #: transdialog.cpp:1211
 msgid "Use split Categories"
-msgstr "분할 분류 사용"
+msgstr "분할 범주 사용"
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1250
 msgid "Specify any associated check number or transaction number"
@@ -1457,15 +1457,15 @@ msgstr "예산 항목을 설명하는 참고 사항을 입력합니다"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
-msgstr "모든 예산 분류 보기"
+msgstr "모든 예산 범주 보기"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
-msgstr "0이 아닌 예산 분류 보기"
+msgstr "0이 아닌 예산 범주 보기"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr "계획된 예산 분류 보기"
+msgstr "계획된 예산 범주 보기"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1624,7 +1624,7 @@ msgstr "모두 표시(&A)"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
-msgstr "숨겨진 모든 분류 표시"
+msgstr "숨겨진 모든 범주 표시"
 
 #: categdialog.cpp:325
 msgid "Add a new category"
@@ -1672,7 +1672,7 @@ msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organise Categories: Adding Error"
-msgstr "분류 구성: 오류 추가 중"
+msgstr "범주 구성: 오류 추가 중"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1729,7 +1729,7 @@ msgstr "도구 → 재배치 → 분류"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
-msgstr "분류 구성: 삭제 오류"
+msgstr "범주 구성: 삭제 오류"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
