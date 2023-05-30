@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-30 01:36\n"
+"PO-Revision-Date: 2023-05-30 02:32\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1656,7 +1656,7 @@ msgstr "콜론(:) 문자는 범주와 하위 범주를 구분하는 데 사용�
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr "분류 구성: 잘못된 이름"
+msgstr "범주 구성: 잘못된 이름"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1725,7 +1725,7 @@ msgstr "팁: 재배치 명령을 사용하여 이 하위 범주를 사용하는 
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
-msgstr "도구 → 재배치 → 분류"
+msgstr "도구 → 재배치 → 범주"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
@@ -1762,7 +1762,7 @@ msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:635
 msgid "Organise Categories: Editing Error"
-msgstr "분류 구성: 편집 오류"
+msgstr "범주 구성: 편집 오류"
 
 #: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
@@ -1779,11 +1779,11 @@ msgstr "범주 재배치 결과"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
-msgstr "모든 분류를 숨김해제 하시겠습니까"
+msgstr "모든 범주를 숨김해제 하시겠습니까"
 
 #: categdialog.cpp:772
 msgid "Unhide all categories"
-msgstr "모든 분류 보이기"
+msgstr "모든 범주 보이기"
 
 #: categdialog.cpp:800
 msgid "Hide Selected Category"
@@ -1803,7 +1803,7 @@ msgstr "설정 지우기"
 
 #: categdialog.h:68 mmframe.cpp:1672 mmframe.cpp:1893
 msgid "Organize Categories"
-msgstr "분류 구성"
+msgstr "범주 구성"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2561,7 +2561,7 @@ msgstr "날짜 범위"
 
 #: filtertransdialog.cpp:557 filtertransdialog.cpp:1484
 msgid "Include all sub-categories"
-msgstr "모든 하위 분류 포함"
+msgstr "모든 하위 범주 포함"
 
 #: filtertransdialog.cpp:584 filtertransdialog.cpp:1354
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:282
@@ -3108,7 +3108,7 @@ msgstr "시작 날짜보다 작은 종료 날짜"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr "내보낸 분류"
+msgstr "내보낸 범주"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:416
 #: import_export/qif_import_gui.cpp:1049
@@ -3258,7 +3258,7 @@ msgstr "수취인을 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1058
 msgid "Importing Categories"
-msgstr "분류를 가져오는 중"
+msgstr "범주를 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
@@ -3969,11 +3969,11 @@ msgstr "팁: 다른 통화의 계정을 가지고 있는 경우에 대비하여 
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "분류 구성 대화상자 팁: h 키를 누르면 h 문자로 시작하는 모든 범주가 순환됩니다"
+msgstr "범주 구성 대화상자 팁: h 키를 누르면 h 문자로 시작하는 모든 범주가 순환됩니다"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "분류 구성 대화상자 팁: 2개의 키 조합을 누르면 해당 키 조합을 시작으로 모든 범주가 순환됩니다. 예: ho를 누르면 Home Needs, Home, House Tax 등이 선택됩니다."
+msgstr "범주 구성 대화상자 팁: 2개의 키 조합을 누르면 해당 키 조합을 시작으로 모든 범주가 순환됩니다. 예: ho를 누르면 Home Needs, Home, House Tax 등이 선택됩니다."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4113,7 +4113,7 @@ msgstr "다른 계정에서 보기(&V)"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr "분류 분할 보기(&V)"
+msgstr "범주 분할 보기(&V)"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
@@ -4741,7 +4741,7 @@ msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1672
 msgid "Organize &Categories..."
-msgstr "분류 구성(&C)..."
+msgstr "범주 구성(&C)..."
 
 #: mmframe.cpp:1676
 msgid "Organize &Payees..."
@@ -4761,7 +4761,7 @@ msgstr "통화 구성"
 
 #: mmframe.cpp:1684
 msgid "&Categories..."
-msgstr "분류(&C)..."
+msgstr "범주(&C)..."
 
 #: mmframe.cpp:1687
 msgid "&Payees..."
@@ -4777,7 +4777,7 @@ msgstr "재배치(&R)"
 
 #: mmframe.cpp:1691
 msgid "Relocate Categories && Payees"
-msgstr "분류 & 수취인 재배치"
+msgstr "범주 & 수취인 재배치"
 
 #: mmframe.cpp:1701
 msgid "&Budget Setup..."
@@ -5069,7 +5069,7 @@ msgstr "생성"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Categories Dialog"
-msgstr "분류 구성 대화상자 표시"
+msgstr "범주 구성 대화상자 표시"
 
 #: mmframe.cpp:1894
 msgid "Show Organize Payees Dialog"
