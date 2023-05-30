@@ -150,7 +150,7 @@ Content-Disposition: form-data; name="MMEX_Post"
 --Custom_Boundary_MMEX_WebApp--
 )";
 
-    const auto ContentType = "Content-Type: multipart/form-data; charset=utf-8; boundary=Custom_Boundary_MMEX_WebApp";
+    const auto ContentType = "Content-Type: multipart/form-data; boundary=Custom_Boundary_MMEX_WebApp";
     const auto Text = wxString::Format(temp, JsonData);
     return http_post_data(Website, Text, ContentType, Output);
 }
