@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.moneymanagerex.MMEX</id>
+  <launchable type="desktop-id">org.moneymanagerex.MMEX.desktop</launchable>
+
+  <name>MMEX Money Manager</name>
+  <name xml:lang="ar">مدير المال MMEX</name>
+  <name xml:lang="be">MMEX Менеджэр грошай</name>
+  <name xml:lang="bg">MMEX мениджър на пари</name>
+  <name xml:lang="ca">MMEX gestor de diners</name>
+  <name xml:lang="cs">MMEX osobní finance a správa peněz</name>
+  <name xml:lang="de">MMEX persönliche Finanzen und Geldmanagement</name>
+  <name xml:lang="el">MMEX διαχειριστής χρημάτων</name>
+  <name xml:lang="en_AU">MMEX Money Manager</name>
+  <name xml:lang="en_GB">MMEX Money Manager</name>
+  <name xml:lang="en">MMEX Money Manager</name>
+  <name xml:lang="es">MMEX finanzas personales y manejo de dinero</name>
+  <name xml:lang="fi">MMEX henkilökohtainen talous ja rahanhallinta</name>
+  <name xml:lang="fr">MMEX finances personnelles et gestion de l'argent</name>
+  <name xml:lang="he">מנהל כסף MMEX</name>
+  <name xml:lang="hr">MMEX upravitelj novca</name>
+  <name xml:lang="hu">MMEX személyes pénzügyek és pénzkezelés</name>
+  <name xml:lang="id">MMEX Manajer uang</name>
+  <name xml:lang="is">MMEX einkafjármál og peningastjórnun</name>
+  <name xml:lang="it">MMEX finanza personale e gestione del denaro</name>
+  <name xml:lang="ja">MMEXマネーマネージャー</name>
+  <name xml:lang="ko">MMEX 머니 매니저</name>
+  <name xml:lang="lt">MMEX pinigų vadybininkas</name>
+  <name xml:lang="lv">MMEX personīgās finanses un naudas pārvaldība</name>
+  <name xml:lang="nl">MMEX persoonlijke financiën en geldbeheer</name>
+  <name xml:lang="no_NY">MMEX persoonlijke financiën en geldbeheer</name>
+  <name xml:lang="pl">MMEX menedżer pieniędzy</name>
+  <name xml:lang="pt_BR">MMEX finanças pessoais e gestão de dinheiro</name>
+  <name xml:lang="pt">MMEX finanças pessoais e gestão de dinheiro</name>
+  <name xml:lang="ro">MMEX finanțe personale și gestionarea banilor</name>
+  <name xml:lang="ru">MMEX Mенеджер личных финансов</name>
+  <name xml:lang="sk">MMEX osobné financie a správa peňazí</name>
+  <name xml:lang="sl">MMEX osebne finance in upravljanje denarja</name>
+  <name xml:lang="sq">MMEX menaxher parash</name>
+  <name xml:lang="sr">ММЕКС менаџер новца</name>
+  <name xml:lang="sv_SE">MMEX pengahanterare</name>
+  <name xml:lang="ta">MMEX பண மேலாளர்</name>
+  <name xml:lang="tr">MMEX kişisel finans ve para yönetimi</name>
+  <name xml:lang="uk">MMEX особисті фінанси та управління грошима</name>
+  <name xml:lang="vi">MMEX quản lý tiền</name>
+  <name xml:lang="zh_CN">MMEX资金经理</name>
+  <name xml:lang="zh_TW">MMEX資金經理</name>
+  
+  <summary>Organize finances and track cash flow</summary>
+  <summary xml:lang="ar">تنظيم الشؤون المالية وتتبع التدفق النقدي</summary>
+  <summary xml:lang="be">Арганізуйце фінансы і адсочвайце грашовыя патокі</summary>
+  <summary xml:lang="bg">Организирайте финансите и проследявайте паричните потоци</summary>
+  <summary xml:lang="ca">Organitzar les finances i fer un seguiment del flux de caixa</summary>
+  <summary xml:lang="cs">Uspořádejte finance a sledujte peněžní toky</summary>
+  <summary xml:lang="de">Finanzen organisieren und den Cashflow verfolgen</summary>
+  <summary xml:lang="el">Οργανώστε τα οικονομικά και παρακολουθήστε τις ταμειακές ροές</summary>
+  <summary xml:lang="en_AU">Organise finances and track cash flow</summary>
+  <summary xml:lang="en_GB">Organise finances and track cash flow</summary>
+  <summary xml:lang="en">Organize finances and track cash flow</summary>
+  <summary xml:lang="es">Organizar las finanzas y realizar un seguimiento del flujo de caja</summary>
+  <summary xml:lang="fi">Järjestä talous ja seuraa kassavirtaa</summary>
+  <summary xml:lang="fr">Organiser les finances et suivre les flux de trésorerie</summary>
+  <summary xml:lang="he">ארגון כספים ומעקב אחר תזרים המזומנים</summary>
+  <summary xml:lang="hr">Organizirajte financije i pratite novčani tok</summary>
+  <summary xml:lang="hu">Pénzügyek megszervezése és pénzforgalom nyomon követése</summary>
+  <summary xml:lang="id">Mengatur keuangan dan melacak arus kas</summary>
+  <summary xml:lang="is">Skipuleggja fjármál og fylgjast með sjóðstreymi</summary>
+  <summary xml:lang="it">Organizza le finanze e monitora il flusso di cassa</summary>
+  <summary xml:lang="ja">財務を整理し、キャッシュ フローを追跡する</summary>
+  <summary xml:lang="ko">재무 구성 및 현금 흐름 추적</summary>
+  <summary xml:lang="lt">Tvarkykite finansus ir stebėkite pinigų srautus</summary>
+  <summary xml:lang="lv">Organizēt finanses un sekot līdzi naudas plūsmai</summary>
+  <summary xml:lang="nl">Financiën organiseren en cashflow bijhouden</summary>
+  <summary xml:lang="no_NY">Financiën organiseren en cashflow bijhouden</summary>
+  <summary xml:lang="pl">Organizuj finanse i śledź przepływy pieniężne</summary>
+  <summary xml:lang="pt_BR">Organize as finanças e acompanhe o fluxo de caixa</summary>
+  <summary xml:lang="pt">Organize as finanças e acompanhe o fluxo de caixa</summary>
+  <summary xml:lang="ro">Organizați finanțele și urmăriți fluxul de numerar</summary>
+  <summary xml:lang="ru">Организовывать финансы и отслеживать движение денежных средств</summary>
+  <summary xml:lang="sk">Usporiadajte financie a sledujte peňažný tok</summary>
+  <summary xml:lang="sl">Organizirajte finance in sledite denarnim tokovom</summary>
+  <summary xml:lang="sq">Organizoni financat dhe gjurmoni fluksin e parave</summary>
+  <summary xml:lang="sr">Организујте финансије и пратите токове готовине</summary>
+  <summary xml:lang="sv_SE">Organisera ekonomin och spåra kassaflödet</summary>
+  <summary xml:lang="ta">நிதிகளை ஒழுங்கமைத்து பணப்புழக்கத்தைக் கண்காணிக்கவும்</summary>
+  <summary xml:lang="tr">Finansmanı organize edin ve nakit akışını takip edin</summary>
+  <summary xml:lang="uk">Організуйте фінанси та відстежуйте грошові потоки</summary>
+  <summary xml:lang="vi">Tổ chức tài chính và theo dõi dòng tiền</summary>
+  <summary xml:lang="zh_CN">组织财务并跟踪现金流</summary>
+  <summary xml:lang="zh_TW">組織財務並跟踪現金流</summary>
+  
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-only</project_license>
+  <developer_name>MMEX team</developer_name>
+
+  <categories>
+    <category>Education</category>
+    <category>Finance</category>
+    <category>Office</category>
+  </categories>
+
+  <description>
+    <p>
+      Money Manager Ex (MMEX) is a free/libre, open-source, cross-platform, easy-to-use personal financial 
+      and money management software. It helps organize finances and track cash flow.
+    </p>
+    <p>
+      MMEX includes all the basic features that 90% of users would want to see in a personal finance 
+      application. The design goals are to concentrate on simplicity and user-friendliness – an 
+      application that can be used everyday.
+    </p>
+
+    <p xml:lang="ar">
+      .برامج إدارة الأموال والأموال الشخصية
+    </p>
+    
+    <p xml:lang="be">
+      Праграмнае забеспячэнне для кіравання асабістымі фінансамі і грашыма.
+    </p>
+    
+    <p xml:lang="bg">
+      Софтуер за лични финанси и управление на пари.
+    </p>
+    
+    <p xml:lang="ca">
+      Programari personal de gestió financera i financera.
+    </p>
+    
+    <p xml:lang="cs">
+      Software pro správu osobních financí a peněz.
+    </p>
+    
+    <p xml:lang="de">
+      Persönliche Finanz- und Geldverwaltungssoftware.
+    </p>
+    
+    <p xml:lang="el">
+      Λογισμικό προσωπικής διαχείρισης οικονομικών και χρημάτων.
+    </p>
+    
+    <p xml:lang="en_AU">
+      Personal financial and money management software.
+    </p>
+    
+    <p xml:lang="en_GB">
+      Personal financial and money management software.
+    </p>
+    
+    <p xml:lang="en">
+      Personal financial and money management software.
+    </p>
+    
+    <p xml:lang="es">
+      Software de administración de dinero y finanzas personales.
+    </p>
+    
+    <p xml:lang="fi">
+      Henkilökohtainen talous- ja rahanhallintaohjelmisto.
+    </p>
+    
+    <p xml:lang="fr">
+      Logiciel de finances personnelles et de gestion de l'argent.
+    </p>
+    
+    <p xml:lang="he">
+      .תוכנה אישית לניהול כספים וכספים
+    </p>
+    
+    <p xml:lang="hr">
+      Softver za upravljanje osobnim financijama i novcem.
+    </p>
+    
+    <p xml:lang="hu">
+      Személyes pénzügyi és pénzkezelési szoftver.
+    </p>
+    
+    <p xml:lang="id">
+      Perangkat lunak manajemen keuangan dan uang pribadi.
+    </p>
+    
+    <p xml:lang="is">
+      Hugbúnaður fyrir persónulegan fjármála- og peningastjórnun.
+    </p>
+    
+    <p xml:lang="it">
+      Software personale finanziario e di gestione del denaro.
+    </p>
+    
+    <p xml:lang="ja">
+      個人の財務および資金管理ソフトウェア。
+    </p>
+    
+    <p xml:lang="ko">
+      개인 금융 및 자금 관리 소프트웨어.
+    </p>
+    
+    <p xml:lang="lt">
+      Asmeninių finansų ir pinigų valdymo programinė įranga.
+    </p>
+    
+    <p xml:lang="lv">
+      Personīgo finanšu un naudas pārvaldības programmatūra.
+    </p>
+    
+    <p xml:lang="nl">
+      Software voor persoonlijk financieel en geldbeheer.
+    </p>
+    
+    <p xml:lang="no_NY">
+      Software voor persoonlijk financieel en geldbeheer.
+    </p>
+    
+    <p xml:lang="pl">
+      Oprogramowanie do zarządzania finansami osobistymi i pieniędzmi.
+    </p>
+    
+    <p xml:lang="pt_BR">
+      Software de gestão financeira e financeira pessoal.
+    </p>
+    
+    <p xml:lang="pt">
+      Software de gestão financeira e financeira pessoal.
+    </p>
+    
+    <p xml:lang="ro">
+      Software financiar personal și software de gestionare a banilor.
+    </p>
+    
+    <p xml:lang="ru">
+      Программное обеспечение для управления личными финансами и деньгами.
+    </p>
+    
+    <p xml:lang="sk">
+      Softvér na správu osobných financií a peňazí.
+    </p>
+    
+    <p xml:lang="sl">
+      Programska oprema za upravljanje osebnih financ in denarja.
+    </p>
+    
+    <p xml:lang="sq">
+      Softuer personal financiar dhe i menaxhimit të parave.
+    </p>
+    
+    <p xml:lang="sr">
+      Лични софтвер за управљање финансијама и новцем.
+    </p>
+    
+    <p xml:lang="sv_SE">
+      Programvara för personlig ekonomi och pengarhantering.
+    </p>
+    
+    <p xml:lang="ta">
+      தனிப்பட்ட நிதி மற்றும் பண மேலாண்மை மென்பொருள்.
+    </p>
+    
+    <p xml:lang="tr">
+      Kişisel finans ve para yönetimi yazılımı.
+    </p>
+    
+    <p xml:lang="uk">
+      Програмне забезпечення для управління особистими фінансами та грошима.
+    </p>
+    
+    <p xml:lang="vi">
+      Phần mềm quản lý tiền và tài chính cá nhân.
+    </p>
+    
+    <p xml:lang="zh_CN">
+      个人财务和资金管理软件。
+    </p>
+    
+    <p xml:lang="zh_TW">
+      個人財務和資金管理軟件。
+    </p>
+  </description>
+  
+  <screenshots>
+    
+    <screenshot type="default">
+      <caption>Dashboard</caption>
+      <caption xml:lang="hu">Irányítópult</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233927369-03eabcaa-0e29-4730-8be0-462c3e1c9a01.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Payee Report</caption>
+      <caption xml:lang="hu">Kedvezményezett kimutatás</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233927379-268bd999-9093-4de9-ad72-02e0781b56ec.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Budget Setup</caption>
+      <caption xml:lang="hu">Költségvetés beállítása</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233927385-0f5a551f-494b-43b6-92ef-8fa1ba91e3ed.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Multiple User Interface Language Support - Hungarian (magyar)</caption>
+      <caption xml:lang="hu">Több felhasználói felület nyelvi támogatása - magyar</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233927390-21a3bd99-06d7-4455-b96f-ae98b39a7358.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Organize Categories - unlimited nested multi-level category support</caption>
+      <caption xml:lang="hu">Kategóriák rendszerezése - korlátlan beágyazott többszintű kategóriatámogatás</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233927396-7470f433-2756-4a68-b709-9a8834b6347d.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Transaction Filter</caption>
+      <caption xml:lang="hu">Ügyletek szűrése</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233927401-597ea9bc-a890-44df-b6eb-d26ce8369551.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Import from CSV (Comma-Separated Values) file</caption>
+      <caption xml:lang="hu">Importálás CSV-fájlból (vesszővel elválasztott értékek)</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233931375-051e7c9f-d4c4-4baa-9586-7ad10ef48aba.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Import from QIF (Quicken Interchange Format) file</caption>
+      <caption xml:lang="hu">Importálás QIF-fájlból (Quicken-adatcsere formátuma)</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233931411-d7a92fed-272f-446d-b86a-89f99b66683a.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Export as XML (eXtensible Markup Language) file</caption>
+      <caption xml:lang="hu">Exportálás XML-fájlként (bővíthető jelölőnyelv)</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233931435-825fa069-f182-4b50-970d-21755c90f1da.png</image>
+    </screenshot>
+    
+    <screenshot>
+      <caption>Multi Currency Support</caption>
+      <caption xml:lang="hu">Több pénznem támogatása</caption>
+      <image>https://user-images.githubusercontent.com/17465872/233931456-85f10a2f-c546-445e-966a-647d10919904.png</image>
+    </screenshot>
+    
+  </screenshots>
+
+  <releases>
+    
+    <release version="1.6.3" date="2023-02-01">
+      <description>
+        <ul>
+          <li>Last updated date time for transactions</li>
+          <li>Time Picker for GRM</li>
+          <li>Multiple fixes</li>
+          <li>Some minor cosmetic changes</li>
+        </ul>
+      </description>
+      <url>https://github.com/moneymanagerex/moneymanagerex/releases/tag/v1.6.3</url>
+    </release>
+    
+  </releases>
+
+  <url type="homepage">https://moneymanagerex.org/</url>
+  <url type="bugtracker">https://github.com/moneymanagerex/moneymanagerex/issues</url>
+  <url type="help">https://moneymanagerex.org/moneymanagerex/</url>
+  <url type="donation">https://moneymanagerex.org/docs/mmex/donate/</url>
+  <url type="translate">https://crowdin.com/project/moneymanagerex</url>
+
+  <content_rating type="oars-1.1" />
+</component>
