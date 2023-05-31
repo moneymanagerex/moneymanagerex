@@ -1298,8 +1298,6 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
     curl_set_common_options(curl);
     curl_set_writedata_options(curl, cookie);
     curl_easy_setopt(curl, CURLOPT_URL, "https://finance.yahoo.com");
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl, CURLOPT_COOKIEJAR, "");
 
     struct curl_slist* headers = nullptr;
