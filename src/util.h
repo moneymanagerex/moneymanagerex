@@ -126,6 +126,12 @@ inline int mmTreeItemData::getData() const { return id_; }
 inline const wxString mmTreeItemData::getString() const { return stringData_; }
 inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
 inline int mmTreeItemData::getType() const { return type_; }
+inline bool operator==(const mmTreeItemData& lhs, const mmTreeItemData& rhs)
+{
+    return (lhs.getData() == rhs.getData() &&
+        lhs.getString() == rhs.getString() &&
+        lhs.getType() == rhs.getType());
+};
 
 //----------------------------------------------------------------------------
 

@@ -138,6 +138,7 @@ private:
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage(int index = mmex::HTML_INDEX);
     void refreshPanelData();
+    wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
 
     void createHomePage();
     void createCheckingAccountPage(int accountID);
