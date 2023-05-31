@@ -2243,11 +2243,14 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     {
         SetDatabaseFile(fileName);
         saveSettings();
-        autocleanDeletedTransactions();
-        if (!Model_Stock::instance().all().empty() && Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
+        if (m_db)
         {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
-            this->GetEventHandler()->AddPendingEvent(evt);
+            autocleanDeletedTransactions();
+            if (!Model_Stock::instance().all().empty() && Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
+            {
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
+                this->GetEventHandler()->AddPendingEvent(evt);
+            }
         }
     }
 }
