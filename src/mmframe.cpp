@@ -2304,25 +2304,29 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
     wxString password_change_heading = _("MMEX: Encryption Password Change");
     wxString password_message = wxString::Format(_("New password for database\n\n%s"), m_filename);
 
-    wxPasswordEntryDialog* dlg = new wxPasswordEntryDialog(this, password_message, password_change_heading);
-    if (dlg->ShowModal() == wxID_OK)
+    wxPasswordEntryDialog dlg(this, password_message, password_change_heading);
+    if (dlg.ShowModal() == wxID_OK)
     {
-        wxString new_password = dlg->GetValue();
+        wxString new_password = dlg.GetValue();
         if (new_password.IsEmpty())
         {
             wxMessageBox(_("New password must not be empty."), password_change_heading, wxOK | wxICON_WARNING);
         }
         else
         {
-            wxString confirm_password = wxGetPasswordFromUser(_("Please confirm new password"), password_change_heading);
-            if (!confirm_password.IsEmpty() && (new_password == confirm_password))
+            wxPasswordEntryDialog confirm_dlg(this, _("Please confirm new password"), password_change_heading);
+            if (confirm_dlg.ShowModal() == wxID_OK)
             {
-                m_db->ReKey(confirm_password);
-                wxMessageBox(_("Password change completed."), password_change_heading);
-            }
-            else
-            {
-                wxMessageBox(_("Confirm password failed."), password_change_heading);
+                wxString confirm_password = confirm_dlg.GetValue();
+                if (!confirm_password.IsEmpty() && (new_password == confirm_password))
+                {
+                    m_db->ReKey(confirm_password);
+                    wxMessageBox(_("Password change completed."), password_change_heading);
+                }
+                else
+                {
+                    wxMessageBox(_("Confirm password failed."), password_change_heading);
+                }
             }
         }
     }
