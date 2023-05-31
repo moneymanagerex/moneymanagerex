@@ -72,8 +72,9 @@ bool relocateCategoryDialog::Create(wxWindow* parent
     IsOkOk();
 
     SetIcon(mmex::getProgramIcon());
-
-    SetSizeHints(500, 350, -1, 350);
+    Fit();
+    wxSize sz = GetSize();
+    SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     Centre();
     mmSetSize(this);
     return TRUE;

@@ -71,8 +71,9 @@ bool relocatePayeeDialog::Create(wxWindow* parent
     IsOkOk();
 
     SetIcon(mmex::getProgramIcon());
-
-    SetSizeHints(500, 290, -1, 290);
+    Fit();
+    wxSize sz = GetSize();
+    SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     mmSetSize(this);
     Centre();
     return TRUE;
