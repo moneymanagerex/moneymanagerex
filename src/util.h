@@ -198,6 +198,7 @@ inline const wxString mmGetMonthName(wxDateTime::Month month) { return MONTHS[st
 CURLcode http_get_data(const wxString& site, wxString& output, const wxString& useragent = wxEmptyString);
 CURLcode http_post_data(const wxString& site, const wxString& data, const wxString& contentType, wxString& output);
 CURLcode http_download_file(const wxString& site, const wxString& path);
+CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& json_data);
 
 //----------------------------------------------------------------------------
 
