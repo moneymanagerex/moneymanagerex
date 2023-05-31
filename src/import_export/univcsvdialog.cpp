@@ -2301,7 +2301,11 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
                 parentID = category->CATEGID;
             }
 
-            if (category) holder.CategoryID = category->CATEGID;
+            if (category)
+            {
+                holder.CategoryID = category->CATEGID;
+                m_CSVcategoryNames[token] = category->CATEGID;
+            }
         }
         break;
 
@@ -2322,6 +2326,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             Model_Category::instance().save(category);
             
             holder.CategoryID = category->CATEGID;
+            m_CSVcategoryNames[categname] = category->CATEGID;
         }
         break;
 
