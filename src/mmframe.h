@@ -81,7 +81,7 @@ public:
 
 private:
     std::vector<WebsiteNews> websiteNewsArray_;
-    std::vector<const ModelBase*> m_all_models;
+    std::vector<ModelBase*> m_all_models;
 
     /* handles to SQLite Database */
     wxSharedPtr<wxSQLite3Database> m_db;

@@ -53,7 +53,7 @@ class ModelBase
 public:
     ModelBase() :db_(0) {};
     virtual ~ModelBase() {};
-
+    
 public:
     void Begin()
     {
@@ -92,6 +92,7 @@ protected:
 public:
     virtual wxString  GetTableStatsAsJson() const = 0;
     virtual void show_statistics() const = 0;
+    virtual void destroyCache() = 0;
 
 protected:
     wxSQLite3Database* db_;
@@ -241,6 +242,11 @@ public:
         wxLogDebug("%s", wxString::FromUTF8(json_buffer.GetString()));
 
         return wxString::FromUTF8(json_buffer.GetString());
+    }
+
+    void destroyCache()
+    {
+        if (this->cache_.size() > 0) this->destroy_cache();
     }
 
     /** Show table statistics*/

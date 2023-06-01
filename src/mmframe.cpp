@@ -374,6 +374,8 @@ void mmGUIFrame::ShutdownDatabase()
         m_db->SetCommitHook(nullptr);
         m_db->Close();
         m_db.reset();
+        for (auto& model : m_all_models)
+            model->destroyCache();
     }
 }
 
