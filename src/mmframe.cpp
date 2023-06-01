@@ -914,8 +914,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             }
         }
     }
-    //m_nav_tree_ctrl->SelectItem(root);
     m_nav_tree_ctrl->EnsureVisible(root);
+    m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
 
@@ -3530,14 +3530,31 @@ void mmGUIFrame::RefreshNavigationTree()
 {
     // Save currently selected item data
     mmTreeItemData* iData = nullptr;
-    if (selectedItemData_)
+    wxString sectionName;
+    if (selectedItemData_ && m_nav_tree_ctrl->GetSelection() != m_nav_tree_ctrl->GetRootItem())
+    {
         iData = new mmTreeItemData(*selectedItemData_);
+        // also save current section
+        wxTreeItemId parentID = m_nav_tree_ctrl->GetItemParent(m_nav_tree_ctrl->GetSelection());
+        if (parentID.IsOk())
+            sectionName = m_nav_tree_ctrl->GetItemText(parentID);
+    }
     DoRecreateNavTreeControl();
     // Find and reselect the previously selected item
     if (iData)
     {
-        wxTreeItemId navTreeID = findItemByData(m_nav_tree_ctrl->GetRootItem(), *iData);
-        if (navTreeID.IsOk()) m_nav_tree_ctrl->SelectItem(navTreeID);
+        // search for the item first under the selected section
+        wxTreeItemId navTreeID = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
+        if (navTreeID.IsOk())
+            navTreeID = findItemByData(navTreeID, *iData);
+        // if we didn't find it search all nodes from root
+        if (!navTreeID.IsOk())
+            navTreeID = findItemByData(m_nav_tree_ctrl->GetRootItem(), *iData);
+        if (navTreeID.IsOk())
+        {
+            m_nav_tree_ctrl->EnsureVisible(navTreeID);
+            m_nav_tree_ctrl->SelectItem(navTreeID);
+        }
     }
     delete(iData);
 }
