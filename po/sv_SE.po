@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 11:14\n"
+"PO-Revision-Date: 2023-05-18 08:18\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4691,7 +4691,7 @@ msgstr "Ignorera framtida transaktioner"
 
 #: mmframe.cpp:1586
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "Visa v&erktygstips"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
@@ -4699,7 +4699,7 @@ msgstr "Visa verktygstips"
 
 #: mmframe.cpp:1588
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "Visa &pengar-tips"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"

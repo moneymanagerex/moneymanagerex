@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 14:17\n"
+"PO-Revision-Date: 2023-05-30 02:32\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "계좌 번호:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
-msgstr "이 계정과 연관된 계정 번호를 입력하세요."
+msgstr "이 계정과 연관된 계좌 번호를 입력하세요."
 
 #: accountdialog.cpp:203
 msgid "Held At:"
@@ -232,7 +232,7 @@ msgstr "최소 잔액:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0 입력하세요."
+msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0으로 설정"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -580,7 +580,7 @@ msgstr "자산 삭제 확인"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX를 사용하면 자동차, 주택, 토지 등과 같은 고정 자산을 추적할 수 있습니다. 각 자산은 매년 특정 비율만큼 가치를 상승시키거나, 매년 특정 비율만큼 가치를 하락시키거나, 가치의 변화를 일으키지 않을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
+msgstr "MMEX를 사용하면 자동차, 집, 토지 등의 고정 자산을 추적할 수 있습니다. 각 자산은 연간 일정 비율로 가치 상승, 연간 일정 비율로 가치 하락 또는 가치 변동이 없을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
 #: mmframe.cpp:482 mmframe.cpp:756 mmframe.cpp:1709 mmframe.cpp:3307
@@ -657,7 +657,7 @@ msgstr "물음표(?)를 사용하여 단일 문자를 찾습니다. 예를 들�
 #: assetspanel.cpp:513 filtertransdialog.cpp:637 mmcheckingpanel.cpp:480
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr "별표(*)를 사용하여 임의의 문자를 찾을 수 있습니다. 예를 들어 s*d는 'sad' 와 'started'를 찾을 수 있습니다."
+msgstr "별표(*)를 사용하여 임의의 문자를 찾을 수 있습니다. 예를 들어 s*d는 'sad'와 'started'를 찾을 수 있습니다."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:638 mmcheckingpanel.cpp:481
 #: payeedialog.cpp:140
@@ -962,7 +962,7 @@ msgstr "사용자에게 지불 입력 요청"
 
 #: billsdepositsdialog.cpp:473
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "사용자가 '지급된 날짜'에 이 거래를 입력하도록 요청했습니다"
+msgstr "사용자가 '지불 날짜'에 이 거래를 입력하도록 요청했습니다"
 
 #: billsdepositsdialog.cpp:476
 msgid "Grant automatic execute"
@@ -1083,7 +1083,7 @@ msgstr "범주"
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:512
 #: transdialog.cpp:1211
 msgid "Use split Categories"
-msgstr "분할 분류 사용"
+msgstr "분할 범주 사용"
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1250
 msgid "Specify any associated check number or transaction number"
@@ -1133,7 +1133,7 @@ msgstr "사용자 지정 필드 창 표시/숨기기"
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:242
 #: transdialog.cpp:251
 msgid "From"
-msgstr "출금 대상"
+msgstr "보낸 이"
 
 #: billsdepositsdialog.cpp:880
 msgid "The payment date is after the due date, is this what you intended?"
@@ -1457,15 +1457,15 @@ msgstr "예산 항목을 설명하는 참고 사항을 입력합니다"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
-msgstr "모든 예산 분류 보기"
+msgstr "모든 예산 범주 보기"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
-msgstr "0이 아닌 예산 분류 보기"
+msgstr "0이 아닌 예산 범주 보기"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr "계획된 예산 분류 보기"
+msgstr "계획된 예산 범주 보기"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1604,7 +1604,7 @@ msgstr "예산 연도가 이미 존재합니다"
 
 #: categdialog.cpp:197 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
-msgstr "분류"
+msgstr "범주"
 
 #: categdialog.cpp:268 mmframe.cpp:1685
 msgid "Reassign all categories to another category"
@@ -1624,7 +1624,7 @@ msgstr "모두 표시(&A)"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
-msgstr "숨겨진 모든 분류 표시"
+msgstr "숨겨진 모든 범주 표시"
 
 #: categdialog.cpp:325
 msgid "Add a new category"
@@ -1656,7 +1656,7 @@ msgstr "콜론(:) 문자는 범주와 하위 범주를 구분하는 데 사용�
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr "분류 구성: 잘못된 이름"
+msgstr "범주 구성: 잘못된 이름"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1672,7 +1672,7 @@ msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organise Categories: Adding Error"
-msgstr "분류 구성: 오류 추가 중"
+msgstr "범주 구성: 오류 추가 중"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1725,11 +1725,11 @@ msgstr "팁: 재배치 명령을 사용하여 이 하위 범주를 사용하는 
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
-msgstr "도구 → 재배치 → 분류"
+msgstr "도구 → 재배치 → 범주"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
-msgstr "분류 구성: 삭제 오류"
+msgstr "범주 구성: 삭제 오류"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1762,7 +1762,7 @@ msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:635
 msgid "Organise Categories: Editing Error"
-msgstr "분류 구성: 편집 오류"
+msgstr "범주 구성: 편집 오류"
 
 #: categdialog.cpp:692 mmframe.cpp:3564
 msgid "Category Relocation Completed."
@@ -1779,11 +1779,11 @@ msgstr "범주 재배치 결과"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
-msgstr "모든 분류를 숨김해제 하시겠습니까"
+msgstr "모든 범주를 숨김해제 하시겠습니까"
 
 #: categdialog.cpp:772
 msgid "Unhide all categories"
-msgstr "모든 분류 보이기"
+msgstr "모든 범주 보이기"
 
 #: categdialog.cpp:800
 msgid "Hide Selected Category"
@@ -1803,7 +1803,7 @@ msgstr "설정 지우기"
 
 #: categdialog.h:68 mmframe.cpp:1672 mmframe.cpp:1893
 msgid "Organize Categories"
-msgstr "분류 구성"
+msgstr "범주 구성"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1906,7 +1906,7 @@ msgstr "지난 회계연도 보기"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr "대차표 날짜 이후 보기"
+msgstr "정산 날짜 이후 보기"
 
 #: constants.cpp:208
 msgid "ALL"
@@ -2536,12 +2536,12 @@ msgstr "무효"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:506 mmchecking_list.cpp:1053
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:42
 msgid "Follow Up"
-msgstr "따르기"
+msgstr "후속조치"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
 msgid "Duplicate"
-msgstr "복제"
+msgstr "중복"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:1492
 msgid "All Except Reconciled"
@@ -2561,7 +2561,7 @@ msgstr "날짜 범위"
 
 #: filtertransdialog.cpp:557 filtertransdialog.cpp:1484
 msgid "Include all sub-categories"
-msgstr "모든 하위 분류 포함"
+msgstr "모든 하위 범주 포함"
 
 #: filtertransdialog.cpp:584 filtertransdialog.cpp:1354
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:282
@@ -2575,16 +2575,16 @@ msgstr "출금"
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:33
 #: reports/forecast.cpp:79
 msgid "Deposit"
-msgstr "수입"
+msgstr "입금"
 
 #: filtertransdialog.cpp:588 filtertransdialog.cpp:801
 #: filtertransdialog.cpp:1358
 msgid "Transfer Out"
-msgstr "출금"
+msgstr "이체 송금"
 
 #: filtertransdialog.cpp:590 filtertransdialog.cpp:1356
 msgid "Transfer In"
-msgstr "입금"
+msgstr "이체 수금"
 
 #: filtertransdialog.cpp:602
 msgid "Amount Range"
@@ -3108,7 +3108,7 @@ msgstr "시작 날짜보다 작은 종료 날짜"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr "내보낸 분류"
+msgstr "내보낸 범주"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:416
 #: import_export/qif_import_gui.cpp:1049
@@ -3258,7 +3258,7 @@ msgstr "수취인을 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1058
 msgid "Importing Categories"
-msgstr "분류를 가져오는 중"
+msgstr "범주를 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
@@ -3402,7 +3402,7 @@ msgstr "열 제목 내보내기"
 
 #: import_export/univcsvdialog.cpp:396
 msgid "Positive values are deposits"
-msgstr "양수 값은 수입입니다"
+msgstr "양수 값은 입금입니다"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
@@ -3961,7 +3961,7 @@ msgstr "팁: 옵션 대화 상자에서 옵션을 변경하여 MMEX의 일부 �
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "팁: 임의 조건 집합의 거래내역이 있는 대차표를 인쇄하려면 거래 필터를 사용하여 원하는 거래내역을 선택한 다음 메뉴에서 인쇄를 수행합니다."
+msgstr "팁: 임의 조건 집합의 거래내역이 있는 명세서를 인쇄하려면 거래 필터를 사용하여 원하는 거래내역을 선택한 다음 메뉴에서 인쇄를 수행합니다."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3969,11 +3969,11 @@ msgstr "팁: 다른 통화의 계정을 가지고 있는 경우에 대비하여 
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "분류 구성 대화상자 팁: h 키를 누르면 h 문자로 시작하는 모든 범주가 순환됩니다"
+msgstr "범주 구성 대화상자 팁: h 키를 누르면 h 문자로 시작하는 모든 범주가 순환됩니다"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "분류 구성 대화상자 팁: 2개의 키 조합을 누르면 해당 키 조합을 시작으로 모든 범주가 순환됩니다. 예: ho를 누르면 Home Needs, Home, House Tax 등이 선택됩니다."
+msgstr "범주 구성 대화상자 팁: 2개의 키 조합을 누르면 해당 키 조합을 시작으로 모든 범주가 순환됩니다. 예: ho를 누르면 Home Needs, Home, House Tax 등이 선택됩니다."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4113,7 +4113,7 @@ msgstr "다른 계정에서 보기(&V)"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr "분류 분할 보기(&V)"
+msgstr "범주 분할 보기(&V)"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
@@ -4376,7 +4376,7 @@ msgstr "치명적인 오류가 발생했습니다.\n"
 
 #: mmframe.cpp:265
 msgid "Navigation"
-msgstr "내비게이션"
+msgstr "탐색기"
 
 #: mmframe.cpp:266
 msgid "Toolbar"
@@ -4399,7 +4399,7 @@ msgstr "신용 카드 계정"
 #: mmframe.cpp:478 mmframe.cpp:744 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr "기간 계정"
+msgstr "정기 계정"
 
 #: mmframe.cpp:479 mmframe.cpp:748
 msgid "Stock Portfolios"
@@ -4633,7 +4633,7 @@ msgstr "툴바 보이기/숨기기"
 
 #: mmframe.cpp:1572
 msgid "&Navigation"
-msgstr "내비게이션(&N)"
+msgstr "탐색기(&N)"
 
 #: mmframe.cpp:1572
 msgid "Show/Hide the Navigation tree control"
@@ -4741,7 +4741,7 @@ msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1672
 msgid "Organize &Categories..."
-msgstr "분류 구성(&C)..."
+msgstr "범주 구성(&C)..."
 
 #: mmframe.cpp:1676
 msgid "Organize &Payees..."
@@ -4761,7 +4761,7 @@ msgstr "통화 구성"
 
 #: mmframe.cpp:1684
 msgid "&Categories..."
-msgstr "분류(&C)..."
+msgstr "범주(&C)..."
 
 #: mmframe.cpp:1687
 msgid "&Payees..."
@@ -4777,7 +4777,7 @@ msgstr "재배치(&R)"
 
 #: mmframe.cpp:1691
 msgid "Relocate Categories && Payees"
-msgstr "분류 & 수취인 재배치"
+msgstr "범주 & 수취인 재배치"
 
 #: mmframe.cpp:1701
 msgid "&Budget Setup..."
@@ -5069,7 +5069,7 @@ msgstr "생성"
 
 #: mmframe.cpp:1893
 msgid "Show Organize Categories Dialog"
-msgstr "분류 구성 대화상자 표시"
+msgstr "범주 구성 대화상자 표시"
 
 #: mmframe.cpp:1894
 msgid "Show Organize Payees Dialog"
@@ -5308,7 +5308,7 @@ msgstr "내보낼 HTML 파일 선택"
 
 #: mmframe.cpp:3331 mmframe.cpp:3338
 msgid "Downloading stock prices from Yahoo"
-msgstr "Yahoo에서 주가 다운로드"
+msgstr "Yahoo에서 주가 내려받기"
 
 #: mmframe.cpp:3332
 msgid "Please wait..."
@@ -5386,11 +5386,11 @@ msgstr "요약"
 
 #: mmframereport.cpp:149 reports/categexp.cpp:303
 msgid "Where the Money Goes"
-msgstr "돈이 가는 곳"
+msgstr "나가는 돈"
 
 #: mmframereport.cpp:152 reports/categexp.cpp:309
 msgid "Where the Money Comes From"
-msgstr "돈의 출처"
+msgstr "들어오는 돈"
 
 #: mmframereport.cpp:160
 msgid "Forecast Report"
@@ -5608,7 +5608,7 @@ msgstr "대출"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr "기한"
+msgstr "정기"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
@@ -5975,7 +5975,7 @@ msgstr "회계 연도"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
-msgstr "시작일"
+msgstr "시작 일"
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
@@ -6228,7 +6228,7 @@ msgstr "시작 시 새 MMEX 버전을 사용할 수 있는지 자동으로 확�
 
 #: optionsettingsnet.cpp:174 wizard_update.cpp:114
 msgid "Stable"
-msgstr "안정된된"
+msgstr "안정된"
 
 #: optionsettingsnet.cpp:175 wizard_update.cpp:114
 msgid "Unstable"
@@ -6386,7 +6386,7 @@ msgstr "도구모음 아이콘 크기"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
-msgstr "내비게이션 아이콘 크기"
+msgstr "탐색기 아이콘 크기"
 
 #: optionsettingsview.cpp:309
 msgid "Others Icon Size"
@@ -7011,7 +7011,7 @@ msgstr "단일 주식 단위에 대한 현재 주가 입력"
 
 #: sharetransactiondialog.cpp:273
 msgid "Enter any commission paid"
-msgstr "지급된 수수료 입력"
+msgstr "지불한 수수료 입력"
 
 #: sharetransactiondialog.cpp:279
 msgid "Share Lot"
@@ -7431,7 +7431,7 @@ msgstr "이체 대상"
 
 #: transactionsupdatedialog.cpp:225
 msgid "Append"
-msgstr "첨부부"
+msgstr "덧붙이기"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7695,7 +7695,7 @@ msgstr "버전: %s"
 #: util.cpp:1305
 #, c-format
 msgid "Built on: %s %s"
-msgstr "빌드 됨: %s %s"
+msgstr "빌드 시점: %s %s"
 
 #: util.cpp:1306
 #, c-format
@@ -7705,7 +7705,7 @@ msgstr "데이터베이스 버전: %d"
 #: util.cpp:1313
 #, c-format
 msgid "Git commit: %s (%s)"
-msgstr "Git 명령: %s (%s)"
+msgstr "Git 커밋: %s (%s)"
 
 #: util.cpp:1316
 #, c-format
@@ -7718,11 +7718,11 @@ msgstr "MMEX는 다음 지원 제품을 사용하고 있습니다:"
 
 #: util.cpp:1337
 msgid "Built with:"
-msgstr "내장:"
+msgstr "사용한 소프트웨어:"
 
 #: util.cpp:1356
 msgid "Running on:"
-msgstr "실행됨:"
+msgstr "실행 환경:"
 
 #: util.h:180
 msgid "January"
@@ -7965,9 +7965,9 @@ msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr "기간 및 자산 계정은 전문 은행 계정입니다.\n"
-"일반적으로 일반적인 수입원 밖에서 정기적으로 돈이 들어오고 나가는 \n"
-"자산 또는 정기 예금 및 채권을 모니터링하기 위한 것입니다."
+msgstr "정기 및 자산 계정은 전문화된 은행 계정입니다.\n"
+"이들은 보통 일반 수입 스트림 외부에서 주기적인 입출금이 발생하는 \n"
+"자산 또는 정기 예금 및 채권을 모니터링하는 데 사용됩니다."
 
 #: wizard_newaccount.cpp:165
 msgid "Base Account Currency Not set."

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 11:14\n"
+"PO-Revision-Date: 2023-05-18 05:35\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4742,7 +4742,7 @@ msgstr "Ня ўлічваць запланаваныя аперацыі"
 
 #: mmframe.cpp:1586
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "Адлюстроўваць &падказкі"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
@@ -4750,7 +4750,7 @@ msgstr "Адлюстроўваць падказкі"
 
 #: mmframe.cpp:1588
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "Паказваць парады пра грошы"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
@@ -6364,7 +6364,7 @@ msgstr "Колеры аперацыі"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Інтырфейс карыстальніка"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6392,7 +6392,7 @@ msgstr "Пакажыце пераважны варыянт тэмы для вы�
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "Тэма"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6420,7 +6420,7 @@ msgstr "Буйны"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "Памер шрыфта"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"

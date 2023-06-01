@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-05-15 14:09+0300\n"
-"PO-Revision-Date: 2023-05-15 16:20\n"
+"PO-Revision-Date: 2023-05-17 17:47\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3641,7 +3641,7 @@ msgstr "Operazioni esportate: %ld"
 #: import_export/univcsvdialog.cpp:2018
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Il preset '%s' sarà eliminato"
 
 #: import_export/univcsvdialog.cpp:2051 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
