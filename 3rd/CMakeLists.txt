@@ -40,8 +40,7 @@ else()
         lua/lapi.h
         lua/lauxlib.c
         lua/lauxlib.h
-        lua/lbaselib.c
-        lua/lbitlib.c
+        lua/lbaselib.c        
         lua/lcode.c
         lua/lcode.h
         lua/lcorolib.c
