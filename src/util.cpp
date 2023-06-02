@@ -1306,7 +1306,7 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
 
     struct curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
-    if (!savedCookie.IsEmpty()) headers = curl_slist_append(headers, static_cast<const char*>(wxString("Cookie: " + savedCookie).mb_str()));
+    if (!savedCookie.IsEmpty()) headers = curl_slist_append(headers, static_cast<const char*>(("Cookie: " + savedCookie).mb_str()));
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     CURLcode res = CURLE_OK;
