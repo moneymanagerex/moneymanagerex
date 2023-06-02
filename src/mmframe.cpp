@@ -793,6 +793,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(help, new mmTreeItemData(mmTreeItemData::HELP_PAGE_MAIN, "Help"));
     m_nav_tree_ctrl->SetItemBold(help, true);
 
+    bool hideShareAccounts = Option::instance().HideShareAccounts();
+
     if (m_db)
     {
         /* Start Populating the dynamic data */
@@ -812,17 +814,18 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             int selectedImage = Option::instance().AccountImageId(account.ACCOUNTID, false);
 
             wxTreeItemId tacct;
-
+            Model_Account::TYPE account_type = Model_Account::type(account);
             if (Model_Account::FAVORITEACCT(account) && (Model_Account::status(account) == Model_Account::OPEN))
             {
-                if (Model_Account::type(account) != Model_Account::INVESTMENT)
+                if (Model_Account::type(account) != Model_Account::INVESTMENT &&
+                    (account_type != Model_Account::SHARES || !hideShareAccounts))
                 {
                     tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
                     m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 }
             }
 
-            switch (Model_Account::type(account))
+            switch (account_type)
             {
             case Model_Account::INVESTMENT:
             {
@@ -850,8 +853,11 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
             case Model_Account::SHARES:
-                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
+                if (!hideShareAccounts)
+                {
+                    tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
+                }
                 break;
             case Model_Account::ASSET:
                 tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -903,7 +909,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) {
             m_nav_tree_ctrl->Delete(loanAccounts);
         }
-        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || Option::instance().HideShareAccounts())
+        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || hideShareAccounts)
         {
             m_nav_tree_ctrl->Delete(shareAccounts);
         }
@@ -3533,11 +3539,12 @@ void mmGUIFrame::RefreshNavigationTree()
     // Save currently selected item data
     mmTreeItemData* iData = nullptr;
     wxString sectionName;
-    if (selectedItemData_ && m_nav_tree_ctrl->GetSelection() != m_nav_tree_ctrl->GetRootItem())
+    wxTreeItemId selection = m_nav_tree_ctrl->GetSelection();
+    if (selection.IsOk() && selectedItemData_ && selection != m_nav_tree_ctrl->GetRootItem())
     {
         iData = new mmTreeItemData(*selectedItemData_);
         // also save current section
-        wxTreeItemId parentID = m_nav_tree_ctrl->GetItemParent(m_nav_tree_ctrl->GetSelection());
+        wxTreeItemId parentID = m_nav_tree_ctrl->GetItemParent(selection);
         if (parentID.IsOk())
             sectionName = m_nav_tree_ctrl->GetItemText(parentID);
     }
