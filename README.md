@@ -32,6 +32,8 @@ simplicity and user-friendliness – an application that can be used everyday.
 
 ## Download
 
+<a href='https://flathub.org/apps/org.moneymanagerex.MMEX'><img width='240' alt='Download on Flathub' title='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/></a>
+
 * [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS, or Windows
 * Download developmental release for [GNU/Linux](https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
 
