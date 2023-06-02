@@ -284,40 +284,46 @@ double Model_Stock::UnrealGainLoss(const Data* r, bool to_base_curr)
     else
     {
         Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(r->HELDAT));
+        double conv_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID);
         Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE::STOCK, r->STOCKID);
-        double total_shares = 0;
-        double total_initial_value = 0;
-        double avg_share_price = 0;
-        double conv_rate = 1;
-        wxString earliest_date = wxDate::Today().FormatISODate();
-
-        Model_Checking::Data_Set checking_list;
-        for (const auto trans : trans_list)
+        if (!trans_list.empty())
         {
-            Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-            if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
-        }
-        std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
+            double total_shares = 0;
+            double total_initial_value = 0;
+            double avg_share_price = 0;
+            wxString earliest_date = wxDate::Today().FormatISODate();
 
-        for (const auto trans : checking_list)
-        {
-            Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
-            conv_rate = to_base_curr ? Model_CurrencyHistory::getDayRate(currency->CURRENCYID, trans.TRANSDATE) : 1;
-            total_shares += share_entry->SHARENUMBER;
-            if (total_shares < 0) total_shares = 0;
-
-            if (share_entry->SHARENUMBER > 0) {
-                total_initial_value += (share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION) * conv_rate;
+            Model_Checking::Data_Set checking_list;
+            for (const auto trans : trans_list)
+            {
+                Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
+                if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
             }
-            else {
-                total_initial_value += share_entry->SHARENUMBER * avg_share_price;
-            }
+            std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
-            if (total_initial_value < 0) total_initial_value = 0;
-            if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
+            for (const auto trans : checking_list)
+            {
+                Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
+                conv_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, trans.TRANSDATE);
+                total_shares += share_entry->SHARENUMBER;
+                if (total_shares < 0) total_shares = 0;
+
+                if (share_entry->SHARENUMBER > 0) {
+                    total_initial_value += (share_entry->SHARENUMBER * share_entry->SHAREPRICE + share_entry->SHARECOMMISSION) * conv_rate;
+                }
+                else {
+                    total_initial_value += share_entry->SHARENUMBER * avg_share_price;
+                }
+
+                if (total_initial_value < 0) total_initial_value = 0;
+                if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
+            }
+            conv_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID);
+            return CurrentValue(r) * conv_rate - total_initial_value;
         }
-        conv_rate = to_base_curr ? Model_CurrencyHistory::getDayRate(currency->CURRENCYID) : 1;
-        return CurrentValue(r) * conv_rate - total_initial_value;
+        else {
+            return (CurrentValue(r) - InvestmentValue(r)) * conv_rate;
+        }
     }
 }
 
