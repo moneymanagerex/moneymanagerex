@@ -219,7 +219,7 @@ CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
 -- Note: All strings requiring translation are prefix by: ''
 -- The  prefix is removed when generating .h files by sqlite2cpp.py
 -- strings containing unicode should not be translated.
-INSERT INTO CURRENCYFORMATS_V1 VALUES(1,'US dollar','$','','.',' ','','',100,1,'USD','Fiat');
+INSERT INTO CURRENCYFORMATS_V1 VALUES(1,'US dollar','$','','.',',','Dollar','Cent',100,1,'USD','Fiat');
 INSERT INTO CURRENCYFORMATS_V1 VALUES(2,'Euro','€','','.',' ','','',100,1,'EUR','Fiat');
 INSERT INTO CURRENCYFORMATS_V1 VALUES(3,'British pound','£','','.',' ','Pound','Pence',100,1,'GBP','Fiat');
 INSERT INTO CURRENCYFORMATS_V1 VALUES(4,'Russian ruble','','р',',',' ','руб.','коп.',100,1,'RUB','Fiat');
