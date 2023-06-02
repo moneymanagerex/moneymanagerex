@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-03-10 09:16:48.384520.
+ *          AUTO GENERATED at 2023-06-02 12:09:36.042173.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -109,7 +109,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('1', '%s', '$', '', '.', ' ', '', '', '100', '1', 'USD', 'Fiat')", _("US dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('1', '%s', '$', '', '.', ',', 'Dollar', 'Cent', '100', '1', 'USD', 'Fiat')", _("US dollar")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('2', '%s', '%s', '', '.', ' ', '', '', '100', '1', 'EUR', 'Fiat')", _("Euro"), L"€"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('3', '%s', '%s', '', '.', ' ', 'Pound', 'Pence', '100', '1', 'GBP', 'Fiat')", _("British pound"), L"£"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('4', '%s', '', '%s', ',', ' ', '%s', '%s', '100', '1', 'RUB', 'Fiat')", _("Russian ruble"), L"р", L"руб.", L"коп."));
