@@ -343,15 +343,22 @@
   <releases>
     
     <release version="1.6.3" date="2023-02-01">
+      <url>https://github.com/moneymanagerex/moneymanagerex/releases/</url>
+        
       <description>
         <ul>
-          <li>Last updated date time for transactions</li>
-          <li>Time Picker for GRM</li>
-          <li>Multiple fixes</li>
-          <li>Some minor cosmetic changes</li>
+          <li>Fixes</li>
+          <li>New and improved features</li>
+          <li>User interface improvements</li>
+        </ul>
+
+        <ul>
+          <li xml:lang="hu">Javítások</li>
+          <li xml:lang="hu">Új és továbbfejlesztett jellemzők</li>
+          <li xml:lang="hu">Felhasználói felület fejlesztései</li>
         </ul>
       </description>
-      <url>https://github.com/moneymanagerex/moneymanagerex/releases/tag/v1.6.3</url>
+        
     </release>
     
   </releases>
