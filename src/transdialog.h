@@ -50,7 +50,7 @@ public:
         , double current_balance
         , bool duplicate = false
         , int type = Model_Checking::WITHDRAWAL
-        , const wxString& = "Transactions Dialog");
+        , const wxString& = "");
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
