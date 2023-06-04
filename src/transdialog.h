@@ -49,8 +49,7 @@ public:
         , int transaction_id
         , double current_balance
         , bool duplicate = false
-        , int type = Model_Checking::WITHDRAWAL
-        , const wxString& = "");
+        , int type = Model_Checking::WITHDRAWAL);
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY

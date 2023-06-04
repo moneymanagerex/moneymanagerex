@@ -92,8 +92,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , double current_balance
     , bool duplicate
     , int type
-    , const wxString&
-) : m_duplicate(duplicate)
+    ) : m_duplicate(duplicate)
 , m_current_balance(current_balance)
 , m_account_id(account_id)
 {
