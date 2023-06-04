@@ -507,7 +507,7 @@ const std::map<wxString, wxString> &date_formats_regex()
     const wxString tail = "($|[^0-9])+";
     const wxString head = "^";
 
-    for (const auto entry : g_date_formats_map())
+    for (const auto &entry : g_date_formats_map())
     {
         wxString regexp = entry.first;
         regexp.Replace(".", R"([.])");
