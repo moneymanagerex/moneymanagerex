@@ -1710,7 +1710,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
+        return tran.is_foreign_transfer() ? (Model_Checking::type(tran) == Model_Checking::DEPOSIT ? "< " : "> ") + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_NOTES:
