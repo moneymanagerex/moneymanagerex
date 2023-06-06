@@ -44,15 +44,12 @@ public:
     mmTransDialog() {}
     virtual ~mmTransDialog();
 
-    mmTransDialog(
-        wxWindow* parent
+    mmTransDialog(wxWindow* parent
         , int account_id
         , int transaction_id
         , double current_balance
         , bool duplicate = false
-        , int type = Model_Checking::WITHDRAWAL
-        , const wxString& name = "Transactions Dialog"
-    );
+        , int type = Model_Checking::WITHDRAWAL);
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -116,10 +113,10 @@ private:
     wxChoice* transaction_type_;
     mmDatePickerCtrl* dpc_;
 
-    bool m_transfer;
-    bool m_new_trx;
-    bool m_duplicate;
-    bool m_advanced;
+    bool m_transfer = false;
+    bool m_new_trx = false;
+    bool m_duplicate = false;
+    bool m_advanced = false;
     double m_current_balance;
 
     int object_in_focus_;
@@ -131,14 +128,14 @@ private:
 
     std::vector<wxString> frequentNotes_;
 
-    bool skip_date_init_;
-    bool skip_account_init_;
-    bool skip_amount_init_;
-    bool skip_payee_init_;
-    bool skip_status_init_;
-    bool skip_notes_init_;
-    bool skip_category_init_;
-    bool skip_tooltips_init_;
+    bool skip_date_init_ = false;
+    bool skip_account_init_ = false;
+    bool skip_amount_init_ = false;
+    bool skip_payee_init_ = false;
+    bool skip_status_init_ = false;
+    bool skip_notes_init_ = false;
+    bool skip_category_init_ = false;
+    bool skip_tooltips_init_ = false;
     wxSize min_size_;
 
     enum
