@@ -228,6 +228,9 @@ Benjamin Julien Caplet
 Duncan Livingstone
 Carlos Pérez-Adsuar Antón
 Kevin Pengel
+Kai Regenstein
+Massimo Palo
+Michael Brede
 
 ### 2022
 Renato
