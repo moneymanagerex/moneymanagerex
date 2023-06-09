@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-01 12:33+0300\n"
-"PO-Revision-Date: 2023-06-01 12:14\n"
+"PO-Revision-Date: 2023-06-05 08:58\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1920,7 +1920,7 @@ msgstr "הצגת 'ממועד' דף החשבון"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "הכל"
 
 #: constants.cpp:209 mmframe.cpp:1481 mmframe.cpp:1886
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -3250,7 +3250,7 @@ msgstr "בחירת קובץ נתונים QIF ליבוא"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "האם לייבא את כל התנועות?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -4741,7 +4741,7 @@ msgstr "התעלם מתנועות עתידיות"
 
 #: mmframe.cpp:1586
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "הצגת ר&מז־צץ"
 
 #: mmframe.cpp:1586 optionsettingsview.cpp:104
 msgid "Show Tooltips"
@@ -4749,7 +4749,7 @@ msgstr "הצגת רמז־צץ"
 
 #: mmframe.cpp:1588
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "הצגת עצות אודות &כסף"
 
 #: mmframe.cpp:1588 optionsettingsview.cpp:110
 msgid "Show Money Tips"
@@ -6056,7 +6056,7 @@ msgstr "בחירההאם להשתמש בתאריך מקורי, או תאריך '
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "צליל תנועה"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6355,7 +6355,7 @@ msgstr "צבעי תנועה"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "מנשק משתמש"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6367,7 +6367,7 @@ msgstr "תבנית סגנון"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "מערכת"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
@@ -6383,7 +6383,7 @@ msgstr "הגדרת נוסח ערכת נושא מועדפת אחרת ככל שז�
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "ערכת נושא"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
@@ -6411,7 +6411,7 @@ msgstr "עצום"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "גודל גופן"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
@@ -7063,7 +7063,7 @@ msgstr "הזנת סכום עמלה ששולמה"
 
 #: sharetransactiondialog.cpp:279
 msgid "Share Lot"
-msgstr "לוט ניר ערך"
+msgstr "דבוקת נירות ערך"
 
 #: sharetransactiondialog.cpp:286
 msgid "Enter the LOT that this parcel os shares belong to"
