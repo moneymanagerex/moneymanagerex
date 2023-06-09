@@ -1691,9 +1691,13 @@ const wxString md2html(const wxString& md)
     wxString body = md;
     // ---- Convert Markup
 
+    wxRegEx re(R"(https:\/\/github\.com\/moneymanagerex\/moneymanagerex\/milestone\/(\d+)\?closed=1)", wxRE_EXTENDED);
+    re.Replace(&body, R"(<a href="https://github.com/moneymanagerex/moneymanagerex/milestone/\1?closed=1" target="_blank">The full list of closed issues is available at this link</a>)");
+    body.Replace("The full list of closed issues is available at this link", _("The full list of closed issues is available at this link"));
+
     // img with link
     // skip images hosted via unsupported https
-    wxRegEx re(R"(\[!\[([^]]+)\]\(([ \t]*https:\/\/[^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
+    re.Compile(R"(\[!\[([^]]+)\]\(([ \t]*https:\/\/[^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
     re.Replace(&body, R"(<a href="\3" target="_blank">\1</a>)");
     re.Compile(R"(\[!\[([^]]+)\]\(([^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
     re.Replace(&body, R"(<a href="\3" target="_blank"><img src="\2" alt="\1"></a>)");
@@ -1713,7 +1717,7 @@ const wxString md2html(const wxString& md)
     re.Compile(R"(#([0-9]{4,5}))", wxRE_EXTENDED);
     re.Replace(&body, R"(<a href="https://github.com/moneymanagerex/moneymanagerex/issues/\1" target="_blank">#\1</a>)");
 
-    body.Replace("\n", "\n<p>");
+    body.Replace("\n", "\n<br>");
 
     return body;
 }
