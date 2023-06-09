@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "validators.h"
 
 #include "model/allmodel.h"
-
+#include <wx/display.h>
 #include <wx/valnum.h>
 #include <wx/regex.h>
 
@@ -156,16 +156,11 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     , long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style|wxRESIZE_BORDER);
 
     mmDoCreateControls();
     wxCommandEvent evt(wxEVT_CHECKBOX, wxID_ANY);
     AddPendingEvent(evt);
-
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
-    SetMinSize(wxSize(400, 480));
     SetIcon(mmex::getProgramIcon());
 
     Centre();
@@ -482,10 +477,18 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     *******************************************************************************/
     wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
-    box_sizer2->Add(itemStaticBoxSizer4, 1, wxGROW | wxALL, 5);
+    box_sizer2->Add(itemStaticBoxSizer4, g_flagsExpand);
+    
+    wxScrolledWindow* scroll_window = new wxScrolledWindow(static_box_sizer, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
+    scroll_window->SetScrollRate(5, 5);
+    itemStaticBoxSizer4->Add(scroll_window, g_flagsExpand);
+    wxBoxSizer* scrollWindowSizer;
 
-    wxPanel* itemPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemStaticBoxSizer4->Add(itemPanel, g_flagsExpand);
+    scrollWindowSizer = new wxBoxSizer(wxVERTICAL);
+    scroll_window->SetSizer(scrollWindowSizer);
+
+    wxPanel* itemPanel = new wxPanel(scroll_window, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    scrollWindowSizer->Add(itemPanel, 1, wxEXPAND | wxALL, 0);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* itemPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
@@ -646,6 +649,9 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
     itemPanelSizer->Add(colorButton_, g_flagsExpand);
+    scroll_window->FitInside();
+    wxSize min_scroll_size = scrollWindowSizer->GetSize();
+    scroll_window->SetSizeHints(min_scroll_size.GetWidth(), min_scroll_size.GetHeight(), -1, min_scroll_size.GetHeight());
 
     /******************************************************************************
      Presentation Panel
@@ -782,12 +788,15 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         bHideColumns_->Hide();
         combineSplitsCheckBox_->Hide();
     }
-    Fit();
-
+    
     wxCommandEvent e(wxID_APPLY);
     OnSettingsSelected(e);
 
     Center();
+    wxSize max_size = wxDisplay(GetParent()).GetGeometry().GetSize();
+    wxSize best_size = GetBestSize();
+    SetSizeHints(std::min({ best_size.GetWidth(), max_size.GetWidth()}), -1, max_size.GetWidth(), std::min({max_size.GetHeight(), best_size.GetHeight()}));
+    Fit();
     this->SetSizer(box_sizer);
 
 }
@@ -1854,6 +1863,9 @@ void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     m_custom_fields->ShowHideCustomPanel();
 
     this->SetMinSize(wxSize(0, 0));
+    wxSize max_size = wxDisplay(GetParent()).GetGeometry().GetSize();
+    wxSize best_size = GetBestSize();
+    SetSizeHints(std::min({ best_size.GetWidth(), max_size.GetWidth() }), -1, max_size.GetWidth(), std::min({ max_size.GetHeight(), best_size.GetHeight() }));
     this->Fit();
 }
 
