@@ -84,6 +84,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog()
 mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 {
     wxLogDebug("~mmFilterTransactionsDialog");
+    Model_Infotable::instance().Set("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport, wxString selected)
@@ -153,10 +154,12 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
-    , long style)
+    , long style
+    , const wxString& name
+)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style|wxRESIZE_BORDER);
+    wxDialog::Create(parent, id, caption, pos, size, style|wxRESIZE_BORDER, name);
 
     mmDoCreateControls();
     wxCommandEvent evt(wxEVT_CHECKBOX, wxID_ANY);
@@ -798,7 +801,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     SetSizeHints(std::min({ best_size.GetWidth(), max_size.GetWidth()}), -1, max_size.GetWidth(), std::min({max_size.GetHeight(), best_size.GetHeight()}));
     Fit();
     this->SetSizer(box_sizer);
-
+    if (isReportMode_) mmSetSize(this);
 }
 
 void mmFilterTransactionsDialog::setTransferTypeCheckBoxes()

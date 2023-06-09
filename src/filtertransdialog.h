@@ -130,7 +130,9 @@ private:
         , const wxString& caption = _("Transaction Filter")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+        , const wxString& name = "Transaction Filter"
+    );
 private:
     /// Creates the controls and sizers
     void mmDoCreateControls();

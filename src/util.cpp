@@ -1829,6 +1829,9 @@ void mmSetSize(wxWindow* w)
     else if (name == "Recurring Transaction Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("RECURRINGTRANS_DIALOG_SIZE");
     }
+    else if (name == "Transaction Filter") {
+        my_size = Model_Infotable::instance().GetSizeSetting("TRANSACTION_FILTER_SIZE");
+    }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();
