@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-09 22:53\n"
+"PO-Revision-Date: 2023-06-10 00:12\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -7745,7 +7745,7 @@ msgstr "Fut a következőn:"
 
 #: util.cpp:1696
 msgid "The full list of closed issues is available at this link"
-msgstr ""
+msgstr "A megoldott problémák teljes listája ezen a hivatkozáson érhető el"
 
 #: util.h:186
 msgid "January"
