@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-09 22:53\n"
+"PO-Revision-Date: 2023-06-10 03:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -7726,7 +7726,7 @@ msgstr "运行于："
 
 #: util.cpp:1696
 msgid "The full list of closed issues is available at this link"
-msgstr ""
+msgstr "已关闭问题的完整列表在此链接可用"
 
 #: util.h:186
 msgid "January"
