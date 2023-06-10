@@ -79,7 +79,17 @@ inline void mmCalcValidator::OnChar(wxKeyEvent& event)
         return event.Skip();
 
     wxChar decChar = text_field->GetDecimalPoint();
-    bool numpad_dec_swap = (wxGetKeyState(WXK_NUMPAD_DECIMAL) && decChar != str);
+
+    bool numpad_dec_swap = false;
+
+    try
+    {
+        numpad_dec_swap = (wxGetKeyState(WXK_NUMPAD_DECIMAL) && decChar != str);
+    }
+    catch(...)
+    {
+
+    }
 
     if (numpad_dec_swap)
         str = wxString(decChar);
