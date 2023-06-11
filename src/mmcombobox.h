@@ -59,12 +59,12 @@ public:
     void setSelection(int &id)
     {
         if (m_payee) {
-            for (const auto payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+            for (const auto &payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
                 if (payee.PAYEEID == id) this->ChangeValue(payee.PAYEENAME);
         }
         else
         {
-            for (const auto acc : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+            for (const auto &acc : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
                 if (acc.ACCOUNTID == id) this->ChangeValue(acc.ACCOUNTNAME);
         }
     }

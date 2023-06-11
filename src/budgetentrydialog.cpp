@@ -41,9 +41,6 @@ mmBudgetEntryDialog::mmBudgetEntryDialog(wxWindow* parent
     , const wxString& CategoryActual)
     : catEstimateAmountStr_(categoryEstimate)
     , catActualAmountStr_(CategoryActual)
-    , m_choiceItem()
-    , m_textAmount()
-    , m_choiceType()
 {
     budgetEntry_ = entry;
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;

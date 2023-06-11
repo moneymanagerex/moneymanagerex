@@ -48,10 +48,10 @@ public:
 
 private:
     Model_Budget::Data* budgetEntry_;
-    wxChoice* m_choiceItem;
-    mmTextCtrl* m_textAmount;
-    wxChoice* m_choiceType;
-    wxTextCtrl* m_Notes;
+    wxChoice* m_choiceItem = nullptr;
+    mmTextCtrl* m_textAmount = nullptr;
+    wxChoice* m_choiceType = nullptr;
+    wxTextCtrl* m_Notes = nullptr;
 
     wxString catEstimateAmountStr_;
     wxString catActualAmountStr_;
