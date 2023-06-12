@@ -484,21 +484,15 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     
     wxScrolledWindow* scroll_window = new wxScrolledWindow(static_box_sizer, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
     scroll_window->SetScrollRate(5, 5);
-    itemStaticBoxSizer4->Add(scroll_window, g_flagsExpand);
-    wxBoxSizer* scrollWindowSizer;
-
-    scrollWindowSizer = new wxBoxSizer(wxVERTICAL);
+    itemStaticBoxSizer4->Add(scroll_window, 0, wxEXPAND | wxALL, 0);
+    wxBoxSizer* scrollWindowSizer = new wxBoxSizer(wxVERTICAL);
     scroll_window->SetSizer(scrollWindowSizer);
 
     wxPanel* itemPanel = new wxPanel(scroll_window, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    scrollWindowSizer->Add(itemPanel, 1, wxEXPAND | wxALL, 0);
+    scrollWindowSizer->Add(itemPanel, 0, wxEXPAND | wxALL, 10);
 
-    wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* itemPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanelSizer->AddGrowableCol(1, 1);
-
-    itemPanel->SetSizer(itemBoxSizer4);
-    itemBoxSizer4->Add(itemPanelSizer, g_flagsExpand);
 
     // Account
     accountCheckBox_ = new wxCheckBox(itemPanel, ID_ACCOUNT_CB, _("Account")
@@ -612,10 +606,11 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     amountMinEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
+    amountMinEdit_->SetMinSize(wxSize(105, -1));
     amountMaxEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-
+    amountMaxEdit_->SetMinSize(wxSize(105, -1));
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, g_flagsExpand);
     amountSizer->Add(amountMaxEdit_, g_flagsExpand);
@@ -651,9 +646,15 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(colorCheckBox_, g_flagsH);
 
     colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
+#ifdef __WXGTK__
+    colorButton_->SetMinSize(wxSize(-1, 2 * colorButton_->GetBestSize().GetHeight()));
+#endif
     itemPanelSizer->Add(colorButton_, g_flagsExpand);
-    scroll_window->FitInside();
-    wxSize min_scroll_size = scrollWindowSizer->GetSize();
+    
+    itemPanel->SetSizerAndFit(itemPanelSizer);
+    scroll_window->SetSizerAndFit(scrollWindowSizer);
+    Fit();
+    wxSize min_scroll_size = scroll_window->GetSize();
     scroll_window->SetSizeHints(min_scroll_size.GetWidth(), min_scroll_size.GetHeight(), -1, min_scroll_size.GetHeight());
 
     /******************************************************************************
