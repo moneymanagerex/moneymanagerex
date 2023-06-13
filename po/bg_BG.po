@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-09 22:53\n"
+"PO-Revision-Date: 2023-06-13 10:13\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +288,7 @@ msgstr ""
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "Невалиден URL адрес"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
@@ -324,7 +324,7 @@ msgstr ""
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Нова база данни"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "Създайте нов файл за база данни, за да з�
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Отвори &съществуваща база данни"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,7 +340,7 @@ msgstr "Отвори вече създадена база данни с разш
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Език на интерфейса"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
@@ -356,7 +356,7 @@ msgstr "Прочети упътването за потребители"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1785
 msgid "&Website"
-msgstr ""
+msgstr "&Уебсайт"
 
 #: appstartdialog.cpp:120
 #, c-format
