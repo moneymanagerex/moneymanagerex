@@ -646,9 +646,6 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(colorCheckBox_, g_flagsH);
 
     colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
-#ifdef __WXGTK__
-    colorButton_->SetMinSize(wxSize(-1, 2 * colorButton_->GetBestSize().GetHeight()));
-#endif
     itemPanelSizer->Add(colorButton_, g_flagsExpand);
     
     itemPanel->SetSizerAndFit(itemPanelSizer);
