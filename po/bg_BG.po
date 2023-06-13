@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-13 10:13\n"
+"PO-Revision-Date: 2023-06-13 11:18\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgstr ""
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Датата, на която е открит акаунта"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:565
 #: import_export/univcsvdialog.cpp:2458
@@ -299,7 +299,7 @@ msgstr ""
 #: billsdepositsdialog.cpp:1033 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Невалидна дата"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "Ръково&дство на потребителя"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -361,7 +361,7 @@ msgstr "&Уебсайт"
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Посети страницата на %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
@@ -369,7 +369,7 @@ msgstr ""
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "Из&ход "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -387,7 +387,7 @@ msgstr "Промяна на езика, използван за MMEX ГПИ"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
-msgstr ""
+msgstr "Език"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3770 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -502,7 +502,7 @@ msgstr "&Отказ"
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:438
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Невалидна транзакция"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
@@ -701,7 +701,7 @@ msgstr "Не е избрана папка за прикачени неща."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Моля установете я в Инструменти -> Опции -> Прикачени неща"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -860,7 +860,7 @@ msgstr "Месечно"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "На всеки 2 месеца"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -916,7 +916,7 @@ msgstr "Месечно (последен работен ден)"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:303
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Копирай повтарящата се транзакция"
 
 #: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:298
 msgid "Edit Recurring Transaction"
@@ -1116,7 +1116,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:544
 msgid "Color"
-msgstr ""
+msgstr "Цвят"
 
 #: billsdepositsdialog.cpp:633 transdialog.cpp:551 transdialog.cpp:1240
 #: usertransactionpanel.cpp:215
@@ -1135,11 +1135,11 @@ msgstr "От"
 
 #: billsdepositsdialog.cpp:880
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Датата на плащане е след крайната дата, това ли искахте?"
 
 #: billsdepositsdialog.cpp:881
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Изглежда като закъсняло плащане"
 
 #: billsdepositsdialog.cpp:933 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:641
