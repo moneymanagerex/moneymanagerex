@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-09 22:53\n"
+"PO-Revision-Date: 2023-06-13 09:02\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr ""
 
 #: accountdialog.cpp:171
 msgid "Favorite Account"
-msgstr ""
+msgstr "Favourite Account"
 
 #: accountdialog.cpp:173
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
@@ -260,7 +260,7 @@ msgstr ""
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Organise attachments of this account"
 
 #: accountdialog.cpp:430
 msgid "Default Image"
@@ -482,7 +482,7 @@ msgstr ""
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Organise attachments of this asset"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -567,7 +567,7 @@ msgstr ""
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1443 mmframe.cpp:1463 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Organise Attachments…"
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -722,17 +722,17 @@ msgstr ""
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organise Attachments | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Organise Attachments | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Organise Attachments | New %s"
 
 #: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:572
 msgid "Other tools"
@@ -748,7 +748,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:203
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Organise Attachments: Add Attachment"
 
 #: attachmentdialog.cpp:249
 msgid "Enter a new description for the attachment:"
@@ -756,7 +756,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:250
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Organise Attachments: Edit Attachment"
 
 #: attachmentdialog.cpp:277
 msgid "Do you really want to delete this attachment?"
@@ -1107,7 +1107,7 @@ msgstr "User Colours"
 
 #: billsdepositsdialog.cpp:616
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Organise attachments of this recurring transaction"
 
 #: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:643
 #: filtertransdialog.cpp:973 filtertransdialog.cpp:1554
@@ -1649,7 +1649,7 @@ msgstr ""
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Organise Categories: Invalid Name"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1793,7 +1793,7 @@ msgstr ""
 
 #: categdialog.h:68 mmframe.cpp:1680 mmframe.cpp:1901
 msgid "Organize Categories"
-msgstr ""
+msgstr "Organise Categories"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1914,7 +1914,7 @@ msgstr ""
 
 #: constants.cpp:211 mmframe.cpp:1488
 msgid "Favorites"
-msgstr ""
+msgstr "Favourites"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
@@ -2128,7 +2128,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Personalise custom fields"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2420,7 +2420,7 @@ msgstr ""
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "We suggest a database optimisation under Tools → Database → Optimise"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -3945,11 +3945,11 @@ msgstr ""
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr ""
+msgstr "Organise Categories Tip: Pressing the h key will cycle through all categories starting with the letter h"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Organise Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4725,23 +4725,23 @@ msgstr ""
 
 #: mmframe.cpp:1680
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Organise &Categories..."
 
 #: mmframe.cpp:1684
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Organise &Payees..."
 
 #: mmframe.cpp:1684 mmframe.cpp:1902 payeedialog.cpp:496
 msgid "Organize Payees"
-msgstr ""
+msgstr "Organise Payees"
 
 #: mmframe.cpp:1688
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Organise Curre&ncy…"
 
 #: mmframe.cpp:1688 mmframe.cpp:1903
 msgid "Organize Currency"
-msgstr ""
+msgstr "Organise Currency"
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4841,11 +4841,11 @@ msgstr ""
 
 #: mmframe.cpp:1763
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&Optimise Database…"
 
 #: mmframe.cpp:1764
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Optimise database space and performance"
 
 #: mmframe.cpp:1766
 msgid "Database De&bug..."
@@ -5053,15 +5053,15 @@ msgstr ""
 
 #: mmframe.cpp:1901
 msgid "Show Organize Categories Dialog"
-msgstr ""
+msgstr "Show Organise Categories"
 
 #: mmframe.cpp:1902
 msgid "Show Organize Payees Dialog"
-msgstr ""
+msgstr "Show Organise Payees"
 
 #: mmframe.cpp:1903
 msgid "Show Organize Currency Dialog"
-msgstr ""
+msgstr "Show Organise Currency"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5192,7 +5192,7 @@ msgstr ""
 
 #: mmframe.cpp:2347
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Make sure you have a database backup before optimisation"
 
 #: mmframe.cpp:2348 mmframe.cpp:2358
 msgid "DB Optimization"
@@ -5203,7 +5203,9 @@ msgstr ""
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "Database Optimisation Completed!\n\n"
+"Size before: %s\n"
+"Size after: %s\n"
 
 #: mmframe.cpp:2366
 msgid "Please use this function only if explicitly requested by MMEX support"
@@ -6428,7 +6430,7 @@ msgstr ""
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "Organise Payees: Delete Error"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
@@ -6448,7 +6450,7 @@ msgstr ""
 
 #: payeedialog.cpp:868
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "&Organise Attachments"
 
 #: payeedialog.cpp:872
 msgid "Relocate Payee"
@@ -6905,11 +6907,11 @@ msgstr ""
 
 #: reports/summarystocks.cpp:124 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Realised Gain/Loss"
 
 #: reports/summarystocks.cpp:125 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Unrealised Gain/Loss"
 
 #: reports/summarystocks.cpp:246
 msgid "Stocks Performance Charts"
@@ -6981,7 +6983,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"
-msgstr ""
+msgstr "Organise attachments of this stock"
 
 #: sharetransactiondialog.cpp:298 stockdialog.cpp:266
 msgid "Display the web page for the specified Stock symbol"
@@ -7402,7 +7404,7 @@ msgstr ""
 
 #: transdialog.cpp:534 usertransactionpanel.cpp:199
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "Organise attachments of this transaction"
 
 #: transdialog.cpp:734
 msgid "This transaction will exceed your account limit.\n\n"
@@ -7907,14 +7909,18 @@ msgstr ""
 #: wizard_newaccount.cpp:144
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Investment and Share accounts are specialised accounts that\n"
+"have stock/mutual fund investments associated with them."
 
 #: wizard_newaccount.cpp:149
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Term and Asset accounts are specialised bank accounts.\n"
+"They are intended for monitoring Assets or Term Deposits and Bonds\n"
+"where typically you have regular money coming in and out, outside\n"
+"the general income stream."
 
 #: wizard_newaccount.cpp:165
 msgid "Base Account Currency Not set."
