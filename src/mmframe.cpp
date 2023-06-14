@@ -1045,7 +1045,7 @@ void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
                 mmQIFImportDialog(this, gotoAccountID_, files[i]).ShowModal();
             }
         }
-
+        refreshPanelData();
     }
 }
 
