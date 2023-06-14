@@ -759,6 +759,22 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
         if (!cb || !cb->GetValue())
             continue;
 
+        if (GetWidgetType(controlID) == Model_CustomField::DECIMAL 
+                || GetWidgetType(controlID) == Model_CustomField::INTEGER)
+        {
+            wxWindow* w = FindWindowById(controlID, m_dialog);
+            if (w)
+            {
+                mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
+                double value;
+                if (d->checkValue(value, false))
+                    SetWidgetChanged(controlID, Model_Currency::toString(value, NULL
+                                                , Model_CustomField::getDigitScale(field.PROPERTIES)));
+                else
+                    is_valid = false;
+            }
+        }
+
         const wxString regExStr = Model_CustomField::getRegEx(field.PROPERTIES);
         if (!regExStr.empty())
         {
@@ -773,22 +789,6 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
                     , _("CustomField validation error"));
                 is_valid = false;
                 continue;
-            }
-        }
-
-        if (GetWidgetType(controlID) == Model_CustomField::DECIMAL 
-                || GetWidgetType(controlID) == Model_CustomField::INTEGER)
-        {
-            wxWindow* w = FindWindowById(controlID, m_dialog);
-            if (w)
-            {
-                mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
-                double value;
-                if (d->checkValue(value, false))
-                    SetWidgetChanged(controlID, Model_Currency::toString(value, NULL
-                                                , Model_CustomField::getDigitScale(field.PROPERTIES)));
-                else
-                    is_valid = false;
             }
         }
     }
