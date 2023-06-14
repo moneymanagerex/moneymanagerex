@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/x-mmex">
+        <sub-class-of type="application/x-sqlite3"/>
+        <comment>MMEX database file/comment>
+        <glob pattern="*.mmex"/>
+        <icon name="org.moneymanagerex.MMEX"/>
+        <generic-icon name="org.moneymanagerex.MMEX"/>
+    </mime-type>
+    <mime-type type="application/x-emb">
+        <sub-class-of type="application/x-sqlite3"/>
+        <comment>MMEX database file/comment>
+        <glob pattern="*.emb"/>
+        <icon name="org.moneymanagerex.MMEX"/>
+        <generic-icon name="org.moneymanagerex.MMEX"/>
+    </mime-type>
+    <mime-type type="application/x-mmdbg">
+        <sub-class-of type="application/x-sqlite3"/>
+        <comment>MMEX database file/comment>
+        <glob pattern="*.mmdb"/>
+        <icon name="org.moneymanagerex.MMEX"/>
+        <generic-icon name="org.moneymanagerex.MMEX"/>
+    </mime-type>
+</mime-info>
