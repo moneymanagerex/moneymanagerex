@@ -2556,17 +2556,18 @@ void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
             payeeMatchAddNotes_->SetValue(false);
             refreshTabs(PAYEE_TAB);
         }
-        else if (id == wxID_DEFAULT)
-        {
-            wxString preset_name = m_choice_preset_name->GetStringSelection();
+    }
 
-            if (m_checkbox_preset_default->IsChecked())
-                m_acct_default_preset[m_account_id] = m_preset_id[preset_name];
-            else if (m_acct_default_preset[m_account_id] == m_preset_id[preset_name])
-                m_acct_default_preset[m_account_id] = "";
+    if (id == wxID_DEFAULT)
+    {
+        wxString preset_name = m_choice_preset_name->GetStringSelection();
 
-            saveAccountPresets();
-        }
+        if (m_checkbox_preset_default->IsChecked())
+            m_acct_default_preset[m_account_id] = m_preset_id[preset_name];
+        else if (m_acct_default_preset[m_account_id] == m_preset_id[preset_name])
+            m_acct_default_preset[m_account_id] = "";
+
+        saveAccountPresets();
     }
 }
 
