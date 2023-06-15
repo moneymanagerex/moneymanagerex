@@ -625,13 +625,13 @@ install(FILES ${GRMFILES} DESTINATION ${MMEX_RES_DIR_REPORTS})
 if(LINUX)
     # .desktop File
     install(FILES
-        resources/dist/linux/share/applications/org.moneymanager.MMEX.desktop
+        resources/dist/linux/share/applications/org.moneymanagerex.MMEX.desktop
         DESTINATION share/applications)
     install(FILES
-        resources/dist/linux/share/metainfo/org.moneymanager.MMEX.metainfo.xml
+        resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml
         DESTINATION share/metainfo)
     install(FILES
-        resources/dist/linux/share/mime/packages/org.moneymanager.MMEX.mime.xml
+        resources/dist/linux/share/mime/packages/org.moneymanagerex.MMEX.mime.xml
         DESTINATION share/mime/packages)
 endif()
 
