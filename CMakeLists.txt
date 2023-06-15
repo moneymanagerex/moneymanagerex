@@ -639,7 +639,7 @@ endif()
 if(LINUX)
     install(FILES
         resources/mmex.svg
-        DESTINATION share/icons/hicolor/scalable/apps)
+        DESTINATION share/icons/hicolor/scalable/apps RENAME org.moneymanagerex.MMEX.svg)
 elseif(APPLE)
     install(FILES
         "${MACOSX_APP_ICON_FILE}"
