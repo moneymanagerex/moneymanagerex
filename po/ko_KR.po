@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-10 08:46\n"
+"PO-Revision-Date: 2023-06-15 03:45\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -890,7 +890,7 @@ msgstr "4주"
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:60 mmframereport.cpp:126
 #: model/Model_Budget.cpp:66
 msgid "Daily"
-msgstr "일간"
+msgstr "매일"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
@@ -954,7 +954,7 @@ msgstr "지정된 값으로 다음 발생 날짜를 앞당깁니다"
 
 #: billsdepositsdialog.cpp:458 billsdepositsdialog.cpp:1256
 msgid "Payments Left"
-msgstr "잔여금"
+msgstr "남은 횟수"
 
 #: billsdepositsdialog.cpp:472
 msgid "Request user to enter payment"
