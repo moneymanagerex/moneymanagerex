@@ -2483,7 +2483,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     mmQIFImportDialog dlg(this, gotoAccountID_);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
-    DoRecreateNavTreeControl();
+    RefreshNavigationTree();
     if (account_id > 0)
     {
         setGotoAccountID(account_id, -1);
