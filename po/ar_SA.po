@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 22:12\n"
+"PO-Revision-Date: 2023-06-16 23:07\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -1083,11 +1083,11 @@ msgstr "الفئة"
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:501
 #: transdialog.cpp:1200
 msgid "Use split Categories"
-msgstr ""
+msgstr "استخدم الفئات المقسمة"
 
 #: billsdepositsdialog.cpp:597 transdialog.cpp:1239
 msgid "Specify any associated check number or transaction number"
-msgstr ""
+msgstr "حدد أي رقم تحقق مرتبط أو رقم معاملة"
 
 #: billsdepositsdialog.cpp:599 billsdepositspanel.cpp:144 filtertrans.cpp:190
 #: filtertransdialog.cpp:620 filtertransdialog.cpp:1549
@@ -1100,16 +1100,16 @@ msgstr "عدد"
 
 #: billsdepositsdialog.cpp:606 transdialog.cpp:522 usertransactionpanel.cpp:206
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "حدد إحدى الملاحظات المستخدمة بشكل متكرر"
 
 #: billsdepositsdialog.cpp:612 transactionsupdatedialog.cpp:217
 #: transdialog.cpp:529
 msgid "User Colors"
-msgstr ""
+msgstr "ألوان المستخدم"
 
 #: billsdepositsdialog.cpp:616
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "تنظيم مرفقات هذه المعاملة المتكررة"
 
 #: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:983 filtertransdialog.cpp:1564
@@ -1118,7 +1118,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:544
 msgid "Color"
-msgstr ""
+msgstr "اللون"
 
 #: billsdepositsdialog.cpp:633 transdialog.cpp:551 transdialog.cpp:1240
 #: usertransactionpanel.cpp:215
@@ -1128,7 +1128,7 @@ msgstr "تعيين أي ملاحظة نصية ترغب اضافتها للعمل
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:752
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:567
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "إظهار/إخفاء نافذة الحقول المخصصة"
 
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:231
 #: transdialog.cpp:240
@@ -1137,23 +1137,24 @@ msgstr "من"
 
 #: billsdepositsdialog.cpp:880
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "تاريخ الدفع بعد تاريخ الاستحقاق، هل هذا ما قصدته ؟"
 
 #: billsdepositsdialog.cpp:881
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "يبدو وكأنه دفع متأخر"
 
 #: billsdepositsdialog.cpp:933 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:641
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "لم تستخدم اسم المدفوع لأمره هذا من قبل. هل الاسم صحيح؟\n"
+"%s"
 
 #: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:642
 msgid "Confirm payee name"
-msgstr ""
+msgstr "قم بتأكيد اسم المدفوع لأمره"
 
 #: billsdepositsdialog.cpp:953 billsdepositsdialog.cpp:1282
 #: filtertransdialog.cpp:877 filtertransdialog.cpp:887
@@ -1167,54 +1168,59 @@ msgstr ""
 #: transactionsupdatedialog.cpp:393 transdialog.cpp:602 transdialog.cpp:617
 #: util.cpp:753
 msgid "Invalid value"
-msgstr ""
+msgstr "قيمة غير صالحة"
 
 #: billsdepositsdialog.cpp:1030 billsdepositsdialog.cpp:1033
 #: import_export/univcsvdialog.cpp:1357 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "تاريخ فتح الحساب متأخر عن تاريخ هذه المعاملة"
 
 #: billsdepositsdialog.cpp:1205
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "حدد مبلغ التحويل في الحساب"
 
 #: billsdepositsdialog.cpp:1215
 msgid "Activates"
-msgstr ""
+msgstr "مفعل"
 
 #: billsdepositsdialog.cpp:1217
 msgid "Period: Days"
-msgstr ""
+msgstr "الفترة: أيام"
 
 #: billsdepositsdialog.cpp:1218
 msgid "Period: Months"
-msgstr ""
+msgstr "الفترة: أشهر"
 
 #: billsdepositsdialog.cpp:1225
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "حدد الفترة الزمنية في الأيام للتفعيل.\n"
+"تصبح فارغة عندما لا تكون نشطة."
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "حدد الفترة في الأشهر لتفعيلها.\n"
+"تصبح فارغة عندما لا تكون نشطة."
 
 #: billsdepositsdialog.cpp:1241
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "حدد الفترة في الأيام لتفعيلها. \n"
+"اتركها فارغة عندما لا تكون نشطًا."
 
 #: billsdepositsdialog.cpp:1249
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "حدد الفترة في الأشهر لتفعيلها. \n"
+"اتركها فارغة عندما لا تكون نشطة."
 
 #: billsdepositsdialog.cpp:1257
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "حدد عدد المدفوعات التي يتعين القيام بها.\n"
+"اتركه فارغا إذا استمرت المدفوعات إلى الأبد."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:482
@@ -1227,23 +1233,23 @@ msgstr "خطأ"
 #: billsdepositsdialog.cpp:1352 splittransactionsdialog.h:82
 #: transdialog.cpp:325
 msgid "Split Transaction"
-msgstr ""
+msgstr "تقسيم المُعاملة"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "صفقة متكررة جديدة"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "حدد إلى أين ستذهب المعاملة"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1232
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "حدد من أين تأتي المعاملة"
 
 #: billsdepositsdialog.h:128
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "حدد الحساب الذي سيذهب إليه التحويل"
 
 #: billsdepositsdialog.h:129 transdialog.cpp:1227 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
@@ -1251,27 +1257,27 @@ msgstr "تعيين مبلغ العملية"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "حدد المبلغ المراد تحويله"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "خلال %s يوم"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "خلال %s شهر"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "كل %s يوم"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "كل %s شهر"
 
 #: billsdepositspanel.cpp:140 budgetingpanel.cpp:301 reports/myusage.cpp:163
 msgid "Frequency"
@@ -1279,23 +1285,23 @@ msgstr "التكرار"
 
 #: billsdepositspanel.cpp:141
 msgid "Repetitions"
-msgstr ""
+msgstr "تكرارات"
 
 #: billsdepositspanel.cpp:142
 msgid "Autorepeat"
-msgstr ""
+msgstr "التكرار التلقائي"
 
 #: billsdepositspanel.cpp:143 mmhomepage.cpp:358
 msgid "Payment"
-msgstr ""
+msgstr "سداد"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "يسمح MMEX بإعداد المدفوعات المنتظمة كمعاملات. يمكن أن تكون هذه المعاملات أيضًا ودائع عادية، أو تحويلات ستحدث في وقت ما في المستقبل. تعمل هذه المعاملات كتذكير بأن حدثًا على وشك الحدوث، وتظهر على الصفحة الرئيسية قبل 14 يومًا من استحقاق المعاملة. "
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "نصيحة: يمكن إعداد هذه المعاملات للتنشيط - مما يسمح للمستخدم بضبط أي قيم في تاريخ الاستحقاق."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:762
 #: mmframe.cpp:3080 mmhomepagepanel.cpp:244
@@ -1304,55 +1310,55 @@ msgstr "المُعاملات المُتكررة"
 
 #: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:443
 msgid "D&uplicate "
-msgstr ""
+msgstr "&نسخة "
 
 #: billsdepositspanel.cpp:308
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "حذف مُعاملة متكررة"
 
 #: billsdepositspanel.cpp:312
 msgid "Ente&r"
-msgstr ""
+msgstr "&إدخال"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "أدخل حدوث المعاملة المتكررة التالية"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
-msgstr ""
+msgstr "&تخطي"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "تخطي المعاملة المتكررة التالية"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "أدخل الحدث التالي..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "تخطي الحدث التالي"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&صفقة متكررة جديدة..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&تعديل مُعاملة متكررة..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "&تكرار المعاملة المتكررة..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&حذف مُعاملة متكررة..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
-msgstr ""
+msgstr "دليل"
 
 #: billsdepositspanel.cpp:491
 msgid "Automated"
@@ -1661,31 +1667,31 @@ msgstr "الاسم يحتوي على محدد الفئة. "
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "يتم استخدام حرف النقطتين (:) للفصل بين الفئات والفئات الفرعية ، وبالتالي يجب عدم استخدامه في الاسم"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "تنظيم الفئات: اسم غير صالح"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "أدخل اسم الفئة الجديدة:"
 
 #: categdialog.cpp:365
 msgid "Add Category"
-msgstr ""
+msgstr "إضافة فئة"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "يوجد فئة بنفس الاسم لهذا الأصل"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "تنظيم الفئات: إضافة خطأ"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "لا يمكنك نقل فئة فرعية إلى فئة لديها بالفعل فئة فرعية بهذا الاسم. ضع في اعتبارك إعادة التسمية قبل الانتقال."
 
 #: categdialog.cpp:438
 msgid "Sub Category with same name exists"
@@ -1954,32 +1960,32 @@ msgstr ""
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "البادئة"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "اللاحقة"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:344
 #: import_export/univcsvdialog.cpp:401
 msgid "Decimal Char"
-msgstr ""
+msgstr "حرف عشري"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "نقطة"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "فاصلة"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
-msgstr ""
+msgstr "مجموعة حروف"
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "مسافة"
 
 #: currencydialog.cpp:227
 msgid "Scale"
@@ -1987,160 +1993,161 @@ msgstr "المقياس"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "التحويل إلى السعر الأساسي"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "سيتم استخدام سعر التحويل في حالة عدم العثور على سجل عملة للعملة"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "معدل التحويل الثابت"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "نموذج تنسيق العملة:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
-msgstr ""
+msgstr "حفظ أي تغييرات أجريت"
 
 #: currencydialog.cpp:265
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "سيتم فقدان أي تغييرات بدون تحديث"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2491 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:785
 msgid "Invalid Entry"
-msgstr ""
+msgstr "إدخال غير صالح"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "حرف التجميع لا يمكن أن يكون نفس الحرف العشري"
 
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f يظهر كـ %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(باستخدام الإعدادات المحلية)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "ادارة العملة"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr ""
+msgstr "تفاصيل الحقول المخصصة"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "السمة من"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "حدد العنصر الذي يرتبط به الحقل المخصص"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "أدخل اسم الحقل المخصص"
 
 #: customfieldeditdialog.cpp:150
 msgid "Field Type"
-msgstr ""
+msgstr "نوع الحقل"
 
 #: customfieldeditdialog.cpp:154
 msgid "Select type of custom field"
-msgstr ""
+msgstr "حدد نوع الحقل المخصص"
 
 #: customfieldeditdialog.cpp:157
 msgid "ToolTip"
-msgstr ""
+msgstr "تلميح"
 
 #: customfieldeditdialog.cpp:159
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "أدخل تلميح الأداة الذي سيظهر"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
-msgstr ""
+msgstr "تعبير منطقي"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "أدخل RegEx للتحقق من صحة المجال"
 
 #: customfieldeditdialog.cpp:167
 msgid "Autocomplete"
-msgstr ""
+msgstr "إكمال تلقائي"
 
 #: customfieldeditdialog.cpp:170
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "تمكين الإكمال التلقائي في الحقل المخصص"
 
 #: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:610
 msgid "Default"
-msgstr ""
+msgstr "افتراضي"
 
 #: customfieldeditdialog.cpp:175
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "أدخل الافتراضي لهذا الحقل \n"
+"للتاريخ/الوقت إدراج «الآن» لجعل التاريخ/الوقت الحالي افتراضيًا"
 
 #: customfieldeditdialog.cpp:179
 msgid "Choices"
-msgstr ""
+msgstr "خيارات"
 
 #: customfieldeditdialog.cpp:181
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "أدخل خيارات لهذا الحقل مفصولة بفاصلة منقوطة"
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
-msgstr ""
+msgstr "مقياس الأرقام"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "أدخل مقياس الأرقام العشرية المسموح به"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
-msgstr ""
+msgstr "عمود اللوحة"
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "حدد قيمة لتمثيل العنصر في لوحة"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "تغيير نوع الحقل سيحذف كل المحتوى!"
 
 #: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2347
 #: mmframe.cpp:2366
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "هل تريد المتابعة ؟"
 
 #: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
 msgid "Custom Field Change"
-msgstr ""
+msgstr "تغيير الحقل المخصص"
 
 #: customfieldeditdialog.cpp:258
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "لقد قمت بتعديل الخيارات: سيتم تنظيف الخيارات التي تمت إزالتها!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "جديد/تحرير حقل مخصص"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
-msgstr ""
+msgstr "الخصائص"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
