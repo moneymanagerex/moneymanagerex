@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 21:16\n"
+"PO-Revision-Date: 2023-06-16 22:12\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -1360,7 +1360,7 @@ msgstr "تلقائي"
 
 #: billsdepositspanel.cpp:495
 msgid "Suggested"
-msgstr ""
+msgstr "مقترح"
 
 #: billsdepositspanel.cpp:535 billsdepositspanel.cpp:602 mmhomepage.cpp:313
 #, c-format
@@ -1371,13 +1371,13 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "أيام متبقية %d"
 
 #: billsdepositspanel.cpp:540 billsdepositspanel.cpp:547
 #: billsdepositspanel.cpp:554 billsdepositspanel.cpp:607
 #: billsdepositspanel.cpp:614 billsdepositspanel.cpp:618
 msgid "Inactive"
-msgstr ""
+msgstr "غير نشط"
 
 #: billsdepositspanel.cpp:545 mmhomepage.cpp:314
 #, c-format
@@ -1388,7 +1388,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "%d يوم تأخير!"
 
 #: billsdepositspanel.cpp:552 billsdepositspanel.cpp:612 mmhomepage.cpp:316
 #, c-format
@@ -1399,15 +1399,15 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "%d يوم متأخر!"
 
 #: billsdepositspanel.cpp:673
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "هل تريد حقاً حذف المعاملة المتكررة؟"
 
 #: billsdepositspanel.cpp:674
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "تأكيد الحذف"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1415,15 +1415,15 @@ msgstr "ادخال الميزانية السنوية"
 
 #: budgetentrydialog.cpp:106
 msgid "Category: "
-msgstr ""
+msgstr "الفئة: "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr ""
+msgstr "تقديري:"
 
 #: budgetentrydialog.cpp:114 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr ""
+msgstr "الفعلي:"
 
 #: budgetentrydialog.cpp:117
 msgid "Type:"
@@ -1450,7 +1450,7 @@ msgstr "التكرار:"
 
 #: budgetentrydialog.cpp:133
 msgid "Specify the frequency of the expense or deposit"
-msgstr ""
+msgstr "حدد تواتر المصروفات أو الإيداع"
 
 #: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:390
 msgid "Amount:"
@@ -1462,7 +1462,7 @@ msgstr "اكتب مبلغ الميزانية المخصص لهذا الصنف."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "أدخل ملاحظات لوصف هذا القيد من الميزانية"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1474,7 +1474,7 @@ msgstr "عرض ميزانية الاصناف غير الصفرية"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "عرض فئات الميزانية المخطط لها"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1486,44 +1486,44 @@ msgstr "عرض ميزانية اصناف المصروفات"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "عرض ملخص فئة الميزانية"
 
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "السنة المالية: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "سنة %s"
 
 #: budgetingpanel.cpp:182
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "شهر: %s"
 
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    تاريخ البَدء من: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "إعداد الميزانية ل %s"
 
 #: budgetingpanel.cpp:248
 msgid "Income: "
-msgstr ""
+msgstr "الوارد: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
-msgstr ""
+msgstr "تقديري: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
-msgstr ""
+msgstr "الفعلي: "
 
 #: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:344
 msgid "Difference: "
@@ -1549,11 +1549,11 @@ msgstr "الفعلية"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "محرر الميزانية"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&إضافة سنة"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1561,49 +1561,51 @@ msgstr "اضافة ميزانية سنة مالية"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&إضافة شهر"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "إضافة شهر ميزانية جديد"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "حذف الميزانية الحالية"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "تفاصيل إدخال الميزانية"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "إدخال شهر الميزانية"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "السنة المالية"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "حدد السنة المطلوبة.\n"
+"استخدم أزرار الدوران لزيادة أو تقليل السنة."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "شهر الميزانية"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "حدد الشهر المطلوب.\n"
+"استخدم أزرار الدوران لزيادة أو تقليل الشهر."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "الميزانية الأساسية على"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "حدد السنة التي يجب أن تستند إليها الميزانية"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1615,23 +1617,23 @@ msgstr "الفئات"
 
 #: categdialog.cpp:268 mmframe.cpp:1693
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "أعد تعيين كافة الفئات إلى فئة أخرى"
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr ""
+msgstr "طي الكل"
 
 #: categdialog.cpp:275 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "توسيع الكل"
 
 #: categdialog.cpp:280 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "عرض &الكل"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "أظهر جميع الفئات المخفية"
 
 #: categdialog.cpp:325
 msgid "Add a new category"
@@ -1643,7 +1645,7 @@ msgstr "تحرير اسم صنف موجود"
 
 #: categdialog.cpp:333
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "حذف فئة موجودة. لا يمكن استخدام هذه الفئة في المعاملات الحالية."
 
 #: categdialog.cpp:338 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1655,7 +1657,7 @@ msgstr "اختيار الصنف الحالي كصنف للعملية"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "الاسم يحتوي على محدد الفئة. "
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
