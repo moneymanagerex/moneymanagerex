@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 09:28\n"
+"PO-Revision-Date: 2023-06-16 20:16\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -49,11 +49,11 @@ msgstr "الخصوصية"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "أرسل بيانات استخدام الإحصاءات المجهولة"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "تمكين لمساعدتنا في إرسال بيانات مجهولة حول استخدام MMEX."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:643
@@ -94,7 +94,7 @@ msgstr "حالة الحساب:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr ""
+msgstr "حدد ما إذا كان هذا الحساب قد تم إغلاقه. الحسابات المغلقة غير نشطة في معظم الحسابات، والإبلاغ وما إلى ذلك."
 
 #: accountdialog.cpp:149
 #, c-format
@@ -107,7 +107,7 @@ msgstr "ادخل الرصيد الاولي في هذا الحساب."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "تاريخ الافتتاح:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
