@@ -20,7 +20,15 @@
         <sub-class-of type="application/x-sqlite3"/>
         <comment>MMEX database</comment>
         <comment xml:lang="hu">MMEX-adatbázis</comment>
-        <glob pattern="*.mmdb"/>
+        <glob pattern="*.mmdbg"/>
+        <icon name="org.moneymanagerex.MMEX"/>
+        <generic-icon name="org.moneymanagerex.MMEX"/>
+    </mime-type>
+    <mime-type type="application/x-mmb">
+        <sub-class-of type="application/x-sqlite3"/>
+        <comment>MMEX database</comment>
+        <comment xml:lang="hu">MMEX-adatbázis</comment>
+        <glob pattern="*.mmb"/>
         <icon name="org.moneymanagerex.MMEX"/>
         <generic-icon name="org.moneymanagerex.MMEX"/>
     </mime-type>
