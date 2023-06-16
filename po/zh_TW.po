@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-10 01:34+0300\n"
-"PO-Revision-Date: 2023-06-09 22:53\n"
+"PO-Revision-Date: 2023-06-16 06:41\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "用戶手冊"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -356,7 +356,7 @@ msgstr "閱讀用戶手冊"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1785
 msgid "&Website"
-msgstr ""
+msgstr "網站"
 
 #: appstartdialog.cpp:120
 #, c-format
@@ -369,7 +369,7 @@ msgstr ""
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "離開 "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -379,7 +379,7 @@ msgstr "開啟上次使用的資料庫：%s"
 #: appstartdialog.cpp:199 mmframe.cpp:1629 mmframe.cpp:2922
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "系統預設"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1624 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
