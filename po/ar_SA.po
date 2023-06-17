@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-17 01:13\n"
+"PO-Revision-Date: 2023-06-17 08:36\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -1699,7 +1699,7 @@ msgstr "اسم الصنف الفرعي موجود مسبقا"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "الفئة المستهدفة تنازلية"
 
 #: categdialog.cpp:457
 #, c-format
@@ -1707,23 +1707,26 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "هل أنت متأكد من أنك تريد نقل\n"
+" \"%s\"\n"
+"إلى:\n"
+"\"%s\" ؟"
 
 #: categdialog.cpp:459
 msgid "Top level"
-msgstr ""
+msgstr "أعلى مستوى"
 
 #: categdialog.cpp:460
 msgid "Confirm Move"
-msgstr ""
+msgstr "تأكيد النقل"
 
 #: categdialog.cpp:477
 msgid "Category in use."
-msgstr ""
+msgstr "الفئة قيد الاستخدام."
 
 #: categdialog.cpp:477
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "الفئة الفرعية قيد الاستخدام."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
