@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 23:07\n"
+"PO-Revision-Date: 2023-06-17 00:18\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -2151,50 +2151,54 @@ msgstr "الخصائص"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "تخصيص الحقول المخصصة"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "هل تريد حقًا حذف هذا المجال المخصص وجميع بياناته ؟"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "تأكيد حذف الحقل المخصص"
 
 #: customfieldlistdialog.cpp:190
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "ستعمل هذه الوظيفة على البحث المجمع واستبدال قيم الحقول المخصصة لـ \"%s\"\n"
+"وستطابق وتستبدل فقط قيمة الحقل الكاملة ، ولا يُسمح باستبدال قيم جزئية أو متوسطة\n"
+"يرجى مراعاة أنه لا يوجد أي تحقق من صحة البيانات!"
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "تأكيد تحديث محتوى الحقل المخصص"
 
 #: customfieldlistdialog.cpp:198
 msgid "Find what"
-msgstr ""
+msgstr "البحث عن ماذا"
 
 #: customfieldlistdialog.cpp:198 customfieldlistdialog.cpp:204
 #: customfieldlistdialog.cpp:210 customfieldlistdialog.cpp:216
 #: customfieldlistdialog.cpp:231
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "تحديث محتوى الحقل المخصص"
 
 #: customfieldlistdialog.cpp:202
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "هل تريد تحديث المحتوى الفارغ ؟\n"
+"اضغط لا إذا كنت تريد إلغاء إجراء الاستبدال!"
 
 #: customfieldlistdialog.cpp:210
 msgid "Replace with"
-msgstr ""
+msgstr "استبدال بـ"
 
 #: customfieldlistdialog.cpp:214
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "هل تريد تحديث المحتوى الفارغ ؟\n"
+"اضغط لا إذا كنت تريد إلغاء إجراء الاستبدال!"
 
 #: customfieldlistdialog.cpp:230
 #, c-format
@@ -2205,11 +2209,11 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "%zu وجدت الأحداث واستبدلت!"
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&تحديث المحتوى بالجملة "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2420,116 +2424,120 @@ msgstr "تحويل"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "فشل ترقية قاعدة بيانات MMEX إلى الإصدار %i!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "الرجاء استعادة DB من النسخ الاحتياطي المسبق للتحديث التلقائي وإعادة المحاولة أو الاتصال بدعم MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "ترقية قاعدة بيانات MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "خطأ في قاعدة بيانات MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "إصدار قاعدة بيانات MMEX %i لا يعمل مع إصدار MMEX\n"
+"الرجاء ترقية MMEX إلى إصدار أحدث."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "تم ترقية قاعدة بيانات MMEX بنجاح إلى الإصدار %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "نحن نقترح تحسين قاعدة البيانات تحت الأدوات ← قاعدة البيانات ← تحسين"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
-msgstr ""
+msgstr "تحميل ملف التصحيح"
 
 #: dbupgrade.cpp:190
 msgid "Wrong file type!"
-msgstr ""
+msgstr "نوع الملف خاطئ!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
 #: dbupgrade.cpp:289
 msgid "MMEX debug error"
-msgstr ""
+msgstr "خطأ في تصحيح MMEX"
 
 #: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "خطأ في الاستبيان، يرجى الاتصال بدعم MMEX!"
 
 #: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "محتوى الملف غير صالح، يرجى الاتصال بدعم MMEX!"
 
 #: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "إرسال هذا السجل إلى فريق الدعم MMEX:\n"
+"اضغط على OK لحفظ الملف أو إلغاء للخروج"
 
 #: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
-msgstr ""
+msgstr "تصحيح MMEX"
 
 #: dbupgrade.cpp:245
 msgid "Save debug file"
-msgstr ""
+msgstr "حفظ ملف التصحيح"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "اكتملت صيانة DB، يرجى إغلاق وإعادة فتح MMEX!"
 
 #: dbwrapper.cpp:74
 msgid "When database file opening:"
-msgstr ""
+msgstr "عند فتح ملف قاعدة البيانات:"
 
 #: dbwrapper.cpp:78
 msgid "Can't open file"
-msgstr ""
+msgstr "لا يمكن فتح الملف"
 
 #: dbwrapper.cpp:78
 msgid "You must specify path to another database file"
-msgstr ""
+msgstr "يجب عليك تحديد المسار إلى ملف قاعدة بيانات آخر"
 
 #: dbwrapper.cpp:82
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "كلمة مرور غير صحيحة للملف المشفر\n"
+"أو\n"
+"محاولة لفتح ملف ليس ملف قاعدة بيانات \n"
 
 #: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1116 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "خطاء: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:1991
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "فتح قاعدة بيانات MMEX - خطأ"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "التشخيصات"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "قد يطلب منك المطورين توفير المعلومات المقدمة هنا للمساعدة في تشخيص المشكلات التي يمكن الإبلاغ عنها مع البرنامج."
 
 #: filtertrans.cpp:181
 msgid "Back"
-msgstr ""
+msgstr "عودة"
 
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:500 mmchecking_list.cpp:1064
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:39
 msgid "Unreconciled"
-msgstr ""
+msgstr "لم تتم التسوية"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:502 mmhomepage.cpp:534
 #: mmhomepage.cpp:705 model/Model_Billsdeposits.cpp:40
@@ -2545,7 +2553,7 @@ msgstr "ملغية"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:506 mmchecking_list.cpp:1053
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:42
 msgid "Follow Up"
-msgstr ""
+msgstr "متابعة"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
@@ -2558,19 +2566,19 @@ msgstr "عرض الكل عدا التي تمت تسويتها"
 
 #: filtertransdialog.cpp:481 transactionsupdatedialog.cpp:117
 msgid "Specify"
-msgstr ""
+msgstr "تحديد"
 
 #: filtertransdialog.cpp:509
 msgid "Period Range"
-msgstr ""
+msgstr "مدى الفترة"
 
 #: filtertransdialog.cpp:521 reports/mmDateRange.cpp:35
 msgid "Date Range"
-msgstr ""
+msgstr "النطاق الزمني"
 
 #: filtertransdialog.cpp:557 filtertransdialog.cpp:1494
 msgid "Include all sub-categories"
-msgstr ""
+msgstr "تضمين جميع الفئات الفرعية"
 
 #: filtertransdialog.cpp:584 filtertransdialog.cpp:1364
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:282
@@ -2589,7 +2597,7 @@ msgstr "ايداع"
 #: filtertransdialog.cpp:588 filtertransdialog.cpp:811
 #: filtertransdialog.cpp:1368
 msgid "Transfer Out"
-msgstr ""
+msgstr "التحويل للخارج"
 
 #: filtertransdialog.cpp:590 filtertransdialog.cpp:1366
 msgid "Transfer In"
@@ -2832,139 +2840,139 @@ msgstr ""
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
-msgstr ""
+msgstr "مدير التقارير العامة"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "الأصول..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "تقرير جديد فارغ..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
-msgstr ""
+msgstr "تقرير عينة جديد"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "تغيير المجموعة..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "إعادة تسمية المجموعة..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
-msgstr ""
+msgstr "فك التجميع"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "إعادة تسمية التقرير..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "نشط"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "إظهار/إخفاء التقرير في لوحة التنقل الرئيسية"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "حذف التقرير..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "أدخل اسم التقرير"
 
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:785 mmframe.cpp:1735 mmframe.cpp:1907
 msgid "General Report Manager"
-msgstr ""
+msgstr "مدير التقرير العام"
 
 #: general_report_manager.cpp:868
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "حذف عنوان التقرير:"
 
 #: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "أدخل أو اختر اسم لمجموعة التقرير الجديدة"
 
 #: general_report_manager.cpp:908
 msgid "Change report group"
-msgstr ""
+msgstr "تغيير مجموعة التقرير"
 
 #: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "أدخل أو اختر اسم للمجموعة الجديدة"
 
 #: general_report_manager.cpp:925
 msgid "Rename Group"
-msgstr ""
+msgstr "إعادة تسمية المجموعة"
 
 #: general_report_manager.cpp:992
 msgid "Add Report Group"
-msgstr ""
+msgstr "إضافة تقرير المجموعة"
 
 #: general_report_manager.cpp:1005
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "تقرير جديد %s"
 
 #: general_report_manager.cpp:1018
 msgid "Report Name already exists"
-msgstr ""
+msgstr "اسم التقرير موجود مسبقاً"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
-msgstr ""
+msgstr "تقرير جديد"
 
 #: general_report_manager.cpp:1057
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "اختر ملف لحفظ كتقرير"
 
 #: general_report_manager.cpp:1235
 msgid "Parameters:"
-msgstr ""
+msgstr "المعايير:"
 
 #: images_list.cpp:324
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "بيانات التعريف JSON في السمة ''%s' لا يمكن تحليلها وتبدو سيئة البناء، الرجاء تصحيحها."
 
 #: images_list.cpp:412
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "الملف '%s' مفقود أو غير صالح في السمة المختار '%s'"
 
 #: images_list.cpp:423
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "بيانات التعريف '%s' مفقودة في السمة المختار '%s'"
 
 #: images_list.cpp:456
 msgid "and more..."
-msgstr ""
+msgstr "والمزيد..."
 
 #: images_list.cpp:458
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "هناك %d أيقونات مفقودة أو غير صالحة في السمة المختارة '%s': %s"
 
 #: images_list.cpp:487
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "لم يتم العثور على السمة %s ، قد لا يكون مدعوماً. العودة إلى السمة الافتراضية"
 
 #: images_list.cpp:494
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "السمة %s لها عناصر مفقودة و غير متوافقة. العودة إلى السمة الافتراضية"
 
 #: images_list.cpp:499
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "لم يتم العثور على سمة عملية، قد يكون التثبيت فاسد"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2085
 #: mmSimpleDialogs.cpp:795
@@ -2974,78 +2982,78 @@ msgstr "غير قادر على فتح الملف."
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:1302 mmframe.cpp:2507 mmframe.cpp:2526
 msgid "Universal CSV Import"
-msgstr ""
+msgstr "استيراد CSV شامل"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "تعذر إنشاء الملف."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "تعذر حفظ الملف."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "خطأ في التصدير"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "الملف ليس على هيئة Excel XML Spreadsheet 2003."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "خطا في التحليل"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "تعذر العثور على ورقة العمل."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "الجدول"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "تعذر العثور على الجدول."
 
 #: import_export/parsers.cpp:216 mmframereport.cpp:132
 msgid "Transactions"
-msgstr ""
+msgstr "المعاملات"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:661
 #: mmframe.cpp:1559
 msgid "Export as QIF file"
-msgstr ""
+msgstr "تصدير كملف QIF"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1558
 msgid "Export as JSON file"
-msgstr ""
+msgstr "تصدير كملف JSON"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
 #: mmframe.cpp:1554
 msgid "Export as CSV file"
-msgstr ""
+msgstr "تصدير كملف CSV"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
-msgstr ""
+msgstr "المعايير"
 
 #: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:226
 msgid "Log"
-msgstr ""
+msgstr "سجل"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:152 mmframe.cpp:3419 mmframe.cpp:3423
 #: mmframe.cpp:3440 mmframe.cpp:3444
@@ -3292,59 +3300,59 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:1156
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "مجموع المستورد: %zu"
 
 #: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1435
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "المعاملات المستوردة التي تجاهلها المستخدم!"
 
 #: import_export/qif_import_gui.cpp:1168 import_export/qif_import_gui.h:44
 #: mmframe.cpp:1548
 msgid "Import from QIF file"
-msgstr ""
+msgstr "استيراد من ملف QIF"
 
 #: import_export/qif_import_gui.cpp:1247
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "رمز المعاملة مفقود"
 
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s مطابقة من قبل %s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "المستفيد من المعاملة مفقود أو غير صحيح"
 
 #: import_export/qif_import_gui.cpp:1285
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "صيغة التاريخ أو قناع التاريخ غير صحيح"
 
 #: import_export/qif_import_gui.cpp:1297
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "حساب المعاملة غير صحيح"
 
 #: import_export/qif_import_gui.cpp:1306
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "حساب المعاملة للتحويل غير صحيح"
 
 #: import_export/qif_import_gui.cpp:1335
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "مبلغ المعاملة غير صحيح"
 
 #: import_export/qif_import_gui.cpp:1360
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "فئة المعاملة غير صحيحة"
 
 #: import_export/qif_import_gui.cpp:1465
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "الحساب المضاف: %s"
 
 #: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1211
 #, c-format
 msgid "Added payee: %s"
-msgstr ""
+msgstr "المُستفيد المضاف: %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
@@ -3352,7 +3360,7 @@ msgstr "الصنف الفرعي"
 
 #: import_export/univcsvdialog.cpp:111
 msgid "Don't Care"
-msgstr ""
+msgstr "لا تهتم"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:288
 #: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:419
@@ -3362,90 +3370,91 @@ msgstr "الرصيد"
 
 #: import_export/univcsvdialog.cpp:120 mmframe.cpp:1545
 msgid "Import from CSV file"
-msgstr ""
+msgstr "استيراد من ملف CSV"
 
 #: import_export/univcsvdialog.cpp:126
 msgid "Import from XML file"
-msgstr ""
+msgstr "استيراد من ملف XML"
 
 #: import_export/univcsvdialog.cpp:129 mmframe.cpp:1555
 msgid "Export as XML file"
-msgstr ""
+msgstr "تصدير كملف XML"
 
 #: import_export/univcsvdialog.cpp:204
 msgid "Account: "
-msgstr ""
+msgstr "الحساب: "
 
 #: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
-msgstr ""
+msgstr "المعد مسبقا:"
 
 #: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:564
 #: import_export/univcsvdialog.cpp:2462
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "تحميل هذا الإعداد المسبق عندما يكون الحساب:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "حدد ترتيب الحقول في الملف"
 
 #: import_export/univcsvdialog.cpp:300
 msgid "&MMEX format"
-msgstr ""
+msgstr "تنسيق &MMEX"
 
 #: import_export/univcsvdialog.cpp:317
 msgid "&Up"
-msgstr ""
+msgstr "&لأعلى"
 
 #: import_export/univcsvdialog.cpp:321
 msgid "&Down"
-msgstr ""
+msgstr "&أسفل"
 
 #: import_export/univcsvdialog.cpp:354
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "محدد CSV:"
 
 #: import_export/univcsvdialog.cpp:381
 msgid "Export column titles"
-msgstr ""
+msgstr "تصدير عناوين الأعمدة"
 
 #: import_export/univcsvdialog.cpp:396
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "القيم الإيجابية هي الودائع"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "القيم الإيجابية هي عمليات سحب"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Rows to ignore"
-msgstr ""
+msgstr "صفوف للتجاهل"
 
 #: import_export/univcsvdialog.cpp:421
 msgid "From start: "
-msgstr ""
+msgstr "منذ البداية: "
 
 #: import_export/univcsvdialog.cpp:456
 msgid "From end: "
-msgstr ""
+msgstr "من النهاية: "
 
 #: import_export/univcsvdialog.cpp:468
 msgid "Preview"
-msgstr ""
+msgstr "معاينة"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "اختر ملف بيانات XML للاستيراد"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "اختر ملف بيانات CSV للاستيراد"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "اختر ملف بيانات XML للتصدير"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose CSV data file to Export"
@@ -3453,27 +3462,27 @@ msgstr "اختيار ملف بيانات CSV لتصديره"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
-msgstr ""
+msgstr "اسم الإعداد المسبق"
 
 #: import_export/univcsvdialog.cpp:548
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "حفظ الإعدادات الحالية كتعيين مسبق"
 
 #: import_export/univcsvdialog.cpp:549 import_export/univcsvdialog.cpp:2020
 msgid "Delete Preset"
-msgstr ""
+msgstr "حذف الإعداد المسبق"
 
 #: import_export/univcsvdialog.cpp:550
 msgid "MMEX standard format"
-msgstr ""
+msgstr "تنسيق MMEX القياسي"
 
 #: import_export/univcsvdialog.cpp:551
 msgid "Move Up"
-msgstr ""
+msgstr "تحريك للأعلى"
 
 #: import_export/univcsvdialog.cpp:552
 msgid "Move Down"
-msgstr ""
+msgstr "تحريك للأسفل"
 
 #: import_export/univcsvdialog.cpp:553 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3481,44 +3490,45 @@ msgstr "تعيين المحددة المستخدمة عند استيراد/تص�
 
 #: import_export/univcsvdialog.cpp:554
 msgid "Import File"
-msgstr ""
+msgstr "استيراد ملف"
 
 #: import_export/univcsvdialog.cpp:555
 msgid "Export File"
-msgstr ""
+msgstr "تصدير الملف"
 
 #: import_export/univcsvdialog.cpp:568 import_export/univcsvdialog.cpp:2469
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "تم تحميل الإعداد المسبق '%s' لأن الحساب '%s' المحدد"
 
 #: import_export/univcsvdialog.cpp:722
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "الحساب الافتراضي '%s' لهذا القالب غير موجود.\n"
+"الرجاء تحديد حساب جديد."
 
 #: import_export/univcsvdialog.cpp:724
 msgid "Account does not exist"
-msgstr ""
+msgstr "الحساب غير موجود"
 
 #: import_export/univcsvdialog.cpp:915 import_export/univcsvdialog.cpp:1010
 #: import_export/univcsvdialog.cpp:2484
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "إيجابي إذا كان النوع يحتوي على '%s'"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Preset Name"
-msgstr ""
+msgstr "اسم الإعداد المسبق"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Save Preset"
-msgstr ""
+msgstr "حفظ الإعداد المسبق"
 
 #: import_export/univcsvdialog.cpp:1253
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "حقول غير صحيحة محددة للاستيراد!"
 
 #: import_export/univcsvdialog.cpp:1254
 msgid "Date field is required."
@@ -3745,11 +3755,11 @@ msgstr ""
 
 #: maincurrencydialog.cpp:309
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "حذف سجل قيم العملة للعملات والأيام غير المستخدمة"
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "هل تريد حقاً حذف العملة المحددة؟"
 
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
@@ -3760,67 +3770,68 @@ msgstr "نافذة العملة"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "اختيار العملة الأساسية"
 
 #: maincurrencydialog.cpp:435
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "المعدلات التاريخية ل %s وجدت ، ولكن \"استخدام سجل العملة\" في الخيارات معطلة:\n"
+"انقر فوق لا وتمكينه أو انقر فوق نعم لإزالة جميع المعدلات التاريخية ل %s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "خيارات سجل العملة: %s "
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "غير قادر على تحديث أسعار العملات في التاريخ. الرجاء تحديثها يدويا!"
 
 #: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
 #: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
 #: maincurrencydialog.cpp:834
 msgid "Currency history error"
-msgstr ""
+msgstr "خطأ في سجل العملات"
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
-msgstr ""
+msgstr "تعيين كعملة أساسية"
 
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
-msgstr ""
+msgstr "تحديث معدل العملة عبر الإنترنت"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
-msgstr ""
+msgstr "لم يتم تحديد عملة!"
 
 #: maincurrencydialog.cpp:663
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "هل تريد إضافة تواريخ أيضا بدون أي معاملة؟"
 
 #: maincurrencydialog.cpp:690
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "غير قادر على تنزيل %s أسعار العملة"
 
 #: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "غير قادر على تنزيل سجل للرمز%s. معدلات التاريخ غير متوفرة!"
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "تغيير العملة الأساسية سيحذف جميع معدلات التاريخ، هل تريد المتابعة؟"
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "هل تريد تحديث أسعار العملة اليوم؟"
 
 #: maincurrencydialog.cpp:833
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "غير قادر على تحميل سجل للرمز الأساسي %s. معدلات السجل غير متوفرة!"
 
 #: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:681
 msgid "Could not find base currency symbol!"
@@ -3828,143 +3839,145 @@ msgstr "لم يتم العثور على رمز العملة الاساسية!"
 
 #: mmSimpleDialogs.cpp:549 mmSimpleDialogs.cpp:561
 msgid "Clear color"
-msgstr ""
+msgstr "مسح اللون"
 
 #: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:566
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "لون #%i"
 
 #: mmSimpleDialogs.cpp:725
 msgid "Subtract one year"
-msgstr ""
+msgstr "خصم سنة واحدة"
 
 #: mmSimpleDialogs.cpp:726
 msgid "Subtract one month"
-msgstr ""
+msgstr "خصم شهر واحد"
 
 #: mmSimpleDialogs.cpp:727
 msgid "Add one month"
-msgstr ""
+msgstr "إضافة شهر واحد"
 
 #: mmSimpleDialogs.cpp:728
 msgid "Add one year"
-msgstr ""
+msgstr "إضافة سنة واحدة"
 
 #: mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "الإدخال %s غير صالح"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Please select an existing category"
-msgstr ""
+msgstr "الرجاء تحديد فئة موجودة"
 
 #: mmSimpleDialogs.cpp:790
 msgid "Invalid Category"
-msgstr ""
+msgstr "فئة غير صالحة"
 
 #: mmSimpleDialogs.cpp:795
 msgid "File name is empty."
-msgstr ""
+msgstr "اسم الملف فارغ."
 
 #: mmSimpleDialogs.cpp:796
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "الرجاء تحديد الملف لهذه العملية."
 
 #: mmSimpleDialogs.cpp:806
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "الرجاء تحديد حساب لهذه المعاملة."
 
 #: mmSimpleDialogs.cpp:808
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "الرجاء تحديد الحساب الذي سيتم التحويل إليه."
 
 #: mmSimpleDialogs.cpp:810
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "يمكن إجراء التحديد باستخدام زر القائمة المنسدلة."
 
 #: mmSimpleDialogs.cpp:813
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "سيؤدي تنشيط الزر إلى توفير مربع اختيار حيث يمكن تحديد الحساب."
 
 #: mmSimpleDialogs.cpp:822
 msgid "Invalid Payee"
-msgstr ""
+msgstr "المدفوع لأمره غير صالح"
 
 #: mmSimpleDialogs.cpp:823
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "الرجاء كتابة مستفيد جديد،\n"
+"أو إجراء اختيار باستخدام زر القائمة المنسدلة."
 
 #: mmSimpleDialogs.cpp:831 mmSimpleDialogs.cpp:843
 msgid "Invalid Name"
-msgstr ""
+msgstr "اسم غير صالح"
 
 #: mmSimpleDialogs.cpp:834 mmSimpleDialogs.cpp:846
 msgid "Already exist!"
-msgstr ""
+msgstr "موجود مسبقًا!"
 
 #: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty name."
-msgstr ""
+msgstr "الرجاء كتابة اسم غير فارغ."
 
 #: mmSimpleDialogs.cpp:848
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "الرجاء كتابة رمز غير فارغ."
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:553
 msgid "Invalid Value"
-msgstr ""
+msgstr "قيمة غير صالحة"
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "الرجاء إدخال قيمة موجبة أو محسوبة."
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "الرجاء إدخال قيمة محسوبة."
 
 #: mmTextCtrl.cpp:115
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "نصيحة: للحسابات، أدخل عبارات مثل (2+2)*(2+2)\n"
+"سيتم تقييم الحسابات والنتيجة المستخدمة كإدخال."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "توصية: دائمًا قم بنسخ ملف قاعدة البيانات .mmb الخاص بك بانتظام."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "توصية: في حالة الترقية إلى إصدار جديد من MMEX، تأكد من نسخ ملف قاعدة البيانات .mmb الخاص بك قبل القيام بذلك."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "توصية: استخدام نسخة (Ctrl+C) ولصق (Ctrl+V) للمعاملات المتكررة."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr ""
+msgstr "نصيحة: تذكر أن تقوم بنسخ احتياطية من .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "نصيحة: الملف .mmb غير مشفر. وهذا يعني أن أي شخص آخر لديه معرفة مناسبة سوف يمكنه فتح الملف ويقرأ المحتويات. لذا تأكد من أنك إذا كنت تخزن أي معلومات مالية حساسة فإنه يتم حمايتها بشكل صحيح."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "نصيحة: لوضع علامة على المعاملة على أنها مطابقة، فقط حدد المعاملة واضغط على مفتاح 'r' أو 'R'. لوضع علامة على المعاملة على أنها غير مطابقة، فقط حدد المعاملة واضغط على مفتاح 'u' أو 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr ""
+msgstr "نصيحة: لوضع علامة على المعاملة على أنها تتطلب المتابعة، فقط حدد المعاملة واضغط على مفتاح 'f' أو 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "نصيحة: MMEX يدعم طباعة جميع التقارير التي يمكن عرضها. خيارات الطباعة متاحة تحت القائمة، ملف → الطباعة."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr ""
+msgstr "نصيحة: يمكنك تعديل بعض سلوك تشغيل MMEX عن طريق تغيير الخيارات في مربع حوار الخيارات. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4212,23 +4225,23 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "هل تريد حقاً استعادة %i من المعاملات المحددة؟"
 
 #: mmchecking_list.cpp:1033
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "هل تريد حقاً حذف جميع المعاملات المعروضة؟"
 
 #: mmchecking_list.cpp:1034
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "هل تريد حقاً حذف جميع المعاملات المعروضة نهائيًا؟"
 
 #: mmchecking_list.cpp:1038 mmchecking_list.cpp:1140
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "سيتم تخزين المعاملات المحذوفة مؤقتاً ويمكن استعادتها من عرض المعاملات المحذوفة."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1139
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "لا يمكنك التراجع عن هذا الإجراء."
 
 #: mmchecking_list.cpp:1043 mmchecking_list.cpp:1054 mmchecking_list.cpp:1065
 #: mmchecking_list.cpp:1144
@@ -4238,7 +4251,7 @@ msgstr "تأكيد حذف معاملة"
 #: mmchecking_list.cpp:1053 mmchecking_list.cpp:1064
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "هل تريد حقاً حذف كل \"%s\" المعاملات المعروضة؟"
 
 #: mmchecking_list.cpp:1131
 #, c-format
@@ -4249,7 +4262,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "هل تريد حقاً حذف %i من المعاملات المحددة نهائيًا؟"
 
 #: mmchecking_list.cpp:1135
 #, c-format
@@ -4260,37 +4273,39 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "هل تريد حقاً حذف %i من المعاملات المحددة؟"
 
 #: mmchecking_list.cpp:1207
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "المعاملة المقفولة حتى تاريخ: %s\n\n"
+"المعاملات التي تمت تسويتها."
 
 #: mmchecking_list.cpp:1210 transdialog.cpp:705 transdialog.cpp:736
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "التحقق من معاملات MMEX"
 
 #: mmchecking_list.cpp:1243
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "أنت على وشك تحرير معاملة تشمل حسابا مغلقا."
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "سيؤثر التعديل على %i معاملات تتضمن حساب مغلق."
 
 #: mmchecking_list.cpp:1245
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"هل مازلت تريد إجراء التعديل؟"
 
 #: mmchecking_list.cpp:1246
 msgid "Closed Account Check"
-msgstr ""
+msgstr "التحقق من الحساب المغلق"
 
 #: mmchecking_list.cpp:1438
 #, c-format
@@ -4301,11 +4316,11 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "هل تريد حقاً نقل %i من المعاملات المحددة؟"
 
 #: mmchecking_list.cpp:1443
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "تأكيد نقل المعاملة"
 
 #: mmchecking_list.cpp:1449
 #, c-format
@@ -4316,19 +4331,19 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "نقل %i معاملات إلى..."
 
 #: mmchecking_list.cpp:1453 stocks_list.cpp:300
 msgid "Select the destination Account "
-msgstr ""
+msgstr "حدد حساب الوجهة "
 
 #: mmchecking_list.cpp:1540
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "تم حفظ المعاملة المتكررة."
 
 #: mmcheckingpanel.cpp:428
 msgid "Delete selected transaction"
-msgstr ""
+msgstr "حذف المعاملة المحددة"
 
 #: mmcheckingpanel.cpp:432 mmframe.cpp:1899 transdialog.cpp:171
 msgid "New Transaction"
@@ -4336,106 +4351,108 @@ msgstr "اضافة عملية"
 
 #: mmcheckingpanel.cpp:436
 msgid "Edit selected transaction"
-msgstr ""
+msgstr "تحرير المعاملة المحددة"
 
 #: mmcheckingpanel.cpp:444
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "تكرار المعاملة المحددة"
 
 #: mmcheckingpanel.cpp:461
 msgid "&Restore "
-msgstr ""
+msgstr "&إستعادة "
 
 #: mmcheckingpanel.cpp:462
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "استعادة المعاملة المحددة"
 
 #: mmcheckingpanel.cpp:477
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "أدخل أي سلسلة للعثور عليها في أقرب بيانات معاملة"
 
 #: mmcheckingpanel.cpp:499
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "تقرير المعاملات الكاملة"
 
 #: mmcheckingpanel.cpp:501 mmframe.cpp:766
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "المعاملات المحذوفة"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "عرض الحساب: %s"
 
 #: mmcheckingpanel.cpp:521
 msgid "Account Bal: "
-msgstr ""
+msgstr "رصيد الحساب: "
 
 #: mmcheckingpanel.cpp:523
 msgid "Reconciled Bal: "
-msgstr ""
+msgstr "رصيد تمت تسويته: "
 
 #: mmcheckingpanel.cpp:525
 msgid "Diff: "
-msgstr ""
+msgstr "الفارق: "
 
 #: mmcheckingpanel.cpp:527
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "عرض التصفية: "
 
 #: mmcheckingpanel.cpp:592 webapp.cpp:619
 msgid "Attachment"
-msgstr ""
+msgstr "المرفق"
 
 #: mmcheckingpanel.cpp:628
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "المعاملات المحددة: %zu"
 
 #: mmcheckingpanel.cpp:631
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "رصيد المعاملات المحدد: %s"
 
 #: mmcheckingpanel.cpp:635
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "الأيام بين المعاملات المحددة: %d"
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
-msgstr ""
+msgstr "حقول مخصصة"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "خاطيء"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "صحيح"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
-msgstr ""
+msgstr "الرجاء تحديد"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
-msgstr ""
+msgstr "اختيار متعدد"
 
 #: mmcustomdata.cpp:786
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "غير قادر على حفظ الحقل المخصص\"%s\":\n"
+"القيمة \"%s\" لا تتطابق مع التحقق من نظام RegEx \"%s\""
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
-msgstr ""
+msgstr "خطأ في التحقق من صحة حقل مخصص"
 
 #: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "حدث خطأ فادح.\n"
+"سيتم إنهاء التطبيق."
 
 #: mmframe.cpp:265
 msgid "Navigation"
@@ -4443,11 +4460,11 @@ msgstr "التصفح"
 
 #: mmframe.cpp:266
 msgid "Toolbar"
-msgstr ""
+msgstr "شريط الأدوات"
 
 #: mmframe.cpp:477 mmframe.cpp:726
 msgid "Favourites"
-msgstr ""
+msgstr "المفضلة"
 
 #: mmframe.cpp:478 mmframe.cpp:730 mmhomepage.cpp:690 reports/summary.cpp:256
 #: reports/summary.cpp:299
@@ -4457,25 +4474,25 @@ msgstr "الحسابات البنكية"
 #: mmframe.cpp:479 mmframe.cpp:734 mmhomepage.cpp:691 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "حسابات بطاقة الائتمان"
 
 #: mmframe.cpp:480 mmframe.cpp:746 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
-msgstr ""
+msgstr "حسابات المدة"
 
 #: mmframe.cpp:481 mmframe.cpp:750
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "حافظة الأسهم"
 
 #: mmframe.cpp:482 mmframe.cpp:738 mmhomepage.cpp:689
 msgid "Cash Accounts"
-msgstr ""
+msgstr "الحسابات النقدية"
 
 #: mmframe.cpp:483 mmframe.cpp:742 mmhomepage.cpp:692 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
-msgstr ""
+msgstr "حسابات القروض"
 
 #: mmframe.cpp:516
 msgid "Auto Repeat Transactions"
@@ -4736,19 +4753,19 @@ msgstr ""
 
 #: mmframe.cpp:1590
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "تقرير فئة الميزانية: مع &ملخصات"
 
 #: mmframe.cpp:1590
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "إدراج ملخصات الفئات في موجز الميزانية"
 
 #: mmframe.cpp:1592
 msgid "Ignore F&uture Transactions"
-msgstr ""
+msgstr "تجاهل المعاملات المستقبلية"
 
 #: mmframe.cpp:1592
 msgid "Ignore Future transactions"
-msgstr ""
+msgstr "تجاهل المعاملات المستقبلية"
 
 #: mmframe.cpp:1594
 msgid "Show T&ooltips"
