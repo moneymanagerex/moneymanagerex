@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-17 09:39\n"
+"PO-Revision-Date: 2023-06-17 10:35\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -4159,7 +4159,7 @@ msgstr "&عرض تقسيم الفئات"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
-msgstr ""
+msgstr "إنشاء معاملة متكرر..."
 
 #: mmchecking_list.cpp:478
 msgid "&Restore selected transaction..."
@@ -4169,59 +4169,59 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "إستعادة المعاملات المحددة..."
 
 #: mmchecking_list.cpp:480
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "استعادة جميع المعاملات في العرض الحالي..."
 
 #: mmchecking_list.cpp:485
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&حذف المعاملة المحددة..."
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "&حذف المعاملات المحددة..."
 
 #: mmchecking_list.cpp:486
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&حذف المعاملة المحددة نهائيًا..."
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "&حذف المعاملات المحددة نهائيًا..."
 
 #: mmchecking_list.cpp:489
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "حذف جميع المعاملات في العرض الحالي..."
 
 #: mmchecking_list.cpp:489
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "حذف جميع المعاملات في العرض الحالي بشكل نهائي..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "حذف معاملات \"المتابعة\" المعروضة..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "حذف المعاملات المعروضة \"التي لم تتم تسويتها\"..."
 
 #: mmchecking_list.cpp:510
 msgid "Mark as"
-msgstr ""
+msgstr "وضع علامة كـ"
 
 #: mmchecking_list.cpp:953
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "هل تريد حقاً استعادة جميع المعاملات المعروضة؟"
 
 #: mmchecking_list.cpp:954 mmchecking_list.cpp:996
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "تأكيد استعادة المعاملة"
 
 #: mmchecking_list.cpp:991
 #, c-format
@@ -4503,7 +4503,7 @@ msgstr "حسابات القروض"
 
 #: mmframe.cpp:516
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "تكرار المعاملات تلقائياً"
 
 #: mmframe.cpp:718 mmframe.cpp:1897 optiondialog.cpp:37
 msgid "Dashboard"
@@ -5000,119 +5000,119 @@ msgstr ""
 
 #: mmframe.cpp:1792
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "تابعنا على تويتر"
 
 #: mmframe.cpp:1794
 msgid "&YouTube"
-msgstr ""
+msgstr "&يوتيوب"
 
 #: mmframe.cpp:1794
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "مشاهدة مواد فيديو مجانية حول MMEX"
 
 #: mmframe.cpp:1796
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1796
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "التواصل عبر الإنترنت مع فريق MMEX من جهاز سطح المكتب أو الجوال الخاص بك"
 
 #: mmframe.cpp:1798
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1798
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "الوصول إلى مستودع التعليمات البرمجية مفتوحة المصدر وتتبع حالات الأخطاء المبلغ عنها"
 
 #: mmframe.cpp:1800
 msgid "W&iki pages"
-msgstr ""
+msgstr "صفحات W&iki"
 
 #: mmframe.cpp:1800
 msgid "Read and update wiki pages"
-msgstr ""
+msgstr "قراءة وتحديث صفحات ويكي"
 
 #: mmframe.cpp:1802
 msgid "F&orum"
-msgstr ""
+msgstr "&المنتدى"
 
 #: mmframe.cpp:1803
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr ""
+msgstr "قم بزيارة منتدى MMEX لمشاهدة تعليقات المستخدمين الحالية أو الإبلاغ عن مشاكل جديدة مع البرنامج"
 
 #: mmframe.cpp:1805
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex للأندرويد"
 
 #: mmframe.cpp:1806
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr ""
+msgstr "احصل على نسخة الأندرويد مجانية و قم بتشغيل MMEX على هاتفك الذكي أو جهازك اللوحي"
 
 #: mmframe.cpp:1808
 msgid "&Newsletter"
-msgstr ""
+msgstr "&النشرة البريدية"
 
 #: mmframe.cpp:1809
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "الاشتراك في رسالة البريد الإلكتروني أو عرض الإعلانات الموجودة"
 
 #: mmframe.cpp:1811
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&RSS موجز"
 
 #: mmframe.cpp:1811
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "توصيل تغذية الويب RSS إلى مجمع الأخبار"
 
 #: mmframe.cpp:1813
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&تبرع عبر PayPal"
 
 #: mmframe.cpp:1814
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "تبرع الفريق لدعم البنية التحتية إلخ"
 
 #: mmframe.cpp:1816
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "اشترِ لي كوب قهوة"
 
 #: mmframe.cpp:1817
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "شراء القهوة للمطور"
 
 #: mmframe.cpp:1820
 msgid "&Community"
-msgstr ""
+msgstr "&المجتمع"
 
 #: mmframe.cpp:1821
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "البقاء على اتصال مع مجتمع MMEX"
 
 #: mmframe.cpp:1843
 msgid "Report a &Bug"
-msgstr ""
+msgstr "التبليغ عن مشكلة"
 
 #: mmframe.cpp:1844
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "الإبلاغ عن خطأ في التطبيق للمطورين"
 
 #: mmframe.cpp:1848
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "عرض التشخيص"
 
 #: mmframe.cpp:1849
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "المساعدة في تقديم المعلومات للمطورين"
 
 #: mmframe.cpp:1853
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&إظهار مربع حوار بدء التطبيق"
 
 #: mmframe.cpp:1853
 msgid "App Start Dialog"
-msgstr ""
+msgstr "دليل بدء التطبيق"
 
 #: mmframe.cpp:1857
 msgid "Check for &Updates"
@@ -5120,15 +5120,15 @@ msgstr "البحث عن &تحديث"
 
 #: mmframe.cpp:1857
 msgid "Check For Updates"
-msgstr ""
+msgstr "التحقق من وجود تحديثات"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "&About"
-msgstr ""
+msgstr "&حول"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "Show About dialog"
-msgstr ""
+msgstr "إظهار مربع الحوار حول"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5168,7 +5168,7 @@ msgstr "عرض نافذة تنظيم العملات"
 
 #: mmframe.cpp:1909
 msgid "&Options"
-msgstr ""
+msgstr "&خيارات"
 
 #: mmframe.cpp:1917 mmframe.cpp:1922 mmframe.cpp:2859 optionsettingsnet.cpp:132
 msgid "News"
@@ -5176,29 +5176,30 @@ msgstr "الأخبار"
 
 #: mmframe.cpp:1924
 msgid "Download rates"
-msgstr ""
+msgstr "معدلات التحميل"
 
 #: mmframe.cpp:1927
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "تبديل ملء الشاشة F11"
 
 #: mmframe.cpp:1930
 msgid "&Print"
-msgstr ""
+msgstr "&طباعة"
 
 #: mmframe.cpp:1985
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "الرجاء إدخال كلمة المرور لقاعدة البيانات\n\n"
+"%s"
 
 #: mmframe.cpp:1986 mmframe.cpp:2279 mmframe.cpp:2420
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: قاعدة بيانات مشفرة"
 
 #: mmframe.cpp:2023
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "هل قدم لك دعم MMEX ملف مراجعة/التصحيح؟"
 
 #: mmframe.cpp:2023
 msgid "MMEX upgrade"
@@ -5206,46 +5207,49 @@ msgstr "ترقية MMEX"
 
 #: mmframe.cpp:2050 mmframe.cpp:2136
 msgid "No File opened"
-msgstr ""
+msgstr "لا يوجد ملف مفتوح"
 
 #: mmframe.cpp:2052
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "عذراً. إصدار قاعدة البيانات قديم جداً أو كلمة مرور قاعدة البيانات غير صحيحة"
 
 #: mmframe.cpp:2126
 msgid "&Next →"
-msgstr ""
+msgstr "&التالي ←"
 
 #: mmframe.cpp:2139
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "لا يمكن تحديد موقع قاعدة البيانات التي تم فتحها مسبقاً.\n"
 
 #: mmframe.cpp:2141
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "لم يتم إدخال كلمة المرور لقاعدة البيانات المشفرة.\n"
 
 #: mmframe.cpp:2160
 msgid "portable mode"
-msgstr ""
+msgstr "وضع المحمول"
 
 #: mmframe.cpp:2196
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "تم وضع علامة على قاعدة البيانات التي تحاول فتحها على أنها مفتوحة من قبل مثيل آخر من MMEX.\n"
+"لتجنب فقدان البيانات أو تضاربها، من المستحسن بشدة أن تغلق جميع التطبيقات الأخرى التي قد تستخدم قاعدة البيانات.\n\n"
+"إذا لم يكن هناك أي شيء آخر قيد التشغيل، فمن الممكن أن تُركت قاعدة البيانات مفتوحة نتيجة لتعطل أثناء الاستخدام السابق لـ MMEX.\n\n"
+"هل ترغب في الاستمرار في فتح قاعدة البيانات هذه؟"
 
 #: mmframe.cpp:2200
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "التحقق من مثيل MMEX"
 
 #: mmframe.cpp:2220
 msgid "Choose database file to create"
-msgstr ""
+msgstr "اختر ملف قاعدة البيانات لإنشائه"
 
 #: mmframe.cpp:2243
 msgid "Choose database file to open"
-msgstr ""
+msgstr "اختر ملف قاعدة البيانات لفتحه"
 
 #: mmframe.cpp:2269
 msgid "Choose Encrypted database file to open"
@@ -5553,7 +5557,7 @@ msgstr "أعلى السحوبات: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr ""
+msgstr "حساب/المستفيد"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -6123,15 +6127,15 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "تحديث عند بدء التشغيل"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
-msgstr ""
+msgstr "إعدادات حوار المعاملات الجديدة"
 
 #: optionsettingsmisc.cpp:108
 msgid "Last Used"
-msgstr ""
+msgstr "آخر استخدام"
 
 #: optionsettingsmisc.cpp:120
 msgid "Unused"
@@ -6139,47 +6143,47 @@ msgstr "غير مٌستخدم"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
-msgstr ""
+msgstr "آخر استخدام للمستفيد"
 
 #: optionsettingsmisc.cpp:127
 msgid "Use default for payee"
-msgstr ""
+msgstr "استخدام الافتراضي للمستفيد"
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "نعم"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "لا"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
-msgstr ""
+msgstr "التاريخ الافتراضي"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Payee"
-msgstr ""
+msgstr "المستفيد الافتراضي"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "فئة الإيداع/السحب الافتراضي"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "فئة التحويل الافتراضية"
 
 #: optionsettingsmisc.cpp:160
 msgid "Default Status"
-msgstr ""
+msgstr "الحالة الافتراضية"
 
 #: optionsettingsmisc.cpp:162
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "المعاملات المجمعة"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database Options"
-msgstr ""
+msgstr "خيارات قاعدة البيانات"
 
 #: optionsettingsmisc.cpp:180
 msgid "Create a new backup when MMEX Start"
@@ -6193,28 +6197,29 @@ msgstr "عندما يبدأ تشغيل البرنامج،\n"
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
-msgstr ""
+msgstr "النسخ الاحتياطي لقاعدة البيانات عند الخروج"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "عند إغلاق MMEX وتغيير قاعدة البيانات،\n"
+"ينشئ قاعدة البيانات الاحتياطية أو يحدثها: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "تحديد الحد الأقصى لعدد ملفات النسخ الاحتياطي"
 
 #: optionsettingsmisc.cpp:200
 msgid "Max Files"
-msgstr ""
+msgstr "الحد الأقصى للملفات"
 
 #: optionsettingsmisc.cpp:208
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "حدد عدد الأيام للاحتفاظ بالمعاملات المحذوفة. المعاملات الأقدم من هذا سيتم تنقيحها تلقائياً عند فتح قاعدة البيانات."
 
 #: optionsettingsmisc.cpp:210
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "الأيام للاحتفاظ بالمعاملات المحذوفة"
 
 #: optionsettingsmisc.cpp:217
 msgid "CSV Settings"
@@ -6222,51 +6227,51 @@ msgstr "إعدادات CVS"
 
 #: optionsettingsmisc.cpp:225
 msgid "Delimiter"
-msgstr ""
+msgstr "محدد"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp Settings"
-msgstr ""
+msgstr "إعدادات WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "الرابط"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "تحديد عنوان URL لتطبيق الويب بدون قطع نهائي"
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "تحديد تطبيق الويب GUID"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
-msgstr ""
+msgstr "مزيد من المعلومات حول WebApp"
 
 #: optionsettingsnet.cpp:93
 msgid "Proxy Settings"
-msgstr ""
+msgstr "إعدادات الوكيل"
 
 #: optionsettingsnet.cpp:101
 msgid "Specify the proxy IP address"
-msgstr ""
+msgstr "تحديد عنوان IP الوكيل"
 
 #: optionsettingsnet.cpp:107
 msgid "Specify proxy port number"
-msgstr ""
+msgstr "تحديد رقم منفذ الوكيل"
 
 #: optionsettingsnet.cpp:111
 msgid "Proxy"
-msgstr ""
+msgstr "الوكيل"
 
 #: optionsettingsnet.cpp:113
 msgid "Port"
-msgstr ""
+msgstr "المنفذ"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage statistics"
@@ -6274,31 +6279,31 @@ msgstr "إحصائيات الإستخدام"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "التحقق من آخر الأخبار عند بدء التشغيل"
 
 #: optionsettingsnet.cpp:140
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "تمكين للسماح بالتحقق من الأخبار عند بدء التطبيق"
 
 #: optionsettingsnet.cpp:145
 msgid "Timeout"
-msgstr ""
+msgstr "انتهاء الوقت"
 
 #: optionsettingsnet.cpp:154
 msgid "Specify a network communication timeout value to use."
-msgstr ""
+msgstr "حدد قيمة مهلة اتصال الشبكة للاستخدام."
 
 #: optionsettingsnet.cpp:157
 msgid "Seconds"
-msgstr ""
+msgstr "ثواني"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
-msgstr ""
+msgstr "التحديثات"
 
 #: optionsettingsnet.cpp:169
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "التحقق من وجود تحديثات عند بدء التشغيل"
 
 #: optionsettingsnet.cpp:171
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -6314,7 +6319,7 @@ msgstr "إصدار تجريبي"
 
 #: optionsettingsnet.cpp:180
 msgid "Updates source"
-msgstr ""
+msgstr "مصدر التحديثات"
 
 #: optionsettingsview.cpp:86
 msgid "Specify which accounts are visible"
@@ -6322,40 +6327,41 @@ msgstr "تعيين الحسابات المرئية"
 
 #: optionsettingsview.cpp:89
 msgid "Category Delimiter"
-msgstr ""
+msgstr "تحديد الفئة"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "خيارات المعاملات/الميزانية"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "النظر إلى الميزانيات على أنها سنوات مالية"
 
 #: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "عرض الميزانيات مع معاملات 'تحويل'"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "عرض تقرير فئة الميزانية مع الملخصات"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "تجاوز الميزانية السنوية والميزانية الشهرية"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "وإذا كانت الميزانية الشهرية موجودة، عندئذ تستخدم هذه الميزانية لتجاوز الميزانية السنوية؛ وإلا فإنها تجمع بينها"
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "خصم الميزانيات الشهرية من الميزانية السنوية عند تقديم التقارير"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "وستخفض الميزانية السنوية بمقدار المبلغ المرصود لها في الميزانية شهريا.\n"
+"سيتم الإبلاغ عن مجموع التقديرات للسنة إما كميزانية سنوية أو كمجموع للميزانيات الشهرية، أيهما أكبر."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -6579,7 +6585,7 @@ msgstr "نقل فئة المصدر إلى فئة الوجهة"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after relocation (if it has no sub-categories)"
-msgstr ""
+msgstr "حذف فئة المصدر بعد النقل (إذا لم يكن لها فئات فرعية)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 msgid "Relocate:"
@@ -7068,11 +7074,11 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:237 stockdialog.cpp:206
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
+msgstr "أدخل رمز الأسهم. (اختياري) يشمل التبادل، مثال: IBM.BE"
 
 #: sharetransactiondialog.cpp:240
 msgid "Share Number"
-msgstr ""
+msgstr "مشاركة الرقم"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter number of shares held"
@@ -7080,11 +7086,11 @@ msgstr "اكتب عدد الاسهم التي تملكها"
 
 #: sharetransactiondialog.cpp:253
 msgid "Share Price"
-msgstr ""
+msgstr "مشاركة السعر"
 
 #: sharetransactiondialog.cpp:261
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "أدخل القيمة الحالية لوحدة مشاركة واحدة"
 
 #: sharetransactiondialog.cpp:273
 msgid "Enter any commission paid"
@@ -7092,19 +7098,19 @@ msgstr "اكتب أي عمولة دفعتها"
 
 #: sharetransactiondialog.cpp:279
 msgid "Share Lot"
-msgstr ""
+msgstr "مشاركة الحصة"
 
 #: sharetransactiondialog.cpp:286
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "أدخل \"الحصة\" التي تشارك بها هذه الطرود المنتمية إلى"
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"
-msgstr ""
+msgstr "تنظيم مرفقات من هذا المخزون"
 
 #: sharetransactiondialog.cpp:298 stockdialog.cpp:266
 msgid "Display the web page for the specified Stock symbol"
-msgstr ""
+msgstr "عرض صفحة الويب لرمز المخزون المحدد"
 
 #: sharetransactiondialog.cpp:308 stockdialog.cpp:273
 msgid "Enter notes associated with this investment"
@@ -7112,35 +7118,35 @@ msgstr "اكتب أي ملاحظات متعلقة بهذا الاستثمار"
 
 #: sharetransactiondialog.cpp:313
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "إضافة تفاصيل المعاملة"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
-msgstr ""
+msgstr "تحرير المعاملة المشاركة"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "تعديل تفاصيل التقسيم"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "أدخل ملاحظات لوصف هذه المعاملة المقسمة"
 
 #: splittransactionsdialog.cpp:242
 msgid "Add Split"
-msgstr ""
+msgstr "إضافة تقسيم"
 
 #: splittransactionsdialog.cpp:247
 msgid "Remove Split"
-msgstr ""
+msgstr "إزالة تقسيم"
 
 #: splittransactionsdialog.cpp:395
 msgid "Invalid Total Amount"
-msgstr ""
+msgstr "المبلغ الإجمالي غير صالح"
 
 #: splittransactionsdialog.cpp:553
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "الرجاء إدخال مبلغ نقدي صحيح"
 
 #: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:147
 msgid "Edit Stock Investment"
@@ -7152,12 +7158,13 @@ msgstr "اضافة سهم استثماري"
 
 #: stockdialog.cpp:209 stocks_list.cpp:88
 msgid "*Date"
-msgstr ""
+msgstr "* التاريخ"
 
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "حدد التاريخ الأولي لاستثمار الأسهم\n"
+"المستخدمة عند إنشاء المعاملة المشاركة الأولية."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -7166,7 +7173,8 @@ msgstr "*اسم السهم"
 #: stockdialog.cpp:225
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "أدخل عدد المشاركات.\n"
+"يستخدم عند إنشاء المعاملة المشاركة الأولية."
 
 #: stockdialog.cpp:229
 msgid "*Share Price"
@@ -7175,7 +7183,8 @@ msgstr "*سعر السهم"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "أدخل السعر الأولي لكل حصة.\n"
+"يستخدم عند إنشاء المعاملة المشاركة الأولية."
 
 #: stockdialog.cpp:239
 msgid "*Commission"
@@ -7184,47 +7193,48 @@ msgstr "*العمولة"
 #: stockdialog.cpp:244
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "أدخل أي عمولة مدفوعة.\n"
+"تستخدم عند إنشاء المعاملة المشاركة الأولية."
 
 #: stockdialog.cpp:247 stocks_list.cpp:96
 msgid "Curr. Share Price"
-msgstr ""
+msgstr "متوسط سعر المشاركة"
 
 #: stockdialog.cpp:251
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "أدخل السعر الحالي للمخزون/المساهمة."
 
 #: stockdialog.cpp:281
 msgid "Stock History Options"
-msgstr ""
+msgstr "خيارات سجل المخزون"
 
 #: stockdialog.cpp:288
 msgid "Stock Price History"
-msgstr ""
+msgstr "سجل أسعار الأسهم"
 
 #: stockdialog.cpp:312 stocks_list.cpp:98
 msgid "Price Date"
-msgstr ""
+msgstr "تاريخ السعر"
 
 #: stockdialog.cpp:316
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "حدد تاريخ سعر الأسهم/المساهمة."
 
 #: stockdialog.cpp:331
 msgid "Download Stock Price history"
-msgstr ""
+msgstr "تحميل سجل أسعار المخزون"
 
 #: stockdialog.cpp:333
 msgid "Import Stock Price history (CSV Format)"
-msgstr ""
+msgstr "استيراد سجل سعر المخزون (CSV)"
 
 #: stockdialog.cpp:335
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "حذف سعر المخزون المحدد"
 
 #: stockdialog.cpp:337
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "إضافة سعر المخزون إلى سجل"
 
 #: stockdialog.cpp:415
 msgid "Held At"
@@ -7233,79 +7243,82 @@ msgstr "الحساب الاستثماري"
 #: stockdialog.cpp:492
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "لم يتم العثور على الحساب.\n\n"
+"هل تريد إنشاء واحد؟"
 
 #: stockdialog.cpp:502
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "اسم الشركة ليس لديه حساب مشاركة مرتبط به.\n\n"
+"قد ترغب في تعديل اسم الشركة إلى حساب مشاركة موجود بنفس الاسم. إذا كان هذا المخزون موجود بدون حساب مشاركة، فمن المستحسن إنشاء حساب مشاركة.\n\n"
+"هل تريد إنشاء حساب مشاركة جديد؟\n"
 
 #: stockdialog.cpp:571
 msgid "Stock History CSV Import"
-msgstr ""
+msgstr "استيراد CSV لسجل المخزون"
 
 #: stockdialog.cpp:572 stockdialog.cpp:588
 msgid "Quotes imported from CSV: "
-msgstr ""
+msgstr "الأسعار المستوردة من CSV: "
 
 #: stockdialog.cpp:644
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "مجموع الخطوط: %ld"
 
 #: stockdialog.cpp:646
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "مجموع الواردات : %ld"
 
 #: stockdialog.cpp:654
 msgid "Importing CSV"
-msgstr ""
+msgstr "استيراد CSV"
 
 #: stockdialog.cpp:685 stockdialog.cpp:715
 msgid "5 Days"
-msgstr ""
+msgstr "5 أيام"
 
 #: stockdialog.cpp:686 stockdialog.cpp:717
 msgid "1 Month"
-msgstr ""
+msgstr "شهر واحد"
 
 #: stockdialog.cpp:687 stockdialog.cpp:718
 msgid "3 Months"
-msgstr ""
+msgstr "3 أشهر"
 
 #: stockdialog.cpp:688
 msgid "6 Months"
-msgstr ""
+msgstr "6 أشهر"
 
 #: stockdialog.cpp:689
 msgid "1 Year"
-msgstr ""
+msgstr "سنة واحدة"
 
 #: stockdialog.cpp:690
 msgid "2 Years"
-msgstr ""
+msgstr "سنتان"
 
 #: stockdialog.cpp:691
 msgid "5 Years"
-msgstr ""
+msgstr "5 سنوات"
 
 #: stockdialog.cpp:692
 msgid "10 Years"
-msgstr ""
+msgstr "10 سنوات"
 
 #: stockdialog.cpp:694
 msgid "Max"
-msgstr ""
+msgstr "الحد الأقصى"
 
 #: stockdialog.cpp:700
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "تحديد نوع تردد سجل المخزون"
 
 #: stockdialog.cpp:701 stockdialog.cpp:725
 msgid "Stock History Update"
-msgstr ""
+msgstr "تحديث سجل المخزون"
 
 #: stockdialog.cpp:714
 msgid "1 Day"
@@ -7345,7 +7358,7 @@ msgstr "القيمة الاجمالية"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&استثمار مخزون جديد..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
@@ -7614,59 +7627,59 @@ msgstr ""
 
 #: usertransactionpanel.cpp:299
 msgid "Select the required account"
-msgstr ""
+msgstr "حدد الحساب المطلوب"
 
 #: usertransactionpanel.cpp:300
 msgid "Account Selection"
-msgstr ""
+msgstr "اختيار الحساب"
 
 #: util.cpp:287
 msgid "Jan"
-msgstr ""
+msgstr "يناير"
 
 #: util.cpp:287
 msgid "Feb"
-msgstr ""
+msgstr "فبراير"
 
 #: util.cpp:287
 msgid "Mar"
-msgstr ""
+msgstr "مارس"
 
 #: util.cpp:288
 msgid "Apr"
-msgstr ""
+msgstr "ابريل"
 
 #: util.cpp:288 util.h:187
 msgid "May"
-msgstr ""
+msgstr "ماي"
 
 #: util.cpp:288
 msgid "Jun"
-msgstr ""
+msgstr "جوان"
 
 #: util.cpp:289
 msgid "Jul"
-msgstr ""
+msgstr "جويلية"
 
 #: util.cpp:289
 msgid "Aug"
-msgstr ""
+msgstr "أوت"
 
 #: util.cpp:289
 msgid "Sep"
-msgstr ""
+msgstr "سبتمبر"
 
 #: util.cpp:290
 msgid "Oct"
-msgstr ""
+msgstr "اكتوبر"
 
 #: util.cpp:290
 msgid "Nov"
-msgstr ""
+msgstr "نوفمبر"
 
 #: util.cpp:290
 msgid "Dec"
-msgstr ""
+msgstr "ديسمبر"
 
 #: util.cpp:295
 msgid "Sunday"
@@ -7698,31 +7711,31 @@ msgstr "السبت"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "الأحد"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "الاثنين"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "الثلاثاء"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "الأربعاء"
 
 #: util.cpp:303
 msgid "Thu"
-msgstr ""
+msgstr "الخميس"
 
 #: util.cpp:303
 msgid "Fri"
-msgstr ""
+msgstr "الجمعة"
 
 #: util.cpp:304
 msgid "Sat"
-msgstr ""
+msgstr "السبت"
 
 #: util.cpp:738
 msgid "Currency rates have been updated"
