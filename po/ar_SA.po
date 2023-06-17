@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-17 08:36\n"
+"PO-Revision-Date: 2023-06-17 09:39\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -1731,90 +1731,92 @@ msgstr "الفئة الفرعية قيد الاستخدام."
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "نصيحة: قم بتغيير جميع المعاملات باستخدام هذه الفئة\n"
+"إلى فئة أخرى باستخدام أمر النقل:"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "نصيحة: تغيير جميع المعاملات باستخدام هذه الفئة الفرعية إلى\n"
+"فئة فرعية أخرى باستخدام أمر نقل:"
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "الأدوات ← نقل ← الفئات"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "تنظيم الفئات: حذف خطأ"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "توجد معاملات محذوفة تستخدم هذه الفئة أو أحد فروعها تنازلية."
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "سيؤدي حذف الفئة أيضًا إلى إزالة المعاملات المحذوفة المرتبطة تلقائيًا."
 
 #: categdialog.cpp:512 payeedialog.cpp:733
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "هل ترغب في المتابعة؟"
 
 #: categdialog.cpp:513
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "تأكيد حذف الفئة"
 
 #: categdialog.cpp:622
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "أدخل اسم جديد لـ '%s'"
 
 #: categdialog.cpp:623
 msgid "Edit Category"
-msgstr ""
+msgstr "تحرير الفئة"
 
 #: categdialog.cpp:634
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "يوجد فئة بنفس الاسم للأصل"
 
 #: categdialog.cpp:635
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "تنظيم الفئات: تحرير خطأ"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
 msgid "Category Relocation Completed."
-msgstr ""
+msgstr "اكتمل نقل الفئة."
 
 #: categdialog.cpp:693 mmframe.cpp:3641 mmframe.cpp:3656 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "تم تحديث السجلات في قاعدة البيانات: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3643
 msgid "Category Relocation Result"
-msgstr ""
+msgstr "نتيجة نقل الفئة"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "هل أنت متأكد من أنك تريد إلغاء إخفاء جميع الفئات"
 
 #: categdialog.cpp:772
 msgid "Unhide all categories"
-msgstr ""
+msgstr "إلغاء إخفاء جميع الفئات"
 
 #: categdialog.cpp:800
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "إخفاء الفئة المحددة"
 
 #: categdialog.cpp:801
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "إلغاء إخفاء الفئة المحددة"
 
 #: categdialog.cpp:803 payeedialog.cpp:857
 msgid "Remove Category"
-msgstr ""
+msgstr "إزالة الفئة"
 
 #: categdialog.cpp:806
 msgid "Clear Settings"
-msgstr ""
+msgstr "مسح الإعدادات"
 
 #: categdialog.h:68 mmframe.cpp:1680 mmframe.cpp:1901
 msgid "Organize Categories"
@@ -1827,11 +1829,11 @@ msgstr "الغاء"
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:136
 #: relocatepayeedialog.cpp:135 themes.cpp:195
 msgid "Close"
-msgstr ""
+msgstr "إغلاق"
 
 #: constants.cpp:80
 msgid "&Close "
-msgstr ""
+msgstr "&إغلاق "
 
 #: constants.cpp:84 import_export/qif_import_gui.cpp:757
 #: import_export/qif_import_gui.cpp:790 import_export/qif_import_gui.cpp:815
@@ -1841,35 +1843,35 @@ msgstr "موافق"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "التراجع"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "إعادة"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "قص"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "نسخ"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "لصق"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "حدد الكل"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64 بت"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "عرض مع تصفية المعاملة..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -1885,11 +1887,11 @@ msgstr "عرض الشهر الحالي"
 
 #: constants.cpp:197
 msgid "View Last 30 days"
-msgstr ""
+msgstr "عرض آخر 30 يوما"
 
 #: constants.cpp:198
 msgid "View Last 90 days"
-msgstr ""
+msgstr "عرض آخر 90 يوماً"
 
 #: constants.cpp:199
 msgid "View Last Month"
@@ -1897,35 +1899,35 @@ msgstr "عرض آخر شهر"
 
 #: constants.cpp:200
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "عرض آخر 3 أشهر"
 
 #: constants.cpp:201
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "عرض الـ 12 شهراً الأخيرة"
 
 #: constants.cpp:202
 msgid "View Current Year"
-msgstr ""
+msgstr "عرض السنة الحالية"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "عرض السنة المالية الحالية"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr ""
+msgstr "عرض السنة الماضية"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "عرض السنة المالية الأخيرة"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "عرض منذ تاريخ البيان"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "الكل"
 
 #: constants.cpp:209 mmframe.cpp:1489 mmframe.cpp:1894
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -1943,7 +1945,7 @@ msgstr "المفضلة"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
-msgstr ""
+msgstr "اسم العملة"
 
 #: currencydialog.cpp:188
 msgid "Currency Name"
@@ -1951,7 +1953,7 @@ msgstr "اسم العملة"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "رمز العملة"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
@@ -1959,7 +1961,7 @@ msgstr "رمز العملة"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr ""
+msgstr "موقع الرمز"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
@@ -2604,146 +2606,148 @@ msgstr "التحويل للخارج"
 
 #: filtertransdialog.cpp:590 filtertransdialog.cpp:1366
 msgid "Transfer In"
-msgstr ""
+msgstr "تحويل في"
 
 #: filtertransdialog.cpp:602
 msgid "Amount Range"
-msgstr ""
+msgstr "نطاق المبلغ"
 
 #: filtertransdialog.cpp:635
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "أدخل أي سلسلة للعثور عليها في ملاحظات المعاملات"
 
 #: filtertransdialog.cpp:640 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "استخدم regex: للمطابقة باستخدام التعبيرات العادية."
 
 #: filtertransdialog.cpp:663
 msgid "Presentation Options"
-msgstr ""
+msgstr "خيارات العرض"
 
 #: filtertransdialog.cpp:677 filtertransdialog.cpp:991
 #: filtertransdialog.cpp:1591
 msgid "Hide Columns"
-msgstr ""
+msgstr "إخفاء الأعمدة"
 
 #: filtertransdialog.cpp:688 filtertransdialog.cpp:997
 #: filtertransdialog.cpp:1604
 msgid "Group By"
-msgstr ""
+msgstr "تجميع حسب"
 
 #: filtertransdialog.cpp:697
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "تحديد كيفية تجميع التقرير"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:1613
 msgid "Combine Splits"
-msgstr ""
+msgstr "دمج التقسيمات"
 
 #: filtertransdialog.cpp:704
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "عرض المعاملات المقسمة كصف واحد"
 
 #: filtertransdialog.cpp:712
 msgid "Settings"
-msgstr ""
+msgstr "الإعدادات"
 
 #: filtertransdialog.cpp:726
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "حفظ القيم النشطة في التحديد المسبق الحالي"
 
 #: filtertransdialog.cpp:731
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "حذف التحديد المسبق الحالي"
 
 #: filtertransdialog.cpp:903 filtertransdialog.cpp:936
 #: filtertransdialog.cpp:1315 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "قيمة فارغة"
 
 #: filtertransdialog.cpp:920
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "هذا الاسم لا يتطابق مع أي مستفيد حاليا.\n"
+"هل تريد الاستمرار في استخدامه؟\n"
+"%s"
 
 #: filtertransdialog.cpp:1055
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "إخفاء أعمدة التقرير"
 
 #: filtertransdialog.cpp:1189 mmframe.cpp:1243
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "سيتم حذف العنصر المحدد"
 
 #: filtertransdialog.cpp:1190 import_export/univcsvdialog.cpp:2019
 #: mmframe.cpp:1244
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "هل ترغب في المتابعة؟"
 
 #: filtertransdialog.cpp:1191 mmframe.cpp:1245
 msgid "Settings item deletion"
-msgstr ""
+msgstr "حذف عنصر الإعدادات"
 
 #: filtertransdialog.cpp:1330
 msgid "Filtering Details: "
-msgstr ""
+msgstr "تفاصيل التصفية: "
 
 #: filtertransdialog.cpp:1430
 msgid "Label"
-msgstr ""
+msgstr "تسمية"
 
 #: filtertransdialog.cpp:1450
 msgid "Since"
-msgstr ""
+msgstr "منذ"
 
 #: filtertransdialog.cpp:1452
 msgid "Before"
-msgstr ""
+msgstr "قبل"
 
 #: filtertransdialog.cpp:1464
 msgid "Period"
-msgstr ""
+msgstr "الفترة"
 
 #: filtertransdialog.cpp:1532
 msgid "Amount Min."
-msgstr ""
+msgstr "المبلغ الأدنى."
 
 #: filtertransdialog.cpp:1540
 msgid "Amount Max."
-msgstr ""
+msgstr "المبلغ الأقصى."
 
 #: filtertransdialog.cpp:1749 mmframe.cpp:1271
 msgid "Setting Name"
-msgstr ""
+msgstr "اسم الإعداد"
 
 #: filtertransdialog.cpp:1749 mmframe.cpp:1271
 msgid "Please Enter"
-msgstr ""
+msgstr "الرجاء إدخال"
 
 #: filtertransdialog.cpp:1772 import_export/univcsvdialog.cpp:1066
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "الاسم الذي تم إدخاله قيد الاستخدام"
 
 #: filtertransdialog.cpp:1772 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
 #: images_list.cpp:494 import_export/qif_import_gui.cpp:759
 #: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1066
 msgid "Warning"
-msgstr ""
+msgstr "تحذير"
 
 #: filtertransdialog.cpp:1790
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "تم تغيير إعدادات الفلتر"
 
 #: filtertransdialog.cpp:1791
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "هل تريد حفظهم قبل المتابعة؟"
 
 #: filtertransdialog.cpp:1792
 msgid "Please confirm"
-msgstr ""
+msgstr "الرجاء التأكيد"
 
 #: filtertransdialog.cpp:1809 reports/reportbase.cpp:240
 msgid "Choose Accounts"
@@ -2764,7 +2768,7 @@ msgstr "&استيراد"
 
 #: general_report_manager.cpp:392
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "حدد موقع ملف التقرير وتحميله."
 
 #: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:520
 msgid "&Export"
@@ -2772,47 +2776,47 @@ msgstr "&تصدير"
 
 #: general_report_manager.cpp:396
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "تصدير التقرير إلى ملف جديد."
 
 #: general_report_manager.cpp:399 stockdialog.cpp:349
 msgid "&Save "
-msgstr ""
+msgstr "&حفظ "
 
 #: general_report_manager.cpp:401
 msgid "Save changes."
-msgstr ""
+msgstr "حفظ التغييرات."
 
 #: general_report_manager.cpp:403
 msgid "&Run"
-msgstr ""
+msgstr "&تشغيل"
 
 #: general_report_manager.cpp:405
 msgid "Run selected report."
-msgstr ""
+msgstr "تشغيل التقرير المحدد."
 
 #: general_report_manager.cpp:417
 msgid "Output"
-msgstr ""
+msgstr "الناتج"
 
 #: general_report_manager.cpp:440
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:441
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:442
 msgid "Template"
-msgstr ""
+msgstr "قالب"
 
 #: general_report_manager.cpp:495
 msgid "&Test"
-msgstr ""
+msgstr "&اختبار"
 
 #: general_report_manager.cpp:496
 msgid "Create Template"
-msgstr ""
+msgstr "إنشاء قالب"
 
 #: general_report_manager.cpp:548
 #, c-format
@@ -2823,23 +2827,23 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "%zu صفوف العائد، المدة: %lld مللي ثانية"
 
 #: general_report_manager.cpp:575
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "خطأ في صياغة SQL"
 
 #: general_report_manager.cpp:606
 msgid "Load report file:"
-msgstr ""
+msgstr "تحميل ملف التقرير:"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "ملفات مدير التقرير العام (*.grm)"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ملفات ZIP (*.zip)"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
@@ -3065,11 +3069,11 @@ msgstr "الحسابات"
 
 #: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:203
 msgid "From Date"
-msgstr ""
+msgstr "من تاريخ"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:213
 msgid "To Date"
-msgstr ""
+msgstr "الى تاريخ"
 
 #: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:317
 #: optionsettingsgeneral.cpp:103
@@ -3078,16 +3082,16 @@ msgstr "هيئة التاريخ"
 
 #: import_export/qif_export.cpp:199
 msgid "Write to File"
-msgstr ""
+msgstr "الكتابة إلى ملف"
 
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:140
 #: import_export/univcsvdialog.cpp:184
 msgid "File Name:"
-msgstr ""
+msgstr "اسم الملف:"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:537
 msgid "Clear"
-msgstr ""
+msgstr "مسح"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose Account to Export from:"
@@ -3095,104 +3099,104 @@ msgstr "اختيار الحساب المراد تصديره من :"
 
 #: import_export/qif_export.cpp:259 import_export/qif_export.cpp:365
 msgid "QIF Export"
-msgstr ""
+msgstr "تصدير QIF"
 
 #: import_export/qif_export.cpp:318 import_export/qif_export.cpp:334
 msgid "Choose QIF data file to Export"
-msgstr ""
+msgstr "اختر ملف بيانات QIF للتصدير"
 
 #: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:872
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "ملفات QIF (*.qif)"
 
 #: import_export/qif_export.cpp:326
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "اختر ملف بيانات JSON للتصدير"
 
 #: import_export/qif_export.cpp:328
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "ملفات JSON (*.json)"
 
 #: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2069
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "ملفات CSV (*.csv)"
 
 #: import_export/qif_export.cpp:354
 msgid "No Account available for export"
-msgstr ""
+msgstr "لا يوجد حساب متاح للتصدير"
 
 #: import_export/qif_export.cpp:356
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "لا توجد حسابات محددة للتصدير"
 
 #: import_export/qif_export.cpp:358
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "حتى الآن أقل من التاريخ"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr ""
+msgstr "التصنيفات المصدرة"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:416
 #: import_export/qif_import_gui.cpp:1049
 msgid "Please wait"
-msgstr ""
+msgstr "الرجاء الانتظار"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "تصدير"
 
 #: import_export/qif_export.cpp:512
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "تصدير المعاملة %zu"
 
 #: import_export/qif_export.cpp:656
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "عدد الفئات المصدَّرة: %zu \n"
 
 #: import_export/qif_export.cpp:658
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "عدد المعاملات المصدرة: %zu \n"
 
 #: import_export/qif_export.cpp:659
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "عدد الحسابات المصدرة: %zu"
 
 #: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:197
 msgid "&Browse"
-msgstr ""
+msgstr "&تصفح"
 
 #: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:367
 msgid "Encoding:"
-msgstr ""
+msgstr "الترميز:"
 
 #: import_export/qif_import_gui.cpp:197
 msgid "Filtering Details:"
-msgstr ""
+msgstr "تفاصيل التصفية:"
 
 #: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:475
 msgid "Data"
-msgstr ""
+msgstr "البيانات"
 
 #: import_export/qif_import_gui.cpp:296
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "استخدام رقم الحساب بدلا من اسم الحساب"
 
 #: import_export/qif_import_gui.cpp:300
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "تضمين حقل المستفيد في الملاحظات"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "نمط مطابق للمستفيدين"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "إضافة تفاصيل المطابقة إلى الملاحظات"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
@@ -3210,95 +3214,95 @@ msgstr "مجهول"
 
 #: import_export/qif_import_gui.cpp:416
 msgid "Scanning"
-msgstr ""
+msgstr "المسح"
 
 #: import_export/qif_import_gui.cpp:445
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "قراءة السطر %zu، %lld مللي ثانية"
 
 #: import_export/qif_import_gui.cpp:451
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "السطر %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:543
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "عدد الأسطر المقروءة من ملف QIF: %zu في %lld مللي ث"
 
 #: import_export/qif_import_gui.cpp:548 mmreportspanel.cpp:358
 msgid "Accounts:"
-msgstr ""
+msgstr "الحسابات:"
 
 #: import_export/qif_import_gui.cpp:555 import_export/qif_import_gui.cpp:894
 #: import_export/univcsvdialog.cpp:339
 msgid "Date Format: "
-msgstr ""
+msgstr "تنسيق التاريخ: "
 
 #: import_export/qif_import_gui.cpp:558
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "اضغط على زر OK للمتابعة"
 
 #: import_export/qif_import_gui.cpp:767 import_export/qif_import_gui.cpp:798
 #: import_export/univcsvdialog.cpp:1927 import_export/univcsvdialog.cpp:1942
 #: stockspanel.cpp:449
 msgid "Missing"
-msgstr ""
+msgstr "مفقود"
 
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:1921
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "تمت المطابقة مع %s بالنمط %s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "اختر ملف بيانات QIF للاستيراد"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "هل تريد استيراد جميع المعاملات؟"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "سيتم إنشاء جميع الحسابات المفقودة والمستفيدين والفئات المفقودة."
 
 #: import_export/qif_import_gui.cpp:1043
 msgid "Confirm Import"
-msgstr ""
+msgstr "تأكيد الاستيراد"
 
 #: import_export/qif_import_gui.cpp:1049
 msgid "Importing"
-msgstr ""
+msgstr "الاستيراد"
 
 #: import_export/qif_import_gui.cpp:1051
 msgid "Importing Accounts"
-msgstr ""
+msgstr "استيراد الحسابات"
 
 #: import_export/qif_import_gui.cpp:1054
 msgid "Importing Payees"
-msgstr ""
+msgstr "استيراد المستفيدين"
 
 #: import_export/qif_import_gui.cpp:1058
 msgid "Importing Categories"
-msgstr ""
+msgstr "استيراد الفئات"
 
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "استيراد المعاملة %i من %i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
-msgstr ""
+msgstr "استيراد التحويلات"
 
 #: import_export/qif_import_gui.cpp:1152
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "استيراد معاملات مقسمة"
 
 #: import_export/qif_import_gui.cpp:1156
 msgid "Import finished successfully"
-msgstr ""
+msgstr "انتهى الاستيراد بنجاح"
 
 #: import_export/qif_import_gui.cpp:1156
 #, c-format
@@ -3984,133 +3988,133 @@ msgstr "نصيحة: يمكنك تعديل بعض سلوك تشغيل MMEX عن �
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "نصيحة: لطباعة بيان بالمعاملات من أي مجموعة اعتباطية من المعايير، استخدم مرشح المعاملة لتحديد المعاملات التي تريدها ثم إجراء طباعة من القائمة."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr ""
+msgstr "نصيحة: تعيين سعر الصرف للعملات في حالة وجود حسابات مع عملات مختلفة."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr ""
+msgstr "تنظيم نصيحة حوار الفئات: الضغط على مفتاح h سوف يدور عبر جميع الفئات بدءًا من الحرف h"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "تنظيم تلميح حوار التصنيفات: الضغط على 2 مجموعة رئيسة سوف تدور عبر جميع الفئات بدءاً بهذه المجموعة من المفاتيح. على سبيل المثال: الضغط على هو سوف يحدد احتياجات المنزل, المنزل, مصروفات المنزل, الخ..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "نصائح للخروج من الديون: ادفع نفسك 10 في المائة أولاً. ضع هذا في حساب يصعب لمسه. تأكد من أن الحصول على المال هو أمر ركن (يجب عليك القيادة إلى البنك)، لذلك لن تضغط عليها إلا عن وعي ولتغطية نفقات كبيرة."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr ""
+msgstr "نصائح للخروج من الديون: إنشاء صندوق للطوارئ."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr ""
+msgstr "نصائح للخروج من الديون: توقف عن الحصول على دين جديد."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "نصائح للخروج من الديون: أنشئ ميزانية واقعية لنفقاتك."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
+msgstr "نصائح للخروج من الدين: انفاق أقل مما تكسبه."
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr ""
+msgstr "نصائح للخروج من الديون: دفع أكثر من الحد الأدنى."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr ""
+msgstr "قبل الذهاب إلى متجر وشراء شيء ما: خذ الوقت لإعداد قائمة بما تحتاجه حقا. في المتجر يشتري ما هو موجود في قائمتك."
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
+msgstr "ومن الممكن تتبع الاستثمارات في الأسهم/الصناديق المشتركة باستخدام نظام MMEX."
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr ""
+msgstr "لإنشاء دخول أسهم جديدة، يجب إدخال الرمز وعدد الأسهم ونسب الشراء."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
+msgstr "عينة من المملكة المتحدة (HSBC HLDG) مشاركة: HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "قبل أن تبدأ في الاستثمار، لديك صندوق طوارئ ممول بالكامل."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "قبل أن تبدأ في الاستثمار، اعرف التدفق النقدي الخاص بك (لديك ميزانية)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "قبل أن تبدأ في الاستثمار، تدفع الدين الاستهلاكي - وخاصة بطاقات الائتمان."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "قبل أن تبدأ في الإستثمار، قم بإعداد مقياس التتبع الأساسي الخاص بك."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "قبل أن تبدأ بالاستثمار، وضح أهدافك وأولوياتك."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "قبل أن تبدأ بالاستثمار، تأكد من فهمك لأساسيات الاستثمار."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "الخطأ الشائع للمستثمرين: فقط شراء الشركات التي تعرفونها."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "الخطأ الشائع للمستثمرين: شراء الشركات التي تحب."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "خطأ شائع في أوساط المستثمرين: شراء شركات جديرة بالثروة."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "الخطأ الشائع للمستثمرين: ننسى إعادة التوازن."
 
 #: mmchecking_list.cpp:206
 msgid "Sort Order"
-msgstr ""
+msgstr "ترتيب الترتيب"
 
 #: mmchecking_list.cpp:300
 msgid "Deleted On"
-msgstr ""
+msgstr "تم الحذف في"
 
 #: mmchecking_list.cpp:325
 msgid "Last Updated"
-msgstr ""
+msgstr "آخر تحديث"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:309
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&سحب جديد..."
 
 #: mmchecking_list.cpp:432 mmcheckingpanel.cpp:310
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&إيداع جديد..."
 
 #: mmchecking_list.cpp:434 mmcheckingpanel.cpp:311
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&تحويل جديد..."
 
 #: mmchecking_list.cpp:438
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
+msgstr[0] "&تحرير المعاملة..."
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "&تحرير المعاملات..."
 
 #: mmchecking_list.cpp:441
 msgid "&Copy Transaction"
@@ -4120,38 +4124,38 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "&نسخ المعاملات"
 
 #: mmchecking_list.cpp:448
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&لصق المعاملة"
 
 #: mmchecking_list.cpp:448
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&لصق المعاملات (%d)"
 
 #: mmchecking_list.cpp:453
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "&تكرار المعاملة..."
 
 #: mmchecking_list.cpp:456
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&نقل المعاملة..."
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
-msgstr[5] ""
+msgstr[5] "&نقل المعاملات..."
 
 #: mmchecking_list.cpp:462
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&عرض في حساب آخر"
 
 #: mmchecking_list.cpp:466
 msgid "&View Split Categories"
-msgstr ""
+msgstr "&عرض تقسيم الفئات"
 
 #: mmchecking_list.cpp:474
 msgid "Create Recurring T&ransaction..."
