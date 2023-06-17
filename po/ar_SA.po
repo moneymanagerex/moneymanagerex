@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-17 00:18\n"
+"PO-Revision-Date: 2023-06-17 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -4769,43 +4769,43 @@ msgstr "تجاهل المعاملات المستقبلية"
 
 #: mmframe.cpp:1594
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "إظهار تلميحات"
 
 #: mmframe.cpp:1594 optionsettingsview.cpp:104
 msgid "Show Tooltips"
-msgstr ""
+msgstr "إظهار التلميحات"
 
 #: mmframe.cpp:1596
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "إظهار النصائح النقدية"
 
 #: mmframe.cpp:1596 optionsettingsview.cpp:110
 msgid "Show Money Tips"
-msgstr ""
+msgstr "إظهار نصائح المال"
 
 #: mmframe.cpp:1616
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "تبديل &ملء الشاشة Shift+F11"
 
 #: mmframe.cpp:1617 mmframe.cpp:1927
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "تبديل ملء الشاشة"
 
 #: mmframe.cpp:1623
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "تبديل &لغة التطبيق"
 
 #: mmframe.cpp:1649
 msgid "Dash&board"
-msgstr ""
+msgstr "&لوحة التحكم"
 
 #: mmframe.cpp:1649 mmframe.cpp:1897
 msgid "Open Dashboard"
-msgstr ""
+msgstr "فتح لوحة التحكم"
 
 #: mmframe.cpp:1658
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "تغيير نوع الحساب للحساب."
 
 #: mmframe.cpp:1661
 msgid "Delete Account from database"
@@ -4813,19 +4813,19 @@ msgstr "حذف الحساب من قاعدة البيانات"
 
 #: mmframe.cpp:1674
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "تحميل الأسعار"
 
 #: mmframe.cpp:1674 mmframe.cpp:1924
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "تنزيل أسعار العملات والأسهم"
 
 #: mmframe.cpp:1680
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "تنظيم &تصنيفات..."
 
 #: mmframe.cpp:1684
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "التنظيم والمدفوع لهم..."
 
 #: mmframe.cpp:1684 mmframe.cpp:1902 payeedialog.cpp:496
 msgid "Organize Payees"
@@ -4833,7 +4833,7 @@ msgstr "تنظيم المستفيدين"
 
 #: mmframe.cpp:1688
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "تنظيم العملة..."
 
 #: mmframe.cpp:1688 mmframe.cpp:1903
 msgid "Organize Currency"
@@ -4841,27 +4841,27 @@ msgstr "تنظيم العملة"
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
-msgstr ""
+msgstr "&تصنيفات..."
 
 #: mmframe.cpp:1695
 msgid "&Payees..."
-msgstr ""
+msgstr "المدفوعون لهم..."
 
 #: mmframe.cpp:1696
 msgid "Reassign all payees to another payee"
-msgstr ""
+msgstr "إعادة تعيين جميع المستفيدين إلى مستفيد آخر"
 
 #: mmframe.cpp:1698
 msgid "Re&location of"
-msgstr ""
+msgstr "إعادة موقع"
 
 #: mmframe.cpp:1699
 msgid "Relocate Categories && Payees"
-msgstr ""
+msgstr "نقل التصنيفات && المستفيدين"
 
 #: mmframe.cpp:1709
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&إعداد الميزانية..."
 
 #: mmframe.cpp:1713
 msgid "&Recurring Transactions"
@@ -4877,43 +4877,43 @@ msgstr "&الممتلكات"
 
 #: mmframe.cpp:1723
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "مدير النسق..."
 
 #: mmframe.cpp:1723 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "مدير السمة"
 
 #: mmframe.cpp:1729
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&تصفية تقرير المعاملة..."
 
 #: mmframe.cpp:1729 mmframe.cpp:1905
 msgid "Transaction Report Filter"
-msgstr ""
+msgstr "تصفية تقرير المعاملة"
 
 #: mmframe.cpp:1735
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "&مدير التقرير العام..."
 
 #: mmframe.cpp:1739
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "&مدير الحقول المخصصة..."
 
 #: mmframe.cpp:1739
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "مدير الحقول المخصصة"
 
 #: mmframe.cpp:1745
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "تحديث &تطبيق الويب..."
 
 #: mmframe.cpp:1745 mmframe.cpp:2793 mmframe.cpp:2800
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "تحديث تطبيق الويب"
 
 #: mmframe.cpp:1750
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&خيارات...\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Show the Options Dialog"
@@ -4921,43 +4921,43 @@ msgstr "عرض نافذة الخيارات"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "تحويل تشفير &DB..."
 
 #: mmframe.cpp:1758
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "تحويل DB المشفرة إلى DB غير مشفرة"
 
 #: mmframe.cpp:1760
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "تغيير كلمة المرور المشفرة..."
 
 #: mmframe.cpp:1761
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "تغيير كلمة مرور قاعدة بيانات مشفرة"
 
 #: mmframe.cpp:1763
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "&تحسين قاعدة البيانات..."
 
 #: mmframe.cpp:1764
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "تحسين مساحة قاعدة البيانات وأدائها"
 
 #: mmframe.cpp:1766
 msgid "Database De&bug..."
-msgstr ""
+msgstr "تصحيح قاعدة البيانات..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "إنشاء تقرير قاعدة البيانات أو إصلاح الأخطاء"
 
 #: mmframe.cpp:1772
 msgid "Databa&se"
-msgstr ""
+msgstr "قاعدة البيانات"
 
 #: mmframe.cpp:1773
 msgid "Database management"
-msgstr ""
+msgstr "إدارة قاعدة البيانات"
 
 #: mmframe.cpp:1780 mmframe.cpp:1934
 msgid "&Help\tF1"
@@ -4969,23 +4969,23 @@ msgstr "عرض ملف المساعدة"
 
 #: mmframe.cpp:1786
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "افتح موقع مدير المال EX لأحدث الأخبار، التحديثات إلخ"
 
 #: mmframe.cpp:1788
 msgid "&Facebook"
-msgstr ""
+msgstr "&الفيسبوك"
 
 #: mmframe.cpp:1788
 msgid "Visit us on Facebook"
-msgstr ""
+msgstr "قم بزيارتنا على الفيسبوك"
 
 #: mmframe.cpp:1790
 msgid "&Crowdin"
-msgstr ""
+msgstr "موقع Crowdin"
 
 #: mmframe.cpp:1790
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "نحن نستخدم كراودِن لترجمة MMEX"
 
 #: mmframe.cpp:1792
 msgid "&Twitter"
@@ -5242,99 +5242,105 @@ msgstr ""
 
 #: mmframe.cpp:2269
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "اختر ملف قاعدة البيانات المشفرة لفتح"
 
 #: mmframe.cpp:2279
 msgid "Enter password for database"
-msgstr ""
+msgstr "أدخل كلمة المرور لقاعدة البيانات"
 
 #: mmframe.cpp:2284
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "اختر ملف قاعدة البيانات لحفظ كـ"
 
 #: mmframe.cpp:2306
 msgid "Converted DB!"
-msgstr ""
+msgstr "تم تحويل DB!"
 
 #: mmframe.cpp:2306
 msgid "MMEX message"
-msgstr ""
+msgstr "رسالة MMEX"
 
 #: mmframe.cpp:2312
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: تغيير كلمة المرور المشفرة"
 
 #: mmframe.cpp:2313
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "كلمة مرور جديدة لقاعدة البيانات\n\n"
+"%s"
 
 #: mmframe.cpp:2321
 msgid "New password must not be empty."
-msgstr ""
+msgstr "يجب ألا تكون كلمة المرور الجديدة فارغة."
 
 #: mmframe.cpp:2325
 msgid "Please confirm new password"
-msgstr ""
+msgstr "الرجاء تأكيد كلمة المرور الجديدة"
 
 #: mmframe.cpp:2332
 msgid "Password change completed."
-msgstr ""
+msgstr "تم تغيير كلمة المرور."
 
 #: mmframe.cpp:2336
 msgid "Confirm password failed."
-msgstr ""
+msgstr "فشل تأكيد كلمة المرور."
 
 #: mmframe.cpp:2347
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "تأكد من أن لديك نسخة احتياطية من DB قبل تحسينها"
 
 #: mmframe.cpp:2348 mmframe.cpp:2358
 msgid "DB Optimization"
-msgstr ""
+msgstr "تحسين DB"
 
 #: mmframe.cpp:2355
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "تم تحسين قاعدة البيانات!\n\n"
+"الحجم من قبل: %s\n"
+"الحجم بعد: %s\n"
 
 #: mmframe.cpp:2366
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
+msgstr "الرجاء استخدام هذه الوظيفة فقط إذا طلبت صراحة من دعم MMEX"
 
 #: mmframe.cpp:2367
 msgid "DB Debug"
-msgstr ""
+msgstr "تصحيح أخطاء DB"
 
 #: mmframe.cpp:2386 mmframe.cpp:2407
 msgid "Save database file as"
-msgstr ""
+msgstr "حفظ ملف قاعدة البيانات ك"
 
 #: mmframe.cpp:2407
 msgid "Can't copy file to itself"
-msgstr ""
+msgstr "لا يمكن نسخ الملف لنفسه"
 
 #: mmframe.cpp:2420
 msgid "Enter password for new database"
-msgstr ""
+msgstr "أدخل كلمة المرور لقاعدة البيانات الجديدة"
 
 #: mmframe.cpp:2507 mmframe.cpp:2526
 msgid "No account available to import"
-msgstr ""
+msgstr "لا يوجد حساب متاح للاستيراد"
 
 #: mmframe.cpp:2575
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr ""
+msgstr "حسابات الأصول تحتفظ بمعاملات الأصول\n\n"
+"معاملات الأصول يتم إنشاؤها ضمن عرض الأصول\n"
+"بعد اختيار الأصول داخل ذلك العرض.\n\n"
+"يمكن أيضا أن تحتفظ حسابات الأصول بالمعاملات العادية في حسابات عادية."
 
 #: mmframe.cpp:2579
 msgid "Asset Account Creation"
-msgstr ""
+msgstr "إنشاء حساب الأصول"
 
 #: mmframe.cpp:2585
 msgid "Share Accounts hold Share transactions\n\n"
@@ -5343,19 +5349,24 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "مشاركة الحسابات التي تحتفظ بالمعاملات المشاركة\n\n"
+"المعاملات المشاركة يتم إنشاؤها ضمن عرض حافظة الأسهم\n"
+"بعد اختيار أسهم الشركة ضمن العرض المقترن.\n\n"
+"تصبح هذه الحسابات مرئية فقط بعد ربط المخزون بحساب المشاركة\n"
+"أو باستخدام عرض القائمة → 'عرض الحسابات المشاركة'\n"
+"حسابات المشاركة يمكن أيضًا الاحتفاظ بالمعاملات العادية إلى حساب عادي."
 
 #: mmframe.cpp:2591
 msgid "Share Account Creation"
-msgstr ""
+msgstr "مشاركة إنشاء الحساب"
 
 #: mmframe.cpp:2766
 msgid "MMEX Options have been updated."
-msgstr ""
+msgstr "تم تحديث خيارات MMEX."
 
 #: mmframe.cpp:2767
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "بعض الإعدادات تصبح نافذة المفعول فقط بعد إعادة تشغيل التطبيق."
 
 #: mmframe.cpp:2768 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
@@ -5363,23 +5374,23 @@ msgstr "خيارات MMEX"
 
 #: mmframe.cpp:2793
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "تم تحديث الحسابات والمستفيدين والفئات"
 
 #: mmframe.cpp:2799
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "تمت مصادفة مشكلة تحديث WebApp، تحقق من خادم الويب وإعدادات WebApp"
 
 #: mmframe.cpp:2939
 msgid "Choose HTML file to Export"
-msgstr ""
+msgstr "اختر ملف HTML للتصدير"
 
 #: mmframe.cpp:3352 mmframe.cpp:3359
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "تحميل أسعار الأسهم من ياهو"
 
 #: mmframe.cpp:3353
 msgid "Please wait..."
-msgstr ""
+msgstr "الرجاء الانتظار..."
 
 #: mmframe.cpp:3402 stockspanel.cpp:459
 #, c-format
@@ -5406,42 +5417,43 @@ msgstr "اختيار الحساب لحذفه"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "هل أنت متأكد من أنك تريد حذف حساب\n"
+" %s الحساب : %s؟"
 
 #: mmframe.cpp:3467
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "حدد الحساب لإعادة التخصيص"
 
 #: mmframe.cpp:3467 mmframe.cpp:3490
 msgid "Account Reallocation"
-msgstr ""
+msgstr "إعادة تخصيص الحساب"
 
 #: mmframe.cpp:3489
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "الحساب: %s - حدد نوع جديد."
 
 #: mmframe.cpp:3655 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
-msgstr ""
+msgstr "اكتمل نقل المستفيد."
 
 #: mmframe.cpp:3659 payeedialog.cpp:816
 msgid "Payee Relocation Result"
-msgstr ""
+msgstr "نتيجة نقل المستفيد"
 
 #: mmframe.cpp:3735
 #, c-format
 msgid "File %s not found"
-msgstr ""
+msgstr "لم يتم العثور على الملف %s"
 
 #: mmframereport.cpp:80
 msgid "General Group Report"
-msgstr ""
+msgstr "تقرير المجموعة العامة"
 
 #: mmframereport.cpp:107 mmhomepage.cpp:849 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
-msgstr ""
+msgstr "ضبط استثناء"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
@@ -5461,7 +5473,7 @@ msgstr "من أين تأتي نقودك؟"
 
 #: mmframereport.cpp:160
 msgid "Forecast Report"
-msgstr ""
+msgstr "تقرير التوقعات"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:75
 msgid "Income vs Expenses"
@@ -5469,7 +5481,7 @@ msgstr "الايرادات والمصروفات"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
-msgstr ""
+msgstr "إستخدامي"
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
@@ -5481,31 +5493,31 @@ msgstr "ملخص الحسابات"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "الميزانيات"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
-msgstr ""
+msgstr "أداء الميزانية"
 
 #: mmframereport.cpp:218
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "ملخص فئة الميزانية"
 
 #: mmframereport.cpp:230
 msgid "Stocks Report"
-msgstr ""
+msgstr "تقرير المخزون"
 
 #: mmframereport.cpp:316 mmreportspanel.cpp:401
 msgid "Hide"
-msgstr ""
+msgstr "إخفاء"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr ""
+msgstr "&عودة"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr ""
+msgstr "&التالي"
 
 #: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:270
 #: reports/summary.cpp:307
@@ -5530,7 +5542,7 @@ msgstr "المجموع:"
 #: mmhomepage.cpp:162
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr ""
+msgstr "أعلى السحوبات: %s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
@@ -5840,152 +5852,152 @@ msgstr "خيارات العرض"
 
 #: optiondialog.cpp:37 webappdialog.cpp:146
 msgid "Attachments"
-msgstr ""
+msgstr "المرفقات"
 
 #: optiondialog.cpp:37
 msgid "Network"
-msgstr ""
+msgstr "الشبكة"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&تطبيق "
 
 #: optiondialog.cpp:219
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s تم حفظ الصفحة."
 
 #: optionsettingsattachment.cpp:65
 msgid "Attachments Settings"
-msgstr ""
+msgstr "إعدادات المرفقات"
 
 #: optionsettingsattachment.cpp:72
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "مجلد أرشيف المرفقات ل %s فقط:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "كل نوع نظام تشغيل (Win,Mac,Unix) لديه مجلد مرفقات"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
-msgstr ""
+msgstr "تصفح للمجلد"
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
-msgstr ""
+msgstr "المسار الحقيقي:"
 
 #: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "وسيلة الإيضاح (يمكن استخدامها كمتغيرات في بداية المسار أعلاه)"
 
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : دليل مستند المستخدم"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : مجلد الملف الشخصي للمستخدم"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : مجلد ملف قاعدة البيانات .MMB"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : مجلد بيانات التطبيق MMEX"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
-msgstr ""
+msgstr "مجلدات نظام التشغيل الأخرى "
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
-msgstr ""
+msgstr "لم يتم تعيينه بعد"
 
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "مجلد ويندوز: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "مجلد ماك: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "مجلد يونكس: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
-msgstr ""
+msgstr "إنشاء واستخدام المجلد الفرعي للمرفقات"
 
 #: optionsettingsattachment.cpp:170
 msgid "Delete file after import"
-msgstr ""
+msgstr "حذف الملف بعد الاستيراد"
 
 #: optionsettingsattachment.cpp:172
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "حدد لحذف الملف بعد الاستيراد في أرشيف المرفقات"
 
 #: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
-msgstr ""
+msgstr "عند إزالة المرفقات، نقل الملف بدلاً من الحذف"
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr ""
+msgstr "حدد عدم حذف الملف عند إزالة المرفق، ولكن بدلاً من ذلك نقله إلى مجلد فرعي «محذوف»"
 
 #: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "عند تكرار المعاملات قم بتكرر المرفقات أيضًا"
 
 #: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "حدد إذا كنت تريد نسخ المرفقات إلى المعاملات الجديدة عندما تكون مكررة أو ملصقة"
 
 #: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "اختر مجلد لتعيينه كأرشيف المرفقات"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "مجلد المرفقات غير قابل للكتابة!"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
-msgstr ""
+msgstr "مجلد المرفقات"
 
 #: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "تم تغيير مسار المرفقات!"
 
 #: optionsettingsattachment.cpp:248 optionsettingsattachment.cpp:257
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "ترحيل مجلد المرفقات"
 
 #: optionsettingsattachment.cpp:254
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "حدث خطأ أثناء نقل مجلد المرفقات: الرجاء نقله يدويا!"
 
 #: optionsettingsattachment.cpp:255
 msgid "Origin"
-msgstr ""
+msgstr "الأصل"
 
 #: optionsettingsattachment.cpp:256
 msgid "Destination"
-msgstr ""
+msgstr "الوجهة"
 
 #: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
-msgstr ""
+msgstr "عرض العنوان"
 
 #: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:118
 msgid "User Name"
@@ -5993,7 +6005,7 @@ msgstr "اسم المستخدم"
 
 #: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
-msgstr ""
+msgstr "اسم المستخدم مستخدم كعنوان لقاعدة البيانات."
 
 #: optionsettingsgeneral.cpp:114
 msgid "Specify the date format for display"
@@ -6001,7 +6013,7 @@ msgstr "تعيين هيئة عرض التاريخ"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr ""
+msgstr "عينة تنسيق التاريخ:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
@@ -6013,20 +6025,21 @@ msgstr "تعيين العملة"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "تعيين العملة الافتراضية لقاعدة البيانات باستخدام 'مربع تحويل العملة'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "تنسيق مستمد من اللغة المحلية.\n"
+"اتركه فارغاً لضبط التنسيق يدوياً من خلال 'حوار العملة | تحرير'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
-msgstr ""
+msgstr "استخدام سجل العملات"
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "حدد لاستخدام سجل العملات (معدل واحد لكل يوم)، قم بإلغاء التحديد لاستخدام سعر ثابت"
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -6058,32 +6071,32 @@ msgstr "استخدام التاريخ الاصلي عند نسخ/لصق المع
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "استخدام التاريخ الأصلي عند تكرار المعاملات"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "حدد ما إذا كان سيتم استخدام تاريخ المعاملة الأصلية أو التاريخ الحالي عند تكرار المعاملات"
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "صوت المعاملة"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
-msgstr ""
+msgstr "حدد ما إذا كان سيتم استخدام الأصوات عند إدخال المعاملات"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr ""
+msgstr "محلي"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "عينة قيمة العملة: %s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
-msgstr ""
+msgstr "اسم محلي سيئ"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6091,11 +6104,11 @@ msgstr "موقع اسعار الاسهم"
 
 #: optionsettingsmisc.cpp:81
 msgid "Clear the field to Reset the value to system default."
-msgstr ""
+msgstr "مسح الحقل لإعادة تعيين القيمة إلى النظام الافتراضي."
 
 #: optionsettingsmisc.cpp:85
 msgid "Share Precision"
-msgstr ""
+msgstr "مشاركة الدقة"
 
 #: optionsettingsmisc.cpp:90
 msgid "Set the precision for Share prices"
@@ -6339,135 +6352,135 @@ msgstr ""
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "موازنة الميزانية (الأيام):"
 
 #: optionsettingsview.cpp:161
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "يسمح بتعديل \"اليوم الأول\" في الشهر (عادة 1st) لأغراض حساب الميزانية"
 
 #: optionsettingsview.cpp:169
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "يوم البدء من الشهر للإبلاغ:"
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "يسمح بتعديل 'اليوم الأول' في الشهر لأغراض الإبلاغ"
 
 #: optionsettingsview.cpp:178
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "تجاهل المعاملات المستقبلية"
 
 #: optionsettingsview.cpp:184
 msgid "Transaction Colors"
-msgstr ""
+msgstr "ألوان المعاملة"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "واجهة المستخدم"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "فتح مدير السمة"
 
 #: optionsettingsview.cpp:236
 msgid "Style Template"
-msgstr ""
+msgstr "قالب النمط"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "النظام"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
-msgstr ""
+msgstr "فاتح"
 
 #: optionsettingsview.cpp:243
 msgid "Dark"
-msgstr ""
+msgstr "داكن"
 
 #: optionsettingsview.cpp:247
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "حدد خيار السمة المفضلة لاستخدامها إذا كانت مدعومة"
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "السمة"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "عامل مقياس HTML"
 
 #: optionsettingsview.cpp:268
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "تحديد عامل المقياس المستخدم لصفحات التقرير"
 
 #: optionsettingsview.cpp:273
 msgid "Normal"
-msgstr ""
+msgstr "عادي"
 
 #: optionsettingsview.cpp:274
 msgid "Enlarged"
-msgstr ""
+msgstr "موسع"
 
 #: optionsettingsview.cpp:275
 msgid "Large"
-msgstr ""
+msgstr "كبير"
 
 #: optionsettingsview.cpp:276
 msgid "Huge"
-msgstr ""
+msgstr "ضخم"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "حجم الخط"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
-msgstr ""
+msgstr "صغير (16 px)"
 
 #: optionsettingsview.cpp:291
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "عادي (24 px)"
 
 #: optionsettingsview.cpp:292
 msgid "Large (32 px)"
-msgstr ""
+msgstr "كبير (32 px)"
 
 #: optionsettingsview.cpp:293
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "ضخم (48 px)"
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "حجم أيقونة شريط الأدوات"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "حجم أيقونة التنقل"
 
 #: optionsettingsview.cpp:309
 msgid "Others Icon Size"
-msgstr ""
+msgstr "حجم أيقونة أخرى"
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
-msgstr ""
+msgstr "تحرير المستفيد"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "أدخل اسم المستفيد. يمكن إعادة تسمية هذا الاسم في أي وقت."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
-msgstr ""
+msgstr "مخفي"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "يرجى بيان ما إذا كان ينبغي للمستفيد أن يخفى وألا يقدم في قائمة المستفيد للمعاملات الجديدة"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
-msgstr ""
+msgstr "آخر فئة مستخدمة"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Default Category"
@@ -6475,33 +6488,35 @@ msgstr "الفئة الإفتراضية"
 
 #: payeedialog.cpp:99
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "الفئة المستخدمة كفئة افتراضية لهذا المستفيد"
 
 #: payeedialog.cpp:103 payeedialog.cpp:458
 msgid "Reference"
-msgstr ""
+msgstr "مرجع"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "مرجع يستخدم للمستفيد ، على سبيل المثال رقم الحساب المصرفي"
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
-msgstr ""
+msgstr "الموقع الالكتروني"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "عنوان URL للموقع المرتبط بالمستفيد"
 
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "تطابق الأنماط\n"
+"عند الاستيراد"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "أدخل أي سلسلة لمطابقة هذا المستفيد عند الاستيراد.\n"
+"يتم اختبار الأنماط في الترتيب الذي تم إدخاله هنا."
 
 #: payeedialog.cpp:238
 msgid "Payee with same name exists"
@@ -6509,39 +6524,39 @@ msgstr "يوجد مستفيد آخر بنفس الاسم"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "نمط المطابقة"
 
 #: payeedialog.cpp:720
 msgid "Payee in use."
-msgstr ""
+msgstr "المستفيد قيد الاستخدام."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "نصيحة: تغيير جميع المعاملات باستخدام هذا المستفيد إلى مستفيد آخر باستخدام الأمر المنقول:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Relocation of → Payees"
-msgstr ""
+msgstr "الأدوات → نقل → المستفيدين"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "تنظيم المستفيدين: حذف الخطأ"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "المعاملات المحذوفة موجودة والتي تستخدم هذا المستفيد."
 
 #: payeedialog.cpp:732
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "سيؤدي حذف المستفيد أيضا تلقائيا إلى إزالة المعاملات المحذوفة المرتبطة به."
 
 #: payeedialog.cpp:734
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "تأكيد حذف المستفيد"
 
 #: payeedialog.cpp:855
 msgid "Define Category"
-msgstr ""
+msgstr "تعريف الفئة"
 
 #: payeedialog.cpp:868
 msgid "&Organize Attachments"
@@ -6553,7 +6568,7 @@ msgstr "عرض نافذة المُستفيدين"
 
 #: relocatecategorydialog.cpp:91
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "نقل فئة المصدر إلى فئة الوجهة"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after relocation (if it has no sub-categories)"
@@ -6781,15 +6796,15 @@ msgstr ""
 
 #: reports/cashflow.cpp:372
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "التدفق النقدي - المعاملات"
 
 #: reports/categexp.cpp:283
 msgid "Total Expenses:"
-msgstr ""
+msgstr "مجموع المصروفات:"
 
 #: reports/categexp.cpp:284
 msgid "Total Income:"
-msgstr ""
+msgstr "إجمالي الإيرادات:"
 
 #: reports/categexp.cpp:286 reports/summarystocks.cpp:186
 #: reports/transactions.cpp:63
@@ -6798,11 +6813,11 @@ msgstr "الإجمالي:"
 
 #: reports/categexp.cpp:315
 msgid "Categories Summary"
-msgstr ""
+msgstr "ملخص الفئات"
 
 #: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
-msgstr ""
+msgstr "فئة الدخل/المصروفات"
 
 #: reports/categexp.cpp:464
 msgid "Overall"
@@ -6810,41 +6825,41 @@ msgstr "الكل"
 
 #: reports/categexp.cpp:495 reports/payee.cpp:137
 msgid "Incomes"
-msgstr ""
+msgstr "الايرادات"
 
 #: reports/forecast.cpp:30
 msgid "Forecast"
-msgstr ""
+msgstr "توقعات"
 
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "تم إنشاء تقرير %s %s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %s till %s"
-msgstr ""
+msgstr "من %s حتى %s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
-msgstr ""
+msgstr "المستقبل"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:249
 msgid "Over Time"
-msgstr ""
+msgstr "مع مرور الوقت"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"
-msgstr ""
+msgstr "يوم البدء المحدد للمستخدم"
 
 #: reports/htmlbuilder.cpp:257
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "المعاملات المستقبلية تم تجاهلها"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "موجز الإيرادات مقابل النفقات"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -6856,11 +6871,11 @@ msgstr "المصروفات"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "الدخل مقابل النفقات الشهرية"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "التراكمي"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -6868,15 +6883,15 @@ msgstr "الشهر الحالي"
 
 #: reports/mmDateRange.cpp:82
 msgid "Today"
-msgstr ""
+msgstr "اليوم"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
-msgstr ""
+msgstr "الشهر الحالي للتاريخ"
 
 #: reports/mmDateRange.cpp:100
 msgid "Last Month"
-msgstr ""
+msgstr "الشهر الماضي"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
@@ -6884,15 +6899,15 @@ msgstr "آخر 30 يوم"
 
 #: reports/mmDateRange.cpp:120
 msgid "Last 90 Days"
-msgstr ""
+msgstr "آخر 90 يوما"
 
 #: reports/mmDateRange.cpp:134
 msgid "Last 3 Months"
-msgstr ""
+msgstr "آخر 3 أشهر"
 
 #: reports/mmDateRange.cpp:148
 msgid "Last 12 Months"
-msgstr ""
+msgstr "آخر 12 شهراً"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6900,7 +6915,7 @@ msgstr "العام الحالي"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:693
 msgid "Current Year to Date"
-msgstr ""
+msgstr "السنة الحالية حتى التاريخ"
 
 #: reports/mmDateRange.cpp:185
 msgid "Last Year"
@@ -6908,72 +6923,72 @@ msgstr "آخر عام"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
-msgstr ""
+msgstr "السنة المالية الحالية"
 
 #: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
-msgstr ""
+msgstr "السنة المالية الحالية حتى الآن"
 
 #: reports/mmDateRange.cpp:236
 msgid "Last Financial Year"
-msgstr ""
+msgstr "السنة المالية الأخيرة"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
-msgstr ""
+msgstr "مخصص"
 
 #: reports/mmDateRange.cpp:274
 msgid "Last 365 Days"
-msgstr ""
+msgstr "آخر 365 يوم"
 
 #: reports/mmDateRange.cpp:280
 msgid "Since Today"
-msgstr ""
+msgstr "منذ اليوم"
 
 #: reports/mmDateRange.cpp:289
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "منذ 30 يوما"
 
 #: reports/mmDateRange.cpp:298
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "منذ 90 يوما"
 
 #: reports/mmDateRange.cpp:306
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "منذ بداية هذه السنة"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "منذ بداية السنة المالية"
 
 #: reports/myusage.cpp:26
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "تردد استخدام MMEX"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr ""
+msgstr "تقرير المستفيد"
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
-msgstr ""
+msgstr "جميع الحسابات"
 
 #: reports/reportbase.cpp:213 reports/transactions.cpp:125
 msgid "Accounts: "
-msgstr ""
+msgstr "الحسابات: "
 
 #: reports/summary.cpp:133
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "رصيد الحسابات - %s"
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
-msgstr ""
+msgstr "التقرير الشهري"
 
 #: reports/summary.cpp:133
 msgid "Yearly Report"
-msgstr ""
+msgstr "التقرير السنوي"
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
@@ -6985,11 +7000,11 @@ msgstr "الرمز"
 
 #: reports/summarystocks.cpp:119
 msgid "Purchase Date"
-msgstr ""
+msgstr "تاريخ الشراء"
 
 #: reports/summarystocks.cpp:120
 msgid "Quantity"
-msgstr ""
+msgstr "الكمية"
 
 #: reports/summarystocks.cpp:122
 msgid "Current Price"
@@ -7002,31 +7017,31 @@ msgstr "العمولة"
 
 #: reports/summarystocks.cpp:124 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "الأرباح/الخسارة المحققة"
 
 #: reports/summarystocks.cpp:125 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "الأرباح/الخسارة غير المحققة"
 
 #: reports/summarystocks.cpp:246
 msgid "Stocks Performance Charts"
-msgstr ""
+msgstr "المخزون من مخططات الأداء"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "قيّم"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "جميع المعاملات: السحب والإيداع والتحويلات"
 
 #: reports/transactions.cpp:410
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "جميع المعاملات باستثناء التحويلات"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "إضافة عملية مشاركة"
 
 #: sharetransactiondialog.cpp:213 stockdialog.cpp:182
 msgid "Stock Investment Details"
@@ -7034,7 +7049,7 @@ msgstr "تفاصيل الاسهم الاستثمارية"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
 msgid "Company Name"
-msgstr ""
+msgstr "اسم الشركة"
 
 #: sharetransactiondialog.cpp:227 stockdialog.cpp:196
 msgid "Enter the stock company name"
@@ -7287,39 +7302,39 @@ msgstr ""
 
 #: stockdialog.cpp:714
 msgid "1 Day"
-msgstr ""
+msgstr "يوم واحد"
 
 #: stockdialog.cpp:716
 msgid "1 Week"
-msgstr ""
+msgstr "أسبوع واحد"
 
 #: stockdialog.cpp:724
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "تحديد الفاصل الزمني لسجل المخزون"
 
 #: stockdialog.cpp:739 stockdialog.cpp:743
 msgid "Stock history not found!"
-msgstr ""
+msgstr "لم يتم العثور على سجل المخزون!"
 
 #: stockdialog.cpp:740 stockdialog.cpp:852
 msgid "Stock History Error"
-msgstr ""
+msgstr "خطأ في سجل المخزون"
 
 #: stocks_list.cpp:91
 msgid "Share Total"
-msgstr ""
+msgstr "مشاركة المجموع"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "متوسط سعر المشاركة"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "التكلفة الإجمالية"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
-msgstr ""
+msgstr "القيمة الاجمالية"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
