@@ -123,6 +123,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
                 set(LINUX_DISTRO "${CMAKE_MATCH_1}")
                 set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
             endif()
+        # Check if cmake is new enough for querying host-specific system information:
+        # https://cmake.org/cmake/help/latest/command/cmake_host_system_information.html
+        elseif(EXISTS /etc/os-release AND ${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.22.0")
+            cmake_host_system_information(RESULT LINUX_DISTRO QUERY DISTRIB_NAME)
+            cmake_host_system_information(RESULT LINUX_DISTRO_REL QUERY DISTRIB_VERSION)
         elseif(EXISTS /etc/arch-release)
             execute_process(COMMAND  uname -r
                 OUTPUT_VARIABLE LINUX_DISTRO_REL
