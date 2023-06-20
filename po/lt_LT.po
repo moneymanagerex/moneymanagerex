@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-20 16:13\n"
+"PO-Revision-Date: 2023-06-20 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -677,15 +677,16 @@ msgstr "Pokytis vertėje: %s %s"
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Šis turtas neturi savo sąskaitos\n\n"
+"Nerekomenduojama atlikti kelių šio turto operacijų."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
-msgstr ""
+msgstr "Turto valdymas"
 
 #: assetspanel.cpp:805
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Paskyra datos vertė\n\n"
 
 #: attachmentdialog.cpp:56 general_report_manager.cpp:443
 msgid "Description"
@@ -702,7 +703,7 @@ msgstr "Priedo aplankas nenurodytas."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Nustatykite jį Įrankiai → Parinktys → Priedai"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -723,12 +724,12 @@ msgstr "Priedų aplankas nerastas"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Tvarkyti priedus | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %s | %s"
-msgstr ""
+msgstr "Tvarkyti priedus | %s | %s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -753,7 +754,7 @@ msgstr "Tvarkyti priedus: Pridėti priedą"
 
 #: attachmentdialog.cpp:249
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Įveskite naują priedo aprašą:"
 
 #: attachmentdialog.cpp:250
 msgid "Organize Attachments: Edit Attachment"
@@ -850,7 +851,7 @@ msgstr "Kas savaitę"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "Kas dvi savaites"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -861,7 +862,7 @@ msgstr "Kas mėnesį"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Kas 2 mėnesius"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -893,19 +894,19 @@ msgstr "Kasdien"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "Per (x) dienas"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "Per (x) mėn"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Kas (x) dienas"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Kas (x) mėnesius"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -917,27 +918,27 @@ msgstr "Kas mėnesį (paskutinė darbo diena)"
 
 #: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:303
 msgid "Duplicate Recurring Transaction"
-msgstr ""
+msgstr "Pasikartojančios operacijos dublikatas"
 
 #: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:298
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Redaguoti pasikartojančią operaciją"
 
 #: billsdepositsdialog.cpp:320
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Įveskite pasikartojančią operaciją"
 
 #: billsdepositsdialog.cpp:414
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Išsami pasikartojančių operacijų informacija"
 
 #: billsdepositsdialog.cpp:428
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Nurodykite datą, kada turi būti apmokėta ši sąskaita arba užstatas"
 
 #: billsdepositsdialog.cpp:429 billsdepositspanel.cpp:133
 msgid "Date Due"
-msgstr ""
+msgstr "Sumokėjimo data"
 
 #: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
 msgid "Repeats"
@@ -945,11 +946,11 @@ msgstr "Pasikartoja"
 
 #: billsdepositsdialog.cpp:440
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Grįžti į paskutinę datą su nurodytomis reikšmėmis"
 
 #: billsdepositsdialog.cpp:447
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Perkelkite kitą datą, nurodytą nurodytomis reikšmėmis"
 
 #: billsdepositsdialog.cpp:458 billsdepositsdialog.cpp:1256
 msgid "Payments Left"
@@ -957,19 +958,19 @@ msgstr "Likę mokėjimai"
 
 #: billsdepositsdialog.cpp:472
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Paprašykite vartotojo įvesti mokėjimą"
 
 #: billsdepositsdialog.cpp:473
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Vartotojas paprašė įvesti šią operaciją „Apmokėjimo datą“"
 
 #: billsdepositsdialog.cpp:476
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Suteikti automatinį vykdymą"
 
 #: billsdepositsdialog.cpp:477
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Prašytas mokėjimas bus atliktas be vartotojo įsikišimo"
 
 #: billsdepositsdialog.cpp:484 filtertrans.cpp:177 transdialog.cpp:395
 msgid "Transaction Details"
@@ -977,11 +978,11 @@ msgstr "Operacijos informacija"
 
 #: billsdepositsdialog.cpp:493
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Nurodykite datą, kurią vartotojo prašoma įvesti šią operaciją"
 
 #: billsdepositsdialog.cpp:494 billsdepositspanel.cpp:132
 msgid "Date Paid"
-msgstr ""
+msgstr "Apmokėjimo data"
 
 #: billsdepositsdialog.cpp:506 filtertransdialog.cpp:575 transdialog.cpp:1237
 msgid "Specify the status for the transaction"
@@ -1042,7 +1043,7 @@ msgstr "Sąskaita"
 
 #: billsdepositsdialog.cpp:556
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Nurodykite sąskaitą, kuriai priklausys pasikartojanti operacija"
 
 #: billsdepositsdialog.cpp:561 transdialog.cpp:232 transdialog.cpp:474
 msgid "To"
@@ -1108,7 +1109,7 @@ msgstr "Naudoti spalvas"
 
 #: billsdepositsdialog.cpp:616
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Tvarkykite šios pasikartojančios operacijos priedus"
 
 #: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:983 filtertransdialog.cpp:1564
@@ -1117,7 +1118,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:544
 msgid "Color"
-msgstr ""
+msgstr "Spalva"
 
 #: billsdepositsdialog.cpp:633 transdialog.cpp:551 transdialog.cpp:1240
 #: usertransactionpanel.cpp:215
@@ -1127,7 +1128,7 @@ msgstr "Nurodykite bet kokias teksto pastabas, kurias norite pridėti prie šios
 #: billsdepositsdialog.cpp:650 filtertransdialog.cpp:752
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:567
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Rodyti/slėpti pasirinktinių laukų langą"
 
 #: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:231
 #: transdialog.cpp:240
@@ -1136,23 +1137,24 @@ msgstr "Iš"
 
 #: billsdepositsdialog.cpp:880
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Mokėjimo data vėlesnė, ar taip norėjote?"
 
 #: billsdepositsdialog.cpp:881
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Panašu, kad pavėluotas mokėjimas"
 
 #: billsdepositsdialog.cpp:933 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:641
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Anksčiau nenaudojote šio mokėjimo gavėjo vardo. Ar pavadinimas teisingas?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:642
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Patvirtinkite gavėjo vardą"
 
 #: billsdepositsdialog.cpp:953 billsdepositsdialog.cpp:1282
 #: filtertransdialog.cpp:877 filtertransdialog.cpp:887
@@ -1172,7 +1174,7 @@ msgstr "Neteisinga reikšmė"
 #: import_export/univcsvdialog.cpp:1357 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Sąskaitos atidarymo data yra vėlesnė nei šios operacijos data"
 
 #: billsdepositsdialog.cpp:1205
 msgid "Specify the transfer amount in the From Account"
@@ -1193,27 +1195,32 @@ msgstr "Periodas: Mėnesiai"
 #: billsdepositsdialog.cpp:1225
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Nurodykite laikotarpį, kurį norite suaktyvinti.\n"
+"Neaktyvus tampa tuščias."
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Norėdami suaktyvinti, nurodykite laikotarpį mėnesiais.\n"
+"Neaktyvus tampa tuščias."
 
 #: billsdepositsdialog.cpp:1241
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Nurodykite laikotarpį, kurį norite suaktyvinti.\n"
+"Palikite tuščią, kai neaktyvus."
 
 #: billsdepositsdialog.cpp:1249
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Norėdami suaktyvinti, nurodykite laikotarpį mėnesiais.\n"
+"Palikite tuščią, kai neaktyvus."
 
 #: billsdepositsdialog.cpp:1257
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Nurodykite atliktinų mokėjimų skaičių.\n"
+"Palikite tuščią, jei mokėjimai tęsiasi amžinai."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:482
@@ -1226,11 +1233,11 @@ msgstr "Klaida"
 #: billsdepositsdialog.cpp:1352 splittransactionsdialog.h:82
 #: transdialog.cpp:325
 msgid "Split Transaction"
-msgstr ""
+msgstr "Redaguoti operaciją"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:294
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Įveskite pasikartojančią operaciją"
 
 #: billsdepositsdialog.h:126
 msgid "Specify where the transaction is going to"
@@ -1250,7 +1257,7 @@ msgstr "Nurodykite šios operacijos sumą"
 
 #: billsdepositsdialog.h:130
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Nurodykite pervestiną sumą"
 
 #: billsdepositspanel.cpp:61
 #, c-format
@@ -1294,12 +1301,12 @@ msgstr "MMEX leidžia paprastiems mokėjimams būti nustatytais kaip operacijos.
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Patarimas: šias operacijas galima nustatyti taip, kad jos būtų suaktyvintos – vartotojas gali koreguoti bet kokias reikšmes termino dieną."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:762
 #: mmframe.cpp:3080 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Pasikartojančius sandorius"
 
 #: billsdepositspanel.cpp:302 mmcheckingpanel.cpp:443
 msgid "D&uplicate "
@@ -1307,15 +1314,15 @@ msgstr "&Dubliuoti "
 
 #: billsdepositspanel.cpp:308
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Ištrinkite pasikartojančią operaciją"
 
 #: billsdepositspanel.cpp:312
 msgid "Ente&r"
-msgstr ""
+msgstr "Ente&r"
 
 #: billsdepositspanel.cpp:313
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Įveskite kitą pasikartojančios operacijos įvykį"
 
 #: billsdepositspanel.cpp:317
 msgid "&Skip"
@@ -1323,11 +1330,11 @@ msgstr "Pra&leisti"
 
 #: billsdepositspanel.cpp:318
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Praleisti kitos pasikartojančios operacijos įvykį"
 
 #: billsdepositspanel.cpp:432
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Įveskite kitą įvykį..."
 
 #: billsdepositspanel.cpp:434
 msgid "Skip next Occurrence"
@@ -1335,19 +1342,19 @@ msgstr "Praleisti kitą įvykį"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Įveskite pasikartojančią operaciją..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Redaguoti pasikartojančią operaciją..."
 
 #: billsdepositspanel.cpp:438
 msgid "D&uplicate Recurring Transaction..."
-msgstr ""
+msgstr "D&pasikartoti pasikartojančią operaciją..."
 
 #: billsdepositspanel.cpp:440
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Ištrinkite pasikartojančią operaciją..."
 
 #: billsdepositspanel.cpp:488
 msgid "Manual"
@@ -1365,7 +1372,10 @@ msgstr "Siūloma"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "Vienas\n"
+"Liko %d diena\n\n"
+"Kita\n"
+"Liko %d dienų"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -1380,7 +1390,10 @@ msgstr "Neaktyvus"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "Vienas\n"
+"%d dienų vėlavimas!\n"
+"Kita\n"
+"%d dienų vėlavimas!"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -1396,11 +1409,11 @@ msgstr[3] ""
 
 #: billsdepositspanel.cpp:673
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Ar tikrai norite ištrinti pasikartojančią operaciją?"
 
 #: billsdepositspanel.cpp:674
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Patvirtinti ištrynimą"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1455,7 +1468,7 @@ msgstr "Įveskite biudžeto dydį šiai kategorijai."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Įveskite pastabas, kad apibūdintumėte šį biudžeto įrašą"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1484,7 +1497,7 @@ msgstr "Žiūrėti biudžeto kategorijų santrauką"
 #: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Finansiniai metai: %s - %li"
 
 #: budgetingpanel.cpp:177 reports/budget.cpp:94
 #, c-format
@@ -1499,7 +1512,7 @@ msgstr "Mėnuo: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s pradžios data: %s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1528,7 +1541,7 @@ msgstr "Išlaidos: "
 
 #: budgetingpanel.cpp:299
 msgid "Icon"
-msgstr ""
+msgstr "Ikonėlė"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
@@ -1574,7 +1587,7 @@ msgstr "Biudžeto mėnesio įrašas"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Biudžeto metai"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1584,7 +1597,7 @@ msgstr "Nurodykite privalomus metus.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Biudžeto mėnesis"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1594,11 +1607,11 @@ msgstr "Nurodykite privalomą mėnesį.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Biudžetas pagrįstas"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Nurodykite metus, kuriais pagrįstas biudžetas"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1614,15 +1627,15 @@ msgstr "Perskirstyti visas kategorijos kitai kategorijai"
 
 #: categdialog.cpp:270 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr ""
+msgstr "Sutraukti visus"
 
 #: categdialog.cpp:275 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "Išskleisti visus"
 
 #: categdialog.cpp:280 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "Rodyti viską"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
@@ -1638,7 +1651,7 @@ msgstr "Redaguoti egzistuojančios kategorijos pavadinimą"
 
 #: categdialog.cpp:333
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Ištrinti egzistuojančią kategoriją. Kategorija negali būti naudojama egzistuojančiose operacijose."
 
 #: categdialog.cpp:338 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1650,15 +1663,15 @@ msgstr "Pasirinkti pažymėtą kategoriją kaip pasirinktą kategoriją operacij
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter. "
-msgstr ""
+msgstr "Pavadinime yra kategorijos skyriklis. "
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr ""
+msgstr "Dvitaškis (:) naudojamas kategorijoms ir subkategorijoms atskirti, todėl jo negalima naudoti pavadinime"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Tvarkyti kategorijas: Neteisingas pavadinimas"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1670,7 +1683,7 @@ msgstr "Pridėti kategoriją"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Category with same name exists for this parent"
-msgstr ""
+msgstr "Šiam tėvui skirta kategorija tokiu pat pavadinimu"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organise Categories: Adding Error"
@@ -1678,7 +1691,7 @@ msgstr "Tvarkyti kategorijas: Pridėjimo klaida"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Negalite perkelti subkategorijos į kategoriją, kuri jau turi subkategoriją tokiu pavadinimu. Prieš perkeldami apsvarstykite galimybę pervardyti."
 
 #: categdialog.cpp:438
 msgid "Sub Category with same name exists"
@@ -1686,7 +1699,7 @@ msgstr "Sub kategorija su tokiu pavadinimu jau yra"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Tikslinė kategorija yra palikuonis"
 
 #: categdialog.cpp:457
 #, c-format
@@ -1694,15 +1707,18 @@ msgid "Are you sure you want to move\n"
 " \"%s\"\n"
 "to:\n"
 "\"%s\" ?"
-msgstr ""
+msgstr "Ar tikrai norite persikelti\n"
+" „%s“\n"
+"į:\n"
+"\"%s\"?"
 
 #: categdialog.cpp:459
 msgid "Top level"
-msgstr ""
+msgstr "Viršus"
 
 #: categdialog.cpp:460
 msgid "Confirm Move"
-msgstr ""
+msgstr "Patvirtinti perkėlimą"
 
 #: categdialog.cpp:477
 msgid "Category in use."
@@ -1726,7 +1742,7 @@ msgstr "Patarimas: Pakeiskite visas operacijas naudojančias šią sub kategorij
 
 #: categdialog.cpp:485
 msgid "Tools → Relocation of → Categories"
-msgstr ""
+msgstr "Įrankiai -> Perkėlimas -> Kategorijos"
 
 #: categdialog.cpp:487
 msgid "Organise Categories: Delete Error"
@@ -1734,24 +1750,24 @@ msgstr "Tvarkyti kategorijas: Ištrynimo klaida"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Yra ištrintų operacijų, kuriose naudojama ši kategorija arba vienas iš jos palikuonių."
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Ištrynus kategoriją, bus automatiškai išvalytos ir susijusios ištrintos operacijos."
 
 #: categdialog.cpp:512 payeedialog.cpp:733
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Ar norite tęsti?"
 
 #: categdialog.cpp:513
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Patvirtinkite kategorijos ištrynimą"
 
 #: categdialog.cpp:622
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Įveskite naują pavadinimą „%s“"
 
 #: categdialog.cpp:623
 msgid "Edit Category"
@@ -1759,7 +1775,7 @@ msgstr "Redaguoti kategoriją"
 
 #: categdialog.cpp:634
 msgid "Category with same name exists for the parent"
-msgstr ""
+msgstr "Kategorija su tuo pačiu pavadinimu egzistuoja tėvams"
 
 #: categdialog.cpp:635
 msgid "Organise Categories: Editing Error"
@@ -1780,11 +1796,11 @@ msgstr "Kategorijų perkėlimo rezultatas"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Ar tikrai norite rodyti visas kategorijas"
 
 #: categdialog.cpp:772
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Rodyti visas kategorijas"
 
 #: categdialog.cpp:800
 msgid "Hide Selected Category"
@@ -1796,7 +1812,7 @@ msgstr "Nebeslėpti pažymėtos kategorijos"
 
 #: categdialog.cpp:803 payeedialog.cpp:857
 msgid "Remove Category"
-msgstr ""
+msgstr "Pašalinti kategoriją"
 
 #: categdialog.cpp:806
 msgid "Clear Settings"
@@ -1808,12 +1824,12 @@ msgstr "Tvarkyti Kategorijas"
 
 #: constants.cpp:72
 msgid "Cancel"
-msgstr ""
+msgstr "Atšaukti"
 
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:136
 #: relocatepayeedialog.cpp:135 themes.cpp:195
 msgid "Close"
-msgstr ""
+msgstr "Uždaryti"
 
 #: constants.cpp:80
 msgid "&Close "
@@ -2131,11 +2147,11 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
-msgstr ""
+msgstr "Nuostatos"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
@@ -2162,7 +2178,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:198
 msgid "Find what"
-msgstr ""
+msgstr "Ko ieškoti"
 
 #: customfieldlistdialog.cpp:198 customfieldlistdialog.cpp:204
 #: customfieldlistdialog.cpp:210 customfieldlistdialog.cpp:216
@@ -2327,7 +2343,7 @@ msgstr "Draudimas"
 
 #: db/DB_Table_Category_V1.h:148
 msgid "Auto"
-msgstr ""
+msgstr "Automatiškai"
 
 #: db/DB_Table_Category_V1.h:149
 msgid "Life"
@@ -2510,12 +2526,12 @@ msgstr ""
 
 #: filtertrans.cpp:181
 msgid "Back"
-msgstr ""
+msgstr "Atgal"
 
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:500 mmchecking_list.cpp:1064
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:39
 msgid "Unreconciled"
-msgstr ""
+msgstr "Nesuderintos"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:502 mmhomepage.cpp:534
 #: mmhomepage.cpp:705 model/Model_Billsdeposits.cpp:40
@@ -2531,7 +2547,7 @@ msgstr "Negaliojanti"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:506 mmchecking_list.cpp:1053
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:42
 msgid "Follow Up"
-msgstr ""
+msgstr "Stebima"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:508
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
@@ -2544,7 +2560,7 @@ msgstr "Visos išskyrus Suderintas"
 
 #: filtertransdialog.cpp:481 transactionsupdatedialog.cpp:117
 msgid "Specify"
-msgstr ""
+msgstr "Nurodykite"
 
 #: filtertransdialog.cpp:509
 msgid "Period Range"
@@ -2575,11 +2591,11 @@ msgstr "Pajamos"
 #: filtertransdialog.cpp:588 filtertransdialog.cpp:811
 #: filtertransdialog.cpp:1368
 msgid "Transfer Out"
-msgstr ""
+msgstr "Perkelti"
 
 #: filtertransdialog.cpp:590 filtertransdialog.cpp:1366
 msgid "Transfer In"
-msgstr ""
+msgstr "Perkelti į"
 
 #: filtertransdialog.cpp:602
 msgid "Amount Range"
