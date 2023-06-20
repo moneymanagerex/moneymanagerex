@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-20 17:27\n"
+"PO-Revision-Date: 2023-06-20 19:33\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -1843,7 +1843,7 @@ msgstr "Gerai"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "Atšaukti"
 
 #: constants.cpp:91
 msgid "Redo"
@@ -1851,27 +1851,27 @@ msgstr ""
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "Iškirpti"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "Kopijuoti"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "Įklijuoti"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "Pažymėti visus"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64-bitų"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Žiūrėti naudojant operacijų filtrą..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -1911,23 +1911,23 @@ msgstr "Žiūrėti einamuosius metus"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Peržiūrėkite dabartinius finansinius metus"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr ""
+msgstr "Žiūrėti praėjusius metus"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Peržiūrėti praėjusius finansinius metus"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Žiūrėti nuo pareiškimo datos"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "Visi"
 
 #: constants.cpp:209 mmframe.cpp:1489 mmframe.cpp:1894
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -1945,7 +1945,7 @@ msgstr "Mėgstamiausi"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
-msgstr ""
+msgstr "Valiutos pavadinimas"
 
 #: currencydialog.cpp:188
 msgid "Currency Name"
@@ -1953,7 +1953,7 @@ msgstr "Valiutos pavadinimas"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "Valiutos kodas"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
@@ -1961,15 +1961,15 @@ msgstr "Valiutos simbolis"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr ""
+msgstr "Simbolio vieta"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "Priešdėlis"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "Priesaga"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:344
 #: import_export/univcsvdialog.cpp:401
@@ -1978,11 +1978,11 @@ msgstr "Dežimtainis rašmuo"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "Taškas"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "Kablelis"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
@@ -1990,7 +1990,7 @@ msgstr "Grupavimo rašmuo"
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "Tarpo klavišas"
 
 #: currencydialog.cpp:227
 msgid "Scale"
@@ -1998,19 +1998,19 @@ msgstr "Mastelis"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Konvertavimas į bazinę normą"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Konvertavimo kursas bus naudojamas tuo atveju, jei valiutos istorijos nerasta"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Fiksuotas konversijos koeficientas"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Valiutos formato pavyzdys:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
@@ -2028,93 +2028,94 @@ msgstr "Netinkamas įrašas"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "Grupavimo simbolis negali būti toks pat kaip dešimtainis simbolis"
 
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Rodoma kaip: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(naudojant lokalę)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Valiutos tvarkyklė"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Išsami tinkinto lauko informacija"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "Atributas"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Pasirinkite elementą, su kuriuo susietas tinkintas laukas"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Įveskite tinkinto lauko pavadinimą"
 
 #: customfieldeditdialog.cpp:150
 msgid "Field Type"
-msgstr ""
+msgstr "Lauko tipas"
 
 #: customfieldeditdialog.cpp:154
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Pasirinkite tinkinto lauko tipą"
 
 #: customfieldeditdialog.cpp:157
 msgid "ToolTip"
-msgstr ""
+msgstr "Įrankio patarimas"
 
 #: customfieldeditdialog.cpp:159
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Įveskite patarimą, kuris bus rodomas"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Įveskite RegEx patvirtinimo lauką"
 
 #: customfieldeditdialog.cpp:167
 msgid "Autocomplete"
-msgstr ""
+msgstr "Automatinis užbaigimas"
 
 #: customfieldeditdialog.cpp:170
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Įgalina automatinį užbaigimą tinkintame lauke"
 
 #: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:610
 msgid "Default"
-msgstr ""
+msgstr "Numatyta"
 
 #: customfieldeditdialog.cpp:175
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Įveskite šio lauko numatytuosius nustatymus\n"
+"Norėdami nustatyti datą/laiką, įveskite „Dabar“, kad dabartinė data/laikas būtų numatytasis"
 
 #: customfieldeditdialog.cpp:179
 msgid "Choices"
-msgstr ""
+msgstr "Pasirinkimai"
 
 #: customfieldeditdialog.cpp:181
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Įveskite šio lauko pasirinkimus, atskirtus kabliataškiu"
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
-msgstr ""
+msgstr "Skaitmenų skalė"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Įveskite leistiną dešimtainių skaitmenų skalę"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
@@ -2633,49 +2634,50 @@ msgstr ""
 
 #: filtertransdialog.cpp:704
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Rodyti padalintas operacijas kaip vieną eilutę"
 
 #: filtertransdialog.cpp:712
 msgid "Settings"
-msgstr ""
+msgstr "Nustatymai"
 
 #: filtertransdialog.cpp:726
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Išsaugokite aktyvias reikšmes į esamą išankstinio nustatymo pasirinkimą"
 
 #: filtertransdialog.cpp:731
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Ištrinti esamą išankstinio nustatymo pasirinkimą"
 
 #: filtertransdialog.cpp:903 filtertransdialog.cpp:936
 #: filtertransdialog.cpp:1315 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "Tuščia reikšmė"
 
 #: filtertransdialog.cpp:920
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Šis vardas šiuo metu neatitinka jokio mokėjimo gavėjo.\n"
+"Ar norite ir toliau juo naudotis %s"
 
 #: filtertransdialog.cpp:1055
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Slėpti ataskaitos stulpelius"
 
 #: filtertransdialog.cpp:1189 mmframe.cpp:1243
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Pasirinktas elementas bus ištrintas"
 
 #: filtertransdialog.cpp:1190 import_export/univcsvdialog.cpp:2019
 #: mmframe.cpp:1244
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Ar norite tęsti?"
 
 #: filtertransdialog.cpp:1191 mmframe.cpp:1245
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Nustatymų elemento ištrynimas"
 
 #: filtertransdialog.cpp:1330
 msgid "Filtering Details: "
@@ -2683,39 +2685,39 @@ msgstr "Filtro informacija: "
 
 #: filtertransdialog.cpp:1430
 msgid "Label"
-msgstr ""
+msgstr "Žyma"
 
 #: filtertransdialog.cpp:1450
 msgid "Since"
-msgstr ""
+msgstr "Nuo"
 
 #: filtertransdialog.cpp:1452
 msgid "Before"
-msgstr ""
+msgstr "Prieš"
 
 #: filtertransdialog.cpp:1464
 msgid "Period"
-msgstr ""
+msgstr "Laikotarpis"
 
 #: filtertransdialog.cpp:1532
 msgid "Amount Min."
-msgstr ""
+msgstr "Suma Min."
 
 #: filtertransdialog.cpp:1540
 msgid "Amount Max."
-msgstr ""
+msgstr "Suma Max."
 
 #: filtertransdialog.cpp:1749 mmframe.cpp:1271
 msgid "Setting Name"
-msgstr ""
+msgstr "Nustatymo pavadinimas"
 
 #: filtertransdialog.cpp:1749 mmframe.cpp:1271
 msgid "Please Enter"
-msgstr ""
+msgstr "Įveskite"
 
 #: filtertransdialog.cpp:1772 import_export/univcsvdialog.cpp:1066
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "Įvestas vardas jau naudojamas"
 
 #: filtertransdialog.cpp:1772 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
@@ -2726,15 +2728,15 @@ msgstr "Dėmesio"
 
 #: filtertransdialog.cpp:1790
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Filtro nustatymai pasikeitė"
 
 #: filtertransdialog.cpp:1791
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Ar norite juos išsaugoti prieš tęsdami?"
 
 #: filtertransdialog.cpp:1792
 msgid "Please confirm"
-msgstr ""
+msgstr "Prašome patvirtinti"
 
 #: filtertransdialog.cpp:1809 reports/reportbase.cpp:240
 msgid "Choose Accounts"
@@ -2787,7 +2789,7 @@ msgstr "Išvestis"
 
 #: general_report_manager.cpp:440
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:441
 msgid "Lua"
@@ -2824,11 +2826,11 @@ msgstr "Įkelti ataskaitos failą:"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Bendrųjų ataskaitų tvarkyklės failai (*.grm)"
 
 #: general_report_manager.cpp:608 general_report_manager.cpp:1060
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP failai (*.zip)"
 
 #: general_report_manager.cpp:673 general_report_manager.h:64
 msgid "General Reports Manager"
@@ -2836,11 +2838,11 @@ msgstr "Bendras ataskaitų tvarkytuvas"
 
 #: general_report_manager.cpp:733
 msgid "Assets..."
-msgstr ""
+msgstr "Turtas..."
 
 #: general_report_manager.cpp:736
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Nauja tuščia ataskaita..."
 
 #: general_report_manager.cpp:737
 msgid "New Sample Report"
@@ -2848,11 +2850,11 @@ msgstr "Nauja pavyzdinė ataskaita"
 
 #: general_report_manager.cpp:740
 msgid "Change Group..."
-msgstr ""
+msgstr "Keisti grupę..."
 
 #: general_report_manager.cpp:742
 msgid "Rename Group..."
-msgstr ""
+msgstr "Pervardyti grupę..."
 
 #: general_report_manager.cpp:743
 msgid "UnGroup"
@@ -2860,19 +2862,19 @@ msgstr "Išgrupuoti"
 
 #: general_report_manager.cpp:744
 msgid "Rename Report..."
-msgstr ""
+msgstr "Pervadinti ataskaitą..."
 
 #: general_report_manager.cpp:748
 msgid "Active"
-msgstr ""
+msgstr "Aktyvus"
 
 #: general_report_manager.cpp:748
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Rodyti / slėpti ataskaitą pagrindiniame naršymo skydelyje"
 
 #: general_report_manager.cpp:752
 msgid "Delete Report..."
-msgstr ""
+msgstr "Ištrinti ataskaitą..."
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
@@ -2889,19 +2891,19 @@ msgstr "Ištrinti ataskaitos pavadinimą:"
 
 #: general_report_manager.cpp:907 general_report_manager.cpp:991
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Įveskite arba pasirinkite naujos ataskaitų grupės pavadinimą"
 
 #: general_report_manager.cpp:908
 msgid "Change report group"
-msgstr ""
+msgstr "Keisti ataskaitų grupę"
 
 #: general_report_manager.cpp:924
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Įveskite arba pasirinkite naujos grupės pavadinimą"
 
 #: general_report_manager.cpp:925
 msgid "Rename Group"
-msgstr ""
+msgstr "Pervardyti grupę"
 
 #: general_report_manager.cpp:992
 msgid "Add Report Group"
@@ -2914,7 +2916,7 @@ msgstr "Nauja ataskaita %s"
 
 #: general_report_manager.cpp:1018
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Ataskaitos pavadinimas jau yra"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -2926,45 +2928,45 @@ msgstr "Parinkite failą, kurį išsaugoti kaip ataskaitą"
 
 #: general_report_manager.cpp:1235
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametrai:"
 
 #: images_list.cpp:324
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Metaduomenų JSON temoje „%s“ negalima išanalizuoti ir atrodo, kad jis yra blogai sukonstruotas, pataisykite."
 
 #: images_list.cpp:412
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Failo „%s“ trūksta arba jis netinkamas pasirinktoje temoje „%s“"
 
 #: images_list.cpp:423
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Pasirinktoje temoje „%s“ trūksta metaduomenų „%s“"
 
 #: images_list.cpp:456
 msgid "and more..."
-msgstr ""
+msgstr "ir daugiau..."
 
 #: images_list.cpp:458
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Pasirinktoje temoje '%s' yra %d arba netinkamos piktogramos: %s"
 
 #: images_list.cpp:487
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s nerasta, ji gali būti nebepalaikoma. Grąžinama į numatytąją temą"
 
 #: images_list.cpp:494
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Temoje %s trūksta elementų ir ji nesuderinama. Grąžinama į numatytąją temą"
 
 #: images_list.cpp:499
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "Nerasta tinkamos temos, diegimas gali būti sugadintas"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2085
 #: mmSimpleDialogs.cpp:795
@@ -2978,7 +2980,7 @@ msgstr "Universalus CSV importas"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Nepavyko sukurti failo."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
@@ -3385,11 +3387,12 @@ msgstr ""
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "Įkelti šį išankstinį nustatymą, kai paskyra yra:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Nurodykite laukų tvarką faile"
 
 #: import_export/univcsvdialog.cpp:300
 msgid "&MMEX format"
@@ -3405,31 +3408,31 @@ msgstr "&Žemyn"
 
 #: import_export/univcsvdialog.cpp:354
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "CSV skyriklis:"
 
 #: import_export/univcsvdialog.cpp:381
 msgid "Export column titles"
-msgstr ""
+msgstr "Eksportuoti stulpelių pavadinimus"
 
 #: import_export/univcsvdialog.cpp:396
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Teigiamos vertės yra indėliai"
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Teigiamos vertės yra pasitraukimai"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Eilutės, kurių reikia ignoruoti"
 
 #: import_export/univcsvdialog.cpp:421
 msgid "From start: "
-msgstr ""
+msgstr "Iš pradžių: "
 
 #: import_export/univcsvdialog.cpp:456
 msgid "From end: "
-msgstr ""
+msgstr "Nuo galo: "
 
 #: import_export/univcsvdialog.cpp:468
 msgid "Preview"
@@ -3437,7 +3440,7 @@ msgstr "Peržiūra"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Pasirinkite XML duomenų failą, kurį norite importuoti"
 
 #: import_export/univcsvdialog.cpp:543
 msgid "Choose CSV data file to Import"
@@ -3445,7 +3448,7 @@ msgstr "Pasirinkite CSV duomenų failą, skirtą importui"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Pasirinkite XML duomenų failą, kurį norite eksportuoti"
 
 #: import_export/univcsvdialog.cpp:544
 msgid "Choose CSV data file to Export"
@@ -3453,15 +3456,15 @@ msgstr "Pasirinkite CSV duomenų failą, skirtą eksportui"
 
 #: import_export/univcsvdialog.cpp:547
 msgid "Preset name"
-msgstr ""
+msgstr "Šablono pavadinimas"
 
 #: import_export/univcsvdialog.cpp:548
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Išsaugokite esamus nustatymus kaip išankstinį nustatymą"
 
 #: import_export/univcsvdialog.cpp:549 import_export/univcsvdialog.cpp:2020
 msgid "Delete Preset"
-msgstr ""
+msgstr "Naikinti šabloną"
 
 #: import_export/univcsvdialog.cpp:550
 msgid "MMEX standard format"
@@ -3473,7 +3476,7 @@ msgstr "Perkelti aukštyn"
 
 #: import_export/univcsvdialog.cpp:552
 msgid "Move Down"
-msgstr ""
+msgstr "Perkelti žemyn"
 
 #: import_export/univcsvdialog.cpp:553 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3490,43 +3493,44 @@ msgstr "Eksportuoti failą"
 #: import_export/univcsvdialog.cpp:568 import_export/univcsvdialog.cpp:2469
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
-msgstr ""
+msgstr "Iš anksto nustatytas „%s“ įkeltas, nes pasirinkta paskyra „%s“"
 
 #: import_export/univcsvdialog.cpp:722
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Šio šablono numatytoji paskyra „%s“ neegzistuoja.\n"
+"Pasirinkite naują paskyrą."
 
 #: import_export/univcsvdialog.cpp:724
 msgid "Account does not exist"
-msgstr ""
+msgstr "Tokios paskyros nėra"
 
 #: import_export/univcsvdialog.cpp:915 import_export/univcsvdialog.cpp:1010
 #: import_export/univcsvdialog.cpp:2484
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Teigiamas, jei tipas turi „%s“"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Preset Name"
-msgstr ""
+msgstr "Šablono pavadinimas"
 
 #: import_export/univcsvdialog.cpp:1037
 msgid "Save Preset"
-msgstr ""
+msgstr "Išsaugoti ruošinį"
 
 #: import_export/univcsvdialog.cpp:1253
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Importuoti nurodyti neteisingi laukai!"
 
 #: import_export/univcsvdialog.cpp:1254
 msgid "Date field is required."
-msgstr ""
+msgstr "Datos laukelis būtinas."
 
 #: import_export/univcsvdialog.cpp:1255
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Reikalingas laukas „Sumos“ arba abu „Išgryninimo“ ir „Indėlio“ laukai."
 
 #: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
 #: themes.cpp:189 webappdialog.cpp:408
@@ -3536,21 +3540,21 @@ msgstr "Importuoti"
 #: import_export/univcsvdialog.cpp:1312
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Į sąskaitą %s importuotos operacijos: %ld"
 
 #: import_export/univcsvdialog.cpp:1323
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "%ld eilutė: tuščia"
 
 #: import_export/univcsvdialog.cpp:1337
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "%ld eilutė: Klaida:"
 
 #: import_export/univcsvdialog.cpp:1339
 msgid "Invalid Date."
-msgstr ""
+msgstr "Neteisinga data."
 
 #: import_export/univcsvdialog.cpp:1340 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
@@ -3558,79 +3562,79 @@ msgstr "Klaidinga suma."
 
 #: import_export/univcsvdialog.cpp:1342
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Tipas (išėmimas/įnešimas) nežinomas."
 
 #: import_export/univcsvdialog.cpp:1356
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "%ld eilutė: %s"
 
 #: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "%ld eilutė: gerai, importuota."
 
 #: import_export/univcsvdialog.cpp:1389
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Iš viso eilučių: %ld"
 
 #: import_export/univcsvdialog.cpp:1391
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Importuoti pasirinktos eilutės: %ld"
 
 #: import_export/univcsvdialog.cpp:1393
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Tuščios eilutės: %ld"
 
 #: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importuota: %ld"
 
 #: import_export/univcsvdialog.cpp:1397
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Klaida: %ld"
 
 #: import_export/univcsvdialog.cpp:1400
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Žurnalo failas įrašytas į: %s"
 
 #: import_export/univcsvdialog.cpp:1403 stockdialog.cpp:652
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Prašome patvirtinti išsaugojimą"
 
 #: import_export/univcsvdialog.cpp:1436
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Jokių importuotų operacijų!"
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Eksportuoti nurodyti neteisingi laukai! Reikalinga bent data ir suma."
 
 #: import_export/univcsvdialog.cpp:1459 import_export/univcsvdialog.cpp:1612
 msgid "Export"
-msgstr ""
+msgstr "Eksportuoti"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Perrašyti egzistuojančius failus?"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "File exists"
-msgstr ""
+msgstr "Failas egzistuoja"
 
 #: import_export/univcsvdialog.cpp:1475
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Nepavyko ištrinti esamo failo. Failą gali užrakinti kita programa."
 
 #: import_export/univcsvdialog.cpp:1476
 msgid "Destination file error"
-msgstr ""
+msgstr "Paskirties failo klaida"
 
 #: import_export/univcsvdialog.cpp:1484 mmSimpleDialogs.cpp:803
 msgid "Invalid Account"
@@ -3644,7 +3648,7 @@ msgstr "Eksportuotų operacijų: %ld"
 #: import_export/univcsvdialog.cpp:2018
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Iš anksto nustatytas „%s“ bus ištrintas"
 
 #: import_export/univcsvdialog.cpp:2051 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
@@ -3652,19 +3656,19 @@ msgstr "Pasirinkite CSV duomenų failą, skirtą importui"
 
 #: import_export/univcsvdialog.cpp:2054
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Pasirinkite CSV duomenų failą, kurį norite eksportuoti"
 
 #: import_export/univcsvdialog.cpp:2057
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Pasirinkite XML duomenų failą, kurį norite importuoti"
 
 #: import_export/univcsvdialog.cpp:2060
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Pasirinkite XML duomenų failą, kurį norite eksportuoti"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML files (*.xml)"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "All Files"
@@ -4066,15 +4070,15 @@ msgstr ""
 
 #: mmchecking_list.cpp:206
 msgid "Sort Order"
-msgstr ""
+msgstr "Rūšiavimo tvarka"
 
 #: mmchecking_list.cpp:300
 msgid "Deleted On"
-msgstr ""
+msgstr "Ištrinta"
 
 #: mmchecking_list.cpp:325
 msgid "Last Updated"
-msgstr ""
+msgstr "Paskutinį kartą atnaujinta"
 
 #: mmchecking_list.cpp:431 mmcheckingpanel.cpp:309
 msgid "&New Withdrawal..."
@@ -4183,7 +4187,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:510
 msgid "Mark as"
-msgstr ""
+msgstr "Pažymėti kaip"
 
 #: mmchecking_list.cpp:953
 msgid "Do you really want to restore all of the transactions shown?"
@@ -4322,7 +4326,7 @@ msgstr "Dubliuoti pažymėtą operaciją"
 
 #: mmcheckingpanel.cpp:461
 msgid "&Restore "
-msgstr ""
+msgstr "&Atkurti "
 
 #: mmcheckingpanel.cpp:462
 msgid "Restore selected transaction"
@@ -4382,19 +4386,19 @@ msgstr ""
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
-msgstr ""
+msgstr "Papildomai laukai"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "Klaidinga"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "Teisnga"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
-msgstr ""
+msgstr "Prašome pasirinkti"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
@@ -4425,7 +4429,7 @@ msgstr "Įrankinė"
 
 #: mmframe.cpp:477 mmframe.cpp:726
 msgid "Favourites"
-msgstr ""
+msgstr "Mėgstamiausi"
 
 #: mmframe.cpp:478 mmframe.cpp:730 mmhomepage.cpp:690 reports/summary.cpp:256
 #: reports/summary.cpp:299
@@ -4448,12 +4452,12 @@ msgstr ""
 
 #: mmframe.cpp:482 mmframe.cpp:738 mmhomepage.cpp:689
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Grynųjų pinigų sąskaitos"
 
 #: mmframe.cpp:483 mmframe.cpp:742 mmhomepage.cpp:692 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Paskolų sąskaitos"
 
 #: mmframe.cpp:516
 msgid "Auto Repeat Transactions"
@@ -4461,11 +4465,11 @@ msgstr ""
 
 #: mmframe.cpp:718 mmframe.cpp:1897 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Apžvalga"
 
 #: mmframe.cpp:722
 msgid "All Transactions"
-msgstr ""
+msgstr "Visos transakcijos"
 
 #: mmframe.cpp:754 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
@@ -4518,11 +4522,11 @@ msgstr ""
 
 #: mmframe.cpp:1384
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV failai..."
 
 #: mmframe.cpp:1385
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML failai..."
 
 #: mmframe.cpp:1385 mmframe.cpp:1546
 msgid "Import from XML file (Excel format)"
@@ -4530,19 +4534,19 @@ msgstr ""
 
 #: mmframe.cpp:1387
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF failai..."
 
 #: mmframe.cpp:1390 mmframe.cpp:1553
 msgid "&Export as"
-msgstr ""
+msgstr "&Eksportuoti"
 
 #: mmframe.cpp:1391 mmframe.cpp:1545 mmframe.cpp:1554
 msgid "&CSV File..."
-msgstr ""
+msgstr "&CSV failai..."
 
 #: mmframe.cpp:1392 mmframe.cpp:1546 mmframe.cpp:1555
 msgid "&XML File..."
-msgstr ""
+msgstr "&XML failai..."
 
 #: mmframe.cpp:1394 mmframe.cpp:1557
 msgid "&MMEX CSV File..."
