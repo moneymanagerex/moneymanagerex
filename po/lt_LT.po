@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-20 13:53\n"
+"PO-Revision-Date: 2023-06-20 16:13\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -652,17 +652,17 @@ msgstr "Patarimai: paieškos kriterijais galite naudoti pakaitos simbolius – k
 #: assetspanel.cpp:512 filtertransdialog.cpp:637 mmcheckingpanel.cpp:479
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Naudokite klaustuką (?), norėdami rasti bet kurį vieną simbolį – pavyzdžiui, s?t randa „sat“ ir „set“."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:638 mmcheckingpanel.cpp:480
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Naudokite žvaigždutę (*), kad rastumėte bet kokį simbolių skaičių – pavyzdžiui, s*d suranda „liūdnas“ ir „pradėtas“."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:639 mmcheckingpanel.cpp:481
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Pradžioje naudokite žvaigždutę (*), kad rastumėte bet kokią eilutę sakinio viduryje."
 
 #: assetspanel.cpp:585 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
