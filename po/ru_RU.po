@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 09:28\n"
+"PO-Revision-Date: 2023-06-20 14:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1341,7 +1341,7 @@ msgstr "Пропустить следующее начисление"
 
 #: billsdepositspanel.cpp:436
 msgid "&New Recurring Transaction..."
-msgstr "&Новая повторяющаяся Транзакция..."
+msgstr "&Новая повторяющаяся транзакция..."
 
 #: billsdepositspanel.cpp:437
 msgid "&Edit Recurring Transaction..."
