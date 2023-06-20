@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-20 19:33\n"
+"PO-Revision-Date: 2023-06-20 20:38\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -1847,7 +1847,7 @@ msgstr "Atšaukti"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "Perdaryti"
 
 #: constants.cpp:92
 msgid "Cut"
@@ -2119,15 +2119,15 @@ msgstr "Įveskite leistiną dešimtainių skaitmenų skalę"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
-msgstr ""
+msgstr "Skydelio stulpelis"
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Pasirinkite vertę, kuri pavaizduotų elementą skydelyje"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Pakeitus lauko tipą bus ištrintas visas turinys!"
 
 #: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2347
 #: mmframe.cpp:2366
@@ -2136,15 +2136,15 @@ msgstr "Ar norite tęsti?"
 
 #: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Pasirinktinis lauko keitimas"
 
 #: customfieldeditdialog.cpp:258
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Jūs pakeitėte pasirinkimus: pašalinti bus išvalyti!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Naujas / redaguoti pasirinktinį lauką"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
@@ -2156,26 +2156,28 @@ msgstr "Nuostatos"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Suasmeninkite tinkintus laukus"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Ar tikrai norite ištrinti šį tinkintą lauką ir visus jo duomenis?"
 
 #: customfieldlistdialog.cpp:172
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Patvirtinkite tinkinto lauko ištrynimą"
 
 #: customfieldlistdialog.cpp:190
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Ši funkcija atliks masinę „%s“ tinkintų lauko verčių paiešką ir pakeis\n"
+"Jis atitiks ir pakeis tik visą lauko vertę, neleidžiama keisti dalinių ar vidutinių verčių\n"
+"Atminkite, kad nėra patvirtinimo!"
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "Patvirtinkite tinkinto lauko turinio atnaujinimą"
 
 #: customfieldlistdialog.cpp:198
 msgid "Find what"
@@ -2185,16 +2187,17 @@ msgstr "Ko ieškoti"
 #: customfieldlistdialog.cpp:210 customfieldlistdialog.cpp:216
 #: customfieldlistdialog.cpp:231
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Atnaujinkite tinkinto lauko turinį"
 
 #: customfieldlistdialog.cpp:202
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Ar norite atnaujinti tuščią turinį?\n"
+"Paspauskite ne, jei norite nutraukti pakeitimo procedūrą!"
 
 #: customfieldlistdialog.cpp:210
 msgid "Replace with"
-msgstr ""
+msgstr "Pakeisti"
 
 #: customfieldlistdialog.cpp:214
 msgid "Do you want to update to blank?\n"
@@ -2519,7 +2522,7 @@ msgstr "Klaida atidarant MMEX duomenų bazę"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnostika"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2622,7 +2625,7 @@ msgstr ""
 #: filtertransdialog.cpp:688 filtertransdialog.cpp:997
 #: filtertransdialog.cpp:1604
 msgid "Group By"
-msgstr ""
+msgstr "Grupuoti pagal"
 
 #: filtertransdialog.cpp:697
 msgid "Specify how the report should be grouped"
@@ -3005,7 +3008,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Lentelė"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
@@ -3039,11 +3042,11 @@ msgstr "Žurnalas"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
@@ -3136,7 +3139,7 @@ msgstr "Eksportuojama"
 #: import_export/qif_export.cpp:512
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Eksportuojama operacija %zu"
 
 #: import_export/qif_export.cpp:656
 #, c-format
@@ -4558,7 +4561,7 @@ msgstr ""
 
 #: mmframe.cpp:1396 mmframe.cpp:1548 mmframe.cpp:1559
 msgid "&QIF File..."
-msgstr ""
+msgstr "&QIF failai..."
 
 #: mmframe.cpp:1421
 msgid "&Edit Filter..."
@@ -4650,7 +4653,7 @@ msgstr ""
 
 #: mmframe.cpp:1561
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Eksportuoti į HTML bylą"
 
 #: mmframe.cpp:1566
 msgid "&Print..."
@@ -4666,7 +4669,7 @@ msgstr ""
 
 #: mmframe.cpp:1572
 msgid "Quit this program"
-msgstr ""
+msgstr "Išeikite iš šios programos"
 
 #: mmframe.cpp:1578
 msgid "&Toolbar"
@@ -4962,7 +4965,7 @@ msgstr ""
 
 #: mmframe.cpp:1794
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1794
 msgid "Watch free video materials about MMEX"
@@ -5130,7 +5133,7 @@ msgstr ""
 
 #: mmframe.cpp:1917 mmframe.cpp:1922 mmframe.cpp:2859 optionsettingsnet.cpp:132
 msgid "News"
-msgstr ""
+msgstr "Naujienos"
 
 #: mmframe.cpp:1924
 msgid "Download rates"
@@ -5344,7 +5347,7 @@ msgstr ""
 
 #: mmframe.cpp:3353
 msgid "Please wait..."
-msgstr ""
+msgstr "Prašome palaukti..."
 
 #: mmframe.cpp:3402 stockspanel.cpp:459
 #, c-format
@@ -5447,7 +5450,7 @@ msgstr "Sąskaitų santrauka"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Biudžetai"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5455,7 +5458,7 @@ msgstr ""
 
 #: mmframereport.cpp:218
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Biudžeto kategorijų suvestinė"
 
 #: mmframereport.cpp:230
 msgid "Stocks Report"
@@ -5536,7 +5539,7 @@ msgstr "Viso operacijų: "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Likutis"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
@@ -5552,7 +5555,7 @@ msgstr ""
 
 #: mmhomepage.cpp:695 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Turto sąskaitos"
 
 #: mmhomepage.cpp:835
 msgid "Currency Exchange Rates"
@@ -5580,19 +5583,19 @@ msgstr ""
 
 #: mmreportspanel.cpp:146
 msgid "Report"
-msgstr ""
+msgstr "Ataskaitos"
 
 #: mmreportspanel.cpp:203
 msgid "Period:"
-msgstr ""
+msgstr "Laikotarpis:"
 
 #: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:87
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: mmreportspanel.cpp:291 model/Model_Report.cpp:89
 msgid "Time:"
-msgstr ""
+msgstr "Laikas:"
 
 #: mmreportspanel.cpp:306 model/Model_Report.cpp:90
 msgid "Year:"
@@ -5604,7 +5607,7 @@ msgstr "Biudžetas:"
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr ""
+msgstr "Visos paskyros:"
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
@@ -5616,7 +5619,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:395
 msgid "Chart:"
-msgstr ""
+msgstr "Diagramos:"
 
 #: mmreportspanel.cpp:400
 msgid "Show"
@@ -5653,7 +5656,7 @@ msgstr "Turtas"
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
-msgstr ""
+msgstr "Dalintis"
 
 #: model/Model_Account.cpp:147
 msgid "Account Error"
@@ -5669,7 +5672,7 @@ msgstr "Krenta"
 
 #: model/Model_Asset.cpp:33
 msgid "Percentage"
-msgstr ""
+msgstr "Procentais"
 
 #: model/Model_Asset.cpp:34
 msgid "Linear"
@@ -5701,7 +5704,7 @@ msgstr ""
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Transakcija"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
@@ -5723,11 +5726,11 @@ msgstr ""
 
 #: model/Model_Billsdeposits.cpp:310
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Minimalus balansas"
 
 #: model/Model_Billsdeposits.cpp:316
 msgid "Credit Limit"
-msgstr ""
+msgstr "Kredito limitas"
 
 #: model/Model_Billsdeposits.cpp:322
 msgid "MMEX Recurring Transaction Check"
@@ -5735,31 +5738,31 @@ msgstr ""
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
-msgstr ""
+msgstr "Kriptovaliuta"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Eilutė"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Sveikasis skaičius"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Dešimtainės trupmenos"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Loginis"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:141
 msgid "Time"
-msgstr ""
+msgstr "Laikas"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -5779,7 +5782,7 @@ msgstr ""
 
 #: model/Model_Report.cpp:88
 msgid "End date:"
-msgstr ""
+msgstr "Pabaigos data:"
 
 #: model/Model_Report.cpp:240
 msgid "Template is empty"
@@ -6042,7 +6045,7 @@ msgstr "Pasirinkite ar naudoti garsus įvedant operacijas"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr ""
+msgstr "Vietiniai"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
@@ -6083,7 +6086,7 @@ msgstr "Paskutinį kartą naudotas"
 
 #: optionsettingsmisc.cpp:120
 msgid "Unused"
-msgstr ""
+msgstr "Nenaudojama"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
@@ -6095,15 +6098,15 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "Taip"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
-msgstr ""
+msgstr "Numatyta data"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Payee"
@@ -6179,7 +6182,7 @@ msgstr "WebApp nustatymai"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "Nuoroda"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
@@ -6187,7 +6190,7 @@ msgstr "Nurodykite Žiniatinklio programos URL be paskutinio pasvirojo brūkšne
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
@@ -6243,11 +6246,11 @@ msgstr "Sekundės"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
-msgstr ""
+msgstr "Atnaujinimai"
 
 #: optionsettingsnet.cpp:169
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Ieškoti naujinių paleidimo metu"
 
 #: optionsettingsnet.cpp:171
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -6332,7 +6335,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Vartotojo aplinka"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
@@ -6344,7 +6347,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
@@ -6408,7 +6411,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Įrankių juostos piktogramos dydis"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
@@ -6456,7 +6459,7 @@ msgstr ""
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
-msgstr ""
+msgstr "Svetainė"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
@@ -6538,7 +6541,7 @@ msgstr "į:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 msgid "Relocate"
-msgstr ""
+msgstr "Perkelti"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #, c-format
@@ -6666,11 +6669,11 @@ msgstr ""
 
 #: reports/budgetingperf.cpp:152
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr ""
+msgstr "Klaidų ataskaita"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
@@ -6797,7 +6800,7 @@ msgstr "Nuo %s iki %s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
-msgstr ""
+msgstr "Ateitis"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:249
 msgid "Over Time"
@@ -6889,7 +6892,7 @@ msgstr "Praeitais finansiniais metais"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
-msgstr ""
+msgstr "Kitas"
 
 #: reports/mmDateRange.cpp:274
 msgid "Last 365 Days"
@@ -6983,7 +6986,7 @@ msgstr "Akcijų efektyvumo diagramos"
 
 #: reports/transactions.cpp:196
 msgid "Rate"
-msgstr ""
+msgstr "Įvertinimas"
 
 #: reports/transactions.cpp:392
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7003,7 +7006,7 @@ msgstr "Investicijos į akcijas informacija"
 
 #: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
 msgid "Company Name"
-msgstr ""
+msgstr "Įmonės pavadinimas"
 
 #: sharetransactiondialog.cpp:227 stockdialog.cpp:196
 msgid "Enter the stock company name"
@@ -7212,39 +7215,39 @@ msgstr "Importuojamas CSV"
 
 #: stockdialog.cpp:685 stockdialog.cpp:715
 msgid "5 Days"
-msgstr ""
+msgstr "5 dienos"
 
 #: stockdialog.cpp:686 stockdialog.cpp:717
 msgid "1 Month"
-msgstr ""
+msgstr "1 mėnuo"
 
 #: stockdialog.cpp:687 stockdialog.cpp:718
 msgid "3 Months"
-msgstr ""
+msgstr "3 mėnesiai"
 
 #: stockdialog.cpp:688
 msgid "6 Months"
-msgstr ""
+msgstr "6 Mėnesiai"
 
 #: stockdialog.cpp:689
 msgid "1 Year"
-msgstr ""
+msgstr "1 metai"
 
 #: stockdialog.cpp:690
 msgid "2 Years"
-msgstr ""
+msgstr "2 metai"
 
 #: stockdialog.cpp:691
 msgid "5 Years"
-msgstr ""
+msgstr "5 metai"
 
 #: stockdialog.cpp:692
 msgid "10 Years"
-msgstr ""
+msgstr "10 metų"
 
 #: stockdialog.cpp:694
 msgid "Max"
-msgstr ""
+msgstr "Maks"
 
 #: stockdialog.cpp:700
 msgid "Specify type frequency of stock history"
@@ -7256,11 +7259,11 @@ msgstr "Akcijų istorijos atnaujinimas"
 
 #: stockdialog.cpp:714
 msgid "1 Day"
-msgstr ""
+msgstr "1 dienos"
 
 #: stockdialog.cpp:716
 msgid "1 Week"
-msgstr ""
+msgstr "1 savaitė"
 
 #: stockdialog.cpp:724
 msgid "Specify interval of stock history"
@@ -7284,7 +7287,7 @@ msgstr ""
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "Iš viso išlaidų"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
@@ -7412,7 +7415,7 @@ msgstr "Ištrinti"
 
 #: themes.cpp:193
 msgid "Use"
-msgstr ""
+msgstr "Naudoti"
 
 #: themes.cpp:239
 msgid "No description available"
@@ -7581,39 +7584,39 @@ msgstr ""
 
 #: util.cpp:288
 msgid "Apr"
-msgstr ""
+msgstr "Bal"
 
 #: util.cpp:288 util.h:187
 msgid "May"
-msgstr ""
+msgstr "Geg"
 
 #: util.cpp:288
 msgid "Jun"
-msgstr ""
+msgstr "Bir"
 
 #: util.cpp:289
 msgid "Jul"
-msgstr ""
+msgstr "Lie"
 
 #: util.cpp:289
 msgid "Aug"
-msgstr ""
+msgstr "Rgp"
 
 #: util.cpp:289
 msgid "Sep"
-msgstr ""
+msgstr "Rgs"
 
 #: util.cpp:290
 msgid "Oct"
-msgstr ""
+msgstr "Spa"
 
 #: util.cpp:290
 msgid "Nov"
-msgstr ""
+msgstr "Lap"
 
 #: util.cpp:290
 msgid "Dec"
-msgstr ""
+msgstr "Grd"
 
 #: util.cpp:295
 msgid "Sunday"
@@ -7645,31 +7648,31 @@ msgstr "Šeštadienis"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "Sek"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "Pir"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "Ant"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "Tre"
 
 #: util.cpp:303
 msgid "Thu"
-msgstr ""
+msgstr "Ket"
 
 #: util.cpp:303
 msgid "Fri"
-msgstr ""
+msgstr "Pen"
 
 #: util.cpp:304
 msgid "Sat"
-msgstr ""
+msgstr "Šeš"
 
 #: util.cpp:738
 msgid "Currency rates have been updated"
@@ -7693,7 +7696,7 @@ msgstr ""
 
 #: util.cpp:1049
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:1052
 msgid "Could not find currency 'USD', needed for converting history prices"
@@ -7920,7 +7923,7 @@ msgstr "Atverti priedą"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
-msgstr ""
+msgstr "Importuoti ir atverti"
 
 #: wizard_newaccount.cpp:31
 msgid "Add Account Wizard"
@@ -8045,11 +8048,11 @@ msgstr ""
 
 #: wizard_update.cpp:141
 msgid "Version"
-msgstr ""
+msgstr "Versija"
 
 #: wizard_update.cpp:149
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Jūs jau turite naujausią versiją"
 
 #: wizard_update.cpp:149
 msgid "A new version of MMEX is available!"
@@ -8071,7 +8074,7 @@ msgstr "Nepavyksta patikrinti, ar yra atnaujinimų!"
 
 #: wizard_update.cpp:330 wizard_update.cpp:346
 msgid "Error: "
-msgstr ""
+msgstr "Klaida: "
 
 #: wizard_update.cpp:331 wizard_update.cpp:348
 msgid "MMEX Update Check"
