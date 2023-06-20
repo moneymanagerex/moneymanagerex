@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 09:28\n"
+"PO-Revision-Date: 2023-06-20 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Įveskite pradinį šios sąskaitos balansą."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Atidarymo data:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Sąskaitos atidarymo data"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:565
 #: import_export/univcsvdialog.cpp:2458
@@ -204,11 +204,11 @@ msgstr "Įveskite bet kokią prisijungimo / pasiekimo prie finansinės instituci
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "Pareiškimas"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "Pareiškimas:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -216,7 +216,7 @@ msgstr "Užrakinta"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Įjunkite arba išjunkite operacijos užraktą"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
@@ -224,7 +224,7 @@ msgstr "Suderintas bal.:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Sandorio užrakto data"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
@@ -232,7 +232,7 @@ msgstr "Minimalus balansas:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Sąskaitos likučio apatinė riba. Nulis, kad išjungtumėte"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -284,34 +284,34 @@ msgstr "Valiuta"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Prašome įvesti tinkamą tinklalapio adresą"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "Klaidingas URL"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Atidarymo data negali būti ateityje"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1030
 #: billsdepositsdialog.cpp:1033 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Klaidinga data"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Operacijos šioje paskyroje jau yra iki šios datos"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Iki šios datos jau yra šios paskyros akcijų pirkimų"
 
 #: accountdialog.cpp:536
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "Pasikartojančios šios sąskaitos operacijos suplanuotos iki šios datos"
 
 #: accountdialog.h:41 mmframe.cpp:1652 mmframe.cpp:1896
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -320,11 +320,11 @@ msgstr "Nauja paskyra"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Atidaryti paskutinį kartą atidarytą &Database"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nauja duomenų bazė"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "Sukurti naują duomenų bazės failą, kad pradėti"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Atverti esamą duomenų bazę"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "Atverti jau sukurtą duomenų bazės failą su plėtiniu (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Naudotojo sąsajos &kalba"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Keisti sąsajos kalbą"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Vartotojo vadovas"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -356,30 +356,30 @@ msgstr "Skaityti naudotojo vadovą"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1785
 msgid "&Website"
-msgstr ""
+msgstr "&Svetainė"
 
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Aplankyti %s svetainę"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Rodyti šį dialogo langą paleidžiant"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "Išeiti "
 
 #: appstartdialog.cpp:155
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Atidarykite anksčiau atidarytą duomenų bazę: %s"
 
 #: appstartdialog.cpp:199 mmframe.cpp:1629 mmframe.cpp:2922
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "Numatyta sistemos"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1624 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
