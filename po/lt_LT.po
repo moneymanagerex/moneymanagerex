@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 09:28\n"
+"PO-Revision-Date: 2023-06-20 13:53\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Įveskite pradinį šios sąskaitos balansą."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Atidarymo data:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Sąskaitos atidarymo data"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:565
 #: import_export/univcsvdialog.cpp:2458
@@ -204,11 +204,11 @@ msgstr "Įveskite bet kokią prisijungimo / pasiekimo prie finansinės instituci
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "Pareiškimas"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "Pareiškimas:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -216,7 +216,7 @@ msgstr "Užrakinta"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Įjunkite arba išjunkite operacijos užraktą"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
@@ -224,7 +224,7 @@ msgstr "Suderintas bal.:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Sandorio užrakto data"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
@@ -232,7 +232,7 @@ msgstr "Minimalus balansas:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Sąskaitos likučio apatinė riba. Nulis, kad išjungtumėte"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:293
 msgid "Credit"
@@ -284,34 +284,34 @@ msgstr "Valiuta"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Prašome įvesti tinkamą tinklalapio adresą"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "Klaidingas URL"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Atidarymo data negali būti ateityje"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1030
 #: billsdepositsdialog.cpp:1033 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Klaidinga data"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Operacijos šioje paskyroje jau yra iki šios datos"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Iki šios datos jau yra šios paskyros akcijų pirkimų"
 
 #: accountdialog.cpp:536
 msgid "Recurring transactions for this account are scheduled before this date"
-msgstr ""
+msgstr "Pasikartojančios šios sąskaitos operacijos suplanuotos iki šios datos"
 
 #: accountdialog.h:41 mmframe.cpp:1652 mmframe.cpp:1896
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -320,11 +320,11 @@ msgstr "Nauja paskyra"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Atidaryti paskutinį kartą atidarytą &Database"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nauja duomenų bazė"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "Sukurti naują duomenų bazės failą, kad pradėti"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Atverti esamą duomenų bazę"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "Atverti jau sukurtą duomenų bazės failą su plėtiniu (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Naudotojo sąsajos &kalba"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Keisti sąsajos kalbą"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Vartotojo vadovas"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -356,46 +356,46 @@ msgstr "Skaityti naudotojo vadovą"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1785
 msgid "&Website"
-msgstr ""
+msgstr "&Svetainė"
 
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Aplankyti %s svetainę"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Rodyti šį dialogo langą paleidžiant"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "Išeiti "
 
 #: appstartdialog.cpp:155
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Atidarykite anksčiau atidarytą duomenų bazę: %s"
 
 #: appstartdialog.cpp:199 mmframe.cpp:1629 mmframe.cpp:2922
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "Numatyta sistemos"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1624 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Pakeiskite MMEX GUI naudojamą kalbą"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
-msgstr ""
+msgstr "Kalba"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3770 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Šios programos kalba buvo pakeista. Pakeitimas įsigalios kitą kartą paleidus programą."
 
 #: appstartdialog.cpp:222 mmframe.cpp:3772 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "Kalbos pasikeitimas"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
@@ -407,11 +407,11 @@ msgstr "Redaguoti turtą"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:477
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Pridėti turto operaciją"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Redaguoti turto operaciją"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -478,7 +478,7 @@ msgstr "Tempas %"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Įveskite procentą, kuriuo turtas keičia savo vertę per metus"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
@@ -490,11 +490,11 @@ msgstr "Įveskite pastabas susijusias su šia sąskaita"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Naujos operacijos informacija"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Redaguoti išsamią operacijos informaciją"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
@@ -502,18 +502,19 @@ msgstr "&Atšaukti "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:438
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Neteisinga operacija"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Turto sąskaita nerasta.\n\n"
+"Ar norėtumėte tokį sukurti?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:187
 #: import_export/qif_export.cpp:606 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:265 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:524 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
@@ -538,36 +539,36 @@ msgstr "Dabartinė vertė"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Naujas turtas..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&ubliuoti turtą..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Pridėti turto operaciją..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Peržiūrėti turto operacijas"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Atidaryti turto paskyrą..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Redaguoti turtą..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Ištrinti turtą..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1443 mmframe.cpp:1463 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Tvarkyti priedus..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -611,7 +612,7 @@ msgstr ""
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Peržiūrėti turto operacijas"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:297
 #: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
@@ -646,7 +647,7 @@ msgstr "Įveskite bet kokį terminą, kad rasti susijusį turtą"
 #: assetspanel.cpp:511 filtertransdialog.cpp:636 mmcheckingpanel.cpp:478
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Patarimai: paieškos kriterijais galite naudoti pakaitos simbolius – klaustuką (?), žvaigždutę (*)."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:637 mmcheckingpanel.cpp:479
 #: payeedialog.cpp:138
