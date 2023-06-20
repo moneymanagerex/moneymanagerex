@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-20 12:57\n"
+"PO-Revision-Date: 2023-06-20 13:53\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -383,19 +383,19 @@ msgstr "Numatyta sistemos"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1624 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Pakeiskite MMEX GUI naudojamą kalbą"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
-msgstr ""
+msgstr "Kalba"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3770 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Šios programos kalba buvo pakeista. Pakeitimas įsigalios kitą kartą paleidus programą."
 
 #: appstartdialog.cpp:222 mmframe.cpp:3772 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "Kalbos pasikeitimas"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
@@ -407,11 +407,11 @@ msgstr "Redaguoti turtą"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:477
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Pridėti turto operaciją"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Redaguoti turto operaciją"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -478,7 +478,7 @@ msgstr "Tempas %"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Įveskite procentą, kuriuo turtas keičia savo vertę per metus"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
@@ -490,11 +490,11 @@ msgstr "Įveskite pastabas susijusias su šia sąskaita"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Naujos operacijos informacija"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Redaguoti išsamią operacijos informaciją"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
@@ -502,18 +502,19 @@ msgstr "&Atšaukti "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:438
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Neteisinga operacija"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Turto sąskaita nerasta.\n\n"
+"Ar norėtumėte tokį sukurti?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:187
 #: import_export/qif_export.cpp:606 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:265 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:524 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
@@ -538,36 +539,36 @@ msgstr "Dabartinė vertė"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Naujas turtas..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&ubliuoti turtą..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Pridėti turto operaciją..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Peržiūrėti turto operacijas"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Atidaryti turto paskyrą..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Redaguoti turtą..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Ištrinti turtą..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:442 mmchecking_list.cpp:470
 #: mmframe.cpp:1443 mmframe.cpp:1463 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Tvarkyti priedus..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -611,7 +612,7 @@ msgstr ""
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Peržiūrėti turto operacijas"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:297
 #: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
@@ -646,7 +647,7 @@ msgstr "Įveskite bet kokį terminą, kad rasti susijusį turtą"
 #: assetspanel.cpp:511 filtertransdialog.cpp:636 mmcheckingpanel.cpp:478
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Patarimai: paieškos kriterijais galite naudoti pakaitos simbolius – klaustuką (?), žvaigždutę (*)."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:637 mmcheckingpanel.cpp:479
 #: payeedialog.cpp:138
