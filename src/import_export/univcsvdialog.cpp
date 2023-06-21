@@ -111,7 +111,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_DONTCARE] = wxTRANSLATE("Don't Care");
     CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
     CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
-    CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
+    CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");   
 
     wxString header;
     switch (dialogType_)
@@ -279,6 +279,21 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer3->Add(csvFieldCandicate_, 1, wxGROW | wxALL, 1);
     for (const auto& it : CSVFieldName_)
         csvFieldCandicate_->Append(wxGetTranslation(it.second), new mmListBoxItem(it.first, it.second));
+
+    //Custom Fields
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)));
+    if (!fields.empty())
+    {
+        std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
+        for (const Model_CustomField::Data& entry : fields)
+        {
+            // Can't use an enum for the field index since there can be infinite custom fields
+            // Instead we offset the last enum by the custom FIELDID to get a unique index for each
+            int csvField = UNIV_CSV_LAST + entry.FIELDID;
+            CSVFieldName_[csvField] = entry.DESCRIPTION;
+            csvFieldCandicate_->Append(entry.DESCRIPTION, new mmListBoxItem(csvField, entry.DESCRIPTION));
+        }
+    }
 
     //Add Remove Area
     wxPanel* itemPanel_AddRemove = new wxPanel(this, ID_PANEL10,
@@ -779,6 +794,15 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
                         csvFieldOrder_.push_back(std::make_pair(key,-1));
                         break;
                     }
+                    else if (value.StartsWith("UDF: "))
+                    {
+                        // remove the "UDF: "
+                        int fieldId = wxAtoi(value.Mid(5));
+                        // need to check for validity since the custom field may have been deleted
+                        if(CSVFieldName_.find(fieldId + UNIV_CSV_LAST) != CSVFieldName_.end())
+                            csvFieldOrder_.push_back(std::make_pair(UNIV_CSV_LAST + fieldId, -1));
+                        break;
+                    }
                 }
             }
         }
@@ -793,7 +817,9 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             for (auto& v : a.GetArray())
             {
                 const auto value = v.GetInt();
-                csvFieldOrder_.at(col++).second = value;
+                // in case a custom field was deleted there will be too many widths, so check count
+                if (col < csvFieldOrder_.size())
+                    csvFieldOrder_.at(col++).second = value;
             }
         }
     }
@@ -1158,7 +1184,13 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     for (std::vector<std::pair<int, int>>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
         int i = (*it).first;
-        json_writer.String(CSVFieldName_[i].utf8_str());
+        if (i > UNIV_CSV_LAST) // This is a custom field
+        {
+            //"UDF: <FIELDID>"
+            json_writer.String(("UDF: " + std::to_string(i - UNIV_CSV_LAST)).c_str());
+        }
+        else
+            json_writer.String(CSVFieldName_[i].utf8_str());
     }
     json_writer.EndArray();
 
@@ -1192,11 +1224,20 @@ void mmUnivCSVDialog::saveAccountPresets()
     Model_Infotable::instance().Set((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), wxString::FromUTF8(json_buffer.GetString()));
 }
 
-bool mmUnivCSVDialog::validateData(tran_holder & holder)
+bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
 {
+    bool is_valid = true;
     if (!holder.valid) {
-        return false;
+        is_valid = false;
+        if (!holder.Date.IsValid()) message << " " << _("Invalid Date.");
+        if (!holder.Amount) message << " " << _("Invalid Amount.");
+        if (holder.Type.Trim().IsEmpty()) message << " " << _("Type (withdrawal/deposit) unknown.");
     }
+
+    // If we are importing any custom field data test for validity
+    if (!holder.customFieldData.empty())
+        for (auto& cfdata : holder.customFieldData)
+            is_valid &= validateCustomFieldData(cfdata.first, cfdata.second, message);
 
     Model_Payee::Data* payee = Model_Payee::instance().get(holder.PayeeID);
     if (!payee)
@@ -1238,7 +1279,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder)
         }
     }
 
-    return true;
+    return is_valid;
 }
 
 void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
@@ -1298,6 +1339,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
     Model_Checking::instance().Begin();
     Model_Checking::instance().Savepoint("IMP");
+    Model_CustomFieldData::instance().Savepoint("IMP");
 
     wxProgressDialog progressDlg(_("Universal CSV Import")
         , wxEmptyString, linesToImport
@@ -1307,6 +1349,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     progressDlg.Fit();
 
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
+    // A place to store all rejected rows to display after import
+    wxString rejectedRows;
     for (long nLines = firstRow; nLines < lastRow; nLines++)
     {
         const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s: %ld")
@@ -1318,7 +1362,22 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         }
 
         unsigned int numTokens = pParser->GetItemsCount(nLines);
-        if (numTokens == 0)
+        unsigned int blankTokenCount = 0;
+        tran_holder holder;
+        wxString rowString;
+        if (numTokens != 0)
+        {
+            for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i) {
+                wxString token = pParser->GetItem(nLines, i).Trim(false /*from left*/);
+                // Store the CSV row to display in case the row is rejected
+                rowString << inQuotes(token,",") << ((i < numTokens - 1) ? "," : "");
+                if (!token.IsEmpty())
+                    parseToken(csvFieldOrder_[i].first, token, holder);
+                else blankTokenCount++; // keep track of blank fields
+            }
+        }
+        // if the line had no field separators or all fields were blank (",,,,,")
+        if (numTokens == 0 || blankTokenCount == numTokens)
         {
             wxString msg = wxString::Format(_("Line %ld: Empty"), nLines + 1);
             log << msg << endl;
@@ -1327,23 +1386,16 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             continue;
         }
 
-        tran_holder holder;
-        for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i) {
-            parseToken(csvFieldOrder_[i].first, pParser->GetItem(nLines, i).Trim(false /*from left*/), holder);
-        }
-
-        if (!validateData(holder))
+        wxString message;
+        // validate data and store any error messages
+        if (!validateData(holder, message))
         {
             wxString msg = wxString::Format(_("Line %ld: Error:"), nLines + 1);
-            if (!holder.Date.IsValid())
-                msg << " " << _("Invalid Date.");
-            if (!holder.Amount) msg << " " << _("Invalid Amount.");
-            if (holder.Type.Trim().IsEmpty())
-                msg << " " << _("Type (withdrawal/deposit) unknown.");
-
+            msg << " " << message;
             log << msg << endl;
             *log_field_ << msg << "\n";
-
+            // row was rejected so save it to rejectedRows
+            rejectedRows << rowString << "\n";
             continue;
         }
 
@@ -1357,6 +1409,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
                 _("The opening date for the account is later than the date of this transaction"));
             log << msg << endl;
             *log_field_ << msg << "\n";
+            // row was rejected so save it to rejectedRows
+            rejectedRows << rowString << "\n";
             continue;
         }
 
@@ -1378,12 +1432,32 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         Model_Checking::instance().save(pTransaction);
 
+        // save custom field data
+        if (!holder.customFieldData.empty())
+        {
+            for (const auto& field : holder.customFieldData)
+            {
+                Model_CustomFieldData::Data* cfdata = Model_CustomFieldData::instance().create();
+                cfdata->FIELDID = field.first;
+                cfdata->REFID = pTransaction->TRANSID;
+                cfdata->CONTENT = field.second;
+                Model_CustomFieldData::instance().save(cfdata);
+            }
+        }
+
         nImportedLines++;
         wxString msg = wxString::Format(_("Line %ld: OK, imported."), nLines + 1);
         log << msg << endl;
         *log_field_ << msg << "\n";
     }
 
+    // If any rows were rejected, display CSV rows in the log field and log file
+    // so that users can easily copy/paste errored records for reimport
+    if (!rejectedRows.IsEmpty())
+    {
+        *log_field_ << "\nRejected rows:\n" << rejectedRows;
+        log << "\nRejected rows:\n" << rejectedRows;
+    }
     progressDlg.Update(linesToImport);
 
     wxString msg = wxString::Format(_("Total Lines: %ld"), totalLines);
@@ -1414,6 +1488,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     msg << "\n\n";
 
     Model_Checking::instance().ReleaseSavepoint("IMP");
+    Model_CustomFieldData::instance().ReleaseSavepoint("IMP");
 
     if (!is_canceled && nImportedLines > 0)
     {
@@ -1598,6 +1673,19 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     entry = wxString::Format("%i", tran.TRANSID);
                     break;
                 default:
+                    if (it.first > UNIV_CSV_LAST) // Custom Fields
+                    {
+                        // Get field content
+                        Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(it.first - UNIV_CSV_LAST, pBankTransaction.TRANSID);
+                        if (data)
+                        {
+                            // format date fields
+                            if (Model_CustomField::type(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::DATE)
+                                entry = mmGetDateForDisplay(data->CONTENT, date_format_);
+                            else
+                                entry = data->CONTENT;
+                        }
+                    }
                     break;
                 }
                 pTxFile->AddNewItem(entry, itemType);
@@ -1883,7 +1971,19 @@ void mmUnivCSVDialog::update_preview()
                         case UNIV_CSV_DONTCARE:
                             break;
                         default:
-                            break;
+                            if (it > UNIV_CSV_LAST) // Custom Fields
+                            {
+                                Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(it - UNIV_CSV_LAST, pBankTransaction.TRANSID);
+                                if (data)
+                                {
+                                    // Format date fields
+                                    if (Model_CustomField::type(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::DATE)
+                                        text << inQuotes(mmGetDateForDisplay(data->CONTENT, date_format_), delimit);
+                                    else
+                                        text << inQuotes(data->CONTENT, delimit);
+                                }
+                            }
+                                break;
                         }
 
                         if (col >= m_list_ctrl_->GetColumnCount())
@@ -2397,6 +2497,8 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         }
         break;
     default:
+        if (index > UNIV_CSV_LAST) // custom fields
+            holder.customFieldData[index - UNIV_CSV_LAST] = token;
         break;
     }
 }
@@ -2575,4 +2677,144 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
 {
     colorButton_->Enable(false);
     colorCheckBox_->SetValue(false);
+}
+
+/* Validates the specified string matches the parameters of the target Custom Field.
+Cleanses the value and reformats as needed for DB storage
+*/
+bool mmUnivCSVDialog::validateCustomFieldData(int fieldId, wxString& value, wxString& message)
+{
+    bool is_valid = true;
+    long int_val;
+    int index;
+    double double_val;
+    wxDate date;
+    wxDateTime time;
+    wxArrayString choices;
+    wxStringTokenizer tokenizer;
+
+    // Set up valid boolean values
+    const wxString bool_true[] = { "True", "T", "1", "Y" };
+    const wxArrayString bool_true_array(4, bool_true);
+    const wxString bool_false[] = { "False", "F", "0", "N", ""};
+    const wxArrayString bool_false_array(4, bool_false);
+
+    if (!value.IsEmpty())
+    {
+        const Model_CustomField::Data* data = Model_CustomField::instance().get(fieldId);
+        wxString type_string = Model_CustomField::fieldtype_desc(Model_CustomField::type(data));
+        switch (Model_CustomField::type(data))
+        {
+            // Check if string can be read as an integer. Will fail if passed a double.
+        case Model_CustomField::INTEGER:
+            value = cleanseNumberString(value, true);
+            if (!value.ToCLong(&int_val))
+            {
+                message << " " << wxString::Format(_("Value %s for custom field '%s' is not type %s."), value, data->DESCRIPTION, type_string);
+                is_valid = false;
+            }
+            else value = wxString::Format("%i", int_val);
+            break;
+
+            // Check if string can be read as a double
+        case Model_CustomField::DECIMAL:
+            value = cleanseNumberString(value, true);
+            if (!value.ToCDouble(&double_val))
+            {
+                message << " " << wxString::Format(_("Value %s for custom field '%s' is not type %s."), value, data->DESCRIPTION, type_string);
+                is_valid = false;
+            }
+            else
+            {
+                // round to required precision
+                int precision = Model_CustomField::getDigitScale(data->PROPERTIES);
+                value = wxString::Format("%.*f", precision, double_val);
+            }
+            break;
+
+            // Check if string can be interpreted as "True" or "False" (case insensitive)    
+        case Model_CustomField::BOOLEAN:
+            if (bool_true_array.Index(value, false) == wxNOT_FOUND)
+                if (bool_false_array.Index(value, false) == wxNOT_FOUND)
+                {
+                    message << " " << wxString::Format(_("Value %s for custom field '%s' is not type %s."), value, data->DESCRIPTION, type_string);
+                    is_valid = false;
+                }
+                else value = "FALSE";
+            else value = "TRUE";
+            break;
+
+            // Check if string is a valid choice (case insensitive)
+        case Model_CustomField::SINGLECHOICE:
+            choices = Model_CustomField::getChoices(data->PROPERTIES);
+            index = choices.Index(value, false);
+            if (index == wxNOT_FOUND)
+            {
+                message << " " << wxString::Format(_("Value %s for %s custom field '%s' is not a valid selection."), value, type_string, data->DESCRIPTION);
+                is_valid = false;
+            }
+            else value = choices[index];
+            break;
+
+            // Check if all of the ';' delimited strings are valid choices (case insensitive)
+        case Model_CustomField::MULTICHOICE:
+            choices = Model_CustomField::getChoices(data->PROPERTIES);
+            tokenizer = wxStringTokenizer(value, ";");
+            value.Clear();
+            while (tokenizer.HasMoreTokens())
+            {
+                wxString token = tokenizer.GetNextToken();
+                index = choices.Index(token, false);
+                if (index != wxNOT_FOUND)
+                {
+                    value.Append(choices[index]);
+                    if (tokenizer.HasMoreTokens()) value.Append(";");
+                }
+                else {
+                    message << " " << wxString::Format(_("Value %s for %s custom field '%s' is not a valid selection."), token, type_string, data->DESCRIPTION);
+                    is_valid = false;
+                }
+            }
+            break;
+
+            // Parse the date using the user specified format. Convert to ISO date
+        case Model_CustomField::DATE:
+            if (!mmParseDisplayStringToDate(date, value, date_format_))
+            {
+                message << " " << wxString::Format(_("Value %s for custom field '%s' is not type %s."), value, data->DESCRIPTION, type_string) <<
+                    " " << wxString::Format(_("Confirm format matches selection %s."), date_format_);
+                is_valid = false;
+            }
+            else value = date.FormatISODate();
+            break;
+
+            // Parse the time. Convert to ISO Format
+        case Model_CustomField::TIME:
+            if (!time.ParseTime(value))
+            {
+                message << " " << wxString::Format(_("Value %s for custom field '%s' is not type %s."), value, data->DESCRIPTION, type_string);
+                is_valid = false;
+            }
+            else value = time.FormatISOTime();
+            break;
+
+        default: break;
+        }
+
+        // if regex check is enabled, perform regex validation
+        const wxString regExStr = Model_CustomField::getRegEx(data->PROPERTIES);
+        if (!regExStr.empty())
+        {
+            wxRegEx regEx(regExStr, wxRE_EXTENDED);
+
+            if (!regEx.Matches(value))
+            {
+                message << " " << wxString::Format(_("Value %s does not match regex %s for custom field '%s'."), value, regExStr, data->DESCRIPTION);
+                is_valid = false;
+            }
+        }
+
+    }
+
+    return is_valid;
 }
