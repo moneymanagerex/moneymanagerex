@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-20 20:38\n"
+"PO-Revision-Date: 2023-06-21 10:55\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -2202,20 +2202,24 @@ msgstr "Pakeisti"
 #: customfieldlistdialog.cpp:214
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Ar norite atnaujinti į tuščią?\n"
+"Paspauskite ne, jei norite nutraukti pakeitimo procedūrą!"
 
 #: customfieldlistdialog.cpp:230
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "Vienas\n"
+"%zu įvykis įkurtas ir pakeistas!\n"
+"Kita\n"
+"%zu įvykių nustatyta ir pakeista!"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&Masinis turinio atnaujinimas "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2426,47 +2430,48 @@ msgstr "Perkėlimas"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX duomenų bazės atnaujinimas į %i versiją nepavyko!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "Atkurkite DB iš automatiškai sukurtos atsarginės kopijos prieš atnaujinimą ir bandykite dar kartą arba susisiekite su MMEX palaikymo komanda"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "MMEX duomenų bazės atnaujinimas"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "MMEX duomenų bazės klaida!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX duomenų bazės versija %i neveikia su šia MMEX versija.\n"
+"Atnaujinkite MMEX į naujesnę versiją."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX duomenų bazė sėkmingai atnaujinta iki %i versijos"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Siūlome optimizuoti duomenų bazę, esantį Įrankiai → Duomenų bazė → Optimizuoti"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
-msgstr ""
+msgstr "Įkelti derinimo failą"
 
 #: dbupgrade.cpp:190
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Netinkamas failo tipas!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
 #: dbupgrade.cpp:289
 msgid "MMEX debug error"
-msgstr ""
+msgstr "MMEX derinimo klaida"
 
 #: dbupgrade.cpp:227 dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
