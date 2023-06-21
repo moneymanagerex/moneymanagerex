@@ -342,17 +342,19 @@
 
   <releases>
     
-    <release version="1.6.3" date="2023-02-01">
+    <release version="1.6.4" date="2023-06-21">
       <url>https://github.com/moneymanagerex/moneymanagerex/releases/</url>
         
       <description>
         <ul>
+          <li>A long-awaited release with many fixes and new features</li>
           <li>Fixes</li>
           <li>New and improved features</li>
           <li>User interface improvements</li>
         </ul>
 
         <ul>
+          <li xml:lang="hu">Régóta várt kiadás számos javítással és új funkcióval</li>
           <li xml:lang="hu">Javítások</li>
           <li xml:lang="hu">Új és továbbfejlesztett jellemzők</li>
           <li xml:lang="hu">Felhasználói felület fejlesztései</li>
