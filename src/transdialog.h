@@ -112,6 +112,7 @@ private:
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
     mmDatePickerCtrl* dpc_;
+    mmTagTextCtrl* tags_stc_;
 
     bool m_transfer = false;
     bool m_new_trx = false;
@@ -135,6 +136,7 @@ private:
     bool skip_status_init_ = false;
     bool skip_notes_init_ = false;
     bool skip_category_init_ = false;
+    bool skip_tag_init_ = false;
     bool skip_tooltips_init_ = false;
     wxSize min_size_;
 
@@ -165,6 +167,7 @@ private:
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
         ID_CUSTOMFIELD,
+        ID_DIALOG_TRANS_TAGS
     };
 
 

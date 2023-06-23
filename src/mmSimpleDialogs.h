@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
 #include <wx/choice.h>
+#include <wx/stc/stc.h>
 
 class wxComboBox;
 class wxTextCtrl;
@@ -292,5 +293,37 @@ public:
     int ShowModal();
 };
 inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::ShowModal(); }
+
+/* -------------------------------------------- */
+
+class mmTagTextCtrl : public wxStyledTextCtrl
+{
+public:
+    mmTagTextCtrl(wxWindow* parent, wxWindowID id = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize, long style = 0
+    );
+    bool IsValid();
+    wxArrayInt GetTagIDs() const;
+
+protected:
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnPaste(wxStyledTextEvent& event);
+    void OnPaint(wxPaintEvent& event);
+    void init();
+private:
+    struct tagNameComparator {
+        bool operator()(const wxString& lhs, const wxString& rhs) const {
+            return lhs.CmpNoCase(rhs) < 0;
+        }
+    };
+    std::map<wxString, int, tagNameComparator> tag_map_;
+    std::map<wxString, int, tagNameComparator> tags_;
+    wxString tags_autocomp_str;
+    bool validateTags();
+    wxArrayString parseTags(const wxString& tagString);
+};
+
+inline bool mmTagTextCtrl::IsValid() { return validateTags(); }
 
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

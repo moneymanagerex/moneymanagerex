@@ -221,6 +221,7 @@ private:
 private:
     void OnOrgCategories(wxCommandEvent& event);
     void OnOrgPayees(wxCommandEvent& event);
+    void OnOrgTags(wxCommandEvent& event);
     void OnCategoryRelocation(wxCommandEvent& event);
     void OnPayeeRelocation(wxCommandEvent& event);
     void OnNewTransaction(wxCommandEvent& event);
@@ -298,6 +299,7 @@ private:
         MENU_HOMEPAGE,
         MENU_ORGCATEGS,
         MENU_ORGPAYEE,
+        MENU_ORGTAGS,
         MENU_BUDGETSETUPDIALOG,
         MENU_CHECKUPDATE,
         MENU_IMPORT,

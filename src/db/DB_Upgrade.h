@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-03-10 12:15:10.274357.
+ *          AUTO GENERATED at 2023-06-23 13:42:09.917034.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 18;
+const int dbLatestVersion = 19;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -384,6 +384,32 @@ const std::vector<wxString> dbUpgradeQuery =
         -- Payee Matching
         -- https://github.com/moneymanagerex/moneymanagerex/issues/3148
         ALTER TABLE PAYEE_V1 ADD COLUMN 'PATTERN' TEXT DEFAULT '';
+    )",
+
+    // Upgrade to version 19
+    R"(
+        -- db tidy, fix corrupt indices
+        REINDEX;
+        
+        -- Tags
+        -- https://github.com/moneymanagerex/moneymanagerex/issues/5439
+        -- Describe TAG_V1
+        CREATE TABLE IF NOT EXISTS TAG_V1(
+        TAGID INTEGER PRIMARY KEY
+        , TAGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE
+        , ACTIVE INTEGER
+        );
+        CREATE INDEX IF NOT EXISTS IDX_TAGNAME ON TAG_V1 (TAGNAME);
+        
+        -- Describe TAGLINK_V1
+        CREATE TABLE IF NOT EXISTS TAGLINK_V1(
+        TAGLINKID INTEGER PRIMARY KEY
+        , REFTYPE TEXT NOT NULL
+        , REFID INTEGER NOT NULL
+        , TAGID INTEGER NOT NULL
+        , UNIQUE(REFTYPE, REFID, TAGID)
+        );
+        CREATE INDEX IF NOT EXISTS IDX_TAGLINK ON TAGLINK_V1 (REFTYPE, REFID, TAGID);
     )",
 
 };

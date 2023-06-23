@@ -56,6 +56,7 @@
 #include "relocatepayeedialog.h"
 #include "recentfiles.h"
 #include "stockspanel.h"
+#include "tagdialog.h"
 #include "themes.h"
 #include "transdialog.h"
 #include "util.h"
@@ -104,6 +105,7 @@ EVT_MENU(MENU_ACCTDELETE, mmGUIFrame::OnDeleteAccount)
 EVT_MENU(MENU_ACCOUNT_REALLOCATE, mmGUIFrame::OnReallocateAccount)
 EVT_MENU(MENU_ORGCATEGS, mmGUIFrame::OnOrgCategories)
 EVT_MENU(MENU_ORGPAYEE, mmGUIFrame::OnOrgPayees)
+EVT_MENU(MENU_ORGTAGS, mmGUIFrame::OnOrgTags)
 EVT_MENU(wxID_PREFERENCES, mmGUIFrame::OnOptions)
 EVT_MENU(wxID_NEW, mmGUIFrame::OnNewTransaction)
 EVT_MENU(wxID_REFRESH, mmGUIFrame::refreshPanelData)
@@ -1688,6 +1690,10 @@ void mmGUIFrame::createMenu()
         , _("Organize Curre&ncy..."), _("Organize Currency"));
     menuTools->Append(menuItemCurrency);
 
+    wxMenuItem* menuItemTags = new wxMenuItem(menuTools
+        , MENU_ORGTAGS, _("Organize &Tags..."), _("Organize Tags"));
+    menuTools->Append(menuItemTags);
+
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
@@ -1901,6 +1907,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Show Organize Payees Dialog"));
     toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGTAGS, _("Organize Tags"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Show Organize Tags Dialog"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
     toolBar_->AddSeparator();
@@ -1959,6 +1966,8 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
     m_all_models.push_back(&Model_CustomFieldData::instance(m_db.get()));
     m_all_models.push_back(&Model_CustomField::instance(m_db.get()));
+    m_all_models.push_back(&Model_Tag::instance(m_db.get()));
+    m_all_models.push_back(&Model_Taglink::instance(m_db.get()));
     m_all_models.push_back(&Model_Translink::instance(m_db.get()));
     m_all_models.push_back(&Model_Shareinfo::instance(m_db.get()));
 }
@@ -2673,6 +2682,20 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
         refreshPanelData();
         RefreshNavigationTree();
     }
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnOrgTags(wxCommandEvent& /*event*/)
+{
+    mmTagDialog dlg(this);
+    dlg.ShowModal();
+    if (dlg.getRefreshRequested())
+    {
+        activeReport_ = false;
+        refreshPanelData();
+        RefreshNavigationTree();
+    }
+    
 }
 //----------------------------------------------------------------------------
 

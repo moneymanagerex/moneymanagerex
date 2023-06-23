@@ -23,6 +23,7 @@
 #include "Model_Payee.h"
 #include "Model_Category.h"
 #include <queue>
+#include "Model_Taglink.h"
 #include "Model_Translink.h"
 #include "Model_CustomFieldData.h"
 #include "attachmentdialog.h"
@@ -104,7 +105,7 @@ bool Model_Checking::remove(int id)
     mmAttachmentManage::DeleteAllAttachments(RefType, id);
     // remove all custom fields for the transaction
     Model_CustomFieldData::DeleteAllData(RefType, id);
-
+    Model_Taglink::instance().DeleteAllTags(RefType, id);
     return this->remove(id, db_);
 }
 

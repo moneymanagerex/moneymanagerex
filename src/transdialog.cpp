@@ -96,7 +96,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 , m_current_balance(current_balance)
 , m_account_id(account_id)
 {
-
+    SetEvtHandlerEnabled(false);
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
     m_new_trx = (transaction || m_duplicate) ? false : true;
     m_transfer = m_new_trx ? type == Model_Checking::TRANSFER : Model_Checking::is_transfer(transaction);
@@ -151,6 +151,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     if (custom_fields_width)
         SetMinSize(wxSize(GetMinWidth() + m_custom_fields->GetMinWidth(), GetMinHeight()));
     Centre();
+    SetEvtHandlerEnabled(true);
 }
 
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -179,7 +180,6 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     SetEventHandlers();
     SetEvtHandlerEnabled(true);
-
     return TRUE;
 }
 
@@ -351,6 +351,19 @@ void mmTransDialog::dataToControls()
     cbCategory_->Enable(!has_split);
     bSplit_->Enable(!m_transfer);
 
+    // Tags
+    if (!skip_tag_init_)
+    {
+        Model_Taglink::Data_Set tags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)), Model_Taglink::REFID(m_trx_data.TRANSID));
+        wxString tagString;
+        for (const auto& tag : tags)
+            tagString.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
+        tags_stc_->SetEvtHandlerEnabled(false);
+        tags_stc_->SetText(tagString);
+        tags_stc_->SetEvtHandlerEnabled(true);
+        skip_tag_init_ = true;
+    }
+
     if (!skip_notes_init_) //Notes & Transaction Number
     {
         textNumber_->SetValue(m_trx_data.TRANSACTIONNUMBER);
@@ -516,6 +529,14 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(textNumber_, g_flagsExpand);
     flex_sizer->Add(bAuto, g_flagsH);
 
+    // Tags  ---------------------------------------------
+    tags_stc_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS, wxDefaultPosition, wxDefaultSize);
+    tags_stc_->SetMaxClientSize(wxSize(-1, tags_stc_->TextHeight(0)));
+    
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Tags")), g_flagsH);
+    flex_sizer->Add(tags_stc_, g_flagsExpand);
+    flex_sizer->AddSpacer(1);
+
     // Frequently Used Notes
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , "...", wxDefaultPosition, bAuto->GetSize(), 0);
@@ -597,7 +618,10 @@ bool mmTransDialog::ValidateData()
 {
     if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
-
+    if (!tags_stc_->IsValid()) {
+        mmErrorDialogs::ToolTip4Object(tags_stc_, _("Invalid value"), _("Tag"), wxICON_ERROR);
+        return false;
+    }
     if (!cbAccount_->mmIsValid()) {
         mmErrorDialogs::ToolTip4Object(cbAccount_, _("Invalid value"), _("Account"), wxICON_ERROR);
         return false;
@@ -1159,6 +1183,19 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     m_custom_fields->SaveCustomValues(m_trx_data.TRANSID);
+
+    // Save tags
+    Model_Taglink::Data_Set taglinks;
+    wxArrayInt tags = tags_stc_->GetTagIDs();
+    for (const auto& tag : tags)
+    {
+        Model_Taglink::Data* t = Model_Taglink::instance().create();
+        t->REFTYPE = RefType;
+        t->REFID = m_trx_data.TRANSID;
+        t->TAGID = tag;
+        taglinks.push_back(*t);
+    }
+    Model_Taglink::instance().update(taglinks, RefType, m_trx_data.TRANSID);
 
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(tran);

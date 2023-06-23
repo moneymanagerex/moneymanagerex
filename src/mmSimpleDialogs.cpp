@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "images_list.h"
 #include "mmex.h"
 #include "paths.h"
+#include "tagdialog.h"
 #include "util.h"
 
 #include "model/Model_Account.h"
@@ -33,6 +34,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //------- Pop-up calendar, currently only used for MacOS only
 // See: https://github.com/moneymanagerex/moneymanagerex/issues/3139
 
+#include "wx/dcbuffer.h"
 #include "wx/popupwin.h"
 #include "wx/spinctrl.h"
 
@@ -917,4 +919,223 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
     wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
     Fit();
+}
+
+//------------
+
+mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
+    const wxPoint& pos, const wxSize& size, long style)
+    : wxStyledTextCtrl(parent, id, pos, size, style)
+{
+    SetLexer(wxSTC_LEX_NULL);
+    SetWrapMode(wxSTC_WRAP_NONE);
+    SetMarginWidth(1, 0);
+    SetMarginSensitive(1, false);
+    SetUseVerticalScrollBar(false);
+    SetUseHorizontalScrollBar(false);
+    AutoCompSetIgnoreCase(true);
+    AutoCompSetCancelAtStart(true);
+    AutoCompSetAutoHide(false);
+    StyleSetBackground(1, wxColour(186, 226, 185));
+    StyleSetForeground(1, *wxBLACK);
+    SetExtraAscent(2);
+    SetExtraDescent(2);
+
+    init();
+
+    Bind(wxEVT_CHAR, &mmTagTextCtrl::OnKeyPressed, this);
+    Bind(wxEVT_STC_CLIPBOARD_PASTE, &mmTagTextCtrl::OnPaste, this);
+    Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
+    Bind(wxEVT_CHAR_HOOK, [this](wxKeyEvent& event)
+    {
+        if (event.GetKeyCode() == WXK_RETURN)
+        {
+            int ip = GetInsertionPoint();
+            if (GetText().IsEmpty() || GetTextRange(ip-1, ip) == " ")
+            {
+                mmTagDialog dlg(this, true, parseTags(GetText()));
+                wxString selection;
+                if (dlg.ShowModal() == wxID_OK)
+                {
+                    for (const auto& tag : dlg.getSelectedTags())
+                        selection.Append(tag + " ");
+                    SetText(selection);
+                    GotoPos(GetLastPosition());
+                    if (dlg.getRefreshRequested())
+                        init();
+                }
+                else return;
+            }
+            else if (AutoCompActive())
+                AutoCompComplete();
+
+            validateTags();
+            return;
+        } else
+            event.Skip();
+    });
+}
+
+void mmTagTextCtrl::init()
+{
+    // Initialize the tag map and autocomplete string
+    tag_map_.clear();
+    tags_autocomp_str.Clear();
+    for (const auto& tag : Model_Tag::instance().all(DB_Table_TAG_V1::COL_TAGNAME))
+    {
+        tag_map_[tag.TAGNAME] = tag.TAGID;
+        tags_autocomp_str.Append(tag.TAGNAME + " ");
+    }
+}
+
+void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
+{
+    int code = event.GetUnicodeKey();
+
+    if (code == WXK_SPACE)
+    {
+        AutoCompCancel();
+        InsertText(GetInsertionPoint(), " ");
+        validateTags();
+        return;
+    }
+    else if (code != WXK_NONE && code > 32) {
+
+        int ip = GetInsertionPoint();
+        int tag_start = WordStartPosition(ip, true);
+        int tag_end = WordEndPosition(ip, true);
+
+        // Show autocomplete
+        wxString pattern = GetText().Mid(tag_start, ip).Append(wxChar(code));
+        tags_autocomp_str.Clear();
+        for (const auto& tag : tag_map_)
+        {
+            if (tag.first.Lower().Matches(pattern.Lower().Prepend("*").Append("*")))
+                tags_autocomp_str.Append(tag.first + " ");
+        }
+        if (!tags_autocomp_str.IsEmpty() && code != WXK_NONE && code > 32)
+        {
+            AutoCompShow(tag_end - tag_start, tags_autocomp_str);
+        }
+    }
+    event.Skip();
+}
+
+void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
+{
+    validateTags();
+}
+
+void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
+{
+    int end = GetTextLength();
+    int position = 0;
+
+    // Reset the text style
+    ClearDocumentStyle();
+
+    while (position < end)
+    {
+        // Find start and end of word
+        int wordStart = WordStartPosition(position, true);
+        int wordEnd = WordEndPosition(position, true);
+        wxString word = GetTextRange(wordStart, wordEnd);
+
+        auto it = tag_map_.find(word);
+        // If the word is a valid tag, color it
+        if (it != tag_map_.end())
+        {
+            StartStyling(wordStart);
+            SetStyling(wordEnd - wordStart, 1);
+        }
+        
+        position = wordEnd + 1;
+    }
+
+    event.Skip();
+}
+
+bool mmTagTextCtrl::validateTags()
+{
+    int ip = GetInsertionPoint();
+    wxString tags_in = GetText();
+
+    if (tags_in.IsEmpty()) return true;
+
+    wxString tags_out;
+    bool newTagCreated = false;
+
+    // Clear stored tags
+    tags_.clear();
+
+    // parse the tags and prompt to create any which don't exist
+    for(const auto& tag : parseTags(tags_in))
+    {
+        if (tag_map_.find(tag) == tag_map_.end())
+        {
+            // Prompt user to create a new tag
+            if (wxMessageDialog(nullptr, wxString::Format(_("Create new tag '%s' ?"), tag), _("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
+            {
+                newTagCreated = true;
+                Model_Tag::Data* newTag = Model_Tag::instance().create();
+                newTag->TAGNAME = tag;
+                newTag->ACTIVE = 1;
+                Model_Tag::instance().save(newTag);
+                // Save the new tag to reference
+                tag_map_[tag] = newTag->TAGID;
+            }
+            else return false;
+        }
+
+        tags_[tag] = tag_map_[tag];
+        tags_out.Append(tag + " ");
+    }
+
+    // Replace tags with case-corrected versions and remove duplicates
+    SetEvtHandlerEnabled(false);
+    SetText(tags_out);
+    GotoPos(WordEndPosition(ip, true) + 1);
+    SetEvtHandlerEnabled(true);
+
+    return true;
+}
+
+/* Return a list of tag IDs contained in the control */
+wxArrayInt mmTagTextCtrl::GetTagIDs() const
+{
+    wxArrayInt tags_out;
+    for (const auto& tag : tags_)
+        tags_out.Add(tag.second);
+
+    return tags_out;
+}
+
+wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
+{
+    wxStringTokenizer tokenizer = wxStringTokenizer(tagString, " ");
+    wxArrayString tags;
+    while (tokenizer.HasMoreTokens())
+    {
+        wxString token = tokenizer.GetNextToken();
+
+        bool tagUsed = false;
+        // if the tag has already been entered, skip it to avoid duplicates
+        for (const auto& tag : tags)
+            if (tag.IsSameAs(token, false))
+            {
+                tagUsed = true;
+                break;
+            }
+
+        if (tagUsed) continue;
+
+        auto it = tag_map_.find(token);
+        if (it != tag_map_.end())
+            // case correction for existing tag
+            tags.Add((*it).first);
+        else
+            tags.Add(token);
+    }
+
+    return tags;
 }
