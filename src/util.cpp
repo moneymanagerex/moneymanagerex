@@ -1315,8 +1315,6 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
     if (res == CURLE_OK) {
         if (wxString::FromUTF8(quote.memory).Contains("Unauthorized") || savedCookie.IsEmpty() || savedCrumb.IsEmpty())
         {
-            free(quote.memory);
-            quote.size = 0;
             curl_set_writedata_options(curl, cookie);
             curl_easy_setopt(curl, CURLOPT_URL, "https://finance.yahoo.com");
             res = curl_easy_perform(curl);
@@ -1329,16 +1327,17 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
                     // Get the csrfToken
                     wxString csrfToken = csrfTokenPattern.GetMatch(response, 1);
 
-                    // Get session ID from URL
-                    char* curlURL;
-                    curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &curlURL);
-                    wxString sessionId = wxString(curlURL).Mid(wxString(curlURL).Find('=', true) + 1);
+                    wxRegEx sessionIdPattern("sessionId\" value=\"([^\"]+)\">");
+                    if (sessionIdPattern.Matches(response))
+                    {
+                        wxString sessionId = sessionIdPattern.GetMatch(response, 1);
 
-                    wxString postData = "csrfToken=" + csrfToken + "&sessionId=" + sessionId + "&originalDoneUrl=https%3A%2F%2Ffinance.yahoo.com%2F%3Fguccounter%3D1&namespace=yahoo&reject=reject&reject=reject";
-                    curl_easy_setopt(curl, CURLOPT_URL, curlURL);
-                    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, static_cast<const char*>(postData.mb_str()));
-                    res = curl_easy_perform(curl);
-                    curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+                        wxString postData = "csrfToken=" + csrfToken + "&sessionId=" + sessionId + "&originalDoneUrl=https%3A%2F%2Ffinance.yahoo.com%2F%3Fguccounter%3D1&namespace=yahoo&reject=reject&reject=reject";
+                        curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(("https://consent.yahoo.com/v2/collectConsent?sessionId=" + sessionId).mb_str()));
+                        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, static_cast<const char*>(postData.mb_str()));
+                        res = curl_easy_perform(curl);
+                        curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+                    }
                 }
 
                 if (res == CURLE_OK) {
