@@ -1322,38 +1322,59 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
             res = curl_easy_perform(curl);
             if (res == CURLE_OK)
             {
-                // Request to get crumb using the saved cookies
-                curl_set_writedata_options(curl, crumb);
-                curl_easy_setopt(curl, CURLOPT_URL, "https://query1.finance.yahoo.com/v1/test/getcrumb");
-                res = curl_easy_perform(curl);
+                wxString response = wxString::FromUTF8(cookie.memory);
+                wxRegEx csrfTokenPattern("csrfToken\" value=\"([^\"]+)\">");
+                if (csrfTokenPattern.Matches(response))
+                {
+                    // Get the csrfToken
+                    wxString csrfToken = csrfTokenPattern.GetMatch(response, 1);
+
+                    // Get session ID from URL
+                    char* curlURL;
+                    curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &curlURL);
+                    wxString sessionId = wxString(curlURL).Mid(wxString(curlURL).Find('=', true) + 1);
+
+                    wxString postData = "csrfToken=" + csrfToken + "&sessionId=" + sessionId + "&originalDoneUrl=https%3A%2F%2Ffinance.yahoo.com%2F%3Fguccounter%3D1&namespace=yahoo&reject=reject&reject=reject";
+                    curl_easy_setopt(curl, CURLOPT_URL, curlURL);
+                    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, static_cast<const char*>(postData.mb_str()));
+                    res = curl_easy_perform(curl);
+                    curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+                }
+
                 if (res == CURLE_OK) {
-                    // Request to get the quotes using the crumb and saved cookies
-                    curl_set_writedata_options(curl, quote);
-                    crumb_url = URL + "&crumb=" + wxString::FromUTF8(crumb.memory);
-                    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(crumb_url.mb_str()));
+                    // Request to get crumb using the saved cookies
+                    curl_set_writedata_options(curl, crumb);
+                    curl_easy_setopt(curl, CURLOPT_URL, "https://query1.finance.yahoo.com/v1/test/getcrumb");
                     res = curl_easy_perform(curl);
                     if (res == CURLE_OK) {
-                        output = wxString::FromUTF8(quote.memory);
-                        wxString cookieJar;
-                        // Get the cookies from the cookie jar
-                        struct curl_slist* cookies = nullptr;
-                        curl_easy_getinfo(curl, CURLINFO_COOKIELIST, &cookies);
-                        if (cookies) {
-                            for (struct curl_slist* item = cookies; item; item = item->next) {
-                                wxStringTokenizer tokenizer(wxString::FromUTF8(item->data), "\t");
-                                int count = 0;
-                                while (tokenizer.HasMoreTokens()) {
-                                    wxString token = tokenizer.GetNextToken();
-                                    if (count++ < 5) continue;
-                                    cookieJar += token;
-                                    (count < 7) ? cookieJar += "=" : cookieJar += "; ";
+                        // Request to get the quotes using the crumb and saved cookies
+                        curl_set_writedata_options(curl, quote);
+                        crumb_url = URL + "&crumb=" + wxString::FromUTF8(crumb.memory);
+                        curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(crumb_url.mb_str()));
+                        res = curl_easy_perform(curl);
+                        if (res == CURLE_OK) {
+                            output = wxString::FromUTF8(quote.memory);
+                            wxString cookieJar;
+                            // Get the cookies from the cookie jar
+                            struct curl_slist* cookies = nullptr;
+                            curl_easy_getinfo(curl, CURLINFO_COOKIELIST, &cookies);
+                            if (cookies) {
+                                for (struct curl_slist* item = cookies; item; item = item->next) {
+                                    wxStringTokenizer tokenizer(wxString::FromUTF8(item->data), "\t");
+                                    int count = 0;
+                                    while (tokenizer.HasMoreTokens()) {
+                                        wxString token = tokenizer.GetNextToken();
+                                        if (count++ < 5) continue;
+                                        cookieJar += token;
+                                        (count < 7) ? cookieJar += "=" : cookieJar += "; ";
+                                    }
                                 }
+                                curl_slist_free_all(cookies);
                             }
-                            curl_slist_free_all(cookies);
-                        }
 
-                        Model_Setting::instance().Set("YAHOO_FINANCE_COOKIE", cookieJar);
-                        Model_Setting::instance().Set("YAHOO_FINANCE_CRUMB", wxString::FromUTF8(crumb.memory));
+                            Model_Setting::instance().Set("YAHOO_FINANCE_COOKIE", cookieJar);
+                            Model_Setting::instance().Set("YAHOO_FINANCE_CRUMB", wxString::FromUTF8(crumb.memory));
+                        }
                     }
                 }
             }
