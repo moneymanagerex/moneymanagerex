@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-17 10:35\n"
+"PO-Revision-Date: 2023-06-26 07:22\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -3539,35 +3539,35 @@ msgstr "حقول غير صحيحة محددة للاستيراد!"
 
 #: import_export/univcsvdialog.cpp:1254
 msgid "Date field is required."
-msgstr ""
+msgstr "حقل التاريخ مطلوب."
 
 #: import_export/univcsvdialog.cpp:1255
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "حقل المبلغ أو كلا حقول السحب والودائع مطلوب."
 
 #: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
-msgstr ""
+msgstr "استيراد"
 
 #: import_export/univcsvdialog.cpp:1312
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "المعاملات المستوردة إلى الحساب %s: %ld"
 
 #: import_export/univcsvdialog.cpp:1323
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "السطر %ld: فارغ"
 
 #: import_export/univcsvdialog.cpp:1337
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "السطر %ld: خطأ:"
 
 #: import_export/univcsvdialog.cpp:1339
 msgid "Invalid Date."
-msgstr ""
+msgstr "تاريخ غير صالح."
 
 #: import_export/univcsvdialog.cpp:1340 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
@@ -3575,141 +3575,141 @@ msgstr "المبلغ الذي تم ادخاله غير صالح."
 
 #: import_export/univcsvdialog.cpp:1342
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "نوع (سحب/ايداع) غير معروف."
 
 #: import_export/univcsvdialog.cpp:1356
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "السطر %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "السطر %ld: حسنا، تم استيراده."
 
 #: import_export/univcsvdialog.cpp:1389
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "مجموع الخطوط: %ld"
 
 #: import_export/univcsvdialog.cpp:1391
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "الخطوط المحددة للاستيراد: %ld"
 
 #: import_export/univcsvdialog.cpp:1393
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "خطوط فارغة: %ld"
 
 #: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "المستوردة: %ld"
 
 #: import_export/univcsvdialog.cpp:1397
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "مخطئ: %ld"
 
 #: import_export/univcsvdialog.cpp:1400
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "ملف السجل المكتوب إلى: %s"
 
 #: import_export/univcsvdialog.cpp:1403 stockdialog.cpp:652
 msgid "Please confirm saving"
-msgstr ""
+msgstr "الرجاء تأكيد الحفظ"
 
 #: import_export/univcsvdialog.cpp:1436
 msgid "No imported transactions!"
-msgstr ""
+msgstr "لا توجد معاملات مستوردة!"
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "الحقول المحددة للتصدير غير صحيحة! يتطلب على الأقل التاريخ والمبلغ."
 
 #: import_export/univcsvdialog.cpp:1459 import_export/univcsvdialog.cpp:1612
 msgid "Export"
-msgstr ""
+msgstr "تصدير"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "الكتابة فوق الملف الموجود؟"
 
 #: import_export/univcsvdialog.cpp:1469
 msgid "File exists"
-msgstr ""
+msgstr "ملف موجود"
 
 #: import_export/univcsvdialog.cpp:1475
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "فشل في حذف الملف الموجود. يمكن قفل الملف بواسطة برنامج آخر."
 
 #: import_export/univcsvdialog.cpp:1476
 msgid "Destination file error"
-msgstr ""
+msgstr "الملف الوجهه غير موجود"
 
 #: import_export/univcsvdialog.cpp:1484 mmSimpleDialogs.cpp:803
 msgid "Invalid Account"
-msgstr ""
+msgstr "حساب غير صحيح"
 
 #: import_export/univcsvdialog.cpp:1611
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "المعاملات المصدرة: %ld"
 
 #: import_export/univcsvdialog.cpp:2018
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "الإعداد المسبق ''%s' سيتم حذفه"
 
 #: import_export/univcsvdialog.cpp:2051 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
-msgstr ""
+msgstr "اختر ملف بيانات CSV للاستيراد"
 
 #: import_export/univcsvdialog.cpp:2054
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "اختيار ملف بيانات CSV لتصديره"
 
 #: import_export/univcsvdialog.cpp:2057
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "اختر ملف بيانات XML للاستيراد"
 
 #: import_export/univcsvdialog.cpp:2060
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "اختر ملف بيانات XML للتصدير"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "ملفات XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "All Files"
-msgstr ""
+msgstr "كلّ الملفّات"
 
 #: import_export/univcsvdialog.cpp:2480
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "الرجاء كتابة الكلمة التي تشير إلى القيم الإيجابية في ملف CSV الخاص بك، على سبيل المثال \"الائتمان\""
 
 #: import_export/univcsvdialog.cpp:2480
 msgid "Enter a value"
-msgstr ""
+msgstr "أدخل قيمة"
 
 #: import_export/univcsvdialog.cpp:2490
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "يجب تعريف علامة المبلغ حسب النوع عندما يتم تحديد \"نوع\" للاستيراد"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "الرمز"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
-msgstr ""
+msgstr "آخر معدل"
 
 #: maincurrencydialog.cpp:77
 msgid "Fixed Rate"
-msgstr ""
+msgstr "معدل ثابت"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
@@ -3721,44 +3721,44 @@ msgstr "تحديث قيم العملات اونلاين"
 
 #: maincurrencydialog.cpp:183
 msgid "Online Update"
-msgstr ""
+msgstr "تحديث عبر الإنترنت"
 
 #: maincurrencydialog.cpp:187
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "إظهار جميع العملات غير المستخدمة"
 
 #: maincurrencydialog.cpp:241
 msgid "Currency History Options"
-msgstr ""
+msgstr "خيارات سجل العملات"
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:300 stockdialog.cpp:319
 #: stockdialog.cpp:648 stockspanel.cpp:215
 msgid "Price"
-msgstr ""
+msgstr "السعر"
 
 #: maincurrencydialog.cpp:277
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "تحديد تاريخ قيمة العملة"
 
 #: maincurrencydialog.cpp:287
 msgid "Enter the currency value"
-msgstr ""
+msgstr "أدخل قيمة العملة"
 
 #: maincurrencydialog.cpp:297
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "تحميل سجل قيم العملة"
 
 #: maincurrencydialog.cpp:300
 msgid "Add/&Update "
-msgstr ""
+msgstr "إضافة/&تحديث "
 
 #: maincurrencydialog.cpp:301
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "إضافة قيم العملة إلى السجل"
 
 #: maincurrencydialog.cpp:305
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "حذف قيم العملة المحددة"
 
 #: maincurrencydialog.cpp:309
 msgid "Delete Currency Values history for unused currencies and days"
@@ -4996,7 +4996,7 @@ msgstr "نحن نستخدم كراودِن لترجمة MMEX"
 
 #: mmframe.cpp:1792
 msgid "&Twitter"
-msgstr ""
+msgstr "&تويتر"
 
 #: mmframe.cpp:1792
 msgid "Follow us on Twitter"
@@ -5562,7 +5562,7 @@ msgstr "حساب/المستفيد"
 #: mmhomepage.cpp:428
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "الدخل مقابل المصروفات: %s"
 
 #: mmhomepage.cpp:438 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -5577,7 +5577,7 @@ msgstr "الفارق:"
 
 #: mmhomepage.cpp:446
 msgid "Income/Expenses"
-msgstr ""
+msgstr "الدخل/المصروفات"
 
 #: mmhomepage.cpp:470
 msgid "Transaction Statistics"
@@ -5585,27 +5585,27 @@ msgstr "احصاءات المعاملات"
 
 #: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
-msgstr ""
+msgstr "متابعة المعاملات: "
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
-msgstr ""
+msgstr "مجموع المعاملات: "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "المخزون"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
-msgstr ""
+msgstr "إجمالي القيمة الصافية"
 
 #: mmhomepage.cpp:621
 msgid "Other Assets"
-msgstr ""
+msgstr "الأصول الأخرى"
 
 #: mmhomepage.cpp:694
 msgid "Investment Accounts"
-msgstr ""
+msgstr "حسابات الاستثمار"
 
 #: mmhomepage.cpp:695 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
