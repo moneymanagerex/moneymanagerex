@@ -137,7 +137,7 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 [OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
 [GitHubIssues]: https://github.com/moneymanagerex/moneymanagerex/issues "open issues on GitHub"
 [SourceForgeDL]: https://sourceforge.net/projects/moneymanagerex/files/latest "SourceForge downloads"
-[GitHubDL]: https://ci.appveyor.com/project/moneymanagerex/moneymanagerex/history "appveyor"
+[GitHubDL]: https://ci.appveyor.com/project/whalley/moneymanagerex/history "appveyor"
 [contributors]: https://github.com/moneymanagerex/moneymanagerex/graphs/contributors "contributors to Git repo"
 [GitHubLatest]: https://github.com/moneymanagerex/moneymanagerex/releases/latest "GitHub latest stable downloads"
 [packagecloud]: https://packagecloud.io/moneymanagerex/ "packagecloud DEB & RPM repository"
@@ -163,7 +163,7 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 [wxsqliteplus]: https://github.com/guanlisheng/wxsqliteplus
 [general reports]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers
-[a]: https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=windows&logoWidth=0.01
+[a]: https://img.shields.io/appveyor/ci/whalley/moneymanagerex/master.svg?label=windows&logoWidth=0.01
 [ci]: https://img.shields.io/circleci/build/github/moneymanagerex/moneymanagerex/master?label=linux/mac
 [o]: http://www.openhub.net/p/moneymanagerex/widgets/project_thin_badge.gif
 [i]: https://img.shields.io/github/issues-raw/moneymanagerex/moneymanagerex.svg?label=gh%20issues
