@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-21 11:53\n"
+"PO-Revision-Date: 2023-06-26 12:33\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -3058,7 +3058,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:152 mmframe.cpp:3419 mmframe.cpp:3423
 #: mmframe.cpp:3440 mmframe.cpp:3444
@@ -3152,25 +3152,25 @@ msgstr "Eksportuojama operacija %zu"
 #: import_export/qif_export.cpp:656
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "Eksportuotų kategorijų skaičius: %zu\n"
 
 #: import_export/qif_export.cpp:658
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "Eksportuotų operacijų skaičius: %zu\n"
 
 #: import_export/qif_export.cpp:659
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Eksportuotų paskyrų skaičius: %zu"
 
 #: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:197
 msgid "&Browse"
-msgstr ""
+msgstr "&Naršyti"
 
 #: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:367
 msgid "Encoding:"
-msgstr ""
+msgstr "Kodavimas:"
 
 #: import_export/qif_import_gui.cpp:197
 msgid "Filtering Details:"
@@ -3182,19 +3182,19 @@ msgstr "Duomenys"
 
 #: import_export/qif_import_gui.cpp:296
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Vietoj paskyros pavadinimo naudokite sąskaitos numerį"
 
 #: import_export/qif_import_gui.cpp:300
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Į pastabas įtraukite gavėjo lauką"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Šablono atitikimas Gavėjai"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Pridėkite rungtynių informaciją prie pastabų"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
@@ -3217,21 +3217,21 @@ msgstr "Skenuojama"
 #: import_export/qif_import_gui.cpp:445
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Skaitoma eilutė %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:451
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Eilutė %zu %s\n"
 
 #: import_export/qif_import_gui.cpp:543
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Eilučių, nuskaitytų iš QIF failo, skaičius: %zu %lld ms"
 
 #: import_export/qif_import_gui.cpp:548 mmreportspanel.cpp:358
 msgid "Accounts:"
-msgstr ""
+msgstr "Paskyros:"
 
 #: import_export/qif_import_gui.cpp:555 import_export/qif_import_gui.cpp:894
 #: import_export/univcsvdialog.cpp:339
@@ -3251,7 +3251,7 @@ msgstr "Trūksta"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:1921
 #, c-format
 msgid "Matched to %s by pattern %s"
-msgstr ""
+msgstr "Suderinta su %s pagal šabloną %s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3259,7 +3259,7 @@ msgstr "Pasirinkite QIF duomenų failą, skirtą importui"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Ar norite importuoti visas operacijas?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -3305,7 +3305,7 @@ msgstr "Importavimas baigtas sėkmingai"
 #: import_export/qif_import_gui.cpp:1156
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Iš viso importuota: %zu"
 
 #: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1435
 msgid "Imported transactions discarded by user!"
@@ -3314,40 +3314,40 @@ msgstr "Importuotos operacijos buvo atmestos naudotojo!"
 #: import_export/qif_import_gui.cpp:1168 import_export/qif_import_gui.h:44
 #: mmframe.cpp:1548
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Importuoti iš QIF failo"
 
 #: import_export/qif_import_gui.cpp:1247
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Trūksta operacijos kodo"
 
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%s matched by %s"
-msgstr ""
+msgstr "%s atitiko %s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Trūksta operacijos gavėjo arba jis neteisingas"
 
 #: import_export/qif_import_gui.cpp:1285
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Netinkamas datos formatas arba datos kaukė"
 
 #: import_export/qif_import_gui.cpp:1297
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Operacijų sąskaita neteisinga"
 
 #: import_export/qif_import_gui.cpp:1306
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Pervedimo operacijos sąskaita neteisinga"
 
 #: import_export/qif_import_gui.cpp:1335
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Neteisinga operacijos suma"
 
 #: import_export/qif_import_gui.cpp:1360
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Neteisinga operacijos kategorija"
 
 #: import_export/qif_import_gui.cpp:1465
 #, c-format
@@ -3375,15 +3375,15 @@ msgstr "Balansas"
 
 #: import_export/univcsvdialog.cpp:120 mmframe.cpp:1545
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importuoti iš CSV"
 
 #: import_export/univcsvdialog.cpp:126
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importuoti iš XML failo"
 
 #: import_export/univcsvdialog.cpp:129 mmframe.cpp:1555
 msgid "Export as XML file"
-msgstr ""
+msgstr "Eksportuoti kaip XML failą"
 
 #: import_export/univcsvdialog.cpp:204
 msgid "Account: "
@@ -3391,7 +3391,7 @@ msgstr "Sąskaita: "
 
 #: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
-msgstr ""
+msgstr "Iš anksto nustatytas:"
 
 #: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:564
 #: import_export/univcsvdialog.cpp:2462
@@ -3683,23 +3683,23 @@ msgstr "XML files (*.xml)"
 
 #: import_export/univcsvdialog.cpp:2068
 msgid "All Files"
-msgstr ""
+msgstr "Visi failai"
 
 #: import_export/univcsvdialog.cpp:2480
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "Įveskite žodį, nurodantį teigiamas reikšmes CSV faile, pvz. \"kreditas\""
 
 #: import_export/univcsvdialog.cpp:2480
 msgid "Enter a value"
-msgstr ""
+msgstr "Įveskite reikšmę"
 
 #: import_export/univcsvdialog.cpp:2490
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "Sumos ženklas turi būti apibrėžtas pagal tipą, kai importuoti pasirenkamas tipas"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "Kodas"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
