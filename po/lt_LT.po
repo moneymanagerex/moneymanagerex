@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-26 13:36\n"
+"PO-Revision-Date: 2023-06-27 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -4163,7 +4163,7 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:480
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Atkurti visas operacijas dabartiniame rodinyje..."
 
 #: mmchecking_list.cpp:485
 msgid "&Delete selected transaction..."
@@ -4183,19 +4183,19 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:489
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Pašalinti visas operacijas šiame rodinyje..."
 
 #: mmchecking_list.cpp:489
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Visam laikui ištrinti visas operacijas dabartiniame rodinyje..."
 
 #: mmchecking_list.cpp:491
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Ištrinti peržiūrėtas „Stebimas\" operacijas..."
 
 #: mmchecking_list.cpp:492
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Ištrinti peržiūrėtas „Nesuderintas“ operacijas..."
 
 #: mmchecking_list.cpp:510
 msgid "Mark as"
@@ -4203,11 +4203,11 @@ msgstr "Pažymėti kaip"
 
 #: mmchecking_list.cpp:953
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Ar tikrai norite atkurti visas parodytas operacijas?"
 
 #: mmchecking_list.cpp:954 mmchecking_list.cpp:996
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "Patvirtinkite operacijos atkūrimą"
 
 #: mmchecking_list.cpp:991
 #, c-format
@@ -4220,19 +4220,19 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:1033
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Ar tikrai norite ištrinti visas rodomas operacijas?"
 
 #: mmchecking_list.cpp:1034
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Ar tikrai norite visam laikui ištrinti visas rodomas operacijas?"
 
 #: mmchecking_list.cpp:1038 mmchecking_list.cpp:1140
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Ištrintos operacijos bus laikinai saugomos ir jas bus galima atkurti rodinyje Ištrintos operacijos."
 
 #: mmchecking_list.cpp:1039 mmchecking_list.cpp:1139
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Negalite anuliuoti šio veiksmo."
 
 #: mmchecking_list.cpp:1043 mmchecking_list.cpp:1054 mmchecking_list.cpp:1065
 #: mmchecking_list.cpp:1144
@@ -4242,7 +4242,7 @@ msgstr "Patvirtinkite operacijos ištrynimą"
 #: mmchecking_list.cpp:1053 mmchecking_list.cpp:1064
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Ar tikrai norite ištrinti visas „%s“ rodomas operacijas?"
 
 #: mmchecking_list.cpp:1131
 #, c-format
@@ -4266,11 +4266,12 @@ msgstr[3] ""
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Iki šiol užrakinta operacija: %s\n\n"
+"Suderinti sandoriai."
 
 #: mmchecking_list.cpp:1210 transdialog.cpp:705 transdialog.cpp:736
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "MMEX operacijų patikrinimas"
 
 #: mmchecking_list.cpp:1243
 #, c-format
@@ -4284,11 +4285,12 @@ msgstr[3] ""
 #: mmchecking_list.cpp:1245
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Ar vis tiek norite atlikti redagavimą?"
 
 #: mmchecking_list.cpp:1246
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Uždarytos sąskaitos patikrinimas"
 
 #: mmchecking_list.cpp:1438
 #, c-format
@@ -4301,7 +4303,7 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:1443
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Patvirtinkite operacijos perkėlimą"
 
 #: mmchecking_list.cpp:1449
 #, c-format
@@ -4318,7 +4320,7 @@ msgstr "Pasirinkite tikslo sąskaitą "
 
 #: mmchecking_list.cpp:1540
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Pasikartojanti operacija išsaugota."
 
 #: mmcheckingpanel.cpp:428
 msgid "Delete selected transaction"
@@ -4342,24 +4344,24 @@ msgstr "&Atkurti "
 
 #: mmcheckingpanel.cpp:462
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Atkurti pasirinktą operaciją"
 
 #: mmcheckingpanel.cpp:477
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Įveskite bet kurią eilutę, kad rastumėte ją artimiausiuose operacijos duomenyse"
 
 #: mmcheckingpanel.cpp:499
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Visa operacijų ataskaita"
 
 #: mmcheckingpanel.cpp:501 mmframe.cpp:766
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Ištrintos operacijos"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Paskyros rodinys: %s"
 
 #: mmcheckingpanel.cpp:521
 msgid "Account Bal: "
@@ -4375,7 +4377,7 @@ msgstr "Skirtumas: "
 
 #: mmcheckingpanel.cpp:527
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Filtruoto vaizdo balas: "
 
 #: mmcheckingpanel.cpp:592 webapp.cpp:619
 msgid "Attachment"
@@ -4384,17 +4386,17 @@ msgstr "Priedas"
 #: mmcheckingpanel.cpp:628
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Pasirinktos operacijos: %zu"
 
 #: mmcheckingpanel.cpp:631
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Pasirinktų operacijų likutis: %s"
 
 #: mmcheckingpanel.cpp:635
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Dienos tarp pasirinktų operacijų: %d"
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
@@ -4414,22 +4416,24 @@ msgstr "Prašome pasirinkti"
 
 #: mmcustomdata.cpp:311
 msgid "Multi Choice"
-msgstr ""
+msgstr "Kelias pasirinkimas"
 
 #: mmcustomdata.cpp:786
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Nepavyko išsaugoti priskirto lauko „%s“:\n"
+"reikšmė „%s“ neatitinka RegEx patvirtinimo „%s“"
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
-msgstr ""
+msgstr "CustomField patvirtinimo klaida"
 
 #: mmex.cpp:172
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Įvyko lemtinga klaida.\n"
+"Paraiška bus nutraukta."
 
 #: mmframe.cpp:265
 msgid "Navigation"
@@ -4460,7 +4464,7 @@ msgstr "Terminuotosios sąskaitos"
 
 #: mmframe.cpp:481 mmframe.cpp:750
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "Akcijų portfeliai"
 
 #: mmframe.cpp:482 mmframe.cpp:738 mmhomepage.cpp:689
 msgid "Cash Accounts"
@@ -4473,7 +4477,7 @@ msgstr "Paskolų sąskaitos"
 
 #: mmframe.cpp:516
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Automatiškai kartojamos operacijos"
 
 #: mmframe.cpp:718 mmframe.cpp:1897 optiondialog.cpp:37
 msgid "Dashboard"
@@ -4486,7 +4490,7 @@ msgstr "Visos transakcijos"
 #: mmframe.cpp:754 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
-msgstr ""
+msgstr "Bendrinti paskyras"
 
 #: mmframe.cpp:770 mmframe.cpp:1709 mmframe.cpp:2734
 msgid "Budget Setup"
@@ -4882,7 +4886,7 @@ msgstr ""
 
 #: mmframe.cpp:1745
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "Atnaujinti &WebApp..."
 
 #: mmframe.cpp:1745 mmframe.cpp:2793 mmframe.cpp:2800
 msgid "Refresh WebApp"
