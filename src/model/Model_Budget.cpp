@@ -135,8 +135,8 @@ void Model_Budget::getBudgetStats(
     std::map<int, double> monthlyBudgetValue;
     std::map<int, double> yearlyBudgetValue;
     std::map<int, double> yearDeduction;
-    std::map<int, bool> isBudgeted;
-    int budgetedMonths = 0;
+    std::map<std::pair<int, int>, bool> isBudgeted;
+    std::map<int, int> budgetedMonths;
     const wxString year = wxString::Format("%i", start_date.GetYear());
     int budgetYearID = Model_Budgetyear::instance().Get(year);
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
@@ -158,10 +158,11 @@ void Model_Budget::getBudgetStats(
         //fill with amount from monthly budgets first
         for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
         {
-            if (!isBudgeted[month])
+            std::pair<int, int> month_categ = std::make_pair(month, budget.CATEGID);
+            if (!isBudgeted[month_categ])
             {
-                isBudgeted[month] = true;
-                budgetedMonths++;
+                isBudgeted[month_categ] = true;
+                budgetedMonths[budget.CATEGID]++;
             }
             budgetStats[budget.CATEGID][month] = getEstimate(true, period(budget), budget.AMOUNT);
             yearDeduction[budget.CATEGID] += budgetStats[budget.CATEGID][month];
@@ -180,9 +181,9 @@ void Model_Budget::getBudgetStats(
                 if (!budgetOverride)
                     // If user doesn't override the budget, add 1/12 of the adjusted amount to every period
                     budgetStats[categoryBudget.first][month] += adjusted_amount / 12;
-                else if (!isBudgeted[month])
+                else if (!isBudgeted[std::make_pair(month, categoryBudget.first)])
                     // Otherwise if n months have a defined budget, add 1/(12-n) of the adjusted amount only to the (12-n) non-budgeted periods
-                    budgetStats[categoryBudget.first][month] = adjusted_amount / (12 - budgetedMonths);
+                    budgetStats[categoryBudget.first][month] = adjusted_amount / (12 - budgetedMonths[categoryBudget.first]);
             }
         else
             // If the user is not deducting the monthly budget from the yearly budget
@@ -191,7 +192,7 @@ void Model_Budget::getBudgetStats(
                 if (!budgetOverride)
                     // If user doesn't override their budget, add 1/12 of the yearly amount to every period
                     budgetStats[categoryBudget.first][month] += categoryBudget.second;
-                else if (!isBudgeted[month])
+                else if (!isBudgeted[std::make_pair(month, categoryBudget.first)])
                     // Otherwise fill 1/12 of the yearly amount only in non-budgeted periods
                     budgetStats[categoryBudget.first][month] = categoryBudget.second;
             }

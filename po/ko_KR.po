@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 09:28\n"
+"PO-Revision-Date: 2023-06-21 04:27\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -292,7 +292,7 @@ msgstr "잘못된 URL"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr "거래 시작 날짜는 미래일 수 없습니다"
+msgstr "개시 날짜는 미래일 수 없습니다"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1030
@@ -526,7 +526,7 @@ msgstr "ID"
 #: reports/transactions.cpp:194 transactionsupdatedialog.cpp:148
 #: transdialog.cpp:440 usertransactionpanel.cpp:129 webappdialog.cpp:141
 msgid "Type"
-msgstr "거래 유형"
+msgstr "유형"
 
 #: assetspanel.cpp:63 mmhomepage.cpp:586 reports/summarystocks.cpp:121
 msgid "Initial Value"

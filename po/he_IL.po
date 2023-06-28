@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-17 10:35\n"
+"PO-Revision-Date: 2023-06-24 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -7067,7 +7067,7 @@ msgstr "דבוקת נירות ערך"
 
 #: sharetransactiondialog.cpp:286
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr "הזנת מספר הלוט שאליו משתייכת קבצת מניות זו"
+msgstr "הזנת מספר הדבוקה אליו משתייכת חבילת מניות זו"
 
 #: sharetransactiondialog.cpp:293 stockdialog.cpp:264
 msgid "Organize attachments of this stock"

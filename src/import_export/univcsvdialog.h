@@ -140,6 +140,7 @@ private:
         wxString Notes;
         bool valid = true;
         wxString PayeeMatchNotes;
+        std::map<int, wxString> customFieldData;
     };
 private:
     EDialogType dialogType_;
@@ -207,7 +208,7 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
-    bool validateData(tran_holder & holder);
+    bool validateData(tran_holder & holder, wxString& message);
     void OnImport(wxCommandEvent& event);
     void OnExport(wxCommandEvent& event);
     void OnRemove(wxCommandEvent& event);
@@ -235,6 +236,7 @@ private:
     void OnShowPayeeDialog(wxMouseEvent& event);
     void OnShowCategDialog(wxMouseEvent& event);
     void saveAccountPresets();
+    bool validateCustomFieldData(int fieldId, wxString& value, wxString& log_message);
 private:
     void OnLoad();
     void UpdateListItemBackground();
