@@ -304,6 +304,7 @@ public:
         const wxSize& size = wxDefaultSize, long style = 0
     );
     bool IsValid();
+    bool ValidateTags(const wxString& tagText = wxEmptyString);
     wxArrayInt GetTagIDs() const;
 
 protected:
@@ -321,10 +322,9 @@ private:
     std::map<wxString, int, tagNameComparator> tag_map_;
     std::map<wxString, int, tagNameComparator> tags_;
     wxString tags_autocomp_str;
-    bool validateTags();
     wxArrayString parseTags(const wxString& tagString);
 };
 
-inline bool mmTagTextCtrl::IsValid() { return validateTags(); }
+inline bool mmTagTextCtrl::IsValid() { return ValidateTags(); }
 
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

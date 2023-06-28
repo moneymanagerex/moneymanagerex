@@ -225,24 +225,34 @@ void mmTagDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
 
 void mmTagDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
 {
-    if (selectedTags_.IsEmpty())
-        return;
-    const wxString old_name = selectedTags_.Item(0);
+    wxArrayInt selections;
+    wxString old_name;
+    if (isSelection_)
+    {
+        tagCheckListBox_->GetSelections(selections);
+        old_name = tagCheckListBox_->GetString(selections[0]);
+    }
+    else
+    {
+        tagListBox_->GetSelections(selections);
+        old_name = tagListBox_->GetString(selections[0]);
+    }
+
     const wxString msg = wxString::Format(_("Enter a new name for '%s'"), old_name);
     wxString text = wxGetTextFromUser(msg, _("Edit Tag"), old_name);
 
     if (text.IsEmpty() || old_name == text || !validateName(text))
         return;
 
-    Model_Tag::Data_Set tags = Model_Tag::instance().find(Model_Tag::TAGNAME(text));
-    if (!tags.empty())
+    Model_Tag::Data* tag = Model_Tag::instance().get(text);
+    if (tag)
     {
         wxString errMsg = _("A tag with this name exists");
         wxMessageBox(errMsg, _("Organize Tags: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
 
-    Model_Tag::Data* tag = Model_Tag::instance().get(old_name);
+    tag = Model_Tag::instance().get(old_name);
     tag->TAGNAME = text;
     Model_Tag::instance().save(tag);
     tagList_.Remove(old_name);

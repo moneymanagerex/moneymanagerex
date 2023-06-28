@@ -360,8 +360,8 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             }
         }
         tagTextCtrl_->SetText(s_tag);
-        if(tagTextCtrl_->IsValid())
-            tagCheckBox_->SetValue(true);
+        tagTextCtrl_->ValidateTags();
+        tagCheckBox_->SetValue(true);
     }
     else
         tagCheckBox_->SetValue(false);
@@ -984,6 +984,20 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         return false;
     }
 
+    if (mmIsTagsChecked())
+    {
+        if (!tagTextCtrl_->IsValid())
+        {
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
+            return false;
+        }
+        else if (tagTextCtrl_->GetTagIDs().IsEmpty())
+        {
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Empty value"), _("Tags"), wxICON_ERROR);
+            return false;
+        }
+    }
+
     if (amountRangeCheckBox_->IsChecked())
     {
         Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
@@ -1076,6 +1090,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("Amount");
     column_names.Add("Rate");
     column_names.Add("Notes");
+    column_names.Add("Tags");
     column_names.Add("UDFC01");
     column_names.Add("UDFC02");
     column_names.Add("UDFC03");
@@ -1442,7 +1457,12 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
             wxString temp;
             for (const auto& a : itr->value.GetArray()) {
                 if (a.GetType() == kNumberType)
-                    temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
+                {
+                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                        temp += (temp.empty() ? "" : ", ") + Model_Tag::instance().get(a.GetInt())->TAGNAME;
+                    else
+                        temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
+                }
                 else if (a.GetType() == kStringType)
                     temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
             }

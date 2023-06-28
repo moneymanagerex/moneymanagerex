@@ -360,6 +360,7 @@ void mmTransDialog::dataToControls()
             tagString.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
         tags_stc_->SetEvtHandlerEnabled(false);
         tags_stc_->SetText(tagString);
+        tags_stc_->ValidateTags();
         tags_stc_->SetEvtHandlerEnabled(true);
         skip_tag_init_ = true;
     }

@@ -195,8 +195,9 @@ table {
             if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
             if (showColumnById(10)) hb.addTableHeaderCell(_("Rate"), "Rate text-right");
             if (showColumnById(11)) hb.addTableHeaderCell(_("Notes"), "Notes");
+            if (showColumnById(12)) hb.addTableHeaderCell(_("Tags"), "Tags");
             const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-            int colNo = 12;
+            int colNo = 13;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
             {
                 if (udfc_entry.empty()) continue;
@@ -312,6 +313,9 @@ table {
                 // Notes
                 if (showColumnById(11)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
+                // Tags
+                if (showColumnById(12)) hb.addTableCell(transaction.TAGNAMES);
+
                 // Custom Fields
 
                 const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
@@ -354,15 +358,15 @@ table {
                     }
                 }
 
-                if (showColumnById(12))
-                    UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
                 if (showColumnById(13))
-                    UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
+                    UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
                 if (showColumnById(14))
-                    UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
+                    UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
                 if (showColumnById(15))
-                    UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
+                    UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
                 if (showColumnById(16))
+                    UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
+                if (showColumnById(17))
                     UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);
             }
             hb.endTableRow();

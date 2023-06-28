@@ -953,25 +953,22 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
         if (event.GetKeyCode() == WXK_RETURN)
         {
             int ip = GetInsertionPoint();
-            if (GetText().IsEmpty() || GetTextRange(ip-1, ip) == " ")
+            if (GetText().IsEmpty() || GetTextRange(ip - 1, ip) == " ")
             {
                 mmTagDialog dlg(this, true, parseTags(GetText()));
+                dlg.ShowModal();
                 wxString selection;
-                if (dlg.ShowModal() == wxID_OK)
-                {
-                    for (const auto& tag : dlg.getSelectedTags())
-                        selection.Append(tag + " ");
-                    SetText(selection);
-                    GotoPos(GetLastPosition());
-                    if (dlg.getRefreshRequested())
-                        init();
-                }
-                else return;
+                for (const auto& tag : dlg.getSelectedTags())
+                    selection.Append(tag + " ");
+                SetText(selection);
+                GotoPos(GetLastPosition());
+                if (dlg.getRefreshRequested())
+                    init();             
             }
             else if (AutoCompActive())
                 AutoCompComplete();
 
-            validateTags();
+            ValidateTags();
             return;
         } else
             event.Skip();
@@ -998,7 +995,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
     {
         AutoCompCancel();
         InsertText(GetInsertionPoint(), " ");
-        validateTags();
+        ValidateTags();
         return;
     }
     else if (code != WXK_NONE && code > 32) {
@@ -1025,19 +1022,14 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
 
 void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
 {
-    validateTags();
+    wxString currText = GetText();
+    ValidateTags(currText.insert(GetInsertionPoint(), event.GetString()));
+    event.SetString("");
 }
 
 void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     AutoCompCancel();
-    int target = event.GetWindow()->GetId();
-    if (target > 0 && target != wxID_CANCEL)
-        if (!validateTags())
-        {
-            SetFocus();
-            return;
-        }
     event.Skip();
 }
 
@@ -1070,10 +1062,15 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
     event.Skip();
 }
 
-bool mmTagTextCtrl::validateTags()
+/* Validates all tags passed in tagText, or the contents of the text control if tagText is blank */
+bool mmTagTextCtrl::ValidateTags(const wxString& tagText)
 {
     int ip = GetInsertionPoint();
-    wxString tags_in = GetText();
+
+    // If we are passed a string validate it, otherwise validate the text control contents
+    wxString tags_in = tagText;
+    if (tags_in.IsEmpty())
+        tags_in = GetText();
 
     if (tags_in.IsEmpty()) return true;
 
