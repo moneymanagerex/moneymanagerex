@@ -341,10 +341,10 @@ void mmBDDialog::SetDialogHeader(const wxString& header)
 void mmBDDialog::SetDialogParameters(int trx_id)
 {
     const auto split = Model_Splittransaction::instance().get_all();
-
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT));
     //const auto trx = Model_Checking::instance().find(Model_Checking::TRANSID(trx_id)).at(0);
     const auto trx = Model_Checking::instance().get(trx_id);
-    Model_Checking::Full_Data t(*trx, split);
+    Model_Checking::Full_Data t(*trx, split, tags);
     m_bill_data.ACCOUNTID = t.ACCOUNTID;
     cbAccount_->SetValue(t.ACCOUNTNAME);
 

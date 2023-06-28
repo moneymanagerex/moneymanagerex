@@ -437,10 +437,11 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& tran : Model_Checking::instance().all())
     {
-        Model_Checking::Full_Data full_tran(tran, splits);
+        Model_Checking::Full_Data full_tran(tran, splits, tags);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())

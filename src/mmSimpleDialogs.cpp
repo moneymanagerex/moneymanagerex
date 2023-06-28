@@ -940,12 +940,14 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     StyleSetForeground(1, *wxBLACK);
     SetExtraAscent(2);
     SetExtraDescent(2);
+    SetMaxClientSize(wxSize(-1, TextHeight(0)));
 
     init();
 
     Bind(wxEVT_CHAR, &mmTagTextCtrl::OnKeyPressed, this);
     Bind(wxEVT_STC_CLIPBOARD_PASTE, &mmTagTextCtrl::OnPaste, this);
     Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
+    Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     Bind(wxEVT_CHAR_HOOK, [this](wxKeyEvent& event)
     {
         if (event.GetKeyCode() == WXK_RETURN)
@@ -1024,6 +1026,19 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
 void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
 {
     validateTags();
+}
+
+void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
+{
+    AutoCompCancel();
+    int target = event.GetWindow()->GetId();
+    if (target > 0 && target != wxID_CANCEL)
+        if (!validateTags())
+        {
+            SetFocus();
+            return;
+        }
+    event.Skip();
 }
 
 void mmTagTextCtrl::OnPaint(wxPaintEvent& event)

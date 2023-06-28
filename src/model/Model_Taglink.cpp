@@ -116,3 +116,15 @@ int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int ref
 
     return rows.size();
 }
+
+std::map<int, Model_Taglink::Data_Set> Model_Taglink::get_all(const wxString& refType)
+{
+    Data_Set taglinks = instance().find(REFTYPE(refType));
+
+    std::map<int, Data_Set> data;
+    for (const auto& taglink : taglinks)
+    {
+        data[taglink.REFID].push_back(taglink);
+    }
+    return data;
+}

@@ -158,6 +158,7 @@ void mmCheckingPanel::filterTable()
     const wxString today_date_string = wxDate::Today().FormatISODate();
 
     const auto splits = Model_Splittransaction::instance().get_all();
+    const auto tags = Model_Taglink::instance().get_all(RefType);
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
 
     const auto i = (isAllAccounts_ || isTrash_) ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
@@ -175,7 +176,7 @@ void mmCheckingPanel::filterTable()
         if (ignore_future) {
             if (tran.TRANSDATE > today_date_string) continue;
         }
-        Model_Checking::Full_Data full_tran(tran, splits);
+        Model_Checking::Full_Data full_tran(tran, splits, tags);
         bool expandSplits = false;
         if (m_transFilterActive)
         { 

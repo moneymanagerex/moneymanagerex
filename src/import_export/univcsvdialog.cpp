@@ -1559,6 +1559,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         return mmErrorDialogs::ToolTip4Object(m_choice_account_, _("Invalid Account"), _("Error"));
 
     const auto split = Model_Splittransaction::instance().get_all();
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
     int fromAccountID = from_account->ACCOUNTID;
 
     long numRecords = 0;
@@ -1584,7 +1585,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || !pBankTransaction.DELETEDTIME.IsEmpty())
             continue;
 
-        Model_Checking::Full_Data tran(pBankTransaction, split);
+        Model_Checking::Full_Data tran(pBankTransaction, split, tags);
         bool has_split = tran.has_split();
         double value = Model_Checking::balance(pBankTransaction, fromAccountID);
         account_balance += value;
@@ -1863,6 +1864,7 @@ void mmUnivCSVDialog::update_preview()
         if (from_account)
         {
             const auto split = Model_Splittransaction::instance().get_all();
+            const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
             int fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
@@ -1875,7 +1877,7 @@ void mmUnivCSVDialog::update_preview()
                 if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || !pBankTransaction.DELETEDTIME.IsEmpty())
                     continue;
 
-                Model_Checking::Full_Data tran(pBankTransaction, split);
+                Model_Checking::Full_Data tran(pBankTransaction, split, tags);
                 bool has_split = tran.has_split();
                 double value = Model_Checking::balance(pBankTransaction, fromAccountID);
                 account_balance += value;

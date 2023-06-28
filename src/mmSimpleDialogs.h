@@ -309,6 +309,7 @@ public:
 protected:
     void OnKeyPressed(wxKeyEvent& event);
     void OnPaste(wxStyledTextEvent& event);
+    void OnKillFocus(wxFocusEvent& event);
     void OnPaint(wxPaintEvent& event);
     void init();
 private:

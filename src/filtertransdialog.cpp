@@ -343,6 +343,29 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
     transNumberEdit_->ChangeValue(s_number);
 
+
+    //Tags
+    wxString s_tag;
+    Value& j_tags = GetValueByPointerWithDefault(j_doc, "/TAGS", "");
+    if (j_tags.IsArray())
+    {
+        for (rapidjson::SizeType i = 0; i < j_tags.Size(); i++)
+        {
+            wxASSERT(j_tags[i].IsInt());
+            // Retrieve TAGNAME from TAGID
+            Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt());
+            if (tag)
+            {
+                s_tag.Append(tag->TAGNAME + " ");
+            }
+        }
+        tagTextCtrl_->SetText(s_tag);
+        if(tagTextCtrl_->IsValid())
+            tagCheckBox_->SetValue(true);
+    }
+    else
+        tagCheckBox_->SetValue(false);
+
     //Notes
     wxString s_notes;
     if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString()) {
@@ -623,6 +646,14 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     transNumberEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
+
+    // Tags
+    tagCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Tags")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(tagCheckBox_, g_flagsH);
+
+    tagTextCtrl_ = new mmTagTextCtrl(itemPanel, wxID_ANY);
+    itemPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
 
     // Notes
     notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes")
@@ -1242,10 +1273,31 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(int categid)
     return m_selected_categories_id.Index(categid) != wxNOT_FOUND;
 }
 
+bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int refId)
+{
+    std::set<int> tagids;
+
+    for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(refType), Model_Taglink::REFID(refId)))
+        tagids.insert(tag.TAGID);
+
+    for (int i : tagTextCtrl_->GetTagIDs())
+        if (tagids.find(i) == tagids.end())
+            return false;
+
+    return true;
+}
+
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
 {
     bool ok = true;
+
+    wxString refType;
+    if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
+        refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
+        refType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
     if (mmIsAccountChecked()
         && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND
@@ -1266,6 +1318,7 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
     else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id())) ok = false;
+    else if (mmIsTagsChecked() && !mmIsTagMatches(refType, tran.id())) ok = false;
     return ok;
 }
 
@@ -1548,6 +1601,18 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         const wxString num = transNumberEdit_->GetValue();
         json_writer.Key((i18n ? _("Number") : "NUMBER").utf8_str());
         json_writer.String(num.utf8_str());
+    }
+
+    // Tags
+    if (tagCheckBox_->IsChecked() && !tagTextCtrl_->IsEmpty())
+    {
+        json_writer.Key((i18n ? _("Tags") : "TAGS").utf8_str());
+        json_writer.StartArray();
+        for (const auto& tagId : tagTextCtrl_->GetTagIDs())
+        {
+            json_writer.Int(tagId);
+        }
+        json_writer.EndArray();
     }
 
     //Notes

@@ -51,6 +51,11 @@ public:
     */
     Data* get(const wxString& refType, int refId, int tagId);
 
+    /**
+    * Return a map of all tags
+    */
+    std::map<int, Model_Taglink::Data_Set> get_all(const wxString& refType);
+
     /* Delete all tags for a REFTYPE + REFID */
     void DeleteAllTags(const wxString& refType, int refID);
 

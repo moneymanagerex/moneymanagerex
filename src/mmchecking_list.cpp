@@ -138,6 +138,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
         break;
+    case TransactionListCtrl::COL_TAGS:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTAGNAMES())
+            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTAGNAMES());
+        break;
     case TransactionListCtrl::COL_DELETEDTIME:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME())
             : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByDELETEDTIME());
@@ -296,6 +300,8 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NOTES);
+    m_columns.push_back(PANEL_COLUMN(_("Tags"), 250, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_TAGS);
     if (m_cp->isTrash_) {
         m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
         m_real_columns.push_back(COL_DELETEDTIME);
@@ -1639,7 +1645,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
         }
 
-        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE, COL_DELETEDTIME
+        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE, COL_TAGS, COL_DELETEDTIME
             , COL_UDFC01, COL_UDFC02, COL_UDFC03, COL_UDFC04, COL_UDFC05 } )
         {
             const auto test = getItem(selectedItem, t, true).Lower();
@@ -1727,6 +1733,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value.Trim(false);
     }
+    case TransactionListCtrl::COL_TAGS:
+        return tran.TAGNAMES;
     case TransactionListCtrl::COL_DELETEDTIME:
         datetime.ParseISOCombined(tran.DELETEDTIME);        
         if(!datetime.IsValid())

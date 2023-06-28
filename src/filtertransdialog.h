@@ -67,6 +67,7 @@ public:
     bool mmIsDateRangeChecked() const;
     bool mmIsHideColumnsChecked() const;
     bool mmIsCombineSplitsChecked() const;
+    bool mmIsTagsChecked() const;
 
 public:
     enum groupBy {
@@ -99,6 +100,7 @@ private:
     bool mmIsPayeeMatches(int payeeid);
     bool mmIsCategoryMatches(int categid);
     bool mmIsNoteMatches(const wxString& note);
+    bool mmIsTagMatches(const wxString& refType, int refId);
 
     void setTransferTypeCheckBoxes();
 
@@ -191,6 +193,8 @@ private:
     wxBitmapButton* m_itemButtonClear;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
+    wxCheckBox* tagCheckBox_;
+    mmTagTextCtrl* tagTextCtrl_;
     wxCheckBox* colorCheckBox_;
     mmColorButton* colorButton_;
     wxCheckBox* showColumnsCheckBox_;
@@ -253,6 +257,7 @@ inline bool mmFilterTransactionsDialog::mmIsStatusChecked() const { return statu
 inline const wxString mmFilterTransactionsDialog::mmGetLabelString() const { return  m_setting_name->GetStringSelection(); }
 inline const wxString mmFilterTransactionsDialog::mmGetCategoryPattern() const { return categoryComboBox_->mmGetPattern(); }
 inline bool mmFilterTransactionsDialog::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsTagsChecked() const { return tagCheckBox_->IsChecked(); }
 
 #endif
 // FILTERTRANSDIALOG_H_

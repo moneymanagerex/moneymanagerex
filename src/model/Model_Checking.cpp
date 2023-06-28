@@ -23,7 +23,7 @@
 #include "Model_Payee.h"
 #include "Model_Category.h"
 #include <queue>
-#include "Model_Taglink.h"
+#include "Model_Tag.h"
 #include "Model_Translink.h"
 #include "Model_CustomFieldData.h"
 #include "attachmentdialog.h"
@@ -385,6 +385,7 @@ Model_Checking::Full_Data::Full_Data()
 
 Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
 , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
+, m_tags(Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)), Model_Taglink::REFID(r.TRANSID)))
 {
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
     displayID = wxString::Format("%i", r.TRANSID);
@@ -394,6 +395,11 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     }
     else {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
+    }
+
+    if (!m_tags.empty()) {
+        for (const auto& entry : m_tags)
+            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + Model_Tag::instance().get(entry.TAGID)->TAGNAME;
     }
 
     if (!m_splits.empty()) {
@@ -407,11 +413,15 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
 }
 
 Model_Checking::Full_Data::Full_Data(const Data& r
-    , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits)
+    , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
+    , const std::map<int /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags)
     : Data(r), BALANCE(0), AMOUNT(0)
 {
     const auto it = splits.find(this->id());
     if (it != splits.end()) m_splits = it->second;
+
+    const auto tag_it = tags.find(this->id());
+    if (tag_it != tags.end()) m_tags = tag_it->second;
 
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
     displayID = wxString::Format("%i", r.TRANSID);
@@ -423,6 +433,11 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     else
     {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
+    }
+
+    if (!m_tags.empty()) {
+        for (const auto& entry : m_tags)
+            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + Model_Tag::instance().get(entry.TAGID)->TAGNAME;
     }
 
     if (!m_splits.empty())
@@ -641,7 +656,19 @@ const wxString Model_Checking::Full_Data::to_json()
         json_writer.Key("PAYEENAME");
         json_writer.String(this->PAYEENAME.utf8_str());
     }
-
+    if (this->has_tags())
+    {
+        json_writer.Key("TAGS");
+        json_writer.StartArray();
+        for (const auto& item : m_splits)
+        {
+            json_writer.StartObject();
+            json_writer.Key(Model_Category::full_name(item.CATEGID).utf8_str());
+            json_writer.Double(item.SPLITTRANSAMOUNT);
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+    }
     if (this->has_split())
     {
         json_writer.Key("CATEGS");
