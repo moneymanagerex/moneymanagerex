@@ -298,7 +298,7 @@ bool OptionSettingsGeneral::SaveSettings()
         if (Option::instance().getCurrencyHistoryEnabled())
         {
             if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
-                , _("Currency Dialog")
+                , _("Organise Currencies")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
                 return false;
         }
