@@ -1678,21 +1678,21 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
-    wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
-        , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
-    menuTools->Append(menuItemCateg);
-
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
         , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
     menuTools->Append(menuItemPayee);
 
-    wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , _("Organize Curre&ncy..."), _("Organize Currency"));
-    menuTools->Append(menuItemCurrency);
+    wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
+        , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
+    menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemTags = new wxMenuItem(menuTools
         , MENU_ORGTAGS, _("Organize &Tags..."), _("Organize Tags"));
     menuTools->Append(menuItemTags);
+
+    wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
+        , _("Organize Curre&ncies..."), _("Organize Currencies"));
+    menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
@@ -1904,10 +1904,10 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), mmBitmapBundle(png::NEW_TRX, toolbar_icon_size), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Show Organize Payees Dialog"));
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Show Organize Categories Dialog"));
-    toolBar_->AddTool(MENU_ORGTAGS, _("Organize Tags"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Show Organize Tags Dialog"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Organize Payees"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Organize Categories"));
+    toolBar_->AddTool(MENU_ORGTAGS, _("Organize Tags"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Organize Tags"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currencies"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Organize Currencies"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
     toolBar_->AddSeparator();

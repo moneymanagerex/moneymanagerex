@@ -1828,7 +1828,7 @@ void mmSetSize(wxWindow* w)
     else if (name == "mmPayeeDialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("PAYEES_DIALOG_SIZE");
     }
-    else if (name == "Currency Dialog") {
+    else if (name == "Organize Currencies") {
         my_size = Model_Infotable::instance().GetSizeSetting("CURRENCY_DIALOG_SIZE");
     }
     else if (name == "Themes Dialog") {
