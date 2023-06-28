@@ -1130,6 +1130,7 @@ bool mmFilterTransactionsDialog::mmIsSomethingChecked() const
         || mmIsAmountRangeMinChecked()
         || mmIsAmountRangeMaxChecked()
         || mmIsNumberChecked()
+        || mmIsTagsChecked()
         || mmIsNotesChecked()
         || mmIsColorChecked()
         || mmIsCustomFieldChecked();

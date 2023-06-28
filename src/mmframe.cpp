@@ -1904,10 +1904,10 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), mmBitmapBundle(png::NEW_TRX, toolbar_icon_size), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Show Organize Payees Dialog"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGTAGS, _("Organize Tags"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Show Organize Tags Dialog"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
     toolBar_->AddSeparator();
