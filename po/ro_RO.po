@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-28 22:30\n"
+"PO-Revision-Date: 2023-06-29 05:11\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3778,7 +3778,7 @@ msgstr "Ești sigur că vrei să ștergi Valuta selectată?"
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 optionsettingsgeneral.cpp:301
 msgid "Organise Currencies"
-msgstr ""
+msgstr "Administrează Valutele"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -5127,7 +5127,7 @@ msgstr "Nou"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "Administrează Categoriile"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
@@ -5163,7 +5163,7 @@ msgstr "Im&primă"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Fişiere ajutoare"
 
 #: mmframe.cpp:1985
 #, c-format
