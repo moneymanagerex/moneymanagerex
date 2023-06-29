@@ -114,6 +114,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByCATEGNAME())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByCATEGNAME());
         break;
+    case TransactionListCtrl::COL_TAGS:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTAGNAMES())
+            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTAGNAMES());
+        break;
     case TransactionListCtrl::COL_WITHDRAWAL:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByWITHDRAWAL())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByWITHDRAWAL());
@@ -137,10 +141,6 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
     case TransactionListCtrl::COL_DATE:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
-        break;
-    case TransactionListCtrl::COL_TAGS:
-        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTAGNAMES())
-            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTAGNAMES());
         break;
     case TransactionListCtrl::COL_DELETEDTIME:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME())
@@ -283,6 +283,8 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_STATUS);
     m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_CATEGORY);
+    m_columns.push_back(PANEL_COLUMN(_("Tags"), 250, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_TAGS);
     m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_WITHDRAWAL);
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
@@ -300,8 +302,6 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NOTES);
-    m_columns.push_back(PANEL_COLUMN(_("Tags"), 250, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(COL_TAGS);
     if (m_cp->isTrash_) {
         m_columns.push_back(PANEL_COLUMN(_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
         m_real_columns.push_back(COL_DELETEDTIME);

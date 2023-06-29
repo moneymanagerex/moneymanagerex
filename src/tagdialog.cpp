@@ -186,6 +186,15 @@ bool mmTagDialog::validateName(const wxString& name)
         wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     }
+
+    if (name == "&" || name == "|")
+    {
+        wxString errMsg = _("Invalid tag name");
+        errMsg << "\n\n" << _("Tag names may not be the single characters '&' or '|' which are restricted for filter operators");
+        wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
+        return false;
+    }
+
     return true;
     
 }

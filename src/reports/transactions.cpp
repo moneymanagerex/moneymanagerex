@@ -191,11 +191,11 @@ table {
             if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
             if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status text-center");
             if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
-            if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
-            if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-            if (showColumnById(10)) hb.addTableHeaderCell(_("Rate"), "Rate text-right");
-            if (showColumnById(11)) hb.addTableHeaderCell(_("Notes"), "Notes");
-            if (showColumnById(12)) hb.addTableHeaderCell(_("Tags"), "Tags");
+            if (showColumnById(8)) hb.addTableHeaderCell(_("Tags"), "Tags");
+            if (showColumnById(9)) hb.addTableHeaderCell(_("Type"), "Type");
+            if (showColumnById(10)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+            if (showColumnById(11)) hb.addTableHeaderCell(_("Rate"), "Rate text-right");
+            if (showColumnById(12)) hb.addTableHeaderCell(_("Notes"), "Notes");
             const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
             int colNo = 13;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
@@ -253,7 +253,9 @@ table {
                 if (showColumnById(5)) hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
                 if (showColumnById(6)) hb.addTableCell(transaction.STATUS, false, true);
                 if (showColumnById(7)) hb.addTableCell(transaction.CATEGNAME);
-                if (showColumnById(8))
+                // Tags
+                if (showColumnById(8)) hb.addTableCell(transaction.TAGNAMES);
+                if (showColumnById(9))
                 {
                     if (Model_Checking::foreignTransactionAsTransfer(transaction))
                         hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
@@ -271,7 +273,7 @@ table {
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                    if (showColumnById(9))
+                    if (showColumnById(10))
                         if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
@@ -289,11 +291,11 @@ table {
                 else
                 {
                     wxFAIL_MSG("account for transaction not found");
-                    if (showColumnById(9)) hb.addEmptyTableCell();
+                    if (showColumnById(10)) hb.addEmptyTableCell();
                 }
 
                 // Exchange Rate
-                if (showColumnById(10))
+                if (showColumnById(11))
                 {
                     if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                             && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
@@ -311,10 +313,7 @@ table {
                 }
 
                 // Notes
-                if (showColumnById(11)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
-
-                // Tags
-                if (showColumnById(12)) hb.addTableCell(transaction.TAGNAMES);
+                if (showColumnById(12)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
                 // Custom Fields
 

@@ -924,9 +924,10 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
 //------------
 
 mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
-    const wxPoint& pos, const wxSize& size, long style)
+    bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
     : wxStyledTextCtrl(parent, id, pos, size, style)
 {
+    operatorAllowed_ = operatorAllowed;
     SetLexer(wxSTC_LEX_NULL);
     SetWrapMode(wxSTC_WRAP_NONE);
     SetMarginWidth(1, 0);
@@ -941,12 +942,13 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     SetExtraAscent(2);
     SetExtraDescent(2);
     SetMaxClientSize(wxSize(-1, TextHeight(0)));
-
+    SetWordChars("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.,;:!?'\"()[]{}<>/\\|-_=+*&^%@#$~");
     init();
 
     Bind(wxEVT_CHAR, &mmTagTextCtrl::OnKeyPressed, this);
     Bind(wxEVT_STC_CLIPBOARD_PASTE, &mmTagTextCtrl::OnPaste, this);
     Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
+    Bind(wxEVT_UPDATE_UI, &mmTagTextCtrl::OnChange, this);
     Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     Bind(wxEVT_CHAR_HOOK, [this](wxKeyEvent& event)
     {
@@ -1033,6 +1035,14 @@ void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
     event.Skip();
 }
 
+void mmTagTextCtrl::OnChange(wxCommandEvent& WXUNUSED(event))
+{
+    if (!IsEnabled())
+        StyleSetBackground(wxSTC_STYLE_DEFAULT, wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
+    else
+        StyleSetBackground(wxSTC_STYLE_DEFAULT, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+}
+
 void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 {
     int end = GetTextLength();
@@ -1065,7 +1075,7 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 /* Validates all tags passed in tagText, or the contents of the text control if tagText is blank */
 bool mmTagTextCtrl::ValidateTags(const wxString& tagText)
 {
-    int ip = GetInsertionPoint();
+     int ip = GetInsertionPoint();
 
     // If we are passed a string validate it, otherwise validate the text control contents
     wxString tags_in = tagText;
@@ -1081,8 +1091,15 @@ bool mmTagTextCtrl::ValidateTags(const wxString& tagText)
     tags_.clear();
 
     // parse the tags and prompt to create any which don't exist
-    for(const auto& tag : parseTags(tags_in))
+    for (const auto& tag : parseTags(tags_in))
     {
+        // ignore search operators
+        if (tag == "&" || tag == "|")
+        {
+            tags_out.Append(tag + " ");
+            continue;
+        }
+
         if (tag_map_.find(tag) == tag_map_.end())
         {
             // Prompt user to create a new tag
@@ -1113,7 +1130,7 @@ bool mmTagTextCtrl::ValidateTags(const wxString& tagText)
 }
 
 /* Return a list of tag IDs contained in the control */
-wxArrayInt mmTagTextCtrl::GetTagIDs() const
+const wxArrayInt mmTagTextCtrl::GetTagIDs() const
 {
     wxArrayInt tags_out;
     for (const auto& tag : tags_)
@@ -1129,6 +1146,14 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
     while (tokenizer.HasMoreTokens())
     {
         wxString token = tokenizer.GetNextToken();
+
+
+        // ignore search operators
+        if (token == "&" || token == "|")
+        {
+            if (operatorAllowed_) tags.Add(token);
+            continue;
+        }
 
         bool tagUsed = false;
         // if the tag has already been entered, skip it to avoid duplicates

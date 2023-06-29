@@ -351,13 +351,18 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     {
         for (rapidjson::SizeType i = 0; i < j_tags.Size(); i++)
         {
-            wxASSERT(j_tags[i].IsInt());
-            // Retrieve TAGNAME from TAGID
-            Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt());
-            if (tag)
+            if (j_tags[i].IsInt())
             {
-                s_tag.Append(tag->TAGNAME + " ");
+                // Retrieve TAGNAME from TAGID
+                Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt());
+                if (tag)
+                {
+                    s_tag.Append(tag->TAGNAME + " ");
+                }
             }
+            else
+            {
+                s_tag.Append(wxString(j_tags[i].GetString()).Append(" ").Prepend(" "));            }
         }
         tagTextCtrl_->SetText(s_tag);
         tagTextCtrl_->ValidateTags();
@@ -365,6 +370,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     }
     else
         tagCheckBox_->SetValue(false);
+    tagTextCtrl_->Enable(tagCheckBox_->IsChecked());
 
     //Notes
     wxString s_notes;
@@ -584,6 +590,14 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->AddSpacer(1);
     itemPanelSizer->Add(categorySubCatCheckBox_, g_flagsExpand);
 
+    // Tags
+    tagCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Tags")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(tagCheckBox_, g_flagsH);
+
+    tagTextCtrl_ = new mmTagTextCtrl(itemPanel, wxID_ANY, true);
+    itemPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
+
     // Status
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -646,14 +660,6 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     transNumberEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
-
-    // Tags
-    tagCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Tags")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(tagCheckBox_, g_flagsH);
-
-    tagTextCtrl_ = new mmTagTextCtrl(itemPanel, wxID_ANY);
-    itemPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
 
     // Notes
     notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes")
@@ -892,6 +898,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
+    tagTextCtrl_->Enable(tagCheckBox_->IsChecked());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
@@ -1086,11 +1093,11 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("Payee");
     column_names.Add("Status");
     column_names.Add("Category");
+    column_names.Add("Tags");
     column_names.Add("Type");
     column_names.Add("Amount");
     column_names.Add("Rate");
     column_names.Add("Notes");
-    column_names.Add("Tags");
     column_names.Add("UDFC01");
     column_names.Add("UDFC02");
     column_names.Add("UDFC03");
@@ -1291,16 +1298,33 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(int categid)
 
 bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int refId)
 {
-    std::set<int> tagids;
+    std::set<wxString> tagnames;
+    bool match = true;
 
-    for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(refType), Model_Taglink::REFID(refId)))
-        tagids.insert(tag.TAGID);
+    // store the set of tagnames attached to the transaction
+    for (const auto& taglink : Model_Taglink::instance().find(Model_Taglink::REFTYPE(refType), Model_Taglink::REFID(refId)))
+        tagnames.insert(Model_Tag::instance().get(taglink.TAGID)->TAGNAME);
 
-    for (int i : tagTextCtrl_->GetTagIDs())
-        if (tagids.find(i) == tagids.end())
-            return false;
+    if (tagnames.empty()) return false;
 
-    return true;
+    wxArrayString tags = tagTextCtrl_->GetTagStrings();
+    for (int i = 0; i < tags.GetCount(); i++)
+    {
+        wxString tag = tags.Item(i);
+        // if the tag is the "OR" operator, fetch the next tag and compare with OR
+        if (tags.Item(i) == "|" && i++ < tags.GetCount() - 1)
+            match |= tagnames.find(tags.Item(i)) != tagnames.end();
+        // if the tag is the "AND" operator, fetch the next tag and compare with AND
+        else if (tags.Item(i) == "&" && i++ < tags.GetCount() - 1)
+            match &= tagnames.find(tags.Item(i)) != tagnames.end();
+        // default compare with AND operator
+        else if (tags.Item(i) != "&" && tags.Item(i) != "|")
+            match &= tagnames.find(tags.Item(i)) != tagnames.end();
+
+        tag = tags.Item(i);
+    }
+
+    return match;
 }
 
 template<class MODEL, class DATA>
@@ -1455,16 +1479,26 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
         case kArrayType:
         {
             wxString temp;
+            bool appendOperator = false;
             for (const auto& a : itr->value.GetArray()) {
                 if (a.GetType() == kNumberType)
                 {
                     if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
-                        temp += (temp.empty() ? "" : ", ") + Model_Tag::instance().get(a.GetInt())->TAGNAME;
+                    {
+                        temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + Model_Tag::instance().get(a.GetInt())->TAGNAME;
+                        appendOperator = true;
+                    }
                     else
                         temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
                 }
                 else if (a.GetType() == kStringType)
-                    temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
+                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                    {
+                        temp += (temp.empty() ? "" : " " + wxString::FromUTF8(a.GetString()) + " ");
+                        appendOperator = false;
+                    }
+                    else
+                        temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
             }
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n", name, temp);
             break;
@@ -1629,10 +1663,15 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     {
         json_writer.Key((i18n ? _("Tags") : "TAGS").utf8_str());
         json_writer.StartArray();
-        for (const auto& tagId : tagTextCtrl_->GetTagIDs())
+
+        for (const auto& tag : tagTextCtrl_->GetTagStrings())
         {
-            json_writer.Int(tagId);
+            if (tag == "&" || tag == "|")
+                json_writer.String(tag.utf8_str());
+            else 
+                json_writer.Int(Model_Tag::instance().get(tag)->TAGID);
         }
+
         json_writer.EndArray();
     }
 

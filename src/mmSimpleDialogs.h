@@ -300,18 +300,21 @@ class mmTagTextCtrl : public wxStyledTextCtrl
 {
 public:
     mmTagTextCtrl(wxWindow* parent, wxWindowID id = wxID_ANY,
+        bool operatorAllowed = false,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize, long style = 0
     );
     bool IsValid();
     bool ValidateTags(const wxString& tagText = wxEmptyString);
-    wxArrayInt GetTagIDs() const;
+    const wxArrayInt GetTagIDs() const;
+    const wxArrayString GetTagStrings();
 
 protected:
     void OnKeyPressed(wxKeyEvent& event);
     void OnPaste(wxStyledTextEvent& event);
     void OnKillFocus(wxFocusEvent& event);
     void OnPaint(wxPaintEvent& event);
+    void OnChange(wxCommandEvent& event);
     void init();
 private:
     struct tagNameComparator {
@@ -323,8 +326,9 @@ private:
     std::map<wxString, int, tagNameComparator> tags_;
     wxString tags_autocomp_str;
     wxArrayString parseTags(const wxString& tagString);
+    bool operatorAllowed_;
 };
 
 inline bool mmTagTextCtrl::IsValid() { return ValidateTags(); }
-
+inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(GetText()); }
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

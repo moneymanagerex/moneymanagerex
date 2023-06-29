@@ -531,7 +531,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(bAuto, g_flagsH);
 
     // Tags  ---------------------------------------------
-    tags_stc_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS, wxDefaultPosition, wxDefaultSize);
+    tags_stc_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS);
     
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Tags")), g_flagsH);
     flex_sizer->Add(tags_stc_, g_flagsExpand);

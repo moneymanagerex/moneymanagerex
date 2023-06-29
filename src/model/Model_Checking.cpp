@@ -398,8 +398,13 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     }
 
     if (!m_tags.empty()) {
+        wxArrayString tagnames;
         for (const auto& entry : m_tags)
-            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + Model_Tag::instance().get(entry.TAGID)->TAGNAME;
+            tagnames.Add(Model_Tag::instance().get(entry.TAGID)->TAGNAME);
+        // Sort TAGNAMES
+        tagnames.Sort();
+        for (const auto& name : tagnames)
+            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
     }
 
     if (!m_splits.empty()) {
@@ -436,8 +441,13 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     }
 
     if (!m_tags.empty()) {
+        wxArrayString tagnames;
         for (const auto& entry : m_tags)
-            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + Model_Tag::instance().get(entry.TAGID)->TAGNAME;
+            tagnames.Add(Model_Tag::instance().get(entry.TAGID)->TAGNAME);
+        // Sort TAGNAMES
+        tagnames.Sort();
+        for (const auto& name : tagnames)
+            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
     }
 
     if (!m_splits.empty())
