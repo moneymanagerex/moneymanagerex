@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-29 09:19\n"
+"PO-Revision-Date: 2023-06-29 10:23\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2067,7 +2067,7 @@ msgstr "Reguláris kifejezés"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
-msgstr "A mező érvényesítéséhez írjon be szabványos kifejezést.."
+msgstr "Írja be a reguláris kifejezés érvényesítéséhez mezőt"
 
 #: customfieldeditdialog.cpp:167
 msgid "Autocomplete"
@@ -3682,17 +3682,17 @@ msgstr "Az összegjelet típus szerint kell megadni, amikor a „Típus” van k
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "%s értéke egyéni mezőben: „%s” nem %s típusú."
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "%s értéke a következőhöz: %s egyéni mező: %s nem érvényes kijelölés."
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Erősítse meg, hogy a formátum megfelel a(z) %s elemnek."
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
@@ -4404,8 +4404,8 @@ msgstr "Többes kijelölés"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr "A(z) \"%s\" felhasználói mezőt nem tudom menteni:\n"
-"az érték \"%s\" nem felel meg a RegEx hitelesítésnek \"%s\""
+msgstr "Nem sikerült menteni a(z) „%s” egyéni mezőt:\n"
+"a(z) „%s” érték nem egyezik a(z) „%s” reguláris kifejezés érvényesítésével"
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
