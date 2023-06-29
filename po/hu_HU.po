@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-28 22:30\n"
+"PO-Revision-Date: 2023-06-29 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2063,7 +2063,7 @@ msgstr "Megjelenő elemleírás megadása"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
-msgstr "RegEx"
+msgstr "Reguláris kifejezés"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
@@ -2600,7 +2600,7 @@ msgstr "Írjon be bármit, a tranzakciók megjegyzéseiben kereséséhez"
 
 #: filtertransdialog.cpp:640 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr "regex (reguláris kifejezés) használata: reguláris kifejezésekkel való egyeztetéshez."
+msgstr "Reguláris kifejezés használata: reguláris kifejezésekkel való egyeztetéshez."
 
 #: filtertransdialog.cpp:663
 msgid "Presentation Options"
@@ -3697,7 +3697,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
 msgid "Value %s does not match regex %s for custom field '%s'."
-msgstr ""
+msgstr "A(z) %s érték nem egyezik a(z) %s reguláris kifejezéssel a(z) „%s” egyéni mezőben."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3772,7 +3772,7 @@ msgstr "Biztosan törölni szeretné a kijelölt pénznemet?"
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 optionsettingsgeneral.cpp:301
 msgid "Organise Currencies"
-msgstr ""
+msgstr "Pénznem rendszerezése"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4796,11 +4796,11 @@ msgstr "Kedvezményezettek rendszerezése"
 
 #: mmframe.cpp:1688
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "&Pénznem rendszerezése…"
 
 #: mmframe.cpp:1688
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Pénznem rendszerezése"
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4880,7 +4880,7 @@ msgstr "&Beállítások…\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "Beállítások párbeszédpanel"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5084,7 +5084,7 @@ msgstr "&Névjegy"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "Névjegy párbeszédpanel"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5112,11 +5112,11 @@ msgstr "Új"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "Kategóriák rendszerezésének párbeszédpanel"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "Kedvezményezettek rendszerezésének párbeszédpanel"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5124,7 +5124,7 @@ msgstr "Pénznem rendszerezése"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "Pénznem rendszerezésének párbeszédpanel"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5148,7 +5148,7 @@ msgstr "&Nyomtatás"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Súgófájlok"
 
 #: mmframe.cpp:1985
 #, c-format
