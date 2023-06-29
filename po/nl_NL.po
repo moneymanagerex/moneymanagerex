@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-28 22:31\n"
+"PO-Revision-Date: 2023-06-29 04:06\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3683,12 +3683,12 @@ msgstr "Bedrag teken moet worden gedefinieerd op type wanneer 'Type' is geselect
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "Waarde %s voor aangepast veld '%s' is niet type %s."
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "Waarde %s voor %s aangepast veld '%s' is geen geldige selectie."
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
