@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-29 13:06\n"
+"PO-Revision-Date: 2023-06-29 14:12\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3693,22 +3693,22 @@ msgstr "Знак суммы должен быть определен по тип
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "Значение %s для пользовательского поля '%s' не является типом %s."
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "Значение %s для пользовательского поля %s '%s' не является допустимым выбором."
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Подтвердите соответствие выбранного формата %s."
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
 msgid "Value %s does not match regex %s for custom field '%s'."
-msgstr ""
+msgstr "Значение %s не соответствует регулярному выражению %s для пользовательского поля '%s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3783,7 +3783,7 @@ msgstr "Вы действительно хотите удалить выбран
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 optionsettingsgeneral.cpp:301
 msgid "Organise Currencies"
-msgstr ""
+msgstr "Редактор валют"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4830,11 +4830,11 @@ msgstr "Редактор получателей"
 
 #: mmframe.cpp:1688
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "Редактор &валют..."
 
 #: mmframe.cpp:1688
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Редактор валют"
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4914,7 +4914,7 @@ msgstr "&Настройки...\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "Параметры приложения"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5118,7 +5118,7 @@ msgstr "О програ&мме"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "Диалог «О программе»"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5146,11 +5146,11 @@ msgstr "С&оздать"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "Редактор категорий"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "Редактор получателей"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5158,7 +5158,7 @@ msgstr "&Валюта"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "Редактор валют"
 
 #: mmframe.cpp:1909
 msgid "&Options"
