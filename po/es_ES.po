@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-28 22:30\n"
+"POT-Creation-Date: 2023-06-29 17:27+0300\n"
+"PO-Revision-Date: 2023-06-29 15:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3565,6 +3565,10 @@ msgstr "Línea %ld: %s"
 msgid "Line %ld: OK, imported."
 msgstr "Línea %ld: OK, importado."
 
+#: import_export/univcsvdialog.cpp:1458
+msgid "Rejected rows:"
+msgstr ""
+
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
 msgid "Total Lines: %ld"
@@ -3770,7 +3774,7 @@ msgstr "¿Desea eliminar la divisa seleccionada?"
 
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
-#: maincurrencydialog.cpp:813 optionsettingsgeneral.cpp:301
+#: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
 msgid "Organise Currencies"
 msgstr ""
 
@@ -4794,11 +4798,7 @@ msgid "Organize Payees"
 msgstr "Organizar beneficiarios"
 
 #: mmframe.cpp:1688
-msgid "Organize Curre&ncies..."
-msgstr ""
-
-#: mmframe.cpp:1688
-msgid "Organize Currencies"
+msgid "Organise Curre&ncies..."
 msgstr ""
 
 #: mmframe.cpp:1692
