@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 01:23+0300\n"
-"PO-Revision-Date: 2023-06-28 22:31\n"
+"PO-Revision-Date: 2023-06-29 13:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5182,7 +5182,7 @@ msgstr "&Печать"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Файлы помощи"
 
 #: mmframe.cpp:1985
 #, c-format
