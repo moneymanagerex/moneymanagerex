@@ -1455,7 +1455,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     // so that users can easily copy/paste errored records for reimport
     if (!rejectedRows.IsEmpty())
     {
-        *log_field_ << "\nRejected rows:\n" << rejectedRows;
+        *log_field_ << "\n" << _("Rejected rows:") << "\n" << rejectedRows;
         log << "\nRejected rows:\n" << rejectedRows;
     }
     progressDlg.Update(linesToImport);
