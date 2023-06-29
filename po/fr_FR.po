@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"PO-Revision-Date: 2023-06-29 16:25\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3569,7 +3569,7 @@ msgstr "Ligne %ld: OK, importé."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Lignes rejetées :"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -4801,7 +4801,7 @@ msgstr "Gestion des tiers"
 
 #: mmframe.cpp:1688
 msgid "Organise Curre&ncies..."
-msgstr ""
+msgstr "Gérer les devises..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
