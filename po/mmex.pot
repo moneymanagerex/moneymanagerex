@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1677,7 +1677,7 @@ msgid "Category with same name exists for this parent"
 msgstr ""
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
+msgid "Organize Categories: Adding Error"
 msgstr ""
 
 #: categdialog.cpp:437
@@ -1734,7 +1734,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr ""
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr ""
 
 #: categdialog.cpp:510
@@ -1767,7 +1767,7 @@ msgid "Category with same name exists for the parent"
 msgstr ""
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr ""
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -3775,7 +3775,7 @@ msgstr ""
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
+msgid "Organize Currencies"
 msgstr ""
 
 #: maincurrencydialog.cpp:394
@@ -4800,7 +4800,7 @@ msgid "Organize Payees"
 msgstr ""
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
+msgid "Organize Curre&ncies..."
 msgstr ""
 
 #: mmframe.cpp:1692

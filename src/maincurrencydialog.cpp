@@ -363,7 +363,7 @@ void mmMainCurrencyDialog::OnBtnDelete()
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     if (!currency) return;
     if (wxMessageBox(_("Do you really want to delete the selected Currency?")
-        , _("Organise Currencies")
+        , _("Organize Currencies")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR) == wxYES)
     {
         Model_Currency::instance().remove(m_currency_id);
@@ -434,7 +434,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                     if (wxMessageBox(wxString::Format(_(
                         "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
                         "click no and enable it or click yes to remove all historic rates for %s"),
-                        currency->CURRENCY_SYMBOL, currency->CURRENCY_SYMBOL), _("Organise Currencies")
+                        currency->CURRENCY_SYMBOL, currency->CURRENCY_SYMBOL), _("Organize Currencies")
                         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) == wxYES)
                     {
                         Model_CurrencyHistory::instance().Savepoint();
@@ -661,7 +661,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
     int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
-        , _("Organise Currencies")
+        , _("Organize Currencies")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     bool isCheckDate = msgResult == wxNO;
 
@@ -786,7 +786,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     if (bHistoryEnabled_)
     {
         if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
-            , _("Organise Currencies")
+            , _("Organize Currencies")
             , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
             return true;
     }
@@ -810,7 +810,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
     if (wxMessageBox(_("Do you want to update today currency rates?")
-            , _("Organise Currencies")
+            , _("Organize Currencies")
             , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION) != wxYES)
         return true;
     OnlineUpdateCurRate();
