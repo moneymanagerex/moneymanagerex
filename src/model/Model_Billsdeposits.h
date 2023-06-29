@@ -86,6 +86,7 @@ public:
         int NUMOCCURRENCES;
         // This relates the 'Date Paid' field.
         wxString NEXTOCCURRENCEDATE;
+        int COLOR = -1;
     };
 
     struct Full_Data : public Data

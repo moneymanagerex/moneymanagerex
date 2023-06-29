@@ -662,7 +662,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     bool in_the_future = (tran.TRANSDATE > m_today);
 
     // apply alternating background pattern
-    int user_color_id = tran.FOLLOWUPID;
+    int user_color_id = tran.COLOR;
     if (user_color_id < 0) user_color_id = 0;
     else if (user_color_id > 7) user_color_id = 0;
 
@@ -1358,7 +1358,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
         Model_Checking::Data* transaction = Model_Checking::instance().get(i);
         if (transaction)
         {
-            transaction->FOLLOWUPID = user_color_id;
+            transaction->COLOR = user_color_id;
             Model_Checking::instance().save(transaction);
         }
     }

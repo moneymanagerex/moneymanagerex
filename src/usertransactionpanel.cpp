@@ -483,6 +483,7 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->TRANSDATE = trxDate;
     m_checking_entry->FOLLOWUPID = 0;
     m_checking_entry->TOTRANSAMOUNT = m_checking_entry->TRANSAMOUNT;
+    m_checking_entry->COLOR = 0;
 
     return Model_Checking::instance().save(m_checking_entry);
 }

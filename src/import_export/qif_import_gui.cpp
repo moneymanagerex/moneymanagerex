@@ -1325,9 +1325,9 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     trx->STATUS = status;
 
     int color_id = mmColorBtn_->GetColorId();
-    trx->FOLLOWUPID = -1;
+    trx->COLOR = -1;
     if (colorCheckBox_->IsChecked() && color_id > 0 && color_id < 8)
-        trx->FOLLOWUPID = color_id;
+        trx->COLOR = color_id;
 
     const wxString value = mmTrimAmount(t.find(Amount) != t.end() ? t[Amount] : "", decimal_, ".");
     if (value.empty())

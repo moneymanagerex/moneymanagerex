@@ -1428,7 +1428,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         pTransaction->NOTES = holder.Notes;
         if (payeeMatchAddNotes_->IsChecked() && !holder.PayeeMatchNotes.IsEmpty())
             pTransaction->NOTES.Append(holder.PayeeMatchNotes);
-        pTransaction->FOLLOWUPID = color_id;
+        pTransaction->COLOR = color_id;
 
         Model_Checking::instance().save(pTransaction);
 
