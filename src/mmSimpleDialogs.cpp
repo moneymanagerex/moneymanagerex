@@ -970,7 +970,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
             else if (AutoCompActive())
                 AutoCompComplete();
 
-            ValidateTags();
+            Validate();
             return;
         } else
             event.Skip();
@@ -997,7 +997,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
     {
         AutoCompCancel();
         InsertText(GetInsertionPoint(), " ");
-        ValidateTags();
+        Validate();
         return;
     }
     else if (code != WXK_NONE && code > 32) {
@@ -1025,7 +1025,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
 void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
 {
     wxString currText = GetText();
-    ValidateTags(currText.insert(GetInsertionPoint(), event.GetString()));
+    Validate(currText.insert(GetInsertionPoint(), event.GetString()));
     event.SetString("");
 }
 
@@ -1073,7 +1073,7 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 }
 
 /* Validates all tags passed in tagText, or the contents of the text control if tagText is blank */
-bool mmTagTextCtrl::ValidateTags(const wxString& tagText)
+bool mmTagTextCtrl::Validate(const wxString& tagText)
 {
      int ip = GetInsertionPoint();
 

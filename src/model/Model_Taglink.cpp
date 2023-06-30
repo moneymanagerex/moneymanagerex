@@ -111,8 +111,13 @@ int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int ref
         instance().save(taglinks);
     }
 
-    if (updateTimestamp && refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
-        Model_Checking::instance().updateTimestamp(refId);
+    if (updateTimestamp)
+    {
+        if (refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+            Model_Checking::instance().updateTimestamp(refId);
+        else if (refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
+            Model_Checking::instance().updateTimestamp(Model_Splittransaction::instance().get(refId)->TRANSID);
+    }
 
     return rows.size();
 }

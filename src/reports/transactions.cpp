@@ -460,14 +460,17 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                 full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                 full_tran.NOTES = tran.NOTES;
-                Model_Checking::Data splitWithTranNotes = full_tran;
-                Model_Checking::Data splitWithSplitNotes = splitWithTranNotes;
-                splitWithSplitNotes.NOTES = split.NOTES;
-                if (dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes) ||
-                    dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTranNotes))
+                Model_Checking::Data splitWithTranData = full_tran;
+                if (dlg.get()->mmIsSplitRecordMatches<Model_Splittransaction>(split) ||
+                    dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTranData))
                 {
                     match = true;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
+                    wxString splitTags;
+                    for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)),
+                        Model_Taglink::REFID(split.SPLITTRANSID)))
+                        splitTags.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
+                    full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + splitTags);
                     if (!combine_splits) trans_.push_back(full_tran);
                     else single_tran.TRANSAMOUNT += full_tran.TRANSAMOUNT;
                 }

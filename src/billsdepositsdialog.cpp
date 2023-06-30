@@ -158,8 +158,12 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         m_bill_data.TRANSCODE = bill->TRANSCODE;
         m_bill_data.FOLLOWUPID = bill->FOLLOWUPID;
         //
+        const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
-            m_bill_data.local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, item.NOTES });
+            wxArrayInt tags;
+            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
+                tags.Add(tag.TAGID);
+            m_bill_data.local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, tags, item.NOTES });
         }
 
         // If duplicate then we may need to copy the attachments

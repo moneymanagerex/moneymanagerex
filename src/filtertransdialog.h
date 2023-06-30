@@ -53,6 +53,8 @@ public:
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool mmIsRecordMatches(const DATA& tran);
+    template<class MODEL, class DATA = typename MODEL::DATA>
+    bool mmIsSplitRecordMatches(const DATA& split);
     const wxString mmGetDescriptionToolTip() const;
     const wxString mmGetCategoryPattern() const;
     void mmGetDescription(mmHTMLBuilder &hb);

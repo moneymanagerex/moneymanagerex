@@ -109,8 +109,14 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     {
         Model_Checking::getTransactionData(m_trx_data, transaction);
         const auto s = Model_Checking::splittransaction(transaction);
+        const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
         for (const auto& item : s)
-            m_local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, item.NOTES });
+        {
+            wxArrayInt tags;
+            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
+                tags.Add(tag.TAGID);
+            m_local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, tags, item.NOTES });
+        }
 
         if (m_duplicate && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
         {
@@ -316,7 +322,7 @@ void mmTransDialog::dataToControls()
     cbToAccount_->Show(m_transfer);
     Layout();
 
-    bool has_split = !m_local_splits.empty();
+    bool has_split = !(m_local_splits.size() <= 1);
     if (!skip_category_init_)
     {
         bSplit_->UnsetToolTip();
@@ -347,7 +353,7 @@ void mmTransDialog::dataToControls()
         skip_category_init_ = true;
     }
 
-    m_textAmount->Enable(m_local_splits.empty());
+    m_textAmount->Enable(!has_split);
     cbCategory_->Enable(!has_split);
     bSplit_->Enable(!m_transfer);
 
@@ -360,7 +366,7 @@ void mmTransDialog::dataToControls()
             tagString.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
         tags_stc_->SetEvtHandlerEnabled(false);
         tags_stc_->SetText(tagString);
-        tags_stc_->ValidateTags();
+        tags_stc_->Validate();
         tags_stc_->SetEvtHandlerEnabled(true);
         skip_tag_init_ = true;
     }
@@ -1040,6 +1046,8 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         Split s;
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
+        tags_stc_->Validate();
+        s.TAGS = tags_stc_->GetTagIDs();
         s.NOTES = textNotes_->GetValue();
         m_local_splits.push_back(s);
     }
@@ -1059,6 +1067,9 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
             m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
             textNotes_->SetValue(m_local_splits[0].NOTES);
             m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+            tags_stc_->ClearAll();
+            for (const auto& tag : m_local_splits[0].TAGS)
+                tags_stc_->AddText(Model_Tag::instance().get(tag)->TAGNAME + " ");
             m_local_splits.clear();
         }
 
@@ -1071,6 +1082,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         skip_tooltips_init_ = false;
         dataToControls();
     }
+    tags_stc_->mmDoReInitialize();
 }
 
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
@@ -1176,6 +1188,21 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
+    const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+
+    for (int i = 0; i < m_local_splits.size(); i++)
+    {
+        Model_Taglink::Data_Set splitTaglinks;
+        for (const auto& tag : m_local_splits.at(i).TAGS)
+        {
+            Model_Taglink::Data* t = Model_Taglink::instance().create();
+            t->REFTYPE = splitRefType;
+            t->REFID = splt.at(i).SPLITTRANSID;
+            t->TAGID = tag;
+            splitTaglinks.push_back(*t);
+        }
+        Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
+    }
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     if (m_new_trx || m_duplicate)
     {
@@ -1186,8 +1213,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     // Save tags
     Model_Taglink::Data_Set taglinks;
-    wxArrayInt tags = tags_stc_->GetTagIDs();
-    for (const auto& tag : tags)
+    for (const auto& tag : tags_stc_->GetTagIDs())
     {
         Model_Taglink::Data* t = Model_Taglink::instance().create();
         t->REFTYPE = RefType;

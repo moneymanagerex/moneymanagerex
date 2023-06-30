@@ -1724,8 +1724,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         value = tran.NOTES;
         if (!tran.displayID.Contains("."))
         {
-            auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(tran.TRANSID));
-            for (const auto& split : splits)
+            for (const auto& split : tran.m_splits)
                 value += wxString::Format(" %s", split.NOTES);
         }
         value.Replace("\n", " ");
@@ -1734,7 +1733,20 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return value.Trim(false);
     }
     case TransactionListCtrl::COL_TAGS:
-        return tran.TAGNAMES;
+        value = tran.TAGNAMES;
+        if (!tran.displayID.Contains("."))
+        {
+            for (const auto& split : tran.m_splits)
+            {
+                wxString splitTags;
+                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)),
+                    Model_Taglink::REFID(split.SPLITTRANSID)))
+                    splitTags.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
+
+                value.Append((value.IsEmpty() ? "" : ", ") + splitTags);
+            }
+        }
+        return value.Trim();
     case TransactionListCtrl::COL_DELETEDTIME:
         datetime.ParseISOCombined(tran.DELETEDTIME);        
         if(!datetime.IsValid())

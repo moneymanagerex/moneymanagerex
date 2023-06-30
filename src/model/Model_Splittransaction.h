@@ -28,6 +28,7 @@ struct Split
 {
     int CATEGID;
     double SPLITTRANSAMOUNT;
+    wxArrayInt TAGS;
     wxString NOTES;
 };
 
@@ -57,7 +58,7 @@ public:
     static double get_total(const std::vector<Split>& local_splits);
     static const wxString get_tooltip(const std::vector<Split>& local_splits, const Model_Currency::Data* currency);
     std::map<int, Model_Splittransaction::Data_Set> get_all();
-    int update(const Data_Set& rows, int transactionID);
+    int update(Data_Set& rows, int transactionID);
 };
 
 #endif // 

@@ -305,9 +305,10 @@ public:
         const wxSize& size = wxDefaultSize, long style = 0
     );
     bool IsValid();
-    bool ValidateTags(const wxString& tagText = wxEmptyString);
+    virtual bool Validate(const wxString& tagText = wxEmptyString);
     const wxArrayInt GetTagIDs() const;
     const wxArrayString GetTagStrings();
+    void mmDoReInitialize();
 
 protected:
     void OnKeyPressed(wxKeyEvent& event);
@@ -329,6 +330,7 @@ private:
     bool operatorAllowed_;
 };
 
-inline bool mmTagTextCtrl::IsValid() { return ValidateTags(); }
+inline bool mmTagTextCtrl::IsValid() { return Validate(); }
 inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(GetText()); }
+inline void mmTagTextCtrl::mmDoReInitialize() { init(); }
 #endif // MM_EX_MMSIMPLEDIALOGS_H_
