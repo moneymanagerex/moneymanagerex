@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-06-30 04:18\n"
+"PO-Revision-Date: 2023-06-30 05:31\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -332,7 +332,7 @@ msgstr "Utwórz nowy plik bazy danych aby zacząć od nowa"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "&Otwórz istniejącą bazę danych"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "Otwórz istniejącą bazę danych z rozszerzeniem (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Język interfejsu użytkownika"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Zmień język interfejsu"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Instrukcja"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -361,15 +361,15 @@ msgstr "Strona &internetowa"
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Odwiedź stronę %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Pokaż to okno przy starcie programu"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "&Zakończ "
 
 #: appstartdialog.cpp:155
 #, c-format
