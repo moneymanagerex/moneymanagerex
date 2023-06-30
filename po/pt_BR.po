@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-06-30 12:54\n"
+"PO-Revision-Date: 2023-06-30 15:51\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5112,11 +5112,11 @@ msgstr "Novo(a)"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "Gerenciador de Categorias"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "Gerenciador de Beneficiários"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5124,7 +5124,7 @@ msgstr "Organizar Moedas"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "Gerenciador de Moedas"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5148,7 +5148,7 @@ msgstr "&Imprimir"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Arquivos de ajuda"
 
 #: mmframe.cpp:1985
 #, c-format
