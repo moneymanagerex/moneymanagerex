@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-06-30 17:11\n"
+"PO-Revision-Date: 2023-06-30 18:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Аўтары"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
-msgstr "Падтрымка"
+msgstr "Спонсары"
 
 #: aboutdialog.cpp:196
 msgid "License"
@@ -70,19 +70,19 @@ msgstr "&Добра "
 
 #: accountdialog.cpp:95 mmframe.cpp:1655
 msgid "Edit Account"
-msgstr "Рыдагаваць Рахунак"
+msgstr "Рыдагаваць рахунак"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "Назва Рахунка:"
+msgstr "Назва рахунка:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Пакажыце назву Рахунку. Гэтая назва можа быць змененая ў будзь-які час."
+msgstr "Пакажыце назву рахунка. Гэтая назва можа быць змененая ў будзь-які час."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
-msgstr "Тып Рахунка:"
+msgstr "Тып рахунка:"
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:129
 msgid "Specify the type of account to be created."
@@ -90,7 +90,7 @@ msgstr "Вызначыце тып рахунка, што будзе створа
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr "Стан Рахунка:"
+msgstr "Стан рахунка:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
