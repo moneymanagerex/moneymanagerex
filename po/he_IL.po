@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-07-01 17:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1679,8 +1679,8 @@ msgid "Category with same name exists for this parent"
 msgstr "סוג־אב בעל שם דומה קיים כבר עבור הורה זה"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
-msgstr "ניהול : הוספת שגיאה"
+msgid "Organize Categories: Adding Error"
+msgstr "ניהול סוגי־אב: הוספת שגיאה"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1738,8 +1738,8 @@ msgid "Tools → Relocation of → Categories"
 msgstr "כלים ← מיקום מחדש ← סוגי־אב"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
-msgstr "ניהול : מחיקת שגיאה"
+msgid "Organize Categories: Delete Error"
+msgstr "ניהול סוגי־אב: מחיקת שגיאה"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1771,8 +1771,8 @@ msgid "Category with same name exists for the parent"
 msgstr "סוג־אב בשם זהה קיים כבר עבור ההורה"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
-msgstr "ניהול : שגיאת עריכה"
+msgid "Organize Categories: Editing Error"
+msgstr "ניהול סוגי־אב: עריכת שגיאה"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
 msgid "Category Relocation Completed."
@@ -3578,7 +3578,7 @@ msgstr "שורה %ld: יובא בהצלחה."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "שורות שנדחו:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3697,12 +3697,12 @@ msgstr "סימן סכום חייב להיות שונה לפי סוג כאשר ב
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "ערך %s בשדה מותאם אישית '%s' אינו סוג %s."
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "ערך %s ל־'%s' שדה מותאם אישית %s אינו בחירה תקינה."
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
@@ -3786,8 +3786,8 @@ msgstr "האם למחוק את המטבע שנבחר?"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
-msgstr ""
+msgid "Organize Currencies"
+msgstr "ניהול מטבעות"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4833,8 +4833,8 @@ msgid "Organize Payees"
 msgstr "ניהול מוטבים"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
-msgstr ""
+msgid "Organize Curre&ncies..."
+msgstr "ניהול מ&טבעות..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4914,7 +4914,7 @@ msgstr "&אפשרויות... Ctrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "דו־שיח אפשרויות"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5118,7 +5118,7 @@ msgstr "&על אודות"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "דו־שיח על־אודות"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5146,11 +5146,11 @@ msgstr "חדש"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "דו־שיח ניהול סוגי־אב"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "דו־שיח ניהול מוטבים"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5158,7 +5158,7 @@ msgstr "ניהול מטבעות"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "דו־שיח ניהול מטבעות"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5182,7 +5182,7 @@ msgstr "&הדפסה"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "קובצי עזרה"
 
 #: mmframe.cpp:1985
 #, c-format
