@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-07-01 12:17\n"
+"PO-Revision-Date: 2023-07-01 13:38\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1432,7 +1432,7 @@ msgstr "Despesa"
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr "Receita"
+msgstr "Receitas"
 
 #: budgetentrydialog.cpp:126
 msgid "Specify whether this category is an income or an expense category"
