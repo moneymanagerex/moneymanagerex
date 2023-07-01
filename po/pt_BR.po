@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-06-30 23:04\n"
+"PO-Revision-Date: 2023-07-01 12:17\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1675,7 +1675,7 @@ msgstr "Existe uma categoria com o mesmo nome para este principal"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
-msgstr "Organizar categorias: adicionando erro"
+msgstr "Organizar Categorias: Erro ao Adicionar"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1734,7 +1734,7 @@ msgstr "Ferramentas → Realocação de → Categorias"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
-msgstr "Organizar categorias: deletar erro"
+msgstr "Organizar Categorias: Erro ao Excluir"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1767,7 +1767,7 @@ msgstr "Existe uma categoria com o mesmo nome para este principal"
 
 #: categdialog.cpp:635
 msgid "Organize Categories: Editing Error"
-msgstr "Organizar categorias: editar erro"
+msgstr "Organizar Categorias: Erro ao Editar"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
 msgid "Category Relocation Completed."
@@ -3777,7 +3777,7 @@ msgstr "Você realmente deseja eliminar a moeda selecionada?"
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr "Organizar Moedas"
+msgstr "Gerenciador de Moedas"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4800,7 +4800,7 @@ msgstr "Organizar Beneficiários"
 
 #: mmframe.cpp:1688
 msgid "Organize Curre&ncies..."
-msgstr "Organizar Moe&das..."
+msgstr "Gerenciar Moedas..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
