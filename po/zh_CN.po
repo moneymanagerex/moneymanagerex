@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-07-03 03:02\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1671,8 +1671,8 @@ msgid "Category with same name exists for this parent"
 msgstr "该父类存在相同名称的分类"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
-msgstr "类目管理：添加错误"
+msgid "Organize Categories: Adding Error"
+msgstr ""
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1730,8 +1730,8 @@ msgid "Tools → Relocation of → Categories"
 msgstr "工具 →移动类目或转移收款人→类目"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
-msgstr "类目管理：删除错误"
+msgid "Organize Categories: Delete Error"
+msgstr ""
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1763,8 +1763,8 @@ msgid "Category with same name exists for the parent"
 msgstr "父类存在相同名称的类别"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
-msgstr "类目管理：编辑错误"
+msgid "Organize Categories: Editing Error"
+msgstr ""
 
 #: categdialog.cpp:692 mmframe.cpp:3640
 msgid "Category Relocation Completed."
@@ -3563,7 +3563,7 @@ msgstr "行 %ld：正常，已导入。"
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "拒绝的行："
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3682,7 +3682,7 @@ msgstr "当选择要导入的“类型”时，必须按类型定义数量标志
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "自定义字段 '%s' 的值 %s 不是类型 %s。"
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
@@ -3692,12 +3692,12 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "确认格式与选择 %s 匹配。"
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
 msgid "Value %s does not match regex %s for custom field '%s'."
-msgstr ""
+msgstr "值 %s 与自定义字段 '%s' 的正则表达式 %s 不匹配。"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3771,7 +3771,7 @@ msgstr "您真的要删除选定的货币吗？"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
+msgid "Organize Currencies"
 msgstr ""
 
 #: maincurrencydialog.cpp:394
@@ -4782,7 +4782,7 @@ msgid "Organize Payees"
 msgstr "收款人管理"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
+msgid "Organize Curre&ncies..."
 msgstr ""
 
 #: mmframe.cpp:1692
@@ -4863,7 +4863,7 @@ msgstr "选项(&O)...\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "选项对话框"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5067,7 +5067,7 @@ msgstr "关于(&A)"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "关于对话框"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5095,7 +5095,7 @@ msgstr "新增"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "组织类别对话框"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
