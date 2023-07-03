@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-07-03 03:02\n"
+"PO-Revision-Date: 2023-07-03 04:14\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5099,7 +5099,7 @@ msgstr "组织类别对话框"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "组织收款人对话框"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5107,7 +5107,7 @@ msgstr "货币管理"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "组织货币对话框"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5131,7 +5131,7 @@ msgstr "打印(&P)"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "帮助文件"
 
 #: mmframe.cpp:1985
 #, c-format
