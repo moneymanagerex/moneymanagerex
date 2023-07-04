@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-07-01 17:06\n"
+"PO-Revision-Date: 2023-07-04 08:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3707,12 +3707,12 @@ msgstr "ערך %s ל־'%s' שדה מותאם אישית %s אינו בחירה �
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "אישור שהמבנה תואם לבחירה %s."
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
 msgid "Value %s does not match regex %s for custom field '%s'."
-msgstr ""
+msgstr "ערך %s לא תואם לביטוי־רגיל%s לשדה מותאם־אישית'%s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
