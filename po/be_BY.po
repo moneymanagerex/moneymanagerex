@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-06-30 18:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Аўтары"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
-msgstr "Падтрымка"
+msgstr "Спонсары"
 
 #: aboutdialog.cpp:196
 msgid "License"
@@ -70,31 +70,31 @@ msgstr "&Добра "
 
 #: accountdialog.cpp:95 mmframe.cpp:1655
 msgid "Edit Account"
-msgstr "Рыдагаваць Рахунак"
+msgstr "Рыдагаваць рахунак"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "Назва Рахунка:"
+msgstr "Назва рахунка:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Пакажыце назву Рахунку. Гэтая назва можа быць змененая ў будзь-які час."
+msgstr "Пакажыце назву рахунка. Гэтая назва можа быць змененая ў будзь-які час."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
-msgstr "Тып Рахунка:"
+msgstr "Тып рахунка:"
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:129
 msgid "Specify the type of account to be created."
-msgstr "Вызначце тып рахунка, што будзе створаны."
+msgstr "Вызначыце тып рахунка, што будзе створаны."
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr "Стан Рахунка:"
+msgstr "Стан рахунка:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Вызначце, ці быў гэты Рахунак зачынены. Зачыненыя рахункі неактыўныя ў большасці разлікаў, справаздачнасці і г.д."
+msgstr "Вызначыце, ці быў гэты рахунак зачынены. Зачыненыя рахункі неактыўныя ў большасці разлікаў, справаздачнасці і г.д."
 
 #: accountdialog.cpp:149
 #, c-format
@@ -1443,7 +1443,7 @@ msgstr "Прыбытак"
 
 #: budgetentrydialog.cpp:126
 msgid "Specify whether this category is an income or an expense category"
-msgstr "Вызначце, ці з'яўляецца гэтая катэгорыя прыбыткам або выдаткам"
+msgstr "Вызначыце, ці з'яўляецца гэтая катэгорыя прыбыткам або выдаткам"
 
 #: budgetentrydialog.cpp:128
 msgid "Frequency:"
@@ -1681,7 +1681,7 @@ msgid "Category with same name exists for this parent"
 msgstr "Катыгорыя з такім імем ужо існуе для гэтай бацькоўскай катыгорыі"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
+msgid "Organize Categories: Adding Error"
 msgstr "Дыспетчар катыгорыяў: памылка дадавання"
 
 #: categdialog.cpp:437
@@ -1738,7 +1738,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr "Прылады → Перасоўванне → Катыгорыі..."
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr "Дыспетчар катыгорыяў: памылка выдалення"
 
 #: categdialog.cpp:510
@@ -1771,7 +1771,7 @@ msgid "Category with same name exists for the parent"
 msgstr "Катыгорыя з такім імем ужо існуе для гэтай бацькоўскай катыгорыі"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr "Дыспетчар катыгорыяў: памылка рыдагавання"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -3578,7 +3578,7 @@ msgstr "Радок %ld: слушны, імпартаваны."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Адхіленыя радкі:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3697,22 +3697,22 @@ msgstr "Знак сумы мае вызначацца тыпам, калі ён 
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "Значэнне %s для карыстальніцкага поля '%s' не з'яўляецца тыпам %s."
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "Значэнне %s для карыстальніцкага поля %s '%s' не з'яўляецца слушным выбарам."
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Пацвердзіце, што фармат адпавядае выбару %s."
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
 msgid "Value %s does not match regex %s for custom field '%s'."
-msgstr ""
+msgstr "Значэнне %s не адпавядае рыгулярнаму выразу %s для карыстальніцкага поля '%s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3786,8 +3786,8 @@ msgstr "Вы сапраўды хочаце выдаліць абраную ва�
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
-msgstr ""
+msgid "Organize Currencies"
+msgstr "Дыспетчар валютаў"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4834,8 +4834,8 @@ msgid "Organize Payees"
 msgstr "Дыспетчар платнікоў"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
-msgstr ""
+msgid "Organize Curre&ncies..."
+msgstr "Дыспетчар вал&ютаў..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4915,7 +4915,7 @@ msgstr "&Налады...\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "Дыспетчар наладаў"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5119,7 +5119,7 @@ msgstr "Пра &нас"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "Звесткі пра дыспетчара"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5147,11 +5147,11 @@ msgstr "Стварыць"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "Адчыніць дыспетчар катыгорыяў"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "Адчыніць дыспетчар платнікоў"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5159,7 +5159,7 @@ msgstr "Уладкаваць валюты"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "Адчыніць дыспетчар валютаў"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5183,7 +5183,7 @@ msgstr "&Друкаваць"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Файлы дапамогі"
 
 #: mmframe.cpp:1985
 #, c-format

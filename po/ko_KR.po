@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-06-30 05:31\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1671,8 +1671,8 @@ msgid "Category with same name exists for this parent"
 msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
-msgstr "범주 구성: 오류 추가 중"
+msgid "Organize Categories: Adding Error"
+msgstr "범주 구성: 추가 오류"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1728,7 +1728,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr "도구 → 재배치 → 범주"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr "범주 구성: 삭제 오류"
 
 #: categdialog.cpp:510
@@ -1761,7 +1761,7 @@ msgid "Category with same name exists for the parent"
 msgstr "상위 항목에 동일한 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr "범주 구성: 편집 오류"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -3562,7 +3562,7 @@ msgstr "줄 %ld: 가져오기 정상."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "거부된 행:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3691,7 +3691,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "형식이 선택 항목 %s와 일치하는지 확인합니다."
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
@@ -3770,8 +3770,8 @@ msgstr "선택한 통화를 삭제하시겠습니까?"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
-msgstr ""
+msgid "Organize Currencies"
+msgstr "통화 구성"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4781,8 +4781,8 @@ msgid "Organize Payees"
 msgstr "수취인 구성"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
-msgstr ""
+msgid "Organize Curre&ncies..."
+msgstr "통화 구성(&N)..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4862,7 +4862,7 @@ msgstr "옵션(&O)...\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "옵션 대화상자"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5066,7 +5066,7 @@ msgstr "정보(&A)"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "정보 대화상자"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5094,11 +5094,11 @@ msgstr "생성"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "범주 구성 대화상자"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "수취인 구성 대화상자"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5106,7 +5106,7 @@ msgstr "통화 구성"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "통화 구성 대화상자"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5130,7 +5130,7 @@ msgstr "인쇄(&P)"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "도움말 파일"
 
 #: mmframe.cpp:1985
 #, c-format
