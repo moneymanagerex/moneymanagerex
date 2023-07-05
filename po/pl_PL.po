@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-06-30 05:31\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -324,7 +324,7 @@ msgstr ""
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nowa baza danych"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -332,7 +332,7 @@ msgstr "Utwórz nowy plik bazy danych aby zacząć od nowa"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "&Otwórz istniejącą bazę danych"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -340,15 +340,15 @@ msgstr "Otwórz istniejącą bazę danych z rozszerzeniem (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Język interfejsu użytkownika"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Zmień język interfejsu"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Instrukcja"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -361,15 +361,15 @@ msgstr "Strona &internetowa"
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Odwiedź stronę %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Pokaż to okno przy starcie programu"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "&Zakończ "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -1680,8 +1680,8 @@ msgid "Category with same name exists for this parent"
 msgstr "Kategoria o tej samej nazwie istnieje dla nadrzędnej"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
-msgstr "Organizuj kategorie: Błąd dodawania"
+msgid "Organize Categories: Adding Error"
+msgstr ""
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1739,8 +1739,8 @@ msgid "Tools → Relocation of → Categories"
 msgstr "Narzędzia → Przenieś → Kategorie"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
-msgstr "Organizuj kategorie: Błąd usuwania"
+msgid "Organize Categories: Delete Error"
+msgstr ""
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1772,8 +1772,8 @@ msgid "Category with same name exists for the parent"
 msgstr "Kategoria o tej samej nazwie istnieje dla nadrzędnej"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
-msgstr "Organizuj kategorie: Błąd edycji"
+msgid "Organize Categories: Editing Error"
+msgstr ""
 
 #: categdialog.cpp:692 mmframe.cpp:3640
 msgid "Category Relocation Completed."
@@ -3786,7 +3786,7 @@ msgstr "Czy na pewno chcesz usunąć wybraną walutę?"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
+msgid "Organize Currencies"
 msgstr ""
 
 #: maincurrencydialog.cpp:394
@@ -4833,7 +4833,7 @@ msgid "Organize Payees"
 msgstr "Organizuj beneficjentów"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
+msgid "Organize Curre&ncies..."
 msgstr ""
 
 #: mmframe.cpp:1692

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-06-30 06:57\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1675,7 +1675,7 @@ msgid "Category with same name exists for this parent"
 msgstr "Υπάρχει κατηγορία με το ίδιο όνομα για αυτόν τον γονέα"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
+msgid "Organize Categories: Adding Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα προσθήκης"
 
 #: categdialog.cpp:437
@@ -1734,7 +1734,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr "Εργαλεία -> Μετατόπιση των -> Κατηγορίες"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα διαγραφής"
 
 #: categdialog.cpp:510
@@ -1767,7 +1767,7 @@ msgid "Category with same name exists for the parent"
 msgstr "Υπάρχει κατηγορία με το ίδιο όνομα για αυτόν τον γονέα"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα Επεξεργασίας"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -3566,7 +3566,7 @@ msgstr "Γραμμή %ld: Εντάξει, εισάγεται."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Σειρές που απορρίφθηκαν:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3774,7 +3774,7 @@ msgstr "Θέλετε πραγματικά να διαγράψετε το επι�
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
+msgid "Organize Currencies"
 msgstr "Οργάνωση Νομισμάτων"
 
 #: maincurrencydialog.cpp:394
@@ -4797,8 +4797,8 @@ msgid "Organize Payees"
 msgstr "Οργάνωση δικαιούχων"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
-msgstr ""
+msgid "Organize Curre&ncies..."
+msgstr "Οργάνωση Νομισμά&των..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
