@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-07-05 13:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1672,8 +1672,8 @@ msgid "Category with same name exists for this parent"
 msgstr "Kategorie mit gleichem Namen existiert für diese übergeordnete Kategorie"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
-msgstr "Kategorien verwalten: hinzufügen Fehler"
+msgid "Organize Categories: Adding Error"
+msgstr "Kategorien organisieren: Fehler hinzufügen"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1729,8 +1729,8 @@ msgid "Tools → Relocation of → Categories"
 msgstr "Extras -> Umzug -> Kategorien"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
-msgstr "Kategorien verwalten: löschen Fehler"
+msgid "Organize Categories: Delete Error"
+msgstr "Kategorien organisieren: Fehler löschen"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1762,8 +1762,8 @@ msgid "Category with same name exists for the parent"
 msgstr "Kategorie mit gleichem Namen existiert für diese übergeordnete Kategorie"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
-msgstr "Kategorien verwalten: Änderungsfehler"
+msgid "Organize Categories: Editing Error"
+msgstr "Kategorien organisieren: Editierfehler"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
 msgid "Category Relocation Completed."
@@ -3567,7 +3567,7 @@ msgstr "Zeile %ld: OK, importiert."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Abgelehnte Zeilen:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3686,22 +3686,22 @@ msgstr "Das Vorzeichen des Betrags muss nach Typ definiert werden, wenn \"Typ\" 
 #: import_export/univcsvdialog.cpp:2795
 #, c-format
 msgid "Value %s for custom field '%s' is not type %s."
-msgstr ""
+msgstr "Wert %s für benutzerdefiniertes Feld '%s' ist kein Typ %s."
 
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "Wert %s für %s benutzerdefiniertes Feld '%s' ist keine gültige Auswahl."
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Bestätigen Sie, dass das Format der Auswahl %s entspricht."
 
 #: import_export/univcsvdialog.cpp:2812
 #, c-format
 msgid "Value %s does not match regex %s for custom field '%s'."
-msgstr ""
+msgstr "Wert %s stimmt nicht mit regex %s für benutzerdefiniertes Feld '%s ' überein."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3775,8 +3775,8 @@ msgstr "Wollen Sie die Währung wirklich löschen?"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
-msgstr ""
+msgid "Organize Currencies"
+msgstr "Währungen verwalten"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4798,8 +4798,8 @@ msgid "Organize Payees"
 msgstr "Empfänger verwalten"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
-msgstr ""
+msgid "Organize Curre&ncies..."
+msgstr "&Währungen verwalten..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4879,7 +4879,7 @@ msgstr "&Optionen...\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
 msgid "Options Dialog"
-msgstr ""
+msgstr "Optionen-Dialog"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -5083,7 +5083,7 @@ msgstr "&Über"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
 msgid "About dialog"
-msgstr ""
+msgstr "Über Dialog"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5111,11 +5111,11 @@ msgstr "Neu"
 
 #: mmframe.cpp:1901
 msgid "Organize Categories Dialog"
-msgstr ""
+msgstr "Kategorien verwalten"
 
 #: mmframe.cpp:1902
 msgid "Organize Payees Dialog"
-msgstr ""
+msgstr "Zahlungsempfänger verwalten"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency"
@@ -5123,7 +5123,7 @@ msgstr "Währungen verwalten"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "Währungen verwalten"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5147,7 +5147,7 @@ msgstr "&Drucken"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Hilfedateien"
 
 #: mmframe.cpp:1985
 #, c-format
