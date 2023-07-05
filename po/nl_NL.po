@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-07-05 19:59\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1674,7 +1674,7 @@ msgid "Category with same name exists for this parent"
 msgstr "Categorie met dezelfde naam bestaat al voor deze bovenliggende categorie"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
+msgid "Organize Categories: Adding Error"
 msgstr "Beheer categorieën: Fout bij toevoegen"
 
 #: categdialog.cpp:437
@@ -1733,7 +1733,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr "Extra -> Opnieuw Toewijzen -> Categorieën"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr "Beheer categorieën: Fout bij verwijderen"
 
 #: categdialog.cpp:510
@@ -1766,7 +1766,7 @@ msgid "Category with same name exists for the parent"
 msgstr "Categorie met dezelfde naam bestaat al voor de bovenliggende categorie"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr "Beheer categorieën: Fout bij wijzigen"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -3568,7 +3568,7 @@ msgstr "Regel %ld: OK, geïmporteerd."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Afgewezen rijen:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3776,8 +3776,8 @@ msgstr "Wilt u deze valuta werkelijk verwijderen?"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
-msgstr "Valuta's ordenen"
+msgid "Organize Currencies"
+msgstr "Beheer valuta's"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4799,8 +4799,8 @@ msgid "Organize Payees"
 msgstr "Beheer begunstigden"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
-msgstr ""
+msgid "Organize Curre&ncies..."
+msgstr "Beheer valuta's..."
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -5124,7 +5124,7 @@ msgstr "Beheer valuta's"
 
 #: mmframe.cpp:1903
 msgid "Organize Currency Dialog"
-msgstr ""
+msgstr "Toon valutabeheervenster"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5148,7 +5148,7 @@ msgstr "&Afdrukken"
 
 #: mmframe.cpp:1934
 msgid "Help files"
-msgstr ""
+msgstr "Help bestanden"
 
 #: mmframe.cpp:1985
 #, c-format
