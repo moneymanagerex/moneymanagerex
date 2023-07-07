@@ -157,6 +157,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         m_bill_data.TRANSACTIONNUMBER = bill->TRANSACTIONNUMBER;
         m_bill_data.TRANSCODE = bill->TRANSCODE;
         m_bill_data.FOLLOWUPID = bill->FOLLOWUPID;
+        m_bill_data.COLOR = bill->COLOR;
         //
         const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
@@ -219,7 +220,7 @@ void mmBDDialog::dataToControls()
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
-    bColours_->SetBackgroundColor(m_bill_data.FOLLOWUPID);
+    bColours_->SetBackgroundColor(m_bill_data.COLOR);
 
     for (const auto& entry : BILLSDEPOSITS_REPEATS)
     {
@@ -1024,9 +1025,9 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     int color_id = bColours_->GetColorId();
     if (color_id > 0 && color_id < 8)
-        m_bill_data.FOLLOWUPID = color_id;
+        m_bill_data.COLOR = color_id;
     else
-        m_bill_data.FOLLOWUPID = -1;
+        m_bill_data.COLOR = -1;
 
     const Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     const Model_Account::Data* toAccount = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
@@ -1058,6 +1059,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         bill->NEXTOCCURRENCEDATE = m_bill_data.NEXTOCCURRENCEDATE;
         bill->NUMOCCURRENCES = m_bill_data.NUMOCCURRENCES;
         bill->FOLLOWUPID = m_bill_data.FOLLOWUPID;
+        bill->COLOR = m_bill_data.COLOR;
 
         m_trans_id = Model_Billsdeposits::instance().save(bill);
 
@@ -1099,7 +1101,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             tran->TRANSDATE = m_bill_data.TRANSDATE;
             tran->TOTRANSAMOUNT = m_bill_data.TOTRANSAMOUNT;
             tran->FOLLOWUPID = m_bill_data.FOLLOWUPID;
-
+            tran->COLOR = m_bill_data.COLOR;
             int trans_id = Model_Checking::instance().save(tran);
 
             Model_Splittransaction::Data_Set checking_splits;

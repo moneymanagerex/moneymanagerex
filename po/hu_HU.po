@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-16 12:25+0300\n"
-"PO-Revision-Date: 2023-06-16 09:28\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-06-29 22:04\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -113,8 +113,8 @@ msgstr "Nyitódátum:"
 msgid "The date when the account was opened"
 msgstr "A számla megnyitásának dátuma"
 
-#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:565
-#: import_export/univcsvdialog.cpp:2458
+#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
+#: import_export/univcsvdialog.cpp:2560
 msgid "Currency:"
 msgstr "Pénznem: "
 
@@ -420,7 +420,7 @@ msgstr "Eszköz részletei"
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:143
 #: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:260
 #: import_export/qif_import_gui.cpp:273 import_export/qif_import_gui.cpp:283
-#: import_export/univcsvdialog.cpp:492 import_export/univcsvdialog.cpp:502
+#: import_export/univcsvdialog.cpp:507 import_export/univcsvdialog.cpp:517
 #: maincurrencydialog.cpp:76 payeedialog.cpp:454 reports/summarystocks.cpp:117
 msgid "Name"
 msgstr "Név"
@@ -769,7 +769,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Melléklet törlésének megerősítése"
 
 #: attachmentdialog.cpp:354 categdialog.cpp:323 customfieldlistdialog.cpp:261
-#: import_export/univcsvdialog.cpp:292 maincurrencydialog.cpp:539
+#: import_export/univcsvdialog.cpp:307 maincurrencydialog.cpp:539
 #: payeedialog.cpp:861 stockdialog.cpp:336
 msgid "&Add "
 msgstr "&Hozzáadás "
@@ -779,7 +779,7 @@ msgid "&Open "
 msgstr "&Megnyitás "
 
 #: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:296 maincurrencydialog.cpp:541
+#: import_export/univcsvdialog.cpp:311 maincurrencydialog.cpp:541
 #: payeedialog.cpp:864
 msgid "&Remove "
 msgstr "&Eltávolítás "
@@ -993,7 +993,7 @@ msgstr "Ügylet állapotának megadása"
 #: filtertransdialog.cpp:1509 import_export/qif_export.cpp:608
 #: import_export/qif_import_gui.cpp:263 import_export/qif_import_gui.cpp:274
 #: import_export/qif_import_gui.cpp:284 import_export/univcsvdialog.cpp:101
-#: import_export/univcsvdialog.cpp:493 import_export/univcsvdialog.cpp:503
+#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
 #: mmchecking_list.cpp:278 reports/transactions.cpp:192
 #: transactionsupdatedialog.cpp:133 transdialog.cpp:419
 #: usertransactionpanel.cpp:167 webappdialog.cpp:140 wizard_update.cpp:141
@@ -1054,7 +1054,7 @@ msgstr "Hova"
 #: filtertransdialog.cpp:537 filtertransdialog.cpp:903
 #: filtertransdialog.cpp:1473 import_export/qif_export.cpp:611
 #: import_export/qif_import_gui.cpp:106 import_export/qif_import_gui.cpp:268
-#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:487
+#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:502
 #: mmchecking_list.cpp:276 model/Model_Attachment.cpp:29 payeedialog.cpp:83
 #: payeedialog.cpp:238 reports/cashflow.cpp:416 reports/payee.cpp:136
 #: reports/transactions.cpp:191 transactionsupdatedialog.cpp:179
@@ -1069,7 +1069,7 @@ msgstr "Kedvezményezett"
 #: filtertransdialog.cpp:941 filtertransdialog.cpp:1480
 #: import_export/qif_export.cpp:612 import_export/qif_import_gui.cpp:108
 #: import_export/qif_import_gui.cpp:279 import_export/univcsvdialog.cpp:107
-#: import_export/univcsvdialog.cpp:498 mmchecking_list.cpp:280
+#: import_export/univcsvdialog.cpp:513 mmchecking_list.cpp:280
 #: mmhomepage.cpp:190 payeedialog.cpp:201 reports/budgetcategorysummary.cpp:185
 #: reports/budgetingperf.cpp:130 reports/cashflow.cpp:417
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
@@ -1113,8 +1113,8 @@ msgstr "A rendszeres ügylethez tartozó mellékletek rendszerezése"
 
 #: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:983 filtertransdialog.cpp:1564
-#: import_export/qif_import_gui.cpp:356 import_export/univcsvdialog.cpp:433
-#: import_export/univcsvdialog.cpp:1296 reports/transactions.cpp:187
+#: import_export/qif_import_gui.cpp:356 import_export/univcsvdialog.cpp:448
+#: import_export/univcsvdialog.cpp:1337 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:214 transactionsupdatedialog.cpp:393
 #: transdialog.cpp:544
 msgid "Color"
@@ -1163,7 +1163,7 @@ msgstr "Kedvezményezett nevének megerősítése"
 #: filtertransdialog.cpp:952 filtertransdialog.cpp:965
 #: filtertransdialog.cpp:974 filtertransdialog.cpp:983
 #: filtertransdialog.cpp:991 filtertransdialog.cpp:997
-#: import_export/univcsvdialog.cpp:1296 optionsettingsgeneral.cpp:293
+#: import_export/univcsvdialog.cpp:1337 optionsettingsgeneral.cpp:293
 #: optionsettingsgeneral.cpp:318 payeedialog.cpp:201
 #: transactionsupdatedialog.cpp:393 transdialog.cpp:602 transdialog.cpp:617
 #: util.cpp:753
@@ -1171,7 +1171,7 @@ msgid "Invalid value"
 msgstr "Érvénytelen érték"
 
 #: billsdepositsdialog.cpp:1030 billsdepositsdialog.cpp:1033
-#: import_export/univcsvdialog.cpp:1357 stockdialog.cpp:428 transdialog.cpp:610
+#: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "A számla nyitási dátuma későbbi, mint az ügylet dátuma"
@@ -1223,7 +1223,7 @@ msgstr "Adja meg hányszor kell fizetni.\n"
 "Hagyja üresen ha a kifizetésnek nincs lejárata."
 
 #: billsdepositsdialog.cpp:1282 images_list.cpp:500
-#: import_export/univcsvdialog.cpp:1484 maincurrencydialog.cpp:482
+#: import_export/univcsvdialog.cpp:1559 maincurrencydialog.cpp:482
 #: mmframe.cpp:3735 splittransactionsdialog.cpp:395 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
@@ -1446,7 +1446,7 @@ msgstr "Gyakoriság: "
 msgid "Specify the frequency of the expense or deposit"
 msgstr "Kiadás vagy betét gyakoriságának megadása"
 
-#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:390
+#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:405
 msgid "Amount:"
 msgstr "Összeg: "
 
@@ -1674,7 +1674,7 @@ msgid "Category with same name exists for this parent"
 msgstr "Azonos nevű kategória létezik ehhez a fölérendelthez"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
+msgid "Organize Categories: Adding Error"
 msgstr "Kategóriák rendezése: hozzáadási hiba"
 
 #: categdialog.cpp:437
@@ -1731,7 +1731,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr "Eszközök → Áthelyezés → Kategóriák"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr "Kategóriák rendezése: törlési hiba"
 
 #: categdialog.cpp:510
@@ -1764,7 +1764,7 @@ msgid "Category with same name exists for the parent"
 msgstr "Azonos nevű kategória létezik a fölérendelthez"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr "Kategóriák rendezése: szerkesztési hiba"
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -1823,7 +1823,7 @@ msgstr "&Bezárás "
 
 #: constants.cpp:84 import_export/qif_import_gui.cpp:757
 #: import_export/qif_import_gui.cpp:790 import_export/qif_import_gui.cpp:815
-#: import_export/univcsvdialog.cpp:1919 import_export/univcsvdialog.cpp:1944
+#: import_export/univcsvdialog.cpp:2019 import_export/univcsvdialog.cpp:2044
 msgid "OK"
 msgstr "Rendben"
 
@@ -1958,7 +1958,7 @@ msgid "Suffix"
 msgstr "Utótag"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:344
-#: import_export/univcsvdialog.cpp:401
+#: import_export/univcsvdialog.cpp:416
 msgid "Decimal Char"
 msgstr "Tizedesjel"
 
@@ -2007,7 +2007,7 @@ msgid "Any changes will be lost without update"
 msgstr "Frissítés nélkül valamennyi változás elveszik!"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2491 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:2593 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:785
 msgid "Invalid Entry"
 msgstr "Érvénytelen bejegyzés"
@@ -2063,11 +2063,11 @@ msgstr "Megjelenő elemleírás megadása"
 
 #: customfieldeditdialog.cpp:162
 msgid "RegEx"
-msgstr "RegEx"
+msgstr "Reguláris kifejezés"
 
 #: customfieldeditdialog.cpp:164
 msgid "Enter the RegEx to validate field"
-msgstr "A mező érvényesítéséhez írjon be szabványos kifejezést.."
+msgstr "Írja be a reguláris kifejezés érvényesítéséhez mezőt"
 
 #: customfieldeditdialog.cpp:167
 msgid "Autocomplete"
@@ -2600,7 +2600,7 @@ msgstr "Írjon be bármit, a tranzakciók megjegyzéseiben kereséséhez"
 
 #: filtertransdialog.cpp:640 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr "regex (reguláris kifejezés) használata: reguláris kifejezésekkel való egyeztetéshez."
+msgstr "Reguláris kifejezés használata: reguláris kifejezésekkel való egyeztetéshez."
 
 #: filtertransdialog.cpp:663
 msgid "Presentation Options"
@@ -2663,7 +2663,7 @@ msgstr "Üres oszlopok elrejtése"
 msgid "The selected item will be deleted"
 msgstr "A kijelölt elem törlésére kerül sor"
 
-#: filtertransdialog.cpp:1190 import_export/univcsvdialog.cpp:2019
+#: filtertransdialog.cpp:1190 import_export/univcsvdialog.cpp:2119
 #: mmframe.cpp:1244
 msgid "Do you wish to continue?"
 msgstr "Folytatja a műveletet?"
@@ -2708,14 +2708,14 @@ msgstr "Beállítás neve"
 msgid "Please Enter"
 msgstr "Kérjük, adja meg"
 
-#: filtertransdialog.cpp:1772 import_export/univcsvdialog.cpp:1066
+#: filtertransdialog.cpp:1772 import_export/univcsvdialog.cpp:1092
 msgid "The entered name is already in use"
 msgstr "A megadott név már használatban van"
 
 #: filtertransdialog.cpp:1772 images_list.cpp:325 images_list.cpp:413
 #: images_list.cpp:424 images_list.cpp:459 images_list.cpp:488
 #: images_list.cpp:494 import_export/qif_import_gui.cpp:759
-#: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1066
+#: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1092
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
@@ -2744,7 +2744,7 @@ msgstr "Ügyletek szűrése"
 msgid "Reports"
 msgstr "Jelentések"
 
-#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:518
+#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:533
 msgid "&Import"
 msgstr "&Importálás"
 
@@ -2752,7 +2752,7 @@ msgstr "&Importálás"
 msgid "Locate and load a report file."
 msgstr "Jelentésfájl keresése és betöltése."
 
-#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:520
+#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:535
 msgid "&Export"
 msgstr "&Exportálás"
 
@@ -2959,13 +2959,13 @@ msgstr "A(z) „%s” témából hiányoznak elemek és összeférhetetlen. Az a
 msgid "No workable theme found, the installation may be corrupt"
 msgstr "Nincs használható téma, a telepítés megsérülhetett"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2085
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2185
 #: mmSimpleDialogs.cpp:795
 msgid "Unable to open file."
 msgstr "A fájlt nem lehet megnyitni."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1302 mmframe.cpp:2507 mmframe.cpp:2526
+#: import_export/univcsvdialog.cpp:1344 mmframe.cpp:2507 mmframe.cpp:2526
 msgid "Universal CSV Import"
 msgstr "Univerzális CSV importálása"
 
@@ -3067,7 +3067,7 @@ msgstr "Fájlba írás"
 msgid "File Name:"
 msgstr "Fájlnév: "
 
-#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:537
+#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:552
 msgid "Clear"
 msgstr "Töröl"
 
@@ -3095,7 +3095,7 @@ msgstr "Válassza ki a JSON adatfájlt az exportáláshoz"
 msgid "JSON Files (*.json)"
 msgstr "JSON-fájlok (*.json)"
 
-#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2069
+#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2169
 msgid "CSV Files (*.csv)"
 msgstr "CSV-fájlok (*.csv)"
 
@@ -3148,7 +3148,7 @@ msgstr "Exportált számlák száma: %zu"
 msgid "&Browse"
 msgstr "&Tallózás"
 
-#: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:367
+#: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:382
 msgid "Encoding:"
 msgstr "Kódolás"
 
@@ -3156,7 +3156,7 @@ msgstr "Kódolás"
 msgid "Filtering Details:"
 msgstr "Szűrési részletek: "
 
-#: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:475
+#: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:490
 msgid "Data"
 msgstr "Adat"
 
@@ -3168,22 +3168,22 @@ msgstr "Számlaszám használata a neve helyett"
 msgid "Include payee field in notes"
 msgstr "Kedvezményezett mező belefoglalása a megjegyzésekben"
 
-#: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:442
+#: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:457
 msgid "Pattern match Payees"
 msgstr "Megfelelőségi minta: kedvezményezettek"
 
-#: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:448
+#: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:463
 msgid "Add match details to Notes"
 msgstr "Mérkőzés részletei hozzáadásának a Jegyzetekhez"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
 #: import_export/qif_import_gui.cpp:787 import_export/qif_import_gui.cpp:1407
-#: import_export/univcsvdialog.cpp:994 import_export/univcsvdialog.cpp:1204
-#: import_export/univcsvdialog.cpp:1207 import_export/univcsvdialog.cpp:1227
-#: import_export/univcsvdialog.cpp:1234 import_export/univcsvdialog.cpp:1708
-#: import_export/univcsvdialog.cpp:1710 import_export/univcsvdialog.cpp:1711
-#: import_export/univcsvdialog.cpp:1724 import_export/univcsvdialog.cpp:1916
+#: import_export/univcsvdialog.cpp:1020 import_export/univcsvdialog.cpp:1245
+#: import_export/univcsvdialog.cpp:1248 import_export/univcsvdialog.cpp:1268
+#: import_export/univcsvdialog.cpp:1275 import_export/univcsvdialog.cpp:1796
+#: import_export/univcsvdialog.cpp:1798 import_export/univcsvdialog.cpp:1799
+#: import_export/univcsvdialog.cpp:1812 import_export/univcsvdialog.cpp:2016
 #: themes.cpp:235 transdialog.cpp:288 transdialog.cpp:292 transdialog.cpp:298
 #: transdialog.cpp:937 transdialog.cpp:941 transdialog.cpp:948 webapp.cpp:417
 #: webapp.cpp:426
@@ -3214,7 +3214,7 @@ msgid "Accounts:"
 msgstr "Számlák:"
 
 #: import_export/qif_import_gui.cpp:555 import_export/qif_import_gui.cpp:894
-#: import_export/univcsvdialog.cpp:339
+#: import_export/univcsvdialog.cpp:354
 msgid "Date Format: "
 msgstr "Dátumformátum"
 
@@ -3223,12 +3223,12 @@ msgid "Press OK Button to continue"
 msgstr "Nyomja meg a Rendben gombot a folytatáshoz"
 
 #: import_export/qif_import_gui.cpp:767 import_export/qif_import_gui.cpp:798
-#: import_export/univcsvdialog.cpp:1927 import_export/univcsvdialog.cpp:1942
+#: import_export/univcsvdialog.cpp:2027 import_export/univcsvdialog.cpp:2042
 #: stockspanel.cpp:449
 msgid "Missing"
 msgstr "Hiányzó"
 
-#: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:1921
+#: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2021
 #, c-format
 msgid "Matched to %s by pattern %s"
 msgstr "Egyezve a következővel: %s a(z) %s minta alapján"
@@ -3287,7 +3287,7 @@ msgstr "Az importálás sikereden befejeződött"
 msgid "Total Imported: %zu"
 msgstr "Összesen importálva: %zu"
 
-#: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1435
+#: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1510
 msgid "Imported transactions discarded by user!"
 msgstr "Importált tranzakciók a felhasználó elvetette!"
 
@@ -3334,7 +3334,7 @@ msgstr "A tranzakció kategóriája hibás"
 msgid "Added account: %s"
 msgstr "Hozzáadott számla: %s"
 
-#: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1211
+#: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1252
 #, c-format
 msgid "Added payee: %s"
 msgstr "Hozzáadott kedvezményezett: %s"
@@ -3373,8 +3373,8 @@ msgstr "Számla: "
 msgid "Preset:"
 msgstr "Előbeállítás:"
 
-#: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:564
-#: import_export/univcsvdialog.cpp:2462
+#: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:579
+#: import_export/univcsvdialog.cpp:2564
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
@@ -3385,297 +3385,323 @@ msgstr "Az előbeállítás betöltése, ha a fiók:\n"
 msgid "Specify the order of fields in the file"
 msgstr "Fájl mezők sorrendjének megadása"
 
-#: import_export/univcsvdialog.cpp:300
+#: import_export/univcsvdialog.cpp:315
 msgid "&MMEX format"
 msgstr "&MMEX-formátum"
 
-#: import_export/univcsvdialog.cpp:317
+#: import_export/univcsvdialog.cpp:332
 msgid "&Up"
 msgstr "&Felfelé"
 
-#: import_export/univcsvdialog.cpp:321
+#: import_export/univcsvdialog.cpp:336
 msgid "&Down"
 msgstr "&Lefelé"
 
-#: import_export/univcsvdialog.cpp:354
+#: import_export/univcsvdialog.cpp:369
 msgid "CSV Delimiter:"
 msgstr "CSV elválasztójel:"
 
-#: import_export/univcsvdialog.cpp:381
+#: import_export/univcsvdialog.cpp:396
 msgid "Export column titles"
 msgstr "Oszlopcímek exportálása"
 
-#: import_export/univcsvdialog.cpp:396
+#: import_export/univcsvdialog.cpp:411
 msgid "Positive values are deposits"
 msgstr "A pozitív értékek befizetések"
 
-#: import_export/univcsvdialog.cpp:397
+#: import_export/univcsvdialog.cpp:412
 msgid "Positive values are withdrawals"
 msgstr "A pozitív értékek kifiztések"
 
-#: import_export/univcsvdialog.cpp:414
+#: import_export/univcsvdialog.cpp:429
 msgid "Rows to ignore"
 msgstr "Figyelmen kívül hagyandó sorok"
 
-#: import_export/univcsvdialog.cpp:421
+#: import_export/univcsvdialog.cpp:436
 msgid "From start: "
 msgstr "Az elejétől: "
 
-#: import_export/univcsvdialog.cpp:456
+#: import_export/univcsvdialog.cpp:471
 msgid "From end: "
 msgstr "A végétől: "
 
-#: import_export/univcsvdialog.cpp:468
+#: import_export/univcsvdialog.cpp:483
 msgid "Preview"
 msgstr "Előnézet"
 
-#: import_export/univcsvdialog.cpp:543
+#: import_export/univcsvdialog.cpp:558
 msgid "Choose XML data file to Import"
 msgstr "Válasszon XML adatfájlt az importáláshoz"
 
-#: import_export/univcsvdialog.cpp:543
+#: import_export/univcsvdialog.cpp:558
 msgid "Choose CSV data file to Import"
 msgstr "Válasszon CSV-adatfájlt az importáláshoz"
 
-#: import_export/univcsvdialog.cpp:544
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose XML data file to Export"
 msgstr "Válasszon XML-adatfájlt az exportáláshoz"
 
-#: import_export/univcsvdialog.cpp:544
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose CSV data file to Export"
 msgstr "Válasszon CSV-adatájlt az exportáláshoz"
 
-#: import_export/univcsvdialog.cpp:547
+#: import_export/univcsvdialog.cpp:562
 msgid "Preset name"
 msgstr "Előbeállítás neve"
 
-#: import_export/univcsvdialog.cpp:548
+#: import_export/univcsvdialog.cpp:563
 msgid "Save current settings as a Preset"
 msgstr "Jelenlegi beállítások mentése előre beállított értékként"
 
-#: import_export/univcsvdialog.cpp:549 import_export/univcsvdialog.cpp:2020
+#: import_export/univcsvdialog.cpp:564 import_export/univcsvdialog.cpp:2120
 msgid "Delete Preset"
 msgstr "Előbeállítás törlése"
 
-#: import_export/univcsvdialog.cpp:550
+#: import_export/univcsvdialog.cpp:565
 msgid "MMEX standard format"
 msgstr "Szabványos MMEX-formátum"
 
-#: import_export/univcsvdialog.cpp:551
+#: import_export/univcsvdialog.cpp:566
 msgid "Move Up"
 msgstr "Mozgatás felfele"
 
-#: import_export/univcsvdialog.cpp:552
+#: import_export/univcsvdialog.cpp:567
 msgid "Move Down"
 msgstr "Mozgatás lefelé"
 
-#: import_export/univcsvdialog.cpp:553 optionsettingsmisc.cpp:228
+#: import_export/univcsvdialog.cpp:568 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Adja meg a CSV-fájlok importálásakor/exportálásakor használandó határolójelet"
 
-#: import_export/univcsvdialog.cpp:554
+#: import_export/univcsvdialog.cpp:569
 msgid "Import File"
 msgstr "Fájlimportálás"
 
-#: import_export/univcsvdialog.cpp:555
+#: import_export/univcsvdialog.cpp:570
 msgid "Export File"
 msgstr "Fájlexportálás"
 
-#: import_export/univcsvdialog.cpp:568 import_export/univcsvdialog.cpp:2469
+#: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2571
 #, c-format
 msgid "Preset '%s' loaded because Account '%s' selected"
 msgstr "Előre beállított „%s” betöltve, mert a(z) „%s” fiók kiválasztva"
 
-#: import_export/univcsvdialog.cpp:722
+#: import_export/univcsvdialog.cpp:737
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr "A sablonhoz tartozó alapbeállítás szerinti '%s' számla nem létezik.\n"
 "Kérem válasszon új számlát."
 
-#: import_export/univcsvdialog.cpp:724
+#: import_export/univcsvdialog.cpp:739
 msgid "Account does not exist"
 msgstr "Nem létező számla"
 
-#: import_export/univcsvdialog.cpp:915 import_export/univcsvdialog.cpp:1010
-#: import_export/univcsvdialog.cpp:2484
+#: import_export/univcsvdialog.cpp:941 import_export/univcsvdialog.cpp:1036
+#: import_export/univcsvdialog.cpp:2586
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Pozitív, ha a típusnak ez van '%s'"
 
-#: import_export/univcsvdialog.cpp:1037
+#: import_export/univcsvdialog.cpp:1063
 msgid "Preset Name"
 msgstr "Előbeállítás neve"
 
-#: import_export/univcsvdialog.cpp:1037
+#: import_export/univcsvdialog.cpp:1063
 msgid "Save Preset"
 msgstr "Előbeállítás mentése"
 
-#: import_export/univcsvdialog.cpp:1253
+#: import_export/univcsvdialog.cpp:1232
+msgid "Invalid Date."
+msgstr "Érvénytelen dátum."
+
+#: import_export/univcsvdialog.cpp:1233 mmTextCtrl.cpp:116
+msgid "Invalid Amount."
+msgstr "Érvénytelen összeg."
+
+#: import_export/univcsvdialog.cpp:1234
+msgid "Type (withdrawal/deposit) unknown."
+msgstr "A (kivét, vagy letét) típusa ismeretlen."
+
+#: import_export/univcsvdialog.cpp:1294
 msgid "Incorrect fields specified for import!"
 msgstr "Hibás importálási mezőkijelölés!"
 
-#: import_export/univcsvdialog.cpp:1254
+#: import_export/univcsvdialog.cpp:1295
 msgid "Date field is required."
 msgstr "A dátummező kötelező."
 
-#: import_export/univcsvdialog.cpp:1255
+#: import_export/univcsvdialog.cpp:1296
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "Az összeg mezőt vagy mindkettőt a kivét és a betét mezők kitöltése kötelező."
 
-#: import_export/univcsvdialog.cpp:1256 import_export/univcsvdialog.cpp:1404
+#: import_export/univcsvdialog.cpp:1297 import_export/univcsvdialog.cpp:1478
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
 msgstr "Importálás"
 
-#: import_export/univcsvdialog.cpp:1312
+#: import_export/univcsvdialog.cpp:1356
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr "A tranzakció a(z) %s: %ld számlához importálva lett"
 
-#: import_export/univcsvdialog.cpp:1323
+#: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: Empty"
 msgstr "%ld. sor: Üres"
 
-#: import_export/univcsvdialog.cpp:1337
+#: import_export/univcsvdialog.cpp:1393
 #, c-format
 msgid "Line %ld: Error:"
 msgstr "%ld. sor: Hiba:"
 
-#: import_export/univcsvdialog.cpp:1339
-msgid "Invalid Date."
-msgstr "Érvénytelen dátum."
-
-#: import_export/univcsvdialog.cpp:1340 mmTextCtrl.cpp:116
-msgid "Invalid Amount."
-msgstr "Érvénytelen összeg."
-
-#: import_export/univcsvdialog.cpp:1342
-msgid "Type (withdrawal/deposit) unknown."
-msgstr "A (kivét, vagy letét) típusa ismeretlen."
-
-#: import_export/univcsvdialog.cpp:1356
+#: import_export/univcsvdialog.cpp:1408
 #, c-format
 msgid "Line %ld: %s"
 msgstr "%ld. sor: %s"
 
-#: import_export/univcsvdialog.cpp:1382
+#: import_export/univcsvdialog.cpp:1449
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr "%ld sor: Rendben, importálva."
 
-#: import_export/univcsvdialog.cpp:1389
+#: import_export/univcsvdialog.cpp:1458
+msgid "Rejected rows:"
+msgstr "Elutasított sorok:"
+
+#: import_export/univcsvdialog.cpp:1463
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "Összes sor: %ld"
 
-#: import_export/univcsvdialog.cpp:1391
+#: import_export/univcsvdialog.cpp:1465
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr "Importálásra kiválasztott sorok: %ld"
 
-#: import_export/univcsvdialog.cpp:1393
+#: import_export/univcsvdialog.cpp:1467
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr "Üres sorok: %ld"
 
-#: import_export/univcsvdialog.cpp:1395
+#: import_export/univcsvdialog.cpp:1469
 #, c-format
 msgid "Imported: %ld"
 msgstr "Importálva: %ld"
 
-#: import_export/univcsvdialog.cpp:1397
+#: import_export/univcsvdialog.cpp:1471
 #, c-format
 msgid "Errored: %ld"
 msgstr "Hibás: %ld"
 
-#: import_export/univcsvdialog.cpp:1400
+#: import_export/univcsvdialog.cpp:1474
 #, c-format
 msgid "Log file written to: %s"
 msgstr "Naplófájl ide írva: %s"
 
-#: import_export/univcsvdialog.cpp:1403 stockdialog.cpp:652
+#: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:652
 msgid "Please confirm saving"
 msgstr "Mentés megerősítése"
 
-#: import_export/univcsvdialog.cpp:1436
+#: import_export/univcsvdialog.cpp:1511
 msgid "No imported transactions!"
 msgstr "Nincsenek importált tranzakciók!"
 
-#: import_export/univcsvdialog.cpp:1458
+#: import_export/univcsvdialog.cpp:1533
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "Érvénytelen mezőket adott meg az exportáláshoz! Legalább dátum és összeg kell!"
 
-#: import_export/univcsvdialog.cpp:1459 import_export/univcsvdialog.cpp:1612
+#: import_export/univcsvdialog.cpp:1534 import_export/univcsvdialog.cpp:1700
 msgid "Export"
 msgstr "Exportálás"
 
-#: import_export/univcsvdialog.cpp:1469
+#: import_export/univcsvdialog.cpp:1544
 msgid "Overwrite existing file?"
 msgstr "Létező fájlt felülírja?"
 
-#: import_export/univcsvdialog.cpp:1469
+#: import_export/univcsvdialog.cpp:1544
 msgid "File exists"
 msgstr "A fájl létezik"
 
-#: import_export/univcsvdialog.cpp:1475
+#: import_export/univcsvdialog.cpp:1550
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "Létező fájl törlése sikertelen. A fájlt más program zárolhatta."
 
-#: import_export/univcsvdialog.cpp:1476
+#: import_export/univcsvdialog.cpp:1551
 msgid "Destination file error"
 msgstr "Célfájl hibája"
 
-#: import_export/univcsvdialog.cpp:1484 mmSimpleDialogs.cpp:803
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:803
 msgid "Invalid Account"
 msgstr "Érvénytelen számla"
 
-#: import_export/univcsvdialog.cpp:1611
+#: import_export/univcsvdialog.cpp:1699
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "Exportált ügyletek: %ld"
 
-#: import_export/univcsvdialog.cpp:2018
+#: import_export/univcsvdialog.cpp:2118
 #, c-format
 msgid "Preset '%s' will be deleted"
 msgstr "A(z) „%s” előbeállítás törlődik"
 
-#: import_export/univcsvdialog.cpp:2051 stockdialog.cpp:558
+#: import_export/univcsvdialog.cpp:2151 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
 msgstr "Válasszon CSV-adatfájlt az importhoz"
 
-#: import_export/univcsvdialog.cpp:2054
+#: import_export/univcsvdialog.cpp:2154
 msgid "Choose CSV data file to export"
 msgstr "Válasszon CSV-adatfájlt az exporthoz"
 
-#: import_export/univcsvdialog.cpp:2057
+#: import_export/univcsvdialog.cpp:2157
 msgid "Choose XML data file to import"
 msgstr "Válasszon XML-adatfájlt az importáláshoz"
 
-#: import_export/univcsvdialog.cpp:2060
+#: import_export/univcsvdialog.cpp:2160
 msgid "Choose XML data file to export"
 msgstr "Válasszon XML-adatfájlt azexportáláshoz"
 
-#: import_export/univcsvdialog.cpp:2068
+#: import_export/univcsvdialog.cpp:2168
 msgid "XML Files (*.xml)"
 msgstr "XML-fájlok (*.xml)"
 
-#: import_export/univcsvdialog.cpp:2068
+#: import_export/univcsvdialog.cpp:2168
 msgid "All Files"
 msgstr "Minden fájl"
 
-#: import_export/univcsvdialog.cpp:2480
+#: import_export/univcsvdialog.cpp:2582
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr "Kérjük, írja be a pozitív értékeket jelző szót a CSV-fájlba, pl. „jóvárírás”"
 
-#: import_export/univcsvdialog.cpp:2480
+#: import_export/univcsvdialog.cpp:2582
 msgid "Enter a value"
 msgstr "Írjon be egy értéket"
 
-#: import_export/univcsvdialog.cpp:2490
+#: import_export/univcsvdialog.cpp:2592
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr "Az összegjelet típus szerint kell megadni, amikor a „Típus” van kijelölve az importáláshoz"
+
+#: import_export/univcsvdialog.cpp:2713 import_export/univcsvdialog.cpp:2724
+#: import_export/univcsvdialog.cpp:2740 import_export/univcsvdialog.cpp:2784
+#: import_export/univcsvdialog.cpp:2795
+#, c-format
+msgid "Value %s for custom field '%s' is not type %s."
+msgstr "%s értéke egyéni mezőben: „%s” nem %s típusú."
+
+#: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
+#, c-format
+msgid "Value %s for %s custom field '%s' is not a valid selection."
+msgstr "%s értéke a következőhöz: %s egyéni mező: %s nem érvényes kijelölés."
+
+#: import_export/univcsvdialog.cpp:2785
+#, c-format
+msgid "Confirm format matches selection %s."
+msgstr "Erősítse meg, hogy a formátum megfelel a(z) %s elemnek."
+
+#: import_export/univcsvdialog.cpp:2812
+#, c-format
+msgid "Value %s does not match regex %s for custom field '%s'."
+msgstr "A(z) %s érték nem egyezik a(z) %s reguláris kifejezéssel a(z) „%s” egyéni mezőben."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3748,10 +3774,9 @@ msgstr "Biztosan törölni szeretné a kijelölt pénznemet?"
 
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
-#: maincurrencydialog.cpp:813 maincurrencydialog.h:76
-#: optionsettingsgeneral.cpp:301
-msgid "Currency Dialog"
-msgstr "Pénznem"
+#: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
+msgid "Organize Currencies"
+msgstr "Pénznem rendszerezése"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -3821,6 +3846,10 @@ msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árf
 #: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:681
 msgid "Could not find base currency symbol!"
 msgstr "Az alappénznem jelzése nem található!"
+
+#: maincurrencydialog.h:76
+msgid "Currency Dialog"
+msgstr "Pénznem"
 
 #: mmSimpleDialogs.cpp:549 mmSimpleDialogs.cpp:561
 msgid "Clear color"
@@ -4379,8 +4408,8 @@ msgstr "Többes kijelölés"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr "A(z) \"%s\" felhasználói mezőt nem tudom menteni:\n"
-"az érték \"%s\" nem felel meg a RegEx hitelesítésnek \"%s\""
+msgstr "Nem sikerült menteni a(z) „%s” egyéni mezőt:\n"
+"a(z) „%s” érték nem egyezik a(z) „%s” reguláris kifejezés érvényesítésével"
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4770,12 +4799,8 @@ msgid "Organize Payees"
 msgstr "Kedvezményezettek rendszerezése"
 
 #: mmframe.cpp:1688
-msgid "Organize Curre&ncy..."
+msgid "Organize Curre&ncies..."
 msgstr "&Pénznem rendszerezése…"
-
-#: mmframe.cpp:1688 mmframe.cpp:1903
-msgid "Organize Currency"
-msgstr "Pénznem rendszerezése"
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4854,8 +4879,8 @@ msgid "&Options...\tCtrl-,"
 msgstr "&Beállítások…\tCtrl-,"
 
 #: mmframe.cpp:1750 mmframe.cpp:1909
-msgid "Show the Options Dialog"
-msgstr "Beállítások megjelenítése"
+msgid "Options Dialog"
+msgstr "Beállítások párbeszédpanel"
 
 #: mmframe.cpp:1757
 msgid "Convert Encrypted &DB..."
@@ -4901,7 +4926,7 @@ msgstr "Adatbáziskezelés"
 msgid "&Help\tF1"
 msgstr "&Súgó\tF1"
 
-#: mmframe.cpp:1780 mmframe.cpp:1934
+#: mmframe.cpp:1780
 msgid "Show the Help file"
 msgstr "Súgó megjelenítése"
 
@@ -5058,8 +5083,8 @@ msgid "&About"
 msgstr "&Névjegy"
 
 #: mmframe.cpp:1861 mmframe.cpp:1933
-msgid "Show About dialog"
-msgstr "Névjegy párbeszédpanel megjelenítése"
+msgid "About dialog"
+msgstr "Névjegy párbeszédpanel"
 
 #: mmframe.cpp:1865
 msgid "&File"
@@ -5086,16 +5111,20 @@ msgid "New"
 msgstr "Új"
 
 #: mmframe.cpp:1901
-msgid "Show Organize Categories Dialog"
-msgstr "Kategóriák rendszerezésének megjelenítése"
+msgid "Organize Categories Dialog"
+msgstr "Kategóriák rendszerezésének párbeszédpanel"
 
 #: mmframe.cpp:1902
-msgid "Show Organize Payees Dialog"
-msgstr "Kedvezményezettek rendszerezésének megjelenítése"
+msgid "Organize Payees Dialog"
+msgstr "Kedvezményezettek rendszerezésének párbeszédpanel"
 
 #: mmframe.cpp:1903
-msgid "Show Organize Currency Dialog"
-msgstr "Pénznem rendszerezésének megjelenítése"
+msgid "Organize Currency"
+msgstr "Pénznem rendszerezése"
+
+#: mmframe.cpp:1903
+msgid "Organize Currency Dialog"
+msgstr "Pénznem rendszerezésének párbeszédpanel"
 
 #: mmframe.cpp:1909
 msgid "&Options"
@@ -5116,6 +5145,10 @@ msgstr "Váltás Teljes képernyő\tF11"
 #: mmframe.cpp:1930
 msgid "&Print"
 msgstr "&Nyomtatás"
+
+#: mmframe.cpp:1934
+msgid "Help files"
+msgstr "Súgófájlok"
 
 #: mmframe.cpp:1985
 #, c-format
@@ -7706,44 +7739,44 @@ msgstr "USD-pénznem nem található. Az előzmények árának átalakításáho
 msgid "Could not parse price in asset history"
 msgstr "Nem sikerült elemezni az árat az eszközelőzményekben"
 
-#: util.cpp:1393
+#: util.cpp:1415
 #, c-format
 msgid "Version: %s"
 msgstr "Verzió: %s"
 
-#: util.cpp:1394
+#: util.cpp:1416
 #, c-format
 msgid "Built on: %s %s"
 msgstr "Készítési időpont: %s, %s"
 
-#: util.cpp:1395
+#: util.cpp:1417
 #, c-format
 msgid "Database version: %d"
 msgstr "Adatbázis verziója: %d"
 
-#: util.cpp:1402
+#: util.cpp:1424
 #, c-format
 msgid "Git commit: %s (%s)"
 msgstr "Git-végrehajtás: %s (%s)"
 
-#: util.cpp:1405
+#: util.cpp:1427
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git-ág: %s"
 
-#: util.cpp:1409
+#: util.cpp:1431
 msgid "MMEX is using the following support products:"
 msgstr "MMEX a következő támogatási termékeket használja:"
 
-#: util.cpp:1426
+#: util.cpp:1448
 msgid "Built with:"
 msgstr "Összeállítás a következőkkel:"
 
-#: util.cpp:1445
+#: util.cpp:1467
 msgid "Running on:"
 msgstr "Fut a következőn:"
 
-#: util.cpp:1696
+#: util.cpp:1718
 msgid "The full list of closed issues is available at this link"
 msgstr "A megoldott problémák teljes listája ezen a hivatkozáson érhető el"
 

@@ -243,7 +243,7 @@ table {
                     hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                         , transaction.displayID, true);
                 }
-                if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString(), true);
+                if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
                 if (showColumnById(2)) hb.addTableCellDate(transaction.TRANSDATE);
                 if (showColumnById(3)) hb.addTableCell(transaction.TRANSACTIONNUMBER);
                 if (showColumnById(4)) {

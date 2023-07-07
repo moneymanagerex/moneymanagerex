@@ -545,6 +545,7 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 {
     m_color_value = event.GetId() - wxID_HIGHEST;
     SetBackgroundColour(getUDColour(m_color_value));
+    SetForegroundColour(*bestFontColour(getUDColour(m_color_value)));
     if (GetSize().GetX() > 40)
     {
         if (m_color_value <= 0) {
@@ -568,6 +569,7 @@ void mmColorButton::OnColourButton(wxCommandEvent& event)
         menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
+        menuItem->SetTextColour(*bestFontColour(getUDColour(i)));
 #endif
         wxBitmap bitmap(mmBitmapBundle(png::EMPTY, mmBitmapButtonSize).GetDefaultSize());
         wxMemoryDC memoryDC(bitmap);

@@ -605,6 +605,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     data.TRANSAMOUNT = 0;
     data.TOTRANSAMOUNT = 0;
     data.TRANSACTIONNUMBER = "";
+    data.COLOR = -1;
 }
 
 bool Model_Checking::getTransactionData(Data &data, const Data* r)
@@ -625,6 +626,7 @@ bool Model_Checking::getTransactionData(Data &data, const Data* r)
         data.TRANSID = r->TRANSID;
         data.LASTUPDATEDTIME = r->LASTUPDATEDTIME;
         data.DELETEDTIME = r->DELETEDTIME;
+        data.COLOR = r->COLOR;
     }
     return r ? true : false;
 }
@@ -643,6 +645,7 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
     r->NOTES = data.NOTES;
     r->TRANSACTIONNUMBER = data.TRANSACTIONNUMBER;
     r->FOLLOWUPID = data.FOLLOWUPID;
+    r->COLOR = data.COLOR;
 }
 
 const wxString Model_Checking::Full_Data::to_json()

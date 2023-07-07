@@ -392,7 +392,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (color_id < 0 || color_id > 7) {
                 return mmErrorDialogs::ToolTip4Object(bColours_, _("Color"), _("Invalid value"), wxICON_ERROR);
             }
-            trx->FOLLOWUPID = color_id == 0 ? -1 : color_id ; 
+            trx->COLOR = color_id == 0 ? -1 : color_id ; 
         }
 
         if (m_notes_checkbox->IsChecked()) {

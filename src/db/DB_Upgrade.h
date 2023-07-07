@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-06-23 13:42:09.917034.
+ *          AUTO GENERATED at 2023-06-29 15:13:40.311769.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -410,6 +410,13 @@ const std::vector<wxString> dbUpgradeQuery =
         , UNIQUE(REFTYPE, REFID, TAGID)
         );
         CREATE INDEX IF NOT EXISTS IDX_TAGLINK ON TAGLINK_V1 (REFTYPE, REFID, TAGID);
+        
+        -- Migrate FOLLOWUPID to COLOR
+        ALTER TABLE CHECKINGACCOUNT_V1 ADD COLUMN COLOR INTEGER DEFAULT -1;
+        ALTER TABLE BILLSDEPOSITS_V1 ADD COLUMN COLOR INTEGER DEFAULT -1;
+        
+        UPDATE CHECKINGACCOUNT_V1 SET COLOR = FOLLOWUPID;
+        UPDATE BILLSDEPOSITS_v1 SET COLOR = FOLLOWUPID;
     )",
 
 };

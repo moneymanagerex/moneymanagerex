@@ -1400,9 +1400,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         }
 
         wxString trxDate = holder.Date.FormatISODate();
-        account = Model_Account::instance().get(accountID_);
+        Model_Account::Data* account2 = Model_Account::instance().get(accountID_);
         const Model_Account::Data* toAccount = Model_Account::instance().get(holder.ToAccountID);
-        if ((trxDate < account->INITIALDATE) ||
+        if ((trxDate < account2->INITIALDATE) ||
             (toAccount && (trxDate < toAccount->INITIALDATE)))
         {
             wxString msg = wxString::Format(_("Line %ld: %s"), nLines + 1,
@@ -1428,7 +1428,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         pTransaction->NOTES = holder.Notes;
         if (payeeMatchAddNotes_->IsChecked() && !holder.PayeeMatchNotes.IsEmpty())
             pTransaction->NOTES.Append(holder.PayeeMatchNotes);
-        pTransaction->FOLLOWUPID = color_id;
+        pTransaction->COLOR = color_id;
 
         Model_Checking::instance().save(pTransaction);
 
@@ -1455,7 +1455,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     // so that users can easily copy/paste errored records for reimport
     if (!rejectedRows.IsEmpty())
     {
-        *log_field_ << "\nRejected rows:\n" << rejectedRows;
+        *log_field_ << "\n" << _("Rejected rows:") << "\n" << rejectedRows;
         log << "\nRejected rows:\n" << rejectedRows;
     }
     progressDlg.Update(linesToImport);

@@ -896,7 +896,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
 
-    int color_id = m_bdp->bills_[item].FOLLOWUPID;
+    int color_id = m_bdp->bills_[item].COLOR;
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
     if (color_id > 0)
@@ -938,7 +938,7 @@ void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
     Model_Billsdeposits::Data* item = Model_Billsdeposits::instance().get(id);
     if (item)
     {
-        item->FOLLOWUPID = user_color_id;
+        item->COLOR = user_color_id;
         Model_Billsdeposits::instance().save(item);
     }
     Model_Billsdeposits::instance().ReleaseSavepoint();

@@ -373,7 +373,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(-1));
         if (!categories.empty())
         {
-            wxMessageBox(_("Category with same name exists for this parent"), _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Category with same name exists for this parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = -1;
@@ -382,7 +382,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(selectedCategory->CATEGID));
         if (!categories.empty())
         {
-            wxMessageBox(_("Category with same name exists for this parent"), _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Category with same name exists for this parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = selectedCategory->CATEGID;
@@ -484,7 +484,7 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
 
     deleteCategoryErrMsg << "\n\n" << wxString::FromUTF8(_("Tools → Relocation of → Categories").ToStdString());
 
-    wxMessageBox(deleteCategoryErrMsg, _("Organise Categories: Delete Error"), wxOK | wxICON_ERROR);
+    wxMessageBox(deleteCategoryErrMsg, _("Organize Categories: Delete Error"), wxOK | wxICON_ERROR);
 }
 
 void mmCategDialog::mmDoDeleteSelectedCategory()
@@ -632,7 +632,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     if (!categories.empty())
     {
         wxString errMsg = _("Category with same name exists for the parent");
-        wxMessageBox(errMsg, _("Organise Categories: Editing Error"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Organize Categories: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
     category->CATEGNAME = text;
