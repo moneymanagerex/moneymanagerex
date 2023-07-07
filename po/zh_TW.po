@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-06-29 19:31+0300\n"
+"PO-Revision-Date: 2023-07-07 08:01\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1661,7 +1661,7 @@ msgid "Category with same name exists for this parent"
 msgstr ""
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
+msgid "Organize Categories: Adding Error"
 msgstr ""
 
 #: categdialog.cpp:437
@@ -1715,7 +1715,7 @@ msgid "Tools → Relocation of → Categories"
 msgstr ""
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
+msgid "Organize Categories: Delete Error"
 msgstr ""
 
 #: categdialog.cpp:510
@@ -1748,7 +1748,7 @@ msgid "Category with same name exists for the parent"
 msgstr ""
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
+msgid "Organize Categories: Editing Error"
 msgstr ""
 
 #: categdialog.cpp:692 mmframe.cpp:3640
@@ -3745,7 +3745,7 @@ msgstr ""
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
+msgid "Organize Currencies"
 msgstr ""
 
 #: maincurrencydialog.cpp:394
@@ -4470,7 +4470,7 @@ msgstr ""
 
 #: mmframe.cpp:1383 mmframe.cpp:1544
 msgid "&Import from"
-msgstr ""
+msgstr "匯入(&I)"
 
 #: mmframe.cpp:1384
 msgid "&CSV Files..."
@@ -4490,7 +4490,7 @@ msgstr ""
 
 #: mmframe.cpp:1390 mmframe.cpp:1553
 msgid "&Export as"
-msgstr ""
+msgstr "匯出(&E)"
 
 #: mmframe.cpp:1391 mmframe.cpp:1545 mmframe.cpp:1554
 msgid "&CSV File..."
@@ -4562,7 +4562,7 @@ msgstr "新增資料庫"
 
 #: mmframe.cpp:1530
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "開啟資料庫...\tCtrl-O"
 
 #: mmframe.cpp:1530 mmframe.cpp:1894
 msgid "Open Database"
@@ -4570,7 +4570,7 @@ msgstr "開啟資料庫"
 
 #: mmframe.cpp:1531
 msgid "Save Database &As..."
-msgstr ""
+msgstr "另存新資料庫(&A)..."
 
 #: mmframe.cpp:1531
 msgid "Save Database As"
@@ -4749,7 +4749,7 @@ msgid "Organize Payees"
 msgstr "管理受帳人"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
+msgid "Organize Curre&ncies..."
 msgstr ""
 
 #: mmframe.cpp:1692
@@ -6923,11 +6923,11 @@ msgstr "手續費及稅金"
 
 #: reports/summarystocks.cpp:124 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "已實現損益"
 
 #: reports/summarystocks.cpp:125 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "未實現損益"
 
 #: reports/summarystocks.cpp:246
 msgid "Stocks Performance Charts"
@@ -7232,11 +7232,11 @@ msgstr "股數"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "平均股價"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "總成本"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
@@ -7334,7 +7334,7 @@ msgstr "損益金額: %s"
 #: stockspanel.cpp:335
 #, c-format
 msgid "Loss: %s"
-msgstr ""
+msgstr "虧損金額: %s"
 
 #: stockspanel.cpp:373
 msgid "Stock prices successfully updated"
