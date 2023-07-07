@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-06-30 05:31\n"
+"PO-Revision-Date: 2023-07-07 00:45\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -7028,7 +7028,7 @@ msgstr "주식 심벌을 입력하세요. (선택 사항) 거래소를 포함하
 
 #: sharetransactiondialog.cpp:240
 msgid "Share Number"
-msgstr "종목 코드"
+msgstr "보유 수량"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter number of shares held"
@@ -7118,7 +7118,7 @@ msgstr "주식 투자의 초기 날짜를 지정\n"
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
-msgstr "*종목 코드"
+msgstr "*보유 수량"
 
 #: stockdialog.cpp:225
 msgid "Enter number of shares.\n"
