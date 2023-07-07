@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-06-29 19:31+0300\n"
-"PO-Revision-Date: 2023-07-07 08:01\n"
+"PO-Revision-Date: 2023-07-07 09:14\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1897,7 +1897,7 @@ msgstr ""
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "全部"
 
 #: constants.cpp:209 mmframe.cpp:1489 mmframe.cpp:1894
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -4606,7 +4606,7 @@ msgstr ""
 
 #: mmframe.cpp:1566
 msgid "&Print..."
-msgstr ""
+msgstr "列印(&P)..."
 
 #: mmframe.cpp:1566 mmframe.cpp:1930
 msgid "Print current view"
@@ -5988,7 +5988,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "交易提示音"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6227,7 +6227,7 @@ msgstr "類別間隔符號"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "交易/預算設定"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
