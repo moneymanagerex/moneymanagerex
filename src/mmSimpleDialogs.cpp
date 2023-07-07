@@ -1077,7 +1077,10 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 /* Validates all tags passed in tagText, or the contents of the text control if tagText is blank */
 bool mmTagTextCtrl::Validate(const wxString& tagText)
 {
-     int ip = GetInsertionPoint();
+    // Clear stored tags
+    tags_.clear();
+
+    int ip = GetInsertionPoint();
 
     // If we are passed a string validate it, otherwise validate the text control contents
     wxString tags_in = tagText;
@@ -1088,9 +1091,6 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 
     wxString tags_out;
     bool newTagCreated = false;
-
-    // Clear stored tags
-    tags_.clear();
 
     // parse the tags and prompt to create any which don't exist
     for (const auto& tag : parseTags(tags_in))
@@ -1177,4 +1177,24 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
     }
 
     return tags;
+}
+
+void mmTagTextCtrl::SetTags(const wxArrayInt& tagIds)
+{
+    // Save the tag IDs and tag names
+    tags_.clear();
+    for (const auto& tagId : tagIds)
+        for (const auto& tag : tag_map_)
+            if (tag.second == tagId)
+            {
+                tags_[tag.first] = tagId;
+                break;
+            }
+
+    // Set the text of the control (sorted)
+    wxString tagString;
+    for (const auto& tag : tags_)
+        tagString.Append(tag.first + " ");
+
+    SetText(tagString);
 }

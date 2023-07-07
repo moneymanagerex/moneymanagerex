@@ -46,7 +46,7 @@ public:
 public:
     double get_total(const Data_Set& rows);
     std::map<int, Data_Set> get_all();
-    int update(const Data_Set& rows, int transactionID);
+    int update(Data_Set& rows, int transactionID);
 };
 
 #endif // 

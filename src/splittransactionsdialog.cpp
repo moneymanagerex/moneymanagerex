@@ -304,9 +304,7 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
                 m_splits_widgets.at(row).amount->SetValue("");
             else
                 m_splits_widgets.at(row).amount->SetValue(m_splits.at(row).SPLITTRANSAMOUNT);
-            m_splits_widgets.at(row).tags->ClearAll();
-            for (const auto& tag : m_splits.at(row).TAGS)
-                m_splits_widgets.at(row).tags->AddText(Model_Tag::instance().get(tag)->TAGNAME + " ");
+            m_splits_widgets.at(row).tags->SetTags(m_splits.at(row).TAGS);
             UpdateExtraInfo(row);
             m_splits_widgets.at(row).category->Enable(!is_view_only_);
             m_splits_widgets.at(row).amount->Enable(!is_view_only_);

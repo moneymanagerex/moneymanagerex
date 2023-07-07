@@ -24,6 +24,8 @@
 #include "db/DB_Table_Billsdeposits_V1.h"
 #include "model/Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
+#include "Model_Taglink.h"
+
 const int BD_REPEATS_MULTIPLEX_BASE = 100;
 
 class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
@@ -87,6 +89,7 @@ public:
         // This relates the 'Date Paid' field.
         wxString NEXTOCCURRENCEDATE;
         int COLOR = -1;
+        wxArrayInt TAGS;
     };
 
     struct Full_Data : public Data
@@ -97,7 +100,9 @@ public:
         wxString PAYEENAME;
         wxString CATEGNAME;
         Model_Budgetsplittransaction::Data_Set m_bill_splits;
+        Model_Taglink::Data_Set m_tags;
         wxString real_payee_name() const;
+        wxString TAGNAMES;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 

@@ -112,7 +112,7 @@ private:
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
     mmDatePickerCtrl* dpc_;
-    mmTagTextCtrl* tags_stc_;
+    mmTagTextCtrl* tagTextCtrl_;
 
     bool m_transfer = false;
     bool m_new_trx = false;

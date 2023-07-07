@@ -360,14 +360,12 @@ void mmTransDialog::dataToControls()
     // Tags
     if (!skip_tag_init_)
     {
-        Model_Taglink::Data_Set tags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)), Model_Taglink::REFID(m_trx_data.TRANSID));
-        wxString tagString;
-        for (const auto& tag : tags)
-            tagString.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
-        tags_stc_->SetEvtHandlerEnabled(false);
-        tags_stc_->SetText(tagString);
-        tags_stc_->Validate();
-        tags_stc_->SetEvtHandlerEnabled(true);
+        wxArrayInt tagIds;
+        for (const auto& tag : Model_Taglink::instance().find(
+            Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)),
+            Model_Taglink::REFID(m_trx_data.TRANSID)))
+            tagIds.Add(tag.TAGID);
+        tagTextCtrl_->SetTags(tagIds);
         skip_tag_init_ = true;
     }
 
@@ -537,10 +535,10 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(bAuto, g_flagsH);
 
     // Tags  ---------------------------------------------
-    tags_stc_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS);
+    tagTextCtrl_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS);
     
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Tags")), g_flagsH);
-    flex_sizer->Add(tags_stc_, g_flagsExpand);
+    flex_sizer->Add(tagTextCtrl_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
 
     // Frequently Used Notes
@@ -624,8 +622,8 @@ bool mmTransDialog::ValidateData()
 {
     if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
-    if (!tags_stc_->IsValid()) {
-        mmErrorDialogs::ToolTip4Object(tags_stc_, _("Invalid value"), _("Tag"), wxICON_ERROR);
+    if (!tagTextCtrl_->IsValid()) {
+        mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
         return false;
     }
     if (!cbAccount_->mmIsValid()) {
@@ -1046,8 +1044,8 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         Split s;
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
-        tags_stc_->Validate();
-        s.TAGS = tags_stc_->GetTagIDs();
+        tagTextCtrl_->Validate();
+        s.TAGS = tagTextCtrl_->GetTagIDs();
         s.NOTES = textNotes_->GetValue();
         m_local_splits.push_back(s);
     }
@@ -1067,9 +1065,9 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
             m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
             textNotes_->SetValue(m_local_splits[0].NOTES);
             m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
-            tags_stc_->ClearAll();
+            tagTextCtrl_->ClearAll();
             for (const auto& tag : m_local_splits[0].TAGS)
-                tags_stc_->AddText(Model_Tag::instance().get(tag)->TAGNAME + " ");
+                tagTextCtrl_->AddText(Model_Tag::instance().get(tag)->TAGNAME + " ");
             m_local_splits.clear();
         }
 
@@ -1082,7 +1080,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         skip_tooltips_init_ = false;
         dataToControls();
     }
-    tags_stc_->mmDoReInitialize();
+    tagTextCtrl_->mmDoReInitialize();
 }
 
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
@@ -1188,17 +1186,18 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
+    // Save split tags
     const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
 
     for (int i = 0; i < m_local_splits.size(); i++)
     {
         Model_Taglink::Data_Set splitTaglinks;
-        for (const auto& tag : m_local_splits.at(i).TAGS)
+        for (const auto& tagId : m_local_splits.at(i).TAGS)
         {
             Model_Taglink::Data* t = Model_Taglink::instance().create();
             t->REFTYPE = splitRefType;
             t->REFID = splt.at(i).SPLITTRANSID;
-            t->TAGID = tag;
+            t->TAGID = tagId;
             splitTaglinks.push_back(*t);
         }
         Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
@@ -1211,14 +1210,14 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     m_custom_fields->SaveCustomValues(m_trx_data.TRANSID);
 
-    // Save tags
+    // Save base transaction tags
     Model_Taglink::Data_Set taglinks;
-    for (const auto& tag : tags_stc_->GetTagIDs())
+    for (const auto& tagId : tagTextCtrl_->GetTagIDs())
     {
         Model_Taglink::Data* t = Model_Taglink::instance().create();
         t->REFTYPE = RefType;
         t->REFID = m_trx_data.TRANSID;
-        t->TAGID = tag;
+        t->TAGID = tagId;
         taglinks.push_back(*t);
     }
     Model_Taglink::instance().update(taglinks, RefType, m_trx_data.TRANSID);

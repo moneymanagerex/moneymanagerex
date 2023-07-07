@@ -135,6 +135,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
     m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
     m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_columns.push_back(PANEL_COLUMN(_("Tags"), 200, wxLIST_FORMAT_LEFT, true));
     m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
     m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
@@ -471,6 +472,8 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
         return bill.STATUS;
     case COL_CATEGORY:
         return bill.CATEGNAME;
+    case COL_TAGS:
+        return bill.TAGNAMES;
     case COL_TYPE:
         return wxGetTranslation(bill.TRANSCODE);
     case COL_AMOUNT:

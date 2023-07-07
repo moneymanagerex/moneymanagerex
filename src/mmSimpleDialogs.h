@@ -309,6 +309,7 @@ public:
     const wxArrayInt GetTagIDs() const;
     const wxArrayString GetTagStrings();
     void mmDoReInitialize();
+    void SetTags(const wxArrayInt& tagIds);
 
 protected:
     void OnKeyPressed(wxKeyEvent& event);

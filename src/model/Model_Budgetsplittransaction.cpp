@@ -67,7 +67,7 @@ std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransacti
     return data;
 }
 
-int Model_Budgetsplittransaction::update(const Data_Set& rows, int transactionID)
+int Model_Budgetsplittransaction::update(Data_Set& rows, int transactionID)
 {
 
     Data_Set split = instance().find(TRANSID(transactionID));
@@ -89,6 +89,10 @@ int Model_Budgetsplittransaction::update(const Data_Set& rows, int transactionID
             split_items.push_back(*split_item);
         }
         instance().save(split_items);
+
+        // Send back the new SPLITTRANSID which is needed to update taglinks
+        for (int i = 0; i < rows.size(); i++)
+            rows.at(i).SPLITTRANSID = split_items.at(i).SPLITTRANSID;
     }
     return rows.size();
 }

@@ -71,6 +71,7 @@ void Model_Taglink::DeleteAllTags(const wxString& refType, int refID)
 
 int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int refId)
 {
+    Model_Taglink::instance().Savepoint();
     bool updateTimestamp = false;
     std::map<int, int> row_id_map;
 
@@ -118,6 +119,8 @@ int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int ref
         else if (refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
             Model_Checking::instance().updateTimestamp(Model_Splittransaction::instance().get(refId)->TRANSID);
     }
+
+    Model_Taglink::instance().ReleaseSavepoint();
 
     return rows.size();
 }
