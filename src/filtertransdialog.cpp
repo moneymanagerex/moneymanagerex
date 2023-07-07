@@ -1263,7 +1263,7 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
     else if (mmIsNotesChecked() && !mmIsNoteMatches(tran.NOTES)) ok = false;
-    else if (mmIsColorChecked() && (m_color_value != tran.FOLLOWUPID))
+    else if (mmIsColorChecked() && (m_color_value != tran.COLOR))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id())) ok = false;
     return ok;

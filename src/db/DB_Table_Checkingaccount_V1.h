@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-01-12 21:06:50.482915.
+ *          AUTO GENERATED at 2023-06-29 15:13:33.541392.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, TRANSDATE TEXT, LASTUPDATEDTIME TEXT, DELETEDTIME TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, TRANSDATE TEXT, LASTUPDATEDTIME TEXT, DELETEDTIME TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, COLOR integer DEFAULT -1)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -203,6 +203,12 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
+    struct COLOR : public DB_Column<int>
+    { 
+        static wxString name() { return "COLOR"; } 
+        explicit COLOR(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
     typedef TRANSID PRIMARY;
     enum COLUMN
     {
@@ -221,6 +227,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         , COL_DELETEDTIME = 12
         , COL_FOLLOWUPID = 13
         , COL_TOTRANSAMOUNT = 14
+        , COL_COLOR = 15
     };
 
     /** Returns the column name as a string*/
@@ -243,6 +250,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             case COL_DELETEDTIME: return "DELETEDTIME";
             case COL_FOLLOWUPID: return "FOLLOWUPID";
             case COL_TOTRANSAMOUNT: return "TOTRANSAMOUNT";
+            case COL_COLOR: return "COLOR";
             default: break;
         }
         
@@ -267,6 +275,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         else if ("DELETEDTIME" == name) return COL_DELETEDTIME;
         else if ("FOLLOWUPID" == name) return COL_FOLLOWUPID;
         else if ("TOTRANSAMOUNT" == name) return COL_TOTRANSAMOUNT;
+        else if ("COLOR" == name) return COL_COLOR;
 
         return COLUMN(-1);
     }
@@ -293,6 +302,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString DELETEDTIME;
         int FOLLOWUPID;
         double TOTRANSAMOUNT;
+        int COLOR;
 
         int id() const
         {
@@ -331,6 +341,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             if(!DELETEDTIME.IsSameAs(r->DELETEDTIME)) return false;
             if(FOLLOWUPID != r->FOLLOWUPID) return false;
             if(TOTRANSAMOUNT != r->TOTRANSAMOUNT) return false;
+            if(COLOR != r->COLOR) return false;
             return true;
         }
         
@@ -346,6 +357,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             CATEGID = -1;
             FOLLOWUPID = -1;
             TOTRANSAMOUNT = 0.0;
+            COLOR = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
@@ -367,6 +379,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             DELETEDTIME = q.GetString(12); // DELETEDTIME
             FOLLOWUPID = q.GetInt(13); // FOLLOWUPID
             TOTRANSAMOUNT = q.GetDouble(14); // TOTRANSAMOUNT
+            COLOR = q.GetInt(15); // COLOR
         }
 
         Data& operator=(const Data& other)
@@ -388,6 +401,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             DELETEDTIME = other.DELETEDTIME;
             FOLLOWUPID = other.FOLLOWUPID;
             TOTRANSAMOUNT = other.TOTRANSAMOUNT;
+            COLOR = other.COLOR;
             return *this;
         }
 
@@ -472,6 +486,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             return this->TOTRANSAMOUNT == in.v_;
         }
 
+        bool match(const Self::COLOR &in) const
+        {
+            return this->COLOR == in.v_;
+        }
+
         // Return the data record as a json string
         wxString to_json() const
         {
@@ -518,6 +537,8 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Int(this->FOLLOWUPID);
             json_writer.Key("TOTRANSAMOUNT");
             json_writer.Double(this->TOTRANSAMOUNT);
+            json_writer.Key("COLOR");
+            json_writer.Int(this->COLOR);
         }
 
         row_t to_row_t() const
@@ -538,6 +559,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             row(L"DELETEDTIME") = DELETEDTIME;
             row(L"FOLLOWUPID") = FOLLOWUPID;
             row(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
+            row(L"COLOR") = COLOR;
             return row;
         }
 
@@ -558,6 +580,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             t(L"DELETEDTIME") = DELETEDTIME;
             t(L"FOLLOWUPID") = FOLLOWUPID;
             t(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
+            t(L"COLOR") = COLOR;
         }
 
         /** Save the record instance in memory to the database. */
@@ -593,7 +616,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 15
+        NUM_COLUMNS = 16
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -603,7 +626,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     DB_Table_CHECKINGACCOUNT_V1() : fake_(new Data())
     {
-        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT_V1 ";
+        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT, COLOR FROM CHECKINGACCOUNT_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -633,11 +656,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, TRANSDATE, LASTUPDATEDTIME, DELETEDTIME, FOLLOWUPID, TOTRANSAMOUNT, COLOR) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CHECKINGACCOUNT_V1 SET ACCOUNTID = ?, TOACCOUNTID = ?, PAYEEID = ?, TRANSCODE = ?, TRANSAMOUNT = ?, STATUS = ?, TRANSACTIONNUMBER = ?, NOTES = ?, CATEGID = ?, TRANSDATE = ?, LASTUPDATEDTIME = ?, DELETEDTIME = ?, FOLLOWUPID = ?, TOTRANSAMOUNT = ? WHERE TRANSID = ?";
+            sql = "UPDATE CHECKINGACCOUNT_V1 SET ACCOUNTID = ?, TOACCOUNTID = ?, PAYEEID = ?, TRANSCODE = ?, TRANSAMOUNT = ?, STATUS = ?, TRANSACTIONNUMBER = ?, NOTES = ?, CATEGID = ?, TRANSDATE = ?, LASTUPDATEDTIME = ?, DELETEDTIME = ?, FOLLOWUPID = ?, TOTRANSAMOUNT = ?, COLOR = ? WHERE TRANSID = ?";
         }
 
         try
@@ -658,8 +681,9 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             stmt.Bind(12, entity->DELETEDTIME);
             stmt.Bind(13, entity->FOLLOWUPID);
             stmt.Bind(14, entity->TOTRANSAMOUNT);
+            stmt.Bind(15, entity->COLOR);
             if (entity->id() > 0)
-                stmt.Bind(15, entity->TRANSID);
+                stmt.Bind(16, entity->TRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

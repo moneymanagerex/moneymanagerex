@@ -527,7 +527,7 @@ void mmTransDialog::CreateControls()
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _("User Colors"));
-    bColours_->SetBackgroundColor(m_trx_data.FOLLOWUPID);
+    bColours_->SetBackgroundColor(m_trx_data.COLOR);
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
@@ -742,9 +742,9 @@ bool mmTransDialog::ValidateData()
 
     int color_id = bColours_->GetColorId();
     if (color_id > 0 && color_id < 8)
-        m_trx_data.FOLLOWUPID = color_id;
+        m_trx_data.COLOR = color_id;
     else
-        m_trx_data.FOLLOWUPID = -1;
+        m_trx_data.COLOR = -1;
 
     return true;
 }

@@ -204,7 +204,7 @@ table {
         hb.startTableRow();
         hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
             , wxString::Format("%i", transaction.TRANSID), true);
-        hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString(), true);
+        hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
