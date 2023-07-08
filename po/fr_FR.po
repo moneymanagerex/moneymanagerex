@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:01\n"
+"PO-Revision-Date: 2023-07-08 15:13\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "Paiement"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX permet de paramétrer des paiements réguliers en tant qu'opérations. Cela peut être des crédits ou des virements réguliers qui vont se produire dans le futur. Ces opérations permettent de rappeler qu'un événement est sur le point de se produire et apparaîssent sur le tableau de bord 14 jours avant la date d'échéance attendue du paiement."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -4909,7 +4909,7 @@ msgstr "Optimiser la taille et la performance de la BdD"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Vérification et dé&bogage de la base de données..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5282,19 +5282,19 @@ msgstr "Optimisation de la BdD terminée ! \n\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Résultat de la vérification de l'intégrité de la base de données :"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Vérification de la base de données"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "N'utilisez cette fonction que dans le cas où elle est demandée par le support MMEX et qu'on vous a fourni un fichier de débogage .mmdbg"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Débogage de la base de données"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
