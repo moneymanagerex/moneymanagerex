@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-06-29 17:27+0300\n"
-"PO-Revision-Date: 2023-06-29 15:08\n"
+"POT-Creation-Date: 2023-07-08 16:57+0300\n"
+"PO-Revision-Date: 2023-07-08 14:01\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -56,12 +56,12 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "تمكين لمساعدتنا في إرسال بيانات مجهولة حول استخدام MMEX."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
-#: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:643
+#: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:644
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:745
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
-#: mmSimpleDialogs.cpp:880 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:882 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:582 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:276
 #: transactionsupdatedialog.cpp:248 transdialog.cpp:563 wizard_update.cpp:216
@@ -135,7 +135,7 @@ msgid "Select whether this is an account that is used often. This is used to fil
 msgstr "حدد ما إذا كان هذا حسابًا يستخدم كثيرًا. يستخدم هذا لتصفية عرض الحسابات."
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
-#: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145
+#: billsdepositsdialog.cpp:622 billsdepositspanel.cpp:145
 #: budgetentrydialog.cpp:144 budgetingpanel.cpp:305 filtertrans.cpp:197
 #: filtertransdialog.cpp:628 filtertransdialog.cpp:1557
 #: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:110
@@ -295,8 +295,8 @@ msgid "Opening date cannot be in the future"
 msgstr "لا يمكن أن يكون تاريخ الافتتاح في المستقبل"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
-#: accountdialog.cpp:536 billsdepositsdialog.cpp:1030
-#: billsdepositsdialog.cpp:1033 stockdialog.cpp:428 transdialog.cpp:610
+#: accountdialog.cpp:536 billsdepositsdialog.cpp:1031
+#: billsdepositsdialog.cpp:1034 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
 msgstr "تاريخ غير صالح"
@@ -376,7 +376,7 @@ msgstr "&خروج "
 msgid "Open the previously opened database : %s"
 msgstr "فتح قاعدة البيانات المفتوحة سابقاً: %s"
 
-#: appstartdialog.cpp:199 mmframe.cpp:1629 mmframe.cpp:2922
+#: appstartdialog.cpp:199 mmframe.cpp:1629 mmframe.cpp:2959
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr "الإعداد الافتراضي للنظام"
@@ -389,11 +389,11 @@ msgstr "تغيير اللغة المستخدمة لـ MMEX GUI"
 msgid "Language"
 msgstr "اللغة"
 
-#: appstartdialog.cpp:220 mmframe.cpp:3770 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:220 mmframe.cpp:3807 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "تم تغيير لغة هذا التطبيق. سيدخل التغيير حيز التنفيذ في المرة القادمة التي يبدأ فيها التطبيق."
 
-#: appstartdialog.cpp:222 mmframe.cpp:3772 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:222 mmframe.cpp:3809 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr "تغيير اللغة"
 
@@ -516,7 +516,7 @@ msgstr "لم يتم العثور على حساب الأصول. \n"
 msgid "ID"
 msgstr "الرقم التعريفي"
 
-#: assetspanel.cpp:62 billsdepositsdialog.cpp:524 billsdepositspanel.cpp:138
+#: assetspanel.cpp:62 billsdepositsdialog.cpp:525 billsdepositspanel.cpp:138
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:195 filtertransdialog.cpp:62
 #: filtertransdialog.cpp:578 filtertransdialog.cpp:952
 #: filtertransdialog.cpp:1520 import_export/qif_export.cpp:134
@@ -583,7 +583,7 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr "يسمح لك MMEX بتتبع الأصول الثابتة مثل السيارات والمنازل والأرض وغيرها. يمكن أن ترتفع قيمة كل أصل بمعدل معين سنويًا، أو تنخفض بمعدل معين سنويًا، أو لا تتغير قيمتها. تتم إضافة إجمالي الأصول إلى إجمالي قيمتك المالية."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1031
-#: mmframe.cpp:484 mmframe.cpp:758 mmframe.cpp:1717 mmframe.cpp:3328
+#: mmframe.cpp:484 mmframe.cpp:758 mmframe.cpp:1717 mmframe.cpp:3365
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:238
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
@@ -837,7 +837,7 @@ msgid "Open attachment failed"
 msgstr "فشل فتح المرفق"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:606 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:608 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -916,79 +916,79 @@ msgstr "شهريا (آخر يوم)"
 msgid "Monthly (last business day)"
 msgstr "شهريا (آخر يوم عمل)"
 
-#: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:303
+#: billsdepositsdialog.cpp:314 billsdepositspanel.cpp:303
 msgid "Duplicate Recurring Transaction"
 msgstr "تكرار المعاملات المتكررة"
 
-#: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:298
+#: billsdepositsdialog.cpp:316 billsdepositspanel.cpp:298
 msgid "Edit Recurring Transaction"
 msgstr "تعديل مُعاملة متكررة"
 
-#: billsdepositsdialog.cpp:320
+#: billsdepositsdialog.cpp:321
 msgid "Enter Recurring Transaction"
 msgstr "أدخل معاملة متكررة"
 
-#: billsdepositsdialog.cpp:414
+#: billsdepositsdialog.cpp:415
 msgid "Recurring Transaction Details"
 msgstr "تفاصيل المُعاملات المُتكررة"
 
-#: billsdepositsdialog.cpp:428
+#: billsdepositsdialog.cpp:429
 msgid "Specify the date when this bill or deposit is due"
 msgstr "حدد تاريخ استحقاق هذه الفاتورة أو الإيداع"
 
-#: billsdepositsdialog.cpp:429 billsdepositspanel.cpp:133
+#: billsdepositsdialog.cpp:430 billsdepositspanel.cpp:133
 msgid "Date Due"
 msgstr "تاريخ الاستحقاق"
 
-#: billsdepositsdialog.cpp:434 billsdepositsdialog.cpp:1214
+#: billsdepositsdialog.cpp:435 billsdepositsdialog.cpp:1216
 msgid "Repeats"
 msgstr "التكرار"
 
-#: billsdepositsdialog.cpp:440
+#: billsdepositsdialog.cpp:441
 msgid "Back to the last occurring date with the specified values"
 msgstr "العودة إلى آخر تاريخ يحدث مع القيم المحددة"
 
-#: billsdepositsdialog.cpp:447
+#: billsdepositsdialog.cpp:448
 msgid "Advance the next occurring date with the specified values"
 msgstr "تقدم تاريخ الحدوث التالي مع القيم المحددة"
 
-#: billsdepositsdialog.cpp:458 billsdepositsdialog.cpp:1256
+#: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1258
 msgid "Payments Left"
 msgstr "المدفوعات المتبقية"
 
-#: billsdepositsdialog.cpp:472
+#: billsdepositsdialog.cpp:473
 msgid "Request user to enter payment"
 msgstr "اطلب من المستخدم إدخال الدفع"
 
-#: billsdepositsdialog.cpp:473
+#: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "طلب المستخدم إدخال هذه المعاملة في 'التاريخ المدفوع'"
 
-#: billsdepositsdialog.cpp:476
+#: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
 msgstr "منح التنفيذ التلقائي"
 
-#: billsdepositsdialog.cpp:477
+#: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
 msgstr "سيتم الدفع المطلوب بدون تفاعل المستخدم"
 
-#: billsdepositsdialog.cpp:484 filtertrans.cpp:177 transdialog.cpp:395
+#: billsdepositsdialog.cpp:485 filtertrans.cpp:177 transdialog.cpp:395
 msgid "Transaction Details"
 msgstr "تفاصيل المُعاملة"
 
-#: billsdepositsdialog.cpp:493
+#: billsdepositsdialog.cpp:494
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "حدد تاريخ طلب المستخدم لإدخال هذه المعاملة"
 
-#: billsdepositsdialog.cpp:494 billsdepositspanel.cpp:132
+#: billsdepositsdialog.cpp:495 billsdepositspanel.cpp:132
 msgid "Date Paid"
 msgstr "تاريخ الدفع"
 
-#: billsdepositsdialog.cpp:506 filtertransdialog.cpp:575 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:507 filtertransdialog.cpp:575 transdialog.cpp:1237
 msgid "Specify the status for the transaction"
 msgstr "تعيين حالة المُعاملة"
 
-#: billsdepositsdialog.cpp:508 billsdepositspanel.cpp:136 filtertrans.cpp:193
+#: billsdepositsdialog.cpp:509 billsdepositspanel.cpp:136 filtertrans.cpp:193
 #: filtertransdialog.cpp:565 filtertransdialog.cpp:947
 #: filtertransdialog.cpp:1509 import_export/qif_export.cpp:608
 #: import_export/qif_import_gui.cpp:263 import_export/qif_import_gui.cpp:274
@@ -1000,19 +1000,19 @@ msgstr "تعيين حالة المُعاملة"
 msgid "Status"
 msgstr "الحالة"
 
-#: billsdepositsdialog.cpp:514 transdialog.cpp:1238
+#: billsdepositsdialog.cpp:515 transdialog.cpp:1238
 msgid "Specify the type of transactions to be created."
 msgstr "حدد نوع المُعاملة التي تريد إنشاءها."
 
-#: billsdepositsdialog.cpp:515 transdialog.cpp:435
+#: billsdepositsdialog.cpp:516 transdialog.cpp:435
 msgid "&Advanced"
 msgstr "&خيارات متقدمة"
 
-#: billsdepositsdialog.cpp:518 transdialog.cpp:1241
+#: billsdepositsdialog.cpp:519 transdialog.cpp:1241
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "يسمح بتحديد مبالغ مختلفة في الحسابات من مصدر إلى آخر."
 
-#: billsdepositsdialog.cpp:529 billsdepositspanel.cpp:139
+#: billsdepositsdialog.cpp:530 billsdepositspanel.cpp:139
 #: budgetingpanel.cpp:302 filtertrans.cpp:196 filtertransdialog.cpp:965
 #: filtertransdialog.cpp:974 import_export/qif_export.cpp:613
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
@@ -1024,12 +1024,12 @@ msgstr "يسمح بتحديد مبالغ مختلفة في الحسابات من
 msgid "Amount"
 msgstr "المبلغ"
 
-#: billsdepositsdialog.cpp:540 transdialog.cpp:1223
+#: billsdepositsdialog.cpp:541 transdialog.cpp:1223
 msgid "Specify the transfer amount in the To Account"
 msgstr "حدد مبلغ التحويل في الحساب إلى"
 
-#: billsdepositsdialog.cpp:551 billsdepositsdialog.cpp:821
-#: billsdepositsdialog.cpp:834 billsdepositspanel.cpp:134 filtertrans.cpp:191
+#: billsdepositsdialog.cpp:552 billsdepositsdialog.cpp:822
+#: billsdepositsdialog.cpp:835 billsdepositspanel.cpp:134 filtertrans.cpp:191
 #: filtertransdialog.cpp:59 filtertransdialog.cpp:498 filtertransdialog.cpp:877
 #: filtertransdialog.cpp:1437 import_export/qif_export.cpp:610
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:174
@@ -1041,15 +1041,15 @@ msgstr "حدد مبلغ التحويل في الحساب إلى"
 msgid "Account"
 msgstr "الحساب"
 
-#: billsdepositsdialog.cpp:556
+#: billsdepositsdialog.cpp:557
 msgid "Specify the Account that will own the recurring transaction"
 msgstr "حدد الحساب الذي سيمتلك المعاملة المتكررة"
 
-#: billsdepositsdialog.cpp:561 transdialog.cpp:232 transdialog.cpp:474
+#: billsdepositsdialog.cpp:562 transdialog.cpp:232 transdialog.cpp:474
 msgid "To"
 msgstr "إلى"
 
-#: billsdepositsdialog.cpp:571 billsdepositsdialog.cpp:822
+#: billsdepositsdialog.cpp:572 billsdepositsdialog.cpp:823
 #: billsdepositspanel.cpp:135 filtertrans.cpp:192 filtertransdialog.cpp:60
 #: filtertransdialog.cpp:537 filtertransdialog.cpp:903
 #: filtertransdialog.cpp:1473 import_export/qif_export.cpp:611
@@ -1063,7 +1063,7 @@ msgstr "إلى"
 msgid "Payee"
 msgstr "المستفيد"
 
-#: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:953
+#: billsdepositsdialog.cpp:584 billsdepositsdialog.cpp:954
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:194
 #: filtertransdialog.cpp:61 filtertransdialog.cpp:547 filtertransdialog.cpp:936
 #: filtertransdialog.cpp:941 filtertransdialog.cpp:1480
@@ -1080,16 +1080,16 @@ msgstr "المستفيد"
 msgid "Category"
 msgstr "الفئة"
 
-#: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:1342 transdialog.cpp:501
+#: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:1344 transdialog.cpp:501
 #: transdialog.cpp:1200
 msgid "Use split Categories"
 msgstr "استخدم الفئات المقسمة"
 
-#: billsdepositsdialog.cpp:597 transdialog.cpp:1239
+#: billsdepositsdialog.cpp:598 transdialog.cpp:1239
 msgid "Specify any associated check number or transaction number"
 msgstr "حدد أي رقم تحقق مرتبط أو رقم معاملة"
 
-#: billsdepositsdialog.cpp:599 billsdepositspanel.cpp:144 filtertrans.cpp:190
+#: billsdepositsdialog.cpp:600 billsdepositspanel.cpp:144 filtertrans.cpp:190
 #: filtertransdialog.cpp:620 filtertransdialog.cpp:1549
 #: import_export/qif_export.cpp:615 import_export/qif_import_gui.cpp:105
 #: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:269
@@ -1098,20 +1098,20 @@ msgstr "حدد أي رقم تحقق مرتبط أو رقم معاملة"
 msgid "Number"
 msgstr "عدد"
 
-#: billsdepositsdialog.cpp:606 transdialog.cpp:522 usertransactionpanel.cpp:206
+#: billsdepositsdialog.cpp:607 transdialog.cpp:522 usertransactionpanel.cpp:206
 msgid "Select one of the frequently used notes"
 msgstr "حدد إحدى الملاحظات المستخدمة بشكل متكرر"
 
-#: billsdepositsdialog.cpp:612 transactionsupdatedialog.cpp:217
+#: billsdepositsdialog.cpp:613 transactionsupdatedialog.cpp:217
 #: transdialog.cpp:529
 msgid "User Colors"
 msgstr "ألوان المستخدم"
 
-#: billsdepositsdialog.cpp:616
+#: billsdepositsdialog.cpp:617
 msgid "Organize attachments of this recurring transaction"
 msgstr "تنظيم مرفقات هذه المعاملة المتكررة"
 
-#: billsdepositsdialog.cpp:626 filtertrans.cpp:188 filtertransdialog.cpp:644
+#: billsdepositsdialog.cpp:627 filtertrans.cpp:188 filtertransdialog.cpp:644
 #: filtertransdialog.cpp:983 filtertransdialog.cpp:1564
 #: import_export/qif_import_gui.cpp:356 import_export/univcsvdialog.cpp:448
 #: import_export/univcsvdialog.cpp:1337 reports/transactions.cpp:187
@@ -1120,30 +1120,30 @@ msgstr "تنظيم مرفقات هذه المعاملة المتكررة"
 msgid "Color"
 msgstr "اللون"
 
-#: billsdepositsdialog.cpp:633 transdialog.cpp:551 transdialog.cpp:1240
+#: billsdepositsdialog.cpp:634 transdialog.cpp:551 transdialog.cpp:1240
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "تعيين أي ملاحظة نصية ترغب اضافتها للعملية"
 
-#: billsdepositsdialog.cpp:650 filtertransdialog.cpp:752
+#: billsdepositsdialog.cpp:651 filtertransdialog.cpp:752
 #: transactionsupdatedialog.cpp:255 transdialog.cpp:567
 msgid "Show/Hide custom fields window"
 msgstr "إظهار/إخفاء نافذة الحقول المخصصة"
 
-#: billsdepositsdialog.cpp:812 billsdepositsdialog.cpp:835 transdialog.cpp:231
+#: billsdepositsdialog.cpp:813 billsdepositsdialog.cpp:836 transdialog.cpp:231
 #: transdialog.cpp:240
 msgid "From"
 msgstr "من"
 
-#: billsdepositsdialog.cpp:880
+#: billsdepositsdialog.cpp:881
 msgid "The payment date is after the due date, is this what you intended?"
 msgstr "تاريخ الدفع بعد تاريخ الاستحقاق، هل هذا ما قصدته ؟"
 
-#: billsdepositsdialog.cpp:881
+#: billsdepositsdialog.cpp:882
 msgid "Looks like a late payment"
 msgstr "يبدو وكأنه دفع متأخر"
 
-#: billsdepositsdialog.cpp:933 transactionsupdatedialog.cpp:317
+#: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:317
 #: transdialog.cpp:641
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
@@ -1151,12 +1151,12 @@ msgid "You have not used this payee name before. Is the name correct?\n"
 msgstr "لم تستخدم اسم المدفوع لأمره هذا من قبل. هل الاسم صحيح؟\n"
 "%s"
 
-#: billsdepositsdialog.cpp:934 transactionsupdatedialog.cpp:318
+#: billsdepositsdialog.cpp:935 transactionsupdatedialog.cpp:318
 #: transdialog.cpp:642
 msgid "Confirm payee name"
 msgstr "قم بتأكيد اسم المدفوع لأمره"
 
-#: billsdepositsdialog.cpp:953 billsdepositsdialog.cpp:1282
+#: billsdepositsdialog.cpp:954 billsdepositsdialog.cpp:1284
 #: filtertransdialog.cpp:877 filtertransdialog.cpp:887
 #: filtertransdialog.cpp:893 filtertransdialog.cpp:922
 #: filtertransdialog.cpp:941 filtertransdialog.cpp:947
@@ -1170,67 +1170,67 @@ msgstr "قم بتأكيد اسم المدفوع لأمره"
 msgid "Invalid value"
 msgstr "قيمة غير صالحة"
 
-#: billsdepositsdialog.cpp:1030 billsdepositsdialog.cpp:1033
+#: billsdepositsdialog.cpp:1031 billsdepositsdialog.cpp:1034
 #: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:428 transdialog.cpp:610
 #: transdialog.cpp:684 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "تاريخ فتح الحساب متأخر عن تاريخ هذه المعاملة"
 
-#: billsdepositsdialog.cpp:1205
+#: billsdepositsdialog.cpp:1207
 msgid "Specify the transfer amount in the From Account"
 msgstr "حدد مبلغ التحويل في الحساب"
 
-#: billsdepositsdialog.cpp:1215
+#: billsdepositsdialog.cpp:1217
 msgid "Activates"
 msgstr "مفعل"
 
-#: billsdepositsdialog.cpp:1217
+#: billsdepositsdialog.cpp:1219
 msgid "Period: Days"
 msgstr "الفترة: أيام"
 
-#: billsdepositsdialog.cpp:1218
+#: billsdepositsdialog.cpp:1220
 msgid "Period: Months"
 msgstr "الفترة: أشهر"
 
-#: billsdepositsdialog.cpp:1225
+#: billsdepositsdialog.cpp:1227
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr "حدد الفترة الزمنية في الأيام للتفعيل.\n"
 "تصبح فارغة عندما لا تكون نشطة."
 
-#: billsdepositsdialog.cpp:1233
+#: billsdepositsdialog.cpp:1235
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr "حدد الفترة في الأشهر لتفعيلها.\n"
 "تصبح فارغة عندما لا تكون نشطة."
 
-#: billsdepositsdialog.cpp:1241
+#: billsdepositsdialog.cpp:1243
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr "حدد الفترة في الأيام لتفعيلها. \n"
 "اتركها فارغة عندما لا تكون نشطًا."
 
-#: billsdepositsdialog.cpp:1249
+#: billsdepositsdialog.cpp:1251
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr "حدد الفترة في الأشهر لتفعيلها. \n"
 "اتركها فارغة عندما لا تكون نشطة."
 
-#: billsdepositsdialog.cpp:1257
+#: billsdepositsdialog.cpp:1259
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr "حدد عدد المدفوعات التي يتعين القيام بها.\n"
 "اتركه فارغا إذا استمرت المدفوعات إلى الأبد."
 
-#: billsdepositsdialog.cpp:1282 images_list.cpp:500
+#: billsdepositsdialog.cpp:1284 images_list.cpp:500
 #: import_export/univcsvdialog.cpp:1559 maincurrencydialog.cpp:482
-#: mmframe.cpp:3735 splittransactionsdialog.cpp:395 stockspanel.cpp:384
+#: mmframe.cpp:3772 splittransactionsdialog.cpp:395 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "خطأ"
 
-#: billsdepositsdialog.cpp:1352 splittransactionsdialog.h:82
+#: billsdepositsdialog.cpp:1354 splittransactionsdialog.h:82
 #: transdialog.cpp:325
 msgid "Split Transaction"
 msgstr "تقسيم المُعاملة"
@@ -1296,15 +1296,15 @@ msgid "Payment"
 msgstr "سداد"
 
 #: billsdepositspanel.cpp:196
-msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "يسمح MMEX بإعداد المدفوعات المنتظمة كمعاملات. يمكن أن تكون هذه المعاملات أيضًا ودائع عادية، أو تحويلات ستحدث في وقت ما في المستقبل. تعمل هذه المعاملات كتذكير بأن حدثًا على وشك الحدوث، وتظهر على الصفحة الرئيسية قبل 14 يومًا من استحقاق المعاملة. "
+msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
+msgstr ""
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "نصيحة: يمكن إعداد هذه المعاملات للتنشيط - مما يسمح للمستخدم بضبط أي قيم في تاريخ الاستحقاق."
 
 #: billsdepositspanel.cpp:245 billsdepositspanel.cpp:973 mmframe.cpp:762
-#: mmframe.cpp:3080 mmhomepagepanel.cpp:244
+#: mmframe.cpp:3117 mmhomepagepanel.cpp:244
 msgid "Recurring Transactions"
 msgstr "المُعاملات المُتكررة"
 
@@ -1686,8 +1686,8 @@ msgid "Category with same name exists for this parent"
 msgstr "يوجد فئة بنفس الاسم لهذا الأصل"
 
 #: categdialog.cpp:376 categdialog.cpp:385
-msgid "Organise Categories: Adding Error"
-msgstr "تنظيم الفئات: إضافة خطأ"
+msgid "Organize Categories: Adding Error"
+msgstr ""
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1745,8 +1745,8 @@ msgid "Tools → Relocation of → Categories"
 msgstr "الأدوات ← نقل ← الفئات"
 
 #: categdialog.cpp:487
-msgid "Organise Categories: Delete Error"
-msgstr "تنظيم الفئات: حذف خطأ"
+msgid "Organize Categories: Delete Error"
+msgstr ""
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1778,19 +1778,19 @@ msgid "Category with same name exists for the parent"
 msgstr "يوجد فئة بنفس الاسم للأصل"
 
 #: categdialog.cpp:635
-msgid "Organise Categories: Editing Error"
-msgstr "تنظيم الفئات: تحرير خطأ"
+msgid "Organize Categories: Editing Error"
+msgstr ""
 
-#: categdialog.cpp:692 mmframe.cpp:3640
+#: categdialog.cpp:692 mmframe.cpp:3677
 msgid "Category Relocation Completed."
 msgstr "اكتمل نقل الفئة."
 
-#: categdialog.cpp:693 mmframe.cpp:3641 mmframe.cpp:3656 payeedialog.cpp:813
+#: categdialog.cpp:693 mmframe.cpp:3678 mmframe.cpp:3693 payeedialog.cpp:813
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "تم تحديث السجلات في قاعدة البيانات: %i"
 
-#: categdialog.cpp:695 mmframe.cpp:3643
+#: categdialog.cpp:695 mmframe.cpp:3680
 msgid "Category Relocation Result"
 msgstr "نتيجة نقل الفئة"
 
@@ -2022,7 +2022,7 @@ msgstr "سيتم فقدان أي تغييرات بدون تحديث"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2593 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:785
+#: mmSimpleDialogs.cpp:787
 msgid "Invalid Entry"
 msgstr "إدخال غير صالح"
 
@@ -2130,7 +2130,7 @@ msgid "Changing field type will delete all content!"
 msgstr "تغيير نوع الحقل سيحذف كل المحتوى!"
 
 #: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2347
-#: mmframe.cpp:2366
+#: mmframe.cpp:2403
 msgid "Do you want to proceed?"
 msgstr "هل تريد المتابعة ؟"
 
@@ -2468,11 +2468,11 @@ msgid "Wrong file type!"
 msgstr "نوع الملف خاطئ!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
-#: dbupgrade.cpp:289
+#: dbupgrade.cpp:289 mmframe.cpp:2384
 msgid "MMEX debug error"
 msgstr "خطأ في تصحيح MMEX"
 
-#: dbupgrade.cpp:227 dbupgrade.cpp:278
+#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2384
 msgid "Query error, please contact MMEX support!"
 msgstr "خطأ في الاستبيان، يرجى الاتصال بدعم MMEX!"
 
@@ -2757,7 +2757,7 @@ msgstr "اختار الحسابات"
 msgid "Transaction Filter"
 msgstr "مرشح المعاملات"
 
-#: general_report_manager.cpp:293 mmframe.cpp:780 mmframe.cpp:2866
+#: general_report_manager.cpp:293 mmframe.cpp:780 mmframe.cpp:2903
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "التقارير"
@@ -2982,12 +2982,12 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "لم يتم العثور على سمة عملية، قد يكون التثبيت فاسد"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2185
-#: mmSimpleDialogs.cpp:795
+#: mmSimpleDialogs.cpp:797
 msgid "Unable to open file."
 msgstr "غير قادر على فتح الملف."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1344 mmframe.cpp:2507 mmframe.cpp:2526
+#: import_export/univcsvdialog.cpp:1344 mmframe.cpp:2544 mmframe.cpp:2563
 msgid "Universal CSV Import"
 msgstr "استيراد CSV شامل"
 
@@ -3062,8 +3062,8 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3419 mmframe.cpp:3423
-#: mmframe.cpp:3440 mmframe.cpp:3444
+#: import_export/qif_export.cpp:152 mmframe.cpp:3456 mmframe.cpp:3460
+#: mmframe.cpp:3477 mmframe.cpp:3481
 msgid "Accounts"
 msgstr "الحسابات"
 
@@ -3653,7 +3653,7 @@ msgstr "فشل في حذف الملف الموجود. يمكن قفل الملف
 msgid "Destination file error"
 msgstr "الملف الوجهه غير موجود"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:803
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:805
 msgid "Invalid Account"
 msgstr "حساب غير صحيح"
 
@@ -3797,7 +3797,7 @@ msgstr "هل تريد حقاً حذف العملة المحددة؟"
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
-msgid "Organise Currencies"
+msgid "Organize Currencies"
 msgstr ""
 
 #: maincurrencydialog.cpp:394
@@ -3873,91 +3873,91 @@ msgstr "لم يتم العثور على رمز العملة الاساسية!"
 msgid "Currency Dialog"
 msgstr "نافذة العملة"
 
-#: mmSimpleDialogs.cpp:549 mmSimpleDialogs.cpp:561
+#: mmSimpleDialogs.cpp:550 mmSimpleDialogs.cpp:562
 msgid "Clear color"
 msgstr "مسح اللون"
 
-#: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:566
+#: mmSimpleDialogs.cpp:553 mmSimpleDialogs.cpp:567
 #, c-format
 msgid "Color #%i"
 msgstr "لون #%i"
 
-#: mmSimpleDialogs.cpp:725
+#: mmSimpleDialogs.cpp:727
 msgid "Subtract one year"
 msgstr "خصم سنة واحدة"
 
-#: mmSimpleDialogs.cpp:726
+#: mmSimpleDialogs.cpp:728
 msgid "Subtract one month"
 msgstr "خصم شهر واحد"
 
-#: mmSimpleDialogs.cpp:727
+#: mmSimpleDialogs.cpp:729
 msgid "Add one month"
 msgstr "إضافة شهر واحد"
 
-#: mmSimpleDialogs.cpp:728
+#: mmSimpleDialogs.cpp:730
 msgid "Add one year"
 msgstr "إضافة سنة واحدة"
 
-#: mmSimpleDialogs.cpp:784
+#: mmSimpleDialogs.cpp:786
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "الإدخال %s غير صالح"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:792
 msgid "Please select an existing category"
 msgstr "الرجاء تحديد فئة موجودة"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:792
 msgid "Invalid Category"
 msgstr "فئة غير صالحة"
 
-#: mmSimpleDialogs.cpp:795
+#: mmSimpleDialogs.cpp:797
 msgid "File name is empty."
 msgstr "اسم الملف فارغ."
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:798
 msgid "Please select the file for this operation."
 msgstr "الرجاء تحديد الملف لهذه العملية."
 
-#: mmSimpleDialogs.cpp:806
+#: mmSimpleDialogs.cpp:808
 msgid "Please select the account for this transaction."
 msgstr "الرجاء تحديد حساب لهذه المعاملة."
 
-#: mmSimpleDialogs.cpp:808
+#: mmSimpleDialogs.cpp:810
 msgid "Please specify which account the transfer is going to."
 msgstr "الرجاء تحديد الحساب الذي سيتم التحويل إليه."
 
-#: mmSimpleDialogs.cpp:810
+#: mmSimpleDialogs.cpp:812
 msgid "Selection can be made by using the dropdown button."
 msgstr "يمكن إجراء التحديد باستخدام زر القائمة المنسدلة."
 
-#: mmSimpleDialogs.cpp:813
+#: mmSimpleDialogs.cpp:815
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "سيؤدي تنشيط الزر إلى توفير مربع اختيار حيث يمكن تحديد الحساب."
 
-#: mmSimpleDialogs.cpp:822
+#: mmSimpleDialogs.cpp:824
 msgid "Invalid Payee"
 msgstr "المدفوع لأمره غير صالح"
 
-#: mmSimpleDialogs.cpp:823
+#: mmSimpleDialogs.cpp:825
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "الرجاء كتابة مستفيد جديد،\n"
 "أو إجراء اختيار باستخدام زر القائمة المنسدلة."
 
-#: mmSimpleDialogs.cpp:831 mmSimpleDialogs.cpp:843
+#: mmSimpleDialogs.cpp:833 mmSimpleDialogs.cpp:845
 msgid "Invalid Name"
 msgstr "اسم غير صالح"
 
-#: mmSimpleDialogs.cpp:834 mmSimpleDialogs.cpp:846
+#: mmSimpleDialogs.cpp:836 mmSimpleDialogs.cpp:848
 msgid "Already exist!"
 msgstr "موجود مسبقًا!"
 
-#: mmSimpleDialogs.cpp:836
+#: mmSimpleDialogs.cpp:838
 msgid "Please type in a non empty name."
 msgstr "الرجاء كتابة اسم غير فارغ."
 
-#: mmSimpleDialogs.cpp:848
+#: mmSimpleDialogs.cpp:850
 msgid "Please type in a non empty symbol."
 msgstr "الرجاء كتابة رمز غير فارغ."
 
@@ -4547,15 +4547,15 @@ msgstr ""
 msgid "Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:770 mmframe.cpp:1709 mmframe.cpp:2734
+#: mmframe.cpp:770 mmframe.cpp:1709 mmframe.cpp:2771
 msgid "Budget Setup"
 msgstr "اعداد الميزانية"
 
-#: mmframe.cpp:775 mmframe.cpp:1304 mmframe.cpp:1321 mmframe.cpp:2719
+#: mmframe.cpp:775 mmframe.cpp:1304 mmframe.cpp:1321 mmframe.cpp:2756
 msgid "Transaction Report"
 msgstr "تقرير المُعاملة"
 
-#: mmframe.cpp:792 mmframe.cpp:2548 mmframe.cpp:2816 mmhelppanel.cpp:69
+#: mmframe.cpp:792 mmframe.cpp:2585 mmframe.cpp:2853 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "مساعدة"
 
@@ -4575,7 +4575,7 @@ msgstr ""
 msgid "Do you really want to delete the account?"
 msgstr "تأكيد حذف الحساب؟"
 
-#: mmframe.cpp:1346 mmframe.cpp:3452
+#: mmframe.cpp:1346 mmframe.cpp:3489
 msgid "Confirm Account Deletion"
 msgstr "تأكيد حذف حساب"
 
@@ -4868,7 +4868,7 @@ msgid "Organize Payees"
 msgstr "تنظيم المستفيدين"
 
 #: mmframe.cpp:1688
-msgid "Organise Curre&ncies..."
+msgid "Organize Curre&ncies..."
 msgstr ""
 
 #: mmframe.cpp:1692
@@ -4939,7 +4939,7 @@ msgstr "مدير الحقول المخصصة"
 msgid "Refresh &WebApp..."
 msgstr "تحديث &تطبيق الويب..."
 
-#: mmframe.cpp:1745 mmframe.cpp:2793 mmframe.cpp:2800
+#: mmframe.cpp:1745 mmframe.cpp:2830 mmframe.cpp:2837
 msgid "Refresh WebApp"
 msgstr "تحديث تطبيق الويب"
 
@@ -4976,8 +4976,8 @@ msgid "Optimize database space and performance"
 msgstr "تحسين مساحة قاعدة البيانات وأدائها"
 
 #: mmframe.cpp:1766
-msgid "Database De&bug..."
-msgstr "تصحيح قاعدة البيانات..."
+msgid "Database Check and De&bug..."
+msgstr ""
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5199,7 +5199,7 @@ msgstr ""
 msgid "&Options"
 msgstr "&خيارات"
 
-#: mmframe.cpp:1917 mmframe.cpp:1922 mmframe.cpp:2859 optionsettingsnet.cpp:132
+#: mmframe.cpp:1917 mmframe.cpp:1922 mmframe.cpp:2896 optionsettingsnet.cpp:132
 msgid "News"
 msgstr "الأخبار"
 
@@ -5226,7 +5226,7 @@ msgid "Please enter password for Database\n\n"
 msgstr "الرجاء إدخال كلمة المرور لقاعدة البيانات\n\n"
 "%s"
 
-#: mmframe.cpp:1986 mmframe.cpp:2279 mmframe.cpp:2420
+#: mmframe.cpp:1986 mmframe.cpp:2279 mmframe.cpp:2457
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: قاعدة بيانات مشفرة"
 
@@ -5348,31 +5348,39 @@ msgstr "تم تحسين قاعدة البيانات!\n\n"
 "الحجم من قبل: %s\n"
 "الحجم بعد: %s\n"
 
-#: mmframe.cpp:2366
-msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr "الرجاء استخدام هذه الوظيفة فقط إذا طلبت صراحة من دعم MMEX"
+#: mmframe.cpp:2391
+msgid "Result of database integrity check:"
+msgstr ""
 
-#: mmframe.cpp:2367
-msgid "DB Debug"
-msgstr "تصحيح أخطاء DB"
+#: mmframe.cpp:2391
+msgid "Database Check"
+msgstr ""
 
-#: mmframe.cpp:2386 mmframe.cpp:2407
+#: mmframe.cpp:2403
+msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
+msgstr ""
+
+#: mmframe.cpp:2404
+msgid "Database Debug"
+msgstr ""
+
+#: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
 msgstr "حفظ ملف قاعدة البيانات ك"
 
-#: mmframe.cpp:2407
+#: mmframe.cpp:2444
 msgid "Can't copy file to itself"
 msgstr "لا يمكن نسخ الملف لنفسه"
 
-#: mmframe.cpp:2420
+#: mmframe.cpp:2457
 msgid "Enter password for new database"
 msgstr "أدخل كلمة المرور لقاعدة البيانات الجديدة"
 
-#: mmframe.cpp:2507 mmframe.cpp:2526
+#: mmframe.cpp:2544 mmframe.cpp:2563
 msgid "No account available to import"
 msgstr "لا يوجد حساب متاح للاستيراد"
 
-#: mmframe.cpp:2575
+#: mmframe.cpp:2612
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -5382,11 +5390,11 @@ msgstr "حسابات الأصول تحتفظ بمعاملات الأصول\n\n"
 "بعد اختيار الأصول داخل ذلك العرض.\n\n"
 "يمكن أيضا أن تحتفظ حسابات الأصول بالمعاملات العادية في حسابات عادية."
 
-#: mmframe.cpp:2579
+#: mmframe.cpp:2616
 msgid "Asset Account Creation"
 msgstr "إنشاء حساب الأصول"
 
-#: mmframe.cpp:2585
+#: mmframe.cpp:2622
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -5400,92 +5408,92 @@ msgstr "مشاركة الحسابات التي تحتفظ بالمعاملات �
 "أو باستخدام عرض القائمة → 'عرض الحسابات المشاركة'\n"
 "حسابات المشاركة يمكن أيضًا الاحتفاظ بالمعاملات العادية إلى حساب عادي."
 
-#: mmframe.cpp:2591
+#: mmframe.cpp:2628
 msgid "Share Account Creation"
 msgstr "مشاركة إنشاء الحساب"
 
-#: mmframe.cpp:2766
+#: mmframe.cpp:2803
 msgid "MMEX Options have been updated."
 msgstr "تم تحديث خيارات MMEX."
 
-#: mmframe.cpp:2767
+#: mmframe.cpp:2804
 msgid "Some settings take effect only after an application restart."
 msgstr "بعض الإعدادات تصبح نافذة المفعول فقط بعد إعادة تشغيل التطبيق."
 
-#: mmframe.cpp:2768 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2805 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "خيارات MMEX"
 
-#: mmframe.cpp:2793
+#: mmframe.cpp:2830
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "تم تحديث الحسابات والمستفيدين والفئات"
 
-#: mmframe.cpp:2799
+#: mmframe.cpp:2836
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "تمت مصادفة مشكلة تحديث WebApp، تحقق من خادم الويب وإعدادات WebApp"
 
-#: mmframe.cpp:2939
+#: mmframe.cpp:2976
 msgid "Choose HTML file to Export"
 msgstr "اختر ملف HTML للتصدير"
 
-#: mmframe.cpp:3352 mmframe.cpp:3359
+#: mmframe.cpp:3389 mmframe.cpp:3396
 msgid "Downloading stock prices from Yahoo"
 msgstr "تحميل أسعار الأسهم من ياهو"
 
-#: mmframe.cpp:3353
+#: mmframe.cpp:3390
 msgid "Please wait..."
 msgstr "الرجاء الانتظار..."
 
-#: mmframe.cpp:3402 stockspanel.cpp:459
+#: mmframe.cpp:3439 stockspanel.cpp:459
 #, c-format
 msgid "%s on %s"
 msgstr "%s في %s"
 
-#: mmframe.cpp:3419
+#: mmframe.cpp:3456
 msgid "No account available to edit!"
 msgstr "لا يوجد حِساب لتحريره!"
 
-#: mmframe.cpp:3423
+#: mmframe.cpp:3460
 msgid "Choose Account to Edit"
 msgstr "إختر حساباً لتحريره"
 
-#: mmframe.cpp:3440
+#: mmframe.cpp:3477
 msgid "No account available to delete!"
 msgstr "لا يوجد حِساب لحذفه!"
 
-#: mmframe.cpp:3444
+#: mmframe.cpp:3481
 msgid "Choose Account to Delete"
 msgstr "اختيار الحساب لحذفه"
 
-#: mmframe.cpp:3449
+#: mmframe.cpp:3486
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "هل أنت متأكد من أنك تريد حذف حساب\n"
 " %s الحساب : %s؟"
 
-#: mmframe.cpp:3467
+#: mmframe.cpp:3504
 msgid "Select the account to reallocate"
 msgstr "حدد الحساب لإعادة التخصيص"
 
-#: mmframe.cpp:3467 mmframe.cpp:3490
+#: mmframe.cpp:3504 mmframe.cpp:3527
 msgid "Account Reallocation"
 msgstr "إعادة تخصيص الحساب"
 
-#: mmframe.cpp:3489
+#: mmframe.cpp:3526
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "الحساب: %s - حدد نوع جديد."
 
-#: mmframe.cpp:3655 payeedialog.cpp:812
+#: mmframe.cpp:3692 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
 msgstr "اكتمل نقل المستفيد."
 
-#: mmframe.cpp:3659 payeedialog.cpp:816
+#: mmframe.cpp:3696 payeedialog.cpp:816
 msgid "Payee Relocation Result"
 msgstr "نتيجة نقل المستفيد"
 
-#: mmframe.cpp:3735
+#: mmframe.cpp:3772
 #, c-format
 msgid "File %s not found"
 msgstr "لم يتم العثور على الملف %s"
