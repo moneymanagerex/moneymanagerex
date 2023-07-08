@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:01\n"
+"PO-Revision-Date: 2023-07-08 15:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "Pago"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX permite configurar gastos periódicos como transacciones. También pueden ser abonos periódicos o transferencias que se producirán en algún momento futuro. Estas transacciones actúan como un recordatorio de que un evento va a ocurrir y aparecen en la página principal 14 días antes de que suceda la transacción."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -4466,7 +4466,7 @@ msgstr "Transacciones de repetición automática"
 
 #: mmframe.cpp:718 mmframe.cpp:1897 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr "Panel de control"
+msgstr "Pantalla principal"
 
 #: mmframe.cpp:722
 msgid "All Transactions"
@@ -4767,7 +4767,7 @@ msgstr "Panel de &control"
 
 #: mmframe.cpp:1649 mmframe.cpp:1897
 msgid "Open Dashboard"
-msgstr "Abrir panel de control"
+msgstr "Abrir pantalla principal"
 
 #: mmframe.cpp:1658
 msgid "Change the account type of an account."
@@ -4907,7 +4907,7 @@ msgstr "Optimice el espacio y el rendimiento de la base de datos"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Comprobación y de&puración de la base de datos..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5280,19 +5280,19 @@ msgstr "¡Optimización de la base de datos completada!\n\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Resultado de la verificación de la integridad de la base de datos:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Comprobación de la base de datos"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Por favor, utilice esta función sólo si se lo ha solicitado el soporte de MMEX y se le ha suministrado un archivo de depuración .mmdbg"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Depuración de la base de datos"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
