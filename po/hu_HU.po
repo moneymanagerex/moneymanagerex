@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:01\n"
+"PO-Revision-Date: 2023-07-08 21:44\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "Kifizetés"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "Az MMEX lehetővé teszi a rendszeres fizetések ügyletként történő beállítását. Ezek az ügyletek lehetnek rendszeres befizetések vagy átutalások is, amelyekre a jövőben sor kerül. Ezek az ügyletek emlékeztetnek arra, hogy egy esemény hamarosan bekövetkezik, és az ügylet esedékessége előtt 14 nappal megjelennek az irányítópulton."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -4908,7 +4908,7 @@ msgstr "Adatbázis méretének és működésének optimalizálása "
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Adatbázis ellenőrzése és hi&bakeresése…"
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5285,7 +5285,7 @@ msgstr ""
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Adatbázis ellenőrzése"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
@@ -5293,7 +5293,7 @@ msgstr ""
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Adatbázis hibakeresése"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
