@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:02\n"
+"PO-Revision-Date: 2023-07-08 15:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1296,7 +1296,7 @@ msgstr "Оплата"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX позволяет устанавливать регулярные платежи в качестве транзакций. Эти операции также могут быть регулярными депозитами или переводами, которые будут происходить в будущем. Эти транзакции служат напоминанием о том, что событие вот-вот произойдет и появляется на панели инструментов за 14 дней до начала транзакции."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -4942,7 +4942,7 @@ msgstr "Оптимизация пространства базы данных"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "&Проверка и отладка базы данных..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5315,19 +5315,19 @@ msgstr "Оптимизация баз данных выполнена!\n\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Результат проверки целостности базы данных:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Проверка базы данных"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Пожалуйста, используйте эту функцию только при запросе от поддержки MMEX и вы были поставлены с отладочным файлом .mmdbg"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Отладка базы данных"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
