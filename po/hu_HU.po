@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 21:44\n"
+"PO-Revision-Date: 2023-07-08 22:44\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5281,7 +5281,7 @@ msgstr "Adatbázis optimalizálása befejezve\n\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Adatbázis épségének ellenőrzésének eredménye:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
@@ -5289,7 +5289,7 @@ msgstr "Adatbázis ellenőrzése"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Kérjük, csak akkor használja ezt a funkciót, ha az MMEX támogatás kéri, és kapott egy .mmdbg-hibakeresőfájlt"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
