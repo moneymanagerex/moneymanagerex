@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:01\n"
+"PO-Revision-Date: 2023-07-09 15:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1298,7 +1298,7 @@ msgstr "Аплата"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX дазваляе планаваць аперацыі з рэгулярнымі аплатамі, унёскамі або пераказамі. Такія аперацыі нагадваюць пра будучую падзею. Яны бачныя на Панэлі кіравання за 14 дзён да аперацыі."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -2452,7 +2452,7 @@ msgstr "Мы прапануем аптымізацыю базы дадзеных
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
-msgstr "Запампаваць файл адладкі"
+msgstr "Запампаваць файл наладкі"
 
 #: dbupgrade.cpp:190
 msgid "Wrong file type!"
@@ -2461,7 +2461,7 @@ msgstr "Хібны тып файла"
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
 #: dbupgrade.cpp:289 mmframe.cpp:2384
 msgid "MMEX debug error"
-msgstr "Памылка адладкі MMEX"
+msgstr "Памылка наладкі MMEX"
 
 #: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2384
 msgid "Query error, please contact MMEX support!"
@@ -2479,11 +2479,11 @@ msgstr "Даслаць гэтую справаздачу у службу пад�
 
 #: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
-msgstr "Адладка MMEX"
+msgstr "Наладка MMEX"
 
 #: dbupgrade.cpp:245
 msgid "Save debug file"
-msgstr "Захаваць файл адладкі"
+msgstr "Захаваць файл наладкі"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -4943,7 +4943,7 @@ msgstr "Аптымізацыя памера і хуткасці базы дад�
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Праверка і &наладка базы дадзеных..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5198,7 +5198,7 @@ msgstr "MMEX: зашыфраваная база дадзеных"
 
 #: mmframe.cpp:2023
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr "Ці прадаставіла служба падтрымкі MMEX файл адладкі/патч?"
+msgstr "Ці прадаставіла служба падтрымкі MMEX файл наладкі/патч?"
 
 #: mmframe.cpp:2023
 msgid "MMEX upgrade"
@@ -5316,19 +5316,19 @@ msgstr "Аптымізацыя базы дадзеных завершаная!\n
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Вынік праверкі цэласнасці базы дадзеных:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Праверка базы дадзеных"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Будзь ласка, выкарыстоўвайце гэту функцыю толькі па запыце ад службы падтрымкі MMEX і пасля атрымання файла наладкі .mmdbg"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Наладка базы дадзеных"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
