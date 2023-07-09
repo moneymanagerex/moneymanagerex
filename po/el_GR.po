@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-09 07:56\n"
+"PO-Revision-Date: 2023-07-09 09:12\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "Πληρωμή"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "Το MMEX επιτρέπει οι τακτικές πληρωμές να δημιουργηθούν όπως οι συναλλαγές. Αυτές οι συναλλαγές μπορούν επίσης να είναι τακτικές καταθέσεις ή μεταφορές που θα συμβούν σε κάποια μελλοντική στιγμή. Αυτές οι συναλλαγές λειτουργούν ως υπενθύμιση ότι ένα γεγονός πρόκειται να συμβεί, και εμφανίζεται στην Αρχική Σελίδα 14 ημέρες πριν από την πληρωμή της συναλλαγής."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
