@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:02\n"
+"PO-Revision-Date: 2023-07-09 02:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "付款"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX 允许将定期付款设置为交易。这些交易可以是定期存款，或是在未来进行的转账。这些交易作为事件即将发生的提醒，并在交易到期前14天在仪表板上显示。"
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1672,7 +1672,7 @@ msgstr "该父类存在相同名称的分类"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
-msgstr ""
+msgstr "类目管理：添加错误"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1731,7 +1731,7 @@ msgstr "工具 →移动类目或转移收款人→类目"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
-msgstr ""
+msgstr "类目管理：删除错误"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1764,7 +1764,7 @@ msgstr "父类存在相同名称的类别"
 
 #: categdialog.cpp:635
 msgid "Organize Categories: Editing Error"
-msgstr ""
+msgstr "类目管理：编辑错误"
 
 #: categdialog.cpp:692 mmframe.cpp:3677
 msgid "Category Relocation Completed."
@@ -3687,7 +3687,7 @@ msgstr "自定义字段 '%s' 的值 %s 不是类型 %s。"
 #: import_export/univcsvdialog.cpp:2753 import_export/univcsvdialog.cpp:2774
 #, c-format
 msgid "Value %s for %s custom field '%s' is not a valid selection."
-msgstr ""
+msgstr "值 %1s 对于 %2s 自定义字段 '%3s' 不是有效的选择。"
 
 #: import_export/univcsvdialog.cpp:2785
 #, c-format
@@ -3772,7 +3772,7 @@ msgstr "您真的要删除选定的货币吗？"
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 mmframe.cpp:1688 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr ""
+msgstr "货币管理"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4783,7 +4783,7 @@ msgstr "收款人管理"
 
 #: mmframe.cpp:1688
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "货币管理...(&N)"
 
 #: mmframe.cpp:1692
 msgid "&Categories..."
@@ -4891,7 +4891,7 @@ msgstr "优化数据库空间和性能"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "数据库检查和调试...(&B)"
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5262,19 +5262,19 @@ msgstr "数据库优化完成，之前的大小 %s，之后的大小 %s。\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "数据库完整性检查结果："
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "数据库检查"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "请仅在 MMEX 支持要求并提供了.mmdbg 调试文件的情况下使用此功能。"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "数据库调试"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
