@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-09 12:46\n"
+"PO-Revision-Date: 2023-07-09 13:48\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -4890,7 +4890,7 @@ msgstr "데이터베이스 공간 및 성능 최적화"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "데이터베이스 검사 및 디버그(&B)..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5262,19 +5262,19 @@ msgstr "데이터베이스 최적화 완료!\n\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "데이터베이스 무결성 검사 결과:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "데이터베이스 검사"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "MMEX 지원에서 요청하고 .mmdbg 디버그 파일을 제공받은 경우에만 이 기능을 사용하십시오"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "데이터베이스 디버그"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
