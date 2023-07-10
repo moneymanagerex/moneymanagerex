@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-10 00:00\n"
+"PO-Revision-Date: 2023-07-10 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1915,7 +1915,7 @@ msgstr "Ver desde a data do extrato"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr "TODOS"
+msgstr "Todas"
 
 #: constants.cpp:209 mmframe.cpp:1489 mmframe.cpp:1894
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -4908,7 +4908,7 @@ msgstr "Otimizar o espaço e o desempenho do banco de dados"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr "Banco de dados verificação e De&bug..."
+msgstr "Banco de dados Verificação e De&puração..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5289,11 +5289,11 @@ msgstr "Verificação do banco de dados"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Por favor, use esta função apenas se solicitado pelo suporte MMEX e se você recebeu um arquivo de depuração .mmdbg"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Depuração de Banco de Dados"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
