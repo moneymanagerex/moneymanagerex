@@ -43,7 +43,7 @@ public:
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
         const wxString& caption = _("Organize Tags"),
-        const wxString& name = "Tag Manager",
+        const wxString& name = "Organize Tags",
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER);

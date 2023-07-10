@@ -1858,6 +1858,12 @@ void mmSetSize(wxWindow* w)
     else if (name == "Transaction Filter") {
         my_size = Model_Infotable::instance().GetSizeSetting("TRANSACTION_FILTER_SIZE");
     }
+    else if (name == "Organize Tags") {
+        my_size = Model_Infotable::instance().GetSizeSetting("TAG_DIALOG_SIZE");
+    }
+    else if (name == "Relocate Tags") {
+        my_size = Model_Infotable::instance().GetSizeSetting("RELOCATETAG_DIALOG_SIZE");
+    }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
     wxRect display_rect = display.get()->GetGeometry();

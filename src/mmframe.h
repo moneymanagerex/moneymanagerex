@@ -224,6 +224,7 @@ private:
     void OnOrgTags(wxCommandEvent& event);
     void OnCategoryRelocation(wxCommandEvent& event);
     void OnPayeeRelocation(wxCommandEvent& event);
+    void OnTagRelocation(wxCommandEvent& event);
     void OnNewTransaction(wxCommandEvent& event);
     void refreshPanelData(wxCommandEvent& /*event*/);
 
@@ -345,6 +346,7 @@ private:
         MENU_VIEW_HIDE_DELETED_TRANSACTIONS,
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
+        MENU_TAG_RELOCATION,
         MENU_RELOCATION,
         MENU_THEME_MANAGER,
         MENU_CONVERT_ENC_DB,

@@ -54,6 +54,7 @@
 #include "payeedialog.h"
 #include "relocatecategorydialog.h"
 #include "relocatepayeedialog.h"
+#include "relocatetagdialog.h"
 #include "recentfiles.h"
 #include "stockspanel.h"
 #include "tagdialog.h"
@@ -149,6 +150,7 @@ EVT_MENU(MENU_VIEW_SHOW_MONEYTIPS, mmGUIFrame::OnViewShowMoneyTips)
 
 EVT_MENU(MENU_CATEGORY_RELOCATION, mmGUIFrame::OnCategoryRelocation)
 EVT_MENU(MENU_PAYEE_RELOCATION, mmGUIFrame::OnPayeeRelocation)
+EVT_MENU(MENU_TAG_RELOCATION, mmGUIFrame::OnTagRelocation)
 
 EVT_UPDATE_UI(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbarUpdateUI)
 EVT_UPDATE_UI(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinksUpdateUI)
@@ -629,6 +631,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_ORGPAYEE)->Enable(enable);
     menuBar_->FindItem(MENU_CATEGORY_RELOCATION)->Enable(enable);
     menuBar_->FindItem(MENU_PAYEE_RELOCATION)->Enable(enable);
+    menuBar_->FindItem(MENU_TAG_RELOCATION)->Enable(enable);
     menuBar_->FindItem(wxID_VIEW_LIST)->Enable(enable);
     menuBar_->FindItem(wxID_BROWSE)->Enable(enable);
     menuBar_->FindItem(MENU_CONVERT_ENC_DB)->Enable(enable);
@@ -1700,12 +1703,16 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
+    wxMenuItem* menuItemTagRelocation = new wxMenuItem(menuTools
+        , MENU_TAG_RELOCATION, _("&Tags...")
+        , _("Reassign all tags to another tag"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
         , MENU_RELOCATION, _("Re&location of")
-        , _("Relocate Categories && Payees"));
+        , _("Relocate Categories, Payees, and Tags"));
     wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
+    menuRelocation->Append(menuItemTagRelocation);
     menuItemRelocation->SetSubMenu(menuRelocation);
     menuTools->Append(menuItemRelocation);
 
@@ -3680,6 +3687,22 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
                 dlg.updatedPayeesCount())
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
+        refreshPanelData();
+    }
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnTagRelocation(wxCommandEvent& /*event*/)
+{
+    relocateTagDialog dlg(this);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        wxString msgStr;
+        msgStr << _("Tag Relocation Completed.") << "\n\n"
+            << wxString::Format(_("Records have been updated in the database: %i"),
+                dlg.updatedTagsCount())
+            << "\n\n";
+        wxMessageBox(msgStr, _("Tag Relocation Result"));
         refreshPanelData();
     }
 }

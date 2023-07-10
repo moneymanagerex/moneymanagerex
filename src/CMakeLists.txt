@@ -174,6 +174,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     relocatecategorydialog.h
     relocatepayeedialog.cpp
     relocatepayeedialog.h
+    relocatetagdialog.cpp
+    relocatetagdialog.h
     resource.h
     singleton.h
     sharetransactiondialog.cpp
