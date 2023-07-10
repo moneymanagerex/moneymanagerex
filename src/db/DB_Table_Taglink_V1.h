@@ -20,10 +20,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
+struct DB_Table_TAGLINK_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CURRENCYHISTORY_V1 Self;
+    typedef DB_Table_TAGLINK_V1 Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -55,7 +55,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CURRENCYHISTORY_V1() 
+    ~DB_Table_TAGLINK_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -76,12 +76,12 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CURRENCYHISTORY_V1(CURRHISTID INTEGER PRIMARY KEY, CURRENCYID INTEGER NOT NULL, CURRDATE TEXT NOT NULL, CURRVALUE NUMERIC NOT NULL, CURRUPDTYPE INTEGER, UNIQUE(CURRENCYID, CURRDATE))");
+                db->ExecuteUpdate("CREATE TABLE TAGLINK_V1(TAGLINKID INTEGER PRIMARY KEY, REFTYPE TEXT NOT NULL, REFID INTEGER NOT NULL, TAGID INTEGER NOT NULL, FOREIGN KEY (TAGID) REFERENCES TAG_V1 (TAGID), UNIQUE(REFTYPE, REFID, TAGID))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CURRENCYHISTORY_V1: Exception %s", e.GetMessage().utf8_str());
+                wxLogError("TAGLINK_V1: Exception %s", e.GetMessage().utf8_str());
                 return false;
             }
         }
@@ -95,11 +95,11 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CURRENCYHISTORY_CURRENCYID_CURRDATE ON CURRENCYHISTORY_V1(CURRENCYID, CURRDATE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_TAGLINK ON TAGLINK_V1 (REFTYPE, REFID, TAGID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYHISTORY_V1: Exception %s", e.GetMessage().utf8_str());
+            wxLogError("TAGLINK_V1: Exception %s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -112,44 +112,37 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         db->Commit();
     }
     
-    struct CURRHISTID : public DB_Column<int>
+    struct TAGLINKID : public DB_Column<int>
     { 
-        static wxString name() { return "CURRHISTID"; } 
-        explicit CURRHISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "TAGLINKID"; } 
+        explicit TAGLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct REFTYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REFTYPE"; } 
+        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CURRDATE : public DB_Column<wxString>
+    struct REFID : public DB_Column<int>
     { 
-        static wxString name() { return "CURRDATE"; } 
-        explicit CURRDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "REFID"; } 
+        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CURRVALUE : public DB_Column<double>
+    struct TAGID : public DB_Column<int>
     { 
-        static wxString name() { return "CURRVALUE"; } 
-        explicit CURRVALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "TAGID"; } 
+        explicit TAGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CURRUPDTYPE : public DB_Column<int>
-    { 
-        static wxString name() { return "CURRUPDTYPE"; } 
-        explicit CURRUPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef CURRHISTID PRIMARY;
+    typedef TAGLINKID PRIMARY;
     enum COLUMN
     {
-        COL_CURRHISTID = 0
-        , COL_CURRENCYID = 1
-        , COL_CURRDATE = 2
-        , COL_CURRVALUE = 3
-        , COL_CURRUPDTYPE = 4
+        COL_TAGLINKID = 0
+        , COL_REFTYPE = 1
+        , COL_REFID = 2
+        , COL_TAGID = 3
     };
 
     /** Returns the column name as a string*/
@@ -157,11 +150,10 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_CURRHISTID: return "CURRHISTID";
-            case COL_CURRENCYID: return "CURRENCYID";
-            case COL_CURRDATE: return "CURRDATE";
-            case COL_CURRVALUE: return "CURRVALUE";
-            case COL_CURRUPDTYPE: return "CURRUPDTYPE";
+            case COL_TAGLINKID: return "TAGLINKID";
+            case COL_REFTYPE: return "REFTYPE";
+            case COL_REFID: return "REFID";
+            case COL_TAGID: return "TAGID";
             default: break;
         }
         
@@ -171,11 +163,10 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("CURRHISTID" == name) return COL_CURRHISTID;
-        else if ("CURRENCYID" == name) return COL_CURRENCYID;
-        else if ("CURRDATE" == name) return COL_CURRDATE;
-        else if ("CURRVALUE" == name) return COL_CURRVALUE;
-        else if ("CURRUPDTYPE" == name) return COL_CURRUPDTYPE;
+        if ("TAGLINKID" == name) return COL_TAGLINKID;
+        else if ("REFTYPE" == name) return COL_REFTYPE;
+        else if ("REFID" == name) return COL_REFID;
+        else if ("TAGID" == name) return COL_TAGID;
 
         return COLUMN(-1);
     }
@@ -183,24 +174,23 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CURRENCYHISTORY_V1;
+        friend struct DB_Table_TAGLINK_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CURRHISTID;//  primary key
-        int CURRENCYID;
-        wxString CURRDATE;
-        double CURRVALUE;
-        int CURRUPDTYPE;
+        int TAGLINKID;//  primary key
+        wxString REFTYPE;
+        int REFID;
+        int TAGID;
 
         int id() const
         {
-            return CURRHISTID;
+            return TAGLINKID;
         }
 
         void id(int id)
         {
-            CURRHISTID = id;
+            TAGLINKID = id;
         }
 
         bool operator < (const Data& r) const
@@ -215,11 +205,10 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
 
         bool equals(const Data* r) const
         {
-            if(CURRHISTID != r->CURRHISTID) return false;
-            if(CURRENCYID != r->CURRENCYID) return false;
-            if(!CURRDATE.IsSameAs(r->CURRDATE)) return false;
-            if(CURRVALUE != r->CURRVALUE) return false;
-            if(CURRUPDTYPE != r->CURRUPDTYPE) return false;
+            if(TAGLINKID != r->TAGLINKID) return false;
+            if(!REFTYPE.IsSameAs(r->REFTYPE)) return false;
+            if(REFID != r->REFID) return false;
+            if(TAGID != r->TAGID) return false;
             return true;
         }
         
@@ -227,32 +216,29 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         {
             table_ = table;
         
-            CURRHISTID = -1;
-            CURRENCYID = -1;
-            CURRVALUE = 0.0;
-            CURRUPDTYPE = -1;
+            TAGLINKID = -1;
+            REFID = -1;
+            TAGID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            CURRHISTID = q.GetInt(0); // CURRHISTID
-            CURRENCYID = q.GetInt(1); // CURRENCYID
-            CURRDATE = q.GetString(2); // CURRDATE
-            CURRVALUE = q.GetDouble(3); // CURRVALUE
-            CURRUPDTYPE = q.GetInt(4); // CURRUPDTYPE
+            TAGLINKID = q.GetInt(0); // TAGLINKID
+            REFTYPE = q.GetString(1); // REFTYPE
+            REFID = q.GetInt(2); // REFID
+            TAGID = q.GetInt(3); // TAGID
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            CURRHISTID = other.CURRHISTID;
-            CURRENCYID = other.CURRENCYID;
-            CURRDATE = other.CURRDATE;
-            CURRVALUE = other.CURRVALUE;
-            CURRUPDTYPE = other.CURRUPDTYPE;
+            TAGLINKID = other.TAGLINKID;
+            REFTYPE = other.REFTYPE;
+            REFID = other.REFID;
+            TAGID = other.TAGID;
             return *this;
         }
 
@@ -262,29 +248,24 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::CURRHISTID &in) const
+        bool match(const Self::TAGLINKID &in) const
         {
-            return this->CURRHISTID == in.v_;
+            return this->TAGLINKID == in.v_;
         }
 
-        bool match(const Self::CURRENCYID &in) const
+        bool match(const Self::REFTYPE &in) const
         {
-            return this->CURRENCYID == in.v_;
+            return this->REFTYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::CURRDATE &in) const
+        bool match(const Self::REFID &in) const
         {
-            return this->CURRDATE.CmpNoCase(in.v_) == 0;
+            return this->REFID == in.v_;
         }
 
-        bool match(const Self::CURRVALUE &in) const
+        bool match(const Self::TAGID &in) const
         {
-            return this->CURRVALUE == in.v_;
-        }
-
-        bool match(const Self::CURRUPDTYPE &in) const
-        {
-            return this->CURRUPDTYPE == in.v_;
+            return this->TAGID == in.v_;
         }
 
         // Return the data record as a json string
@@ -303,36 +284,32 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("CURRHISTID");
-            json_writer.Int(this->CURRHISTID);
-            json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
-            json_writer.Key("CURRDATE");
-            json_writer.String(this->CURRDATE.utf8_str());
-            json_writer.Key("CURRVALUE");
-            json_writer.Double(this->CURRVALUE);
-            json_writer.Key("CURRUPDTYPE");
-            json_writer.Int(this->CURRUPDTYPE);
+            json_writer.Key("TAGLINKID");
+            json_writer.Int(this->TAGLINKID);
+            json_writer.Key("REFTYPE");
+            json_writer.String(this->REFTYPE.utf8_str());
+            json_writer.Key("REFID");
+            json_writer.Int(this->REFID);
+            json_writer.Key("TAGID");
+            json_writer.Int(this->TAGID);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"CURRHISTID") = CURRHISTID;
-            row(L"CURRENCYID") = CURRENCYID;
-            row(L"CURRDATE") = CURRDATE;
-            row(L"CURRVALUE") = CURRVALUE;
-            row(L"CURRUPDTYPE") = CURRUPDTYPE;
+            row(L"TAGLINKID") = TAGLINKID;
+            row(L"REFTYPE") = REFTYPE;
+            row(L"REFID") = REFID;
+            row(L"TAGID") = TAGID;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"CURRHISTID") = CURRHISTID;
-            t(L"CURRENCYID") = CURRENCYID;
-            t(L"CURRDATE") = CURRDATE;
-            t(L"CURRVALUE") = CURRVALUE;
-            t(L"CURRUPDTYPE") = CURRUPDTYPE;
+            t(L"TAGLINKID") = TAGLINKID;
+            t(L"REFTYPE") = REFTYPE;
+            t(L"REFID") = REFID;
+            t(L"TAGID") = TAGID;
         }
 
         /** Save the record instance in memory to the database. */
@@ -341,7 +318,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CURRENCYHISTORY_V1");
+                wxLogError("can not save TAGLINK_V1");
                 return false;
             }
 
@@ -353,7 +330,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CURRENCYHISTORY_V1");
+                wxLogError("can not remove TAGLINK_V1");
                 return false;
             }
             
@@ -368,17 +345,17 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 4
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CURRENCYHISTORY_V1"; }
+    wxString name() const { return "TAGLINK_V1"; }
 
-    DB_Table_CURRENCYHISTORY_V1() : fake_(new Data())
+    DB_Table_TAGLINK_V1() : fake_(new Data())
     {
-        query_ = "SELECT CURRHISTID, CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE FROM CURRENCYHISTORY_V1 ";
+        query_ = "SELECT TAGLINKID, REFTYPE, REFID, TAGID FROM TAGLINK_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -408,23 +385,22 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CURRENCYHISTORY_V1(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO TAGLINK_V1(REFTYPE, REFID, TAGID) VALUES(?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CURRENCYHISTORY_V1 SET CURRENCYID = ?, CURRDATE = ?, CURRVALUE = ?, CURRUPDTYPE = ? WHERE CURRHISTID = ?";
+            sql = "UPDATE TAGLINK_V1 SET REFTYPE = ?, REFID = ?, TAGID = ? WHERE TAGLINKID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CURRENCYID);
-            stmt.Bind(2, entity->CURRDATE);
-            stmt.Bind(3, entity->CURRVALUE);
-            stmt.Bind(4, entity->CURRUPDTYPE);
+            stmt.Bind(1, entity->REFTYPE);
+            stmt.Bind(2, entity->REFID);
+            stmt.Bind(3, entity->TAGID);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->CURRHISTID);
+                stmt.Bind(4, entity->TAGLINKID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -441,7 +417,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYHISTORY_V1: Exception %s, %s", e.GetMessage().utf8_str(), entity->to_json());
+            wxLogError("TAGLINK_V1: Exception %s, %s", e.GetMessage().utf8_str(), entity->to_json());
             return false;
         }
 
@@ -459,7 +435,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CURRENCYHISTORY_V1 WHERE CURRHISTID = ?";
+            wxString sql = "DELETE FROM TAGLINK_V1 WHERE TAGLINKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -484,7 +460,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYHISTORY_V1: Exception %s", e.GetMessage().utf8_str());
+            wxLogError("TAGLINK_V1: Exception %s", e.GetMessage().utf8_str());
             return false;
         }
 

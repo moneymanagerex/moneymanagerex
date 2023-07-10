@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-03-10 09:16:48.384520.
+ *          AUTO GENERATED at 2023-07-09 11:41:36.730232.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -345,6 +345,15 @@ struct SorterByCHECKINGACCOUNTID
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.CHECKINGACCOUNTID) < (y.CHECKINGACCOUNTID);
+    }
+};
+
+struct SorterByCOLOR
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.COLOR) < (y.COLOR);
     }
 };
 
@@ -1056,6 +1065,33 @@ struct SorterBySYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.SYMBOL) < (y.SYMBOL);
+    }
+};
+
+struct SorterByTAGID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.TAGID) < (y.TAGID);
+    }
+};
+
+struct SorterByTAGLINKID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.TAGLINKID) < (y.TAGLINKID);
+    }
+};
+
+struct SorterByTAGNAME
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.TAGNAME) < (y.TAGNAME);
     }
 };
 
