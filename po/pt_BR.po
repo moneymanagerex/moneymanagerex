@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:02\n"
+"PO-Revision-Date: 2023-07-10 00:00\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "Pagamento"
 
 #: billsdepositspanel.cpp:196
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "O MMEX permite que pagamentos regulares sejam definidos como transações. Estas transações também podem ser recebimentos regulares, ou transferências que ocorrerão em algum momento no futuro. Estas transações atuam como lembrete de que um evento está prestes a ocorrer e aparecem na Página Inicial 14 dias antes."
 
 #: billsdepositspanel.cpp:199
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -4908,7 +4908,7 @@ msgstr "Otimizar o espaço e o desempenho do banco de dados"
 
 #: mmframe.cpp:1766
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Banco de dados verificação e De&bug..."
 
 #: mmframe.cpp:1767
 msgid "Generate database report or fix errors"
@@ -5281,11 +5281,11 @@ msgstr "Otimização de banco de dados concluída!\n\n"
 
 #: mmframe.cpp:2391
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Resultado da verificação de integridade do banco de dados:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Verificação do banco de dados"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
