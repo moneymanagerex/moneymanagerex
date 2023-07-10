@@ -967,14 +967,24 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
                 SetText(selection);
                 GotoPos(GetLastPosition());
                 if (dlg.getRefreshRequested())
-                    init();             
+                    init();
             }
             else if (AutoCompActive())
                 AutoCompComplete();
 
             Validate();
             return;
-        } else
+        }
+        else if (event.GetKeyCode() == WXK_TAB)
+        {
+            wxWindow* next_control = GetNextSibling();
+            while (next_control && !next_control->IsFocusable())
+                next_control = next_control->GetNextSibling();
+            if (next_control)
+                next_control->SetFocus();
+            return;
+        }
+        else
             event.Skip();
     });
 }

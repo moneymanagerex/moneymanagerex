@@ -449,6 +449,12 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
         {
             CATEGNAME += (CATEGNAME.empty() ? " * " : ", ")
                 + Model_Category::full_name(entry.CATEGID);
+
+            wxString splitTags;
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT), entry.SPLITTRANSID))
+                splitTags.Append(tag.first + " ");
+            if (!splitTags.IsEmpty())
+                TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());
         }
     }
     else
