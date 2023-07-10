@@ -1298,14 +1298,24 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(int categid)
 
 bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int refId)
 {
-    std::set<wxString> tagnames;
-    bool match = true;
+    std::map<wxString, int> tagnames = Model_Taglink::instance().get(refType, refId);
 
-    // store the set of tagnames attached to the transaction
-    for (const auto& taglink : Model_Taglink::instance().find(Model_Taglink::REFTYPE(refType), Model_Taglink::REFID(refId)))
-        tagnames.insert(Model_Tag::instance().get(taglink.TAGID)->TAGNAME);
+    // If we have a split, merge the transaciton tags so that an AND condition captures cases
+    // where one tag is on the base txn and the other is on the split
+    std::map<wxString, int> txnTagnames;
+    if (refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
+        txnTagnames = Model_Taglink::instance().get(
+            Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION),
+            Model_Splittransaction::instance().get(refId)->TRANSID);
+    else if (refType == Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT))
+        txnTagnames = Model_Taglink::instance().get(
+            Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT),
+            Model_Budgetsplittransaction::instance().get(refId)->TRANSID);
+    tagnames.insert(txnTagnames.begin(), txnTagnames.end());
 
     if (tagnames.empty()) return false;
+
+    bool match = true;
 
     wxArrayString tags = tagTextCtrl_->GetTagStrings();
     for (int i = 0; i < tags.GetCount(); i++)

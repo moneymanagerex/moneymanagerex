@@ -56,6 +56,12 @@ public:
     */
     std::map<int, Model_Taglink::Data_Set> get_all(const wxString& refType);
 
+    /**
+    * Return a map of all tags for the specified transaction
+    * Mostly useful to return a sorted list of tagnames associated with a transaction
+    */
+    std::map<wxString, int> get(const wxString& refType, int refId);
+
     /* Delete all tags for a REFTYPE + REFID */
     void DeleteAllTags(const wxString& refType, int refID);
 

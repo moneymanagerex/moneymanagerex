@@ -412,19 +412,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
         {
             this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
                 + Model_Category::full_name(entry.CATEGID);
-
-            wxArrayString splitTags;
-            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)),
-                Model_Taglink::REFID(entry.SPLITTRANSID)))
-                splitTags.Add(Model_Tag::instance().get(tag.TAGID)->TAGNAME);
-
-            // Display in alphabetical order
-            splitTags.Sort();
-            wxString splitTagNames;
-            for (const auto& tagname : splitTags)
-                splitTagNames.Append(tagname + " ");
-            TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTagNames.Trim());
-        }
+    }
     }
     else {
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID);
@@ -470,18 +458,6 @@ Model_Checking::Full_Data::Full_Data(const Data& r
         {
             this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
                 + Model_Category::full_name(entry.CATEGID);
-
-            wxArrayString splitTags;
-            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)),
-                Model_Taglink::REFID(entry.SPLITTRANSID)))
-                splitTags.Add(Model_Tag::instance().get(tag.TAGID)->TAGNAME);
-
-            // Display in alphabetical order
-            splitTags.Sort();
-            wxString splitTagNames;
-            for (const auto& tagname : splitTags)
-                splitTagNames.Append(tagname + " ");
-            TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTagNames.Trim());
         }
     }
     else

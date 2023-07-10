@@ -299,6 +299,7 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
     Model_Tag::instance().Savepoint();
     Model_Taglink::instance().Savepoint();
     Model_Checking::instance().Savepoint();
+    Model_Splittransaction::instance().Savepoint();
     for (const auto& selection : stringSelections)
     {
         Model_Tag::Data* tag = Model_Tag::instance().get(selection);
@@ -317,9 +318,11 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
         {
             Model_Taglink::Data_Set taglinks = Model_Taglink::instance().find(Model_Taglink::TAGID(tag->TAGID));
             for (const auto& link : taglinks)
-                if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::REFTYPE::TRANSACTION))
+                if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
                     // Removing the checking record also deletes the taglinks
                     Model_Checking::instance().remove(link.REFID);
+                else if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
+                    Model_Checking::instance().remove(Model_Splittransaction::instance().get(link.REFID)->TRANSID);
             Model_Tag::instance().remove(tag->TAGID);
             tagList_.Remove(selection);
             int index = selectedTags_.Index(selection);
@@ -330,6 +333,7 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
     Model_Tag::instance().ReleaseSavepoint();
     Model_Taglink::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
+    Model_Splittransaction::instance().ReleaseSavepoint();
     refreshRequested_ = true;
     fillControls();
 }

@@ -442,6 +442,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
+    const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
     for (const auto& tran : Model_Checking::instance().all())
     {
         Model_Checking::Full_Data full_tran(tran, splits, tags);
@@ -453,6 +454,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
             single_tran.TRANSAMOUNT = 0;
             int splitIndex = 1;
             bool match = false;
+            wxString tranTagnames = full_tran.TAGNAMES;
             for (const auto& split : full_tran.m_splits)
             {
                 full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
@@ -460,17 +462,20 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                 full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                 full_tran.NOTES = tran.NOTES;
+                full_tran.TAGNAMES = tranTagnames;
                 Model_Checking::Data splitWithTranData = full_tran;
                 if (dlg.get()->mmIsSplitRecordMatches<Model_Splittransaction>(split) ||
                     dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTranData))
                 {
                     match = true;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
-                    wxString splitTags;
-                    for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)),
-                        Model_Taglink::REFID(split.SPLITTRANSID)))
-                        splitTags.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
-                    full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + splitTags);
+
+                    wxString tagnames;
+                    for (const auto& tag : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
+                        tagnames.Append(tag.first + " ");
+                    if (!tagnames.IsEmpty())
+                        full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
+
                     if (!combine_splits) trans_.push_back(full_tran);
                     else single_tran.TRANSAMOUNT += full_tran.TRANSAMOUNT;
                 }

@@ -135,6 +135,7 @@ void mmCheckingPanel::filterTable()
     m_filteredBalance = 0.0;
     
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
     Model_CustomField::FIELDTYPE UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
     Model_CustomField::FIELDTYPE UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
     Model_CustomField::FIELDTYPE UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
@@ -256,6 +257,7 @@ void mmCheckingPanel::filterTable()
             else
             {
                 int splitIndex = 1;
+                wxString tranTagnames = full_tran.TAGNAMES;
                 for (const auto& split : full_tran.m_splits)
                 {
                     full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
@@ -263,17 +265,19 @@ void mmCheckingPanel::filterTable()
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     full_tran.NOTES = tran.NOTES;
+                    full_tran.TAGNAMES = tranTagnames;
                     Model_Checking::Data full_split = full_tran;
                     if (m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split) ||
                         m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(full_split))
                     {
                         full_tran.AMOUNT = Model_Checking::amount(full_split, m_AccountID);
                         full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
-                        wxString splitTags;
-                        for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)),
-                            Model_Taglink::REFID(split.SPLITTRANSID)))
-                            splitTags.Append(Model_Tag::instance().get(tag.TAGID)->TAGNAME + " ");
-                        full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + splitTags);
+                        wxString tagnames;
+                        for (const auto& tag : Model_Taglink::instance().get(splitRefType,split.SPLITTRANSID))
+                            tagnames.Append(tag.first + " ");
+
+                        if(!tagnames.IsEmpty())
+                            full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
                         m_listCtrlAccount->m_trans.push_back(full_tran);
                         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
                             m_filteredBalance += full_tran.AMOUNT;

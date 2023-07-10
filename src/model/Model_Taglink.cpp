@@ -20,6 +20,7 @@
 #include "Model_Taglink.h"
 #include "Model_Attachment.h"
 #include "Model_Checking.h"
+#include "Model_Tag.h"
 
 Model_Taglink::Model_Taglink()
 : Model<DB_Table_TAGLINK_V1>()
@@ -59,6 +60,16 @@ Model_Taglink::Data* Model_Taglink::get(const wxString& refType, int refId, int 
     if (!items.empty()) link = this->get(items[0].TAGLINKID, this->db_);
     return link;
 }
+
+std::map<wxString, int> Model_Taglink::get(const wxString& refType, int refId)
+{
+    std::map<wxString, int> tags;
+    for (const auto& link : instance().find(REFTYPE(refType), REFID(refId)))
+        tags[Model_Tag::instance().get(link.TAGID)->TAGNAME] = link.TAGID;
+
+    return tags;
+}
+
 /* Delete all tags for a REFTYPE + REFID */
 void Model_Taglink::DeleteAllTags(const wxString& refType, int refID)
 {

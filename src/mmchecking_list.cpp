@@ -1733,7 +1733,20 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return value.Trim(false);
     }
     case TransactionListCtrl::COL_TAGS:
-        return tran.TAGNAMES;
+        value = tran.TAGNAMES;
+        if (!tran.displayID.Contains("."))
+        {
+            const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+            for (const auto& split : tran.m_splits)
+            {
+                wxString tagnames;
+                for (const auto& tag : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
+                    tagnames.Append(tag.first + " ");
+                if (!tagnames.IsEmpty())
+                    value.Append((value.IsEmpty() ? "" : ", ") + tagnames.Trim());
+            }
+        }
+        return value.Trim();
     case TransactionListCtrl::COL_DELETEDTIME:
         datetime.ParseISOCombined(tran.DELETEDTIME);        
         if(!datetime.IsValid())
