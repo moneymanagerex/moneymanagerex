@@ -1710,8 +1710,8 @@ void mmGUIFrame::createMenu()
         , MENU_RELOCATION, _("Re&location of")
         , _("Relocate Categories, Payees, and Tags"));
     wxMenu* menuRelocation = new wxMenu;
-    menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
+    menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemTagRelocation);
     menuItemRelocation->SetSubMenu(menuRelocation);
     menuTools->Append(menuItemRelocation);
