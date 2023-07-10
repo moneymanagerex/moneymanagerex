@@ -2389,7 +2389,7 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
     if (!resultMessage.IsEmpty())
     {
         wxTextEntryDialog checkDlg(this, _("Result of database integrity check:"), _("Database Check"), resultMessage.Trim(), wxOK | wxTE_MULTILINE);
-        wxTextCtrl* textCtrl = dynamic_cast<wxTextCtrl*>(checkDlg.GetWindowChild(3000));
+        wxTextCtrl* textCtrl = dynamic_cast<wxTextCtrl*>(checkDlg.FindWindow(3000));
         if (textCtrl)
         {
             textCtrl->SetEditable(false);
