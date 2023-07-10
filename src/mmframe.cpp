@@ -2665,6 +2665,7 @@ void mmGUIFrame::refreshPanelData()
         wxDynamicCast(panelCurrent_, mmStocksPanel)->RefreshList();
         break;
     case mmID_ASSETS:
+        wxDynamicCast(panelCurrent_, mmAssetsPanel)->RefreshList();
         break;
     case mmID_BILLS:
         wxDynamicCast(panelCurrent_, mmBillsDepositsPanel)->RefreshList();
@@ -3355,14 +3356,19 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
     const auto time = wxDateTime::UNow();
 
-    DoWindowsFreezeThaw(homePanel_);
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    homePanel_->Layout();
-    DoWindowsFreezeThaw(homePanel_);
-    menuPrintingEnable(true);
-    setNavTreeSection(_("Assets"));
+    if (panelCurrent_->GetId() == mmID_ASSETS)
+        refreshPanelData();
+    else
+    {
+        DoWindowsFreezeThaw(homePanel_);
+        wxSizer* sizer = cleanupHomePanel();
+        panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        DoWindowsFreezeThaw(homePanel_);
+        menuPrintingEnable(true);
+        setNavTreeSection(_("Assets"));
+    }
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
