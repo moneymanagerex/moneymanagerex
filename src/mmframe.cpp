@@ -1776,7 +1776,7 @@ void mmGUIFrame::createMenu()
         , _("&Optimize Database...")
         , _("Optimize database space and performance"));
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
-        , _("Database De&bug...")
+        , _("Database Check and De&bug...")
         , _("Generate database report or fix errors"));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
@@ -2378,9 +2378,46 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
 {
+    wxASSERT(m_db);
+    wxString resultMessage;
+    wxSQLite3Statement stmt = m_db->PrepareStatement("PRAGMA integrity_check;");
+    if (stmt.IsReadOnly())
+    {
+        try
+        {
+            wxSQLite3ResultSet rs = stmt.ExecuteQuery();
+            int columnCount = rs.GetColumnCount();
+            while (rs.NextRow())
+            {
+                wxString strRow = "";
+                for (int i = 0; i < columnCount; ++i)
+                    strRow << rs.GetAsString(i);
+                resultMessage << strRow + wxTextFile::GetEOL();
+            }
+        }
+        catch (const wxSQLite3Exception& e)
+        {
+            wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
+            return;
+        }
+    }
+
+    if (!resultMessage.IsEmpty())
+    {
+        wxTextEntryDialog checkDlg(this, _("Result of database integrity check:"), _("Database Check"), resultMessage.Trim(), wxOK | wxTE_MULTILINE);
+        wxTextCtrl* textCtrl = dynamic_cast<wxTextCtrl*>(checkDlg.FindWindow(3000));
+        if (textCtrl)
+        {
+            textCtrl->SetEditable(false);
+            textCtrl->SetInsertionPointEnd();
+        }
+        checkDlg.Centre();
+        checkDlg.ShowModal();
+    }
+
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("Please use this function only if explicitly requested by MMEX support"), _("Do you want to proceed?"))
-        , _("DB Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        , wxString::Format("%s\n\n%s", _("Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"), _("Do you want to proceed?"))
+        , _("Database Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
         dbUpgrade::SqlFileDebug(m_db.get());
