@@ -522,6 +522,14 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cbCategory_, g_flagsExpand);
     flex_sizer->Add(bSplit_, g_flagsH);
 
+    // Tags  ---------------------------------------------
+    tagTextCtrl_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS);
+    wxStaticText* tagLabel = new wxStaticText(this, wxID_STATIC, _("Tags"));
+    tagLabel->SetFont(this->GetFont().Bold());
+    flex_sizer->Add(tagLabel, g_flagsH);
+    flex_sizer->Add(tagTextCtrl_, g_flagsExpand);
+    flex_sizer->AddSpacer(1);
+
     // Number  ---------------------------------------------
 
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
@@ -533,13 +541,6 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     flex_sizer->Add(textNumber_, g_flagsExpand);
     flex_sizer->Add(bAuto, g_flagsH);
-
-    // Tags  ---------------------------------------------
-    tagTextCtrl_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS);
-    
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Tags")), g_flagsH);
-    flex_sizer->Add(tagTextCtrl_, g_flagsExpand);
-    flex_sizer->AddSpacer(1);
 
     // Frequently Used Notes
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
