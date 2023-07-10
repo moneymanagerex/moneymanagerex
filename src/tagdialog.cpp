@@ -177,26 +177,26 @@ void mmTagDialog::fillControls()
     {
         tagListBox_->Set(filteredList);
     }
+
+    buttonEdit_->Disable();
+    buttonDelete_->Disable();
 }
 
 bool mmTagDialog::validateName(const wxString& name)
 {
-    if (name.Find(' ') != wxNOT_FOUND)
-    {
-        wxString errMsg = _("Name contains tag delimiter");
-        errMsg << "\n\n" << _("Tag names may not contain the space (' ') character");
-        wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
-        return false;
-    }
-
     if (name == "&" || name == "|")
     {
         wxString errMsg = _("Invalid tag name");
         errMsg << "\n\n" << _("Tag names may not be the single characters '&' or '|' which are restricted for filter operators");
         wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
+    } else if (name.Find(' ') != wxNOT_FOUND)
+    {
+        wxString errMsg = _("Name contains tag delimiter");
+        errMsg << "\n\n" << _("Tag names may not contain the space (' ') character");
+        wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
+        return false;
     }
-
     return true;
     
 }
@@ -214,8 +214,12 @@ void mmTagDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 void mmTagDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
 {
     wxString prompt_msg = _("Enter the name for the new tag:");
-    const wxString& text = wxGetTextFromUser(prompt_msg, _("Add Tag"), "");
-    if (text.IsEmpty() || !validateName(text))
+    wxString text = wxGetTextFromUser(prompt_msg, _("Add Tag"), "");
+
+    while (!validateName(text))
+        text = wxGetTextFromUser(prompt_msg, _("Add Tag"), text);
+
+    if (text.IsEmpty())
         return;
 
     const auto& tags = Model_Tag::instance().find(Model_Tag::TAGNAME(text));
@@ -241,18 +245,23 @@ void mmTagDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
     if (isSelection_)
     {
         tagCheckListBox_->GetSelections(selections);
+        if (selections.IsEmpty()) return;
         old_name = tagCheckListBox_->GetString(selections[0]);
     }
     else
     {
         tagListBox_->GetSelections(selections);
+        if (selections.IsEmpty()) return;
         old_name = tagListBox_->GetString(selections[0]);
     }
 
     const wxString msg = wxString::Format(_("Enter a new name for '%s'"), old_name);
     wxString text = wxGetTextFromUser(msg, _("Edit Tag"), old_name);
 
-    if (text.IsEmpty() || old_name == text || !validateName(text))
+    while (!validateName(text))
+        text = wxGetTextFromUser(msg, _("Edit Tag"), text);
+
+    if (text.IsEmpty() || old_name == text)
         return;
 
     Model_Tag::Data* tag = Model_Tag::instance().get(text);
