@@ -103,6 +103,7 @@ enum png {
     CATEGORY,
     PAYEE,
     CURR,
+    TAG,
     FILTER, 
     GRM,
     OPTIONS, 

@@ -23,6 +23,7 @@
 #include "db/DB_Table_Checkingaccount_V1.h"
 #include "Model_Splittransaction.h"
 #include "Model_CustomField.h"
+#include "Model_Taglink.h"
 
 class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
 {
@@ -44,22 +45,25 @@ public:
         Full_Data();
         explicit Full_Data(const Data& r);
         Full_Data(const Data& r
-            , const std::map<int /*trans id*/
-                , Model_Splittransaction::Data_Set /*split trans*/ > & splits);
+            , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
+            , const std::map<int /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags);
 
         ~Full_Data();
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
+        wxString TAGNAMES;
         wxString displayID;
         double AMOUNT;
         double BALANCE;
         wxArrayString ATTACHMENT_DESCRIPTION;
         Model_Splittransaction::Data_Set m_splits;
+        Model_Taglink::Data_Set m_tags;
         wxString real_payee_name(int account_id) const;
         const wxString get_currency_code(int account_id) const;
         const wxString get_account_name(int account_id) const;
         bool has_split() const;
+        bool has_tags() const;
         bool has_attachment() const;
         bool is_foreign() const;
         bool is_foreign_transfer() const;
@@ -120,6 +124,15 @@ public:
                 : x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
         }
     };
+    struct SorterByTAGNAMES
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return x.TAGNAMES < y.TAGNAMES;
+        }
+    };
+
 public:
     Model_Checking();
     ~Model_Checking();
@@ -198,6 +211,7 @@ public:
 };
 
 inline bool Model_Checking::Full_Data::has_split() const { return !this->m_splits.empty(); }
+inline bool Model_Checking::Full_Data::has_tags() const { return !this->m_tags.empty(); }
 inline bool Model_Checking::Full_Data::has_attachment() const { return !ATTACHMENT_DESCRIPTION.empty(); }
 
 #endif // 

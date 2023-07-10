@@ -46,6 +46,7 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "CATEGORY.svg", { CATEGORY, false } },
     { "PAYEE.svg", { PAYEE, false } },
     { "CURR.svg", { CURR, false } },
+    { "TAG.svg", { TAG, false } },
     { "FILTER.svg", { FILTER, false } }, 
     { "GRM.svg", { GRM, false } },
     { "OPTIONS.svg", { OPTIONS, false } },

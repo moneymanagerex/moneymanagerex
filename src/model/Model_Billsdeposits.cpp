@@ -23,6 +23,7 @@
 #include "Model_Attachment.h"
 #include "Model_Category.h"
 #include "Model_Payee.h"
+#include "Model_Tag.h"
 
  /* TODO: Move attachment management outside of attachmentdialog */
 #include "attachmentdialog.h"
@@ -429,11 +430,32 @@ Model_Billsdeposits::Full_Data::Full_Data()
 Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 {
     m_bill_splits = splittransaction(r);
+
+    m_tags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)), Model_Taglink::REFID(r.BDID));
+
+    if (!m_tags.empty()) {
+        wxArrayString tagnames;
+        for (const auto& entry : m_tags)
+            tagnames.Add(Model_Tag::instance().get(entry.TAGID)->TAGNAME);
+        // Sort TAGNAMES
+        tagnames.Sort();
+        for (const auto& name : tagnames)
+            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
+    }
+
     if (!m_bill_splits.empty())
     {
         for (const auto& entry : m_bill_splits)
+        {
             CATEGNAME += (CATEGNAME.empty() ? " * " : ", ")
-            + Model_Category::full_name(entry.CATEGID);
+                + Model_Category::full_name(entry.CATEGID);
+
+            wxString splitTags;
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT), entry.SPLITTRANSID))
+                splitTags.Append(tag.first + " ");
+            if (!splitTags.IsEmpty())
+                TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());
+        }
     }
     else
         CATEGNAME = Model_Category::full_name(r.CATEGID);
@@ -445,6 +467,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
+
 }
 
 wxString Model_Billsdeposits::Full_Data::real_payee_name() const

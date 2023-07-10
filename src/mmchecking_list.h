@@ -52,6 +52,7 @@ public:
         COL_PAYEE_STR,
         COL_STATUS,
         COL_CATEGORY,
+        COL_TAGS,
         COL_WITHDRAWAL,
         COL_DEPOSIT,
         COL_BALANCE,

@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
 #include <wx/choice.h>
+#include <wx/stc/stc.h>
 
 class wxComboBox;
 class wxTextCtrl;
@@ -293,4 +294,44 @@ public:
 };
 inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::ShowModal(); }
 
+/* -------------------------------------------- */
+
+class mmTagTextCtrl : public wxStyledTextCtrl
+{
+public:
+    mmTagTextCtrl(wxWindow* parent, wxWindowID id = wxID_ANY,
+        bool operatorAllowed = false,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize, long style = 0
+    );
+    bool IsValid();
+    virtual bool Validate(const wxString& tagText = wxEmptyString);
+    const wxArrayInt GetTagIDs() const;
+    const wxArrayString GetTagStrings();
+    void mmDoReInitialize();
+    void SetTags(const wxArrayInt& tagIds);
+
+protected:
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnPaste(wxStyledTextEvent& event);
+    void OnKillFocus(wxFocusEvent& event);
+    void OnPaint(wxPaintEvent& event);
+    void OnChange(wxCommandEvent& event);
+    void init();
+private:
+    struct tagNameComparator {
+        bool operator()(const wxString& lhs, const wxString& rhs) const {
+            return lhs.CmpNoCase(rhs) < 0;
+        }
+    };
+    std::map<wxString, int, tagNameComparator> tag_map_;
+    std::map<wxString, int, tagNameComparator> tags_;
+    wxString tags_autocomp_str;
+    wxArrayString parseTags(const wxString& tagString);
+    bool operatorAllowed_;
+};
+
+inline bool mmTagTextCtrl::IsValid() { return Validate(); }
+inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(GetText()); }
+inline void mmTagTextCtrl::mmDoReInitialize() { init(); }
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

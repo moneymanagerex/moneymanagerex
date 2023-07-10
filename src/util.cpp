@@ -1828,7 +1828,7 @@ void mmSetSize(wxWindow* w)
     else if (name == "mmPayeeDialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("PAYEES_DIALOG_SIZE");
     }
-    else if (name == "Currency Dialog") {
+    else if (name == "Organize Currencies") {
         my_size = Model_Infotable::instance().GetSizeSetting("CURRENCY_DIALOG_SIZE");
     }
     else if (name == "Themes Dialog") {
@@ -1857,6 +1857,12 @@ void mmSetSize(wxWindow* w)
     }
     else if (name == "Transaction Filter") {
         my_size = Model_Infotable::instance().GetSizeSetting("TRANSACTION_FILTER_SIZE");
+    }
+    else if (name == "Organize Tags") {
+        my_size = Model_Infotable::instance().GetSizeSetting("TAG_DIALOG_SIZE");
+    }
+    else if (name == "Relocate Tags") {
+        my_size = Model_Infotable::instance().GetSizeSetting("RELOCATETAG_DIALOG_SIZE");
     }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));

@@ -158,9 +158,19 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         m_bill_data.TRANSCODE = bill->TRANSCODE;
         m_bill_data.FOLLOWUPID = bill->FOLLOWUPID;
         m_bill_data.COLOR = bill->COLOR;
+        wxArrayInt billtags;
+        for (const auto& tag : Model_Taglink::instance().find(
+            Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+            Model_Taglink::REFID(bill->BDID)))
+            billtags.Add(tag.TAGID);
+        m_bill_data.TAGS = billtags;
         //
+        const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
-            m_bill_data.local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, item.NOTES });
+            wxArrayInt splittags;
+            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
+                splittags.Add(tag.TAGID);
+            m_bill_data.local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, splittags, item.NOTES });
         }
 
         // If duplicate then we may need to copy the attachments
@@ -287,6 +297,8 @@ void mmBDDialog::dataToControls()
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     cbAccount_->ChangeValue(account ? account->ACCOUNTNAME : "");
 
+    tagTextCtrl_->SetTags(m_bill_data.TAGS);
+
     textNotes_->SetValue(m_bill_data.NOTES);
     textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
 
@@ -342,10 +354,10 @@ void mmBDDialog::SetDialogHeader(const wxString& header)
 void mmBDDialog::SetDialogParameters(int trx_id)
 {
     const auto split = Model_Splittransaction::instance().get_all();
-
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT));
     //const auto trx = Model_Checking::instance().find(Model_Checking::TRANSID(trx_id)).at(0);
     const auto trx = Model_Checking::instance().get(trx_id);
-    Model_Checking::Full_Data t(*trx, split);
+    Model_Checking::Full_Data t(*trx, split, tags);
     m_bill_data.ACCOUNTID = t.ACCOUNTID;
     cbAccount_->SetValue(t.ACCOUNTNAME);
 
@@ -592,6 +604,16 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(categ_label2, g_flagsH);
     transPanelSizer->Add(cbCategory_, g_flagsExpand);
     transPanelSizer->Add(bSplit_, g_flagsH);
+
+    // Tags ---------------------------------------------
+
+    wxStaticText* tag_label = new wxStaticText(this, wxID_ANY, _("Tags"));
+    tag_label->SetFont(this->GetFont().Bold());
+    tagTextCtrl_ = new mmTagTextCtrl(this);
+    
+    transPanelSizer->Add(tag_label, g_flagsH);
+    transPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
+    transPanelSizer->AddSpacer(1);
 
     // Number ---------------------------------------------
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
@@ -956,6 +978,10 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
     }
 
+    if (!tagTextCtrl_->IsValid()) {
+        return mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
+    }
+
     if (!m_custom_fields->ValidateCustomValues(-m_bill_data.BDID))
         return;
 
@@ -1070,8 +1096,37 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         Model_Budgetsplittransaction::instance().update(splt, m_trans_id);
 
+        // Save split tags
+        const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
+
+        for (int i = 0; i < m_bill_data.local_splits.size(); i++)
+        {
+            Model_Taglink::Data_Set splitTaglinks;
+            for (const auto& tagId : m_bill_data.local_splits.at(i).TAGS)
+            {
+                Model_Taglink::Data* t = Model_Taglink::instance().create();
+                t->REFTYPE = splitRefType;
+                t->REFID = splt.at(i).SPLITTRANSID;
+                t->TAGID = tagId;
+                splitTaglinks.push_back(*t);
+            }
+            Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
+        }
+
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_trans_id);
+
+        // Save base transaction tags
+        Model_Taglink::Data_Set taglinks;
+        for (const auto& tagId : tagTextCtrl_->GetTagIDs())
+        {
+            Model_Taglink::Data* t = Model_Taglink::instance().create();
+            t->REFTYPE = RefType;
+            t->REFID = m_trans_id;
+            t->TAGID = tagId;
+            taglinks.push_back(*t);
+        }
+        Model_Taglink::instance().update(taglinks, RefType, m_trans_id);
 
         //Custom Data
         m_custom_fields->SaveCustomValues(-m_trans_id);
@@ -1112,12 +1167,41 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             }
             Model_Splittransaction::instance().update(checking_splits, trans_id);
 
+            // Save split tags
+            const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+
+            for (int i = 0; i < m_bill_data.local_splits.size(); i++)
+            {
+                Model_Taglink::Data_Set splitTaglinks;
+                for (const auto& tagId : m_bill_data.local_splits.at(i).TAGS)
+                {
+                    Model_Taglink::Data* t = Model_Taglink::instance().create();
+                    t->REFTYPE = splitRefType;
+                    t->REFID = checking_splits.at(i).SPLITTRANSID;
+                    t->TAGID = tagId;
+                    splitTaglinks.push_back(*t);
+                }
+                Model_Taglink::instance().update(splitTaglinks, splitRefType, checking_splits.at(i).SPLITTRANSID);
+            }
+
             //Custom Data
             m_custom_fields->SaveCustomValues(trans_id);
 
             const wxString& oldRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
             const wxString& newRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
             mmAttachmentManage::RelocateAllAttachments(oldRefType, m_bill_data.BDID, newRefType, trans_id);
+
+            // Save base transaction tags
+            Model_Taglink::Data_Set taglinks;
+            for (const auto& tagId : tagTextCtrl_->GetTagIDs())
+            {
+                Model_Taglink::Data* t = Model_Taglink::instance().create();
+                t->REFTYPE = newRefType;
+                t->REFID = trans_id;
+                t->TAGID = tagId;
+                taglinks.push_back(*t);
+            }
+            Model_Taglink::instance().update(taglinks, newRefType, trans_id);
         }
         Model_Billsdeposits::instance().completeBDInSeries(m_bill_data.BDID);
     }

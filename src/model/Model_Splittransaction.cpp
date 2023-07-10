@@ -73,7 +73,7 @@ std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all(
     return data;
 }
 
-int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
+int Model_Splittransaction::update(Data_Set& rows, int transactionID)
 {
     bool updateTimestamp = false;
     std::map<int, int> row_id_map;
@@ -118,6 +118,9 @@ int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
             split_items.push_back(*split_item);
         }
         instance().save(split_items);
+        // Send back the new SPLITTRANSID which is needed to update taglinks
+        for (int i = 0; i < rows.size(); i++)
+            rows.at(i).SPLITTRANSID = split_items.at(i).SPLITTRANSID;
     }
 
     if (updateTimestamp)

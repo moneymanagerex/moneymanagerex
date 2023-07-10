@@ -114,6 +114,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByCATEGNAME())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByCATEGNAME());
         break;
+    case TransactionListCtrl::COL_TAGS:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTAGNAMES())
+            : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTAGNAMES());
+        break;
     case TransactionListCtrl::COL_WITHDRAWAL:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByWITHDRAWAL())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByWITHDRAWAL());
@@ -279,6 +283,8 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_STATUS);
     m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_CATEGORY);
+    m_columns.push_back(PANEL_COLUMN(_("Tags"), 250, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_TAGS);
     m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_WITHDRAWAL);
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
@@ -1639,7 +1645,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
         }
 
-        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE, COL_DELETEDTIME
+        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE, COL_TAGS, COL_DELETEDTIME
             , COL_UDFC01, COL_UDFC02, COL_UDFC03, COL_UDFC04, COL_UDFC05 } )
         {
             const auto test = getItem(selectedItem, t, true).Lower();
@@ -1718,8 +1724,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         value = tran.NOTES;
         if (!tran.displayID.Contains("."))
         {
-            auto splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(tran.TRANSID));
-            for (const auto& split : splits)
+            for (const auto& split : tran.m_splits)
                 value += wxString::Format(" %s", split.NOTES);
         }
         value.Replace("\n", " ");
@@ -1727,6 +1732,21 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value.Trim(false);
     }
+    case TransactionListCtrl::COL_TAGS:
+        value = tran.TAGNAMES;
+        if (!tran.displayID.Contains("."))
+        {
+            const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+            for (const auto& split : tran.m_splits)
+            {
+                wxString tagnames;
+                for (const auto& tag : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
+                    tagnames.Append(tag.first + " ");
+                if (!tagnames.IsEmpty())
+                    value.Append((value.IsEmpty() ? "" : ", ") + tagnames.Trim());
+            }
+        }
+        return value.Trim();
     case TransactionListCtrl::COL_DELETEDTIME:
         datetime.ParseISOCombined(tran.DELETEDTIME);        
         if(!datetime.IsValid())

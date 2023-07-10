@@ -155,6 +155,7 @@ private:
         COL_PAYEE,
         COL_STATUS,
         COL_CATEGORY,
+        COL_TAGS,
         COL_TYPE,
         COL_AMOUNT,
         COL_FREQUENCY,

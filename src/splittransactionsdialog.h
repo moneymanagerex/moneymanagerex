@@ -106,6 +106,7 @@ private:
     {
         mmComboBoxCategory* category;
         mmTextCtrl* amount;
+        mmTagTextCtrl* tags;
         wxButton* other;
     };
 
