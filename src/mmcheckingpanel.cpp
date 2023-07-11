@@ -430,7 +430,7 @@ void mmCheckingPanel::CreateControls()
     itemPanel12->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
+    itemBoxSizer4->Add(itemButtonsSizer, wxSizerFlags(g_flagsExpandBorder1).Proportion(0));
 
     m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
     mmToolTip(m_btnDelete, _("Delete selected transaction"));
@@ -480,7 +480,7 @@ void mmCheckingPanel::CreateControls()
         , wxSize(100, m_btnDelete->GetSize().GetHeight())
         , wxTE_NOHIDESEL, wxDefaultValidator);
     searchCtrl->SetDescriptiveText(_("Search"));
-    itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
+    itemButtonsSizer->Add(searchCtrl, g_flagsExpandBorder1);
     mmToolTip(searchCtrl,
         _("Enter any string to find it in the nearest transaction data") + "\n\n" +
         _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
