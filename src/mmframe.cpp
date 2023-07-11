@@ -2405,6 +2405,7 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
     if (!resultMessage.IsEmpty())
     {
         wxTextEntryDialog checkDlg(this, _("Result of database integrity check:"), _("Database Check"), resultMessage.Trim(), wxOK | wxTE_MULTILINE);
+        checkDlg.SetIcon(mmex::getProgramIcon());
         wxTextCtrl* textCtrl = dynamic_cast<wxTextCtrl*>(checkDlg.FindWindow(3000));
         if (textCtrl)
         {
