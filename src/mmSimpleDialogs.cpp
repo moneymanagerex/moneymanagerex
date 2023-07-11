@@ -941,6 +941,8 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     AutoCompSetAutoHide(false);
     StyleSetBackground(1, wxColour(186, 226, 185));
     StyleSetForeground(1, *wxBLACK);
+    StyleSetBackground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+    StyleSetForeground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
     SetExtraAscent(2);
     SetExtraDescent(2);
     SetMaxClientSize(wxSize(-1, TextHeight(0)));
