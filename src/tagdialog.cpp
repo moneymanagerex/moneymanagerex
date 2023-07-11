@@ -54,9 +54,9 @@ mmTagDialog::mmTagDialog(wxWindow* parent, bool isSelection, const wxArrayString
     {
         for (const auto& tag : selectedTags)
         {
-            int index = tagCheckListBox_->FindString(tag);
+            int index = tagListBox_->FindString(tag);
             if (index != wxNOT_FOUND)
-                tagCheckListBox_->Check(index);
+                dynamic_cast<wxCheckListBox*>(tagListBox_)->Check(index);
         }
     }
 
@@ -101,15 +101,11 @@ void mmTagDialog::CreateControls()
         tagList_.Add(tag.TAGNAME);
 
     if (!isSelection_)
-    {
         tagListBox_ = new wxListBox(sb, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
-        itemBoxSizer2->Add(tagListBox_, g_flagsExpand);
-    }
     else
-    {
-        tagCheckListBox_ = new wxCheckListBox(sb, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
-        itemBoxSizer2->Add(tagCheckListBox_, g_flagsExpand);
-    }
+        tagListBox_ = new wxCheckListBox(sb, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
+
+    itemBoxSizer2->Add(tagListBox_, g_flagsExpand);
 
     wxPanel* searchPanel = new wxPanel(this, wxID_ANY);
     itemBoxSizer2->Add(searchPanel, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -148,38 +144,35 @@ void mmTagDialog::CreateControls()
 
     wxButton* itemButton24 = new wxButton(this, wxID_OK, (isSelection_ ? _("Select") : _("&OK ")));
     dlgButtonSizer->Add(itemButton24, g_flagsH);
-    mmToolTip(itemButton24, (isSelection_ ? _("Use the currently selected tags for the transaction") : _("Save any changes made")));
 
     wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
     dlgButtonSizer->Add(itemButton25, g_flagsH);
-    mmToolTip(itemButton25, _("Any changes will be lost without update"));
 }
 
 void mmTagDialog::fillControls()
 {
+    Freeze();
     wxArrayString filteredList;
     for (const auto& tag : tagList_)
         if (tag.Lower().Matches(mask_string_ + "*"))
             filteredList.Add(tag);
 
+    tagListBox_->Set(filteredList);
+
     if (isSelection_)
     {
-        tagCheckListBox_->Set(filteredList);
         // reselect previously selected items
         for (const auto& tag : selectedTags_)
         {
-            int index = tagCheckListBox_->FindString(tag);
+            int index = tagListBox_->FindString(tag);
             if (index != wxNOT_FOUND)
-                tagCheckListBox_->Check(index);
+                dynamic_cast<wxCheckListBox*>(tagListBox_)->Check(index);
         }
-    }
-    else
-    {
-        tagListBox_->Set(filteredList);
     }
 
     buttonEdit_->Disable();
     buttonDelete_->Disable();
+    Thaw();
 }
 
 bool mmTagDialog::validateName(const wxString& name)
@@ -187,7 +180,7 @@ bool mmTagDialog::validateName(const wxString& name)
     if (name == "&" || name == "|")
     {
         wxString errMsg = _("Invalid tag name");
-        errMsg << "\n\n" << _("Tag names may not be the single characters '&' or '|' which are restricted for filter operators");
+        errMsg << "\n\n" << _("Tag names may not be the single characters '&' or '|' because these are reserved for filter operators");
         wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     } else if (name.Find(' ') != wxNOT_FOUND)
@@ -236,24 +229,17 @@ void mmTagDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
     refreshRequested_ = true;
     tagList_.Add(text);
     fillControls();
+    setSelectedString(text);
 }
 
 void mmTagDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
 {
     wxArrayInt selections;
     wxString old_name;
-    if (isSelection_)
-    {
-        tagCheckListBox_->GetSelections(selections);
-        if (selections.IsEmpty()) return;
-        old_name = tagCheckListBox_->GetString(selections[0]);
-    }
-    else
-    {
-        tagListBox_->GetSelections(selections);
-        if (selections.IsEmpty()) return;
-        old_name = tagListBox_->GetString(selections[0]);
-    }
+    
+    tagListBox_->GetSelections(selections);
+    if (selections.IsEmpty()) return;
+    old_name = tagListBox_->GetString(selections[0]); 
 
     const wxString msg = wxString::Format(_("Enter a new name for '%s'"), old_name);
     wxString text = wxGetTextFromUser(msg, _("Edit Tag"), old_name);
@@ -285,24 +271,16 @@ void mmTagDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
     }
     refreshRequested_ = true;
     fillControls();
+    setSelectedString(text);
 }
 
 void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
 {
     wxArrayInt selections;
     wxArrayString stringSelections;
-    if (isSelection_)
-    {
-        tagCheckListBox_->GetSelections(selections);
-        for (const auto& selection : selections)
-            stringSelections.Add(tagCheckListBox_->GetString(selection));
-    }
-    else
-    {
-        tagListBox_->GetSelections(selections);
-        for (const auto& selection : selections)
-            stringSelections.Add(tagListBox_->GetString(selection));
-    }
+    tagListBox_->GetSelections(selections);
+    for (const auto& selection : selections)
+        stringSelections.Add(tagListBox_->GetString(selection));
 
     if (stringSelections.IsEmpty())
         return;
@@ -347,6 +325,9 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
     Model_Splittransaction::instance().ReleaseSavepoint();
     refreshRequested_ = true;
     fillControls();
+    int newIndex = std::min(selections[0], static_cast<int>(tagListBox_->GetCount()) - 1);
+    if (newIndex >= 0)
+        setSelectedItem(newIndex);
 }
 
 void mmTagDialog::OnTextChanged(wxCommandEvent& event)
@@ -366,18 +347,10 @@ void mmTagDialog::OnListSelChanged(wxCommandEvent& WXUNUSED(event))
 
     wxArrayInt selections;
     wxArrayString stringSelections;
-    if (isSelection_)
-    {
-        tagCheckListBox_->GetSelections(selections);
-        for (const auto& selection : selections)
-            stringSelections.Add(tagCheckListBox_->GetString(selection));
-    }
-    else
-    {
-        tagListBox_->GetSelections(selections);
-        for (const auto& selection : selections)
-            stringSelections.Add(tagListBox_->GetString(selection));
-    }
+
+    tagListBox_->GetSelections(selections);
+    for (const auto& selection : selections)
+        stringSelections.Add(tagListBox_->GetString(selection));
 
     int count = selections.GetCount();
 
@@ -401,13 +374,29 @@ void mmTagDialog::OnListSelChanged(wxCommandEvent& WXUNUSED(event))
 
 void mmTagDialog::OnCheckboxSelChanged(wxCommandEvent& event)
 {
-    if (tagCheckListBox_->IsChecked(event.GetSelection()))
+    if (dynamic_cast<wxCheckListBox*>(tagListBox_)->IsChecked(event.GetSelection()))
         selectedTags_.Add(event.GetString());
-        else
-        {
-            int index = selectedTags_.Index(event.GetString());
-            if (index != wxNOT_FOUND)
-                selectedTags_.RemoveAt(index);
-        }
-    
+    else
+    {
+        int index = selectedTags_.Index(event.GetString());
+        if (index != wxNOT_FOUND)
+            selectedTags_.RemoveAt(index);
+    }
+}
+
+void mmTagDialog::setSelectedItem(int index)
+{
+    tagListBox_->EnsureVisible(index);
+    tagListBox_->SetSelection(index);
+
+    wxCommandEvent evt;
+    OnListSelChanged(evt);
+}
+
+void mmTagDialog::setSelectedString(const wxString& tagname)
+{
+    int index = tagListBox_->FindString(tagname);
+
+    if (index != wxNOT_FOUND)
+        setSelectedItem(index);
 }

@@ -61,11 +61,12 @@ private:
     void fillControls();
     bool refreshRequested_ = false;
     bool validateName(const wxString& name);
+    void setSelectedItem(int index);
+    void setSelectedString(const wxString& name);
 
     wxSearchCtrl* searchCtrl_;
     wxString searchText_;
-    wxListBox* tagListBox_;
-    wxCheckListBox* tagCheckListBox_;
+    wxListBoxBase* tagListBox_;
     wxButton* buttonEdit_;
     wxButton* buttonAdd_;
     wxButton* buttonDelete_;
