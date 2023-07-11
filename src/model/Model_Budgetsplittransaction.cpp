@@ -18,6 +18,8 @@
  ********************************************************/
 
 #include "Model_Budgetsplittransaction.h"
+#include "Model_Attachment.h"
+#include "Model_Taglink.h"
 
 Model_Budgetsplittransaction::Model_Budgetsplittransaction()
 : Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>()
@@ -54,6 +56,13 @@ double Model_Budgetsplittransaction::get_total(const Data_Set& rows)
     for (auto& r : rows) total += r.SPLITTRANSAMOUNT;
 
     return total;
+}
+
+bool Model_Budgetsplittransaction::remove(int id)
+{
+    // Delete all tags for the split before removing it
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT), id);
+    return this->remove(id, db_);
 }
 
 std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransaction::get_all()

@@ -43,10 +43,13 @@ public:
     */
     static Model_Budgetsplittransaction& instance();
 
+    using Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>::remove;
+
 public:
     double get_total(const Data_Set& rows);
     std::map<int, Data_Set> get_all();
     int update(Data_Set& rows, int transactionID);
+    bool remove(int id);
 };
 
 #endif // 

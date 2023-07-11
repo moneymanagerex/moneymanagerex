@@ -186,6 +186,8 @@ bool Model_Billsdeposits::remove(int id)
 {
     for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
         Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
+    // Delete tags for the recurring transaction
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), id);
     return this->remove(id, db_);
 }
 

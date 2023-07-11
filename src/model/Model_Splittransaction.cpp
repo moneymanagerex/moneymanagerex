@@ -50,6 +50,13 @@ Model_Splittransaction& Model_Splittransaction::instance()
     return Singleton<Model_Splittransaction>::instance();
 }
 
+bool Model_Splittransaction::remove(int id)
+{
+    // Delete all tags for the split before removing it
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), id);
+    return this->remove(id, db_);
+}
+
 double Model_Splittransaction::get_total(const Data_Set& rows)
 {
     double total = 0.0;

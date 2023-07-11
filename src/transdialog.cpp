@@ -390,6 +390,7 @@ void mmTransDialog::dataToControls()
         cAdvanced_->Enable(false);
         cbPayee_->Enable(false);
         cbCategory_->Enable(false);
+        tagTextCtrl_->Enable(false);
         bSplit_->Enable(false);
         bAuto->Enable(false);
         textNumber_->Enable(false);

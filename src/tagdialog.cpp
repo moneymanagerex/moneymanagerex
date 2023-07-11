@@ -307,8 +307,9 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
         {
             Model_Taglink::Data_Set taglinks = Model_Taglink::instance().find(Model_Taglink::TAGID(tag->TAGID));
             for (const auto& link : taglinks)
+                // Taglinks for deleted transactions are either TRANSACTION or TRANSACTIONSPLIT type.
+                // Remove the transactions which will delete all associated tags.
                 if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
-                    // Removing the checking record also deletes the taglinks
                     Model_Checking::instance().remove(link.REFID);
                 else if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
                     Model_Checking::instance().remove(Model_Splittransaction::instance().get(link.REFID)->TRANSID);

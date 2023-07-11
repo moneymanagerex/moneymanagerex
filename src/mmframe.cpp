@@ -635,6 +635,9 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(wxID_VIEW_LIST)->Enable(enable);
     menuBar_->FindItem(wxID_BROWSE)->Enable(enable);
     menuBar_->FindItem(MENU_CONVERT_ENC_DB)->Enable(enable);
+    menuBar_->FindItem(MENU_RATES)->Enable(enable);
+    menuBar_->FindItem(MENU_ORGTAGS)->Enable(enable);
+    menuBar_->FindItem(MENU_THEME_MANAGER)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
     menuBar_->FindItem(wxID_PRINT)->Enable(enable);
@@ -669,6 +672,8 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(wxID_PREFERENCES, enable);
     toolBar_->EnableTool(wxID_NEW, enable);
     toolBar_->EnableTool(wxID_PRINT, enable);
+    toolBar_->EnableTool(MENU_ORGTAGS, enable);
+    toolBar_->EnableTool(MENU_RATES, enable);
     toolBar_->Refresh();
     toolBar_->Update();
 }
