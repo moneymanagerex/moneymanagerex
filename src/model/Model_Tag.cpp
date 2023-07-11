@@ -70,12 +70,23 @@ int Model_Tag::is_used(int id)
     for (const auto& link : taglink)
     {
         if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
-            if (Model_Checking::instance().get(link.REFID)->DELETEDTIME.IsEmpty())
+        {
+            Model_Checking::Data* t = Model_Checking::instance().get(link.REFID);
+            if (t && t->DELETEDTIME.IsEmpty())
                 return 1;
+        }
         else if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
-            if (Model_Checking::instance().get(Model_Splittransaction::instance().get(link.REFID)->TRANSID)->DELETEDTIME.IsEmpty())
-                return 1;
-        else return 1;
+        {
+            Model_Splittransaction::Data* s = Model_Splittransaction::instance().get(link.REFID);
+            if (s)
+            {
+                Model_Checking::Data* t = Model_Checking::instance().get(s->TRANSID);
+                if (t && t->DELETEDTIME.IsEmpty())
+                    return 1;
+            }
+        }
+        else
+            return 1;
     }
 
     return -1;
