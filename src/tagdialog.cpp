@@ -325,7 +325,7 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
     Model_Splittransaction::instance().ReleaseSavepoint();
     refreshRequested_ = true;
     fillControls();
-    int newIndex = selections[0] - 1;
+    int newIndex = std::min(selections[0], static_cast<int>(tagListBox_->GetCount()) - 1);
     if (newIndex >= 0)
         setSelectedItem(newIndex);
 }
