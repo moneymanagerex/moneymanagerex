@@ -927,9 +927,8 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
 
 mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
-    : wxStyledTextCtrl(parent, id, pos, size, style)
+    : wxStyledTextCtrl(parent, id, pos, size, style), operatorAllowed_(operatorAllowed)
 {
-    operatorAllowed_ = operatorAllowed;
     SetLexer(wxSTC_LEX_NULL);
     SetWrapMode(wxSTC_WRAP_NONE);
     SetMarginWidth(1, 0);
@@ -939,8 +938,10 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     AutoCompSetIgnoreCase(true);
     AutoCompSetCancelAtStart(true);
     AutoCompSetAutoHide(false);
+    StyleSetFont(1, parent->GetFont());
     StyleSetBackground(1, wxColour(186, 226, 185));
     StyleSetForeground(1, *wxBLACK);
+    StyleSetFont(0, parent->GetFont());
     StyleSetBackground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     StyleSetForeground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
     SetExtraAscent(2);
