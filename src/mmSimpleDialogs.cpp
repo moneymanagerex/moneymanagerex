@@ -1104,6 +1104,7 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 
     wxString tags_out;
     bool newTagCreated = false;
+    bool is_valid = true;
 
     // parse the tags and prompt to create any which don't exist
     for (const auto& tag : parseTags(tags_in))
@@ -1128,7 +1129,11 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
                 // Save the new tag to reference
                 tag_map_[tag] = newTag->TAGID;
             }
-            else return false;
+            else
+            {
+                is_valid = false;
+                continue;
+            }
         }
 
         tags_[tag] = tag_map_[tag];
@@ -1141,7 +1146,7 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
     GotoPos(WordEndPosition(ip, true) + 1);
     SetEvtHandlerEnabled(true);
 
-    return true;
+    return is_valid;
 }
 
 /* Return a list of tag IDs contained in the control */
