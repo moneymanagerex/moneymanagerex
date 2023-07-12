@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-10 00:56\n"
+"PO-Revision-Date: 2023-07-12 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1920,7 +1920,7 @@ msgstr "Todas"
 #: constants.cpp:209 mmframe.cpp:1489 mmframe.cpp:1894
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Abrir"
+msgstr "Aberta"
 
 #: constants.cpp:210 mmframe.cpp:1490 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
@@ -4467,7 +4467,7 @@ msgstr "Transações de Repetição Automática"
 
 #: mmframe.cpp:718 mmframe.cpp:1897 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr "Painel"
+msgstr "Tela Inicial"
 
 #: mmframe.cpp:722
 msgid "All Transactions"
