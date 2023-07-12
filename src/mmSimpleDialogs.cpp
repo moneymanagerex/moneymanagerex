@@ -1047,6 +1047,15 @@ void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
 void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     AutoCompCancel();
+    // Remove any non-tags
+    wxString tagString;
+    wxArrayString tags = parseTags(GetText());
+    for (const auto& tag : tags)
+    {
+        if (tag_map_.find(tag) != tag_map_.end())
+            tagString.Append(tag + " ");
+    }
+    SetText(tagString.Trim());
     event.Skip();
 }
 
