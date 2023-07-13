@@ -44,6 +44,8 @@ OptionSettingsHome::OptionSettingsHome()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(Model_Infotable::instance().GetIntInfo("HOMEPAGE_INCEXP_DAYS", 14))));
 
     int sel_id = Option::instance().getHomePageIncExpRange();
+    if (sel_id >= m_all_date_ranges.size())
+        sel_id = 0;
     m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
 
 }
