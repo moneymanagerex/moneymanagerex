@@ -67,6 +67,9 @@ private:
     mmColorButton* bColours_ = nullptr;
     wxCheckBox* m_color_checkbox = nullptr;
     wxCheckBox* m_type_checkbox = nullptr;
+    wxCheckBox* tag_checkbox_ = nullptr;
+    wxCheckBox* tag_append_checkbox_ = nullptr;
+    mmTagTextCtrl* tagTextCtrl_ = nullptr;
     wxChoice* m_type_choice = nullptr;
     wxCheckBox* m_amount_checkbox = nullptr;
     mmTextCtrl* m_amount_ctrl = nullptr;

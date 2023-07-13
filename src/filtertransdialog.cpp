@@ -343,6 +343,35 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
     transNumberEdit_->ChangeValue(s_number);
 
+
+    //Tags
+    wxString s_tag;
+    Value& j_tags = GetValueByPointerWithDefault(j_doc, "/TAGS", "");
+    if (j_tags.IsArray())
+    {
+        for (rapidjson::SizeType i = 0; i < j_tags.Size(); i++)
+        {
+            if (j_tags[i].IsInt())
+            {
+                // Retrieve TAGNAME from TAGID
+                Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt());
+                if (tag)
+                {
+                    s_tag.Append(tag->TAGNAME + " ");
+                }
+            }
+            else
+            {
+                s_tag.Append(wxString(j_tags[i].GetString()).Append(" ").Prepend(" "));            }
+        }
+        tagTextCtrl_->SetText(s_tag);
+        tagTextCtrl_->Validate();
+        tagCheckBox_->SetValue(true);
+    }
+    else
+        tagCheckBox_->SetValue(false);
+    tagTextCtrl_->Enable(tagCheckBox_->IsChecked());
+
     //Notes
     wxString s_notes;
     if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString()) {
@@ -560,6 +589,14 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     itemPanelSizer->AddSpacer(1);
     itemPanelSizer->Add(categorySubCatCheckBox_, g_flagsExpand);
+
+    // Tags
+    tagCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Tags")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(tagCheckBox_, g_flagsH);
+
+    tagTextCtrl_ = new mmTagTextCtrl(itemPanel, wxID_ANY, true);
+    itemPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
 
     // Status
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
@@ -861,6 +898,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
+    tagTextCtrl_->Enable(tagCheckBox_->IsChecked());
     rangeChoice_->Enable(datesCheckBox_->IsChecked());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
@@ -953,6 +991,20 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         return false;
     }
 
+    if (mmIsTagsChecked())
+    {
+        if (!tagTextCtrl_->IsValid())
+        {
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
+            return false;
+        }
+        else if (tagTextCtrl_->GetTagIDs().IsEmpty())
+        {
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Empty value"), _("Tags"), wxICON_ERROR);
+            return false;
+        }
+    }
+
     if (amountRangeCheckBox_->IsChecked())
     {
         Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
@@ -1041,6 +1093,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     column_names.Add("Payee");
     column_names.Add("Status");
     column_names.Add("Category");
+    column_names.Add("Tags");
     column_names.Add("Type");
     column_names.Add("Amount");
     column_names.Add("Rate");
@@ -1099,6 +1152,7 @@ bool mmFilterTransactionsDialog::mmIsSomethingChecked() const
         || mmIsAmountRangeMinChecked()
         || mmIsAmountRangeMaxChecked()
         || mmIsNumberChecked()
+        || mmIsTagsChecked()
         || mmIsNotesChecked()
         || mmIsColorChecked()
         || mmIsCustomFieldChecked();
@@ -1242,10 +1296,57 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(int categid)
     return m_selected_categories_id.Index(categid) != wxNOT_FOUND;
 }
 
+bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int refId)
+{
+    std::map<wxString, int> tagnames = Model_Taglink::instance().get(refType, refId);
+
+    // If we have a split, merge the transaciton tags so that an AND condition captures cases
+    // where one tag is on the base txn and the other is on the split
+    std::map<wxString, int> txnTagnames;
+    if (refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
+        txnTagnames = Model_Taglink::instance().get(
+            Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION),
+            Model_Splittransaction::instance().get(refId)->TRANSID);
+    else if (refType == Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT))
+        txnTagnames = Model_Taglink::instance().get(
+            Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT),
+            Model_Budgetsplittransaction::instance().get(refId)->TRANSID);
+    tagnames.insert(txnTagnames.begin(), txnTagnames.end());
+
+    if (tagnames.empty()) return false;
+
+    bool match = true;
+
+    wxArrayString tags = tagTextCtrl_->GetTagStrings();
+    for (int i = 0; i < tags.GetCount(); i++)
+    {
+        wxString tag = tags.Item(i);
+        // if the tag is the "OR" operator, fetch the next tag and compare with OR
+        if (tags.Item(i) == "|" && i++ < tags.GetCount() - 1)
+            match |= tagnames.find(tags.Item(i)) != tagnames.end();
+        // if the tag is the "AND" operator, fetch the next tag and compare with AND
+        else if (tags.Item(i) == "&" && i++ < tags.GetCount() - 1)
+            match &= tagnames.find(tags.Item(i)) != tagnames.end();
+        // default compare with AND operator
+        else if (tags.Item(i) != "&" && tags.Item(i) != "|")
+            match &= tagnames.find(tags.Item(i)) != tagnames.end();
+    }
+
+    return match;
+}
+
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
 {
     bool ok = true;
+    
+    wxString refType;
+    // Check the Data type to determine the tag RefType
+    if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
+        refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
+        refType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
     if (mmIsAccountChecked()
         && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND
@@ -1266,7 +1367,31 @@ bool mmFilterTransactionsDialog::mmIsRecordMatches(const DATA& tran)
     else if (mmIsColorChecked() && (m_color_value != tran.COLOR))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id())) ok = false;
+    else if (mmIsTagsChecked() && !mmIsTagMatches(refType, tran.id())) ok = false;
     return ok;
+}
+
+template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::mmIsSplitRecordMatches(const DATA& split)
+{
+    wxString refType;
+
+    if (typeid(split).hash_code() == typeid(Model_Splittransaction::Data).hash_code())
+    {
+        refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+    }
+    else if (typeid(split).hash_code() == typeid(Model_Budgetsplittransaction::Data).hash_code())
+    {
+        refType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
+    }
+
+    if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > split.SPLITTRANSAMOUNT) return false;
+    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < split.SPLITTRANSAMOUNT) return false;
+    else if (mmIsCategoryChecked() && !mmIsCategoryMatches(split.CATEGID)) return false;
+    else if (mmIsNotesChecked() && !mmIsNoteMatches(split.NOTES)) return false;
+    else if (mmIsTagsChecked() && !mmIsTagMatches(refType, split.SPLITTRANSID)) return false;
+
+    return true;
 }
 
 int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
@@ -1275,13 +1400,12 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            Model_Checking::Data splitWithTranNotes = tran;
-            splitWithTranNotes.CATEGID = split.CATEGID;
-            splitWithTranNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-            Model_Checking::Data splitWithSplitNotes = splitWithTranNotes;
-            splitWithSplitNotes.NOTES = split.NOTES;
-            ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes) ||
-                mmIsRecordMatches<Model_Checking>(splitWithTranNotes));
+            // Need to check if the split matches using the transaction Notes & Tags as well
+            Model_Checking::Data full_split = tran;
+            full_split.CATEGID = split.CATEGID;
+            full_split.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            ok += (mmIsSplitRecordMatches<Model_Splittransaction>(split) ||
+                mmIsRecordMatches<Model_Checking>(full_split));
         }
     }
     return ok;
@@ -1293,13 +1417,11 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Dat
     const auto& it = splits.find(tran.id());
     if (it != splits.end()) {
         for (const auto& split : it->second) {
-            Model_Billsdeposits::Data splitWithTranNotes = tran;
-            splitWithTranNotes.CATEGID = split.CATEGID;
-            splitWithTranNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-            Model_Billsdeposits::Data splitWithSplitNotes = splitWithTranNotes;
-            splitWithSplitNotes.NOTES = split.NOTES;
-            ok += (mmIsRecordMatches<Model_Billsdeposits>(splitWithSplitNotes) ||
-                mmIsRecordMatches<Model_Billsdeposits>(splitWithTranNotes));
+            Model_Billsdeposits::Data full_split = tran;
+            full_split.CATEGID = split.CATEGID;
+            full_split.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            ok += (mmIsSplitRecordMatches<Model_Budgetsplittransaction>(split) ||
+                mmIsRecordMatches<Model_Billsdeposits>(full_split));
         }
     }
     return ok;
@@ -1386,11 +1508,26 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
         case kArrayType:
         {
             wxString temp;
+            bool appendOperator = false;
             for (const auto& a : itr->value.GetArray()) {
                 if (a.GetType() == kNumberType)
-                    temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
+                {
+                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                    {
+                        temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + Model_Tag::instance().get(a.GetInt())->TAGNAME;
+                        appendOperator = true;
+                    }
+                    else
+                        temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
+                }
                 else if (a.GetType() == kStringType)
-                    temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
+                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                    {
+                        temp += (temp.empty() ? "" : " " + wxString::FromUTF8(a.GetString()) + " ");
+                        appendOperator = false;
+                    }
+                    else
+                        temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
             }
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n", name, temp);
             break;
@@ -1548,6 +1685,23 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         const wxString num = transNumberEdit_->GetValue();
         json_writer.Key((i18n ? _("Number") : "NUMBER").utf8_str());
         json_writer.String(num.utf8_str());
+    }
+
+    // Tags
+    if (tagCheckBox_->IsChecked() && !tagTextCtrl_->IsEmpty())
+    {
+        json_writer.Key((i18n ? _("Tags") : "TAGS").utf8_str());
+        json_writer.StartArray();
+
+        for (const auto& tag : tagTextCtrl_->GetTagStrings())
+        {
+            if (tag == "&" || tag == "|")
+                json_writer.String(tag.utf8_str());
+            else 
+                json_writer.Int(Model_Tag::instance().get(tag)->TAGID);
+        }
+
+        json_writer.EndArray();
     }
 
     //Notes

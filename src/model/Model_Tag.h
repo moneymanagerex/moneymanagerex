@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2013,2014 James Higley
+ Copyright (C) 2016 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,40 +16,43 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_BUDGETSPLITTRANSACTIONS_H
-#define MODEL_BUDGETSPLITTRANSACTIONS_H
+#ifndef MODEL_TAG_H
+#define MODEL_TAG_H
 
 #include "Model.h"
-#include "db/DB_Table_Budgetsplittransactions_V1.h"
+#include "db/DB_Table_Tag_V1.h"
 
-class Model_Budgetsplittransaction : public Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>
+class Model_Tag : public Model<DB_Table_TAG_V1>
 {
 public:
-    Model_Budgetsplittransaction();
-    ~Model_Budgetsplittransaction();
+    Model_Tag();
+    ~Model_Tag();
+
+    using Model<DB_Table_TAG_V1>::get;
 
 public:
     /**
-    Initialize the global Model_Budgetsplittransaction table on initial call.
+    Initialize the global Model_Tag table on initial call.
     Resets the global table on subsequent calls.
-    * Return the static instance address for Model_Budgetsplittransaction table
+    * Return the static instance address for Model_Tag table
     * Note: Assigning the address to a local variable can destroy the instance.
     */
-    static Model_Budgetsplittransaction& instance(wxSQLite3Database* db);
+    static Model_Tag& instance(wxSQLite3Database* db);
 
     /**
-    * Return the static instance address for Model_Budgetsplittransaction table
+    * Return the static instance address for Model_Tag table
     * Note: Assigning the address to a local variable can destroy the instance.
     */
-    static Model_Budgetsplittransaction& instance();
+    static Model_Tag& instance();
 
-    using Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>::remove;
+    /**
+    * Return the Data record pointer for the given tag name
+    * Returns 0 when tag not found.
+    */
+    Data* get(const wxString& name);
 
-public:
-    double get_total(const Data_Set& rows);
-    std::map<int, Data_Set> get_all();
-    int update(Data_Set& rows, int transactionID);
-    bool remove(int id);
+    /* Returns 0 if not used, 1 if used, and -1 if used only in deleted transactions */
+    int is_used(int id);
 };
 
 #endif // 

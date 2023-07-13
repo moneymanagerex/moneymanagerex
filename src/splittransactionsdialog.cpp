@@ -206,16 +206,20 @@ void mmSplitTransactionDialog::CreateControls()
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     slider_->SetSizer(dialogMainSizerV);
 
-    flexGridSizer_ = new wxFlexGridSizer(0, 3, 0, 0);
+    flexGridSizer_ = new wxFlexGridSizer(0, 4, 0, 0);
     flexGridSizer_->AddGrowableCol(0, 0);
+    flexGridSizer_->AddGrowableCol(3, 0);
     dialogMainSizerV->Add(flexGridSizer_, g_flagsExpand);
 
     wxStaticText* categoryText = new wxStaticText(slider_, wxID_STATIC, _("Category"));
     categoryText->SetFont(this->GetFont().Bold());
     wxStaticText* amountText = new wxStaticText(slider_, wxID_STATIC, _("Amount"));
     amountText->SetFont(this->GetFont().Bold());
+    wxStaticText* tagText = new wxStaticText(slider_, wxID_STATIC, _("Tags"));
+    tagText->SetFont(this->GetFont().Bold());
     flexGridSizer_->Add(categoryText, g_flagsExpand);
     flexGridSizer_->Add(amountText, g_flagsH);
+    flexGridSizer_->Add(tagText, g_flagsH);
     flexGridSizer_->AddSpacer(1);
 
     int size = static_cast<int>(m_splits.size());
@@ -300,9 +304,11 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
                 m_splits_widgets.at(row).amount->SetValue("");
             else
                 m_splits_widgets.at(row).amount->SetValue(m_splits.at(row).SPLITTRANSAMOUNT);
+            m_splits_widgets.at(row).tags->SetTags(m_splits.at(row).TAGS);
             UpdateExtraInfo(row);
             m_splits_widgets.at(row).category->Enable(!is_view_only_);
             m_splits_widgets.at(row).amount->Enable(!is_view_only_);
+            m_splits_widgets.at(row).tags->Enable(!is_view_only_);
             m_splits_widgets.at(row).other->Enable(!is_view_only_);
         } else
         {
@@ -311,6 +317,7 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
             m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
             m_splits_widgets.at(row).category->Enable(false);
             m_splits_widgets.at(row).amount->Enable(false);
+            m_splits_widgets.at(row).tags->Enable(false);
             m_splits_widgets.at(row).other->Enable(false);
         }
 
@@ -337,6 +344,10 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
                 , wxCommandEventHandler(mmSplitTransactionDialog::OnTextEntered), nullptr, this);
     nval->SetMinSize(wxSize(100,-1));
 
+    mmTagTextCtrl* ntag = new mmTagTextCtrl(slider_, mmID_MAX + row);
+    ntag->Enable(enabled);
+    ntag->SetMinSize(wxSize(200, 1));
+
     wxButton* nother = new wxButton(slider_, mmID_MAX + row, _("Notes"));
     nother->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
     nother->Connect(mmID_MAX + row, wxEVT_BUTTON
@@ -345,9 +356,10 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
 
     flexGridSizer_->Add(ncbc, g_flagsExpand);
     flexGridSizer_->Add(nval, g_flagsH);
+    flexGridSizer_->Add(ntag, g_flagsExpand);
     flexGridSizer_->Add(nother, g_flagsH);
 
-    SplitWidget sw = {ncbc, nval, nother};
+    SplitWidget sw = {ncbc, nval, ntag, nother};
     m_splits_widgets.push_back(sw);
 
     if (enabled && row + 1 >= m_splits.size())
@@ -366,17 +378,18 @@ void mmSplitTransactionDialog::activateNewRow()
         int row = row_num_ + 1;
         if (row >= m_splits.size())
         {
-            Split s = {-1, 0, ""};
+            Split s = { -1, 0, {}, "" };
             m_splits.push_back(s);
         }
         m_splits_widgets.at(row).category->Enable(true);
         m_splits_widgets.at(row).amount->Enable(true);
+        m_splits_widgets.at(row).tags->Enable(true);
         m_splits_widgets.at(row).other->Enable(true);
         m_splits_widgets.at(row).category->SetFocus();
     } else
     {
         createNewRow(true);
-        Split s = {-1, 0, ""};
+        Split s = { -1, 0, {}, "" };
         m_splits.push_back(s);
     }
 }
@@ -535,8 +548,14 @@ void mmSplitTransactionDialog::UpdateExtraInfo(int row)
 
 bool mmSplitTransactionDialog::mmDoCheckRow(int row)
 {
+    if (!m_splits_widgets.at(row).tags->IsValid()) {
+        mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).tags, _("Invalid value"), _("Tags"), wxICON_ERROR);
+        return false;
+    }
+
     if (m_splits_widgets.at(row).category->GetValue().empty() && 
         m_splits_widgets.at(row).amount->GetValue().empty() &&
+        m_splits_widgets.at(row).tags->GetTagIDs().IsEmpty() &&
         m_splits.at(row).NOTES.IsEmpty())
         return true;
 
@@ -557,6 +576,7 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
     m_splits_widgets.at(row).amount->GetDouble(amount);
 
     m_splits.at(row).CATEGID = m_splits_widgets.at(row).category->mmGetCategoryId();
-    m_splits.at(row).SPLITTRANSAMOUNT = amount;   
+    m_splits.at(row).SPLITTRANSAMOUNT = amount;
+    m_splits.at(row).TAGS = m_splits_widgets.at(row).tags->GetTagIDs();
     return true;
 }

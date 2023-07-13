@@ -110,6 +110,7 @@ public:
     void AddAssetTrans(const int selected_index);
     void ViewAssetTrans(const int selected_index);
     void GotoAssetAccount(const int selected_index);
+    void RefreshList();
 
 private:
     void enableEditDeleteButtons(bool enable);
@@ -159,3 +160,5 @@ private:
         COL_MAX, // number of columns
     };
 };
+
+inline void mmAssetsPanel::RefreshList(){ m_listCtrlAssets->doRefreshItems(); }

@@ -115,6 +115,7 @@ private:
     wxStaticText* staticTextRepeats_;
     wxBitmapButton* m_btn_due_prev_date;
     wxBitmapButton* m_btn_due_date;
+    mmTagTextCtrl* tagTextCtrl_;
 
     bool m_transfer;
     int object_in_focus_;

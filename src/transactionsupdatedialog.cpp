@@ -210,6 +210,19 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_categ_checkbox, g_flagsH);
     grid_sizer->Add(cbCategory_, g_flagsExpand);
 
+    // Tags ------------------------------------------------------
+    tag_checkbox_ = new wxCheckBox(this, wxID_ANY, _("Tags"));
+    tag_append_checkbox_ = new wxCheckBox(this, wxID_ANY, _("Append"));
+    tag_append_checkbox_->SetValue(true);
+    tag_append_checkbox_->Enable(false);
+
+    tagTextCtrl_ = new mmTagTextCtrl(this);
+    tagTextCtrl_->Enable(false);
+    grid_sizer->Add(tag_checkbox_, g_flagsH);
+    grid_sizer->Add(tag_append_checkbox_, g_flagsH);
+    grid_sizer->AddSpacer(0);
+    grid_sizer->Add(tagTextCtrl_, g_flagsExpand);
+
     // Colours --------------------------------------------
     m_color_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -333,6 +346,9 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             payee_id = cbPayee_->mmGetId();
     }
 
+    if (tag_checkbox_->IsChecked() && !tagTextCtrl_->IsValid())
+        return  mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
+
     if (m_transferAcc_checkbox->IsChecked())
     {
         if (!cbAccount_->mmIsValid())
@@ -350,6 +366,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     std::vector<int> skip_trx;
     Model_Checking::instance().Savepoint();
+    Model_Taglink::instance().Savepoint();
     for (const auto& id : m_transaction_id)
     {
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
@@ -406,6 +423,36 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             }
         }
 
+        // Update tags
+        if (tag_checkbox_->IsChecked()) {
+            Model_Taglink::Data_Set taglinks;
+            const wxString& refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            wxArrayInt tagIds = tagTextCtrl_->GetTagIDs();
+
+            if (tag_append_checkbox_->IsChecked()) {
+                // Since we are appending, start with the existing tags
+                taglinks = Model_Taglink::instance().find(Model_Taglink::REFTYPE(refType), Model_Taglink::REFID(trx->TRANSID));
+                // Remove existing tags from the new list to avoid duplicates
+                for (const auto& link : taglinks)
+                {
+                    int index = tagIds.Index(link.TAGID);
+                    if (index != wxNOT_FOUND)
+                        tagIds.RemoveAt(index);
+                }
+            }
+            // Create new taglinks for each tag ID
+            for (const auto& tagId : tagIds)
+            {
+                Model_Taglink::Data* t = Model_Taglink::instance().create();
+                t->REFTYPE = refType;
+                t->REFID = trx->TRANSID;
+                t->TAGID = tagId;
+                taglinks.push_back(*t);
+            }
+            // Update the links for the transaction
+            Model_Taglink::instance().update(taglinks, refType, trx->TRANSID);
+        }
+
         if (m_amount_checkbox->IsChecked()) {
             trx->TRANSAMOUNT = amount;
         }
@@ -451,6 +498,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         Model_Checking::instance().save(trx);
     }
+    Model_Taglink::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
 
     skip_trx; //TODO: resume
@@ -493,6 +541,8 @@ void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
     bColours_->Enable(m_color_checkbox->IsChecked());
     m_notes_ctrl->Enable(m_notes_checkbox->IsChecked());
     m_append_checkbox->Enable(m_notes_checkbox->IsChecked());
+    tagTextCtrl_->Enable(tag_checkbox_->IsChecked());
+    tag_append_checkbox_->Enable(tag_checkbox_->IsChecked());
 
     if (m_type_checkbox->IsChecked()) {
         SetPayeeTransferControls();

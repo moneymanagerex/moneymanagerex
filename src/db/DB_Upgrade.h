@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-06-29 15:13:40.311769.
+ *          AUTO GENERATED at 2023-07-09 11:41:39.625757.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 18;
+const int dbLatestVersion = 19;
 
 const std::vector<wxString> dbUpgradeQuery =
 {

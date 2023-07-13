@@ -486,6 +486,7 @@ void mmQIFExportDialog::mmExportQIF()
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
         const auto splits = Model_Splittransaction::instance().get_all();
+        const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
 
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
@@ -514,7 +515,7 @@ void mmQIFExportDialog::mmExportQIF()
 
             bool is_reverce = false;
             wxString trx_str;
-            Model_Checking::Full_Data full_tran(transaction, splits);
+            Model_Checking::Full_Data full_tran(transaction, splits, tags);
             int account_id = transaction.ACCOUNTID;
 
             switch (m_type)
