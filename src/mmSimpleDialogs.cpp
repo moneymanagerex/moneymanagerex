@@ -927,9 +927,8 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
 
 mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
-    : wxStyledTextCtrl(parent, id, pos, size, style)
+    : wxStyledTextCtrl(parent, id, pos, size, style), operatorAllowed_(operatorAllowed)
 {
-    operatorAllowed_ = operatorAllowed;
     SetLexer(wxSTC_LEX_NULL);
     SetWrapMode(wxSTC_WRAP_NONE);
     SetMarginWidth(1, 0);
@@ -939,8 +938,10 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     AutoCompSetIgnoreCase(true);
     AutoCompSetCancelAtStart(true);
     AutoCompSetAutoHide(false);
+    StyleSetFont(1, parent->GetFont());
     StyleSetBackground(1, wxColour(186, 226, 185));
     StyleSetForeground(1, *wxBLACK);
+    StyleSetFont(0, parent->GetFont());
     StyleSetBackground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     StyleSetForeground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
     SetExtraAscent(2);
@@ -1046,6 +1047,15 @@ void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
 void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     AutoCompCancel();
+    // Remove any non-tags
+    wxString tagString;
+    wxArrayString tags = parseTags(GetText());
+    for (const auto& tag : tags)
+    {
+        if (tag_map_.find(tag) != tag_map_.end())
+            tagString.Append(tag + " ");
+    }
+    SetText(tagString.Trim());
     event.Skip();
 }
 
@@ -1103,6 +1113,7 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 
     wxString tags_out;
     bool newTagCreated = false;
+    bool is_valid = true;
 
     // parse the tags and prompt to create any which don't exist
     for (const auto& tag : parseTags(tags_in))
@@ -1127,7 +1138,11 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
                 // Save the new tag to reference
                 tag_map_[tag] = newTag->TAGID;
             }
-            else return false;
+            else
+            {
+                is_valid = false;
+                continue;
+            }
         }
 
         tags_[tag] = tag_map_[tag];
@@ -1140,7 +1155,7 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
     GotoPos(WordEndPosition(ip, true) + 1);
     SetEvtHandlerEnabled(true);
 
-    return true;
+    return is_valid;
 }
 
 /* Return a list of tag IDs contained in the control */
