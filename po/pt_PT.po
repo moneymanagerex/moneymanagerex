@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-13 22:04\n"
+"PO-Revision-Date: 2023-07-13 23:37\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5286,15 +5286,15 @@ msgstr "Resultado da verificação da integridade da base de dados:"
 
 #: mmframe.cpp:2391
 msgid "Database Check"
-msgstr ""
+msgstr "Verificação da Base de Dados"
 
 #: mmframe.cpp:2403
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Por favor, use esta função apenas se solicitado pelo suporte MMEX e tiver recebido um ficheiro de depuração .mmdbg"
 
 #: mmframe.cpp:2404
 msgid "Database Debug"
-msgstr ""
+msgstr "Depuração da Base de Dados"
 
 #: mmframe.cpp:2423 mmframe.cpp:2444
 msgid "Save database file as"
