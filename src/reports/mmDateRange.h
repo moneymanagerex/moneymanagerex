@@ -77,6 +77,13 @@ public:
     mmLastMonth();
 };
 
+class mmLastNDays : public mmDateRange
+{
+public:
+    mmLastNDays(int days);
+    void SetRange(int days);
+};
+
 class mmLast30Days: public mmDateRange
 {
 public:

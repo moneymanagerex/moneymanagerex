@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsbase.h"
 #include "reports/mmDateRange.h"
+#include "wx/spinctrl.h"
 
 class OptionSettingsHome : public OptionSettingsBase
 {
@@ -49,5 +50,6 @@ private:
 
 private:
     wxChoice* m_incExpChoice;
+    wxSpinCtrl* nDays_;
 
 };
