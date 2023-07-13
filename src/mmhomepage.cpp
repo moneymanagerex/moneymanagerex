@@ -484,11 +484,16 @@ const wxString htmlWidgetStatistics::getHTMLText()
         all_trans = Model_Checking::instance().all();
     }
     int countFollowUp = 0;
-    int total_transactions = all_trans.size();
+    int total_transactions = 0;
 
     std::map<int, std::pair<double, double> > accountStats;
     for (const auto& trx : all_trans)
     {
+        if (!trx.DELETEDTIME.IsEmpty())
+            continue;
+
+        total_transactions++;
+
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
