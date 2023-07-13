@@ -1782,14 +1782,20 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_WITHDRAWAL:
-        if (balance <= 0.0) {
+        if (balance < 0.0 || (balance == 0.0
+            && ((tran.TRANSCODE == Model_Checking::WITHDRAWAL_STR || tran.TRANSCODE == Model_Checking::TRANSFER_STR )
+                && tran.ACCOUNTID == account->ACCOUNTID)))
+        {
             return m_cp->isAllAccounts_
                 ? Model_Currency::toCurrency(-balance, currency)
                 : Model_Currency::toString(-balance, currency);
         }
         return "";
     case TransactionListCtrl::COL_DEPOSIT:
-        if (balance > 0.0) {
+        if (balance > 0.0 || (balance == 0.0
+            && ((tran.TRANSCODE == Model_Checking::DEPOSIT_STR && tran.ACCOUNTID == account->ACCOUNTID)
+                || (tran.TRANSCODE == Model_Checking::TRANSFER_STR && tran.ACCOUNTID != account->ACCOUNTID))))
+        {
             return m_cp->isAllAccounts_
                 ? Model_Currency::toCurrency(balance, currency)
                 : Model_Currency::toString(balance, currency);
