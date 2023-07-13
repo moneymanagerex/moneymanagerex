@@ -97,7 +97,7 @@ mmLastMonth::mmLastMonth()
     this->findEndOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(1));
     this->findBeginOfMonth();
-    this->title_ = wxTRANSLATE("Last Month");
+    this->title_ = wxTRANSLATE("Previous Month");
 }
 
 mmLast30Days::mmLast30Days()
@@ -107,7 +107,7 @@ mmLast30Days::mmLast30Days()
         .Subtract(wxDateSpan::Months(1))
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = wxTRANSLATE("Last 30 Days");
+    this->title_ = wxTRANSLATE("1 Month Ago to Date");
 }
 
 mmLast90Days::mmLast90Days()
@@ -117,7 +117,7 @@ mmLast90Days::mmLast90Days()
         .Subtract(wxDateSpan::Months(3))
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = wxTRANSLATE("Last 90 Days");
+    this->title_ = wxTRANSLATE("3 Months Ago to Date");
 }
 
 mmLast3Months::mmLast3Months()
@@ -131,7 +131,7 @@ mmLast3Months::mmLast3Months()
         end_date_ = today_;
         futureIgnored_ = true;
     }
-    this->title_ = wxTRANSLATE("Last 3 Months");
+    this->title_ = wxTRANSLATE("Latest 3 Months");
 }
 
 mmLast12Months::mmLast12Months()
@@ -145,7 +145,7 @@ mmLast12Months::mmLast12Months()
         end_date_ = today_;
         futureIgnored_ = true;
     }
-    this->title_ = wxTRANSLATE("Last 12 Months");
+    this->title_ = wxTRANSLATE("Latest 12 Months");
 }
 
 mmCurrentYear::mmCurrentYear()
@@ -182,7 +182,7 @@ mmLastYear::mmLastYear()
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Months(11));
     this->findEndOfMonth();
-    this->title_ = wxTRANSLATE("Last Year");
+    this->title_ = wxTRANSLATE("Previous Year");
 }
 
 mmCurrentFinancialYear::mmCurrentFinancialYear()
@@ -233,7 +233,7 @@ mmLastFinancialYear::mmLastFinancialYear()
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
-    this->title_ = wxTRANSLATE("Last Financial Year");
+    this->title_ = wxTRANSLATE("Previous Financial Year");
 }
 
 mmAllTime::mmAllTime()
@@ -271,7 +271,29 @@ mmLast365Days::mmLast365Days() : mmDateRange()
 {
     this->start_date_.Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = wxTRANSLATE("Last 365 Days");
+    this->title_ = wxTRANSLATE("1 Year Ago to Date");
+}
+
+mmLastNDays::mmLastNDays(int days)
+    : mmDateRange()
+{
+    this->start_date_
+        .Subtract(wxDateSpan::Days(days))
+        .Add(wxDateSpan::Days(1));
+    // no change to end_date_
+    this->title_ = wxTRANSLATE(wxString::Format("Last %i Days", days));
+}
+
+void mmLastNDays::SetRange(int days)
+{
+    // recalculate start_date_
+    this->start_date_ = today_;
+    this->start_date_
+        .Subtract(wxDateSpan::Days(days))
+        .Add(wxDateSpan::Days(1));
+    // no change to end_date_
+    // update title
+    this->title_ = wxTRANSLATE(wxString::Format("Last %i Days", days));
 }
 
 mmSinseToday::mmSinseToday() : mmDateRange()
@@ -286,7 +308,7 @@ mmSinse30days::mmSinse30days() : mmDateRange()
         .Subtract(wxDateSpan::Months(1))
         .Add(wxDateSpan::Days(1));
     this->end_date_ = future_;
-    this->title_ = wxTRANSLATE("Since 30 days ago");
+    this->title_ = wxTRANSLATE("Since 1 Month Ago");
 }
 
 mmSinse90days::mmSinse90days() : mmDateRange()
@@ -295,7 +317,7 @@ mmSinse90days::mmSinse90days() : mmDateRange()
         .Subtract(wxDateSpan::Months(3))
         .Add(wxDateSpan::Days(1));
     this->end_date_ = future_;
-    this->title_ = wxTRANSLATE("Since 90 days ago");
+    this->title_ = wxTRANSLATE("Since 3 Months Ago");
 }
 
 mmSinseCurrentYear::mmSinseCurrentYear() : mmDateRange()
