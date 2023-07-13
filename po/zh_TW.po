@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-08 16:57+0300\n"
-"PO-Revision-Date: 2023-07-08 14:01\n"
+"PO-Revision-Date: 2023-07-13 02:20\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1902,7 +1902,7 @@ msgstr "全部"
 #: constants.cpp:209 mmframe.cpp:1489 mmframe.cpp:1894
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "開啟檔案"
+msgstr "開啟"
 
 #: constants.cpp:210 mmframe.cpp:1490 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
