@@ -43,6 +43,7 @@ Name[zh_CN]=MMEX资金经理
 Name[zh_TW]=MMEX資金經理
 Exec=mmex
 Type=Application
+StartupWMClass=mmex
 Keywords=money;accounts;accounting;finance;
 Keywords[hu]=pénz;számlák;számvitel;pénzügyek;
 GenericName=Personal financial and money management software
