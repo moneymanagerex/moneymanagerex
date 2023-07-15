@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 21:46\n"
+"PO-Revision-Date: 2023-07-15 23:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1785,7 +1785,7 @@ msgstr "Kategóriák rendezése: szerkesztési hiba"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Category Relocation Completed."
-msgstr "A kategória áthelyezése megtörtént."
+msgstr "Kategória áthelyezése megtörtént."
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -1795,7 +1795,7 @@ msgstr "Adatbázis-bejegyzések frissítve: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Category Relocation Result"
-msgstr "A kategóriaáthelyezés eredménye"
+msgstr "Kategória áthelyezésének eredménye"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -5449,7 +5449,7 @@ msgstr "Számla: %s - Új típus választása."
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Payee Relocation Completed."
-msgstr "Kedvezményezett áthelyezése befejezve."
+msgstr "Kedvezményezett áthelyezése megtörtént."
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Payee Relocation Result"
@@ -5457,11 +5457,11 @@ msgstr "Kedvezményezett áthelyezésének eredménye"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Címke áthelyezése megtörtént."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Címke áthelyezésének eredménye"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -6703,7 +6703,7 @@ msgstr "Áthelyezés után a forrás-címké törlése"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Címke áthelyezésének megerősítése"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
