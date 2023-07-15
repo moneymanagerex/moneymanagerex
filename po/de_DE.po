@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-15 14:03\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1096,7 +1096,7 @@ msgstr "Verwenden Sie Split-Kategorien"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Schlagwörter"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -1311,7 +1311,7 @@ msgstr "Zahlung"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "Mit MMEX können regelmäßige Zahlungen als Transaktionen eingerichtet werden. Diese Transaktionen können auch regelmäßige Einzahlungen oder Überweisungen sein, die zu einem späteren Zeitpunkt erfolgen. Diese Transaktionen dienen als Erinnerung an ein bevorstehendes Ereignis und werden 14 Tage vor Fälligkeit der Transaktion auf dem Dashboard angezeigt."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -3956,11 +3956,11 @@ msgstr "Bitte geben Sie ein nicht leeres Symbol ein."
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Neues Schlagwort '%s' erstellen ?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "Neues Schlagwort eingegeben"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4823,11 +4823,11 @@ msgstr "&Kategorien organisieren..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Schlagwör&ter verwalten..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Schlagwörter verwalten"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4847,11 +4847,11 @@ msgstr "Neu zuordnen aller Zahlungsempfänger/Zahler an einen anderen Zahlungsem
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Schlagwörter..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Alle Schlagwörter einem anderen Schlagwort neu zuordnen"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4859,7 +4859,7 @@ msgstr "Umzug der"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Kategorien, Zahler und Schlagwörter neu zuordnen"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4919,7 +4919,7 @@ msgstr "&Optionen...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4947,7 +4947,7 @@ msgstr "Speicherplatz und Leistung der Datenbank optimieren"
 
 #: mmframe.cpp:1784
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Datenbankprüfung und De&bug..."
 
 #: mmframe.cpp:1785
 msgid "Generate database report or fix errors"
@@ -4967,7 +4967,7 @@ msgstr "&Hilfe\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Hilfe anzeigen"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5167,7 +5167,7 @@ msgstr "Download Raten"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Währungs- und Börsenkurse herunterladen"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5179,7 +5179,7 @@ msgstr "&Drucken"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Drucken"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5312,19 +5312,19 @@ msgstr "Datenbankoptimierung abgeschlossen!\n\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Ergebnis der Integritätsprüfung der Datenbank:"
 
 #: mmframe.cpp:2412
 msgid "Database Check"
-msgstr ""
+msgstr "Datenbankprüfung"
 
 #: mmframe.cpp:2425
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Bitte verwenden Sie diese Funktion nur, wenn Sie vom MMEX-Support dazu aufgefordert werden und Sie eine .mmdbg-Debug-Datei erhalten haben"
 
 #: mmframe.cpp:2426
 msgid "Database Debug"
-msgstr ""
+msgstr "Datenbank Fehlerbehebung"
 
 #: mmframe.cpp:2445 mmframe.cpp:2466
 msgid "Save database file as"
@@ -5454,11 +5454,11 @@ msgstr "Ergebnis des Zahlungsempfängerwechsels"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Schlagwort Verlegung abgeschlossen."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Schlagwort Verschiebungsergebnis"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5778,11 +5778,11 @@ msgstr "Wiederkehrende Transaktion"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "TransaktionSplit"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Wiederkehrende Transaktion Splits"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6059,12 +6059,13 @@ msgstr "Währung auswählen"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Legt die Standardwährung der Datenbank unter Verwendung von 'Währungen organisieren' fest"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Das Format wird vom Gebietsschema abgeleitet.\n"
+"Leer lassen, um das Format manuell über \"Währungen organisieren | Bearbeiten\" einzustellen"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6133,7 +6134,7 @@ msgstr "Falsches Gebietsschema"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Letzte N Tage"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6678,7 +6679,7 @@ msgstr "Zeilen im Budget gefunden: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Kategorie neu zuordnen"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6694,19 +6695,19 @@ msgstr "Zahlungsempfänger/Zahler verschieben Bestätigung"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Verschieben Sie das Schlagwort der Quelle zum Schlagwort des Ziels"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Quell-Schlagwort nach Verlegung löschen"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Schlagwort Umzugs-Bestätigung"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Schlagwort verschieben Dialog"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6950,23 +6951,23 @@ msgstr "Aktueller Monat bis Datum"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Vorheriger Monat"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "Vor 1 Monat bis heute"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "Vor 3 Monaten bis heute"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Letzte 3 Monate"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Letzte 12 Monate"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6978,7 +6979,7 @@ msgstr "Aktuelles Jahr bis Datum"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Vorheriges Jahr"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6990,7 +6991,7 @@ msgstr "laufendes Finanzjahr bis Datum"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Vorheriges Geschäftsjahr"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6998,7 +6999,7 @@ msgstr "Benutzerdefiniert"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "Vor 1 Jahr bis heute"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7006,11 +7007,11 @@ msgstr "Seit heute"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Seit 1 Monat zuvor"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Seit 3 Monate zuvor"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7520,43 +7521,43 @@ msgstr "Symbol: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Aktuelle Schlagwörter"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Ein Schlagwort hinzufügen"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Den Namen eines bestehenden Schlagworts bearbeiten"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Löschen Sie ein bestehendes Schlagwort. Dieses Schlagwort kann nicht von bestehenden Transaktionen verwendet werden."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Wähle"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Ungültiger Schlagwortname"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "Schlagwörter dürfen nicht die Zeichen '&' oder '|' enthalten, da diese für Filteroperatoren reserviert sind"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Schlagwörter ordnen: Ungültiger Name"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "Name enthält Schlagwort-Trennzeichen"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Schlagwörter dürfen kein Leerzeichen (' ') enthalten"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
