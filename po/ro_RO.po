@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-15 13:04\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Folosește Categorii divizate"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Etichete"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -3961,11 +3961,11 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Creaţi o nouă etichetă '%s' ?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "O nouă etichetă introdusă"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4839,11 +4839,11 @@ msgstr "Administrează &categoriile..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organizează şi etichetează..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Organizează etichetele"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4863,11 +4863,11 @@ msgstr "Realocați toți beneficiarii către un alt beneficiar"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Etichete..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Realocă toate etichetele la o altă etichetă"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4875,7 +4875,7 @@ msgstr "Rea&locarea"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Realocă Categoriile, Beneficiarii și Etichete"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4935,7 +4935,7 @@ msgstr "&Opțiuni...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Opțiuni"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4983,7 +4983,7 @@ msgstr "&Ajutor F1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Arată ajutor"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5183,7 +5183,7 @@ msgstr "Descarcă ratele de schimb"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Descarcă ratele de schimb valutare și bursiere"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5195,7 +5195,7 @@ msgstr "Im&primă"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Printare"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5473,11 +5473,11 @@ msgstr "Rezultatul relocării beneficiarului"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Relocarea etichetelor finalizat."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Rezultatul relocării etichetelor"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5797,11 +5797,11 @@ msgstr ""
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Împărțirea tranzacției"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Tranzacția împărțită recurent"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6076,12 +6076,13 @@ msgstr "Setează Valuta"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Setează moneda implicită a bazei de date folosind 'Organizează Monedele'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Format derivat din localizare.\n"
+"Lăsaţi necompletat pentru a seta manual formatul prin 'Organizare monede | Editează'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6150,7 +6151,7 @@ msgstr "Nume local greșit"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Ultimele N zile"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6689,7 +6690,7 @@ msgstr ""
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Mutați categoria"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6705,19 +6706,19 @@ msgstr ""
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Transferați eticheta sursă la eticheta de destinație"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Șterge eticheta sursă după transfer"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Confirmare transfer etichete"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Relocate Tag Dialog"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6961,23 +6962,23 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Luna precedentă"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "De acum o lună"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "De acum 3 luni"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Ultimile 3 luni"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Ultimile 12 luni"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6989,7 +6990,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Anul trecut"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -7001,7 +7002,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Vezi ultimul an financiar"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7009,7 +7010,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "De acum un an"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7017,7 +7018,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Începând de luna trecută"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
