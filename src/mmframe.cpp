@@ -1765,7 +1765,7 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Options...\tCtrl-,"), _("Options Dialog"));
+        , _("&Options...\tCtrl-,"), _("Options"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -1795,7 +1795,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
-        _("&Help\tF1"), _("Show the Help file"));
+        _("&Help\tF1"), _("Show Help"));
     menuHelp->Append(menuItemHelp);
 
     //Community Submenu
@@ -1940,17 +1940,17 @@ void mmGUIFrame::CreateToolBar()
         : mmBitmapBundle(png::NEWS, toolbar_icon_size);
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
-    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock rates"));
+    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock Rates"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print current view"));
+    toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("About dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmapBundle(png::HELP, toolbar_icon_size), _("Help files"));
+    toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("About"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmapBundle(png::HELP, toolbar_icon_size), _("Help"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
