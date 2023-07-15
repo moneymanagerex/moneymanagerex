@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 20:20\n"
+"PO-Revision-Date: 2023-07-15 21:46\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5782,11 +5782,11 @@ msgstr "Transaction récurrente"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Répartition de la transaction"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Répartitions de transactions récurrentes"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6063,12 +6063,13 @@ msgstr "Choisir la devise"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Définir la devise par défaut de la base de données en utilisant \"Gestion des devises\""
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Format dérivé du paramétrage local.\n"
+"Laisser vide pour définir manuellement le format via \"Gestion des devises| Edition\""
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6137,7 +6138,7 @@ msgstr "Mauvais nom de fichier"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Derniers N Jours"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6681,7 +6682,7 @@ msgstr "Enregistrements trouvé dans le budget %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Réattribuer la catégorie"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6697,19 +6698,19 @@ msgstr "confirmation de la réaffectation"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Réattribuer l'étiquette source à l'étiquette de destination"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Supprimer l'étiquette source après réattribution"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Confirmation de la réattribution de l'étiquette"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Fenêtre de dialogue Réattribuer l'étiquette"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6953,23 +6954,23 @@ msgstr "Les jours du mois jusqu'à aujourd'hui"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Mois Précédent"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 mois avant la date"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 mois avant la date"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "3 derniers mois"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "12 derniers mois"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6981,7 +6982,7 @@ msgstr "l'année courante  jusqu'à aujourd'hui"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Année précédente"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6993,7 +6994,7 @@ msgstr "Année fiscale en cours"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Année financière précédente"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7001,7 +7002,7 @@ msgstr "Personnalisé"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 an avant la date"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7009,11 +7010,11 @@ msgstr "Aujourd'hui"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Depuis 1 mois"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Depuis 3 mois"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7523,67 +7524,67 @@ msgstr "Symbole : %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Étiquettes actuelles"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Ajouter une nouvelle étiquette"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Editer le nom d'une étiquette existante"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Supprimer une étiquette existante. L'étiquette ne doit pas être utilisée par des opérations existantes."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Sélectionner"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Nom d'étiquette invalide"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "Les noms d'étiquettes ne peuvent pas être des caractères uniques '&' ou '|' car ils sont réservés aux filtres d'opérations"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Organiser les étiquettes : nom invalide"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "Le nom contient le délimiteur d'étiquette"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Les noms d'étiquettes ne doivent pas contenir d'espace (' ')"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Entrer le nom de la nouvelle étiquette :"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Ajouter une étiquette"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "Il existe une étiquette avec ce nom"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Gestion des étiquette : erreur d'ajout"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Editer l'étiquette"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Gestion des étiquettes : erreur d'édition"
 
 #: tagdialog.cpp:298
 #, c-format
