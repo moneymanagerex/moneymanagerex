@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-15 20:20\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Répartir dans plusieurs catégories"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Etiquettes"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -3958,11 +3958,11 @@ msgstr "Entrer un symbole non vide"
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Créer une nouvelle étiquette \"%s\" ?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "Nouvelle étiquette saisie"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4825,11 +4825,11 @@ msgstr "Gérer les &Catégories..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Gérer les &Etiquettes..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Gérer les Etiquettes"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4849,11 +4849,11 @@ msgstr "Réaffecter tous les bénéficiaires à un autre bénéficiaire"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Etiquettes..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Réaffecter toutes les étiquettes à une autre étiquette"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4861,7 +4861,7 @@ msgstr "Déplacement de"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Réattribuer les catégories, les bénéficiaires et les étiquettes"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4921,7 +4921,7 @@ msgstr "&Options...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4969,7 +4969,7 @@ msgstr "Aide"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Afficher l’aide"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5169,7 +5169,7 @@ msgstr "Taux de téléchargement"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Télécharger les cours des devises et des actions"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5181,7 +5181,7 @@ msgstr "&Imprimer"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Imprimer"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5458,11 +5458,11 @@ msgstr "Résultat de la réattribution d'un tiers"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Réattribution des étiquettes terminée."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Résultat de la réattribution de l'étiquette"
 
 #: mmframe.cpp:3830
 #, c-format
