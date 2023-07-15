@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-15 21:46\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Kategóriafelosztás használata"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Címkék"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -1659,7 +1659,7 @@ msgstr "Létező kategória törlése. A kategória nem lehet használatban."
 
 #: categdialog.cpp:338 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr "Kiválasztás"
+msgstr "&Kijelölés"
 
 #: categdialog.cpp:340
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -3955,11 +3955,11 @@ msgstr "Kérem, gépeljen be egy nem üres jelet."
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Új „%s” címke létrehozása?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "Új címke lett megadva"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4824,11 +4824,11 @@ msgstr "&Kategóriák rendszerezése…"
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "&Címkék rendszerezése…"
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Címkék rendszerezése"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4848,7 +4848,7 @@ msgstr "Az összes kedvezményezett átsorolása egy másikba."
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Címkék…"
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
@@ -4860,7 +4860,7 @@ msgstr "Át&helyezés"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Kategóriák, kedvezményezettek és címkék áthelyezése"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4920,7 +4920,7 @@ msgstr "&Beállítások…\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Beállítások"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4968,7 +4968,7 @@ msgstr "&Súgó\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Súgó"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5180,7 +5180,7 @@ msgstr "&Nyomtatás"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Nyomtatás"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -6679,7 +6679,7 @@ msgstr "Költségvetésben talált bejegyzések: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Kategória áthelyezése"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6699,7 +6699,7 @@ msgstr ""
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Áthelyezés után a forrás-címké törlése"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
@@ -6707,7 +6707,7 @@ msgstr ""
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Címke áthelyezése"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -7521,11 +7521,11 @@ msgstr "Szimbólum: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Jelenlegi címkék"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Új címke hozzáadása"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
@@ -7537,11 +7537,11 @@ msgstr ""
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Kijelölés"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Érvénytelen címkenév"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
@@ -7565,7 +7565,7 @@ msgstr ""
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Címke hozzáadása"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
@@ -7577,7 +7577,7 @@ msgstr ""
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Címke szerkesztése"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
