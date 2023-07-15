@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-15 12:03\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Разделить по категориям"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Теги"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -3967,11 +3967,11 @@ msgstr "Пожалуйста введите не пустое значение."
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Создать новый тег '%s' ?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "Введен новый тег"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4858,11 +4858,11 @@ msgstr "&Категории..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Редактор &тегов..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Редактор тегов"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4882,11 +4882,11 @@ msgstr "Замена одного получателя на другого"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Теги..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Переназначить все теги другому тегу"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4894,7 +4894,7 @@ msgstr "&Замена"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Перемещение категорий, платежей и тегов"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4954,7 +4954,7 @@ msgstr "&Настройки...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Настройки"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -5002,7 +5002,7 @@ msgstr "&Помощь"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Справка"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5202,7 +5202,7 @@ msgstr "Загрузить курсы"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Скачать валютные и фондовые курсы"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5214,7 +5214,7 @@ msgstr "&Печать"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Печать"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5492,11 +5492,11 @@ msgstr "Итог замены получателя"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Перемещение тегов завершено."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Результат перемещения тегов"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -6097,12 +6097,13 @@ msgstr "Установить валюту"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Устанавливает валюту по умолчанию для базы данных в редакторе валют"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Формат, получен от локали.\n"
+"Оставьте пустым, чтобы вручную установить формат из настроек валюты"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6171,7 +6172,7 @@ msgstr "Неверное название локали"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Последние N дней"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6715,7 +6716,7 @@ msgstr "Найдено записей в бюджете: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Перемещение категории"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6731,19 +6732,19 @@ msgstr "Подтверждение замены получателя"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Переместите исходный тег к тегу назначения"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Удалить тег после перемещения"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Подтверждение перемещения тегов"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Замена тегов"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6987,23 +6988,23 @@ msgstr "Текущий месяц по сегодня"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Предыдущий месяц"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "Месяц назад"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 месяца назад"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Последние 3 месяца"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Последние 12 месяцев"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -7015,7 +7016,7 @@ msgstr "Текущий год по сегодня"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Предыдущий год"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -7027,7 +7028,7 @@ msgstr "Текущий финансовый год по сегодня"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Предыдущий финансовый год"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7035,7 +7036,7 @@ msgstr "Пользовательский"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "Год назад"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7557,89 +7558,89 @@ msgstr "Тикер: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Текущие теги"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Добавить новый тег"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Изменить имя существующего тега"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Удалить существующий тег. Тег не может использоваться существующими транзакциями."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Выбрать"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Неверное имя тега"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "Имена тегов не могут быть одинарными символами '&' или '|', потому что они зарезервированы для операторов фильтра"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Редактор тегов: Неверное имя"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "Имя содержит разделитель тегов"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Имена тегов не могут содержать пробел (' ')"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Введите имя для нового тега:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Добавить тег"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "Тег с таким именем уже существует"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Редактор тегов: Ошибка добавления"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Изменить тег"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Организотор тегов: Ошибка редактирования"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Тег '%s' используется"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Редактор Тегов: Ошибка удаления"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Существуют удаленные транзакции, которые используют тег '%s'."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Удаление тега также автоматически очистит связанные удалённые транзакции."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Подтвердите удаление тега"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
