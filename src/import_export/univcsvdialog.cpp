@@ -580,7 +580,7 @@ void mmUnivCSVDialog::CreateControls()
         *log_field_ << _("Currency:") << " " <<
             wxGetTranslation(Model_Account::currency(Model_Account::instance().get(acct_name))->CURRENCYNAME) << "\n";
         if (!init_preset_name.IsEmpty())
-            *log_field_ << wxString::Format(_("Preset '%s' loaded because Account '%s' selected"), init_preset_name, acct_name) << "\n";
+            *log_field_ << wxString::Format(_("Preset '%1$s' loaded because Account '%2$s' selected"), init_preset_name, acct_name) << "\n";
     }
 }
 
@@ -2570,7 +2570,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
             {
                 m_choice_preset_name->SetStringSelection(preset.first);
                 SetSettings(GetStoredSettings(m_choice_preset_name->GetSelection()));
-                *log_field_ << wxString::Format(_("Preset '%s' loaded because Account '%s' selected"), preset.first, acctName) << "\n";
+                *log_field_ << wxString::Format(_("Preset '%1$s' loaded because Account '%2$s' selected"), preset.first, acctName) << "\n";
                 break;
             }
     }
