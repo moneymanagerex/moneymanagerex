@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 22:02\n"
+"PO-Revision-Date: 2023-07-16 23:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -6955,23 +6955,23 @@ msgstr "Mês Atual à Data"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Mês Anterior"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "Há 1 Mês"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "Há 3 Meses"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Últimos 3 Meses"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Últimos 12 Meses"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6983,7 +6983,7 @@ msgstr "Ano corrente até à Data"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Ano Anterior"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6995,7 +6995,7 @@ msgstr "Ano Fiscal Atual até à Data"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Ano Fiscal Anterior"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7003,7 +7003,7 @@ msgstr "Personalizado"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "Há 1 Ano"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7011,11 +7011,11 @@ msgstr "Desde Hoje"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Desde há 1 mês"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Desde há 3 Meses"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7525,7 +7525,7 @@ msgstr "Símbolo: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Etiquetas atuais"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
