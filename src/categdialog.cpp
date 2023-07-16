@@ -689,7 +689,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge categories completed.") << "\n\n"
+        msgStr << _("Merge categories completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
         wxMessageBox(msgStr, _("Merge categories result"));
