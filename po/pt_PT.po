@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 19:38\n"
+"PO-Revision-Date: 2023-07-16 21:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3958,11 +3958,11 @@ msgstr "Por favor, digite um símbolo não vazio."
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Criar a etiqueta '%s' ?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "Nova etiqueta inserida"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4825,11 +4825,11 @@ msgstr "Organizar &Categorias..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organizar &Etiquetas..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Organizar Etiquetas"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4849,11 +4849,11 @@ msgstr "Reatribuir todos os Beneficiários a outro Beneficiário"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Etiquetas..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Reatribuir todas as etiquetas a outra etiqueta"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4861,7 +4861,7 @@ msgstr "Rea&locação de"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Realocar Categorias, Beneficiários e Etiquetas"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4921,7 +4921,7 @@ msgstr "&Opções... Ctrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4969,7 +4969,7 @@ msgstr "&Ajuda\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Mostrar Ajuda"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5169,7 +5169,7 @@ msgstr "Velocidades de Transferência"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Transferir cotações de Moeda e Ações"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5181,7 +5181,7 @@ msgstr "&Imprimir"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5459,11 +5459,11 @@ msgstr "Resultado da Realocação de Beneficiário"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Realocação de Etiqueta concluída."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Resultado da Realocação de Etiquetas"
 
 #: mmframe.cpp:3830
 #, c-format
