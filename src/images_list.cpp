@@ -65,7 +65,7 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "NAV_FILTER.svg", { NAV_FILTER, true } },
     { "NAV_GRM.svg", { NAV_GRM, true } },
     { "NAV_HELP.svg", { NAV_HELP, true } },
-    { "FAVOURITE.svg", { FAVOURITE, true } },
+    { "FAVORITE.svg", { FAVORITE, true } },
     { "SAVINGS_NORMAL.svg", { SAVINGS_NORMAL, true } },
     { "CC_NORMAL.svg", { CC_NORMAL, true } },
     { "CASH_NORMAL.svg", { CASH_NORMAL, true } },
@@ -204,7 +204,7 @@ static const std::map<int, wxBitmapBundle> navtree_images(const int size)
         , { CALENDAR_PNG, mmBitmapBundle(png::BUDGET, size) }
         , { PIECHART_PNG, mmBitmapBundle(png::PIE_CHART, size) }
         , { HELP_PNG, mmBitmapBundle(png::NAV_HELP, size) }
-        , { FAVOURITE_PNG, mmBitmapBundle(png::FAVOURITE, size) }
+        , { FAVORITE_PNG, mmBitmapBundle(png::FAVORITE, size) }
         , { FILTER_PNG, mmBitmapBundle(png::NAV_FILTER, size) }
         , { ASSET_NORMAL_PNG, mmBitmapBundle(png::ASSET_NORMAL, size) }
         , { CUSTOMSQL_PNG, mmBitmapBundle(png::NAV_GRM, size) }
