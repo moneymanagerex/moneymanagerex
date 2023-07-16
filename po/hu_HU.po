@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 03:53\n"
+"PO-Revision-Date: 2023-07-16 05:08\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1675,7 +1675,7 @@ msgstr "A kettőspont (:) karakter a kategóriák és az alkategóriák elválas
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr "Kategóriák rendszerezése: Érvénytelen név"
+msgstr "Kategóriák rendszerezése: érvénytelen név"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1687,11 +1687,11 @@ msgstr "Kategória hozzáadása"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Category with same name exists for this parent"
-msgstr "Azonos nevű kategória létezik ehhez a fölérendelthez"
+msgstr "Már létezik ilyen nevű kategória a fölérendelthez"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
-msgstr "Kategóriák rendezése: hozzáadási hiba"
+msgstr "Kategóriák rendszerezése: hozzáadási hiba"
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
@@ -1748,7 +1748,7 @@ msgstr "Eszközök → Áthelyezés → Kategóriák"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
-msgstr "Kategóriák rendezése: törlési hiba"
+msgstr "Kategóriák rendszerezése: törlési hiba"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1781,7 +1781,7 @@ msgstr "Azonos nevű kategória létezik a fölérendelthez"
 
 #: categdialog.cpp:635
 msgid "Organize Categories: Editing Error"
-msgstr "Kategóriák rendezése: szerkesztési hiba"
+msgstr "Kategóriák rendszerezése: szerkesztési hiba"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Category Relocation Completed."
@@ -4516,7 +4516,7 @@ msgstr "Súgó"
 
 #: mmframe.cpp:1288
 msgid "A setting with this name already exists"
-msgstr "Egy beállítás neve már létezik ilyen névvel"
+msgstr "Már létezik ilyen nevű beállítás"
 
 #: mmframe.cpp:1290
 msgid "Please specify a new name for the setting"
@@ -6581,7 +6581,7 @@ msgstr "Eszközök → Áthelyezés → Kedvezményezettek"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
-msgstr "Kedvezményezettek rendszerezése: Törlési hiba"
+msgstr "Kedvezményezettek rendszerezése: törlési hiba"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
@@ -6963,11 +6963,11 @@ msgstr "3 hónappal ezelőtt a dátumig"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Legutóbbi 3 hónap"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Legutóbbi 12 hónap"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -7007,11 +7007,11 @@ msgstr "Mától"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "1 hónappal ezelőtt"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "3 hónappal ezelőtt"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7549,7 +7549,7 @@ msgstr ""
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Címkék rendszerezése: érvénytelen név"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
@@ -7569,11 +7569,11 @@ msgstr "Címke hozzáadása"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "Már létezik ilyen nevű címke"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Címkék rendszerezése: hozzáadási hiba"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
@@ -7581,7 +7581,7 @@ msgstr "Címke szerkesztése"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Címkék rendszerezése: szerkesztési hiba"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7590,7 +7590,7 @@ msgstr ""
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Címkék rendszerezése: törlési hiba"
 
 #: tagdialog.cpp:301
 #, c-format
