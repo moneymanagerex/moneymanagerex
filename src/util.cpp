@@ -1413,7 +1413,7 @@ const wxString getProgramDescription(int type)
 
     wxString description;
     description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
-        << bull << wxString::Format(simple ? "Built: %s %s" : _("Built on: %s %s"), build_date, BUILD_TIME) << eol
+        << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
         << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
         << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
@@ -1421,7 +1421,7 @@ const wxString getProgramDescription(int type)
         << eol
 
 #ifdef GIT_COMMIT_HASH
-        << bull << wxString::Format(simple ? "git %s (%s)" : _("Git commit: %s (%s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
+        << bull << wxString::Format(simple ? "git %1$s (%2$s)" : _("Git commit: %1$s (%2$s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
 #endif
 #ifdef GIT_BRANCH
         << bull << wxString::Format(simple ? "%s" : _("Git branch: %s"), GIT_BRANCH) << eol

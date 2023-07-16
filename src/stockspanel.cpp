@@ -456,7 +456,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     LastRefreshDT_ = wxDateTime::Now();
     StocksRefreshStatus_ = true;
 
-    strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
+    strLastUpdate_.Printf(_("%1$s on %2$s"), LastRefreshDT_.FormatTime()
         , mmGetDateForDisplay(LastRefreshDT_.FormatISODate()));
     Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 

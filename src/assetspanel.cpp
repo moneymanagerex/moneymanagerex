@@ -665,7 +665,7 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
         enableEditDeleteButtons(true);
         const auto& change_rate = (Model_Asset::rate(asset) != Model_Asset::RATE_NONE)
             ? wxString::Format("%.2f %%", asset.VALUECHANGERATE) : "";
-        const wxString& miniInfo = " " + wxString::Format(_("Change in Value: %s %s")
+        const wxString& miniInfo = " " + wxString::Format(_("Change in Value: %1$s %2$s")
             , wxGetTranslation(asset.VALUECHANGE), change_rate);
 
         st->SetLabelText(asset.NOTES);

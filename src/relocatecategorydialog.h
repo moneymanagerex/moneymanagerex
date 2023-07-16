@@ -40,11 +40,11 @@ public:
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Relocate Category")
+        , const wxString& caption = _("Merge categories")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
-        , const wxString& name = "Relocate Categories");
+        , const wxString& name = "Merge categories");
 
     void CreateControls();
 

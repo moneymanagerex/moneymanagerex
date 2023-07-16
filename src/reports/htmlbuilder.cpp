@@ -150,7 +150,7 @@ namespace tags
 mmHTMLBuilder::mmHTMLBuilder()
 {
     today_.date = wxDateTime::Now();
-    today_.todays_date = wxString::Format(_("Report Generated %s %s")
+    today_.todays_date = wxString::Format(_("Report Generated %1$s %2$s")
         , mmGetDateForDisplay(today_.date.FormatISODate())
         , today_.date.FormatISOTime());
 }
@@ -211,7 +211,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
 {
     wxString sDate;
     if (withDateRange && startDate.IsValid() && endDate.IsValid()) {
-        sDate << wxString::Format(_("From %s till %s")
+        sDate << wxString::Format(_("From %1$s till %2$s")
             , mmGetDateForDisplay(startDate.FormatISODate())
             , withNoEndDate ? _("Future") : mmGetDateForDisplay(endDate.FormatISODate()));
     }

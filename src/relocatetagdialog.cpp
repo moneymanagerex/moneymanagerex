@@ -87,7 +87,7 @@ void relocateTagDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
-        , _("Relocate the source tag to the destination tag"));
+        , _("Merge tags"));
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
@@ -101,7 +101,7 @@ void relocateTagDialog::CreateControls()
     cbDestTag_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceTag_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source tag after relocation"));
+        , _("Delete source tag after merge"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -114,8 +114,8 @@ void relocateTagDialog::CreateControls()
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flagsH);
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Source:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Target:")), flagsH);
     request_sizer->Add(cbSourceTag_, flagsExpand);
     request_sizer->Add(cbDestTag_, flagsExpand);
 
@@ -133,7 +133,7 @@ void relocateTagDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("Relocate"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("Merge"));
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("Close"));
 
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -153,12 +153,12 @@ void relocateTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const auto& source_tag_name = cbSourceTag_->GetValue();
     const auto& destination_tag_name = cbDestTag_->GetValue();
-    const wxString& info = wxString::Format(_("From %s to %s")
+    const wxString& info = wxString::Format(_("From %1$s to %2$s")
         , source_tag_name
         , destination_tag_name);
 
     int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Tag Relocation Confirmation")
+        , _("Merge tags confirmation")
         , wxOK | wxCANCEL | wxICON_INFORMATION);
 
     if (ans == wxOK)
