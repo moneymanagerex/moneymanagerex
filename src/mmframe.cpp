@@ -3525,7 +3525,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
     {
         Model_Account::Data* account = Model_Account::instance().get(scd.GetStringSelection());
         wxString deletingAccountName = wxString::Format(
-            _("Are you sure you want to delete\n %s account: %s ?")
+            _("Are you sure you want to delete\n%1$s account: %2$s?")
             , wxGetTranslation(account->ACCOUNTTYPE)
             , account->ACCOUNTNAME);
         wxMessageDialog msgDlg(this, deletingAccountName, _("Confirm Account Deletion"),
