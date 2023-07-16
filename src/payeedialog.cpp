@@ -721,7 +721,7 @@ void mmPayeeDialog::DeletePayee()
             deletePayeeErrMsg
                 << "\n\n"
                 << _("Tip: Change all transactions using this Payee to another Payee"
-                    " using the relocate command:")
+                    " using the merge command:")
                 << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
