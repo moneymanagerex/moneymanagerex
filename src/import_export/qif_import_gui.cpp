@@ -1258,7 +1258,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 trx->PAYEEID = std::get<0>(m_QIFpayeeNames[payee_name]);
                 // NOTES haven't been filled yet, so we can just direct assign match details if necessary
                 if (payeeMatchAddNotes_->IsChecked() && !std::get<2>(m_QIFpayeeNames[payee_name]).IsEmpty()) {
-                    trx->NOTES =  wxString::Format(_("%s matched by %s"), payee_name, std::get<2>(m_QIFpayeeNames[payee_name]));
+                    trx->NOTES =  wxString::Format(_("%1$s matched by %2$s"), payee_name, std::get<2>(m_QIFpayeeNames[payee_name]));
                 }
             } else trx->PAYEEID = -1;
         }
