@@ -478,7 +478,7 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(wxTRANSLATE("Favourites"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Favorites"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
@@ -733,9 +733,9 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
     m_nav_tree_ctrl->SetItemBold(alltransactions, true);
 
-    wxTreeItemId favourites = m_nav_tree_ctrl->AppendItem(root, _("Favourites"), img::FAVOURITE_PNG, img::FAVOURITE_PNG);
-    m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favourites"));
-    m_nav_tree_ctrl->SetItemBold(favourites, true);
+    wxTreeItemId favorites = m_nav_tree_ctrl->AppendItem(root, _("Favorites"), img::FAVORITE_PNG, img::FAVORITE_PNG);
+    m_nav_tree_ctrl->SetItemData(favorites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favorites"));
+    m_nav_tree_ctrl->SetItemBold(favorites, true);
 
     wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Bank Accounts"));
@@ -830,7 +830,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 if (Model_Account::type(account) != Model_Account::INVESTMENT &&
                     (account_type != Model_Account::SHARES || !hideShareAccounts))
                 {
-                    tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    tacct = m_nav_tree_ctrl->AppendItem(favorites, account.ACCOUNTNAME, selectedImage, selectedImage);
                     m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 }
             }
@@ -898,8 +898,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
         loadNavigationTreeItemsStatusFromJson();
 
-        if (!m_nav_tree_ctrl->ItemHasChildren(favourites)) {
-            m_nav_tree_ctrl->Delete(favourites);
+        if (!m_nav_tree_ctrl->ItemHasChildren(favorites)) {
+            m_nav_tree_ctrl->Delete(favorites);
         }
         if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) {
             m_nav_tree_ctrl->Delete(accounts);
