@@ -27,7 +27,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."),
     wxTRANSLATE("Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."),
     wxTRANSLATE("Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."),
-    wxTRANSLATE("Tip: You can modify some runtime behavior of MMEX by changing the settings in Options. "),
+    wxTRANSLATE("Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."),
     wxTRANSLATE("Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."),
     wxTRANSLATE("Tip: Set exchange rate for currencies in case if you have accounts with different currencies."),
 
