@@ -3716,10 +3716,10 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge category completed.") << "\n\n"
+        msgStr << _("Merge categories completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
-        wxMessageBox(msgStr, _("Merge category result"));
+        wxMessageBox(msgStr, _("Merge categories result"));
         refreshPanelData();
     }
 }
@@ -3731,11 +3731,11 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge payee completed.") << "\n\n"
+        msgStr << _("Merge payees completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedPayeesCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Merge payee result"));
+        wxMessageBox(msgStr, _("Merge payees result"));
         refreshPanelData();
     }
 }
@@ -3747,11 +3747,11 @@ void mmGUIFrame::OnTagRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge tag completed.") << "\n\n"
+        msgStr << _("Merge tags completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedTagsCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Merge tag result"));
+        wxMessageBox(msgStr, _("Merge tags result"));
         refreshPanelData();
     }
 }
