@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-16 00:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Usar mais de uma Categoria"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -3957,11 +3957,11 @@ msgstr "Por favor, digite um símbolo não vazio."
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "Criar nova etiqueta '%s' ?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "Nova etiqueta inserida"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4824,11 +4824,11 @@ msgstr "Organizar &Categorias..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Gerenciar &Etiquetas..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Gerenciar Etiquetas"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4848,11 +4848,11 @@ msgstr "Realocar todos os Beneficiários a outro Beneficiário"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Etiquetas..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Reatribuir todas as etiquetas para outra etiqueta"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4860,7 +4860,7 @@ msgstr "Realocar de"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "Realocar Categorias, Beneficiários e Etiquetas"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4920,7 +4920,7 @@ msgstr "&Opções... Ctrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4968,7 +4968,7 @@ msgstr "&Ajuda\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Mostrar Ajuda"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5168,7 +5168,7 @@ msgstr "Baixar taxas de conversão"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Baixar valores da moeda e de ações"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5180,7 +5180,7 @@ msgstr "&Imprimir"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5458,11 +5458,11 @@ msgstr "Resultado da Realocação de Beneficiário"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Realocação de Etiqueta concluída."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "Resultado da realocação de etiqueta"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5782,11 +5782,11 @@ msgstr "Transação Recorrente"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Separação da transação"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Separação da Transação Recorrente"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6063,12 +6063,13 @@ msgstr "Selecionar Moeda"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Define a moeda padrão do banco de dados usando a \"Janela de Moeda\""
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Formato derivado de \"Local\".\n"
+"Deixe em branco para definir o formato manualmente através da 'Janela de Configuração de Moedas'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6137,7 +6138,7 @@ msgstr "Nome de localidade inválido"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Últimos N dias"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6681,7 +6682,7 @@ msgstr "Registros encontrados no orçamento: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Realocar Categoria"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6697,19 +6698,19 @@ msgstr "Confirmação de Realocação de Beneficiário"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Realocar a etiqueta de origem para a etiqueta de destino"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Excluir etiqueta de origem após a realocação"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Confirmação de Realocação da Etiqueta"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Tela de Realocação de Etiqueta"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6953,23 +6954,23 @@ msgstr "Mês Atual até Hoje"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Mês Anterior"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 Mês atrás até Hoje"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 Meses atrás até Hoje"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Últimos 3 Meses"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Últimos 12 Meses"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6981,7 +6982,7 @@ msgstr "Ano Atual até Hoje"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Ano Anterior"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6993,7 +6994,7 @@ msgstr "Exercício Financeiro Atual até o Hoje"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Último Exercício Financeiro"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7001,7 +7002,7 @@ msgstr "Personalizado"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 Ano atrás até Hoje"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7009,11 +7010,11 @@ msgstr "Desde hoje"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Desde 1 mês atrás"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Desde 3 meses atrás"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7523,89 +7524,89 @@ msgstr "Símbolo: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Etiquetas atuais"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Adicionar uma nova etiqueta"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Editar o nome de uma etiqueta existente"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Excluir uma etiqueta existente. A etiqueta não pode estar sendo usada em transações existentes."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Selecionar"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Nome de etiqueta inválida"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "Nomes de etiqueta não podem ser somente os caracteres '&' ou '|' porque estes são reservados para filtrar operações"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Gerenciar Etiquetas: Nome Inválido"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "Nome contém delimitador de etiqueta"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Os nomes das etiquetas não podem conter o espaço (' ')"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Insira o nome para a nova etiqueta:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Adicionar Etiqueta"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "Já existe uma etiqueta com esse nome"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Gerenciar Etiquetas: Erro ao Adicionar"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Editar Etiqueta"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Gerenciar Etiquetas: Erro ao Editar"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Etiqueta '%s' em uso"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Gerenciar Etiquetas: Erro ao excluir"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Transações excluídas que usam a etiqueta '%s'."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "A exclusão da etiqueta também limpará automaticamente as transações excluídas associadas."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Confirme a Exclusão da Etiqueta"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
