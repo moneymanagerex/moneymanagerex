@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 23:09\n"
+"PO-Revision-Date: 2023-07-16 03:53\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4852,7 +4852,7 @@ msgstr "&Címkék…"
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "Címkék egyesítése"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -5168,7 +5168,7 @@ msgstr "Árfolyamok letöltése"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -6136,7 +6136,7 @@ msgstr "Hibás területi beállítás neve"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Előző N nap"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6951,15 +6951,15 @@ msgstr "Jelenlegi hónap máig"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Előző hónap"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 hónappal ezelőtt a dátumig"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 hónappal ezelőtt a dátumig"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
@@ -6979,7 +6979,7 @@ msgstr "Aktuális év a mai napig"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Előző év"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6991,7 +6991,7 @@ msgstr "Jelen pénzügyi év máig"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Előző pénzügyi év"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6999,7 +6999,7 @@ msgstr "Egyéni"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 évvel ezelőtt a dátumig"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
