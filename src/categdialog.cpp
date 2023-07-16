@@ -373,7 +373,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(-1));
         if (!categories.empty())
         {
-            wxMessageBox(_("Category with same name exists for this parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("A category with this name already exists for the parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = -1;
@@ -382,7 +382,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(selectedCategory->CATEGID));
         if (!categories.empty())
         {
-            wxMessageBox(_("Category with same name exists for this parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("A category with this name already exists for the parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = selectedCategory->CATEGID;
