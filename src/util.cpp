@@ -1421,7 +1421,7 @@ const wxString getProgramDescription(int type)
         << eol
 
 #ifdef GIT_COMMIT_HASH
-        << bull << wxString::Format(simple ? "git %s (%s)" : _("Git commit: %s (%s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
+        << bull << wxString::Format(simple ? "git %1$s (%2$s)" : _("Git commit: %1$s (%2$s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
 #endif
 #ifdef GIT_BRANCH
         << bull << wxString::Format(simple ? "%s" : _("Git branch: %s"), GIT_BRANCH) << eol
