@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 21:07\n"
+"PO-Revision-Date: 2023-07-16 22:02\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -5783,11 +5783,11 @@ msgstr "Transação Recorrente"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Fração de Transação"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Fração de Transação Recorrente"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6064,12 +6064,13 @@ msgstr "Selecionar Moeda"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Define a Moeda padrão da base de dados através da \"Organizar Moedas\""
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Formato derivado da localização.\n"
+"Deixe em branco para definir o formato manualmente através de 'Organizar Moedas | Editar'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6134,11 +6135,11 @@ msgstr "Exemplo de cotação de Moeda: %s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
-msgstr "Nome de localidade inválido"
+msgstr "Nome de localização inválido"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Últimos N Dias"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6682,7 +6683,7 @@ msgstr "Registos encontrados no orçamento: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "Realocar Categoria"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6698,19 +6699,19 @@ msgstr "Confirmação de Realocação de Beneficiário"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Realocar a etiqueta de origem à de destino"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "Eliminar etiqueta de origem após a realocação"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "Confirmação de Realocação de Etiqueta"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "Realocar Etiqueta"
 
 #: reports/budget.cpp:90
 #, c-format
