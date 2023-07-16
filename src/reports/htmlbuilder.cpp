@@ -211,7 +211,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
 {
     wxString sDate;
     if (withDateRange && startDate.IsValid() && endDate.IsValid()) {
-        sDate << wxString::Format(_("From %s till %s")
+        sDate << wxString::Format(_("From %1$s till %2$s")
             , mmGetDateForDisplay(startDate.FormatISODate())
             , withNoEndDate ? _("Future") : mmGetDateForDisplay(endDate.FormatISODate()));
     }
