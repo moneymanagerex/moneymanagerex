@@ -105,8 +105,8 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     mainSizer->Add(itemButtonCurrency_, 0 /* No stretching */, wxALL, 5 /* Border size */);
 
     wxString helpMsg = _("Specify the base (or default) currency to be used for the\n"
-        "database. The base currency can later be changed by using\n"
-        "the options dialog. New accounts, will use this currency by\n"
+        "database. The base currency can later be changed in\n"
+        "Options. New accounts, will use this currency by\n"
         "default, and can be changed when editing account details.");
     helpMsg += "\n";
     mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
