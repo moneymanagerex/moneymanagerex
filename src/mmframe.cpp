@@ -2374,8 +2374,8 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
         const wxString SizeAfter = wxFileName(m_filename).GetHumanReadableSize();
         wxMessageBox(wxString::Format(
             _("Database Optimization Completed!\n\n"
-                "Size before: %s\n"
-                "Size after: %s\n"), SizeBefore, SizeAfter),
+                "Size before: %1$s\n"
+                "Size after: %2$s\n"), SizeBefore, SizeAfter),
             _("DB Optimization"));
     }
 }
