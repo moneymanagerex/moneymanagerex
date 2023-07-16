@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:04\n"
+"PO-Revision-Date: 2023-07-16 11:22\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -4420,7 +4420,7 @@ msgstr ""
 
 #: mmframe.cpp:481 mmframe.cpp:736
 msgid "Favourites"
-msgstr ""
+msgstr "Favourites"
 
 #: mmframe.cpp:482 mmframe.cpp:740 mmhomepage.cpp:695 reports/summary.cpp:256
 #: reports/summary.cpp:299
@@ -4790,11 +4790,11 @@ msgstr "Organise &Categories..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organise &Tags…"
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Organise Tags"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -6008,12 +6008,13 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Sets the database default Currency using 'Organise Currencies'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Format derived from locale.\n"
+"Leave blank to manually set format via 'Organise Currencies | Edit'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -7484,7 +7485,7 @@ msgstr ""
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Organise Tags: Invalid Name"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
@@ -7508,7 +7509,7 @@ msgstr ""
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Organise Tags: Adding Error"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
@@ -7516,7 +7517,7 @@ msgstr ""
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Organise Tags: Editing Error"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7525,7 +7526,7 @@ msgstr ""
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Organise Tags: Delete Error"
 
 #: tagdialog.cpp:301
 #, c-format
