@@ -153,7 +153,7 @@ void relocateTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const auto& source_tag_name = cbSourceTag_->GetValue();
     const auto& destination_tag_name = cbDestTag_->GetValue();
-    const wxString& info = wxString::Format(_("From %s to %s")
+    const wxString& info = wxString::Format(_("From %1$s to %2$s")
         , source_tag_name
         , destination_tag_name);
 
