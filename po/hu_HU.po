@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 06:14\n"
+"PO-Revision-Date: 2023-07-16 09:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1752,7 +1752,7 @@ msgstr "Kategóriák rendszerezése: törlési hiba"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr "Törölt ügyletek léteznek, amelyek ezt a kategóriát vagy valamelyik leszármazottját használják."
+msgstr "Törölt ügyletek léteznek, amelyek ezt a kategória vagy valamelyik leszármazottját használnak."
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
@@ -6583,7 +6583,7 @@ msgstr "Kedvezményezettek rendszerezése: törlési hiba"
 
 #: payeedialog.cpp:731
 msgid "Deleted transactions exist which use this payee."
-msgstr "Törölt ügyletek léteznek, amelyek használják ezt a kedvezményezettet."
+msgstr "Törölt ügyletek léteznek, amelyek ezt a kedvezményezett használnak."
 
 #: payeedialog.cpp:732
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
@@ -7527,7 +7527,7 @@ msgstr "Új címke hozzáadása"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Létező címke nevének szerkesztése"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
@@ -7551,7 +7551,7 @@ msgstr "Címkék rendszerezése: érvénytelen név"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "Név tartalmaz címke elválasztó karaktert."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7584,7 +7584,7 @@ msgstr "Címkék rendszerezése: szerkesztési hiba"
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "A(z) „%s” címke használatban van"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
@@ -7593,7 +7593,7 @@ msgstr "Címkék rendszerezése: törlési hiba"
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Törölt ügyletek léteznek, amelyek „%s” címke használnak."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
@@ -7601,7 +7601,7 @@ msgstr ""
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Címke törlésének megerősítése"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
