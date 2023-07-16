@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 05:08\n"
+"PO-Revision-Date: 2023-07-16 06:14\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3893,7 +3893,7 @@ msgstr "Egy év hozzáadása"
 #: mmSimpleDialogs.cpp:788
 #, c-format
 msgid "Entry %s is invalid"
-msgstr "A %s tétel érvénytelen"
+msgstr "A(z) %s tétel érvénytelen"
 
 #: mmSimpleDialogs.cpp:794
 msgid "Please select an existing category"
@@ -4318,10 +4318,8 @@ msgstr "Ügylet áthelyezésének megerősítése"
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] "Ügylet mozgatása ide...\n"
-"%i ügylet mozgatása ide..."
-msgstr[1] "Ügylet mozgatása ide...\n"
-"%i ügylet mozgatása ide..."
+msgstr[0] "Ügylet áthelyezése ide…"
+msgstr[1] "%i ügylet áthelyezése ide…"
 
 #: mmchecking_list.cpp:1459 stocks_list.cpp:300
 msgid "Select the destination Account "
@@ -5871,7 +5869,7 @@ msgstr "A sablon üres"
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr "Az SQL-szkript:\n"
+msgstr "SQL-parancsfájl:\n"
 "%s \n"
 "módosítja az adatfájlt! Megszakítva!"
 
