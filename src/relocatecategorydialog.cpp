@@ -152,7 +152,7 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     const auto& source_category_name = cbSourceCategory_->GetValue();
     const auto& destination_category_name = cbDestCategory_->GetValue();
-    const wxString& info = wxString::Format(_("From %s to %s")
+    const wxString& info = wxString::Format(_("From %1$s to %2$s")
         , source_category_name
         , destination_category_name);
 
