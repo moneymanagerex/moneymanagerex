@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 12:03\n"
+"PO-Revision-Date: 2023-07-16 13:24\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5816,11 +5816,11 @@ msgstr "Повторяющаяся транзакция"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Разделение транзакций"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Разделение повторяющихся транзакций"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -7044,11 +7044,11 @@ msgstr "С сегодняшнего дня"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "1 месяц назад"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "3 месяца назад"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
