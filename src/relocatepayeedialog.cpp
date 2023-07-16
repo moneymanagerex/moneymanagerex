@@ -151,7 +151,7 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const auto& source_payee_name = cbSourcePayee_->GetValue();
     const auto& destination_payee_name = cbDestPayee_->GetValue();
-    const wxString& info = wxString::Format(_("From %s to %s")
+    const wxString& info = wxString::Format(_("From %1$s to %2$s")
         , source_payee_name
         , destination_payee_name);
 
