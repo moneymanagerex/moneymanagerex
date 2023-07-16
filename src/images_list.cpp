@@ -421,7 +421,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     {
         if (std::get<2>(it.second) && mmThemeMetaString(it.first).IsEmpty())
         {
-            wxMessageBox(wxString::Format(_("Metadata '%s' missing in chosen theme '%s'")
+            wxMessageBox(wxString::Format(_("Metadata '%1$s' missing in chosen theme '%2$s'")
                 , std::get<0>(it.second), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
