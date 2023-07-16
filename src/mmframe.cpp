@@ -2350,7 +2350,7 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
                 if (!confirm_password.IsEmpty() && (new_password == confirm_password))
                 {
                     m_db->ReKey(confirm_password);
-                    wxMessageBox(_("Password change completed."), password_change_heading);
+                    wxMessageBox(_("Password change completed"), password_change_heading);
                 }
                 else
                 {
@@ -3716,7 +3716,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge categories completed.") << "\n\n"
+        msgStr << _("Merge categories completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
         wxMessageBox(msgStr, _("Merge categories result"));
@@ -3731,7 +3731,7 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge payees completed.") << "\n\n"
+        msgStr << _("Merge payees completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedPayeesCount())
             << "\n\n";
@@ -3747,7 +3747,7 @@ void mmGUIFrame::OnTagRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge tags completed.") << "\n\n"
+        msgStr << _("Merge tags completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedTagsCount())
             << "\n\n";
