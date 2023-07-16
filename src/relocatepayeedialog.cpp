@@ -131,7 +131,7 @@ void relocatePayeeDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("Relocate"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("Merge"));
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("Close"));
 
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
