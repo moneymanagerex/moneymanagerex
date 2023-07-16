@@ -150,7 +150,7 @@ namespace tags
 mmHTMLBuilder::mmHTMLBuilder()
 {
     today_.date = wxDateTime::Now();
-    today_.todays_date = wxString::Format(_("Report Generated %s %s")
+    today_.todays_date = wxString::Format(_("Report Generated %1$s %2$s")
         , mmGetDateForDisplay(today_.date.FormatISODate())
         , today_.date.FormatISOTime());
 }
