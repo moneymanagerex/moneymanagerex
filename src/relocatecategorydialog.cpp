@@ -88,7 +88,7 @@ void relocateCategoryDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC
-        , _("Relocate source category to the destination category"));
+        , _("Merge categories"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
     cbSourceCategory_ = new mmComboBoxCategory(this, wxID_LAST);
@@ -101,7 +101,7 @@ void relocateCategoryDialog::CreateControls()
     cbDestCategory_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceCategory_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source category after relocation (if it has no sub-categories)"));
+        , _("Delete source category after merge (if source category has no sub-categories)"));
 
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
@@ -117,8 +117,8 @@ void relocateCategoryDialog::CreateControls()
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, g_flagsExpand);
 
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), flagsH);
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), flagsH);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Source:")), flagsH);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Target:")), flagsH);
     request_sizer->Add(cbSourceCategory_, flagsExpand);
     request_sizer->Add(cbDestCategory_, flagsExpand);
 
@@ -132,7 +132,7 @@ void relocateCategoryDialog::CreateControls()
     wxStaticLine* lineBottom2 = new wxStaticLine(this, wxID_STATIC);
     boxSizer->Add(lineBottom2, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("Relocate"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("Merge"));
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("Close"));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -152,12 +152,12 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     const auto& source_category_name = cbSourceCategory_->GetValue();
     const auto& destination_category_name = cbDestCategory_->GetValue();
-    const wxString& info = wxString::Format(_("From %s to %s")
+    const wxString& info = wxString::Format(_("From %1$s to %2$s")
         , source_category_name
         , destination_category_name);
 
     if (wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Category Relocation Confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+        , _("Merge categories confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
     {
         auto transactions = Model_Checking::instance()
             .find(Model_Checking::CATEGID(m_sourceCatID));

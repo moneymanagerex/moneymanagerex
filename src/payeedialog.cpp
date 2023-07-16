@@ -721,8 +721,8 @@ void mmPayeeDialog::DeletePayee()
             deletePayeeErrMsg
                 << "\n\n"
                 << _("Tip: Change all transactions using this Payee to another Payee"
-                    " using the relocate command:")
-                << "\n\n" << wxString::FromUTF8(_("Tools → Relocation of → Payees").ToStdString());
+                    " using the merge command:")
+                << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
@@ -809,11 +809,11 @@ void mmPayeeDialog::OnPayeeRelocate()
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Payee Relocation Completed.") << "\n\n"
+        msgStr << _("Merge payees completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i")
                 , dlg.updatedPayeesCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Payee Relocation Result"));
+        wxMessageBox(msgStr, _("Merge payees result"));
         refreshRequested_ = true;
     }
 }

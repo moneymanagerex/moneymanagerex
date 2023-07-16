@@ -251,7 +251,7 @@ int Model_Report::get_html(const Data* r, wxString& out)
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {
-            out = wxString::Format(_("The SQL script:\n%s \nwill modify database! aborted!"), r->SQLCONTENT);
+            out = wxString::Format(_("The SQL script:\n%s\nwill modify database! Aborted!"), r->SQLCONTENT);
             return -1;
         }
         else

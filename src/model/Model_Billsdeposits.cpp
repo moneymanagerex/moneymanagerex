@@ -298,11 +298,11 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
     if (abort_transaction)
     {
         wxString message = _("A recurring transaction will exceed your account limit.\n\n"
-            "Account: %s\n"
-            "Current Balance: %6.2f\n"
-            "Transaction amount: %6.2f\n"
-            "%s: %6.2f\n\n"
-            "Do you wish to continue ?"
+            "Account: %1$s\n"
+            "Current Balance: %1$6.2f\n"
+            "Transaction amount: %3$6.2f\n"
+            "%4$s: %5$6.2f\n\n"
+            "Do you wish to continue?"
         );
 
         wxString limitDescription;

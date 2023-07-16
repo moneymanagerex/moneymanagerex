@@ -350,7 +350,7 @@ bool mmCategDialog::validateName(wxString name)
 {
     if (wxNOT_FOUND != name.Find(':'))
     {
-        wxString errMsg = _("Name contains category delimiter. ");
+        wxString errMsg = _("Name contains category delimiter.");
         errMsg << "\n\n" << _("The colon (:) character is used to separate categories and sub-categories"
             " and therefore should not be used in the name");
         wxMessageBox(errMsg, _("Organize Categories: Invalid Name"), wxOK | wxICON_ERROR);
@@ -373,7 +373,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(-1));
         if (!categories.empty())
         {
-            wxMessageBox(_("Category with same name exists for this parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("A category with this name already exists for the parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = -1;
@@ -382,7 +382,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(selectedCategory->CATEGID));
         if (!categories.empty())
         {
-            wxMessageBox(_("Category with same name exists for this parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("A category with this name already exists for the parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = selectedCategory->CATEGID;
@@ -454,7 +454,7 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
     }
 
     wxString moveMessage = wxString::Format(
-        _("Are you sure you want to move\n \"%s\"\nto:\n\"%s\" ?")
+        _("Are you sure you want to move\n\"%1$s\"\nto:\n\"%2$s\"?")
         , Model_Category::full_name(m_dragSourceCATEGID)
         , categID != -1 ? Model_Category::full_name(categID) : _("Top level"));
     wxMessageDialog msgDlg(this, moveMessage, _("Confirm Move"),
@@ -477,12 +477,12 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
     wxString deleteCategoryErrMsg = category ? _("Category in use.") : _("Sub-Category in use.");
     if (category)
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Category to\n"
-            "another Category using the relocate command:");
+            "another Category using the merge command:");
     else
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Sub-Category to\n"
-            "another Sub-Category using the relocate command:");
+            "another Sub-Category using the merge command:");
 
-    deleteCategoryErrMsg << "\n\n" << wxString::FromUTF8(_("Tools → Relocation of → Categories").ToStdString());
+    deleteCategoryErrMsg << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Categories").ToStdString());
 
     wxMessageBox(deleteCategoryErrMsg, _("Organize Categories: Delete Error"), wxOK | wxICON_ERROR);
 }
@@ -689,10 +689,10 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Category Relocation Completed.") << "\n\n"
+        msgStr << _("Merge categories completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
-        wxMessageBox(msgStr, _("Category Relocation Result"));
+        wxMessageBox(msgStr, _("Merge categories result"));
         m_refresh_requested = true;
         fillControls();
     }

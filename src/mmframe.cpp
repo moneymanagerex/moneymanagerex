@@ -478,7 +478,7 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(wxTRANSLATE("Favourites"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Favorites"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
@@ -733,9 +733,9 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
     m_nav_tree_ctrl->SetItemBold(alltransactions, true);
 
-    wxTreeItemId favourites = m_nav_tree_ctrl->AppendItem(root, _("Favourites"), img::FAVOURITE_PNG, img::FAVOURITE_PNG);
-    m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favourites"));
-    m_nav_tree_ctrl->SetItemBold(favourites, true);
+    wxTreeItemId favorites = m_nav_tree_ctrl->AppendItem(root, _("Favorites"), img::FAVORITE_PNG, img::FAVORITE_PNG);
+    m_nav_tree_ctrl->SetItemData(favorites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favorites"));
+    m_nav_tree_ctrl->SetItemBold(favorites, true);
 
     wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Bank Accounts"));
@@ -830,7 +830,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 if (Model_Account::type(account) != Model_Account::INVESTMENT &&
                     (account_type != Model_Account::SHARES || !hideShareAccounts))
                 {
-                    tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    tacct = m_nav_tree_ctrl->AppendItem(favorites, account.ACCOUNTNAME, selectedImage, selectedImage);
                     m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 }
             }
@@ -898,8 +898,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
         loadNavigationTreeItemsStatusFromJson();
 
-        if (!m_nav_tree_ctrl->ItemHasChildren(favourites)) {
-            m_nav_tree_ctrl->Delete(favourites);
+        if (!m_nav_tree_ctrl->ItemHasChildren(favorites)) {
+            m_nav_tree_ctrl->Delete(favorites);
         }
         if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) {
             m_nav_tree_ctrl->Delete(accounts);
@@ -1704,16 +1704,16 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
-        , _("Reassign all categories to another category"));
+        , _("Merge categories"));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
         , MENU_PAYEE_RELOCATION, _("&Payees...")
-        , _("Reassign all payees to another payee"));
+        , _("Merge payees"));
     wxMenuItem* menuItemTagRelocation = new wxMenuItem(menuTools
         , MENU_TAG_RELOCATION, _("&Tags...")
-        , _("Reassign all tags to another tag"));
+        , _("Merge tags"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
-        , MENU_RELOCATION, _("Re&location of")
-        , _("Relocate Categories, Payees, and Tags"));
+        , MENU_RELOCATION, _("&Merge")
+        , _("Merge categories, payees, and tags"));
     wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemPayeeRelocation);
     menuRelocation->Append(menuItemCategoryRelocation);
@@ -2350,7 +2350,7 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
                 if (!confirm_password.IsEmpty() && (new_password == confirm_password))
                 {
                     m_db->ReKey(confirm_password);
-                    wxMessageBox(_("Password change completed."), password_change_heading);
+                    wxMessageBox(_("Password change completed"), password_change_heading);
                 }
                 else
                 {
@@ -2374,8 +2374,8 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
         const wxString SizeAfter = wxFileName(m_filename).GetHumanReadableSize();
         wxMessageBox(wxString::Format(
             _("Database Optimization Completed!\n\n"
-                "Size before: %s\n"
-                "Size after: %s\n"), SizeBefore, SizeAfter),
+                "Size before: %1$s\n"
+                "Size after: %2$s\n"), SizeBefore, SizeAfter),
             _("DB Optimization"));
     }
 }
@@ -3478,7 +3478,7 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
             }
             Model_StockHistory::instance().ReleaseSavepoint();
             wxString strLastUpdate;
-            strLastUpdate.Printf(_("%s on %s"), wxDateTime::Now().FormatTime()
+            strLastUpdate.Printf(_("%1$s on %2$s"), wxDateTime::Now().FormatTime()
                 , mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
             Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
         }
@@ -3525,7 +3525,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
     {
         Model_Account::Data* account = Model_Account::instance().get(scd.GetStringSelection());
         wxString deletingAccountName = wxString::Format(
-            _("Are you sure you want to delete\n %s account: %s ?")
+            _("Are you sure you want to delete\n%1$s account: %2$s?")
             , wxGetTranslation(account->ACCOUNTTYPE)
             , account->ACCOUNTNAME);
         wxMessageDialog msgDlg(this, deletingAccountName, _("Confirm Account Deletion"),
@@ -3716,10 +3716,10 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Category Relocation Completed.") << "\n\n"
+        msgStr << _("Merge categories completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
-        wxMessageBox(msgStr, _("Category Relocation Result"));
+        wxMessageBox(msgStr, _("Merge categories result"));
         refreshPanelData();
     }
 }
@@ -3731,11 +3731,11 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Payee Relocation Completed.") << "\n\n"
+        msgStr << _("Merge payees completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedPayeesCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Payee Relocation Result"));
+        wxMessageBox(msgStr, _("Merge payees result"));
         refreshPanelData();
     }
 }
@@ -3747,11 +3747,11 @@ void mmGUIFrame::OnTagRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Tag Relocation Completed.") << "\n\n"
+        msgStr << _("Merge tags completed") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedTagsCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Tag Relocation Result"));
+        wxMessageBox(msgStr, _("Merge tags result"));
         refreshPanelData();
     }
 }

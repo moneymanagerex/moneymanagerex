@@ -114,7 +114,7 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
         if (RefName.IsEmpty())
             WindowTitle = wxString::Format(_("Organize Attachments | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
         else
-            WindowTitle = wxString::Format(_("Organize Attachments | %s | %s"), wxGetTranslation(m_RefType), RefName);
+            WindowTitle = wxString::Format(_("Organize Attachments | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
     } else
         WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(m_RefType));
 
