@@ -477,10 +477,10 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
     wxString deleteCategoryErrMsg = category ? _("Category in use.") : _("Sub-Category in use.");
     if (category)
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Category to\n"
-            "another Category using the relocate command:");
+            "another Category using the merge command:");
     else
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Sub-Category to\n"
-            "another Sub-Category using the relocate command:");
+            "another Sub-Category using the merge command:");
 
     deleteCategoryErrMsg << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Categories").ToStdString());
 
