@@ -3719,7 +3719,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
         msgStr << _("Merge category completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
-        wxMessageBox(msgStr, _("Category Relocation Result"));
+        wxMessageBox(msgStr, _("Merge category result"));
         refreshPanelData();
     }
 }
@@ -3735,7 +3735,7 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedPayeesCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Payee Relocation Result"));
+        wxMessageBox(msgStr, _("Merge payee result"));
         refreshPanelData();
     }
 }
@@ -3751,7 +3751,7 @@ void mmGUIFrame::OnTagRelocation(wxCommandEvent& /*event*/)
             << wxString::Format(_("Records have been updated in the database: %i"),
                 dlg.updatedTagsCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Tag Relocation Result"));
+        wxMessageBox(msgStr, _("Merge tag result"));
         refreshPanelData();
     }
 }
