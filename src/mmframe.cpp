@@ -1704,16 +1704,16 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
-        , _("Reassign all categories to another category"));
+        , _("Merge categories"));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
         , MENU_PAYEE_RELOCATION, _("&Payees...")
-        , _("Reassign all payees to another payee"));
+        , _("Merge payees"));
     wxMenuItem* menuItemTagRelocation = new wxMenuItem(menuTools
         , MENU_TAG_RELOCATION, _("&Tags...")
-        , _("Reassign all tags to another tag"));
+        , _("Merge tags"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
-        , MENU_RELOCATION, _("Re&location of")
-        , _("Relocate Categories, Payees, and Tags"));
+        , MENU_RELOCATION, _("&Merge")
+        , _("Merge categories, payees, and tags"));
     wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemPayeeRelocation);
     menuRelocation->Append(menuItemCategoryRelocation);
