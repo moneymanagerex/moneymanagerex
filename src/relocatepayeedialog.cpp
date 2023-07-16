@@ -99,7 +99,7 @@ void relocatePayeeDialog::CreateControls()
     cbDestPayee_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourcePayee_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source payee after relocation"));
+        , _("Delete source payee after merge"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
