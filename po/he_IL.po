@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 16:51\n"
+"PO-Revision-Date: 2023-07-16 18:11\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1312,7 +1312,7 @@ msgstr "תשלום"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX מאפשר הגדרת תשלומים קבועים כתנועות. התנועות יכולות להיות הפקדות רגילות, או העברות עתידיות (שיתרחשו בזמן כלשהו בעתיד). תנועות עתידיות מתפקדות כתזכורת לאירוע העומד להתרחש, ומופיעות בלוח המחוונים 14 ימים לפני מועד כל תנועה."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -3967,7 +3967,7 @@ msgstr "נא הזנת סמל (לא ריק)"
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "יצירת תג חדש '%s'?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
@@ -4858,7 +4858,7 @@ msgstr "ניהול &סוגי־אב..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "ניהול &תגים..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
@@ -4886,7 +4886,7 @@ msgstr "&תגים..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "הקצאת כל התגים מחדש לתג אחר"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4894,7 +4894,7 @@ msgstr "העב&רת"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "העברת סוגי־אב, מוטבים ותגים"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4954,7 +4954,7 @@ msgstr "&אפשרויות... Ctrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "אפשרויות"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4982,7 +4982,7 @@ msgstr "מטב את שטח וביצועי מסד הנתונים"
 
 #: mmframe.cpp:1784
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "בדיקת וניפוי תקלי מסד נתונים..."
 
 #: mmframe.cpp:1785
 msgid "Generate database report or fix errors"
@@ -5002,7 +5002,7 @@ msgstr "ע&זרה\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "הצגת עזרה"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5202,7 +5202,7 @@ msgstr "עדכון שערים"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "הורדת שערי וטבע ונירות ערך"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5214,7 +5214,7 @@ msgstr "&הדפסה"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "הדפסה"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5346,19 +5346,19 @@ msgstr "אופטימיזצית מסד הנתונים הושלמה!\n\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "תוצאות בדיקת כלילות מסד־נתונים:"
 
 #: mmframe.cpp:2412
 msgid "Database Check"
-msgstr ""
+msgstr "בדיקת מסד הנתונים"
 
 #: mmframe.cpp:2425
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "נא להשתמש בפעולה זו רק על פי בקשה מפורשת של תמיכת MMEX וקבלת קובץ mmdbg. ניפוי תקלים"
 
 #: mmframe.cpp:2426
 msgid "Database Debug"
-msgstr ""
+msgstr "ניפוי מסד נתונים"
 
 #: mmframe.cpp:2445 mmframe.cpp:2466
 msgid "Save database file as"
@@ -5491,11 +5491,11 @@ msgstr "תוצאת העברת מוטבים"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "העברת תג הושלמה."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "תוצאת העברת תגים"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5815,11 +5815,11 @@ msgstr "תנועה מחזורית"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "פיצול־תנועה"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "פיצול תנועות מחזוריות"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6091,12 +6091,13 @@ msgstr "קבע מטבע"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "הגדרת מטבע מסד נתונים ברירת מחדל באמצעות תיבת דו־שיח 'ניהול מטבעות'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "מבנה נגזר ממַקָּם המערכת (locale).\n"
+"נא להשאיר ריק להגדרת מבנה באופן ידני באמצעות 'דו־שיח מטבע | עריכה'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6165,7 +6166,7 @@ msgstr "שם מַקָּם לא תקין"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "N ימים אחרונים"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6708,7 +6709,7 @@ msgstr "רשומות שנמצאו בתקציב: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "העברת סוג־אב"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6724,19 +6725,19 @@ msgstr "אישור העברת מוטב"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "העברת תג המקור לתג היעד"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "מחיקת תג מקור לאחר העברת התנועות"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "אישור העברת תג"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "תיבת דו־שיח העברת תגים"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6980,23 +6981,23 @@ msgstr "חודש אחורה מהיום"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "חודש קודם"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "חודש אחורה מהיום"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "שלושה חודשים אחורה מהיום"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "3 חודשים אחרונים"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "12 חודשים אחרונים"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -7008,7 +7009,7 @@ msgstr "שנה נוכחית להיום"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "שנה קודמת"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -7020,7 +7021,7 @@ msgstr "שנת כספים נוכחית להיום"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "שנת כספים קודמת"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7028,7 +7029,7 @@ msgstr "מותאם אישית"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "שנה אחורה מהיום"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7036,11 +7037,11 @@ msgstr "להיום"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "מזה חודש אחד"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "מזה שלושה חודשים"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7574,23 +7575,23 @@ msgstr "שם תג לא חוקי"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "שמות תגים לא יכולים להיות, תו יחיד, תו '&' או '|' שכן אילו שמורים לפעולות מסננים"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "ניהולתגים: שם לא תקין"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "שם מכיל מפריד תג"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "שם תג לא יכול להכיל תו רווח (' ')"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "הזנת שם לתג החדש:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
@@ -7598,11 +7599,11 @@ msgstr "הוספת תג"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "קיים תג בשם זה"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "ניהול תגים: עריכה שגיאה"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
@@ -7615,24 +7616,24 @@ msgstr "ניהול תגים: שגיאת עריכה"
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "תג '%s' נמצא בשימוש"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "ניהול תגים: מחיקת שגיאה"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "קיימות תנועות שנמחקו שתג '%s' משמוש בהן."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "מחיקת תג ת'טהר' באופן אוטומטי גם את התנועות המשוייכות שנמחקו."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "אישור מחיקת תג?"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
