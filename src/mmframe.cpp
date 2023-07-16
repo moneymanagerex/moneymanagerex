@@ -733,9 +733,9 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
     m_nav_tree_ctrl->SetItemBold(alltransactions, true);
 
-    wxTreeItemId favorites = m_nav_tree_ctrl->AppendItem(root, _("Favorites"), img::FAVORITE_PNG, img::FAVORITE_PNG);
-    m_nav_tree_ctrl->SetItemData(favorites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favorites"));
-    m_nav_tree_ctrl->SetItemBold(favorites, true);
+    wxTreeItemId favourites = m_nav_tree_ctrl->AppendItem(root, _("Favorites"), img::FAVOURITE_PNG, img::FAVOURITE_PNG);
+    m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData(mmTreeItemData::MENU_FAVOURITES, "Favourites"));
+    m_nav_tree_ctrl->SetItemBold(favourites, true);
 
     wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData(mmTreeItemData::MENU_ACCOUNT, "Bank Accounts"));
@@ -830,7 +830,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 if (Model_Account::type(account) != Model_Account::INVESTMENT &&
                     (account_type != Model_Account::SHARES || !hideShareAccounts))
                 {
-                    tacct = m_nav_tree_ctrl->AppendItem(favorites, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
                     m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 }
             }
