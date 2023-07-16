@@ -186,7 +186,7 @@ bool mmTagDialog::validateName(const wxString& name)
     } else if (name.Find(' ') != wxNOT_FOUND)
     {
         wxString errMsg = _("Name contains tag delimiter.");
-        errMsg << "\n\n" << _("Tag names may not contain whitespace characters  (' ')");
+        errMsg << "\n\n" << _("Tag names may not contain the space (' ') character");
         wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     }
