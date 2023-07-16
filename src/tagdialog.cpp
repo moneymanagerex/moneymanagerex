@@ -218,7 +218,7 @@ void mmTagDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
     const auto& tags = Model_Tag::instance().find(Model_Tag::TAGNAME(text));
     if (!tags.empty())
     {
-        wxMessageBox(_("A tag with this name exists"), _("Organize Tags: Adding Error"), wxOK | wxICON_ERROR);
+        wxMessageBox(_("A tag with this name already exists"), _("Organize Tags: Adding Error"), wxOK | wxICON_ERROR);
         return;
     }
 
@@ -253,7 +253,7 @@ void mmTagDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
     Model_Tag::Data* tag = Model_Tag::instance().get(text);
     if (tag)
     {
-        wxString errMsg = _("A tag with this name exists");
+        wxString errMsg = _("A tag with this name already exists");
         wxMessageBox(errMsg, _("Organize Tags: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
