@@ -508,7 +508,7 @@ wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) cons
     else if (isTrash_)
         return wxString::Format(_("Deleted Transactions"));
     else
-        return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
+        return wxString::Format(_("Account View: %s"), account.ACCOUNTNAME);
 }
 
 wxString mmCheckingPanel::BuildPage() const
