@@ -444,7 +444,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                     }
                 }
             }
-            historyStaticBox_->SetLabel(wxString::Format(_("Currency History Options: %s "), currency->CURRENCYNAME));
+            historyStaticBox_->SetLabel(wxString::Format(_("Currency History Options: %s"), currency->CURRENCYNAME));
         }
     }
 
