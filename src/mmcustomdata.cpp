@@ -783,8 +783,8 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
 
             if (!regEx.Matches(data))
             {
-                mmErrorDialogs::MessageError(this, wxString::Format(_("Unable to save custom field \"%s\":\nvalue \"%s\" "
-                    "does not match RegEx validation \"%s\"")
+                mmErrorDialogs::MessageError(this, wxString::Format(_("Unable to save custom field \"%1$s\":\nvalue \"%2$s\" "
+                    "does not match RegEx validation \"%3$s\"")
                     , field.DESCRIPTION, data, regExStr)
                     , _("CustomField validation error"));
                 is_valid = false;
