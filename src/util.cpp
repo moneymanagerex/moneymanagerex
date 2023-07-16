@@ -1413,7 +1413,7 @@ const wxString getProgramDescription(int type)
 
     wxString description;
     description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
-        << bull << wxString::Format(simple ? "Built: %s %s" : _("Built on: %s %s"), build_date, BUILD_TIME) << eol
+        << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
         << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
         << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
