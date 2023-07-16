@@ -114,8 +114,8 @@ void relocateTagDialog::CreateControls()
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flagsH);
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Source:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Target:")), flagsH);
     request_sizer->Add(cbSourceTag_, flagsExpand);
     request_sizer->Add(cbDestTag_, flagsExpand);
 
