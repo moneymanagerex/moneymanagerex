@@ -101,7 +101,7 @@ void relocateCategoryDialog::CreateControls()
     cbDestCategory_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceCategory_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source category after relocation (if it has no sub-categories)"));
+        , _("Delete source category after merge (if there are no sub-categories)"));
 
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
