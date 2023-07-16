@@ -39,11 +39,11 @@ public:
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Relocate Payee")
+        , const wxString& caption = _("Merge payee")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
-        , const wxString& name = "Relocate Payees");
+        , const wxString& name = "Merge payees");
 
     void CreateControls();
     void IsOkOk();
