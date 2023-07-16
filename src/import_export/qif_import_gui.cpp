@@ -1077,7 +1077,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (count % 100 == 0 || count == nTransactions)
             {
                 if (!progressDlg.Update(count
-                    , wxString::Format(_("Importing transaction %i of %i"), count, nTransactions))) // if cancel clicked
+                    , wxString::Format(_("Importing transaction %1$i of %2$i"), count, nTransactions))) // if cancel clicked
                     break; // abort processing
             }
             //
