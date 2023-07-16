@@ -789,7 +789,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                 if (std::get<2>(m_QIFpayeeNames[payee]) == wxEmptyString)
                     data.push_back(wxVariant(_("OK")));
                 else
-                    data.push_back(wxVariant(wxString::Format(_("Matched to %s by pattern %s"),
+                    data.push_back(wxVariant(wxString::Format(_("Matched to %1$s by pattern %2$s"),
                         std::get<1>(m_QIFpayeeNames[payee]),
                         std::get<2>(m_QIFpayeeNames[payee])
                     )));
