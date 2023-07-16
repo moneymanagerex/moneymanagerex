@@ -158,7 +158,7 @@ void relocateTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         , destination_tag_name);
 
     int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Merge tag confirmation")
+        , _("Merge tags confirmation")
         , wxOK | wxCANCEL | wxICON_INFORMATION);
 
     if (ans == wxOK)
