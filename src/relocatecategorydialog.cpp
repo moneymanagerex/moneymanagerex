@@ -157,7 +157,7 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         , destination_category_name);
 
     if (wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Category Relocation Confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+        , _("Merge category confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
     {
         auto transactions = Model_Checking::instance()
             .find(Model_Checking::CATEGID(m_sourceCatID));
