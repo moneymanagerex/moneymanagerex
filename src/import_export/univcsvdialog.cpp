@@ -2752,7 +2752,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(int fieldId, wxString& value, wxSt
             index = choices.Index(value, false);
             if (index == wxNOT_FOUND)
             {
-                message << " " << wxString::Format(_("Value %s for %s custom field '%s' is not a valid selection."), value, type_string, data->DESCRIPTION);
+                message << " " << wxString::Format(_("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), value, type_string, data->DESCRIPTION);
                 is_valid = false;
             }
             else value = choices[index];
@@ -2773,7 +2773,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(int fieldId, wxString& value, wxSt
                     if (tokenizer.HasMoreTokens()) value.Append(";");
                 }
                 else {
-                    message << " " << wxString::Format(_("Value %s for %s custom field '%s' is not a valid selection."), token, type_string, data->DESCRIPTION);
+                    message << " " << wxString::Format(_("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), token, type_string, data->DESCRIPTION);
                     is_valid = false;
                 }
             }
