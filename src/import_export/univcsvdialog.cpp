@@ -2811,7 +2811,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(int fieldId, wxString& value, wxSt
 
             if (!regEx.Matches(value))
             {
-                message << " " << wxString::Format(_("Value %s does not match regex %s for custom field '%s'."), value, regExStr, data->DESCRIPTION);
+                message << " " << wxString::Format(_("Value %1$s does not match regex %2$s for custom field '%3$s'."), value, regExStr, data->DESCRIPTION);
                 is_valid = false;
             }
         }
