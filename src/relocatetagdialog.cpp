@@ -101,7 +101,7 @@ void relocateTagDialog::CreateControls()
     cbDestTag_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceTag_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source tag after relocation"));
+        , _("Delete source tag after merge"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
