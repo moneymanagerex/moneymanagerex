@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-16 09:38\n"
+"PO-Revision-Date: 2023-07-16 11:22\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Számla neve: "
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Adja meg a számla nevét. A név bármikor átírható."
+msgstr "Számla nevének megadása. A név bármikor átírható."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
@@ -177,7 +177,7 @@ msgstr "Számlakezelő:"
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "Adja meg annak a pénzintézetnek a nevét, amelyben a számlát vezetik."
+msgstr "Pénzintézet nevének megadása, ahol a számlát vezetik."
 
 #: accountdialog.cpp:208
 msgid "Website:"
@@ -1679,7 +1679,7 @@ msgstr "Kategóriák rendszerezése: érvénytelen név"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
-msgstr "Írja be az új kategória nevét: "
+msgstr "Új kategória nevének megadása:"
 
 #: categdialog.cpp:365
 msgid "Add Category"
@@ -1756,7 +1756,7 @@ msgstr "Törölt ügyletek léteznek, amelyek ezt a kategória vagy valamelyik l
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr "A kategória törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
+msgstr "Kategória törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
 
 #: categdialog.cpp:512 payeedialog.cpp:733 tagdialog.cpp:303
 msgid "Do you wish to continue ?"
@@ -2060,7 +2060,7 @@ msgstr "Jelöl ki azt az elemet, amelyhez az egyéni mező társítva van"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
-msgstr "Írja be a felhasználói mező nevét"
+msgstr "Egyéni mező nevének megadása"
 
 #: customfieldeditdialog.cpp:150
 msgid "Field Type"
@@ -2886,7 +2886,7 @@ msgstr "Jelentés törlése…"
 
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 msgid "Enter the name for the report"
-msgstr "Írja be a jelentés nevét"
+msgstr "Jelentés nevének megadása"
 
 #: general_report_manager.cpp:850 general_report_manager.cpp:1011
 #: mmframe.cpp:795 mmframe.cpp:1753 mmframe.cpp:1926
@@ -3642,7 +3642,7 @@ msgstr "A fájl létezik"
 
 #: import_export/univcsvdialog.cpp:1550
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr "Létező fájl törlése sikertelen. A fájlt más program zárolhatta."
+msgstr "Létező fájl törlése sikertelen. A fájlt más alkalmazás zárolhatta."
 
 #: import_export/univcsvdialog.cpp:1551
 msgid "Destination file error"
@@ -5779,11 +5779,11 @@ msgstr "RendszeresUgylet"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Ügylet felosztása"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Rendszeres ügylet felosztása"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6060,12 +6060,13 @@ msgstr "Pénznem beállítása"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Az adatbázis alapértelmezett pénznemének beállítása a „Pénznem rendszerezése” segítségével"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Területi beállításból származtatott formátum.\n"
+"Hagyja üresen a formátum kézi beállításához a „Pénznem rendszerezése | Szerkesztés”"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6508,7 +6509,7 @@ msgstr "Kedvezményezett szerkesztése"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr "Adja meg a kedvezményezett nevét. A név bármikor átnevezhető."
+msgstr "Kedvezményezett nevének megadása. A név bármikor átnevezhető."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
@@ -6587,7 +6588,7 @@ msgstr "Törölt ügyletek léteznek, amelyek ezt a kedvezményezett használnak
 
 #: payeedialog.cpp:732
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr "A kedvezményezett törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
+msgstr "Kedvezményezett törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
 
 #: payeedialog.cpp:734
 msgid "Confirm Payee Deletion"
@@ -6607,7 +6608,7 @@ msgstr "Kedvezményezett áthelyezése"
 
 #: relocatecategorydialog.cpp:91
 msgid "Relocate source category to the destination category"
-msgstr "A forrás kategória áthelyezése a cél kategóriába"
+msgstr "Kategóriák egyesítése"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after relocation (if it has no sub-categories)"
@@ -6681,7 +6682,7 @@ msgstr "Kategória áthelyezése"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
-msgstr "A forrás összes kedvezményezettjének áthelyezése a célhoz"
+msgstr "Kedvezményezettek egyesítése"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after relocation"
@@ -6693,7 +6694,7 @@ msgstr "Kedvezményezett áthelyezésének megerősítése"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Címkék egyesítése"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
@@ -7111,7 +7112,7 @@ msgstr "Cégnév"
 
 #: sharetransactiondialog.cpp:227 stockdialog.cpp:196
 msgid "Enter the stock company name"
-msgstr "Adja meg a részvénytársaság nevét"
+msgstr "Részvénytársaság nevének megadása"
 
 #: sharetransactiondialog.cpp:230 stockdialog.cpp:199
 msgid "Stock Symbol"
@@ -7531,7 +7532,7 @@ msgstr "Létező címke nevének szerkesztése"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Létező címke törlése. A címke nem lehet használatban."
 
 #: tagdialog.cpp:145
 msgid "Select"
@@ -7543,7 +7544,7 @@ msgstr "Érvénytelen címkenév"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "Címke neve nem lehet „&” vagy „|” karaktereket, mert ezek a szűrőoperátorok számára vannak fenntartva"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -7555,11 +7556,11 @@ msgstr "Név tartalmaz címke elválasztó karaktert."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Címkenevek nem tartalmazhatnak szóköz karaktereket („ ”)"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Új címke nevének megadása:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
@@ -7597,7 +7598,7 @@ msgstr "Törölt ügyletek léteznek, amelyek „%s” címke használnak."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Címke törlésével a hozzá tartozó törölt ügyletek is önműködően törlődnek."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
