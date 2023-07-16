@@ -809,11 +809,11 @@ void mmPayeeDialog::OnPayeeRelocate()
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Payee Relocation Completed.") << "\n\n"
+        msgStr << _("Merge payee completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i")
                 , dlg.updatedPayeesCount())
             << "\n\n";
-        wxMessageBox(msgStr, _("Payee Relocation Result"));
+        wxMessageBox(msgStr, _("Merge payee result"));
         refreshRequested_ = true;
     }
 }
