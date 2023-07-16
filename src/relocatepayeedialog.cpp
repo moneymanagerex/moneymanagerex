@@ -156,7 +156,7 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         , destination_payee_name);
 
     int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Payee Relocation Confirmation")
+        , _("Merge payee confirmation")
         , wxOK | wxCANCEL | wxICON_INFORMATION);
 
     if (ans == wxOK)
