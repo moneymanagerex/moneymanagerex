@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-17 19:36\n"
+"PO-Revision-Date: 2023-07-17 20:32\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -7537,77 +7537,77 @@ msgstr "Editar o nome de uma etiqueta existente"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Apagar uma etiqueta existente. A etiqueta não pode ser usada por transações existentes."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Selecionar"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Nome de etiqueta inválido"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "Nomes de etiquetas não podem ser os caracteres únicos '&' ou '|' porque estes são reservados por serem operadores nos filtros"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Organizar Etiquetas: Nome Inválido"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "Nome contém delimitador de etiqueta"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Nomes de etiquetas não podem conter o espaço (' ')"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Introduza o nome da nova etiqueta:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Adicionar Etiqueta"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "Já existe uma etiqueta com este nome"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Organizar Etiquetas: Erro ao Adicionar"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Editar Etiqueta"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Organizar Etiquetas: Erro de Edição"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Etiqueta '%s' em utilização"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Organizar Etiquetas: Erro ao Eliminar"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Existem transações eliminadas a usar a etiqueta '%s'."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Eliminar a etiqueta apagará também, automaticamente, as transações eliminadas associadas."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Confirmar Eliminação da Etiqueta"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
