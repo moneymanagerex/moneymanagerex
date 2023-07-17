@@ -148,6 +148,7 @@ private:
     wxString m_file_path;
     wxString delimit_ = ",";
     wxString decimal_;
+    wxString categDelimiter_;
 
     std::vector < std::pair <int, int>> csvFieldOrder_;
     wxListBox* csvFieldCandicate_ = nullptr;
@@ -185,9 +186,9 @@ private:
     int m_object_in_focus;
     bool m_reverce_sign = false;
     wxString depositType_;
-    std::unordered_map <wxString, std::tuple<int, wxString, wxString>> m_CSVpayeeNames;
+    std::map <wxString, std::tuple<int, wxString, wxString>, caseInsensitiveComparator> m_CSVpayeeNames;
     wxArrayString m_payee_names;
-    std::unordered_map <wxString, int> m_CSVcategoryNames;
+    std::map <wxString, int, caseInsensitiveComparator> m_CSVcategoryNames;
     std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
     bool payeeRegExInitialized_;
     wxCheckBox* payeeMatchCheckBox_ = nullptr;

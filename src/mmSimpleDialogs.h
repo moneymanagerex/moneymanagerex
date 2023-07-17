@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MM_EX_MMSIMPLEDIALOGS_H_
 
 #include "mmex.h"
+#include "util.h"
 
 #include "model/Model_Account.h"
 
@@ -319,13 +320,8 @@ protected:
     void OnChange(wxCommandEvent& event);
     void init();
 private:
-    struct tagNameComparator {
-        bool operator()(const wxString& lhs, const wxString& rhs) const {
-            return lhs.CmpNoCase(rhs) < 0;
-        }
-    };
-    std::map<wxString, int, tagNameComparator> tag_map_;
-    std::map<wxString, int, tagNameComparator> tags_;
+    std::map<wxString, int, caseInsensitiveComparator> tag_map_;
+    std::map<wxString, int, caseInsensitiveComparator> tags_;
     wxString tags_autocomp_str;
     wxArrayString parseTags(const wxString& tagString);
     bool operatorAllowed_;

@@ -136,6 +136,11 @@ inline bool operator==(const mmTreeItemData& lhs, const mmTreeItemData& rhs)
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);
+struct caseInsensitiveComparator {
+    bool operator()(const wxString& lhs, const wxString& rhs) const {
+        return lhs.CmpNoCase(rhs) < 0;
+    }
+};
 int CaseInsensitiveLocaleCmp(const wxString &s1, const wxString &s2);
 const wxString inQuotes(const wxString& label, const wxString& delimiter);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
