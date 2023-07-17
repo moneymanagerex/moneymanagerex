@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-17 08:04\n"
+"PO-Revision-Date: 2023-07-17 09:32\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5166,7 +5166,7 @@ msgstr "Κατεβάστε τις Ισοτιμίες"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Κατεβάστε τις ισοτιμίες Νομισμάτων και Αποθεμάτων"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5452,7 +5452,7 @@ msgstr "Αποτέλεσμα μετατόπισης δικαιούχου"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "Η Μετατόπιση Ετικέτας Ολοκληρώθηκε."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
@@ -7563,11 +7563,11 @@ msgstr "Προσθήκη ετικέτας"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "Υπάρχει μια ετικέτα με αυτό το όνομα"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Οργάνωση Ετικετών: Σφάλμα Προσθήκης"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
@@ -7575,16 +7575,16 @@ msgstr "Επεξεργασία ετικέτας"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Οργάνωση Ετικετών: Σφάλμα Επεξεργασίας"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Ετικέτα '%s' σε χρήση"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Οργάνωση Ετικετών: Σφάλμα Διαγραφής"
 
 #: tagdialog.cpp:301
 #, c-format
@@ -7597,7 +7597,7 @@ msgstr ""
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Επιβεβαίωση Διαγραφής Ετικέτας"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
