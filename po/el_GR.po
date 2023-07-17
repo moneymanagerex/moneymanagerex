@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-17 09:32\n"
+"PO-Revision-Date: 2023-07-17 11:55\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -6055,12 +6055,13 @@ msgstr "Ορίστε νόμισμα"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Ορίζει το προεπιλεγμένο νόμισμα της βάσης δεδομένων χρησιμοποιώντας το 'διάλογο νομίσματος'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Μορφή που προέρχεται από τις τοπικές ρυθμίσεις.\n"
+"Αφήστε κενό για να ορίσετε χειροκίνητα τη μορφή μέσω του 'Διάλογος Συναλλάγματος |Επεξεργασία'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6689,7 +6690,7 @@ msgstr "Επιβεβαίωση μετατόπισης δικαιούχου"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "Μεταφορά όλων των δικαιούχων πηγής στον δικαιούχο προορισμού"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
