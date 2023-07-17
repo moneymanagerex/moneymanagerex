@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-17 05:39\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Χρησιμοποιήστε την διαίρεση κατηγοριώ�
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Ετικέτες"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -4846,7 +4846,7 @@ msgstr "Εκχώρηση όλων των δικαιούχων σε έναν άλ
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Ετικέτες..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
@@ -4918,7 +4918,7 @@ msgstr "&Επιλογές Ctrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Επιλογές"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4966,7 +4966,7 @@ msgstr "&Βοήθεια F1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Εμφάνιση Βοήθειας"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5178,7 +5178,7 @@ msgstr "&Εκτύπωση"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Εκτύπωση"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -6973,7 +6973,7 @@ msgstr "Τρέχον έτος έως σήμερα"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Προηγούμενο Έτος"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6993,7 +6993,7 @@ msgstr "Προσαρμοσμένο"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 Έτος πριν από την ημερομηνία"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7515,15 +7515,15 @@ msgstr "Σύμβολο: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Τρέχουσες Ετικέτες"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Προσθήκη νέας ετικέτας"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Επεξεργασία του ονόματος μιας υπάρχουσας ετικέτας"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
@@ -7531,11 +7531,11 @@ msgstr ""
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Επιλογή"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Μη έγκυρο όνομα ετικέτας"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
@@ -7559,7 +7559,7 @@ msgstr ""
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Προσθήκη ετικέτας"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
@@ -7571,7 +7571,7 @@ msgstr ""
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Επεξεργασία ετικέτας"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
