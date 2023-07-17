@@ -478,7 +478,7 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(wxTRANSLATE("Favorites"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Favourites"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
