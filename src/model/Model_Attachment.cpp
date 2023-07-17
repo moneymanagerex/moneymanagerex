@@ -24,11 +24,11 @@ const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachm
     {Model_Attachment::TRANSACTION, wxTRANSLATE("Transaction")},
     {Model_Attachment::STOCK, wxTRANSLATE("Stock")},
     {Model_Attachment::ASSET, wxTRANSLATE("Asset")},
-    {Model_Attachment::BANKACCOUNT, wxTRANSLATE("Bank Account")},
-    {Model_Attachment::BILLSDEPOSIT, wxTRANSLATE("Recurring Transaction")},
+    {Model_Attachment::BANKACCOUNT, wxTRANSLATE("BankAccount")},
+    {Model_Attachment::BILLSDEPOSIT, wxTRANSLATE("RecurringTransaction")},
     {Model_Attachment::PAYEE, wxTRANSLATE("Payee")},
-    {Model_Attachment::TRANSACTIONSPLIT, wxTRANSLATE("Transaction Split")},
-    {Model_Attachment::BILLSDEPOSITSPLIT, wxTRANSLATE("Recurring Transaction Split")}
+    {Model_Attachment::TRANSACTIONSPLIT, wxTRANSLATE("TransactionSplit")},
+    {Model_Attachment::BILLSDEPOSITSPLIT, wxTRANSLATE("RecurringTransactionSplit")}
 };
 
 Model_Attachment::Model_Attachment()

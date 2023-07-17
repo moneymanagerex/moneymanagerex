@@ -1846,10 +1846,10 @@ void mmSetSize(wxWindow* w)
     else if (name == "Transactions Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("TRANSACTION_DIALOG_SIZE");
     }
-    else if (name == "Relocate Categories") {
+    else if (name == "Merge categories") {
         my_size = Model_Infotable::instance().GetSizeSetting("RELOCATECATEG_DIALOG_SIZE");
     }
-    else if (name == "Relocate Payees") {
+    else if (name == "Merge payees") {
         my_size = Model_Infotable::instance().GetSizeSetting("RELOCATEPAYEE_DIALOG_SIZE");
     }
     else if (name == "Recurring Transaction Dialog") {
@@ -1861,7 +1861,7 @@ void mmSetSize(wxWindow* w)
     else if (name == "Organize Tags") {
         my_size = Model_Infotable::instance().GetSizeSetting("TAG_DIALOG_SIZE");
     }
-    else if (name == "Relocate Tags") {
+    else if (name == "Merge tags") {
         my_size = Model_Infotable::instance().GetSizeSetting("RELOCATETAG_DIALOG_SIZE");
     }
 

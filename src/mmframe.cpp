@@ -733,7 +733,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
     m_nav_tree_ctrl->SetItemBold(alltransactions, true);
 
-    wxTreeItemId favorites = m_nav_tree_ctrl->AppendItem(root, _("Favorites"), img::FAVORITE_PNG, img::FAVORITE_PNG);
+    wxTreeItemId favorites = m_nav_tree_ctrl->AppendItem(root, _("Favorites"), img::FAVOURITE_PNG, img::FAVOURITE_PNG);
     m_nav_tree_ctrl->SetItemData(favorites, new mmTreeItemData(mmTreeItemData::MENU_FAVORITES, "Favorites"));
     m_nav_tree_ctrl->SetItemBold(favorites, true);
 
