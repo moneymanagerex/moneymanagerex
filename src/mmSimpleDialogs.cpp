@@ -1128,7 +1128,7 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
         if (tag_map_.find(tag) == tag_map_.end())
         {
             // Prompt user to create a new tag
-            if (wxMessageDialog(nullptr, wxString::Format(_("Create new tag '%s' ?"), tag), _("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
+            if (wxMessageDialog(nullptr, wxString::Format(_("Create new tag '%s'?"), tag), _("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
             {
                 newTagCreated = true;
                 Model_Tag::Data* newTag = Model_Tag::instance().create();
