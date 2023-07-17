@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:03\n"
+"PO-Revision-Date: 2023-07-17 09:32\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "분할 범주 사용"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "태그"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -3951,11 +3951,11 @@ msgstr "비어 있지 않은 기호를 입력하십시오."
 #: mmSimpleDialogs.cpp:1131
 #, c-format
 msgid "Create new tag '%s' ?"
-msgstr ""
+msgstr "새 '%s' 태그를 만드시겠습니까?"
 
 #: mmSimpleDialogs.cpp:1131
 msgid "New tag entered"
-msgstr ""
+msgstr "새 태그 입력됨"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4806,11 +4806,11 @@ msgstr "범주 구성(&C)..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "태그 구성(&T)..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "태그 구성"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4830,11 +4830,11 @@ msgstr "모든 수취인을 다른 수취인에 재할당"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "태그(&T)..."
 
 #: mmframe.cpp:1713
 msgid "Reassign all tags to another tag"
-msgstr ""
+msgstr "모든 태그를 다른 태그에 재할당"
 
 #: mmframe.cpp:1715
 msgid "Re&location of"
@@ -4842,7 +4842,7 @@ msgstr "재배치(&R)"
 
 #: mmframe.cpp:1716
 msgid "Relocate Categories, Payees, and Tags"
-msgstr ""
+msgstr "범주, 수취인 및 태그 재배치"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4902,7 +4902,7 @@ msgstr "옵션(&O)...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "옵션"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4950,7 +4950,7 @@ msgstr "도움말(&H)\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "도움말 표시"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5150,7 +5150,7 @@ msgstr "환율 내려받기"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5162,7 +5162,7 @@ msgstr "인쇄(&P)"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "인쇄"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5437,11 +5437,11 @@ msgstr "수취인 재배치 결과"
 
 #: mmframe.cpp:3750
 msgid "Tag Relocation Completed."
-msgstr ""
+msgstr "태그 재배치가 완료되었습니다."
 
 #: mmframe.cpp:3754
 msgid "Tag Relocation Result"
-msgstr ""
+msgstr "태그 재배치 결과"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5761,11 +5761,11 @@ msgstr "반복 거래"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "거래 분할"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "반복 거래 분할"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6042,12 +6042,13 @@ msgstr "통화 설정"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "'통화 구성'을 사용하여 데이터베이스 기본 통화를 설정합니다."
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "현지에서 파생된 형식입니다.\n"
+"'통화 구성 | 편집'을 통해 형식을 수동으로 설정하려면 공백으로 두십시오"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6116,7 +6117,7 @@ msgstr "잘못된 지역 이름"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "지난 N 일"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6660,7 +6661,7 @@ msgstr "예산에서 발견된 레코드: %i"
 
 #: relocatecategorydialog.h:43
 msgid "Relocate Category"
-msgstr ""
+msgstr "범주 재배치"
 
 #: relocatepayeedialog.cpp:90
 msgid "Relocate all source payee to the destination payee"
@@ -6676,19 +6677,19 @@ msgstr "수취인 재배치 확인"
 
 #: relocatetagdialog.cpp:90
 msgid "Relocate the source tag to the destination tag"
-msgstr ""
+msgstr "원본 태그를 대상 태그로 재배치"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after relocation"
-msgstr ""
+msgstr "재배치 후 원본 태그 삭제"
 
 #: relocatetagdialog.cpp:161
 msgid "Tag Relocation Confirmation"
-msgstr ""
+msgstr "태그 재배치 확인"
 
 #: relocatetagdialog.h:42
 msgid "Relocate Tag Dialog"
-msgstr ""
+msgstr "태그 재배치 대화상자"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6932,23 +6933,23 @@ msgstr "이번 달 1일부터 오늘까지"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "지난달"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 개월 전부터 현재까지"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 개월 전부터 현재까지"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "지난 3 개월"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "지난 12 개월"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6960,7 +6961,7 @@ msgstr "올해 초부터 오늘까지"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "작년"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6972,7 +6973,7 @@ msgstr "당기 회계 연도부터 오늘까지"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "이전 회계 연도"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6980,7 +6981,7 @@ msgstr "사용자 정의"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 년 전부터 현재까지"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -6988,11 +6989,11 @@ msgstr "오늘 부터"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "1 개월 전부터"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "3 개월 전부터"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7502,89 +7503,89 @@ msgstr "기호: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "현재 태그"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "새 태그 추가"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "기존 태그의 이름 편집"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "기존 태그를 삭제합니다. 태그는 기존 거래에서 사용할 수 없습니다."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "선택"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "유효하지 않은 태그 이름"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
-msgstr ""
+msgstr "'&' 또는 '|'와 같은 단일 문자는 필터 연산자로 예약되어 있기 때문에 태그 이름일 수 없습니다"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "태그 구성: 잘못된 이름"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter"
-msgstr ""
+msgstr "이름에 태그 구분 기호가 포함됨"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "태그 이름에는 공백(' ') 문자가 포함될 수 없습니다"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "새 태그의 이름을 입력하세요:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "태그 추가"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
-msgstr ""
+msgstr "이 이름을 가진 태그가 존재함"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "태그 구성: 추가 오류"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "태그 편집"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "태그 구성: 편집 오류"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "'%s' 태그 사용 중"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "태그 구성: 삭제 오류"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "'%s' 태그를 사용하는 삭제된 거래가 있습니다."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "태그를 삭제하면 삭제된 거래에서도 자동으로 제거됩니다."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "태그 삭제 확인"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
