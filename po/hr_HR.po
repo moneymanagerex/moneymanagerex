@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-15 13:54+0300\n"
-"PO-Revision-Date: 2023-07-15 11:04\n"
+"PO-Revision-Date: 2023-07-17 14:22\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Koristi podijeljene kategorije"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:628
 msgid "Tags"
-msgstr ""
+msgstr "Oznake"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
@@ -4102,19 +4102,19 @@ msgstr ""
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Česta greška investitora: kupuje samo poduzeća koje pozna."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Česta greška investitora: kupuje poduzeća koje voli."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Česta greška investitora: kupuje poduzeća u trendu."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Česta greška investitora: zaboravljanje rebalansiranja."
 
 #: mmchecking_list.cpp:210
 msgid "Sort Order"
@@ -4774,7 +4774,7 @@ msgstr "Zanemari buduće transakcije"
 
 #: mmframe.cpp:1604
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "Prikaži _opise alata"
 
 #: mmframe.cpp:1604 optionsettingsview.cpp:104
 msgid "Show Tooltips"
@@ -4782,7 +4782,7 @@ msgstr "Prikaži opise alata"
 
 #: mmframe.cpp:1606
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "Pokaži savjete za _novac"
 
 #: mmframe.cpp:1606 optionsettingsview.cpp:110
 msgid "Show Money Tips"
@@ -7521,11 +7521,11 @@ msgstr "Oznaka: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Trenutačne oznake"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Dodaj novu oznaku"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
@@ -7537,11 +7537,11 @@ msgstr ""
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Odaberi"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Neispravno ime oznake"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the single characters '&' or '|' because these are reserved for filter operators"
@@ -7565,7 +7565,7 @@ msgstr ""
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Dodaj oznaku"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name exists"
@@ -7577,7 +7577,7 @@ msgstr ""
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Uredi oznaku"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
@@ -7603,7 +7603,7 @@ msgstr ""
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Potvrdi brisanje oznake"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
