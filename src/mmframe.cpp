@@ -1465,7 +1465,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         if (account)
         {
             menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account..."));
-            menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account..."));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Change Account Type..."));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account..."));
             menu.AppendSeparator();
@@ -1665,7 +1665,7 @@ void mmGUIFrame::createMenu()
         , _("&Edit Account..."), _("Edit Account"));
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
-        , _("&Reallocate Account..."), _("Change the account type of an account."));
+        , _("&Change Account Type..."), _("Change the account type of an account"));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
         , _("&Delete Account..."), _("Delete Account from database"));
@@ -3543,7 +3543,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnReallocateAccount(wxCommandEvent& WXUNUSED(event))
 {
     mmSingleChoiceDialog account_choice(this
-        , _("Select the account to reallocate"), _("Account Reallocation")
+        , _("Select account"), _("Change Account Type")
         , Model_Account::instance().all_checking_account_names());
 
     if (account_choice.ShowModal() == wxID_OK)
@@ -3565,8 +3565,8 @@ void mmGUIFrame::ReallocateAccount(int accountID)
         t.Add(wxGetTranslation(entry));
 
     mmSingleChoiceDialog type_choice(this
-        , wxString::Format(_("Account: %s - Select new type."), account->ACCOUNTNAME)
-        , _("Account Reallocation"), t);
+        , wxString::Format(_("Select new account type for %s"), account->ACCOUNTNAME)
+        , _("Change Account Type"), t);
 
     if (type_choice.ShowModal() == wxID_OK)
     {
