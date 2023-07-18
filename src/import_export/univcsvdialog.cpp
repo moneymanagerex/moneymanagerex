@@ -94,7 +94,8 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_account_id(account_id),
     m_file_path(file_path),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
-    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
+    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT]),
+    categDelimiter_(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":"))
 {
     CSVFieldName_[UNIV_CSV_ID] = wxTRANSLATE("ID");
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
@@ -1760,7 +1761,7 @@ void mmUnivCSVDialog::update_preview()
         unsigned int lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
 
         std::unique_ptr<mmDates> dParser(new mmDates);
-
+        wxRegEx categDelimiterRegex(" ?: ?");
         // Import- Add rows to preview
         for (unsigned int row = 0; row < totalLines; row++)
         {
@@ -1782,8 +1783,8 @@ void mmUnivCSVDialog::update_preview()
                     colCount++;
                 }
 
-                const auto content = pImporter->GetItem(row, col);
-
+                auto content = pImporter->GetItem(row, col);
+                
                 // add payee names to list
                 if (row >= firstRow
                     && row < lastRow
@@ -1807,6 +1808,9 @@ void mmUnivCSVDialog::update_preview()
                 {
                     if (!content.IsEmpty())
                     {
+                        // Replace any ":" with the user-selected category delimiter
+                        // to put all imported names in a consistent format.
+                        categDelimiterRegex.Replace(&content, categDelimiter_);
                         m_CSVcategoryNames[content] = -1;
                         categ_name = content;
                     } else
@@ -1835,7 +1839,7 @@ void mmUnivCSVDialog::update_preview()
             if (!subcat_name.IsEmpty())
             {
                 subcat_name.Replace(":", "|");
-                categ_name.Append((!categ_name.IsEmpty() ? ":" : "") + subcat_name);
+                categ_name.Append((!categ_name.IsEmpty() ? categDelimiter_ : "") + subcat_name);
                 m_CSVcategoryNames[categ_name] = -1;
             }
         }
@@ -2034,13 +2038,12 @@ void mmUnivCSVDialog::refreshTabs(int tabs) {
     {
         validateCategories();
         num = 0;
-        const auto& c(Model_Category::all_categories());
         categoryListBox_->DeleteAllItems();
         for (const auto& categ : m_CSVcategoryNames)
         {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
-            if (c.find(categ.first) == c.end())
+            if (categ.second == -1)
                 data.push_back(wxVariant(_("Missing")));
             else
                 data.push_back(wxVariant(_("OK")));
@@ -2322,7 +2325,7 @@ void mmUnivCSVDialog::validateCategories() {
         // check each level of category exists
         Model_Category::Data* category = nullptr;
         while (categs.HasMoreTokens()) {
-            wxString categname = categs.GetNextToken();
+            wxString categname = categs.GetNextToken().Trim().Trim(false);
             category = Model_Category::instance().get(categname, parentID);
             if (!category)
             {
@@ -2343,10 +2346,11 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     Model_Payee::Data* payee = nullptr;
     Model_Category::Data* category = nullptr;
     int parentID = -1;
-    wxStringTokenizer* categs;
+    wxStringTokenizer categs;
     wxString categname;
     wxDateTime dtdt;
     double amount;
+    wxRegEx categDelimiterRegex;
 
     switch (index)
     {
@@ -2383,14 +2387,17 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_CATEGORY:
-        // check if we already have this category
+        // Convert to user defined delimiter for consistency
+        categDelimiterRegex.Compile(" ?: ?");
+        categDelimiterRegex.Replace(&token, categDelimiter_);
+        // check if we already have this category 
         if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() && m_CSVcategoryNames[token] != -1)
             holder.CategoryID = m_CSVcategoryNames[token];
         else // create category and any missing parent categories
         {
-            categs = new wxStringTokenizer(token, ":");
-            while (categs->HasMoreTokens()) {
-                categname = categs->GetNextToken();
+            categs = wxStringTokenizer(token, ":");
+            while (categs.HasMoreTokens()) {
+                categname = categs.GetNextToken().Trim().Trim(false);
                 category = Model_Category::instance().get(categname, parentID);
                 if (!category)
                 {
@@ -2417,7 +2424,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
         token.Replace(":", "|");
         categname = Model_Category::full_name(holder.CategoryID);
-        categname.Append(":" + token);
+        categname.Append(categDelimiter_ + token);
         if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() && m_CSVcategoryNames[categname] != -1)
             holder.CategoryID = m_CSVcategoryNames[categname];
         else {
