@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 14:48\n"
+"PO-Revision-Date: 2023-07-18 22:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -733,7 +733,7 @@ msgstr "Mellékletek rendszerezése | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Mellékletek rendszerezése | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1667,7 +1667,7 @@ msgstr "A jelenlegi kategória kijelölése az ügylethez használt kategóriak�
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Név tartalmaz kategória elválasztó karaktert."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
@@ -7515,7 +7515,7 @@ msgstr "Címkék rendszerezése: érvénytelen név"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Név tartalmaz címke elválasztó karaktert."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
