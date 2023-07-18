@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 17:32\n"
+"PO-Revision-Date: 2023-07-18 19:04\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -678,7 +678,7 @@ msgstr "Агулам: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Змена кошта: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -735,7 +735,7 @@ msgstr "Уладкаваць далучэнні | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Уладкаваць далучэнні | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1099,7 +1099,7 @@ msgstr "Распадзяліць агульную суму па розных к�
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:627
 msgid "Tags"
-msgstr ""
+msgstr "Пазнакі"
 
 #: billsdepositsdialog.cpp:619 transdialog.cpp:1302
 msgid "Specify any associated check number or transaction number"
@@ -1164,7 +1164,7 @@ msgstr "Падобнае на тое, што гэта пратэмінаваны
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr "Гэтае імя платніка раней не выкарыстоўвалася. Гэта слушнае імя?\n"
+msgstr "Гэтае імя платніка раней не выкарыстоўвалася. Ці гэта слушнае імя?\n"
 "%s"
 
 #: billsdepositsdialog.cpp:956 transactionsupdatedialog.cpp:331
@@ -1523,7 +1523,7 @@ msgstr "Месяц: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Дата пачатка: %2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1662,7 +1662,7 @@ msgstr "Рыдагаваць назву існуючай катыгорыі"
 
 #: categdialog.cpp:333
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "Выдаліць існуючую катыгорыю. Яна не мае выкарыстоўвацца ў аперацыях."
+msgstr "Выдаліць існуючую катыгорыю. Яна ня мае выкарыстоўвацца ў аперацыях."
 
 #: categdialog.cpp:338 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1674,7 +1674,7 @@ msgstr "Выбар выдзеленай катыгорыі для бягучай
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Назва ўтрымлівае падзяляльнік катыгорыі."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
@@ -1682,7 +1682,7 @@ msgstr "Двухкроп'е (:) выкарыстоўваецца для падз
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
-msgstr "Дыспетчар катыгорыяў: Хібнае імя"
+msgstr "Дыспетчар катыгорыяў: Хібная назва"
 
 #: categdialog.cpp:364
 msgid "Enter the name for the new category:"
@@ -1694,7 +1694,7 @@ msgstr "Дадаць катыгорыю"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Катыгорыя з такой назвай ужо існуе ў гэтай бацькоўскай катыгорыі"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1702,11 +1702,11 @@ msgstr "Дыспетчар катыгорыяў: памылка дадаванн
 
 #: categdialog.cpp:437
 msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr "Няможна перасунуць падкатыгорыю у катыгорыю, дзе ўжо ёсць падкатыгорыя з такім самым імем. Трэба спачатку перайменаваць."
+msgstr "Няможна перасунуць падкатыгорыю у катыгорыю, дзе ўжо ёсць падкатыгорыя з такой самай назвай. Трэба спачатку перайменаваць."
 
 #: categdialog.cpp:438
 msgid "Sub Category with same name exists"
-msgstr "Падкатыгорыя з такою назвай ужо існуе"
+msgstr "Падкатыгорыя з такою назваю ужо існуе"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1718,7 +1718,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Вы ўпэўненыя, што жадаеце перасунуць\n"
+"\"%1$s\"\n"
+"у \n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:459
 msgid "Top level"
@@ -1781,7 +1784,7 @@ msgstr "Рыдагаваць катыгорыю"
 
 #: categdialog.cpp:634
 msgid "Category with same name exists for the parent"
-msgstr "Катыгорыя з такім імем ужо існуе для гэтай бацькоўскай катыгорыі"
+msgstr "Катыгорыя з такой назвай ужо існуе для гэтай бацькоўскай катыгорыі"
 
 #: categdialog.cpp:635
 msgid "Organize Categories: Editing Error"
@@ -2674,7 +2677,7 @@ msgstr "Пустое значэнне"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr "Гэтае імя не супадае ні з адным платніком.\n"
+msgstr "Гэтае імя не супадае з ніводным платніком.\n"
 "Усё адно жадаеце яго выкарыстаць?\n"
 "%s"
 
@@ -2919,7 +2922,7 @@ msgstr "Пакажыце або абярыце назву новай групы"
 
 #: general_report_manager.cpp:925
 msgid "Rename Group"
-msgstr "Перайменаваць групу"
+msgstr "Пераназваць групу"
 
 #: general_report_manager.cpp:992
 msgid "Add Report Group"
@@ -3649,7 +3652,7 @@ msgstr "Файл існуе"
 
 #: import_export/univcsvdialog.cpp:1551
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr "Не атрымалася выдаліць існуючы файл. Файл можа быць заблакаваным іншым дадаткам."
+msgstr "Не атрымалася выдаліць існуючы файл. Магчыма, ён заблакаваны іншым дадаткам."
 
 #: import_export/univcsvdialog.cpp:1552
 msgid "Destination file error"
@@ -4549,7 +4552,7 @@ msgstr "Калi ласка, пазначце назву для налады"
 
 #: mmframe.cpp:1292
 msgid "Name in use"
-msgstr "Назва ўжо занятая"
+msgstr "Назва ўжо выкарыстоўваецца"
 
 #: mmframe.cpp:1349
 msgid "Do you really want to delete the account?"
@@ -4617,7 +4620,7 @@ msgstr "&Рыдагаваць фільтр..."
 
 #: mmframe.cpp:1432
 msgid "&Rename Filter..."
-msgstr "&Перайменаваць фільтр..."
+msgstr "&Пераназваць фільтр..."
 
 #: mmframe.cpp:1433
 msgid "&Delete Filter..."
@@ -5490,7 +5493,7 @@ msgstr ""
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Вынік аб'яднання пазнакаў"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5810,11 +5813,11 @@ msgstr "ЗапланаванаяАперацыя"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "TransactionSplit"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "RecurringTransactionSplit"
 
 #: model/Model_Billsdeposits.cpp:300
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5823,7 +5826,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Аперацыя, што паўтараецца, перавысіць абмежаванне рахунка.\n\n"
+"Рахунак: %1$s\n"
+"Бягучы баланс: %1$6.2f\n"
+"Сума аперацыі: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Працягваць?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5894,7 +5902,9 @@ msgstr "Шаблон не запоўнены"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL скрыпт:\n"
+"%s \n"
+"намагаецца змяніць базу дадзеных! Скасавана!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6063,7 +6073,7 @@ msgstr "Імя карыстальніка"
 
 #: optionsettingsgeneral.cpp:84
 msgid "The User Name is used as a title for the database."
-msgstr "Імя карыстальніка выкарыстоўваецца як назва для базы дадзеных."
+msgstr "Імя карыстальніка выкарыстоўваецца як назва базы дадзеных."
 
 #: optionsettingsgeneral.cpp:114
 msgid "Specify the date format for display"
@@ -6083,12 +6093,13 @@ msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыспетчара валютаў'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Фармат, атрыманы ад лакалі.\n"
+"Пакіньце пустым, каб уручную ўсталяваць фармат праз 'Дыспетчар валютаў -> Рыдагаваць'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6157,7 +6168,7 @@ msgstr "Хібнае імя лакалі"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Апошнія N дзён"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6531,7 +6542,7 @@ msgstr "Рыдагаваць платніка"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr "Пакажыце назву Платніка. Гэтая назва можа быць змененая ў будзь-які час."
+msgstr "Пакажыце імя Платніка. Гэтае імя можа быць змененая ў будзь-які час."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
@@ -6594,11 +6605,11 @@ msgstr "Платнік выкарыстоўваецца."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Парада: змяніце гэтага платніка ва ўсіх ягоных/ейных аперацыях на іншага атрымальніка з дапамогай каманды аб'яднання:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Прылады → Аб'яднаць → Платнікі"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6630,28 +6641,28 @@ msgstr "Перасоўванне платніка"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no sub-categories)"
-msgstr ""
+msgstr "Выдаліць катыгорыю пасля аб'яднання аперацыяў (калі ў яе няма падкатыгорыяў)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Крыніца:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Мэта:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Аб'яднаць"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "З %1$s па %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6660,7 +6671,7 @@ msgstr "Калі ласка, спраўдзіце:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Пацверджанне аб'яднання катыгорыяў"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6696,19 +6707,19 @@ msgstr "Знойдзена запісаў у бюджэце: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Выдаліць абранага платніка пасля аб'яднання"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Пацверджанне аб'яднання платнікоў"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Выдаліць абраную пазнаку пасля аб'яднання"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Пацверджанне аб'яднання пазнакаў"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6813,7 +6824,7 @@ msgstr "Прачытайце карысныя парады па спасылцы
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr "Сфармулюйце апісанне вашай праблемы."
+msgstr "Сфармулюйце апісанне Вашай праблемы."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
@@ -6895,12 +6906,12 @@ msgstr "Прагноз"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Справаздача ёсць сгенераваная %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "З %1$s па %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -6952,23 +6963,23 @@ msgstr "Бягучы месяц да сёння"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Папярэдні месяц"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "Перыяд ад сёння і 1 месяц таму назад"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "Перыяд ад сёння і 3 месяцы таму"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Мінулыя 3 месяцы"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Мінулыя 12 месяцаў"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6980,7 +6991,7 @@ msgstr "Бягучы год да сёння"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Папярэдні год"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6992,7 +7003,7 @@ msgstr "Бягучы фінансавы год да сёння"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Папярэдні фінансавы год"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7000,7 +7011,7 @@ msgstr "Карыстальніцкі"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "Перыяд ад сёння і 1 год таму"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7008,11 +7019,11 @@ msgstr "Пачыная ад сёння"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Пачынаючы з 1 месяца таму"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Пачынаючы з 3 месяцаў таму"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7299,7 +7310,7 @@ msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr "У кампаніі няма злучанага паявога рахунка.\n\n"
-"Вы можаце перанакіраваць назву кампаніі на існуючый Паявы рахунак з тым жа імем. Калі гэта ўжо існуючы Фонд без паявога рахунка, рэкамендуецца стварыць Паявы Рахунак.\n\n"
+"Вы можаце перанакіраваць назву кампаніі на існуючый Паявы рахунак з той жа назвай. Калі гэта ўжо існуючы Фонд без паявога рахунка, рэкамендуецца стварыць Паявы Рахунак.\n\n"
 "Вы хочаце стварыць новы Паявы рахунак?\n"
 
 #: stockdialog.cpp:571
@@ -7522,81 +7533,81 @@ msgstr "Сымбаль: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Бягучая пазнака"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Дадаць новую пазнаку"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Рыдагаваць назву існуючай пазнакі"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Выдаліць існуючую пазнаку. Яна ня мае выкарыстоўвацца ў аперацыях."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Абраць"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Хібная назва пазнакі"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Назва пазнакі ня можа ўтрымлміваць сімвалы '&' або '|', таму што яны зарэзерваваныя для аператараў фільтрацыі"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Дыспетчар пазнакаў: Хібная назва"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Назва ўтрымлівае падзяляльнік пазнакі."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Імя пазнакі ня можа ўтрымліваць сімвал прабела (' ')"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Пакажыце назву новай пазнакі:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Дадаць пазнаку"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Пазнака з такой назвай ужо існуе"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr "Дыспетчар тэгаў: памылка дадавання"
+msgstr "Дыспетчар пазнакаў: памылка дадавання"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Змянiць пазнаку"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Дыспетчар катыгорыяў: памылка рыдагавання"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Tэг '%s' выкарыстоўваецца"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Дыспетчар пазнакаў: памылка выдалення"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Існуюць выдаленыя аперацыі, што выкарыстоўваюць пазнаку '%s'."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
@@ -7604,7 +7615,7 @@ msgstr "У выніку выдалення тэга будуць знішчан�
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr "Спраўдзіце выдаленне тэга"
+msgstr "Спраўдзіце выдаленне пазнакі"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
