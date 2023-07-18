@@ -1015,7 +1015,7 @@ void mmGeneralReportManager::newReport(int sample)
         if (!report_name.empty() && Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
             break;
         if (i == max_attempts - 1)
-            return mmErrorDialogs::MessageError(this, _("Report Name already exists"), _("New Report"));
+            return mmErrorDialogs::MessageError(this, _("A report with this name already exists"), _("New Report"));
     }
 
     wxString sqlContent, luaContent, httContent, description;
