@@ -526,7 +526,6 @@ void mmTransDialog::CreateControls()
     // Tags  ---------------------------------------------
     tagTextCtrl_ = new mmTagTextCtrl(this, ID_DIALOG_TRANS_TAGS);
     wxStaticText* tagLabel = new wxStaticText(this, wxID_STATIC, _("Tags"));
-    tagLabel->SetFont(this->GetFont().Bold());
     flex_sizer->Add(tagLabel, g_flagsH);
     flex_sizer->Add(tagTextCtrl_, g_flagsExpand);
     flex_sizer->AddSpacer(1);

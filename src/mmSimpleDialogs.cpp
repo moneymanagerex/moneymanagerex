@@ -957,7 +957,8 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     Bind(wxEVT_CHAR_HOOK, [this](wxKeyEvent& event)
     {
-        if (event.GetKeyCode() == WXK_RETURN)
+        int keyCode = event.GetKeyCode();
+        if (keyCode == WXK_RETURN || keyCode == WXK_NUMPAD_ENTER)
         {
             int ip = GetInsertionPoint();
             if (GetText().IsEmpty() || GetTextRange(ip - 1, ip) == " ")
@@ -978,7 +979,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
             Validate();
             return;
         }
-        else if (event.GetKeyCode() == WXK_TAB)
+        else if (keyCode == WXK_TAB)
         {
             wxWindow* next_control = GetNextSibling();
             while (next_control && !next_control->IsFocusable())

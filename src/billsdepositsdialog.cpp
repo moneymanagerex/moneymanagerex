@@ -608,7 +608,6 @@ void mmBDDialog::CreateControls()
     // Tags ---------------------------------------------
 
     wxStaticText* tag_label = new wxStaticText(this, wxID_ANY, _("Tags"));
-    tag_label->SetFont(this->GetFont().Bold());
     tagTextCtrl_ = new mmTagTextCtrl(this);
     
     transPanelSizer->Add(tag_label, g_flagsH);
