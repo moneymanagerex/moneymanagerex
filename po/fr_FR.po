@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 14:48\n"
+"PO-Revision-Date: 2023-07-18 16:06\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -733,7 +733,7 @@ msgstr "Organiser les pièces jointes | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Gérer les pièces jointes | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1516,7 +1516,7 @@ msgstr "Mois: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Date de début de : %2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1667,7 +1667,7 @@ msgstr "Choisir la catégorie sélectionnée comme catégorie pour l'opération"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Le nom contient le délimiteur de catégorie."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
@@ -1687,7 +1687,7 @@ msgstr "Ajouter une catégorie"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Une catégorie avec le même nom existe déjà pour le parent"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1711,7 +1711,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir déplacer\n"
+" \"%1$s\"\n"
+"vers\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:459
 msgid "Top level"
