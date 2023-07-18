@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 22:09\n"
+"PO-Revision-Date: 2023-07-18 23:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1741,7 +1741,7 @@ msgstr ""
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Eszközök → Egyesítés → Kategóriák"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
@@ -1782,7 +1782,7 @@ msgstr "Kategóriák rendszerezése: szerkesztési hiba"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Kategóriák egyesítése befejeződött"
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -4828,7 +4828,7 @@ msgstr "&Kategóriák…"
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Kategóriák egyesítése"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4836,7 +4836,7 @@ msgstr "&Kedvezményezettek…"
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Kedvezményezettek egyesítése"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4844,11 +4844,11 @@ msgstr "&Címkék…"
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Címkék egyesítése"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Egyesítés"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
@@ -5438,7 +5438,7 @@ msgstr ""
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Kedvezményezettek egyesítése befejeződött"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
@@ -5446,7 +5446,7 @@ msgstr ""
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Címkék egyesítése befejeződött"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
@@ -6559,7 +6559,7 @@ msgstr ""
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Eszközök → Egyesítés → Kedvezményezettek"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6606,7 +6606,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Egyesítés"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
@@ -6621,7 +6621,7 @@ msgstr "Műveletet megerősítése:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Kategóriák egyesítésének megerősítése"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6661,7 +6661,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Kedvezményezettek egyesítésének megerősítése"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
@@ -6669,7 +6669,7 @@ msgstr ""
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Címkék egyesítésének megerősítése"
 
 #: reports/budget.cpp:90
 #, c-format
