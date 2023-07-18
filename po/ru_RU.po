@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 14:49\n"
+"PO-Revision-Date: 2023-07-18 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -676,7 +676,7 @@ msgstr "Всего: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Изменение значения: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -733,7 +733,7 @@ msgstr "Редактор вложений | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Редактор вложений | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1672,7 +1672,7 @@ msgstr "Выбор выделенной категории для текущей
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Имя содержит разделитель категорий."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
@@ -1692,7 +1692,7 @@ msgstr "Добавить категорию"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Категория с таким названием уже существует"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1787,7 +1787,7 @@ msgstr "Редактор категорий: Ошибка редактирова
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Слияние категорий завершено"
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -1797,7 +1797,7 @@ msgstr "Обновлено записей в базе данных: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "Результат слияния категорий"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -4870,7 +4870,7 @@ msgstr "&Получатели..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Объединить получателей"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4878,15 +4878,15 @@ msgstr "&Теги..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Объединить теги"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Объединить"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Объединение категорий, получателей и тэгов"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -5460,11 +5460,11 @@ msgstr ""
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Выберите счёт"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Изменить тип счета"
 
 #: mmframe.cpp:3568
 #, c-format
@@ -5473,7 +5473,7 @@ msgstr ""
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Слияние получателей завершено"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
@@ -5485,7 +5485,7 @@ msgstr ""
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Результат слияния тегов"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -6632,23 +6632,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Источник:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Цель:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Объединить"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "С %1$s по %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6657,7 +6657,7 @@ msgstr "Подтвердите:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Подтверждение слияния категорий"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6693,19 +6693,19 @@ msgstr "Найдено записей в бюджете: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Удалить получателя после слияния"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Подтверждение слияния получателей"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Удалить тег после слияния"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Подтверждение объединения тегов"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6892,12 +6892,12 @@ msgstr "Прогноз"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Отчет создан %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "С %1$s по %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7543,7 +7543,7 @@ msgstr "Неверное имя тега"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Имена тегов не могут быть символами '&' или '|', потому что они зарезервированы для фильтра"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -7551,7 +7551,7 @@ msgstr "Редактор тегов: Неверное имя"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Имя содержит разделитель тегов"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7567,7 +7567,7 @@ msgstr "Добавить тег"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Тег с таким именем уже существует"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7909,7 +7909,7 @@ msgstr "Версия %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Собрано: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7919,7 +7919,7 @@ msgstr "Версия базы данных: %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git коммит: %1$s (%2$s)"
 
 #: util.cpp:1427
 #, c-format
@@ -8229,7 +8229,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Укажите базовую (или по умолчанию) валюту, которая будет \n"
+"использоваться в базе данных. В дальнейшем Вы можете изменять \n"
+"валюту, связанную с каждым счётом, если это будет необходимо. \n"
+"Используйте для этого свойства счёта."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
