@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 14:48\n"
+"PO-Revision-Date: 2023-07-18 17:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7574,7 +7574,7 @@ msgstr ""
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Дыспетчар тэгаў: памылка дадавання"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
@@ -7600,7 +7600,7 @@ msgstr ""
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "У выніку выдалення тэга будуць знішчаныя ўсе ягоныя аперацыі, што ўжо былі выдаленыя."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
@@ -7912,7 +7912,7 @@ msgstr "Вэрсія: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Сабрана: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7922,7 +7922,7 @@ msgstr "Вэрсія базы дадзеных: %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git каміт: %1$s (%2$s)"
 
 #: util.cpp:1427
 #, c-format
@@ -8230,7 +8230,7 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Абярыце асноўную валюту, што будзе выкарыстоўвацца ў базе дадзеных (па змаўчанні). У далейшым праз Налады Вы можаце змяняць валюту, звязаную з кожным рахункам, калі гэта будзе неабходна. Выкарыстоўвайце для гэтага ўласцівасці адпаведнага рахунка."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
