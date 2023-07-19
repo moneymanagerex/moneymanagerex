@@ -94,8 +94,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_account_id(account_id),
     m_file_path(file_path),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
-    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT]),
-    categDelimiter_(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":"))
+    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
 {
     CSVFieldName_[UNIV_CSV_ID] = wxTRANSLATE("ID");
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
@@ -1640,9 +1639,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     if (category)
                     {
                         if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
-                            entry = wxGetTranslation(Model_Category::full_name(category->PARENTID), ":");
+                            entry = wxGetTranslation(Model_Category::full_name(category->PARENTID, ":"));
                         else
-                            entry = wxGetTranslation(Model_Category::full_name(category->CATEGID), ":");
+                            entry = wxGetTranslation(Model_Category::full_name(category->CATEGID, ":"));
                     }
                     break;
                 case UNIV_CSV_SUBCATEGORY:
@@ -1808,9 +1807,8 @@ void mmUnivCSVDialog::update_preview()
                 {
                     if (!content.IsEmpty())
                     {
-                        // Replace any ":" with the user-selected category delimiter
-                        // to put all imported names in a consistent format.
-                        categDelimiterRegex.Replace(&content, categDelimiter_);
+                        // Use the ":" category delimiter to put all imported names in a consistent format.
+                        categDelimiterRegex.Replace(&content, ":");
                         m_CSVcategoryNames[content] = -1;
                         categ_name = content;
                     } else
@@ -1839,7 +1837,7 @@ void mmUnivCSVDialog::update_preview()
             if (!subcat_name.IsEmpty())
             {
                 subcat_name.Replace(":", "|");
-                categ_name.Append((!categ_name.IsEmpty() ? categDelimiter_ : "") + subcat_name);
+                categ_name.Append((!categ_name.IsEmpty() ? ":" : "") + subcat_name);
                 m_CSVcategoryNames[categ_name] = -1;
             }
         }
@@ -2325,7 +2323,7 @@ void mmUnivCSVDialog::validateCategories() {
         // check each level of category exists
         Model_Category::Data* category = nullptr;
         while (categs.HasMoreTokens()) {
-            wxString categname = categs.GetNextToken().Trim().Trim(false);
+            wxString categname = categs.GetNextToken();
             category = Model_Category::instance().get(categname, parentID);
             if (!category)
             {
@@ -2387,9 +2385,9 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_CATEGORY:
-        // Convert to user defined delimiter for consistency
+        // Convert to standard delimiter for consistency
         categDelimiterRegex.Compile(" ?: ?");
-        categDelimiterRegex.Replace(&token, categDelimiter_);
+        categDelimiterRegex.Replace(&token, ":");
         // check if we already have this category 
         if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() && m_CSVcategoryNames[token] != -1)
             holder.CategoryID = m_CSVcategoryNames[token];
@@ -2397,7 +2395,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             categs = wxStringTokenizer(token, ":");
             while (categs.HasMoreTokens()) {
-                categname = categs.GetNextToken().Trim().Trim(false);
+                categname = categs.GetNextToken();
                 category = Model_Category::instance().get(categname, parentID);
                 if (!category)
                 {
@@ -2424,7 +2422,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
         token.Replace(":", "|");
         categname = Model_Category::full_name(holder.CategoryID);
-        categname.Append(categDelimiter_ + token);
+        categname.Append(":" + token);
         if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() && m_CSVcategoryNames[categname] != -1)
             holder.CategoryID = m_CSVcategoryNames[categname];
         else {

@@ -148,7 +148,6 @@ private:
     wxString m_file_path;
     wxString delimit_ = ",";
     wxString decimal_;
-    wxString categDelimiter_;
 
     std::vector < std::pair <int, int>> csvFieldOrder_;
     wxListBox* csvFieldCandicate_ = nullptr;
