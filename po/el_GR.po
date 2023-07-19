@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:02\n"
+"PO-Revision-Date: 2023-07-19 12:42\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1672,7 +1672,7 @@ msgstr "Το όνομα περιέχει οριοθέτηση κατηγορία
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Ο χαρακτήρας άνω και κάτω τελείας (:) χρησιμοποιείται για τη διάκριση κατηγοριών και υποκατηγοριών και για αυτό δεν πρέπει να χρησιμοποιείται στο όνομα"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1696,11 +1696,11 @@ msgstr "Οργάνωση Κατηγοριών: Σφάλμα προσθήκης"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Δεν μπορείτε να μετακινήσετε μια υποκατηγορία σε μια κατηγορία που έχει ήδη μια υποκατηγορία με αυτό το όνομα. Εξετάστε την μετονομασία πριν τη μετακίνηση."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Υπάρχει ήδη μια υποκατηγορία με αυτό το όνομα"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1731,7 +1731,7 @@ msgstr "Κατηγορία σε χρήση."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Υποκατηγορία σε χρήση."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1742,7 +1742,8 @@ msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές π
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές που χρησιμοποιούν αυτήν την Υποκατηγορία σε\n"
+"άλλη Κατηγορία χρησιμοποιώντας την εντολή συγχώνευσης:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2580,7 +2581,7 @@ msgstr "Εύρος ημερομηνιών"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Συμπερίληψη όλων των υποκατηγοριών"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2920,7 +2921,7 @@ msgstr "Νέα αναφορά %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Υπάρχει ήδη μια αναφορά με αυτό το όνομα"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -6552,7 +6553,7 @@ msgstr "Εισάγετε οποιαδήποτε συμβολοσειρά που 
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Υπάρχει ήδη ένας δικαιούχος με αυτό το όνομα"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6600,7 +6601,7 @@ msgstr "Μετακίνηση Δικαιούχου"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Διαγραφή κατηγορίας προέλευσης μετά τη συγχώνευση (εάν η κατηγορία προέλευσης δεν έχει υποκατηγορίες)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -7524,7 +7525,7 @@ msgstr ""
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Το όνομα περιέχει οριοθέτη ετικέτας."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7540,7 +7541,7 @@ msgstr "Προσθήκη ετικέτας"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Μια ετικέτα με αυτό το όνομα υπάρχει ήδη"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7882,7 +7883,7 @@ msgstr "Έκδοση: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Δημιουργήθηκε στις: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -8115,7 +8116,7 @@ msgstr "Μη έγκυρο όνομα λογαριασμού"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
@@ -8201,7 +8202,11 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Καθορίστε το βασικό (ή προεπιλεγμένο) νόμισμα που θα χρησιμοποιείται \n"
+"στη βάση δεδομένων. Το βασικό νόμισμα μπορεί αργότερα να αλλάξει\n"
+"από τις Επιλογές. Οι Νέοι Λογαριασμοί θα χρησιμοποιούν το \n"
+"νόμισμα αυτό από προεπιλογή και μπορεί να αλλαχτεί κατά την επεξεργασία\n"
+"των λεπτομερειών του λογαριασμού."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
