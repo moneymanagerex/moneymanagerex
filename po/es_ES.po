@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:02\n"
+"PO-Revision-Date: 2023-07-19 13:59\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1671,7 +1671,7 @@ msgstr ""
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "El carácter de dos puntos (:) se utiliza para separar categorías y subcategorías y, por ello, no debe usarse en el nombre"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1695,11 +1695,11 @@ msgstr "Organizar categorías: Error al añadir"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "No puede mover una subcategoría a una categoría que ya tiene una subcategoría con ese nombre. Considere cambiarle el nombre antes de moverla."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Ya existe una subcategoría con este nombre"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1727,7 +1727,7 @@ msgstr "Categoría en uso."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Subcategoría en uso."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1737,7 +1737,7 @@ msgstr ""
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Consejo: Cambie todas las transacciones de esta subcategoría a otra subcategoría usando el comando de reubicar:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2575,7 +2575,7 @@ msgstr "Rango de fechas"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Incluir todas las subcategorías"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2917,7 +2917,7 @@ msgstr "Nuevo informe %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Ya existe un informe con este nombre"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -6542,7 +6542,7 @@ msgstr "Introduzca cualquier cadena que coincida con este beneficiario en la imp
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Ya existe un beneficiario con este nombre"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6590,7 +6590,7 @@ msgstr "Reubicar beneficiario"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Eliminar categoría de origen después de la fusión (si la categoría de origen no tiene subcategorías)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -8108,7 +8108,7 @@ msgstr "El nombre de la cuenta no es válido"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Ya existe una cuenta con este nombre"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
