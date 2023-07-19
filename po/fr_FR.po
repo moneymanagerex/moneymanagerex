@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 12:42\n"
+"PO-Revision-Date: 2023-07-19 13:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1741,7 +1741,8 @@ msgstr "Astuce : changer toutes les opérations utilisant cette catégorie en\n"
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Astuce : Changez toutes les opérations utilisant cette sous-catégorie en\n"
+"une autre catégorie en utilisant la commande Fusionner :"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2580,7 +2581,7 @@ msgstr "Plage de date"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Inclure les sous-catégories"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2922,7 +2923,7 @@ msgstr "Nouveau rapport %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Un rapport portant ce nom existe déjà"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -6555,7 +6556,7 @@ msgstr "Saisissez n'importe quelle chaîne de caractères pour faire correspondr
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Un tiers portant ce nom existe déjà"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6604,7 +6605,7 @@ msgstr "Ré-attribution des tiers."
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Supprimer la catégorie source après la fusion (si la catégorie source n'a pas de sous-catégories)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -8118,7 +8119,7 @@ msgstr "Nom du compte invalide"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Un compte portant ce nom existe déjà"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
