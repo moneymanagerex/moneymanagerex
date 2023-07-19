@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:02\n"
+"PO-Revision-Date: 2023-07-19 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "Gebruik verschillende categorieën"
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:214
 #: transactionsupdatedialog.cpp:350 transdialog.cpp:528 transdialog.cpp:627
 msgid "Tags"
-msgstr ""
+msgstr "Labels"
 
 #: billsdepositsdialog.cpp:619 transdialog.cpp:1302
 msgid "Specify any associated check number or transaction number"
@@ -3950,7 +3950,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:1132
 msgid "New tag entered"
-msgstr ""
+msgstr "Nieuwe label ingevoerd"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:572
 msgid "Invalid Value"
@@ -4808,11 +4808,11 @@ msgstr "&Categorieën Beheren..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Beheren &labels..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Beheer labels"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4836,7 +4836,7 @@ msgstr ""
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Labels..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
@@ -4908,7 +4908,7 @@ msgstr "&Opties... Ctrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Opties"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4956,7 +4956,7 @@ msgstr "&Help F1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Toon help"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5156,7 +5156,7 @@ msgstr "Download &tarieven"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Download valutakoersen en aandelenkoersen"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5168,7 +5168,7 @@ msgstr "&Afdrukken"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Afdrukken"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5767,11 +5767,11 @@ msgstr "Periodieke transactie"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "TransactieSplitsing"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "HerhalingdeTransactieSplitsing"
 
 #: model/Model_Billsdeposits.cpp:300
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -6040,12 +6040,13 @@ msgstr "Stel valuta in"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "De standaardvaluta voor het databestand instellen via het 'Beheer valuta scherm'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Formaat afgeleid van locale.\n"
+"Laat leeg voor het handmatig instellen van formaat via 'Valutadialoog | Edit'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6114,7 +6115,7 @@ msgstr "Verkeerde taal afkorting"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Laatste N dagen"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6910,23 +6911,23 @@ msgstr "Huidige maand "
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Vorige Maand"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 maand geleden tot datum"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 maanden geleden tot datum"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Laatste 3 maanden"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Laatste 12 maanden"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6938,7 +6939,7 @@ msgstr "Huidig jaar tot datum"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Vorig jaar"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6950,7 +6951,7 @@ msgstr "Huidig financieel jaar"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Vorige financiële jaar"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6958,7 +6959,7 @@ msgstr "Eigen veld"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 jaar geleden tot datum"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -6966,11 +6967,11 @@ msgstr "Sinds vandaag"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Sinds 1 maand geleden"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Sinds 3 maanden geleden"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7480,27 +7481,27 @@ msgstr "Symbool: %s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "Huidige labels"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Voeg een nieuw label toe"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Wijzig naam van een bestaande label"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Verwijder een bestaande label. De label mag niet in gebruikt zijn bij bestaande transacties."
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Selecteer"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Ongeldige label naam"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
@@ -7508,7 +7509,7 @@ msgstr ""
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Beheer labels: Ongeldige naam"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
@@ -7516,15 +7517,15 @@ msgstr ""
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "De labelnamen mogen geen spatie (' ') tekens bevatten"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Voer de naam van de nieuwe label in:"
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Label toevoegen"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
@@ -7532,37 +7533,37 @@ msgstr ""
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Beheer labels: Fout bij toevoegen"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Bewerk label"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Beheer labels: Fout bij wijzigen"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Label '%s' in gebruik"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Beheer labels: Fout bij verwijderen"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Er zijn verwijderde transacties die label '%s' gebruiken."
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Als u de label verwijdert, worden ook automatisch de bijbehorende verwijderde transacties verwijderd."
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Bevestig label verwijderen"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
