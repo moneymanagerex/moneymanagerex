@@ -217,7 +217,6 @@ John Ditchfield
 Marc Decock
 Tom Schulte
 Roger Gimbrere
-Francesco Orabona
 Jean Jacques Pons
 Giuseppe Maffione
 George Cucak
@@ -235,6 +234,12 @@ Michael Brede
 Dollar Saver Express
 Cristian Nardelli
 Dan Miller
+Jairo Henrique Da Silva
+Vasilii Repkin
+Frank Sierowski
+Robert Flounders
+Jarius Elliott
+Roy Rutter
 
 ### 2022
 Renato
