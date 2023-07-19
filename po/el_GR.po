@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 14:48\n"
+"PO-Revision-Date: 2023-07-19 06:16\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1742,7 +1742,7 @@ msgstr ""
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Εργαλεία → Συγχώνευση → Κατηγορίες"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
@@ -1793,7 +1793,7 @@ msgstr "Οι εγγραφές έχουν ενημερωθεί στη βάση δ
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "Συγχώνευση αποτελεσμάτων κατηγοριών"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -4827,7 +4827,7 @@ msgstr "&Κατηγορίες..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Συγχώνευση κατηγοριών"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4835,7 +4835,7 @@ msgstr "&Δικαιούχοι..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Συγχώνευση δικαιούχων"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4843,15 +4843,15 @@ msgstr "&Ετικέτες..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Συγχώνευση ετικετών"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Συγχώνευση"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Συγχώνευση κατηγοριών, δικαιούχων και ετικετών"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -5278,7 +5278,7 @@ msgstr "Παρακαλώ επιβεβαιώστε το νέο κωδικό πρ�
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Η αλλαγή κωδικού ολοκληρώθηκε"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5297,7 +5297,9 @@ msgstr "Βελτιστοποίηση Βάσης Δεδομένων"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Η βελτιστοποίηση της Βάσης Δεδομένων ολοκληρώθηκε!\n\n"
+"Μέγεθος πριν: %1$s\n"
+"Μέγεθος μετά: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -5398,7 +5400,7 @@ msgstr "Παρακαλώ περιμένετε..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s σε %2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
@@ -5420,36 +5422,36 @@ msgstr "Επέλεξε λογαριασμό για διαγραφή"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε το %1$s λογαριασμό: %2$s;"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Επιλογή λογαριασμού"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Αλλαγή Τύπου Λογαριασμού"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Επιλέξτε νέο τύπο λογαριασμού για %s"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Η συγχώνευση δικαιούχων ολοκληρώθηκε"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "Συγχώνευση αποτελεσμάτων δικαιούχων"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Συγχώνευση ετικετών ολοκληρώθηκε"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Συγχώνευση αποτελεσμάτων ετικετών"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5782,7 +5784,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Μια επαναλαμβανόμενη συναλλαγή θα υπερβεί το όριο του λογαριασμού σας.\n\n"
+"Λογαριασμός: %1$s\n"
+"Τρέχον υπόλοιπο: %1$6.2f\n"
+"Ποσό συναλλαγής: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Θέλετε να συνεχίσετε;"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5853,7 +5860,7 @@ msgstr "Το πρότυπο είναι άδειο"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "Το SQL script: %s θα τροποποιήσει τη βάση δεδομένων!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6555,7 +6562,7 @@ msgstr "Δικαιούχος σε χρήση"
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές χρησιμοποιώντας αυτό το δικαιούχο σε άλλο δικαιούχο χρησιμοποιώντας την εντολή συγχώνευσης:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
@@ -6596,23 +6603,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Πηγή:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Προορισμός:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Συγχώνευση"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "Από %1$s έως %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
