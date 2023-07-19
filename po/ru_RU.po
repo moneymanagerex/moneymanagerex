@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:03\n"
+"PO-Revision-Date: 2023-07-19 12:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1676,7 +1676,7 @@ msgstr "Имя содержит разделитель категорий."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Символ двоеточия (:) используется для разделения категорий и подкатегорий и поэтому не следует использовать в названии"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1700,11 +1700,11 @@ msgstr "Организовать категории: Ошибка добавле
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Нельзя переместить подкатегорию в категорию, уже имеющую подкатегорию с таким именем. Попробуйте переименовать её перед перемещением."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Подкатегория с таким именем уже существует"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1732,7 +1732,7 @@ msgstr "Категория используется."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Подкатегория используется."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1743,7 +1743,8 @@ msgstr "Совет. Измените все транзакции, использ
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Подсказка: Измените все транзакции, использующие эту подкатегорию, на\n"
+"другую категорию, используя команду слияния:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2583,7 +2584,7 @@ msgstr "Диапазон дат"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Включить все подкатегории"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2927,7 +2928,7 @@ msgstr "Новый отчёт %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Отчет с таким именем уже существует"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -3250,7 +3251,7 @@ msgstr "Отсутствует"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Соответствует %1$s по шаблону %2$s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3287,7 +3288,7 @@ msgstr "Импортирую категории"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Импортировано транзакций %1$i из %2$i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3322,7 +3323,7 @@ msgstr "Код транзакции отсутствует"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s соответствует %2$s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3957,7 +3958,7 @@ msgstr "Пожалуйста введите не пустое значение."
 #: mmSimpleDialogs.cpp:1132
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Создать новый тег '%s'?"
 
 #: mmSimpleDialogs.cpp:1132
 msgid "New tag entered"
@@ -4631,7 +4632,7 @@ msgstr "&Перейти на Web-сайт"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Изменить тип счета..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4815,7 +4816,7 @@ msgstr "Открыть панель"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Изменить тип счета"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -4859,7 +4860,7 @@ msgstr "&Категории..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Слияние категорий"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -5311,7 +5312,7 @@ msgstr "Подтвердите новый пароль"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Изменение пароля завершено"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -6578,7 +6579,7 @@ msgstr "Введите любую строку для соответствия �
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Получатель с таким именем уже существует"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6626,7 +6627,7 @@ msgstr "Замена получателя"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Удалить категорию источника после слияния (если у исходной категории нет подкатегорий)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -8142,7 +8143,7 @@ msgstr "Неверное название счёта"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Аккаунт с таким именем уже существует"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
