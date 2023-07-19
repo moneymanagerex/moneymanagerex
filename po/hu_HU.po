@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 23:09\n"
+"PO-Revision-Date: 2023-07-19 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1687,7 +1687,7 @@ msgstr "Kategória hozzáadása"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Már létezik ilyen nevű kategória a fölérendelthez"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1711,7 +1711,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Biztosan áthelyezni szeretné a következőt:\n"
+"„%1$s”\n"
+"ide:\n"
+"„%2$s”?"
 
 #: categdialog.cpp:459
 msgid "Top level"
@@ -1792,7 +1795,7 @@ msgstr "Adatbázis-bejegyzések frissítve: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "Kategóriák egyesítésének eredménye"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -2921,7 +2924,7 @@ msgstr "Új jelentés %s"
 
 #: general_report_manager.cpp:1018
 msgid "Report Name already exists"
-msgstr "Már van ilyen nevű jelentés"
+msgstr "Már létezik ilyen nevű jelentés"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -3950,7 +3953,7 @@ msgstr "Kérem, gépeljen be egy nem üres jelet."
 #: mmSimpleDialogs.cpp:1132
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Új „%s” címke létrehozása?"
 
 #: mmSimpleDialogs.cpp:1132
 msgid "New tag entered"
@@ -4363,7 +4366,7 @@ msgstr "Törölt ügyletek"
 #: mmcheckingpanel.cpp:511
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Számlanézet: %s"
 
 #: mmcheckingpanel.cpp:529
 msgid "Account Bal: "
@@ -4600,7 +4603,7 @@ msgstr "Számla honlapjának &megnyitása"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "Fióktípus &módosítása…"
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4784,7 +4787,7 @@ msgstr "Irányítópult megnyitása"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Számla típusának módosítása"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -5421,15 +5424,16 @@ msgstr "Válassza ki a törlendő számlát"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Biztosan törölni szeretné a(z)\n"
+"%1$s-számlát: %2$s?"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Számla kijelölése"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Fióktípus módosítása"
 
 #: mmframe.cpp:3568
 #, c-format
@@ -5442,7 +5446,7 @@ msgstr "Kedvezményezettek egyesítése befejeződött"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "Kedvezményezettek egyesítésének eredménye"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
@@ -5450,7 +5454,7 @@ msgstr "Címkék egyesítése befejeződött"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Címkék egyesítésének eredménye"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -6591,17 +6595,17 @@ msgstr "Kedvezményezett áthelyezése"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no sub-categories)"
-msgstr ""
+msgstr "Forráskategória törlése az egyesítés után (ha a forráskategóriának nincsenek alkategóriái)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Forrás:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Cél:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
@@ -6657,7 +6661,7 @@ msgstr "Költségvetésben talált bejegyzések: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Forráskedvezményezett törlése az egyesítés után"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
@@ -6665,7 +6669,7 @@ msgstr "Kedvezményezettek egyesítésének megerősítése"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Forráscímke törlése az egyesítés után"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
@@ -7531,7 +7535,7 @@ msgstr "Címke hozzáadása"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Már létezik ilyen nevű címke"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7873,7 +7877,7 @@ msgstr "Verzió: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Készítési időpont: %1$s, %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7883,7 +7887,7 @@ msgstr "Adatbázis verziója: %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git-végrehajtás: %1$s (%2$s)"
 
 #: util.cpp:1427
 #, c-format
