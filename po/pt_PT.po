@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 18:33\n"
+"PO-Revision-Date: 2023-07-19 19:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1687,7 +1687,7 @@ msgstr "Adicionar Categoria"
 
 #: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Existe uma categoria com o mesmo nome para este pai"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1711,7 +1711,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Tem certeza que deseja mover\n"
+" \"%1$s\"\n"
+"para:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:459
 msgid "Top level"
