@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-18 14:49\n"
+"POT-Creation-Date: 2023-07-19 13:52+0300\n"
+"PO-Revision-Date: 2023-07-19 11:03\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -114,8 +114,8 @@ msgstr "Tanggal Pembukaan:"
 msgid "The date when the account was opened"
 msgstr "Tanggal saat akun dibuka"
 
-#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
-#: import_export/univcsvdialog.cpp:2569
+#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
+#: import_export/univcsvdialog.cpp:2567
 msgid "Currency:"
 msgstr "Mata Uang"
 
@@ -140,7 +140,7 @@ msgstr "Pilih rekening yang paling sering digunakan untuk menyeleksi tampilan re
 #: budgetentrydialog.cpp:144 budgetingpanel.cpp:305 filtertrans.cpp:198
 #: filtertransdialog.cpp:665 filtertransdialog.cpp:1711
 #: import_export/qif_export.cpp:617 import_export/qif_import_gui.cpp:110
-#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:303
+#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:303
 #: payeedialog.cpp:115 payeedialog.cpp:460 reports/transactions.cpp:198
 #: sharetransactiondialog.cpp:289 splittransactionsdialog.cpp:94
 #: splittransactionsdialog.cpp:351 stockdialog.cpp:260 stocks_list.cpp:100
@@ -277,7 +277,7 @@ msgid "Account Name "
 msgstr "Nama Rekening"
 
 #: accountdialog.cpp:501 import_export/qif_export.cpp:615
-#: import_export/qif_import_gui.cpp:262 import_export/univcsvdialog.cpp:107
+#: import_export/qif_import_gui.cpp:262 import_export/univcsvdialog.cpp:106
 #: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:293
 #: reports/htmlbuilder.cpp:243
 msgid "Currency"
@@ -421,7 +421,7 @@ msgstr "Rincian Aset"
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:143
 #: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:260
 #: import_export/qif_import_gui.cpp:273 import_export/qif_import_gui.cpp:283
-#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
+#: import_export/univcsvdialog.cpp:507 import_export/univcsvdialog.cpp:517
 #: maincurrencydialog.cpp:76 payeedialog.cpp:454 reports/summarystocks.cpp:117
 msgid "Name"
 msgstr "Nama"
@@ -433,7 +433,7 @@ msgstr "Isi dengan nama aset"
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:190
 #: filtertransdialog.cpp:925 filtertransdialog.cpp:931
 #: import_export/qif_export.cpp:608 import_export/qif_import_gui.cpp:104
-#: import_export/univcsvdialog.cpp:101 maincurrencydialog.cpp:253
+#: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:271
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:286
 #: reports/cashflow.cpp:414 reports/incexpenses.cpp:244 reports/summary.cpp:297
@@ -512,7 +512,7 @@ msgstr "Akun Aset tidak ditemukan. \n\n"
 "Apakah akan dibuat akun baru?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:188
-#: import_export/qif_export.cpp:607 import_export/univcsvdialog.cpp:100
+#: import_export/qif_export.cpp:607 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:269 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
 msgstr "ID"
@@ -522,7 +522,7 @@ msgstr "ID"
 #: filtertransdialog.cpp:615 filtertransdialog.cpp:990
 #: filtertransdialog.cpp:1657 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:610 import_export/qif_import_gui.cpp:107
-#: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:103
+#: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:102
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:430 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:195 transactionsupdatedialog.cpp:148
 #: transdialog.cpp:459 usertransactionpanel.cpp:129 webappdialog.cpp:141
@@ -697,7 +697,7 @@ msgid "Description"
 msgstr "Deskripsi"
 
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:198
+#: import_export/univcsvdialog.cpp:197
 msgid "File"
 msgstr "File"
 
@@ -773,7 +773,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Konfirmasi Penghapusan Lampiran"
 
 #: attachmentdialog.cpp:354 categdialog.cpp:323 customfieldlistdialog.cpp:261
-#: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
+#: import_export/univcsvdialog.cpp:307 maincurrencydialog.cpp:539
 #: payeedialog.cpp:861 stockdialog.cpp:336 tagdialog.cpp:127
 msgid "&Add "
 msgstr "&Tambah "
@@ -783,7 +783,7 @@ msgid "&Open "
 msgstr "&Buka "
 
 #: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:541
+#: import_export/univcsvdialog.cpp:311 maincurrencydialog.cpp:541
 #: payeedialog.cpp:864
 msgid "&Remove "
 msgstr "&Hapus "
@@ -996,8 +996,8 @@ msgstr "Tentukan status transaksi"
 #: filtertransdialog.cpp:602 filtertransdialog.cpp:985
 #: filtertransdialog.cpp:1646 import_export/qif_export.cpp:609
 #: import_export/qif_import_gui.cpp:263 import_export/qif_import_gui.cpp:274
-#: import_export/qif_import_gui.cpp:284 import_export/univcsvdialog.cpp:102
-#: import_export/univcsvdialog.cpp:509 import_export/univcsvdialog.cpp:519
+#: import_export/qif_import_gui.cpp:284 import_export/univcsvdialog.cpp:101
+#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
 #: mmchecking_list.cpp:282 reports/transactions.cpp:192
 #: transactionsupdatedialog.cpp:133 transdialog.cpp:438
 #: usertransactionpanel.cpp:167 webappdialog.cpp:140 wizard_update.cpp:141
@@ -1019,7 +1019,7 @@ msgstr "Izinkan pengaturan jumlah yang berbeda di akun FROM dan TO."
 #: billsdepositsdialog.cpp:542 billsdepositspanel.cpp:140
 #: budgetingpanel.cpp:302 filtertrans.cpp:197 filtertransdialog.cpp:1017
 #: filtertransdialog.cpp:1026 import_export/qif_export.cpp:614
-#: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
 #: mmhomepage.cpp:358 mmhomepage.cpp:432 reports/cashflow.cpp:418
 #: reports/categexp.cpp:218 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:196 splittransactionsdialog.cpp:87
@@ -1037,7 +1037,7 @@ msgstr "Tentukan jumlah transfer di Akun To"
 #: filtertransdialog.cpp:59 filtertransdialog.cpp:527 filtertransdialog.cpp:915
 #: filtertransdialog.cpp:1574 import_export/qif_export.cpp:611
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:174
-#: import_export/qif_import_gui.cpp:255 import_export/univcsvdialog.cpp:104
+#: import_export/qif_import_gui.cpp:255 import_export/univcsvdialog.cpp:103
 #: mmchecking_list.cpp:277 reports/cashflow.cpp:415
 #: reports/transactions.cpp:190 transdialog.cpp:241 transdialog.cpp:245
 #: transdialog.cpp:483 transdialog.cpp:631 usertransactionpanel.cpp:103
@@ -1058,7 +1058,7 @@ msgstr "Ke"
 #: filtertransdialog.cpp:566 filtertransdialog.cpp:941
 #: filtertransdialog.cpp:1610 import_export/qif_export.cpp:612
 #: import_export/qif_import_gui.cpp:106 import_export/qif_import_gui.cpp:268
-#: import_export/univcsvdialog.cpp:105 import_export/univcsvdialog.cpp:503
+#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:502
 #: mmchecking_list.cpp:280 model/Model_Attachment.cpp:29 payeedialog.cpp:83
 #: payeedialog.cpp:238 reports/cashflow.cpp:416 reports/payee.cpp:136
 #: reports/transactions.cpp:191 transactionsupdatedialog.cpp:179
@@ -1072,8 +1072,8 @@ msgstr "Kepada"
 #: filtertransdialog.cpp:61 filtertransdialog.cpp:576 filtertransdialog.cpp:974
 #: filtertransdialog.cpp:979 filtertransdialog.cpp:1617
 #: import_export/qif_export.cpp:613 import_export/qif_import_gui.cpp:108
-#: import_export/qif_import_gui.cpp:279 import_export/univcsvdialog.cpp:108
-#: import_export/univcsvdialog.cpp:514 mmchecking_list.cpp:284
+#: import_export/qif_import_gui.cpp:279 import_export/univcsvdialog.cpp:107
+#: import_export/univcsvdialog.cpp:513 mmchecking_list.cpp:284
 #: mmhomepage.cpp:190 payeedialog.cpp:201 reports/budgetcategorysummary.cpp:185
 #: reports/budgetingperf.cpp:130 reports/cashflow.cpp:417
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
@@ -1106,7 +1106,7 @@ msgstr "Isi dengan nomor cek/giro atau nomor transaksi"
 #: billsdepositsdialog.cpp:621 billsdepositspanel.cpp:145 filtertrans.cpp:191
 #: filtertransdialog.cpp:657 filtertransdialog.cpp:1686
 #: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:105
-#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:273
+#: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:273
 #: reports/transactions.cpp:189 transdialog.cpp:541
 #: usertransactionpanel.cpp:191
 msgid "Number"
@@ -1127,8 +1127,8 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:648 filtertrans.cpp:189 filtertransdialog.cpp:681
 #: filtertransdialog.cpp:1035 filtertransdialog.cpp:1718
-#: import_export/qif_import_gui.cpp:356 import_export/univcsvdialog.cpp:449
-#: import_export/univcsvdialog.cpp:1338 reports/transactions.cpp:187
+#: import_export/qif_import_gui.cpp:356 import_export/univcsvdialog.cpp:448
+#: import_export/univcsvdialog.cpp:1337 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:227 transactionsupdatedialog.cpp:410
 #: transdialog.cpp:570
 msgid "Color"
@@ -1177,7 +1177,7 @@ msgstr ""
 #: filtertransdialog.cpp:998 filtertransdialog.cpp:1017
 #: filtertransdialog.cpp:1026 filtertransdialog.cpp:1035
 #: filtertransdialog.cpp:1043 filtertransdialog.cpp:1049
-#: import_export/univcsvdialog.cpp:1338 optionsettingsgeneral.cpp:293
+#: import_export/univcsvdialog.cpp:1337 optionsettingsgeneral.cpp:293
 #: optionsettingsgeneral.cpp:318 payeedialog.cpp:201
 #: splittransactionsdialog.cpp:552 transactionsupdatedialog.cpp:350
 #: transactionsupdatedialog.cpp:410 transdialog.cpp:627 transdialog.cpp:631
@@ -1186,7 +1186,7 @@ msgid "Invalid value"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1056 billsdepositsdialog.cpp:1059
-#: import_export/univcsvdialog.cpp:1410 stockdialog.cpp:428 transdialog.cpp:639
+#: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:428 transdialog.cpp:639
 #: transdialog.cpp:713 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr ""
@@ -1235,7 +1235,7 @@ msgid "Specify the number of payments to be made.\n"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:501
-#: import_export/univcsvdialog.cpp:1560 maincurrencydialog.cpp:482
+#: import_export/univcsvdialog.cpp:1559 maincurrencydialog.cpp:482
 #: mmframe.cpp:3830 splittransactionsdialog.cpp:408 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
@@ -1455,7 +1455,7 @@ msgstr "Jangka Waktu"
 msgid "Specify the frequency of the expense or deposit"
 msgstr "Isi dengan jangka waktu pengeluaran atau penerimaan"
 
-#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:406
+#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:405
 msgid "Amount:"
 msgstr "Jumlah :"
 
@@ -1663,8 +1663,8 @@ msgid "Name contains category delimiter."
 msgstr ""
 
 #: categdialog.cpp:354
-msgid "The colon (:) character is used to separate categories and sub-categories and therefore should not be used in the name"
-msgstr "Karakter tanda titik dua (:) digunakan untuk memisahkan kategori dan subkategori dan oleh karena itu tidak boleh digunakan dalam nama"
+msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
+msgstr ""
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1678,7 +1678,7 @@ msgstr "Masukkan nama untuk kategori yang baru:"
 msgid "Add Category"
 msgstr "Tambah Kategori"
 
-#: categdialog.cpp:376 categdialog.cpp:385
+#: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
 msgid "A category with this name already exists for the parent"
 msgstr ""
 
@@ -1687,12 +1687,12 @@ msgid "Organize Categories: Adding Error"
 msgstr ""
 
 #: categdialog.cpp:437
-msgid "You cannot move a sub-category to a category that already has a sub-category with that name. Consider renaming before moving."
-msgstr "Anda tidak dapat memindahkan subkategori ke kategori yang telah memiliki subkategori dengan nama yang sama. Pertimbangkan untuk mengubah namanya sebelum memindahkannya."
+msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
+msgstr ""
 
 #: categdialog.cpp:438
-msgid "Sub Category with same name exists"
-msgstr "Sub kategori dengan nama yang sama telah ada"
+msgid "A subcategory with this name already exists"
+msgstr ""
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1719,8 +1719,8 @@ msgid "Category in use."
 msgstr "Kategori yang digunakan."
 
 #: categdialog.cpp:477
-msgid "Sub-Category in use."
-msgstr "Sub-Kategori yang digunakan."
+msgid "Subcategory in use."
+msgstr ""
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1728,8 +1728,8 @@ msgid "Tip: Change all transactions using this Category to\n"
 msgstr ""
 
 #: categdialog.cpp:482
-msgid "Tip: Change all transactions using this Sub-Category to\n"
-"another Sub-Category using the merge command:"
+msgid "Tip: Change all transactions using this Subcategory to\n"
+"another Category using the merge command:"
 msgstr ""
 
 #: categdialog.cpp:485
@@ -1764,10 +1764,6 @@ msgstr "Masukkan nama baru untuk '%s'"
 #: categdialog.cpp:623
 msgid "Edit Category"
 msgstr "Edit Kategori"
-
-#: categdialog.cpp:634
-msgid "Category with same name exists for the parent"
-msgstr ""
 
 #: categdialog.cpp:635
 msgid "Organize Categories: Editing Error"
@@ -1830,7 +1826,7 @@ msgstr "&Tutup "
 
 #: constants.cpp:84 import_export/qif_import_gui.cpp:757
 #: import_export/qif_import_gui.cpp:790 import_export/qif_import_gui.cpp:815
-#: import_export/univcsvdialog.cpp:2025 import_export/univcsvdialog.cpp:2049
+#: import_export/univcsvdialog.cpp:2023 import_export/univcsvdialog.cpp:2047
 msgid "OK"
 msgstr "Simpan Data"
 
@@ -1965,7 +1961,7 @@ msgid "Suffix"
 msgstr "Akhiran"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:344
-#: import_export/univcsvdialog.cpp:417
+#: import_export/univcsvdialog.cpp:416
 msgid "Decimal Char"
 msgstr "Karakter Desimal"
 
@@ -2014,7 +2010,7 @@ msgid "Any changes will be lost without update"
 msgstr "Setiap perubahan akan hilang tanpa penyimpanan"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2602 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:789
 msgid "Invalid Entry"
 msgstr "Data tidak benar"
@@ -2565,18 +2561,18 @@ msgid "Date Range"
 msgstr "Rentang Tanggal"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
-msgid "Include all sub-categories"
-msgstr "Termasuk semua sub-kategori"
+msgid "Include all subcategories"
+msgstr ""
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
-#: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:288
+#: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:33
 #: reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Pengeluaran"
 
 #: filtertransdialog.cpp:623 filtertransdialog.cpp:1487
-#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:290
+#: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:290
 #: model/Model_Billsdeposits.cpp:34 model/Model_Checking.cpp:34
 #: reports/forecast.cpp:79
 msgid "Deposit"
@@ -2662,7 +2658,7 @@ msgstr "Sembunyikan Kolom Laporan"
 msgid "The selected item will be deleted"
 msgstr "Item yang dipilih akan dihapus"
 
-#: filtertransdialog.cpp:1244 import_export/univcsvdialog.cpp:2124
+#: filtertransdialog.cpp:1244 import_export/univcsvdialog.cpp:2122
 #: mmframe.cpp:1254
 msgid "Do you wish to continue?"
 msgstr "Apakah Anda ingin melanjutkan?"
@@ -2707,14 +2703,14 @@ msgstr "Nama Pengaturan"
 msgid "Please Enter"
 msgstr ""
 
-#: filtertransdialog.cpp:1926 import_export/univcsvdialog.cpp:1093
+#: filtertransdialog.cpp:1926 import_export/univcsvdialog.cpp:1092
 msgid "The entered name is already in use"
 msgstr ""
 
 #: filtertransdialog.cpp:1926 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
 #: images_list.cpp:495 import_export/qif_import_gui.cpp:759
-#: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1093
+#: import_export/qif_import_gui.cpp:762 import_export/univcsvdialog.cpp:1092
 msgid "Warning"
 msgstr ""
 
@@ -2743,7 +2739,7 @@ msgstr "Seleksi Transaksi"
 msgid "Reports"
 msgstr "Laporan"
 
-#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:534
+#: general_report_manager.cpp:390 import_export/univcsvdialog.cpp:533
 msgid "&Import"
 msgstr "&Impor"
 
@@ -2751,7 +2747,7 @@ msgstr "&Impor"
 msgid "Locate and load a report file."
 msgstr ""
 
-#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:536
+#: general_report_manager.cpp:394 import_export/univcsvdialog.cpp:535
 msgid "&Export"
 msgstr "&Ekspor"
 
@@ -2904,7 +2900,7 @@ msgid "New Report %s"
 msgstr ""
 
 #: general_report_manager.cpp:1018
-msgid "Report Name already exists"
+msgid "A report with this name already exists"
 msgstr ""
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
@@ -2956,13 +2952,13 @@ msgstr ""
 msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2190
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
 #: mmSimpleDialogs.cpp:799
 msgid "Unable to open file."
 msgstr "Tidak bisa membuka file"
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1345 mmframe.cpp:2566 mmframe.cpp:2585
+#: import_export/univcsvdialog.cpp:1344 mmframe.cpp:2566 mmframe.cpp:2585
 msgid "Universal CSV Import"
 msgstr ""
 
@@ -3012,7 +3008,7 @@ msgstr ""
 msgid "Export as JSON file"
 msgstr ""
 
-#: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:124
+#: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
 #: mmframe.cpp:1564
 msgid "Export as CSV file"
 msgstr ""
@@ -3060,11 +3056,11 @@ msgid "Write to File"
 msgstr ""
 
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:140
-#: import_export/univcsvdialog.cpp:185
+#: import_export/univcsvdialog.cpp:184
 msgid "File Name:"
 msgstr ""
 
-#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:553
+#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:552
 msgid "Clear"
 msgstr ""
 
@@ -3092,7 +3088,7 @@ msgstr ""
 msgid "JSON Files (*.json)"
 msgstr ""
 
-#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2174
+#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2172
 msgid "CSV Files (*.csv)"
 msgstr ""
 
@@ -3141,11 +3137,11 @@ msgstr ""
 msgid "Number of accounts exported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:198
+#: import_export/qif_import_gui.cpp:152 import_export/univcsvdialog.cpp:197
 msgid "&Browse"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:383
+#: import_export/qif_import_gui.cpp:162 import_export/univcsvdialog.cpp:382
 msgid "Encoding:"
 msgstr ""
 
@@ -3153,7 +3149,7 @@ msgstr ""
 msgid "Filtering Details:"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:491
+#: import_export/qif_import_gui.cpp:236 import_export/univcsvdialog.cpp:490
 msgid "Data"
 msgstr ""
 
@@ -3165,22 +3161,22 @@ msgstr ""
 msgid "Include payee field in notes"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:458
+#: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:457
 msgid "Pattern match Payees"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:464
+#: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:463
 msgid "Add match details to Notes"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
 #: import_export/qif_import_gui.cpp:787 import_export/qif_import_gui.cpp:1407
-#: import_export/univcsvdialog.cpp:1021 import_export/univcsvdialog.cpp:1246
-#: import_export/univcsvdialog.cpp:1249 import_export/univcsvdialog.cpp:1269
-#: import_export/univcsvdialog.cpp:1276 import_export/univcsvdialog.cpp:1798
-#: import_export/univcsvdialog.cpp:1800 import_export/univcsvdialog.cpp:1801
-#: import_export/univcsvdialog.cpp:1817 import_export/univcsvdialog.cpp:2022
+#: import_export/univcsvdialog.cpp:1020 import_export/univcsvdialog.cpp:1245
+#: import_export/univcsvdialog.cpp:1248 import_export/univcsvdialog.cpp:1268
+#: import_export/univcsvdialog.cpp:1275 import_export/univcsvdialog.cpp:1797
+#: import_export/univcsvdialog.cpp:1799 import_export/univcsvdialog.cpp:1800
+#: import_export/univcsvdialog.cpp:1815 import_export/univcsvdialog.cpp:2020
 #: themes.cpp:235 transdialog.cpp:294 transdialog.cpp:298 transdialog.cpp:304
 #: transdialog.cpp:966 transdialog.cpp:970 transdialog.cpp:977 webapp.cpp:417
 #: webapp.cpp:426
@@ -3211,7 +3207,7 @@ msgid "Accounts:"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:555 import_export/qif_import_gui.cpp:894
-#: import_export/univcsvdialog.cpp:355
+#: import_export/univcsvdialog.cpp:354
 msgid "Date Format: "
 msgstr ""
 
@@ -3220,12 +3216,12 @@ msgid "Press OK Button to continue"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:767 import_export/qif_import_gui.cpp:798
-#: import_export/univcsvdialog.cpp:2033 import_export/univcsvdialog.cpp:2047
+#: import_export/univcsvdialog.cpp:2031 import_export/univcsvdialog.cpp:2045
 #: stockspanel.cpp:449
 msgid "Missing"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2027
+#: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
 msgstr ""
@@ -3284,7 +3280,7 @@ msgstr ""
 msgid "Total Imported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1511
+#: import_export/qif_import_gui.cpp:1166 import_export/univcsvdialog.cpp:1510
 msgid "Imported transactions discarded by user!"
 msgstr "Impor transaksi yang dibatalkan oleh pengguna!"
 
@@ -3331,369 +3327,369 @@ msgstr "Kategori Transaksi tidak sesuai"
 msgid "Added account: %s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1253
+#: import_export/qif_import_gui.cpp:1496 import_export/univcsvdialog.cpp:1252
 #, c-format
 msgid "Added payee: %s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:109
+#: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
 msgstr "Sub Kategori"
 
-#: import_export/univcsvdialog.cpp:112
+#: import_export/univcsvdialog.cpp:111
 msgid "Don't Care"
 msgstr "Diabaikan"
 
-#: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:294
+#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:294
 #: mmhomepage.cpp:548 mmhomepage.cpp:711 reports/cashflow.cpp:419
 #: reports/summary.cpp:272 reports/summary.cpp:308
 msgid "Balance"
 msgstr "Saldo"
 
-#: import_export/univcsvdialog.cpp:121 mmframe.cpp:1555
+#: import_export/univcsvdialog.cpp:120 mmframe.cpp:1555
 msgid "Import from CSV file"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:126
 msgid "Import from XML file"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:130 mmframe.cpp:1565
+#: import_export/univcsvdialog.cpp:129 mmframe.cpp:1565
 msgid "Export as XML file"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:205
+#: import_export/univcsvdialog.cpp:204
 msgid "Account: "
 msgstr "Rekening:"
 
-#: import_export/univcsvdialog.cpp:215
+#: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
-#: import_export/univcsvdialog.cpp:2573
+#: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:579
+#: import_export/univcsvdialog.cpp:2571
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:270
+#: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:316
+#: import_export/univcsvdialog.cpp:315
 msgid "&MMEX format"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:333
+#: import_export/univcsvdialog.cpp:332
 msgid "&Up"
 msgstr "&Perbaharui Data"
 
-#: import_export/univcsvdialog.cpp:337
+#: import_export/univcsvdialog.cpp:336
 msgid "&Down"
 msgstr "&Pindahkan ke bawah"
 
-#: import_export/univcsvdialog.cpp:370
+#: import_export/univcsvdialog.cpp:369
 msgid "CSV Delimiter:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:397
+#: import_export/univcsvdialog.cpp:396
 msgid "Export column titles"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:412
+#: import_export/univcsvdialog.cpp:411
 msgid "Positive values are deposits"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:413
+#: import_export/univcsvdialog.cpp:412
 msgid "Positive values are withdrawals"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:430
+#: import_export/univcsvdialog.cpp:429
 msgid "Rows to ignore"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:437
+#: import_export/univcsvdialog.cpp:436
 msgid "From start: "
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:472
+#: import_export/univcsvdialog.cpp:471
 msgid "From end: "
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:484
+#: import_export/univcsvdialog.cpp:483
 msgid "Preview"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:559
+#: import_export/univcsvdialog.cpp:558
 msgid "Choose XML data file to Import"
 msgstr "Pilih nama file XML untuk impor data"
 
-#: import_export/univcsvdialog.cpp:559
+#: import_export/univcsvdialog.cpp:558
 msgid "Choose CSV data file to Import"
 msgstr "Pilih nama file CSV untuk impor data"
 
-#: import_export/univcsvdialog.cpp:560
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose XML data file to Export"
 msgstr "Pilih nama file XML untuk ekspor data"
 
-#: import_export/univcsvdialog.cpp:560
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose CSV data file to Export"
 msgstr "Pilih nama file CSV untuk ekspor data"
 
-#: import_export/univcsvdialog.cpp:563
+#: import_export/univcsvdialog.cpp:562
 msgid "Preset name"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:564
+#: import_export/univcsvdialog.cpp:563
 msgid "Save current settings as a Preset"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2125
+#: import_export/univcsvdialog.cpp:564 import_export/univcsvdialog.cpp:2123
 msgid "Delete Preset"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:566
+#: import_export/univcsvdialog.cpp:565
 msgid "MMEX standard format"
 msgstr "MMEX format standar"
 
-#: import_export/univcsvdialog.cpp:567
+#: import_export/univcsvdialog.cpp:566
 msgid "Move Up"
 msgstr "Pindah ke Atas"
 
-#: import_export/univcsvdialog.cpp:568
+#: import_export/univcsvdialog.cpp:567
 msgid "Move Down"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:569 optionsettingsmisc.cpp:228
+#: import_export/univcsvdialog.cpp:568 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Isi dengan karakter pemisah saat meng-ekspor/impor file CSV"
 
-#: import_export/univcsvdialog.cpp:570
+#: import_export/univcsvdialog.cpp:569
 msgid "Import File"
 msgstr "Impor File"
 
-#: import_export/univcsvdialog.cpp:571
+#: import_export/univcsvdialog.cpp:570
 msgid "Export File"
 msgstr "Ekspor file"
 
-#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2580
+#: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:738
+#: import_export/univcsvdialog.cpp:737
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:740
+#: import_export/univcsvdialog.cpp:739
 msgid "Account does not exist"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
-#: import_export/univcsvdialog.cpp:2595
+#: import_export/univcsvdialog.cpp:941 import_export/univcsvdialog.cpp:1036
+#: import_export/univcsvdialog.cpp:2593
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1064
+#: import_export/univcsvdialog.cpp:1063
 msgid "Preset Name"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1064
+#: import_export/univcsvdialog.cpp:1063
 msgid "Save Preset"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1233
+#: import_export/univcsvdialog.cpp:1232
 msgid "Invalid Date."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1234 mmTextCtrl.cpp:116
+#: import_export/univcsvdialog.cpp:1233 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1235
+#: import_export/univcsvdialog.cpp:1234
 msgid "Type (withdrawal/deposit) unknown."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1295
+#: import_export/univcsvdialog.cpp:1294
 msgid "Incorrect fields specified for import!"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1296
+#: import_export/univcsvdialog.cpp:1295
 msgid "Date field is required."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1297
+#: import_export/univcsvdialog.cpp:1296
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1298 import_export/univcsvdialog.cpp:1479
+#: import_export/univcsvdialog.cpp:1297 import_export/univcsvdialog.cpp:1478
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1357
+#: import_export/univcsvdialog.cpp:1356
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1383
+#: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: Empty"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1394
+#: import_export/univcsvdialog.cpp:1393
 #, c-format
 msgid "Line %ld: Error:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1409
+#: import_export/univcsvdialog.cpp:1408
 #, c-format
 msgid "Line %ld: %s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1450
+#: import_export/univcsvdialog.cpp:1449
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1459
+#: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1464
+#: import_export/univcsvdialog.cpp:1463
 #, c-format
 msgid "Total Lines: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1466
+#: import_export/univcsvdialog.cpp:1465
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1468
+#: import_export/univcsvdialog.cpp:1467
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1470
+#: import_export/univcsvdialog.cpp:1469
 #, c-format
 msgid "Imported: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1472
+#: import_export/univcsvdialog.cpp:1471
 #, c-format
 msgid "Errored: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1475
+#: import_export/univcsvdialog.cpp:1474
 #, c-format
 msgid "Log file written to: %s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1478 stockdialog.cpp:652
+#: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:652
 msgid "Please confirm saving"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1512
+#: import_export/univcsvdialog.cpp:1511
 msgid "No imported transactions!"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1534
+#: import_export/univcsvdialog.cpp:1533
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1535 import_export/univcsvdialog.cpp:1702
+#: import_export/univcsvdialog.cpp:1534 import_export/univcsvdialog.cpp:1701
 msgid "Export"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1545
+#: import_export/univcsvdialog.cpp:1544
 msgid "Overwrite existing file?"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1545
+#: import_export/univcsvdialog.cpp:1544
 msgid "File exists"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1551
+#: import_export/univcsvdialog.cpp:1550
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1552
+#: import_export/univcsvdialog.cpp:1551
 msgid "Destination file error"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1560 mmSimpleDialogs.cpp:807
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:807
 msgid "Invalid Account"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1701
+#: import_export/univcsvdialog.cpp:1700
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2123
+#: import_export/univcsvdialog.cpp:2121
 #, c-format
 msgid "Preset '%s' will be deleted"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2156 stockdialog.cpp:558
+#: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:558
 msgid "Choose CSV data file to import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2159
+#: import_export/univcsvdialog.cpp:2157
 msgid "Choose CSV data file to export"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2162
+#: import_export/univcsvdialog.cpp:2160
 msgid "Choose XML data file to import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2165
+#: import_export/univcsvdialog.cpp:2163
 msgid "Choose XML data file to export"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2173
+#: import_export/univcsvdialog.cpp:2171
 msgid "XML Files (*.xml)"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2173
+#: import_export/univcsvdialog.cpp:2171
 msgid "All Files"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2591
+#: import_export/univcsvdialog.cpp:2589
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2591
+#: import_export/univcsvdialog.cpp:2589
 msgid "Enter a value"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2601
+#: import_export/univcsvdialog.cpp:2599
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2722 import_export/univcsvdialog.cpp:2733
-#: import_export/univcsvdialog.cpp:2749 import_export/univcsvdialog.cpp:2793
-#: import_export/univcsvdialog.cpp:2804
+#: import_export/univcsvdialog.cpp:2720 import_export/univcsvdialog.cpp:2731
+#: import_export/univcsvdialog.cpp:2747 import_export/univcsvdialog.cpp:2791
+#: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2762 import_export/univcsvdialog.cpp:2783
+#: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2794
+#: import_export/univcsvdialog.cpp:2792
 #, c-format
 msgid "Confirm format matches selection %s."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2821
+#: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
 msgstr ""
@@ -6494,8 +6490,8 @@ msgid "Enter any string to match this payee on import.\n"
 msgstr ""
 
 #: payeedialog.cpp:238
-msgid "Payee with same name exists"
-msgstr "Nama penerima/penyetor sudah ada"
+msgid "A payee with this name already exists"
+msgstr ""
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6542,7 +6538,7 @@ msgid "Relocate Payee"
 msgstr ""
 
 #: relocatecategorydialog.cpp:104
-msgid "Delete source category after merge (if source category has no sub-categories)"
+msgid "Delete source category after merge (if source category has no subcategories)"
 msgstr ""
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
@@ -8047,8 +8043,8 @@ msgid "Account Name Invalid"
 msgstr "Nama rekening harus diisi"
 
 #: wizard_newaccount.cpp:95
-msgid "Account Name already exists"
-msgstr "Nama rekening sudah ada"
+msgid "An account with this name already exists"
+msgstr ""
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
