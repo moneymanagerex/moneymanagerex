@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 13:59\n"
+"PO-Revision-Date: 2023-07-19 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3807,7 +3807,8 @@ msgstr "Выбор базовой валюты"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "Есть курсы для %1$s, но использование истории валют в опциях отключено:\n"
+"нажмите \"Нет\" и включите ее или нажмите \"Да\", чтобы удалить все исторические данные для %2$s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -4016,7 +4017,7 @@ msgstr "Подсказка: MMEX поддерживает печать отче�
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "Подсказка: Вы можете изменить поведение MMEX путем изменения параметров в диалоговом окне Настройки."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4028,11 +4029,11 @@ msgstr "Совет: Если ведёте счета в разных валют�
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the h key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Совет: В менеджере категорий нажимая последовательно клавишу соответствующую первой букве названия, курсор будет переключаться между соответствующими категориями."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Совет: В менеджере категорий нажимая последовательно клавишу или более можно циклически переключаться между соответствующими названиями. Например, клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -5820,7 +5821,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Периодические транзакции превысят лимит вашего счета.\n\n"
+"Аккаунт: %1$s\n"
+"Текущий баланс: %1$6.2f\n"
+"Сумма транзакций: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Вы хотите продолжить?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5891,7 +5897,9 @@ msgstr "Шаблон пуст"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL-скрипт:\n"
+"%s\n"
+"будет модифицировать базу данных! Прервано!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6593,7 +6601,7 @@ msgstr "Получатель используется."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Совет: измените все транзакции с помощью этого получателя на другого получателя, используя команду слияния:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
