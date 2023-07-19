@@ -631,7 +631,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(category->PARENTID));
     if (!categories.empty())
     {
-        wxString errMsg = _("Category with same name exists for the parent");
+        wxString errMsg = _("A category with this name already exists for the parent");
         wxMessageBox(errMsg, _("Organize Categories: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
