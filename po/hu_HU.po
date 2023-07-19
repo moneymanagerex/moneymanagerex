@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:02\n"
+"PO-Revision-Date: 2023-07-19 12:42\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1671,7 +1671,7 @@ msgstr "Név tartalmaz kategória elválasztó karaktert."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "A kettőspont (:) karakter a kategóriák és az alkategóriák elválasztására szolgál, ezért nem használható a névben"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1695,11 +1695,11 @@ msgstr "Kategóriák rendszerezése: hozzáadási hiba"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Nem helyezhet át alkategóriát olyan kategóriába, amelyhez már tartozik ilyen nevű alkategória. Az áthelyezés előtt fontolja meg az átnevezést."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Már létezik ilyen nevű alkategória"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1730,7 +1730,7 @@ msgstr "A kategória használatban van."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Az alkategória használatban van."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1741,7 +1741,8 @@ msgstr "Tipp: az összes ügylet ebből a kategóriából egy másik\n"
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Tipp: az összes ügylet ebből az alkategóriából egy másik\n"
+"kategóriába az egyesítés paranccsal változik:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2579,7 +2580,7 @@ msgstr "Időtartomány"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Összes alkategória belefoglalása"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2921,7 +2922,7 @@ msgstr "Új jelentés %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Már létezik ilyen nevű jelentés"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -4514,7 +4515,7 @@ msgstr "Kérjük, adjon meg egy új nevet a beállításnak"
 
 #: mmframe.cpp:1292
 msgid "Name in use"
-msgstr "Használt név"
+msgstr "A név használatban van"
 
 #: mmframe.cpp:1349
 msgid "Do you really want to delete the account?"
@@ -6555,7 +6556,7 @@ msgstr "Adjon meg bármilyen karakterláncot, amely megfelel a kedvezményezettn
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Már létezik ilyen nevű kedvezményezett"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6563,7 +6564,7 @@ msgstr "Megfeleltetési minta"
 
 #: payeedialog.cpp:720
 msgid "Payee in use."
-msgstr "A kedvezményezett használatban."
+msgstr "A kedvezményezett használatban van."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
@@ -6603,7 +6604,7 @@ msgstr "Kedvezményezett áthelyezése"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Forráskategória törlése az egyesítés után (ha a forráskategóriának nincsenek alkategóriái)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -8119,7 +8120,7 @@ msgstr "Érvénytelen számlanév"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Már létezik ilyen nevű számla"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
