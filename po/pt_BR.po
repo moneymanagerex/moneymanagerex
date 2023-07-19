@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 13:59\n"
+"PO-Revision-Date: 2023-07-19 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5301,7 +5301,9 @@ msgstr "Otimização de BD"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Otimização do banco de dados concluída!\n\n"
+"Tamanho antes: %1$s\n"
+"Tamanho depois: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -5402,7 +5404,7 @@ msgstr "Por favor, aguarde..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s em %2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
@@ -5424,36 +5426,37 @@ msgstr "Escolha a Conta para Exclusão"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Tem certeza que deseja excluir a\n"
+"conta %1$s: %2$s?"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Selecionar conta"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Alterar tipo de conta"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Selecione o novo tipo de conta para %s"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Mesclagem de beneficiários concluída"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "Resultado da mesclagem de beneficiários"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Mesclagem de etiquetas concluída"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Resultado da mesclagem de etiquetas"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5786,7 +5789,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Uma transação recorrente excederá o limite da sua conta.\n\n"
+"Conta: %1$s\n"
+"Saldo atual: %1$6.2f\n"
+"Valor da transação: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Deseja continuar?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5857,7 +5865,9 @@ msgstr "Modelo está vazio"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "O script SQL:\n"
+"%s\n"
+"modificará o banco de dados! Abortado!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6559,11 +6569,11 @@ msgstr "Este Beneficiário está em uso."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Dica: Transfira todas as transações deste beneficiário para outro beneficiário usando o comando de mesclagem:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Ferramentas → Mesclar → Beneficiários"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6600,23 +6610,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Origem:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Objetivo:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Mesclar"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "De %1$s para %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6625,7 +6635,7 @@ msgstr "Por favor, confirme:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Confirmação de mesclagem de categorias"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6661,19 +6671,19 @@ msgstr "Registros encontrados no orçamento: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Excluir o beneficiário origem após a mesclagem"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Confirmação da mesclagem de beneficiários"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Excluir etiqueta de origem após a mesclagem"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Confirmação da mesclagem de etiquetas"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6860,12 +6870,12 @@ msgstr "Previsão"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Relatório Gerado %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "De %1$s a %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7511,7 +7521,7 @@ msgstr "Nome de etiqueta inválida"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Nomes de etiqueta não podem ser os caracteres '&' ou '|' porque estes são reservados para operadores de filtros"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -7519,7 +7529,7 @@ msgstr "Gerenciar Etiquetas: Nome Inválido"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Nome contém delimitador de etiqueta."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7535,7 +7545,7 @@ msgstr "Adicionar Etiqueta"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Já existe uma etiqueta com este nome"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7877,7 +7887,7 @@ msgstr "Versão: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Construído em: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -8198,7 +8208,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Especifique a moeda padrão a ser utilizada para \n"
+"o arquivo de dados. A moeda padrão poderá ser alterada posteriormente\n"
+"em Opções. Novas contas poderão utilizar esta moeda\n"
+"por padrão e poderão ser alteradas ao editar os detalhes da conta."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
