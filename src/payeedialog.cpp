@@ -235,7 +235,7 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
         mmWebApp::MMEX_WebApp_UpdatePayee();
     }
     else
-        return mmErrorDialogs::ToolTip4Object(m_payeeName, _("Payee with same name exists"), _("Payee"));
+        return mmErrorDialogs::ToolTip4Object(m_payeeName, _("A payee with this name already exists"), _("Payee"));
     
     EndModal(wxID_OK);
 }
