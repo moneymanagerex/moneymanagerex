@@ -583,7 +583,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(categoryComboBox_, g_flagsExpand);
 
     // Category sub-category checkbox
-    categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include all sub-categories")
+    categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include all subcategories")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     categorySubCatCheckBox_->Bind(wxEVT_CHECKBOX, &mmFilterTransactionsDialog::OnCategoryChange, this);
 
