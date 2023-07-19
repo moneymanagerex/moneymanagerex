@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:02\n"
+"PO-Revision-Date: 2023-07-19 12:42\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1671,7 +1671,7 @@ msgstr "Le nom contient le délimiteur de catégorie."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Le caractère deux-points (:) est utilisé pour séparer les catégories et sous-catégories et ne doit donc pas être utilisé dans le nom"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1695,11 +1695,11 @@ msgstr "Gestion des catégories : erreur d'ajout."
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Vous ne pouvez pas déplacer une sous-catégorie vers une catégorie qui a déjà une sous-catégorie portant le même nom. Pensez à la renommer avant de la déplacer."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Une sous-catégorie portant ce nom existe déjà"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1730,7 +1730,7 @@ msgstr "Catégorie utilisée."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Sous-catégorie utilisée."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
