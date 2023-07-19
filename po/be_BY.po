@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:02\n"
+"PO-Revision-Date: 2023-07-19 17:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -800,7 +800,7 @@ msgstr "Гэтая тэчка і ўсе файлы ў ёй аўтаматычн�
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Калі ласка, не выдаляйце і ня перасоўвайце файлы ўручную."
+msgstr "Калі ласка, не выдаляйце, не пераназывайце і не перасоўвайце файлы і тэчкі ўручную."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
@@ -1678,7 +1678,7 @@ msgstr "Назва ўтрымлівае падзяляльнік катыгор�
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Двухкроп'е (:) выкарыстоўваецца для падзялення катыгорыяў і падкатыгорыяў. З гэтай нагоды яго няможна выкарыстоўваць у назве"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1702,11 +1702,11 @@ msgstr "Дыспетчар катыгорыяў: памылка дадаванн
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Няможна перасунуць падкатыгорыю у катыгорыю, дзе ўжо ёсць падкатыгорыя з такой самай назвай. Трэба спачатку пераназваць."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Падкатыгорыя з такой назвай ужо існуе"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1737,7 +1737,7 @@ msgstr "Катыгорыя выкарыстоўваецца."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Падкатыгорыя выкарыстоўваецца."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1747,7 +1747,8 @@ msgstr "Парада: змяніце гэтую катыгорыю ва ўсіх
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Парада: змяніце гэтую падкатыгорыю ва ўсіх ейных аперацыях \n"
+"на іншую катыгорыю з дапамогай каманды аб'яднання:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2587,7 +2588,7 @@ msgstr "Прамежак часу"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Улічваць усе падкатыгорыі"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2931,7 +2932,7 @@ msgstr "Новая справаздача %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Справаздача з такой назвай ужо існуе"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -6594,7 +6595,7 @@ msgstr "Пакажыце будзь-якія дадзеныя, каб знайс
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Платнік з такой назвай ужо існуе"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6642,7 +6643,7 @@ msgstr "Перасоўванне платніка"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Выдаліць зыходную катыгорыю пасля аб'яднання аперацыяў (калі ў яе няма падкатыгорыяў)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -8157,7 +8158,7 @@ msgstr "Хібная назва рахунка"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Рахунак з такой назвай ужо існуе"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
