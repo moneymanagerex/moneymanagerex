@@ -1628,7 +1628,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     // Sub Category inclusion
     if (categoryCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Include all sub-categories") : "SUBCATEGORYINCLUDE").utf8_str());
+        json_writer.Key((i18n ? _("Include all subcategories") : "SUBCATEGORYINCLUDE").utf8_str());
         json_writer.Bool(categorySubCatCheckBox_->GetValue());
     }
 
