@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 12:42\n"
+"PO-Revision-Date: 2023-07-19 13:59\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3504,7 +3504,7 @@ msgstr "Экспорт файла"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Пресет '%1$s' загружен, потому что выбран счёт '%2$s'"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3706,12 +3706,12 @@ msgstr "Знак суммы должен быть определен по тип
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "Значение %1$s для настраиваемого поля '%2$s' не соответствует типу %3$s."
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "Значение %1$s для %2$s настраиваемого поля '%3$s' не является допустимым выбором."
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
@@ -3721,7 +3721,7 @@ msgstr "Подтвердите соответствие выбранного ф�
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "Значение %1$s не соответствует регулярному выражению %2$s для настраиваемого поля '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3812,7 +3812,7 @@ msgstr ""
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Настройки истории валют: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -4395,7 +4395,7 @@ msgstr "Удаленные транзакции"
 #: mmcheckingpanel.cpp:511
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Просмотр счёта: %s"
 
 #: mmcheckingpanel.cpp:529
 msgid "Account Bal: "
@@ -4456,7 +4456,8 @@ msgstr "Мульти Выбор"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "Не удается сохранить настраиваемое поле \"%1$s\":\n"
+"значение \"%2$s\" не соответствует проверке RegEx \"%3$s\""
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -5456,7 +5457,8 @@ msgstr "Выберите счёт для удаления"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить\n"
+"%1$s аккаунт: %2$s?"
 
 #: mmframe.cpp:3546
 msgid "Select account"
