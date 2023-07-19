@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 11:03\n"
+"PO-Revision-Date: 2023-07-19 18:33\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -676,7 +676,7 @@ msgstr "Total: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Variação de Valor: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -733,7 +733,7 @@ msgstr "Organizar Anexos | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Organizar Anexos | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1516,7 +1516,7 @@ msgstr "Mês: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Data de Início: %2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1667,7 +1667,7 @@ msgstr "Utilizar a categoria selecionada na transacção"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Nome contém o delimitador de categoria."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
