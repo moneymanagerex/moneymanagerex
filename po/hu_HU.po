@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-19 00:05\n"
+"PO-Revision-Date: 2023-07-19 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1516,7 +1516,7 @@ msgstr "Hónap: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Kezdődátum ehhez: %2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1730,17 +1730,19 @@ msgstr "A kategória használatban van."
 
 #: categdialog.cpp:477
 msgid "Sub-Category in use."
-msgstr "Az al-kategória használatban van."
+msgstr "Az alkategória használatban van."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Tipp: az összes ügylet ebből a kategóriából egy másik\n"
+"kategóriába az egyesítés paranccsal változik:"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the merge command:"
-msgstr ""
+msgstr "Tipp: az összes ügylet ebből az alkategóriából egy másik\n"
+"kategóriába az egyesítés paranccsal változik:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -3319,7 +3321,7 @@ msgstr "A tranzakció kódja hiányzik"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s megfelelt a következővel: %2$s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3803,12 +3805,13 @@ msgstr "Alappénznem kijelölése"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "A(z) %1$s árfolyamelőzményt megtaláltuk, de az „Árfolyamelőzmények használata” a beállításokban le van tiltva:\n"
+"Kattintson a Nem gombra az engedélyezéshez, vagy kattintson az Igen gombra a(z) %2$s összes korábbi árfolyam eltávolításához"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Valutaárfolyam-előzmények beállításai: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -4011,7 +4014,7 @@ msgstr "Tipp: az MMEX lehetővé teszi valamennyi megtekinthető jelentés kinyo
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "Tipp: A futásidejű viselkedés az MMEX-beállításokkal módosítható."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4023,11 +4026,11 @@ msgstr "Tipp: amennyiben több, eltérő pénznemben vezetett számlája van, á
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the h key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Kategóriák rendszerezése tippje: A „H” gomb megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Kategóriák rendszerezése tippje: A 2 billentyűkombináció megnyomásával az adott billentyűkombinációtól kezdve az összes kategórián keresztül lépkedhet. Például: Az „LA” megnyomásával kiválasztja a „Lakás, Lakásadó, Lakberendezés, …” lehetőséget."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4427,7 +4430,8 @@ msgstr "Többes kijelölés"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "Nem sikerült menteni a(z) „%1$s” egyéni mezőt:\n"
+"a(z) „%2$s” érték nem egyezik a(z) „%3$s” reguláris kifejezés érvényesítésével"
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4855,7 +4859,7 @@ msgstr "&Egyesítés"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Kategóriák, kedvezményezettek és címkék egyesítése"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -5283,7 +5287,7 @@ msgstr "Új jelszó megerősítése"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Jelszó megváltoztatva"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5302,7 +5306,9 @@ msgstr "Adatbázis optimalizálása"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Adatbázis optimalizálása befejezve\n\n"
+"Méret előtte: %1$s\n"
+"Méret utána: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -6559,7 +6565,7 @@ msgstr "A kedvezményezett használatban."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Tipp: az összes kedvezményezett ebből a kedvezményezettből egy másik kedvezményezettnek az egyesítés paranccsal változik:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
@@ -6616,7 +6622,7 @@ msgstr "Egyesítés"
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "Ettől: %1$s eddig: %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6860,7 +6866,7 @@ msgstr "Előrejelzés"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Jelentés készült %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
