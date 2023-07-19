@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-18 17:44+0300\n"
-"PO-Revision-Date: 2023-07-19 01:08\n"
+"PO-Revision-Date: 2023-07-19 02:06\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -676,7 +676,7 @@ msgstr "Összesen: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Értékváltozás: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -2948,12 +2948,12 @@ msgstr "A '%s' téma JSON metaadata nem értelmezhető, rosszul megszerkesztettn
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "A(z) „%1$s”-fájl hiányzik vagy érvénytelen a kijelölt „%2$s” témában"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "A(z) „%1$s”-metaadat hiányzik a kijelölt „%2$s” témában"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -2961,7 +2961,7 @@ msgstr "és továbbiak..."
 
 #: images_list.cpp:459
 msgid "There are %d missing or invalid icons in chosen theme '%1$s': %2$s"
-msgstr ""
+msgstr "%d hiányzó vagy érvénytelen ikon található a kijelölt „%1$s” témában: %2$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -3249,7 +3249,7 @@ msgstr "Hiányzó"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2027
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Egyezve a következővel: %1$s a következő mintával: %2$s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3286,7 +3286,7 @@ msgstr "Kategóriák importálása"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Ügylet importálása: %1$i/%2$i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3396,7 +3396,7 @@ msgstr "Előbeállítás:"
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr "Az előbeállítás betöltése, ha a fiók:\n"
+msgstr "Az előbeállítás betöltése, ha a számla:\n"
 "%s"
 
 #: import_export/univcsvdialog.cpp:270
@@ -3502,7 +3502,7 @@ msgstr "Fájlexportálás"
 #: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2580
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Előre beállított „%1$s” betöltve, mert a(z) „%2$s” számla van kijelölve"
 
 #: import_export/univcsvdialog.cpp:738
 #, c-format
@@ -3704,12 +3704,12 @@ msgstr "Az összegjelet típus szerint kell megadni, amikor a „Típus” van k
 #: import_export/univcsvdialog.cpp:2804
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "A(z) %1$s értéke egyéni mezőben: „%2$s” nem %3$s típusú."
 
 #: import_export/univcsvdialog.cpp:2762 import_export/univcsvdialog.cpp:2783
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "A(z) %2$s „%3$s” egyéni mező %1$s értéke nem érvényes kijelölés."
 
 #: import_export/univcsvdialog.cpp:2794
 #, c-format
@@ -3719,7 +3719,7 @@ msgstr "Erősítse meg, hogy a formátum megfelel a(z) %s elemnek."
 #: import_export/univcsvdialog.cpp:2821
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "A(z) %1$s érték nem egyezik a(z) %2$s reguláris kifejezéssel a(z) „%3$s” egyéni mezőben."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -4607,7 +4607,7 @@ msgstr "Számla honlapjának &megnyitása"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr "Fióktípus &módosítása…"
+msgstr "Számlatípus &módosítása…"
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4791,7 +4791,7 @@ msgstr "Irányítópult megnyitása"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr "Számla típusának módosítása"
+msgstr "Számlatípus módosítása"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -5408,7 +5408,7 @@ msgstr "Kérem várjon..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s/%2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
@@ -5439,12 +5439,12 @@ msgstr "Számla kijelölése"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr "Fióktípus módosítása"
+msgstr "Számlatípus módosítása"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "%s-számlatípus módosításának kijelölése"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
@@ -5793,7 +5793,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "A rendszeres ügylet túllépi számlakorlátját.\n\n"
+"Számla: %1$s\n"
+"Jelenlegi egyenleg: %1$6.2f\n"
+"Ügylet összege: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Folytatja a műveletet?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5864,7 +5869,9 @@ msgstr "A sablon üres"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL-parancsfájl:\n"
+"%s\n"
+"módosítja az adatfájlt! Megszakítva!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6344,7 +6351,7 @@ msgstr "Forrás frissítése"
 
 #: optionsettingsview.cpp:86
 msgid "Specify which accounts are visible"
-msgstr "Fiókok láthatóságának megadása"
+msgstr "Számlák láthatóságának megadása"
 
 #: optionsettingsview.cpp:89
 msgid "Category Delimiter"
@@ -6871,7 +6878,7 @@ msgstr "Jelentés készült %1$s %2$s"
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "Ettől: %1$s eddig: %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7517,7 +7524,7 @@ msgstr "Érvénytelen címkenév"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Címke neve nem lehet „&” vagy „|” karaktereket, mert ezek a szűrőoperátorok számára vannak fenntartva"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -8016,7 +8023,7 @@ msgstr "A tranzakció az első bankszámlával kerül beillesztésre:\n"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
-msgstr "Hibás Webalkalmazás-fiók"
+msgstr "Hibás Webalkalmazás-számla"
 
 #: webapp.cpp:565
 msgid "Today will be used as the transaction date"
@@ -8135,7 +8142,7 @@ msgstr "Ez általában a számlát kezelő pénzintézet neve lehet. \n"
 
 #: wizard_newaccount.cpp:134
 msgid "Type of Account"
-msgstr "Számla típusa"
+msgstr "Számlatípus"
 
 #: wizard_newaccount.cpp:138
 msgid "Select the type of account you want to create:"
@@ -8205,7 +8212,11 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Adja meg az adatbázishoz használandó alap (vagy \n"
+"alapértelmezett) pénznemet. Az alappénznem később \n"
+"módosítható a Beállításokban. Az új számlák alapértelmezés \n"
+"szerint ezt a pénznemet fogják használni, és a számla adatainak \n"
+"szerkesztésekor módosítható."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
