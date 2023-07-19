@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 20:34\n"
+"PO-Revision-Date: 2023-07-19 21:51\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1745,7 +1745,7 @@ msgstr ""
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Ferramentas → Fundir → Categorias"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
@@ -1782,7 +1782,7 @@ msgstr "Organizar Categorias: Erro ao Editar"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Fusão de categorias completa"
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -1792,7 +1792,7 @@ msgstr "Os registos foram atualizados na base de dados: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "Resultado da Fusão de Categorias"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -2943,12 +2943,12 @@ msgstr "Metadados JSON no tema '%s' não podem ser interpretados e parecem mal c
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "Ficheiro '%1$s' em falta ou inválido no tema escolhido '%2$s'"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Metadados '%1$s' em falta no tema escolhido '%2$s'"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -2956,7 +2956,7 @@ msgstr "e mais..."
 
 #: images_list.cpp:459
 msgid "There are %d missing or invalid icons in chosen theme '%1$s': %2$s"
-msgstr ""
+msgstr "Existem %d ícones em falta ou inválidos no tema escolhido '%1$s': %2$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -3244,7 +3244,7 @@ msgstr "Em falta"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Correspondido a %1$s pelo padrão %2$s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3281,7 +3281,7 @@ msgstr "A Importar Categorias"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "A Importar a transação %1$i de %2$i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3316,7 +3316,7 @@ msgstr "Falta o código da transação"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s correspondido por %2$s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3497,7 +3497,7 @@ msgstr "Exportar Ficheiro"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Predefinição '%1$s' carregada porque a Conta '%2$s' foi selecionada"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3699,12 +3699,12 @@ msgstr "O sinal do valor deve ser definido pelo tipo quando o 'Tipo' é selecion
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "O valor %1$s para o campo personalizado '%2$s' não é do tipo %3$s."
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "O valor %1$s para o campo personalizado %2$s, '%3$s', não é uma seleção válida."
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
@@ -3714,7 +3714,7 @@ msgstr "Confirme que o formato corresponde à seleção %s."
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "O valor %1$s não corresponde à expressão regular %2$s para o campo personalizado '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3800,7 +3800,8 @@ msgstr "Seleção da Moeda Base"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "Taxas de câmbio históricas para %1$s encontradas, mas \"Usar histórico de moedas\" está desativado nas opções:\n"
+"clique em 'não' e ative-o, ou em 'sim' para remover todas as taxas históricas de %2$s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
