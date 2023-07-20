@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"PO-Revision-Date: 2023-07-20 15:46\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2959,7 +2959,7 @@ msgstr "et plus..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "Il y a %1$d icônes manquantes ou invalides dans le thème sélectionné '%2$s' : %3$s"
 
 #: images_list.cpp:488
 #, c-format
