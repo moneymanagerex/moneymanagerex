@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 19:27\n"
+"PO-Revision-Date: 2023-07-20 20:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -1671,7 +1671,7 @@ msgstr "Nome contém o delimitador de categoria."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "O símbolo dois-pontos (:) é usado para separar categorias e subcategorias, logo não deve ser utilizado no nome"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1695,11 +1695,11 @@ msgstr "Organizar Categorias: Erro ao Adicionar"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Não se pode mover uma subcategoria para uma categoria que já tem outra com o mesmo nome. Pondere renomear antes de mover."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Já existe uma subcategoria com este nome"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1730,7 +1730,7 @@ msgstr "Categoria em utilização."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Subcategoria em utilização."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -5428,36 +5428,37 @@ msgstr "Escolha a Conta para Apagar"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Tem certeza que deseja eliminar a conta de\n"
+" %1$s: %2$s?"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Selecionar conta"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Alterar Tipo de Conta"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Selecione o novo tipo de conta para %s"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Fusão de beneficiários concluída"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "Resultado da fusão de beneficiários"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Fusão de etiquetas completa"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Resultado da fusão de etiquetas"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5790,7 +5791,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Uma transação recorrente excederá o limite da sua conta.\n\n"
+"Conta: %1$s\n"
+"Saldo atual: %1$6.2f\n"
+"Valor da transação: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Deseja continuar?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5861,7 +5867,9 @@ msgstr "Modelo está vazio"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "O script SQL:\n"
+"%s \n"
+"irá modificar a base de dados! Abortado!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6563,11 +6571,11 @@ msgstr "Beneficiário em uso."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Sugestão: Transfira todas as transações deste beneficiário para outro usando o comando fundir:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Ferramentas → Fundir → Beneficiários"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6604,23 +6612,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Fonte:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Destino:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Fundir"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "De %1$s a %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6629,7 +6637,7 @@ msgstr "Confirme por favor:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Confirmação da fusão de categorias"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6665,19 +6673,19 @@ msgstr "Registos encontrados no orçamento: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Eliminar o beneficiário origem após a fusão"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Confirmação da fusão de beneficiários"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Eliminar a etiqueta origem após a fusão"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Confirmação da fusão de etiquetas"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6864,12 +6872,12 @@ msgstr "Previsão"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Relatório Gerado %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "De %1$s até %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7515,7 +7523,7 @@ msgstr "Nome de etiqueta inválido"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Nomes de etiquetas não podem ser '&' ou '|' porque estes são reservados como operadores nos filtros"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -7523,7 +7531,7 @@ msgstr "Organizar Etiquetas: Nome Inválido"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Nome contém delimitador de etiqueta."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7539,7 +7547,7 @@ msgstr "Adicionar Etiqueta"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Já existe uma etiqueta com este nome"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7881,7 +7889,7 @@ msgstr "Versão: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Criado em: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7891,7 +7899,7 @@ msgstr "Versão da Base de Dados: %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Commit Git: %1$s (%2$s)"
 
 #: util.cpp:1427
 #, c-format
@@ -8201,7 +8209,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Especifique a moeda base (ou padrão) a utilizar na base de dados.\n"
+"A moeda base poderá ser alterada mais tarde em 'Opções'. Novas \n"
+"contas usá-la-ão por defeito, podendo esta, no entanto,\n"
+"ser alterada na edição dos detalhes de conta."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
