@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"PO-Revision-Date: 2023-07-20 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2953,7 +2953,7 @@ msgstr "y mucho más..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "Hay %1$d iconos no válidos o inexistentes en el tema elegido '%2$s': %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -7515,7 +7515,7 @@ msgstr "Organizar etiquetas: nombre no válido"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "El nombre contiene el delimitador de etiquetas."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7531,7 +7531,7 @@ msgstr "Añadir etiqueta"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Ya existe una etiqueta con este nombre"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7874,7 +7874,7 @@ msgstr "Versión: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Fecha de compilación: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7884,7 +7884,7 @@ msgstr "Versión de la base de datos: %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Confirmación de Git: %1$s (%2$s)"
 
 #: util.cpp:1427
 #, c-format
