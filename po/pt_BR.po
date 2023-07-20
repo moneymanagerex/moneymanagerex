@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-07-19 13:52+0300\n"
-"PO-Revision-Date: 2023-07-19 16:10\n"
+"POT-Creation-Date: 2023-07-20 16:57+0300\n"
+"PO-Revision-Date: 2023-07-20 14:08\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2955,8 +2955,9 @@ msgid "and more..."
 msgstr "e mais..."
 
 #: images_list.cpp:459
-msgid "There are %d missing or invalid icons in chosen theme '%1$s': %2$s"
-msgstr "Existem %d ícones faltando ou inválidos no tema escolhido '%1$s': %2$s"
+#, c-format
+msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
+msgstr ""
 
 #: images_list.cpp:488
 #, c-format
