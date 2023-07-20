@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"PO-Revision-Date: 2023-07-20 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -3807,7 +3807,7 @@ msgstr "Taxas de câmbio históricas para %1$s encontradas, mas \"Usar históric
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Opções do Histórico de Moeda: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3953,7 +3953,7 @@ msgstr "Por favor, digite um símbolo não vazio."
 #: mmSimpleDialogs.cpp:1132
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Criar a etiqueta '%s'?"
 
 #: mmSimpleDialogs.cpp:1132
 msgid "New tag entered"
@@ -4011,7 +4011,7 @@ msgstr "Sugestão: O MMEX suporta a impressão de todos os relatórios que possa
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "Sugestão: Pode-se modificar algum comportamento de execução do MMEX alterando a configuração em Opções."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4023,11 +4023,11 @@ msgstr "Sugestão: Defina taxas de câmbio monetário caso tenha contas com dife
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the h key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Sugestão para Organizar Categorias: Pressionando a tecla 'h' alternará por todas as categorias começadas pela letra 'h'."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Sugestão para Organizar Categorias: Pressionando uma combinação de 2 teclas alternará por todas as categorias começadas pela mesma. Exemplo: Pressionar 'ca' irá selecionar, Casa, Carro, etc..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4366,7 +4366,7 @@ msgstr "Transações Eliminadas"
 #: mmcheckingpanel.cpp:511
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Vista da Conta: %s"
 
 #: mmcheckingpanel.cpp:529
 msgid "Account Bal: "
@@ -4427,7 +4427,8 @@ msgstr "Escolha Múltipla"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "Não foi possível gravar o campo personalizado \"%1$s\":\n"
+"valor \"%2$s\" não corresponde à validação RegEx \"%3$s\""
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4603,7 +4604,7 @@ msgstr "&Ir Para a Página Web da Conta"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Alterar Tipo de Conta..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4787,7 +4788,7 @@ msgstr "Abrir Painel"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Alterar o tipo de conta de uma conta"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -4831,7 +4832,7 @@ msgstr "&Categorias..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Fundir categorias"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4839,7 +4840,7 @@ msgstr "&Beneficiários..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Fundir beneficiários"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4847,15 +4848,15 @@ msgstr "&Etiquetas..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Fundir etiquetas"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Fundir"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Fundir categorias, beneficiários e etiquetas"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -5283,7 +5284,7 @@ msgstr "Confirme a nova palavra-passe por favor"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Alteração de palavra-passe concluída"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5302,7 +5303,9 @@ msgstr "Otimização de BD"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Otimização da base de dados concluída!\n\n"
+"Tamanho antes: %1$s\n"
+"Tamanho depois: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -5403,7 +5406,7 @@ msgstr "Aguarde, por favor..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s em %2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
