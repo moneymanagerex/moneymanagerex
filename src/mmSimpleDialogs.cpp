@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
 Copyright (C) 2015, 2016, 2020, 2022 Nikolay Akimov
-Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2022, 2023 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -944,6 +944,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     StyleSetFont(0, parent->GetFont());
     StyleSetBackground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     StyleSetForeground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
+    SetCaretForeground(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
     SetExtraAscent(2);
     SetExtraDescent(2);
     SetMaxClientSize(wxSize(-1, TextHeight(0)));
