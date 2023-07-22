@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-22 06:25\n"
+"PO-Revision-Date: 2023-07-22 07:27\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1313,7 +1313,7 @@ msgstr "Betaling"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "In MMEX kunt u reguliere betalingen als transacties ingeven. Deze transacties kunnen ook periodieke bijschrijvingen of overboekingen zijn. Deze transacties fungeren dan als een herinnering voor een gebeurtenis die plaats gaat vinden en verschijnen 14 dagen voor de vervaldatum op de startpagina."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1671,7 +1671,7 @@ msgstr "Naam bevat categorie scheidingsteken."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Het dubbele punt (:) teken wordt gebruikt om categorieën en subcategorieën te scheiden en mag daarom niet in de naam worden gebruikt"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1695,11 +1695,11 @@ msgstr "Beheer categorieën: Fout bij toevoegen"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "U kunt geen subcategorie verplaatsen naar een categorie die al een subcategorie met die naam heeft. Overweeg om de naam te wijzigen voordat u deze verplaatst."
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Er bestaat al een subcategorie met deze naam"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1730,7 +1730,7 @@ msgstr "Categorie is in gebruik."
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Subcategorie is in gebruik."
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1741,7 +1741,8 @@ msgstr "Tip: Wijzig alle transacties van deze categorie naar\n"
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Tip: Wijzig alle transacties van deze subcategorie naar\n"
+"een andere categorie via de opdracht - samenvoegen:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -2579,7 +2580,7 @@ msgstr "Datum-bereik"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Inclusief alle subcategorieën"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2921,7 +2922,7 @@ msgstr "Nieuw rapport %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Er bestaat al een rapport met deze naam"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -2957,7 +2958,7 @@ msgstr "en meer..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "Er zijn %1$d ontbrekende of ongeldige pictogrammen in het gekozen thema '%2$s': %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -4943,7 +4944,7 @@ msgstr "Optimaliseer database en prestaties"
 
 #: mmframe.cpp:1784
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Databasecontrole en De&bug..."
 
 #: mmframe.cpp:1785
 msgid "Generate database report or fix errors"
@@ -5308,19 +5309,19 @@ msgstr "Databaseoptimalisatie voltooid!\n\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Resultaat van database integriteitscontrole:"
 
 #: mmframe.cpp:2412
 msgid "Database Check"
-msgstr ""
+msgstr "Database Controle"
 
 #: mmframe.cpp:2425
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Gebruik deze functie alleen op verzoek van MMEX support en je hebt een .mmdbg debug bestand gekregen"
 
 #: mmframe.cpp:2426
 msgid "Database Debug"
-msgstr ""
+msgstr "Database debug"
 
 #: mmframe.cpp:2445 mmframe.cpp:2466
 msgid "Save database file as"
@@ -5427,36 +5428,36 @@ msgstr "Kies te verwijderen rekening"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Weet u zeker dat u %1$s rekening: %2$s wilt verwijderen?"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Account selecteren"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Wijzig rekeningtype"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Selecteer nieuw rekeningtype voor %s"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Samenvoegen begunstigden voltooid"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "Resultaat samenvoegen begunstigden"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Samenvoegen labels voltooid"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Resultaat samenvoegen labels"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5789,7 +5790,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Een periodieke transactie overschrijdt je rekeninglimiet.\n\n"
+"Rekening: %1$s\n"
+"Huidig saldo: %1$6.2f\n"
+"Transactiebedrag: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Wilt u doorgaan?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5860,7 +5866,9 @@ msgstr "Sjabloon is leeg"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "Het SQL script:\n"
+"%s \n"
+"wijzigt het databestand! afgebroken!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6550,7 +6558,7 @@ msgstr "Voer een tekenreeks in die overeenkomt met deze begunstigde bij het impo
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Een begunstigde met deze naam bestaat al"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6562,11 +6570,11 @@ msgstr "Begunstigde is al ingevoerd."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Tip: Wijzig alle transacties met deze begunstigde in een andere begunstigde met de samenvoeg opdracht:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Gereedschappen → Samenvoegen → Begunstigden"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6598,28 +6606,28 @@ msgstr "Overzetten begunstigde(n)"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Verwijder de broncategorie na de samenvoeging (als er geen subcategorieën zijn)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Bron:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Doel:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Samenvoegen"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "Van %1$s tot %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6628,7 +6636,7 @@ msgstr "Bevestig:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Bevestiging samenvoegen categorieën"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6664,19 +6672,19 @@ msgstr "Records gevonden in budget: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Verwijder de bronbegunstigde na samenvoeging"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Samenvoegen begunstigde bevestigen"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Verwijder bron label na samenvoegen"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Bevestiging samenvoeging labels"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6863,12 +6871,12 @@ msgstr "Prognose"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Rapport gegenereerd %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "Van %1$s tot %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7514,7 +7522,7 @@ msgstr "Ongeldige label naam"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Labelnamen mogen niet de '&' of 'ρ' tekens zijn, omdat deze gereserveerd zijn voor filteroperators"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -7522,7 +7530,7 @@ msgstr "Beheer labels: Ongeldige naam"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Naam bevat label scheidingsteken."
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
@@ -7538,7 +7546,7 @@ msgstr "Label toevoegen"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Een label met die naam bestaat al"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
@@ -7880,7 +7888,7 @@ msgstr "Versie: %s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Gebouwd op: %1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7890,7 +7898,7 @@ msgstr "Database versie: %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git commit: %1$s (%2$s)"
 
 #: util.cpp:1427
 #, c-format
@@ -8114,7 +8122,7 @@ msgstr "Rekeningnaam foutief"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Een account met deze naam bestaat al"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
@@ -8201,7 +8209,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Specificeer de standaardvaluta voor het databestand. Deze \n"
+"standaard kunt u indien nodig wijzigen via het opties scherm.\n"
+"Nieuwe rekeningen zullen standaard deze valuta gebruiken\n"
+"wat kan worden aangepast door de rekening details te wijzigen."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
