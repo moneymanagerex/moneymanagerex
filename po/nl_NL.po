@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"PO-Revision-Date: 2023-07-22 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -676,7 +676,7 @@ msgstr "Totaal: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Verandering in waarde: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -733,7 +733,7 @@ msgstr "Beheer bijlagen | %s %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Beheer bijlagen | %1$s %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1516,7 +1516,7 @@ msgstr "Maand: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Startdatum van: %2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1667,7 +1667,7 @@ msgstr "Kies de huidige geselecteerde categorie als de geselecteerde categorie v
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Naam bevat categorie scheidingsteken."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
@@ -1687,7 +1687,7 @@ msgstr "Categorie toevoegen"
 
 #: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Categorie met dezelfde naam bestaat al voor de bovenliggende categorie"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1711,7 +1711,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Weet u zeker dat u\n"
+" \"%1$s\"\n"
+"wilt verplaatsen naar:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:459
 msgid "Top level"
@@ -1732,7 +1735,8 @@ msgstr ""
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Tip: Wijzig alle transacties van deze categorie naar\n"
+"een andere categorie via de opdracht - overzetten:"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
@@ -1741,7 +1745,7 @@ msgstr ""
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Gereedschappen → Samenvoegen → Categorieën"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
@@ -1778,7 +1782,7 @@ msgstr "Beheer categorieën: Fout bij wijzigen"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Categorieën samenvoegen voltooid"
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -1788,7 +1792,7 @@ msgstr "Records zijn bijgewerkt in het databestand: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "Resultaat categorieën samenvoegen"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -2939,12 +2943,12 @@ msgstr "Metadata JSON in Thema '%s' kan niet verwerkt worden, de opbouw ziet er 
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "Bestand '%1$s' ontbrekende of ongeldig in het gekozen thema '%2$s'"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Metadata '%1$s' ontbreekt in het gekozen thema '%2$s'"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -3241,7 +3245,7 @@ msgstr "Ontbreekt"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Komt overeen met %1$s door patroon %2$s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3278,7 +3282,7 @@ msgstr "Importeren categorieën"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Importeren transactie %1$i of %2$i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3313,7 +3317,7 @@ msgstr "De transactiecode ontbreekt"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s komt overeen met %2$s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3493,7 +3497,7 @@ msgstr "Exporteer bestand"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Voorinstelling '%1$s' geladen omdat account '%2$s' geselecteerd is"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3695,12 +3699,12 @@ msgstr "Bedrag teken moet worden gedefinieerd op type wanneer 'Type' is geselect
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "Waarde %1$s voor aangepast veld '%2$s' is niet van type %3$s."
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "Waarde %1$s voor %2$s aangepast veld '%3$s' is geen geldige selectie."
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
@@ -3710,7 +3714,7 @@ msgstr "Bevestig overeenkomst van het formaat van de selectie %s."
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "Waarde %1$s komt niet overeen met regex %2$s voor aangepast veld '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3796,12 +3800,13 @@ msgstr "Standaardvaluta selectie"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "Historische tarieven voor %1$s gevonden maar \"Gebruik valuta geschiedenis\" bij opties is uitgeschakeld:\n"
+"klik nee en schakel het in of klik op Ja om alle historische tarieven voor %2$s te verwijderen"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Valutahistorie opties: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3947,7 +3952,7 @@ msgstr "A.u.b. een niet leeg teken invoeren."
 #: mmSimpleDialogs.cpp:1132
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Nieuw label '%s' aanmaken?"
 
 #: mmSimpleDialogs.cpp:1132
 msgid "New tag entered"
@@ -4005,7 +4010,7 @@ msgstr "Tip: MMEX ondersteunt het printen van alle rapporten die kunnen worden b
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "TIP: U kunt MMEX voor een deel naar eigen wens inrichten door instellingen te wijzigen in het Opties menu."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4017,11 +4022,11 @@ msgstr "TIP: Voer de wisselkoersen voor de valuta's in indien u rekeningen met v
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the h key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Beheer categorieën tip: Het indrukken van een letter-toets (bijv. h) toont afwisselend de categorieën beginnend met die letter (bijv. h)."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Beheer categorieën tip: Het indrukken van een tweeletterige combinatie toont afwisselend alle categorieën die beginnen met die combinatie. Voorbeeld: Het intoetsen van au toont auto, auto-onderhoud, autokosten, enz..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4360,7 +4365,7 @@ msgstr "Transacties verwijderen"
 #: mmcheckingpanel.cpp:511
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Account weergave: %s"
 
 #: mmcheckingpanel.cpp:529
 msgid "Account Bal: "
@@ -4421,7 +4426,8 @@ msgstr "Meerdere keuzes"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "Kan aangepast veld niet opslaan \"%1$s\":\n"
+"waarde \"%2$s\" komt niet overeen met RegEx validatie \"%3$s\""
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4597,7 +4603,7 @@ msgstr "&Open website van de rekening"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Wijzig rekeningstype..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4781,7 +4787,7 @@ msgstr "Dashboard openen"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Wijzig het rekeningtype van een rekening"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -4825,7 +4831,7 @@ msgstr "&Categorieën..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Categorieën samenvoegen"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4833,7 +4839,7 @@ msgstr "&Begunstigden..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Voeg ontvangers samen"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4841,15 +4847,15 @@ msgstr "&Labels..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Labels samenvoegen"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Samenvoegen"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Categorieën, begunstigden en labels samenvoegen"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -5277,7 +5283,7 @@ msgstr "Bevestig het nieuwe wachtwoord"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Wachtwoord gewijzigd"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5296,7 +5302,9 @@ msgstr "Databaseoptimalisatie"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Databaseoptimalisatie voltooid!\n\n"
+"Vorige grootte: %1$s\n"
+"Nieuwe grootte: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -5397,7 +5405,7 @@ msgstr "Even wachten alstublieft..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s van %2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
