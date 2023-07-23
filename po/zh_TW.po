@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"PO-Revision-Date: 2023-07-23 05:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "開戶日期"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "帳號開啟日期"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2567
