@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 15:46\n"
+"PO-Revision-Date: 2023-07-23 15:15\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1732,16 +1732,16 @@ msgstr "Subcategoría en uso."
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Consejo: Cambie todas las transacciones de esta categoría a otra categoría usando el comando de combinación:"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr "Consejo: Cambie todas las transacciones de esta subcategoría a otra subcategoría usando el comando de reubicar:"
+msgstr "Consejo: Cambie todas las transacciones de esta subcategoría a otra subcategoría usando el comando de combinación:"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Herramientas → Combinar → Categorías"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
@@ -1778,7 +1778,7 @@ msgstr "Organizar categorías: Error al editar"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Completada la combinación de categorías"
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -1788,7 +1788,7 @@ msgstr "Los registros han sido actualizados en la base de datos: %i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "Resultado de la combinación de categorías"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -4826,7 +4826,7 @@ msgstr "&Categorías..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Combinar categorías"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4834,7 +4834,7 @@ msgstr "&Beneficiarios..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Combinar beneficiarios"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4842,15 +4842,15 @@ msgstr "&Etiquetas..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Combinar etiquetas"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Combinar"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Combinar categorías, beneficiarios y etiquetas"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -5437,19 +5437,19 @@ msgstr ""
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Completada la combinación de beneficiarios"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "Resultado de la combinación de beneficiarios"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Completada la combinación de etiquetas"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "Resultado de la combinación de etiquetas"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -6555,11 +6555,11 @@ msgstr "Beneficiario en uso."
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Consejo: Cambiar todas las transacciones de este beneficiario a otro beneficiario usando el comando de combinación:"
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Herramientas → Combinar → Beneficiarios"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6591,28 +6591,28 @@ msgstr "Reubicar beneficiario"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr "Eliminar categoría de origen después de la fusión (si la categoría de origen no tiene subcategorías)"
+msgstr "Eliminar categoría de origen después de la combinación (si la categoría de origen no tiene subcategorías)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Origen:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Destino:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Combinar"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "De %1$s a %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6621,7 +6621,7 @@ msgstr "Por favor, confirme:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Confirmación de la combinación de categorías"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6657,19 +6657,19 @@ msgstr "Presupuestos encontrados: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Eliminar al beneficiario de origen después de la combinación"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Confirmación de la combinación de beneficiarios"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Eliminar etiqueta de origen después de la combinación"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Confirmación de la combinación de etiquetas"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6856,12 +6856,12 @@ msgstr "Previsión"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Informe generado %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "Desde %1$s hasta %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7507,7 +7507,7 @@ msgstr "Nombre de etiqueta no válido"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Los nombres de etiquetas no pueden ser los caracteres '&' o '|' porque están reservados para los operadores de filtros"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -8196,7 +8196,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Especifique la divisa base (o por defecto) para ser usada por\n"
+"la base de datos. La divisa base se puede cambiar posteriormente\n"
+"en los ajustes. Las cuentas nuevas utilizarán esta divisa\n"
+"por defecto, aunque se puede cambiar editando la cuenta."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
