@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-23 15:15\n"
+"PO-Revision-Date: 2023-07-23 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -676,7 +676,7 @@ msgstr "Total: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Cambio en el valor: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -733,7 +733,7 @@ msgstr "Organizar adjuntos | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Organizar adjuntos | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1516,7 +1516,7 @@ msgstr "Mes: %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Fecha de inicio de: %2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1667,7 +1667,7 @@ msgstr "Utilizar la categoría seleccionada actualmente para la transacción"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "El nombre contiene el delimitador de categorías."
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
@@ -1687,7 +1687,7 @@ msgstr "Añadir categoría"
 
 #: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Ya existe una categoría con el mismo nombre en la matriz"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1711,7 +1711,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "¿Está seguro de que desea mover\n"
+" \"%1$s\"\n"
+"a:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:459
 msgid "Top level"
@@ -2939,12 +2942,12 @@ msgstr "El archivo JSON de metadatos del tema '%s' no puede ser analizado y pare
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "Falta el archivo '%1$s' o no es válido en el tema seleccionado '%2$s'"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Faltan los metadatos '%1$s' en el tema elegido '%2$s'"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -3241,7 +3244,7 @@ msgstr "Falta"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Coincide con %1$s por el patrón %2$s"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3278,7 +3281,7 @@ msgstr "Importando categorías"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Importando transacción %1$i de %2$i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3313,7 +3316,7 @@ msgstr "Falta el código de transacción"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s coincide con %2$s"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3494,7 +3497,7 @@ msgstr "Exportar fichero"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Preajuste '%1$s' cargado porque se ha seleccionado la cuenta '%2$s'"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3696,12 +3699,12 @@ msgstr "El signo de la cantidad debe definirse por tipo cuando se selecciona 'Ti
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "El valor %1$s para el campo personalizado '%2$s' no es del tipo %3$s."
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "El valor %1$s para %2$s campo personalizado '%3$s' no es una selección válida."
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
@@ -3711,7 +3714,7 @@ msgstr "Confirme que el formato coincide con la selección %s."
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "El valor %1$s no coincide con la expresión regular %2$s para el campo personalizado '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3797,12 +3800,13 @@ msgstr "Selección de la divisa base"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "Tasas históricas para %1$s encontradas, pero \"Usar histórico de divisas\" en las opciones está deshabilitado:\n"
+"haga clic en no y habilítelo o haga clic en sí para eliminar todas las tasas históricas de %2$s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Opciones del histórico de la divisa: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3948,7 +3952,7 @@ msgstr "Por favor, escriba un símbolo no vacío."
 #: mmSimpleDialogs.cpp:1132
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "¿Crear nueva etiqueta '%s'?"
 
 #: mmSimpleDialogs.cpp:1132
 msgid "New tag entered"
@@ -4006,7 +4010,7 @@ msgstr "Consejo: MMEX soporta la impresión de todos los informes que se pueden 
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "Consejo: Se pueden modificar algunas opciones de funcionamiento de MMEX modificando los ajustes en Opciones."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4018,11 +4022,11 @@ msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que te
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the h key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Consejo para organizar categorías: Al pulsar la tecla h se alternarán todas las categorías que comiencen por esa letra."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Consejo para organizar categorías: Al pulsar una combinación de dos teclas se alternarán todas las categorías que comiencen por esa combinación de teclas. Por ejemplo: Pulsando re seleccionará Regalos, Reembolsos, etc..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4361,7 +4365,7 @@ msgstr "Transacciones eliminadas"
 #: mmcheckingpanel.cpp:511
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Vista de cuenta: %s"
 
 #: mmcheckingpanel.cpp:529
 msgid "Account Bal: "
@@ -4422,7 +4426,8 @@ msgstr "Varias opciones"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "No se puede guardar el campo personalizado \"%1$s\":\n"
+"el valor \"%2$s\" no coincide con la validación de la expresión regular \"%3$s\""
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4598,7 +4603,7 @@ msgstr "&Abrir sitio web de la cuenta"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Cambiar tipo de cuenta..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4782,7 +4787,7 @@ msgstr "Abrir pantalla principal"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Cambiar el tipo de cuenta de una cuenta"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -5278,7 +5283,7 @@ msgstr "Por favor, confirma la nueva contraseña"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Cambio de contraseña completado"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5297,7 +5302,9 @@ msgstr "Optimización de la base de datos"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "¡Optimización de la base de datos completada!\n\n"
+"Tamaño antes: %1$s\n"
+"Tamaño después: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -5398,7 +5405,7 @@ msgstr "Espere, por favor..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s en %2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
@@ -5420,20 +5427,21 @@ msgstr "Seleccionar la cuenta a borrar"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "¿Está seguro de querer borrar\n"
+"la cuenta %1$s: %2$s?"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Seleccionar cuenta"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Cambiar tipo de cuenta"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Seleccione un nuevo tipo de cuenta para %s"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
@@ -5782,7 +5790,12 @@ msgid "A recurring transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Una transacción recurrente excederá el límite de su cuenta.\n\n"
+"Cuenta: %1$s\n"
+"Saldo actual: %1$6.2f\n"
+"Cantidad de la transacción: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"¿Desea continuar?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5853,7 +5866,9 @@ msgstr "La plantilla está vacía"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "¡La consulta SQL:\n"
+"%s \n"
+"modificaría la base de datos! ¡Cancelado!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
