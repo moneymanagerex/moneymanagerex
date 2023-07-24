@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-24 17:36\n"
+"PO-Revision-Date: 2023-07-24 18:48\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2580,7 +2580,7 @@ msgstr "Intervalo de Datas"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Incluir todas as subcategorias"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -2922,7 +2922,7 @@ msgstr "Novo relatório %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Já existe um relatório com este nome"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -2958,7 +2958,7 @@ msgstr "e mais..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "Existem %1$d ícones faltando ou inválidos no tema escolhido '%2$s': %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -6559,7 +6559,7 @@ msgstr "Digite qualquer sequência de caracteres que corresponda a este benefici
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Já existe um beneficiário com este nome"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6607,7 +6607,7 @@ msgstr "Realocar Beneficiário"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Excluir categoria de origem após mesclar (se a categoria de origem não tiver subcategorias)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -8123,7 +8123,7 @@ msgstr "Nome de Conta Inválido"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Já existe uma conta com este nome"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
