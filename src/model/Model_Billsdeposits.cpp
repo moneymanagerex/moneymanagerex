@@ -449,7 +449,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     {
         for (const auto& entry : m_bill_splits)
         {
-            CATEGNAME += (CATEGNAME.empty() ? " * " : ", ")
+            CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
                 + Model_Category::full_name(entry.CATEGID);
 
             wxString splitTags;

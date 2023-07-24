@@ -410,9 +410,9 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     if (!m_splits.empty()) {
         for (const auto& entry : m_splits)
         {
-            this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
+            this->CATEGNAME += (this->CATEGNAME.empty() ? " + " : ", ")
                 + Model_Category::full_name(entry.CATEGID);
-    }
+        }
     }
     else {
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID);
@@ -456,7 +456,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     {
         for (const auto& entry : m_splits)
         {
-            this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
+            this->CATEGNAME += (this->CATEGNAME.empty() ? " + " : ", ")
                 + Model_Category::full_name(entry.CATEGID);
         }
     }
