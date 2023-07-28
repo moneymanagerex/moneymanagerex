@@ -1066,9 +1066,11 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
             m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
             textNotes_->SetValue(m_local_splits[0].NOTES);
             m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
-            tagTextCtrl_->ClearAll();
+            tagTextCtrl_->Clear();
+            wxString tagnames;
             for (const auto& tag : m_local_splits[0].TAGS)
-                tagTextCtrl_->AddText(Model_Tag::instance().get(tag)->TAGNAME + " ");
+                tagnames.Append(Model_Tag::instance().get(tag)->TAGNAME + " ");
+            tagTextCtrl_->SetText(tagnames);
             m_local_splits.clear();
         }
 
@@ -1081,7 +1083,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         skip_tooltips_init_ = false;
         dataToControls();
     }
-    tagTextCtrl_->mmDoReInitialize();
+    tagTextCtrl_->Reinitialize();
 }
 
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))

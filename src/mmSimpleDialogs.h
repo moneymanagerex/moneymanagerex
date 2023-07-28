@@ -48,7 +48,7 @@ public:
     int mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
-    void mmDoReInitialize();
+    void mmDoReInitialize(); 
 protected:
     void OnTextUpdated(wxCommandEvent& event);
     void OnSetFocus(wxFocusEvent& event);
@@ -297,7 +297,7 @@ inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::Sho
 
 /* -------------------------------------------- */
 
-class mmTagTextCtrl : public wxStyledTextCtrl
+class mmTagTextCtrl : public wxPanel
 {
 public:
     mmTagTextCtrl(wxWindow* parent, wxWindowID id = wxID_ANY,
@@ -306,28 +306,42 @@ public:
         const wxSize& size = wxDefaultSize, long style = 0
     );
     bool IsValid();
-    virtual bool Validate(const wxString& tagText = wxEmptyString);
+    bool Validate(const wxString& tagText = wxEmptyString);
     const wxArrayInt GetTagIDs() const;
     const wxArrayString GetTagStrings();
-    void mmDoReInitialize();
+    void Reinitialize();
     void SetTags(const wxArrayInt& tagIds);
+    void SetText(const wxString& text);
+    void Clear();
+    const bool IsEmpty() const;
+    bool Enable(bool enable = true) override;
 
 protected:
-    void OnKeyPressed(wxKeyEvent& event);
+    void OnTextChanged(wxKeyEvent& event);
     void OnPaste(wxStyledTextEvent& event);
     void OnKillFocus(wxFocusEvent& event);
     void OnPaint(wxPaintEvent& event);
-    void OnChange(wxCommandEvent& event);
-    void init();
+    void OnDropDown(wxCommandEvent& event);
+    void OnKeyPressed(wxKeyEvent& event);
+    void OnPopupCheckboxSelected(wxCommandEvent& event);
 private:
+    void init();
+    wxStyledTextCtrl* textCtrl_;
+    wxBitmapButton* btn_dropdown_;
+    wxString autocomplete_string_;
     std::map<wxString, int, caseInsensitiveComparator> tag_map_;
     std::map<wxString, int, caseInsensitiveComparator> tags_;
-    wxString tags_autocomp_str;
     wxArrayString parseTags(const wxString& tagString);
     bool operatorAllowed_;
+    wxPopupTransientWindow* popupWindow_;
+    wxCheckListBox* tagCheckListBox_;
+    wxColour borderColor_ = *wxBLACK;
 };
 
 inline bool mmTagTextCtrl::IsValid() { return Validate(); }
-inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(GetText()); }
-inline void mmTagTextCtrl::mmDoReInitialize() { init(); }
+inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(textCtrl_->GetText()); }
+inline void mmTagTextCtrl::Reinitialize() { init(); }
+inline void mmTagTextCtrl::SetText(const wxString& text) { textCtrl_->SetText(text); }
+inline const bool mmTagTextCtrl::IsEmpty() const { return textCtrl_->IsEmpty(); }
+inline void mmTagTextCtrl::Clear() { textCtrl_->ClearAll(); }
 #endif // MM_EX_MMSIMPLEDIALOGS_H_
