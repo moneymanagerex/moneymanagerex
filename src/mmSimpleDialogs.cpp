@@ -123,11 +123,14 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
     if (!is_initialized_)
     {
+      wxLogDebug("> OnSetFocus");
        wxArrayString auto_complete;
        for (const auto& item : all_elements_) {
            auto_complete.Add(item.first);
+           wxLogDebug(">> %s", item.first);
        }
        auto_complete.Sort(CaseInsensitiveLocaleCmp);
+       wxLogDebug("< OnSetFocus");
 
        this->AutoComplete(auto_complete);
        if (!auto_complete.empty()) {
@@ -177,15 +180,15 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
 #if defined (__WXMAC__)
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!
-    if (typedText.IsEmpty() || (this->GetSelection() == -1))
+    if ((is_initialized_) && (typedText.IsEmpty() || (this->GetSelection() == -1)))
     {
         this->Clear();
-
+        
         for (auto& entry : all_elements_)
         {
             if (entry.first.Lower().Matches(typedText.Lower().Prepend("*").Append("*")))
                 this->Append(entry.first);
-        }
+            }
 
         this->ChangeValue(typedText);
         this->SetInsertionPointEnd();
