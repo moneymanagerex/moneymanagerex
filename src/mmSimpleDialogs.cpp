@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Setting.h"
 
+#include <wx/renderer.h>
 #include <wx/richtooltip.h>
 
 //------- Pop-up calendar, currently only used for MacOS only
@@ -932,7 +933,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
     : wxPanel(), operatorAllowed_(operatorAllowed)
 {
-    style |= wxBORDER_SIMPLE;
+    style |= wxBORDER_NONE;
     Create(parent, id, pos, size, style);
     SetFont(parent->GetFont());
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
@@ -973,6 +974,12 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
         textCtrl_->SetZoom(0);
         textCtrl_->SetEvtHandlerEnabled(true);
     });
+    // Paint base text control
+    Bind(wxEVT_PAINT, [this](wxPaintEvent& event) {
+        wxWindowDC dc(this);
+        wxRendererNative::Get().DrawTextCtrl(this, dc, GetClientRect());
+    });
+
     h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
 
     // Dropdown button
@@ -1213,6 +1220,12 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
         
         position = wordEnd + 1;
     }
+
+    // paint a TextCtrl over the background
+    wxWindowDC dc(this);
+    wxRendererNative::Get().DrawTextCtrl(this, dc, GetClientRect());
+    // repaint the button over the TextCtrl
+    btn_dropdown_->Refresh();
 
     event.Skip();
 }
