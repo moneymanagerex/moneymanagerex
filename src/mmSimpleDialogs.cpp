@@ -967,6 +967,12 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
     textCtrl_->Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     textCtrl_->Bind(wxEVT_CHAR_HOOK, &mmTagTextCtrl::OnKeyPressed, this);
+    textCtrl_->Bind(wxEVT_STC_ZOOM, [this](wxStyledTextEvent& event) {
+        // Disable zoom
+        textCtrl_->SetEvtHandlerEnabled(false);
+        textCtrl_->SetZoom(0);
+        textCtrl_->SetEvtHandlerEnabled(true);
+    });
     h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
 
     // Dropdown button
