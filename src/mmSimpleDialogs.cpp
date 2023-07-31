@@ -123,14 +123,11 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
     if (!is_initialized_)
     {
-      wxLogDebug("> OnSetFocus");
        wxArrayString auto_complete;
        for (const auto& item : all_elements_) {
            auto_complete.Add(item.first);
-           wxLogDebug(">> %s", item.first);
        }
        auto_complete.Sort(CaseInsensitiveLocaleCmp);
-       wxLogDebug("< OnSetFocus");
 
        this->AutoComplete(auto_complete);
        if (!auto_complete.empty()) {
@@ -183,7 +180,7 @@ void mmComboBox::OnTextUpdated(wxCommandEvent& event)
     if ((is_initialized_) && (typedText.IsEmpty() || (this->GetSelection() == -1)))
     {
         this->Clear();
-        
+
         for (auto& entry : all_elements_)
         {
             if (entry.first.Lower().Matches(typedText.Lower().Prepend("*").Append("*")))
