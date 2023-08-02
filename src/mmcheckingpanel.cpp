@@ -504,7 +504,7 @@ void mmCheckingPanel::CreateControls()
 wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
     if (isAllAccounts_)
-        return wxString::Format(_("All Transactions Report"));
+        return wxString::Format(_("All Transactions"));
     else if (isTrash_)
         return wxString::Format(_("Deleted Transactions"));
     else
