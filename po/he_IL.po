@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"POT-Creation-Date: 2023-08-03 10:35+0300\n"
+"PO-Revision-Date: 2023-08-03 11:17\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "אִפְשׁוּר שליחת נתוני שימוש אנונימיים �
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:782
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
-#: mmSimpleDialogs.cpp:884 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:885 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:582 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:280
 #: tagdialog.cpp:145 transactionsupdatedialog.cpp:261 transdialog.cpp:589
@@ -841,7 +841,7 @@ msgid "Open attachment failed"
 msgstr "פתיחת צרופה כשלה"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:610 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:611 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -988,7 +988,7 @@ msgstr "הזנת תאריך בו יתבקש המשתמש להזין את התנ�
 msgid "Date Paid"
 msgstr "תאריך תשלום"
 
-#: billsdepositsdialog.cpp:519 filtertransdialog.cpp:612 transdialog.cpp:1300
+#: billsdepositsdialog.cpp:519 filtertransdialog.cpp:612 transdialog.cpp:1302
 msgid "Specify the status for the transaction"
 msgstr "הגדרת מצב תנועה"
 
@@ -1004,7 +1004,7 @@ msgstr "הגדרת מצב תנועה"
 msgid "Status"
 msgstr "מצב"
 
-#: billsdepositsdialog.cpp:527 transdialog.cpp:1301
+#: billsdepositsdialog.cpp:527 transdialog.cpp:1303
 msgid "Specify the type of transactions to be created."
 msgstr "בחירת סוג התנועה שתיווצר."
 
@@ -1012,7 +1012,7 @@ msgstr "בחירת סוג התנועה שתיווצר."
 msgid "&Advanced"
 msgstr "&מתקדם"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1304
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1306
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "מאפשר הגדרה של סכומים שונים בחשבון 'שולח' ובחשבון 'מקבל'."
 
@@ -1028,7 +1028,7 @@ msgstr "מאפשר הגדרה של סכומים שונים בחשבון 'שול�
 msgid "Amount"
 msgstr "סכום"
 
-#: billsdepositsdialog.cpp:553 transdialog.cpp:1286
+#: billsdepositsdialog.cpp:553 transdialog.cpp:1288
 msgid "Specify the transfer amount in the To Account"
 msgstr "הזנת הסכום להעברה לחשבון המקבל"
 
@@ -1085,7 +1085,7 @@ msgid "Category"
 msgstr "סוג־אב"
 
 #: billsdepositsdialog.cpp:602 billsdepositsdialog.cpp:1427 transdialog.cpp:520
-#: transdialog.cpp:1263
+#: transdialog.cpp:1265
 msgid "Use split Categories"
 msgstr "שימוש בפיצול סוגי־אב"
 
@@ -1099,7 +1099,7 @@ msgstr "שימוש בפיצול סוגי־אב"
 msgid "Tags"
 msgstr "תגים"
 
-#: billsdepositsdialog.cpp:619 transdialog.cpp:1302
+#: billsdepositsdialog.cpp:619 transdialog.cpp:1304
 msgid "Specify any associated check number or transaction number"
 msgstr "הזנת כאסמכתא מספר שק או מספר תנועה"
 
@@ -1134,7 +1134,7 @@ msgstr "ניהול צרופות לתנועה המחזורית"
 msgid "Color"
 msgstr "צבע"
 
-#: billsdepositsdialog.cpp:655 transdialog.cpp:577 transdialog.cpp:1303
+#: billsdepositsdialog.cpp:655 transdialog.cpp:577 transdialog.cpp:1305
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "הקלדת הערת מלל שתצורף לתנועה זו."
@@ -1258,7 +1258,7 @@ msgstr "תנועה מחזורית חדשה"
 msgid "Specify where the transaction is going to"
 msgstr "בחירת יעד התנועה"
 
-#: billsdepositsdialog.h:128 transdialog.cpp:1295
+#: billsdepositsdialog.h:128 transdialog.cpp:1297
 msgid "Specify where the transaction is coming from"
 msgstr "הגדרת מקור התנועה"
 
@@ -1266,7 +1266,7 @@ msgstr "הגדרת מקור התנועה"
 msgid "Specify which account the transfer is going to"
 msgstr "בחירת החשבון ה'מקבל' של התנועה"
 
-#: billsdepositsdialog.h:130 transdialog.cpp:1290 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:130 transdialog.cpp:1292 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "הזנת סכום התנועה"
 
@@ -2023,7 +2023,7 @@ msgstr "כל השינויים יאבדו ללא עדכון"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:789
+#: mmSimpleDialogs.cpp:790
 msgid "Invalid Entry"
 msgstr "תנועה לא תקינה"
 
@@ -2978,7 +2978,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "לא נמצאה ערכת נושאה עבידה, יתכן שההתקנה פגומה"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:799
+#: mmSimpleDialogs.cpp:800
 msgid "Unable to open file."
 msgstr "לא ניתן לפתוח קובץ."
 
@@ -3650,7 +3650,7 @@ msgstr "לא ניתן למחוק את הקובץ הקיים. הקובץ עשוי
 msgid "Destination file error"
 msgstr "שגיאת קובץ יעד"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:807
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:808
 msgid "Invalid Account"
 msgstr "חשבון לא תקין"
 
@@ -3866,100 +3866,100 @@ msgstr "לא ניתן להוריד היסטוריה עבור סמל בסיס %s.
 msgid "Could not find base currency symbol!"
 msgstr "סמל מטבע בסיס לא נמצא!"
 
-#: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:564
+#: mmSimpleDialogs.cpp:553 mmSimpleDialogs.cpp:565
 msgid "Clear color"
 msgstr "ניקוי צבע"
 
-#: mmSimpleDialogs.cpp:555 mmSimpleDialogs.cpp:569
+#: mmSimpleDialogs.cpp:556 mmSimpleDialogs.cpp:570
 #, c-format
 msgid "Color #%i"
 msgstr "צבע #%i"
 
-#: mmSimpleDialogs.cpp:729
+#: mmSimpleDialogs.cpp:730
 msgid "Subtract one year"
 msgstr "הפחתת שנה אחת"
 
-#: mmSimpleDialogs.cpp:730
+#: mmSimpleDialogs.cpp:731
 msgid "Subtract one month"
 msgstr "הפחתת שנה אחת"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:732
 msgid "Add one month"
 msgstr "הוספת חודש אחד"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:733
 msgid "Add one year"
 msgstr "הוספת שנה אחת"
 
-#: mmSimpleDialogs.cpp:788
+#: mmSimpleDialogs.cpp:789
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "ערך %s לא תקין"
 
-#: mmSimpleDialogs.cpp:794
+#: mmSimpleDialogs.cpp:795
 msgid "Please select an existing category"
 msgstr "נא לבחור סוג־אב קיים"
 
-#: mmSimpleDialogs.cpp:794
+#: mmSimpleDialogs.cpp:795
 msgid "Invalid Category"
 msgstr "סוג־אב לא תקין"
 
-#: mmSimpleDialogs.cpp:799
+#: mmSimpleDialogs.cpp:800
 msgid "File name is empty."
 msgstr "לא הוזן שם קובץ."
 
-#: mmSimpleDialogs.cpp:800
+#: mmSimpleDialogs.cpp:801
 msgid "Please select the file for this operation."
 msgstr "נא בחירת את הקובץ לפעולה זו."
 
-#: mmSimpleDialogs.cpp:810
+#: mmSimpleDialogs.cpp:811
 msgid "Please select the account for this transaction."
 msgstr "נא בחירת את חשבון התנועה."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:813
 msgid "Please specify which account the transfer is going to."
 msgstr "נא בחירת את החשבון ה'מקבל' של התנועה."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:815
 msgid "Selection can be made by using the dropdown button."
 msgstr "בחירה יכולה להתבצע על ידי שימוש בלחצן תיבת בחירה."
 
-#: mmSimpleDialogs.cpp:817
+#: mmSimpleDialogs.cpp:818
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "אפשור הלחצן יפתח תיבת בחירה ממנה ניתן לבחור את החשבון."
 
-#: mmSimpleDialogs.cpp:826
+#: mmSimpleDialogs.cpp:827
 msgid "Invalid Payee"
 msgstr "מוטב לא תקין"
 
-#: mmSimpleDialogs.cpp:827
+#: mmSimpleDialogs.cpp:828
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "נא הזנת מוטב חדש ,\n"
 "או בחירת באמצעות לחצן תיבת בחירה."
 
-#: mmSimpleDialogs.cpp:835 mmSimpleDialogs.cpp:847
+#: mmSimpleDialogs.cpp:836 mmSimpleDialogs.cpp:848
 msgid "Invalid Name"
 msgstr "שם לא תקין"
 
-#: mmSimpleDialogs.cpp:838 mmSimpleDialogs.cpp:850
+#: mmSimpleDialogs.cpp:839 mmSimpleDialogs.cpp:851
 msgid "Already exist!"
 msgstr "קיים כבר!"
 
-#: mmSimpleDialogs.cpp:840
+#: mmSimpleDialogs.cpp:841
 msgid "Please type in a non empty name."
 msgstr "נא הזנת שם (לא ריק)"
 
-#: mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:853
 msgid "Please type in a non empty symbol."
 msgstr "נא הזנת סמל (לא ריק)"
 
-#: mmSimpleDialogs.cpp:1132
+#: mmSimpleDialogs.cpp:1262
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1132
+#: mmSimpleDialogs.cpp:1262
 msgid "New tag entered"
 msgstr "תג חדש הוזן"
 
@@ -4002,12 +4002,12 @@ msgid "Tip: The .mmb file is not encrypted. That means anyone else having the pr
 msgstr "עצה: קובץ .mmb לא מוצפן, הוא 'לא מוצפן'. כלומר, כל אחד, בעל ידע מסוים, יוכל לפתוח את הקובץ ולקרוא את תוכנו. לכן, יש וודא כי במידה ומאוחסן בקובץ מידע פיננסי רגיש, שיאובטח כראוי."
 
 #: mmTips.h:27
-msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "עצה: כדי לסמן תנועה כמותאמת, פשוט יש לבחור את בתנועה ולהקhש על מקש 'r' או 'R'. כדי לסמן תנוgה כלא-מותאמת, יש לבחור את התנועה ולהקhש על מקש 'u' או 'U'."
+msgid "Tip: To mark a transaction as reconciled, select the transaction and press the 'r' or 'R' key. To mark a transaction as unreconciled, select the transaction and press the 'u' or 'U' key."
+msgstr ""
 
 #: mmTips.h:28
-msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור את התנועה ולהקhש על מקש ה־'f' או 'F' במקלדת."
+msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the 'f' or 'F' key."
+msgstr ""
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4383,9 +4383,9 @@ msgstr "שיחזור תנועה שנבחרה"
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "נא להזין מחרוזת כל שהיא לחיפושה בנתוני התנועה הקרובה ביותר"
 
-#: mmcheckingpanel.cpp:507
-msgid "Full Transactions Report"
-msgstr "דוח תנועות מלא"
+#: mmcheckingpanel.cpp:507 mmframe.cpp:732
+msgid "All Transactions"
+msgstr "כל התנועות"
 
 #: mmcheckingpanel.cpp:509 mmframe.cpp:776
 msgid "Deleted Transactions"
@@ -4510,10 +4510,6 @@ msgstr "תנועות מחזורית אוטומטית"
 #: mmframe.cpp:728 mmframe.cpp:1915 optiondialog.cpp:37
 msgid "Dashboard"
 msgstr "לוח בקרה"
-
-#: mmframe.cpp:732
-msgid "All Transactions"
-msgstr "כל התנועות"
 
 #: mmframe.cpp:764 mmhomepage.cpp:701 reports/summary.cpp:266
 #: reports/summary.cpp:304
@@ -7669,35 +7665,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "רישום התנועה תגרום לחריגה ממגבלת יתרת החשבון.\n\n"
 "האם להמשיך?"
 
-#: transdialog.cpp:1165
+#: transdialog.cpp:1167
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "לשני החשבונות הללו מטבעות שונים אך האפשרות 'תנועה מתקדמת' לא סומנה. האם תקין?"
 
-#: transdialog.cpp:1166
+#: transdialog.cpp:1168
 msgid "Currencies are different"
 msgstr "שוני במטבעות"
 
-#: transdialog.cpp:1281
+#: transdialog.cpp:1283
 msgid "Specify account the money is taken from"
 msgstr "הזנת את החשבון ממנו נלקח הכסף"
 
-#: transdialog.cpp:1282
+#: transdialog.cpp:1284
 msgid "Specify account the money is moved to"
 msgstr "הזנת החשבון אליו מועבר הכסף"
 
-#: transdialog.cpp:1283
+#: transdialog.cpp:1285
 msgid "Specify the transfer amount in the From Account."
 msgstr "הזנת את סכום ההעברה בחשבון השולח."
 
-#: transdialog.cpp:1291
+#: transdialog.cpp:1293
 msgid "Specify account for the transaction"
 msgstr "הזנת את חשבון התנועה"
 
-#: transdialog.cpp:1293
+#: transdialog.cpp:1295
 msgid "Specify to whom the transaction is going to"
 msgstr "הגדרה למי הולכת התנועה"
 
-#: transdialog.cpp:1299 usertransactionpanel.cpp:94
+#: transdialog.cpp:1301 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "הזנת את תאריך התנועה"
 
@@ -7935,8 +7931,8 @@ msgid "Running on:"
 msgstr "‮רץ על‭‭:‮"
 
 #: util.cpp:1718
-msgid "The full list of closed issues is available at this link"
-msgstr "הרשימה המלאה של סוגיות שנסגרו זמינה בקישור הזה"
+msgid "The complete list of closed issues is available at this link"
+msgstr ""
 
 #: util.h:191
 msgid "January"
