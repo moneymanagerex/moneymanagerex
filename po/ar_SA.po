@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-20 14:07\n"
+"POT-Creation-Date: 2023-08-03 10:35+0300\n"
+"PO-Revision-Date: 2023-08-03 11:17\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "تمكين لمساعدتنا في إرسال بيانات مجهولة 
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:782
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
-#: mmSimpleDialogs.cpp:884 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:885 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:582 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:280
 #: tagdialog.cpp:145 transactionsupdatedialog.cpp:261 transdialog.cpp:589
@@ -841,7 +841,7 @@ msgid "Open attachment failed"
 msgstr "فشل فتح المرفق"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:610 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:611 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -988,7 +988,7 @@ msgstr "حدد تاريخ طلب المستخدم لإدخال هذه المعا
 msgid "Date Paid"
 msgstr "تاريخ الدفع"
 
-#: billsdepositsdialog.cpp:519 filtertransdialog.cpp:612 transdialog.cpp:1300
+#: billsdepositsdialog.cpp:519 filtertransdialog.cpp:612 transdialog.cpp:1302
 msgid "Specify the status for the transaction"
 msgstr "تعيين حالة المُعاملة"
 
@@ -1004,7 +1004,7 @@ msgstr "تعيين حالة المُعاملة"
 msgid "Status"
 msgstr "الحالة"
 
-#: billsdepositsdialog.cpp:527 transdialog.cpp:1301
+#: billsdepositsdialog.cpp:527 transdialog.cpp:1303
 msgid "Specify the type of transactions to be created."
 msgstr "حدد نوع المُعاملة التي تريد إنشاءها."
 
@@ -1012,7 +1012,7 @@ msgstr "حدد نوع المُعاملة التي تريد إنشاءها."
 msgid "&Advanced"
 msgstr "&خيارات متقدمة"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1304
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1306
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "يسمح بتحديد مبالغ مختلفة في الحسابات من مصدر إلى آخر."
 
@@ -1028,7 +1028,7 @@ msgstr "يسمح بتحديد مبالغ مختلفة في الحسابات من
 msgid "Amount"
 msgstr "المبلغ"
 
-#: billsdepositsdialog.cpp:553 transdialog.cpp:1286
+#: billsdepositsdialog.cpp:553 transdialog.cpp:1288
 msgid "Specify the transfer amount in the To Account"
 msgstr "حدد مبلغ التحويل في الحساب إلى"
 
@@ -1085,7 +1085,7 @@ msgid "Category"
 msgstr "الفئة"
 
 #: billsdepositsdialog.cpp:602 billsdepositsdialog.cpp:1427 transdialog.cpp:520
-#: transdialog.cpp:1263
+#: transdialog.cpp:1265
 msgid "Use split Categories"
 msgstr "استخدم الفئات المقسمة"
 
@@ -1099,7 +1099,7 @@ msgstr "استخدم الفئات المقسمة"
 msgid "Tags"
 msgstr ""
 
-#: billsdepositsdialog.cpp:619 transdialog.cpp:1302
+#: billsdepositsdialog.cpp:619 transdialog.cpp:1304
 msgid "Specify any associated check number or transaction number"
 msgstr "حدد أي رقم تحقق مرتبط أو رقم معاملة"
 
@@ -1134,7 +1134,7 @@ msgstr "تنظيم مرفقات هذه المعاملة المتكررة"
 msgid "Color"
 msgstr "اللون"
 
-#: billsdepositsdialog.cpp:655 transdialog.cpp:577 transdialog.cpp:1303
+#: billsdepositsdialog.cpp:655 transdialog.cpp:577 transdialog.cpp:1305
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "تعيين أي ملاحظة نصية ترغب اضافتها للعملية"
@@ -1259,7 +1259,7 @@ msgstr "صفقة متكررة جديدة"
 msgid "Specify where the transaction is going to"
 msgstr "حدد إلى أين ستذهب المعاملة"
 
-#: billsdepositsdialog.h:128 transdialog.cpp:1295
+#: billsdepositsdialog.h:128 transdialog.cpp:1297
 msgid "Specify where the transaction is coming from"
 msgstr "حدد من أين تأتي المعاملة"
 
@@ -1267,7 +1267,7 @@ msgstr "حدد من أين تأتي المعاملة"
 msgid "Specify which account the transfer is going to"
 msgstr "حدد الحساب الذي سيذهب إليه التحويل"
 
-#: billsdepositsdialog.h:130 transdialog.cpp:1290 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:130 transdialog.cpp:1292 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "تعيين مبلغ العملية"
 
@@ -2030,7 +2030,7 @@ msgstr "سيتم فقدان أي تغييرات بدون تحديث"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:789
+#: mmSimpleDialogs.cpp:790
 msgid "Invalid Entry"
 msgstr "إدخال غير صالح"
 
@@ -2990,7 +2990,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "لم يتم العثور على سمة عملية، قد يكون التثبيت فاسد"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:799
+#: mmSimpleDialogs.cpp:800
 msgid "Unable to open file."
 msgstr "غير قادر على فتح الملف."
 
@@ -3661,7 +3661,7 @@ msgstr "فشل في حذف الملف الموجود. يمكن قفل الملف
 msgid "Destination file error"
 msgstr "الملف الوجهه غير موجود"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:807
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:808
 msgid "Invalid Account"
 msgstr "حساب غير صحيح"
 
@@ -3877,100 +3877,100 @@ msgstr "غير قادر على تحميل سجل للرمز الأساسي %s. �
 msgid "Could not find base currency symbol!"
 msgstr "لم يتم العثور على رمز العملة الاساسية!"
 
-#: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:564
+#: mmSimpleDialogs.cpp:553 mmSimpleDialogs.cpp:565
 msgid "Clear color"
 msgstr "مسح اللون"
 
-#: mmSimpleDialogs.cpp:555 mmSimpleDialogs.cpp:569
+#: mmSimpleDialogs.cpp:556 mmSimpleDialogs.cpp:570
 #, c-format
 msgid "Color #%i"
 msgstr "لون #%i"
 
-#: mmSimpleDialogs.cpp:729
+#: mmSimpleDialogs.cpp:730
 msgid "Subtract one year"
 msgstr "خصم سنة واحدة"
 
-#: mmSimpleDialogs.cpp:730
+#: mmSimpleDialogs.cpp:731
 msgid "Subtract one month"
 msgstr "خصم شهر واحد"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:732
 msgid "Add one month"
 msgstr "إضافة شهر واحد"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:733
 msgid "Add one year"
 msgstr "إضافة سنة واحدة"
 
-#: mmSimpleDialogs.cpp:788
+#: mmSimpleDialogs.cpp:789
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "الإدخال %s غير صالح"
 
-#: mmSimpleDialogs.cpp:794
+#: mmSimpleDialogs.cpp:795
 msgid "Please select an existing category"
 msgstr "الرجاء تحديد فئة موجودة"
 
-#: mmSimpleDialogs.cpp:794
+#: mmSimpleDialogs.cpp:795
 msgid "Invalid Category"
 msgstr "فئة غير صالحة"
 
-#: mmSimpleDialogs.cpp:799
+#: mmSimpleDialogs.cpp:800
 msgid "File name is empty."
 msgstr "اسم الملف فارغ."
 
-#: mmSimpleDialogs.cpp:800
+#: mmSimpleDialogs.cpp:801
 msgid "Please select the file for this operation."
 msgstr "الرجاء تحديد الملف لهذه العملية."
 
-#: mmSimpleDialogs.cpp:810
+#: mmSimpleDialogs.cpp:811
 msgid "Please select the account for this transaction."
 msgstr "الرجاء تحديد حساب لهذه المعاملة."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:813
 msgid "Please specify which account the transfer is going to."
 msgstr "الرجاء تحديد الحساب الذي سيتم التحويل إليه."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:815
 msgid "Selection can be made by using the dropdown button."
 msgstr "يمكن إجراء التحديد باستخدام زر القائمة المنسدلة."
 
-#: mmSimpleDialogs.cpp:817
+#: mmSimpleDialogs.cpp:818
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "سيؤدي تنشيط الزر إلى توفير مربع اختيار حيث يمكن تحديد الحساب."
 
-#: mmSimpleDialogs.cpp:826
+#: mmSimpleDialogs.cpp:827
 msgid "Invalid Payee"
 msgstr "المدفوع لأمره غير صالح"
 
-#: mmSimpleDialogs.cpp:827
+#: mmSimpleDialogs.cpp:828
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "الرجاء كتابة مستفيد جديد،\n"
 "أو إجراء اختيار باستخدام زر القائمة المنسدلة."
 
-#: mmSimpleDialogs.cpp:835 mmSimpleDialogs.cpp:847
+#: mmSimpleDialogs.cpp:836 mmSimpleDialogs.cpp:848
 msgid "Invalid Name"
 msgstr "اسم غير صالح"
 
-#: mmSimpleDialogs.cpp:838 mmSimpleDialogs.cpp:850
+#: mmSimpleDialogs.cpp:839 mmSimpleDialogs.cpp:851
 msgid "Already exist!"
 msgstr "موجود مسبقًا!"
 
-#: mmSimpleDialogs.cpp:840
+#: mmSimpleDialogs.cpp:841
 msgid "Please type in a non empty name."
 msgstr "الرجاء كتابة اسم غير فارغ."
 
-#: mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:853
 msgid "Please type in a non empty symbol."
 msgstr "الرجاء كتابة رمز غير فارغ."
 
-#: mmSimpleDialogs.cpp:1132
+#: mmSimpleDialogs.cpp:1262
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1132
+#: mmSimpleDialogs.cpp:1262
 msgid "New tag entered"
 msgstr ""
 
@@ -4013,12 +4013,12 @@ msgid "Tip: The .mmb file is not encrypted. That means anyone else having the pr
 msgstr "نصيحة: الملف .mmb غير مشفر. وهذا يعني أن أي شخص آخر لديه معرفة مناسبة سوف يمكنه فتح الملف ويقرأ المحتويات. لذا تأكد من أنك إذا كنت تخزن أي معلومات مالية حساسة فإنه يتم حمايتها بشكل صحيح."
 
 #: mmTips.h:27
-msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "نصيحة: لوضع علامة على المعاملة على أنها مطابقة، فقط حدد المعاملة واضغط على مفتاح 'r' أو 'R'. لوضع علامة على المعاملة على أنها غير مطابقة، فقط حدد المعاملة واضغط على مفتاح 'u' أو 'U'."
+msgid "Tip: To mark a transaction as reconciled, select the transaction and press the 'r' or 'R' key. To mark a transaction as unreconciled, select the transaction and press the 'u' or 'U' key."
+msgstr ""
 
 #: mmTips.h:28
-msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "نصيحة: لوضع علامة على المعاملة على أنها تتطلب المتابعة، فقط حدد المعاملة واضغط على مفتاح 'f' أو 'F'."
+msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the 'f' or 'F' key."
+msgstr ""
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4418,9 +4418,9 @@ msgstr "استعادة المعاملة المحددة"
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "أدخل أي سلسلة للعثور عليها في أقرب بيانات معاملة"
 
-#: mmcheckingpanel.cpp:507
-msgid "Full Transactions Report"
-msgstr "تقرير المعاملات الكاملة"
+#: mmcheckingpanel.cpp:507 mmframe.cpp:732
+msgid "All Transactions"
+msgstr ""
 
 #: mmcheckingpanel.cpp:509 mmframe.cpp:776
 msgid "Deleted Transactions"
@@ -4544,10 +4544,6 @@ msgstr "تكرار المعاملات تلقائياً"
 
 #: mmframe.cpp:728 mmframe.cpp:1915 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
-
-#: mmframe.cpp:732
-msgid "All Transactions"
 msgstr ""
 
 #: mmframe.cpp:764 mmhomepage.cpp:701 reports/summary.cpp:266
@@ -7703,35 +7699,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: transdialog.cpp:1165
+#: transdialog.cpp:1167
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1166
+#: transdialog.cpp:1168
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1281
+#: transdialog.cpp:1283
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1282
+#: transdialog.cpp:1284
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1283
+#: transdialog.cpp:1285
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1291
+#: transdialog.cpp:1293
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1293
+#: transdialog.cpp:1295
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1299 usertransactionpanel.cpp:94
+#: transdialog.cpp:1301 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "تعيين تاريخ العملية"
 
@@ -7969,7 +7965,7 @@ msgid "Running on:"
 msgstr ""
 
 #: util.cpp:1718
-msgid "The full list of closed issues is available at this link"
+msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
 #: util.h:191
