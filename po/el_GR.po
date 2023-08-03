@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-07-20 16:57+0300\n"
-"PO-Revision-Date: 2023-07-24 06:09\n"
+"POT-Creation-Date: 2023-08-03 10:35+0300\n"
+"PO-Revision-Date: 2023-08-03 11:17\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Ενεργοποιήστε για να μας βοηθήσετε να σ
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:782
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
-#: mmSimpleDialogs.cpp:884 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:885 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:582 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:280
 #: tagdialog.cpp:145 transactionsupdatedialog.cpp:261 transdialog.cpp:589
@@ -841,7 +841,7 @@ msgid "Open attachment failed"
 msgstr "Αποτυχία ανοίγματος συνημμένου"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:610 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:611 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -988,7 +988,7 @@ msgstr "Καθορίστε την ημερομηνία που ο χρήστης 
 msgid "Date Paid"
 msgstr "Ημερομηνία Πληρωμής"
 
-#: billsdepositsdialog.cpp:519 filtertransdialog.cpp:612 transdialog.cpp:1300
+#: billsdepositsdialog.cpp:519 filtertransdialog.cpp:612 transdialog.cpp:1302
 msgid "Specify the status for the transaction"
 msgstr "Δηλώστε την κατάσταση της συναλλαγής"
 
@@ -1004,7 +1004,7 @@ msgstr "Δηλώστε την κατάσταση της συναλλαγής"
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: billsdepositsdialog.cpp:527 transdialog.cpp:1301
+#: billsdepositsdialog.cpp:527 transdialog.cpp:1303
 msgid "Specify the type of transactions to be created."
 msgstr "Καθορίστε τον τύπο της συναλλαγής που θα δημιουργηθεί."
 
@@ -1012,7 +1012,7 @@ msgstr "Καθορίστε τον τύπο της συναλλαγής που θ
 msgid "&Advanced"
 msgstr "&Προχωρημένα"
 
-#: billsdepositsdialog.cpp:531 transdialog.cpp:1304
+#: billsdepositsdialog.cpp:531 transdialog.cpp:1306
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Επιτρέπει την ρύθμιση διαφορετικών ποσών στους ΑΠΟ και ΠΡΟΣ λογαριασμούς."
 
@@ -1028,7 +1028,7 @@ msgstr "Επιτρέπει την ρύθμιση διαφορετικών ποσ
 msgid "Amount"
 msgstr "Ποσό"
 
-#: billsdepositsdialog.cpp:553 transdialog.cpp:1286
+#: billsdepositsdialog.cpp:553 transdialog.cpp:1288
 msgid "Specify the transfer amount in the To Account"
 msgstr "Καθορίστε το ποσό της μεταφοράς στον λογαριασμό προορισμού"
 
@@ -1085,7 +1085,7 @@ msgid "Category"
 msgstr "Κατηγορία"
 
 #: billsdepositsdialog.cpp:602 billsdepositsdialog.cpp:1427 transdialog.cpp:520
-#: transdialog.cpp:1263
+#: transdialog.cpp:1265
 msgid "Use split Categories"
 msgstr "Χρησιμοποιήστε την διαίρεση κατηγοριών"
 
@@ -1099,7 +1099,7 @@ msgstr "Χρησιμοποιήστε την διαίρεση κατηγοριώ�
 msgid "Tags"
 msgstr "Ετικέτες"
 
-#: billsdepositsdialog.cpp:619 transdialog.cpp:1302
+#: billsdepositsdialog.cpp:619 transdialog.cpp:1304
 msgid "Specify any associated check number or transaction number"
 msgstr "Δηλώστε ένα συνδεόμενο αριθμό επιταγής ή ένα αριθμό συναλλαγής"
 
@@ -1134,7 +1134,7 @@ msgstr "Οργάνωση συνημμένων αυτής της επαναλαμ
 msgid "Color"
 msgstr "Χρώμα"
 
-#: billsdepositsdialog.cpp:655 transdialog.cpp:577 transdialog.cpp:1303
+#: billsdepositsdialog.cpp:655 transdialog.cpp:577 transdialog.cpp:1305
 #: usertransactionpanel.cpp:215
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Δηλώστε τυχόν σημειώσεις που θέλετε να προσθέσετε σε αυτήν τη συναλλαγή."
@@ -1259,7 +1259,7 @@ msgstr "Νέα Επαναλαμβανόμενη Συναλλαγή"
 msgid "Specify where the transaction is going to"
 msgstr "Καθορίστε πού πηγαίνει η συναλλαγή"
 
-#: billsdepositsdialog.h:128 transdialog.cpp:1295
+#: billsdepositsdialog.h:128 transdialog.cpp:1297
 msgid "Specify where the transaction is coming from"
 msgstr "Καθορίστε από πού έρχεται η συναλλαγή"
 
@@ -1267,7 +1267,7 @@ msgstr "Καθορίστε από πού έρχεται η συναλλαγή"
 msgid "Specify which account the transfer is going to"
 msgstr "Καθορίστε σε ποιο λογαριασμό θα πάει η μεταφορά"
 
-#: billsdepositsdialog.h:130 transdialog.cpp:1290 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:130 transdialog.cpp:1292 usertransactionpanel.cpp:137
 msgid "Specify the amount for this transaction"
 msgstr "Δηλώστε το ποσό της συναλλαγής"
 
@@ -2024,7 +2024,7 @@ msgstr "Τυχόν αλλαγές θα χαθούν χωρίς ενημέρωσ�
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:789
+#: mmSimpleDialogs.cpp:790
 msgid "Invalid Entry"
 msgstr "Μη έγκυρη εισαγωγή"
 
@@ -2974,7 +2974,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Δεν βρέθηκε λειτουργικό θέμα, η εγκατάσταση μπορεί να είναι κατεστραμμένη"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:799
+#: mmSimpleDialogs.cpp:800
 msgid "Unable to open file."
 msgstr "Αδυναμία ανοίγματος αρχείου."
 
@@ -3643,7 +3643,7 @@ msgstr "Αποτυχία διαγραφής υπάρχοντος αρχείου.
 msgid "Destination file error"
 msgstr "Σφάλμα αρχείου προορισμού"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:807
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:808
 msgid "Invalid Account"
 msgstr "Μη Έγκυρος Λογαριασμός"
 
@@ -3860,100 +3860,100 @@ msgstr "Δεν είναι δυνατή η λήψη του ιστορικού γ�
 msgid "Could not find base currency symbol!"
 msgstr "Αδυναμία εύρεσης του συμβόλου του βασικού νομίσματος!"
 
-#: mmSimpleDialogs.cpp:552 mmSimpleDialogs.cpp:564
+#: mmSimpleDialogs.cpp:553 mmSimpleDialogs.cpp:565
 msgid "Clear color"
 msgstr "Καθαρισμός χρώματος"
 
-#: mmSimpleDialogs.cpp:555 mmSimpleDialogs.cpp:569
+#: mmSimpleDialogs.cpp:556 mmSimpleDialogs.cpp:570
 #, c-format
 msgid "Color #%i"
 msgstr "Χρώμα #%i"
 
-#: mmSimpleDialogs.cpp:729
+#: mmSimpleDialogs.cpp:730
 msgid "Subtract one year"
 msgstr "Αφαιρέστε ένα χρόνο"
 
-#: mmSimpleDialogs.cpp:730
+#: mmSimpleDialogs.cpp:731
 msgid "Subtract one month"
 msgstr "Αφαιρέστε ένα μήνα"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:732
 msgid "Add one month"
 msgstr "Προσθέστε ένα μήνα"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:733
 msgid "Add one year"
 msgstr "Προσθέστε ένα χρόνο"
 
-#: mmSimpleDialogs.cpp:788
+#: mmSimpleDialogs.cpp:789
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Η καταχώρηση %s δεν είναι έγκυρη"
 
-#: mmSimpleDialogs.cpp:794
+#: mmSimpleDialogs.cpp:795
 msgid "Please select an existing category"
 msgstr "Παρακαλώ επιλέξτε μια υπάρχουσα κατηγορία"
 
-#: mmSimpleDialogs.cpp:794
+#: mmSimpleDialogs.cpp:795
 msgid "Invalid Category"
 msgstr "Μη Έγκυρη Κατηγορία"
 
-#: mmSimpleDialogs.cpp:799
+#: mmSimpleDialogs.cpp:800
 msgid "File name is empty."
 msgstr "Το όνομα αρχείου είναι κενό."
 
-#: mmSimpleDialogs.cpp:800
+#: mmSimpleDialogs.cpp:801
 msgid "Please select the file for this operation."
 msgstr "Παρακαλώ επιλέξτε το αρχείο για αυτήν τη λειτουργία."
 
-#: mmSimpleDialogs.cpp:810
+#: mmSimpleDialogs.cpp:811
 msgid "Please select the account for this transaction."
 msgstr "Παρακαλώ επιλέξτε το λογαριασμό για αυτή τη συναλλαγή."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:813
 msgid "Please specify which account the transfer is going to."
 msgstr "Παρακαλείστε να προσδιορίσετε σε ποιο λογαριασμό θα γίνει η μεταφορά."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:815
 msgid "Selection can be made by using the dropdown button."
 msgstr "Η επιλογή μπορεί να γίνει με τη χρήση του αναδιπλούμενου κουμπιού."
 
-#: mmSimpleDialogs.cpp:817
+#: mmSimpleDialogs.cpp:818
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Η ενεργοποίηση του κουμπιού θα παρέχει ένα πλαίσιο επιλογής όπου μπορεί να επιλεγεί ο λογαριασμός."
 
-#: mmSimpleDialogs.cpp:826
+#: mmSimpleDialogs.cpp:827
 msgid "Invalid Payee"
 msgstr "Μη έγκυρος δικαιούχος"
 
-#: mmSimpleDialogs.cpp:827
+#: mmSimpleDialogs.cpp:828
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Παρακαλώ πληκτρολογήστε ένα νέο δικαιούχο πληρωμής,\n"
 "ή κάντε μια επιλογή χρησιμοποιώντας το αναδιπλούμενο κουμπί."
 
-#: mmSimpleDialogs.cpp:835 mmSimpleDialogs.cpp:847
+#: mmSimpleDialogs.cpp:836 mmSimpleDialogs.cpp:848
 msgid "Invalid Name"
 msgstr "Μη Έγκυρο Όνομα"
 
-#: mmSimpleDialogs.cpp:838 mmSimpleDialogs.cpp:850
+#: mmSimpleDialogs.cpp:839 mmSimpleDialogs.cpp:851
 msgid "Already exist!"
 msgstr "Υπάρχουν ήδη!"
 
-#: mmSimpleDialogs.cpp:840
+#: mmSimpleDialogs.cpp:841
 msgid "Please type in a non empty name."
 msgstr "Παρακαλώ πληκτρολογήστε ένα μη κενό όνομα."
 
-#: mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:853
 msgid "Please type in a non empty symbol."
 msgstr "Παρακαλώ πληκτρολογήστε ένα μη κενό σύμβολο."
 
-#: mmSimpleDialogs.cpp:1132
+#: mmSimpleDialogs.cpp:1262
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "Δημιουργία νέας ετικέτας '%s';"
 
-#: mmSimpleDialogs.cpp:1132
+#: mmSimpleDialogs.cpp:1262
 msgid "New tag entered"
 msgstr "Εισήχθη νέα ετικέτα"
 
@@ -3996,12 +3996,12 @@ msgid "Tip: The .mmb file is not encrypted. That means anyone else having the pr
 msgstr "Συμβουλή: Το αρχείο .mmb δεν είναι κρυπτογραφημένο. Αυτό σημαίνει ότι οποιοσδήποτε άλλος γνωρίζει καλά πώς μπορεί πραγματικά να ανοίξει το αρχείο και να διαβάσει το περιεχόμενο. Έτσι σιγουρευτείτε ότι αν αποθηκεύετε ευαίσθητες οικονομικές πληροφορίες είναι κατάλληλα προστατευμένες."
 
 #: mmTips.h:27
-msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
+msgid "Tip: To mark a transaction as reconciled, select the transaction and press the 'r' or 'R' key. To mark a transaction as unreconciled, select the transaction and press the 'u' or 'U' key."
 msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως τακτοποιημένη, απλά επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'r' ή 'R'. Για να μαρκάρετε μια συναλλαγή ως μη τακτοποιημένη, απλά επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'u' ή 'U'."
 
 #: mmTips.h:28
-msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως χρειαζούμενη επανέλεγχο, απλά επιλέξτε τη συναλλαγή και πατήστε το κουμπί  'f' or 'F'."
+msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the 'f' or 'F' key."
+msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως χρειαζούμενη επανέλεγχο, επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'f' or 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4354,9 +4354,9 @@ msgstr "Επαναφορά της επιλεγμένης συναλλαγής"
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "Εισάγετε κάποια φράση για να τη βρείτε στις σημειώσεις της κοντινότερης συναλλαγής"
 
-#: mmcheckingpanel.cpp:507
-msgid "Full Transactions Report"
-msgstr "Πλήρης Αναφορά Συναλλαγών"
+#: mmcheckingpanel.cpp:507 mmframe.cpp:732
+msgid "All Transactions"
+msgstr "Όλες οι συναλλαγές"
 
 #: mmcheckingpanel.cpp:509 mmframe.cpp:776
 msgid "Deleted Transactions"
@@ -4482,10 +4482,6 @@ msgstr "Συναλλαγές Αυτόματης Επανάληψης"
 #: mmframe.cpp:728 mmframe.cpp:1915 optiondialog.cpp:37
 msgid "Dashboard"
 msgstr "Επισκόπηση"
-
-#: mmframe.cpp:732
-msgid "All Transactions"
-msgstr "Όλες οι συναλλαγές"
 
 #: mmframe.cpp:764 mmhomepage.cpp:701 reports/summary.cpp:266
 #: reports/summary.cpp:304
@@ -7648,35 +7644,35 @@ msgid "This transaction will exceed your account limit.\n\n"
 msgstr "Αυτή η συναλλαγή θα υπερβαίνει το όριο λογαριασμού σας.\n"
 "Θέλετε να συνεχίσετε;"
 
-#: transdialog.cpp:1165
+#: transdialog.cpp:1167
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
 msgstr "Οι δύο λογαριασμοί έχουν διαφορετικά νομίσματα, αλλά δεν έχετε ορίσει μια προηγμένη συναλλαγή. Είναι αυτό το σωστό;"
 
-#: transdialog.cpp:1166
+#: transdialog.cpp:1168
 msgid "Currencies are different"
 msgstr "Τα νομίσματα είναι διαφορετικά"
 
-#: transdialog.cpp:1281
+#: transdialog.cpp:1283
 msgid "Specify account the money is taken from"
 msgstr "Καθορίστε το λογαριασμό από το οποίο λαμβάνονται τα χρήματα"
 
-#: transdialog.cpp:1282
+#: transdialog.cpp:1284
 msgid "Specify account the money is moved to"
 msgstr "Καθορίστε λογαριασμό στο οποίο τα χρήματα μετακινούνται"
 
-#: transdialog.cpp:1283
+#: transdialog.cpp:1285
 msgid "Specify the transfer amount in the From Account."
 msgstr "Καθορίστε το ποσό της μεταφοράς στο λογαριασμό από."
 
-#: transdialog.cpp:1291
+#: transdialog.cpp:1293
 msgid "Specify account for the transaction"
 msgstr "Καθορίστε λογαριασμό για τη συναλλαγή"
 
-#: transdialog.cpp:1293
+#: transdialog.cpp:1295
 msgid "Specify to whom the transaction is going to"
 msgstr "Καθορίστε σε ποιον θα γίνει η συναλλαγή"
 
-#: transdialog.cpp:1299 usertransactionpanel.cpp:94
+#: transdialog.cpp:1301 usertransactionpanel.cpp:94
 msgid "Specify the date of the transaction"
 msgstr "Δηλώστε την ημερομηνία της συναλλαγής"
 
@@ -7914,7 +7910,7 @@ msgid "Running on:"
 msgstr "Εκτελείται στις:"
 
 #: util.cpp:1718
-msgid "The full list of closed issues is available at this link"
+msgid "The complete list of closed issues is available at this link"
 msgstr "Ο πλήρης κατάλογος των κλειστών θεμάτων είναι διαθέσιμος σε αυτόν τον σύνδεσμο"
 
 #: util.h:191
