@@ -55,11 +55,11 @@ public:
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("New Recurring Transaction"),
+        const wxString& caption = _("New Scheduled Transaction"),
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX,
-        const wxString& name = "Recurring Transaction Dialog");
+        const wxString& name = "Scheduled Transaction Dialog");
 
     void CreateControls();
 
