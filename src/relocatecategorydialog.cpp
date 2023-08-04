@@ -256,9 +256,9 @@ void relocateCategoryDialog::IsOkOk()
     wxString msgStr = wxString()
         << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
         << wxString::Format(_("Records found in split transactions: %i"), checks_size) << "\n"
-        << wxString::Format(_("Records found in recurring transactions: %i"), bills_size) << "\n"
-        << wxString::Format(_("Records found in recurring split transactions: %i"), budget_split_size) << "\n"
-        << wxString::Format(_("Records found as Default Payee Category: %i"), payees_size) << "\n"
+        << wxString::Format(_("Records found in scheduled transactions: %i"), bills_size) << "\n"
+        << wxString::Format(_("Records found in scheduled split transactions: %i"), budget_split_size) << "\n"
+        << wxString::Format(_("Records found as default payee category: %i"), payees_size) << "\n"
         << wxString::Format(_("Records found in budget: %i"), budget_size);
 
     m_info->SetLabel(msgStr);
