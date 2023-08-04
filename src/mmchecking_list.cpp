@@ -477,7 +477,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
-        menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Recurring T&ransaction..."));
+        menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Scheduled T&ransaction..."));
         if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
     }
     else {
@@ -1543,7 +1543,7 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
     dlg.SetDialogParameters(m_selected_id[0]);
     if (dlg.ShowModal() == wxID_OK)
     {
-        wxMessageBox(_("Recurring Transaction saved."));
+        wxMessageBox(_("Scheduled transaction saved."));
     }
 }
 
