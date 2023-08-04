@@ -533,7 +533,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         const Model_Billsdeposits::Data_Set all_trans_bd2 = Model_Billsdeposits::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)
                                                    ,DB_Table_BILLSDEPOSITS_V1::TOACCOUNTID(m_account->ACCOUNTID, EQUAL));
         if (!all_trans_bd1.empty() || !all_trans_bd2.empty())
-            return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Recurring transactions for this account are scheduled before this date"), _("Invalid Date"));
+            return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Scheduled transactions for this account are scheduled before this date."), _("Invalid Date"));
     } else
         this->m_account = Model_Account::instance().create();
 
