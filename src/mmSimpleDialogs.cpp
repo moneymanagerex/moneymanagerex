@@ -1164,7 +1164,8 @@ void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
     wxString tagString;
     wxArrayString tags = parseTags(textCtrl_->GetText());
     for (const auto& tag : tags)
-        if (tags_.find(tag) != tags_.end())
+        if (tags_.find(tag) != tags_.end()
+            || (operatorAllowed_ && (tag == "&" || tag == "|")))
             tagString.Append(tag + " ");
 
     textCtrl_->SetText(tagString.Trim());
