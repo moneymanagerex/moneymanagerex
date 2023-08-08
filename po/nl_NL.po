@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-03 10:35+0300\n"
-"PO-Revision-Date: 2023-08-03 11:17\n"
+"PO-Revision-Date: 2023-08-08 18:13\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3999,11 +3999,11 @@ msgstr "Tip: Het .mmb bestand is niet versleuteld. Dat betekent dat iedereen die
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the 'r' or 'R' key. To mark a transaction as unreconciled, select the transaction and press the 'u' or 'U' key."
-msgstr ""
+msgstr "Tip: Om een transactie als bevestigt te markeren, selecteer de transactie en druk op de 'r' of de 'R' toets. Om een transactie om te zetten als 'openstaand', selecteer de transactie en druk op de 'u' of de 'U' toets."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the 'f' or 'F' key."
-msgstr ""
+msgstr "Tip: Om een transactie als 'te controleren' te markeren, selecteer de transactie en druk op de 'f' of de 'F' toets."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -7915,7 +7915,7 @@ msgstr "Draait op:"
 
 #: util.cpp:1718
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "De volledige lijst met gesloten issues is beschikbaar op deze link"
 
 #: util.h:191
 msgid "January"
