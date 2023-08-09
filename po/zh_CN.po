@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-03 10:35+0300\n"
-"PO-Revision-Date: 2023-08-09 16:08\n"
+"PO-Revision-Date: 2023-08-09 17:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1513,7 +1513,7 @@ msgstr "月份 %s"
 #: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    开始日期：%2$s"
 
 #: budgetingpanel.cpp:191
 #, c-format
@@ -1664,11 +1664,11 @@ msgstr "选择当前已选类目作为交易的类目"
 
 #: categdialog.cpp:353
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "名称包含类别分隔符。"
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "颜色 (:) 字符被用来分离类别和子类别，因此不应在名称中使用"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -2571,7 +2571,7 @@ msgstr "选择日期区间"
 
 #: filtertransdialog.cpp:586 filtertransdialog.cpp:1631
 msgid "Include all subcategories"
-msgstr ""
+msgstr "包含所有子类别"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1486
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
@@ -4576,7 +4576,7 @@ msgstr "打开账户网页(&L)"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "更改账户类型 (&C)"
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4788,7 +4788,7 @@ msgstr "类目管理(&C)..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "管理标签 (&T)"
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
@@ -4816,7 +4816,7 @@ msgstr ""
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "标签 (&T)"
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
@@ -4824,7 +4824,7 @@ msgstr ""
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "合并 (&M)"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
@@ -4888,7 +4888,7 @@ msgstr "选项(&O)...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -5402,7 +5402,7 @@ msgstr ""
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "选择账户"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
@@ -7483,7 +7483,7 @@ msgstr ""
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "标签名称不得使用 ”&“ 或 “|” 字符，这些字符是为筛选运算符保留的"
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
@@ -7503,7 +7503,7 @@ msgstr ""
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "添加标签"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
@@ -7515,11 +7515,11 @@ msgstr ""
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "编辑标签"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "标签管理：编辑错误"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7541,7 +7541,7 @@ msgstr ""
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "确认删除标签"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
@@ -7849,7 +7849,7 @@ msgstr "版本：%s"
 #: util.cpp:1416
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "构建于：%1$s %2$s"
 
 #: util.cpp:1417
 #, c-format
@@ -7859,7 +7859,7 @@ msgstr "数据库版本： %d"
 #: util.cpp:1424
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git 提交: %1$s（%2$s）"
 
 #: util.cpp:1427
 #, c-format
@@ -7880,7 +7880,7 @@ msgstr "运行于："
 
 #: util.cpp:1718
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "已关闭议题的完整列表在此链接可用"
 
 #: util.h:191
 msgid "January"
@@ -8083,7 +8083,7 @@ msgstr "错误的账户名"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "已存在同名账号。"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
@@ -8162,7 +8162,7 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "指定此数据库使用的基本 (或默认) 货币。此后可以使用货币对话框更改基本货币。新建的账户默认会使用此货币，且可以在编辑账户详细信息时进行更改。"
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
