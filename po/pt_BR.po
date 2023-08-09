@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-03 10:35+0300\n"
-"PO-Revision-Date: 2023-08-04 10:41\n"
+"PO-Revision-Date: 2023-08-09 19:30\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4804,7 +4804,7 @@ msgstr "Organizar &Beneficiários..."
 
 #: mmframe.cpp:1690 mmframe.cpp:1919 payeedialog.cpp:496
 msgid "Organize Payees"
-msgstr "Organizar Beneficiários"
+msgstr "Organizar Favorecidos"
 
 #: mmframe.cpp:1694
 msgid "Organize &Categories..."
@@ -5446,7 +5446,7 @@ msgstr "Mesclagem de beneficiários concluída"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr "Resultado da mesclagem de beneficiários"
+msgstr "Resultado da mesclagem de favorecidos"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
@@ -6511,7 +6511,7 @@ msgstr "Oculto"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr "Indique se o beneficiário deve ser ocultado e não apresentado na lista de beneficiários para novas transações"
+msgstr "Indique se o favorecido deve ser ocultado e não apresentado na lista de favorecidos para novas transações"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
@@ -6531,7 +6531,7 @@ msgstr "Referência"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr "Uma referência a ser usada para o beneficiário, por exemplo, número de conta bancária"
+msgstr "Uma referência a ser usada para o favorecido, por exemplo, número de conta bancária"
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
@@ -6539,7 +6539,7 @@ msgstr "Website"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
-msgstr "URL do site associado ao beneficiário"
+msgstr "URL do site associado ao favorecido"
 
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
