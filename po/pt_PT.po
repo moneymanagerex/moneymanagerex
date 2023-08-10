@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-03 10:35+0300\n"
-"PO-Revision-Date: 2023-08-10 11:07\n"
+"PO-Revision-Date: 2023-08-10 16:50\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4004,7 +4004,7 @@ msgstr "Sugestão: Para marcar a transação como reconciliada, selecione-a e pr
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the 'f' or 'F' key."
-msgstr "Sugestão: Para marcar uma transação como requerendo acompanhamento, selecione-a e carregue na tecla 'f' ou 'F'."
+msgstr "Sugestão: Para marcar uma transação como requerendo seguimento, selecione-a e carregue na tecla 'f' ou 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -8015,7 +8015,7 @@ msgstr "Conta '%s' não encontrada!"
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr "A transação será inserida com a primeira conta bancária:\n"
-"'%s' e marcada como 'Acompanhar'"
+"'%s' e marcada como 'Dar Seguimento'"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
