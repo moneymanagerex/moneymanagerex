@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-03 10:35+0300\n"
-"PO-Revision-Date: 2023-08-04 12:00\n"
+"PO-Revision-Date: 2023-08-10 11:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2555,7 +2555,7 @@ msgstr "Nula"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:512 mmchecking_list.cpp:1059
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:43
 msgid "Follow Up"
-msgstr "Acompanhar"
+msgstr "Dar Seguimento"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:514
 #: model/Model_Billsdeposits.cpp:44 model/Model_Checking.cpp:44
@@ -4209,7 +4209,7 @@ msgstr "Eliminar permanentemente todas as transações na vista atual..."
 
 #: mmchecking_list.cpp:497
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr "Eliminar Transações \"Acompanhar\" Visualizadas..."
+msgstr "Eliminar Transações \"Dar Seguimento\" Visualizadas..."
 
 #: mmchecking_list.cpp:498
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
