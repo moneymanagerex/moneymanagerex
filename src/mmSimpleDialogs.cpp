@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Setting.h"
 
+#include "wx/graphics.h"
 #include <wx/renderer.h>
 #include <wx/richtooltip.h>
 
@@ -925,12 +926,15 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
 }
 
 //------------
-
 mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
     : wxPanel(), operatorAllowed_(operatorAllowed)
 {
+#ifdef __WXMAC__
+    style |= wxBORDER_THEME;
+#else
     style |= wxBORDER_NONE;
+#endif    
     Create(parent, id, pos, size, style);
     SetFont(parent->GetFont());
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
@@ -955,6 +959,8 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_->StyleSetFont(0, parent->GetFont());
     textCtrl_->StyleSetBackground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     textCtrl_->StyleSetForeground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
+    textCtrl_->StyleSetBackground(wxSTC_STYLE_DEFAULT, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+    textCtrl_->StyleSetForeground(wxSTC_STYLE_DEFAULT, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
     textCtrl_->SetCaretForeground(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
     textCtrl_->SetMaxClientSize(wxSize(-1, textCtrl_->TextHeight(0)));
     textCtrl_->SetWordChars("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.,;:!?'\"()[]{}<>/\\|-_=+*&^%@#$~");
@@ -963,6 +969,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_->Bind(wxEVT_CHAR, &mmTagTextCtrl::OnTextChanged, this);
     textCtrl_->Bind(wxEVT_STC_CLIPBOARD_PASTE, &mmTagTextCtrl::OnPaste, this);
     textCtrl_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
+    Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
     textCtrl_->Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     textCtrl_->Bind(wxEVT_CHAR_HOOK, &mmTagTextCtrl::OnKeyPressed, this);
     textCtrl_->Bind(wxEVT_STC_ZOOM, [this](wxStyledTextEvent& event) {
@@ -971,25 +978,129 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
         textCtrl_->SetZoom(0);
         textCtrl_->SetEvtHandlerEnabled(true);
     });
-    // Paint base text control
-    Bind(wxEVT_PAINT, [this](wxPaintEvent& event) {
-        wxWindowDC dc(this);
-        wxRendererNative::Get().DrawTextCtrl(this, dc, GetClientRect());
-    });
-
+  
     h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
 
     // Dropdown button
     int panelHeight = textCtrl_->TextHeight(0) + 8;
-    btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
+
+#ifdef __WXMSW__
+    // On Windows draw the drop arrow and store the bitmap to be used in the paint override
+    wxWindowDC dc(this);
+    wxSize btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, dc);
+    btnSize.SetWidth(btnSize.GetWidth() - 2);
+    btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, 1), btnSize, wxBORDER_NONE);
+    btn_dropdown_->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+    btn_dropdown_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaintButton, this);
+
+    // Recreate the Native windows-style drop arrow
+    // Begin the image with a transparent background
+    wxImage img(btnSize);
+    img.InitAlpha();
+    unsigned char* alpha = img.GetAlpha();
+    memset(alpha, wxIMAGE_ALPHA_TRANSPARENT, img.GetWidth() * img.GetHeight());
+
+    dropArrow_ = wxBitmap(img);
+    // Normal wxDC doesn't play nice with an alpha channel in Windows
+    // so use a wxGraphicsContext to draw the image in the bitmap
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dropArrow_);
+    
+    wxRect rect(btnSize);
+    int arrowX = rect.GetLeft() + (rect.GetWidth() - 8) / 2;
+    int arrowY = rect.GetTop() + (rect.GetHeight() - 4) / 2;
+    
+    wxPoint2DDouble ptstart[2] = {
+        wxPoint(arrowX, arrowY), // top L
+        wxPoint(arrowX + 7, arrowY), // top R
+    };
+    
+    wxPoint2DDouble ptend[2] = {
+        wxPoint(arrowX + 3, arrowY + 3), // bottom center L
+        wxPoint(arrowX + 4, arrowY + 3) // bottom center R
+    };
+    
+    wxPoint2DDouble sptstart[2] = {
+        wxPoint(arrowX, arrowY - 1), // shadow top L
+        wxPoint(arrowX + 7, arrowY - 1), // shadow top R
+    };
+    
+    wxPoint2DDouble sptend[2] = {
+        wxPoint(arrowX + 3, arrowY + 2), // shadow bottom center L
+        wxPoint(arrowX + 4, arrowY + 2) // shadow bottom center R
+    };
+    
+    wxPoint2DDouble lsptstart[2] = {
+        wxPoint(arrowX - 1, arrowY), // light shadow top L
+        wxPoint(arrowX + 8, arrowY), // light shadow top R
+    };
+    
+    wxPoint2DDouble lsptend[2] = {
+        wxPoint(arrowX + 3, arrowY + 4), // light shadow bottom center L
+        wxPoint(arrowX + 4, arrowY + 4) // light shadow bottom center R
+    };
+
+    // draw shadow
+    gc->SetPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DSHADOW));
+    gc->StrokeLines(2, sptstart, sptend);
+
+    // draw triangle
+    gc->SetPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT));
+    gc->StrokeLines(2, ptstart, ptend);
+
+    // draw light shadow
+    gc->SetPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DLIGHT));
+    gc->StrokeLines(2, lsptstart, lsptend);
+    
+    delete gc;
+    
+#else
+    // On Linux and macOS just draw a drop arrow bitmap for the button
+    wxSize btnSize = wxSize(panelHeight + 2, panelHeight);
+    btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition, btnSize);
+
+    // Begin the image with a transparent background
+    wxImage img(btnSize);
+    img.InitAlpha();
+    unsigned char* alpha = img.GetAlpha();
+    memset(alpha, wxIMAGE_ALPHA_TRANSPARENT, img.GetWidth()* img.GetHeight());
+    dropArrow_ = wxBitmap(img);
+    // On Linux wxDC works fine with an alpha channel, so use a wxMemoryDC to draw right into the bitmap
+    wxMemoryDC memDC;
+    memDC.SelectObject(dropArrow_);
+    memDC.SetPen(wxPen(btn_dropdown_->GetForegroundColour()));
+    memDC.SetBrush(wxBrush(btn_dropdown_->GetForegroundColour()));
+
+    wxRect rect(GetClientRect());
+    rect.x += 8;
+    rect.y += 7;
+    // The generic drop arrow looks pretty close to the native GTK arrow
+    wxRendererNative::GetGeneric().DrawDropArrow(this, memDC, rect);
+
+    memDC.SelectObject(wxNullBitmap);
+    btn_dropdown_->SetBitmap(dropArrow_);
+#endif
+
     btn_dropdown_->Bind(wxEVT_BUTTON, &mmTagTextCtrl::OnDropDown, this);
+    btn_dropdown_->Bind(wxEVT_NAVIGATION_KEY, [this](wxNavigationKeyEvent& event) { textCtrl_->SetFocus(); });
+
+#ifndef __WXMAC__
+    // Event handlers for custom control painting in Windows & Linux
+    Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    textCtrl_->Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    textCtrl_->Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    btn_dropdown_->Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    btn_dropdown_->Bind(wxEVT_SET_FOCUS, &mmTagTextCtrl::OnFocusChange, this);
+    btn_dropdown_->Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    btn_dropdown_->Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnFocusChange, this);
+#endif
 
     v_sizer->Add(h_sizer, 1, wxEXPAND, 0);
     panel_sizer->Add(v_sizer, 1, wxEXPAND, 0);
     panel_sizer->Add(btn_dropdown_, 0, wxEXPAND | wxALL, 0);
 
     // Popup window
-    popupWindow_ = new wxPopupTransientWindow(this, wxPU_CONTAINS_CONTROLS | wxBORDER_SIMPLE);
+    popupWindow_ = new wxPopupTransientWindow(this, wxPU_CONTAINS_CONTROLS);
     wxScrolledWindow* scrolledWindow = new wxScrolledWindow(popupWindow_);
     tagCheckListBox_ = new wxCheckListBox(scrolledWindow, wxID_ANY, wxDefaultPosition, wxDefaultSize, {}, wxLB_SORT);
     tagCheckListBox_->SetFont(GetFont());
@@ -1007,12 +1118,24 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Layout();
 }
 
+void mmTagTextCtrl::OnMouseCaptureChange(wxMouseEvent& event)
+{
+    textCtrl_->Refresh();
+    event.Skip();
+}
+
+void mmTagTextCtrl::OnFocusChange(wxFocusEvent& event)
+{
+    textCtrl_->Refresh();
+    event.Skip();
+}
+
 void mmTagTextCtrl::OnDropDown(wxCommandEvent& event)
 {
     Validate();
     wxPoint pos = ClientToScreen(textCtrl_->GetPosition());
     pos.y += textCtrl_->GetSize().GetHeight() + 3;
-    pos.x -= 3;
+    pos.x -= 2;
     popupWindow_->Position(pos, wxSize(0, 0));
     popupWindow_->SetSize(GetSize().GetWidth(), -1);
     tagCheckListBox_->GetParent()->SetSize(popupWindow_->GetSize());
@@ -1190,6 +1313,8 @@ bool mmTagTextCtrl::Enable(bool enable)
         textCtrl_->StyleSetBackground(wxSTC_STYLE_DEFAULT, wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
         SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
     }
+
+    textCtrl_->Refresh();
     return true;
 }
 
@@ -1219,13 +1344,72 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
         position = wordEnd + 1;
     }
 
-    // paint a TextCtrl over the background
+#ifndef __WXMAC__
+    // paint a TextCtrl over the background -- not currently used on macOS due to dark mode bug
     wxWindowDC dc(this);
-    wxRendererNative::Get().DrawTextCtrl(this, dc, GetClientRect());
-    // repaint the button over the TextCtrl
+    wxRendererNative::Get().DrawTextCtrl(this, dc, GetClientRect(), textCtrl_->IsEnabled() ? wxCONTROL_NONE : wxCONTROL_DISABLED);
+#endif
+
+#ifdef __WXMSW__
+    // Context aware border for Windows
+    borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
+    if (!textCtrl_->IsEnabled())
+        borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVEBORDER);
+    else if (textCtrl_->HasFocus() || btn_dropdown_->HasFocus() || popupWindow_->IsShown())
+        borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT);
+    else if (GetClientRect().Contains(ScreenToClient(wxGetMousePosition())))
+        borderColor_ = *wxBLACK;
+
+    dc.SetPen(borderColor_);
+
+    if (IsEnabled())
+        dc.SetBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+    else
+        dc.SetBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
+
+    dc.DrawRectangle(GetClientRect());
+    // repaint the button
     btn_dropdown_->Refresh();
 
+#endif
+
     event.Skip();
+}
+
+void mmTagTextCtrl::OnPaintButton(wxPaintEvent& event)
+{
+    wxPaintDC paintDC(btn_dropdown_);
+    wxWindowDC dc(this);
+
+    wxRect rect = btn_dropdown_->GetClientRect();
+    rect.x += textCtrl_->GetSize().GetWidth() + 2;
+
+    // Figure out what style the button needs
+    long style = wxCONTROL_NONE;
+    if (!btn_dropdown_->IsEnabled())
+        style = wxCONTROL_DISABLED;
+    else if (popupWindow_->IsShown())
+        style = wxCONTROL_PRESSED;
+    else if (rect.Contains(ScreenToClient(wxGetMousePosition())))
+        style = wxCONTROL_CURRENT;
+
+    if(style != wxCONTROL_NONE)
+        wxRendererNative::Get().DrawComboBoxDropButton(this, dc, rect, style);
+    else
+    {
+        // If we aren't interacting with the button, draw the drop arrow
+        // directly on the texctrl like the native combobox
+        paintDC.DrawBitmap(dropArrow_, wxPoint(0,4));
+    }
+
+    // Redraw the top, right, and bottom borders to match the window border
+    if (style != wxCONTROL_CURRENT && style != wxCONTROL_PRESSED)
+    {
+        dc.SetPen(borderColor_);
+        dc.DrawLine(rect.x, 0, rect.x + rect.width, 0);
+        dc.DrawLine(rect.x + rect.width - 1, 0, rect.x + rect.width - 1, rect.height);
+        dc.DrawLine(rect.x + rect.width - 1, rect.height - 1, rect.x, rect.height - 1);
+    }
 }
 
 /* Validates all tags passed in tagText, or the contents of the text control if tagText is blank */

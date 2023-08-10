@@ -216,7 +216,6 @@ void mmSplitTransactionDialog::CreateControls()
     wxStaticText* amountText = new wxStaticText(slider_, wxID_STATIC, _("Amount"));
     amountText->SetFont(this->GetFont().Bold());
     wxStaticText* tagText = new wxStaticText(slider_, wxID_STATIC, _("Tags"));
-    tagText->SetFont(this->GetFont().Bold());
     flexGridSizer_->Add(categoryText, g_flagsExpand);
     flexGridSizer_->Add(amountText, g_flagsH);
     flexGridSizer_->Add(tagText, g_flagsH);
@@ -346,7 +345,6 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
 
     mmTagTextCtrl* ntag = new mmTagTextCtrl(slider_, mmID_MAX + row);
     ntag->Enable(enabled);
-    ntag->SetMinSize(wxSize(200, 1));
 
     wxButton* nother = new wxButton(slider_, mmID_MAX + row, _("Notes"));
     nother->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));

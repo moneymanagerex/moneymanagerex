@@ -321,9 +321,12 @@ protected:
     void OnPaste(wxStyledTextEvent& event);
     void OnKillFocus(wxFocusEvent& event);
     void OnPaint(wxPaintEvent& event);
+    void OnPaintButton(wxPaintEvent& event);
     void OnDropDown(wxCommandEvent& event);
     void OnKeyPressed(wxKeyEvent& event);
     void OnPopupCheckboxSelected(wxCommandEvent& event);
+    void OnMouseCaptureChange(wxMouseEvent& event);
+    void OnFocusChange(wxFocusEvent& event);
 private:
     void init();
     wxStyledTextCtrl* textCtrl_;
@@ -335,7 +338,8 @@ private:
     bool operatorAllowed_;
     wxPopupTransientWindow* popupWindow_;
     wxCheckListBox* tagCheckListBox_;
-    wxColour borderColor_ = *wxBLACK;
+    wxColour borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
+    wxBitmap dropArrow_;
 };
 
 inline bool mmTagTextCtrl::IsValid() { return Validate(); }
