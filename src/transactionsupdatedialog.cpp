@@ -637,6 +637,8 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
             break;
         }
     }
+    if (event.AltDown())
+        tagTextCtrl_->Refresh();
 
     event.Skip();
 }

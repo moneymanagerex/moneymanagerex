@@ -296,6 +296,25 @@ public:
 inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::ShowModal(); }
 
 /* -------------------------------------------- */
+class mmTagCtrlPopupWindow : public wxPopupTransientWindow {
+public:
+    mmTagCtrlPopupWindow(wxWindow* parent) : wxPopupTransientWindow(parent, wxPU_CONTAINS_CONTROLS) {}
+    bool dismissedByButton_ = false;
+protected:
+    virtual void OnDismiss() override {
+#ifdef __WXMSW__
+        // On MSW check if the button was used to dismiss to prevent the popup from reopening
+        wxPoint mousePos = wxGetMousePosition();
+        wxWindow* button = wxFindWindowByName("btn_dropdown_");
+        if (button->GetClientRect().Contains(button->ScreenToClient(mousePos)))
+        {
+            dismissedByButton_ = true;
+        }
+        else 
+            dismissedByButton_ = false;
+#endif
+    }
+};
 
 class mmTagTextCtrl : public wxPanel
 {
@@ -336,7 +355,7 @@ private:
     std::map<wxString, int, caseInsensitiveComparator> tags_;
     wxArrayString parseTags(const wxString& tagString);
     bool operatorAllowed_;
-    wxPopupTransientWindow* popupWindow_;
+    mmTagCtrlPopupWindow* popupWindow_;
     wxCheckListBox* tagCheckListBox_;
     wxColour borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
     wxBitmap dropArrow_;

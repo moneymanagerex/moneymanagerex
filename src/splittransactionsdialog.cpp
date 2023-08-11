@@ -516,6 +516,10 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
             }
         }
     }
+    if (event.AltDown())
+        for (int row = 0; row < m_splits_widgets.size(); row++)
+            m_splits_widgets.at(row).tags->Refresh();
+
     event.Skip();
 }
 

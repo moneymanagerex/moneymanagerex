@@ -2137,6 +2137,8 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
             break;
         }
     }
+    if (event.AltDown())
+        tagTextCtrl_->Refresh();
 
     event.Skip();
 }
