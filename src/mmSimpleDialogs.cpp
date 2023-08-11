@@ -947,7 +947,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_->SetLexer(wxSTC_LEX_NULL);
     textCtrl_->SetWrapMode(wxSTC_WRAP_NONE);
     textCtrl_->SetMarginWidth(1, 0);
-    textCtrl_->SetExtraDescent(1);
+    //textCtrl_->SetExtraDescent(1);
     textCtrl_->SetMarginSensitive(1, false);
     textCtrl_->SetUseVerticalScrollBar(false);
     textCtrl_->SetUseHorizontalScrollBar(false);
@@ -983,7 +983,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
 
     // Dropdown button
-    int panelHeight = textCtrl_->TextHeight(0) + 6;
+    int panelHeight = textCtrl_->TextHeight(0) + 8;
 
 #ifdef __WXMSW__
     // On Windows draw the drop arrow and store the bitmap to be used in the paint override
