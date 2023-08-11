@@ -359,6 +359,8 @@ private:
     wxCheckListBox* tagCheckListBox_;
     wxColour borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
     wxBitmap dropArrow_;
+    wxBitmap dropArrowInactive_;
+    bool initialRefreshDone_ = false;
 };
 
 inline bool mmTagTextCtrl::IsValid() { return Validate(); }

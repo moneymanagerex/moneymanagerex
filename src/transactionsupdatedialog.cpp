@@ -50,6 +50,10 @@ transactionsUpdateDialog::~transactionsUpdateDialog()
 {
 }
 
+// Used to determine if we need to refresh the tag text ctrl after
+// accelerator hints are shown which only occurs once.
+static bool altRefreshDone;
+
 transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , std::vector<int>& transaction_id)
     : m_transaction_id(transaction_id)
@@ -88,6 +92,7 @@ bool transactionsUpdateDialog::Create(wxWindow* parent
     , const wxPoint& pos
     , const wxSize& size, long style)
 {
+    altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, wxGetTranslation(caption), pos, size, style);
 
@@ -637,8 +642,14 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
             break;
         }
     }
-    if (event.AltDown())
+
+    // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
+    // is not applied. We need to refresh the tag ctrl to redraw the drop button with the correct image.
+    if (event.AltDown() && !altRefreshDone)
+    {
         tagTextCtrl_->Refresh();
+        altRefreshDone = true;
+    }
 
     event.Skip();
 }

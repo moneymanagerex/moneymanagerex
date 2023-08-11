@@ -990,6 +990,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     wxWindowDC dc(this);
     wxSize btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, dc);
     btnSize.SetWidth(btnSize.GetWidth() - 2);
+    btnSize.SetHeight(panelHeight - 3);
     btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, 1), btnSize, wxBORDER_NONE, wxDefaultValidator, "btn_dropdown_");
     btn_dropdown_->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     btn_dropdown_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaintButton, this);
@@ -1007,7 +1008,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     wxGraphicsContext* gc = wxGraphicsContext::Create(dropArrow_);
     gc->SetAntialiasMode(wxANTIALIAS_NONE);
     int arrowX = (btnSize.GetWidth() - 8) / 2;
-    int arrowY = btnSize.GetHeight() / 2 + 2;
+    int arrowY = btnSize.GetHeight() / 2;
     
     wxPoint2DDouble ptstart[2] = {
         wxPoint(arrowX, arrowY), // top L
@@ -1058,7 +1059,14 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     gc->StrokeLines(2, lsptstart, lsptend);
 
     delete gc;
-    
+
+    // Duplicate the image and adjust opacity to create the "inactive" drop arrow
+    wxImage inactiveImg(dropArrow_.ConvertToImage());
+    for (int i = 0; i < inactiveImg.GetWidth(); i++)
+        for (int j = 0; j < inactiveImg.GetHeight(); j++)
+            inactiveImg.SetAlpha(i, j, inactiveImg.GetAlpha(i, j) * 0.5);
+
+    dropArrowInactive_ = wxBitmap(inactiveImg);
 #else
     // On Linux and macOS just draw a drop arrow bitmap for the button
     wxSize btnSize = wxSize(panelHeight + 2, panelHeight);
@@ -1083,6 +1091,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     wxRendererNative::GetGeneric().DrawDropArrow(this, memDC, rect);
 
     memDC.SelectObject(wxNullBitmap);
+    dropArrowInactive_ = dropArrow_;
     btn_dropdown_->SetBitmap(dropArrow_);
 #endif
 
@@ -1122,6 +1131,8 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     SetSizer(panel_sizer);
     SetSizeHints(-1, panelHeight, -1, panelHeight);
     Layout();
+    btn_dropdown_->Refresh();
+    btn_dropdown_->Update();
 }
 
 void mmTagTextCtrl::OnMouseCaptureChange(wxMouseEvent& event)
@@ -1350,18 +1361,32 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
             textCtrl_->StartStyling(wordStart);
             textCtrl_->SetStyling(wordEnd - wordStart, 1);
         }
-        
+
         position = wordEnd + 1;
     }
-
+    
 #ifndef __WXMAC__
     // paint a TextCtrl over the background -- not currently used on macOS due to dark mode bug
     wxWindowDC dc(this);
+    wxRegion clipRegion(GetClientRect());
+    if (btn_dropdown_->GetClientRect().Contains(btn_dropdown_->ScreenToClient(wxGetMousePosition())))
+    {
+        wxRect btnRect(btn_dropdown_->GetClientRect());
+        btnRect.x += textCtrl_->GetSize().GetWidth() + 2;
+        btnRect.y = 1;
+        btnRect.height -= 2;
+        btnRect.width -= 1;
+        clipRegion.Subtract(btnRect); // Exclude the button face (minus top, right, and bottom borders)
+    }
+    dc.SetDeviceClippingRegion(clipRegion);
     wxRendererNative::Get().DrawTextCtrl(this, dc, GetClientRect(), textCtrl_->IsEnabled() ? wxCONTROL_NONE : wxCONTROL_DISABLED);
 #endif
 
 #ifdef __WXMSW__
-    // Context aware border for Windows
+    dc.DrawBitmap(textCtrl_->IsEnabled() ? dropArrow_ : dropArrowInactive_, wxPoint(textCtrl_->GetSize().GetWidth() + 2, 0));
+
+    dc.DestroyClippingRegion();
+
     borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
     if (!textCtrl_->IsEnabled())
         borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR);
@@ -1372,14 +1397,23 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 
     dc.SetPen(borderColor_);
 
-    if (IsEnabled())
-        dc.SetBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
-    else
-        dc.SetBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
+    wxRect rect(GetClientRect());
 
-    dc.DrawRectangle(GetClientRect());
-    // repaint the button
-    btn_dropdown_->Refresh(false);
+    wxPoint pt[5]{
+        wxPoint(0, 0),
+        wxPoint(rect.width - 1, 0),
+        wxPoint(rect.width -1, rect.height - 1),
+        wxPoint(0, rect.height - 1),
+        wxPoint(0, 0)
+    };
+
+    dc.DrawLines(5, pt);
+
+    if (!initialRefreshDone_)
+    {
+        btn_dropdown_->Refresh();
+        initialRefreshDone_ = true;
+    }
 
 #endif
 
@@ -1388,19 +1422,15 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 
 void mmTagTextCtrl::OnPaintButton(wxPaintEvent& event)
 {
-    wxPaintDC paintDC(btn_dropdown_);
-    wxWindowDC dc(this);
+    wxPaintDC dc(btn_dropdown_);
 
     wxRect rect = btn_dropdown_->GetClientRect();
-    rect.x += textCtrl_->GetSize().GetWidth() + 2;
-
+    
     // Figure out what style the button needs
     long style = wxCONTROL_NONE;
-    if (!btn_dropdown_->IsEnabled())
-        style = wxCONTROL_DISABLED;
-    else if (popupWindow_->IsShown())
+    if (popupWindow_->IsShown())
         style = wxCONTROL_PRESSED;
-    else if (rect.Contains(ScreenToClient(wxGetMousePosition())))
+    else if (btn_dropdown_->IsEnabled() && rect.Contains(btn_dropdown_->ScreenToClient(wxGetMousePosition())))
         style = wxCONTROL_CURRENT;
 
     if(style != wxCONTROL_NONE)
@@ -1409,7 +1439,7 @@ void mmTagTextCtrl::OnPaintButton(wxPaintEvent& event)
     {
         // If we aren't interacting with the button, draw the drop arrow
         // directly on the texctrl like the native combobox
-        paintDC.DrawBitmap(dropArrow_, wxPoint(0, 0));
+        dc.DrawBitmap(btn_dropdown_->IsEnabled() ? dropArrow_ : dropArrowInactive_, wxPoint(0, 0));
     }
 
     // Redraw the top, right, and bottom borders to match the window border
