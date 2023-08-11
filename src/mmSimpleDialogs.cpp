@@ -1104,6 +1104,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
     textCtrl_->Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
     textCtrl_->Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
+    textCtrl_->Bind(wxEVT_SIZE, [this](wxSizeEvent& event) {textCtrl_->Refresh(); });
     btn_dropdown_->Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
     btn_dropdown_->Bind(wxEVT_SET_FOCUS, &mmTagTextCtrl::OnFocusChange, this);
     btn_dropdown_->Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
