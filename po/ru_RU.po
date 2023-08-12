@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 12:01\n"
+"PO-Revision-Date: 2023-08-12 14:03\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Существуют сделки в этом счёте до указа
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Существуют повторяющиеся транзакции в этом счёте до указанной даты."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -922,19 +922,19 @@ msgstr "Ежемесячно (последний рабочий день)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Дублировать запланированную транзакцию"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Редактировать запланированную транзакцию"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Введите запланированную транзакцию"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Детали запланированной транзакции"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1047,7 +1047,7 @@ msgstr "Счёт"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Укажите счёт для данной повторяющейся транзакции"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1123,7 +1123,7 @@ msgstr "Цвета пользователя"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Организовать вложения этой запланированной транзакции"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1252,7 +1252,7 @@ msgstr "Разделить транзакцию"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Новая запланированная транзакция"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1321,7 +1321,7 @@ msgstr "Подсказка: Эти операции можно настроит�
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Запланированные транзакции"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1329,7 +1329,7 @@ msgstr "Повтор "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Удалить запланированную транзакцию"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1337,7 +1337,7 @@ msgstr "Вво&д"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Введите следующую запланированную транзакцию"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1345,7 +1345,7 @@ msgstr "Пропус&тить"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Пропустить следующую запланированную транзакцию"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1357,19 +1357,19 @@ msgstr "Пропустить следующее начисление"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Новая запланированная транзакция..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Редактировать запланированную операцию..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Дублировать запланированную транзакцию..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Удалить запланированную операцию..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1418,7 +1418,7 @@ msgstr[3] "%d день просрочен!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Вы действительно хотите удалить запланированную транзакцию?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -4006,11 +4006,11 @@ msgstr "Заметка: Файл базы данных .mmb не зашифро�
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Подсказка: Чтобы отметить транзакцию как проверенную, просто выделить её и нажать клавишу 'R'. Снять пометку можно нажатием клавиши 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Подсказка: Чтобы отметить транзакцию требующую проверки, выберите транзакцию и нажмите клавишу 'f' или 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4030,11 +4030,11 @@ msgstr "Совет: Если ведёте счета в разных валют�
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Совет: В менеджере категорий нажимая последовательно клавишу соответствующую первой букве названия, курсор будет переключаться между соответствующими категориями."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Совет: В менеджере категорий нажимая последовательно клавишу можно циклически переключаться между соответствующими названиями. Например, клавиша О переключит между Отель, Отдых, Одежда и т. д…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4187,7 +4187,7 @@ msgstr "Показать разделённые категории"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Создать запланированную тр&анзакцию..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4356,7 +4356,7 @@ msgstr "Выберите счёт назначения "
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Запланированная транзакция сохранена."
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -5818,7 +5818,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Периодические транзакции превысят лимит вашего счета.\n\n"
+"Аккаунт: %1$s\n"
+"Текущий баланс: %1$6.2f\n"
+"Сумма транзакций: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Вы хотите продолжить?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
