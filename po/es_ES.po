@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:05\n"
+"PO-Revision-Date: 2023-08-12 14:03\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Las compra de acciones para esta cuenta ya existen antes de esta fecha"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Las transacciones programadas para esta cuenta están programadas antes de esta fecha."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -922,19 +922,19 @@ msgstr "Mensualmente (último día laboral)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplicar transacción programada"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Editar transacción programada"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Registrar transacción programada"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detalles de la transacción programada"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1047,7 +1047,7 @@ msgstr "Cuenta"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Especifique la cuenta a la que pertenecerá la transacción programada"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1123,7 +1123,7 @@ msgstr "Colores del usuario"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organizar archivos adjuntos de esta transacción programada"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1253,7 +1253,7 @@ msgstr "Transacción dividida"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nueva transacción programada"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1322,7 +1322,7 @@ msgstr "Consejo: Estas transacciones pueden activarse - permitiendo al usuario a
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Transacciones programadas"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1330,7 +1330,7 @@ msgstr "D&uplicar "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Eliminar transacción programada"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1338,7 +1338,7 @@ msgstr "Registra&r"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Registrar la siguiente aparición de la transacción programada"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1346,7 +1346,7 @@ msgstr "&Omitir"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Omitir la siguiente aparición de la transacción programada"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1358,19 +1358,19 @@ msgstr "Omitir siguiente aparición"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nueva transacción programada..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Editar transacción programada..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "D&uplicar transacción programada..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Eliminar transacción programada..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1413,7 +1413,7 @@ msgstr[1] "¡%d días vencido!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "¿Desea eliminar la transacción programada?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -2537,7 +2537,7 @@ msgstr "Atrás"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:506 mmchecking_list.cpp:1070
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr "No conciliada"
+msgstr "No conciliado"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:508 mmhomepage.cpp:539
 #: mmhomepage.cpp:710 model/Model_Billsdeposits.cpp:41
@@ -2553,7 +2553,7 @@ msgstr "Nula"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:512 mmchecking_list.cpp:1059
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:44
 msgid "Follow Up"
-msgstr "Seguimiento"
+msgstr "Requiere seguimiento"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:514
 #: model/Model_Billsdeposits.cpp:44 model/Model_Checking.cpp:45
@@ -3998,11 +3998,11 @@ msgstr "Sugerencia: El archivo .mmb no está cifrado. Esto significa que cualqui
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Consejo: Para marcar una transacción como conciliada, simplemente seleccione la transacción y pulse la tecla 'R'. Para marcar una transacción como no conciliada, selecciónela y pulse 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Sugerencia: Para marcar una transacción como que requiere seguimiento, seleccione la transacción y pulse la tecla “F”."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4022,11 +4022,11 @@ msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que te
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Consejo para organizar categorías: Al pulsar una tecla de caracteres seleccionará la siguiente categoría que empiece por esa tecla (por ejemplo, cada vez que pulse la tecla “H” avanzará a la siguiente categoría que empiece por la letra h)."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Consejo para organizar categorías: Al pulsar una combinación de dos teclas de caracteres seleccionará la siguiente categoría que comience por esa combinación de teclas. Por ejemplo: Pulsando \"R\" y \"E\" seleccionará Regalos, si la vuelve a pulsar seleccionará Reembolsos, etc…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4173,7 +4173,7 @@ msgstr "&Ver categorías divididas"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Crear t&ransacción programada..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4207,7 +4207,7 @@ msgstr "Eliminar permanentemente todas las transacciones de la vista actual..."
 
 #: mmchecking_list.cpp:497
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr "Eliminar las transacciones de seguimiento mostradas..."
+msgstr "Eliminar las transacciones que requieren seguimiento mostradas..."
 
 #: mmchecking_list.cpp:498
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
@@ -4324,7 +4324,7 @@ msgstr "Seleccionar la cuenta de destino"
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Transacción programada guardada."
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -4859,7 +4859,7 @@ msgstr "&Organizar presupuesto..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Transacciones programadas"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -5588,7 +5588,7 @@ msgstr "Estadísticas de transacciones"
 
 #: mmhomepage.cpp:517
 msgid "Follow Up On Transactions: "
-msgstr "Transacciones de seguimiento: "
+msgstr "Transacciones que requieren seguimiento: "
 
 #: mmhomepage.cpp:521
 msgid "Total Transactions: "
@@ -5786,7 +5786,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Una transacción programada excederá el límite de su cuenta.\n\n"
+"Cuenta: %1$s\n"
+"Saldo actual: %1$6.2f\n"
+"Cantidad de la transacción: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"¿Desea continuar?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5798,7 +5803,7 @@ msgstr "Límite de crédito"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Comprobación de transacciones programadas en MMEX"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6644,17 +6649,17 @@ msgstr "Registros encontrados en las transacciones divididas: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Registros encontrados en transacciones programadas: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Registros encontrados en transacciones divididas programadas: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Registros encontrados como categoría del beneficiario por defecto: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
@@ -8008,8 +8013,8 @@ msgstr "¡No se encuentra la cuenta '%s'!"
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "La transacción se insertará con la primera cuenta bancaria:\n"
-"'%s' y marcada como 'Seguimiento'"
+msgstr "La transacción se registrará en la primera cuenta bancaria\n"
+"('%s') marcada como 'Requiere seguimiento'"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
