@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:05\n"
+"PO-Revision-Date: 2023-08-12 12:01\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Ehhez a számlához már léteztek részvényvásárlás(ok) ezen dátum
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Ehhez a számlához tartozó ütemezett ügyletek ütemezése ezen dátum előtt történik."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -922,19 +922,19 @@ msgstr "Havi (utolsó munkanap)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Ütemezett ügylet megkettőzése"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Ütemezett ügyletének szerkesztése"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Ütemezett ügylet bevitele"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Ütemezett ügylet részletei"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1047,7 +1047,7 @@ msgstr "Számla"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Határozza meg a számlát, ami az ütemezett ügylethez tartozik"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1123,7 +1123,7 @@ msgstr "Felhasználói színek"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Az ütemezett ügylethez tartozó mellékletek rendszerezése"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1253,7 +1253,7 @@ msgstr "Ügylet felosztása"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Új, ütemezett ügylet"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1322,7 +1322,7 @@ msgstr "Tipp: ezek a tranzakciók aktiválandóvá tehetők - így akár az öss
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Ütemezett ügyletek"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1330,7 +1330,7 @@ msgstr "&Megkettőzés "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Ütemezett ügylet törlése"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1338,7 +1338,7 @@ msgstr "&Megadás"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Következő ütemezett ügylet előfordulásának megadása"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1346,7 +1346,7 @@ msgstr "&Kihagyás"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Következő ütemezett ügylet előfordulásának kihagyása"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1358,19 +1358,19 @@ msgstr "Következő előfordulás kihagyása"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Új, ütemezett ügylet…"
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "Ütemezett ügyletének s&zerkesztése…"
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Ütemezett ügylet meg&kettőzése…"
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "Ütemezett ügylet &törlése…"
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1413,7 +1413,7 @@ msgstr[1] "%d napja lejárt!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Biztosan törölni szeretné az ütemezett ügyletet?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -3999,11 +3999,11 @@ msgstr "Tipp: az .mmb fájl nincs titkosítva. Ez azt jelenti, hogy bárki, aki 
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Tipp: ha egy ügyletet egyeztetettként szeretne megjelölni, válassza ki az ügyletet, és nyomja meg a „R” billentyűt. Ha egy ügyletet egyeztetetlenként szeretne megjelölni, válassza ki az ügyletet, és nyomja meg az „U” billentyűt."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Tipp: ha egy ügyletet nyomon követést igénylőként szeretne megjelölni, válassza ki az ügyletet, és nyomja meg az „F” billentyűt."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4023,11 +4023,11 @@ msgstr "Tipp: amennyiben több, eltérő pénznemben vezetett számlája van, á
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Kategóriák rendszerezése tippje: A „H” gomb megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Kategóriák rendszerezése tippje: A 2 billentyűkombináció megnyomásával az adott billentyűkombinációtól kezdve az összes kategórián keresztül lépkedhet. Például: Az „LA” megnyomásával kiválasztja a „Lakás, Lakásadó, Lakberendezés, …” lehetőséget."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4174,7 +4174,7 @@ msgstr "Felosztott kategóriák &megjelenítése"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Ütemezett ügylet létre&hozása…"
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4325,7 +4325,7 @@ msgstr "Válassza ki a célszámlát"
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Ütemezett ügylet mentve."
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -4860,7 +4860,7 @@ msgstr "&Költségvetés beállítása…"
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Ütemezett ügyletek"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -5786,7 +5786,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Az ütemezett ügylet túllépi számlakorlátját.\n\n"
+"Számla: %1$s\n"
+"Jelenlegi egyenleg: %1$6.2f\n"
+"Ügylet összege: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Folytatja a műveletet?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5798,7 +5803,7 @@ msgstr "Hitelkeret"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX ütemezett ügyletek ellenőrzése"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6643,17 +6648,17 @@ msgstr "Felosztott ügyletekben talált bejegyzések: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Az ütemezett ügyletek között talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Ütemezett felosztott ügyletek között talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Alapbeállítás szerinti kedvezményezett kategóriaként talált bejegyzések: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
