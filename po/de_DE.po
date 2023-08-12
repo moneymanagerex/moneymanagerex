@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 18:45\n"
+"PO-Revision-Date: 2023-08-12 20:11\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1360,15 +1360,15 @@ msgstr "&Neue terminierte Transaktion..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Geplante Transaktion bearbeiten..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "&Geplante Transaktion duplizieren..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Geplante Transaktion löschen..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1411,7 +1411,7 @@ msgstr[1] "%d Tage überfällig!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Möchten Sie die ausgewählte Buchung wirklich löschen?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -4000,11 +4000,11 @@ msgstr "Tipp: Die .mmb-Datei ist nicht verschlüsselt. Das bedeutet, dass jeder 
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Tipp: Um eine Transaktion als abgestimmt zu markieren, wählen Sie die Transaktion aus und drücken Sie die Taste \"R\". Um eine Transaktion als nicht abgestimmt zu markieren, wählen Sie die Transaktion aus und drücken Sie die Taste \"U\"."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Tipp: Um eine Transaktion als nachbearbeitungsbedürftig zu markieren, wählen Sie die Transaktion aus und drücken Sie die Taste \"F\"."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4024,11 +4024,11 @@ msgstr "Tipp: Verwenden Sie Wechselkurse für Währungen, im Fall, wenn Sie Kont
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Organisieren Kategorien Dialog Tipp: Durch Drücken der Taste h werden alle Kategorien beginnend mit dem Buchstaben h angezeigt."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Kategorien organisieren Tipp: Wenn Sie 2 Tastenkombinationen drücken, werden alle Kategorien durchlaufen, die mit dieser Tastenkombination beginnen. Beispiel: Wenn Sie ho drücken, wählen Sie Homeneeds, Home, House Tax, usw…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4175,7 +4175,7 @@ msgstr "&Zeige gesplittete Kategorien"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Neue terminierte Transaktion..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4326,7 +4326,7 @@ msgstr "Empfängerkonto wählen "
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Geplante Transaktion gespeichert."
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -4861,7 +4861,7 @@ msgstr "&Budget einrichten..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "Geplante Buchungen"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -5784,7 +5784,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Eine wiederkehrende Transaktion überschreitet Ihr Kontolimit.\n\n"
+"Konto: %1$s\n"
+"Aktueller Kontostand: %1$6.2f\n"
+"Transaktionsbetrag: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Möchten Sie fortfahren?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5796,7 +5801,7 @@ msgstr "Kreditlimit"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX Wiederkehrende Buchungen Überprüfen"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6643,17 +6648,17 @@ msgstr "Gefundene Einträge in gespliteten Buchungen: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Datensätze in geplanten Transaktionen gefunden: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Gefundene Einträge in gespliteten Buchungen: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Zeilen in Standard-Zahlungsempfänger Kategorie gefunden: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
