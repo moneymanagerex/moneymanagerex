@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:05\n"
+"PO-Revision-Date: 2023-08-12 18:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Aktienkäufe für dieses Konto bestehen bereits vor diesem Datum"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Wiederkehrende Transaktionen für dieses Konto sind vor diesem Datum geplant."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -921,19 +921,19 @@ msgstr "Monatlich (letzter Arbeitstag)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Dupliziere ausgewählte Transaktionen"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Geplante Transaktion bearbeiten"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Geplante Transaktion eingeben"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Details zu geplanten Transaktionen"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1046,7 +1046,7 @@ msgstr "Konto"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Geben Sie das Konto an, dem die regelmäßige Buchung zugeordnet wird"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1122,7 +1122,7 @@ msgstr "Benutzer-Farben"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Verwalten der Anhänge dieser Buchung"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1251,7 +1251,7 @@ msgstr "Geteilte Transaktion"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Neue terminierte Transaktion"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1320,7 +1320,7 @@ msgstr "Tipp: Diese Buchungen können so aufgesetzt werden, dass der Benutzer da
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Geplante Transaktionen"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1328,7 +1328,7 @@ msgstr "D&uplizieren "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Geplante Buchungen löschen"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1336,7 +1336,7 @@ msgstr "&Einfügen"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Geben Sie die nächste wiederkehrende Buchung ein"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1344,7 +1344,7 @@ msgstr "&überspringen"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Nächste wiederkehrende Buchung überspringen"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1356,7 +1356,7 @@ msgstr "Überspringe nächstes Ereignis"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Neue terminierte Transaktion..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
