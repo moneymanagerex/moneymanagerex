@@ -27,6 +27,7 @@
 #include "Model_Translink.h"
 #include "Model_CustomFieldData.h"
 #include "attachmentdialog.h"
+#include "util.h"
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES =
 {
@@ -402,7 +403,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
         for (const auto& entry : m_tags)
             tagnames.Add(Model_Tag::instance().get(entry.TAGID)->TAGNAME);
         // Sort TAGNAMES
-        tagnames.Sort();
+        tagnames.Sort(CaseInsensitiveCmp);
         for (const auto& name : tagnames)
             this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
     }
@@ -447,7 +448,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
         for (const auto& entry : m_tags)
             tagnames.Add(Model_Tag::instance().get(entry.TAGID)->TAGNAME);
         // Sort TAGNAMES
-        tagnames.Sort();
+        tagnames.Sort(CaseInsensitiveCmp);
         for (const auto& name : tagnames)
             this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
     }

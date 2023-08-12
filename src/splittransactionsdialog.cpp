@@ -138,6 +138,10 @@ EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
 EVT_BUTTON(mmID_REMOVE, mmSplitTransactionDialog::OnRemoveRow)
 wxEND_EVENT_TABLE()
 
+// Used to determine if we need to refresh the tag text ctrl after
+// accelerator hints are shown which only occurs once.
+static bool altRefreshDone;
+
 mmSplitTransactionDialog::mmSplitTransactionDialog( )
 {
 }
@@ -176,6 +180,7 @@ bool mmSplitTransactionDialog::Create(wxWindow* parent
     , const wxString& name
     )
 {
+    altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style, name);
 
@@ -216,7 +221,6 @@ void mmSplitTransactionDialog::CreateControls()
     wxStaticText* amountText = new wxStaticText(slider_, wxID_STATIC, _("Amount"));
     amountText->SetFont(this->GetFont().Bold());
     wxStaticText* tagText = new wxStaticText(slider_, wxID_STATIC, _("Tags"));
-    tagText->SetFont(this->GetFont().Bold());
     flexGridSizer_->Add(categoryText, g_flagsExpand);
     flexGridSizer_->Add(amountText, g_flagsH);
     flexGridSizer_->Add(tagText, g_flagsH);
@@ -346,7 +350,6 @@ void mmSplitTransactionDialog::createNewRow(bool enabled)
 
     mmTagTextCtrl* ntag = new mmTagTextCtrl(slider_, mmID_MAX + row);
     ntag->Enable(enabled);
-    ntag->SetMinSize(wxSize(200, 1));
 
     wxButton* nother = new wxButton(slider_, mmID_MAX + row, _("Notes"));
     nother->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
@@ -518,6 +521,16 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
             }
         }
     }
+
+    // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
+    // is not applied. We need to refresh the tag ctrls to redraw the drop buttons with the correct images.
+    if (event.AltDown() && !altRefreshDone)
+    {
+        for (int row = 0; row < m_splits_widgets.size(); row++)
+            m_splits_widgets.at(row).tags->Refresh();
+        altRefreshDone = true;
+    }
+
     event.Skip();
 }
 

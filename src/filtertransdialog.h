@@ -52,7 +52,7 @@ public:
     int mmIsRecordMatches(const Model_Billsdeposits::Data &tran
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
     template<class MODEL, class DATA = typename MODEL::DATA>
-    bool mmIsRecordMatches(const DATA& tran);
+    bool mmIsRecordMatches(const DATA& tran, bool mergeSplitTags = false);
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool mmIsSplitRecordMatches(const DATA& split);
     const wxString mmGetDescriptionToolTip() const;
@@ -102,7 +102,7 @@ private:
     bool mmIsPayeeMatches(int payeeid);
     bool mmIsCategoryMatches(int categid);
     bool mmIsNoteMatches(const wxString& note);
-    bool mmIsTagMatches(const wxString& refType, int refId);
+    bool mmIsTagMatches(const wxString& refType, int refId, bool mergeSplitTags = false);
 
     void setTransferTypeCheckBoxes();
 

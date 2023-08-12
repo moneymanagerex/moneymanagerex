@@ -463,9 +463,12 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                 full_tran.NOTES = tran.NOTES;
                 full_tran.TAGNAMES = tranTagnames;
-                Model_Checking::Data splitWithTranData = full_tran;
-                if (dlg.get()->mmIsSplitRecordMatches<Model_Splittransaction>(split) ||
-                    dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTranData))
+                Model_Checking::Data splitWithTxnNotes = full_tran;
+                Model_Checking::Data splitWithSplitNotes = full_tran;
+                splitWithSplitNotes.NOTES = split.NOTES;
+                if (dlg.get()->mmIsSplitRecordMatches<Model_Splittransaction>(split)
+                    && (dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true)
+                        || dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)))
                 {
                     match = true;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
