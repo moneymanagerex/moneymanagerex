@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:05\n"
+"PO-Revision-Date: 2023-08-12 12:01\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4891,7 +4891,7 @@ msgstr "&Бюджет..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "Запланированные транзакции"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -5830,7 +5830,7 @@ msgstr "Кредитный лимит"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Проверка запланированной транзакции"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6676,17 +6676,17 @@ msgstr "Найдено транзакций в разделённых: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Найдено транзакций среди запланированных: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Найдено транзакций среди повторяющихся разделённых: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Найдено записей привязанных к получателю: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
