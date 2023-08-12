@@ -502,7 +502,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         }
     }
 
-    //Auto recurring transaction
+    //Auto scheduled transaction
     bool continueExecution = false;
 
     Model_Billsdeposits::AccountBalance bal;
@@ -769,8 +769,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData(mmTreeItemData::ASSETS, "Assets"));
     m_nav_tree_ctrl->SetItemBold(assets, true);
 
-    wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
-    m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData(mmTreeItemData::BILLS, "Recurring Transactions"));
+    wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Scheduled Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
+    m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData(mmTreeItemData::BILLS, "Scheduled Transactions"));
     m_nav_tree_ctrl->SetItemBold(bills, true);
 
     wxTreeItemId trash = m_nav_tree_ctrl->AppendItem(root, _("Deleted Transactions"), img::TRASH_PNG, img::TRASH_PNG);
@@ -1728,7 +1728,7 @@ void mmGUIFrame::createMenu()
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
-        , _("&Recurring Transactions"), _("Bills && Deposits"));
+        , _("&Scheduled Transactions"), _("Bills && Deposits"));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
@@ -3151,7 +3151,7 @@ void mmGUIFrame::createBillsDeposits()
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
     m_nav_tree_ctrl->SetFocus();
-    setNavTreeSection(_("Recurring Transactions"));
+    setNavTreeSection(_("Scheduled Transactions"));
 }
 //----------------------------------------------------------------------------
 

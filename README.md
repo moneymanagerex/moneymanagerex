@@ -20,7 +20,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 - Checking, credit card, savings, stock investment and asset accounts
 - Unlimited nested multi-level category support
 - Multiple tags per split transaction support [in development](https://github.com/moneymanagerex/moneymanagerex/issues/5439) (available in [developmental releases](https://github.com/moneymanagerex/moneymanagerex#download))
-- Reminders for recurring bills and deposits
+- Reminders for scheduled bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one-click reporting with graphs and charts
 - Import data from [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) and [Quicken Interchange Format (QIF)](https://en.wikipedia.org/wiki/Quicken_Interchange_Format) files

@@ -186,7 +186,7 @@ bool Model_Billsdeposits::remove(int id)
 {
     for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
         Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
-    // Delete tags for the recurring transaction
+    // Delete tags for the scheduled transaction
     Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), id);
     return this->remove(id, db_);
 }
@@ -297,7 +297,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 
     if (abort_transaction)
     {
-        wxString message = _("A recurring transaction will exceed your account limit.\n\n"
+        wxString message = _("A scheduled transaction will exceed your account limit.\n\n"
             "Account: %1$s\n"
             "Current Balance: %1$6.2f\n"
             "Transaction amount: %3$6.2f\n"
@@ -322,7 +322,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 
         message.Printf(message, account->ACCOUNTNAME, current_account_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
 
-        if (wxMessageBox(message, _("MMEX Recurring Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+        if (wxMessageBox(message, _("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
         {
             abort_transaction = false;
         }

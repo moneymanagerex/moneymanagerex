@@ -1852,7 +1852,7 @@ void mmSetSize(wxWindow* w)
     else if (name == "Merge payees") {
         my_size = Model_Infotable::instance().GetSizeSetting("RELOCATEPAYEE_DIALOG_SIZE");
     }
-    else if (name == "Recurring Transaction Dialog") {
+    else if (name == "Scheduled Transaction Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("RECURRINGTRANS_DIALOG_SIZE");
     }
     else if (name == "Transaction Filter") {

@@ -209,7 +209,7 @@ void relocatePayeeDialog::IsOkOk()
 
     wxString msgStr = wxString()
         << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
-        << wxString::Format(_("Records found in recurring transactions: %i"), bills_size);
+        << wxString::Format(_("Records found in scheduled transactions: %i"), bills_size);
 
     m_info->SetLabel(msgStr);
 

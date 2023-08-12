@@ -243,7 +243,7 @@ void mmBillsDepositsPanel::CreateControls()
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
-        , _("Recurring Transactions"));
+        , _("Scheduled Transactions"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
@@ -292,31 +292,31 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
-    mmToolTip(itemButtonNew, _("New Recurring Transaction"));
+    mmToolTip(itemButtonNew, _("New Scheduled Transaction"));
     itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 5);
 
     wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
-    mmToolTip(itemButton81, _("Edit Recurring Transaction"));
+    mmToolTip(itemButton81, _("Edit Scheduled Transaction"));
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _("D&uplicate "));
-    mmToolTip(itemButton82, _("Duplicate Recurring Transaction"));
+    mmToolTip(itemButton82, _("Duplicate Scheduled Transaction"));
     itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 5);
     itemButton82->Enable(false);
 
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
-    mmToolTip(itemButton7, _("Delete Recurring Transaction"));
+    mmToolTip(itemButton7, _("Delete Scheduled Transaction"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
-    mmToolTip(itemButton8, _("Enter Next Recurring Transaction Occurrence"));
+    mmToolTip(itemButton8, _("Enter Next Scheduled Transaction Occurrence"));
     itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
-    mmToolTip(buttonSkipTrans, _("Skip Next Recurring Transaction Occurrence"));
+    mmToolTip(buttonSkipTrans, _("Skip Next Scheduled Transaction Occurrence"));
     itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 5);
     buttonSkipTrans->Enable(false);
 
@@ -434,11 +434,11 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Recurring Transaction..."));
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction..."));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_NEW, _("&New Scheduled Transaction..."));
+    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Scheduled Transaction..."));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Scheduled Transaction..."));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Scheduled Transaction..."));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments..."));
 
@@ -673,7 +673,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     if (m_bdp->bills_.empty()) return;
     if (m_selected_row < 0) return;
 
-    wxMessageDialog msgDlg(this, _("Do you really want to delete the recurring transaction?")
+    wxMessageDialog msgDlg(this, _("Do you really want to delete the scheduled transaction?")
         , _("Confirm Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
@@ -973,7 +973,7 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 
 wxString  mmBillsDepositsPanel::BuildPage() const
 {
-    return listCtrlAccount_->BuildPage(_("Recurring Transactions"));
+    return listCtrlAccount_->BuildPage(_("Scheduled Transactions"));
 }
 
 void mmBillsDepositsPanel::do_delete_custom_values(int id)
