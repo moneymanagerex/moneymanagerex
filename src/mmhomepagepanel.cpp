@@ -241,7 +241,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("billsdeposits:", &sData))
     {
-        m_frame->setNavTreeSection(_("Recurring Transactions"));
+        m_frame->setNavTreeSection(_("Scheduled Transactions"));
         wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
         m_frame->GetEventHandler()->AddPendingEvent(event);
     }

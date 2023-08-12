@@ -86,6 +86,10 @@ void mmTransDialog::SetEventHandlers()
 #endif
 }
 
+// Used to determine if we need to refresh the tag text ctrl after
+// accelerator hints are shown which only occurs once.
+static bool altRefreshDone;
+
 mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
     , int transaction_id
@@ -163,6 +167,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
+    altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
     style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style, name);
@@ -951,6 +956,14 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
         default:
             break;
         }
+    }
+
+    // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
+    // is not applied. We need to refresh the tag ctrl to redraw the drop button with the correct image.
+    if (event.AltDown() && !altRefreshDone)
+    {
+        tagTextCtrl_->Refresh();
+        altRefreshDone = true;
     }
 
     event.Skip();

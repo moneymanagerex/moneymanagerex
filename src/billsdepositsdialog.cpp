@@ -68,6 +68,10 @@ const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
 
 };
 
+// Used to determine if we need to refresh the tag text ctrl after
+// accelerator hints are shown which only occurs once.
+static bool altRefreshDone;
+
 wxIMPLEMENT_DYNAMIC_CLASS(mmBDDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
@@ -193,6 +197,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
 bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
+    altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
     style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style, name);
@@ -323,14 +328,14 @@ void mmBDDialog::dataToControls()
     if (!m_enter_occur)
     {
         if (m_dup_bill)
-            SetDialogHeader(_("Duplicate Recurring Transaction"));
+            SetDialogHeader(_("Duplicate Scheduled Transaction"));
         else
-            SetDialogHeader(_("Edit Recurring Transaction"));
+            SetDialogHeader(_("Edit Scheduled Transaction"));
         textAmount_->SetFocus();
     }
     else
     {
-        SetDialogHeader(_("Enter Recurring Transaction"));
+        SetDialogHeader(_("Enter Scheduled Transaction"));
         m_date_due->Enable(false);
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
@@ -424,7 +429,7 @@ void mmBDDialog::CreateControls()
 
     /* Bills & Deposits Details */
 
-    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
+    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Scheduled Transaction Details"));
     wxStaticBoxSizer* repeatTransBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxVERTICAL);
 
     //mainBoxSizerInner will align contents horizontally
@@ -566,7 +571,7 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(acc_label, g_flagsH);
     cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_bill_data.ACCOUNTID);
     cbAccount_->SetMinSize(cbAccount_->GetSize());
-    mmToolTip(cbAccount_, _("Specify the Account that will own the recurring transaction"));
+    mmToolTip(cbAccount_, _("Specify the Account that will own the scheduled transaction"));
     transPanelSizer->Add(cbAccount_, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
 
@@ -635,7 +640,7 @@ void mmBDDialog::CreateControls()
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(bAttachments_, _("Organize attachments of this recurring transaction"));
+    mmToolTip(bAttachments_, _("Organize attachments of this scheduled transaction"));
 
     // Now display the Frequntly Used Notes, Colour, Attachment buttons
     wxBoxSizer* notes_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -807,6 +812,14 @@ void mmBDDialog::OnComboKey(wxKeyEvent& event)
         default:
             break;
         }
+    }
+
+    // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
+    // is not applied. We need to refresh the tag ctrl to redraw the drop button with the correct image.
+    if (event.AltDown() && !altRefreshDone)
+    {
+        tagTextCtrl_->Refresh();
+        altRefreshDone = true;
     }
 
     event.Skip();

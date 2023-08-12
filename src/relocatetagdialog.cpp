@@ -204,8 +204,8 @@ void relocateTagDialog::IsOkOk()
     wxString msgStr = wxString()
         << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
         << wxString::Format(_("Records found in split transactions: %i"), split_size) << "\n"
-        << wxString::Format(_("Records found in recurring transactions: %i"), bills_size) << "\n"
-        << wxString::Format(_("Records found in recurring split transactions: %i"), bill_split_size);
+        << wxString::Format(_("Records found in scheduled transactions: %i"), bills_size) << "\n"
+        << wxString::Format(_("Records found in scheduled split transactions: %i"), bill_split_size);
 
     m_info->SetLabel(msgStr);
 

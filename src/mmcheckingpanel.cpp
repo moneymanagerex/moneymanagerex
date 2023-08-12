@@ -266,11 +266,14 @@ void mmCheckingPanel::filterTable()
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     full_tran.NOTES = tran.NOTES;
                     full_tran.TAGNAMES = tranTagnames;
-                    Model_Checking::Data full_split = full_tran;
-                    if (m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split) ||
-                        m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(full_split))
+                    Model_Checking::Data splitWithTxnNotes = full_tran;
+                    Model_Checking::Data splitWithSplitNotes = full_tran;
+                    splitWithSplitNotes.NOTES = split.NOTES;
+                    if (m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split)
+                        && (m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true)
+                            || m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)))
                     {
-                        full_tran.AMOUNT = Model_Checking::amount(full_split, m_AccountID);
+                        full_tran.AMOUNT = Model_Checking::amount(splitWithTxnNotes, m_AccountID);
                         full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
                         wxString tagnames;
                         for (const auto& tag : Model_Taglink::instance().get(splitRefType,split.SPLITTRANSID))

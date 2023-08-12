@@ -477,7 +477,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
-        menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Recurring T&ransaction..."));
+        menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Scheduled T&ransaction..."));
         if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
     }
     else {
@@ -1543,7 +1543,7 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
     dlg.SetDialogParameters(m_selected_id[0]);
     if (dlg.ShowModal() == wxID_OK)
     {
-        wxMessageBox(_("Recurring Transaction saved."));
+        wxMessageBox(_("Scheduled transaction saved."));
     }
 }
 
@@ -1740,7 +1740,9 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             for (const auto& split : tran.m_splits)
             {
                 wxString tagnames;
-                for (const auto& tag : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
+                std::map<wxString, int> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);
+                std::map<wxString, int, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
+                for (const auto& tag : sortedTags)
                     tagnames.Append(tag.first + " ");
                 if (!tagnames.IsEmpty())
                     value.Append((value.IsEmpty() ? "" : ", ") + tagnames.Trim());
