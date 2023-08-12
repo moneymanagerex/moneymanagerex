@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:06\n"
+"PO-Revision-Date: 2023-08-12 12:01\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -1121,7 +1121,7 @@ msgstr "User Colours"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organise attachments of this scheduled transaction"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -3993,11 +3993,11 @@ msgstr ""
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Organise Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Organise Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
