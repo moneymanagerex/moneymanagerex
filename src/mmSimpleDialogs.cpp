@@ -1238,7 +1238,7 @@ void mmTagTextCtrl::init()
 void mmTagTextCtrl::OnTextChanged(wxKeyEvent& event)
 {
     int keyCode = event.GetUnicodeKey();
-    if (keyCode > 32 && keyCode < 127)
+    if (!event.AltDown() && keyCode > 32 && keyCode < 127)
     {
 
         int ip = textCtrl_->GetInsertionPoint();
