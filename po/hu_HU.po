@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 12:01\n"
+"PO-Revision-Date: 2023-08-13 03:47\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4023,7 +4023,7 @@ msgstr "Tipp: amennyiben több, eltérő pénznemben vezetett számlája van, á
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr "Kategóriák rendszerezése tippje: A „H” gomb megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
+msgstr "Kategóriák rendszerezése tippje: A „H” billentyű megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
