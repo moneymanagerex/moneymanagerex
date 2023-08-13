@@ -1787,7 +1787,7 @@ void mmGUIFrame::createMenu()
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
     menuDatabase->Append(menuItemCheckDB);
-    menuTools->AppendSubMenu(menuDatabase, _("Databa&se")
+    menuTools->AppendSubMenu(menuDatabase, _("&Database")
         , _("Database management"));
     menuItemChangeEncryptPassword->Enable(false);
 
