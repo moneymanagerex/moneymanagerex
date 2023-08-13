@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 12:15\n"
+"PO-Revision-Date: 2023-08-13 13:23\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -898,19 +898,19 @@ msgstr "Ежедневно"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "В (N) дней"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "В (N) месяцев"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Каждые (N) дней"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Каждые (N) месяцев"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -6842,7 +6842,7 @@ msgstr "Перед отправкой новой ошибки, пожалуйс�
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%1$s (%2$i месяца)"
 msgstr[2] ""
 msgstr[3] ""
 
