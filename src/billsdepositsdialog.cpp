@@ -59,10 +59,10 @@ const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
     { FOURMONTHS, wxTRANSLATE("Four Months")},
     { FOURWEEKS, wxTRANSLATE("Four Weeks")},
     { DAILY, wxTRANSLATE("Daily")},
-    { INXDAYS, wxTRANSLATE("In (x) Days")},
-    { INXMONTHS, wxTRANSLATE("In (x) Months")},
-    { EVERYXDAYS, wxTRANSLATE("Every (x) Days")},
-    { EVERYXMONTHS, wxTRANSLATE("Every (x) Months")},
+    { INXDAYS, wxTRANSLATE("In (n) Days")},
+    { INXMONTHS, wxTRANSLATE("In (n) Months")},
+    { EVERYXDAYS, wxTRANSLATE("Every (n) Days")},
+    { EVERYXMONTHS, wxTRANSLATE("Every (n) Months")},
     { MONTHLYLASTDAY, wxTRANSLATE("Monthly (last day)")},
     { MONTHLYLASTBUSINESSDAY, wxTRANSLATE("Monthly (last business day)")}
 
