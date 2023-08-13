@@ -254,7 +254,8 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    const wxString& headingStr = wxString::Format("%s (%i %s)", getReportTitle(), getForwardMonths(), _("months"));
+    const wxString& headingStr = wxString::Format(_("%1$s (%2$i months)")
+        , getReportTitle(), getForwardMonths());
     hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 
@@ -382,7 +383,8 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    const wxString& headingStr = wxString::Format("%s (%i %s)", getReportTitle(), getForwardMonths(), _("months"));
+    const wxString& headingStr = wxString::Format(_("%1$s (%2$i months)")
+        , getReportTitle(), getForwardMonths());
     hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 
