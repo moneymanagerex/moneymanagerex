@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:05\n"
+"POT-Creation-Date: 2023-08-13 13:32+0300\n"
+"PO-Revision-Date: 2023-08-13 10:35\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -435,8 +435,8 @@ msgstr "Εισάγετε το όνομα του περιουσιακού στο�
 #: import_export/qif_export.cpp:608 import_export/qif_import_gui.cpp:104
 #: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:271
-#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:286
-#: reports/cashflow.cpp:414 reports/incexpenses.cpp:244 reports/summary.cpp:297
+#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:287
+#: reports/cashflow.cpp:416 reports/incexpenses.cpp:244 reports/summary.cpp:297
 #: reports/transactions.cpp:188 stockdialog.cpp:293 stockdialog.cpp:648
 #: stockspanel.cpp:212 transactionsupdatedialog.cpp:130 transdialog.cpp:427
 #: usertransactionpanel.cpp:99 webapp.cpp:563 webappdialog.cpp:138
@@ -1020,7 +1020,7 @@ msgstr "Επιτρέπει την ρύθμιση διαφορετικών ποσ
 #: budgetingpanel.cpp:302 filtertrans.cpp:197 filtertransdialog.cpp:1021
 #: filtertransdialog.cpp:1030 import_export/qif_export.cpp:614
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
-#: mmhomepage.cpp:358 mmhomepage.cpp:432 reports/cashflow.cpp:418
+#: mmhomepage.cpp:358 mmhomepage.cpp:432 reports/cashflow.cpp:420
 #: reports/categexp.cpp:218 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:196 splittransactionsdialog.cpp:87
 #: splittransactionsdialog.cpp:221 transactionsupdatedialog.cpp:171
@@ -1038,7 +1038,7 @@ msgstr "Καθορίστε το ποσό της μεταφοράς στον λο
 #: filtertransdialog.cpp:1610 import_export/qif_export.cpp:611
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:174
 #: import_export/qif_import_gui.cpp:255 import_export/univcsvdialog.cpp:103
-#: mmchecking_list.cpp:277 reports/cashflow.cpp:415
+#: mmchecking_list.cpp:277 reports/cashflow.cpp:417
 #: reports/transactions.cpp:190 transdialog.cpp:246 transdialog.cpp:250
 #: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:103
 #: webapp.cpp:562 webappdialog.cpp:139
@@ -1060,7 +1060,7 @@ msgstr "Προς"
 #: import_export/qif_import_gui.cpp:106 import_export/qif_import_gui.cpp:268
 #: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:502
 #: mmchecking_list.cpp:280 model/Model_Attachment.cpp:29 payeedialog.cpp:83
-#: payeedialog.cpp:238 reports/cashflow.cpp:416 reports/payee.cpp:136
+#: payeedialog.cpp:238 reports/cashflow.cpp:418 reports/payee.cpp:136
 #: reports/transactions.cpp:191 transactionsupdatedialog.cpp:184
 #: transdialog.cpp:247 transdialog.cpp:507 usertransactionpanel.cpp:171
 #: webappdialog.cpp:142
@@ -1075,7 +1075,7 @@ msgstr "Δικαιούχος"
 #: import_export/qif_import_gui.cpp:279 import_export/univcsvdialog.cpp:107
 #: import_export/univcsvdialog.cpp:513 mmchecking_list.cpp:284
 #: mmhomepage.cpp:190 payeedialog.cpp:201 reports/budgetcategorysummary.cpp:185
-#: reports/budgetingperf.cpp:130 reports/cashflow.cpp:417
+#: reports/budgetingperf.cpp:130 reports/cashflow.cpp:419
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:193 splittransactionsdialog.cpp:80
 #: splittransactionsdialog.cpp:219 transactionsupdatedialog.cpp:208
@@ -3362,7 +3362,7 @@ msgid "Don't Care"
 msgstr "Αδιάφορο"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:294
-#: mmhomepage.cpp:548 mmhomepage.cpp:711 reports/cashflow.cpp:419
+#: mmhomepage.cpp:548 mmhomepage.cpp:711 reports/cashflow.cpp:421
 #: reports/summary.cpp:272 reports/summary.cpp:308
 msgid "Balance"
 msgstr "Υπόλοιπο"
@@ -4946,8 +4946,8 @@ msgid "Generate database report or fix errors"
 msgstr "Δημιουργία αναφοράς βάσης δεδομένων ή σφάλματα διόρθωσης"
 
 #: mmframe.cpp:1790
-msgid "Databa&se"
-msgstr "Βάση Δεδομένων"
+msgid "&Database"
+msgstr ""
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -5540,7 +5540,7 @@ msgstr "Μετοχές"
 msgid "Gain/Loss"
 msgstr "Κέρδη/Ζημιές"
 
-#: mmhomepage.cpp:82 reports/budgetingperf.cpp:141 reports/cashflow.cpp:287
+#: mmhomepage.cpp:82 reports/budgetingperf.cpp:141 reports/cashflow.cpp:288
 #: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:305
 msgid "Total"
 msgstr "Σύνολο"
@@ -6796,29 +6796,30 @@ msgstr "Τέλος, αναφέρατε ένα σφάλμα χρησιμοποι�
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr "Παρακαλούμε ακολουθήστε τις παρακάτω οδηγίες προτού υποβάλετε μια νέα αναφορά σφάλματος:"
 
-#: reports/cashflow.cpp:257 reports/cashflow.cpp:385
-msgid "months"
-msgstr "μήνες"
+#: reports/cashflow.cpp:257 reports/cashflow.cpp:386
+#, c-format
+msgid "%1$s (%2$i months)"
+msgstr ""
 
-#: reports/cashflow.cpp:288 reports/categexp.cpp:424
+#: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
 msgstr "Διαφορά"
 
-#: reports/cashflow.cpp:289 reports/cashflow.cpp:420
+#: reports/cashflow.cpp:290 reports/cashflow.cpp:422
 msgid "Cumulative Difference"
 msgstr "Σωρευτική Διαφορά"
 
-#: reports/cashflow.cpp:344
+#: reports/cashflow.cpp:345
 msgid "Cash Flow - Daily"
 msgstr "Ταμειακές Ροές - Καθημερινά"
 
-#: reports/cashflow.cpp:358
+#: reports/cashflow.cpp:359
 msgid "Cash Flow - Monthly"
 msgstr "Ταμειακές Ροές - Μηνιαίως"
 
-#: reports/cashflow.cpp:372
+#: reports/cashflow.cpp:373
 msgid "Cash Flow - Transactions"
 msgstr "Ταμειακές Ροές - Συναλλαγές"
 
