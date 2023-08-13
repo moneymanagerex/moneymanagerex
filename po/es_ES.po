@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 12:14\n"
+"PO-Revision-Date: 2023-08-13 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -898,19 +898,19 @@ msgstr "Diariamente"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "En (n) días"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "En (n) meses"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Cada (n) días"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Cada (n) meses"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -4947,7 +4947,7 @@ msgstr "Generar un informe de la base de datos o corregir errores"
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "&Base de datos"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -6809,8 +6809,8 @@ msgstr "Por favor, sigue estas instrucciones antes de enviar un nuevo informe de
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s (%2$i mes)"
+msgstr[1] "%1$s (%2$i meses)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
