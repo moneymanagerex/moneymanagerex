@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-08-13 13:32+0300\n"
-"PO-Revision-Date: 2023-08-13 10:36\n"
+"POT-Creation-Date: 2023-08-13 14:38+0300\n"
+"PO-Revision-Date: 2023-08-13 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -897,20 +897,20 @@ msgid "Daily"
 msgstr "Ежедневно"
 
 #: billsdepositsdialog.cpp:62
-msgid "In (x) Days"
-msgstr "В (X) дни"
+msgid "In (n) Days"
+msgstr ""
 
 #: billsdepositsdialog.cpp:63
-msgid "In (x) Months"
-msgstr "В (X) месяцы"
+msgid "In (n) Months"
+msgstr ""
 
 #: billsdepositsdialog.cpp:64
-msgid "Every (x) Days"
-msgstr "Каждые (X) дней"
+msgid "Every (n) Days"
+msgstr ""
 
 #: billsdepositsdialog.cpp:65
-msgid "Every (x) Months"
-msgstr "Каждые (X) месяцев"
+msgid "Every (n) Months"
+msgstr ""
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -4979,7 +4979,7 @@ msgstr "Создание отчетов базы данных или испра�
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "&База данных"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -6839,8 +6839,12 @@ msgstr "Перед отправкой новой ошибки, пожалуйс�
 
 #: reports/cashflow.cpp:257 reports/cashflow.cpp:386
 #, c-format
-msgid "%1$s (%2$i months)"
-msgstr ""
+msgid "%1$s (%2$i month)"
+msgid_plural "%1$s (%2$i months)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
