@@ -383,7 +383,8 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    const wxString& headingStr = wxString::Format("%s (%i %s)", getReportTitle(), getForwardMonths(), _("months"));
+    const wxString& headingStr = wxString::Format(_("%s (%i months)")
+        , getReportTitle(), getForwardMonths());
     hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 
