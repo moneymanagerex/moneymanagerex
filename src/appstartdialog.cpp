@@ -209,7 +209,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
     if ((current < 0)) // Must be wxLANGUAGE_DEFAULT
         current = 0;
 
-    mmSingleChoiceDialog lang_choice(this, _("Change language used for MMEX GUI"), _("Language"), langChoices);
+    mmSingleChoiceDialog lang_choice(this, _("Change user interface language"), _("User Interface Language"), langChoices);
     if (lang_choice.ShowModal() == wxID_OK)
     {
         auto selected = lang_choice.GetStringSelection();
