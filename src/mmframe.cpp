@@ -1630,8 +1630,8 @@ void mmGUIFrame::createMenu()
 
     menuView->AppendSeparator();
     wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
-        , _("Switch Application &Language")
-        , _("Change language used for MMEX GUI"));
+        , _("User Interface &Language")
+        , _("Change user interface language"));
     wxMenu* menuLang = new wxMenu;
 
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
