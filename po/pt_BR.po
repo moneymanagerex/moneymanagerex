@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 12:15\n"
+"PO-Revision-Date: 2023-08-14 10:55\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Compras de ações para esta conta já existem antes desta data"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Transações agendadas para esta conta são agendadas antes desta data."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -898,19 +898,19 @@ msgstr "Diário"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "Daqui a (n) Dias"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "Daqui a (n) Meses"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "A Cada (n) Dias"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "A Cada (n) meses"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -922,19 +922,19 @@ msgstr "Mensalmente (no último dia útil)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplicar Transação Agendada"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Editar Transação Agendada"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Inserir Transação Agendada"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detalhes da Transação Agendada"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1047,7 +1047,7 @@ msgstr "Conta"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Especifique a conta que será dona da transação agendada"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1123,7 +1123,7 @@ msgstr "Cores do Usuário"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Gerenciar anexos dessa transação agendada"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1253,7 +1253,7 @@ msgstr "Dividir transação"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nova transação agendada"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1322,7 +1322,7 @@ msgstr "Dica: Essas transações podem ser configuradas para ativação — perm
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Transações Agendadas"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1330,7 +1330,7 @@ msgstr "D&uplicar "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Excluir Transação Agendada"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1338,7 +1338,7 @@ msgstr "&Registrar"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Insira a Próxima Ocorrência de Transação Agendada"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1346,7 +1346,7 @@ msgstr "&Pular"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Pular Próxima Ocorrência de Transação Agendada"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1358,19 +1358,19 @@ msgstr "Pular próxima Ocorrência"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nova transação agendada..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Editar Transação Agendada..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "D&uplicar Transação Agendada..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Excluir Transação Agenda..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1413,7 +1413,7 @@ msgstr[1] "%d dias de atraso!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Tem certeza que deseja excluir a transação agendada?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -3999,11 +3999,11 @@ msgstr "Dica: O arquivo .mmb não é criptografado. Isso significa que qualquer 
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Dica: Para marcar uma transação como reconciliada, selecione a transação e pressione a tecla \"R\". Para marcar uma transação como não-reconciliada, selecione a transação e pressione a tecla \"U\"."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Dica: Para marcar uma transação como requerendo acompanhamento, selecione a transação e pressione a tecla \"F\"."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4023,11 +4023,11 @@ msgstr "Dica: Defina a taxa de câmbio para moedas caso você tenha contas com d
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Dica da Lista de Categorias: Pressionando a tecla \"H\" o programa percorrerá por todas as categorias que começam com a letra 'h'."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Dica da Lista de Categorias: Pressionando uma combinação de 2 caracteres o programa percorrerá por todas as categorias que começam pela combinação digitada. Exemplo: Pressionando 'ca' o sistema selecionará Casa, Carro, etc…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4174,7 +4174,7 @@ msgstr "&Ver Categorias Divididas"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Criar T&ransação Agendada..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4325,7 +4325,7 @@ msgstr "Selecione a Conta Destino "
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Transação agendada salva."
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -4860,7 +4860,7 @@ msgstr "&Configurar Orçamento..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "Transações &Agendadas"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -4948,7 +4948,7 @@ msgstr "Gerar relatório do banco de dados ou corrigir erros"
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "&Banco de Dados"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -5787,7 +5787,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Uma transação agendada excederá o limite da sua conta.\n\n"
+"Conta: %1$s\n"
+"Saldo atual: %1$6.2f\n"
+"Valor da transação: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Você deseja continuar?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5799,7 +5804,7 @@ msgstr "Limite de Crédito"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Verificação de Transação Agendada MMEX"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6645,17 +6650,17 @@ msgstr "Registros encontrados em transações com várias categorias: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Registros encontrados em transações agendadas: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Registros encontrados em transações divididas agendadas: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Registros encontrados como categoria de beneficiário padrão: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
@@ -6805,8 +6810,8 @@ msgstr "Por favor, siga estas etapas antes de enviar um novo bug:"
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s (%2$i mês)"
+msgstr[1] "%1$s (%2$i meses)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
