@@ -85,11 +85,11 @@ void OptionSettingsGeneral::Create()
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    // Language
+    // User Interface Language
     auto language = Option::instance().getLanguageID(true);
     const auto langName = language == wxLANGUAGE_DEFAULT ? _("System default") : wxLocale::GetLanguageName(language);
 
-    wxStaticBox* langStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _("Language"));
+    wxStaticBox* langStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _("User Interface Language"));
     SetBoldFont(langStaticBox);
     wxStaticBoxSizer* langFormatStaticBoxSizer = new wxStaticBoxSizer(langStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(langFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -97,7 +97,7 @@ void OptionSettingsGeneral::Create()
     wxButton* langButton = new wxButton(general_panel, ID_DIALOG_OPTIONS_BUTTON_LANG, langName);
     langButton->SetMinSize(wxSize(200, -1));
     langFormatStaticBoxSizer->Add(langButton, g_flagsH);
-    mmToolTip(langButton, _("Change language used for MMEX GUI"));
+    mmToolTip(langButton, _("Change user interface language"));
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _("Date Format"));
