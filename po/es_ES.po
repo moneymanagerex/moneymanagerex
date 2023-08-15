@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 14:36\n"
+"PO-Revision-Date: 2023-08-15 07:07\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2537,7 +2537,7 @@ msgstr "Atrás"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:506 mmchecking_list.cpp:1070
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr "No conciliado"
+msgstr "Sin conciliar"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:508 mmhomepage.cpp:539
 #: mmhomepage.cpp:710 model/Model_Billsdeposits.cpp:41
@@ -3998,7 +3998,7 @@ msgstr "Sugerencia: El archivo .mmb no está cifrado. Esto significa que cualqui
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr "Consejo: Para marcar una transacción como conciliada, simplemente seleccione la transacción y pulse la tecla 'R'. Para marcar una transacción como no conciliada, selecciónela y pulse 'U'."
+msgstr "Consejo: Para marcar una transacción como conciliada, simplemente seleccione la transacción y pulse la tecla 'R'. Para marcar una transacción como sin conciliar, selecciónela y pulse 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
@@ -4211,7 +4211,7 @@ msgstr "Eliminar las transacciones que requieren seguimiento mostradas..."
 
 #: mmchecking_list.cpp:498
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr "Eliminar las transacciones no conciliadas mostradas..."
+msgstr "Eliminar las transacciones mostradas sin conciliar..."
 
 #: mmchecking_list.cpp:516
 msgid "Mark as"
