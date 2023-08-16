@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-16 07:33\n"
+"PO-Revision-Date: 2023-08-16 09:06\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Αγορές μετοχών για αυτόν τον λογαριασμ�
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Οι προγραμματισμένες συναλλαγές για αυτό τον λογαριασμό έχουν προγραμματιστεί πριν από αυτή την ημερομηνία."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -922,19 +922,19 @@ msgstr "Μηνιαία (τελευταία εργάσιμη ημέρα)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Δημιουργία Αντιγράφου Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Επεξεργασία Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Εισαγωγή Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Λεπτομέρειες Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1047,7 +1047,7 @@ msgstr "Λογαριασμός"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Καθορίστε τον Λογαριασμό που θα κατέχει την προγραμματισμένη συναλλαγή"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1123,7 +1123,7 @@ msgstr "Χρώματα Χρήστη"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Οργάνωση των συνημμένων αυτής της προγραμματισμένης συναλλαγής"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1253,7 +1253,7 @@ msgstr "Διαχωρισμός Συναλλαγής"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Νέα Προγραμματισμένη Συναλλαγή"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1322,7 +1322,7 @@ msgstr "Συμβουλή: Αυτές οι συναλλαγές μπορούν ν
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Προγραμματισμένες συναλλαγές"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1331,7 +1331,7 @@ msgstr "Δ\n"
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Διαγραφή Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1339,7 +1339,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Εισαγωγή Επόμενης Εκτέλεσης Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1347,7 +1347,7 @@ msgstr "&Παράβλεψη"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Παράλειψη Επόμενης Εκτέλεσης Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1359,19 +1359,19 @@ msgstr "Παράκαμψη επόμενης εμφάνισης"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Νέα Προγραμματισμένη Συναλλαγή..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Επεξεργασία Προγραμματισμένης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Δ&ημιουργία Αντιγράφου Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Διαγραφή Προγραμματισμένης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1414,7 +1414,7 @@ msgstr[1] "%d ημέρες καθυστέρηση!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε την προγραμματισμένη συναλλαγή;"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -3997,11 +3997,11 @@ msgstr "Συμβουλή: Το αρχείο .mmb δεν είναι κρυπτο�
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως τακτοποιημένη, επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'R'. Για να μαρκάρετε μια συναλλαγή ως μη τακτοποιημένη, απλά επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως χρειαζούμενη επανέλεγχο, επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4021,11 +4021,11 @@ msgstr "Συμβουλή: Ορίστε την ισοτιμία ανταλλαγ�
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Συμβουλή Οργάνωσης Κατηγοριών: Πατώντας το πλήκτρο \"H\" θα περνάει κυκλικά από όλες τις κατηγορίες που ξεκινούν με το γράμμα H."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Συμβουλή Οργάνωσης Κατηγοριών: Πατώντας ένα συνδυασμό 2 πλήκτρων θα περνάει κυκλικά σε όλες τις κατηγορίες ξεκινώντας με αυτόν τον συνδυασμό πλήκτρων. Παράδειγμα: Πατώντας σπ θα επιλέξετε Σπιτικές Ανάγκες, Σπίτι, κλπ…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4173,7 +4173,7 @@ msgstr "&Εμφάνιση διαιρεμένων κατηγοριών"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Δημιουργία Προγραμματισμένης Σ&υναλλαγής..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4324,7 +4324,7 @@ msgstr "Επιλέξτε λογαριασμό προορισμού "
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Η Προγραμματισμένη συναλλαγή αποθηκεύτηκε."
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -4859,7 +4859,7 @@ msgstr "Διαμόρφωση &Προϋπολογισμού..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Προγραμματισμένες Συναλλαγές"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -5784,7 +5784,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Μια προγραμματισμένη συναλλαγή θα υπερβεί το όριο του λογαριασμού σας.\n\n"
+"Λογαριασμός: %1$s\n"
+"Τρέχον Υπόλοιπο: %1$6.2f\n"
+"Ποσό συναλλαγής: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Θέλετε να συνεχίσετε;"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5796,7 +5801,7 @@ msgstr "Πιστωτικό Όριο"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Έλεγχος Προγραμματισμένης Συναλλαγής MMEX"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6640,17 +6645,17 @@ msgstr "Εγγραφές που βρέθηκαν σε διαχωρισμένες
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε προγραμματισμένες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε προγραμματισμένες διαχωρισμένες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Οι εγγραφές βρέθηκαν ως προεπιλεγμένη κατηγορία δικαιούχου: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
