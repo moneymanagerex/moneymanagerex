@@ -97,7 +97,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         {
             const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
             if (info) {
-                lang_names.Add(info->Description);
+                lang_names.Add(wxGetTranslation(info->Description));
             }
         }
         lang_names.Sort();

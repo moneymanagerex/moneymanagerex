@@ -25,9 +25,16 @@ set(GETTEXT_VERSION_STRING "${GETTEXT_VERSION_STRING}"
 file(GLOB POFiles RELATIVE "${CMAKE_CURRENT_BINARY_DIR}" *.po)
 foreach(POFile ${POFiles})
     get_filename_component(CurrentFile "${POFile}" NAME_WE)
-    add_custom_command(OUTPUT ${CurrentFile}.mo
-        # COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --update --backup=none -s "${POFile}" ${MMEX_EXE}.pot
-        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -v --statistics -o ${CurrentFile}.mo "${POFile}"
+    if(CurrentFile MATCHES "common")
+        continue()
+    endif()
+    # Copy po file and append common translations
+    file(COPY ${CurrentFile}.po DESTINATION ${CMAKE_BINARY_DIR}/po)
+    file(READ ${CMAKE_CURRENT_SOURCE_DIR}/common.po common_translations)
+    file(APPEND ${CMAKE_BINARY_DIR}/po/${CurrentFile}.po "\n${common_translations}")
+    add_custom_command(
+        OUTPUT ${CurrentFile}.mo
+        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -v --statistics -o ${CurrentFile}.mo ${CMAKE_BINARY_DIR}/po/${CurrentFile}.po
         COMMENT ""
         MAIN_DEPENDENCY "${POFile}")
 
