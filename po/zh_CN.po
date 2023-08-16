@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 12:15\n"
+"PO-Revision-Date: 2023-08-16 11:33\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "该账户的股票购买在此日期前已经存在"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "此帐户的计划交易在此日期之前安排。"
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -898,19 +898,19 @@ msgstr "每天"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "在 %s 天"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "在 %s 月"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "每 %s 天"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "每 %s 月"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -922,19 +922,19 @@ msgstr "每月（过去营业日）"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "复制计划交易"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "编辑计划交易"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "输入计划交易"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "计划交易详细信息"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1047,7 +1047,7 @@ msgstr "账户"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "指定将拥有计划交易的账户"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1123,7 +1123,7 @@ msgstr "用户颜色"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "整理本次预定交易的附件"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1253,7 +1253,7 @@ msgstr "拆分交易"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "新建计划交易"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1322,7 +1322,7 @@ msgstr "提示：这些交易可以设置为激活 - 并允许用户在截止日
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "计划交易"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1330,7 +1330,7 @@ msgstr "重复(&U)"
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "删除计划交易"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1338,7 +1338,7 @@ msgstr "条目(&R)"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "输入下一个预定交易记录"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1346,7 +1346,7 @@ msgstr "跳过(&S)"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "跳过下一个预定交易记录"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1358,19 +1358,19 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "新建计划交易(&N)..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "编辑计划交易(&E)..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "复制计划交易(&U)..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "删除计划交易(&D)..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1410,7 +1410,7 @@ msgstr[0] "逾期 %d 天！"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "您确定要删除已安排的交易吗？"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -3988,11 +3988,11 @@ msgstr "提示：.mmb 文件未加密。 这意味着其他任何拥有正确知
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "提示：要将交易标记为已协调，请选择该交易并按“R”键。 要将交易标记为未对账，请选择该交易并按“U”键。"
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "提示：要将某笔交易标记为需要跟进，请选择该交易并按“F”键。"
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4012,11 +4012,11 @@ msgstr "提示：如果您有不同的货币账户，请为货币设置汇率。
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "组织类别提示：按“H”键将循环浏览以字母 h 开头的所有类别。"
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "组织类别提示：按 2 个组合键将循环浏览以该组合键开头的所有类别。 示例：按 ho 将选择 Homeneeds、Home、House Tax 等..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4160,7 +4160,7 @@ msgstr "查看所有预算类目(&V)"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "创建计划交易(&R)..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4302,7 +4302,7 @@ msgstr "选择存入账户"
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "计划交易已保存。"
 
 #: mmcheckingpanel.cpp:439
 msgid "Delete selected transaction"
@@ -4836,7 +4836,7 @@ msgstr "预算设置(&B)..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "计划交易(&S)"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -4924,7 +4924,7 @@ msgstr "生成数据库报表或修复错误"
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "数据库(&D)"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -5760,7 +5760,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "预定的交易将超出您的账户限额。\n\n"
+"帐户：%1$s\n"
+"当前余额：%1$6.2f\n"
+"交易金额：%3$6.2f\n"
+"%4$s：%5$6.2f\n\n"
+"你想继续吗？"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5772,7 +5777,7 @@ msgstr "信用额度"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX 计划交易检查"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6614,17 +6619,17 @@ msgstr "在拆分交易中找到的记录： %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "在计划事务中找到的记录：%i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "在计划的拆分事务中找到的记录：%i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "找到默认收款人类别的记录：%i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
@@ -6774,7 +6779,7 @@ msgstr "请在提交新的 bug 报告之前遵循这些说明:"
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
+msgstr[0] "%1$s (%2$i 个月)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
