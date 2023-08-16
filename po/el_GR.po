@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 12:14\n"
+"PO-Revision-Date: 2023-08-16 07:33\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -898,19 +898,19 @@ msgstr "Ανά ημέρα"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "Σε (n) Ημέρες"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "Σε (n) Μήνες"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Κάθε (n) Ημέρες"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Κάθε (n) Μήνες"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -4947,7 +4947,7 @@ msgstr "Δημιουργία αναφοράς βάσης δεδομένων ή �
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "&Βάση Δεδομένων"
 
 #: mmframe.cpp:1791
 msgid "Database management"
