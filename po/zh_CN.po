@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-17 09:32\n"
+"PO-Revision-Date: 2023-08-17 11:02\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -556,7 +556,7 @@ msgstr "查看资产交易(&)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr "打开资产账户(&O)..."
+msgstr "打开资产帐户(&O)..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
@@ -1047,7 +1047,7 @@ msgstr "账户"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr "指定将拥有计划交易的账户"
+msgstr "指定将拥有计划交易的帐户"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -3241,7 +3241,7 @@ msgstr "丢失"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "按模式 %2$s 与 %1$s 匹配"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3278,7 +3278,7 @@ msgstr "正在导入类别"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "正在导入交易 %1$i（共 %2$i ）"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3313,7 +3313,7 @@ msgstr "缺少交易代码"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s 与 %2$s 匹配"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3493,7 +3493,7 @@ msgstr "导出文件"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "由于选择了帐户 ‘%2$s’，已加载预设 ‘%1$s’"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3695,12 +3695,12 @@ msgstr "当选择要导入的“类型”时，必须按类型定义数量标志
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "自定义字段 ‘%2$s’ 的值 %1$s 不是类型 %3$s。"
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "%2$s 自定义字段 ‘%3$s’ 的值 %1$s 不是有效选择。"
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
@@ -3710,7 +3710,7 @@ msgstr "确认格式与选择 %s 匹配。"
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "值 %1$s 与自定义字段 ‘%3$s’ 的正则表达式 %2$s 不匹配。"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3796,12 +3796,13 @@ msgstr "基本货币选择"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "已找到 %1$s 的历史汇率，但选项中的“使用货币历史记录”被禁用：\n"
+"单击“否”并启用它，或者单击“是”删除 %2$s 的所有历史费率"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "货币历史选项：%s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3947,11 +3948,11 @@ msgstr "请输入一个非空白符号。"
 #: mmSimpleDialogs.cpp:1488
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "创建新标签 ‘%s’？"
 
 #: mmSimpleDialogs.cpp:1488
 msgid "New tag entered"
-msgstr ""
+msgstr "已输入新标签"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
@@ -4005,7 +4006,7 @@ msgstr "提示：MMEX 支持打印所有可以查看的报表。打印选项可�
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "提示：您可以通过更改 \"选项 \"中的设置来修改 MMEX 的某些运行时行为。"
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4125,7 +4126,7 @@ msgstr "新增收入(&N)..."
 
 #: mmchecking_list.cpp:440 mmcheckingpanel.cpp:322
 msgid "&New Transfer..."
-msgstr "新增转帐(&N)..."
+msgstr "新增转账(&N)..."
 
 #: mmchecking_list.cpp:444
 msgid "&Edit Transaction..."
@@ -4348,7 +4349,7 @@ msgstr "删除交易"
 #: mmcheckingpanel.cpp:514
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "帐户视图：%s"
 
 #: mmcheckingpanel.cpp:532
 msgid "Account Bal: "
@@ -4409,7 +4410,8 @@ msgstr "多项选择"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "无法保存自定义字段 “%1$s”：\n"
+"值 “%2$s” 与正则表达式验证 “%3$s” 不匹配"
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4569,11 +4571,11 @@ msgstr "清除筛选器(&D)..."
 
 #: mmframe.cpp:1449 mmframe.cpp:1467 mmframe.cpp:1487 mmframe.cpp:1665
 msgid "&Edit Account..."
-msgstr "编辑账户(&E)..."
+msgstr "编辑帐户(&E)..."
 
 #: mmframe.cpp:1450 mmframe.cpp:1470 mmframe.cpp:1490 mmframe.cpp:1671
 msgid "&Delete Account..."
-msgstr "删除账户(&D)..."
+msgstr "删除帐户(&D)..."
 
 #: mmframe.cpp:1452 mmframe.cpp:1472
 msgid "&Launch Account Website"
@@ -4581,15 +4583,15 @@ msgstr "打开账户网页(&L)"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr "更改账户类型 (&C)"
+msgstr "更改帐户类型 (&C)"
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
-msgstr "新建账户(&N)..."
+msgstr "新建帐户(&N)..."
 
 #: mmframe.cpp:1488
 msgid "Account &List"
-msgstr "账户列表(&L)"
+msgstr "帐户列表(&L)"
 
 #: mmframe.cpp:1501 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4765,7 +4767,7 @@ msgstr "打开仪表盘"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "更改帐户的账户类型"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -4797,7 +4799,7 @@ msgstr "管理标签 (&T)"
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "管理标签"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
@@ -4809,7 +4811,7 @@ msgstr "类目(&C)..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "合并类别"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4817,7 +4819,7 @@ msgstr "收款人(&P)..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "合并收款人"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
@@ -4825,7 +4827,7 @@ msgstr "标签 (&T)"
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "合并标签"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
@@ -4833,7 +4835,7 @@ msgstr "合并 (&M)"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "合并类别、收款人和标签"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4941,7 +4943,7 @@ msgstr "帮助(&H)\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "显示帮助"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -5141,7 +5143,7 @@ msgstr "下载费率"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "下载货币和股票汇率"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5153,7 +5155,7 @@ msgstr "打印(&P)"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "打印"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5261,7 +5263,7 @@ msgstr "请确认新密码"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "密码修改成功"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5280,7 +5282,9 @@ msgstr "数据库优化"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "数据库优化完成！\n\n"
+"优化前大小：%1$s\n"
+"优化后大小：%2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
@@ -5335,12 +5339,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "分享账户持有股份交易\n\n"
+msgstr "分享帐户持有股份交易\n\n"
 "共享交易是在关联视图中选择公司股票后在股票组合视图\n"
 "中创建的。\n\n"
-"这些账户只有在将库存关联到共享账户\n"
-"或者使用菜单视图→'显示共享账户'\n"
-"共享账户也可以保持正常交易到普通账户。"
+"这些帐户只有在将库存关联到共享帐户\n"
+"或者使用菜单视图→'显示共享帐户'\n"
+"共享帐户也可以保持正常交易到普通帐户。"
 
 #: mmframe.cpp:2650
 msgid "Share Account Creation"
@@ -5381,7 +5385,7 @@ msgstr "请稍候..."
 #: mmframe.cpp:3481 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s 在 %2$s"
 
 #: mmframe.cpp:3498
 msgid "No account available to edit!"
@@ -5403,36 +5407,37 @@ msgstr "选择要删除的账户"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "你确定你要删除\n"
+"%1$s 帐户：%2$s？"
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr "选择账户"
+msgstr "选择帐户"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "更改帐户类型"
 
 #: mmframe.cpp:3568
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "为 %s 选择新帐户类型"
 
 #: mmframe.cpp:3734 payeedialog.cpp:812
 msgid "Merge payees completed"
-msgstr ""
+msgstr "合并收款人完成"
 
 #: mmframe.cpp:3738 payeedialog.cpp:816
 msgid "Merge payees result"
-msgstr ""
+msgstr "合并收款人结果"
 
 #: mmframe.cpp:3750
 msgid "Merge tags completed"
-msgstr ""
+msgstr "合并标签完成"
 
 #: mmframe.cpp:3754
 msgid "Merge tags result"
-msgstr ""
+msgstr "合并标签结果"
 
 #: mmframe.cpp:3830
 #, c-format
@@ -5539,7 +5544,7 @@ msgstr "收支排行：%s"
 
 #: mmhomepage.cpp:358
 msgid "Account/Payee"
-msgstr "账户/收款人"
+msgstr "帐户/收款人"
 
 #: mmhomepage.cpp:428
 #, c-format
@@ -5643,11 +5648,11 @@ msgstr "预算："
 
 #: mmreportspanel.cpp:363
 msgid "All Accounts:"
-msgstr "所有账户："
+msgstr "所有帐户："
 
 #: mmreportspanel.cpp:364
 msgid "Specific Accounts:"
-msgstr "特定账户："
+msgstr "特定帐户："
 
 #: mmreportspanel.cpp:380
 msgid "Future Months:"
@@ -5752,11 +5757,11 @@ msgstr "经常性交易"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "交易拆分"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "周期性交易拆分"
 
 #: model/Model_Billsdeposits.cpp:300
 msgid "A scheduled transaction will exceed your account limit.\n\n"
@@ -5765,7 +5770,7 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr "预定的交易将超出您的账户限额。\n\n"
+msgstr "预定的交易将超出您的帐户限额。\n\n"
 "帐户：%1$s\n"
 "当前余额：%1$6.2f\n"
 "交易金额：%3$6.2f\n"
@@ -5841,7 +5846,9 @@ msgstr "模板为空"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL 脚本：\n"
+"%s \n"
+"会修改数据库！ 已中止！"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6030,12 +6037,13 @@ msgstr "货币设置"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "使用“管理货币”设置数据库默认货币"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "从本地生成的格式。\n"
+"留空则通过“管理货币|编辑”手动设置格式"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6647,7 +6655,7 @@ msgstr "合并后删除原收款人"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "合并收款人确认"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
@@ -8143,7 +8151,7 @@ msgstr "没有设置基本货币。"
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr "首先使用工具→选项菜单，然后添加一个新账户。"
+msgstr "首先使用工具→选项菜单，然后添加一个新帐户。"
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
@@ -8174,7 +8182,7 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "指定此数据库使用的基本 (或默认) 货币。此后可以使用货币对话框更改基本货币。新建的账户默认会使用此货币，且可以在编辑账户详细信息时进行更改。"
+msgstr "指定此数据库使用的基本 (或默认) 货币。此后可以使用货币对话框更改基本货币。新建的帐户默认会使用此货币，且可以在编辑帐户详细信息时进行更改。"
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
