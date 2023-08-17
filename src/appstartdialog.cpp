@@ -193,7 +193,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
     {
         const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
         if (info)
-            langs[info->Description] = std::make_pair(info->Language, info->CanonicalName);
+            langs[wxGetTranslation(info->Description)] = std::make_pair(info->Language, info->CanonicalName);
     }
 
     langChoices.Add(_("System default"));
@@ -209,7 +209,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
     if ((current < 0)) // Must be wxLANGUAGE_DEFAULT
         current = 0;
 
-    mmSingleChoiceDialog lang_choice(this, _("Change language used for MMEX GUI"), _("Language"), langChoices);
+    mmSingleChoiceDialog lang_choice(this, _("Change user interface language"), _("User Interface Language"), langChoices);
     if (lang_choice.ShowModal() == wxID_OK)
     {
         auto selected = lang_choice.GetStringSelection();

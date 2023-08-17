@@ -1630,8 +1630,8 @@ void mmGUIFrame::createMenu()
 
     menuView->AppendSeparator();
     wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
-        , _("Switch Application &Language")
-        , _("Change language used for MMEX GUI"));
+        , _("User Interface &Language")
+        , _("Change user interface language"));
     wxMenu* menuLang = new wxMenu;
 
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
@@ -1642,7 +1642,7 @@ void mmGUIFrame::createMenu()
     {
         const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
         if (info)
-            langs[info->Description] = std::make_pair(info->Language, info->CanonicalName);
+            langs[wxGetTranslation(info->Description)] = std::make_pair(info->Language, info->CanonicalName);
     }
     langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
     for (auto const& lang : langs)

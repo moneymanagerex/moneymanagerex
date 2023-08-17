@@ -1,0 +1,4 @@
+# Translations of language descriptions into their native languages
+msgid "Hungarian (Hungary)"
+msgstr "hu-HU magyar (Magyarország)"
+
