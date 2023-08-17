@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-16 11:33\n"
+"PO-Revision-Date: 2023-08-17 09:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1684,7 +1684,7 @@ msgstr "增加分类"
 
 #: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "父类中已存在使用此名称的类别"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1692,11 +1692,11 @@ msgstr "类目管理：添加错误"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "目标类别已有同名的子类别，无法移动。请在再移动前先重命名子类别。"
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "已存在同名子类。"
 
 #: categdialog.cpp:450
 msgid "Target category is a descendant"
@@ -1708,7 +1708,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "您确定要将\n"
+"“%1$s”\n"
+"移动到\n"
+"“%2$s”？"
 
 #: categdialog.cpp:459
 msgid "Top level"
@@ -1724,21 +1727,23 @@ msgstr "类目正在使用"
 
 #: categdialog.cpp:477
 msgid "Subcategory in use."
-msgstr ""
+msgstr "子类目正在使用"
 
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "提示：将使用此类别的所有交易更改为\n"
+"使用合并命令的另一个类别："
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "提示：将使用此子类别的所有交易更改为\n"
+"使用合并命令的另一个类别："
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "工具 → 合并 → 类别"
 
 #: categdialog.cpp:487
 msgid "Organize Categories: Delete Error"
@@ -1775,7 +1780,7 @@ msgstr "类目管理：编辑错误"
 
 #: categdialog.cpp:692 mmframe.cpp:3719
 msgid "Merge categories completed"
-msgstr ""
+msgstr "合并类别完成"
 
 #: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
 #: payeedialog.cpp:813
@@ -1785,7 +1790,7 @@ msgstr "数据库中的记录已更新：%i"
 
 #: categdialog.cpp:695 mmframe.cpp:3722
 msgid "Merge categories result"
-msgstr ""
+msgstr "合并类别结果"
 
 #: categdialog.cpp:771
 msgid "Are you sure you want to unhide all categories"
@@ -2912,7 +2917,7 @@ msgstr "新建报表 %s"
 
 #: general_report_manager.cpp:1018
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "已存在同名报告"
 
 #: general_report_manager.cpp:1018 general_report_manager.cpp:1025
 msgid "New Report"
@@ -2934,12 +2939,12 @@ msgstr "无法解析主题中的 %s 中的 Metadata JSON 并看起来构造不�
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "所选主题 ‘%2$s‘ 中的文件 ’%1$s‘ 丢失或无效"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "所选主题 ’%2$s‘ 中缺少元数据 ’%1$s‘"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -6099,7 +6104,7 @@ msgstr "无效区域名"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "过去 N 天"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6524,7 +6529,7 @@ msgstr "输入任意字符串以在导入时匹配此收款人。\n"
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "同名收款人已存在"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6536,11 +6541,11 @@ msgstr "收款人正在使用"
 
 #: payeedialog.cpp:723
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "提示：使用合并命令将使用此收款人的所有交易更改为另一个收款人："
 
 #: payeedialog.cpp:725
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "工具 → 合并 → 收款人"
 
 #: payeedialog.cpp:726
 msgid "Organize Payees: Delete Error"
@@ -6572,28 +6577,28 @@ msgstr "转移收款人"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "合并后删除源类别（如果源类别没有子类别）"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "来源："
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "目标："
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "合并"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "从 %1$s 到 %2$s"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6602,7 +6607,7 @@ msgstr "请确认："
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "合并类别确认"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6638,7 +6643,7 @@ msgstr "在预算中找到的记录： %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "合并后删除原收款人"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
@@ -6646,11 +6651,11 @@ msgstr ""
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "合并后删除源标签"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "合并标签确认"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6839,12 +6844,12 @@ msgstr "预测"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "报告已生成 %1$s%2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "从 %1$s 至 %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -6896,23 +6901,23 @@ msgstr "月初到今日"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "上个月"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 个月前至今"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 个月前至今"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "最近3个月"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "最近 12 个月"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6924,7 +6929,7 @@ msgstr "年初到今日"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "上一年"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6936,7 +6941,7 @@ msgstr "本财年初到今日"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "上一财政年度"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6944,7 +6949,7 @@ msgstr "自定义"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1年前至今"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -6952,11 +6957,11 @@ msgstr "从今天开始"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "自 1 个月前"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "自 3 个月前"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7466,27 +7471,27 @@ msgstr "符号：%s"
 
 #: tagdialog.cpp:94
 msgid "Current Tags"
-msgstr ""
+msgstr "当前标签"
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "添加新标签"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "编辑现有标签的名称"
 
 #: tagdialog.cpp:139
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "删除现有标签。该标签不能被现有交易使用。"
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
-msgstr ""
+msgstr "标签名称无效"
 
 #: tagdialog.cpp:183
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
@@ -7494,19 +7499,19 @@ msgstr "标签名称不得使用 ”&“ 或 “|” 字符，这些字符是为
 
 #: tagdialog.cpp:184 tagdialog.cpp:190
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "管理标签：名称无效"
 
 #: tagdialog.cpp:188
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "名称包含标签分隔符。"
 
 #: tagdialog.cpp:189
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "标签名称不得包含空格（' '）字符"
 
 #: tagdialog.cpp:209
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "输入新标签的名称："
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
@@ -7514,11 +7519,11 @@ msgstr "添加标签"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "具有该名称的标签已存在"
 
 #: tagdialog.cpp:221
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "管理标签：添加错误"
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
@@ -7531,20 +7536,20 @@ msgstr "标签管理：编辑错误"
 #: tagdialog.cpp:298
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "标签 ‘%s‘ 正在使用"
 
 #: tagdialog.cpp:298
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "管理标签：删除错误"
 
 #: tagdialog.cpp:301
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "存在使用标签 ‘%s’ 的已删除交易交易。"
 
 #: tagdialog.cpp:302
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "删除标签也会自动清除关联的已删除交易。"
 
 #: tagdialog.cpp:304
 msgid "Confirm Tag Deletion"
