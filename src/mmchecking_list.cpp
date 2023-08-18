@@ -233,12 +233,10 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr15(new wxListItemAttr(*bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont)),
     m_attr16(new wxListItemAttr(*bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont)),
     m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont)),
-    m_sortCol(COL_DEF_SORT),
     g_sortcol(COL_DEF_SORT),
     prev_g_sortcol(COL_DEF_SORT2),
     g_asc(true),
     prev_g_asc(true),
-    m_firstSort(true),
     m_topItemIndex(-1)
 {
     wxASSERT(m_cp);

@@ -211,9 +211,9 @@ private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long m_topItemIndex;
-    EColumn m_sortCol;
+    EColumn m_sortCol = COL_DEF_SORT;
     wxString m_today;
-    bool m_firstSort;
+    bool m_firstSort = true;
 };
 
 //----------------------------------------------------------------------------

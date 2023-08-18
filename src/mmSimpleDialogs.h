@@ -332,7 +332,7 @@ public:
     void SetTags(const wxArrayInt& tagIds);
     void SetText(const wxString& text);
     void Clear();
-    const bool IsEmpty() const;
+    bool IsEmpty() const;
     bool Enable(bool enable = true) override;
 
 protected:
@@ -367,6 +367,6 @@ inline bool mmTagTextCtrl::IsValid() { return Validate(); }
 inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(textCtrl_->GetText()); }
 inline void mmTagTextCtrl::Reinitialize() { init(); }
 inline void mmTagTextCtrl::SetText(const wxString& text) { textCtrl_->SetText(text); }
-inline const bool mmTagTextCtrl::IsEmpty() const { return textCtrl_->IsEmpty(); }
+inline bool mmTagTextCtrl::IsEmpty() const { return textCtrl_->IsEmpty(); }
 inline void mmTagTextCtrl::Clear() { textCtrl_->ClearAll(); }
 #endif // MM_EX_MMSIMPLEDIALOGS_H_
