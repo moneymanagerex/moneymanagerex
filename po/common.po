@@ -30,10 +30,10 @@ msgid "Dutch (Netherlands)"
 msgstr "nl-NL Nederlands (Nederland)"
 
 msgid "English (United Kingdom)"
-msgstr "en-GB English (United Kingdom)"
+msgstr "en-GB English (British)"
 
 msgid "English (United States)"
-msgstr "en-US English (United States)"
+msgstr "en-US English"
 
 msgid "French (France)"
 msgstr "fr-FR Français (France)"
