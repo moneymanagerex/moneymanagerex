@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-17 11:02\n"
+"PO-Revision-Date: 2023-08-19 18:26\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
@@ -25,15 +25,15 @@ msgstr ""
 
 #: aboutdialog.cpp:48
 msgid "License agreement"
-msgstr ""
+msgstr "Licenčna pogodba"
 
 #: aboutdialog.cpp:181 mmframe.cpp:1952
 msgid "About"
-msgstr ""
+msgstr "O programu"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
-msgstr ""
+msgstr "Avtorji"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
@@ -45,11 +45,11 @@ msgstr "Licenca"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr ""
+msgstr "Zasebnost"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Pošiljaj anonimne statistične podatke o uporabi"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -67,7 +67,7 @@ msgstr ""
 #: tagdialog.cpp:145 transactionsupdatedialog.cpp:266 transdialog.cpp:594
 #: wizard_update.cpp:216
 msgid "&OK "
-msgstr ""
+msgstr "&OK"
 
 #: accountdialog.cpp:95 mmframe.cpp:1665
 msgid "Edit Account"
@@ -325,7 +325,7 @@ msgstr ""
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nova baza podatkov"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "Kreiraj novo bazo podatkov za pričetek dela"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Odpri obstoječo bazo podatkov"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -341,7 +341,7 @@ msgstr "Odpri že kreirano bazo podatkov s končnico (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Jezik uporabniškega vmesnika"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
@@ -349,7 +349,7 @@ msgstr ""
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "Uporabniški priročnik"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
