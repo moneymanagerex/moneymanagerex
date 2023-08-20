@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-20 18:12\n"
+"PO-Revision-Date: 2023-08-20 19:09\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -221,31 +221,31 @@ msgstr "Povoliť alebo zakázať Zámok transakcie"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Dátum úhrady:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Dátum zamedzenia transakcie"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Minimálny zostatok:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Dolná hranica zostatku na účte. Ak chcete túto možnosť vypnúť, zadajte nulu"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:299
 msgid "Credit"
-msgstr ""
+msgstr "Úver"
 
 #: accountdialog.cpp:258
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Úverový limit:"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Úverový limit pre daný účet. Ak chcete túto možnosť vypnúť, zadajte nulu"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
@@ -257,7 +257,7 @@ msgstr "Dátum splatnosti:"
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Minimálna splátka:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
@@ -285,7 +285,7 @@ msgstr "Mena"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Zadajte prosím platnú adresu URL"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
@@ -293,26 +293,26 @@ msgstr "Neplatná URL adresa"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Dátum otvorenia nemôžete zadať v čase, ktorý ešte nenastal"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1069
 #: billsdepositsdialog.cpp:1072 stockdialog.cpp:428 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:465 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Nesprávny dátum"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Transakcie pre tento účet už existujú pred uvedeným dátumom"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Nákupy akcií pre tento účet už existujú pred uvedeným dátumom"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Plánované transakcie pre tento účet sú už naplánované pred týmto dátumom."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -321,11 +321,11 @@ msgstr "Nový účet"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Otvoriť naposledy spustenú &databázu"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nová databáza"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "Pre prácu s programom je nutné najskôr vytvoriť nový databázový s
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Otvoriť &existujúcu databázu"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -341,15 +341,15 @@ msgstr "Otvoriť už vytvorený databázový súbor s príponou (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Jazyk užívateľského rozhrania"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
-msgstr ""
+msgstr "Zmena jazyka užívateľského rozhrania"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Užívateľská príručka"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -357,46 +357,46 @@ msgstr "Čítať používateľský manuál"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1803
 msgid "&Website"
-msgstr ""
+msgstr "&Webová stránka"
 
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Prejsť na webovú stránku %s"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "Zobraziť toto dialógové okno pri &spustení"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "Ukončiť "
 
 #: appstartdialog.cpp:155
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Otvoriť naposledy otvorenú databázu : %s"
 
 #: appstartdialog.cpp:199 mmframe.cpp:1639 mmframe.cpp:2996
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "Predvolené nastavenie systému"
 
 #: appstartdialog.cpp:212 mmframe.cpp:1634 optionsettingsgeneral.cpp:100
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Zmena jazyka používaného pre grafické rozhranie MMEX"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "Language"
-msgstr ""
+msgstr "Jazyk"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3865 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Jazyk tejto aplikácie bol zmenený. Zmena sa prejaví pri ďalšom spustení programu."
 
 #: appstartdialog.cpp:222 mmframe.cpp:3867 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "Zmena jazyka"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:473
 msgid "New Asset"
@@ -408,11 +408,11 @@ msgstr "Upraviť hmotný majetok"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:477
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Pridať transakciu s majetkom"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Upraviť transakciu s majetkom"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
