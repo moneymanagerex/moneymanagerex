@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-13 12:15\n"
+"PO-Revision-Date: 2023-08-20 18:12\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -108,11 +108,11 @@ msgstr "Zadajte počiatočný stav tohoto účtu."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Dátum otvorenia:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Dátum, kedy sa otvoril účet"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2567
@@ -217,7 +217,7 @@ msgstr "Zamknuté"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Povoliť alebo zakázať Zámok transakcie"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
