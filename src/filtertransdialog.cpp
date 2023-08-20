@@ -1548,7 +1548,8 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
             for (const auto& a : itr->value.GetArray()) {
                 if (a.GetType() == kNumberType)
                 {
-                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                    //wxLogDebug("%s", wxString::FromUTF8(itr->name.GetString()));
+                    if (wxGetTranslation("Tags").IsSameAs(wxString::FromUTF8(itr->name.GetString())))
                     {
                         temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + Model_Tag::instance().get(a.GetInt())->TAGNAME;
                         appendOperator = true;
