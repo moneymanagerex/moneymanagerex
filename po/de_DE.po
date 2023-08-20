@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-20 14:25\n"
+"PO-Revision-Date: 2023-08-20 15:48\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5699,7 +5699,7 @@ msgstr "Darlehen"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr "Term"
+msgstr "Festgeld"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
