@@ -188,7 +188,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
     wxArrayString langChoices;
     std::map<wxString, std::pair<int, wxString>> langs;
 
-    langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
+    langs[wxGetTranslation(wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US))] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
     for (auto &file : langFiles)
     {
         const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);

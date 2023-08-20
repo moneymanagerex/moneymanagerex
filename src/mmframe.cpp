@@ -1644,7 +1644,7 @@ void mmGUIFrame::createMenu()
         if (info)
             langs[wxGetTranslation(info->Description)] = std::make_pair(info->Language, info->CanonicalName);
     }
-    langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
+    langs[wxGetTranslation(wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US))] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
     for (auto const& lang : langs)
     {
         menuLang->AppendRadioItem(MENU_LANG + 1 + lang.second.first, lang.first, lang.second.second)

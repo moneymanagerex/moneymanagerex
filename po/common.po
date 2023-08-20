@@ -1,4 +1,105 @@
 # Translations of language descriptions into their native languages
+msgid "Albanian (Albania)"
+msgstr "sq-AL shqip (Shqipëri)"
+
+msgid "Arabic (Saudi Arabia)"
+msgstr "ar-SA العربية (المملكة العربية السعودية)"
+
+msgid "Belarusian (Belarus)"
+msgstr "be-BY Беларуская (Беларусь)"
+
+msgid "Bulgarian (Bulgaria)"
+msgstr "bg-BG български (България)"
+
+msgid "Catalan (Catalan)"
+msgstr "ca-CA català (català)"
+
+msgid "Chinese (Simplified, China)"
+msgstr "zh-CN 中文（简体，中国）"
+
+msgid "Chinese (Traditional, Taiwan)"
+msgstr "zh-TW 中文（繁體，台灣）"
+
+msgid "Croatian (Croatia)"
+msgstr "hr-HR hrvatski (Hrvatska)"
+
+msgid "Czech (Czechia)"
+msgstr "cs-CZ čeština (Česko)"
+
+msgid "Dutch (Netherlands)"
+msgstr "nl-NL Nederlands (Nederland)"
+
+msgid "English (United Kingdom)"
+msgstr "en-GB English (British)"
+
+msgid "English (United States)"
+msgstr "en-US English"
+
+msgid "French (France)"
+msgstr "fr-FR Français (France)"
+
+msgid "German (Germany)"
+msgstr "de-DE Deutsch (Deutschland)"
+
+msgid "Greek (Greece)"
+msgstr "el-GR Ελληνικά (Ελλάδα)"
+
+msgid "Hebrew (Israel)"
+msgstr "he-IL עברית (ישראל)"
+
 msgid "Hungarian (Hungary)"
 msgstr "hu-HU magyar (Magyarország)"
 
+msgid "Indonesian (Indonesia)"
+msgstr "id-ID bahasa indonesia (Indonesia)"
+
+msgid "Italian (Italy)"
+msgstr "it-IT Italiano (Italia)"
+
+msgid "Japanese (Japan)"
+msgstr "ja-JP 日本語 (日本)"
+
+msgid "Korean (Korea)"
+msgstr "ko-KR 韓国語 (韓国)"
+
+msgid "Lithuanian (Lithuania)"
+msgstr "lt-LT lietuvių (Lietuva)"
+
+msgid "Polish (Poland)"
+msgstr "pl-PL polski (Polska)"
+
+msgid "Portuguese (Brazil)"
+msgstr "pt-BR Português (Brasil)"
+
+msgid "Portuguese (Portugal)"
+msgstr "pt-PT Português (Portugal)"
+
+msgid "Romanian (Romania)"
+msgstr "ro-RO română (românia)"
+
+msgid "Russian (Russia)"
+msgstr "ru-RU Русский (Россия)"
+
+msgid "Serbian"
+msgstr "sr-RS Српски"
+
+msgid "Slovak (Slovakia)"
+msgstr "sk-SK slovenčina (Slovensko)"
+
+msgid "Spanish (Spain, International Sort)"
+msgstr "es-ES Español (españa)"
+
+msgid "Swedish (Sweden)"
+msgstr "sv-SE svenska (Sverige)"
+
+msgid "Tamil (India)"
+msgstr "ta-IN தமிழ் (இந்தியா)"
+
+msgid "Turkish (Turkey)"
+msgstr "tr-TR Türkçe (Türkiye)"
+
+msgid "Ukrainian (Ukraine)"
+msgstr "uk-UA Українська (Україна)"
+
+msgid "Vietnamese (Vietnam)"
+msgstr "vi-VN Tiếng Việt (Việt Nam)"
