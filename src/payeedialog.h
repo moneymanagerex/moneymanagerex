@@ -27,6 +27,7 @@
 #include <wx/srchctrl.h>
 #include <wx/grid.h>
 #include <map>
+#include <list>
 #include "mmSimpleDialogs.h"
 
 class mmEditPayeeDialog : public wxDialog
@@ -126,6 +127,7 @@ private:
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
     int FindSelectedPayee();
+    void FindSelectedPayees(std::list<int>& indexes);
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 

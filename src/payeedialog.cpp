@@ -487,6 +487,25 @@ int mmPayeeDialog::FindSelectedPayee()
     } else
         return -1;
 }
+void mmPayeeDialog::FindSelectedPayees(std::list<int> & indexes)
+{
+    long itemIndex = -1;    
+
+    while ((itemIndex = payeeListBox_->GetNextItem(itemIndex,
+          wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
+        // Got the selected item index
+        wxLogDebug(payeeListBox_->GetItemText(itemIndex));
+
+        wxListItem item;
+        item.SetId(itemIndex);
+        payeeListBox_->GetItem(item);
+        indexes.push_back(item.GetData());
+    }
+    if (itemIndex == -1 && indexes.empty()) {
+        indexes.push_back(-1);
+    }
+}
+
 
 void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
 {
@@ -516,7 +535,7 @@ void mmPayeeDialog::CreateControls()
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
     payeeListBox_ = new wxListView(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-        wxLC_REPORT | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
+        wxLC_REPORT | wxLC_AUTOARRANGE);
     payeeListBox_->SetMinSize(wxSize(250, 100));
 
     wxListItem col0, col1, col2, col3, col4, col5, col6;
@@ -712,54 +731,59 @@ void mmPayeeDialog::EditPayee()
 
 void mmPayeeDialog::DeletePayee()
 {
-    const auto* payee = Model_Payee::instance().get(m_payee_id);
-    if (payee)
-    {
-        if (Model_Payee::instance().is_used(m_payee_id))
-        {
-            wxString deletePayeeErrMsg = _("Payee in use.");
-            deletePayeeErrMsg
-                << "\n\n"
-                << _("Tip: Change all transactions using this Payee to another Payee"
-                    " using the merge command:")
-                << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
-            wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
-            return;
-        }
-        Model_Checking::Data_Set deletedTrans = Model_Checking::instance().find(Model_Checking::PAYEEID(m_payee_id));
-        wxMessageDialog msgDlg(this
-            , _("Deleted transactions exist which use this payee.")
-                + "\n\n" + _("Deleting the payee will also automatically purge the associated deleted transactions.")
-                + "\n\n" + _("Do you wish to continue ?")
-            , _("Confirm Payee Deletion")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-        if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)
-        {
-            if (!deletedTrans.empty()) {
-                Model_Checking::instance().Savepoint();
-                Model_Splittransaction::instance().Savepoint();
-                Model_Attachment::instance().Savepoint();
-                Model_CustomFieldData::instance().Savepoint();
-                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    std::list<int> itemsSelected;
+    FindSelectedPayees(itemsSelected);
 
-                for (auto& tran : deletedTrans) {
-                    Model_Checking::instance().remove(tran.TRANSID);
-                    mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
-                    Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
+    for(int p : itemsSelected) {
+        const auto* payee = Model_Payee::instance().get(p);
+        if (payee)
+        {
+            if (Model_Payee::instance().is_used(p))
+            {
+                wxString deletePayeeErrMsg = _("Payee in use.");
+                deletePayeeErrMsg
+                    << "\n\n"
+                    << _("Tip: Change all transactions using this Payee to another Payee"
+                        " using the merge command:")
+                    << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
+                wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
+                return;
+            }
+            Model_Checking::Data_Set deletedTrans = Model_Checking::instance().find(Model_Checking::PAYEEID(p));
+            wxMessageDialog msgDlg(this
+                , _("Deleted transactions exist which use this payee.")
+                    + "\n\n" + _("Deleting the payee will also automatically purge the associated deleted transactions.")
+                    + "\n\n" + _("Do you wish to continue ?")
+                , _("Confirm Payee Deletion")
+                , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+            if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)
+            {
+                if (!deletedTrans.empty()) {
+                    Model_Checking::instance().Savepoint();
+                    Model_Splittransaction::instance().Savepoint();
+                    Model_Attachment::instance().Savepoint();
+                    Model_CustomFieldData::instance().Savepoint();
+                    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+                    for (auto& tran : deletedTrans) {
+                        Model_Checking::instance().remove(tran.TRANSID);
+                        mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
+                        Model_CustomFieldData::DeleteAllData(RefType, tran.TRANSID);
+                    }
+
+                    Model_Checking::instance().ReleaseSavepoint();
+                    Model_Splittransaction::instance().ReleaseSavepoint();
+                    Model_Attachment::instance().ReleaseSavepoint();
+                    Model_CustomFieldData::instance().ReleaseSavepoint();
                 }
 
-                Model_Checking::instance().ReleaseSavepoint();
-                Model_Splittransaction::instance().ReleaseSavepoint();
-                Model_Attachment::instance().ReleaseSavepoint();
-                Model_CustomFieldData::instance().ReleaseSavepoint();
-            }
-
-            Model_Payee::instance().remove(m_payee_id);
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
-            m_payee_id = -1;
-            refreshRequested_ = true;
-            fillControls();
-        }    
+                Model_Payee::instance().remove(p);
+                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), p);
+                m_payee_id = -1;
+                refreshRequested_ = true;
+                fillControls();
+            }    
+       }
     }
 }
 
