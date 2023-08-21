@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-20 19:09\n"
+"PO-Revision-Date: 2023-08-21 16:22\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Názov účtu:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Zadajte názov účtu. Názov môže byť kedykoľvek zmenený."
+msgstr "Zadajte názov účtu. Tento názov môžete kedykoľvek zmeniť."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
@@ -479,7 +479,7 @@ msgstr "% sadzba"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Zadajte percentuálnu mieru medziročnej zmeny hodnoty hmotného majetku"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
@@ -508,13 +508,14 @@ msgstr "Neplatná transakcia"
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Účet hmotného majetku nebol nájdený.\n\n"
+"Chcete ho vytvoriť?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:188
 #: import_export/qif_export.cpp:607 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:269 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "IDENTIFIKÁTOR"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:542 billsdepositspanel.cpp:139
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:196 filtertransdialog.cpp:62
@@ -539,15 +540,15 @@ msgstr "Aktuálna hodnota"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Nový hmotný majetok..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&uplikovať hmotný majetok..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "Prid&ať transakciu hmotného majetku..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
