@@ -1111,7 +1111,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // Save split tags
         const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
 
-        for (int i = 0; i < m_bill_data.local_splits.size(); i++)
+        for (size_t i = 0; i < m_bill_data.local_splits.size(); i++)
         {
             Model_Taglink::Data_Set splitTaglinks;
             for (const auto& tagId : m_bill_data.local_splits.at(i).TAGS)
@@ -1182,7 +1182,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             // Save split tags
             const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
 
-            for (int i = 0; i < m_bill_data.local_splits.size(); i++)
+            for (size_t i = 0; i < m_bill_data.local_splits.size(); i++)
             {
                 Model_Taglink::Data_Set splitTaglinks;
                 for (const auto& tagId : m_bill_data.local_splits.at(i).TAGS)
@@ -1309,18 +1309,18 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
 
 void mmBDDialog::setRepeatDetails()
 {
-    const wxString& repeatLabelRepeats = _("Repeats");
-    const wxString& repeatLabelActivate = _("Activates");
+    const wxString repeatLabelRepeats = _("Repeats");
+    const wxString repeatLabelActivate = _("Activates");
 
-    const wxString& timeLabelDays = _("Period: Days");
-    const wxString& timeLabelMonths = _("Period: Months");
+    const wxString timeLabelDays = _("Period: Days");
+    const wxString timeLabelMonths = _("Period: Months");
 
     int repeats = m_choice_repeat->GetSelection();
     if (repeats == INXDAYS)
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate.\n"
+        const auto toolTipsStr = _("Specify period in Days to activate.\n"
             "Becomes blank when not active.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
@@ -1328,7 +1328,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto& toolTipsStr = _("Specify period in Months to activate.\n"
+        const auto toolTipsStr = _("Specify period in Months to activate.\n"
             "Becomes blank when not active.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
@@ -1336,7 +1336,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate.\n"
+        const auto toolTipsStr = _("Specify period in Days to activate.\n"
             "Leave blank when not active.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
@@ -1344,7 +1344,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto& toolTipsStr = _("Specify period in Months to activate.\n"
+        const auto toolTipsStr = _("Specify period in Months to activate.\n"
             "Leave blank when not active.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
@@ -1352,7 +1352,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(_("Payments Left"));
-        const auto& toolTipsStr = _("Specify the number of payments to be made.\n"
+        const auto toolTipsStr = _("Specify the number of payments to be made.\n"
             "Leave blank if the payments continue forever.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
