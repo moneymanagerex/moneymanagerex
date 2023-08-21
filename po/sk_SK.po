@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-21 17:38\n"
+"PO-Revision-Date: 2023-08-21 18:44\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -569,7 +569,7 @@ msgstr "O&dstrániť hmotný majetok..."
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:476
 #: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "Usporiadať príl&ohy..."
+msgstr "&Organizovať prílohy..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -681,15 +681,16 @@ msgstr "Zmena hodnôt: %1$s %2$s"
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Tento hmotný majetok nemá vlastný účet\n\n"
+"Viacnásobné transakcie pre tento hmotný majetok sa neodporúčajú."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
-msgstr ""
+msgstr "Správa hmotného majetku"
 
 #: assetspanel.cpp:805
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Účet \t Dátum\t   Hodnota\n\n"
 
 #: attachmentdialog.cpp:56 general_report_manager.cpp:443
 msgid "Description"
@@ -706,7 +707,7 @@ msgstr "Nie je nastavený priečinok príloh."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Nastavte to v Nástroje → Možnosti → Prílohy"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -727,12 +728,12 @@ msgstr "Nebol nájdený priečinok príloh"
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Organizovať prílohy | %s | %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Organizovať prílohy | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -757,7 +758,7 @@ msgstr "Organizovanie príloh: Pridať prílohu"
 
 #: attachmentdialog.cpp:249
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Zadajte nový popis pre prílohu:"
 
 #: attachmentdialog.cpp:250
 msgid "Organize Attachments: Edit Attachment"
@@ -854,7 +855,7 @@ msgstr "Týždenne"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "Raz za dva týždne"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -865,7 +866,7 @@ msgstr "Mesačne"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Každé 2 mesiace"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -897,19 +898,19 @@ msgstr "Denne"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "Za (n) deň/dni/í"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "Za (n) mesiace/ov"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Každé/ých (n) dni/í"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Každé/ých (n) mesiace/ov"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -921,27 +922,27 @@ msgstr "Mesačne (posledný pracovný deň)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplikovať naplánovanú transakciu"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Upraviť naplánovanú transakciu"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Zadajte naplánovanú transakciu"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Podrobnosti o naplánovanej transakcii"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Uveďte dátum splatnosti tohto účtu alebo zálohy"
 
 #: billsdepositsdialog.cpp:447 billsdepositspanel.cpp:133
 msgid "Date Due"
-msgstr ""
+msgstr "Dátum splatnosti"
 
 #: billsdepositsdialog.cpp:452 billsdepositsdialog.cpp:1312
 msgid "Repeats"
@@ -949,11 +950,11 @@ msgstr "Opakovanie"
 
 #: billsdepositsdialog.cpp:458
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Späť na posledný dátum výskytu so zadanými hodnotami"
 
 #: billsdepositsdialog.cpp:465
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Posunúť nasledujúci dátum so zadanými hodnotami"
 
 #: billsdepositsdialog.cpp:476 billsdepositsdialog.cpp:1354
 msgid "Payments Left"
@@ -961,19 +962,19 @@ msgstr "Zostávajúce platby"
 
 #: billsdepositsdialog.cpp:490
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Požiadať používateľa, aby zadal platbu"
 
 #: billsdepositsdialog.cpp:491
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Užívateľ požiadal o zadanie tejto transakcie v 'Dátum zaplatenia'"
 
 #: billsdepositsdialog.cpp:494
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Povoliť automatické spustenie"
 
 #: billsdepositsdialog.cpp:495
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Požadovaná platba sa uskutoční bez zásahu používateľa"
 
 #: billsdepositsdialog.cpp:502 filtertrans.cpp:178 transdialog.cpp:419
 msgid "Transaction Details"
@@ -981,7 +982,7 @@ msgstr "Podrobnosti transakcie"
 
 #: billsdepositsdialog.cpp:511
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Zadajte dátum, ku ktorému má používateľ zadať túto transakciu"
 
 #: billsdepositsdialog.cpp:512 billsdepositspanel.cpp:132
 msgid "Date Paid"
@@ -1046,7 +1047,7 @@ msgstr "Účet"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Zadajte účet, ku ktorému bude naplánovaná transakcia patriť"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1096,7 +1097,7 @@ msgstr "Použiť kategórie rozdelenia"
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
-msgstr ""
+msgstr "Štítky"
 
 #: billsdepositsdialog.cpp:624 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
@@ -1122,7 +1123,7 @@ msgstr "Používateľské farby"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organizovať prílohy tejto naplánovanej transakcie"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
 #: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
@@ -1131,7 +1132,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
 #: transdialog.cpp:575
 msgid "Color"
-msgstr ""
+msgstr "Farba"
 
 #: billsdepositsdialog.cpp:660 transdialog.cpp:582 transdialog.cpp:1318
 #: usertransactionpanel.cpp:215
@@ -1141,7 +1142,7 @@ msgstr "Zadajte ľubovolnú poznámku, ktorú chcete pridať k transakcii."
 #: billsdepositsdialog.cpp:677 filtertransdialog.cpp:793
 #: transactionsupdatedialog.cpp:273 transdialog.cpp:598
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Zobraziť/skryť okno vlastných polí"
 
 #: billsdepositsdialog.cpp:847 billsdepositsdialog.cpp:870 transdialog.cpp:242
 #: transdialog.cpp:251
