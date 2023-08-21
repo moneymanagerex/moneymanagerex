@@ -742,12 +742,16 @@ void mmPayeeDialog::DeletePayee()
             {
                 wxString deletePayeeErrMsg = _("Payee in use.");
                 deletePayeeErrMsg
+                    << "\n"
+                    << payee->PAYEENAME
+                    << "\n"
+                    << _("It will be not removed")
                     << "\n\n"
                     << _("Tip: Change all transactions using this Payee to another Payee"
                         " using the merge command:")
                     << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
                 wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
-                return;
+                continue;
             }
             Model_Checking::Data_Set deletedTrans = Model_Checking::instance().find(Model_Checking::PAYEEID(p));
             wxMessageDialog msgDlg(this
@@ -886,7 +890,9 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_EDIT_PAYEE, _("&Edit ")));
     if (!payee) mainMenu.Enable(MENU_EDIT_PAYEE, false);
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));
-    if (!payee || Model_Payee::is_used(m_payee_id)) mainMenu.Enable(MENU_DELETE_PAYEE, false);
+    std::list<int> selected;
+    FindSelectedPayees(selected);
+    if (!payee || selected.front() == -1) mainMenu.Enable(MENU_DELETE_PAYEE, false);
     mainMenu.AppendSeparator();
 
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _("&Organize Attachments")));
