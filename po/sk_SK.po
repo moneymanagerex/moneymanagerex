@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-21 16:22\n"
+"PO-Revision-Date: 2023-08-21 17:38\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -552,24 +552,24 @@ msgstr "Prid&ať transakciu hmotného majetku..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "Zobraziť &všetky transakcie hmotného majetku"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Otvoriť účet hmotného majetku..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "Upraviť hmotný maj&etok..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "O&dstrániť hmotný majetok..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:476
 #: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "Usporiadať príl&ohy..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -605,15 +605,15 @@ msgstr "&Nový "
 
 #: assetspanel.cpp:476 stockspanel.cpp:136
 msgid "&Add Trans "
-msgstr ""
+msgstr "Prid&ať transakciu "
 
 #: assetspanel.cpp:481 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr ""
+msgstr "Zobraziť transakciu "
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Zobraziť transakcie hmotného majetku"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:298
 #: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
@@ -651,22 +651,22 @@ msgstr "Zadaný reťazec sa vyhľadá v hmotnom majetku"
 #: assetspanel.cpp:511 filtertransdialog.cpp:677 mmcheckingpanel.cpp:489
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Tipy: Pri vyhľadávaní môžete použiť zástupné znaky - otáznik (?), hviezdičku (*)."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:678 mmcheckingpanel.cpp:490
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Pomocou otáznika (?) vyhľadáte akýkoľvek samostatný znak - napríklad s?t nájde 'sat' a 'set'."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:679 mmcheckingpanel.cpp:491
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Hviezdičku (*) použite na vyhľadanie ľubovoľného počtu znakov - napríklad s*d nájde 'sud' a 'sklad'."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:680 mmcheckingpanel.cpp:492
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Ak chcete nájsť akýkoľvek reťazec uprostred vety, použite na začiatku hviezdičku (*)."
 
 #: assetspanel.cpp:585 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
@@ -676,7 +676,7 @@ msgstr "Spolu: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Zmena hodnôt: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
