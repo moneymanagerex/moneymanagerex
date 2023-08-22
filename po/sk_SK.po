@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-22 16:26\n"
+"PO-Revision-Date: 2023-08-22 17:23\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -1211,12 +1211,14 @@ msgstr "Obdobie: mesiace"
 #: billsdepositsdialog.cpp:1323
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Zadajte počet dní do aktivácie.\n"
+"Pokiaľ nie je aktívne, pole bude prázdne."
 
 #: billsdepositsdialog.cpp:1331
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Zadajte počet mesiacov do aktivácie.\n"
+"Pokiaľ nedôjde k aktivácii, pole zostane prázdne."
 
 #: billsdepositsdialog.cpp:1339
 msgid "Specify period in Days to activate.\n"
@@ -1231,7 +1233,8 @@ msgstr ""
 #: billsdepositsdialog.cpp:1355
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Zadajte počet platieb, ktoré sa majú vykonať.\n"
+"Ak platby budú pokračovať stále, nechajte prázdne."
 
 #: billsdepositsdialog.cpp:1380 images_list.cpp:501
 #: import_export/univcsvdialog.cpp:1559 maincurrencydialog.cpp:482
@@ -1244,11 +1247,11 @@ msgstr "Chyba"
 #: billsdepositsdialog.cpp:1450 splittransactionsdialog.h:82
 #: transdialog.cpp:336
 msgid "Split Transaction"
-msgstr ""
+msgstr "Rozdeliť transakciu"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nová naplánovaná transakcia"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1268,7 +1271,7 @@ msgstr "Upresnite sumu pre túto transakciu"
 
 #: billsdepositsdialog.h:131
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Zadajte sumu, ktorá sa má previesť"
 
 #: billsdepositspanel.cpp:61
 #, c-format
@@ -1308,16 +1311,16 @@ msgstr "Platba"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX umožňuje nastaviť pravidelné platby ako transakcie. Týmito transakciami môžu byť aj pravidelné vklady alebo prevody, ktoré sa uskutočnia v budúcnosti. Tieto transakcie slúžia ako pripomienka, že sa chystá nejaká udalosť, a zobrazia sa na informačnom paneli 14 dní pred splatnosťou transakcie."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Tip: Tieto transakcie je možné nastaviť tak, aby sa samé aktivovali - užívateľ tak môže upraviť všetky hodnoty v deň splatnosti."
 
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Plánované transakcie"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
 msgid "D&uplicate "
@@ -1325,7 +1328,7 @@ msgstr "D&uplikovať "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Odstrániť naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
