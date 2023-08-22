@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-21 18:44\n"
+"PO-Revision-Date: 2023-08-22 16:26\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -1151,23 +1151,24 @@ msgstr "Od"
 
 #: billsdepositsdialog.cpp:915
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Dátum platby je po dátume splatnosti. Je to váš zámer?"
 
 #: billsdepositsdialog.cpp:916
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Vyzerá to ako oneskorená platba"
 
 #: billsdepositsdialog.cpp:968 transactionsupdatedialog.cpp:335
 #: transdialog.cpp:675
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Toto meno príjemcu ste ešte nepoužili. Je toto meno správne?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:969 transactionsupdatedialog.cpp:336
 #: transdialog.cpp:676
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Potvrdiť meno príjemcu"
 
 #: billsdepositsdialog.cpp:988 billsdepositsdialog.cpp:994
 #: billsdepositsdialog.cpp:1380 filtertransdialog.cpp:919
@@ -1189,7 +1190,7 @@ msgstr "Neplatná hodnota"
 #: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:428 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:465 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Dátum otvorenia tohto účtu je neskorší ako dátum tejto transakcie"
 
 #: billsdepositsdialog.cpp:1303
 msgid "Specify the transfer amount in the From Account"
