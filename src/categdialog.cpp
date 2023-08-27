@@ -71,16 +71,6 @@ mmCategDialog::~mmCategDialog()
 }
 
 mmCategDialog::mmCategDialog()
-    : m_treeCtrl(nullptr)
-    , m_buttonAdd(nullptr)
-    , m_buttonEdit(nullptr)
-    , m_buttonSelect(nullptr)
-    , m_buttonDelete(nullptr)
-    , m_buttonRelocate(nullptr)
-    , m_tbCollapse(nullptr)
-    , m_tbExpand(nullptr)
-    , m_tbShowAll(nullptr)
-    , m_processExpandCollapse(true)
 {
     // Initialize fields in constructor
     m_categ_id = -1;

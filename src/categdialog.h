@@ -105,16 +105,16 @@ private:
     void setTreeSelection(const wxString& catName, const int parentid);
     bool validateName(wxString name);
 
-    mmCategDialogTreeCtrl* m_treeCtrl;
-    wxSearchCtrl* m_maskTextCtrl;
-    wxButton* m_buttonAdd;
-    wxButton* m_buttonEdit;
-    wxButton* m_buttonSelect;
-    wxButton* m_buttonDelete;
-    wxBitmapButton* m_buttonRelocate;
-    wxToggleButton* m_tbCollapse;
-    wxToggleButton* m_tbExpand;
-    wxToggleButton* m_tbShowAll;
+    mmCategDialogTreeCtrl* m_treeCtrl = nullptr;
+    wxSearchCtrl* m_maskTextCtrl = nullptr;
+    wxButton* m_buttonAdd = nullptr;
+    wxButton* m_buttonEdit = nullptr;
+    wxButton* m_buttonSelect = nullptr;
+    wxButton* m_buttonDelete = nullptr;
+    wxBitmapButton* m_buttonRelocate = nullptr;
+    wxToggleButton* m_tbCollapse = nullptr;
+    wxToggleButton* m_tbExpand = nullptr;
+    wxToggleButton* m_tbShowAll = nullptr;
     wxTreeItemId m_selectedItemId;
     wxTreeItemId root_;
     wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText, const int parentid);
@@ -124,9 +124,9 @@ private:
     int m_dragSourceCATEGID;
     std::map<int, bool> m_categoryVisible;
     std::map<int, std::vector<Model_Category::Data>> m_categ_children;
-    bool m_processExpandCollapse;
+    bool m_processExpandCollapse = true;
     wxColour NormalColor_;
-    bool m_refresh_requested;
+    bool m_refresh_requested = false;
     wxString m_maskStr;
 
     enum

@@ -71,15 +71,6 @@ UserTransactionPanel::~UserTransactionPanel()
 
 void UserTransactionPanel::Create()
 {
-    // Control properties according to system
-    int interval = 0;
-#ifdef __WXMSW__
-    wxSize spinCtrlSize = wxSize(18, 22);
-    interval = 4;
-#else
-    wxSize spinCtrlSize = wxSize(16, -1);
-#endif
-
     const wxSize std_size(230, -1);
     const wxSize std_half_size(110, -1);
 

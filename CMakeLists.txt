@@ -22,6 +22,10 @@ SET(MMEX_VERSION_ALPHA -1)
 SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
 
+if(NOT CMAKE_CXX_STANDARD)
+    set(CMAKE_CXX_STANDARD 17)
+endif()
+
 # ---------------------------------------------------------------------------
 
 if(DEFINED ENV{VCPKG_ROOT})

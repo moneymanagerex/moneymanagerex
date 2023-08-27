@@ -53,7 +53,7 @@ public:
 
 private:
     void OnQuit(wxCloseEvent& event);
-    void OnSave(wxCommandEvent& event);
+    void OnSave(wxCommandEvent &event);
     void OnCancel(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
