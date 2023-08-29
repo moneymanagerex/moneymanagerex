@@ -395,17 +395,16 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
+void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
 {
-    if (m_price_listbox->GetItemCount())
+    const auto itemCount = m_price_listbox->GetItemCount();
+
+    for (auto i = 0; i<itemCount; i++)
     {
-        for (long i = 0; i<m_price_listbox->GetItemCount(); i++)
+        if (m_price_listbox->GetItemState(0, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
         {
-            if (m_price_listbox->GetItemState(0, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
-            {
-                m_price_listbox->SetItemState(0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-                break;
-            }
+            m_price_listbox->SetItemState(0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            break;
         }
     }
 
@@ -416,7 +415,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         return;
     }
     
-    const wxString& stockSymbol = m_stock_symbol_ctrl->GetValue();
+    const wxString stockSymbol = m_stock_symbol_ctrl->GetValue();
     if (stockSymbol.empty())
     {
         mmErrorDialogs::MessageInvalid(this, _("Symbol"));
@@ -476,7 +475,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
 
     if (!m_edit)
     {
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock->STOCKID);
     }
 
