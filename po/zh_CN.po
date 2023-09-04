@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-09-04 02:46\n"
+"PO-Revision-Date: 2023-09-04 04:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1358,19 +1358,19 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr "新建计划交易(&N)..."
+msgstr "新建计划交易..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr "编辑计划交易(&E)..."
+msgstr "编辑计划交易..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr "复制计划交易(&U)..."
+msgstr "复制计划交易..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr "删除计划交易(&D)..."
+msgstr "删除计划交易..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1668,7 +1668,7 @@ msgstr "名称包含类别分隔符。"
 
 #: categdialog.cpp:354
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr "颜色 (:) 字符被用来分离类别和子类别，因此不应在名称中使用"
+msgstr "冒号 (:) 字符被用来分离类别和子类别，因此不应在名称中使用"
 
 #: categdialog.cpp:356
 msgid "Organize Categories: Invalid Name"
@@ -1684,7 +1684,7 @@ msgstr "增加分类"
 
 #: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
 msgid "A category with this name already exists for the parent"
-msgstr "父类中已存在使用此名称的类别"
+msgstr "上级类别中已存在此名称"
 
 #: categdialog.cpp:376 categdialog.cpp:385
 msgid "Organize Categories: Adding Error"
@@ -1692,7 +1692,7 @@ msgstr "类目管理：添加错误"
 
 #: categdialog.cpp:437
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr "目标类别已有同名的子类别，无法移动。请在再移动前先重命名子类别。"
+msgstr "目标类别已有同名的子类别，无法移动。请在移动前先重命名子类别。"
 
 #: categdialog.cpp:438
 msgid "A subcategory with this name already exists"
