@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-09-04 04:26\n"
+"PO-Revision-Date: 2023-09-04 09:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1608,7 +1608,7 @@ msgstr "指定所需的月份。\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr "预算基于："
+msgstr "预算基准"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
@@ -1636,7 +1636,7 @@ msgstr "全部展开"
 
 #: categdialog.cpp:280 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr "显示全部(&A)"
+msgstr "显示全部"
 
 #: categdialog.cpp:282
 msgid "Show all hidden categories"
@@ -1732,14 +1732,12 @@ msgstr "子类目正在使用"
 #: categdialog.cpp:479
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr "提示：将使用此类别的所有交易更改为\n"
-"使用合并命令的另一个类别："
+msgstr "提示：使用合并功能将所有此类别交易更改为其他类别"
 
 #: categdialog.cpp:482
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr "提示：将使用此子类别的所有交易更改为\n"
-"使用合并命令的另一个类别："
+msgstr "提示：使用合并功能将所有此类别交易更改为其他类别"
 
 #: categdialog.cpp:485
 msgid "Tools → Merge → Categories"
@@ -1751,7 +1749,7 @@ msgstr "类目管理：删除错误"
 
 #: categdialog.cpp:510
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr "存在使用该类别或其下级之一的已删除交易。"
+msgstr "存在使用该类别或其子类别之一的已删除交易。"
 
 #: categdialog.cpp:511
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
