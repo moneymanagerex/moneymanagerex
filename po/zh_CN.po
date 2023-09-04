@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-08-13 14:38+0300\n"
-"PO-Revision-Date: 2023-08-17 11:02\n"
+"PO-Revision-Date: 2023-09-04 02:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -321,11 +321,11 @@ msgstr "新建账户"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr "打开上次打开的数据库(&O)"
+msgstr "打开上次的数据库"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr "新建数据库(&N)"
+msgstr "新建数据库"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "创建一个新的数据库并打开"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr "打开现有数据库(&E)"
+msgstr "打开现有数据库"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -341,7 +341,7 @@ msgstr "打开一个已创建的扩展名数据库文件(*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "User Interface &Language"
-msgstr "用户界面语言(&L)："
+msgstr "用户界面语言"
 
 #: appstartdialog.cpp:112
 msgid "Change user interface language"
@@ -349,7 +349,7 @@ msgstr "更改用户界面语言"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr "用户手册(&U)"
+msgstr "用户手册"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -366,11 +366,11 @@ msgstr "访问 %s 网站"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr "启动时显示此对话框(&S)"
+msgstr "启动时显示此对话框"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr "退出(&X)"
+msgstr "退出"
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -540,15 +540,15 @@ msgstr "当前价值"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr "新增资产(&N)..."
+msgstr "新增资产"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr "复制资产(&U)..."
+msgstr "复制资产"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr "新增资产交易(&A)..."
+msgstr "新增资产交易"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -556,20 +556,20 @@ msgstr "查看资产交易(&)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr "打开资产帐户(&O)..."
+msgstr "打开资产帐户"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr "编辑资产(&E)..."
+msgstr "编辑资产"
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr "删除资产(&D)..."
+msgstr "删除资产"
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:476
 #: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "管理附件(&O)..."
+msgstr "管理附件"
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -676,7 +676,7 @@ msgstr "总计：%s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr "值变化：%1$s %2$s"
+msgstr "数值变化：%1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -898,19 +898,19 @@ msgstr "每天"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr "在 %s 天"
+msgstr "(n) 天后"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr "在 %s 月"
+msgstr "(n) 月后"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr "每 %s 天"
+msgstr "每 (n) 天"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr "每 %s 月"
+msgstr "每 (n) 月"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -4759,7 +4759,7 @@ msgstr "切换应用程序语言(&L)"
 
 #: mmframe.cpp:1659
 msgid "Dash&board"
-msgstr "仪表板(&B)"
+msgstr "仪表板"
 
 #: mmframe.cpp:1659 mmframe.cpp:1915
 msgid "Open Dashboard"
