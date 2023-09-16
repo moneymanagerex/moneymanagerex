@@ -72,17 +72,9 @@ mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
     , wxWindowID winid
     , const wxPoint& pos, const wxSize& size
     , long style, const wxString& name)
-    : budgetYearID_(budgetYearID)
-    , m_frame(frame)
+    : m_frame(frame)
     , listCtrlBudget_(nullptr)
-    , income_estimated_(nullptr)
-    , income_actual_(nullptr)
-    , income_diff_(nullptr)
-    , expenses_estimated_(nullptr)
-    , expenses_actual_(nullptr)
-    , expenses_diff_(nullptr)
-    , budgetReportHeading_(nullptr)
-    , m_bitmapTransFilter(nullptr)
+    , budgetYearID_(budgetYearID)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -437,7 +429,7 @@ void mmBudgetingPanel::initVirtualListControl()
         std::vector<int> totals_queue;
         //now a depth-first walk of the subtree of this root category
         Model_Category::Data_Set subcats = Model_Category::sub_tree(category);
-        for (int i = 0; i < subcats.size(); i++)
+        for (int i = 0; i < int(subcats.size()); i++)
         {
             estimated = getEstimate(subcats[i].CATEGID);
             if (estimated < 0)
@@ -481,7 +473,7 @@ void mmBudgetingPanel::initVirtualListControl()
                 budget_.push_back(std::make_pair(subcats[i].CATEGID, -1));
 
             // check if we need to show any total rows before the next subcategory
-            if (i < subcats.size() - 1) { //not the last subcategory
+            if (i < int(subcats.size()) - 1) { //not the last subcategory
                 if (subcats[i].CATEGID == subcats[i + 1].PARENTID) totals_queue.push_back(i); //if next subcategory is our child, queue the total for after the children
                 else if (subcats[i].PARENTID != subcats[i + 1].PARENTID) { // last sibling -- we've exhausted this branch, so display all the totals we held on to
                     while (!totals_queue.empty() && subcats[totals_queue.back()].CATEGID != subcats[i + 1].PARENTID) {

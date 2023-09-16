@@ -53,15 +53,7 @@ mmReportsPanel::mmReportsPanel(
     const wxString& name)
     : rb_(rb)
     , m_frame(frame)
-    , m_date_ranges(nullptr)
-    , m_start_date(nullptr)
-    , m_end_date(nullptr)
-    , m_time(nullptr)
-    , m_accounts(nullptr)
-    , m_chart(nullptr)
     , cleanup_(cleanupReport)
-    , cleanupmem_(false)
-    , m_shift(0)
 {
     Create(parent, winid, pos, size, style, name);
 }

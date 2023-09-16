@@ -212,7 +212,7 @@ private:
     wxString m_filter_key;
     int m_startDay;
     bool m_futureIgnored;
-    int m_color_value;
+    int m_color_value = -1;
     wxString m_payee_str;
 
     /* Selected accounts values */

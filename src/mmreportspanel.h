@@ -57,7 +57,7 @@ public:
     mmPrintableBase* getPrintableBase();
     void PrintPage();
 
-    mmGUIFrame *m_frame;
+    mmGUIFrame *m_frame = nullptr;
 
     enum RepPanel
     {
@@ -96,8 +96,8 @@ private:
     void OnShiftPressed(wxCommandEvent& event);
 
     bool cleanup_;
-    bool cleanupmem_;
-    int m_shift;
+    bool cleanupmem_ = false;
+    int m_shift = 0;
     wxString htmlreport_;
 
 };
