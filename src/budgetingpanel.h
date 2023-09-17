@@ -101,7 +101,7 @@ private:
         ICON_FOLLOWUP
     };
 
-    mmGUIFrame* m_frame;
+    mmGUIFrame* m_frame = nullptr;
     std::vector<std::pair<int, int> > budget_;
     std::map<int, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
     std::map<int, std::pair<double, double> > budgetTotals_;
@@ -115,14 +115,14 @@ private:
     int budgetYearID_;
     wxString m_monthName;
     wxString m_budget_offset_date;
-    wxStaticText* budgetReportHeading_;
-    wxStaticText* income_estimated_;
-    wxStaticText* income_actual_;
-    wxStaticText* income_diff_;
-    wxStaticText* expenses_estimated_;
-    wxStaticText* expenses_actual_;
-    wxStaticText* expenses_diff_;
-    wxButton* m_bitmapTransFilter;
+    wxStaticText* budgetReportHeading_ = nullptr;
+    wxStaticText* income_estimated_ = nullptr;
+    wxStaticText* income_actual_ = nullptr;
+    wxStaticText* income_diff_ = nullptr;
+    wxStaticText* expenses_estimated_ = nullptr;
+    wxStaticText* expenses_actual_ = nullptr;
+    wxStaticText* expenses_diff_ = nullptr;
+    wxButton* m_bitmapTransFilter = nullptr;
 
     bool Create(wxWindow *parent, wxWindowID winid
         , const wxPoint& pos = wxDefaultPosition

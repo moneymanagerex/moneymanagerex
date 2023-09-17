@@ -63,9 +63,8 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id) 
-    : m_filteredBalance(0.0)
-    , m_listCtrlAccount()
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id)
+    : m_listCtrlAccount()
     , m_AccountID(accountID)
     , isAllAccounts_((-1 == accountID) ? true : false)
     , isTrash_((-2 == accountID) ? true : false)
