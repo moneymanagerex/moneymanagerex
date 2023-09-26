@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-08-12 13:58+0300\n"
-"PO-Revision-Date: 2023-08-12 11:05\n"
+"POT-Creation-Date: 2023-09-26 14:20+0300\n"
+"PO-Revision-Date: 2023-09-26 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -59,10 +59,10 @@ msgstr "Ενεργοποιήστε για να μας βοηθήσετε να σ
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
-#: customfieldeditdialog.cpp:203 filtertransdialog.cpp:786
+#: customfieldeditdialog.cpp:203 filtertransdialog.cpp:785
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:382
 #: mmSimpleDialogs.cpp:886 optiondialog.cpp:160 payeedialog.cpp:158
-#: payeedialog.cpp:582 sharetransactiondialog.cpp:344
+#: payeedialog.cpp:601 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:145 transactionsupdatedialog.cpp:266 transdialog.cpp:594
 #: wizard_update.cpp:216
@@ -137,15 +137,15 @@ msgstr "Δηλώστε εάν αυτός ο λογαριασμός χρησιμ�
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:648 billsdepositspanel.cpp:146
-#: budgetentrydialog.cpp:144 budgetingpanel.cpp:305 filtertrans.cpp:198
-#: filtertransdialog.cpp:669 filtertransdialog.cpp:1747
+#: budgetentrydialog.cpp:144 budgetingpanel.cpp:297 filtertrans.cpp:198
+#: filtertransdialog.cpp:668 filtertransdialog.cpp:1747
 #: import_export/qif_export.cpp:617 import_export/qif_import_gui.cpp:110
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:303
 #: payeedialog.cpp:115 payeedialog.cpp:460 reports/transactions.cpp:198
 #: sharetransactiondialog.cpp:289 splittransactionsdialog.cpp:94
 #: splittransactionsdialog.cpp:354 stockdialog.cpp:260 stocks_list.cpp:100
 #: transactionsupdatedialog.cpp:241 transdialog.cpp:570
-#: usertransactionpanel.cpp:195 webappdialog.cpp:145
+#: usertransactionpanel.cpp:186 webappdialog.cpp:145
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -297,8 +297,8 @@ msgstr "Η ημερομηνία έναρξης δεν μπορεί να είνα
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1069
-#: billsdepositsdialog.cpp:1072 stockdialog.cpp:428 transdialog.cpp:644
-#: transdialog.cpp:718 usertransactionpanel.cpp:465 webapp.cpp:566
+#: billsdepositsdialog.cpp:1072 stockdialog.cpp:427 transdialog.cpp:644
+#: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:566
 msgid "Invalid Date"
 msgstr "Μη έγκυρη ημερομηνία"
 
@@ -312,7 +312,7 @@ msgstr "Αγορές μετοχών για αυτόν τον λογαριασμ�
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Οι προγραμματισμένες συναλλαγές για αυτό τον λογαριασμό έχουν προγραμματιστεί πριν από αυτή την ημερομηνία."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -339,11 +339,12 @@ msgstr "Άνοιγμα Υπάρχουσας Βάσης Δεδομένων"
 msgid "Open an already created database file with extension (*.mmb)"
 msgstr "Άνοιγμα μιας ήδη δημιουργημένης βάσης δεδομένων με  επέκταση (*.mmb)"
 
-#: appstartdialog.cpp:111
+#: appstartdialog.cpp:111 mmframe.cpp:1633
 msgid "User Interface &Language"
 msgstr "Γλώσσα περιβάλλοντος χρήστη"
 
-#: appstartdialog.cpp:112
+#: appstartdialog.cpp:112 appstartdialog.cpp:212 mmframe.cpp:1634
+#: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
 msgstr "Αλλαγή ρυθμίσεων περιβάλλοντος χρήστη"
 
@@ -382,13 +383,9 @@ msgstr "Ανοίξτε την τελευταία ανοιγμένη βάση δ�
 msgid "System default"
 msgstr "Προεπιλογή συστήματος"
 
-#: appstartdialog.cpp:212 mmframe.cpp:1634 optionsettingsgeneral.cpp:100
-msgid "Change language used for MMEX GUI"
-msgstr "Αλλαγή γλώσσας που χρησιμοποιείται για το γραφικό περιβάλλον MMEX"
-
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
-msgid "Language"
-msgstr "Γλώσσα"
+msgid "User Interface Language"
+msgstr "Γλώσσα Περιβάλλοντος Χρήστη"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3865 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -431,15 +428,15 @@ msgid "Enter the name of the asset"
 msgstr "Εισάγετε το όνομα του περιουσιακού στοιχείου"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:190
-#: filtertransdialog.cpp:929 filtertransdialog.cpp:935
+#: filtertransdialog.cpp:928 filtertransdialog.cpp:934
 #: import_export/qif_export.cpp:608 import_export/qif_import_gui.cpp:104
 #: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:271
-#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:286
-#: reports/cashflow.cpp:414 reports/incexpenses.cpp:244 reports/summary.cpp:297
-#: reports/transactions.cpp:188 stockdialog.cpp:293 stockdialog.cpp:648
+#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:287
+#: reports/cashflow.cpp:416 reports/incexpenses.cpp:244 reports/summary.cpp:297
+#: reports/transactions.cpp:188 stockdialog.cpp:293 stockdialog.cpp:647
 #: stockspanel.cpp:212 transactionsupdatedialog.cpp:130 transdialog.cpp:427
-#: usertransactionpanel.cpp:99 webapp.cpp:563 webappdialog.cpp:138
+#: usertransactionpanel.cpp:90 webapp.cpp:563 webappdialog.cpp:138
 #: wizard_update.cpp:141
 msgid "Date"
 msgstr "Ημερομηνία"
@@ -519,13 +516,13 @@ msgstr "Ταυτότητα"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:542 billsdepositspanel.cpp:139
 #: customfieldlistdialog.cpp:55 filtertrans.cpp:196 filtertransdialog.cpp:62
-#: filtertransdialog.cpp:619 filtertransdialog.cpp:994
+#: filtertransdialog.cpp:618 filtertransdialog.cpp:993
 #: filtertransdialog.cpp:1693 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:610 import_export/qif_import_gui.cpp:107
 #: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:102
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:430 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:195 transactionsupdatedialog.cpp:153
-#: transdialog.cpp:464 usertransactionpanel.cpp:129 webappdialog.cpp:141
+#: transdialog.cpp:464 usertransactionpanel.cpp:120 webappdialog.cpp:141
 msgid "Type"
 msgstr "Τύπος"
 
@@ -591,14 +588,14 @@ msgid "Assets"
 msgstr "Περιουσιακά στοιχεία"
 
 #: assetspanel.cpp:430 assetspanel.cpp:707 assetspanel.cpp:724
-#: filtertransdialog.cpp:535 filtertransdialog.cpp:859
+#: filtertransdialog.cpp:534 filtertransdialog.cpp:858
 #: filtertransdialog.cpp:2030 import_export/qif_export.cpp:75
 #: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
 #: mmframe.cpp:1497
 msgid "All"
 msgstr "Όλοι"
 
-#: assetspanel.cpp:472 billsdepositspanel.cpp:294 mmcheckingpanel.cpp:442
+#: assetspanel.cpp:472 billsdepositspanel.cpp:294 mmcheckingpanel.cpp:441
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr "&Νέο "
@@ -616,15 +613,15 @@ msgid "View Asset Transactions"
 msgstr "Προβολή Συναλλαγών Περιουσιακού Στοιχείου"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:298
-#: categdialog.cpp:327 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:446 payeedialog.cpp:862 stockspanel.cpp:146
+#: categdialog.cpp:317 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
+#: mmcheckingpanel.cpp:445 payeedialog.cpp:890 stockspanel.cpp:146
 #: tagdialog.cpp:131
 msgid "&Edit "
 msgstr "&Επεξεργασία "
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:308 budgetyeardialog.cpp:103
-#: categdialog.cpp:331 maincurrencydialog.cpp:304 mmchecking_list.cpp:500
-#: mmcheckingpanel.cpp:438 stockdialog.cpp:334 stockspanel.cpp:151
+#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmchecking_list.cpp:500
+#: mmcheckingpanel.cpp:437 stockdialog.cpp:334 stockspanel.cpp:151
 #: tagdialog.cpp:136
 msgid "&Delete "
 msgstr "&Διαγραφή "
@@ -633,13 +630,13 @@ msgstr "&Διαγραφή "
 msgid "Delete Asset"
 msgstr "Διαγραφή περιουσιακού στοιχείου"
 
-#: assetspanel.cpp:499 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:463
+#: assetspanel.cpp:499 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:462
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr "Άνοιγμα συνημμένων"
 
-#: assetspanel.cpp:506 assetspanel.cpp:507 categdialog.cpp:312
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:485 payeedialog.cpp:578
+#: assetspanel.cpp:506 assetspanel.cpp:507 categdialog.cpp:302
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:484 payeedialog.cpp:597
 #: tagdialog.cpp:116
 msgid "Search"
 msgstr "Αναζήτηση"
@@ -648,22 +645,22 @@ msgstr "Αναζήτηση"
 msgid "Enter any string to find related assets"
 msgstr "Εισάγετε οποιαδήποτε συμβολοσειρά για να βρείτε σχετιζόμενα περιουσιακά στοιχεία"
 
-#: assetspanel.cpp:511 filtertransdialog.cpp:677 mmcheckingpanel.cpp:489
+#: assetspanel.cpp:511 filtertransdialog.cpp:676 mmcheckingpanel.cpp:488
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "Συμβουλές: Μπορείτε να χρησιμοποιήσετε χαρακτήρες μπαλαντέρ - ερωτηματικό (?), αστερίσκο (*) - στα κριτήρια αναζήτησής σας."
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:678 mmcheckingpanel.cpp:490
+#: assetspanel.cpp:512 filtertransdialog.cpp:677 mmcheckingpanel.cpp:489
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "Χρησιμοποιήστε το ερωτηματικό (?) για να βρείτε οποιοδήποτε ένα χαρακτήρα - για παράδειγμα, s?t βρίσκει 'sat' και 'set'."
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:679 mmcheckingpanel.cpp:491
+#: assetspanel.cpp:513 filtertransdialog.cpp:678 mmcheckingpanel.cpp:490
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "Χρησιμοποιήστε τον αστερίσκο (*) για να βρείτε οποιοδήποτε αριθμό χαρακτήρων - για παράδειγμα, το s*d βρίσκει το 'sad' και το 'started'."
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:680 mmcheckingpanel.cpp:492
+#: assetspanel.cpp:514 filtertransdialog.cpp:679 mmcheckingpanel.cpp:491
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Χρησιμοποιήστε τον αστερίσκο (*) στην αρχή για να βρείτε οποιαδήποτε συμβολοσειρά στη μέση της πρότασης."
@@ -740,7 +737,7 @@ msgstr "Οργάνωση Συνημμένων | %1$s | %2$s"
 msgid "Organize Attachments | New %s"
 msgstr "Οργάνωση Συνημμένων | Νέο %s"
 
-#: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:572
+#: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:591
 msgid "Other tools"
 msgstr "Άλλα εργαλεία"
 
@@ -772,9 +769,9 @@ msgstr "Θέλετε πραγματικά να διαγράψετε αυτό τ�
 msgid "Confirm Attachment Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Συνημμένου"
 
-#: attachmentdialog.cpp:354 categdialog.cpp:323 customfieldlistdialog.cpp:261
+#: attachmentdialog.cpp:354 categdialog.cpp:313 customfieldlistdialog.cpp:261
 #: import_export/univcsvdialog.cpp:307 maincurrencydialog.cpp:539
-#: payeedialog.cpp:861 stockdialog.cpp:336 tagdialog.cpp:127
+#: payeedialog.cpp:889 stockdialog.cpp:336 tagdialog.cpp:127
 msgid "&Add "
 msgstr "&Προσθήκη "
 
@@ -784,7 +781,7 @@ msgstr "&Άνοιγμα "
 
 #: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:311 maincurrencydialog.cpp:541
-#: payeedialog.cpp:864
+#: payeedialog.cpp:892
 msgid "&Remove "
 msgstr "&Διαγραφή "
 
@@ -897,20 +894,20 @@ msgid "Daily"
 msgstr "Ανά ημέρα"
 
 #: billsdepositsdialog.cpp:62
-msgid "In (x) Days"
-msgstr "Σε (X) Ημέρες"
+msgid "In (n) Days"
+msgstr "Σε (n) Ημέρες"
 
 #: billsdepositsdialog.cpp:63
-msgid "In (x) Months"
-msgstr "Σε (X) Μήνες"
+msgid "In (n) Months"
+msgstr "Σε (n) Μήνες"
 
 #: billsdepositsdialog.cpp:64
-msgid "Every (x) Days"
-msgstr "Κάθε (X) Ημέρες"
+msgid "Every (n) Days"
+msgstr "Κάθε (n) Ημέρες"
 
 #: billsdepositsdialog.cpp:65
-msgid "Every (x) Months"
-msgstr "Κάθε (X) Μήνες"
+msgid "Every (n) Months"
+msgstr "Κάθε (n) Μήνες"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -922,19 +919,19 @@ msgstr "Μηνιαία (τελευταία εργάσιμη ημέρα)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Δημιουργία Αντιγράφου Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Επεξεργασία Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Εισαγωγή Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Λεπτομέρειες Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -988,19 +985,19 @@ msgstr "Καθορίστε την ημερομηνία που ο χρήστης 
 msgid "Date Paid"
 msgstr "Ημερομηνία Πληρωμής"
 
-#: billsdepositsdialog.cpp:524 filtertransdialog.cpp:616 transdialog.cpp:1315
+#: billsdepositsdialog.cpp:524 filtertransdialog.cpp:615 transdialog.cpp:1315
 msgid "Specify the status for the transaction"
 msgstr "Δηλώστε την κατάσταση της συναλλαγής"
 
 #: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:136 filtertrans.cpp:194
-#: filtertransdialog.cpp:606 filtertransdialog.cpp:989
+#: filtertransdialog.cpp:605 filtertransdialog.cpp:988
 #: filtertransdialog.cpp:1682 import_export/qif_export.cpp:609
 #: import_export/qif_import_gui.cpp:263 import_export/qif_import_gui.cpp:274
 #: import_export/qif_import_gui.cpp:284 import_export/univcsvdialog.cpp:101
 #: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
 #: mmchecking_list.cpp:282 reports/transactions.cpp:192
 #: transactionsupdatedialog.cpp:138 transdialog.cpp:443
-#: usertransactionpanel.cpp:167 webappdialog.cpp:140 wizard_update.cpp:141
+#: usertransactionpanel.cpp:158 webappdialog.cpp:140 wizard_update.cpp:141
 msgid "Status"
 msgstr "Κατάσταση"
 
@@ -1017,14 +1014,14 @@ msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Επιτρέπει την ρύθμιση διαφορετικών ποσών στους ΑΠΟ και ΠΡΟΣ λογαριασμούς."
 
 #: billsdepositsdialog.cpp:547 billsdepositspanel.cpp:140
-#: budgetingpanel.cpp:302 filtertrans.cpp:197 filtertransdialog.cpp:1021
-#: filtertransdialog.cpp:1030 import_export/qif_export.cpp:614
+#: budgetingpanel.cpp:294 filtertrans.cpp:197 filtertransdialog.cpp:1020
+#: filtertransdialog.cpp:1029 import_export/qif_export.cpp:614
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
-#: mmhomepage.cpp:358 mmhomepage.cpp:432 reports/cashflow.cpp:418
+#: mmhomepage.cpp:358 mmhomepage.cpp:432 reports/cashflow.cpp:420
 #: reports/categexp.cpp:218 reports/incexpenses.cpp:109
 #: reports/transactions.cpp:196 splittransactionsdialog.cpp:87
 #: splittransactionsdialog.cpp:221 transactionsupdatedialog.cpp:171
-#: transdialog.cpp:481 usertransactionpanel.cpp:133 webappdialog.cpp:144
+#: transdialog.cpp:481 usertransactionpanel.cpp:124 webappdialog.cpp:144
 msgid "Amount"
 msgstr "Ποσό"
 
@@ -1034,20 +1031,20 @@ msgstr "Καθορίστε το ποσό της μεταφοράς στον λο
 
 #: billsdepositsdialog.cpp:569 billsdepositsdialog.cpp:856
 #: billsdepositsdialog.cpp:869 billsdepositspanel.cpp:134 filtertrans.cpp:192
-#: filtertransdialog.cpp:59 filtertransdialog.cpp:531 filtertransdialog.cpp:919
+#: filtertransdialog.cpp:59 filtertransdialog.cpp:530 filtertransdialog.cpp:918
 #: filtertransdialog.cpp:1610 import_export/qif_export.cpp:611
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:174
 #: import_export/qif_import_gui.cpp:255 import_export/univcsvdialog.cpp:103
-#: mmchecking_list.cpp:277 reports/cashflow.cpp:415
+#: mmchecking_list.cpp:277 reports/cashflow.cpp:417
 #: reports/transactions.cpp:190 transdialog.cpp:246 transdialog.cpp:250
-#: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:103
+#: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:94
 #: webapp.cpp:562 webappdialog.cpp:139
 msgid "Account"
 msgstr "Λογαριασμός"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Καθορίστε τον Λογαριασμό που θα κατέχει την προγραμματισμένη συναλλαγή"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1055,31 +1052,31 @@ msgstr "Προς"
 
 #: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:857
 #: billsdepositspanel.cpp:135 filtertrans.cpp:193 filtertransdialog.cpp:60
-#: filtertransdialog.cpp:570 filtertransdialog.cpp:945
+#: filtertransdialog.cpp:569 filtertransdialog.cpp:944
 #: filtertransdialog.cpp:1646 import_export/qif_export.cpp:612
 #: import_export/qif_import_gui.cpp:106 import_export/qif_import_gui.cpp:268
 #: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:502
 #: mmchecking_list.cpp:280 model/Model_Attachment.cpp:29 payeedialog.cpp:83
-#: payeedialog.cpp:238 reports/cashflow.cpp:416 reports/payee.cpp:136
+#: payeedialog.cpp:238 reports/cashflow.cpp:418 reports/payee.cpp:136
 #: reports/transactions.cpp:191 transactionsupdatedialog.cpp:184
-#: transdialog.cpp:247 transdialog.cpp:507 usertransactionpanel.cpp:171
+#: transdialog.cpp:247 transdialog.cpp:507 usertransactionpanel.cpp:162
 #: webappdialog.cpp:142
 msgid "Payee"
 msgstr "Δικαιούχος"
 
 #: billsdepositsdialog.cpp:601 billsdepositsdialog.cpp:988
-#: billsdepositspanel.cpp:137 budgetingpanel.cpp:300 filtertrans.cpp:195
-#: filtertransdialog.cpp:61 filtertransdialog.cpp:580 filtertransdialog.cpp:978
-#: filtertransdialog.cpp:983 filtertransdialog.cpp:1653
+#: billsdepositspanel.cpp:137 budgetingpanel.cpp:292 filtertrans.cpp:195
+#: filtertransdialog.cpp:61 filtertransdialog.cpp:579 filtertransdialog.cpp:977
+#: filtertransdialog.cpp:982 filtertransdialog.cpp:1653
 #: import_export/qif_export.cpp:613 import_export/qif_import_gui.cpp:108
 #: import_export/qif_import_gui.cpp:279 import_export/univcsvdialog.cpp:107
 #: import_export/univcsvdialog.cpp:513 mmchecking_list.cpp:284
 #: mmhomepage.cpp:190 payeedialog.cpp:201 reports/budgetcategorysummary.cpp:185
-#: reports/budgetingperf.cpp:130 reports/cashflow.cpp:417
+#: reports/budgetingperf.cpp:130 reports/cashflow.cpp:419
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:193 splittransactionsdialog.cpp:80
 #: splittransactionsdialog.cpp:219 transactionsupdatedialog.cpp:208
-#: transdialog.cpp:519 transdialog.cpp:651 usertransactionpanel.cpp:178
+#: transdialog.cpp:519 transdialog.cpp:651 usertransactionpanel.cpp:169
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr "Κατηγορία"
@@ -1090,8 +1087,8 @@ msgid "Use split Categories"
 msgstr "Χρησιμοποιήστε την διαίρεση κατηγοριών"
 
 #: billsdepositsdialog.cpp:615 billsdepositsdialog.cpp:994
-#: billsdepositspanel.cpp:138 filtertransdialog.cpp:598
-#: filtertransdialog.cpp:1002 filtertransdialog.cpp:1007
+#: billsdepositspanel.cpp:138 filtertransdialog.cpp:597
+#: filtertransdialog.cpp:1001 filtertransdialog.cpp:1006
 #: filtertransdialog.cpp:1729 mmchecking_list.cpp:286
 #: reports/transactions.cpp:194 splittransactionsdialog.cpp:223
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
@@ -1104,15 +1101,15 @@ msgid "Specify any associated check number or transaction number"
 msgstr "Δηλώστε ένα συνδεόμενο αριθμό επιταγής ή ένα αριθμό συναλλαγής"
 
 #: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:145 filtertrans.cpp:191
-#: filtertransdialog.cpp:661 filtertransdialog.cpp:1722
+#: filtertransdialog.cpp:660 filtertransdialog.cpp:1722
 #: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:105
 #: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:273
 #: reports/transactions.cpp:189 transdialog.cpp:546
-#: usertransactionpanel.cpp:191
+#: usertransactionpanel.cpp:182
 msgid "Number"
 msgstr "Αριθμός"
 
-#: billsdepositsdialog.cpp:633 transdialog.cpp:553 usertransactionpanel.cpp:206
+#: billsdepositsdialog.cpp:633 transdialog.cpp:553 usertransactionpanel.cpp:197
 msgid "Select one of the frequently used notes"
 msgstr "Επιλέξτε μια από τις συχνότερα χρησιμοποιούμενες σημειώσεις"
 
@@ -1123,10 +1120,10 @@ msgstr "Χρώματα Χρήστη"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Οργάνωση των συνημμένων αυτής της προγραμματισμένης συναλλαγής"
 
-#: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:685
-#: filtertransdialog.cpp:1039 filtertransdialog.cpp:1754
+#: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:684
+#: filtertransdialog.cpp:1038 filtertransdialog.cpp:1754
 #: import_export/qif_import_gui.cpp:356 import_export/univcsvdialog.cpp:448
 #: import_export/univcsvdialog.cpp:1337 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
@@ -1135,11 +1132,11 @@ msgid "Color"
 msgstr "Χρώμα"
 
 #: billsdepositsdialog.cpp:660 transdialog.cpp:582 transdialog.cpp:1318
-#: usertransactionpanel.cpp:215
+#: usertransactionpanel.cpp:206
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Δηλώστε τυχόν σημειώσεις που θέλετε να προσθέσετε σε αυτήν τη συναλλαγή."
 
-#: billsdepositsdialog.cpp:677 filtertransdialog.cpp:793
+#: billsdepositsdialog.cpp:677 filtertransdialog.cpp:792
 #: transactionsupdatedialog.cpp:273 transdialog.cpp:598
 msgid "Show/Hide custom fields window"
 msgstr "Εμφάνιση/Απόκρυψη προσαρμοσμένου παραθύρου πεδίων"
@@ -1171,13 +1168,13 @@ msgid "Confirm payee name"
 msgstr "Επιβεβαίωση ονόματος δικαιούχου"
 
 #: billsdepositsdialog.cpp:988 billsdepositsdialog.cpp:994
-#: billsdepositsdialog.cpp:1380 filtertransdialog.cpp:919
-#: filtertransdialog.cpp:929 filtertransdialog.cpp:935
-#: filtertransdialog.cpp:964 filtertransdialog.cpp:983
-#: filtertransdialog.cpp:989 filtertransdialog.cpp:994
-#: filtertransdialog.cpp:1002 filtertransdialog.cpp:1021
-#: filtertransdialog.cpp:1030 filtertransdialog.cpp:1039
-#: filtertransdialog.cpp:1047 filtertransdialog.cpp:1053
+#: billsdepositsdialog.cpp:1380 filtertransdialog.cpp:918
+#: filtertransdialog.cpp:928 filtertransdialog.cpp:934
+#: filtertransdialog.cpp:963 filtertransdialog.cpp:982
+#: filtertransdialog.cpp:988 filtertransdialog.cpp:993
+#: filtertransdialog.cpp:1001 filtertransdialog.cpp:1020
+#: filtertransdialog.cpp:1029 filtertransdialog.cpp:1038
+#: filtertransdialog.cpp:1046 filtertransdialog.cpp:1052
 #: import_export/univcsvdialog.cpp:1337 optionsettingsgeneral.cpp:293
 #: optionsettingsgeneral.cpp:318 payeedialog.cpp:201
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:355
@@ -1187,8 +1184,8 @@ msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
 #: billsdepositsdialog.cpp:1069 billsdepositsdialog.cpp:1072
-#: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:428 transdialog.cpp:644
-#: transdialog.cpp:718 usertransactionpanel.cpp:465 webapp.cpp:564
+#: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:427 transdialog.cpp:644
+#: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "Η ημερομηνία έναρξης του λογαριασμού είναι μεταγενέστερη από την ημερομηνία της συναλλαγής"
 
@@ -1253,7 +1250,7 @@ msgstr "Διαχωρισμός Συναλλαγής"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Νέα Προγραμματισμένη Συναλλαγή"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1267,7 +1264,7 @@ msgstr "Καθορίστε από πού έρχεται η συναλλαγή"
 msgid "Specify which account the transfer is going to"
 msgstr "Καθορίστε σε ποιο λογαριασμό θα πάει η μεταφορά"
 
-#: billsdepositsdialog.h:130 transdialog.cpp:1305 usertransactionpanel.cpp:137
+#: billsdepositsdialog.h:130 transdialog.cpp:1305 usertransactionpanel.cpp:128
 msgid "Specify the amount for this transaction"
 msgstr "Δηλώστε το ποσό της συναλλαγής"
 
@@ -1295,7 +1292,7 @@ msgstr "Κάθε %s Ημέρες"
 msgid "Every %s Months"
 msgstr "Κάθε %s Μήνες"
 
-#: billsdepositspanel.cpp:141 budgetingpanel.cpp:301 reports/myusage.cpp:163
+#: billsdepositspanel.cpp:141 budgetingpanel.cpp:293 reports/myusage.cpp:163
 msgid "Frequency"
 msgstr "Συχνότητα"
 
@@ -1322,16 +1319,16 @@ msgstr "Συμβουλή: Αυτές οι συναλλαγές μπορούν ν
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Προγραμματισμένες συναλλαγές"
 
-#: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:454
+#: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
 msgstr "Δ\n"
 "Διπλότυπη "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Διαγραφή Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1339,7 +1336,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Εισαγωγή Επόμενης Εκτέλεσης Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1347,7 +1344,7 @@ msgstr "&Παράβλεψη"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Παράλειψη Επόμενης Εκτέλεσης Προγραμματισμένης Συναλλαγής"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1359,19 +1356,19 @@ msgstr "Παράκαμψη επόμενης εμφάνισης"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Νέα Προγραμματισμένη Συναλλαγή..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Επεξεργασία Προγραμματισμένης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Δ&ημιουργία Αντιγράφου Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Διαγραφή Προγραμματισμένης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1414,7 +1411,7 @@ msgstr[1] "%d ημέρες καθυστέρηση!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε την προγραμματισμένη συναλλαγή;"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1499,61 +1496,61 @@ msgstr "Εμφάνιση των κατηγοριών εξόδων του προ�
 msgid "View Budget Category Summary"
 msgstr "Εμφάνιση της περίληψης των κατηγοριών του προϋπολογισμού"
 
-#: budgetingpanel.cpp:173
+#: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
 msgstr "Οικονομικό Έτος: %s - %li"
 
-#: budgetingpanel.cpp:177 reports/budget.cpp:94
+#: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
 msgstr "Έτος: %s"
 
-#: budgetingpanel.cpp:182
+#: budgetingpanel.cpp:174
 #, c-format
 msgid "Month: %s"
 msgstr "Μήνας: %s"
 
-#: budgetingpanel.cpp:188
+#: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
 msgstr "%1$s    Ημερομηνία Έναρξης της: %2$s"
 
-#: budgetingpanel.cpp:191
+#: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Setup for %s"
 msgstr "Ρύθμιση προϋπολογισμού για %s"
 
-#: budgetingpanel.cpp:248
+#: budgetingpanel.cpp:240
 msgid "Income: "
 msgstr "Έσοδα: "
 
-#: budgetingpanel.cpp:249 budgetingpanel.cpp:257
+#: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
 msgstr "Εκτιμώμενα: "
 
-#: budgetingpanel.cpp:251 budgetingpanel.cpp:259
+#: budgetingpanel.cpp:243 budgetingpanel.cpp:251
 msgid "Actual: "
 msgstr "Πραγματικά: "
 
-#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:344
+#: budgetingpanel.cpp:245 budgetingpanel.cpp:253 reports/budgetingperf.cpp:344
 msgid "Difference: "
 msgstr "Διαφορά:"
 
-#: budgetingpanel.cpp:256
+#: budgetingpanel.cpp:248
 msgid "Expenses: "
 msgstr "Έξοδα: "
 
-#: budgetingpanel.cpp:299
+#: budgetingpanel.cpp:291
 msgid "Icon"
 msgstr "Εικονίδιο"
 
-#: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:142
+#: budgetingpanel.cpp:295 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
 msgid "Estimated"
 msgstr "Εκτιμώμενα"
 
-#: budgetingpanel.cpp:304 reports/budgetcategorysummary.cpp:143
+#: budgetingpanel.cpp:296 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
 msgid "Actual"
 msgstr "Πραγματικά"
@@ -1622,91 +1619,91 @@ msgstr "Καθορίστε το έτος που θα βασισθεί ο προ�
 msgid "Budget Year already exists"
 msgstr "Το έτος προϋπολογισμού ήδη υπάρχει"
 
-#: categdialog.cpp:197 import_export/qif_export.cpp:146 mmframereport.cpp:140
+#: categdialog.cpp:187 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#: categdialog.cpp:268
+#: categdialog.cpp:258
 msgid "Reassign all categories to another category"
 msgstr "Εκχώρηση όλων των κατηγοριών σε μια άλλη κατηγορία"
 
-#: categdialog.cpp:270 reports/categexp.cpp:206
+#: categdialog.cpp:260 reports/categexp.cpp:206
 msgid "Collapse All"
 msgstr "Σύμπτυξη Όλων"
 
-#: categdialog.cpp:275 reports/categexp.cpp:207
+#: categdialog.cpp:265 reports/categexp.cpp:207
 msgid "Expand All"
 msgstr "Ανάπτυξη Όλων"
 
-#: categdialog.cpp:280 maincurrencydialog.cpp:186
+#: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
 msgstr "Προβολή &Όλων"
 
-#: categdialog.cpp:282
+#: categdialog.cpp:272
 msgid "Show all hidden categories"
 msgstr "Εμφάνιση όλων των κρυφών κατηγοριών"
 
-#: categdialog.cpp:325
+#: categdialog.cpp:315
 msgid "Add a new category"
 msgstr "Εισάγετε μια νέα κατηγορία"
 
-#: categdialog.cpp:329
+#: categdialog.cpp:319
 msgid "Edit the name of an existing category"
 msgstr "Επεξεργασθείτε το όνομα μιας υπάρχουσας κατηγορίας"
 
-#: categdialog.cpp:333
+#: categdialog.cpp:323
 msgid "Delete an existing category. The category cannot be used by existing transactions."
 msgstr "Διαγραφής μιας υπάρχουσας κατηγορίας. Η κατηγορία δεν μπορεί να χρησιμοποιηθεί από υπάρχουσες συναλλαγές."
 
-#: categdialog.cpp:338 maincurrencydialog.cpp:225
+#: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
 msgstr "&Επιλογή"
 
-#: categdialog.cpp:340
+#: categdialog.cpp:330
 msgid "Select the currently selected category as the selected category for the transaction"
 msgstr "Επιλέξτε την τρέχουσα επιλεγμένη κατηγορία ως κατηγορία επιλεγμένη για τη συναλλαγή"
 
-#: categdialog.cpp:353
+#: categdialog.cpp:343
 msgid "Name contains category delimiter."
 msgstr "Το όνομα περιέχει οριοθέτηση κατηγορίας."
 
-#: categdialog.cpp:354
+#: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
 msgstr "Ο χαρακτήρας άνω και κάτω τελείας (:) χρησιμοποιείται για τη διάκριση κατηγοριών και υποκατηγοριών και για αυτό δεν πρέπει να χρησιμοποιείται στο όνομα"
 
-#: categdialog.cpp:356
+#: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
 msgstr "Οργάνωση Κατηγοριών: Μη Έγκυρο Όνομα"
 
-#: categdialog.cpp:364
+#: categdialog.cpp:354
 msgid "Enter the name for the new category:"
 msgstr "Εισάγετε το όνομα για τη νέα κατηγορία:"
 
-#: categdialog.cpp:365
+#: categdialog.cpp:355
 msgid "Add Category"
 msgstr "Προσθήκη Κατηγορίας"
 
-#: categdialog.cpp:376 categdialog.cpp:385 categdialog.cpp:634
+#: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
 msgstr "Υπάρχει κατηγορία με αυτό το όνομα για αυτόν τον γονέα"
 
-#: categdialog.cpp:376 categdialog.cpp:385
+#: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα προσθήκης"
 
-#: categdialog.cpp:437
+#: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
 msgstr "Δεν μπορείτε να μετακινήσετε μια υποκατηγορία σε μια κατηγορία που έχει ήδη μια υποκατηγορία με αυτό το όνομα. Εξετάστε την μετονομασία πριν τη μετακίνηση."
 
-#: categdialog.cpp:438
+#: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
 msgstr "Υπάρχει ήδη μια υποκατηγορία με αυτό το όνομα"
 
-#: categdialog.cpp:450
+#: categdialog.cpp:440
 msgid "Target category is a descendant"
 msgstr "Η κατηγορία στόχος είναι απόγονος"
 
-#: categdialog.cpp:457
+#: categdialog.cpp:447
 #, c-format
 msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
@@ -1717,106 +1714,106 @@ msgstr "Είστε βέβαιοι ότι θέλετε να μετακινήσε�
 "σε:\n"
 "\"%2$s\";"
 
-#: categdialog.cpp:459
+#: categdialog.cpp:449
 msgid "Top level"
 msgstr "Ανώτατο επίπεδο"
 
-#: categdialog.cpp:460
+#: categdialog.cpp:450
 msgid "Confirm Move"
 msgstr "Επιβεβαίωση μετακίνησης"
 
-#: categdialog.cpp:477
+#: categdialog.cpp:467
 msgid "Category in use."
 msgstr "Κατηγορία σε χρήση."
 
-#: categdialog.cpp:477
+#: categdialog.cpp:467
 msgid "Subcategory in use."
 msgstr "Υποκατηγορία σε χρήση."
 
-#: categdialog.cpp:479
+#: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
 msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές που χρησιμοποιούν αυτήν την Κατηγορία σε\n"
 "άλλη Κατηγορία χρησιμοποιώντας την εντολή συγχώνευσης:"
 
-#: categdialog.cpp:482
+#: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
 msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές που χρησιμοποιούν αυτήν την Υποκατηγορία σε\n"
 "άλλη Κατηγορία χρησιμοποιώντας την εντολή συγχώνευσης:"
 
-#: categdialog.cpp:485
+#: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
 msgstr "Εργαλεία → Συγχώνευση → Κατηγορίες"
 
-#: categdialog.cpp:487
+#: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα διαγραφής"
 
-#: categdialog.cpp:510
+#: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
 msgstr "Υπάρχουν Διαγραμμένες συναλλαγές που χρησιμοποιούν αυτή την κατηγορία ή μία από τις απογόνους της."
 
-#: categdialog.cpp:511
+#: categdialog.cpp:501
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
 msgstr "Η διαγραφή της κατηγορίας θα καθαρίσει επίσης αυτόματα τις σχετικές διαγραμμένες συναλλαγές."
 
-#: categdialog.cpp:512 payeedialog.cpp:733 tagdialog.cpp:303
+#: categdialog.cpp:502 payeedialog.cpp:760 tagdialog.cpp:303
 msgid "Do you wish to continue ?"
 msgstr "Θέλετε να συνεχίσετε;"
 
-#: categdialog.cpp:513
+#: categdialog.cpp:503
 msgid "Confirm Category Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Κατηγορίας"
 
-#: categdialog.cpp:622 tagdialog.cpp:244
+#: categdialog.cpp:612 tagdialog.cpp:244
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr "Εισάγετε ένα νέο όνομα για %s'"
 
-#: categdialog.cpp:623
+#: categdialog.cpp:613
 msgid "Edit Category"
 msgstr "Επεξεργασία Κατηγορίας"
 
-#: categdialog.cpp:635
+#: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
 msgstr "Οργάνωση Κατηγοριών: Σφάλμα Επεξεργασίας"
 
-#: categdialog.cpp:692 mmframe.cpp:3719
+#: categdialog.cpp:682 mmframe.cpp:3719
 msgid "Merge categories completed"
 msgstr "Η συγχώνευση κατηγοριών ολοκληρώθηκε"
 
-#: categdialog.cpp:693 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
-#: payeedialog.cpp:813
+#: categdialog.cpp:683 mmframe.cpp:3720 mmframe.cpp:3735 mmframe.cpp:3751
+#: payeedialog.cpp:841
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Οι εγγραφές έχουν ενημερωθεί στη βάση δεδομένων: %i"
 
-#: categdialog.cpp:695 mmframe.cpp:3722
+#: categdialog.cpp:685 mmframe.cpp:3722
 msgid "Merge categories result"
 msgstr "Συγχώνευση αποτελεσμάτων κατηγοριών"
 
-#: categdialog.cpp:771
+#: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
 msgstr "Είστε σίγουρος ότι θέλετε να επανεμφανίσετε όλες τις κατηγορίες"
 
-#: categdialog.cpp:772
+#: categdialog.cpp:762
 msgid "Unhide all categories"
 msgstr "Επανεμφάνιση όλων των κατηγοριών"
 
-#: categdialog.cpp:800
+#: categdialog.cpp:790
 msgid "Hide Selected Category"
 msgstr "Απόκρυψη Επιλεγμένης Κατηγορίας"
 
-#: categdialog.cpp:801
+#: categdialog.cpp:791
 msgid "Unhide Selected Category"
 msgstr "Επανεμφάνιση Επιλεγμένης Κατηγορίας"
 
-#: categdialog.cpp:803 payeedialog.cpp:857
+#: categdialog.cpp:793 payeedialog.cpp:885
 msgid "Remove Category"
 msgstr "Αφαίρεση κατηγορίας"
 
-#: categdialog.cpp:806
+#: categdialog.cpp:796
 msgid "Clear Settings"
 msgstr "Καθαρισμός Ρυθμίσεων"
 
@@ -2418,8 +2415,8 @@ msgstr "Άλλα έσοδα"
 msgid "Other Expenses"
 msgstr "Άλλα έξοδα"
 
-#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:862
-#: filtertransdialog.cpp:1526 model/Model_Billsdeposits.cpp:35
+#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:861
+#: filtertransdialog.cpp:1525 model/Model_Billsdeposits.cpp:35
 #: model/Model_Checking.cpp:36
 msgid "Transfer"
 msgstr "Μεταφορά"
@@ -2567,126 +2564,126 @@ msgstr "Διπλότυπο"
 msgid "All Except Reconciled"
 msgstr "Όλα Εκτός Επανασύνδεσης"
 
-#: filtertransdialog.cpp:514 transactionsupdatedialog.cpp:122
+#: filtertransdialog.cpp:513 transactionsupdatedialog.cpp:122
 msgid "Specify"
 msgstr "Καθορισμός"
 
-#: filtertransdialog.cpp:542
+#: filtertransdialog.cpp:541
 msgid "Period Range"
 msgstr "Εύρος Περιόδου"
 
-#: filtertransdialog.cpp:554 reports/mmDateRange.cpp:35
+#: filtertransdialog.cpp:553 reports/mmDateRange.cpp:35
 msgid "Date Range"
 msgstr "Εύρος ημερομηνιών"
 
-#: filtertransdialog.cpp:590 filtertransdialog.cpp:1667
+#: filtertransdialog.cpp:589 filtertransdialog.cpp:1667
 msgid "Include all subcategories"
 msgstr "Συμπερίληψη όλων των υποκατηγοριών"
 
-#: filtertransdialog.cpp:625 filtertransdialog.cpp:1522
+#: filtertransdialog.cpp:624 filtertransdialog.cpp:1521
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:288
 #: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:34
 #: reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Ανάληψη"
 
-#: filtertransdialog.cpp:627 filtertransdialog.cpp:1523
+#: filtertransdialog.cpp:626 filtertransdialog.cpp:1522
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:290
 #: model/Model_Billsdeposits.cpp:34 model/Model_Checking.cpp:35
 #: reports/forecast.cpp:79
 msgid "Deposit"
 msgstr "Κατάθεση"
 
-#: filtertransdialog.cpp:629 filtertransdialog.cpp:852
-#: filtertransdialog.cpp:1526
+#: filtertransdialog.cpp:628 filtertransdialog.cpp:851
+#: filtertransdialog.cpp:1525
 msgid "Transfer Out"
 msgstr "Εξερχόμενη Μεταφορά"
 
-#: filtertransdialog.cpp:631 filtertransdialog.cpp:1524
+#: filtertransdialog.cpp:630 filtertransdialog.cpp:1523
 msgid "Transfer In"
 msgstr "Μεταφορά"
 
-#: filtertransdialog.cpp:643
+#: filtertransdialog.cpp:642
 msgid "Amount Range"
 msgstr "Εύρος Ποσότητας"
 
-#: filtertransdialog.cpp:676
+#: filtertransdialog.cpp:675
 msgid "Enter any string to find it in transaction notes"
 msgstr "Εισάγετε οποιαδήποτε φράση για να τη βρείτε στις σημειώσεις μιας συναλλαγής"
 
-#: filtertransdialog.cpp:681 payeedialog.cpp:141
+#: filtertransdialog.cpp:680 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
 msgstr "Χρήση regex: για αντιστοίχιση με τη χρήση κανονικών εκφράσεων."
 
-#: filtertransdialog.cpp:704
+#: filtertransdialog.cpp:703
 msgid "Presentation Options"
 msgstr "Επιλογές παρουσίασης"
 
-#: filtertransdialog.cpp:718 filtertransdialog.cpp:1047
+#: filtertransdialog.cpp:717 filtertransdialog.cpp:1046
 #: filtertransdialog.cpp:1781
 msgid "Hide Columns"
 msgstr "Απόκρυψη Στηλών"
 
-#: filtertransdialog.cpp:729 filtertransdialog.cpp:1053
+#: filtertransdialog.cpp:728 filtertransdialog.cpp:1052
 #: filtertransdialog.cpp:1794
 msgid "Group By"
 msgstr "Ομαδοποίηση κατά"
 
-#: filtertransdialog.cpp:738
+#: filtertransdialog.cpp:737
 msgid "Specify how the report should be grouped"
 msgstr "Καθορίστε τον τρόπο ομαδοποίησης της έκθεσης"
 
-#: filtertransdialog.cpp:741 filtertransdialog.cpp:1803
+#: filtertransdialog.cpp:740 filtertransdialog.cpp:1803
 msgid "Combine Splits"
 msgstr "Συνδυασμός Διαχωρισμών"
 
-#: filtertransdialog.cpp:745
+#: filtertransdialog.cpp:744
 msgid "Display split transactions as a single row"
 msgstr "Εμφάνιση χωρισμένων συναλλαγών ως μία γραμμή"
 
-#: filtertransdialog.cpp:753
+#: filtertransdialog.cpp:752
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: filtertransdialog.cpp:767
+#: filtertransdialog.cpp:766
 msgid "Save active values into current Preset selection"
 msgstr "Αποθήκευση ενεργών τιμών στην τρέχουσα επιλογή προεπιλογών"
 
-#: filtertransdialog.cpp:772
+#: filtertransdialog.cpp:771
 msgid "Delete current Preset selection"
 msgstr "Διαγραφή τρέχουσας επιλογής προεπιλογών"
 
-#: filtertransdialog.cpp:945 filtertransdialog.cpp:978
-#: filtertransdialog.cpp:1007 filtertransdialog.cpp:1473
+#: filtertransdialog.cpp:944 filtertransdialog.cpp:977
+#: filtertransdialog.cpp:1006 filtertransdialog.cpp:1472
 #: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Empty value"
 msgstr "Κενή τιμή"
 
-#: filtertransdialog.cpp:962
+#: filtertransdialog.cpp:961
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
 msgstr ""
 
-#: filtertransdialog.cpp:1112
+#: filtertransdialog.cpp:1111
 msgid "Hide Report Columns"
 msgstr ""
 
-#: filtertransdialog.cpp:1247 mmframe.cpp:1253
+#: filtertransdialog.cpp:1246 mmframe.cpp:1253
 msgid "The selected item will be deleted"
 msgstr "Το επιλεγμένο στοιχείο θα διαγραφεί"
 
-#: filtertransdialog.cpp:1248 import_export/univcsvdialog.cpp:2122
+#: filtertransdialog.cpp:1247 import_export/univcsvdialog.cpp:2122
 #: mmframe.cpp:1254
 msgid "Do you wish to continue?"
 msgstr "Θέλετε να συνεχίσετε;"
 
-#: filtertransdialog.cpp:1249 mmframe.cpp:1255
+#: filtertransdialog.cpp:1248 mmframe.cpp:1255
 msgid "Settings item deletion"
 msgstr "Διαγραφή ρυθμίσεων στοιχείου"
 
-#: filtertransdialog.cpp:1488
+#: filtertransdialog.cpp:1487
 msgid "Filtering Details: "
 msgstr "Λεπτομέρειες φιλτραρίσματος: "
 
@@ -3223,7 +3220,7 @@ msgstr "Γραμμή %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Αριθμός γραμμών που διαβάζονται από το αρχείο QIF: %zu σε %lld ms"
 
-#: import_export/qif_import_gui.cpp:548 mmreportspanel.cpp:358
+#: import_export/qif_import_gui.cpp:548 mmreportspanel.cpp:350
 msgid "Accounts:"
 msgstr "Λογαριασμοί:"
 
@@ -3362,7 +3359,7 @@ msgid "Don't Care"
 msgstr "Αδιάφορο"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:294
-#: mmhomepage.cpp:548 mmhomepage.cpp:711 reports/cashflow.cpp:419
+#: mmhomepage.cpp:548 mmhomepage.cpp:711 reports/cashflow.cpp:421
 #: reports/summary.cpp:272 reports/summary.cpp:308
 msgid "Balance"
 msgstr "Υπόλοιπο"
@@ -3611,7 +3608,7 @@ msgstr "Σφάλμα: %ld"
 msgid "Log file written to: %s"
 msgstr "Το αρχείο καταγραφής γράφτηκε στο: %s"
 
-#: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:652
+#: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:651
 msgid "Please confirm saving"
 msgstr "Παρακαλούμε επιβεβαιώστε την αποθήκευση"
 
@@ -3657,7 +3654,7 @@ msgstr "Συναλλαγές που εξήχθησαν: %ld"
 msgid "Preset '%s' will be deleted"
 msgstr "Η Προεπιλογή %s θα διαγραφεί"
 
-#: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:558
+#: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:557
 msgid "Choose CSV data file to import"
 msgstr "Επιλέξτε ένα αρχείο δεδομένων CSV για εισαγωγή"
 
@@ -3748,7 +3745,7 @@ msgid "Currency History Options"
 msgstr "Επιλογές Ιστορικού Νομίσματος"
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:300 stockdialog.cpp:319
-#: stockdialog.cpp:648 stockspanel.cpp:215
+#: stockdialog.cpp:647 stockspanel.cpp:215
 msgid "Price"
 msgstr "Τιμή"
 
@@ -3997,11 +3994,11 @@ msgstr "Συμβουλή: Το αρχείο .mmb δεν είναι κρυπτο�
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως τακτοποιημένη, επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'R'. Για να μαρκάρετε μια συναλλαγή ως μη τακτοποιημένη, απλά επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Συμβουλή: Για να μαρκάρετε μια συναλλαγή ως χρειαζούμενη επανέλεγχο, επιλέξτε τη συναλλαγή και πατήστε το κουμπί 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4021,11 +4018,11 @@ msgstr "Συμβουλή: Ορίστε την ισοτιμία ανταλλαγ�
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Συμβουλή Οργάνωσης Κατηγοριών: Πατώντας το πλήκτρο \"H\" θα περνάει κυκλικά από όλες τις κατηγορίες που ξεκινούν με το γράμμα H."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Συμβουλή Οργάνωσης Κατηγοριών: Πατώντας ένα συνδυασμό 2 πλήκτρων θα περνάει κυκλικά σε όλες τις κατηγορίες ξεκινώντας με αυτόν τον συνδυασμό πλήκτρων. Παράδειγμα: Πατώντας σπ θα επιλέξετε Σπιτικές Ανάγκες, Σπίτι, κλπ…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4119,15 +4116,15 @@ msgstr "Διαγράφηκε στις"
 msgid "Last Updated"
 msgstr "Τελευταία Ενημέρωση"
 
-#: mmchecking_list.cpp:437 mmcheckingpanel.cpp:320
+#: mmchecking_list.cpp:437 mmcheckingpanel.cpp:319
 msgid "&New Withdrawal..."
 msgstr "&Νέα Ανάληψη..."
 
-#: mmchecking_list.cpp:438 mmcheckingpanel.cpp:321
+#: mmchecking_list.cpp:438 mmcheckingpanel.cpp:320
 msgid "&New Deposit..."
 msgstr "&Νέα Κατάθεση..."
 
-#: mmchecking_list.cpp:440 mmcheckingpanel.cpp:322
+#: mmchecking_list.cpp:440 mmcheckingpanel.cpp:321
 msgid "&New Transfer..."
 msgstr "&Νέα Μεταφορά..."
 
@@ -4173,7 +4170,7 @@ msgstr "&Εμφάνιση διαιρεμένων κατηγοριών"
 
 #: mmchecking_list.cpp:480
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Δημιουργία Προγραμματισμένης Σ&υναλλαγής..."
 
 #: mmchecking_list.cpp:484
 msgid "&Restore selected transaction..."
@@ -4324,80 +4321,80 @@ msgstr "Επιλέξτε λογαριασμό προορισμού "
 
 #: mmchecking_list.cpp:1546
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Η Προγραμματισμένη συναλλαγή αποθηκεύτηκε."
 
-#: mmcheckingpanel.cpp:439
+#: mmcheckingpanel.cpp:438
 msgid "Delete selected transaction"
 msgstr "Διαγραφή της επιλεγμένης συναλλαγής"
 
-#: mmcheckingpanel.cpp:443 mmframe.cpp:1917 transdialog.cpp:183
+#: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "Νέα συναλλαγή"
 
-#: mmcheckingpanel.cpp:447
+#: mmcheckingpanel.cpp:446
 msgid "Edit selected transaction"
 msgstr "Επεξεργασία της επιλεγμένης συναλλαγής"
 
-#: mmcheckingpanel.cpp:455
+#: mmcheckingpanel.cpp:454
 msgid "Duplicate selected transaction"
 msgstr "Αντιγραφή επιλεγμένης συναλλαγής"
 
-#: mmcheckingpanel.cpp:472
+#: mmcheckingpanel.cpp:471
 msgid "&Restore "
 msgstr "&Επαναφορά "
 
-#: mmcheckingpanel.cpp:473
+#: mmcheckingpanel.cpp:472
 msgid "Restore selected transaction"
 msgstr "Επαναφορά της επιλεγμένης συναλλαγής"
 
-#: mmcheckingpanel.cpp:488
+#: mmcheckingpanel.cpp:487
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "Εισάγετε κάποια φράση για να τη βρείτε στις σημειώσεις της κοντινότερης συναλλαγής"
 
-#: mmcheckingpanel.cpp:510 mmframe.cpp:732
+#: mmcheckingpanel.cpp:509 mmframe.cpp:732
 msgid "All Transactions"
 msgstr "Όλες οι συναλλαγές"
 
-#: mmcheckingpanel.cpp:512 mmframe.cpp:776
+#: mmcheckingpanel.cpp:511 mmframe.cpp:776
 msgid "Deleted Transactions"
 msgstr "Διαγραμμένες Συναλλαγές"
 
-#: mmcheckingpanel.cpp:514
+#: mmcheckingpanel.cpp:513
 #, c-format
 msgid "Account View: %s"
 msgstr "Προβολή Λογαριασμού: %s"
 
-#: mmcheckingpanel.cpp:532
+#: mmcheckingpanel.cpp:531
 msgid "Account Bal: "
 msgstr "Υπόλοιπο λογαριασμού: "
 
-#: mmcheckingpanel.cpp:534
+#: mmcheckingpanel.cpp:533
 msgid "Reconciled Bal: "
 msgstr "Τακτοποιημένο υπόλοιπο: "
 
-#: mmcheckingpanel.cpp:536
+#: mmcheckingpanel.cpp:535
 msgid "Diff: "
 msgstr "Διαφορά: "
 
-#: mmcheckingpanel.cpp:538
+#: mmcheckingpanel.cpp:537
 msgid "Filtered View Bal: "
 msgstr "Προβολή Φιλτραρισμένου Υπολοίπου: "
 
-#: mmcheckingpanel.cpp:603 webapp.cpp:619
+#: mmcheckingpanel.cpp:602 webapp.cpp:619
 msgid "Attachment"
 msgstr "Συνημμένο"
 
-#: mmcheckingpanel.cpp:639
+#: mmcheckingpanel.cpp:638
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Επιλεγμένες συναλλαγές: %zu"
 
-#: mmcheckingpanel.cpp:642
+#: mmcheckingpanel.cpp:641
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "Υπόλοιπο επιλεγμένων συναλλαγών: %s"
 
-#: mmcheckingpanel.cpp:646
+#: mmcheckingpanel.cpp:645
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Ημέρες μεταξύ επιλεγμένων συναλλαγών: %d"
@@ -4769,10 +4766,6 @@ msgstr "Εναλλαγή σε πλήρη οθόνη\tShift+F11"
 msgid "Toggle Fullscreen"
 msgstr "Εναλλαγή Πλήρους Οθόνης"
 
-#: mmframe.cpp:1633
-msgid "Switch Application &Language"
-msgstr "Εναλλαγή Γλώσσας Εφαρμογής"
-
 #: mmframe.cpp:1659
 msgid "Dash&board"
 msgstr ""
@@ -4801,7 +4794,7 @@ msgstr "Κατεβάστε το νόμισμα και τις ισοτιμίες 
 msgid "Organize &Payees..."
 msgstr "Οργάνωση &Δικαιούχων..."
 
-#: mmframe.cpp:1690 mmframe.cpp:1919 payeedialog.cpp:496
+#: mmframe.cpp:1690 mmframe.cpp:1919 payeedialog.cpp:515
 msgid "Organize Payees"
 msgstr "Οργάνωση δικαιούχων"
 
@@ -4859,7 +4852,7 @@ msgstr "Διαμόρφωση &Προϋπολογισμού..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Προγραμματισμένες Συναλλαγές"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -4946,8 +4939,8 @@ msgid "Generate database report or fix errors"
 msgstr "Δημιουργία αναφοράς βάσης δεδομένων ή σφάλματα διόρθωσης"
 
 #: mmframe.cpp:1790
-msgid "Databa&se"
-msgstr "Βάση Δεδομένων"
+msgid "&Database"
+msgstr "&Βάση Δεδομένων"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -5437,11 +5430,11 @@ msgstr "Αλλαγή Τύπου Λογαριασμού"
 msgid "Select new account type for %s"
 msgstr "Επιλέξτε νέο τύπο λογαριασμού για %s"
 
-#: mmframe.cpp:3734 payeedialog.cpp:812
+#: mmframe.cpp:3734 payeedialog.cpp:840
 msgid "Merge payees completed"
 msgstr "Η συγχώνευση δικαιούχων ολοκληρώθηκε"
 
-#: mmframe.cpp:3738 payeedialog.cpp:816
+#: mmframe.cpp:3738 payeedialog.cpp:844
 msgid "Merge payees result"
 msgstr "Συγχώνευση αποτελεσμάτων δικαιούχων"
 
@@ -5519,7 +5512,7 @@ msgstr "Εμφάνιση της περίληψης των κατηγοριών �
 msgid "Stocks Report"
 msgstr "Αναφορά Αποθεμάτων"
 
-#: mmframereport.cpp:316 mmreportspanel.cpp:401
+#: mmframereport.cpp:316 mmreportspanel.cpp:393
 msgid "Hide"
 msgstr "Απόκρυψη"
 
@@ -5540,7 +5533,7 @@ msgstr "Μετοχές"
 msgid "Gain/Loss"
 msgstr "Κέρδη/Ζημιές"
 
-#: mmhomepage.cpp:82 reports/budgetingperf.cpp:141 reports/cashflow.cpp:287
+#: mmhomepage.cpp:82 reports/budgetingperf.cpp:141 reports/cashflow.cpp:288
 #: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:305
 msgid "Total"
 msgstr "Σύνολο"
@@ -5620,63 +5613,63 @@ msgstr "Ισοτιμία Συναλλάγματος"
 msgid "Upcoming Transactions"
 msgstr "Επερχόμενες συναλλαγές"
 
-#: mmpanelbase.cpp:136
+#: mmpanelbase.cpp:131
 msgid "Hide/Show Columns"
 msgstr "Απόκρυψη/Εμφάνιση Στηλών"
 
-#: mmpanelbase.cpp:137
+#: mmpanelbase.cpp:132
 msgid "Hide this column"
 msgstr "Απόκρυψη αυτής της στήλης"
 
-#: mmpanelbase.cpp:139
+#: mmpanelbase.cpp:134
 msgid "Order by this column"
 msgstr "Ταξινόμηση κατά αυτή τη στήλη"
 
-#: mmpanelbase.cpp:140
+#: mmpanelbase.cpp:135
 msgid "Reset columns"
 msgstr "Επαναφορά στηλών"
 
-#: mmreportspanel.cpp:146
+#: mmreportspanel.cpp:138
 msgid "Report"
 msgstr "Αναφορά"
 
-#: mmreportspanel.cpp:203
+#: mmreportspanel.cpp:195
 msgid "Period:"
 msgstr "Περίοδος:"
 
-#: mmreportspanel.cpp:259 mmreportspanel.cpp:275 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:251 mmreportspanel.cpp:267 model/Model_Report.cpp:87
 msgid "Date:"
 msgstr "Ημερομηνία:"
 
-#: mmreportspanel.cpp:291 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:283 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "Ώρα:"
 
-#: mmreportspanel.cpp:306 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:298 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "Έτος:"
 
-#: mmreportspanel.cpp:330
+#: mmreportspanel.cpp:322
 msgid "Budget:"
 msgstr "Προϋπολογισμός:"
 
-#: mmreportspanel.cpp:363
+#: mmreportspanel.cpp:355
 msgid "All Accounts:"
 msgstr "Όλοι οι Λογαριασμοί:"
 
-#: mmreportspanel.cpp:364
+#: mmreportspanel.cpp:356
 msgid "Specific Accounts:"
 msgstr "Συγκεκριμένοι Λογαριασμοί:"
 
-#: mmreportspanel.cpp:380
+#: mmreportspanel.cpp:372
 msgid "Future Months:"
 msgstr "Μελλοντικοί Μήνες:"
 
-#: mmreportspanel.cpp:395
+#: mmreportspanel.cpp:387
 msgid "Chart:"
 msgstr "Γράφημα:"
 
-#: mmreportspanel.cpp:400
+#: mmreportspanel.cpp:392
 msgid "Show"
 msgstr "Εμφάνιση"
 
@@ -5784,7 +5777,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Μια προγραμματισμένη συναλλαγή θα υπερβεί το όριο του λογαριασμού σας.\n\n"
+"Λογαριασμός: %1$s\n"
+"Τρέχον Υπόλοιπο: %1$6.2f\n"
+"Ποσό συναλλαγής: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Θέλετε να συνεχίσετε;"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5796,7 +5794,7 @@ msgstr "Πιστωτικό Όριο"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Έλεγχος Προγραμματισμένης Συναλλαγής MMEX"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6551,43 +6549,47 @@ msgstr "Υπάρχει ήδη ένας δικαιούχος με αυτό το �
 msgid "Match Pattern"
 msgstr "Ταίριασμα πρότυπου"
 
-#: payeedialog.cpp:720
+#: payeedialog.cpp:743
 msgid "Payee in use."
 msgstr "Δικαιούχος σε χρήση"
 
-#: payeedialog.cpp:723
+#: payeedialog.cpp:748
+msgid "It will be not removed"
+msgstr "Δεν θα αφαιρεθεί"
+
+#: payeedialog.cpp:750
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές χρησιμοποιώντας αυτό το δικαιούχο σε άλλο δικαιούχο χρησιμοποιώντας την εντολή συγχώνευσης:"
 
-#: payeedialog.cpp:725
+#: payeedialog.cpp:752
 msgid "Tools → Merge → Payees"
 msgstr "Εργαλεία → Συγχώνευση → Δικαιούχοι"
 
-#: payeedialog.cpp:726
+#: payeedialog.cpp:753
 msgid "Organize Payees: Delete Error"
 msgstr "Οργάνωση δικαιούχων: Σφάλμα διαγραφής"
 
-#: payeedialog.cpp:731
+#: payeedialog.cpp:758
 msgid "Deleted transactions exist which use this payee."
 msgstr "Υπάρχουν διαγραμμένες συναλλαγές που χρησιμοποιούν αυτόν τον δικαιούχο πληρωμής."
 
-#: payeedialog.cpp:732
+#: payeedialog.cpp:759
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr "Διαγραφή του δικαιούχου πληρωμής θα καθαρίσει επίσης αυτόματα τις σχετικές διαγραμμένες συναλλαγές."
 
-#: payeedialog.cpp:734
+#: payeedialog.cpp:761
 msgid "Confirm Payee Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Κατηγορίας"
 
-#: payeedialog.cpp:855
+#: payeedialog.cpp:883
 msgid "Define Category"
 msgstr "Ορισμός Κατηγορίας"
 
-#: payeedialog.cpp:868
+#: payeedialog.cpp:898
 msgid "&Organize Attachments"
 msgstr "&Οργάνωση Συνημμένων"
 
-#: payeedialog.cpp:872
+#: payeedialog.cpp:902
 msgid "Relocate Payee"
 msgstr "Μετακίνηση Δικαιούχου"
 
@@ -6640,17 +6642,17 @@ msgstr "Εγγραφές που βρέθηκαν σε διαχωρισμένες
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε προγραμματισμένες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε προγραμματισμένες διαχωρισμένες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Οι εγγραφές βρέθηκαν ως προεπιλεγμένη κατηγορία δικαιούχου: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
@@ -6796,29 +6798,32 @@ msgstr "Τέλος, αναφέρατε ένα σφάλμα χρησιμοποι�
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr "Παρακαλούμε ακολουθήστε τις παρακάτω οδηγίες προτού υποβάλετε μια νέα αναφορά σφάλματος:"
 
-#: reports/cashflow.cpp:257 reports/cashflow.cpp:385
-msgid "months"
-msgstr "μήνες"
+#: reports/cashflow.cpp:257 reports/cashflow.cpp:386
+#, c-format
+msgid "%1$s (%2$i month)"
+msgid_plural "%1$s (%2$i months)"
+msgstr[0] ""
+msgstr[1] ""
 
-#: reports/cashflow.cpp:288 reports/categexp.cpp:424
+#: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
 msgstr "Διαφορά"
 
-#: reports/cashflow.cpp:289 reports/cashflow.cpp:420
+#: reports/cashflow.cpp:290 reports/cashflow.cpp:422
 msgid "Cumulative Difference"
 msgstr "Σωρευτική Διαφορά"
 
-#: reports/cashflow.cpp:344
+#: reports/cashflow.cpp:345
 msgid "Cash Flow - Daily"
 msgstr "Ταμειακές Ροές - Καθημερινά"
 
-#: reports/cashflow.cpp:358
+#: reports/cashflow.cpp:359
 msgid "Cash Flow - Monthly"
 msgstr "Ταμειακές Ροές - Μηνιαίως"
 
-#: reports/cashflow.cpp:372
+#: reports/cashflow.cpp:373
 msgid "Cash Flow - Transactions"
 msgstr "Ταμειακές Ροές - Συναλλαγές"
 
@@ -6937,7 +6942,7 @@ msgstr "Τελευταίοι 12 Μήνες"
 msgid "Current Year"
 msgstr "Τρέχον έτος"
 
-#: reports/mmDateRange.cpp:173 stockdialog.cpp:693
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:692
 msgid "Current Year to Date"
 msgstr "Τρέχον έτος έως σήμερα"
 
@@ -7018,7 +7023,7 @@ msgstr "Ετήσια Έκθεση"
 msgid "Summary of Stocks"
 msgstr "Περίληψη μετοχών"
 
-#: reports/summarystocks.cpp:118 stockdialog.cpp:422 stocks_list.cpp:90
+#: reports/summarystocks.cpp:118 stockdialog.cpp:421 stocks_list.cpp:90
 msgid "Symbol"
 msgstr "Σύμβολο"
 
@@ -7159,11 +7164,11 @@ msgstr "Άκυρο Συνολικό Ποσό"
 msgid "Please enter a valid monetary amount"
 msgstr "Παρακαλώ εισάγετε ένα έγκυρο χρηματικό ποσό"
 
-#: stockdialog.cpp:138 stockdialog.cpp:506 stockspanel.cpp:147
+#: stockdialog.cpp:138 stockdialog.cpp:505 stockspanel.cpp:147
 msgid "Edit Stock Investment"
 msgstr "Επεξεργασθείτε την επένδυση σε μετοχές"
 
-#: stockdialog.cpp:138 stockdialog.cpp:494 stockspanel.cpp:133
+#: stockdialog.cpp:138 stockdialog.cpp:493 stockspanel.cpp:133
 msgid "New Stock Investment"
 msgstr "Νέα επένδυση μετοχών"
 
@@ -7247,17 +7252,17 @@ msgstr "Διαγραφή επιλεγμένης τιμής αποθέματος"
 msgid "Add Stock Price to history"
 msgstr "Προσθήκη τιμής αποθέματος στο ιστορικό"
 
-#: stockdialog.cpp:415
+#: stockdialog.cpp:414
 msgid "Held At"
 msgstr "Διατηρείται σε"
 
-#: stockdialog.cpp:492
+#: stockdialog.cpp:491
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
 msgstr "Η κοινή χρήση λογαριασμού δεν βρέθηκε.\n"
 "Θέλετε να δημιουργήσετε ένα;"
 
-#: stockdialog.cpp:502
+#: stockdialog.cpp:501
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
@@ -7265,89 +7270,89 @@ msgstr "Το όνομα της Εταιρείας δεν έχει σχετικό
 "Μπορεί να θέλετε να διαβάσετε το Όνομα Εταιρείας σε έναν υπάρχοντα Λογαριασμό Κοινοποίησης με το ίδιο όνομα. Εάν αυτό είναι ένα υπάρχον Απόθεμα χωρίς Λογαριασμό Κοινοποίησης, συνιστάται να δημιουργηθεί ένας Λογαριασμός Κοινοποίησης.\n"
 "Θέλετε να δημιουργήσετε μια νέα Κοινοποίηση Acccount;\n"
 
-#: stockdialog.cpp:571
+#: stockdialog.cpp:570
 msgid "Stock History CSV Import"
 msgstr "Εισαγωγή CSV Ιστορικού Αποθέματος"
 
-#: stockdialog.cpp:572 stockdialog.cpp:588
+#: stockdialog.cpp:571 stockdialog.cpp:587
 msgid "Quotes imported from CSV: "
 msgstr "Προσφορές που εισάγονται από CSV: "
 
-#: stockdialog.cpp:644
+#: stockdialog.cpp:643
 #, c-format
 msgid "Total Lines : %ld"
 msgstr "Σύνολο Γραμμών: %ld"
 
-#: stockdialog.cpp:646
+#: stockdialog.cpp:645
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Σύνολο Εισήχθησαν : %ld"
 
-#: stockdialog.cpp:654
+#: stockdialog.cpp:653
 msgid "Importing CSV"
 msgstr "Εισάγεται CSV"
 
-#: stockdialog.cpp:685 stockdialog.cpp:715
+#: stockdialog.cpp:684 stockdialog.cpp:714
 msgid "5 Days"
 msgstr "5 Ημέρες"
 
-#: stockdialog.cpp:686 stockdialog.cpp:717
+#: stockdialog.cpp:685 stockdialog.cpp:716
 msgid "1 Month"
 msgstr "1 Μήνας"
 
-#: stockdialog.cpp:687 stockdialog.cpp:718
+#: stockdialog.cpp:686 stockdialog.cpp:717
 msgid "3 Months"
 msgstr "3 Μήνες"
 
-#: stockdialog.cpp:688
+#: stockdialog.cpp:687
 msgid "6 Months"
 msgstr "6 Μήνες"
 
-#: stockdialog.cpp:689
+#: stockdialog.cpp:688
 msgid "1 Year"
 msgstr "1 Έτος"
 
-#: stockdialog.cpp:690
+#: stockdialog.cpp:689
 msgid "2 Years"
 msgstr "2 Χρόνια"
 
-#: stockdialog.cpp:691
+#: stockdialog.cpp:690
 msgid "5 Years"
 msgstr "5 Χρόνια"
 
-#: stockdialog.cpp:692
+#: stockdialog.cpp:691
 msgid "10 Years"
 msgstr "10 Χρόνια"
 
-#: stockdialog.cpp:694
+#: stockdialog.cpp:693
 msgid "Max"
 msgstr "Μέγιστο"
 
-#: stockdialog.cpp:700
+#: stockdialog.cpp:699
 msgid "Specify type frequency of stock history"
 msgstr "Καθορίστε τη συχνότητα τύπου του ιστορικού αποθεμάτων"
 
-#: stockdialog.cpp:701 stockdialog.cpp:725
+#: stockdialog.cpp:700 stockdialog.cpp:724
 msgid "Stock History Update"
 msgstr "Ενημέρωση Ιστορικού Αποθεμάτων"
 
-#: stockdialog.cpp:714
+#: stockdialog.cpp:713
 msgid "1 Day"
 msgstr "1 Ημέρα"
 
-#: stockdialog.cpp:716
+#: stockdialog.cpp:715
 msgid "1 Week"
 msgstr "1 Εβδομάδα"
 
-#: stockdialog.cpp:724
+#: stockdialog.cpp:723
 msgid "Specify interval of stock history"
 msgstr "Καθορίστε το διάστημα του ιστορικού αποθεμάτων"
 
-#: stockdialog.cpp:739 stockdialog.cpp:743
+#: stockdialog.cpp:738 stockdialog.cpp:742
 msgid "Stock history not found!"
 msgstr "Το ιστορικό αποθεμάτων δεν βρέθηκε!"
 
-#: stockdialog.cpp:740 stockdialog.cpp:852
+#: stockdialog.cpp:739 stockdialog.cpp:851
 msgid "Stock History Error"
 msgstr "Σφάλμα Ιστορικού Αποθέματος"
 
@@ -7629,7 +7634,7 @@ msgstr "Διπλότυπη συναλλαγή"
 msgid "Populate Transaction #"
 msgstr "Συμπληρώστε την συναλλαγή #"
 
-#: transdialog.cpp:565 usertransactionpanel.cpp:199
+#: transdialog.cpp:565 usertransactionpanel.cpp:190
 msgid "Organize attachments of this transaction"
 msgstr "Οργάνωση συνημμένων αυτής της συναλλαγής"
 
@@ -7667,7 +7672,7 @@ msgstr "Καθορίστε λογαριασμό για τη συναλλαγή"
 msgid "Specify to whom the transaction is going to"
 msgstr "Καθορίστε σε ποιον θα γίνει η συναλλαγή"
 
-#: transdialog.cpp:1314 usertransactionpanel.cpp:94
+#: transdialog.cpp:1314 usertransactionpanel.cpp:85
 msgid "Specify the date of the transaction"
 msgstr "Δηλώστε την ημερομηνία της συναλλαγής"
 
@@ -7675,59 +7680,59 @@ msgstr "Δηλώστε την ημερομηνία της συναλλαγής"
 msgid "Transactions Dialog"
 msgstr "Διάλογος Συναλλαγών"
 
-#: usertransactionpanel.cpp:104
+#: usertransactionpanel.cpp:95
 msgid "Select Account"
 msgstr "Επιλέξτε λογαριασμό"
 
-#: usertransactionpanel.cpp:106
+#: usertransactionpanel.cpp:97
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Καθορίστε τον συνδεδεμένο λογαριασμό που θα περιέχει αυτή τη συναλλαγή"
 
-#: usertransactionpanel.cpp:118
+#: usertransactionpanel.cpp:109
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr "Ανάληψη κεφαλαίων από ή κατάθεση κεφαλαίων σε αυτόν τον λογαριασμό."
 
-#: usertransactionpanel.cpp:120
+#: usertransactionpanel.cpp:111
 msgid "&Transfer"
 msgstr "&Μεταφορά"
 
-#: usertransactionpanel.cpp:123
+#: usertransactionpanel.cpp:114
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr "Μεταφορά κεφαλαίων από/σε αυτόν τον λογαριασμό. Αποεπιλέξτε για να ορίσετε ως Έξοδο/Έσοδα."
 
-#: usertransactionpanel.cpp:146
+#: usertransactionpanel.cpp:137
 msgid "Currency used for this transaction."
 msgstr "Νόμισμα που χρησιμοποιείται για αυτήν τη συναλλαγή."
 
-#: usertransactionpanel.cpp:165
+#: usertransactionpanel.cpp:156
 msgid "Specify the status for this transaction"
 msgstr "Καθορίστε την κατάσταση αυτής της συναλλαγής"
 
-#: usertransactionpanel.cpp:172
+#: usertransactionpanel.cpp:163
 msgid "Select Payee"
 msgstr "Επιλέξτε δικαιούχο"
 
-#: usertransactionpanel.cpp:173
+#: usertransactionpanel.cpp:164
 msgid "Specify a person, Company or Organisation for this transaction."
 msgstr "Καθορίστε ένα πρόσωπο, μια εταιρεία ή έναν οργανισμό για αυτή τη συναλλαγή."
 
-#: usertransactionpanel.cpp:179
+#: usertransactionpanel.cpp:170
 msgid "Select Category"
 msgstr "Επιλέξτε Κατηγορία"
 
-#: usertransactionpanel.cpp:181
+#: usertransactionpanel.cpp:172
 msgid "Specify the category for this transaction"
 msgstr "Καθορίστε κατηγορία γι αυτήν την συναλλαγή"
 
-#: usertransactionpanel.cpp:189
+#: usertransactionpanel.cpp:180
 msgid "Specify a transaction code or associated check details"
 msgstr "Καθορίστε έναν κωδικό συναλλαγής ή σχετικές λεπτομέρειες ελέγχου"
 
-#: usertransactionpanel.cpp:299
+#: usertransactionpanel.cpp:290
 msgid "Select the required account"
 msgstr "Επιλέξτε τον δεύτερο λογαριασμό"
 
-#: usertransactionpanel.cpp:300
+#: usertransactionpanel.cpp:291
 msgid "Account Selection"
 msgstr "Επιλογή Λογαριασμού"
 
@@ -7867,44 +7872,44 @@ msgstr "Αδυναμία εύρεσης του νομίσματος 'USD', πο�
 msgid "Could not parse price in asset history"
 msgstr "Αδύνατη η ανάλυση της τιμής στο ιστορικό περιουσιακών στοιχείων"
 
-#: util.cpp:1415
+#: util.cpp:1416
 #, c-format
 msgid "Version: %s"
 msgstr "Έκδοση: %s"
 
-#: util.cpp:1416
+#: util.cpp:1417
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Δημιουργήθηκε στις: %1$s %2$s"
 
-#: util.cpp:1417
+#: util.cpp:1418
 #, c-format
 msgid "Database version: %d"
 msgstr "Έκδοση βάσης δεδομένων: %d"
 
-#: util.cpp:1424
+#: util.cpp:1425
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr ""
 
-#: util.cpp:1427
+#: util.cpp:1428
 #, c-format
 msgid "Git branch: %s"
 msgstr "Κλάδος Git: %s"
 
-#: util.cpp:1431
+#: util.cpp:1432
 msgid "MMEX is using the following support products:"
 msgstr "Το MMEX χρησιμοποιεί τα ακόλουθα προϊόντα υποστήριξης:"
 
-#: util.cpp:1448
+#: util.cpp:1449
 msgid "Built with:"
 msgstr "Δημιουργημένο με:"
 
-#: util.cpp:1467
+#: util.cpp:1468
 msgid "Running on:"
 msgstr "Εκτελείται στις:"
 
-#: util.cpp:1718
+#: util.cpp:1719
 msgid "The complete list of closed issues is available at this link"
 msgstr "Ο πλήρης κατάλογος των κλειστών θεμάτων είναι διαθέσιμος σε αυτόν τον σύνδεσμο"
 
