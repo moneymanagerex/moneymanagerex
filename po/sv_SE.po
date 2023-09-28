@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-09-26 14:20+0300\n"
-"PO-Revision-Date: 2023-09-26 17:02\n"
+"PO-Revision-Date: 2023-09-28 21:46\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1407,7 +1407,7 @@ msgstr[1] "%d dagar försenad!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Vill du verkligen radera den schemalagda transaktionen?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -5392,7 +5392,7 @@ msgstr ""
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Ändra kontotyp"
 
 #: mmframe.cpp:3568
 #, c-format
@@ -6763,8 +6763,8 @@ msgstr ""
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s (%2$i månad)"
+msgstr[1] "%1$s (%2$i månader)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6893,11 +6893,11 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Senaste 3 månaderna"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Senaste 12 månaderna"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -7448,7 +7448,7 @@ msgstr ""
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Lägg till en ny tagg"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
@@ -7488,7 +7488,7 @@ msgstr ""
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Lägg till tagg"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
