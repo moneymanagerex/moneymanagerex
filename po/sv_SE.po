@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-09-26 14:20+0300\n"
-"PO-Revision-Date: 2023-09-28 21:46\n"
+"PO-Revision-Date: 2023-09-29 08:47\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -917,11 +917,11 @@ msgstr "Månatligen (sista arbetsdagen)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplicera schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Redigera schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
@@ -1247,7 +1247,7 @@ msgstr ""
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Ny schemalagd transaktion"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1316,7 +1316,7 @@ msgstr ""
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Schemalagda transaktioner"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
@@ -1324,7 +1324,7 @@ msgstr "D&uplicera "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Radera schemalagd transaktion"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -5388,7 +5388,7 @@ msgstr ""
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Välj konto"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
@@ -7500,7 +7500,7 @@ msgstr ""
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Redigera tagg"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
