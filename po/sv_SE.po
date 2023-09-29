@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-09-26 14:20+0300\n"
-"PO-Revision-Date: 2023-09-29 08:47\n"
+"PO-Revision-Date: 2023-09-29 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2628,7 +2628,7 @@ msgstr "Visa delade transaktioner som en enda rad"
 
 #: filtertransdialog.cpp:752
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: filtertransdialog.cpp:766
 msgid "Save active values into current Preset selection"
@@ -2676,7 +2676,7 @@ msgstr "Filtrering, detaljer: "
 
 #: filtertransdialog.cpp:1603
 msgid "Label"
-msgstr ""
+msgstr "Etikett"
 
 #: filtertransdialog.cpp:1623
 msgid "Since"
@@ -6124,11 +6124,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
@@ -6266,7 +6266,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:157
 msgid "Seconds"
-msgstr ""
+msgstr "Sekunder"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
@@ -6376,11 +6376,11 @@ msgstr "System"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
-msgstr ""
+msgstr "Ljust"
 
 #: optionsettingsview.cpp:243
 msgid "Dark"
-msgstr ""
+msgstr "Mörkt"
 
 #: optionsettingsview.cpp:247
 msgid "Specify preferred theme variant to use if supported"
@@ -7460,7 +7460,7 @@ msgstr ""
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Välj"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
@@ -7768,31 +7768,31 @@ msgstr "Lördag"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "Sön"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "Mån"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "Tis"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "Ons"
 
 #: util.cpp:303
 msgid "Thu"
-msgstr ""
+msgstr "Tor"
 
 #: util.cpp:303
 msgid "Fri"
-msgstr ""
+msgstr "Fre"
 
 #: util.cpp:304
 msgid "Sat"
-msgstr ""
+msgstr "Lör"
 
 #: util.cpp:738
 msgid "Currency rates have been updated"
