@@ -91,9 +91,6 @@ bool mmTagDialog::Create(wxWindow* parent, wxWindowID id
 void mmTagDialog::CreateControls()
 {
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
-    wxStaticBox* sb = new wxStaticBox(this, wxID_STATIC, _("Current Tags"));
-    wxStaticBoxSizer* itemBoxSizer2 = new wxStaticBoxSizer(sb, wxVERTICAL);
-    boxSizer->Add(itemBoxSizer2, g_flagsExpand);
     this->SetSizer(boxSizer);
 
     //--------------------------
@@ -101,14 +98,14 @@ void mmTagDialog::CreateControls()
         tagList_.Add(tag.TAGNAME);
 
     if (!isSelection_)
-        tagListBox_ = new wxListBox(sb, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
+        tagListBox_ = new wxListBox(this, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
     else
-        tagListBox_ = new wxCheckListBox(sb, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
+        tagListBox_ = new wxCheckListBox(this, wxID_VIEW_LIST, wxDefaultPosition, wxDefaultSize, tagList_, wxLB_EXTENDED | wxLB_SORT);
 
-    itemBoxSizer2->Add(tagListBox_, g_flagsExpand);
+    boxSizer->Add(tagListBox_, g_flagsExpand);
 
     wxPanel* searchPanel = new wxPanel(this, wxID_ANY);
-    itemBoxSizer2->Add(searchPanel, wxSizerFlags(g_flagsExpand).Proportion(0));
+    boxSizer->Add(searchPanel, wxSizerFlags(g_flagsExpand).Proportion(0));
     wxBoxSizer* search_sizer = new wxBoxSizer(wxHORIZONTAL);
     searchPanel->SetSizer(search_sizer);
 
@@ -117,7 +114,7 @@ void mmTagDialog::CreateControls()
     search_sizer->Add(searchCtrl_, g_flagsExpand);
 
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
-    itemBoxSizer2->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center());
+    boxSizer->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center());
     wxBoxSizer* buttonsSizer = new wxBoxSizer(wxVERTICAL);
     buttonsPanel->SetSizer(buttonsSizer);
 
@@ -140,7 +137,7 @@ void mmTagDialog::CreateControls()
 
     //--------------------------
     wxStdDialogButtonSizer* dlgButtonSizer = new wxStdDialogButtonSizer();
-    itemBoxSizer2->Add(dlgButtonSizer, wxSizerFlags(g_flagsV).Centre());
+    boxSizer->Add(dlgButtonSizer, wxSizerFlags(g_flagsV).Centre());
 
     wxButton* itemButton24 = new wxButton(this, wxID_OK, (isSelection_ ? _("Select") : _("&OK ")));
     dlgButtonSizer->Add(itemButton24, g_flagsH);
