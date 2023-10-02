@@ -46,13 +46,13 @@ public:
     virtual ~mmListCtrl();
 
     wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
-    long m_selected_row;
-    int m_selected_col;
-    bool m_asc;
+    long m_selected_row = -1;
+    int m_selected_col = 0;
+    bool m_asc = true;
     std::vector<PANEL_COLUMN> m_columns;
     std::vector<int> m_real_columns; // map from actual column to EColumn when list can have optional columns
     wxString m_col_width;
-    int m_default_sort_column;
+    int m_default_sort_column = -1;
 
     virtual wxListItemAttr* OnGetItemAttr(long row) const;
     wxString BuildPage(const wxString &title) const;
@@ -70,7 +70,7 @@ protected:
     void OnHeaderSort(wxCommandEvent& event);
     void OnHeaderReset(wxCommandEvent& WXUNUSED(event));
     int GetRealColumn(int col);
-    int m_ColumnHeaderNbr;
+    int m_ColumnHeaderNbr = -1;
     enum {
         HEADER = 0,
         WIDTH,

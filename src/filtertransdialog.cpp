@@ -94,7 +94,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     : isMultiAccount_(accountID == -1)
     , accountID_(accountID)
     , isReportMode_(isReport)
-    , m_color_value(-1)
     , m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER")
 {
     this->SetFont(parent->GetFont());
@@ -1355,10 +1354,10 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int ref
     {
         wxString tag = tags.Item(i);
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
-        if (tags.Item(i) == "|" && i++ < tags.GetCount() - 1)
+        if (tags.Item(i) == "|" && i++ < int(tags.GetCount()) - 1)
             match |= tagnames.find(tags.Item(i)) != tagnames.end();
         // if the tag is the "AND" operator, fetch the next tag and compare with AND
-        else if (tags.Item(i) == "&" && i++ < tags.GetCount() - 1)
+        else if (tags.Item(i) == "&" && i++ < int(tags.GetCount()) - 1)
             match &= tagnames.find(tags.Item(i)) != tagnames.end();
         // default compare with AND operator
         else if (tags.Item(i) != "&" && tags.Item(i) != "|")
@@ -1498,7 +1497,7 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
     for (Value::ConstMemberIterator itr = j_doc.MemberBegin();
         itr != j_doc.MemberEnd(); ++itr)
     {
-        const auto& name = wxGetTranslation(wxString::FromUTF8(itr->name.GetString()));
+        const auto name = wxGetTranslation(wxString::FromUTF8(itr->name.GetString()));
         switch (itr->value.GetType())
         {
         case kTrueType:

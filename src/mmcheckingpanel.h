@@ -139,9 +139,9 @@ private:
     bool m_transFilterActive;
     wxString m_begin_date;
     wxString m_end_date;
-    double m_filteredBalance;
-    double m_account_balance;
-    double m_reconciled_balance;
+    double m_filteredBalance = 0.0;
+    double m_account_balance = 0.0;
+    double m_reconciled_balance = 0.0;
 
     TransactionListCtrl* m_listCtrlAccount = nullptr;
     Model_Account::Data* m_account = nullptr;
