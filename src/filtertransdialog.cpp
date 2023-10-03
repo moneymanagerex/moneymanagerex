@@ -972,7 +972,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
 
     if (mmIsCategoryChecked())
     {
-        const auto& value = categoryComboBox_->GetValue();
+        const auto& value = categoryComboBox_->mmGetPattern();
         if (value.empty()) {
             mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Category"), wxICON_ERROR);
             return false;
