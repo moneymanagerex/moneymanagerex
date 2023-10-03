@@ -942,7 +942,11 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     wxBoxSizer* v_sizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* h_sizer = new wxBoxSizer(wxHORIZONTAL);
     textCtrl_ = new wxStyledTextCtrl(this, wxID_DEFAULT, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
-
+    if (operatorAllowed_)
+        mmToolTip(textCtrl_,
+            _("Enter tags to search, optionally separated by the operators '&' and '|'.") + "\n" +
+            _("The default operator between consecutive tags is AND, use '|' to change the operator to OR.")
+        );
     // Set options for the text ctrl
     textCtrl_->SetLexer(wxSTC_LEX_NULL);
     textCtrl_->SetWrapMode(wxSTC_WRAP_NONE);

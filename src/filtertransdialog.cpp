@@ -1465,18 +1465,94 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Dat
 const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
 {
     wxString buffer;
-    wxStringTokenizer token(mmGetJsonSetings(true), "\n");
-    while (token.HasMoreTokens())
+    wxString data = mmGetJsonSetings(true);
+    Document j_doc;
+    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+        j_doc.Parse("{}");
+    }
+    for (Value::ConstMemberIterator itr = j_doc.MemberBegin();
+        itr != j_doc.MemberEnd(); ++itr)
     {
-        wxString c = token.GetNextToken().Trim();
-        c.Replace(R"("")", _("Empty value"));
-        c.Replace("\"", "");
-        c.Replace("[", "");
-        c.Replace("]", "");
-        c.Replace("{", "");
-        c.Replace("}", "");
-        if (c.EndsWith(",")) c.RemoveLast(1);
-        if (!c.empty()) buffer += c + "\n";
+        wxString value;
+        buffer += wxString::FromUTF8(itr->name.GetString()).Append(": ");
+        switch (itr->value.GetType())
+        {
+        case kTrueType:
+            value = itr->value.GetBool() ? "TRUE" : "FALSE";
+            break;
+        case kStringType:
+        {
+            value = wxString::FromUTF8(itr->value.GetString());
+            wxRegEx pattern_date(R"(^[0-9]{4}-[0-9]{2}-[0-9]{2}$)");
+            wxRegEx pattern_type(R"(^(W?D?T?F?)$)");
+            if (pattern_date.Matches(value))
+            {
+                wxDateTime dt;
+                if (mmParseISODate(value, dt))
+                    value = mmGetDateForDisplay(value);
+            }
+            else if (pattern_type.Matches(value))
+            {
+                wxString temp;
+                if (value.Contains("W")) temp += (temp.empty() ? "" : ", ") + _("Withdrawal");
+                if (value.Contains("D")) temp += (temp.empty() ? "" : ", ") + _("Deposit");
+                if (value.Contains("F")) temp += (temp.empty() ? "" : ", ") + _("Transfer In");
+                if (value.Contains("T")) temp += (temp.empty() ? "" : ", ")
+                    + (mmGetAccountsID().empty() ? _("Transfer") : _("Transfer Out"));
+                value = temp;
+            }
+            value;
+            break;
+        }
+        case kNumberType:
+        {
+            wxString temp;
+            double d = itr->value.GetDouble();
+            if (static_cast<int>(d) == d)
+                value = wxString::Format("%i", static_cast<int>(d));
+            else
+                value = wxString::Format("%f", d);
+            value;
+            break;
+        }
+        case kArrayType:
+        {
+            buffer.Append("\n    ");
+            auto valArray = itr->value.GetArray();
+            for (unsigned int i = 0; i < valArray.Size(); i++) {
+                if (valArray[i].GetType() == kNumberType)
+                {
+                    if (wxGetTranslation("Tags").IsSameAs(wxString::FromUTF8(itr->name.GetString())))
+                    {
+                        value += (value.empty() ? "" : " ") + Model_Tag::instance().get(valArray[i].GetInt())->TAGNAME;
+                        // don't add a newline between tag operators
+                        if (valArray.Size() > 1 && i < valArray.Size() - 2 && valArray[i + 1].GetType() == kStringType)
+                            continue;
+                    }
+                    else
+                        value += wxString::Format("%i", valArray[i].GetInt());
+                }
+                else if (valArray[i].GetType() == kStringType)
+                {
+                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                    {
+                        value += (value.empty() ? "" : " " + wxString::FromUTF8(valArray[i].GetString()));
+                        continue;
+                    }
+                    else
+                        value += wxString::FromUTF8(valArray[i].GetString());
+                }
+                if (i < valArray.Size() - 1)
+                    value.Append("\n    ");
+            }
+            break;
+        }
+        default:
+            break;
+        }
+        if (value.IsEmpty())
+            value = _("Empty value");
+        buffer += value.Append("\n");
     }
 
     return buffer;
@@ -1557,6 +1633,7 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
                         temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
                 }
                 else if (a.GetType() == kStringType)
+                {
                     if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
                     {
                         temp += (temp.empty() ? "" : " " + wxString::FromUTF8(a.GetString()) + " ");
@@ -1564,6 +1641,7 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder &hb)
                     }
                     else
                         temp += (temp.empty() ? "" : ", ") + wxString::FromUTF8(a.GetString());
+                }
             }
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n", name, temp);
             break;
