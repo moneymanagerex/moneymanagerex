@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-04 23:21\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -549,7 +549,7 @@ msgstr "Eszközügylet &hozzáadása…"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "Eszközművelet mutatása"
+msgstr "Eszközügyletek &megjelenítése"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
@@ -3951,11 +3951,11 @@ msgstr "Kérem, gépeljen be egy nem üres jelet."
 
 #: mmSimpleDialogs.cpp:947
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "Címkék megadása a kereséshez. Tartalmazhat „&” (ÉS-) és „|” (VAGY-) jelleválasztó operátorok."
 
 #: mmSimpleDialogs.cpp:948
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "Az egymást követő címkék közötti alapértelmezett operátor az ÉS, használja a '|' hogy az operátort VAGY-ra változtassa."
 
 #: mmSimpleDialogs.cpp:1492
 #, c-format
@@ -4196,7 +4196,7 @@ msgstr "Összes ügylet visszaállítása a jelenlegi nézetben…"
 #: mmchecking_list.cpp:599
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "Minden ügylet keresése a következővel: %s „%s”"
 
 #: mmchecking_list.cpp:606
 msgid "&Delete selected transaction..."
@@ -7080,11 +7080,11 @@ msgstr "Árfolyam"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Az összes tranzakció: Kivét, Betét és Transzfer"
+msgstr "Az összes ügylet: Kivét, Betét és Transzfer"
 
 #: reports/transactions.cpp:413
 msgid "All Transactions excluding Transfers"
-msgstr "Az összes tranzakció, az átutalásokat kivéve"
+msgstr "Az összes ügylet, az átutalásokat kivéve"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
@@ -7634,7 +7634,7 @@ msgstr "Hozzáfűz"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr "Többszörös tranzakció frissítése"
+msgstr "Többszörös ügylet frissítése"
 
 #: transdialog.cpp:178
 msgid "Edit Transaction"
