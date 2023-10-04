@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-09-26 14:20+0300\n"
-"PO-Revision-Date: 2023-09-26 17:02\n"
+"PO-Revision-Date: 2023-09-29 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -917,11 +917,11 @@ msgstr "Månatligen (sista arbetsdagen)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplicera schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Redigera schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
@@ -1247,7 +1247,7 @@ msgstr ""
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Ny schemalagd transaktion"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1316,7 +1316,7 @@ msgstr ""
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3154 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Schemalagda transaktioner"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
@@ -1324,7 +1324,7 @@ msgstr "D&uplicera "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Radera schemalagd transaktion"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1407,7 +1407,7 @@ msgstr[1] "%d dagar försenad!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Vill du verkligen radera den schemalagda transaktionen?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -2628,7 +2628,7 @@ msgstr "Visa delade transaktioner som en enda rad"
 
 #: filtertransdialog.cpp:752
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: filtertransdialog.cpp:766
 msgid "Save active values into current Preset selection"
@@ -2676,7 +2676,7 @@ msgstr "Filtrering, detaljer: "
 
 #: filtertransdialog.cpp:1603
 msgid "Label"
-msgstr ""
+msgstr "Etikett"
 
 #: filtertransdialog.cpp:1623
 msgid "Since"
@@ -5388,11 +5388,11 @@ msgstr ""
 
 #: mmframe.cpp:3546
 msgid "Select account"
-msgstr ""
+msgstr "Välj konto"
 
 #: mmframe.cpp:3546 mmframe.cpp:3569
 msgid "Change Account Type"
-msgstr ""
+msgstr "Ändra kontotyp"
 
 #: mmframe.cpp:3568
 #, c-format
@@ -6124,11 +6124,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
@@ -6266,7 +6266,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:157
 msgid "Seconds"
-msgstr ""
+msgstr "Sekunder"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
@@ -6376,11 +6376,11 @@ msgstr "System"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
-msgstr ""
+msgstr "Ljust"
 
 #: optionsettingsview.cpp:243
 msgid "Dark"
-msgstr ""
+msgstr "Mörkt"
 
 #: optionsettingsview.cpp:247
 msgid "Specify preferred theme variant to use if supported"
@@ -6763,8 +6763,8 @@ msgstr ""
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s (%2$i månad)"
+msgstr[1] "%1$s (%2$i månader)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6893,11 +6893,11 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Senaste 3 månaderna"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Senaste 12 månaderna"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -7448,7 +7448,7 @@ msgstr ""
 
 #: tagdialog.cpp:129
 msgid "Add a new tag"
-msgstr ""
+msgstr "Lägg till en ny tagg"
 
 #: tagdialog.cpp:134
 msgid "Edit the name of an existing tag"
@@ -7460,7 +7460,7 @@ msgstr ""
 
 #: tagdialog.cpp:145
 msgid "Select"
-msgstr ""
+msgstr "Välj"
 
 #: tagdialog.cpp:182
 msgid "Invalid tag name"
@@ -7488,7 +7488,7 @@ msgstr ""
 
 #: tagdialog.cpp:210 tagdialog.cpp:213
 msgid "Add Tag"
-msgstr ""
+msgstr "Lägg till tagg"
 
 #: tagdialog.cpp:221 tagdialog.cpp:256
 msgid "A tag with this name already exists"
@@ -7500,7 +7500,7 @@ msgstr ""
 
 #: tagdialog.cpp:245 tagdialog.cpp:248
 msgid "Edit Tag"
-msgstr ""
+msgstr "Redigera tagg"
 
 #: tagdialog.cpp:257
 msgid "Organize Tags: Editing Error"
@@ -7768,31 +7768,31 @@ msgstr "Lördag"
 
 #: util.cpp:302
 msgid "Sun"
-msgstr ""
+msgstr "Sön"
 
 #: util.cpp:302
 msgid "Mon"
-msgstr ""
+msgstr "Mån"
 
 #: util.cpp:302
 msgid "Tue"
-msgstr ""
+msgstr "Tis"
 
 #: util.cpp:303
 msgid "Wed"
-msgstr ""
+msgstr "Ons"
 
 #: util.cpp:303
 msgid "Thu"
-msgstr ""
+msgstr "Tor"
 
 #: util.cpp:303
 msgid "Fri"
-msgstr ""
+msgstr "Fre"
 
 #: util.cpp:304
 msgid "Sat"
-msgstr ""
+msgstr "Lör"
 
 #: util.cpp:738
 msgid "Currency rates have been updated"
