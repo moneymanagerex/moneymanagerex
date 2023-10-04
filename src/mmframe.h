@@ -78,6 +78,8 @@ public:
     void OnClose(wxCloseEvent&);
 
     void RefreshNavigationTree();
+    void SetNavTreeSelection(wxTreeItemId id);
+    wxTreeItemId GetNavTreeSelection() const;
 
 private:
     std::vector<WebsiteNews> websiteNewsArray_;
@@ -398,6 +400,7 @@ private:
 
 inline int mmGUIFrame::getHelpFileIndex() const { return helpFileIndex_; }
 inline void mmGUIFrame::setHelpFileIndex() { helpFileIndex_ = mmex::EDocFile::HTML_INDEX; }
+inline wxTreeItemId mmGUIFrame::GetNavTreeSelection() const{ return m_nav_tree_ctrl->GetSelection(); }
 //----------------------------------------------------------------------------
 #endif // MM_FRAME_H_
 //----------------------------------------------------------------------------

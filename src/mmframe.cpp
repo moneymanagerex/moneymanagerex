@@ -2710,6 +2710,14 @@ void mmGUIFrame::refreshPanelData()
     }
 }
 
+void mmGUIFrame::SetNavTreeSelection(wxTreeItemId id) {
+    if (id.IsOk())
+    {
+        wxTreeEvent evt(wxEVT_TREE_SEL_CHANGED, m_nav_tree_ctrl, id);
+        m_nav_tree_ctrl->GetEventHandler()->AddPendingEvent(evt);
+    }
+}
+
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 {
     mmCategDialog dlg(this, false, -1);
