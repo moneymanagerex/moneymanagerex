@@ -347,6 +347,7 @@ void mmGeneralReportManager::CreateControls()
 
     m_treeCtrl = new wxTreeCtrl(left_panel, ID_REPORT_LIST, wxDefaultPosition, wxDefaultSize,
         wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS);
+    m_treeCtrl->Bind(wxEVT_RIGHT_DOWN, &mmGeneralReportManager::OnRightClick, this);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
     left_sizer->Add(m_treeCtrl, g_flagsExpand);
@@ -718,6 +719,13 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
         const auto& name = getVFname4print("grm", data);
         browser_->LoadURL(name);
     }
+}
+void mmGeneralReportManager::OnRightClick(wxMouseEvent& event) {
+    wxTreeItemId id = m_treeCtrl->HitTest(event.GetPosition());
+    if (!id.IsOk())
+        id = m_treeCtrl->GetRootItem();
+    wxTreeEvent evt(wxEVT_TREE_ITEM_MENU, m_treeCtrl, id);
+    GetEventHandler()->AddPendingEvent(evt);
 }
 
 void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
