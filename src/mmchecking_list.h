@@ -134,6 +134,7 @@ private:
         MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
         MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
         MENU_TREEPOPUP_CREATE_REOCCURANCE,
+        MENU_TREEPOPUP_FIND,
         MENU_SUBMENU_MARK_ALL,
 
         MENU_VIEW_,
@@ -207,6 +208,8 @@ private:
     bool CheckForClosedAccounts();
     void setExtraTransactionData(const bool single);
     void SortTransactions(int sortcol, bool ascend);
+    void findInAllTransactions(wxCommandEvent& event);
+    int getColumnFromPosition(int xPos);
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
@@ -214,6 +217,7 @@ private:
     EColumn m_sortCol;
     wxString m_today;
     bool m_firstSort;
+    wxString rightClickFilter_;
 };
 
 //----------------------------------------------------------------------------

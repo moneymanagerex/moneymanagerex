@@ -70,6 +70,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, TransactionListCtrl::OnViewSplitTransaction)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, TransactionListCtrl::OnOrganizeAttachments)
     EVT_MENU(MENU_TREEPOPUP_CREATE_REOCCURANCE, TransactionListCtrl::OnCreateReoccurance)
+    EVT_MENU(MENU_TREEPOPUP_FIND, TransactionListCtrl::findInAllTransactions)
     EVT_CHAR(TransactionListCtrl::OnChar)
 
 wxEND_EVENT_TABLE();
@@ -407,8 +408,21 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
+int TransactionListCtrl::getColumnFromPosition(int xPos)
+{
+    int column = 0;
+    int x = -GetScrollPos(wxHORIZONTAL);
+    for (column = 0; column < GetColumnCount(); column++) {
+        x += GetColumnWidth(column);
+        if (x >= xPos) break;
+    }
+    if (!(column < GetColumnCount())) return -1;
+    return column;
+}
+
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
+    rightClickFilter_ = "";
     wxLogDebug("OnMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
@@ -485,6 +499,107 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_RESTORE, false);
         menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, _("Restore all transactions in current view..."));
     }
+    bool columnIsAmount = false;
+    long column = getColumnFromPosition(event.GetX());
+    int flags;
+    long row = HitTest(event.GetPosition(), flags);
+    if (flags & wxLIST_HITTEST_ONITEM)
+    {
+        if (column >= 0 && column < m_columns.size())
+        {
+            wxString menuItemText;
+            wxString refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            switch (m_real_columns[column])
+            {
+            case COL_DATE:
+                menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
+                rightClickFilter_ = "{\n\"DATE1\": \"" + m_trans[row].TRANSDATE +
+                    "\",\n\"DATE2\" : \"" + m_trans[row].TRANSDATE + "\"\n}";
+                break;
+            case COL_NUMBER:
+                menuItemText = m_trans[row].TRANSACTIONNUMBER;
+                rightClickFilter_ = "{\n\"NUMBER\": \"" + menuItemText + "\"\n}";
+                break;
+            case COL_ACCOUNT:
+                menuItemText = m_trans[row].ACCOUNTNAME;
+                rightClickFilter_ = "{\n\"ACCOUNT\": [\n\"" + menuItemText + "\"\n]\n}";
+                break;
+            case COL_PAYEE_STR:
+                if (!Model_Checking::is_transfer(m_trans[row].TRANSCODE))
+                {
+                    menuItemText = m_trans[row].PAYEENAME;
+                    rightClickFilter_ = "{\n\"PAYEE\": \"" + menuItemText + "\"\n}";
+                }
+                break;
+            case COL_STATUS:
+                menuItemText = Model_Checking::STATUS_ENUM_CHOICES[Model_Checking::status(m_trans[row].STATUS)].second;
+                rightClickFilter_ = "{\n\"STATUS\": \"" + menuItemText + "\"\n}";
+                break;
+            case COL_CATEGORY:
+                if (!m_trans[row].has_split())
+                {
+                    menuItemText = m_trans[row].CATEGNAME;
+                    rightClickFilter_ = "{\n\"CATEGORY\": \"" + menuItemText + "\",\n\"SUBCATEGORYINCLUDE\": false\n}";
+                }
+                break;
+            case COL_TAGS:
+                if (!m_trans[row].has_split() && m_trans[row].has_tags())
+                {
+                    menuItemText = m_trans[row].TAGNAMES;
+                    // build the tag filter json
+                    for (const auto& tag : m_trans[row].m_tags)
+                    {
+                        rightClickFilter_ += (rightClickFilter_.IsEmpty() ? "{\n\"TAGS\": [\n" : ",\n") + wxString::Format("%i", tag.TAGID);
+                    }
+                    rightClickFilter_ += "\n]\n}";
+                }
+                break;
+            case COL_WITHDRAWAL:
+                columnIsAmount = true;
+                menuItemText = wxString::Format("%.2f", std::abs(m_trans[row].AMOUNT));
+                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+                break;
+            case COL_DEPOSIT:
+                columnIsAmount = true;
+                menuItemText = wxString::Format("%.2f", std::abs(m_trans[row].AMOUNT));
+                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+                break;
+            case COL_NOTES:
+                menuItemText = m_trans[row].NOTES;
+                rightClickFilter_ = "{\n\"NOTES\": \"" + menuItemText + "\"\n}";
+                break;
+            case COL_UDFC01:
+                menuItemText = m_trans[row].UDFC01;
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC01"));
+                break;
+            case COL_UDFC02:
+                menuItemText = m_trans[row].UDFC02;
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC02"));
+                break;
+            case COL_UDFC03:
+                menuItemText = m_trans[row].UDFC03;
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC03"));
+                break;
+            case COL_UDFC04:
+                menuItemText = m_trans[row].UDFC04;
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC04"));
+                break;
+            case COL_UDFC05:
+                menuItemText = m_trans[row].UDFC05;
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC05"));
+                break;
+            default:
+                break;
+            }
+
+            if (!menuItemText.IsEmpty()) {
+                menu.AppendSeparator();
+                if (menuItemText.length() > 30)
+                    menuItemText = menuItemText.SubString(0, 30).Append(L"\u2026");
+                menu.Append(MENU_TREEPOPUP_FIND, wxString::Format(_("&Find all transactions with %s '%s'"), (columnIsAmount ? _("Amount") : m_columns[column].HEADER), menuItemText));
+            }
+        }
+    }
 
     menu.AppendSeparator();
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
@@ -525,6 +640,19 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
+}
+
+void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
+    if (!rightClickFilter_.IsEmpty())
+    {
+        // save the filter as the "Advanced" filter for All Transactions
+        Model_Infotable::instance().Set("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
+        // set All Transactions to use the "Advanced" filter
+        Model_Infotable::instance().Set("CHECK_FILTER_ID_-1", wxString("{\n\"FILTER\": \"View with Transaction Filter...\"\n}"));
+        // Navigate to the All Transactions panel
+        m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
+        m_cp->m_frame->SetNavTreeSelection(m_cp->m_frame->GetNavTreeSelection());
+    }
 }
 //----------------------------------------------------------------------------
 
