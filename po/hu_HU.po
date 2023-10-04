@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-09-26 14:20+0300\n"
-"PO-Revision-Date: 2023-09-26 11:26\n"
+"PO-Revision-Date: 2023-09-27 22:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -385,7 +385,7 @@ msgstr "Rendszerbeli alapértelmezés"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Felgasználói felület nyelve"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3865 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -6558,7 +6558,7 @@ msgstr "A kedvezményezett használatban van."
 
 #: payeedialog.cpp:748
 msgid "It will be not removed"
-msgstr ""
+msgstr "Nem lesz eltávolítva"
 
 #: payeedialog.cpp:750
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
