@@ -22,6 +22,7 @@
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
+#include "filtertransdialog.h"
 #include "images_list.h"
 #include "mmchecking_list.h"
 #include "mmcheckingpanel.h"
@@ -650,8 +651,17 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
         // set All Transactions to use the "Advanced" filter
         Model_Infotable::instance().Set("CHECK_FILTER_ID_-1", wxString("{\n\"FILTER\": \"View with Transaction Filter...\"\n}"));
         // Navigate to the All Transactions panel
+        wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
         m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
-        m_cp->m_frame->SetNavTreeSelection(m_cp->m_frame->GetNavTreeSelection());
+        wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
+        if (currentId.IsOk() && currentId == allTransactionsId)
+        {
+            m_cp->m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, -1, false, rightClickFilter_));
+            m_cp->initFilterSettings();
+            refreshVisualList();
+        }
+        else
+            m_cp->m_frame->SetNavTreeSelection(m_cp->m_frame->GetNavTreeSelection());
     }
 }
 //----------------------------------------------------------------------------
