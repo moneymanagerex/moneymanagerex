@@ -80,6 +80,7 @@ private:
     void OnSqlTest(wxCommandEvent& event);
     void OnNewTemplate(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
+    void OnRightClick(wxMouseEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     //void OnLabelChanged(wxTreeEvent& event);
     void viewControls(bool enable);
