@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-05 14:44\n"
+"PO-Revision-Date: 2023-10-06 12:39\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3951,7 +3951,7 @@ msgstr "Por favor, digite um símbolo não vazio."
 
 #: mmSimpleDialogs.cpp:947
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr "Digite as etiquetas para pesquisar, opcionalmente separadas pelos operadores '&' e '¡'."
+msgstr "Digite as etiquetas para pesquisar, opcionalmente separadas pelos operadores '&' e '|'."
 
 #: mmSimpleDialogs.cpp:948
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
