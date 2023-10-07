@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-07 20:33\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3949,11 +3949,11 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:947
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "Introduceți etichetele pentru căutare, opțional puteți separa cu operatorii '&' și '| '."
 
 #: mmSimpleDialogs.cpp:948
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "Operatorul implicit dintre etichetele consecutive este ȘI, folosește '|' pentru a schimba operatorul în SAU."
 
 #: mmSimpleDialogs.cpp:1492
 #, c-format
@@ -4198,7 +4198,7 @@ msgstr ""
 #: mmchecking_list.cpp:599
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "Găsește toate tranzacțiile cu %s '%s'"
 
 #: mmchecking_list.cpp:606
 msgid "&Delete selected transaction..."
