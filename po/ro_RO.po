@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-08 08:07\n"
+"PO-Revision-Date: 2023-10-08 09:10\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1742,15 +1742,16 @@ msgstr "Sfat: Schimbă toate tranzacțiile folosind această categorie la\n"
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Sfat: Schimbă toate tranzacțiile folosind această sub-categorie la\n"
+"altă categorie folosind comanda de îmbinare:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Unelte → Îmbinare → Categorii"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
-msgstr ""
+msgstr "Organizează Categoriile: Șterge eroare"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1779,11 +1780,11 @@ msgstr "Editează Categoria"
 
 #: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
-msgstr ""
+msgstr "Organizează Categoriile: Editează eroarea"
 
 #: categdialog.cpp:682 mmframe.cpp:3727
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Îmbinarea categoriilor a fost finalizată"
 
 #: categdialog.cpp:683 mmframe.cpp:3728 mmframe.cpp:3743 mmframe.cpp:3759
 #: payeedialog.cpp:841
@@ -1793,7 +1794,7 @@ msgstr "Înregistrări care au fost actualizate în baza de date: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3730
 msgid "Merge categories result"
-msgstr ""
+msgstr "Rezultatul îmbinării categoriilor"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -2581,7 +2582,7 @@ msgstr "Intervalul calendaristic"
 
 #: filtertransdialog.cpp:589 filtertransdialog.cpp:1745
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Include toate sub-categoriile"
 
 #: filtertransdialog.cpp:624 filtertransdialog.cpp:1497
 #: filtertransdialog.cpp:1597 import_export/univcsvdialog.cpp:112
@@ -2687,7 +2688,7 @@ msgstr "Dorești să continui?"
 
 #: filtertransdialog.cpp:1248 mmframe.cpp:1255
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Ștergerea elementului de setări"
 
 #: filtertransdialog.cpp:1563
 msgid "Filtering Details: "
@@ -2835,7 +2836,7 @@ msgstr "Încarcă fișierul raport:"
 
 #: general_report_manager.cpp:609 general_report_manager.cpp:1068
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Fișiere General Report Manager (*.grm)"
 
 #: general_report_manager.cpp:609 general_report_manager.cpp:1068
 msgid "ZIP files (*.zip)"
@@ -2925,7 +2926,7 @@ msgstr "Raport nou %s"
 
 #: general_report_manager.cpp:1026
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Un raport cu acest nume există deja"
 
 #: general_report_manager.cpp:1026 general_report_manager.cpp:1033
 msgid "New Report"
