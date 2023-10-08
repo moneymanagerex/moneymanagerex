@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-07 22:28\n"
+"PO-Revision-Date: 2023-10-08 08:07\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -1364,11 +1364,11 @@ msgstr "&Editați tranzacția programată..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Duplică tranzacția programată..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "Ștergeți tranzacția programată..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1414,7 +1414,7 @@ msgstr[2] ""
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Dorești într-adevăr să ștergi tranzacția programată?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1517,7 +1517,7 @@ msgstr "Luna: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Data de începere a: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1668,11 +1668,11 @@ msgstr "Setează categoria selectată curent drept categorie a tranzacției"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Numele conţine delimitator de categorii."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Caracterul două puncte (:) este folosit pentru a separa categorii și subcategorii și, prin urmare, nu ar trebui să fie folosit în nume"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
@@ -1688,19 +1688,19 @@ msgstr "Adaugă o Categorie"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Există o categorie cu același nume pentru acest părinte"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
-msgstr ""
+msgstr "Organizează Categoriile: Eroare de adăugare"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Nu puteți muta o sub-categorie într-o categorie care are deja o sub-categorie cu acest nume. Luați în considerare redenumirea înainte de a o muta."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Există deja o subcategorie cu acest nume"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1712,7 +1712,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Sunteţi sigur că doriţi să mutaţi\n"
+"\"%1$s\"\n"
+"to:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -1728,12 +1731,13 @@ msgstr "Categorie în uz."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Sub-categorie în uz."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Sfat: Schimbă toate tranzacțiile folosind această categorie la\n"
+"altă categorie folosind comanda de îmbinare:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
