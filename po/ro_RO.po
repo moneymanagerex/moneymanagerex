@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-08 09:10\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Deja există achiziții de acțiuni pentru acest cont înainte de aceast
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Tranzacțiile programate pentru acest cont sunt programate înainte de această dată."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -673,7 +673,7 @@ msgstr "Total: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Modificare în valoare: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -730,7 +730,7 @@ msgstr "Organizează atașamentele | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Organizează atașamentele | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -919,19 +919,19 @@ msgstr "Lunar (ultima zi lucrătoare)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplică tranzacția programată"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Editează tranzacția programată"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Introduceți tranzacția programată"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detalii despre tranzacția programata"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1045,7 +1045,7 @@ msgstr "Cont"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Specificați contul care va deține tranzacția programată"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1121,7 +1121,7 @@ msgstr "Culorile utilizatorului"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organizați atașamentele acestei tranzacții programate"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:684
 #: filtertransdialog.cpp:1038 filtertransdialog.cpp:1832
@@ -1251,7 +1251,7 @@ msgstr "Tranzacție divizată"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "O nouă tranzacție programată"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1311,7 +1311,7 @@ msgstr "Plată"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX permite ca plățile regulate să fie configurate ca tranzacții. Aceste tranzacții pot fi, de asemenea, depozite regulate sau transferuri care vor avea loc la un moment dat. Aceste tranzacții acționează ca un memento că un eveniment este pe cale să aibă loc și apar pe tabloul de bord cu 14 zile înainte de scadența tranzacției."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1320,7 +1320,7 @@ msgstr "Sfat: Aceste tranzacții pot fi setate pentru a fi activate - permițân
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3162 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Tranzacții programate"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
@@ -1328,7 +1328,7 @@ msgstr "D&uplică "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Ștergeți tranzacția programată"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1336,7 +1336,7 @@ msgstr "Intr&a"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Introduceți următoarea tranzacție recurentă"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1344,7 +1344,7 @@ msgstr "Omite"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Omiteți următoarea tranzacție recurentă"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1356,19 +1356,19 @@ msgstr "Omite următoarea apariție"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&O nouă tranzacție programată..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Editați tranzacția programată..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Duplică tranzacția programată..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "Ștergeți tranzacția programată..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1414,7 +1414,7 @@ msgstr[2] ""
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Dorești într-adevăr să ștergi tranzacția programată?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1517,7 +1517,7 @@ msgstr "Luna: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Data de începere a: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1668,11 +1668,11 @@ msgstr "Setează categoria selectată curent drept categorie a tranzacției"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Numele conţine delimitator de categorii."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Caracterul două puncte (:) este folosit pentru a separa categorii și subcategorii și, prin urmare, nu ar trebui să fie folosit în nume"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
@@ -1688,19 +1688,19 @@ msgstr "Adaugă o Categorie"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Există o categorie cu același nume pentru acest părinte"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
-msgstr ""
+msgstr "Organizează Categoriile: Eroare de adăugare"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Nu puteți muta o sub-categorie într-o categorie care are deja o sub-categorie cu acest nume. Luați în considerare redenumirea înainte de a o muta."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Există deja o subcategorie cu acest nume"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1712,7 +1712,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Sunteţi sigur că doriţi să mutaţi\n"
+"\"%1$s\"\n"
+"to:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -1728,25 +1731,27 @@ msgstr "Categorie în uz."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Sub-categorie în uz."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Sfat: Schimbă toate tranzacțiile folosind această categorie la\n"
+"altă categorie folosind comanda de îmbinare:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Sfat: Schimbă toate tranzacțiile folosind această sub-categorie la\n"
+"altă categorie folosind comanda de îmbinare:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Unelte → Îmbinare → Categorii"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
-msgstr ""
+msgstr "Organizează Categoriile: Șterge eroare"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1775,11 +1780,11 @@ msgstr "Editează Categoria"
 
 #: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
-msgstr ""
+msgstr "Organizează Categoriile: Editează eroarea"
 
 #: categdialog.cpp:682 mmframe.cpp:3727
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Îmbinarea categoriilor a fost finalizată"
 
 #: categdialog.cpp:683 mmframe.cpp:3728 mmframe.cpp:3743 mmframe.cpp:3759
 #: payeedialog.cpp:841
@@ -1789,7 +1794,7 @@ msgstr "Înregistrări care au fost actualizate în baza de date: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3730
 msgid "Merge categories result"
-msgstr ""
+msgstr "Rezultatul îmbinării categoriilor"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -2577,7 +2582,7 @@ msgstr "Intervalul calendaristic"
 
 #: filtertransdialog.cpp:589 filtertransdialog.cpp:1745
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Include toate sub-categoriile"
 
 #: filtertransdialog.cpp:624 filtertransdialog.cpp:1497
 #: filtertransdialog.cpp:1597 import_export/univcsvdialog.cpp:112
@@ -2683,7 +2688,7 @@ msgstr "Dorești să continui?"
 
 #: filtertransdialog.cpp:1248 mmframe.cpp:1255
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Ștergerea elementului de setări"
 
 #: filtertransdialog.cpp:1563
 msgid "Filtering Details: "
@@ -2831,7 +2836,7 @@ msgstr "Încarcă fișierul raport:"
 
 #: general_report_manager.cpp:609 general_report_manager.cpp:1068
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Fișiere General Report Manager (*.grm)"
 
 #: general_report_manager.cpp:609 general_report_manager.cpp:1068
 msgid "ZIP files (*.zip)"
@@ -2921,7 +2926,7 @@ msgstr "Raport nou %s"
 
 #: general_report_manager.cpp:1026
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Un raport cu acest nume există deja"
 
 #: general_report_manager.cpp:1026 general_report_manager.cpp:1033
 msgid "New Report"
@@ -3949,11 +3954,11 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:947
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "Introduceți etichetele pentru căutare, opțional puteți separa cu operatorii '&' și '| '."
 
 #: mmSimpleDialogs.cpp:948
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "Operatorul implicit dintre etichetele consecutive este ȘI, folosește '|' pentru a schimba operatorul în SAU."
 
 #: mmSimpleDialogs.cpp:1492
 #, c-format
@@ -4198,7 +4203,7 @@ msgstr ""
 #: mmchecking_list.cpp:599
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "Găsește toate tranzacțiile cu %s '%s'"
 
 #: mmchecking_list.cpp:606
 msgid "&Delete selected transaction..."

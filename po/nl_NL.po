@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-07 18:09\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3951,11 +3951,11 @@ msgstr "A.u.b. een niet leeg teken invoeren."
 
 #: mmSimpleDialogs.cpp:947
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "Voer tags in om te zoeken, optioneel gescheiden door de operators '&' en '|'."
 
 #: mmSimpleDialogs.cpp:948
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "De standaard operator tussen opeenvolgende tags is AND, gebruik '|' om de operator naar OR te veranderen."
 
 #: mmSimpleDialogs.cpp:1492
 #, c-format
@@ -4196,7 +4196,7 @@ msgstr "Herstel alle transacties in de huidige weergave..."
 #: mmchecking_list.cpp:599
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "&Vind alle transacties met %s '%s'"
 
 #: mmchecking_list.cpp:606
 msgid "&Delete selected transaction..."
