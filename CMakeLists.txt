@@ -17,7 +17,11 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.7.0)
+file(STRINGS NEWS NEWS_VERSION_LINES REGEX "^Version .*")
+string(REPLACE "Version " "" MMEX_VERSIONS "${NEWS_VERSION_LINES}")
+list(GET MMEX_VERSIONS 0 LATEST_MMEX_VERSION)
+
+set(MMEX_VERSION ${LATEST_MMEX_VERSION})
 SET(MMEX_VERSION_ALPHA -1)
 SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
