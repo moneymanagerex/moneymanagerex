@@ -19,31 +19,15 @@ jobs:
             cd ../.. && \
             mkdir build && \
             mkdir -p /tmp/artifacts
-      - run: 
-          name: Build MoneyManagerEx (SUSE Tumbleweed)
-          command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:suse-tumbleweed bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.rpm /tmp/artifacts
-      - run: 
-          name: Build MoneyManagerEx (Ubuntu Jammy Jellyfish)
-          command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-jammy bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
+#
+# Flatpak is now the sole supported Linux distribution mechanism for MMEX
+# https://github.com/moneymanagerex/moneymanagerex/issues/6246
+#
       - run:
-          name: Build MoneyManagerEx (Ubuntu Focal Fossa)
+          name: Build MoneyManagerEx (Flatpak)
           command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-focal bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
-      - run: 
-          name: Build MoneyManagerEx (Ubuntu Bionic)
-          command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:ubuntu-bionic bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.deb /tmp/artifacts
-      - run: 
-          name: Build MoneyManagerEx (Fedora 36)
-          command: |
-            docker run -it --rm -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex whall3y/mmex:fedora-36 bash -c "rm -rf * && export MAKEFLAGS=-j4 && cmake -DwxWidgets_CONFIG_EXECUTABLE=/wxWidgets/build-linux/wx-config -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target package" && \
-            cp $CIRCLE_WORKING_DIRECTORY/build/mmex*.rpm /tmp/artifacts
+            docker run -it --rm --privileged -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex bilelmoussaoui/flatpak-github-actions:gnome-45 bash -c "rm -rf * && /usr/bin/xvfb-run --auto-servernum flatpak-builder --verbose --repo=repo --disable-rofiles-fuse --force-clean --default-branch=master --arch=x86_64 _build ../org.moneymanagerex.MMEX.yml && /usr/bin/xvfb-run --auto-servernum flatpak build-bundle --arch=x86_64 repo ../mmex.flatpak org.moneymanagerex.MMEX master && flatpak install --bundle --noninteractive ../mmex.flatpak" && \
+            cp $CIRCLE_WORKING_DIRECTORY/mmex*.flatpak /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
   build-macos:
@@ -72,4 +56,55 @@ workflows:
   mmex-builds:
     jobs:
       - build-linux
-#      - build-macos
+#      - build-macosapp-id: org.moneymanagerex.MMEX
+runtime: org.gnome.Platform
+runtime-version: '45'
+sdk: org.gnome.Sdk
+command: mmex
+cleanup:
+  - /bin/wx-config
+  - /bin/wxrc
+  - /bin/wxrc-3.2
+  - /include
+  - /lib/*.a
+  - /lib/pkgconfig
+  - /lib/wx/include
+  - /share/aclocal
+  - /share/bakefile
+finish-args:
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=home
+  - --filesystem=/mnt
+  - --filesystem=/run/media
+  - --filesystem=/media
+  - --share=ipc
+  - --share=network
+modules:
+  - name: wxWidgets
+    config-opts:
+      - --disable-shared
+      - --enable-cxx11
+      - --with-cxx=11
+      - --enable-webview
+      - --with-gtk=3
+      - --enable-unicode
+      - --enable-intl
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.3/wxWidgets-3.2.3.tar.bz2
+        sha256: c170ab67c7e167387162276aea84e055ee58424486404bba692c401730d1a67a
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/wxWidgets/wxWidgets/releases/latest
+          url-query: .assets[] | select(.name=="wxWidgets-" + $version + ".tar.bz2")
+            | .browser_download_url
+          version-query: .tag_name | sub("^v"; "")
+  - name: moneymanagerex
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: dir
+        path: .
