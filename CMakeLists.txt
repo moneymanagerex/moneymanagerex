@@ -21,7 +21,7 @@ file(STRINGS NEWS NEWS_VERSION_LINES REGEX "^Version .*")
 string(REPLACE "Version " "" MMEX_VERSIONS "${NEWS_VERSION_LINES}")
 list(GET MMEX_VERSIONS 0 LATEST_MMEX_VERSION)
 
-set(MMEX_VERSION ${LATEST_MMEX_VERSION})
+SET(MMEX_VERSION ${LATEST_MMEX_VERSION})
 SET(MMEX_VERSION_ALPHA -1)
 SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
@@ -101,6 +101,12 @@ execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # define shortcut
     set(LINUX TRUE)
+
+    find_program(APPSTREAMCLI appstreamcli
+        DOC "tool for generating release information")
+    if(NOT APPSTREAMCLI)
+        message(SEND_ERROR "appstreamcli tool not found.")
+    endif()
 
     # Detect Linux distribution (if possible)
     find_program(LSB_RELEASE lsb_release
@@ -637,11 +643,12 @@ if(LINUX)
         resources/dist/linux/share/applications/org.moneymanagerex.MMEX.desktop
         DESTINATION share/applications)
     install(FILES
-        resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml
-        DESTINATION share/metainfo)
-    install(FILES
         resources/dist/linux/share/mime/packages/org.moneymanagerex.MMEX.mime.xml
         DESTINATION share/mime/packages)
+    execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${PROJECT_SOURCE_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml)
+    install(FILES
+        resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml
+        DESTINATION share/metainfo)
 endif()
 
 # Icons
