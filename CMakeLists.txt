@@ -17,14 +17,32 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
+SET(MMEX_VERSION_ALPHA -1)
+SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_RC -1)
+
+# Extract latest version from the top of the NEWS file
 file(STRINGS NEWS NEWS_VERSION_LINES REGEX "^Version .*")
 string(REPLACE "Version " "" MMEX_VERSIONS "${NEWS_VERSION_LINES}")
 list(GET MMEX_VERSIONS 0 LATEST_MMEX_VERSION)
 
-SET(MMEX_VERSION ${LATEST_MMEX_VERSION})
-SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 1)
-SET(MMEX_VERSION_RC -1)
+# Enable build type based on an optional version suffix.
+# Example:
+# "1.7.0 Alpha"
+if(LATEST_MMEX_VERSION MATCHES ".* Alpha$")
+    message(STATUS "Build type: Alpha")
+    SET(MMEX_VERSION_ALPHA 1)
+elseif(LATEST_MMEX_VERSION MATCHES ".* Beta$")
+    message(STATUS "Build type: Beta")
+    SET(MMEX_VERSION_BETA 1)
+elseif(LATEST_MMEX_VERSION MATCHES ".* RC$")
+    message(STATUS "Build type: RC")
+    SET(MMEX_VERSION_RC 1)
+else()
+    message(STATUS "Build type: Stable")
+endif()
+
+string(REGEX REPLACE " .*$" "" MMEX_VERSION "${LATEST_MMEX_VERSION}")
 
 # ---------------------------------------------------------------------------
 
