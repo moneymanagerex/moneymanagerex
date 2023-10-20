@@ -19,7 +19,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 - Fast, intuitive and functional
 - Checking, credit card, savings, stock investment and asset accounts
 - Unlimited nested multi-level category support
-- Multiple tags per split transaction support [in development](https://github.com/moneymanagerex/moneymanagerex/issues/5439) (available in [developmental releases](https://github.com/moneymanagerex/moneymanagerex#download))
+- Multiple tags per split transaction support
 - Reminders for scheduled bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one-click reporting with graphs and charts
@@ -36,7 +36,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 <a href='https://flathub.org/apps/org.moneymanagerex.MMEX'><img width='240' alt='Download on Flathub' title='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.svg'/></a>
 
 * [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS, or Windows
-* Download developmental release for [GNU/Linux](https://app.circleci.com/pipelines/github/moneymanagerex/moneymanagerex), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
+* Download developmental release for [GNU/Linux](https://github.com/moneymanagerex/moneymanagerex/issues/6246#issuecomment-1771746959), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
