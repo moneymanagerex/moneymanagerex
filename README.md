@@ -19,7 +19,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 - Fast, intuitive and functional
 - Checking, credit card, savings, stock investment and asset accounts
 - Unlimited nested multi-level category support
-- Multiple tags per split transaction support [in development](https://github.com/moneymanagerex/moneymanagerex/issues/5439) (available in [developmental releases](https://github.com/moneymanagerex/moneymanagerex#download))
+- Multiple tags per split transaction support
 - Reminders for scheduled bills and deposits
 - Budgeting and cash flow forecasting
 - Simple one-click reporting with graphs and charts
