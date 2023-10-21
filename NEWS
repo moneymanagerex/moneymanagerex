@@ -1,0 +1,1034 @@
+Version 1.7.0 Beta 1
+~~~~~~~~~~~~~~~~~~~~
+Released: 2023-10-19
+
+
+Version 1.6.4
+~~~~~~~~~~~~~
+Released: 2023-06-21
+
+
+Version 1.6.3
+~~~~~~~~~~~~~
+Released: 2023-02-01
+
+Features:
+* #5521 Last updated date time for transactions
+* #5530 Time Picker for GRM
+
+Bugfixes:
+* #3965 Transactions color change
+* #4698 Filters do not take into account transactions where the categories are split
+* #5437 Void Transaction are considered in cashflow report (both daily, montly, and transaction)
+* #5444 Hidden subcategory is shown at the drop-down window
+* #5457 Transaction report incl sub categories fails duplicate reports
+* #5466 Recurring transactions - attachments are disappear
+* #5467 Deleted transactions should be excluded from Last Used date query
+* #5474 QIF ability to import/export field "E" of split lines notes
+* #5489 Forecast Report due to multiple currencies
+* #5504 Export as / Import from ... account menu
+* #5541 Edit Account images
+* #5549 ALT+letter button and menu accelerators also activate the transaction status accelerator actions
+* #5569 Сrash when all historical stock prices deleted
+* #5583 Quicken QIF import issue in split transactions with balnk row
+
+Miscellaneous:
+* #4334 #5516 #5427 #5428 #5429 #5459 #5509 #5468 #5462 #5461
+
+
+Version 1.6.2
+~~~~~~~~~~~~~
+Released: 2022-12-18
+
+Notes:
+* Your database will be updated once you run this version. You will then not be able to open your database with earlier versions of the software or run Android versions with the same database. As ever, it is recommended to take a copy of your database prior to installing any new software version.
+* #1477 changes the DB schema for the storage of categories. Whilst this will not affected basic usage of MMEX if you have created GRM reports that use categories then you may need to update them. The standard GRM templates have been updated to accommodate the new schema and can be used as examples. In particular see: https://github.com/moneymanagerex/general-reports/tree/master/packages/Category/OneCategoryList
+
+Features:
+* #1477 Nested Categories
+* #5302 Upgrade SQLite
+
+Bugfixes:
+* #5334 QIF Import does not import transactions with date < today if the account doesn't already exist
+* #5346 Account summary not showing assets or shares
+* #5352 Crash on selecting Monthly or Yearly - Reports: Summary of Accounts
+* #5356 README links to Travis CI for linux/mac build status
+* #5359 Order by 'status icon' column in transaction lists
+* #5360 Hovering mouse pointer over an asset icon displays unwanted tooltip outline
+* #5364 Multi-transaction edit not allowing change to Amount, Payee, or Category
+* #5370 Reconciled amount incorrect if deleted transactions exist
+* #5372 Resolve MSVC compiler warnings
+* #5377 Modifications of split values are lost when row is added
+* #5381 Asset - Initial Value and Current Value
+* #5382 Mouse wheel scrolling rate is very slow in Split Transactions dialog
+* #5391 Use of | (pipe) in category name causes issues with transaction report
+* #5392 Unexpected space added to Category filter when Regex is used to include multiple sub categories
+* #5415 MMEX Options: center labels under icons
+* #5416 Currency Dialog - Incorrect Column Header ("Symbol" should be "Code")
+* #5433 Failure to upgrade database to DB v17 for MMEX 1.6.2
+
+
+Version 1.6.1
+~~~~~~~~~~~~~
+Released: 2022-11-18
+
+Notes:
+* Your database will be updated once you run this version. You will then not be able to open your database with earlier versions of the software or run Android versions with the same database. As ever, it is recommended to take a copy of your database prior to installing any new software version.
+
+Bugfixes:
+* #5197 Account Summary reports do not include asset values
+* #5211 Toolbar buttons are erroneously greyed out when opening an existing database via App Start dialog
+* #5244 Recurring Transaction Check Fix
+* #5250 Add split button deletes the previous values
+* #5254 The text for translation is fragmented
+* #5273 Total not updating correctly on split transactions view
+* #5281 Recurring Transactions - Remove filtering
+* #5290 New transaction - Incorrect minimum balance check
+* #5292 Transaction Report does not show split transaction notes
+* #5298 User confusion regarding Deleted Transactions node in Navigation tree
+* #5299 Transaction Report node in Navigation tree is not highlighted when corresponding report is displayed
+* #5310 Home Page Assets Widget collapse state not saved
+* #5320 Notes disappear when clicking "Cancel" in Split Transactions window
+* #5324 Crash when creating a share transaction with a date older than opening date of the account
+* #5331 Slow refresh when add split rows
+* #5339 Beta build crashes on asset deletion
+
+Features:
+* #2963 Added a Deleted/Trash transaction feature
+* #5234 Quick category entry using ":" to autocomplete (Windows only)
+* #5251 Now shows notes of split transactions in account view
+* #5259 Hide/Unhide of Custom Reports
+* #5276 Split transaction notes now displayed in the information panel
+* #5292 Transaction Report now shows split transaction notes
+
+
+Version 1.6.0
+~~~~~~~~~~~~~
+Released: 2022-10-27
+
+Notes:
+* Your database will be updated once you run this version. You will then not be able to open your database with earlier versions of the software or run Android versions with the same database. As ever, it is recommended to take a copy of your database prior to installing any new software version.
+
+Features:
+* #3779 Adoption of wxBitmapBundle to support HighDPI display
+* #4122 Invalid calculation Stocks Gain/Loss
+* #4362 Online help pages
+* #4412 Management of assets
+* #4791 Odd Window positioning behaviour (MacOS)
+* #5091 Include Grand Total for Reconciled Column
+* #5106 Organize Budget actuals always reflect current year
+* #5108 Secondary 'Sort By' Column
+* #5109 Add ability to use RETURN key to bring up category selection on organize categories
+* #5122 v1.5.21 has calculation error in account view
+* #5137 Monthly Budget showing wrong "Actual" totals
+* #5145 Transaction Report - Custom field settings not recovered
+* #5147 Transaction Report - Saved custom field settings not used when run from navigation tree
+* #5158 New Category creation whilst in Split Transaction issue
+* #5170 Can not save Category_V1 / Subcategory_1
+* #5191 Crash on account creation due to blank image list
+* #5193 Transaction Report Date Range not saved
+* #5198 Asset transactions marked as transfer are not counted in asset value
+* #5205 Crash when cancelling the creation of a new database if App Start Dialog has been used
+* #5210 Transaction Filter Date Range is not updated to reflect the current setting of Period Range
+* #5218 New database wizard is too wide when application language is French
+
+Bugfixes:
+* #910 Notes in split categories
+* #1158 Currency Manager window should be more ergonomic
+* #1390 Enable/disable payees
+* #2307 Notes on Budget lines
+* #3554 Account initial balance is not dated
+* #4099 Notes field for budget page
+* #4216 DB ver. 15
+* #4280 Add Payee Information Fields
+* #4545 Dark mode for help pages (MacOS/Linux only at present)
+* #4631 Regular Expressions in transaction filter notes
+* #4730 Block/Hide Categories
+* #4880 Use CircleCI for pipeline builds
+* #5100 Upgrade to wxWidgets 3.2.1
+* #5111 Asset widget on homepage should show list of assets
+
+
+Version 1.5.21
+~~~~~~~~~~~~~~
+Released: 2022-09-21
+
+Bugfixes:
+* #3892 Manual share price is not saved
+* #4087 Summary of shares report not displaying fractional shares if total is greater than 1
+* #4807 Stocks/Shares - Application Crashes on Trying to Enter a Stock Transaction
+* #4954 mmex 1.5.19 : wrong behaviour of autoselection of category
+* #4969 Stock Portfolio Gain/Loss
+* #5033 Split Category Transactions Do Not Appear on Transaction Report
+* #5035 Filter on Date / Period - Will not pick up current date and date range including current date
+* #5042 Crash Report - Upgraded from v1.5.18 to v1.5.20
+* #5049 Calculation and display errors in the securities portfolio
+* #5054 Incorrect ascending/descending sort order indicator for Assets/Recurring Transactions columns
+* #5056 Organize Category dialog does not scroll newly added items into view
+* #5057 In-place editing of asset name allows asset with blank name to be created
+* #5058 Stock balance calculation in ModelStock and summary report always uses current number of shares
+* #5059 Minimum width of Organize Categories dialog allows buttons to become clipped
+* #5077 Budget reporting when offset is non-zero
+* #5101 Debug error when right clicking on column header in "All Transactions" -- extra blank lines in "Hide/Show Columns"
+
+Features:
+* #2200 Add a sponsor button in MMEX GitHub repository
+* #4214 Option to link a monthly budget to an annual budget
+* #4549 Improving** the UX of the "Organize Categories" window — drag'n'drop
+* #4690 Secondary 'Sort By' Column
+* #4741 Add profits to budget
+* #4844 "Empty" Transaction Report
+* #4989 Category collapsed state
+* #5051 Date Control Tooltip Suggestion
+
+
+Version 1.5.20
+~~~~~~~~~~~~~~
+Released: 2022-09-02
+
+Bugfixes:
+* #4868 Integer and Decimal custom fields are treated like Strings in the Account view
+* #4946 Optimize/Fix use of mmTextCtrl in dialogs using this control for numbers
+* #4950 Problem entering decimal numbers
+* #4951 Reference number format
+* #4955 Integer Custom Field - erroneous behaviour
+* #4978 Spurious column sort-order indicator shown when double clicking on Stock Portfolio
+* #4982 Advanced Filter not saving new 'Date Range' value
+* #4999 Boolean custom field misalignment
+* #5000 Saved Transaction Reports don't work in Linux
+* #5003 Date custom field focus and update issues
+* #5005 Split Transaction Dialog grows too big
+* #5012 "Split Transaction" not displayed in category field on Linux
+* #5019 Display 'Split Summary' infotip sometimes not displayed
+
+Features:
+* #4971 Transaction report - add feature to group by "type"
+* #4987 Boolean and Date custom field improvements
+* #5016 Place focus in the Search field when Organize Categories dialog is opened
+
+
+Version 1.5.19
+~~~~~~~~~~~~~~
+Released: 2022-08-19
+
+Bugfixes:
+* #4698 Filters do not take into account transactions where the categories are split
+* #4881 "Manage Categories" window in a split transaction only opens for the first 2 split rows
+* #4886 After upgrading to 1.5.17 and 1.5.18 it does not keep the last category for a given payee.
+* #4887 After you have relocated a Payee successfully (confirmed) the dialogue box should clear from screen.
+* #4897 Account website URL validation failure
+* #4907 Display Share Accounts - the setting is not saved
+* #4911 Buttons become hidden on Split Transaction dialog
+* #4918 Change the term 'Scale' to 'Decimal Places' for the English translation of MMEX
+* #4919 Edit existing category name and entering a colon
+* #4921 Decimal custom fields do not retain values greater than 999.99 when editing a saved transaction
+* #4922 Crash when Transaction Filter includes a custom field
+
+Features:
+* #4885 Search consistency for Payee and Category dialog
+* #4907 Display Share Accounts - the setting is now saved
+* #4934 Summary of Accounts - charts change (stacked Bar + Line)
+
+
+Version 1.5.18
+~~~~~~~~~~~~~~
+Released: 2022-07-28
+
+Bugfixes:
+* #3226 Organize Attachments dialog refers to internal account number instead of the actual account name
+* #4827 Options fields fit if resized
+* #4828 Renaming Category - Unfriendly error message and incorrectly display of category name
+* #4843 Transaction Report - no data
+* #4838 Last Used Category is not filled in when selecting Payee from Organize Payees Dialog
+* #4852 MMEX will not run on MacOS < 10.14
+* #4867 Custom decimal field precision incorrect on transaction edit
+
+Features:
+* #4830 Cashflow report showing transactions
+* #4840 Cash Flow reports settings
+* #4863 Improve usability of pop-up calendar on MacOS
+
+
+Version 1.5.17
+~~~~~~~~~~~~~~
+Released: 2022-07-17
+
+Bugfixes:
+* #2704 Add Account Wizard mentions Savings in the text, but it it not one of the Type choices
+* #3960 Windows version is not displayed correctly
+* #4371 Category sort is incorrect with French characters
+* #4710 Transferring between two accounts with same currency get converted into base currency using reverse forex
+* #4711 Font now too large  
+* #4712 Streamlining the Split Transaction dialog enhancement 
+* #4714 Add new subcategory
+* #4716 Sum operation in the Amount field is not performed with new 1.5.16
+* #4736 Filter is broken after account switching
+* #4745 Export & Import CSV File Invalid Date Error
+* #4749 Relocate Dialogs find entries when nothing specified
+* #4757 Unable to edit category for transaction in closed account
+* #4763 Budget Setup - Text field too small
+* #4772 Layout and behaviour of Recurring Transaction dialog is not consistent with Single Transaction dialog
+* #4778 App crashes when adding new share transaction
+* #4785 Crash when switching transaction type
+* #4786 macOS: Crash When Changing HTML Scale Factor
+* #4787 Behaviour of Recurring Transaction dialog not consistent with Single Transaction dialog - Amount Field Clearing
+* #4796 Saved presets in Transaction Filter and saved column formats duplicate
+* #4804 Colour is displayed as Color on field labels when language is set to English (United Kingdom)
+* #4813 Multi-transaction update of Payee Name causes "Payee Error"
+
+Features:
+* #3139 macOS - No Drop Down Calendar When Entering Transactions Dates
+* #4708 Create mmDatePickerCtrl
+* #4717 Inconsistent behaviour when pressing Enter in transaction category field enhancement 
+* #4748 Delete source category after relocation
+* #4754 wxScrolledWindow for options dialog enhancement 
+* #4759 wxWidgets 3.2.0
+* #4768 Transaction Report: void status amount
+* #4779 Default category for transfers
+* #4789 Report Category including all sub-categories
+
+
+Version 1.5.16
+~~~~~~~~~~~~~~
+Released: 2022-06-23
+
+Bugfixes:
+* #4593 Transaction report error
+* #4621 Budget Reports - default value is not saved
+* #4625 Version: 1.5.15 64-bit freezing
+* #4633 Transfer in Recurring Transactions panel
+* #4643 Transactions Filter with split transactions working incorrect
+* #4648 Xchange rate (advanced box) not picking up rate after currency update
+* #4651 Input not allowed for custom decimal fields when precision set >0
+* #4652 No summary data after Shift-Click selection of multiple transactions
+* #4659 Split Transaction Dialog amount window not visible
+* #4660 Reports: specific accounts checkbox is not saved
+* #4662 Transaction Report - group by category
+* #4663 Transaction display after category selection
+* #4664 Split Transaction Dialog enhancement
+* #4692 Closing application from Dock icon on MacOS is not done gracefully when dialog open
+
+Features:
+* #3634 Font size
+* #4237 Dialogs size storing
+* #4439 Dialogs with categories, payees, accounts etc refactoring
+* #4591 Split Transaction Dialog refactoring
+* #4680 Transaction report name/title
+
+
+Version 1.5.15
+~~~~~~~~~~~~~~
+Released: 2022-06-16
+
+Bugfixes:
+* #2681 curl upgrade to 7_82_0
+* #2714 Libcurl missing
+* #2590 Portable mode ini file missing
+* #3241 MMEX shows using libcurl v7.61 which currently has 17 vulnerabilities
+* #4159 Add Custom Fields to Recurring Transactions
+* #4286 Back link no longer works for "Where the Money Goes" and "Where the Money Comes From"
+* #4296 Empty message language changed
+* #4302 lunasvg upgrade to v2.3.1
+* #4307 Categories export (JSON)
+* #4314 Not all custom fields are visible in the transaction dialog
+* #4319 Add Custom Fields to Transaction Report
+* #4321 JSON export ignore account for Custom fields
+* #4334 Ellipsis ... actualization in the main menu
+* #4335 Storing the language code
+* #4341 QIF file import improvements
+* #4346 Bad array new length message
+* #4352 Frequently used notes does not display latest notes
+* #4357 Splash screen link no longer works
+* #4377 Viewing closed account
+* #4401 Transaction report Filtering details
+* #4407 Notes are not erased when changing accounts
+* #4418 Categories translation
+* #4419 Transaction Filter settings
+* #4436 Update Python scripts the make them Python 3 compatible
+* #4472 Default custom field value
+* #4483 Expanding a collapsed Navigation tree not intuitive for new users
+* #4516 Report Manager Navigation tree size
+* #4519 Use macOS 11 app icon style
+* #4532 Minus amount display on Income vs Expenses Monthly
+* #4550 Improving the UX of the Organize Categories
+* #4602 Voided transactions in a filtered view are being included in the calculation
+
+Features:
+* #2232 Filter by multiple categories and payees
+* #3430 Hide unused Reports
+* #3750 Transaction Report Filter settings items in Navigation tree
+* #4420 Assign color to imported transactions
+* #4250 Allow more than 10 saved transaction filters
+* #4453 Color selection for Multi Transaction Update
+* #4542 Allow column sorting on Summary of Accounts & Income vs Expenses reports
+
+
+Version 1.5.14
+~~~~~~~~~~~~~~
+Released: 2022-04-14
+
+Bugfixes:
+* #4183 Attachments are not cloned when a transaction is duplicated (or copy/pasted)
+* #4187 Filter out obsolete currencies in Currency Dialog and Currency Exchange Rates
+* #4189 Categories Monthly Report end date wrong
+* #4191 Invalid group separator issue
+* #4195 Zero Share price summary issue
+* #4200 Summary of Accounts - Yearly - Miscalculations
+* #4207 Set custom fields when editing multiple transactions
+* #4223 Closed account - icon color
+* #4227 Cannot edit or add payees in "Edit Recurring Transaction" window
+* #4233 HTMLEncode not handling non-ASCII
+* #4235 Sort issue? - Capital vs lowercase
+* #4239 Transaction Report -> Transaction Filter: Can't change 'Transfer To' from here
+* #4240 Transaction Report Footers Take Up Too Much Space
+* #4241 'Others Icons size' sometimes get changed unexpectedly...
+* #4242 RSS feed on new site is at a different URL
+* #4258 1.5.14-Beta.1 does not compile on Ubuntu 18.04 'bionic'
+* #4260 Recurring Transaction Dialog should show day of week
+
+Features:
+* #3998 Reports summarized to main category
+
+
+Version 1.5.13
+~~~~~~~~~~~~~~
+Released: 2022-02-06
+
+Bugfixes:
+* #2685 Build issue with LuaGlue - Not declared name luaL_checkint
+* #4139 UI enhancement - Position of Frequently Used Notes button on Transaction dialog
+* #4150 Summary Report - mismatch between Chart pop-up and raw data
+* #4155 Incorrect last day for "show last month" menu item
+* #4168 New transaction isn't populated with the Custom Field value
+* #4171 Date format mask does not saved in CSV files import
+
+Features:
+* #4031 Fast payer search
+
+
+Version 1.5.12
+~~~~~~~~~~~~~~
+Released: 2022-01-30
+
+Bugfixes:
+* #2014 Canonical names for doc folders
+* #3980 1.5.10-Beta.1 crashes with warnings about missing themes
+* #4032 Program Crashes on Organize Payees or Organize Categories
+* #4065 Hotkey for setting Status to "None" differs depending on context
+* #4070 ORGANIZE PAYEES Error
+* #4085 Categories Summary report sub-category total does not match Transaction report sub-category for same period.
+* #4092 Future bookings are displayed incorrectly on homepage
+* #4116 Incorrect "Summary of Accounts" balance
+* #4120 Stocks Report corrupted in v1.5.11
+* #4127 Downloading Currency and Stock rates opens User Manual
+
+
+Features:
+* #3669 Summary line of the Account Display is "odd"
+* #3897 Using transfer in editing multi-transactions
+* #4009 Transaction report ->Presentations options
+* #4098 Select all the visible transactions using `Cmd + A`
+* #4110 Jump between accounts along the "Transfer" transaction
+* #4124 Duplicate Recurring Transaction
+
+Notes:
+* New help pages added: Chinese Simplified, Dutch, Croatian
+
+
+Version 1.5.11
+~~~~~~~~~~~~~~
+Released: 2021-12-07
+
+Bugfixes:
+* #4041 Price for Gold Feb 22 (GC=F)
+* #4036 Current year range has wrong periods in December
+* #4055 Current Year not correct
+* #4038 Trouble downloading new versions
+* #3223 The scroll bar flickers
+* #4025 Report graph causes app to freeze when window not 'Maximised'
+
+Features:
+* #4023 Budget categories research
+* #4048 Update to ApexCharts 3.28.2
+
+
+Version 1.5.10
+~~~~~~~~~~~~~~
+Released: 2021-11-23
+
+Bugfixes:
+* #3967 Warning sound
+* #3926 Stock report crashes
+* #3988 Autocomplete of "Account" not working on MacOS
+* #3995 Creating Recurring Transactions with all data from existing entry (include notes field)
+* #3996 When Re-allocating an Existing Payee the search bar is stuck on one character
+* #4002 No Automatic Scroll to Bottom After Creating Duplicate Transaction
+* #3598 Custom fields
+* #2334 Yahoo exchange rates issue
+* #4020 Currency exchange rates - currency values history
+* #4019 Currency exchange rates saving
+
+Features:
+* #3283 Display of the bookings
+* #3829 Where the Money Goes > view Details of Transactions
+* #3945 Transaction Report to include specification of "Period" in addition to date range
+
+Version 1.5.9
+~~~~~~~~~~~~~
+Released: 2021-10-31
+
+Bugfixes:
+* #3899 Advanced filter saved by ok
+* #3914 Recurring Transaction - color of transaction
+* #3933 Currency exchange rates info
+
+Features:
+* #2080 Income vs Expenses on Home Page
+* #3745 Current year income / expenses
+* #3935 Ability to add subtotal to transaction report
+* #3948 Recurring Transactions Entry
+
+
+Version 1.5.8
+~~~~~~~~~~~~~
+Released: 2021-10-02
+
+Bugfixes:
+* #3870 The selection "last month" is wrong
+* #3763 macOS: New Transaction Hot Key should be CMD+N
+
+Features:
+* #3863 Ability to specify which columns are include in transaction report
+* #3875 Display growth/performance/cumulative difference on Income vs Expenses
+* #3877 Leave import view open after import
+* #3890 Stacked Area chart for Summary of Accounts
+
+
+Version 1.5.7
+~~~~~~~~~~~~~
+Released: 2021-09-18
+
+Bugfixes:
+* #3783 Transaction Type on CSV import is ignored?
+* #3800 Error in high figures when entering transaction amounts, or in balances / reports.
+* #3797 #3808 #3809 #3828 Translation fixes
+* #3820 Date Range menu disapears
+* #3830 Date spinner on Enter Recurring Transaction not working
+* #3846 Can't type in HTML Scale Factor (MacOS)
+* #3815 New Recurring Transaction switching Type of Transaction works partly but not as expected
+
+Features:
+* #3784 Duplicate transaction date
+* #3781 Budget and Reporting period - User selectable start of month
+* #3818 A single theme cannot support both light and dark modes
+* #3768 Belarisian translation finalized
+
+
+Version 1.5.6
+~~~~~~~~~~~~~
+Released: 2021-08-20
+
+Bugfixes:
+* #3648 Backup files has the same extension as main file
+* #3738 Help/About display geometry
+* #3740 warning C4706: assignment within conditional expression
+* #3748 Transaction report not classifying transfers correctly
+* #3756 Accounts selection in Advanced filter for single account list view is confusing
+* #3763 macOS: New Transaction Hot Key should be CMD+N
+* #3780 Duplicate transaction: amount resets if focus is moved out with mouse, not keyboard
+* #3785 Newly assigned Account is reset if transaction type changed on Edit/Duplicate
+* #3786 Summary of Stocks Display - alignment
+
+Features:
+* #1964 Transaction List Exchange rates
+* #3743 coincap.io API for crypto currencies
+* #3678 Show remaining credit limit on Credit Cards
+* #3768 Belarisian translation
+* #3787 Stocks Performance Charts - title text
+
+
+Version 1.5.5
+~~~~~~~~~~~~~
+Released: 2021-07-31
+
+Bugfixes:
+* #3643 Webapp - UTF-8 issue
+* #3696 'Confirm to add new payee' ignored
+* #3711 Payee default category enhancements
+* #3714 Payee changes when editing existing transaction (to change account)
+* #3724 Automobile Category not in Organize Categories but shows in report
+* #3733 Months not reported correctly for budget reports when using Financial Years
+* #3188 wxBitmapButton icon sizes should be consistent with other Buttons and widgets
+
+Features:
+* #3686 Allow filter by transaction highlight color
+
+
+Version 1.5.4
+~~~~~~~~~~~~~
+Released: 2021-07-18
+
+Bugfixes:
+* #1832 Financial year settings ignored in budget reports
+* #3626 #3645 Undefined Locale prevents saving transaction amounts greater than 999
+* #3625 'Summary of accounts' reports missing closed Accounts
+* #3627 Minor formatting issue with Monthly Summary of Accounts report
+* #3606 Multiple Transaction Edit and Transfers bug
+* #3620 wxHtmlWindow's do not support theme customisation
+* #3636 Wrong date format of an additional field
+* #3639 Custom fields save settings exception
+* #3640 Custom Fields sort order in Transaction Dialog
+* #3651 Bulk Transaction not saved
+* #3667 Crash on database creation
+* #3673 Upcoming Transactions widget will not close
+* #3666 Dark Mode theme lacks contrast in wcTreeCtrl's on MacOS
+
+Features:
+* #3180 Option to suppress tips
+* #3653 Search for Attachments
+* #3653 Search for Attachments description and UD Fields
+
+
+Version 1.5.3
+~~~~~~~~~~~~~
+Released: 2021-06-13
+
+Bugfixes:
+* #3536 Recurring Transaction Date Paid and Date Due Mix-up
+* #3557 Group separator using locale
+* #3558 Only open account currency
+* #3559 Currency format locale based options redesign
+* #3587 Cannot start: "bad locale name"
+* #3604 Autocomplete of target account for transfers on MacOS
+* #3585 Crash in Model_Currency::toString
+* #3325 Transaction Report settings name utf8 support
+* #3396 Account list loses focus when using keyboard navigation
+* #3474 Accounts Visible menu missing check mark to indicate which option is selected
+* #1295 Hot key for 'enter' & 'tools' is the same
+
+Features:
+* #3435 Transaction Report - multi-select for accounts
+* #3559 Currency format locale based options redesign
+* #3323 Date format display with Day name
+
+
+Version 1.5.2
+~~~~~~~~~~~~~
+Released: 2021-06-04
+
+Bugfixes:
+* #3222 Screen geometry
+* #3273 Update to wxWidgets 3.1.5
+* #3321 Theme manager window size
+* #3325 Transaction Report settings name utf8 support
+* #3326 UDFC01, 02... are not displayed in "All Transactions"
+* #3315 Browse button tooltip on Import/Export XML dialog refers to importing/exporting a CSV file instead of an XML file
+* #3337 Missing translation of categories in budget
+* #3340 Currency dialog: Width / Selected base currency icon / Search field label
+* #3348 Search by numbers on All Transactions view
+* #3355 Upcoming transactions applet
+* #3273 Update to wxWidgets 3.1.5
+* #3401 Category Icome/Expenses report not display date range correctly
+* #3414 Crypto currencies exchange rate
+* #3517 [Att.] is added in notes
+* #3532 lunasvg library upgrade
+
+Features:
+* #2473 Grouping character in amount
+* #3166 Theme background color
+* #3323 Date format display with Day name
+* #3347 Simple csv export
+* #3362 Enter next booking
+* #3375 Move multiple transactions at once
+* #3460 dd Mon yyyy date format
+* #3515 Display the difference value as a line on Income vs Expenses report
+
+
+Version 1.5.1
+~~~~~~~~~~~~~
+Released: 2021-04-24
+
+Bugfixes:
+* #1292 Add financial year start date option for budget
+* #3166 Theme background color
+* #3209 All Transactions panel currencies
+* #3240 Cashflow report error for negative total
+* #3238 Reallocate Payees performance issue
+* #3237 Update wizard info improvements
+* #3265 Custom Fields fixes
+* #3298 Change "saved filters" from check points to Listbox
+* #3299 Customfielddata will not be delete.
+* #3237 Update wizard info
+* #3261 Transaction Balance and sort order
+* #3239 Transaction not displayed from Account Link within Transaction Report
+* #3240 Cashflow report error for negative total
+* #3244 Update wizard window not expanded correctly
+* #3252 Import info panel not expanded correctly
+* #3242 Yahoo tickers
+
+Features:
+* #3267 User color to recurring transactions added
+* #3286 Hebrew help pages added
+
+
+Version 1.5.0
+~~~~~~~~~~~~~
+Released: 2021-04-11
+
+Features:
+* #3019 Load icons from zip and generate images from SVG
+* #2923 Update the application icons
+* #1961 The ChartNew.js was replaced by the ApexCharts
+* #2918 All Transactions Panel
+
+Bugfixes:
+* #1549 Budget Estimate with Bi-Monthly Category is Wrong
+* #2028 Tooltips on the pie chart in the Payee report present always a positive value
+* #2217 Multi-select for checking panel is broken
+* #2405 Crash if app killed in tray
+* #2418 Payee wrong autofill
+* #2442 menu icon sizing on MacOS
+* #2447 wxFileDialog always returns an empty string
+* #2626 Category - subcategory delimiter
+* #2662 Export to CSV amount fields format
+* #2705 MMEX always tries to connect to vps.moneymanagerex.org on startup
+* #2765 Advanced Filter in Accounts doesn't work
+* #2795 Split Deposit amount
+* #2817 Analytics collected on first run without user consent
+* #2825 WebView support for wkWebView with latest wxWidgets
+* #2826 Always Opens on Wrong Monitor
+* #2829 Add account choice to "budget performance"
+* #2830 Budget year name
+* #2833 Currency history only for existing transactions
+* #2844 Copy transactions with multi line notes
+* #2881 Build date/time updated on every build
+* #2893 Transaction report style
+* #2929 Menu items hot buttons
+* #2987 Display Share Accounts
+* #3151 Cash flow report exception
+* #3184 Organize Payees dialog editing issues
+* #3189 Position of New Transaction icon in the toolbar
+* #3227 Incorrect icon on Assets filter button
+* #3228 Color/Colour spelling inconsistency for English (UK) and English (US) application language
+
+
+Version 1.3.6
+~~~~~~~~~~~~~
+Released: 2020-12-24
+
+Bugfixes:
+* #1718 QIF import fails for single-digit dates
+* #2620 Crash when selecting "Relocate Payee"
+* #2621 graphs text encoding
+* #2730 Currencies manager contains too many currencies
+* #2631 advanced filter on bank/cash accounts
+* #2632 Unable to Change Date Format
+* #2647 Recurring Transaction: Due & Paid dates got swapped around
+* #2657 Invalid menu item name
+* #2661 why I can't change the language to Chinese (Traditional)?
+* #2662 CSV export for "balance" field causes TYPE CONV error when imported in ACCESS
+* #2671 Account Advanced filter Un-Reconciled does not working
+* #2673 Period: Over time has incorrect start date
+* #2674 Gain/Loss sort order is invalid
+* #2683 Transaction Filter, Notes search now only returns exact results
+* #2684 Application crash when selecting 'Relocate Payee' when in the "Organize Payees' dialog
+* #2688 Regression in Transaction report
+* #2691 Incorrect currency translation
+* #2694 MMEX Window is "off screen"
+* #2709 Export report to Excel
+* #2726 Missing translation of categories
+* #2732 QIF import and payee case sensitive issue bug import
+* #2733 json data for Google statistics
+* #2735 Bug in the Bug Report
+* #2738 mmex architecture info
+* #2746 Links handler in custom reports
+* #2761 Enable more then 3 characters as currency symbol
+
+Notes:
+* With virus-free greetings -- mmex development team
+
+
+Version 1.3.5
+~~~~~~~~~~~~~
+Released: 2020-06-15
+
+Bugfixes:
+* #2608 MMEX does not show graphics anymore (Thank you, Renato)
+* #2601 Top Withdrawals in Home Page
+* #2579 Added years for Cash Flow report labels
+* #2571 Navigation tree settings ignore some collapsed items
+* #2561 Saving of report settings
+* #2557 Detected memory leaks on Custom dates
+* #2556 #2549 #2554 Stocks Performance report
+* #2554 Stock name
+* #2520 Fuzzy translations
+* #2509 0,00 marked as negative
+* #2501 Reports panel
+* #2500 Report a bug does not run in an external browser
+* #2499 Attachments folder exception
+* #2497 Edit Share transaction
+* #2496 Unused category
+* #2494 Future transactions
+* #2492 Account naming issue
+* #2488 Attachments folder fix
+* #2487 Datepicker appearance
+* #2485 Crash on create account for shares
+* #2484 Crash or assert on transaction link
+* #2480 Display the Budget Setup without category summaries
+* #2478 Categories selection
+* #2477 wxBitmap labels and sizing issue
+* #2470 Crash on every reports Ubuntu 20.04
+* #2456 Currency rates fixes
+* #2449 Categories do not import when importing QIF files
+* #2443 Web app lost category and sub-category
+* #2440 #2449 #2443 Web app
+* #2433 Expenses report issue
+* #2432 Category Income/Expenses - Last 12 Months
+* #2427 Ignore future
+* #2426 Default Payee in Options/Others
+* #2417 Transaction Filter does not open
+* #2416 Crash when entering next occurrence of a recurring transaction
+* #2413 Webapp autostart memory leaks
+* #2410 Notes fiels in CSV import
+* #2403 Account in Transaction report selected
+
+Features:
+* #2518 Swedish translation (Thank you, Tomas Marklund)
+* #2512 Use currency history
+* #2506 Account webpage
+* #2506 Account webpage
+* #2425 Icon sizes
+* #2425 Icon sizes (Win)
+* #2392 Transaction colour
+
+Notes:
+* Currency Exchange Rates
+* Virtual File System
+* Foreign language versions updated [crowdin.com](https://crowdin.com/project/moneymanagerex/activity_stream)
+
+Version 1.3.4
+~~~~~~~~~~~~~
+Released: 2020-04-26
+
+Bugfixes:
+* #2395 Graph scaling
+* #2387 Storage mmexini.db3
+* #2229 Account attachments fail to open
+* #2382 Bug - select category in recurring transaction
+* #2379 Transaction auto number
+* #2036 Categories:Monthly report - add date ranges
+* #2375 Custom Field String issue
+* #2369 Transaction dialog outlook (MAC)
+* #2031 Default category is not assigned automatically for known payee during .qif import
+* #1146 Possibility to run several mmex apps
+
+Features:
+* #2391 Grouping on Budget Setup
+* #2231 Export to JSON
+
+
+Version 1.3.3
+~~~~~~~~~~~~~
+Released: 2017-03-04
+
+Bugfixes:
+* assets #1074 #1070
+
+Features:
+Search box not working #1060
+
+Notes:
+* Mac build updated on Oct 7, 2017 to use wxWidgets 3.0.2 instead of 3.1. This fixes the issues with right click menus being greyed out.
+
+Version 1.3.2
+~~~~~~~~~~~~~
+Released: 2017-02-25
+
+Bugfixes:
+* Programs and Features icon in Windows. SF Issue https://sourceforge.net/p/moneymanagerex/bugs/972/
+* Albanian lang file
+* Prevent Crash on Home page Issue #1019
+* Hebrew, Hungarian Translations
+* Displayed Latin Currency symbols Issue #739
+* Crash on startup when files not found Issue #1033
+* Transaction Filter Crash, Account checked, none supplied. Issue #1043
+* Check for null pointer. Issue #979
+* Move Transaction. Issue #1063
+* HTML report export. Issue #1064
+
+
+Version 1.2.7
+~~~~~~~~~~~~~
+Released: 2016-04-14
+
+Bugfixes:
+* Italian translation updated
+* Russian translation updated
+* Help files updated
+* Validate math expressions (Issue #659)
+* Items in Navigation keep disappearing in Ubuntu and MacOS (Issue #658)
+* Transactions color tag is lost in some specific case (Issue #788)
+* Minor fixes
+
+
+Version 1.2.6
+~~~~~~~~~~~~~
+Released: 2016-03-05
+
+Bugfixes:
+* OK the default when entering a transaction (Issue #676)
+* most recent notes (Issue #677)
+* Fraction part may get lost after opening transaction for edit (Issue #690)
+* Grand Total missing stocks
+* Hebrew translation updated
+* Transaction Report formatting (Issue #717)
+* Monthly Summary of Accounts Report (Issue #610)
+* Minor fixes
+
+
+Version 1.2.5
+~~~~~~~~~~~~~
+Released: 2016-01-26
+
+Bugfixes:
+* Portuguese_br translation updated
+* Split transaction not allowed ENTER Key or ARITMETIC EXPRESSIONS (Issue #648)
+* Monthly Summary of Accounts Report deleted (Issue #610)
+* QIF import fixes (Issue #617)
+* Cash account type added for android synchronisation (Issue #455)
+* Minor fixes
+
+
+Version 1.2.4
+~~~~~~~~~~~~~
+Released: 2015-12-20
+
+Bugfixes:
+* Italiano translation updated
+* Home Page folder path fix
+* Speedup
+* QIF import fixes
+* CMD + C on OS X causes MMEX popup window to close (Issue #769)
+
+Features:
+* Japanese translation added
+
+Version 1.2.3
+~~~~~~~~~~~~~
+Released: 2015-11-04
+
+Bugfixes:
+* Assertion 'datetime failed' (Issue #536)
+* Delete currency (Issue #569)
+* Add attachments on duplicate transaction (Issue #579)
+* Wrong currency on repeating transactions (Issues #562, #568)
+* EOL support for CSV export/import (Issue #577)
+* ANSI encoding and date with time support for CSV import (Issue #579)
+* Problem with full screen mode on Mac (bug https://sourceforge.net/p/moneymanagerex/bugs/742/)
+* tmp folder permissions(Issue #559)
+
+Features:
+* Currency added Venezuelan Bolivar
+
+Notes:
+* Translations update
+
+
+Version 1.2.2
+~~~~~~~~~~~~~
+Released: 2015-07-29
+
+Bugfixes:
+* Transaction Type Transfer From/To Error (bug https://sourceforge.net/p/moneymanagerex/bugs/707/)
+* Stock Account fix total value
+* Export of small withdrawals have wrong sign (bug https://sourceforge.net/p/moneymanagerex/bugs/695/)
+* Czech translation update
+* Colours on print and print preview are not the same (bug https://sourceforge.net/p/moneymanagerex/bugs/722/)
+* QIF import fixes (bug https://sourceforge.net/p/moneymanagerex/bugs/712/)
+* Cancel button label changed to Close for Currency dialogue (bug https://sourceforge.net/p/moneymanagerex/bugs/714/)
+
+Features:
+* Lithuanian translation added
+
+
+Version 1.2.1
+~~~~~~~~~~~~~
+Released: 2015-06-07
+
+* Bugfixes:
+* Negative 'Initial Balance' (bug https://sourceforge.net/p/moneymanagerex/bugs/692/)
+* Recurring Transactions navigation issue (bug https://sourceforge.net/p/moneymanagerex/bugs/679/)
+* Spelling mistakes (bugs https://sourceforge.net/p/moneymanagerex/bugs/676/), [#677](https://sourceforge.net/p/moneymanagerex/bugs/677/)
+* Temporary View Change (bug https://sourceforge.net/p/moneymanagerex/bugs/684/)
+* html format (issue #487)
+
+
+Version 1.2.0
+~~~~~~~~~~~~~
+Released: 2015-04-28
+
+Features:
+* Introducing new account type - Credit Card
+* Monthly Summary of Accounts
+* Stock History Monitoring
+* My Usage Reports
+* MMEX News display on Home page
+* Apply button on Options Dialog saves displayed page.
+* Extra columns displayed in panels.
+* Command to change encrypted database password.
+* Command to compact the database
+* Import transactions from WebApp
+* Repeating transaction created from existing transaction
+* Functionality Change: Repeating Transaction.
+* 'Next Occur Date' redefined as 'Payment Date' and 'Due Date'
+* Database Upgrade: Database version updated to version 3 with auto data correction for Repeating Transactions.
+
+Bugfixes:
+* Many bug fixes
+
+
+Version 1.1.2
+~~~~~~~~~~~~~
+Released: 2014-11-17
+
+Features:
+* Repeating transaction dialog restyling
+* Added transaction filter to repeating transactions panel
+* Added more keywords into GRM
+
+Bugfixes:
+* CashFlow crash
+* Fix for repeating transactions with split categories
+* Fix PayPal QIF import (bug #543)
+* Fix stock update date format (bug #545)
+* Fix budget for substituted category (bug #546)
+* Fix category removal error on budget panel (bug #551)
+* Translations update
+
+
+Version 1.1.1
+~~~~~~~~~~~~~
+Released: 2014-11-02
+
+Features:
+* Full UTF-8 and wide characters support in GRM and LUA
+* Full integration with WebApp @ http:\webapp.moneymanagerex.org
+* Added "unknown" payee\category in QIF, CSV and WebApp import
+* Navigation panel status saving
+* New JS pie charts on report
+* Added option to reallocate account type
+* Added option to change password of encrypted DB
+* Added timeout option for web-calls
+* Added FullScreen support
+* Save transactions colours to database instead of local pc
+
+Bugfixes:
+* Fix for '&' sign in notes (bug #441)
+* Fix new transaction with no payee in list (bug #450)
+* Fix deletion of two categories (bug #452)
+* Fix override categories in home page (bugs #447 #444)
+* Fix transaction filter transfers and payees (bugs #453 #457)
+* Fix for trasnfer between account with different currencies (bugs #462 #472)
+* Fix cashflow report (bug #481)
+* Fix space in amount (bug #493)
+* Fix wrong beahviour of splitted and new transactions

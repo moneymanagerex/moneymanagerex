@@ -17,10 +17,43 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.7.0)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 1)
+SET(MMEX_VERSION_BETA -1)
 SET(MMEX_VERSION_RC -1)
+
+# Extract latest version from the top of the NEWS file
+file(STRINGS NEWS NEWS_VERSION_LINES REGEX "^Version .*")
+string(REPLACE "Version " "" MMEX_VERSIONS "${NEWS_VERSION_LINES}")
+list(GET MMEX_VERSIONS 0 LATEST_MMEX_VERSION)
+
+# Enable build type based on an optional version suffix.
+# Example:
+# "1.7.0 Alpha", "1.7.0 Alpha 1"
+if(LATEST_MMEX_VERSION MATCHES "^([0-9]+)(.[0-9]+)(.[0-9]+) (Alpha|Beta|RC)( [0-9]+)?$")
+    if(LATEST_MMEX_VERSION MATCHES ".* [0-9]+$")
+        string(REGEX REPLACE "^.* " "" RELEASE_VERSION "${LATEST_MMEX_VERSION}")
+    else()
+        SET(RELEASE_VERSION 0)
+    endif()
+    if(LATEST_MMEX_VERSION MATCHES ".* Alpha( [0-9]+)?$")
+        message(STATUS "Build type: Alpha")
+        SET(MMEX_VERSION_ALPHA ${RELEASE_VERSION})
+    elseif(LATEST_MMEX_VERSION MATCHES ".* Beta( [0-9]+)?$")
+        message(STATUS "Build type: Beta")
+        SET(MMEX_VERSION_BETA ${RELEASE_VERSION})
+    elseif(LATEST_MMEX_VERSION MATCHES ".* RC( [0-9]+)?$")
+        message(STATUS "Build type: RC")
+        SET(MMEX_VERSION_RC ${RELEASE_VERSION})
+    else()
+        message(SEND_ERROR "Invalid version string: \"${LATEST_MMEX_VERSION}\"")
+    endif()
+elseif(LATEST_MMEX_VERSION MATCHES "^([0-9]+)(.[0-9]+)(.[0-9]+)$")
+    message(STATUS "Build type: Stable")
+else()
+    message(SEND_ERROR "Invalid version string: \"${LATEST_MMEX_VERSION}\"")
+endif()
+
+string(REGEX REPLACE " .*$" "" MMEX_VERSION "${LATEST_MMEX_VERSION}")
 
 # ---------------------------------------------------------------------------
 
@@ -97,6 +130,12 @@ execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # define shortcut
     set(LINUX TRUE)
+
+    find_program(APPSTREAMCLI appstreamcli
+        DOC "tool for generating release information")
+    if(NOT APPSTREAMCLI)
+        message(SEND_ERROR "appstreamcli tool not found.")
+    endif()
 
     # Detect Linux distribution (if possible)
     find_program(LSB_RELEASE lsb_release
@@ -633,11 +672,13 @@ if(LINUX)
         resources/dist/linux/share/applications/org.moneymanagerex.MMEX.desktop
         DESTINATION share/applications)
     install(FILES
-        resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml
-        DESTINATION share/metainfo)
-    install(FILES
         resources/dist/linux/share/mime/packages/org.moneymanagerex.MMEX.mime.xml
         DESTINATION share/mime/packages)
+    execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${PROJECT_SOURCE_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml
+	            COMMAND_ERROR_IS_FATAL ANY)
+    install(FILES
+        org.moneymanagerex.MMEX.metainfo.xml
+        DESTINATION share/metainfo)
 endif()
 
 # Icons
