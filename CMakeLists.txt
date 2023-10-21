@@ -29,7 +29,7 @@ list(GET MMEX_VERSIONS 0 LATEST_MMEX_VERSION)
 # Enable build type based on an optional version suffix.
 # Example:
 # "1.7.0 Alpha", "1.7.0 Alpha 1"
-if(LATEST_MMEX_VERSION MATCHES ".* (Alpha|Beta|RC)( [0-9]+)?$")
+if(LATEST_MMEX_VERSION MATCHES "^([0-9]+)(.[0-9]+)(.[0-9]+) (Alpha|Beta|RC)( [0-9]+)?$")
     if(LATEST_MMEX_VERSION MATCHES ".* [0-9]+$")
         string(REGEX REPLACE "^.* " "" RELEASE_VERSION "${LATEST_MMEX_VERSION}")
     else()
@@ -45,10 +45,12 @@ if(LATEST_MMEX_VERSION MATCHES ".* (Alpha|Beta|RC)( [0-9]+)?$")
         message(STATUS "Build type: RC")
         SET(MMEX_VERSION_RC ${RELEASE_VERSION})
     else()
-	    message(SEND_ERROR "Invalid version string.")
+        message(SEND_ERROR "Invalid version string: \"${LATEST_MMEX_VERSION}\"")
     endif()
-else()
+elseif(LATEST_MMEX_VERSION MATCHES "^([0-9]+)(.[0-9]+)(.[0-9]+)$")
     message(STATUS "Build type: Stable")
+else()
+    message(SEND_ERROR "Invalid version string: \"${LATEST_MMEX_VERSION}\"")
 endif()
 
 string(REGEX REPLACE " .*$" "" MMEX_VERSION "${LATEST_MMEX_VERSION}")
