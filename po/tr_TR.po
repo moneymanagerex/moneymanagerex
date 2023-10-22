@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-22 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -108,11 +108,11 @@ msgstr "Hesabın mevcut kalıntısını giriniz."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Açılış Tarihi:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Hesabın açıldığı tarih"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2567
@@ -285,7 +285,7 @@ msgstr "Para Birimi"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Lütfen geçerli bir URL girin"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
@@ -293,26 +293,26 @@ msgstr "Geçersiz URL"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "Açılış tarihi gelecekte olamaz"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1069
 #: billsdepositsdialog.cpp:1072 stockdialog.cpp:427 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Geçersiz Tarih"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Bu hesap için işlemler bu tarihten önce zaten var"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Bu hesap için hisse senedi alımları bu tarihten önce zaten mevcuttur"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Bu hesap için zamanlanmış işlemler bu tarihten önce planlanır."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -321,11 +321,11 @@ msgstr "Yeni Hesap"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "En Son Kullanılan Veritabanını Aç"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Yeni Veritabanı"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "Başlangıç için yeni bir veritabanı dosyası oluştur"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Varolan Veritabanını Aç"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -341,7 +341,7 @@ msgstr "Önceden oluşturulmuş (*.mmb) bir veritabanı dosyası aç"
 
 #: appstartdialog.cpp:111 mmframe.cpp:1633
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Kullanıcı Arayüz &Dili"
 
 #: appstartdialog.cpp:112 appstartdialog.cpp:212 mmframe.cpp:1634
 #: optionsettingsgeneral.cpp:100
