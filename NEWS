@@ -41,7 +41,7 @@ Miscellaneous:
 * #6047 mmex 1.6.4 crash after db upgrade to v18 on MacOS
 * #5464 Improve budget perfomance report
 * #5329 Distinguish source strings with multiple variables, eg. source: `%1$s blah %2$s` → translation: `%2$s absurdo %1$s`
-* #5328 bad string (translations issue)  
+* #5328 bad string (translations issue)
 
 
 Version 1.6.4
@@ -69,7 +69,7 @@ Features:
 * #5636 Change `system default` to `System default` and other minor improvements
 * #5571 Deleted Transaction Dialog Titlebar
 * #5465 Show only subtransactions that match the filter
-* #3684 Drag and Drop to import file in correct account 
+* #3684 Drag and Drop to import file in correct account
 * #3148 Payee matching
 * #2361 Conversion rate input for transfer type 'Transaction' Advanced (checked)
 * #1806 MMEX Flatpak listing on Flathub
@@ -140,10 +140,10 @@ Bugfixes:
 
 Miscellaneous:
 * #6032 GUI - minor text improvement in Russian
-* #5997 MMEX flatpak is not listed on website 
+* #5997 MMEX flatpak is not listed on website
 * #5962 What does INFOID: 8 relate to please?
 * #5686 Budget view crash on double click category summary
-* #5656 Show count of selected/filtered/total records in the view 
+* #5656 Show count of selected/filtered/total records in the view
 
 
 Version 1.6.3
