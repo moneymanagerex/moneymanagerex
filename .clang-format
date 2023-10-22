@@ -131,6 +131,7 @@ StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
   - wxBEGIN_EVENT_TABLE
+  - wxEND_EVENT_TABLE
   - EVT_MENU
 TabWidth:        4
 UseCRLF:         false
