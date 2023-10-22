@@ -48,6 +48,103 @@ Version 1.6.4
 ~~~~~~~~~~~~~
 Released: 2023-06-21
 
+Features:
+* #5945 DB password change dialog Cancel button
+* #5904 REPORTS - On all charts on V. 1.6.4
+* #5901 Currency Dialog Representation
+* #5892 1. Remove `Sub Category:` from budget entry dialog; 2. Show entire category path in `Category:`
+* #5861 1. Implement `Theme Mode` = `Auto` to select `Light`/`Dark` theme from operating system setting; 2. Rename `Auto` to `System`.
+* #5853 Transaction sound
+* #5812 Transaction report: option to group by ID
+* #5792 Extra date format required.
+* #5790 Associate an import/export Preset (template) name with an account
+* #5759 Automatically Download Stock Prices at Startup
+* #5709 Titlebar display order: 1. database filename; 2. localized program name. `Recent Files` menu: 3. Add database directory
+* #5706 Split Transaction Notes are not exported to QIF files
+* #5668 Make Dialogs resizable
+* #5659 Changes `Files` to `File` in `Import from`
+* #5658 Changes keyboard shortcuts in `Accounts` menu
+* #5655 Change `Url` to `URL`
+* #5650 Add ellipsis to "View with Transaction Filter" menu option
+* #5636 Change `system default` to `System default` and other minor improvements
+* #5571 Deleted Transaction Dialog Titlebar
+* #5465 Show only subtransactions that match the filter
+* #3684 Drag and Drop to import file in correct account 
+* #3148 Payee matching
+* #2361 Conversion rate input for transfer type 'Transaction' Advanced (checked)
+* #1806 MMEX Flatpak listing on Flathub
+* #1254 Register filetypes for mmex at system level in Linux
+
+Bugfixes:
+* #6030 IUSE.L rate
+* #6013 Crash when closing QIF import dialog while reports are open
+* #5999 Custom decimal field validation bug
+* #5975 Transfer arrow points the wrong way on Share Withdrawal transactions
+* #5973 Share accounts displayed in Favorites even if "Display Share Accounts" is unchecked
+* #5969 Incorrect Total Gain/Loss within Stock widget on the Dashboard
+* #5966 Crash when deleting or restoring transactions using context menu
+* #5964 Constraint error on upgrade from DB 17 to DB 18 when another database is already open
+* #5949 bad locale name
+* #5948 Error opening encrypted DB
+* #5947 Error when try to import a .csv file with a subcategory missing
+* #5938 Button not visible in Relocation dialog.
+* #5926 Erroneous transaction (causes crash on click)
+* #5910 MMEX version 1.6.3 64-bits
+* #5894 Can not update stock prices. Get invalid cookie error.
+* #5890 share update error
+* #5885 `Transaction Filter` is bigger than the screen
+* #5875 Initialized when entering Unicode characters in the custom field Tooltip.
+* #5870 Check for updates
+* #5860 Category Report fails reporting 0 even if expenditures are present
+* #5857 Crash when using Organize Categories or Organize Payees if transaction report is open
+* #5855 Stock Portfolios: Click on update throwing Invalid Cookie error
+* #5852 Crash when creating new database & account
+* #5843 Stock Avg Share Price and Total Cost calculation error
+* #5835 Going over Account text field, using Tab, deletes selected account
+* #5834 Incorrect total net worth reported on Dashboard
+* #5833 Summary of stocks Gains/Loss currency exchange error
+* #5832 Transaction Details panel becomes unnecessarily wide when custom field contains data
+* #5830 Auto recurring transaction crash
+* #5828 Stock and Asset transactions can be copied/pasted using keyboard
+* #5823 View Trans window for Stock transaction - make it larger/resizable please.
+* #5817 Transaction Filter does not work correctly when changing an account
+* #5813 Range options in transaction filter have no effect
+* #5809 Account, Payee and Category dropdown lists are not active
+* #5808 New Tranaction widnow is growing after reopening and can't be shrinked down
+* #5791 Colour settings are not saved with the template on import dialogs
+* #5774 Locale is carried over between databases.
+* #5772 CSV Import - "Type" defined amount sign does not work
+* #5769 RESOCONTO OPERAZIONI - FILTRO NON VA QUANDO SALVATO
+* #5752 Transaction Report Filter does not work with Split Transaction Notes
+* #5683 Cancel add asset transaction when creating new asset crashes MMEX
+* #5670 MMEX crashes on asset transaction when "Last Used" is set for Default Payee, "Last used for payee" is set for Default Category, and the last transaction was a transfer
+* #5643 Can´t add Initial Balance on Polish Zloty (PLN) Currency
+* #5641 Imported transactions from webapp not working correctly
+* #5630 Transaction not deleted
+* #5629 1. Please expand `Search` field; 2./3. remove spaces ` ` before and after `/`; 4. `Show All` keyboard accelerator
+* #5628 Please allow title `Currency Manager` to be translatable
+* #5626 Please allow `locale::facet::_S_create_C_locale name not valid` to be translatable
+* #5625 Please allow `Normal`, `Enlarged`, `Large`, `Huge` to be translatable
+* #5618 Crash on selecting share price in investment window (see Image)
+* #5615 1.6.3 keyboard shortcuts do not work anymore
+* #5614 Recurring transactions.
+* #5606 Search Feature issue introduced 1 - 2 updates ago not resolved
+* #5602 QIF import date format
+* #5599 Transaction Report / Categorie
+* #5590 GRM text box context menu is not translated
+* #5576 Issue importing attachment to the desktop application
+* #5573 Budget Performance Report
+* #5568 MMEX database upgrade to version 17 failed
+* #5451 Missing currency ZMW Zambian Kwacha
+* #5394 for "all transactions" CRTL+c does not work
+
+Miscellaneous:
+* #6032 GUI - minor text improvement in Russian
+* #5997 MMEX flatpak is not listed on website 
+* #5962 What does INFOID: 8 relate to please?
+* #5686 Budget view crash on double click category summary
+* #5656 Show count of selected/filtered/total records in the view 
+
 
 Version 1.6.3
 ~~~~~~~~~~~~~
