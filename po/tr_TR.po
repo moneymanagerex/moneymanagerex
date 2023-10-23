@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-22 23:25\n"
+"PO-Revision-Date: 2023-10-23 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -346,11 +346,11 @@ msgstr "Kullanıcı Arayüz &Dili"
 #: appstartdialog.cpp:112 appstartdialog.cpp:212 mmframe.cpp:1634
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
-msgstr ""
+msgstr "Kullanıcı arabirimi dilini değiştir"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "Kullanım Kılavuzu"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -358,20 +358,20 @@ msgstr "Kullanım Kılavuzunu Oku"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1803
 msgid "&Website"
-msgstr ""
+msgstr "&Websitesi"
 
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Visit the %s website"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Bu iletişim kutusunu başlangıçta göster"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "&Çıkış "
 
 #: appstartdialog.cpp:155
 #, c-format
@@ -381,11 +381,11 @@ msgstr "Son açılan veritabanını aç: %s"
 #: appstartdialog.cpp:199 mmframe.cpp:1639 mmframe.cpp:3004
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "Sistem varsayılanı"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Kullanıcı Arayüz Dili"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3873 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -537,7 +537,7 @@ msgstr "Bugünkü Değer"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Yeni Varlık..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
@@ -545,7 +545,7 @@ msgstr ""
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Varlık İşlemi Ekle..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -553,20 +553,20 @@ msgstr "Varlık İşlemlerini &Göster"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "Varlık Hesabını &Aç..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Varlık Düzenle..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Varlık Sil..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:490
 #: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Ekleri Düzenle..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -648,12 +648,12 @@ msgstr "İlgili varlığı bulmak için herhangi bir dize giriniz"
 #: assetspanel.cpp:511 filtertransdialog.cpp:676 mmcheckingpanel.cpp:488
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "İpuçları: Arama kriterlerinde joker karakterleri kullanabilirsiniz - soru işareti (?), yıldız işareti (*)."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:677 mmcheckingpanel.cpp:489
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Herhangi bir karakteri bulmak için soru işaretini kullanın (?) - örneğin, s?t 'sat' ve 'set' bulur."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:678 mmcheckingpanel.cpp:490
 #: payeedialog.cpp:139
