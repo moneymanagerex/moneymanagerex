@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-23 01:20\n"
+"PO-Revision-Date: 2023-10-23 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -541,7 +541,7 @@ msgstr "&Yeni Varlık..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "Varlığı &Kopyala..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
@@ -658,7 +658,7 @@ msgstr "Herhangi bir karakteri bulmak için soru işaretini kullanın (?) - örn
 #: assetspanel.cpp:513 filtertransdialog.cpp:678 mmcheckingpanel.cpp:490
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Herhangi bir karakteri bulmak için soru işaretini kullanın (?) - örneğin, s? t 'sat' ve 'set' bulur."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:679 mmcheckingpanel.cpp:491
 #: payeedialog.cpp:140
