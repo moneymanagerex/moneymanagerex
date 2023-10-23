@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-23 17:27\n"
+"PO-Revision-Date: 2023-10-23 23:09\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -863,7 +863,7 @@ msgstr "Aylık"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Her 2 Ayda bir"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -919,7 +919,7 @@ msgstr "Aylık (Son İşgünü)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Seçilen işlemin eşkopyasını oluştur"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
@@ -1636,7 +1636,7 @@ msgstr "Tümünü Genişlet"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "Tümünü &Göster"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
