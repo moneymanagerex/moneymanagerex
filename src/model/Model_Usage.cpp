@@ -143,10 +143,15 @@ class SendStatsThread : public wxThread
 public:
     explicit SendStatsThread(const wxString& url) : wxThread()
         , m_url(url) {};
+    explicit SendStatsThread(const wxString& url, const wxString& payload) : wxThread()
+        , m_url(url)
+        , m_payload(payload)
+        {};
     ~SendStatsThread() {};
 
 protected:
     wxString m_url;
+    wxString m_payload;
     virtual ExitCode Entry();
 };
 
@@ -172,8 +177,6 @@ void Model_Usage::pageview(const wxWindow* window, long plt /* = 0 msec*/)
         current = current->GetParent();
     }
 
-    if (plt)
-        timing(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
     return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
@@ -228,6 +231,8 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     wxString url = mmex::weblink::GA;
 
     std::vector<std::pair<wxString, wxString>> parameters = {
+        { "measurement_id", "G-K8MBNK3HGN"},
+        { "api_secret", "E3B1tM68QwWuqvRmNcr7lA"},
         { "v", "1" },
         { "t", "pageview" },
         { "tid", "UA-51521761-6" },
@@ -254,18 +259,51 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
         url += wxString::Format("%s=%s&", kv.first, kv.second);
     }
 
+    Document document;
+    document.SetObject();
+
+    Value client_id(uuid().first.utf8_str(), document.GetAllocator());
+    document.AddMember("client_id", client_id, document.GetAllocator());
+
+    Value user_id(uuid().second.utf8_str(), document.GetAllocator());
+    document.AddMember("user_id", user_id, document.GetAllocator());
+
+    Value events(kArrayType);
+
+    Value event(kObjectType);
+    Value name("page_view", document.GetAllocator());
+    event.AddMember("name", name, document.GetAllocator());
+
+    Value params(kObjectType);
+    Value page_title(documentTitle.utf8_str(), document.GetAllocator());
+    params.AddMember("page_title", page_title, document.GetAllocator());
+
+    Value page_location(documentPath.utf8_str(), document.GetAllocator());
+    params.AddMember("page_location", page_location, document.GetAllocator());
+
+    event.AddMember("params", params, document.GetAllocator());
+    events.PushBack(event, document.GetAllocator());
+    document.AddMember("events", events, document.GetAllocator());
+
+    StringBuffer buffer;
+    Writer<StringBuffer> writer(buffer);
+    document.Accept(writer);
+
     // Spawn thread to send statistics
-    SendStatsThread* thread = new SendStatsThread(url.RemoveLast()); // override the last &
+    SendStatsThread* thread = new SendStatsThread(url.RemoveLast(), wxString::FromUTF8(buffer.GetString())); // override the last &
     thread->Run();
 }
 
 extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendDefault[];
 wxThread::ExitCode SendStatsThread::Entry()
 {
-    wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s",
-        GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url);
+    wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s, payload %s",
+        GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url, m_payload);
     wxString result = wxEmptyString;
-    http_get_data(m_url, result, wxString::Format("%s/%s (%s; %s) %s", mmex::getProgramName(), mmex::version::string, wxPlatformInfo::Get().GetOperatingSystemFamilyName(), wxGetOsDescription(), wxWebViewBackendDefault));
+    if (this->m_payload.IsEmpty())
+        http_get_data(m_url, result, wxString::Format("%s/%s (%s; %s) %s", mmex::getProgramName(), mmex::version::string, wxPlatformInfo::Get().GetOperatingSystemFamilyName(), wxGetOsDescription(), wxWebViewBackendDefault));
+    else
+        http_post_data(m_url, m_payload, "Content-Type: application/json", result);
     wxLogDebug("Response: %s", result);
     return nullptr;
 }
