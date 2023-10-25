@@ -1556,8 +1556,10 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
 
     if (textAmount_->Calculate()) {
         textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
+        textAmount_->SelectAll();
     }
     if (m_advanced && toTextAmount_->Calculate()) {
         toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
+        toTextAmount_->SelectAll();
     }
 }
