@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-26 22:11\n"
+"PO-Revision-Date: 2023-10-26 23:09\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1045,7 +1045,7 @@ msgstr "Hesap"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Zamanlanmış işlemin sahibi olacak Hesabı belirtin"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1095,7 +1095,7 @@ msgstr "Parçalı Kategorileri kullan"
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 #: billsdepositsdialog.cpp:624 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
@@ -1121,7 +1121,7 @@ msgstr "Kullanıcı Renkleri"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Bu zamanlanmış işlemin eklerini düzenleyin"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:684
 #: filtertransdialog.cpp:1038 filtertransdialog.cpp:1832
@@ -1130,7 +1130,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
 #: transdialog.cpp:575
 msgid "Color"
-msgstr ""
+msgstr "Renk"
 
 #: billsdepositsdialog.cpp:660 transdialog.cpp:582 transdialog.cpp:1318
 #: usertransactionpanel.cpp:206
@@ -1149,23 +1149,24 @@ msgstr "Yatıran"
 
 #: billsdepositsdialog.cpp:915
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Ödeme tarihi vade tarihinden sonra, niyetin bu mu?"
 
 #: billsdepositsdialog.cpp:916
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Geç ödeme gibi görünüyor"
 
 #: billsdepositsdialog.cpp:968 transactionsupdatedialog.cpp:335
 #: transdialog.cpp:675
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Bu alacaklı adını daha önce kullanmadınız. İsim doğru mu?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:969 transactionsupdatedialog.cpp:336
 #: transdialog.cpp:676
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Alacaklı adını onayla"
 
 #: billsdepositsdialog.cpp:988 billsdepositsdialog.cpp:994
 #: billsdepositsdialog.cpp:1380 filtertransdialog.cpp:918
@@ -1187,7 +1188,7 @@ msgstr "Geçersiz Değer"
 #: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:427 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Hesabın açılış tarihi, bu işlemin tarihinden sonradır"
 
 #: billsdepositsdialog.cpp:1303
 msgid "Specify the transfer amount in the From Account"
@@ -1246,11 +1247,11 @@ msgstr "Hata"
 #: billsdepositsdialog.cpp:1450 splittransactionsdialog.h:82
 #: transdialog.cpp:336
 msgid "Split Transaction"
-msgstr ""
+msgstr "İşlemi Böl"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Yeni Zamanlanmış İşlem"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1310,7 +1311,7 @@ msgstr "Ödeme"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX, düzenli ödemelerin işlem olarak ayarlanmasına izin verir. Bu işlemler aynı zamanda düzenli mevduatlar veya gelecekteki bir zamanda gerçekleşecek transferler olabilir. Bu işlemler, bir olayın gerçekleşmek üzere olduğunu hatırlatır ve işlemin vadesinden 14 gün önce Gösterge Tablosunda görünür."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1319,7 +1320,7 @@ msgstr "İpucu: Bu işlemler kullanıcının ödeme tarihinde herhangi bir değe
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3162 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Zamanlanmış İşlemler"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
@@ -1327,15 +1328,15 @@ msgstr "EşKopya &Oluştur"
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Zamanlanmış İşlemi Sil"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr ""
+msgstr "Gi&riş"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Bir Sonraki Zamanlanmış İşlem Oluşumunu Girin"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1343,11 +1344,11 @@ msgstr "A&tla"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Bir Sonraki Zamanlanmış İşlem Oluşumunu Atla"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Bir sonraki Oluşumu girin..."
 
 #: billsdepositspanel.cpp:435
 msgid "Skip next Occurrence"
@@ -1355,11 +1356,11 @@ msgstr "Sonraki gerçekleşmeyi atlayın"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Yeni Zamanlanmış İşlem..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Zamanlanmış İşlemi Düzenle..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
