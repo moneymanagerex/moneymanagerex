@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-23 23:09\n"
+"PO-Revision-Date: 2023-10-26 22:11\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -663,7 +663,7 @@ msgstr "Herhangi bir karakteri bulmak için soru işaretini kullanın (?) - örn
 #: assetspanel.cpp:514 filtertransdialog.cpp:679 mmcheckingpanel.cpp:491
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Cümlenin ortasındaki herhangi bir dizeyi bulmak için başlangıçtaki yıldız işaretini (*) kullanın."
 
 #: assetspanel.cpp:585 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
@@ -673,7 +673,7 @@ msgstr "Toplam: %s"
 #: assetspanel.cpp:668
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Değerdeki Değişim: %1$s %2$s"
 
 #: assetspanel.cpp:784
 msgid "This asset does not have its own account\n\n"
@@ -704,7 +704,7 @@ msgstr "İlişik dizin tanımlanmamış."
 
 #: attachmentdialog.cpp:66
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Lütfen bunu Araçlar = Seçenekler = Ekler bölümünde ayarlayın"
 
 #: attachmentdialog.cpp:67
 msgid "Attachment folder not defined"
@@ -725,12 +725,12 @@ msgstr "İlişikler dizini bulunamadı."
 #: attachmentdialog.cpp:115
 #, c-format
 msgid "Organize Attachments | %s | %i"
-msgstr ""
+msgstr "Ekleri Düzenle / %s / %i"
 
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Ekleri Düzenle / %1$s / %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -895,19 +895,19 @@ msgstr "Günlük"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "(N) Gün içinde"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "(N) Ay içinde"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Her (n) Günde Bir"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Her (n) Ayda bir"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -923,15 +923,15 @@ msgstr "Seçilen işlemin eşkopyasını oluştur"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Zamanlanmış İşlemi Düzenle"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Zamanlanmış İşlemi Girin"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Zamanlanmış İşlem Ayrıntıları"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -947,7 +947,7 @@ msgstr "Yinelemeler"
 
 #: billsdepositsdialog.cpp:458
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Belirtilen değerlerle gerçekleşen son tarihe geri dönün"
 
 #: billsdepositsdialog.cpp:465
 msgid "Advance the next occurring date with the specified values"
