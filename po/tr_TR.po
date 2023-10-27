@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-27 19:49\n"
+"PO-Revision-Date: 2023-10-27 20:49\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1752,19 +1752,19 @@ msgstr "Kategorileri Düzenle: Hatayı Sil"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Bu kategoriyi veya alt kategorilerinden birini kullanan silinmiş işlemler mevcuttur."
 
 #: categdialog.cpp:501
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Kategoriyi silmek, ilişkili silinmiş işlemleri de otomatik olarak temizleyecektir."
 
 #: categdialog.cpp:502 payeedialog.cpp:760 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Devam etmek istiyor musun?"
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Kategori Silme İşlemini Onayla"
 
 #: categdialog.cpp:612 tagdialog.cpp:241
 #, c-format
@@ -1777,11 +1777,11 @@ msgstr "Kategori Düzenle"
 
 #: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
-msgstr ""
+msgstr "Kategorileri Düzenle: Düzenleme Hatası"
 
 #: categdialog.cpp:682 mmframe.cpp:3727
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Kategorileri birleştirme tamamlandı"
 
 #: categdialog.cpp:683 mmframe.cpp:3728 mmframe.cpp:3743 mmframe.cpp:3759
 #: payeedialog.cpp:841
@@ -1791,15 +1791,15 @@ msgstr "Veritabanındaki güncellenen kayıtlar: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3730
 msgid "Merge categories result"
-msgstr ""
+msgstr "Kategorileri birleştirme sonuçları"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Tüm kategorileri göstermek istediğinizden emin misiniz"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Tüm kategorileri göster"
 
 #: categdialog.cpp:790
 msgid "Hide Selected Category"
@@ -1811,7 +1811,7 @@ msgstr "Seçilen Kategoriyi Göster"
 
 #: categdialog.cpp:793 payeedialog.cpp:885
 msgid "Remove Category"
-msgstr ""
+msgstr "Kategoriyi kaldır"
 
 #: categdialog.cpp:796
 msgid "Clear Settings"
@@ -1842,35 +1842,35 @@ msgstr "Tamam"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "Geri Al"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "Tekrarla"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "Kes"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "Yapıştır"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "Tümünü Seç"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64 bit"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "İşlem Filtresiyle görüntüleyin..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -1926,7 +1926,7 @@ msgstr "Hesap Kesim Tarihinden Sonrasını Göster"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "TÜMÜ"
 
 #: constants.cpp:209 mmframe.cpp:1499 mmframe.cpp:1912
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -1952,7 +1952,7 @@ msgstr "Para Birimi"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "Para Birimi Kodu"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
@@ -1960,15 +1960,15 @@ msgstr "Para Birimi Sembolu"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr ""
+msgstr "Sembol Konumu"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "Önek"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "Sonek"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:344
 #: import_export/univcsvdialog.cpp:416
@@ -1977,11 +1977,11 @@ msgstr "Ondalık Karakteri"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "Nokta"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "Virgül"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
@@ -1989,7 +1989,7 @@ msgstr "Gruplama Karakteri"
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "Boşluk"
 
 #: currencydialog.cpp:227
 msgid "Scale"
@@ -2009,7 +2009,7 @@ msgstr "Sabit dönüşüm oranı"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Para Birimi Biçimi Örneği:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
@@ -2027,7 +2027,7 @@ msgstr "Geçersiz Giriş"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "Gruplama karakteri ondalık karakterle aynı olamaz"
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2036,11 +2036,11 @@ msgstr "%.2f Göründüğü gibi: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Yerel Ayar Kullanılıyor)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
-msgstr ""
+msgstr "Para Birimi Yöneticisi"
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
@@ -2048,11 +2048,11 @@ msgstr "Özel Alan Ayrıntıları"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
-msgstr ""
+msgstr "Niteliği"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Özel alanın ilişkilendirildiği öğeyi seçin"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the name of the custom field"
@@ -2109,19 +2109,19 @@ msgstr "Bu alan için seçenekleri noktalı virgülle ayrılmış olarak girin."
 
 #: customfieldeditdialog.cpp:184
 msgid "Digits scale"
-msgstr ""
+msgstr "Rakam ölçeği"
 
 #: customfieldeditdialog.cpp:186
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "İzin verilen ondalık basamak ölçeğini girin"
 
 #: customfieldeditdialog.cpp:189
 msgid "Panel's column"
-msgstr ""
+msgstr "Panel sütunu"
 
 #: customfieldeditdialog.cpp:194
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Bir paneldeki öğeyi temsil edecek bir değer seçin"
 
 #: customfieldeditdialog.cpp:236
 msgid "Changing field type will delete all content!"
@@ -2146,7 +2146,7 @@ msgstr "Yeni/Düzenle Özel Alan"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
@@ -2154,7 +2154,7 @@ msgstr "Özellikler"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
-msgstr ""
+msgstr "Özel alanları kişiselleştir"
 
 #: customfieldlistdialog.cpp:171
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2169,7 +2169,9 @@ msgstr "Özel Alan Silme Onayı"
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Bu işlev, \"%s\" için özel alan değerlerini toplu olarak arayacak ve değiştirecektir\n"
+"Yalnızca tam alan değeriyle eşleşir ve yerini alır; kısmi veya orta değer değişikliğine izin verilmez\n"
+"Lütfen herhangi bir doğrulama olmadığını göz önünde bulundurun!"
 
 #: customfieldlistdialog.cpp:193
 msgid "Confirm Custom Field Content Update"
@@ -2205,12 +2207,12 @@ msgstr "Boş olarak güncellemek istiyor musnuz?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu oluşumu kuruldu ve değiştirildi!"
+msgstr[1] "%zu oluşumları kuruldu ve değiştirildi!"
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&Toplu içerik güncellemesi "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2448,7 +2450,7 @@ msgstr "MMEX veritabanı %i sürümüne başarıyla yükseltildi"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Araçlar → Veritabanı → Optimize altında bir veritabanı optimizasyonu öneriyoruz"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2520,20 +2522,20 @@ msgstr "MMEX Veritabanı Açılıyor - Hata"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Teşhis"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Geliştiriciler, programla bildirebileceğiniz sorunları teşhis etmenize yardımcı olmak için burada sunulan bilgileri sağlamanızı isteyebilir."
 
 #: filtertrans.cpp:182
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:621 mmchecking_list.cpp:1198
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr ""
+msgstr "Uzlaşma sağlanamamış"
 
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:623 mmhomepage.cpp:539
 #: mmhomepage.cpp:710 model/Model_Billsdeposits.cpp:41
@@ -2549,7 +2551,7 @@ msgstr "Hükümsüz"
 #: filtertransdialog.cpp:52 mmchecking_list.cpp:627 mmchecking_list.cpp:1187
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:44
 msgid "Follow Up"
-msgstr ""
+msgstr "Takip Et"
 
 #: filtertransdialog.cpp:53 mmchecking_list.cpp:629
 #: model/Model_Billsdeposits.cpp:44 model/Model_Checking.cpp:45
@@ -2566,7 +2568,7 @@ msgstr "Özelleştir"
 
 #: filtertransdialog.cpp:541
 msgid "Period Range"
-msgstr ""
+msgstr "Dönem Aralığı"
 
 #: filtertransdialog.cpp:553 reports/mmDateRange.cpp:35
 msgid "Date Range"
@@ -2574,7 +2576,7 @@ msgstr "Tarih Aralığı"
 
 #: filtertransdialog.cpp:589 filtertransdialog.cpp:1745
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Tüm alt kategorileri dahil et"
 
 #: filtertransdialog.cpp:624 filtertransdialog.cpp:1497
 #: filtertransdialog.cpp:1597 import_export/univcsvdialog.cpp:112
@@ -2606,49 +2608,49 @@ msgstr "Tutar Aralığı"
 
 #: filtertransdialog.cpp:675
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "İşlem notlarında bulmak için herhangi bir dize girin"
 
 #: filtertransdialog.cpp:680 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Normal ifadeleri kullanarak eşleştirmek için regex: kullanın."
 
 #: filtertransdialog.cpp:703
 msgid "Presentation Options"
-msgstr ""
+msgstr "Sunum Seçenekleri"
 
 #: filtertransdialog.cpp:717 filtertransdialog.cpp:1046
 #: filtertransdialog.cpp:1859
 msgid "Hide Columns"
-msgstr ""
+msgstr "Sütunları gizle"
 
 #: filtertransdialog.cpp:728 filtertransdialog.cpp:1052
 #: filtertransdialog.cpp:1872
 msgid "Group By"
-msgstr ""
+msgstr "Şuna göre grupla"
 
 #: filtertransdialog.cpp:737
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "Raporun nasıl gruplandırılacağını belirtin"
 
 #: filtertransdialog.cpp:740 filtertransdialog.cpp:1881
 msgid "Combine Splits"
-msgstr ""
+msgstr "Bölmeleri Birleştir"
 
 #: filtertransdialog.cpp:744
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Bölünmüş işlemleri tek satır olarak görüntüle"
 
 #: filtertransdialog.cpp:752
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: filtertransdialog.cpp:766
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Etkin değerleri geçerli Ön Ayar seçimine kaydet"
 
 #: filtertransdialog.cpp:771
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "Geçerli Ön Ayar seçimini sil"
 
 #: filtertransdialog.cpp:944 filtertransdialog.cpp:977
 #: filtertransdialog.cpp:1006 filtertransdialog.cpp:1554
@@ -2661,24 +2663,26 @@ msgstr "Boş değer"
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "Bu isim şu anda herhangi bir alacaklı ile eşleşmiyor.\n"
+"Kullanmaya devam etmek ister misin?\n"
+"%s"
 
 #: filtertransdialog.cpp:1111
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Rapor Sütunlarını Gizle"
 
 #: filtertransdialog.cpp:1246 mmframe.cpp:1253
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "Seçilen öğe silinecek"
 
 #: filtertransdialog.cpp:1247 import_export/univcsvdialog.cpp:2122
 #: mmframe.cpp:1254
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "Devam etmek istiyor musunuz?"
 
 #: filtertransdialog.cpp:1248 mmframe.cpp:1255
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Ayarlar öğesini silme"
 
 #: filtertransdialog.cpp:1563
 msgid "Filtering Details: "
@@ -2686,7 +2690,7 @@ msgstr "Süzme Ayrıntıları:"
 
 #: filtertransdialog.cpp:1681
 msgid "Label"
-msgstr ""
+msgstr "Etiket"
 
 #: filtertransdialog.cpp:1701
 msgid "Since"
@@ -2698,7 +2702,7 @@ msgstr "Önce"
 
 #: filtertransdialog.cpp:1715
 msgid "Period"
-msgstr ""
+msgstr "Dönem"
 
 #: filtertransdialog.cpp:1783
 msgid "Amount Min."
