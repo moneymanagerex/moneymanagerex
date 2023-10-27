@@ -1413,6 +1413,20 @@ const wxString getProgramDescription(int type)
     wxString build_date = wxString() << BUILD_DATE;
     build_date = wxGetTranslation(build_date.SubString(0, 2)) + build_date.Mid(3);
 
+    wxString desktop_environment;
+
+    if (wxPlatformInfo::Get().GetDesktopEnvironment().Len() > 0) {
+        desktop_environment = wxPlatformInfo::Get().GetDesktopEnvironment();
+    } else if (wxGetenv("XDG_CURRENT_DESKTOP")) {
+        desktop_environment = wxGetenv("XDG_CURRENT_DESKTOP");
+    } else if (wxGetenv("XDG_SESSION_DESKTOP")) {
+        desktop_environment = wxGetenv("XDG_SESSION_DESKTOP");
+    } else if (wxGetenv("DESKTOP_SESSION")) {
+        desktop_environment = wxGetenv("DESKTOP_SESSION");
+    } else {
+        desktop_environment = wxGetenv("GDMSESSION");
+    }
+
     wxString description;
     description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
         << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
@@ -1477,7 +1491,7 @@ const wxString getProgramDescription(int type)
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"" << eol
 #endif
         << bull + wxGetOsDescription() << eol
-        << bull + wxPlatformInfo::Get().GetDesktopEnvironment() << eol
+        << bull + desktop_environment << eol
         << bull << wxString::Format(simple ? "System Locale: %s" : _("System Locale: %s"), std::locale("").name()) << eol
         << bull << wxString::Format(simple ? "User Application Language: %s" : _("User Application Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
 
