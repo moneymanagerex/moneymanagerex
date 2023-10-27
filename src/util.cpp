@@ -43,6 +43,7 @@
 #include <wx/fs_mem.h>
 #include <fmt/core.h>
 #include <cwchar>
+#include <locale>
 
 using namespace rapidjson;
 
@@ -1476,9 +1477,9 @@ const wxString getProgramDescription(int type)
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"" << eol
 #endif
         << bull + wxGetOsDescription() << eol
-        << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
-        << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-        << " (" << wxLocale::GetSystemEncodingName() << ")" << eol;
+        << bull + wxPlatformInfo::Get().GetDesktopEnvironment() << eol
+        << bull << wxString::Format(simple ? "System Locale: %s" : _("System Locale: %s"), std::locale("").name()) << eol
+        << bull << wxString::Format(simple ? "User Application Language: %s" : _("User Application Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
 
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++)
     {
