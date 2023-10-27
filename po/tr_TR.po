@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-26 23:09\n"
+"PO-Revision-Date: 2023-10-27 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1364,11 +1364,11 @@ msgstr "&Zamanlanmış İşlemi Düzenle..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Z&amanlanmış İşlemi Çoğaltın..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Zamanlanmış İşlemi silin..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1411,11 +1411,11 @@ msgstr[1] "%d gün gecikti!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Planlanan işlemi gerçekten silmek istiyor musunuz?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Silme İşlemini Onayla"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1470,7 +1470,7 @@ msgstr "Bu kategori için beklenen tutarı giriniz."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Bu bütçe girişini tanımlamak için notlar girin"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1499,7 +1499,7 @@ msgstr "Bütçe Kategori Özetini Göster"
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Mali Yıl: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
@@ -1514,7 +1514,7 @@ msgstr "Ay: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Başlangıç Tarihi: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1589,7 +1589,7 @@ msgstr "Bütçe Ay Girişi"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Bütçe Yılı"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1599,7 +1599,7 @@ msgstr "Gerekli yılı belirtin.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Bütçe Ayı"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1609,11 +1609,11 @@ msgstr "Gerekli ayı belirtin.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Bütçede Baz Al"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Bütçede baz alınacak yılı belirtin"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1665,15 +1665,15 @@ msgstr "Etkin  olan kategoriyi işlem için seçilmiş kategori olarak seç"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Ad, kategori sınırlayıcıyı içerir."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "İki nokta üst üste (:) karakteri kategorileri ve alt kategorileri ayırmak için kullanılır ve bu nedenle başlıkta kullanılmamalıdır"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
-msgstr ""
+msgstr "Kategorileri Düzenle: Geçersiz Ad"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1685,23 +1685,23 @@ msgstr "Kategori Ekle"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Üst öğe için bu ada sahip bir kategori zaten mevcut"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
-msgstr ""
+msgstr "Kategorileri Organize Et: Ekleme Hatası"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Bir alt kategoriyi, halihazırda o adda bir alt kategoriye sahip olan bir kategoriye taşıyamazsınız. Taşımadan önce yeniden adlandırmayı düşünün."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Bu ada sahip bir alt kategori zaten var"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Hedef kategori bir alt nesildir"
 
 #: categdialog.cpp:447
 #, c-format
@@ -1709,15 +1709,18 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Taşınmak istediğine emin misin\n"
+"\"%1$s\"\n"
+"-e doğru:\n"
+"\"%2$s\" mi?"
 
 #: categdialog.cpp:449
 msgid "Top level"
-msgstr ""
+msgstr "Üst düzey"
 
 #: categdialog.cpp:450
 msgid "Confirm Move"
-msgstr ""
+msgstr "Taşımayı onayla"
 
 #: categdialog.cpp:467
 msgid "Category in use."
@@ -1725,12 +1728,13 @@ msgstr "Kategori kullanımda."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Alt kategori kullanımda."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "İpucu: Bu kategoriyi kullanan tüm işlemleri\n"
+"taşıma komutunu kullanarak diğer bir kategoriye taşıyın:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
