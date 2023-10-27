@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-27 16:06\n"
+"PO-Revision-Date: 2023-10-27 19:49\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1739,15 +1739,16 @@ msgstr "İpucu: Bu kategoriyi kullanan tüm işlemleri\n"
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "İpucu: Bu Alt Kategoriyi kullanarak tüm işlemleri şu şekilde değiştirin:\n"
+"birleştirme komutunu kullanan başka bir Kategori:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Araçlar → Birleştir → Kategoriler"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
-msgstr ""
+msgstr "Kategorileri Düzenle: Hatayı Sil"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
