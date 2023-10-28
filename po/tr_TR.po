@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-28 18:06\n"
+"PO-Revision-Date: 2023-10-28 19:07\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2946,30 +2946,30 @@ msgstr "Seçilen '%2$s' temasında '%1$s' dosyası eksik veya geçersiz"
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Seçilen '%2$s' temasında '%1$s' meta verileri eksik"
 
 #: images_list.cpp:457
 msgid "and more..."
-msgstr ""
+msgstr "ve daha fazlası..."
 
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "Seçilen '%2$s' temasında %1$d eksik veya geçersiz simgeler var: %3$s"
 
 #: images_list.cpp:488
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "%s teması bulunamadı, artık desteklenmiyor olabilir. Varsayılan temaya geri dönülüyor"
 
 #: images_list.cpp:495
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "%s temasında eksik öğeler var ve uyumsuz. Varsayılan temaya geri dönülüyor"
 
 #: images_list.cpp:500
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "Çalışılabilir bir tema bulunamadı, kurulum bozuk olabilir"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
 #: mmSimpleDialogs.cpp:801
@@ -3021,16 +3021,16 @@ msgstr "İşlemler"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:662
 #: mmframe.cpp:1569
 msgid "Export as QIF file"
-msgstr ""
+msgstr "QIF dosyası olarak dışa aktar"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1568
 msgid "Export as JSON file"
-msgstr ""
+msgstr "JSON dosyası olarak dışa aktar"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
 #: mmframe.cpp:1564
 msgid "Export as CSV file"
-msgstr ""
+msgstr "CSV dosyası olarak dışa aktar"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3042,7 +3042,7 @@ msgstr "Kayıt"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
@@ -3182,11 +3182,11 @@ msgstr "Notlarda alacaklı alanını içer"
 
 #: import_export/qif_import_gui.cpp:304 import_export/univcsvdialog.cpp:457
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Desen eşleştirme Alacakları"
 
 #: import_export/qif_import_gui.cpp:309 import_export/univcsvdialog.cpp:463
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Notlara eşleşme ayrıntıları ekle"
 
 #: import_export/qif_import_gui.cpp:407 import_export/qif_import_gui.cpp:410
 #: import_export/qif_import_gui.cpp:484 import_export/qif_import_gui.cpp:641
@@ -3243,7 +3243,7 @@ msgstr "Kayıp"
 #: import_export/qif_import_gui.cpp:792 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "%2$s desenine göre %1$s ile eşleştirildi"
 
 #: import_export/qif_import_gui.cpp:870
 msgid "Choose QIF data file to Import"
@@ -3251,7 +3251,7 @@ msgstr "Alınacak QIF veri dosyasını seçin"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Tüm işlemleri içe aktarmak istiyor musunuz?"
 
 #: import_export/qif_import_gui.cpp:1042
 msgid "All missing account, payees and categories will be created."
@@ -3280,7 +3280,7 @@ msgstr "Kategoriler alınıyor."
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "%1$i işleminin %2$i içe aktarılması"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -3306,7 +3306,7 @@ msgstr "Alınan işlemler kullanıcı tarafından silindi."
 #: import_export/qif_import_gui.cpp:1168 import_export/qif_import_gui.h:44
 #: mmframe.cpp:1558
 msgid "Import from QIF file"
-msgstr ""
+msgstr "QIF dosyasından içe aktar"
 
 #: import_export/qif_import_gui.cpp:1247
 msgid "Transaction code is missing"
@@ -3315,7 +3315,7 @@ msgstr "İşlem kodu kayıp"
 #: import_export/qif_import_gui.cpp:1261
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s %2$s ile eşleşti"
 
 #: import_export/qif_import_gui.cpp:1273
 msgid "Transaction Payee is missing or incorrect"
@@ -3367,15 +3367,15 @@ msgstr "Kalıntı"
 
 #: import_export/univcsvdialog.cpp:120 mmframe.cpp:1555
 msgid "Import from CSV file"
-msgstr ""
+msgstr "CSV dosyasından içe aktar"
 
 #: import_export/univcsvdialog.cpp:126
 msgid "Import from XML file"
-msgstr ""
+msgstr "XML dosyasından içe aktar"
 
 #: import_export/univcsvdialog.cpp:129 mmframe.cpp:1565
 msgid "Export as XML file"
-msgstr ""
+msgstr "XML dosyası olarak dışa aktar"
 
 #: import_export/univcsvdialog.cpp:204
 msgid "Account: "
@@ -3383,14 +3383,15 @@ msgstr "Hesap:"
 
 #: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
-msgstr ""
+msgstr "Önayar:"
 
 #: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:579
 #: import_export/univcsvdialog.cpp:2571
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "Hesap açıkken bu Ön Ayarı yükle:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:269
 msgid "Specify the order of fields in the file"
@@ -3442,7 +3443,7 @@ msgstr "Önizleme"
 
 #: import_export/univcsvdialog.cpp:558
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "İçe Aktarılacak XML veri dosyasını seçin"
 
 #: import_export/univcsvdialog.cpp:558
 msgid "Choose CSV data file to Import"
@@ -3450,7 +3451,7 @@ msgstr "Alınacak CSV veri dosyasını seçin"
 
 #: import_export/univcsvdialog.cpp:559
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Dışa Aktarılacak XML veri dosyasını seçin"
 
 #: import_export/univcsvdialog.cpp:559
 msgid "Choose CSV data file to Export"
@@ -3458,15 +3459,15 @@ msgstr "Verilecek CSV veri dosyasını seçin"
 
 #: import_export/univcsvdialog.cpp:562
 msgid "Preset name"
-msgstr ""
+msgstr "Önayar adı"
 
 #: import_export/univcsvdialog.cpp:563
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Geçerli ayarları Önayar olarak kaydet"
 
 #: import_export/univcsvdialog.cpp:564 import_export/univcsvdialog.cpp:2123
 msgid "Delete Preset"
-msgstr ""
+msgstr "Önayarı sil"
 
 #: import_export/univcsvdialog.cpp:565
 msgid "MMEX standard format"
@@ -3478,7 +3479,7 @@ msgstr "Yukarı Taşı"
 
 #: import_export/univcsvdialog.cpp:567
 msgid "Move Down"
-msgstr ""
+msgstr "Aşağı Taşı"
 
 #: import_export/univcsvdialog.cpp:568 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
