@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-28 19:07\n"
+"PO-Revision-Date: 2023-10-28 22:14\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3517,11 +3517,11 @@ msgstr "Eğer tür '%s' e sahipse pozitif"
 
 #: import_export/univcsvdialog.cpp:1063
 msgid "Preset Name"
-msgstr ""
+msgstr "Ön Ayar Adı"
 
 #: import_export/univcsvdialog.cpp:1063
 msgid "Save Preset"
-msgstr ""
+msgstr "Önayarı kaydet"
 
 #: import_export/univcsvdialog.cpp:1232
 msgid "Invalid Date."
@@ -3570,7 +3570,7 @@ msgstr "Satır %ld: Error:"
 #: import_export/univcsvdialog.cpp:1408
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Satır %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1449
 #, c-format
@@ -3579,7 +3579,7 @@ msgstr "Satır %ld: alımı tamamlandı."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Reddedilen satırlar:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3613,7 +3613,7 @@ msgstr "Yazılan log dosyası : %s"
 
 #: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:651
 msgid "Please confirm saving"
-msgstr ""
+msgstr "Lütfen kaydetmeyi onaylayın"
 
 #: import_export/univcsvdialog.cpp:1511
 msgid "No imported transactions!"
@@ -3655,7 +3655,7 @@ msgstr "Verilen işlemler: %ld"
 #: import_export/univcsvdialog.cpp:2121
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "%s önayarı silinecek"
 
 #: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:557
 msgid "Choose CSV data file to import"
@@ -3683,7 +3683,7 @@ msgstr "Tüm Dosyalar"
 
 #: import_export/univcsvdialog.cpp:2589
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "Lütfen CSV dosyanıza pozitif değerleri gösteren kelimeyi yazın, örneğin 'kredi'"
 
 #: import_export/univcsvdialog.cpp:2589
 msgid "Enter a value"
@@ -3691,24 +3691,24 @@ msgstr "Bir değer girin"
 
 #: import_export/univcsvdialog.cpp:2599
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "İçe aktarma için 'Tür' seçildiğinde miktar işareti türe göre tanımlanmalıdır"
 
 #: import_export/univcsvdialog.cpp:2720 import_export/univcsvdialog.cpp:2731
 #: import_export/univcsvdialog.cpp:2747 import_export/univcsvdialog.cpp:2791
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "'%2$s' özel alanı için %1$s değeri %3$s türü değildir."
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "%2$s özel alanı '%3$s' için %1$s değeri geçerli bir seçim değil."
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Formatın %s seçimiyle eşleştiğini onaylayın."
 
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
@@ -3717,7 +3717,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
@@ -3729,7 +3729,7 @@ msgstr "Sabit oran"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
-msgstr ""
+msgstr "Yok"
 
 #: maincurrencydialog.cpp:180 maincurrencydialog.cpp:474
 msgid "Online update currency rate"
@@ -3766,7 +3766,7 @@ msgstr "Kur geçmişini indir"
 
 #: maincurrencydialog.cpp:300
 msgid "Add/&Update "
-msgstr ""
+msgstr "Ekle/&Güncelle "
 
 #: maincurrencydialog.cpp:301
 msgid "Add Currency Values to history"
@@ -3789,7 +3789,7 @@ msgstr "Seçili para birimini gerçekten silmek istiyor musunuz?"
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1702
 #: mmframe.cpp:1922 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Para Birimlerini Düzenle"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -3861,7 +3861,7 @@ msgstr "Temel para birimi simgesi  bulunamadı!"
 
 #: mmSimpleDialogs.cpp:554 mmSimpleDialogs.cpp:566
 msgid "Clear color"
-msgstr ""
+msgstr "Rengi temizle"
 
 #: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
 #, c-format
