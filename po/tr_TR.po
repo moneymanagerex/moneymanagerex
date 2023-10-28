@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-27 20:49\n"
+"PO-Revision-Date: 2023-10-28 18:06\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2714,15 +2714,15 @@ msgstr "Ençok Tutar"
 
 #: filtertransdialog.cpp:2017 mmframe.cpp:1281
 msgid "Setting Name"
-msgstr ""
+msgstr "Ayar Adı"
 
 #: filtertransdialog.cpp:2017 mmframe.cpp:1281
 msgid "Please Enter"
-msgstr ""
+msgstr "Lütfen Girin"
 
 #: filtertransdialog.cpp:2040 import_export/univcsvdialog.cpp:1092
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "Girilen ad zaten kullanılıyor"
 
 #: filtertransdialog.cpp:2040 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
@@ -2733,15 +2733,15 @@ msgstr "Uyarı"
 
 #: filtertransdialog.cpp:2058
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "Filtre ayarları değişti"
 
 #: filtertransdialog.cpp:2059
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "Devam etmeden önce onları kurtarmak ister misin?"
 
 #: filtertransdialog.cpp:2060
 msgid "Please confirm"
-msgstr ""
+msgstr "Lütfen onaylayın"
 
 #: filtertransdialog.cpp:2077 reports/reportbase.cpp:240
 msgid "Choose Accounts"
@@ -2841,11 +2841,11 @@ msgstr "Genel Rapor Yöneticisi"
 
 #: general_report_manager.cpp:741
 msgid "Assets..."
-msgstr ""
+msgstr "Varlıklar..."
 
 #: general_report_manager.cpp:744
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Yeni Boş Rapor..."
 
 #: general_report_manager.cpp:745
 msgid "New Sample Report"
@@ -2853,11 +2853,11 @@ msgstr "Yeni Örnek Rapor"
 
 #: general_report_manager.cpp:748
 msgid "Change Group..."
-msgstr ""
+msgstr "Grubu Değiştir..."
 
 #: general_report_manager.cpp:750
 msgid "Rename Group..."
-msgstr ""
+msgstr "Gurubu Yeniden Adlandır..."
 
 #: general_report_manager.cpp:751
 msgid "UnGroup"
@@ -2865,19 +2865,19 @@ msgstr "Gurubu Çöz"
 
 #: general_report_manager.cpp:752
 msgid "Rename Report..."
-msgstr ""
+msgstr "Raporu Yeniden Adlandır..."
 
 #: general_report_manager.cpp:756
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
 #: general_report_manager.cpp:756
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "Raporu ana gezinme panelinde Göster/Gizle"
 
 #: general_report_manager.cpp:760
 msgid "Delete Report..."
-msgstr ""
+msgstr "Raporu Sil..."
 
 #: general_report_manager.cpp:857 general_report_manager.cpp:1018
 msgid "Enter the name for the report"
@@ -2919,7 +2919,7 @@ msgstr "Yeni Rapor %s"
 
 #: general_report_manager.cpp:1026
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Bu ada sahip bir rapor zaten var"
 
 #: general_report_manager.cpp:1026 general_report_manager.cpp:1033
 msgid "New Report"
@@ -2936,12 +2936,12 @@ msgstr "Parametreler:"
 #: images_list.cpp:325
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "'%s' Temasındaki Meta Veri JSON ayrıştırılamaz ve kötü oluşturulmuş görünüyor, lütfen düzeltin."
 
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "Seçilen '%2$s' temasında '%1$s' dosyası eksik veya geçersiz"
 
 #: images_list.cpp:424
 #, c-format
