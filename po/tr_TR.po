@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-29 12:28\n"
+"PO-Revision-Date: 2023-10-29 19:49\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -4807,7 +4807,7 @@ msgstr "Para Birimi ve Hisse Senedi Oranlarını indir"
 
 #: mmframe.cpp:1690
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "&Alacaklıları Düzenle..."
 
 #: mmframe.cpp:1690 mmframe.cpp:1919 payeedialog.cpp:515
 msgid "Organize Payees"
@@ -4815,7 +4815,7 @@ msgstr "Alacaklıları Düzenle"
 
 #: mmframe.cpp:1694
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Kategorileri &Düzenle..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
