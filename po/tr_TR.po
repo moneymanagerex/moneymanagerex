@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-28 22:14\n"
+"PO-Revision-Date: 2023-10-29 09:28\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3496,7 +3496,7 @@ msgstr "Dosya Ver"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "'%2$s' Hesabı seçildiği için '%1$s' önayarı yüklendi"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3804,7 +3804,7 @@ msgstr ""
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Para Birimi Geçmişi Seçenekleri: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3866,7 +3866,7 @@ msgstr "Rengi temizle"
 #: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Renk #%i"
 
 #: mmSimpleDialogs.cpp:731
 msgid "Subtract one year"
@@ -3891,7 +3891,7 @@ msgstr "%s girişi geçersiz"
 
 #: mmSimpleDialogs.cpp:796
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Lütfen mevcut bir kategori seçin"
 
 #: mmSimpleDialogs.cpp:796
 msgid "Invalid Category"
@@ -3949,20 +3949,20 @@ msgstr "Lütfen boş olmayan bir sembol yazın."
 
 #: mmSimpleDialogs.cpp:947
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "Aranacak etiketleri, isteğe bağlı olarak '&' ve '|' operatörleriyle ayırarak girin."
 
 #: mmSimpleDialogs.cpp:948
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "Ardışık etiketler arasındaki varsayılan operatör AND'dir, Operatörü OR olarak değiştirmek için '|' kullanın."
 
 #: mmSimpleDialogs.cpp:1492
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Yeni Etiket Oluştur '%s'?"
 
 #: mmSimpleDialogs.cpp:1492
 msgid "New tag entered"
-msgstr ""
+msgstr "Yeni etiket girildi"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
