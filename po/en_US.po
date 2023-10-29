@@ -6571,6 +6571,18 @@ msgstr ""
 msgid "Running on:"
 msgstr ""
 
+#: util.cpp:1495
+msgid "System Locale: %s"
+msgstr ""
+
+#: util.cpp:1496
+msgid "User Interface Language: %s"
+msgstr ""
+
+#: util.cpp:1505
+msgid "%ix%i %ibit %ix%ippi\n"
+msgstr ""
+
 #: util.h:200
 msgid "January"
 msgstr ""
