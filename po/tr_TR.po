@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-29 19:49\n"
+"PO-Revision-Date: 2023-10-29 21:19\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -4819,55 +4819,55 @@ msgstr "Kategorileri &Düzenle..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Etiketleri &Düzenle..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Etiketleri Düzenle"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "Para Birimlerini Düzenle..."
 
 #: mmframe.cpp:1706
 msgid "&Categories..."
-msgstr ""
+msgstr "&Kategoriler..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Kategorileri birleştir"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
-msgstr ""
+msgstr "&Alacaklılar..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Alacaklıları birleştir"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "&Etiketler..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Etiketleri birleştir"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Birleştir"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Kategorileri, Alacaklıları ve Etiketleri birleştir"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
-msgstr ""
+msgstr "&Bütçe Kurulumu..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Zamanlanmış İşlemler"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -4879,15 +4879,15 @@ msgstr "&Varlıklar"
 
 #: mmframe.cpp:1741
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "T&ema Yönetimi..."
 
 #: mmframe.cpp:1741 themes.cpp:143
 msgid "Theme Manager"
-msgstr ""
+msgstr "Tema Yönetimi"
 
 #: mmframe.cpp:1747
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "İşlem &Rapor Süzgeci..."
 
 #: mmframe.cpp:1747 mmframe.cpp:1924
 msgid "Transaction Report Filter"
@@ -4895,11 +4895,11 @@ msgstr "İşlem Rapor Süzgeci"
 
 #: mmframe.cpp:1753
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Genel Rapor &Yöneticisi..."
 
 #: mmframe.cpp:1757
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Ö&zel Alanlar Yöneticisi..."
 
 #: mmframe.cpp:1757
 msgid "Custom Fields Manager"
@@ -4907,39 +4907,39 @@ msgstr "Özel Alanlar Yöneticisi"
 
 #: mmframe.cpp:1763
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "&WebApp Yenile..."
 
 #: mmframe.cpp:1763 mmframe.cpp:2875 mmframe.cpp:2882
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "WebApp Yenile"
 
 #: mmframe.cpp:1768
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Seçenekler... Ctrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
-msgstr ""
+msgstr "Şifreli &Veritabanı Dönüştür..."
 
 #: mmframe.cpp:1776
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Şifrelenmiş Veritabanını Şifrelenmemiş Veritabanına Dönüştür"
 
 #: mmframe.cpp:1778
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "Şifreli &Şifreyi Değiştir..."
 
 #: mmframe.cpp:1779
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Şifrelenmiş bir veritabanının şifresini değiştir"
 
 #: mmframe.cpp:1781
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "Veritabanını &Optimize Et..."
 
 #: mmframe.cpp:1782
 msgid "Optimize database space and performance"
@@ -4947,7 +4947,7 @@ msgstr "Veritabanı boşluklarını ve performansını iyileştirin."
 
 #: mmframe.cpp:1784
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Veritabanı Kontrolü ve Hata &Ayıkla..."
 
 #: mmframe.cpp:1785
 msgid "Generate database report or fix errors"
@@ -4955,7 +4955,7 @@ msgstr "Veritabanı raporu oluştur veya hataları düzelt"
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "&Veritabanı"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -4967,7 +4967,7 @@ msgstr "&Yardım  F1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Yardımı Göster"
 
 #: mmframe.cpp:1804
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -4975,7 +4975,7 @@ msgstr "Son haberler, güncellemeler için Money Manager EX websitesine bağlan�
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1806
 msgid "Visit us on Facebook"
@@ -4983,15 +4983,15 @@ msgstr "Bizi Facebook'ta ziyaret edin."
 
 #: mmframe.cpp:1808
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1808
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "MMEX'i çevirmek için Crowdin'i kullanıyoruz"
 
 #: mmframe.cpp:1810
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1810
 msgid "Follow us on Twitter"
@@ -4999,7 +4999,7 @@ msgstr "Bizi Twitter'da izleyin"
 
 #: mmframe.cpp:1812
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1812
 msgid "Watch free video materials about MMEX"
@@ -5007,7 +5007,7 @@ msgstr "MMEX hakkında ücretsiz görüntüler izleyin"
 
 #: mmframe.cpp:1814
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1814
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -5015,7 +5015,7 @@ msgstr "Masaüstünüzden veya mobil cihazınızdan MMEX ekibi ile iletişim kur
 
 #: mmframe.cpp:1816
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1816
 msgid "Access open source code repository and track reported bug statuses"
@@ -5023,7 +5023,7 @@ msgstr "Açık kaynak kod deposuna erişin veya bildirilen hata durumlarını iz
 
 #: mmframe.cpp:1818
 msgid "W&iki pages"
-msgstr ""
+msgstr "W&iki sayfaları"
 
 #: mmframe.cpp:1818
 msgid "Read and update wiki pages"
@@ -5031,7 +5031,7 @@ msgstr "Wiki sayfalarını okuyun ve güncelleyin"
 
 #: mmframe.cpp:1820
 msgid "F&orum"
-msgstr ""
+msgstr "F&orum"
 
 #: mmframe.cpp:1821
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -5039,7 +5039,7 @@ msgstr "Var olan kullanıcı yorumlarını görmek veya yazılımla ilgili yeni 
 
 #: mmframe.cpp:1823
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "&Android için Money Manager Ex"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5055,7 +5055,7 @@ msgstr "Duyuru e-posta listesine kaydolun veya var olanları görün."
 
 #: mmframe.cpp:1829
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&RSS Besleme"
 
 #: mmframe.cpp:1829
 msgid "Connect RSS web feed to news aggregator"
@@ -5063,7 +5063,7 @@ msgstr "Haberleri toplamak için RSS web beslemelerine bağlanın."
 
 #: mmframe.cpp:1831
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&PayPal ile Bağış Yapın"
 
 #: mmframe.cpp:1832
 msgid "Donate the team to support infrastructure etc"
@@ -5071,7 +5071,7 @@ msgstr "Altyapı vs. desteklemek için ekibe bağış yapın"
 
 #: mmframe.cpp:1834
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Bize bir kahve al"
 
 #: mmframe.cpp:1835
 msgid "Buy key developer a coffee"
@@ -5079,7 +5079,7 @@ msgstr "Anahtar geliştiriciye bir kahve alın"
 
 #: mmframe.cpp:1838
 msgid "&Community"
-msgstr ""
+msgstr "&Topluluk"
 
 #: mmframe.cpp:1839
 msgid "Stay in touch with MMEX community"
@@ -5087,7 +5087,7 @@ msgstr "MMEX topluluğuyla bağlantıda kalın"
 
 #: mmframe.cpp:1861
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Bir &Hata bildir"
 
 #: mmframe.cpp:1862
 msgid "Report an error in application to the developers"
@@ -5095,19 +5095,19 @@ msgstr "Geliştiricilere uygulamadaki bir hatayı raporlayın."
 
 #: mmframe.cpp:1866
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "&Teşhis'i Görüntüle"
 
 #: mmframe.cpp:1867
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Geliştiricilere bilgi sağlamaya yardımcı olun"
 
 #: mmframe.cpp:1871
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&Uygulama Başlatma İletişim Kutusunu Göster"
 
 #: mmframe.cpp:1871
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Uygulama Başlatma İletişim Kutusu"
 
 #: mmframe.cpp:1875
 msgid "Check for &Updates"
@@ -5115,15 +5115,15 @@ msgstr "&Güncelleme Denetimi"
 
 #: mmframe.cpp:1875
 msgid "Check For Updates"
-msgstr ""
+msgstr "Güncellemeleri Denetle"
 
 #: mmframe.cpp:1879 mmframe.cpp:1952
 msgid "&About"
-msgstr ""
+msgstr "&Hakkında"
 
 #: mmframe.cpp:1879
 msgid "About dialog"
-msgstr ""
+msgstr "Hakkında iletişim kutusu"
 
 #: mmframe.cpp:1883
 msgid "&File"
@@ -5151,11 +5151,11 @@ msgstr "Yeni"
 
 #: mmframe.cpp:1928
 msgid "&Options"
-msgstr ""
+msgstr "&Seçenekler"
 
 #: mmframe.cpp:1928
 msgid "Options Dialog"
-msgstr ""
+msgstr "Seçenekler İletişim Kutusu"
 
 #: mmframe.cpp:1936 mmframe.cpp:1941 mmframe.cpp:2941 optionsettingsnet.cpp:132
 msgid "News"
@@ -5163,11 +5163,11 @@ msgstr "Haberler"
 
 #: mmframe.cpp:1943
 msgid "Download rates"
-msgstr ""
+msgstr "İndirme Oranları"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Para Birimi ve Hisse Senedi Oranlarını indir"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5175,21 +5175,22 @@ msgstr "Tam Ekrana geç\tF11"
 
 #: mmframe.cpp:1949
 msgid "&Print"
-msgstr ""
+msgstr "&Yazdır"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Yazdır"
 
 #: mmframe.cpp:2006
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Lütfen Veritabanı için parola gir\n"
+"%s"
 
 #: mmframe.cpp:2007 mmframe.cpp:2300 mmframe.cpp:2479
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Şifrelenmiş Veritabanı"
 
 #: mmframe.cpp:2044
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -5201,34 +5202,37 @@ msgstr "MMEX yükseltme"
 
 #: mmframe.cpp:2071 mmframe.cpp:2157
 msgid "No File opened"
-msgstr ""
+msgstr "Dosya açılmadı"
 
 #: mmframe.cpp:2073
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Üzgünüm. Veritabanı sürümü çok eski veya Veritabanı şifresi yanlış"
 
 #: mmframe.cpp:2147
 msgid "&Next →"
-msgstr ""
+msgstr "&Sonraki →"
 
 #: mmframe.cpp:2160
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Daha önce açılan veritabanı bulunamıyor.\n"
 
 #: mmframe.cpp:2162
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Şifrelenmiş Veritabanı için şifre girilmedi.\n"
 
 #: mmframe.cpp:2181
 msgid "portable mode"
-msgstr ""
+msgstr "taşınabilir mod"
 
 #: mmframe.cpp:2217
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "Açmaya çalıştığınız veritabanı başka bir MMEX örneği tarafından açılmış olarak işaretlendi.\n"
+"Veri kaybını veya çakışmayı önlemek için veritabanını kullanıyor olabilecek diğer tüm uygulamaları kapatmanız önemle tavsiye edilir.\n\n"
+"Başka hiçbir şey çalışmıyorsa, MMEX'in önceki kullanımı sırasında meydana gelen bir kilitlenme sonucu veritabanının açık kalmış olması mümkündür.\n\n"
+"Bu veritabanını açmaya devam etmek ister misiniz?"
 
 #: mmframe.cpp:2221
 msgid "MMEX Instance Check"
@@ -5244,11 +5248,11 @@ msgstr "Açılacak veritabanı dosyasını seçin"
 
 #: mmframe.cpp:2290
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Açmak için Şifreli veritabanı dosyasını seçin"
 
 #: mmframe.cpp:2300
 msgid "Enter password for database"
-msgstr ""
+msgstr "Veritabanı dosyası için parola girin"
 
 #: mmframe.cpp:2305
 msgid "Choose database file to Save As"
@@ -5256,21 +5260,22 @@ msgstr "Farklı Kaydetmek için veritabanı dosyasını seçin"
 
 #: mmframe.cpp:2327
 msgid "Converted DB!"
-msgstr ""
+msgstr "Dönüştürülmüş DB!"
 
 #: mmframe.cpp:2327
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX mesajı"
 
 #: mmframe.cpp:2333
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Şifreleme Şifresi Değişikliği"
 
 #: mmframe.cpp:2334
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Veritabanı için yeni şifre\n"
+"%s"
 
 #: mmframe.cpp:2342
 msgid "New password must not be empty."
@@ -5282,7 +5287,7 @@ msgstr "Lütfen yeni şifreyi onaylayın"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Şifre değiştirme tamamlandı"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5301,7 +5306,9 @@ msgstr "VeriTabanı İyileştirme"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Veritabanı İyileştirme Tamamlandı!\n\n"
+"Önceki Boyut: %1$s\n"
+"Sonraki Boyut: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
