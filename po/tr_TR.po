@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-29 10:27\n"
+"PO-Revision-Date: 2023-10-29 11:24\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -4258,11 +4258,11 @@ msgstr "Gösterilen tüm işlemleri gerçekten kalıcı olarak silmek istiyor mu
 
 #: mmchecking_list.cpp:1172 mmchecking_list.cpp:1274
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr ""
+msgstr "Silinen işlemler geçici olarak saklanır ve Silinmiş İşlemler görünümünden geri yüklenebilir."
 
 #: mmchecking_list.cpp:1173 mmchecking_list.cpp:1273
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "Bu eylemi geri alamazsınız."
 
 #: mmchecking_list.cpp:1177 mmchecking_list.cpp:1188 mmchecking_list.cpp:1199
 #: mmchecking_list.cpp:1278
@@ -4272,21 +4272,21 @@ msgstr "İşlem Silme Onayı"
 #: mmchecking_list.cpp:1187 mmchecking_list.cpp:1198
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Gösterilen tüm \"%s\" işlemlerini gerçekten silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1265
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Seçtiğim işlemlerin %i'sini gerçekten kalıcı olarak silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1269
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Seçtiğim işlemlerin %i'sini gerçekten silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1341
 #, c-format
@@ -4304,27 +4304,28 @@ msgstr "MMEX İşlem Kontrolü"
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Düzenleme, kapatılan bir hesabı içeren %i işlemlerini etkileyecektir."
 
 #: mmchecking_list.cpp:1379
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Hala düzenlemeyi yapmak istiyor musun?"
 
 #: mmchecking_list.cpp:1380
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Kapalı Hesap Kontrolü"
 
 #: mmchecking_list.cpp:1572
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Seçilen işlemlerin %i'sini gerçekten taşımak istiyor musunuz?"
 
 #: mmchecking_list.cpp:1577
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "İşlem Taşımayı Onayla"
 
 #: mmchecking_list.cpp:1583
 #, c-format
