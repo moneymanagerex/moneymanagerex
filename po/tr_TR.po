@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-29 11:24\n"
+"PO-Revision-Date: 2023-10-29 12:28\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -4332,7 +4332,7 @@ msgstr "İşlem Taşımayı Onayla"
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%i işlem şuraya taşınıyor..."
 
 #: mmchecking_list.cpp:1587 stocks_list.cpp:300
 msgid "Select the destination Account "
@@ -4340,7 +4340,7 @@ msgstr "Alıcı Hesabı seçin"
 
 #: mmchecking_list.cpp:1674
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Zamanlanmış işlem kaydedildi."
 
 #: mmcheckingpanel.cpp:438
 msgid "Delete selected transaction"
@@ -4360,24 +4360,24 @@ msgstr "Seçilen işlemin eşkopyasını oluştur"
 
 #: mmcheckingpanel.cpp:471
 msgid "&Restore "
-msgstr ""
+msgstr "&Geri Yükle "
 
 #: mmcheckingpanel.cpp:472
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Seçilen işlemi geri yükle"
 
 #: mmcheckingpanel.cpp:487
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "En yakın işlem verilerinde bulmak için herhangi bir dize girin"
 
 #: mmcheckingpanel.cpp:511 mmframe.cpp:776
 msgid "Deleted Transactions"
-msgstr ""
+msgstr "Silinen İşlemler"
 
 #: mmcheckingpanel.cpp:513
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Hesap Görünümü: %s"
 
 #: mmcheckingpanel.cpp:531
 msgid "Account Bal: "
@@ -4393,7 +4393,7 @@ msgstr "Fark:"
 
 #: mmcheckingpanel.cpp:537
 msgid "Filtered View Bal: "
-msgstr ""
+msgstr "Filtrelenmiş Görünüm Dengesi: "
 
 #: mmcheckingpanel.cpp:602 webapp.cpp:619
 msgid "Attachment"
@@ -4402,17 +4402,17 @@ msgstr "İlişik"
 #: mmcheckingpanel.cpp:638
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Seçilen işlemler: %zu"
 
 #: mmcheckingpanel.cpp:641
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Seçilen işlemler bakiyesi: %s"
 
 #: mmcheckingpanel.cpp:645
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Seçilen işlemler arasındaki günler: %d"
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
@@ -4420,11 +4420,11 @@ msgstr "Özel alanlar"
 
 #: mmcustomdata.cpp:158
 msgid "False"
-msgstr ""
+msgstr "Yanlış"
 
 #: mmcustomdata.cpp:160
 msgid "True"
-msgstr ""
+msgstr "Doğru"
 
 #: mmcustomdata.cpp:311
 msgid "Please select"
@@ -4438,7 +4438,8 @@ msgstr "Çoklu Seçim"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "\"%1$s\" özel alanı kaydedilemiyor:\n"
+"\"%2$s\" değeri \"%3$s\" normal ifade doğrulamasıyla eşleşmiyor"
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4492,7 +4493,7 @@ msgstr "Otomatik Tekrarlayan İşlemler"
 
 #: mmframe.cpp:728 mmframe.cpp:1915 optiondialog.cpp:37
 msgid "Dashboard"
-msgstr ""
+msgstr "Kontrol Paneli"
 
 #: mmframe.cpp:764 mmhomepage.cpp:701 reports/summary.cpp:266
 #: reports/summary.cpp:304
@@ -4514,15 +4515,15 @@ msgstr "Yardım"
 
 #: mmframe.cpp:1288
 msgid "A setting with this name already exists"
-msgstr ""
+msgstr "Bu isme sahip bir ayar zaten var"
 
 #: mmframe.cpp:1290
 msgid "Please specify a new name for the setting"
-msgstr ""
+msgstr "Lütfen ayar için yeni bir ad belirtin"
 
 #: mmframe.cpp:1292
 msgid "Name in use"
-msgstr ""
+msgstr "İsim kullanımda"
 
 #: mmframe.cpp:1349
 msgid "Do you really want to delete the account?"
@@ -4542,67 +4543,67 @@ msgstr "MMEX: Menu Açılma Hatası"
 
 #: mmframe.cpp:1393 mmframe.cpp:1554
 msgid "&Import from"
-msgstr ""
+msgstr "&Şuradan içe aktar"
 
 #: mmframe.cpp:1394
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV Dosyaları..."
 
 #: mmframe.cpp:1395
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML Dosyaları..."
 
 #: mmframe.cpp:1395 mmframe.cpp:1556
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "XML'den al (Excel formatı)"
 
 #: mmframe.cpp:1397
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF Dosyaları..."
 
 #: mmframe.cpp:1400 mmframe.cpp:1563
 msgid "&Export as"
-msgstr ""
+msgstr "&Farklı dışa aktar"
 
 #: mmframe.cpp:1401 mmframe.cpp:1555 mmframe.cpp:1564
 msgid "&CSV File..."
-msgstr ""
+msgstr "&CSV Dosyaları..."
 
 #: mmframe.cpp:1402 mmframe.cpp:1556 mmframe.cpp:1565
 msgid "&XML File..."
-msgstr ""
+msgstr "&XML Dosyaları..."
 
 #: mmframe.cpp:1404 mmframe.cpp:1567
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "&MMEX CSV Dosya..."
 
 #: mmframe.cpp:1405 mmframe.cpp:1568
 msgid "&JSON File..."
-msgstr ""
+msgstr "&JSON Dosyaları..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1558 mmframe.cpp:1569
 msgid "&QIF File..."
-msgstr ""
+msgstr "&QIF Dosyaları..."
 
 #: mmframe.cpp:1431
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "Filtreleri düzenle..."
 
 #: mmframe.cpp:1432
 msgid "&Rename Filter..."
-msgstr ""
+msgstr "&Filtreyi Yeniden adlandır..."
 
 #: mmframe.cpp:1433
 msgid "&Delete Filter..."
-msgstr ""
+msgstr "Filtreyi &Sil..."
 
 #: mmframe.cpp:1449 mmframe.cpp:1467 mmframe.cpp:1487 mmframe.cpp:1665
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Hesap Düzenle..."
 
 #: mmframe.cpp:1450 mmframe.cpp:1470 mmframe.cpp:1490 mmframe.cpp:1671
 msgid "&Delete Account..."
-msgstr ""
+msgstr "&Hesap Sil..."
 
 #: mmframe.cpp:1452 mmframe.cpp:1472
 msgid "&Launch Account Website"
@@ -4610,15 +4611,15 @@ msgstr "Hesap Internet Sayfasına Bağ&lan"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "Hesap &Tipini Değiştir..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
-msgstr ""
+msgstr "&Yeni Hesap..."
 
 #: mmframe.cpp:1488
 msgid "Account &List"
-msgstr ""
+msgstr "Hesap &Listesi"
 
 #: mmframe.cpp:1501 optionsettingsview.cpp:69
 msgid "Accounts Visible"
@@ -4626,7 +4627,7 @@ msgstr "Görülebilir Hesaplar"
 
 #: mmframe.cpp:1539
 msgid "&New Database..."
-msgstr ""
+msgstr "&Yeni Veritabanı..."
 
 #: mmframe.cpp:1539 mmframe.cpp:1911 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4634,7 +4635,7 @@ msgstr "Yeni Veritabanı"
 
 #: mmframe.cpp:1540
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Veritabanı Aç\tCtrl-O"
 
 #: mmframe.cpp:1540 mmframe.cpp:1912
 msgid "Open Database"
@@ -4642,7 +4643,7 @@ msgstr "Veritabanı Aç"
 
 #: mmframe.cpp:1541
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Veritabanını Farklı &Kaydet..."
 
 #: mmframe.cpp:1541
 msgid "Save Database As"
@@ -4650,7 +4651,7 @@ msgstr "Veritabanını Farklı Kaydet"
 
 #: mmframe.cpp:1548
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Son Dosyalar"
 
 #: mmframe.cpp:1549
 msgid "&Clear Recent Files"
@@ -4658,7 +4659,7 @@ msgstr "So&n Dosyaları Temizle"
 
 #: mmframe.cpp:1560
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1560
 msgid "Import from WebApp"
@@ -4666,19 +4667,19 @@ msgstr "WebApp'dan Al"
 
 #: mmframe.cpp:1567
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "Sabit CSV dosyası olarak dışa aktar"
 
 #: mmframe.cpp:1571
 msgid "&HTML File..."
-msgstr ""
+msgstr "&HTML Dosyası..."
 
 #: mmframe.cpp:1571
 msgid "Export as HTML file"
-msgstr ""
+msgstr "HTML dosyası olarak dışa aktar"
 
 #: mmframe.cpp:1576
 msgid "&Print..."
-msgstr ""
+msgstr "&Yazdır..."
 
 #: mmframe.cpp:1576
 msgid "Print current view"
@@ -4718,15 +4719,15 @@ msgstr "Pay Hesaplarını gezinti ağacında Göster / Gizle"
 
 #: mmframe.cpp:1594
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "&Silinen İşlemleri Görüntüle"
 
 #: mmframe.cpp:1594
 msgid "Show/Hide Deleted Transactions in the navigation tree"
-msgstr ""
+msgstr "Gezinme ağacında Silinen İşlemleri Göster/Gizle"
 
 #: mmframe.cpp:1596
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Bütçeler: Mali ve &Yıllar Olarak"
 
 #: mmframe.cpp:1596
 msgid "Display Budgets in Financial Year Format"
@@ -4758,23 +4759,23 @@ msgstr "Gelecek İşlemlerini gözardı et."
 
 #: mmframe.cpp:1604
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "&Araç ipuçlarını göster"
 
 #: mmframe.cpp:1604 optionsettingsview.cpp:104
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Araç ipuçlarını göster"
 
 #: mmframe.cpp:1606
 msgid "Show &Money Tips"
-msgstr ""
+msgstr "Para &ipuçlarını Göster"
 
 #: mmframe.cpp:1606 optionsettingsview.cpp:110
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Para ipuçlarını Göster"
 
 #: mmframe.cpp:1626
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Tam Ekrana geç\tShift+F11"
 
 #: mmframe.cpp:1627 mmframe.cpp:1946
 msgid "Toggle Fullscreen"
@@ -4782,15 +4783,15 @@ msgstr "Tam Ekrana geç"
 
 #: mmframe.cpp:1659
 msgid "Dash&board"
-msgstr ""
+msgstr "Gösterge Paneli"
 
 #: mmframe.cpp:1659 mmframe.cpp:1915
 msgid "Open Dashboard"
-msgstr ""
+msgstr "Gösterge Panelini Aç"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Bir hesabın hesap türünü değiştir"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -4798,11 +4799,11 @@ msgstr "Hesabı veritabanından sil"
 
 #: mmframe.cpp:1684
 msgid "Download Ra&tes"
-msgstr ""
+msgstr "İndirme Oranları"
 
 #: mmframe.cpp:1684
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Para Birimi ve Hisse Senedi Oranlarını indir"
 
 #: mmframe.cpp:1690
 msgid "Organize &Payees..."
