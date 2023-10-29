@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-29 09:28\n"
+"PO-Revision-Date: 2023-10-29 10:27\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3713,7 +3713,7 @@ msgstr "Formatın %s seçimiyle eşleştiğini onaylayın."
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "%1$s değeri, '%3$s' özel alanı için %2$s normal ifadesiyle eşleşmiyor."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3799,7 +3799,8 @@ msgstr "Temel Para Birimi Seçimi"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "%1$s için geçmiş oranlar bulundu, ancak seçeneklerde \"Para birimi geçmişini kullan\" devre dışı bırakıldı:\n"
+"hayır'ı tıklatıp etkinleştirin veya %2$s'lık tüm geçmiş ücretleri kaldırmak için evet'i tıklatın"
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -4004,19 +4005,19 @@ msgstr "İpucu: .mmb dosyası şifreli değil. Bilen birisi dosyayı açıp içe
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "İpucu: Bir işlemi onaylanmış olarak işaretlemek için işlemi seçin ve 'R' tuşuna basın. İşlemi onaylanmamış olarak işaretlemek için işlemi seçin ve 'U' tuşuna basın."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "İpucu: Bir işlemi takip gerektirecek şekilde işaretlemek için işlemi seçin ve “F” tuşuna basın."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "İpucu: MMEX, görüntülenebilecek tüm raporların yazdırılmasını destekler. Yazdırma seçenekleri, Dosya → Yazdır menüsü altında bulunur."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "İpucu: Seçenekler'deki ayarları değiştirerek MMEX'İN bazı çalışma zamanı davranışlarını değiştirebilirsiniz."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4028,11 +4029,11 @@ msgstr "İpucu: Farklı para birimli hesaplarınız olması durumunda, para biri
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Kategorileri Düzenleme İpucu: “H” tuşuna basmak, h harfiyle başlayan tüm kategoriler arasında geçiş yapar."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Kategorileri Düzenleme İpucu: 2 tuş kombinasyonuna basmak, o tuş kombinasyonundan başlayarak tüm kategoriler arasında geçiş yapar. Örnek: Hi'ye basmak Ev ihtiyaçlarını, Evi, Ev Vergisini vb. Seçecektir…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4076,102 +4077,102 @@ msgstr "UK (HSBC HLDG) payı örneği: HSBA.L"
 
 #: mmTips.h:50 mmTips.h:52
 msgid "Before you start investing, have a fully-funded emergency fund."
-msgstr ""
+msgstr "Yatırım yapmaya başlamadan önce, tamamen finanse edilmiş bir acil durum fonuna sahip olun."
 
 #: mmTips.h:53
 msgid "Before you start investing, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Yatırım yapmaya başlamadan önce nakit akışınızı bilin (bütçeniz olsun)."
 
 #: mmTips.h:54
 msgid "Before you start investing, pay off consumer debt - especially credit cards."
-msgstr ""
+msgstr "Yatırım yapmaya başlamadan önce tüketici borcunu, özellikle kredi kartlarını ödeyin."
 
 #: mmTips.h:55
 msgid "Before you start investing, make net worth your primary tracking metric."
-msgstr ""
+msgstr "Yatırım yapmaya başlamadan önce, birincil izleme ölçütünüzün net değerini belirleyin."
 
 #: mmTips.h:56
 msgid "Before you start investing, clarify your goals and priorities."
-msgstr ""
+msgstr "Yatırım yapmaya başlamadan önce hedeflerinizi ve önceliklerinizi netleştirin."
 
 #: mmTips.h:57
 msgid "Before you start investing, make sure you understand investing basics."
-msgstr ""
+msgstr "Yatırım yapmaya başlamadan önce yatırımın temellerini anladığınızdan emin olun."
 
 #: mmTips.h:58
 msgid "Common mistake of investors: only buying companies you know."
-msgstr ""
+msgstr "Yatırımcıların ortak hatası: yalnızca tanıdığı şirketleri satın almak."
 
 #: mmTips.h:59
 msgid "Common mistake of investors: buying companies you like."
-msgstr ""
+msgstr "Yatırımcıların ortak hatası: beğendiği şirketleri satın almak."
 
 #: mmTips.h:60
 msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
+msgstr "Yatırımcıların en yaygın hatası: dikkat çeken şirketleri satın almak."
 
 #: mmTips.h:61
 msgid "Common mistake of investors: forgetting to rebalance."
-msgstr ""
+msgstr "Yatırımcıların ortak hatası: yeniden dengelemeyi unutmak."
 
 #: mmchecking_list.cpp:211
 msgid "Sort Order"
-msgstr ""
+msgstr "Sıralama Düzeni"
 
 #: mmchecking_list.cpp:307
 msgid "Deleted On"
-msgstr ""
+msgstr "Silinme Tarihi"
 
 #: mmchecking_list.cpp:332
 msgid "Last Updated"
-msgstr ""
+msgstr "Son Güncelleme"
 
 #: mmchecking_list.cpp:451 mmcheckingpanel.cpp:319
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Yeni Para Çekme..."
 
 #: mmchecking_list.cpp:452 mmcheckingpanel.cpp:320
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Yeni Para Yatırma..."
 
 #: mmchecking_list.cpp:454 mmcheckingpanel.cpp:321
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Yeni Aktarım..."
 
 #: mmchecking_list.cpp:458
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&İşlemleri Düzenle..."
 
 #: mmchecking_list.cpp:461
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "İşlemleri &Kopyala"
 
 #: mmchecking_list.cpp:468
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "İşlemi &Yapıştır"
 
 #: mmchecking_list.cpp:468
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "İşlemleri &Yapıştır (%d)"
 
 #: mmchecking_list.cpp:473
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "İşlemlemi &Çoğalt..."
 
 #: mmchecking_list.cpp:476
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "İşlemleri &Taşı..."
 
 #: mmchecking_list.cpp:482
 msgid "&View In Other Account"
-msgstr ""
+msgstr "&Diğer Hesapta Görüntüle"
 
 #: mmchecking_list.cpp:486
 msgid "&View Split Categories"
@@ -4179,81 +4180,81 @@ msgstr "&Parçalı Kategorileri Göster"
 
 #: mmchecking_list.cpp:494
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Zamanlanmış İşlem &Oluştur..."
 
 #: mmchecking_list.cpp:498
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Seçilen işlemleri geri yükle..."
 
 #: mmchecking_list.cpp:500
 msgid "Restore all transactions in current view..."
-msgstr ""
+msgstr "Geçerli görünümdeki tüm işlemleri geri yükle..."
 
 #: mmchecking_list.cpp:599
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "%s '%s' ile tüm işlemleri &bul"
 
 #: mmchecking_list.cpp:606
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Seçilen işlemleri sil..."
 
 #: mmchecking_list.cpp:607
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&Seçilen işlemleri kalıcı olarak silin..."
 
 #: mmchecking_list.cpp:610
 msgid "Delete all transactions in current view..."
-msgstr ""
+msgstr "Geçerli görünümdeki tüm işlemleri sil..."
 
 #: mmchecking_list.cpp:610
 msgid "Permanently delete all transactions in current view..."
-msgstr ""
+msgstr "Geçerli görünümdeki tüm işlemleri kalıcı olarak sil..."
 
 #: mmchecking_list.cpp:612
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr ""
+msgstr "Görüntülenen \"Takip\" İşlemlerini silin..."
 
 #: mmchecking_list.cpp:613
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr ""
+msgstr "Görüntülenen \"Onaylanmamış\" İşlemleri silin..."
 
 #: mmchecking_list.cpp:631
 msgid "Mark as"
-msgstr ""
+msgstr "Olarak işaretle"
 
 #: mmchecking_list.cpp:653 mmcheckingpanel.cpp:509 mmframe.cpp:732
 msgid "All Transactions"
-msgstr ""
+msgstr "Tüm İşlemler"
 
 #: mmchecking_list.cpp:1087
 msgid "Do you really want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Gösterilen tüm işlemleri gerçekten geri yüklemek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1088 mmchecking_list.cpp:1130
 msgid "Confirm Transaction Restore"
-msgstr ""
+msgstr "İşlem Geri Yüklemeyi Onayla"
 
 #: mmchecking_list.cpp:1125
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Seçilen %i işlemi gerçekten geri yüklemek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1167
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Gösterilen tüm işlemleri gerçekten silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1168
 msgid "Do you really want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "Gösterilen tüm işlemleri gerçekten kalıcı olarak silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1172 mmchecking_list.cpp:1274
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
