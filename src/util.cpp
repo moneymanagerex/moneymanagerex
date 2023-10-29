@@ -1493,7 +1493,7 @@ const wxString getProgramDescription(int type)
         << bull + wxGetOsDescription() << eol
         << bull + desktop_environment << eol
         << bull << wxString::Format(simple ? "System Locale: %s" : _("System Locale: %s"), std::locale("").name()) << eol
-        << bull << wxString::Format(simple ? "User Application Language: %s" : _("User Application Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
+        << bull << wxString::Format(simple ? "User Interface Language: %s" : _("User Interface Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
 
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++)
     {
