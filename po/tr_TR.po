@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-30 18:34\n"
+"PO-Revision-Date: 2023-10-30 21:28\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -5814,7 +5814,7 @@ msgstr "MMEX Yinelenen İşlem Kontrolü"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
-msgstr ""
+msgstr "Emir"
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
@@ -6589,19 +6589,19 @@ msgstr "Alacaklı/Satıcı Düzenleme: Silme Hatası"
 
 #: payeedialog.cpp:758
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "Bu alacaklıyı kullanan silinmiş işlemler mevcut."
 
 #: payeedialog.cpp:759
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Alacaklının silinmesi, ilgili silinen işlemlerin de otomatik olarak temizlenmesine neden olur."
 
 #: payeedialog.cpp:761
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "Alacaklı Silme İşlemini Onayla"
 
 #: payeedialog.cpp:883
 msgid "Define Category"
-msgstr ""
+msgstr "Kategori Tanımla"
 
 #: payeedialog.cpp:898
 msgid "&Organize Attachments"
@@ -6613,28 +6613,28 @@ msgstr "Alacaklı Taşı"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Birleştirmeden sonra kaynak kategoriyi sil (kaynak kategorinin alt kategorisi yoksa)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Kaynak:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Hedef:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Birleştir"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "%1$s'den %2$s'a"
 
 #: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
 #: relocatetagdialog.cpp:160
@@ -6643,7 +6643,7 @@ msgstr "Lütfen Onaylayın:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Kategorileri birleştirme onayı"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6660,17 +6660,17 @@ msgstr "Parçalı işlemlerde bulunan kayıtlar: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Zamanlanmış işlemlerde bulunan kayıtlar: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Zamanlanmış bölme işlemlerinde bulunan kayıtlar: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Varsayılan alacaklı kategorisi olarak bulunan kayıtlar: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
@@ -6679,19 +6679,19 @@ msgstr "Bütçede bulunan kayıtlar: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Birleştirmeden sonra kaynak alacaklıyı sil"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Alacakları birleştirme onayı"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Birleştirmeden sonra kaynak etiketi sil"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Etiketleri birleştirme onayı"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6701,7 +6701,7 @@ msgstr "Finansal Yıl: %s - %i"
 #: reports/budget.cpp:100
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Yıl: %i Ay: %s"
 
 #: reports/budgetcategorysummary.cpp:120
 #, c-format
@@ -6764,7 +6764,7 @@ msgstr "Hata Raporu"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Bu metni (> ile işaretlenmiş) sorununuzun ayrıntılı açıklamasıyla değiştirin."
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
@@ -6772,45 +6772,45 @@ msgstr "Lütfen bu metnin altına eklenmiş bilgileri kaldırmayın."
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Sorununuzun zaten çözülmüş olabileceği en son sürümü almak için Yardım → MMEX'teki Güncellemeleri Denetle seçeneğini kullanın."
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Benzer bir sorun için <a href='%s'>bilinen sorunların listesini</a> arayın. Öyleyse, yeni bir sorun oluşturmak yerine mevcut sorunu güncelleyin."
 
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Bildiğiniz gibi <a href='%s'>kullanıcılar için sorunları tartışabileceğiniz ve çözüm bulabileceğiniz bir forum</a> mevcuttur."
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Lütfen <a href='%s'>Slack</a> içinde topluluğumuza katılın. Burada ayrıca sorunuzu sorabilir ve en son haberleri öğrenebilirsiniz."
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Yararlı ipuçları için <a href='%s'> Hataların Etkili Bir Şekilde Nasıl Bildirileceğini</a> okuyun."
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Sorununuz için açıklayıcı bir ad bulun."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Sorununuzu yeniden oluşturma adımlarını ekleyin, uygun olduğunda ekran görüntüleri ekleyin."
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Aşağıdaki bağlantıyı tıklatmadan önce <a href='%s'>GitHub</a>'da oturum açtığınızdan emin olun."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Son olarak, web tarayıcınızda açılan GitHub <a href='%s'>çevrimiçi formunu</a> kullanarak bir hata bildirin."
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
@@ -6821,7 +6821,7 @@ msgstr "Yeni hata kaydı göndermeden önce lütfen bu adımları izleyin:"
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%1$s (%2$i aylar)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6831,19 +6831,19 @@ msgstr "Fark"
 
 #: reports/cashflow.cpp:290 reports/cashflow.cpp:422
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "Kümülatif Fark"
 
 #: reports/cashflow.cpp:345
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Nakit Akışı - Günlük"
 
 #: reports/cashflow.cpp:359
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Nakit Akışı - Aylık"
 
 #: reports/cashflow.cpp:373
 msgid "Cash Flow - Transactions"
-msgstr ""
+msgstr "Nakit Akışı - İşlemler"
 
 #: reports/categexp.cpp:283
 msgid "Total Expenses:"
@@ -6860,7 +6860,7 @@ msgstr "Genel Toplam:"
 
 #: reports/categexp.cpp:315
 msgid "Categories Summary"
-msgstr ""
+msgstr "Kategori Özeti"
 
 #: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
