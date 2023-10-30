@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-30 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -903,11 +903,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Ogni (n) giorni"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Ogni (n) mesi"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -3277,7 +3277,7 @@ msgstr "Importazione Categorie"
 #: import_export/qif_import_gui.cpp:1080
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Importazione operazione %1$i di %2$i"
 
 #: import_export/qif_import_gui.cpp:1127
 msgid "Importing Transfers"
@@ -5309,7 +5309,7 @@ msgstr ""
 
 #: mmframe.cpp:2412
 msgid "Database Check"
-msgstr ""
+msgstr "Controllo del Database"
 
 #: mmframe.cpp:2425
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
@@ -5317,7 +5317,7 @@ msgstr ""
 
 #: mmframe.cpp:2426
 msgid "Database Debug"
-msgstr ""
+msgstr "Debug del Database"
 
 #: mmframe.cpp:2445 mmframe.cpp:2466
 msgid "Save database file as"
@@ -6613,7 +6613,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Unisci"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
@@ -6634,12 +6634,12 @@ msgstr ""
 #: relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "Records trovati nelle operazioni: %i"
+msgstr "Record trovati nelle operazioni: %i"
 
 #: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:206
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "Records trovati nelle operazioni suddivise: %i"
+msgstr "Record trovati nelle operazioni suddivise: %i"
 
 #: relocatecategorydialog.cpp:259 relocatepayeedialog.cpp:212
 #: relocatetagdialog.cpp:207
@@ -7509,7 +7509,7 @@ msgstr ""
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Nome tag non valido"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
@@ -7545,7 +7545,7 @@ msgstr ""
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
-msgstr ""
+msgstr "Modifica Tag"
 
 #: tagdialog.cpp:254
 msgid "Organize Tags: Editing Error"
@@ -7554,7 +7554,7 @@ msgstr ""
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Tag '%s' in uso"
 
 #: tagdialog.cpp:295
 msgid "Organize Tags: Delete Error"
@@ -7571,7 +7571,7 @@ msgstr ""
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Conferma eliminazione del Tag"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
