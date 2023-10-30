@@ -86,6 +86,9 @@ msgstr "sr-RS Српски"
 msgid "Slovak (Slovakia)"
 msgstr "sk-SK slovenčina (Slovensko)"
 
+msgid "Slovenian (Slovenia)"
+msgstr "sl-SI Slovenščina (Slovenija)"
+
 msgid "Spanish (Spain, International Sort)"
 msgstr "es-ES Español (españa)"
 
