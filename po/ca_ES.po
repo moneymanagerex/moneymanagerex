@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-30 16:17\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Quant a"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
-msgstr ""
+msgstr "Autors"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
@@ -45,11 +45,11 @@ msgstr "Llicència"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr ""
+msgstr "Privacitat"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Enviar dades d'estadístiques d'ús anònimes"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -108,7 +108,7 @@ msgstr "Introdueix el balanç inicial d'aquest compte"
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr ""
+msgstr "Data d'obertura:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -161,7 +161,7 @@ msgstr "Altres"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
-msgstr ""
+msgstr "Número de targeta:"
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
@@ -213,7 +213,7 @@ msgstr ""
 
 #: accountdialog.cpp:234
 msgid "Locked"
-msgstr ""
+msgstr "Bloquejat"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Data valor:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
@@ -300,7 +300,7 @@ msgstr ""
 #: billsdepositsdialog.cpp:1072 stockdialog.cpp:427 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:566
 msgid "Invalid Date"
-msgstr ""
+msgstr "Data invàlida"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -350,7 +350,7 @@ msgstr ""
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr ""
+msgstr "&Manual d'usuari"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -358,25 +358,25 @@ msgstr "Llegeix el manual d'usuari"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1803
 msgid "&Website"
-msgstr ""
+msgstr "&Pàgina web"
 
 #: appstartdialog.cpp:120
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Visiti la %s pàgina web"
 
 #: appstartdialog.cpp:128
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Mostra aquest quadre de diàleg a l'iniciar"
 
 #: appstartdialog.cpp:139
 msgid "E&xit "
-msgstr ""
+msgstr "S&ortir "
 
 #: appstartdialog.cpp:155
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Obrir l'anterior base de dades oberta : %s"
 
 #: appstartdialog.cpp:199 mmframe.cpp:1639 mmframe.cpp:3004
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
