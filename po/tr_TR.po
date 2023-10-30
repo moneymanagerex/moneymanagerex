@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-30 05:31\n"
+"PO-Revision-Date: 2023-10-30 06:29\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -5647,7 +5647,7 @@ msgstr "Sütunları sıfırla"
 
 #: mmreportspanel.cpp:138
 msgid "Report"
-msgstr ""
+msgstr "Rapor"
 
 #: mmreportspanel.cpp:195
 msgid "Period:"
@@ -5655,31 +5655,31 @@ msgstr "Dönem:"
 
 #: mmreportspanel.cpp:251 mmreportspanel.cpp:267 model/Model_Report.cpp:87
 msgid "Date:"
-msgstr ""
+msgstr "Tarih:"
 
 #: mmreportspanel.cpp:283 model/Model_Report.cpp:89
 msgid "Time:"
-msgstr ""
+msgstr "Saat:"
 
 #: mmreportspanel.cpp:298 model/Model_Report.cpp:90
 msgid "Year:"
-msgstr ""
+msgstr "Yıl:"
 
 #: mmreportspanel.cpp:322
 msgid "Budget:"
-msgstr ""
+msgstr "Bütçe:"
 
 #: mmreportspanel.cpp:355
 msgid "All Accounts:"
-msgstr ""
+msgstr "Tüm Hesaplar:"
 
 #: mmreportspanel.cpp:356
 msgid "Specific Accounts:"
-msgstr ""
+msgstr "Belirli Hesaplar:"
 
 #: mmreportspanel.cpp:372
 msgid "Future Months:"
-msgstr ""
+msgstr "Gelecek Aylar:"
 
 #: mmreportspanel.cpp:387
 msgid "Chart:"
@@ -5736,11 +5736,11 @@ msgstr "Fiyat düşüşü"
 
 #: model/Model_Asset.cpp:33
 msgid "Percentage"
-msgstr ""
+msgstr "Yüzde"
 
 #: model/Model_Asset.cpp:34
 msgid "Linear"
-msgstr ""
+msgstr "Doğrusal"
 
 #: model/Model_Asset.cpp:42
 msgid "Property"
@@ -5764,27 +5764,27 @@ msgstr "Diğer"
 
 #: model/Model_Asset.cpp:95
 msgid "Asset Error"
-msgstr ""
+msgstr "Varlık Hatası"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "İşlem"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Banka Hesabı"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Yinelenen İşlem"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "İşlem Bölünmesi"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Yinelenen İşlem Bölünmesi"
 
 #: model/Model_Billsdeposits.cpp:300
 msgid "A scheduled transaction will exceed your account limit.\n\n"
@@ -5793,19 +5793,24 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Zamanlanmış bir işlem hesap limitinizi aşacaktır.\n\n"
+"Hesap: %1$s\n"
+"Güncel Bakiye: %1$6.2f\n"
+"İşlem tutarı: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Devam etmek istiyor musunuz?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
-msgstr ""
+msgstr "Minimum Bakiye"
 
 #: model/Model_Billsdeposits.cpp:319
 msgid "Credit Limit"
-msgstr ""
+msgstr "Kredi Limiti"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX Yinelenen İşlem Kontrolü"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -5813,7 +5818,7 @@ msgstr ""
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
-msgstr ""
+msgstr "Kripto"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5849,26 +5854,28 @@ msgstr "Alacaklı Hatası"
 
 #: model/Model_Report.cpp:86
 msgid "Begin date:"
-msgstr ""
+msgstr "Başlama Tarihi:"
 
 #: model/Model_Report.cpp:88
 msgid "End date:"
-msgstr ""
+msgstr "Bitiş tarihi:"
 
 #: model/Model_Report.cpp:240
 msgid "Template is empty"
-msgstr ""
+msgstr "Şablon boş"
 
 #: model/Model_Report.cpp:254
 #, c-format
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL betiği:\n"
+"%s\n"
+"veritabanını değiştirecek! İptal edildi!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
-msgstr ""
+msgstr "Stok Hatası"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -5888,7 +5895,7 @@ msgstr "Ağ"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
-msgstr ""
+msgstr "&Uygula "
 
 #: optiondialog.cpp:219
 #, c-format
@@ -5906,7 +5913,7 @@ msgstr "Yalnızca %s için ilişik arşiv dizini:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Her İşletim Sisteminin (Win, Mac, Unix) kendi ilişik dizini vardır"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
@@ -5918,27 +5925,27 @@ msgstr "Gerçek yol:"
 
 #: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Gösterge (yukarıdaki yolun başında değişken olarak kullanılabilir)"
 
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr ""
+msgstr "%s : Kullanıcı belge klasörü"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
 msgid "%s : User profile folder"
-msgstr ""
+msgstr "%s : Kullanıcı profili klasörü"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
 msgid "%s : Folder of .MMB database file"
-msgstr ""
+msgstr "%s : .MMB veritabanı dosyası klasörü"
 
 #: optionsettingsattachment.cpp:115
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr ""
+msgstr "%s : MMEX Uygulama verileri klasörü"
 
 #: optionsettingsattachment.cpp:121
 msgid "Other OS folders "
@@ -5946,22 +5953,22 @@ msgstr "Diğer İşletim Sistemi dizinleri"
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
-msgstr ""
+msgstr "Henüz ayarlanmadı"
 
 #: optionsettingsattachment.cpp:135
 #, c-format
 msgid "Windows folder: %s"
-msgstr ""
+msgstr "Windows dizini: %s"
 
 #: optionsettingsattachment.cpp:143
 #, c-format
 msgid "Mac folder: %s"
-msgstr ""
+msgstr "Mac dizini: %s"
 
 #: optionsettingsattachment.cpp:151
 #, c-format
 msgid "Unix folder: %s"
-msgstr ""
+msgstr "Unix dizini: %s"
 
 #: optionsettingsattachment.cpp:159
 msgid "Create and use Attachments subfolder"
@@ -5985,11 +5992,11 @@ msgstr "İlişik kaldırıldığında dosyanın silinmemesi, fakat yerine 'Delet
 
 #: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr ""
+msgstr "İşlemleri çoğaltırken ekleri de çoğaltın"
 
 #: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr ""
+msgstr "Ekler yeni işlemlere kopyalandığında veya yapıştırıldığında kopyalamak isteyip istemediğinizi seçin"
 
 #: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
@@ -6255,7 +6262,7 @@ msgstr "WebApp Ayarları"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
@@ -6263,7 +6270,7 @@ msgstr "Son ters bölü işaretsiz Web Uygulaması URL'si belirtin."
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
@@ -6291,7 +6298,7 @@ msgstr "Vekil Sunucu"
 
 #: optionsettingsnet.cpp:113
 msgid "Port"
-msgstr ""
+msgstr "Bağlantı Noktası (port)"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage statistics"
@@ -6299,11 +6306,11 @@ msgstr "Kullanım İstatistikleri"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Başlangıçta en son haberleri kontrol edin"
 
 #: optionsettingsnet.cpp:140
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Uygulama başlangıcında haberlerin kontrol edilmesine izin vermek için etkinleştir"
 
 #: optionsettingsnet.cpp:145
 msgid "Timeout"
@@ -6319,11 +6326,11 @@ msgstr "Saniye"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
-msgstr ""
+msgstr "Güncellemeler"
 
 #: optionsettingsnet.cpp:169
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Başlangıçta güncellemeleri kontrol et"
 
 #: optionsettingsnet.cpp:171
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -6339,7 +6346,7 @@ msgstr "Kararsız"
 
 #: optionsettingsnet.cpp:180
 msgid "Updates source"
-msgstr ""
+msgstr "Güncelleme kaynağı"
 
 #: optionsettingsview.cpp:86
 msgid "Specify which accounts are visible"
@@ -6347,52 +6354,53 @@ msgstr "Hangi hesapların görülebileceğini belirtin."
 
 #: optionsettingsview.cpp:89
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Kategori Sınırlayıcı"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "İşlem/Bütçe Seçenekleri"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Bütçeleri Mali Yıllar Olarak Görüntüleme"
 
 #: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Bütçeleri 'transfer' işlemleriyle görüntüleyin"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Özetlerle Bütçe Kategorisi Raporunu Görüntüle"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr ""
+msgstr "Yıllık bütçeyi aylık bütçeyle geçersiz kıl"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
-msgstr ""
+msgstr "Aylık bütçe mevcutsa yıllık bütçeyi geçersiz kılmak için bunu kullanın; aksi takdirde bunları birleştirin"
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "Raporlamada aylık bütçeleri yıllık bütçeden çıkarın"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "Yıllık bütçe, aylık bütçelenen tutar kadar azaltılacaktır.\n"
+"Yıla ilişkin toplam tahmin, hangisi daha büyükse, yıllık bütçe VEYA aylık bütçelerin toplamı olarak rapor edilecektir."
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Bütçe Kaydır (gün):"
 
 #: optionsettingsview.cpp:161
 msgid "Allows the 'first day' in the month (normally 1st) to be adjusted for budget calculation purposes"
-msgstr ""
+msgstr "Ayın 'ilk gününün' (normalde 1'inci gün) bütçe hesaplaması amacıyla ayarlanmasına olanak tanır"
 
 #: optionsettingsview.cpp:169
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Raporlama için ayın başlangıç günü:"
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
