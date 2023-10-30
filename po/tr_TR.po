@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-30 06:29\n"
+"PO-Revision-Date: 2023-10-30 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -6004,11 +6004,11 @@ msgstr "İlişikler arşivi olarak ayarlamak için dizini seçin"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Ekler klasörü yazılabilir değil!"
 
 #: optionsettingsattachment.cpp:238
 msgid "Attachments folder"
-msgstr ""
+msgstr "Ekler klasörü"
 
 #: optionsettingsattachment.cpp:246
 msgid "Attachments path has been changed!"
@@ -6048,7 +6048,7 @@ msgstr "Görüntülenecek tarih biçimini belirtin"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr ""
+msgstr "Tarih biçimi örneği:"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
@@ -6060,20 +6060,21 @@ msgstr "Para Birimini ayarlayın"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "'Para Birimlerini Organize Et'i kullanarak veritabanı varsayılan Para Birimini ayarlar"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Yerel ayardan türetilen biçim.\n"
+"'Para Birimlerini Düzenle | Düzenle' aracılığıyla formatı manuel olarak ayarlamak için boş bırakın"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
-msgstr ""
+msgstr "Para birimi geçmişini kullan"
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Para birimi geçmişini kullanmak için seçin (her gün için bir kur), sabit bir kur kullanmak için seçimi kaldırın"
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -6105,15 +6106,15 @@ msgstr "İşlemlerii kopyalayıp / yapıştırırken orjinal hareket tarihinin m
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "İşlemleri Kopyalarken Orijinal Tarihi Kullanın"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Hareketleri kopyalarken orijinal işlem tarihini mi yoksa geçerli tarihi mi kullanacağınızı seçin"
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "İşlem Sesi"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6121,20 +6122,20 @@ msgstr "İşlem girişi yapılırken sesli uyarı yapılıp yapılmayacağını 
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr ""
+msgstr "Yerel"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Para birimi değeri örneği: %s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
-msgstr ""
+msgstr "Kötü yerel ayar adı"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Son N Gün"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6154,7 +6155,7 @@ msgstr "Menkul Değer fiyatları için ondalık hane sayısını ayarlayın"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Başlangıçta Yenile"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6174,43 +6175,43 @@ msgstr "Alacaklı için son kullanılan"
 
 #: optionsettingsmisc.cpp:127
 msgid "Use default for payee"
-msgstr ""
+msgstr "Alacaklı için varsayılanı kullan"
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
-msgstr ""
+msgstr "Varsayılan Tarih"
 
 #: optionsettingsmisc.cpp:154
 msgid "Default Payee"
-msgstr ""
+msgstr "Varsayılan Alacaklı"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr ""
+msgstr "Varsayılan Para Yatırma/Çekme Kategorisi"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
-msgstr ""
+msgstr "Varsayılan Aktarım Kategorisi"
 
 #: optionsettingsmisc.cpp:160
 msgid "Default Status"
-msgstr ""
+msgstr "Varsayılan Durum"
 
 #: optionsettingsmisc.cpp:162
 msgid "Bulk Transactions"
-msgstr ""
+msgstr "Toplu İşlemler"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database Options"
-msgstr ""
+msgstr "Veritabanı Seçenekleri"
 
 #: optionsettingsmisc.cpp:180
 msgid "Create a new backup when MMEX Start"
@@ -6224,7 +6225,7 @@ msgstr "MMEX Başladığında,\n"
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Çıkışta veritabanını yedekle"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes made to database,\n"
@@ -6242,11 +6243,11 @@ msgstr "En çok dosya"
 
 #: optionsettingsmisc.cpp:208
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr ""
+msgstr "Silinen işlemlerin saklanacağı gün sayısını belirtin. Bundan daha eski olan işlemler, veritabanı açıldığında otomatik olarak temizlenecektir."
 
 #: optionsettingsmisc.cpp:210
 msgid "Days to retain deleted transactions"
-msgstr ""
+msgstr "Silinen işlemlerin saklanacağı gün sayısı"
 
 #: optionsettingsmisc.cpp:217
 msgid "CSV Settings"
@@ -6404,51 +6405,51 @@ msgstr "Raporlama için ayın başlangıç günü:"
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Raporlama amacıyla aydaki 'ilk günün' ayarlanmasına izin verir"
 
 #: optionsettingsview.cpp:178
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Gelecekteki İşlemleri Yoksay"
 
 #: optionsettingsview.cpp:184
 msgid "Transaction Colors"
-msgstr ""
+msgstr "İşlem Renkleri"
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Kullanıcı Arayüzü"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Tema Yöneticisini Aç"
 
 #: optionsettingsview.cpp:236
 msgid "Style Template"
-msgstr ""
+msgstr "Stil Şablonu"
 
 #: optionsettingsview.cpp:241
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: optionsettingsview.cpp:242
 msgid "Light"
-msgstr ""
+msgstr "Açık"
 
 #: optionsettingsview.cpp:243
 msgid "Dark"
-msgstr ""
+msgstr "Koyu"
 
 #: optionsettingsview.cpp:247
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Destekleniyorsa kullanılacak tercih edilen tema varyantını belirtin"
 
 #: optionsettingsview.cpp:249
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: optionsettingsview.cpp:253
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "HTML Ölçek Faktörü"
 
 #: optionsettingsview.cpp:268
 msgid "Specify which scale factor is used for the report pages"
@@ -6456,71 +6457,71 @@ msgstr "Rapor sayfaları için hangi boyutun kullanılacağını belirtin"
 
 #: optionsettingsview.cpp:273
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: optionsettingsview.cpp:274
 msgid "Enlarged"
-msgstr ""
+msgstr "Büyütülmüş"
 
 #: optionsettingsview.cpp:275
 msgid "Large"
-msgstr ""
+msgstr "Büyük"
 
 #: optionsettingsview.cpp:276
 msgid "Huge"
-msgstr ""
+msgstr "Çok Büyük"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
-msgstr ""
+msgstr "Font Boyutu"
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Küçük (16 px)"
 
 #: optionsettingsview.cpp:291
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:292
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Büyük (32 px)"
 
 #: optionsettingsview.cpp:293
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Çok büyük (48 px)"
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Araç Çubuğu Simge Boyutu"
 
 #: optionsettingsview.cpp:308
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Gezinme Simgesi Boyutu"
 
 #: optionsettingsview.cpp:309
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Diğer Simge Boyutu"
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
-msgstr ""
+msgstr "Alacaklı Düzenle"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
-msgstr ""
+msgstr "Alacaklının Adını girin. Bu ad herhangi bir zamanda yeniden adlandırılabilir."
 
 #: payeedialog.cpp:89 payeedialog.cpp:455
 msgid "Hidden"
-msgstr ""
+msgstr "Gizli"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
-msgstr ""
+msgstr "Alacaklının gizlenmesi ve yeni işlemler için alacaklı listesinde sunulmaması gerekip gerekmediğini belirtin"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Last Used Category"
-msgstr ""
+msgstr "Son Kullanılan Kategori"
 
 #: payeedialog.cpp:96 payeedialog.cpp:457
 msgid "Default Category"
@@ -6528,41 +6529,43 @@ msgstr "Varsayılan Kategori"
 
 #: payeedialog.cpp:99
 msgid "The category used as default for this payee"
-msgstr ""
+msgstr "Bu alacaklı için varsayılan olarak kullanılan kategori"
 
 #: payeedialog.cpp:103 payeedialog.cpp:458
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: payeedialog.cpp:105
 msgid "A reference to be used for the payee, e.g. bank account number"
-msgstr ""
+msgstr "Alacaklı için kullanılacak bir referans, örneğin banka hesap numarası"
 
 #: payeedialog.cpp:109 payeedialog.cpp:459
 msgid "Website"
-msgstr ""
+msgstr "Web Sitesi"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
-msgstr ""
+msgstr "Alacaklı ile ilişkili web sitesi URL'si"
 
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Desenleri Eşleştir\n"
+"İçe Aktarmada"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "İçe aktarmada bu alacaklı ile eşleşecek herhangi bir dize girin.\n"
+"Desenler buraya girilen sırayla test edilir."
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Bu isimde bir alacaklı zaten var"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
-msgstr ""
+msgstr "Desen Eşleştir"
 
 #: payeedialog.cpp:743
 msgid "Payee in use."
@@ -6570,15 +6573,15 @@ msgstr "Alacaklı kullanımda."
 
 #: payeedialog.cpp:748
 msgid "It will be not removed"
-msgstr ""
+msgstr "Kaldırılmayacak"
 
 #: payeedialog.cpp:750
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "İpucu: Birleştirme komutunu kullanarak bu Alacaklı kullanan tüm işlemleri başka bir Alacaklı ile değiştirin:"
 
 #: payeedialog.cpp:752
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Araçlar → Birleştir → Alacaklılar"
 
 #: payeedialog.cpp:753
 msgid "Organize Payees: Delete Error"
