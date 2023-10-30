@@ -1820,7 +1820,7 @@ void mmGUIFrame::createMenu()
         , _("F&orum")
         , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
-        , _("Money Manager Ex for &Android")
+        , _("MMEX for &Android")
         , _("Get free Android version and run MMEX on your smart phone or tablet"));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
