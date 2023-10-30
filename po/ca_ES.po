@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-30 16:17\n"
+"PO-Revision-Date: 2023-10-30 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr ""
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Balanç mínim:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
@@ -241,7 +241,7 @@ msgstr ""
 
 #: accountdialog.cpp:258
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Límit de crèdit:"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
