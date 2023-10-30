@@ -405,7 +405,7 @@ bool mmAttachmentManage::CreateReadmeFile(const wxString& FolderPath)
 {
     wxString ReadmeFilePath = FolderPath + m_PathSep + "readme.txt";
     wxString ReadmeText;
-    ReadmeText << _("This directory and its files are automatically managed by Money Manager EX software.") << wxTextFile::GetEOL();
+    ReadmeText << _("This directory and its files are automatically managed by MMEX.") << wxTextFile::GetEOL();
     ReadmeText << wxTextFile::GetEOL();
     ReadmeText << _("Please do not remove, rename or modify manually directories and files.") << wxTextFile::GetEOL();
 
