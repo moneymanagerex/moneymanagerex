@@ -1801,7 +1801,7 @@ void mmGUIFrame::createMenu()
     //Community Submenu
     wxMenuItem* menuItemWebsite = new wxMenuItem(menuHelp, MENU_WEBSITE
         , _("&Website")
-        , _("Open the Money Manager EX website for latest news, updates etc"));
+        , _("Open MMEX website for the latest news, updates etc"));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
         , _("&Facebook"), _("Visit us on Facebook"));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
