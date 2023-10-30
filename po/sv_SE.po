@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-04 21:50\n"
+"PO-Revision-Date: 2023-10-30 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3030,11 +3030,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
