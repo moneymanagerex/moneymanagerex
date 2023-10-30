@@ -63,7 +63,7 @@ msgid "User Interface Language: %s"
 msgstr ""
 
 #: util.cpp:1505
-msgid "%ix%i %i-bit %ix%ippi\n"
+msgid "%ix%i %i-bit %ix%ippi"
 msgstr ""
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
