@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-31 13:00+0300\n"
-"PO-Revision-Date: 2023-10-31 10:18\n"
+"PO-Revision-Date: 2023-10-31 20:52\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -791,7 +791,7 @@ msgstr "Özl."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Bu dizin ve dosyaları MMEX tarafından otomatik olarak yönetilir."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -4971,7 +4971,7 @@ msgstr "Yardımı Göster"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "En son haberler, güncellemeler vb. İçin MMEX web sitesini açın"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5039,7 +5039,7 @@ msgstr "Var olan kullanıcı yorumlarını görmek veya yazılımla ilgili yeni 
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "&Android için MMEX"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -7520,73 +7520,73 @@ msgstr "Varolan bir etiketi silin. Etiket mevcut işlemler tarafından kullanıl
 
 #: tagdialog.cpp:142
 msgid "Select"
-msgstr ""
+msgstr "Seçin"
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Geçersiz etiket adı"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Etiket adları '&' veya '|' karakterleri olamaz çünkü bunlar filtre operatörleri için ayrılmıştır"
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Etiketleri Düzenle: Geçersiz Ad"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Ad, etiket sınırlayıcıyı içeriyor."
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Etiket adları boşluk (' ') karakterini içeremez"
 
 #: tagdialog.cpp:206
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Yeni etiket için isim girin:"
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
-msgstr ""
+msgstr "Etiket Ekle"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Bu isimde bir etiket zaten mevcut"
 
 #: tagdialog.cpp:218
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Etiketleri Organize Et: Ekleme Hatası"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
-msgstr ""
+msgstr "Etiket Düzenleme"
 
 #: tagdialog.cpp:254
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Etiketleri Organize Et: Düzenleme Hatası"
 
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Etiket '%s' kullanımda"
 
 #: tagdialog.cpp:295
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Etiketleri Organize Et: Silme Hatası"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "'%s' etiketini kullanan silinmiş işlemler mevcut."
 
 #: tagdialog.cpp:299
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Etiketin silinmesi, ilgili silinmiş işlemlerin de otomatik olarak temizlenmesine neden olur."
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Etiket Silmeyi Onaylayın"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
@@ -7594,35 +7594,35 @@ msgstr "Sil"
 
 #: themes.cpp:193
 msgid "Use"
-msgstr ""
+msgstr "Kullan"
 
 #: themes.cpp:239
 msgid "No description available"
-msgstr ""
+msgstr "Açıklama yok"
 
 #: themes.cpp:285
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "İçeri aktarmak için tema dosyası seçin"
 
 #: themes.cpp:305
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Tema zaten mevcut, yine de mevcut temayı içe aktarıp üzerine yazmak istiyor musunuz?"
 
 #: themes.cpp:315
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Temayı içe aktarırken bir şeyler ters gitti"
 
 #: themes.cpp:327
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Bu temayı silmek istediğinizden emin misiniz? Tekrar kullanmak isterseniz yeniden içe aktarmanız gerekecektir."
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Temayı silmeye çalışırken bir şeyler ters gitti"
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Bu temayı kullanmak istediğinizden emin misiniz? Bunun yalnızca MMEX yeniden başlatıldığında geçerli olacağını lütfen unutmayın."
 
 #: transactionsupdatedialog.cpp:196
 msgid "Transfer To"
@@ -7630,11 +7630,11 @@ msgstr "Alan"
 
 #: transactionsupdatedialog.cpp:220 transactionsupdatedialog.cpp:243
 msgid "Append"
-msgstr ""
+msgstr "İliştir"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Çoklu İşlem Güncellemesi"
 
 #: transdialog.cpp:178
 msgid "Edit Transaction"
@@ -7660,11 +7660,11 @@ msgstr "Bu işlem hesap limitinizi aşacak.\n"
 
 #: transdialog.cpp:1180
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "İki hesapta farklı para birimleri var ancak gelişmiş bir işlem tanımlamadınız. Bu doğru mu?"
 
 #: transdialog.cpp:1181
 msgid "Currencies are different"
-msgstr ""
+msgstr "Para birimleri farklı"
 
 #: transdialog.cpp:1296
 msgid "Specify account the money is taken from"
@@ -7692,7 +7692,7 @@ msgstr "İşlemin tarihini belirtin"
 
 #: transdialog.h:56
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "İşlemler İletişim Kutusu"
 
 #: usertransactionpanel.cpp:95
 msgid "Select Account"
@@ -7700,7 +7700,7 @@ msgstr "Hesap Seçin"
 
 #: usertransactionpanel.cpp:97
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Bu işlemi içerecek ilişkili Hesabı belirtin"
 
 #: usertransactionpanel.cpp:109
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -7752,51 +7752,51 @@ msgstr "Hesap seçimi"
 
 #: util.cpp:288
 msgid "Jan"
-msgstr ""
+msgstr "Oca"
 
 #: util.cpp:288
 msgid "Feb"
-msgstr ""
+msgstr "Şub"
 
 #: util.cpp:288
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:289
 msgid "Apr"
-msgstr ""
+msgstr "Nis"
 
 #: util.cpp:289 util.h:192
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: util.cpp:289
 msgid "Jun"
-msgstr ""
+msgstr "Haz"
 
 #: util.cpp:290
 msgid "Jul"
-msgstr ""
+msgstr "Tem"
 
 #: util.cpp:290
 msgid "Aug"
-msgstr ""
+msgstr "Ağu"
 
 #: util.cpp:290
 msgid "Sep"
-msgstr ""
+msgstr "Eyl"
 
 #: util.cpp:291
 msgid "Oct"
-msgstr ""
+msgstr "Eki"
 
 #: util.cpp:291
 msgid "Nov"
-msgstr ""
+msgstr "Kas"
 
 #: util.cpp:291
 msgid "Dec"
-msgstr ""
+msgstr "Ara"
 
 #: util.cpp:296
 msgid "Sunday"
@@ -7828,31 +7828,31 @@ msgstr "Cumartesi"
 
 #: util.cpp:303
 msgid "Sun"
-msgstr ""
+msgstr "Pzr"
 
 #: util.cpp:303
 msgid "Mon"
-msgstr ""
+msgstr "Pzt"
 
 #: util.cpp:303
 msgid "Tue"
-msgstr ""
+msgstr "Sal"
 
 #: util.cpp:304
 msgid "Wed"
-msgstr ""
+msgstr "Çar"
 
 #: util.cpp:304
 msgid "Thu"
-msgstr ""
+msgstr "Per"
 
 #: util.cpp:304
 msgid "Fri"
-msgstr ""
+msgstr "Cum"
 
 #: util.cpp:305
 msgid "Sat"
-msgstr ""
+msgstr "Cmt"
 
 #: util.cpp:739
 msgid "Currency rates have been updated"
