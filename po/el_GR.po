@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-31 13:00+0300\n"
-"PO-Revision-Date: 2023-10-31 10:18\n"
+"PO-Revision-Date: 2023-10-31 18:28\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -791,7 +791,7 @@ msgstr "Att."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Αυτός ο φάκελος και τα αρχεία του διαχειρίζονται αυτόματα από το λογισμικό Money Manager EX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -4971,7 +4971,7 @@ msgstr "Εμφάνιση Βοήθειας"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Ανοίξτε το Website του MMEX για τις τελευταίες ειδήσεις, ενημερώσεις κλπ"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5039,7 +5039,7 @@ msgstr "Επισκεφθείτε το φόρουμ MMEX για να δείτε �
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX για &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -7923,12 +7923,12 @@ msgstr "Εκτελείται στις:"
 #: util.cpp:1497
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Γλώσσα Συστήματος: %s"
 
 #: util.cpp:1498
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Γλώσσα Περιβάλλοντος Χρήστη: %s"
 
 #: util.cpp:1736
 msgid "The complete list of closed issues is available at this link"
