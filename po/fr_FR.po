@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-31 13:00+0300\n"
-"PO-Revision-Date: 2023-10-31 10:18\n"
+"PO-Revision-Date: 2023-10-31 12:16\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -791,7 +791,7 @@ msgstr "P.J."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Ce répertoire et ses fichiers sont automatiquement gérés par MMEX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -4973,7 +4973,7 @@ msgstr "Afficher l’aide"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Ouvrir le site Web MMEX pour les dernières nouvelles, mises à jour, etc"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5041,7 +5041,7 @@ msgstr "Visiter le forum MMEX pour voir les commentaires des utilisateurs ou sig
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX pour &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
