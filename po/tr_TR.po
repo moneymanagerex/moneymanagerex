@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-31 06:45\n"
+"PO-Revision-Date: 2023-10-31 07:59\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -7404,11 +7404,11 @@ msgstr "Menkul Değer İşlemlerini &Göster"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Hisse Senedi Yatırımını Düzenle..."
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "Hisse Senedi Yatırımını &Sil..."
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7425,19 +7425,19 @@ msgstr "Menkul Kıymet Yatırımı Silme Onayı"
 #: stocks_list.cpp:299
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "İşlem %s'den şuraya taşınıyor"
 
 #: stockspanel.cpp:137
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Hisse Senedi İşlemleri Ekle"
 
 #: stockspanel.cpp:142 stockspanel.cpp:207
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Hisse Senedi İşlemlerini Görüntüle"
 
 #: stockspanel.cpp:152
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Hisse Senedi Yatırımını Sil"
 
 #: stockspanel.cpp:156
 msgid "&Move"
@@ -7445,7 +7445,7 @@ msgstr "&Taşı"
 
 #: stockspanel.cpp:157
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Seçilen işlemi başka bir hesaba taşı"
 
 #: stockspanel.cpp:170
 msgid "Refresh"
@@ -7457,7 +7457,7 @@ msgstr "Menkul Değer Fiyatlarını Yahoo'dan Güncelle"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Lot"
 
 #: stockspanel.cpp:288
 #, c-format
@@ -7467,7 +7467,7 @@ msgstr "Men.Değ. Portföyü: %s"
 #: stockspanel.cpp:332
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Toplam Paylar: %s"
 
 #: stockspanel.cpp:334
 #, c-format
@@ -7508,15 +7508,15 @@ msgstr "Simge: %s"
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
-msgstr ""
+msgstr "Yeni bir etiket ekle"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Varolan bir etiketin adını düzenle"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Varolan bir etiketi silin. Etiket mevcut işlemler tarafından kullanılamaz."
 
 #: tagdialog.cpp:142
 msgid "Select"
