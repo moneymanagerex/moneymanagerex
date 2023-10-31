@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-31 13:00+0300\n"
-"PO-Revision-Date: 2023-10-31 10:18\n"
+"PO-Revision-Date: 2023-10-31 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -325,7 +325,7 @@ msgstr ""
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr ""
+msgstr "&Nova base de dades"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "Crea un nou fitxer de base de dades per començar"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Obrir base de dades &existent"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -492,7 +492,7 @@ msgstr ""
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Editar detalls de la transacció"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
@@ -577,7 +577,7 @@ msgstr "Confirma l'esborrat de l'Actiu"
 
 #: assetspanel.cpp:391
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX et permet realitzar un seguiment d'actius fixes, com ara cotxes, habitatges, terrenys, entre d'altres. Cada actiu pot veure el seu valor apreciar-se cada any a un determinat ritme, depreciar-se a un determinat ritme a l'any o no canviar el seu valor. El total d'actius són afegits al conjunt de les teves valoracions financeres."
 
 #: assetspanel.cpp:421 assetspanel.h:108 general_report_manager.cpp:1039
 #: mmframe.cpp:488 mmframe.cpp:768 mmframe.cpp:1735 mmframe.cpp:3414
@@ -616,18 +616,18 @@ msgstr ""
 #: mmcheckingpanel.cpp:445 payeedialog.cpp:890 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
-msgstr ""
+msgstr "&Editar "
 
 #: assetspanel.cpp:491 billsdepositspanel.cpp:308 budgetyeardialog.cpp:103
 #: categdialog.cpp:321 maincurrencydialog.cpp:304 mmchecking_list.cpp:616
 #: mmcheckingpanel.cpp:437 stockdialog.cpp:334 stockspanel.cpp:151
 #: tagdialog.cpp:133
 msgid "&Delete "
-msgstr ""
+msgstr "&Eliminar "
 
 #: assetspanel.cpp:492
 msgid "Delete Asset"
-msgstr ""
+msgstr "Eliminar actiu"
 
 #: assetspanel.cpp:499 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:462
 #: stockspanel.cpp:164
@@ -638,7 +638,7 @@ msgstr ""
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:484 payeedialog.cpp:597
 #: tagdialog.cpp:113
 msgid "Search"
-msgstr ""
+msgstr "Cercar"
 
 #: assetspanel.cpp:510
 msgid "Enter any string to find related assets"
@@ -689,12 +689,12 @@ msgstr ""
 
 #: attachmentdialog.cpp:56 general_report_manager.cpp:444
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:197
 msgid "File"
-msgstr ""
+msgstr "Arxiu"
 
 #: attachmentdialog.cpp:65
 msgid "Attachment folder not defined."
@@ -737,7 +737,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:591
 msgid "Other tools"
-msgstr ""
+msgstr "Altres eines"
 
 #: attachmentdialog.cpp:191
 msgid "Import attachment:"
@@ -771,17 +771,17 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:307 maincurrencydialog.cpp:539
 #: payeedialog.cpp:889 stockdialog.cpp:336 tagdialog.cpp:124
 msgid "&Add "
-msgstr ""
+msgstr "&Afegir "
 
 #: attachmentdialog.cpp:356
 msgid "&Open "
-msgstr ""
+msgstr "&Obrir "
 
 #: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:311 maincurrencydialog.cpp:541
 #: payeedialog.cpp:892
 msgid "&Remove "
-msgstr ""
+msgstr "&Eliminar "
 
 #: attachmentdialog.cpp:401
 msgid "Att."
@@ -876,20 +876,20 @@ msgstr ""
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:57 mmframereport.cpp:201
 #: model/Model_Budget.cpp:65
 msgid "Yearly"
-msgstr ""
+msgstr "Anualment"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:58
 msgid "Four Months"
-msgstr ""
+msgstr "Quatre mesos"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:59
 msgid "Four Weeks"
-msgstr ""
+msgstr "Quatre setmanes"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:60 mmframereport.cpp:126
 #: model/Model_Budget.cpp:66
 msgid "Daily"
-msgstr ""
+msgstr "Diàriament"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
@@ -1061,7 +1061,7 @@ msgstr ""
 #: transdialog.cpp:247 transdialog.cpp:507 usertransactionpanel.cpp:162
 #: webappdialog.cpp:142
 msgid "Payee"
-msgstr ""
+msgstr "Beneficiari"
 
 #: billsdepositsdialog.cpp:601 billsdepositsdialog.cpp:988
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:292 filtertrans.cpp:195
@@ -1078,7 +1078,7 @@ msgstr ""
 #: transdialog.cpp:519 transdialog.cpp:651 usertransactionpanel.cpp:169
 #: webappdialog.cpp:143
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: billsdepositsdialog.cpp:607 billsdepositsdialog.cpp:1440 transdialog.cpp:525
 #: transdialog.cpp:1278
@@ -1093,7 +1093,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetes"
 
 #: billsdepositsdialog.cpp:624 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
@@ -1128,7 +1128,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
 #: transdialog.cpp:575
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: billsdepositsdialog.cpp:660 transdialog.cpp:582 transdialog.cpp:1318
 #: usertransactionpanel.cpp:206
@@ -1332,7 +1332,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
-msgstr ""
+msgstr "&Ometre"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
@@ -1368,18 +1368,18 @@ msgstr ""
 
 #: billsdepositspanel.cpp:494
 msgid "Automated"
-msgstr ""
+msgstr "Automatitzat"
 
 #: billsdepositspanel.cpp:498
 msgid "Suggested"
-msgstr ""
+msgstr "Suggerit"
 
 #: billsdepositspanel.cpp:538 billsdepositspanel.cpp:605 mmhomepage.cpp:313
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia restant"
+msgstr[1] "%d dies restants"
 
 #: billsdepositspanel.cpp:543 billsdepositspanel.cpp:550
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
@@ -1415,7 +1415,7 @@ msgstr ""
 
 #: budgetentrydialog.cpp:106
 msgid "Category: "
-msgstr ""
+msgstr "Categoria: "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
@@ -1446,27 +1446,27 @@ msgstr ""
 
 #: budgetentrydialog.cpp:128
 msgid "Frequency:"
-msgstr ""
+msgstr "Freqüència:"
 
 #: budgetentrydialog.cpp:133
 msgid "Specify the frequency of the expense or deposit"
-msgstr ""
+msgstr "Especifiqui la freqüència de la despesa o dipòsit"
 
 #: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:405
 msgid "Amount:"
-msgstr ""
+msgstr "Quantitat:"
 
 #: budgetentrydialog.cpp:141
 msgid "Enter the amount budgeted for this category."
-msgstr ""
+msgstr "Introdueixi la quantitat pressupostada per aquesta categoria."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Introdueixi anotacions per descriure aquesta entrada en el pressupost"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
-msgstr ""
+msgstr "Visualitzar totes les categories del pressupost"
 
 #: budgetingpanel.cpp:53
 msgid "View Non-Zero Budget Categories"
@@ -1491,17 +1491,17 @@ msgstr ""
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Any fiscal: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Any: %s"
 
 #: budgetingpanel.cpp:174
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Mes: %s"
 
 #: budgetingpanel.cpp:180
 #, c-format
@@ -1535,7 +1535,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:291
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #: budgetingpanel.cpp:295 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
@@ -1553,7 +1553,7 @@ msgstr ""
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Afegir any"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1561,7 +1561,7 @@ msgstr ""
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Afegir mes"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1749,16 +1749,16 @@ msgstr ""
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Confirmi l'eliminació de la categoria"
 
 #: categdialog.cpp:612 tagdialog.cpp:241
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Introdueixi un nou nom per a '%s'"
 
 #: categdialog.cpp:613
 msgid "Edit Category"
-msgstr ""
+msgstr "Editar categoria"
 
 #: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
@@ -1808,16 +1808,16 @@ msgstr ""
 
 #: constants.cpp:72
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:136
 #: relocatepayeedialog.cpp:135 relocatetagdialog.cpp:137 themes.cpp:195
 msgid "Close"
-msgstr ""
+msgstr "Tancar"
 
 #: constants.cpp:80
 msgid "&Close "
-msgstr ""
+msgstr "&Tancar "
 
 #: constants.cpp:84 import_export/qif_import_gui.cpp:739
 #: import_export/qif_import_gui.cpp:772 import_export/qif_import_gui.cpp:797
@@ -1827,7 +1827,7 @@ msgstr ""
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "Desfer"
 
 #: constants.cpp:91
 msgid "Redo"
@@ -1839,11 +1839,11 @@ msgstr ""
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "Enganxar"
 
 #: constants.cpp:95
 msgid "Select All"
@@ -1911,7 +1911,7 @@ msgstr ""
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "TOT"
 
 #: constants.cpp:209 mmframe.cpp:1499 mmframe.cpp:1912
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
