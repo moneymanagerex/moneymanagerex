@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-31 05:49\n"
+"PO-Revision-Date: 2023-10-31 06:45\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -6990,23 +6990,23 @@ msgstr "1 Yıl Öncesinden Bugüne"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
-msgstr ""
+msgstr "Bugünden beri"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "1 Ay Öncesinden Beri"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "3 Ay Öncesinden Beri"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
-msgstr ""
+msgstr "Bu Yılın başından beri"
 
 #: reports/mmDateRange.cpp:335
 msgid "Since Start of Financial Year"
-msgstr ""
+msgstr "Mali Yılın Başından beri"
 
 #: reports/myusage.cpp:26
 msgid "MMEX Usage Frequency"
@@ -7047,7 +7047,7 @@ msgstr "Sembol"
 
 #: reports/summarystocks.cpp:119
 msgid "Purchase Date"
-msgstr ""
+msgstr "Satınalma Tarihi"
 
 #: reports/summarystocks.cpp:120
 msgid "Quantity"
@@ -7064,11 +7064,11 @@ msgstr "Komisyon"
 
 #: reports/summarystocks.cpp:124 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
-msgstr ""
+msgstr "Gerçekleşen Kazanç/Zarar"
 
 #: reports/summarystocks.cpp:125 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
-msgstr ""
+msgstr "Gerçekleşmemiş Kazanç/Zarar"
 
 #: reports/summarystocks.cpp:246
 msgid "Stocks Performance Charts"
@@ -7076,15 +7076,15 @@ msgstr "Borsa Performans Grafiği"
 
 #: reports/transactions.cpp:197
 msgid "Rate"
-msgstr ""
+msgstr "Oran"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Tüm İşlemler: Para Çekme, Para Yatırma ve Transferler"
 
 #: reports/transactions.cpp:413
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Transferler hariç Tüm İşlemler"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
@@ -7160,19 +7160,19 @@ msgstr "Borsa (pay) İşlemi Düzenle"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "Bölme Detayını Düzenle"
 
 #: splittransactionsdialog.cpp:98
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "Bu bölünmüş işlemi açıklamak için notlar girin"
 
 #: splittransactionsdialog.cpp:250
 msgid "Add Split"
-msgstr ""
+msgstr "Bölme Ekle"
 
 #: splittransactionsdialog.cpp:255
 msgid "Remove Split"
-msgstr ""
+msgstr "Bölmeyi Kaldır"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
@@ -7180,7 +7180,7 @@ msgstr "Geçersiz Toplam Tutar"
 
 #: splittransactionsdialog.cpp:585
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "Lütfen geçerli bir parasal tutar girin"
 
 #: stockdialog.cpp:138 stockdialog.cpp:505 stockspanel.cpp:147
 msgid "Edit Stock Investment"
@@ -7197,7 +7197,8 @@ msgstr "*Tarih"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Hisse senedi yatırımının başlangıç tarihini belirtin\n"
+"İlk Paylaşım işlemi oluşturulurken kullanılır."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -7206,7 +7207,8 @@ msgstr "*Hisse (pay) sayısı"
 #: stockdialog.cpp:225
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Paylaşım sayısını girin.\n"
+"İlk Paylaşım işlemi oluşturulurken kullanılır."
 
 #: stockdialog.cpp:229
 msgid "*Share Price"
@@ -7215,7 +7217,8 @@ msgstr "*Hisse Fiyatı"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Hisse başına başlangıç fiyatını girin.\n"
+"İlk Paylaşım işlemi oluşturulurken kullanılır."
 
 #: stockdialog.cpp:239
 msgid "*Commission"
@@ -7224,7 +7227,8 @@ msgstr "*Komisyon"
 #: stockdialog.cpp:244
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Ödenen herhangi bir komisyonu girin.\n"
+"İlk Paylaşım işlemi oluşturulurken kullanılır."
 
 #: stockdialog.cpp:247 stocks_list.cpp:96
 msgid "Curr. Share Price"
@@ -7232,7 +7236,7 @@ msgstr "Günc. Pay Fiyatı"
 
 #: stockdialog.cpp:251
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Mevcut hisse senedi/hisse fiyatını girin."
 
 #: stockdialog.cpp:281
 msgid "Stock History Options"
@@ -7248,7 +7252,7 @@ msgstr "Fiyat Tarihi"
 
 #: stockdialog.cpp:316
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Hisse senedi/hisse fiyatı tarihini belirtin."
 
 #: stockdialog.cpp:331
 msgid "Download Stock Price history"
@@ -7260,11 +7264,11 @@ msgstr "Hisse senedi fiyat geçmişi al (CSV biçimi)"
 
 #: stockdialog.cpp:335
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Seçilen Hisse Senedi Fiyatını Sil"
 
 #: stockdialog.cpp:337
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Hisse Senedi Fiyatını geçmişe ekle"
 
 #: stockdialog.cpp:414
 msgid "Held At"
@@ -7273,7 +7277,8 @@ msgstr "Hesap"
 #: stockdialog.cpp:491
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Paylaşım Hesabı bulunamadı.\n\n"
+"Bir tane oluşturmak ister misiniz?"
 
 #: stockdialog.cpp:501
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -7294,12 +7299,12 @@ msgstr "CSV'den alınan fiyatlar:"
 #: stockdialog.cpp:643
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Toplam Satırlar: %ld"
 
 #: stockdialog.cpp:645
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Toplam Alınan: %ld"
 
 #: stockdialog.cpp:653
 msgid "Importing CSV"
@@ -7375,11 +7380,11 @@ msgstr "Hisse (Pay) Toplamı"
 
 #: stocks_list.cpp:92
 msgid "Avg Share Price"
-msgstr ""
+msgstr "Ortalama Hisse Fiyatı"
 
 #: stocks_list.cpp:93
 msgid "Total Cost"
-msgstr ""
+msgstr "Toplam Maliyet"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
@@ -7387,11 +7392,11 @@ msgstr "Günc. Toplam Değer"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Yeni Hisse Senedi Yatırımı..."
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Hisse Senedi İşlemleri Ekleyin..."
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
