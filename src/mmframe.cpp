@@ -1801,7 +1801,7 @@ void mmGUIFrame::createMenu()
     //Community Submenu
     wxMenuItem* menuItemWebsite = new wxMenuItem(menuHelp, MENU_WEBSITE
         , _("&Website")
-        , _("Open the Money Manager EX website for latest news, updates etc"));
+        , _("Open MMEX website for the latest news, updates etc"));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
         , _("&Facebook"), _("Visit us on Facebook"));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
@@ -1820,7 +1820,7 @@ void mmGUIFrame::createMenu()
         , _("F&orum")
         , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
-        , _("Money Manager Ex for &Android")
+        , _("MMEX for &Android")
         , _("Get free Android version and run MMEX on your smart phone or tablet"));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")

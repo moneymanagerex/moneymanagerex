@@ -206,8 +206,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     const auto name = getVFname4print("rep", html);
     browser->LoadURL(name);
 
-    const wxString showAppStartString = wxString::Format(_("Show this window next time %s starts")
-        , mmex::getProgramName());
+    const wxString showAppStartString = wxString::Format(_("&Show this dialog box at startup"));
     showUpdateCheckBox_ = new wxCheckBox(this, wxID_ANY, showAppStartString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     showUpdateCheckBox_->SetValue(true);
     page1_sizer->Add(showUpdateCheckBox_, g_flagsV);
