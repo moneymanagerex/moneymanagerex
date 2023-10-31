@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-10-04 23:29+0300\n"
-"PO-Revision-Date: 2023-10-30 21:28\n"
+"PO-Revision-Date: 2023-10-31 05:49\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -6881,16 +6881,16 @@ msgstr "Tahmin"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Rapor Oluşturuldu %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "%1$s'den %2$s'a kadar"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
-msgstr ""
+msgstr "Gelecek"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:249
 msgid "Over Time"
@@ -6898,15 +6898,15 @@ msgstr "Tüm Zamanlar"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"
-msgstr ""
+msgstr "Kullanıcı tarafından belirlenen başlangıç günü"
 
 #: reports/htmlbuilder.cpp:257
 msgid "Future Transactions have been ignored"
-msgstr ""
+msgstr "Gelecekteki İşlemler göz ardı edildi"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Gelir ve Gider Özeti"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -6918,11 +6918,11 @@ msgstr "Gider: "
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Aylık Gelir ve Giderler"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "Kümülatif"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -6938,23 +6938,23 @@ msgstr "Bu Ay (Bugüne kadar)"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Önceki Ay"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 Ay Öncesinden Bugüne"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 Ay Öncesinden Bugüne"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Son 3 Ay"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Son 12 Ay"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6966,7 +6966,7 @@ msgstr "Bu Yıl (Bugüne kadar)"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Önceki Yıl"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6978,7 +6978,7 @@ msgstr "Geçerli Finansal Yıl (Bugüne kadar)"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Önceki Mali Yıl"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -6986,7 +6986,7 @@ msgstr "Özel"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 Yıl Öncesinden Bugüne"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
