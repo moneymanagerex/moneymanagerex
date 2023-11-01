@@ -54,6 +54,18 @@ msgstr ""
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr ""
 
+#: util.cpp:1495
+msgid "System Locale: %s"
+msgstr ""
+
+#: util.cpp:1496
+msgid "User Interface Language: %s"
+msgstr ""
+
+#: util.cpp:1505
+msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
+msgstr ""
+
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116

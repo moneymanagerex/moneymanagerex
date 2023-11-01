@@ -1504,7 +1504,7 @@ const wxString getProgramDescription(int type)
         if (display->IsPrimary())
         {
 
-            description << wxString::Format(bull + "%ix%i %i-bit %ix%ippi" + "\n",
+            description << wxString::Format(bull + "%1$ix%2$i %3$i-bit %4$ix%5$ippi" + "\n",
                 display->GetCurrentMode().GetWidth(),
                 display->GetCurrentMode().GetHeight(),
                 display->GetCurrentMode().bpp,
