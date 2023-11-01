@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-10-31 13:00+0300\n"
-"PO-Revision-Date: 2023-10-31 10:18\n"
+"POT-Creation-Date: 2023-11-01 12:07+0300\n"
+"PO-Revision-Date: 2023-11-01 10:43\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,18 @@ msgstr "Odesílat anonymní data o statistice využití aplikace"
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Povolením nám umožníte sbírat anonymní data o způsobu využívání MMEX."
+
+#: util.cpp:1495
+msgid "System Locale: %s"
+msgstr ""
+
+#: util.cpp:1496
+msgid "User Interface Language: %s"
+msgstr ""
+
+#: util.cpp:1505
+msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
+msgstr ""
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
