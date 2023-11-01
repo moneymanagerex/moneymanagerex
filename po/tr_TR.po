@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 10:42\n"
+"PO-Revision-Date: 2023-11-01 17:06\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -57,15 +57,15 @@ msgstr "MMEX kullanımı hakkında genel veriler göndererek bize yardımcı olu
 
 #: util.cpp:1495
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Sistem Yerel Ayarı: %s"
 
 #: util.cpp:1496
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Kullanıcı Arayüzü Dili: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
-msgstr ""
+msgstr "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
@@ -7872,31 +7872,31 @@ msgstr "Kurlar güncellendi."
 
 #: util.cpp:838 util.cpp:933 util.cpp:939 util.cpp:970 util.cpp:1029
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "JSON Ayrıştırma Hatası"
 
 #: util.cpp:978 util.cpp:1037
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Bir veri veya hata dizesi içermesi beklenen yanıt"
 
 #: util.cpp:1009
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Sembol için öğe bulunamadı"
 
 #: util.cpp:1044
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Temel para birimi alınamadı!"
 
 #: util.cpp:1050
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:1053
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Geçmiş fiyatları dönüştürmek için gereken 'USD' para birimi bulunamadı"
 
 #: util.cpp:1074
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Varlık geçmişinde fiyat ayrıştırılamadı"
 
 #: util.cpp:1431
 #, c-format
@@ -7906,22 +7906,22 @@ msgstr "Sürüm: %s"
 #: util.cpp:1432
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Üzerine inşa edildi: %1$s %2$s"
 
 #: util.cpp:1433
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Veritabanı versiyonu: %d"
 
 #: util.cpp:1440
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git taahhüdü: %1$s (%2$s)"
 
 #: util.cpp:1443
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git dalı: %s"
 
 #: util.cpp:1447
 msgid "MMEX is using the following support products:"
@@ -7929,7 +7929,7 @@ msgstr "MMEX izleyen destek yazılımlarını kullanıyor."
 
 #: util.cpp:1464
 msgid "Built with:"
-msgstr ""
+msgstr "Şunlarla oluşturulmuştur:"
 
 #: util.cpp:1483
 msgid "Running on:"
@@ -7938,16 +7938,16 @@ msgstr "Ana platform:"
 #: util.cpp:1497
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Sistem Yerel Ayarı: %s"
 
 #: util.cpp:1498
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Kullanıcı Arayüzü Dili: %s"
 
 #: util.cpp:1736
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "Kapatılan konuların tam listesine bu bağlantıdan ulaşabilirsiniz"
 
 #: util.h:191
 msgid "January"
@@ -8024,12 +8024,12 @@ msgstr "Yanlış WebApp API sürümü:"
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "WebApp API sürümü: %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "Beklenen API sürümü: %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -8053,7 +8053,7 @@ msgstr "Yanlış WebApp hesabı"
 
 #: webapp.cpp:565
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "İşlem tarihi olarak bugün kullanılacaktır"
 
 #: webapp.cpp:594 webapp.cpp:628 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
@@ -8069,7 +8069,7 @@ msgstr "İşlem indirilemedi:"
 
 #: webapp.cpp:597
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Lütfen ekler klasörünü düzeltin veya ekleri Web Uygulamasından silin"
 
 #: webapp.cpp:598
 msgid "Attachment folder error"
@@ -8077,7 +8077,7 @@ msgstr "İlişik dizin hatası"
 
 #: webapp.cpp:630
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "İşlem indirilmedi: lütfen işlemleri indirmeyi yeniden deneyin"
 
 #: webapp.cpp:631 webappdialog.cpp:339
 msgid "Attachment download error"
