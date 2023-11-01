@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 17:06\n"
+"PO-Revision-Date: 2023-11-01 18:17\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1399,7 +1399,7 @@ msgstr "Önerilen"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] "%d gün kaldı"
-msgstr[1] ""
+msgstr[1] "%d gün kaldı"
 
 #: billsdepositspanel.cpp:543 billsdepositspanel.cpp:550
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
@@ -1412,7 +1412,7 @@ msgstr "Etkin değil"
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] "%d gün gecikme!"
-msgstr[1] ""
+msgstr[1] "%d gün gecikme!"
 
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:316
 #, c-format
@@ -4154,13 +4154,13 @@ msgstr "&Yeni Aktarım..."
 #: mmchecking_list.cpp:459
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
+msgstr[0] "&İşlemi Düzenle..."
 msgstr[1] "&İşlemleri Düzenle..."
 
 #: mmchecking_list.cpp:462
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "İşlemi &Kopyala"
 msgstr[1] "İşlemleri &Kopyala"
 
 #: mmchecking_list.cpp:469
@@ -4179,7 +4179,7 @@ msgstr "İşlemlemi &Çoğalt..."
 #: mmchecking_list.cpp:477
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
+msgstr[0] "İşlemi &Taşı..."
 msgstr[1] "İşlemleri &Taşı..."
 
 #: mmchecking_list.cpp:483
@@ -4197,7 +4197,7 @@ msgstr "Zamanlanmış İşlem &Oluştur..."
 #: mmchecking_list.cpp:499
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] ""
+msgstr[0] "&Seçilen işlemi geri yükle..."
 msgstr[1] "&Seçilen işlemleri geri yükle..."
 
 #: mmchecking_list.cpp:501
@@ -4212,13 +4212,13 @@ msgstr "%s '%s' ile tüm işlemleri &bul"
 #: mmchecking_list.cpp:607
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "&Seçilen işlemi sil..."
 msgstr[1] "&Seçilen işlemleri sil..."
 
 #: mmchecking_list.cpp:608
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] ""
+msgstr[0] "&Seçilen işlemi kalıcı olarak silin..."
 msgstr[1] "&Seçilen işlemleri kalıcı olarak silin..."
 
 #: mmchecking_list.cpp:611
@@ -4257,7 +4257,7 @@ msgstr "İşlem Geri Yüklemeyi Onayla"
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Seçilen işlemi gerçekten geri yüklemek istiyor musunuz?"
 msgstr[1] "Seçilen %i işlemi gerçekten geri yüklemek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1177
@@ -4290,14 +4290,14 @@ msgstr "Gösterilen tüm \"%s\" işlemlerini gerçekten silmek istiyor musunuz?"
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Seçilen işlemi gerçekten kalıcı olarak silmek istiyor musunuz?"
 msgstr[1] "Seçtiğim işlemlerin %i'sini gerçekten kalıcı olarak silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1279
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Seçilen işlemi gerçekten silmek istiyor musunuz?"
 msgstr[1] "Seçtiğim işlemlerin %i'sini gerçekten silmek istiyor musunuz?"
 
 #: mmchecking_list.cpp:1351
@@ -4315,7 +4315,7 @@ msgstr "MMEX İşlem Kontrolü"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
+msgstr[0] "Kapatılmış bir hesabı içeren bir işlemi düzenlemek üzeresiniz."
 msgstr[1] "Düzenleme, kapatılan bir hesabı içeren %i işlemlerini etkileyecektir."
 
 #: mmchecking_list.cpp:1389
@@ -4332,7 +4332,7 @@ msgstr "Kapalı Hesap Kontrolü"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Seçilen işlemi gerçekten taşımak istiyor musunuz?"
 msgstr[1] "Seçilen işlemlerin %i'sini gerçekten taşımak istiyor musunuz?"
 
 #: mmchecking_list.cpp:1587
@@ -4343,8 +4343,8 @@ msgstr "İşlem Taşımayı Onayla"
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] "%i işlem şuraya taşınıyor..."
+msgstr[0] "İşlem şuraya taşınıyor..."
+msgstr[1] "%i işlemler şuraya taşınıyor..."
 
 #: mmchecking_list.cpp:1597 stocks_list.cpp:300
 msgid "Select the destination Account "
@@ -6832,7 +6832,7 @@ msgstr "Yeni hata kaydı göndermeden önce lütfen bu adımları izleyin:"
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
+msgstr[0] "%1$s (%2$i ay)"
 msgstr[1] "%1$s (%2$i aylar)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
@@ -8089,11 +8089,11 @@ msgstr "WebApp işlemlerini al"
 
 #: webappdialog.cpp:91
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Ağ durumu (yenilemek için tıklayın)"
 
 #: webappdialog.cpp:123
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Yeni işlemler kontrol ediliyor"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
@@ -8105,11 +8105,11 @@ msgstr "Al ve tümünü aç"
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Webapp'tan işlemler indirilemiyor."
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
-msgstr ""
+msgstr "İşlem indirme hatası"
 
 #: webappdialog.cpp:311
 msgid "Unable to insert transaction in MMEX database"
@@ -8125,7 +8125,7 @@ msgstr "İlişiği Aç"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
-msgstr ""
+msgstr "İçe aktar ve aç"
 
 #: wizard_newaccount.cpp:31
 msgid "Add Account Wizard"
@@ -8148,7 +8148,7 @@ msgstr "Hesap Adı Geçersiz"
 
 #: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Bu ada sahip bir hesap zaten var"
 
 #: wizard_newaccount.cpp:109
 msgid "Name of the Account"
@@ -8175,19 +8175,24 @@ msgstr "Oluşturmak istediğiniz hesabın türünü belirtin:"
 #: wizard_newaccount.cpp:139
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Genel banka hesapları çok çeşitli hesapları kapsar\n"
+"Nakit, Çek, Kredi ve Kredi kartları gibi türler."
 
 #: wizard_newaccount.cpp:144
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Yatırım ve Hisse hesapları özel hesaplardır.\n"
+"kendileriyle ilişkili hisse senedi/yatırım fonu yatırımları var."
 
 #: wizard_newaccount.cpp:149
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Vadeli ve Varlık hesapları özel banka hesaplarıdır.\n"
+"Varlıkların veya Vadeli Mevduat ve Tahvillerin izlenmesi için tasarlanmıştır.\n"
+"normalde dışarıdan düzenli paranın girip çıktığı yer\n"
+"genel gelir akışı."
 
 #: wizard_newaccount.cpp:165
 msgid "Base Account Currency Not set."
@@ -8195,7 +8200,7 @@ msgstr "Temel Hesap Para Birimi ayarlanmamış."
 
 #: wizard_newaccount.cpp:166
 msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr ""
+msgstr "Bunu önce Araçlar → Seçenekler menüsünü kullanarak ayarlayın ve ardından yeni bir hesap ekleyin."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
@@ -8224,7 +8229,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Veritabanı için kullanılacak ana (veya varsayılan) para birimini\n"
+"belirtin. Temel (ana) para birimi daha sonra seçenekler menüsü\n"
+"kullanılarak değiştirilebilir. Yeni hesaplar varsayılan olarak bu para birimini\n"
+"kullanacak ve hesap ayrıntıları düzenlenirken değiştirilebilir."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
@@ -8244,11 +8252,11 @@ msgstr "Güncelleme Sihirbazı"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Geçmiş sürümler:"
 
 #: wizard_update.cpp:141
 msgid "Version"
-msgstr ""
+msgstr "Versiyon"
 
 #: wizard_update.cpp:149
 msgid "You already have the latest version"
