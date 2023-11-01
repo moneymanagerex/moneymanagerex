@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 10:42\n"
+"PO-Revision-Date: 2023-11-01 11:59\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "&Limbă interfaţă utilizator: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
-msgstr ""
+msgstr "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
@@ -7931,12 +7931,12 @@ msgstr ""
 #: util.cpp:1497
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Localizarea sistemului: %s"
 
 #: util.cpp:1498
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Limbă interfaţă utilizator: %s"
 
 #: util.cpp:1736
 msgid "The complete list of closed issues is available at this link"
