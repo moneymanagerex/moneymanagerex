@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-10-31 13:00+0300\n"
-"PO-Revision-Date: 2023-10-31 13:27\n"
+"POT-Creation-Date: 2023-11-01 12:07+0300\n"
+"PO-Revision-Date: 2023-11-01 10:42\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,18 @@ msgstr "Envoyer les statistiques d'utilisation de manière anonyme"
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Permettre de nous aider en envoyant des données anonymes sur l'utilisation de MMex."
+
+#: util.cpp:1495
+msgid "System Locale: %s"
+msgstr "Paramètres systèmes de localisation : %s"
+
+#: util.cpp:1496
+msgid "User Interface Language: %s"
+msgstr "Langue de l'interface utilisateur : %s"
+
+#: util.cpp:1505
+msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
+msgstr ""
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
@@ -7927,12 +7939,12 @@ msgstr "Mis en marche le:"
 #: util.cpp:1497
 #, c-format
 msgid "System Locale: %s"
-msgstr "Paramètres systèmes de localisation : %s"
+msgstr ""
 
 #: util.cpp:1498
 #, c-format
 msgid "User Interface Language: %s"
-msgstr "Langue de l'interface utilisateur : %s"
+msgstr ""
 
 #: util.cpp:1736
 msgid "The complete list of closed issues is available at this link"
