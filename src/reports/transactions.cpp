@@ -191,13 +191,13 @@ table {
             if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
             if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status text-center");
             if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
-            if (showColumnById(8)) hb.addTableHeaderCell(_("Tags"), "Tags");
-            if (showColumnById(9)) hb.addTableHeaderCell(_("Type"), "Type");
-            if (showColumnById(10)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-            if (showColumnById(11)) hb.addTableHeaderCell(_("Rate"), "Rate text-right");
-            if (showColumnById(12)) hb.addTableHeaderCell(_("Notes"), "Notes");
+            if (showColumnById(16)) hb.addTableHeaderCell(_("Tags"), "Tags");
+            if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
+            if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+            if (showColumnById(17)) hb.addTableHeaderCell(_("Rate"), "Rate text-right");
+            if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
             const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-            int colNo = 13;
+            int colNo = 11;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
             {
                 if (udfc_entry.empty()) continue;
@@ -254,8 +254,8 @@ table {
                 if (showColumnById(6)) hb.addTableCell(transaction.STATUS, false, true);
                 if (showColumnById(7)) hb.addTableCell(transaction.CATEGNAME);
                 // Tags
-                if (showColumnById(8)) hb.addTableCell(transaction.TAGNAMES);
-                if (showColumnById(9))
+                if (showColumnById(16)) hb.addTableCell(transaction.TAGNAMES);
+                if (showColumnById(8))
                 {
                     if (Model_Checking::foreignTransactionAsTransfer(transaction))
                         hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
@@ -273,7 +273,7 @@ table {
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                    if (showColumnById(10))
+                    if (showColumnById(9))
                         if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
@@ -291,14 +291,14 @@ table {
                 else
                 {
                     wxFAIL_MSG("account for transaction not found");
-                    if (showColumnById(10)) hb.addEmptyTableCell();
+                    if (showColumnById(9)) hb.addEmptyTableCell();
                 }
 
                 // Exchange Rate
-                if (showColumnById(11))
+                if (showColumnById(17))
                 {
                     if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
-                            && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
+                        && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
                         hb.addMoneyCell(transaction.TOTRANSAMOUNT / transaction.TRANSAMOUNT);
                     else
                         hb.addEmptyTableCell();
@@ -313,7 +313,7 @@ table {
                 }
 
                 // Notes
-                if (showColumnById(12)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
+                if (showColumnById(10)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
                 // Custom Fields
 
@@ -357,16 +357,16 @@ table {
                     }
                 }
 
-                if (showColumnById(13))
+                if (showColumnById(11))
                     UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
-                if (showColumnById(14))
+                if (showColumnById(12))
                     UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
-                if (showColumnById(15))
+                if (showColumnById(13))
                     UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
-                if (showColumnById(16))
+                if (showColumnById(14))
                     UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
-                if (showColumnById(17))
-                    UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);
+                if (showColumnById(15))
+                    UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);                               
             }
             hb.endTableRow();
         }

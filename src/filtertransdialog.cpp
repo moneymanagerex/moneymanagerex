@@ -43,6 +43,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 constexpr auto DATE_MAX = 253402214400 /* Dec 31, 9999 */;
 
+static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type",
+                                              "Amount", "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "Rate" };
+
 static const wxString TRANSACTION_STATUSES[] = { wxTRANSLATE("Unreconciled"), wxTRANSLATE("Reconciled"), wxTRANSLATE("Void"),
                                                  wxTRANSLATE("Follow Up"),    wxTRANSLATE("Duplicate"),  wxTRANSLATE("All Except Reconciled") };
 
@@ -1069,24 +1072,10 @@ void mmFilterTransactionsDialog::OnQuit(wxCloseEvent& /*event*/)
 void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
 {
     wxArrayString column_names;
-    column_names.Add("ID");
-    column_names.Add("Color");
-    column_names.Add("Date");
-    column_names.Add("Number");
-    column_names.Add("Account");
-    column_names.Add("Payee");
-    column_names.Add("Status");
-    column_names.Add("Category");
-    column_names.Add("Tags");
-    column_names.Add("Type");
-    column_names.Add("Amount");
-    column_names.Add("Rate");
-    column_names.Add("Notes");
-    column_names.Add("UDFC01");
-    column_names.Add("UDFC02");
-    column_names.Add("UDFC03");
-    column_names.Add("UDFC04");
-    column_names.Add("UDFC05");
+    for (const auto& name : COLUMN_NAMES)
+    {
+        column_names.Add(wxGetTranslation(name));
+    }
 
     mmMultiChoiceDialog s_col(this, _("Hide Report Columns"), "", column_names);
     s_col.SetSelections(m_selected_columns_id);
@@ -1103,7 +1092,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
         for (const auto& entry : selected_items)
         {
             int index = entry;
-            const wxString column_name = column_names[index];
+            const wxString column_name = COLUMN_NAMES[index];
             m_selected_columns_id.Add(index);
             baloon += wxGetTranslation(column_name) + "\n";
         }
@@ -1605,17 +1594,21 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
                 if (a.GetType() == kNumberType)
                 {
                     // wxLogDebug("%s", wxString::FromUTF8(itr->name.GetString()));
-                    if (wxGetTranslation("Tags").IsSameAs(wxString::FromUTF8(itr->name.GetString())))
+                    if (wxGetTranslation("Tags").IsSameAs(name))
                     {
                         temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + Model_Tag::instance().get(a.GetInt())->TAGNAME;
                         appendOperator = true;
+                    }
+                    else if (wxGetTranslation("Hide Columns").IsSameAs(name))
+                    {
+                        temp += (temp.empty() ? "" : ", ") + wxGetTranslation(COLUMN_NAMES[a.GetInt()]);
                     }
                     else
                         temp += (temp.empty() ? "" : ", ") + wxString::Format("%i", a.GetInt());
                 }
                 else if (a.GetType() == kStringType)
                 {
-                    if (wxGetTranslation("Tags").IsSameAs(itr->name.GetString()))
+                    if (wxGetTranslation("Tags").IsSameAs(name))
                     {
                         temp += (temp.empty() ? "" : " " + wxString::FromUTF8(a.GetString()) + " ");
                         appendOperator = false;
