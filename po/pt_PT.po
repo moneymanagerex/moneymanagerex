@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-02 12:57\n"
+"PO-Revision-Date: 2023-11-02 16:00\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Idioma da Interface do Utilizador: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
-msgstr ""
+msgstr "%1$ix%2$i %3$i-bit %4$ix%5$ippp"
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
@@ -803,7 +803,7 @@ msgstr "Anx."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Esta pasta, e correspondentes ficheiros, é gerida automaticamente pelo MMEX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -5945,7 +5945,7 @@ msgstr "Legenda (podem ser usadas como variáveis no início do caminho acima)"
 #: optionsettingsattachment.cpp:112
 #, c-format
 msgid "%s : User document directory"
-msgstr "%s : Diretório de documentos do utilizador"
+msgstr "%s : Pasta de documentos do utilizador"
 
 #: optionsettingsattachment.cpp:113
 #, c-format
