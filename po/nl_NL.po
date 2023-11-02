@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-02 17:11\n"
+"PO-Revision-Date: 2023-11-02 18:18\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,11 @@ msgstr "Help ons met het versturen van anonieme gegevens over MMEX gebruik."
 
 #: util.cpp:1495
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Systeem taal: %s"
 
 #: util.cpp:1496
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Taal van de gebruikersinterface: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
@@ -803,7 +803,7 @@ msgstr "Bijl."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Deze map en de bestanden worden automatisch beheerd door de Money Manager EX software."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -4984,7 +4984,7 @@ msgstr "Toon help"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Open de website voor laatste nieuws, updates, enz"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5052,7 +5052,7 @@ msgstr "Bezoek het MMEX-forum om bestaande gebruikersopmerkingen te zien of nieu
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX voor &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
