@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-02 16:00\n"
+"PO-Revision-Date: 2023-11-02 19:16\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4985,7 +4985,7 @@ msgstr "Mostrar Ajuda"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Abra o site do MMEX para saber das últimas novidades, atualizações, etc"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5053,7 +5053,7 @@ msgstr "Visite o fórum MMEX para ver comentários de utilizadores correntes ou 
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX para &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -7941,12 +7941,12 @@ msgstr "A executar em:"
 #: util.cpp:1497
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Localização do Sistema: %s"
 
 #: util.cpp:1498
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Idioma da Interface do Utilizador: %s"
 
 #: util.cpp:1736
 msgid "The complete list of closed issues is available at this link"
