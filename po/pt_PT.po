@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 10:43\n"
+"PO-Revision-Date: 2023-11-02 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,11 @@ msgstr "Ative para enviar dados anónimos de utilização do MMEX, ajudando-nos.
 
 #: util.cpp:1495
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Localização do Sistema: %s"
 
 #: util.cpp:1496
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Idioma da Interface do Utilizador: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
