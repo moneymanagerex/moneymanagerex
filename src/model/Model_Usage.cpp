@@ -281,6 +281,9 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     Value page_location(documentPath.utf8_str(), document.GetAllocator());
     params.AddMember("page_location", page_location, document.GetAllocator());
 
+    Value engagement_time_msec(static_cast<int>(plt));
+    params.AddMember("engagement_time_msec", engagement_time_msec, document.GetAllocator());
+
     event.AddMember("params", params, document.GetAllocator());
     events.PushBack(event, document.GetAllocator());
     document.AddMember("events", events, document.GetAllocator());
