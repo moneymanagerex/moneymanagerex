@@ -58,6 +58,5 @@ public:
 
 public:
     void pageview(const wxString& documentPath, const wxString& documentTitle, long plt = 0 /*msec*/);
-    void amp_pageview(const wxString& documentPath, const wxString& documentTitle, long plt = 0 /*msec*/);
     void pageview(const wxWindow* window, long plt = 0 /*msec*/);
 };

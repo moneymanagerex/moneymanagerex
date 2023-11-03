@@ -177,10 +177,10 @@ void Model_Usage::pageview(const wxWindow* window, long plt /* = 0 msec*/)
         current = current->GetParent();
     }
 
-    amp_pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
+    pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
-void Model_Usage::amp_pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
+void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
 {
     if (!Option::instance().getSendUsageStatistics())
     {
@@ -213,17 +213,20 @@ void Model_Usage::amp_pageview(const wxString& documentPath, const wxString& doc
     Value language(Option::instance().getLanguageCode().utf8_str(), document.GetAllocator());
     event.AddMember("language", language, document.GetAllocator());
 
-    Value page_title(documentTitle.utf8_str(), document.GetAllocator());
-    event.AddMember("page_title", page_title, document.GetAllocator());
-
-    Value page_path(documentPath.utf8_str(), document.GetAllocator());
-    event.AddMember("page_path", page_path, document.GetAllocator());
-
     Value version_name(mmex::version::string.utf8_str(), document.GetAllocator());
     event.AddMember("version_name", version_name, document.GetAllocator());
 
     Value ip("$remote", document.GetAllocator());
     event.AddMember("ip", ip, document.GetAllocator());
+
+    Value event_properties(kObjectType);
+    Value page_title(documentTitle.utf8_str(), document.GetAllocator());
+    event_properties.AddMember("page_title", page_title, document.GetAllocator());
+
+    Value page_location(documentPath.utf8_str(), document.GetAllocator());
+    event_properties.AddMember("page_location", page_location, document.GetAllocator());
+
+    event.AddMember("event_properties", event_properties, document.GetAllocator());
 
     events.PushBack(event, document.GetAllocator());
     document.AddMember("events", events, document.GetAllocator());
@@ -234,82 +237,6 @@ void Model_Usage::amp_pageview(const wxString& documentPath, const wxString& doc
 
     // Spawn thread to send statistics
     SendStatsThread* thread = new SendStatsThread(url, wxString::FromUTF8(buffer.GetString()));
-    thread->Run();
-}
-
-void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
-{
-    if (!Option::instance().getSendUsageStatistics())
-    {
-        return;
-    }
-
-    wxString url = mmex::weblink::GA;
-
-    std::vector<std::pair<wxString, wxString>> parameters = {
-        { "measurement_id", "G-K8MBNK3HGN"},
-        { "api_secret", "E3B1tM68QwWuqvRmNcr7lA"},
-        { "v", "1" },
-        { "t", "pageview" },
-        { "tid", "UA-51521761-6" },
-        { "cid", uuid().first },
-        { "uid", uuid().second},
-        { "dp", documentPath },
-        { "dt", documentTitle },
-        //        {"geoid", },
-        { "ul", Option::instance().getLanguageCode() },
-        { "sr", wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()) },
-        { "vp", "" },
-        { "sd", wxString::Format("%i-bits", wxDisplayDepth()) },
-        // application
-        { "an", "MoneyManagerEx" },
-        { "av", mmex::version::string }, // application version
-                                         // custom dimensions
-        { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
-        { "plt", wxString::Format("%ld", plt)}
-    };
-
-    for (const auto& kv : parameters)
-    {
-        if (kv.second.empty()) continue;
-        url += wxString::Format("%s=%s&", kv.first, kv.second);
-    }
-
-    Document document;
-    document.SetObject();
-
-    Value client_id(uuid().first.utf8_str(), document.GetAllocator());
-    document.AddMember("client_id", client_id, document.GetAllocator());
-
-    Value user_id(uuid().second.utf8_str(), document.GetAllocator());
-    document.AddMember("user_id", user_id, document.GetAllocator());
-
-    Value events(kArrayType);
-
-    Value event(kObjectType);
-    Value name("page_view", document.GetAllocator());
-    event.AddMember("name", name, document.GetAllocator());
-
-    Value params(kObjectType);
-    Value page_title(documentTitle.utf8_str(), document.GetAllocator());
-    params.AddMember("page_title", page_title, document.GetAllocator());
-
-    Value page_location(documentPath.utf8_str(), document.GetAllocator());
-    params.AddMember("page_location", page_location, document.GetAllocator());
-
-    Value engagement_time_msec(static_cast<int>(plt));
-    params.AddMember("engagement_time_msec", engagement_time_msec, document.GetAllocator());
-
-    event.AddMember("params", params, document.GetAllocator());
-    events.PushBack(event, document.GetAllocator());
-    document.AddMember("events", events, document.GetAllocator());
-
-    StringBuffer buffer;
-    Writer<StringBuffer> writer(buffer);
-    document.Accept(writer);
-
-    // Spawn thread to send statistics
-    SendStatsThread* thread = new SendStatsThread(url.RemoveLast(), wxString::FromUTF8(buffer.GetString())); // override the last &
     thread->Run();
 }
 

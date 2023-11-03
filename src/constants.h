@@ -63,7 +63,6 @@ namespace version
 namespace weblink
 {
     const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
-    extern const wxString GA;
     extern const wxString AMP;
     extern const wxString WebSite;
     extern const wxString Releases;
