@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 10:43\n"
+"PO-Revision-Date: 2023-11-05 10:27\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -57,15 +57,15 @@ msgstr "Aktivieren Sie das Senden anonymer Daten über ihre MMEX Nutzung"
 
 #: util.cpp:1495
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Systemsprache: %s"
 
 #: util.cpp:1496
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Sprache der Benutzeroberfläche: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
-msgstr ""
+msgstr "%1$ix%2$i %3$i-Bit %4$ix%5$ippi"
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
@@ -802,7 +802,7 @@ msgstr "Att."
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Dieses Verzeichnis und seine Dateien werden automatisch von MMEX verwaltet."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -4985,7 +4985,7 @@ msgstr "Hilfe anzeigen"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "MMEX-Webseite für die neuesten Nachrichten, Updates usw. öffnen"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5053,7 +5053,7 @@ msgstr "Besuche das MMEX Forum, um bestehende Nutzerkommentare zu lesen oder um 
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX für &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -7938,12 +7938,12 @@ msgstr "Läuft auf:"
 #: util.cpp:1497
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Systemsprache: %s"
 
 #: util.cpp:1498
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Sprache der Benutzeroberfläche: %s"
 
 #: util.cpp:1736
 msgid "The complete list of closed issues is available at this link"
