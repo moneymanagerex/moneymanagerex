@@ -219,6 +219,9 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     Value ip("$remote", document.GetAllocator());
     event.AddMember("ip", ip, document.GetAllocator());
 
+    Value session_id(wxString::Format("%lld", this->m_start.GetTicks()).utf8_str(), document.GetAllocator());
+    event.AddMember("session_id", session_id, document.GetAllocator());
+
     Value event_properties(kObjectType);
     Value page_title(documentTitle.utf8_str(), document.GetAllocator());
     event_properties.AddMember("page_title", page_title, document.GetAllocator());
