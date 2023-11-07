@@ -229,6 +229,8 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     Value page_location(documentPath.utf8_str(), document.GetAllocator());
     event_properties.AddMember("page_location", page_location, document.GetAllocator());
 
+    event_properties.AddMember("plt", Value(static_cast<int>(plt)), document.GetAllocator());
+
     event.AddMember("event_properties", event_properties, document.GetAllocator());
 
     events.PushBack(event, document.GetAllocator());
