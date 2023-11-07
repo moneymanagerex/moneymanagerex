@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-07 16:21\n"
+"PO-Revision-Date: 2023-11-07 17:28\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Aiutaci inviando statistiche anonime sull'utilizzo di MMEX"
 
 #: util.cpp:1495
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Lingua del Sistema: %s"
 
 #: util.cpp:1496
 msgid "User Interface Language: %s"
@@ -65,7 +65,7 @@ msgstr "Lingua dell'interfaccia utente: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
-msgstr ""
+msgstr "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
@@ -3593,7 +3593,7 @@ msgstr "Riga %ld: OK, importato."
 
 #: import_export/univcsvdialog.cpp:1458
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Righe rifiutate:"
 
 #: import_export/univcsvdialog.cpp:1463
 #, c-format
@@ -3697,7 +3697,7 @@ msgstr "Tutti i files"
 
 #: import_export/univcsvdialog.cpp:2589
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "Digitare la parola che indica i valori positivi nel file CSV, ad esempio \"credito\""
 
 #: import_export/univcsvdialog.cpp:2589
 msgid "Enter a value"
@@ -3712,22 +3712,22 @@ msgstr "Il segno dell'importo deve essere definito per tipo quando si seleziona 
 #: import_export/univcsvdialog.cpp:2802
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "Il valore %1$s per il campo personalizzato '%2$s' non è di tipo %3$s."
 
 #: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "Il valore %1$s per il campo personalizzato %2$s '%3$s' non è una selezione valida."
 
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Conferma il formato corrispondente alla selezione %s."
 
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "Il valore %1$s non corrisponde con l'espressione regolare %2$s per il campo personalizzato '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
