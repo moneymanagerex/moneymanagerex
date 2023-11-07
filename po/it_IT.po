@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-07 14:57\n"
+"PO-Revision-Date: 2023-11-07 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -324,7 +324,7 @@ msgstr "Le azioni per questo conto esistono già prima di questa data"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Le transazioni pianificate per questo conto sono programmate prima di questa data."
 
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
@@ -742,7 +742,7 @@ msgstr "Organizza Allegati | %s | %i"
 #: attachmentdialog.cpp:117
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Gestisci Allegati | %1$s | %2$s"
 
 #: attachmentdialog.cpp:119
 #, c-format
@@ -1057,7 +1057,7 @@ msgstr "Conto"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Specifica il Conto a cui sarà collegata la transazione pianificata"
 
 #: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1107,7 +1107,7 @@ msgstr "Usa Categorie suddivise"
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
-msgstr ""
+msgstr "Etichette"
 
 #: billsdepositsdialog.cpp:624 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
@@ -1133,7 +1133,7 @@ msgstr "Colori Utente"
 
 #: billsdepositsdialog.cpp:643
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Gestisci allegati di questa transazione pianificata"
 
 #: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:651
 #: filtertransdialog.cpp:1016 filtertransdialog.cpp:1821
@@ -1263,7 +1263,7 @@ msgstr "Dividi Transazione"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nuova Transazione Pianificata"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1323,7 +1323,7 @@ msgstr "Pagamento"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX consente di impostare i pagamenti regolari come transazioni. Queste transazioni possono anche essere depositi regolari o trasferimenti che avverranno in un momento futuro. Queste transazioni fungono da promemoria dell'imminente verificarsi di un evento e vengono visualizzate sul Dashboard 14 giorni prima della scadenza della transazione."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1332,7 +1332,7 @@ msgstr "Suggerimento: Queste operazioni possono essere impostate come da attivar
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
 #: mmframe.cpp:3162 mmhomepagepanel.cpp:244
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Transazioni Pianificate"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
@@ -1340,7 +1340,7 @@ msgstr "D&uplica "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Elimina Transazione Pianificata"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1348,7 +1348,7 @@ msgstr "Invi&o"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Inserire il Prossimo Avvenimento di Transazione Pianificata"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1356,7 +1356,7 @@ msgstr "&Salta"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Salta la prossima Transazione Pianificata"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1368,19 +1368,19 @@ msgstr "Ignora prossima Scadenza"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nuova Transazione Pianificata..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Modifica Transazione Pianificata..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "D&Uplica Transazione Pianificata..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Elimina Transazione Pianificata..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1423,7 +1423,7 @@ msgstr[1] "%d giorni in ritardo!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Vuoi davvero eliminare la transazione pianificata?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1526,7 +1526,7 @@ msgstr "Mese: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Data di Inizio di: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1677,11 +1677,11 @@ msgstr "Seleziona la categoria attuale come categoria assegnata alla operazione.
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Il nome contiene delimitatore di categoria."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "I due punti (:) sono utilizzati per separare categorie e sottocategorie e pertanto non dovrebbero essere utilizzati nel nome"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
@@ -1697,19 +1697,19 @@ msgstr "Aggiungi categoria"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Esiste già una categoria con questo nome per la categoria genitore"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
-msgstr ""
+msgstr "Gestione Categorie: errore durante l'aggiunta"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Non è possibile spostare una sottocategoria in una categoria che ha già una sottocategoria con lo stesso nome. Valuta la possibilità di rinominarla prima di spostarla."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Esiste già una sottocategoria con questo nome"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1721,7 +1721,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Sei sicuro di voler spostare\n"
+"\"%1$s\"\n"
+"in:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -1737,25 +1740,27 @@ msgstr "Categoria in uso."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Sottocategoria in uso."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Suggerimento: Modifica tutte le operazioni che utilizzano questa Categoria\n"
+"con un'altra Categoria utilizzando la funzione di unione:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Suggerimento: Modifica tutte le operazioni che utilizzano questa Sottocategoria\n"
+"con un'altra Categoria utilizzando la funzione di unione:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Strumenti → Unisci → Categorie"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
-msgstr ""
+msgstr "Gestione Categorie: Errore di eliminazione"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1784,11 +1789,11 @@ msgstr "Modifica categoria"
 
 #: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
-msgstr ""
+msgstr "Gestione Categorie: Errore di modifica"
 
 #: categdialog.cpp:682 mmframe.cpp:3727
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Unisci categorie completate"
 
 #: categdialog.cpp:683 mmframe.cpp:3728 mmframe.cpp:3743 mmframe.cpp:3759
 #: payeedialog.cpp:841
@@ -1798,7 +1803,7 @@ msgstr "Elementi aggiornati nel database: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3730
 msgid "Merge categories result"
-msgstr ""
+msgstr "Risultato dell'unione delle categorie"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -2585,7 +2590,7 @@ msgstr "Periodo"
 
 #: filtertransdialog.cpp:573 filtertransdialog.cpp:1734
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Includi tutte le sottocategorie"
 
 #: filtertransdialog.cpp:604 filtertransdialog.cpp:1473
 #: filtertransdialog.cpp:1576 import_export/univcsvdialog.cpp:112
@@ -2928,7 +2933,7 @@ msgstr "Nuovo Resoconto %s"
 
 #: general_report_manager.cpp:1026
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Esiste già un report con questo nome"
 
 #: general_report_manager.cpp:1026 general_report_manager.cpp:1033
 msgid "New Report"
@@ -2950,12 +2955,12 @@ msgstr "I metadati JSON nel Tema '%s' non possono essere analizzati e sembrano m
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "File '%1$s' mancante o non valido nel tema scelto '%2$s'"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Metadati '%1$s' mancanti nel tema scelto '%2$s'"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -2964,7 +2969,7 @@ msgstr "e altro..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "Ci sono %1$d icone mancanti o non valide nel tema scelto '%2$s': %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -3195,7 +3200,7 @@ msgstr "Schema di mappatura dei beneficiari"
 
 #: import_export/qif_import_gui.cpp:291 import_export/univcsvdialog.cpp:463
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "Aggiungi i dettagli della corrispondenza alle Note"
 
 #: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
 #: import_export/qif_import_gui.cpp:466 import_export/qif_import_gui.cpp:623
@@ -3252,7 +3257,7 @@ msgstr "Mancante"
 #: import_export/qif_import_gui.cpp:774 import_export/univcsvdialog.cpp:2025
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Corrispondenza con %1$s sul modello %2$s"
 
 #: import_export/qif_import_gui.cpp:852
 msgid "Choose QIF data file to Import"
@@ -3324,7 +3329,7 @@ msgstr "Codice operazione mancante"
 #: import_export/qif_import_gui.cpp:1243
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s corrispondenti a %2$s"
 
 #: import_export/qif_import_gui.cpp:1255
 msgid "Transaction Payee is missing or incorrect"
@@ -3505,7 +3510,7 @@ msgstr "Esporta file"
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Preset '%1$s' è stato caricato perché è stato selezionato il Conto '%2$s'"
 
 #: import_export/univcsvdialog.cpp:737
 #, c-format
@@ -3526,11 +3531,11 @@ msgstr "Positivo se il tipo contiene '%s'"
 
 #: import_export/univcsvdialog.cpp:1063
 msgid "Preset Name"
-msgstr ""
+msgstr "Nome Preset"
 
 #: import_export/univcsvdialog.cpp:1063
 msgid "Save Preset"
-msgstr ""
+msgstr "Salva Preset"
 
 #: import_export/univcsvdialog.cpp:1232
 msgid "Invalid Date."
