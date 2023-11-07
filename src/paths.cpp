@@ -130,7 +130,7 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
     if (f < 0 || f >= DOC_FILES_MAX) f = HTML_INDEX;
     static const wxString files[DOC_FILES_MAX] = {
       "contrib.txt",
-      "license.txt",
+      "help%slicense.txt",
       "help%sindex.html",
       "help%sindex.html#section11.1",
       "help%sgrm.html",

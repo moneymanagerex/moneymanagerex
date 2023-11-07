@@ -634,9 +634,11 @@ endif()
 # Help Files
 install(FILES
     contrib.txt
-    license.txt
     README.TXT
     DESTINATION "${MMEX_DOC_DIR}")
+install(FILES
+    license.txt
+    DESTINATION "${MMEX_DOC_DIR}/help")
 install(DIRECTORY
     docs/
     DESTINATION "${MMEX_DOC_DIR}/help")
