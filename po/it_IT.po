@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-07 17:28\n"
+"PO-Revision-Date: 2023-11-07 18:42\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3803,7 +3803,7 @@ msgstr "Sicuro di voler eliminare la Valuta selezionata?"
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1702
 #: mmframe.cpp:1922 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Gestione Valute"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -3972,7 +3972,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1492
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Creare una nuova etichetta '%s'?"
 
 #: mmSimpleDialogs.cpp:1492
 msgid "New tag entered"
@@ -4353,7 +4353,7 @@ msgstr "Seleziona il Conto di Destinazione "
 
 #: mmchecking_list.cpp:1684
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Transazione pianificata salvata."
 
 #: mmcheckingpanel.cpp:438
 msgid "Delete selected transaction"
@@ -4390,7 +4390,7 @@ msgstr "Transazioni Eliminate"
 #: mmcheckingpanel.cpp:513
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Vista del Conto: %s"
 
 #: mmcheckingpanel.cpp:531
 msgid "Account Bal: "
@@ -4623,7 +4623,7 @@ msgstr "&Apri il sito web del Conto"
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Modifica Tipo di Conto..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
@@ -4831,15 +4831,15 @@ msgstr "&Gestisci Categorie..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organizza E&tichette..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Gestione Etichette"
 
 #: mmframe.cpp:1702
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "Gestio&ne Valute..."
 
 #: mmframe.cpp:1706
 msgid "&Categories..."
@@ -4847,7 +4847,7 @@ msgstr "&Categorie..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Unisci categorie"
 
 #: mmframe.cpp:1709
 msgid "&Payees..."
@@ -4855,23 +4855,23 @@ msgstr "&Beneficiari..."
 
 #: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Unisci i beneficiari"
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "E&tichette..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Unisci etichette"
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Unisci"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Unisci categorie, beneficiari ed etichette"
 
 #: mmframe.cpp:1727
 msgid "&Budget Setup..."
@@ -4879,7 +4879,7 @@ msgstr "&Impostazione del Budget..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Transazioni Pianificate"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -4931,7 +4931,7 @@ msgstr "&Opzioni...\tCtrl-,"
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Opzioni"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -4959,7 +4959,7 @@ msgstr "Ottimizza lo spazio e le performance del database"
 
 #: mmframe.cpp:1784
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Controllo database e de&bug..."
 
 #: mmframe.cpp:1785
 msgid "Generate database report or fix errors"
@@ -4967,7 +4967,7 @@ msgstr "Genera un report sullo stato del database o ne corregge gli errori"
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "&Database"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -4979,7 +4979,7 @@ msgstr "&Guida\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Mostra Aiuto"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
@@ -5191,7 +5191,7 @@ msgstr "&Print"
 
 #: mmframe.cpp:1949
 msgid "Print"
-msgstr ""
+msgstr "Stampa"
 
 #: mmframe.cpp:2006
 #, c-format
@@ -5299,7 +5299,7 @@ msgstr "Confermare la nuova password"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
-msgstr ""
+msgstr "Modifica password completata"
 
 #: mmframe.cpp:2357
 msgid "Confirm password failed."
@@ -5445,11 +5445,11 @@ msgstr ""
 
 #: mmframe.cpp:3554
 msgid "Select account"
-msgstr ""
+msgstr "Seleziona conto"
 
 #: mmframe.cpp:3554 mmframe.cpp:3577
 msgid "Change Account Type"
-msgstr ""
+msgstr "Modifica Tipo di Conto"
 
 #: mmframe.cpp:3576
 #, c-format
@@ -6563,7 +6563,7 @@ msgstr "Inserisci una stringa qualsiasi per abbinare questo beneficiario all'imp
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Esiste già un beneficiario con questo nome"
 
 #: payeedialog.cpp:461
 msgid "Match Pattern"
@@ -6575,7 +6575,7 @@ msgstr "Beneficiario in uso."
 
 #: payeedialog.cpp:748
 msgid "It will be not removed"
-msgstr ""
+msgstr "Non sarà rimosso"
 
 #: payeedialog.cpp:750
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
@@ -6620,12 +6620,12 @@ msgstr ""
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Sorgente:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Destinazione:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
@@ -6645,7 +6645,7 @@ msgstr "Prego confermare:"
 
 #: relocatecategorydialog.cpp:160
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Conferma delle categorie unite"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
 #: relocatetagdialog.cpp:205
@@ -6996,11 +6996,11 @@ msgstr "Da Oggi"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Da 1 mese"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Da 3 Mesi"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7522,7 +7522,7 @@ msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
-msgstr ""
+msgstr "Seleziona"
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
