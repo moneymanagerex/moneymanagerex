@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 11:59\n"
+"PO-Revision-Date: 2023-11-08 16:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -496,7 +496,7 @@ msgstr "Organize anexos deste ativo"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
-msgstr "Introduza notas relativas a este bem"
+msgstr "Insira notas relacionadas a este bem"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
@@ -4026,7 +4026,7 @@ msgstr "Dica: Para marcar uma transação como requerendo acompanhamento, seleci
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "Dica: O MMEX suporta a impressão de todos os relatórios que podem ser visualizados. As opções de impressão estão disponíveis no menu, Arquivo → Imprimir."
+msgstr "Dica: O MMEX suporta a impressão de todos os relatórios que podem ser visualizados. As opções de impressão estão disponíveis no menu, Arquivo → Imprimir..."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
