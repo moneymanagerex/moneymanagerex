@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-07 19:47\n"
+"PO-Revision-Date: 2023-11-08 07:50\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Lingua del Sistema: %s"
 
 #: util.cpp:1496
 msgid "User Interface Language: %s"
-msgstr "Lingua dell'interfaccia utente: %s"
+msgstr "Lingua dell'Interfaccia Utente: %s"
 
 #: util.cpp:1505
 msgid "%1$ix%2$i %3$i-bit %4$ix%5$ippi"
@@ -116,11 +116,11 @@ msgstr "Saldo iniziale: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
-msgstr "Inserire il saldo iniziale di questo conto."
+msgstr "Inserisci il saldo iniziale di questo conto."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr "Data di apertura:"
+msgstr "Data Di Apertura:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -137,7 +137,7 @@ msgstr "Seleziona Valuta"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
-msgstr "Specificare la valuta da utilizzare in questo conto."
+msgstr "Specificare la valuta da utilizzare per questo conto."
 
 #: accountdialog.cpp:171
 msgid "Favorite Account"
@@ -4220,8 +4220,8 @@ msgstr[1] "&Elimina le operazioni selezionate..."
 #: mmchecking_list.cpp:608
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] "&Elimina definitivamente l'operazione selezionata..."
-msgstr[1] "&Elimina definitivamente le operazioni selezionate..."
+msgstr[0] "&Elimina definitivamente la transazione selezionata..."
+msgstr[1] "&Elimina definitivamente le transazioni selezionate..."
 
 #: mmchecking_list.cpp:611
 msgid "Delete all transactions in current view..."
