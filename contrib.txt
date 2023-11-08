@@ -246,6 +246,7 @@ Pablo De La Mota Ramos
 Otto Kindelmayer
 Robert Sjursen
 Adam Gallagher
+John David Bowman
 
 ### 2022
 Renato
