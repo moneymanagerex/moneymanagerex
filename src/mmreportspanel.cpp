@@ -86,8 +86,6 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     int id = rb_->getReportId();
     this->SetLabel(id < 0 ? "Custom Report" : rb_->getReportTitle(false));
 
-    Model_Usage::instance().pageview(this);
-
     return TRUE;
 }
 
@@ -151,6 +149,7 @@ bool mmReportsPanel::saveReportText(bool initial)
     const auto t = wxString::FromUTF8(json_buffer.GetString());
     wxLogDebug("%s", t);
     Model_Usage::instance().AppendToUsage(t);
+    Model_Usage::instance().pageview(this, rb_, (wxDateTime::UNow() - time).GetMilliseconds().ToLong());
 
     return true;
 }

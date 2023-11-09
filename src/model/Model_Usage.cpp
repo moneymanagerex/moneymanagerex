@@ -177,7 +177,31 @@ void Model_Usage::pageview(const wxWindow* window, long plt /* = 0 msec*/)
         current = current->GetParent();
     }
 
-    pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
+    pageview(wxURI(documentPath).BuildURI(), documentTitle, plt);
+}
+
+void Model_Usage::pageview(const wxWindow* window, const mmPrintableBase* rb, long plt /* = 0 msec*/)
+{
+    if (!window) return;
+    if (window->GetName().IsEmpty()) return;
+
+    const wxWindow *current = window;
+
+    wxString documentTitle = rb->getReportTitle(false);
+
+    wxString documentPath;
+    while (current)
+    {
+        if (current->GetName().IsEmpty())
+        {
+            current = current->GetParent();
+            continue;
+        }
+        documentPath = "/" + current->GetName() + documentPath;
+        current = current->GetParent();
+    }
+
+    pageview(wxURI(documentPath).BuildURI(), documentTitle, plt);
 }
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
@@ -229,8 +253,8 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     Value page_title(documentTitle.utf8_str(), document.GetAllocator());
     event_properties.AddMember("page_title", page_title, document.GetAllocator());
 
-    Value page_location(documentPath.utf8_str(), document.GetAllocator());
-    event_properties.AddMember("page_location", page_location, document.GetAllocator());
+    Value page_path(documentPath.utf8_str(), document.GetAllocator());
+    event_properties.AddMember("page_path", page_path, document.GetAllocator());
 
     event_properties.AddMember("plt", Value(static_cast<int>(plt)), document.GetAllocator());
 
