@@ -21,6 +21,8 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include "Model.h"
 #include "db/DB_Table_Usage_V1.h"
 
+class mmPrintableBase;
+
 class Model_Usage : public Model<DB_Table_USAGE_V1>
 {
 public:
@@ -59,4 +61,5 @@ public:
 public:
     void pageview(const wxString& documentPath, const wxString& documentTitle, long plt = 0 /*msec*/);
     void pageview(const wxWindow* window, long plt = 0 /*msec*/);
+    void pageview(const wxWindow* window, const mmPrintableBase* rb, long plt = 0 /*msec*/);
 };
