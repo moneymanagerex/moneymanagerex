@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-08 07:50\n"
+"PO-Revision-Date: 2023-11-09 20:26\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4194,7 +4194,7 @@ msgstr "&Visualizza Categorie suddivise"
 
 #: mmchecking_list.cpp:495
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Crea T&ransazione Pianificata..."
 
 #: mmchecking_list.cpp:499
 msgid "&Restore selected transaction..."
@@ -4209,7 +4209,7 @@ msgstr "Ripristina tutte le operazioni nella schermata attuale..."
 #: mmchecking_list.cpp:600
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "&Trova tutte le transazioni con %s '%s'"
 
 #: mmchecking_list.cpp:607
 msgid "&Delete selected transaction..."
@@ -4452,7 +4452,8 @@ msgstr "Scelta multipla"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "Impossibile salvare il campo personalizzato \"%1$s\":\n"
+"il valore \"%2$s\" non corrisponde alla validazione RegEx \"%3$s\""
 
 #: mmcustomdata.cpp:789
 msgid "CustomField validation error"
@@ -4804,7 +4805,7 @@ msgstr "Apri Dashboard"
 
 #: mmframe.cpp:1668
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Modifica il tipo di un conto"
 
 #: mmframe.cpp:1671
 msgid "Delete Account from database"
@@ -5136,7 +5137,7 @@ msgstr "&Informazioni"
 
 #: mmframe.cpp:1879
 msgid "About dialog"
-msgstr ""
+msgstr "Mostra finestra informazioni"
 
 #: mmframe.cpp:1883
 msgid "&File"
@@ -5168,7 +5169,7 @@ msgstr "&Opzioni"
 
 #: mmframe.cpp:1928
 msgid "Options Dialog"
-msgstr ""
+msgstr "Finestra Opzioni"
 
 #: mmframe.cpp:1936 mmframe.cpp:1941 mmframe.cpp:2941 optionsettingsnet.cpp:132
 msgid "News"
@@ -5180,7 +5181,7 @@ msgstr "Aggiornamento tassi"
 
 #: mmframe.cpp:1943
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Aggiornamento tassi di cambio e valore azioni"
 
 #: mmframe.cpp:1946
 msgid "Toggle Fullscreen\tF11"
@@ -5319,11 +5320,13 @@ msgstr "Ottimizzazione DB"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Ottimizzazione Database completata!\n\n"
+"Dimensione iniziale: %1$s\n"
+"Dimensione attuale: %2$s\n"
 
 #: mmframe.cpp:2412
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Risultato del controllo dell'integrità del database:"
 
 #: mmframe.cpp:2412
 msgid "Database Check"
@@ -5331,7 +5334,7 @@ msgstr "Controllo del Database"
 
 #: mmframe.cpp:2425
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Utilizza questa funzione solo se richiesto dal supporto MMEX e sei stato fornito con un file di debug .mmdbg"
 
 #: mmframe.cpp:2426
 msgid "Database Debug"
@@ -5420,7 +5423,7 @@ msgstr "Attendere prego..."
 #: mmframe.cpp:3489 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s su %2$s"
 
 #: mmframe.cpp:3506
 msgid "No account available to edit!"
@@ -5442,7 +5445,8 @@ msgstr "Scegliere il conto da eliminare"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Sicuro di voler eliminare il\n"
+"conto %1$s : %2$s?"
 
 #: mmframe.cpp:3554
 msgid "Select account"
@@ -5459,19 +5463,19 @@ msgstr "Seleziona il nuovo tipo di conto per %s"
 
 #: mmframe.cpp:3742 payeedialog.cpp:840
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Unione dei beneficiari completata"
 
 #: mmframe.cpp:3746 payeedialog.cpp:844
 msgid "Merge payees result"
-msgstr ""
+msgstr "Risultato dell'unione dei beneficiari"
 
 #: mmframe.cpp:3758
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Unione Etichette Completata"
 
 #: mmframe.cpp:3762
 msgid "Merge tags result"
-msgstr ""
+msgstr "Risultato dell'unione delle etichette"
 
 #: mmframe.cpp:3838
 #, c-format
@@ -5791,7 +5795,7 @@ msgstr "Transazione Ricorrente"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Dividi Transazione"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
@@ -6580,7 +6584,7 @@ msgstr "Non sarà rimosso"
 
 #: payeedialog.cpp:750
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Suggerimento: Sostituisci tutte le transazioni di questo Beneficiario con un altro utilizzando il comando unisci:"
 
 #: payeedialog.cpp:752
 msgid "Tools → Merge → Payees"
@@ -6823,8 +6827,8 @@ msgstr "Per favore, segui queste istruzioni prima di inviare un nuovo report di 
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s (%2$i mese)"
+msgstr[1] "%1$s (%2$i mesi)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6884,12 +6888,12 @@ msgstr "Previsione"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Resoconto Generato %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "Da %1$s a %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7585,7 +7589,7 @@ msgstr "Esistono transazioni eliminate che utilizzano l'etichetta '%s'."
 
 #: tagdialog.cpp:299
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Eliminando l'etichetta si elimineranno automaticamente anche le transazioni eliminate associate."
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
