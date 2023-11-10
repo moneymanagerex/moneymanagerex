@@ -1413,6 +1413,7 @@ const wxString getProgramDescription(int type)
     wxString build_date = wxString() << BUILD_DATE;
     build_date = wxGetTranslation(build_date.SubString(0, 2)) + build_date.Mid(3);
 
+#ifdef __LINUX__
     wxString desktop_environment;
 
     if (wxPlatformInfo::Get().GetDesktopEnvironment().Len() > 0) {
@@ -1426,6 +1427,21 @@ const wxString getProgramDescription(int type)
     } else {
         desktop_environment = wxGetenv("GDMSESSION");
     }
+
+    wxString session_type;
+
+    switch(wxGetDisplayInfo().type) {
+        case wxDisplayX11:
+            session_type = "X11";
+            break;
+        case wxDisplayWayland:
+            session_type = "Wayland";
+            break;
+        case wxDisplayNone:
+        default:
+            session_type = "unknown display protocol";
+    }
+#endif
 
     wxString description;
     description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
@@ -1492,7 +1508,7 @@ const wxString getProgramDescription(int type)
 #endif
         << bull + wxGetOsDescription() << eol
 #ifdef __LINUX__
-        << bull + desktop_environment << eol
+        << bull + desktop_environment << " (" << session_type << ")" << eol
 #endif
         << bull << wxString::Format(simple ? "System Locale: %s" : _("System Locale: %s"), std::locale("").name()) << eol
         << bull << wxString::Format(simple ? "User Interface Language: %s" : _("User Interface Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
