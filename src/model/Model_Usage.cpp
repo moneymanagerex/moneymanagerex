@@ -216,9 +216,6 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     Document document;
     document.SetObject();
 
-    Value api_key("1e1fbc10354400d9c3392a89558d693d", document.GetAllocator()); // TODO
-    document.AddMember("api_key", api_key, document.GetAllocator());
-
     Value events(kArrayType);
 
     Value event(kObjectType);
@@ -242,9 +239,6 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
 
     Value version_name(mmex::version::string.utf8_str(), document.GetAllocator());
     event.AddMember("version_name", version_name, document.GetAllocator());
-
-    Value ip("$remote", document.GetAllocator());
-    event.AddMember("ip", ip, document.GetAllocator());
 
     Value session_id(wxString::Format("%lld", this->m_start.GetTicks()).utf8_str(), document.GetAllocator());
     event.AddMember("session_id", session_id, document.GetAllocator());
