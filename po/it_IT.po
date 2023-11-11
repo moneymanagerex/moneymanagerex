@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 17:52\n"
+"PO-Revision-Date: 2023-11-11 19:39\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4162,8 +4162,8 @@ msgstr[1] "&Modifica Transazioni..."
 #: mmchecking_list.cpp:462
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "&Copia Operazione"
-msgstr[1] "&Copia Operazione"
+msgstr[0] "&Copia Transazione"
+msgstr[1] "&Copia Operazioni"
 
 #: mmchecking_list.cpp:469
 msgid "&Paste Transaction"
@@ -4725,7 +4725,7 @@ msgstr "Mostra/Nasconde il pannello di Navigazione"
 
 #: mmframe.cpp:1592
 msgid "&Display Share Accounts"
-msgstr "&Mostra conti titoli"
+msgstr "&Visualizza Conto Titoli"
 
 #: mmframe.cpp:1592
 msgid "Show/Hide Share Accounts in the navigation tree"
@@ -6390,7 +6390,7 @@ msgstr "Riepilogo Budget Categorie con totali"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr "Sovrascrivere il budget annuale con il budget mensile"
+msgstr "Sovrascrivi il budget annuale con il budget mensile"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
@@ -6416,7 +6416,7 @@ msgstr "Consente di modificare il 'primo giorno' nel mese (in genere il giorno 1
 
 #: optionsettingsview.cpp:169
 msgid "Start day of month for reporting:"
-msgstr "Giorno iniziale del mese per la reportistica:"
+msgstr "Giorno iniziale del mese per la rendicontazione:"
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
