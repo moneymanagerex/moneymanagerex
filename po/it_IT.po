@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-09 20:26\n"
+"PO-Revision-Date: 2023-11-11 10:45\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4199,7 +4199,7 @@ msgstr "Crea T&ransazione Pianificata..."
 #: mmchecking_list.cpp:499
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] "&Ripristina l'operazione selezionata..."
+msgstr[0] "&Ripristina la transazione selezionate..."
 msgstr[1] "&Ripristina le transazioni selezionate..."
 
 #: mmchecking_list.cpp:501
@@ -5529,7 +5529,7 @@ msgstr "Saldo dei Conti"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr "Bilanci"
+msgstr "Budget"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -6366,7 +6366,7 @@ msgstr "Delimitatore di Categoria"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget Options"
-msgstr "Opzioni Budget/Operazioni"
+msgstr "Opzioni Budget/Transazioni"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6382,7 +6382,7 @@ msgstr "Riepilogo Budget Categorie con totali"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
-msgstr "Scavalca il bilancio annuale conbilancio mensile"
+msgstr "Sovrascrivere il budget annuale con il budget mensile"
 
 #: optionsettingsview.cpp:141
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
@@ -7641,7 +7641,7 @@ msgstr "Aggiungi"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr "Aggiornamento delle operazioni multiple"
+msgstr "Aggiornamento Transazioni Multiple"
 
 #: transdialog.cpp:178
 msgid "Edit Transaction"
