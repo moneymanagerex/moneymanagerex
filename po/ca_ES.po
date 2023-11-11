@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 21:53\n"
+"PO-Revision-Date: 2023-11-11 23:06\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -862,7 +862,7 @@ msgstr "Setmanalment"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "Quinzenalment"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -878,12 +878,12 @@ msgstr "Cada 2 Mesos"
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
 msgid "Quarterly"
-msgstr ""
+msgstr "Quadrimestralment"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:56
 #: model/Model_Budget.cpp:64
 msgid "Half-Yearly"
-msgstr ""
+msgstr "Semestralment"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:57 mmframereport.cpp:201
 #: model/Model_Budget.cpp:65
@@ -921,19 +921,19 @@ msgstr "Cada (n) Mesos"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Mensualment (últim dia)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Mensualment (últim dia laborable)"
 
 #: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplicar Transacció Programada"
 
 #: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Editar Transacció Programada"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
@@ -953,7 +953,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:452 billsdepositsdialog.cpp:1312
 msgid "Repeats"
-msgstr ""
+msgstr "Es repeteix"
 
 #: billsdepositsdialog.cpp:458
 msgid "Back to the last occurring date with the specified values"
@@ -1034,7 +1034,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:171 transdialog.cpp:481
 #: usertransactionpanel.cpp:124 webappdialog.cpp:144
 msgid "Amount"
-msgstr ""
+msgstr "Import"
 
 #: billsdepositsdialog.cpp:558 transdialog.cpp:1301
 msgid "Specify the transfer amount in the To Account"
@@ -1051,7 +1051,7 @@ msgstr ""
 #: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:94
 #: webapp.cpp:562 webappdialog.cpp:139
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the scheduled transaction"
@@ -1209,11 +1209,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1315
 msgid "Period: Days"
-msgstr ""
+msgstr "Període: Dies"
 
 #: billsdepositsdialog.cpp:1316
 msgid "Period: Months"
-msgstr ""
+msgstr "Període: Mesos"
 
 #: billsdepositsdialog.cpp:1323
 msgid "Specify period in Days to activate.\n"
@@ -1246,7 +1246,7 @@ msgstr ""
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: billsdepositsdialog.cpp:1450 splittransactionsdialog.h:82
 #: transdialog.cpp:336
@@ -1299,11 +1299,11 @@ msgstr ""
 
 #: billsdepositspanel.cpp:141 budgetingpanel.cpp:293 reports/myusage.cpp:163
 msgid "Frequency"
-msgstr ""
+msgstr "Freqüència"
 
 #: billsdepositspanel.cpp:142
 msgid "Repetitions"
-msgstr ""
+msgstr "Repeticions"
 
 #: billsdepositspanel.cpp:143
 msgid "Autorepeat"
@@ -1311,7 +1311,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:144 mmhomepage.cpp:358
 msgid "Payment"
-msgstr ""
+msgstr "Pagament"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
