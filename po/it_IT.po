@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 12:42\n"
+"PO-Revision-Date: 2023-11-11 14:52\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4520,7 +4520,7 @@ msgstr "Gestione Budget"
 
 #: mmframe.cpp:785 mmframe.cpp:1314 mmframe.cpp:1331 mmframe.cpp:2801
 msgid "Transaction Report"
-msgstr "Resoconto Operazioni"
+msgstr "Resoconto Transazioni"
 
 #: mmframe.cpp:802 mmframe.cpp:1953 mmframe.cpp:2607 mmframe.cpp:2898
 #: mmhelppanel.cpp:69
@@ -4901,11 +4901,11 @@ msgstr "Gestore dei temi"
 
 #: mmframe.cpp:1747
 msgid "Transaction Report &Filter..."
-msgstr "&Filtro Resoconto Operazioni..."
+msgstr "&Filtro Resoconto Transazioni..."
 
 #: mmframe.cpp:1747 mmframe.cpp:1924
 msgid "Transaction Report Filter"
-msgstr "Filtro Resoconto Operazioni"
+msgstr "Filtro Resoconto Transazioni"
 
 #: mmframe.cpp:1753
 msgid "General Report &Manager..."
@@ -7928,7 +7928,7 @@ msgstr "Realizzato con:"
 
 #: util.cpp:1483
 msgid "Running on:"
-msgstr "Eseguibile con:"
+msgstr "In esecuzione su:"
 
 #: util.cpp:1497
 #, c-format
