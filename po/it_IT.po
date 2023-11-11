@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 14:52\n"
+"PO-Revision-Date: 2023-11-11 17:52\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Nome del Conto:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Inserire il nome del Conto. Questo nome può essere cambiato in qualsiasi momento"
+msgstr "Inserisci il Nome del Conto. Questo nome può essere rinominato in qualsiasi momento."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
@@ -4199,7 +4199,7 @@ msgstr "Crea T&ransazione Pianificata..."
 #: mmchecking_list.cpp:499
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
-msgstr[0] "&Ripristina la transazione selezionate..."
+msgstr[0] "&Ripristina la transazione selezionata..."
 msgstr[1] "&Ripristina le transazioni selezionate..."
 
 #: mmchecking_list.cpp:501
@@ -4897,7 +4897,7 @@ msgstr "Gestione T&emi..."
 
 #: mmframe.cpp:1741 themes.cpp:143
 msgid "Theme Manager"
-msgstr "Gestore dei temi"
+msgstr "Gestore Temi"
 
 #: mmframe.cpp:1747
 msgid "Transaction Report &Filter..."
@@ -5799,7 +5799,7 @@ msgstr "Dividi Transazione"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Divisione Transazione Ricorrente"
 
 #: model/Model_Billsdeposits.cpp:300
 msgid "A scheduled transaction will exceed your account limit.\n\n"
@@ -5808,7 +5808,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Una transazione pianificata supererà il limite del tuo conto.\n\n"
+"Conto: %1$s\n"
+"Saldo Attuale: %1$6.2f\n"
+"Importo della transazione: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Vuoi continuare?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5820,7 +5825,7 @@ msgstr "Credito limite"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Verifica MMEX delle Transazioni Pianificate"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -5879,7 +5884,9 @@ msgstr "Il modello è vuoto"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "Lo script SQL:\n"
+"%s \n"
+" modificherà il database! Annullato!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6068,12 +6075,13 @@ msgstr "Imposta Valuta"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Imposta la valuta predefinita dalla finestra 'Gestione Valute'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Formato derivato dalla localizzazione.\n"
+"Lasciare vuoto per impostare manualmente il formato tramite \"Gestione Valute | Modifica\""
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6620,7 +6628,7 @@ msgstr "Sostituzione Beneficiari"
 
 #: relocatecategorydialog.cpp:104
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Elimina la categoria di origine dopo l'unione (se la categoria di origine non ha sottocategorie)"
 
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
@@ -6667,17 +6675,17 @@ msgstr "Record trovati nelle operazioni suddivise: %i"
 #: relocatetagdialog.cpp:207
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Record trovati nelle transazioni pianificate: %i"
 
 #: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Record trovati nelle transazioni suddivise pianificate: %i"
 
 #: relocatecategorydialog.cpp:261
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Record trovati come categoria beneficiario predefinita: %i"
 
 #: relocatecategorydialog.cpp:262
 #, c-format
@@ -6686,19 +6694,19 @@ msgstr "Records trovati nel budget: %i"
 
 #: relocatepayeedialog.cpp:102
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Elimina beneficiario di origine dopo l'unione"
 
 #: relocatepayeedialog.cpp:159
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Conferma unione beneficiari"
 
 #: relocatetagdialog.cpp:104
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Elimina etichetta di origine dopo l'unione"
 
 #: relocatetagdialog.cpp:161
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Conferma unione etichette"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -7515,15 +7523,15 @@ msgstr "Simbolo: %s"
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
-msgstr ""
+msgstr "Aggiungi una nuova etichetta"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Modifica il nome di una etichetta esistente"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Elimina un etichetta esistente. L'etichetta non deve essere in uso nelle transazioni esistenti."
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7535,11 +7543,11 @@ msgstr "Nome tag non valido"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "I nomi delle etichette non possono contenere i caratteri '&' o '|', perché sono riservati agli operatori di filtro"
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Gestione Etichette: Nome Non Valido"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7551,7 +7559,7 @@ msgstr "I nomi dell'etichetta non possono contenere il carattere spazio (' ')"
 
 #: tagdialog.cpp:206
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Inserisci il nome per la nuova etichetta:"
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
@@ -7559,7 +7567,7 @@ msgstr "Aggiungi Etichetta"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Esiste già un etichetta con questo nome"
 
 #: tagdialog.cpp:218
 msgid "Organize Tags: Adding Error"
