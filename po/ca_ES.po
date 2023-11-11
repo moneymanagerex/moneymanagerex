@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 19:39\n"
+"PO-Revision-Date: 2023-11-11 20:35\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "Data d'obertura:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "La data quan el compte es va obrir"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2567
@@ -333,11 +333,11 @@ msgstr "Compte Nou"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Obrir l'Última Base de &Dades Oberta"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
-msgstr "&Nova base de dades"
+msgstr "&Nova Base de Dades"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -345,7 +345,7 @@ msgstr "Crea un nou fitxer de base de dades per començar"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
-msgstr "Obrir base de dades &existent"
+msgstr "Obrir Base de Dades &Existent"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
@@ -362,7 +362,7 @@ msgstr ""
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
-msgstr "&Manual d'usuari"
+msgstr "Manual d'&Usuari"
 
 #: appstartdialog.cpp:116
 msgid "Read the user manual"
@@ -370,7 +370,7 @@ msgstr "Llegeix el manual d'usuari"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1803
 msgid "&Website"
-msgstr "&Pàgina web"
+msgstr "Pàgina &Web"
 
 #: appstartdialog.cpp:120
 #, c-format
@@ -568,7 +568,7 @@ msgstr ""
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Editar Actiu..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
@@ -577,7 +577,7 @@ msgstr ""
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:491
 #: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Organitzar Adjunts..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -617,7 +617,7 @@ msgstr ""
 
 #: assetspanel.cpp:481 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr ""
+msgstr "&Veure Transacció "
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
@@ -644,7 +644,7 @@ msgstr "Eliminar actiu"
 #: assetspanel.cpp:499 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:462
 #: stockspanel.cpp:164
 msgid "Open attachments"
-msgstr ""
+msgstr "Obrir adjunts"
 
 #: assetspanel.cpp:506 assetspanel.cpp:507 categdialog.cpp:302
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:484 payeedialog.cpp:597
@@ -1328,7 +1328,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
 msgid "D&uplicate "
-msgstr ""
+msgstr "D&uplicar "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
@@ -1360,7 +1360,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nova Transacció Programada..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
@@ -1659,7 +1659,7 @@ msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr ""
+msgstr "&Seleccionar"
 
 #: categdialog.cpp:330
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -2746,7 +2746,7 @@ msgstr ""
 
 #: general_report_manager.cpp:391 import_export/univcsvdialog.cpp:533
 msgid "&Import"
-msgstr ""
+msgstr "&Importar"
 
 #: general_report_manager.cpp:393
 msgid "Locate and load a report file."
@@ -2754,7 +2754,7 @@ msgstr ""
 
 #: general_report_manager.cpp:395 import_export/univcsvdialog.cpp:535
 msgid "&Export"
-msgstr ""
+msgstr "&Exportar"
 
 #: general_report_manager.cpp:397
 msgid "Export the report to a new file."
@@ -4112,21 +4112,21 @@ msgstr ""
 
 #: mmchecking_list.cpp:452 mmcheckingpanel.cpp:319
 msgid "&New Withdrawal..."
-msgstr ""
+msgstr "&Nou Reintegrament..."
 
 #: mmchecking_list.cpp:453 mmcheckingpanel.cpp:320
 msgid "&New Deposit..."
-msgstr ""
+msgstr "&Nou Dipòsit..."
 
 #: mmchecking_list.cpp:455 mmcheckingpanel.cpp:321
 msgid "&New Transfer..."
-msgstr ""
+msgstr "&Nova Transferència..."
 
 #: mmchecking_list.cpp:459
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Editar Transacció..."
+msgstr[1] "&Editar Transaccions..."
 
 #: mmchecking_list.cpp:462
 msgid "&Copy Transaction"
@@ -4522,15 +4522,15 @@ msgstr ""
 
 #: mmframe.cpp:1393 mmframe.cpp:1554
 msgid "&Import from"
-msgstr ""
+msgstr "&Importar des de"
 
 #: mmframe.cpp:1394
 msgid "&CSV Files..."
-msgstr ""
+msgstr "Arxius &CSV..."
 
 #: mmframe.cpp:1395
 msgid "&XML Files..."
-msgstr ""
+msgstr "Arxius &XML..."
 
 #: mmframe.cpp:1395 mmframe.cpp:1556
 msgid "Import from XML file (Excel format)"
@@ -4538,31 +4538,31 @@ msgstr ""
 
 #: mmframe.cpp:1397
 msgid "&QIF Files..."
-msgstr ""
+msgstr "Arxius &QIF..."
 
 #: mmframe.cpp:1400 mmframe.cpp:1563
 msgid "&Export as"
-msgstr ""
+msgstr "&Exportar com"
 
 #: mmframe.cpp:1401 mmframe.cpp:1555 mmframe.cpp:1564
 msgid "&CSV File..."
-msgstr ""
+msgstr "Arxiu &CSV..."
 
 #: mmframe.cpp:1402 mmframe.cpp:1556 mmframe.cpp:1565
 msgid "&XML File..."
-msgstr ""
+msgstr "Arxiu &XML..."
 
 #: mmframe.cpp:1404 mmframe.cpp:1567
 msgid "&MMEX CSV File..."
-msgstr ""
+msgstr "Arxiu CSV de &MMEX..."
 
 #: mmframe.cpp:1405 mmframe.cpp:1568
 msgid "&JSON File..."
-msgstr ""
+msgstr "Arxiu &JSON..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1558 mmframe.cpp:1569
 msgid "&QIF File..."
-msgstr ""
+msgstr "Arxiu &QIF..."
 
 #: mmframe.cpp:1431
 msgid "&Edit Filter..."
@@ -4578,11 +4578,11 @@ msgstr ""
 
 #: mmframe.cpp:1449 mmframe.cpp:1467 mmframe.cpp:1487 mmframe.cpp:1665
 msgid "&Edit Account..."
-msgstr ""
+msgstr "&Editar Compte..."
 
 #: mmframe.cpp:1450 mmframe.cpp:1470 mmframe.cpp:1490 mmframe.cpp:1671
 msgid "&Delete Account..."
-msgstr ""
+msgstr "E&liminar Compte..."
 
 #: mmframe.cpp:1452 mmframe.cpp:1472
 msgid "&Launch Account Website"
@@ -4590,11 +4590,11 @@ msgstr ""
 
 #: mmframe.cpp:1468 mmframe.cpp:1668
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Canviar Tipus de Compte..."
 
 #: mmframe.cpp:1486 mmframe.cpp:1662
 msgid "&New Account..."
-msgstr ""
+msgstr "&Nou Compte..."
 
 #: mmframe.cpp:1488
 msgid "Account &List"
@@ -4606,7 +4606,7 @@ msgstr ""
 
 #: mmframe.cpp:1539
 msgid "&New Database..."
-msgstr ""
+msgstr "&Nova Base de Dades..."
 
 #: mmframe.cpp:1539 mmframe.cpp:1911 wizard_newdb.cpp:137
 msgid "New Database"
@@ -4614,7 +4614,7 @@ msgstr ""
 
 #: mmframe.cpp:1540
 msgid "&Open Database...\tCtrl-O"
-msgstr ""
+msgstr "&Obrir Base de Dades...\tCtrl-O"
 
 #: mmframe.cpp:1540 mmframe.cpp:1912
 msgid "Open Database"
@@ -4622,7 +4622,7 @@ msgstr ""
 
 #: mmframe.cpp:1541
 msgid "Save Database &As..."
-msgstr ""
+msgstr "Gu&ardar Base de Dades Com..."
 
 #: mmframe.cpp:1541
 msgid "Save Database As"
@@ -4630,11 +4630,11 @@ msgstr ""
 
 #: mmframe.cpp:1548
 msgid "&Recent Files"
-msgstr ""
+msgstr "Arxius &Recents"
 
 #: mmframe.cpp:1549
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "Esborrar Arxius Re&cents"
 
 #: mmframe.cpp:1560
 msgid "&WebApp..."
@@ -4650,7 +4650,7 @@ msgstr ""
 
 #: mmframe.cpp:1571
 msgid "&HTML File..."
-msgstr ""
+msgstr "Arxiu &HTML..."
 
 #: mmframe.cpp:1571
 msgid "Export as HTML file"
@@ -4658,7 +4658,7 @@ msgstr ""
 
 #: mmframe.cpp:1576
 msgid "&Print..."
-msgstr ""
+msgstr "Im&primir..."
 
 #: mmframe.cpp:1576
 msgid "Print current view"
@@ -4794,11 +4794,11 @@ msgstr ""
 
 #: mmframe.cpp:1694
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Organitzar &Categories..."
 
 #: mmframe.cpp:1698
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organitzar E&tiquetes..."
 
 #: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
 msgid "Organize Tags"
@@ -4810,7 +4810,7 @@ msgstr ""
 
 #: mmframe.cpp:1706
 msgid "&Categories..."
-msgstr ""
+msgstr "&Categories..."
 
 #: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
 msgid "Merge categories"
@@ -4826,7 +4826,7 @@ msgstr ""
 
 #: mmframe.cpp:1712
 msgid "&Tags..."
-msgstr ""
+msgstr "E&tiquetes..."
 
 #: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
 msgid "Merge tags"
@@ -4854,7 +4854,7 @@ msgstr ""
 
 #: mmframe.cpp:1735
 msgid "&Assets"
-msgstr ""
+msgstr "&Actius"
 
 #: mmframe.cpp:1741
 msgid "T&heme Manager..."
@@ -4934,7 +4934,7 @@ msgstr ""
 
 #: mmframe.cpp:1790
 msgid "&Database"
-msgstr ""
+msgstr "Base de &Dades"
 
 #: mmframe.cpp:1791
 msgid "Database management"
@@ -4954,7 +4954,7 @@ msgstr ""
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1806
 msgid "Visit us on Facebook"
@@ -4962,7 +4962,7 @@ msgstr "Visita'ns al Facebook"
 
 #: mmframe.cpp:1808
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1808
 msgid "We use Crowdin to translate MMEX"
@@ -4970,7 +4970,7 @@ msgstr ""
 
 #: mmframe.cpp:1810
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1810
 msgid "Follow us on Twitter"
@@ -4978,7 +4978,7 @@ msgstr ""
 
 #: mmframe.cpp:1812
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1812
 msgid "Watch free video materials about MMEX"
@@ -4986,7 +4986,7 @@ msgstr ""
 
 #: mmframe.cpp:1814
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1814
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4994,7 +4994,7 @@ msgstr ""
 
 #: mmframe.cpp:1816
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1816
 msgid "Access open source code repository and track reported bug statuses"
@@ -5042,7 +5042,7 @@ msgstr ""
 
 #: mmframe.cpp:1831
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Donar a través de PayPal"
 
 #: mmframe.cpp:1832
 msgid "Donate the team to support infrastructure etc"
@@ -5050,7 +5050,7 @@ msgstr ""
 
 #: mmframe.cpp:1834
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "Con&vidan's a un Cafè"
 
 #: mmframe.cpp:1835
 msgid "Buy key developer a coffee"
@@ -5058,7 +5058,7 @@ msgstr ""
 
 #: mmframe.cpp:1838
 msgid "&Community"
-msgstr ""
+msgstr "&Comunitat"
 
 #: mmframe.cpp:1839
 msgid "Stay in touch with MMEX community"
@@ -5090,11 +5090,11 @@ msgstr ""
 
 #: mmframe.cpp:1875
 msgid "Check for &Updates"
-msgstr ""
+msgstr "Buscar Act&ualitzacions"
 
 #: mmframe.cpp:1875
 msgid "Check For Updates"
-msgstr ""
+msgstr "Buscar Actualitzacions"
 
 #: mmframe.cpp:1879 mmframe.cpp:1952
 msgid "&About"
@@ -5106,23 +5106,23 @@ msgstr ""
 
 #: mmframe.cpp:1883
 msgid "&File"
-msgstr ""
+msgstr "&Arxiu"
 
 #: mmframe.cpp:1884
 msgid "&Accounts"
-msgstr ""
+msgstr "&Comptes"
 
 #: mmframe.cpp:1885
 msgid "&Tools"
-msgstr ""
+msgstr "E&ines"
 
 #: mmframe.cpp:1886
 msgid "&View"
-msgstr ""
+msgstr "&Vista"
 
 #: mmframe.cpp:1887
 msgid "&Help"
-msgstr ""
+msgstr "A&juda"
 
 #: mmframe.cpp:1911 mmframe.cpp:1917
 msgid "New"
@@ -5130,7 +5130,7 @@ msgstr ""
 
 #: mmframe.cpp:1928
 msgid "&Options"
-msgstr ""
+msgstr "&Opcions"
 
 #: mmframe.cpp:1928
 msgid "Options Dialog"
@@ -5154,7 +5154,7 @@ msgstr ""
 
 #: mmframe.cpp:1949
 msgid "&Print"
-msgstr ""
+msgstr "Im&primir"
 
 #: mmframe.cpp:1949
 msgid "Print"
