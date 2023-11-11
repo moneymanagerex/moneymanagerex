@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 19:39\n"
+"PO-Revision-Date: 2023-11-11 23:06\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5309,7 +5309,7 @@ msgstr "La password di conferma non coincide."
 
 #: mmframe.cpp:2368
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Assicurati di avre un backup del DB prima di ottimizzarlo"
+msgstr "Verificare di avere un backup del DB prima di ottimizzarlo"
 
 #: mmframe.cpp:2369 mmframe.cpp:2379
 msgid "DB Optimization"
@@ -5968,7 +5968,7 @@ msgstr "Cartelle per altri Sistemi Operativi"
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
-msgstr "Non ancora impostato"
+msgstr "Non ancora impostata"
 
 #: optionsettingsattachment.cpp:135
 #, c-format
@@ -6186,7 +6186,7 @@ msgstr "Non utilizzato"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
-msgstr "Ultima usata x beneficiario"
+msgstr "Ultima usata per Beneficiario"
 
 #: optionsettingsmisc.cpp:127
 msgid "Use default for payee"
@@ -6262,7 +6262,7 @@ msgstr "Specificare il numero di giorni per mantenere le transazioni eliminate. 
 
 #: optionsettingsmisc.cpp:210
 msgid "Days to retain deleted transactions"
-msgstr "Giorni da conservare le transazioni eliminate"
+msgstr "Giorni per la conservazione dele transazioni eliminate"
 
 #: optionsettingsmisc.cpp:217
 msgid "CSV Settings"
@@ -6382,7 +6382,7 @@ msgstr "Mostra budget nel formato anno finanziario"
 
 #: optionsettingsview.cpp:126
 msgid "View Budgets with 'transfer' transactions"
-msgstr "Mostra budget con le operazioni 'trasferimento'"
+msgstr "Mostra budget con le transazioni 'trasferimento'"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
