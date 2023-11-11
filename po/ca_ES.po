@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-01 10:42\n"
+"PO-Revision-Date: 2023-11-11 19:39\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -500,11 +500,11 @@ msgstr ""
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Nous Detalls de la Transacció"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:315
 msgid "Edit Transaction Details"
-msgstr "Editar detalls de la transacció"
+msgstr "Editar Detalls de la Transacció"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
 msgid "&Cancel "
@@ -548,11 +548,11 @@ msgstr "Valor actual"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Nou Actiu..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "D&uplicar Actiu..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
@@ -941,7 +941,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detalls de la Transacció Programada"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:502 filtertrans.cpp:178 transdialog.cpp:419
 msgid "Transaction Details"
-msgstr ""
+msgstr "Detalls de la Transacció"
 
 #: billsdepositsdialog.cpp:511
 msgid "Specify the date the user is requested to enter this transaction"
@@ -1009,7 +1009,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:138 transdialog.cpp:443
 #: usertransactionpanel.cpp:158 webappdialog.cpp:140 wizard_update.cpp:141
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 #: billsdepositsdialog.cpp:532 transdialog.cpp:1316
 msgid "Specify the type of transactions to be created."
@@ -1145,7 +1145,7 @@ msgstr "Color"
 #: billsdepositsdialog.cpp:660 transdialog.cpp:582 transdialog.cpp:1318
 #: usertransactionpanel.cpp:206
 msgid "Specify any text notes you want to add to this transaction."
-msgstr ""
+msgstr "Especifiqui qualsevol nota de text que vulgui afegir a aquesta transacció."
 
 #: billsdepositsdialog.cpp:677 filtertransdialog.cpp:754
 #: transactionsupdatedialog.cpp:273 transdialog.cpp:598
@@ -1474,7 +1474,7 @@ msgstr "Introdueixi la quantitat pressupostada per aquesta categoria."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr "Introdueixi anotacions per descriure aquesta entrada en el pressupost"
+msgstr "Introdueixi notes per descriure aquesta entrada en el pressupost"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -2041,7 +2041,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:122
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Detalls del Camp Personalitzat"
 
 #: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
 msgid "Attribute of"
@@ -2598,7 +2598,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:643
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Introdueixi qualsevol cadena de caràcters per trobar-la en les notes de les transaccions"
 
 #: filtertransdialog.cpp:648 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
@@ -7103,7 +7103,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:313
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "Afegir Detalls de la Transacció"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
@@ -8151,7 +8151,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Especifiqui la moneda base (o predeterminada) a utilitzar per a la\n"
+"base de dades. La moneda base pot ser canviada posteriorment a\n"
+"Opcions. Els comptes nous utilitzaran aquesta moneda de manera\n"
+"predeterminada, que pot ser canviada quan s'editen els detalls del compte."
 
 #: wizard_newdb.cpp:125
 msgid "(Optional) Specify a title or your name."
