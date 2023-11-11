@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 20:35\n"
+"PO-Revision-Date: 2023-11-11 21:53\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -393,7 +393,7 @@ msgstr "Obrir l'anterior base de dades oberta : %s"
 #: appstartdialog.cpp:199 mmframe.cpp:1639 mmframe.cpp:3004
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "Predeterminat del sistema"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
@@ -556,15 +556,15 @@ msgstr "D&uplicar Actiu..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Afegir Transacció de l'Actiu..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Visualitzar Transaccions de l'Actiu"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Obrir Compte de l'Actiu..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
@@ -852,12 +852,12 @@ msgstr ""
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
-msgstr ""
+msgstr "Mai"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:59
 msgid "Weekly"
-msgstr ""
+msgstr "Setmanalment"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
@@ -868,12 +868,12 @@ msgstr ""
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
 #: model/Model_Budget.cpp:61
 msgid "Monthly"
-msgstr ""
+msgstr "Mensualment"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Cada 2 Mesos"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -905,19 +905,19 @@ msgstr "Diàriament"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "En (n) Dies"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "En (n) Mesos"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Cada (n) Dies"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Cada (n) Mesos"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
