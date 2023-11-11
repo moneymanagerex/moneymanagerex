@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-01 12:07+0300\n"
-"PO-Revision-Date: 2023-11-11 10:45\n"
+"PO-Revision-Date: 2023-11-11 12:42\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -561,7 +561,7 @@ msgstr "&Aggiungi Operazione su Cespite..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "&Mostra Operazioni sui Cespiti"
+msgstr "&Mostra Transazioni sui Cespiti"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
@@ -618,11 +618,11 @@ msgstr "&Aggiungi operazione"
 
 #: assetspanel.cpp:481 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr "&Mostra operazioni"
+msgstr "&Mostra Transazioni "
 
 #: assetspanel.cpp:482
 msgid "View Asset Transactions"
-msgstr "Mostra Operazioni sui Cespiti"
+msgstr "Mostra Transazioni sui Cespiti"
 
 #: assetspanel.cpp:486 attachmentdialog.cpp:357 billsdepositspanel.cpp:298
 #: categdialog.cpp:317 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
@@ -691,7 +691,7 @@ msgstr "Variazione del Valore: %1$s %2$s"
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr "Questo cespite non ha un suo conto\n\n"
-"Operazioni multiple per questo cespite non sono consigliate."
+"Transazioni multiple per questo cespite non sono consigliate."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
@@ -4769,7 +4769,7 @@ msgstr "Ignora operazioni f&uture"
 
 #: mmframe.cpp:1602
 msgid "Ignore Future transactions"
-msgstr "Ignora le operazioni future"
+msgstr "Ignora transazioni future"
 
 #: mmframe.cpp:1604
 msgid "Show T&ooltips"
@@ -6416,7 +6416,7 @@ msgstr "Consente di modificare il 'primo giorno' del mese ai fini della reportis
 
 #: optionsettingsview.cpp:178
 msgid "Ignore Future Transactions"
-msgstr "Ignora le operazioni future"
+msgstr "Ignora Transazioni Future"
 
 #: optionsettingsview.cpp:184
 msgid "Transaction Colors"
@@ -6428,7 +6428,7 @@ msgstr "Interfaccia Utente"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
-msgstr "Apri il Gestore dei Temi"
+msgstr "Apri Gestore Temi"
 
 #: optionsettingsview.cpp:236
 msgid "Style Template"
