@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 08:56\n"
+"PO-Revision-Date: 2023-11-12 11:52\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1589,7 +1589,7 @@ msgstr "Inserire Budget mensile"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr "Bilancio dell'anno"
+msgstr "Budget Annuale"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1599,7 +1599,7 @@ msgstr "Specificare l'anno desiderato.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr "Bilancio mensile"
+msgstr "Budget Mensile"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1609,11 +1609,11 @@ msgstr "Specificare il mese desiderato.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr "Basare il bilancio su"
+msgstr "Utilizza Budget del"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr "Specificare l'anno su cui basare il bilancio"
+msgstr "Specifica l'anno su cui basare il budget"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
