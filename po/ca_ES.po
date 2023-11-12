@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"PO-Revision-Date: 2023-11-12 21:09\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -714,7 +714,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:74
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Si us plau, verifiqui que la ruta a dalt és correcte"
 
 #: attachmentdialog.cpp:75
 msgid "Attachments folder not found"
@@ -1005,7 +1005,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:533 transdialog.cpp:459
 msgid "&Advanced"
-msgstr ""
+msgstr "&Avançat"
 
 #: billsdepositsdialog.cpp:536 transdialog.cpp:1319
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -1026,7 +1026,7 @@ msgstr "Import"
 
 #: billsdepositsdialog.cpp:558 transdialog.cpp:1301
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Especifiqui l'import de la transferència a \"Al Compte\""
 
 #: billsdepositsdialog.cpp:569 billsdepositsdialog.cpp:856
 #: billsdepositsdialog.cpp:869 billsdepositspanel.cpp:134 filtertrans.cpp:192
@@ -1623,15 +1623,15 @@ msgstr ""
 
 #: categdialog.cpp:265 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "Ampliar Tot"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "Mostr&ar Tot"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Mostrar totes les categories amagades"
 
 #: categdialog.cpp:315
 msgid "Add a new category"
@@ -1667,11 +1667,11 @@ msgstr ""
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Introdueixi el nom per a la nova categoria:"
 
 #: categdialog.cpp:355
 msgid "Add Category"
-msgstr ""
+msgstr "Afegir Categoria"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
