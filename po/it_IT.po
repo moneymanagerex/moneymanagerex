@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 11:52\n"
+"PO-Revision-Date: 2023-11-12 23:27\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1752,7 +1752,7 @@ msgstr "Gestione Categorie: Errore di eliminazione"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr "Esistono operazioni eliminate che utilizzano questa categoria o uno delle sue derivate."
+msgstr "Esistono transazioni eliminate che utilizzano questa categoria o uno delle sue derivate."
 
 #: categdialog.cpp:501
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
@@ -2208,8 +2208,8 @@ msgstr "Vuoi svuotare i campi?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] "%zu evento trovato e sostituito!"
-msgstr[1] "%zu eventi trovati e sostituiti!"
+msgstr[0] "%zu occorrenza trovata e sostituita!"
+msgstr[1] "%zu occorrenze trovate e sostituite!"
 
 #: customfieldlistdialog.cpp:265
 msgid "&Bulk content update "
@@ -4202,8 +4202,8 @@ msgstr "&Trova tutte le transazioni con %s '%s'"
 #: mmchecking_list.cpp:607
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
-msgstr[0] "&Elimina l'operazione selezionata..."
-msgstr[1] "&Elimina le operazioni selezionate..."
+msgstr[0] "&Elimina la transazione selezionata..."
+msgstr[1] "&Elimina le transazioni selezionate..."
 
 #: mmchecking_list.cpp:608
 msgid "&Permanently delete selected transaction..."
