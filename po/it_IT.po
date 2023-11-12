@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"PO-Revision-Date: 2023-11-12 07:33\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -747,7 +747,7 @@ msgstr "Importa allegato:"
 
 #: attachmentdialog.cpp:202
 msgid "Enter a description for the new attachment:"
-msgstr "Inserire il nome del nuovo allegato:"
+msgstr "Inserire una descrizione per il nuovo allegato:"
 
 #: attachmentdialog.cpp:203
 msgid "Organize Attachments: Add Attachment"
