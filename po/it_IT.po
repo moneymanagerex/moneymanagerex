@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 07:33\n"
+"PO-Revision-Date: 2023-11-12 08:56\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Tenuto presso:"
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "Inserire il nome dell'istituto finanziario presso cui è tenuto il conto."
+msgstr "Inserisci il nome dell'istituto finanziario presso cui è tenuto il conto."
 
 #: accountdialog.cpp:208
 msgid "Website:"
@@ -425,7 +425,7 @@ msgstr "Nome"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
-msgstr "Inserire il nome del Cespite"
+msgstr "Inserisci il nome del Cespite"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:190
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:905
@@ -747,7 +747,7 @@ msgstr "Importa allegato:"
 
 #: attachmentdialog.cpp:202
 msgid "Enter a description for the new attachment:"
-msgstr "Inserire una descrizione per il nuovo allegato:"
+msgstr "Inserisci una descrizione per il nuovo allegato:"
 
 #: attachmentdialog.cpp:203
 msgid "Organize Attachments: Add Attachment"
@@ -1677,7 +1677,7 @@ msgstr "Organizza Categorie: Nome Non Valido"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
-msgstr "Inserire il nome della nuova categoria:"
+msgstr "Inserisci il nome per la nuova categoria:"
 
 #: categdialog.cpp:355
 msgid "Add Category"
@@ -2883,7 +2883,7 @@ msgstr "Elimina Resoconto..."
 
 #: general_report_manager.cpp:857 general_report_manager.cpp:1018
 msgid "Enter the name for the report"
-msgstr "Inserire il nome del resoconto"
+msgstr "Inserisci il nome per il resoconto"
 
 #: general_report_manager.cpp:858 general_report_manager.cpp:1019
 #: mmframe.cpp:795 mmframe.cpp:1753 mmframe.cpp:1926
@@ -2896,7 +2896,7 @@ msgstr "Elimina il Titolo del Resoconto:"
 
 #: general_report_manager.cpp:915 general_report_manager.cpp:999
 msgid "Enter or choose name for the new report group"
-msgstr "Inserire o scegliere il nome del nuovo gruppo di resoconti"
+msgstr "Inserisci o scegli il nome per il nuovo gruppo di resoconti"
 
 #: general_report_manager.cpp:916
 msgid "Change report group"
@@ -2904,7 +2904,7 @@ msgstr "Cambiare gruppo di resoconti"
 
 #: general_report_manager.cpp:932
 msgid "Enter or choose name for the new group"
-msgstr "Inserire o scegliere il nome del nuovo gruppo di resoconti"
+msgstr "Inserisci o scegli il nome per il nuovo gruppo"
 
 #: general_report_manager.cpp:933
 msgid "Rename Group"
@@ -7103,7 +7103,7 @@ msgstr "Nome Società"
 
 #: sharetransactiondialog.cpp:227 stockdialog.cpp:196
 msgid "Enter the stock company name"
-msgstr "Inserire il nome della società emittente il titolo"
+msgstr "Inserisci il nome della società emittente il titolo"
 
 #: sharetransactiondialog.cpp:230 stockdialog.cpp:199
 msgid "Stock Symbol"
