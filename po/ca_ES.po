@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 21:09\n"
+"PO-Revision-Date: 2023-11-12 22:29\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -694,7 +694,7 @@ msgstr "Descripció"
 #: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:197
 msgid "File"
-msgstr "Arxiu"
+msgstr "Fitxer"
 
 #: attachmentdialog.cpp:65
 msgid "Attachment folder not defined."
@@ -1687,7 +1687,7 @@ msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "J existeix una subcategoria amb aquest nom"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1925,7 +1925,7 @@ msgstr ""
 
 #: constants.cpp:211 mmframe.cpp:481 mmframe.cpp:736 mmframe.cpp:1498
 msgid "Favorites"
-msgstr ""
+msgstr "Preferits"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
@@ -1949,24 +1949,24 @@ msgstr ""
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "Sufix"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:326
 #: import_export/univcsvdialog.cpp:416
 msgid "Decimal Char"
-msgstr ""
+msgstr "Caràcter Decimal"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "Punt"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "Coma"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
@@ -2008,7 +2008,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:791
 msgid "Invalid Entry"
-msgstr ""
+msgstr "Entrada Invàlida"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
@@ -2135,7 +2135,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
-msgstr ""
+msgstr "Propietats"
 
 #: customfieldlistdialog.cpp:67
 msgid "Personalize custom fields"
@@ -2477,7 +2477,7 @@ msgstr ""
 
 #: dbwrapper.cpp:78
 msgid "Can't open file"
-msgstr ""
+msgstr "No es pot obrir el fitxer"
 
 #: dbwrapper.cpp:78
 msgid "You must specify path to another database file"
@@ -2561,14 +2561,14 @@ msgstr ""
 #: mmchecking_list.cpp:290 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:34 reports/forecast.cpp:81
 msgid "Withdrawal"
-msgstr ""
+msgstr "Reintegrament"
 
 #: filtertransdialog.cpp:608 filtertransdialog.cpp:1464
 #: filtertransdialog.cpp:1567 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:292 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:35 reports/forecast.cpp:79
 msgid "Deposit"
-msgstr ""
+msgstr "Dipòsit"
 
 #: filtertransdialog.cpp:609 filtertransdialog.cpp:820
 #: filtertransdialog.cpp:1468 filtertransdialog.cpp:1571
@@ -2649,7 +2649,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1200 mmframe.cpp:1253
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "L'element seleccionat serà suprimit"
 
 #: filtertransdialog.cpp:1200 import_export/univcsvdialog.cpp:2122
 #: mmframe.cpp:1254
@@ -2730,7 +2730,7 @@ msgstr ""
 #: general_report_manager.cpp:293 mmframe.cpp:790 mmframe.cpp:2948
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
-msgstr ""
+msgstr "Informes"
 
 #: general_report_manager.cpp:391 import_export/univcsvdialog.cpp:533
 msgid "&Import"
@@ -2754,7 +2754,7 @@ msgstr ""
 
 #: general_report_manager.cpp:402
 msgid "Save changes."
-msgstr ""
+msgstr "Guardar els canvis."
 
 #: general_report_manager.cpp:404
 msgid "&Run"
@@ -2770,15 +2770,15 @@ msgstr ""
 
 #: general_report_manager.cpp:441
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:442
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:443
 msgid "Template"
-msgstr ""
+msgstr "Plantilla"
 
 #: general_report_manager.cpp:496
 msgid "&Test"
@@ -2786,7 +2786,7 @@ msgstr ""
 
 #: general_report_manager.cpp:497
 msgid "Create Template"
-msgstr ""
+msgstr "Crear Plantilla"
 
 #: general_report_manager.cpp:549
 #, c-format
@@ -3018,20 +3018,20 @@ msgstr ""
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:152 mmframe.cpp:3506 mmframe.cpp:3510
 #: mmframe.cpp:3527 mmframe.cpp:3531
 msgid "Accounts"
-msgstr ""
+msgstr "Comptes"
 
 #: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:185
 msgid "From Date"
@@ -3106,7 +3106,7 @@ msgstr ""
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:398
 #: import_export/qif_import_gui.cpp:1031
 msgid "Please wait"
-msgstr ""
+msgstr "Si us plau, esperi"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
@@ -3199,7 +3199,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:530 mmreportspanel.cpp:349
 msgid "Accounts:"
-msgstr ""
+msgstr "Comptes:"
 
 #: import_export/qif_import_gui.cpp:537 import_export/qif_import_gui.cpp:876
 #: import_export/univcsvdialog.cpp:354
@@ -3355,7 +3355,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:204
 msgid "Account: "
-msgstr ""
+msgstr "Compte: "
 
 #: import_export/univcsvdialog.cpp:214
 msgid "Preset:"
@@ -3619,7 +3619,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:809
 msgid "Invalid Account"
-msgstr ""
+msgstr "Compte Invàlid"
 
 #: import_export/univcsvdialog.cpp:1700
 #, c-format
@@ -3869,7 +3869,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:796
 msgid "Invalid Category"
-msgstr ""
+msgstr "Categoria Invàlida"
 
 #: mmSimpleDialogs.cpp:801
 msgid "File name is empty."
@@ -4202,7 +4202,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:655 mmcheckingpanel.cpp:509 mmframe.cpp:732
 msgid "All Transactions"
-msgstr ""
+msgstr "Totes les Transaccions"
 
 #: mmchecking_list.cpp:1097
 msgid "Do you really want to restore all of the transactions shown?"
@@ -4420,7 +4420,7 @@ msgstr ""
 
 #: mmframe.cpp:269
 msgid "Navigation"
-msgstr ""
+msgstr "Navegació"
 
 #: mmframe.cpp:270
 msgid "Toolbar"
@@ -4478,7 +4478,7 @@ msgstr ""
 #: mmframe.cpp:802 mmframe.cpp:1953 mmframe.cpp:2607 mmframe.cpp:2898
 #: mmhelppanel.cpp:69
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: mmframe.cpp:1288
 msgid "A setting with this name already exists"
@@ -4514,11 +4514,11 @@ msgstr "&Importar des de"
 
 #: mmframe.cpp:1394
 msgid "&CSV Files..."
-msgstr "Arxius &CSV..."
+msgstr "Fitxers &CSV..."
 
 #: mmframe.cpp:1395
 msgid "&XML Files..."
-msgstr "Arxius &XML..."
+msgstr "Fitxers &XML..."
 
 #: mmframe.cpp:1395 mmframe.cpp:1556
 msgid "Import from XML file (Excel format)"
@@ -4526,7 +4526,7 @@ msgstr ""
 
 #: mmframe.cpp:1397
 msgid "&QIF Files..."
-msgstr "Arxius &QIF..."
+msgstr "Fitxers &QIF..."
 
 #: mmframe.cpp:1400 mmframe.cpp:1563
 msgid "&Export as"
@@ -4534,23 +4534,23 @@ msgstr "&Exportar com"
 
 #: mmframe.cpp:1401 mmframe.cpp:1555 mmframe.cpp:1564
 msgid "&CSV File..."
-msgstr "Arxiu &CSV..."
+msgstr "Fitxer &CSV..."
 
 #: mmframe.cpp:1402 mmframe.cpp:1556 mmframe.cpp:1565
 msgid "&XML File..."
-msgstr "Arxiu &XML..."
+msgstr "Fitxer &XML..."
 
 #: mmframe.cpp:1404 mmframe.cpp:1567
 msgid "&MMEX CSV File..."
-msgstr "Arxiu CSV de &MMEX..."
+msgstr "Fitxer CSV de &MMEX..."
 
 #: mmframe.cpp:1405 mmframe.cpp:1568
 msgid "&JSON File..."
-msgstr "Arxiu &JSON..."
+msgstr "Fitxer &JSON..."
 
 #: mmframe.cpp:1406 mmframe.cpp:1558 mmframe.cpp:1569
 msgid "&QIF File..."
-msgstr "Arxiu &QIF..."
+msgstr "Fitxer &QIF..."
 
 #: mmframe.cpp:1431
 msgid "&Edit Filter..."
@@ -4618,11 +4618,11 @@ msgstr ""
 
 #: mmframe.cpp:1548
 msgid "&Recent Files"
-msgstr "Arxius &Recents"
+msgstr "Fitxers &Recents"
 
 #: mmframe.cpp:1549
 msgid "&Clear Recent Files"
-msgstr "Esborrar Arxius Re&cents"
+msgstr "Esborrar Fitxers Re&cents"
 
 #: mmframe.cpp:1560
 msgid "&WebApp..."
@@ -4638,7 +4638,7 @@ msgstr ""
 
 #: mmframe.cpp:1571
 msgid "&HTML File..."
-msgstr "Arxiu &HTML..."
+msgstr "Fitxer &HTML..."
 
 #: mmframe.cpp:1571
 msgid "Export as HTML file"
@@ -4670,7 +4670,7 @@ msgstr ""
 
 #: mmframe.cpp:1590
 msgid "&Navigation"
-msgstr ""
+msgstr "&Navegació"
 
 #: mmframe.cpp:1590
 msgid "Show/Hide the Navigation tree control"
@@ -4930,11 +4930,11 @@ msgstr ""
 
 #: mmframe.cpp:1798 mmframe.cpp:1953
 msgid "&Help\tF1"
-msgstr ""
+msgstr "&Ajuda\tF1"
 
 #: mmframe.cpp:1798
 msgid "Show Help"
-msgstr ""
+msgstr "Mostrar l'Ajuda"
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
@@ -5094,7 +5094,7 @@ msgstr ""
 
 #: mmframe.cpp:1883
 msgid "&File"
-msgstr "&Arxiu"
+msgstr "&Fitxer"
 
 #: mmframe.cpp:1884
 msgid "&Accounts"
@@ -5110,7 +5110,7 @@ msgstr "&Vista"
 
 #: mmframe.cpp:1887
 msgid "&Help"
-msgstr "A&juda"
+msgstr "&Ajuda"
 
 #: mmframe.cpp:1911 mmframe.cpp:1917
 msgid "New"
@@ -6853,7 +6853,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:116
 msgid "Expenses:"
-msgstr ""
+msgstr "Despeses:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
@@ -6865,11 +6865,11 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
-msgstr ""
+msgstr "Mes Actual"
 
 #: reports/mmDateRange.cpp:82
 msgid "Today"
-msgstr ""
+msgstr "Avui"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
@@ -6921,7 +6921,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
-msgstr ""
+msgstr "Personalitzat"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
@@ -6957,11 +6957,11 @@ msgstr ""
 
 #: reports/reportbase.cpp:207 reports/transactions.cpp:86
 msgid "All Accounts"
-msgstr ""
+msgstr "Tots els Comptes"
 
 #: reports/reportbase.cpp:213 reports/transactions.cpp:125
 msgid "Accounts: "
-msgstr ""
+msgstr "Comptes: "
 
 #: reports/summary.cpp:133
 #, c-format
@@ -6970,11 +6970,11 @@ msgstr ""
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
-msgstr ""
+msgstr "Informe Mensual"
 
 #: reports/summary.cpp:133
 msgid "Yearly Report"
-msgstr ""
+msgstr "Informe Anual"
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
@@ -7244,35 +7244,35 @@ msgstr ""
 
 #: stockdialog.cpp:684 stockdialog.cpp:714
 msgid "5 Days"
-msgstr ""
+msgstr "5 Dies"
 
 #: stockdialog.cpp:685 stockdialog.cpp:716
 msgid "1 Month"
-msgstr ""
+msgstr "1 Mes"
 
 #: stockdialog.cpp:686 stockdialog.cpp:717
 msgid "3 Months"
-msgstr ""
+msgstr "3 Mesos"
 
 #: stockdialog.cpp:687
 msgid "6 Months"
-msgstr ""
+msgstr "6 Mesos"
 
 #: stockdialog.cpp:688
 msgid "1 Year"
-msgstr ""
+msgstr "1 Any"
 
 #: stockdialog.cpp:689
 msgid "2 Years"
-msgstr ""
+msgstr "2 Anys"
 
 #: stockdialog.cpp:690
 msgid "5 Years"
-msgstr ""
+msgstr "5 Anys"
 
 #: stockdialog.cpp:691
 msgid "10 Years"
-msgstr ""
+msgstr "10 Anys"
 
 #: stockdialog.cpp:693
 msgid "Max"
@@ -7288,11 +7288,11 @@ msgstr ""
 
 #: stockdialog.cpp:713
 msgid "1 Day"
-msgstr ""
+msgstr "1 Dia"
 
 #: stockdialog.cpp:715
 msgid "1 Week"
-msgstr ""
+msgstr "1 Setmana"
 
 #: stockdialog.cpp:723
 msgid "Specify interval of stock history"
@@ -7456,7 +7456,7 @@ msgstr ""
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Nom d'etiqueta invàlid"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
@@ -7480,7 +7480,7 @@ msgstr ""
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
-msgstr ""
+msgstr "Afegir Etiqueta"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
@@ -7492,7 +7492,7 @@ msgstr ""
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
-msgstr ""
+msgstr "Editar Etiqueta"
 
 #: tagdialog.cpp:254
 msgid "Organize Tags: Editing Error"
@@ -7530,7 +7530,7 @@ msgstr ""
 
 #: themes.cpp:239
 msgid "No description available"
-msgstr ""
+msgstr "Sense descripció disponible"
 
 #: themes.cpp:285
 msgid "Choose theme file to import"
@@ -7570,11 +7570,11 @@ msgstr ""
 
 #: transdialog.cpp:178
 msgid "Edit Transaction"
-msgstr ""
+msgstr "Editar Transacció"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
-msgstr ""
+msgstr "Duplicar Transacció"
 
 #: transdialog.cpp:544
 msgid "Populate Transaction #"
@@ -7627,7 +7627,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:95
 msgid "Select Account"
-msgstr ""
+msgstr "Seleccionar Compte"
 
 #: usertransactionpanel.cpp:97
 msgid "Specify the associated Account that will contain this transaction"
@@ -7683,107 +7683,107 @@ msgstr ""
 
 #: util.cpp:288
 msgid "Jan"
-msgstr ""
+msgstr "Gen."
 
 #: util.cpp:288
 msgid "Feb"
-msgstr ""
+msgstr "Febr."
 
 #: util.cpp:288
 msgid "Mar"
-msgstr ""
+msgstr "Març"
 
 #: util.cpp:289
 msgid "Apr"
-msgstr ""
+msgstr "Abr."
 
 #: util.cpp:289 util.h:192
 msgid "May"
-msgstr ""
+msgstr "Maig"
 
 #: util.cpp:289
 msgid "Jun"
-msgstr ""
+msgstr "Juny"
 
 #: util.cpp:290
 msgid "Jul"
-msgstr ""
+msgstr "Jul."
 
 #: util.cpp:290
 msgid "Aug"
-msgstr ""
+msgstr "Ag."
 
 #: util.cpp:290
 msgid "Sep"
-msgstr ""
+msgstr "Set."
 
 #: util.cpp:291
 msgid "Oct"
-msgstr ""
+msgstr "Oct."
 
 #: util.cpp:291
 msgid "Nov"
-msgstr ""
+msgstr "Nov."
 
 #: util.cpp:291
 msgid "Dec"
-msgstr ""
+msgstr "Des."
 
 #: util.cpp:296
 msgid "Sunday"
-msgstr ""
+msgstr "Diumenge"
 
 #: util.cpp:296
 msgid "Monday"
-msgstr ""
+msgstr "Dilluns"
 
 #: util.cpp:296
 msgid "Tuesday"
-msgstr ""
+msgstr "Dimarts"
 
 #: util.cpp:297
 msgid "Wednesday"
-msgstr ""
+msgstr "Dimecres"
 
 #: util.cpp:297
 msgid "Thursday"
-msgstr ""
+msgstr "Dijous"
 
 #: util.cpp:297
 msgid "Friday"
-msgstr ""
+msgstr "Divendres"
 
 #: util.cpp:298
 msgid "Saturday"
-msgstr ""
+msgstr "Dissabte"
 
 #: util.cpp:303
 msgid "Sun"
-msgstr ""
+msgstr "Dg."
 
 #: util.cpp:303
 msgid "Mon"
-msgstr ""
+msgstr "Dl."
 
 #: util.cpp:303
 msgid "Tue"
-msgstr ""
+msgstr "Dt."
 
 #: util.cpp:304
 msgid "Wed"
-msgstr ""
+msgstr "Dc."
 
 #: util.cpp:304
 msgid "Thu"
-msgstr ""
+msgstr "Dj."
 
 #: util.cpp:304
 msgid "Fri"
-msgstr ""
+msgstr "Dv."
 
 #: util.cpp:305
 msgid "Sat"
-msgstr ""
+msgstr "Ds."
 
 #: util.cpp:739
 msgid "Currency rates have been updated"
@@ -7866,51 +7866,51 @@ msgstr ""
 
 #: util.cpp:1752
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "La llista completa de problemes tancats està disponible en aquest enllaç"
 
 #: util.h:191
 msgid "January"
-msgstr ""
+msgstr "Gener"
 
 #: util.h:191
 msgid "February"
-msgstr ""
+msgstr "Febrer"
 
 #: util.h:191
 msgid "March"
-msgstr ""
+msgstr "Març"
 
 #: util.h:192
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: util.h:192
 msgid "June"
-msgstr ""
+msgstr "Juny"
 
 #: util.h:193
 msgid "July"
-msgstr ""
+msgstr "Juliol"
 
 #: util.h:193
 msgid "August"
-msgstr ""
+msgstr "Agost"
 
 #: util.h:193
 msgid "September"
-msgstr ""
+msgstr "Setembre"
 
 #: util.h:194
 msgid "October"
-msgstr ""
+msgstr "Octubre"
 
 #: util.h:194
 msgid "November"
-msgstr ""
+msgstr "Novembre"
 
 #: util.h:194
 msgid "December"
-msgstr ""
+msgstr "Desembre"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
@@ -8015,11 +8015,11 @@ msgstr ""
 
 #: webappdialog.cpp:156
 msgid "&Import all "
-msgstr ""
+msgstr "&Importar tot "
 
 #: webappdialog.cpp:158
 msgid "Import and open all "
-msgstr ""
+msgstr "Importar i obrir tot "
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from webapp."
@@ -8039,11 +8039,11 @@ msgstr ""
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
-msgstr ""
+msgstr "Obrir Adjunt"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
-msgstr ""
+msgstr "Importar i obrir"
 
 #: wizard_newaccount.cpp:31
 msgid "Add Account Wizard"
@@ -8166,11 +8166,11 @@ msgstr ""
 
 #: wizard_update.cpp:141
 msgid "Version"
-msgstr ""
+msgstr "Versió"
 
 #: wizard_update.cpp:149
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Ja té la versió més recent"
 
 #: wizard_update.cpp:149
 msgid "A new version of MMEX is available!"
