@@ -59,6 +59,9 @@ msgstr "it-IT Italiano (Italia)"
 msgid "Japanese (Japan)"
 msgstr "ja-JP 日本語 (日本)"
 
+msgid "Kannada (India)"
+msgstr "kn-IN ಕನ್ನಡ (ಭಾರತ)"
+
 msgid "Korean (Korea)"
 msgstr "ko-KR 韓国語 (韓国)"
 
