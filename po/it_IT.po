@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 23:27\n"
+"PO-Revision-Date: 2023-11-13 09:18\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1609,7 +1609,7 @@ msgstr "Specificare il mese desiderato.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr "Utilizza Budget del"
+msgstr "Budget basato su"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
@@ -2353,7 +2353,7 @@ msgstr "Vita"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
-msgstr "Home"
+msgstr "Abitazione"
 
 #: db/DB_Table_Category_V1.h:152
 msgid "Vacation"
@@ -8112,7 +8112,7 @@ msgstr "Errore di connessione con la WebApp"
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
-msgstr "Apri allegato"
+msgstr "Apri Allegato"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
@@ -8125,7 +8125,7 @@ msgstr "Creazione guidata Conto"
 #: wizard_newaccount.cpp:40
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr "%s suddivide tutte le operazioni in diversi conti."
+msgstr "%s suddivide tutte le transazioni in diversi conti."
 
 #: wizard_newaccount.cpp:41
 msgid "The next pages will help you create a new account.\n"
