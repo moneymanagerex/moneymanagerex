@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-13 09:18\n"
+"PO-Revision-Date: 2023-11-13 10:38\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -7302,20 +7302,20 @@ msgstr "Valori importati da file CSV: "
 #: stockdialog.cpp:643
 #, c-format
 msgid "Total Lines : %ld"
-msgstr "Linee totali: %ld"
+msgstr "Linee Totali: %ld"
 
 #: stockdialog.cpp:645
 #, c-format
 msgid "Total Imported : %ld"
-msgstr "Totale importato: %ld"
+msgstr "Totale Importato: %ld"
 
 #: stockdialog.cpp:653
 msgid "Importing CSV"
-msgstr "Importazione da file CSV"
+msgstr "Importazione CSV"
 
 #: stockdialog.cpp:684 stockdialog.cpp:714
 msgid "5 Days"
-msgstr "5 giorni"
+msgstr "5 Giorni"
 
 #: stockdialog.cpp:685 stockdialog.cpp:716
 msgid "1 Month"
@@ -7641,24 +7641,24 @@ msgstr "Aggiornamento Transazioni Multiple"
 
 #: transdialog.cpp:178
 msgid "Edit Transaction"
-msgstr "Modifica Operazione"
+msgstr "Modifica Transazione"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
-msgstr "Duplica operazione"
+msgstr "Duplica Transazione"
 
 #: transdialog.cpp:544
 msgid "Populate Transaction #"
-msgstr "Numerazione progressiva della operazione #"
+msgstr "Numerazione progressiva della Transazione #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:190
 msgid "Organize attachments of this transaction"
-msgstr "Gestione allegati di questa operazione"
+msgstr "Gestisci allegati di questa Transazione"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr "Questa operazione supererà il limite del conto.\n\n"
+msgstr "Questa Transazione supererà il limite del conto.\n\n"
 "Vuoi continuare?"
 
 #: transdialog.cpp:1180
@@ -7667,7 +7667,7 @@ msgstr "I due conti hanno valute diverse ma non hai definito una transazione ava
 
 #: transdialog.cpp:1181
 msgid "Currencies are different"
-msgstr "Le valute sono diverse"
+msgstr "Le valute sono differenti"
 
 #: transdialog.cpp:1296
 msgid "Specify account the money is taken from"
@@ -7683,7 +7683,7 @@ msgstr "Specificare l'importo da trasferire dal Conto Origine."
 
 #: transdialog.cpp:1306
 msgid "Specify account for the transaction"
-msgstr "Specificare il conto per questa operazione"
+msgstr "Specificare il conto per questa transazione"
 
 #: transdialog.cpp:1308
 msgid "Specify to whom the transaction is going to"
@@ -7691,7 +7691,7 @@ msgstr "Specificare la destinazione dell'operazione"
 
 #: transdialog.cpp:1314 usertransactionpanel.cpp:85
 msgid "Specify the date of the transaction"
-msgstr "Specificare la data dell'operazione"
+msgstr "Specifica la data della transazione"
 
 #: transdialog.h:56
 msgid "Transactions Dialog"
@@ -7707,7 +7707,7 @@ msgstr "Specificare il conto che conterrà questa transazione"
 
 #: usertransactionpanel.cpp:109
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr "Preleva fondi o deposita fondi su questo conto."
+msgstr "Preleva o deposita fondi su questo conto."
 
 #: usertransactionpanel.cpp:111
 msgid "&Transfer"
@@ -7739,11 +7739,11 @@ msgstr "Selezione Categoria"
 
 #: usertransactionpanel.cpp:172
 msgid "Specify the category for this transaction"
-msgstr "Specifica la categoria di questa operazione"
+msgstr "Specifica la categoria di questa transazione"
 
 #: usertransactionpanel.cpp:180
 msgid "Specify a transaction code or associated check details"
-msgstr "Specificare un codice operazione o i dettagli dell'assegno"
+msgstr "Specificare un codice transazione o i dettagli dell'assegno"
 
 #: usertransactionpanel.cpp:290
 msgid "Select the required account"
@@ -8149,7 +8149,7 @@ msgstr "Nome del Conto"
 
 #: wizard_newaccount.cpp:113
 msgid "Specify a descriptive name for the account."
-msgstr "Specificare un nome per il conto."
+msgstr "Specifica un nome descrittivo per il conto."
 
 #: wizard_newaccount.cpp:114
 msgid "This is generally the name of a financial institution\n"
