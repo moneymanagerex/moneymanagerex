@@ -24,6 +24,7 @@
   <name xml:lang="is">MMEX einkafjármál og peningastjórnun</name>
   <name xml:lang="it">MMEX finanza personale e gestione del denaro</name>
   <name xml:lang="ja">MMEXマネーマネージャー</name>
+  <name xml:lang="kn">MMEX ಮನಿ ಮ್ಯಾನೇಜರ್</name>
   <name xml:lang="ko">MMEX 머니 매니저</name>
   <name xml:lang="lt">MMEX pinigų vadybininkas</name>
   <name xml:lang="lv">MMEX personīgās finanses un naudas pārvaldība</name>
@@ -67,6 +68,7 @@
   <summary xml:lang="is">Skipuleggja fjármál og fylgjast með sjóðstreymi</summary>
   <summary xml:lang="it">Organizza le finanze e monitora il flusso di cassa</summary>
   <summary xml:lang="ja">財務を整理し、キャッシュ フローを追跡する</summary>
+  <summary xml:lang="kn">ಹಣಕಾಸುಗಳನ್ನು ಆಯೋಜಿಸಿ ಮತ್ತು ನಗದು ಹರಿವನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ</summary>
   <summary xml:lang="ko">재무 구성 및 현금 흐름 추적</summary>
   <summary xml:lang="lt">Tvarkykite finansus ir stebėkite pinigų srautus</summary>
   <summary xml:lang="lv">Organizēt finanses un sekot līdzi naudas plūsmai</summary>
@@ -189,6 +191,10 @@
     
     <p xml:lang="ja">
       個人の財務および資金管理ソフトウェア。
+    </p>
+    
+    <p xml:lang="kn">
+      ವೈಯಕ್ತಿಕ ಹಣಕಾಸು ಮತ್ತು ಹಣ ನಿರ್ವಹಣೆ ಸಾಫ್ಟ್‌ವೇರ್.
     </p>
     
     <p xml:lang="ko">
