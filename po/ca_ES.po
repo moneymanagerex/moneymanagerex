@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 22:29\n"
+"PO-Revision-Date: 2023-11-13 06:58\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -565,7 +565,7 @@ msgstr ""
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:491
 #: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr "&Organitzar Adjunts..."
+msgstr "&Organitzar Fitxers Adjunts..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -632,7 +632,7 @@ msgstr "Eliminar actiu"
 #: assetspanel.cpp:500 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:462
 #: stockspanel.cpp:164
 msgid "Open attachments"
-msgstr "Obrir adjunts"
+msgstr "Obrir els fitxers adjunts"
 
 #: assetspanel.cpp:507 assetspanel.cpp:508 categdialog.cpp:302
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:484 payeedialog.cpp:597
@@ -5969,11 +5969,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:255
 msgid "Origin"
-msgstr ""
+msgstr "Origen"
 
 #: optionsettingsattachment.cpp:256
 msgid "Destination"
-msgstr ""
+msgstr "Destinació"
 
 #: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
@@ -8039,7 +8039,7 @@ msgstr ""
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
-msgstr "Obrir Adjunt"
+msgstr "Obrir Fitxer Adjunt"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
