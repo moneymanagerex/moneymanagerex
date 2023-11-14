@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-13 06:58\n"
+"PO-Revision-Date: 2023-11-14 23:07\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -468,7 +468,7 @@ msgstr "Canvi en el Valor"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
-msgstr ""
+msgstr "Especifiqui si el valor de l'actiu varia en el temps"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
@@ -1158,12 +1158,13 @@ msgstr ""
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "No ha fet servir aquest nom de beneficiari anteriorment. El nom és correcte?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:969 transactionsupdatedialog.cpp:336
 #: transdialog.cpp:676
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Confirmar el nom del beneficiari"
 
 #: billsdepositsdialog.cpp:988 billsdepositsdialog.cpp:994
 #: billsdepositsdialog.cpp:1380 filtertransdialog.cpp:888
@@ -1179,7 +1180,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:415 transdialog.cpp:632 transdialog.cpp:636
 #: transdialog.cpp:651 util.cpp:754
 msgid "Invalid value"
-msgstr ""
+msgstr "Valor invàlid"
 
 #: billsdepositsdialog.cpp:1069 billsdepositsdialog.cpp:1072
 #: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:427 transdialog.cpp:644
@@ -1189,7 +1190,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1303
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "Especifiqui l'import de la transferència a \"Des del Compte\""
 
 #: billsdepositsdialog.cpp:1313
 msgid "Activates"
@@ -1268,22 +1269,22 @@ msgstr ""
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "En %s Dies"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "En %s Mesos"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "Cada %s Dies"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "Cada %s Mesos"
 
 #: billsdepositspanel.cpp:141 budgetingpanel.cpp:293 reports/myusage.cpp:163
 msgid "Frequency"
