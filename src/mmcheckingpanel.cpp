@@ -435,7 +435,7 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizer4->Add(itemButtonsSizer, wxSizerFlags(g_flagsExpandBorder1).Proportion(0));
 
     m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
-    mmToolTip(m_btnDelete, _("Delete selected transaction"));
+    mmToolTip(m_btnDelete, _("Delete all selected transactions"));
 
     if (!isTrash_) {
         m_btnNew = new wxButton(itemPanel12, wxID_NEW, _("&New "));
@@ -443,7 +443,7 @@ void mmCheckingPanel::CreateControls()
         itemButtonsSizer->Add(m_btnNew, 0, wxRIGHT, 5);
 
         m_btnEdit = new wxButton(itemPanel12, wxID_EDIT, _("&Edit "));
-        mmToolTip(m_btnEdit, _("Edit selected transaction"));
+        mmToolTip(m_btnEdit, _("Edit all selected transactions"));
         itemButtonsSizer->Add(m_btnEdit, 0, wxRIGHT, 5);
         m_btnEdit->Enable(false);
 
