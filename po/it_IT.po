@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-13 10:38\n"
+"PO-Revision-Date: 2023-11-15 11:20\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -795,7 +795,7 @@ msgstr "Questa directory e i suoi file sono gestiti automaticamente da MMEX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Non rimovere, rinominare o modificare manualmente le cartelle e i file."
+msgstr "Non rimuovere, rinominare o modificare manualmente le cartelle e i file."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
@@ -7938,7 +7938,7 @@ msgstr "Lingua dell'Interfaccia Utente: %s"
 
 #: util.cpp:1752
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "L'elenco completo dei problemi risolti può essere consultato a questo link"
 
 #: util.h:191
 msgid "January"
