@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-15 00:12\n"
+"PO-Revision-Date: 2023-11-15 19:32\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +389,7 @@ msgstr ""
 
 #: appstartdialog.cpp:220 mmframe.cpp:3873 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "S'ha canviat l'idioma d'aquesta aplicació. El canvi es farà efectiu la pròxima vegada que s'iniciï l'aplicació."
 
 #: appstartdialog.cpp:222 mmframe.cpp:3875 optionsettingsgeneral.cpp:365
 msgid "Language change"
