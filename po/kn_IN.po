@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:06\n"
+"PO-Revision-Date: 2023-11-15 07:56\n"
 "Last-Translator: \n"
 "Language-Team: Kannada\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr ""
 
 #: aboutdialog.cpp:48
 msgid "License agreement"
-msgstr ""
+msgstr "ಪರವಾನಗಿ ಒಪ್ಪಂದ"
 
 #: aboutdialog.cpp:181 mmframe.cpp:1952
 msgid "About"
-msgstr ""
+msgstr "ಕುರಿತು"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
@@ -41,11 +41,11 @@ msgstr ""
 
 #: aboutdialog.cpp:196
 msgid "License"
-msgstr ""
+msgstr "ಪರವಾನಗಿ"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr ""
+msgstr "ಗೌಪ್ಯತೆ"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
@@ -71,11 +71,11 @@ msgstr ""
 
 #: accountdialog.cpp:95 mmframe.cpp:1665
 msgid "Edit Account"
-msgstr ""
+msgstr "ಖಾತೆಯನ್ನು ಸಂಪಾದಿಸಿ"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr ""
+msgstr "ಖಾತೆಯ ಹೆಸರು:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -83,7 +83,7 @@ msgstr ""
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
-msgstr ""
+msgstr "ಖಾತೆಯ ಪ್ರಕಾರ:"
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:129
 msgid "Specify the type of account to be created."
@@ -91,7 +91,7 @@ msgstr ""
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr ""
+msgstr "ಖಾತೆಯ ಸ್ಥಿತಿ:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -117,11 +117,11 @@ msgstr ""
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2567
 msgid "Currency:"
-msgstr ""
+msgstr "ಕರೆನ್ಸಿ:"
 
 #: accountdialog.cpp:162 currencydialog.cpp:112
 msgid "Select Currency"
-msgstr ""
+msgstr "ಕರೆನ್ಸಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
@@ -147,7 +147,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:241 transdialog.cpp:570
 #: usertransactionpanel.cpp:186 webappdialog.cpp:145
 msgid "Notes"
-msgstr ""
+msgstr "ಟಿಪ್ಪಣಿಗಳು"
 
 #: accountdialog.cpp:186
 msgid "Enter user notes and details about this account."
@@ -157,15 +157,15 @@ msgstr ""
 #: db/DB_Table_Category_V1.h:140 db/DB_Table_Category_V1.h:160
 #: optiondialog.cpp:37
 msgid "Others"
-msgstr ""
+msgstr "ಇತರೆ"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
-msgstr ""
+msgstr "ಕಾರ್ಡ್ ಸಂಖ್ಯೆ:"
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
-msgstr ""
+msgstr "ಖಾತೆ ಸಂಖ್ಯೆ:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
@@ -181,7 +181,7 @@ msgstr ""
 
 #: accountdialog.cpp:208
 msgid "Website:"
-msgstr ""
+msgstr "ಜಾಲತಾಣ:"
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
@@ -189,7 +189,7 @@ msgstr ""
 
 #: accountdialog.cpp:213
 msgid "Contact:"
-msgstr ""
+msgstr "ಸಂಪರ್ಕ:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
@@ -213,7 +213,7 @@ msgstr ""
 
 #: accountdialog.cpp:234
 msgid "Locked"
-msgstr ""
+msgstr "ನಿರ್ಬಂಧಿತ"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
@@ -281,7 +281,7 @@ msgstr ""
 #: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:293
 #: reports/htmlbuilder.cpp:243
 msgid "Currency"
-msgstr ""
+msgstr "ಕರೆನ್ಸಿ"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
@@ -317,7 +317,7 @@ msgstr ""
 #: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
 #: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
 msgid "New Account"
-msgstr ""
+msgstr "ಹೊಸ ಖಾತೆ"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
@@ -358,7 +358,7 @@ msgstr ""
 
 #: appstartdialog.cpp:119 mmframe.cpp:1803
 msgid "&Website"
-msgstr ""
+msgstr "&ಜಾಲತಾಣ"
 
 #: appstartdialog.cpp:120
 #, c-format
