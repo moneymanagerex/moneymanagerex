@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-14 23:07\n"
+"PO-Revision-Date: 2023-11-15 00:12\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -1260,11 +1260,11 @@ msgstr ""
 
 #: billsdepositsdialog.h:130 transdialog.cpp:1305 usertransactionpanel.cpp:128
 msgid "Specify the amount for this transaction"
-msgstr ""
+msgstr "Especifiqui l'import per aquesta transacció"
 
 #: billsdepositsdialog.h:131
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Especifiqui l'import a transferir"
 
 #: billsdepositspanel.cpp:61
 #, c-format
@@ -2078,7 +2078,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:611
 msgid "Default"
-msgstr ""
+msgstr "Predeterminat"
 
 #: customfieldeditdialog.cpp:175
 msgid "Enter the default for this field\n"
@@ -2900,7 +2900,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1026 general_report_manager.cpp:1033
 msgid "New Report"
-msgstr ""
+msgstr "Nou Informe"
 
 #: general_report_manager.cpp:1065
 msgid "Choose file to Save As Report"
@@ -2964,11 +2964,11 @@ msgstr ""
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "No s'ha pogut desar el fitxer."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Error d’exportació"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
@@ -2985,7 +2985,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Taula"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
@@ -2993,7 +2993,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:216 mmframereport.cpp:132
 msgid "Transactions"
-msgstr ""
+msgstr "Transaccions"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:662
 #: mmframe.cpp:1569
@@ -3177,7 +3177,7 @@ msgstr ""
 #: transdialog.cpp:979 transdialog.cpp:983 transdialog.cpp:990 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
-msgstr ""
+msgstr "Desconegut"
 
 #: import_export/qif_import_gui.cpp:398
 msgid "Scanning"
@@ -3463,11 +3463,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:569
 msgid "Import File"
-msgstr ""
+msgstr "Importar Fitxer"
 
 #: import_export/univcsvdialog.cpp:570
 msgid "Export File"
-msgstr ""
+msgstr "Exportar Fitxer"
 
 #: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
 #, c-format
@@ -3482,7 +3482,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:739
 msgid "Account does not exist"
-msgstr ""
+msgstr "El compte no existeix"
 
 #: import_export/univcsvdialog.cpp:941 import_export/univcsvdialog.cpp:1036
 #: import_export/univcsvdialog.cpp:2593
@@ -3500,11 +3500,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1232
 msgid "Invalid Date."
-msgstr ""
+msgstr "Data Invàlida."
 
 #: import_export/univcsvdialog.cpp:1233 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
-msgstr ""
+msgstr "Import Invàlid."
 
 #: import_export/univcsvdialog.cpp:1234
 msgid "Type (withdrawal/deposit) unknown."
@@ -3654,7 +3654,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2171
 msgid "All Files"
-msgstr ""
+msgstr "Tots els Fitxers"
 
 #: import_export/univcsvdialog.cpp:2589
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
@@ -3911,7 +3911,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:840 mmSimpleDialogs.cpp:852
 msgid "Already exist!"
-msgstr ""
+msgstr "Ja existeix!"
 
 #: mmSimpleDialogs.cpp:842
 msgid "Please type in a non empty name."
@@ -4234,7 +4234,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:1183 mmchecking_list.cpp:1283
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "No pots desfer aquesta acció."
 
 #: mmchecking_list.cpp:1187 mmchecking_list.cpp:1198 mmchecking_list.cpp:1209
 #: mmchecking_list.cpp:1288
@@ -4430,7 +4430,7 @@ msgstr ""
 #: mmframe.cpp:482 mmframe.cpp:740 mmhomepage.cpp:695 reports/summary.cpp:256
 #: reports/summary.cpp:299
 msgid "Bank Accounts"
-msgstr ""
+msgstr "Comptes Bancaris"
 
 #: mmframe.cpp:483 mmframe.cpp:744 mmhomepage.cpp:696 reports/summary.cpp:258
 #: reports/summary.cpp:300
@@ -4599,7 +4599,7 @@ msgstr "&Nova Base de Dades..."
 
 #: mmframe.cpp:1539 mmframe.cpp:1911 wizard_newdb.cpp:137
 msgid "New Database"
-msgstr ""
+msgstr "Nova Base de Dades"
 
 #: mmframe.cpp:1540
 msgid "&Open Database...\tCtrl-O"
@@ -4607,7 +4607,7 @@ msgstr "&Obrir Base de Dades...\tCtrl-O"
 
 #: mmframe.cpp:1540 mmframe.cpp:1912
 msgid "Open Database"
-msgstr ""
+msgstr "Obrir Base de Dades"
 
 #: mmframe.cpp:1541
 msgid "Save Database &As..."
@@ -4615,7 +4615,7 @@ msgstr "Gu&ardar Base de Dades Com..."
 
 #: mmframe.cpp:1541
 msgid "Save Database As"
-msgstr ""
+msgstr "Desar Base de Dades Com"
 
 #: mmframe.cpp:1548
 msgid "&Recent Files"
@@ -4887,7 +4887,7 @@ msgstr ""
 
 #: mmframe.cpp:1768
 msgid "Options"
-msgstr ""
+msgstr "Opcions"
 
 #: mmframe.cpp:1775
 msgid "Convert Encrypted &DB..."
@@ -5246,7 +5246,7 @@ msgstr ""
 
 #: mmframe.cpp:2346
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Si us plau, confirmi la nova contrasenya"
 
 #: mmframe.cpp:2353
 msgid "Password change completed"
