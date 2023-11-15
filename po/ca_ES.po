@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-15 19:32\n"
+"PO-Revision-Date: 2023-11-15 20:56\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -662,7 +662,7 @@ msgstr ""
 #: assetspanel.cpp:515 filtertransdialog.cpp:650 mmcheckingpanel.cpp:491
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Utilitzi l'asterisc (*) al començament per trobar qualsevol cadena de caràcters al mig de la frase."
 
 #: assetspanel.cpp:586 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
@@ -1392,15 +1392,15 @@ msgstr ""
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia de demora!"
+msgstr[1] "%d dies de demora!"
 
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:316
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia vençut!"
+msgstr[1] "%d dies vençut!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
@@ -1636,7 +1636,7 @@ msgstr "Mostrar totes les categories amagades"
 
 #: categdialog.cpp:315
 msgid "Add a new category"
-msgstr ""
+msgstr "Afegir una nova categoria"
 
 #: categdialog.cpp:319
 msgid "Edit the name of an existing category"
