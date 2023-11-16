@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-16 20:30\n"
+"PO-Revision-Date: 2023-11-16 22:21\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Introdueix el balanç inicial d'aquest compte"
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr "Data d'obertura:"
+msgstr "Data d'Obertura:"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -293,7 +293,7 @@ msgstr ""
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr ""
+msgstr "La data d'obertura no pot ser en el futur"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1069
@@ -341,12 +341,12 @@ msgstr "Obre una base de dades creada amb l'extensió (*.mmb)"
 
 #: appstartdialog.cpp:111 mmframe.cpp:1633
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Idioma de la Interfície d'Usuari"
 
 #: appstartdialog.cpp:112 appstartdialog.cpp:212 mmframe.cpp:1634
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
-msgstr ""
+msgstr "Canviar l'idioma de la interfície d'usuari"
 
 #: appstartdialog.cpp:115
 msgid "&User Manual"
@@ -825,7 +825,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:526 general_report_manager.cpp:673
 msgid "Unable to open file:"
-msgstr ""
+msgstr "No es pot obrir el fitxer:"
 
 #: attachmentdialog.cpp:529
 msgid "Please verify that file exists and user has rights to read it."
