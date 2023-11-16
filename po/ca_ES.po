@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-15 20:56\n"
+"PO-Revision-Date: 2023-11-16 19:26\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -789,7 +789,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Aquest directori i els seus fitxers són gestionats automàticament per MMEX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
