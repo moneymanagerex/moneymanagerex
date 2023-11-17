@@ -418,11 +418,6 @@ mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime d
     , itemStaticTextWeek_(nullptr)
     , spinButton_(nullptr)
 {
-    // The standard date control for MacOS does not have a date picker so make one available when right-click
-    // over the date field.
-#if defined (__WXMAC__)
-    Bind(wxEVT_RIGHT_DOWN, &mmDatePickerCtrl::OnCalendar, this);
-#endif
 }
 
 mmDatePickerCtrl::~mmDatePickerCtrl()
@@ -493,19 +488,6 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
     date_sizer->Add(this->getTextWeek(), g_flagsH);
 
     return date_sizer;
-}
-
-void mmDatePickerCtrl::OnCalendar(wxMouseEvent& event)
-{
-    mmCalendarPopup* m_simplePopup = new mmCalendarPopup( parent_, this );
-
-    // make sure we correctly position the popup below the date
-    wxWindow *dateCtrl = static_cast<wxWindow*>(event.GetEventObject());
-    wxSize dimensions = dateCtrl->GetSize();
-    wxPoint pos = dateCtrl->ClientToScreen(wxPoint(0, dimensions.GetHeight()));
-    m_simplePopup->SetPosition(pos);
-
-    m_simplePopup->Popup();
 }
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
