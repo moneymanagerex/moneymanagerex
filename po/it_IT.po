@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-17 10:01\n"
+"PO-Revision-Date: 2023-11-17 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4346,7 +4346,7 @@ msgstr "Transazione pianificata salvata."
 
 #: mmcheckingpanel.cpp:438
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "Elimina tutte le transazioni selezionate"
 
 #: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
 msgid "New Transaction"
@@ -4354,7 +4354,7 @@ msgstr "Nuova Operazione"
 
 #: mmcheckingpanel.cpp:446
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "Modifica tutte le transazioni selezionate"
 
 #: mmcheckingpanel.cpp:454
 msgid "Duplicate selected transaction"
