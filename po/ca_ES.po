@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-17 10:01\n"
+"PO-Revision-Date: 2023-11-17 23:34\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -829,7 +829,7 @@ msgstr "No es pot obrir el fitxer:"
 
 #: attachmentdialog.cpp:529
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Si us plau, verifiqui que el fitxer existeix i que l'usuari tingui els drets per llegir-lo."
 
 #: attachmentdialog.cpp:530
 msgid "Open attachment failed"
@@ -1106,7 +1106,7 @@ msgstr ""
 #: reports/transactions.cpp:189 transdialog.cpp:546
 #: usertransactionpanel.cpp:182
 msgid "Number"
-msgstr ""
+msgstr "Nombre"
 
 #: billsdepositsdialog.cpp:633 transdialog.cpp:553 usertransactionpanel.cpp:197
 msgid "Select one of the frequently used notes"
@@ -1612,7 +1612,7 @@ msgstr ""
 
 #: categdialog.cpp:187 import_export/qif_export.cpp:146 mmframereport.cpp:140
 msgid "Categories"
-msgstr ""
+msgstr "Categories"
 
 #: categdialog.cpp:258
 msgid "Reassign all categories to another category"
@@ -1712,11 +1712,11 @@ msgstr ""
 
 #: categdialog.cpp:467
 msgid "Category in use."
-msgstr ""
+msgstr "Categoria en ús."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Subcategoria en ús."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1730,7 +1730,7 @@ msgstr ""
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Eines → Combinar → Categories"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
@@ -1860,7 +1860,7 @@ msgstr ""
 
 #: constants.cpp:194
 msgid "View All Transactions"
-msgstr ""
+msgstr "Visualitzar Totes les Transaccions"
 
 #: constants.cpp:195
 msgid "View Today"
@@ -1868,11 +1868,11 @@ msgstr ""
 
 #: constants.cpp:196
 msgid "View Current Month"
-msgstr ""
+msgstr "Visualitzar el Mes Actual"
 
 #: constants.cpp:197
 msgid "View Last 30 days"
-msgstr ""
+msgstr "Visualitzar els Últims 30 dies"
 
 #: constants.cpp:198
 msgid "View Last 90 days"
@@ -2198,15 +2198,15 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
-msgstr ""
+msgstr "Factures"
 
 #: db/DB_Table_Category_V1.h:114
 msgid "Telephone"
-msgstr ""
+msgstr "Telèfon"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Electricity"
-msgstr ""
+msgstr "Electricitat"
 
 #: db/DB_Table_Category_V1.h:116 db/DB_Table_Category_V1.h:130
 msgid "Gas"
@@ -2218,7 +2218,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Rent"
-msgstr ""
+msgstr "Lloguer"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Cable TV"
@@ -2226,7 +2226,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Water"
-msgstr ""
+msgstr "Aigua"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Food"
@@ -2246,7 +2246,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Movies"
-msgstr ""
+msgstr "Pel·lícules"
 
 #: db/DB_Table_Category_V1.h:126
 msgid "Video Rental"
@@ -2254,7 +2254,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:127
 msgid "Magazines"
-msgstr ""
+msgstr "Revistes"
 
 #: db/DB_Table_Category_V1.h:128 model/Model_Asset.cpp:43
 msgid "Automobile"
@@ -2262,7 +2262,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:129
 msgid "Maintenance"
-msgstr ""
+msgstr "Manteniment"
 
 #: db/DB_Table_Category_V1.h:131
 msgid "Parking"
@@ -2274,11 +2274,11 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:133
 msgid "Education"
-msgstr ""
+msgstr "Educació"
 
 #: db/DB_Table_Category_V1.h:134
 msgid "Books"
-msgstr ""
+msgstr "Llibres"
 
 #: db/DB_Table_Category_V1.h:135
 msgid "Tuition"
@@ -2998,16 +2998,16 @@ msgstr "Transaccions"
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:662
 #: mmframe.cpp:1569
 msgid "Export as QIF file"
-msgstr ""
+msgstr "Exportar com a fitxer QIF"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1568
 msgid "Export as JSON file"
-msgstr ""
+msgstr "Exportar com a fitxer JSON"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
 #: mmframe.cpp:1564
 msgid "Export as CSV file"
-msgstr ""
+msgstr "Exportar com a fitxer CSV"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
@@ -3074,7 +3074,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:854
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "Fitxers QIF (*.qif)"
 
 #: import_export/qif_export.cpp:326
 msgid "Choose JSON data file to Export"
@@ -3082,11 +3082,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:328
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Fitxers JSON (*.json)"
 
 #: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2172
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "Fitxers CSV (*.csv)"
 
 #: import_export/qif_export.cpp:354
 msgid "No Account available for export"
@@ -3344,15 +3344,15 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:120 mmframe.cpp:1555
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Importar des de fitxer CSV"
 
 #: import_export/univcsvdialog.cpp:126
 msgid "Import from XML file"
-msgstr ""
+msgstr "Importar des de fitxer XML"
 
 #: import_export/univcsvdialog.cpp:129 mmframe.cpp:1565
 msgid "Export as XML file"
-msgstr ""
+msgstr "Exportar com a fitxer XML"
 
 #: import_export/univcsvdialog.cpp:204
 msgid "Account: "
@@ -3650,7 +3650,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2171
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "Fitxers XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:2171
 msgid "All Files"
