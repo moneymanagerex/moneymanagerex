@@ -172,7 +172,6 @@ private:
     wxStaticText* getTextWeek();
     wxSpinButton* getSpinButton();
 
-    void OnCalendar(wxMouseEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnDateSpin(wxSpinEvent& event);
 
