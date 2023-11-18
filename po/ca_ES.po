@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-17 23:34\n"
+"PO-Revision-Date: 2023-11-18 00:50\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -3662,7 +3662,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2589
 msgid "Enter a value"
-msgstr ""
+msgstr "Introdueixi un valor"
 
 #: import_export/univcsvdialog.cpp:2599
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
@@ -4667,7 +4667,7 @@ msgstr ""
 
 #: mmframe.cpp:1588
 msgid "Show/Hide the toolbar"
-msgstr ""
+msgstr "Mostrar/Ocultar la barra d'eines"
 
 #: mmframe.cpp:1590
 msgid "&Navigation"
@@ -4963,7 +4963,7 @@ msgstr "&Twitter"
 
 #: mmframe.cpp:1810
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Segueix-nos a Twitter"
 
 #: mmframe.cpp:1812
 msgid "&YouTube"
@@ -6124,11 +6124,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
@@ -6359,7 +6359,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:223
 msgid "User Interface"
-msgstr ""
+msgstr "Interfície d'Usuari"
 
 #: optionsettingsview.cpp:234
 msgid "Open Theme Manager"
