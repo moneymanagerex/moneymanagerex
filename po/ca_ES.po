@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-19 11:09\n"
+"PO-Revision-Date: 2023-11-19 12:36\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -1917,12 +1917,12 @@ msgstr "TOT"
 #: constants.cpp:209 mmframe.cpp:1499 mmframe.cpp:1912
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
-msgstr ""
+msgstr "Obert"
 
 #: constants.cpp:210 mmframe.cpp:1500 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
-msgstr ""
+msgstr "Tancat"
 
 #: constants.cpp:211 mmframe.cpp:481 mmframe.cpp:736 mmframe.cpp:1498
 msgid "Favorites"
@@ -2258,7 +2258,7 @@ msgstr "Revistes"
 
 #: db/DB_Table_Category_V1.h:128 model/Model_Asset.cpp:43
 msgid "Automobile"
-msgstr ""
+msgstr "Automòbil"
 
 #: db/DB_Table_Category_V1.h:129
 msgid "Maintenance"
@@ -2266,7 +2266,7 @@ msgstr "Manteniment"
 
 #: db/DB_Table_Category_V1.h:131
 msgid "Parking"
-msgstr ""
+msgstr "Aparcament"
 
 #: db/DB_Table_Category_V1.h:132
 msgid "Registration"
@@ -2322,7 +2322,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:147
 msgid "Insurance"
-msgstr ""
+msgstr "Assegurança"
 
 #: db/DB_Table_Category_V1.h:148
 msgid "Auto"
@@ -2366,7 +2366,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:159
 msgid "Water Tax"
-msgstr ""
+msgstr "Cànon de l'Aigua"
 
 #: db/DB_Table_Category_V1.h:161
 msgid "Miscellaneous"
@@ -2390,11 +2390,11 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:167
 msgid "Other Income"
-msgstr ""
+msgstr "Altres Ingressos"
 
 #: db/DB_Table_Category_V1.h:168
 msgid "Other Expenses"
-msgstr ""
+msgstr "Altres Despeses"
 
 #: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:830
 #: filtertransdialog.cpp:1468 filtertransdialog.cpp:1571
@@ -2810,7 +2810,7 @@ msgstr ""
 
 #: general_report_manager.cpp:609 general_report_manager.cpp:1068
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "Fitxers ZIP (*.zip)"
 
 #: general_report_manager.cpp:674 general_report_manager.h:64
 msgid "General Reports Manager"
@@ -2818,7 +2818,7 @@ msgstr ""
 
 #: general_report_manager.cpp:741
 msgid "Assets..."
-msgstr ""
+msgstr "Actius..."
 
 #: general_report_manager.cpp:744
 msgid "New Empty Report..."
@@ -6178,7 +6178,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "Especifiqui el nombre màxim de fitxers de còpia de seguretat"
 
 #: optionsettingsmisc.cpp:200
 msgid "Max Files"
