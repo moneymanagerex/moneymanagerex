@@ -49,7 +49,7 @@ public:
 private:
     wxSharedPtr<wxListItemAttr> attr3_; // style3
     mmBudgetingPanel* cp_;
-    long selectedIndex_;
+    long selectedIndex_ = -1;
 };
 
 class mmBudgetingPanel : public mmPanelBase

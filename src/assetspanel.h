@@ -116,9 +116,9 @@ private:
     void enableEditDeleteButtons(bool enable);
     void OnSearchTxtEntered(wxCommandEvent& event);
     
-    mmAssetsListCtrl* m_listCtrlAssets;
-    wxButton* m_bitmapTransFilter;
-    wxStaticText* header_text_;
+    mmAssetsListCtrl* m_listCtrlAssets = nullptr;
+    wxButton* m_bitmapTransFilter = nullptr;
+    wxStaticText* header_text_ = nullptr;
 
     bool Create(wxWindow *parent
         , wxWindowID winid

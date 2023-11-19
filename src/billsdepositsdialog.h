@@ -85,37 +85,37 @@ private:
     bool m_new_bill;
     bool m_dup_bill;
     bool m_enter_occur;
-    bool autoExecuteUserAck_;
-    bool autoExecuteSilent_;
-    bool m_advanced;
+    bool autoExecuteUserAck_ = false;
+    bool autoExecuteSilent_ = false;
+    bool m_advanced = false;
 private:
-    wxTextCtrl* textNumber_;
-    mmTextCtrl* textAmount_;
-    mmTextCtrl* toTextAmount_;
-    wxTextCtrl* textNotes_;
-    wxTextCtrl* textCategory_;
-    wxTextCtrl* textNumRepeats_;
-    mmComboBoxCategory* cbCategory_;
-    wxBitmapButton* bSplit_;
-    mmComboBoxPayee* cbPayee_;
-    mmComboBoxAccount* cbAccount_;
+    wxTextCtrl* textNumber_ = nullptr;
+    mmTextCtrl* textAmount_ = nullptr;
+    mmTextCtrl* toTextAmount_ = nullptr;
+    wxTextCtrl* textNotes_ = nullptr;
+    wxTextCtrl* textCategory_ = nullptr;
+    wxTextCtrl* textNumRepeats_ = nullptr;
+    mmComboBoxCategory* cbCategory_ = nullptr;
+    wxBitmapButton* bSplit_ = nullptr;
+    mmComboBoxPayee* cbPayee_ = nullptr;
+    mmComboBoxAccount* cbAccount_ = nullptr;
     mmComboBoxAccount* cbToAccount_;
-    wxButton* bAttachments_;
-    wxButton* m_button_cancel;
-    mmColorButton* bColours_;
-    wxCheckBox* cAdvanced_;
-    wxChoice* m_choice_status;
-    wxChoice* m_choice_transaction_type;
-    mmDatePickerCtrl* m_date_paid;      // Stored in ::TRANSDATE
-    mmDatePickerCtrl* m_date_due;       // Stored in ::NEXTOCCURRENCEDATE
-    wxChoice* m_choice_repeat;
-    wxCheckBox* itemCheckBoxAutoExeUserAck_;
-    wxCheckBox* itemCheckBoxAutoExeSilent_;
-    wxStaticText* staticTimesRepeat_;
-    wxStaticText* staticTextRepeats_;
-    wxBitmapButton* m_btn_due_prev_date;
-    wxBitmapButton* m_btn_due_date;
-    mmTagTextCtrl* tagTextCtrl_;
+    wxButton* bAttachments_ = nullptr;
+    wxButton* m_button_cancel = nullptr;
+    mmColorButton* bColours_ = nullptr;
+    wxCheckBox* cAdvanced_ = nullptr;
+    wxChoice* m_choice_status = nullptr;
+    wxChoice* m_choice_transaction_type = nullptr;
+    mmDatePickerCtrl* m_date_paid = nullptr; // Stored in ::TRANSDATE
+    mmDatePickerCtrl* m_date_due = nullptr;  // Stored in ::NEXTOCCURRENCEDATE
+    wxChoice* m_choice_repeat = nullptr;
+    wxCheckBox* itemCheckBoxAutoExeUserAck_ = nullptr;
+    wxCheckBox* itemCheckBoxAutoExeSilent_ = nullptr;
+    wxStaticText* staticTimesRepeat_ = nullptr;
+    wxStaticText* staticTextRepeats_ = nullptr;
+    wxBitmapButton* m_btn_due_prev_date = nullptr;
+    wxBitmapButton* m_btn_due_date = nullptr;
+    mmTagTextCtrl* tagTextCtrl_ = nullptr;
 
     bool m_transfer;
     int object_in_focus_;

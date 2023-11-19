@@ -99,21 +99,21 @@ private:
         MENU_RELOCATE_PAYEE
     };
 
-    wxListView* payeeListBox_;
-    wxSearchCtrl* m_maskTextCtrl;
-    wxBitmapButton* m_magicButton;
+    wxListView* payeeListBox_ = nullptr;
+    wxSearchCtrl* m_maskTextCtrl = nullptr;
+    wxBitmapButton* m_magicButton = nullptr;
 
-    int m_payee_id;
+    int m_payee_id = -1;
     wxString m_init_selected_payee;
-    int m_payee_rename;
+    int m_payee_rename = -1;
     bool m_payee_choose;
     wxString m_maskStr;
     int m_sort, m_lastSort;
-    bool refreshRequested_, m_sortReverse;
+    bool refreshRequested_ = false, m_sortReverse = false;
     std::map<int, wxString> ColName_;
 
 private:
-    mmPayeeDialog() : m_payee_id(-1), refreshRequested_(false) {}
+    mmPayeeDialog() {}
 
     void Create(wxWindow* parent, const wxString &name);
     void CreateControls();

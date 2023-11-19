@@ -55,7 +55,7 @@ public:
     mmGUIFrame* m_frame;
 private:
     wxString GetHomePageText() const;
-    wxWebView* browser_;
+    wxWebView* browser_ = nullptr;
     void createControls();
     void sortTable() {}
     void OnNewWindow(wxWebViewEvent& evt);

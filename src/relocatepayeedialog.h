@@ -54,12 +54,12 @@ private:
     void OnFocusChange(wxChildFocusEvent& event);
 
     int sourcePayeeID_;
-    int destPayeeID_;
+    int destPayeeID_ = -1;
 
     mmComboBoxUsedPayee* cbSourcePayee_;
     mmComboBoxPayee* cbDestPayee_;
-    int m_changed_records;
-    wxStaticText* m_info;
+    int m_changed_records = 0;
+    wxStaticText* m_info = nullptr;
     wxCheckBox* cbDeleteSourcePayee_;
     wxDECLARE_EVENT_TABLE();
 };

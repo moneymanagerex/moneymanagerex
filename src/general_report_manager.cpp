@@ -234,15 +234,6 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
     : m_db(db)
-    , browser_(nullptr)
-    , m_buttonOpen(nullptr)
-    , m_buttonSave(nullptr)
-    , m_buttonSaveAs(nullptr)
-    , m_buttonRun(nullptr)
-    , m_treeCtrl(nullptr)
-    , m_dbView(nullptr)
-    , m_sqlListBox(nullptr)
-    , m_selectedReportID(0)
 {
     this->SetFont(parent->GetFont());
     Create(parent);

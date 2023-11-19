@@ -284,7 +284,6 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
     : mmListCtrl(parent, id)
     , attr3_(new wxListItemAttr(wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont))
     , cp_(cp)
-    , selectedIndex_(-1)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 

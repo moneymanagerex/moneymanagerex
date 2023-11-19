@@ -58,17 +58,6 @@ ShareTransactionDialog::ShareTransactionDialog()
 
 ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Stock::Data* stock)
     : m_stock(stock)
-    , m_stock_name_ctrl(nullptr)
-    , m_stock_symbol_ctrl(nullptr)
-    , m_share_num_ctrl(nullptr)
-    , m_share_price_ctrl(nullptr)
-    , m_share_lot_ctrl(nullptr)
-    , m_notes_ctrl(nullptr)
-    , m_share_commission_ctrl(nullptr)
-    , m_attachments_btn(nullptr)
-    , m_translink_entry(nullptr)
-    , m_share_entry(nullptr)
-    , m_checking_entry(nullptr)
     , m_dialog_heading(_("Add Share Transaction"))
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -76,19 +65,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Stock::Da
 }
 
 ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink::Data* translink_entry, Model_Checking::Data* checking_entry)
-    : m_stock(nullptr)
-    , m_stock_name_ctrl(nullptr)
-    , m_stock_symbol_ctrl(nullptr)
-    , m_share_num_ctrl(nullptr)
-    , m_share_price_ctrl(nullptr)
-    , m_share_lot_ctrl(nullptr)
-    , m_notes_ctrl(nullptr)
-    , m_share_commission_ctrl(nullptr)
-    , m_attachments_btn(nullptr)
-    , m_translink_entry(nullptr)
-    , m_share_entry(nullptr)
-    , m_checking_entry(nullptr)
-    , m_dialog_heading(_("Add Share Transaction"))
+    : m_dialog_heading(_("Add Share Transaction"))
 {
     if (translink_entry)
     {

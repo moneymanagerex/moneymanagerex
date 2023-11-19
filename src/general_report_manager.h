@@ -104,18 +104,18 @@ private:
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
     wxSQLite3Database* m_db;
-    wxWebView* browser_;
+    wxWebView* browser_ = nullptr;
 
-    wxButton* m_buttonOpen;
-    wxButton* m_buttonSave;
-    wxButton* m_buttonSaveAs;
-    wxButton* m_buttonRun;
-    wxTreeCtrl* m_treeCtrl;
-    wxTreeCtrl *m_dbView;
-    sqlListCtrl* m_sqlListBox;
+    wxButton* m_buttonOpen = nullptr;
+    wxButton* m_buttonSave = nullptr;
+    wxButton* m_buttonSaveAs = nullptr;
+    wxButton* m_buttonRun = nullptr;
+    wxTreeCtrl* m_treeCtrl = nullptr;
+    wxTreeCtrl* m_dbView = nullptr;
+    sqlListCtrl* m_sqlListBox = nullptr;
     wxTreeItemId m_rootItem;
     wxTreeItemId m_selectedItemID;
-    int m_selectedReportID;
+    int m_selectedReportID = 0;
     wxString m_selectedGroup;
 
 #if wxUSE_DRAG_AND_DROP

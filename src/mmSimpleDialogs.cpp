@@ -415,8 +415,6 @@ wxEND_EVENT_TABLE()
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
     : wxDatePickerCtrl(parent, id, dt, pos, size, style)
     , parent_(parent)
-    , itemStaticTextWeek_(nullptr)
-    , spinButton_(nullptr)
 {
 }
 
@@ -630,8 +628,7 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, con
     const wxString& defaultText, const wxArrayString& choices)
     : m_default_str(defaultText),
     m_choices(choices),
-    m_message(message),
-    cbText_(nullptr)
+    m_message(message)
 {
     if (m_choices.Index(m_default_str) == wxNOT_FOUND)
     {
@@ -685,7 +682,6 @@ mmDateYearMonth::mmDateYearMonth()
 
 mmDateYearMonth::mmDateYearMonth(wxWindow *parent) :
     m_parent(parent)
-    , m_shift(0)
 {
     Create(parent, wxID_STATIC);
 }

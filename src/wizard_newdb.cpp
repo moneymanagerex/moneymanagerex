@@ -86,7 +86,6 @@ END_EVENT_TABLE()
 mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     : wxWizardPageSimple(parent)
     , parent_(parent)
-    , currencyID_(-1)
 {
     wxString currName = _("Set Currency");
     const auto base_currency = Model_Currency::instance().GetBaseCurrency();
