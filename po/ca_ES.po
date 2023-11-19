@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-18 00:50\n"
+"PO-Revision-Date: 2023-11-19 11:09\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -793,7 +793,7 @@ msgstr "Aquest directori i els seus fitxers són gestionats automàticament per 
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Si us plau, no elimini, canviï el nom ni modifiqui manualment els directoris i fitxers."
 
 #: attachmentdialog.cpp:455 attachmentdialog.cpp:463
 msgid "Destination file already exist:"
@@ -801,7 +801,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:458
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "No s'ha trobat el fitxer en els fitxers adjunts. Si us plau, elimini'l o canviï-li el nom."
 
 #: attachmentdialog.cpp:459 attachmentdialog.cpp:467
 msgid "Destination file already exist"
