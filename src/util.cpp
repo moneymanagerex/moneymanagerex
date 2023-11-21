@@ -75,8 +75,7 @@ mmTreeItemData::mmTreeItemData(int type, int id)
     stringData_ = (wxString::Format("%i", id));
 }
 mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
-    : id_(-1)
-    , type_(mmTreeItemData::REPORT)
+    : type_(mmTreeItemData::REPORT)
     , stringData_(data)
     , report_(report)
 {
@@ -85,14 +84,12 @@ mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
     report_->initReportSettings(settings);
 }
 mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& data)
-    : id_(-1)
-    , type_(mmTreeItemData::GRM)
+    : type_(mmTreeItemData::GRM)
     , stringData_(data)
     , report_(report)
 {}
 mmTreeItemData::mmTreeItemData(int type, const wxString& data)
-    : id_(-1)
-    , type_(type)
+    : type_(type)
     , stringData_(data)
     , report_(nullptr)
 {}
@@ -1577,7 +1574,6 @@ mmDates::~mmDates()
 mmDates::mmDates()
     : m_date_formats_temp(g_date_formats_map())
     , m_today(wxDate::Today())
-    , m_error_count(0)
 {
     m_date_parsing_stat.clear();
     m_month_ago = wxDate::Today().Subtract(wxDateSpan::Months(1));

@@ -42,7 +42,7 @@ private:
 
     void CreateControls(const Document& json_releases, wxArrayInt new_releases);
     wxString top_version_;
-    wxCheckBox* showUpdateCheckBox_;
+    wxCheckBox* showUpdateCheckBox_ = nullptr;
     void OnNewWindow(wxWebViewEvent& evt);
 
     wxDECLARE_EVENT_TABLE();

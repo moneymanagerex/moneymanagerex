@@ -49,9 +49,6 @@ relocateTagDialog::~relocateTagDialog()
 }
 
 relocateTagDialog::relocateTagDialog(wxWindow* parent, int source_tag_id)
-    : destTagID_(-1)
-    , m_changed_records(0)
-    , m_info(nullptr)
 {
     sourceTagID_  = source_tag_id;
 

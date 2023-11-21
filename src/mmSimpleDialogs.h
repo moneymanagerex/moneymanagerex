@@ -176,8 +176,8 @@ private:
     void OnDateSpin(wxSpinEvent& event);
 
     wxWindow* parent_;
-    wxStaticText* itemStaticTextWeek_;
-    wxSpinButton* spinButton_;
+    wxStaticText* itemStaticTextWeek_ = nullptr;
+    wxSpinButton* spinButton_ = nullptr;
 };
 
 /* -------------------------------------------- */
@@ -241,7 +241,7 @@ private:
     wxArrayString m_choices;
     wxString m_message;
 
-    mmComboBoxCustom* cbText_;
+    mmComboBoxCustom* cbText_ = nullptr;
 };
 
 class mmGUIApp;
@@ -277,7 +277,7 @@ public:
 private:
     wxWindow* m_parent;
     bool Create(wxWindow* parent, wxWindowID id);
-    int m_shift;
+    int m_shift = 0;
 };
 
 // -------------------------------------------------------------------------- //

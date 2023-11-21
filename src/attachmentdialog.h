@@ -50,7 +50,7 @@ private:
 
     wxDataViewListCtrl* attachmentListBox_;
 
-    int m_attachment_id;
+    int m_attachment_id = -1;
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_;
     wxButton* button_OK_;
@@ -59,7 +59,7 @@ private:
     wxString m_RefType;
     int m_RefId;
 
-    mmAttachmentDialog() : m_attachment_id(-1) {}
+    mmAttachmentDialog() {}
 
     void Create(wxWindow* parent, const wxString& name);
     void CreateControls();

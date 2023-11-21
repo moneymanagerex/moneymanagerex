@@ -439,16 +439,9 @@ mmPayeeDialog::~mmPayeeDialog()
 }
 
 mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :
-    m_payee_id(-1)
-    , m_maskTextCtrl(nullptr)
-    , payeeListBox_(nullptr)
-    , m_magicButton(nullptr)
-    , m_payee_rename(-1)
-    , m_payee_choose(payee_choose)
-    , refreshRequested_(false)
+    m_payee_choose(payee_choose)
     , m_sort(PAYEE_NAME)
     , m_lastSort(PAYEE_NAME)
-    , m_sortReverse(false)
     , m_init_selected_payee(payee_selected)
 {
     ColName_[PAYEE_NAME] = _("Name");

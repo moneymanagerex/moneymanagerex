@@ -44,15 +44,6 @@ wxEND_EVENT_TABLE()
 mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field)
     : m_field(field)
     , m_fieldRefType(Model_Attachment::instance().all_type()[Model_Attachment::REFTYPE::TRANSACTION])
-    , m_itemDescription(nullptr)
-    , m_itemType(nullptr)
-    , m_itemUDFC(nullptr)
-    , m_itemTooltip(nullptr)
-    , m_itemRegEx(nullptr)
-    , m_itemAutocomplete(nullptr)
-    , m_itemDefault(nullptr)
-    , m_itemChoices(nullptr)
-    , m_itemDigitScale(nullptr)
 {
     this->SetFont(parent->GetFont());
     Create(parent);

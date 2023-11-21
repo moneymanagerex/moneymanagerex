@@ -31,10 +31,10 @@ public:
     mmAddAccountWizard(wxFrame *frame);
     void RunIt();
     wxString accountName_;
-    int currencyID_;
-    int accountType_;
+    int currencyID_ = -1;
+    int accountType_ = 0;
 
-    int acctID_;
+    int acctID_ = -1;
 
 private:
     wxWizardPageSimple* page1;

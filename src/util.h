@@ -116,7 +116,7 @@ public:
     };
 
 private:
-    int id_;
+    int id_ = -1;
     int type_;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
@@ -235,7 +235,7 @@ private:
     wxDateTime m_month_ago;
     wxString m_date_mask; //Human readable date format like DD/MM/YYYY
     wxString m_date_format; //Date Format Specifier like %d/%m/%Y
-    int m_error_count;
+    int m_error_count = 0;
     int MAX_ATTEMPTS = 3;
 };
 
