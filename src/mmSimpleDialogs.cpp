@@ -908,11 +908,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
     : wxPanel(), operatorAllowed_(operatorAllowed)
 {
-#ifdef __WXMAC__
-    style |= wxBORDER_THEME;
-#else
     style |= wxBORDER_NONE;
-#endif    
     Create(parent, id, pos, size, style);
     SetFont(parent->GetFont());
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
@@ -962,12 +958,11 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
         textCtrl_->SetEvtHandlerEnabled(true);
     });
   
-    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
-
     // Dropdown button
     int panelHeight = textCtrl_->TextHeight(0) + 8;
 
 #ifdef __WXMSW__
+    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
     // On Windows draw the drop arrow and store the bitmap to be used in the paint override
     wxWindowDC dc(this);
     wxSize btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, dc);
@@ -1050,8 +1045,12 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
 
     dropArrowInactive_ = wxBitmap(inactiveImg);
 #else
+    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 8);
+#ifdef __WXGTK__
+    panelHeight = std::max(panelHeight, 34);
+#endif
     // On Linux and macOS just draw a drop arrow bitmap for the button
-    wxSize btnSize = wxSize(panelHeight + 2, panelHeight);
+    wxSize btnSize = wxSize(panelHeight + 3, panelHeight);
     btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition, btnSize, wxBORDER_DEFAULT, wxDefaultValidator, "btn_dropdown_");
 
     // Begin the image with a transparent background
@@ -1066,11 +1065,18 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     memDC.SetPen(wxPen(btn_dropdown_->GetForegroundColour()));
     memDC.SetBrush(wxBrush(btn_dropdown_->GetForegroundColour()));
 
-    wxRect rect(GetClientRect());
-    rect.x += 8;
-    rect.y += 7;
-    // The generic drop arrow looks pretty close to the native GTK arrow
+    wxRect rect(btnSize);
+    rect.width *= 0.75;
+    rect.height *= 0.75;
+    rect.x += rect.width/5;
+    rect.y += rect.height/5 - 1;
+#ifdef __WXGTK__
+    // The generic drop arrow (solid triangle) looks pretty close to the native GTK arrow
     wxRendererNative::GetGeneric().DrawDropArrow(this, memDC, rect);
+#else
+    // macOS uses a 'v' style arrow instead
+    wxRendererNative::GetDefault().DrawDropArrow(this, memDC, rect);
+#endif
 
     memDC.SelectObject(wxNullBitmap);
     dropArrowInactive_ = dropArrow_;
