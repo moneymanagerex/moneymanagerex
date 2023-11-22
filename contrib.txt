@@ -247,6 +247,8 @@ Otto Kindelmayer
 Robert Sjursen
 Adam Gallagher
 John David Bowman
+Glenn Fowler
+Stanislav Gusev
 
 ### 2022
 Renato
