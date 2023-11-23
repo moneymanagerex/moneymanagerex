@@ -222,7 +222,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
 
     Model_Usage::instance().pageview(this);
 
-    return TRUE;
+    return true;
 }
 
 mmBillsDepositsPanel::~mmBillsDepositsPanel()

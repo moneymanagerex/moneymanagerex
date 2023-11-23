@@ -62,7 +62,7 @@ bool mmBudgetEntryDialog::Create(wxWindow* parent
     this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmBudgetEntryDialog::fillControls()

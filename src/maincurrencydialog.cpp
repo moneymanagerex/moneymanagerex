@@ -105,7 +105,7 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
     fillControls();
     Centre();
 
-    return TRUE;
+    return true;
 }
 
 void mmMainCurrencyDialog::fillControls()

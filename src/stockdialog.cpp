@@ -90,7 +90,7 @@ bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     UpdateControls();
 
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmStockDialog::DataToControls()

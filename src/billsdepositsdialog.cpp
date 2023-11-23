@@ -197,7 +197,7 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     SetIcon(mmex::getProgramIcon());
     Centre(wxCENTER_ON_SCREEN);
 
-    return TRUE;
+    return true;
 }
 
 void mmBDDialog::dataToControls()

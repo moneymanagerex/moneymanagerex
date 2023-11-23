@@ -106,7 +106,7 @@ bool transactionsUpdateDialog::Create(wxWindow* parent
     Centre();
 
     SetEvtHandlerEnabled(true);
-    return TRUE;
+    return true;
 }
 
 void transactionsUpdateDialog::CreateControls()

@@ -75,7 +75,7 @@ bool relocateCategoryDialog::Create(wxWindow* parent
     SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     Centre();
     mmSetSize(this);
-    return TRUE;
+    return true;
 }
 
 void relocateCategoryDialog::CreateControls()

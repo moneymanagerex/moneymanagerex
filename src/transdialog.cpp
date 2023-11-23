@@ -191,7 +191,7 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     SetEventHandlers();
     SetEvtHandlerEnabled(true);
-    return TRUE;
+    return true;
 }
 
 void mmTransDialog::dataToControls()

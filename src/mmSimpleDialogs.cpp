@@ -721,7 +721,7 @@ bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
     GetSizer()->SetSizeHints(this);
     Centre();
     Fit();
-    return TRUE;
+    return true;
 }
 
 void mmDateYearMonth::OnButtonPress(wxCommandEvent& event)

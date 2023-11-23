@@ -60,7 +60,7 @@ bool mmBudgetYearDialog::Create(wxWindow* parent, wxWindowID id,
     this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmBudgetYearDialog::fillControls()
