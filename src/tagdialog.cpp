@@ -85,7 +85,7 @@ bool mmTagDialog::Create(wxWindow* parent, wxWindowID id
     Fit();
     mmSetSize(this);
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmTagDialog::CreateControls()

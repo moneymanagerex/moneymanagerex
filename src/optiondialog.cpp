@@ -74,7 +74,7 @@ bool mmOptionsDialog::Create(wxWindow* parent
     SetMinSize(wxSize(424, 610));
 
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmOptionsDialog::CreateControls()

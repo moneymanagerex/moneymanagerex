@@ -73,7 +73,7 @@ bool relocatePayeeDialog::Create(wxWindow* parent
     SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     mmSetSize(this);
     Centre();
-    return TRUE;
+    return true;
 }
 
 void relocatePayeeDialog::CreateControls()

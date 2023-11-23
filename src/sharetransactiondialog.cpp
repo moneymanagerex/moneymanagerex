@@ -101,7 +101,7 @@ bool ShareTransactionDialog::Create(wxWindow* parent, wxWindowID id, const wxStr
     DataToControls();
 
     Centre();
-    return TRUE;
+    return true;
 }
 
 void ShareTransactionDialog::DataToControls()

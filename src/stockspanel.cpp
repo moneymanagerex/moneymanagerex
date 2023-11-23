@@ -76,7 +76,7 @@ bool mmStocksPanel::Create(wxWindow *parent
 
     this->windowsFreezeThaw();
     Model_Usage::instance().pageview(this);
-    return TRUE;
+    return true;
 }
 
 mmStocksPanel::~mmStocksPanel()

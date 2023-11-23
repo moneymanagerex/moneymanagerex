@@ -128,7 +128,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
 
     Fit();
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmCurrencyDialog::fillControls()

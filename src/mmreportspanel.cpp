@@ -86,7 +86,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     int id = rb_->getReportId();
     this->SetLabel(id < 0 ? "Custom Report" : rb_->getReportTitle(false));
 
-    return TRUE;
+    return true;
 }
 
 bool mmReportsPanel::saveReportText(bool initial)

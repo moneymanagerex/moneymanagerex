@@ -272,7 +272,7 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     GetSizer()->SetSizeHints(this);
     SetIcon(mmex::getProgramIcon());
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmGeneralReportManager::fillControls()

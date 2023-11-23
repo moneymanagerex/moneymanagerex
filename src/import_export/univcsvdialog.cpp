@@ -153,7 +153,7 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     SetIcon(mmex::getProgramIcon());
     Centre();
     Fit();
-    return TRUE;
+    return true;
 }
 
 void mmUnivCSVDialog::CreateControls()
@@ -2639,7 +2639,7 @@ bool mmUnivCSVDialog::isIndexPresent(int index) const
 
 bool mmUnivCSVDialog::ShowToolTips()
 {
-    return TRUE;
+    return true;
 }
 
 ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()

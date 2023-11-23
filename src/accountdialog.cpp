@@ -105,7 +105,7 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     this->SetInitialSize();
     Centre();
 
-    return TRUE;
+    return true;
 }
 
 void mmNewAcctDialog::CreateControls()

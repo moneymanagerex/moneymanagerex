@@ -67,7 +67,7 @@ bool mmQIFExportDialog::Create(wxWindow* parent, const wxString& caption, wxWind
     this->SetMinSize(wxSize(350, 450));
     this->Fit();
 
-    return TRUE;
+    return true;
 }
 
 void mmQIFExportDialog::fillControls()
