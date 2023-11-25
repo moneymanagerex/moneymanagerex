@@ -366,8 +366,12 @@ void mmCheckingPanel::CreateControls()
     infoPanel->Add(m_header_sortOrder, g_flagsH);
     itemBoxSizerVHeader->Add(infoPanel, g_flagsBorder1H);
 
+    wxBoxSizer* infoPanel2 = new wxBoxSizer(wxHORIZONTAL);
     m_header_balance = new wxStaticText(this, wxID_STATIC, "");
-    itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
+    infoPanel2->Add(m_header_balance, g_flagsH);
+    m_header_credit = new wxGauge(this, wxID_ANY, 100, wxDefaultPosition, wxSize(100,-1));
+    infoPanel2->Add(m_header_credit, g_flagsH);
+    itemBoxSizerVHeader->Add(infoPanel2, g_flagsBorder1V);
 
     m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
 
@@ -523,11 +527,12 @@ void mmCheckingPanel::setAccountSummary()
 {
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
     m_header_text->SetLabelText(GetPanelTitle(*account));
+    m_header_credit->Hide();
 
     if (!isAllAccounts_ && !isTrash_)
     {
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
-        const wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
+        wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
             , _("Account Bal: ")
             , Model_Account::toCurrency(m_account_balance, account)
             , _("Reconciled Bal: ")
@@ -536,6 +541,15 @@ void mmCheckingPanel::setAccountSummary()
             , Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account)
             , show_displayed_balance_ ? _("Filtered View Bal: ") : ""
             , show_displayed_balance_ ? Model_Account::toCurrency(m_filteredBalance, account) : "");
+        if (account->CREDITLIMIT != 0.0) 
+        {
+            double limit = 100.0 * ((m_account_balance < 0.0) ? -m_account_balance / account->CREDITLIMIT : 0.0);
+            summaryLine.Append(wxString::Format("   %s %.1f%%"
+                                , _("Credit Limit:")
+                                , limit));
+           m_header_credit->SetValue(limit);
+           m_header_credit->Show(); 
+        }
         m_header_balance->SetLabelText(summaryLine);
     }
     this->Layout();
