@@ -2614,7 +2614,7 @@ void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
-    Close(TRUE);
+    Close(true);
 }
 //----------------------------------------------------------------------------
 
