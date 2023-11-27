@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 - 2021 Nikolay Akimov
-Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -201,10 +201,6 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
     const wxDate today = wxDate::Today();
-    for (const auto& account : Model_Account::instance().all())
-    {
-        acc_conv_rates[account.ACCOUNTID] = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
-    }
     //Temporary map
     std::map<int /*category*/, double> stat;
 
@@ -224,13 +220,15 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
         const auto it = split.find(trx.TRANSID);
 
+        double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+
         if (it == split.end())
         {
             int category = trx.CATEGID;
             if (withdrawal)
-                stat[category] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+                stat[category] -= trx.TRANSAMOUNT * convRate;
             else
-                stat[category] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+                stat[category] += trx.TRANSAMOUNT * convRate;
         }
         else
         {
@@ -238,7 +236,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
             {
                 int category = entry.CATEGID;
                 double val = entry.SPLITTRANSAMOUNT
-                    * (acc_conv_rates[trx.ACCOUNTID])
+                    * convRate
                     * (withdrawal ? -1 : 1);
                 stat[category] += val;
             }
