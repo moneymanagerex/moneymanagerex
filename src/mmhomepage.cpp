@@ -198,9 +198,6 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
     , const mmDateRange* date_range) const
 {
-    //Get base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    const wxDate today = wxDate::Today();
     //Temporary map
     std::map<int /*category*/, double> stat;
 
