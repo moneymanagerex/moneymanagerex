@@ -95,14 +95,14 @@ __All following commands must be run from this command prompt!__
        mkdir c:\curl-<version>\build
        cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 17 2022 Win64" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
+       cmake -G "Visual Studio 17 2022" -A x64 -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
          -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
-         -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
+         -USE_SCHANNEL -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
        cmake --build . --target install --config Release --clean-first ^
          -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
-   Replace `Visual Studio 17 2022 Win64` with `Visual Studio 17 2022` for remove 64-bit support.
+   Replace `-A x64` with `-A Win32` to remove 64-bit support.
 
 8. Then you should follow one of  
    [Visual Studio project] | [Visual Studio CLI] | [Visual Studio CMake]
@@ -117,7 +117,7 @@ tools to manage projects in VS IDE.
        mkdir c:\projects\mmex\build
        cd c:\projects\mmex\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 17 2022 Win64" -DCMAKE_PREFIX_PATH=c:\libcurl ..
+       cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=c:\libcurl ..
 
    This produce `c:\projects\mmex\build\MMEX.sln` file ready to be loaded into
    Visual Studio GUI.
