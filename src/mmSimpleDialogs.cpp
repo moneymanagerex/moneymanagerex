@@ -925,7 +925,6 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_->SetLexer(wxSTC_LEX_NULL);
     textCtrl_->SetWrapMode(wxSTC_WRAP_NONE);
     textCtrl_->SetMarginWidth(1, 0);
-    //textCtrl_->SetExtraDescent(1);
     textCtrl_->SetMarginSensitive(1, false);
     textCtrl_->SetUseVerticalScrollBar(false);
     textCtrl_->SetUseHorizontalScrollBar(false);
@@ -959,15 +958,16 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     });
   
     // Dropdown button
-    int panelHeight = textCtrl_->TextHeight(0) + 8;
+    panelHeight_ = textCtrl_->TextHeight(0) + 8;
 
 #ifdef __WXMSW__
-    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 2);
+    textOffset_ = 2;
+    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, textOffset_);
     // On Windows draw the drop arrow and store the bitmap to be used in the paint override
     wxWindowDC dc(this);
     wxSize btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, dc);
     btnSize.SetWidth(btnSize.GetWidth() - 2);
-    btnSize.SetHeight(panelHeight - 3);
+    btnSize.SetHeight(panelHeight_ - 3);
     btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, 1), btnSize, wxBORDER_NONE, wxDefaultValidator, "btn_dropdown_");
     btn_dropdown_->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     btn_dropdown_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaintButton, this);
@@ -1045,12 +1045,13 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
 
     dropArrowInactive_ = wxBitmap(inactiveImg);
 #else
-    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 8);
+    textOffset_ = 8;
+    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, textOffset_);
 #ifdef __WXGTK__
-    panelHeight = std::max(panelHeight, 34);
+    panelHeight_ = std::max(panelHeight_, 34);
 #endif
     // On Linux and macOS just draw a drop arrow bitmap for the button
-    wxSize btnSize = wxSize(panelHeight + 3, panelHeight);
+    wxSize btnSize = wxSize(panelHeight_ + 3, panelHeight_);
     btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition, btnSize, wxBORDER_DEFAULT, wxDefaultValidator, "btn_dropdown_");
 
     // Begin the image with a transparent background
@@ -1118,7 +1119,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     sw_sizer->Fit(popupWindow_);
 
     SetSizer(panel_sizer);
-    SetSizeHints(-1, panelHeight, -1, panelHeight);
+    SetSizeHints(-1, panelHeight_, -1, panelHeight_);
     Layout();
     btn_dropdown_->Refresh();
     btn_dropdown_->Update();
@@ -1142,12 +1143,12 @@ void mmTagTextCtrl::OnDropDown(wxCommandEvent& event)
     {
         Validate();
         wxPoint pos = ClientToScreen(textCtrl_->GetPosition());
-        pos.y += textCtrl_->GetSize().GetHeight() + 3;
-        pos.x -= 2;
+        pos.y += (textCtrl_->GetSize().GetHeight() + panelHeight_) / 2;
+        pos.x -= textOffset_;
         popupWindow_->Position(pos, wxSize(0, 0));
         popupWindow_->SetSize(GetSize().GetWidth(), -1);
         tagCheckListBox_->GetParent()->SetSize(popupWindow_->GetSize());
-
+        tagCheckListBox_->SetSize(popupWindow_->GetSize());
         for (unsigned int i = 0; i < tagCheckListBox_->GetCount(); i++)
         {
             if (tags_.find(tagCheckListBox_->GetString(i)) != tags_.end())
@@ -1361,7 +1362,7 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
     if (btn_dropdown_->GetClientRect().Contains(btn_dropdown_->ScreenToClient(wxGetMousePosition())))
     {
         wxRect btnRect(btn_dropdown_->GetClientRect());
-        btnRect.x += textCtrl_->GetSize().GetWidth() + 2;
+        btnRect.x += textCtrl_->GetSize().GetWidth() + textOffset_;
         btnRect.y = 1;
         btnRect.height -= 2;
         btnRect.width -= 1;
@@ -1372,7 +1373,7 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 #endif
 
 #ifdef __WXMSW__
-    dc.DrawBitmap(textCtrl_->IsEnabled() ? dropArrow_ : dropArrowInactive_, wxPoint(textCtrl_->GetSize().GetWidth() + 2, 0));
+    dc.DrawBitmap(textCtrl_->IsEnabled() ? dropArrow_ : dropArrowInactive_, wxPoint(textCtrl_->GetSize().GetWidth() + textOffset_, 0));
 
     dc.DestroyClippingRegion();
 

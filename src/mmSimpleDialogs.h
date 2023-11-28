@@ -360,6 +360,7 @@ private:
     wxBitmap dropArrow_;
     wxBitmap dropArrowInactive_;
     bool initialRefreshDone_ = false;
+    int panelHeight_, textOffset_;
 };
 
 inline bool mmTagTextCtrl::IsValid() { return Validate(); }
