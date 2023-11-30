@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2022 Nikolay Akimov
- Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -1925,4 +1925,38 @@ bool isValidURI(const wxString validate)
         return true;
 
     return false;
+}
+
+//
+// mmHtmlWindow just adds a right click menu to save text to the system clipboard
+//
+
+mmHtmlWindow::mmHtmlWindow( wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size
+                    , long style, const wxString &name)
+            : wxHtmlWindow(parent, id, pos, size, style, name)
+{
+    this->Bind(wxEVT_RIGHT_DOWN, &mmHtmlWindow::OnMouseRightClick, this);
+    this->Bind(wxEVT_MENU, &mmHtmlWindow::OnMenuSelected, this);
+}
+
+void mmHtmlWindow::OnMouseRightClick(wxMouseEvent& event)
+{
+    wxMenu menu;
+    int id = wxID_LOWEST;
+    menu.Append(wxID_LOWEST + 1, _("Copy all text to clipboard"));
+    PopupMenu(&menu);
+
+}
+
+void mmHtmlWindow::OnMenuSelected(wxCommandEvent& event)
+{
+    int i = event.GetId() - wxID_LOWEST;
+    if (i == 1) // There is only one anyway
+    {
+        if (wxTheClipboard->Open())
+        {
+            wxTheClipboard->SetData(new wxTextDataObject(this->ToText()));
+            wxTheClipboard->Close();
+        }
+    }
 }
