@@ -1942,15 +1942,14 @@ mmHtmlWindow::mmHtmlWindow( wxWindow *parent, wxWindowID id, const wxPoint &pos,
 void mmHtmlWindow::OnMouseRightClick(wxMouseEvent& event)
 {
     wxMenu menu;
-    int id = wxID_LOWEST;
-    menu.Append(wxID_LOWEST + 1, _("Copy all text to clipboard"));
+    menu.Append(wxID_HIGHEST + 1, _("Copy all text to clipboard"));
     PopupMenu(&menu);
 
 }
 
 void mmHtmlWindow::OnMenuSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_LOWEST;
+    int i = event.GetId() - wxID_HIGHEST;
     if (i == 1) // There is only one anyway
     {
         if (wxTheClipboard->Open())
