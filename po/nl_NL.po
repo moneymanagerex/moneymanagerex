@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-17 18:05\n"
+"PO-Revision-Date: 2023-12-02 11:45\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4373,7 +4373,7 @@ msgstr "Geef de zoektekst in die u in de transactienotities wilt opzoeken"
 
 #: mmcheckingpanel.cpp:511 mmframe.cpp:776
 msgid "Deleted Transactions"
-msgstr "Transacties verwijderen"
+msgstr "Verwijderde transacties"
 
 #: mmcheckingpanel.cpp:513
 #, c-format
