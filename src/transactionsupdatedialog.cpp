@@ -529,7 +529,7 @@ void transactionsUpdateDialog::SetPayeeTransferControls()
     }
 }
 
-void transactionsUpdateDialog::OnTransTypeChanged([[maybe_unused]] wxCommandEvent& event)
+void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& WXUNUSED(event) )
 {
     SetPayeeTransferControls();
 }
