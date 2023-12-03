@@ -175,7 +175,7 @@ private:
     void OnDateChanged(wxDateEvent& event);
     void OnDateSpin(wxSpinEvent& event);
 
-    wxWindow* parent_;
+    wxWindow* parent_ = nullptr;
     wxStaticText* itemStaticTextWeek_ = nullptr;
     wxSpinButton* spinButton_ = nullptr;
 };
@@ -275,7 +275,7 @@ public:
     void OnButtonPress(wxCommandEvent& event);
 
 private:
-    wxWindow* m_parent;
+    wxWindow* m_parent = nullptr;
     bool Create(wxWindow* parent, wxWindowID id);
     int m_shift = 0;
 };
@@ -347,15 +347,15 @@ protected:
     void OnFocusChange(wxFocusEvent& event);
 private:
     void init();
-    wxStyledTextCtrl* textCtrl_;
-    wxBitmapButton* btn_dropdown_;
+    wxStyledTextCtrl* textCtrl_ = nullptr;
+    wxBitmapButton* btn_dropdown_ = nullptr;
     wxString autocomplete_string_;
     std::map<wxString, int, caseInsensitiveComparator> tag_map_;
     std::map<wxString, int, caseInsensitiveComparator> tags_;
     wxArrayString parseTags(const wxString& tagString);
     bool operatorAllowed_;
-    mmTagCtrlPopupWindow* popupWindow_;
-    wxCheckListBox* tagCheckListBox_;
+    mmTagCtrlPopupWindow* popupWindow_ = nullptr;
+    wxCheckListBox* tagCheckListBox_ = nullptr;
     wxColour borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
     wxBitmap dropArrow_;
     wxBitmap dropArrowInactive_;

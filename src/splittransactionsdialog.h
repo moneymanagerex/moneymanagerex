@@ -50,9 +50,9 @@ public:
     ~mmEditSplitOther();
 
 private:
-    Split* m_split;
-    Model_Currency::Data* m_currency;
-    wxTextCtrl* m_Notes;
+    Split* m_split = nullptr;
+    Model_Currency::Data* m_currency = nullptr;
+    wxTextCtrl* m_Notes = nullptr;
 
     void CreateControls();
     void fillControls();
@@ -115,13 +115,13 @@ private:
     double totalAmount_;
     int transType_;
     int row_num_;
-    Model_Currency::Data* m_currency;
+    Model_Currency::Data* m_currency = nullptr;
     bool is_view_only_;
 
-    wxButton* itemButtonOK_;
-    wxScrolledWindow* slider_;
-    wxStaticText* transAmount_;
-    wxFlexGridSizer* flexGridSizer_;
+    wxButton* itemButtonOK_ = nullptr;
+    wxScrolledWindow* slider_ = nullptr;
+    wxStaticText* transAmount_ = nullptr;
+    wxFlexGridSizer* flexGridSizer_ = nullptr;
 
     wxDECLARE_EVENT_TABLE();
 };

@@ -60,8 +60,8 @@ private:
     void OnChangeFocus(wxChildFocusEvent& event);
 
 private:
-    Model_Account::Data* m_account;
-    wxNotebook* m_notebook;
+    Model_Account::Data* m_account = nullptr;
+    wxNotebook* m_notebook = nullptr;
     wxTextCtrl* m_textAccountName = nullptr;
     wxTextCtrl* m_notesCtrl = nullptr;
     mmTextCtrl* m_initbalance_ctrl = nullptr;

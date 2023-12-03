@@ -33,7 +33,7 @@ public:
 
 private:
     void OnCancel(wxWizardEvent& evt);
-    wxWizardPageSimple* page1;
+    wxWizardPageSimple* page1 = nullptr;
     bool success_;
     
     wxDECLARE_EVENT_TABLE();
@@ -48,9 +48,9 @@ public:
     virtual bool TransferDataFromWindow();
 
 private:
-    mmNewDatabaseWizard* parent_;
-    wxButton* itemButtonCurrency_;
-    wxTextCtrl* itemUserName_;
+    mmNewDatabaseWizard* parent_ = nullptr;
+    wxButton* itemButtonCurrency_ = nullptr;
+    wxTextCtrl* itemUserName_ = nullptr;
     int currencyID_ = -1;
 
     wxDECLARE_EVENT_TABLE();

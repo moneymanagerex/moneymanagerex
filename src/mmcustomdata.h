@@ -61,7 +61,7 @@ protected:
 private:
     const int FIELDMULTIPLIER = 4;
     const int CONTROLOFFSET = FIELDMULTIPLIER - 1;
-    wxDialog* m_dialog;
+    wxDialog* m_dialog = nullptr;
     wxStaticBox* m_static_box =nullptr;
     const wxString m_ref_type;
     int m_ref_id = -1;

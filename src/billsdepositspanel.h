@@ -140,9 +140,9 @@ private:
 
 private:
     wxSharedPtr<mmFilterTransactionsDialog> transFilterDlg_;
-    billsDepositsListCtrl* listCtrlAccount_;
-    wxStaticText* m_infoText;
-    wxStaticText* m_infoTextMini;
+    billsDepositsListCtrl* listCtrlAccount_ = nullptr;
+    wxStaticText* m_infoText = nullptr;
+    wxStaticText* m_infoTextMini = nullptr;
     wxDate m_today;
 
     enum EColumn
@@ -169,7 +169,7 @@ private:
 
     bool transFilterActive_;
     void OnFilterTransactions(wxCommandEvent& WXUNUSED(event));
-    wxButton* m_bitmapTransFilter;
+    wxButton* m_bitmapTransFilter = nullptr;
 
     wxArrayString tips_;
 };
