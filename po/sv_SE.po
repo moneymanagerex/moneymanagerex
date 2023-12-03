@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-12-03 08:27\n"
+"PO-Revision-Date: 2023-12-03 09:33\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -789,7 +789,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Denna katalog och dess filer hanteras automatiskt av MMEX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -4953,7 +4953,7 @@ msgstr ""
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Öppna MMEX webbplats för de senaste nyheterna, uppdateringar etc"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5021,7 +5021,7 @@ msgstr ""
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX för &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -7877,12 +7877,12 @@ msgstr "Körs på:"
 #: util.cpp:1513
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Systemets plats: %s"
 
 #: util.cpp:1514
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Användargränssnittets språk: %s"
 
 #: util.cpp:1752
 msgid "The complete list of closed issues is available at this link"
