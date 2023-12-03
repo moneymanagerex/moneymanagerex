@@ -52,7 +52,7 @@ bool mmThemesDialog::vfsThemeImageLoaded = false;
 mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(const wxString& name)
 {
     ThemeEntry thisTheme;
-    for (const auto theme : m_themes)
+    for (const auto &theme : m_themes)
     {
         if (theme.name == name)
         {
