@@ -80,7 +80,7 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
             m_hasNonTransfers = true;
     }
 
-    m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS);
+    m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS);
 
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -529,7 +529,7 @@ void transactionsUpdateDialog::SetPayeeTransferControls()
     }
 }
 
-void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
+void transactionsUpdateDialog::OnTransTypeChanged([[maybe_unused]] wxCommandEvent& event)
 {
     SetPayeeTransferControls();
 }
