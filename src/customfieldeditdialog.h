@@ -34,7 +34,7 @@ public:
     mmCustomFieldEditDialog() {};
     mmCustomFieldEditDialog(wxWindow *parent, Model_CustomField::Data* field);
 
-    Model_CustomField::Data* m_field;
+    Model_CustomField::Data* m_field = nullptr;
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY

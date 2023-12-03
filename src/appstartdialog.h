@@ -31,7 +31,7 @@ class mmAppStartDialog: public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmGUIApp* m_app;
+    mmGUIApp* m_app = nullptr;
     mmAppStartDialog(wxWindow* parent, mmGUIApp* app, const wxString& name = "mmAppStartDialog");
     ~mmAppStartDialog();
     void SetCloseButtonToExit();

@@ -62,7 +62,7 @@ public:
     void CheckingType(Model_Translink::CHECKING_TYPE ct);
 
 private:
-    Model_Checking::Data* m_checking_entry;
+    Model_Checking::Data* m_checking_entry = nullptr;
     int m_transaction_id = -1;
 
     int m_account_id = -1;
@@ -84,21 +84,21 @@ private:
     void OnAttachments(wxCommandEvent& WXUNUSED(event));
 
 private:
-    mmDatePickerCtrl* m_date_selector;
+    mmDatePickerCtrl* m_date_selector = nullptr;
 
-    wxButton* m_account;
-    wxChoice* m_status_selector;
-    wxChoice* m_type_selector;
-    mmTextCtrl* m_entered_amount;
-    wxCheckBox* m_transfer;
-    wxButton* m_trans_currency;
-    wxButton* m_payee;
-    wxButton* m_category;
-    wxTextCtrl* m_entered_number;
-    wxTextCtrl* m_entered_notes;
+    wxButton* m_account = nullptr;
+    wxChoice* m_status_selector = nullptr;
+    wxChoice* m_type_selector = nullptr;
+    mmTextCtrl* m_entered_amount = nullptr;
+    wxCheckBox* m_transfer = nullptr;
+    wxButton* m_trans_currency = nullptr;
+    wxButton* m_payee = nullptr;
+    wxButton* m_category = nullptr;
+    wxTextCtrl* m_entered_number = nullptr;
+    wxTextCtrl* m_entered_notes = nullptr;
     std::vector<wxString> m_frequent_notes;
-    wxBitmapButton* m_attachment;
-    wxButton* frequent_notes;
+    wxBitmapButton* m_attachment = nullptr;
+    wxButton* frequent_notes = nullptr;
  
     enum
     {

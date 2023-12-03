@@ -186,7 +186,7 @@ private:
     void enableTransactionButtons(bool editDelete, bool duplicate, bool attach);
     wxString GetPanelTitle(const Model_Account::Data& account) const;
     static void mmPlayTransactionSound();
-    mmGUIFrame* m_frame;
+    mmGUIFrame* m_frame = nullptr;
 };
 //----------------------------------------------------------------------------
 #endif // MM_EX_CHECKINGPANEL_H_

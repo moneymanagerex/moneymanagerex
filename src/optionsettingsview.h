@@ -51,37 +51,37 @@ private:
 
 private:
     /// Colour Buttons.
-    wxButton* m_UDFCB1;
-    wxButton* m_UDFCB2;
-    wxButton* m_UDFCB3;
-    wxButton* m_UDFCB4;
-    wxButton* m_UDFCB5;
-    wxButton* m_UDFCB6;
-    wxButton* m_UDFCB7;
+    wxButton* m_UDFCB1 = nullptr;
+    wxButton* m_UDFCB2 = nullptr;
+    wxButton* m_UDFCB3 = nullptr;
+    wxButton* m_UDFCB4 = nullptr;
+    wxButton* m_UDFCB5 = nullptr;
+    wxButton* m_UDFCB6 = nullptr;
+    wxButton* m_UDFCB7 = nullptr;
 
     
-    wxButton* m_theme_manager;
-    wxChoice* m_theme_mode;
-    wxChoice* m_font_size_chooser;
-    wxChoice* m_choice_visible;
-    wxSpinCtrl* m_scale_factor;
+    wxButton* m_theme_manager = nullptr;
+    wxChoice* m_theme_mode = nullptr;
+    wxChoice* m_font_size_chooser = nullptr;
+    wxChoice* m_choice_visible = nullptr;
+    wxSpinCtrl* m_scale_factor = nullptr;
     int htmlScaleMin, htmlScaleMax;
-    wxChoice* m_toolbar_icon_size;
-    wxChoice* m_navigation_icon_size;
-    wxChoice* m_others_icon_size;
-    wxComboBox* m_categ_delimiter_list;
+    wxChoice* m_toolbar_icon_size = nullptr;
+    wxChoice* m_navigation_icon_size = nullptr;
+    wxChoice* m_others_icon_size = nullptr;
+    wxComboBox* m_categ_delimiter_list = nullptr;
 
-    wxCheckBox* m_budget_financial_years;
-    wxCheckBox* m_budget_include_transfers;
-    wxCheckBox* m_budget_summary_without_category;
-    wxCheckBox* m_budget_override;
-    wxCheckBox* m_budget_deduct_monthly;
-    wxCheckBox* m_ignore_future_transactions;
-    wxSpinCtrl* m_budget_days_offset;
-    wxSpinCtrl* m_reporting_firstday;
+    wxCheckBox* m_budget_financial_years = nullptr;
+    wxCheckBox* m_budget_include_transfers = nullptr;
+    wxCheckBox* m_budget_summary_without_category = nullptr;
+    wxCheckBox* m_budget_override = nullptr;
+    wxCheckBox* m_budget_deduct_monthly = nullptr;
+    wxCheckBox* m_ignore_future_transactions = nullptr;
+    wxSpinCtrl* m_budget_days_offset = nullptr;
+    wxSpinCtrl* m_reporting_firstday = nullptr;
 
-    wxCheckBox* m_showToolTips;
-    wxCheckBox* m_showMoneyTips;
+    wxCheckBox* m_showToolTips = nullptr;
+    wxCheckBox* m_showMoneyTips = nullptr;
 
     enum
     {

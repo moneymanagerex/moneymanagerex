@@ -49,15 +49,15 @@ private:
     void OnEnableWebserverChanged(wxCommandEvent& event);
 
 private:
-    wxSpinCtrl* m_network_timeout;
-    wxCheckBox* m_send_data;
-    wxCheckBox* m_webserver_checkbox;
-    wxSpinCtrl* m_webserver_port;
-    wxTextCtrl* m_proxy_address;
-    wxSpinCtrl* m_proxy_port;
-    wxCheckBox* m_check_update;
-    wxCheckBox* m_check_news;
-    wxChoice*   m_update_source;
+    wxSpinCtrl* m_network_timeout = nullptr;
+    wxCheckBox* m_send_data = nullptr;
+    wxCheckBox* m_webserver_checkbox = nullptr;
+    wxSpinCtrl* m_webserver_port = nullptr;
+    wxTextCtrl* m_proxy_address = nullptr;
+    wxSpinCtrl* m_proxy_port = nullptr;
+    wxCheckBox* m_check_update = nullptr;
+    wxCheckBox* m_check_news = nullptr;
+    wxChoice* m_update_source = nullptr;
 
     enum
     {

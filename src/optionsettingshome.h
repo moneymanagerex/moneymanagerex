@@ -49,7 +49,7 @@ private:
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
 
 private:
-    wxChoice* m_incExpChoice;
-    wxSpinCtrl* nDays_;
+    wxChoice* m_incExpChoice = nullptr;
+    wxSpinCtrl* nDays_ = nullptr;
 
 };

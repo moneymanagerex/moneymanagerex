@@ -47,10 +47,10 @@ private:
     void SaveStocksUrl();
 
 private:
-    wxSpinCtrl* m_max_files;
-    wxSpinCtrl* m_deleted_trans_retain_days;
-    wxSpinCtrl* m_share_precision;
-    wxCheckBox* m_refresh_quotes_on_open;
+    wxSpinCtrl* m_max_files = nullptr;
+    wxSpinCtrl* m_deleted_trans_retain_days = nullptr;
+    wxSpinCtrl* m_share_precision = nullptr;
+    wxCheckBox* m_refresh_quotes_on_open = nullptr;
 
     enum
     {
