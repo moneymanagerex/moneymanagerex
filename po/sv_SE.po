@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-18 18:46\n"
+"PO-Revision-Date: 2023-12-03 08:27\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -925,11 +925,11 @@ msgstr "Redigera schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Ny schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detaljer för schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1365,7 +1365,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Radera schemalagd transaktion..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -3695,7 +3695,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Bekräfta att valet av format matchar %s."
 
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
@@ -4837,7 +4837,7 @@ msgstr ""
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Sammanfoga"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
@@ -4849,7 +4849,7 @@ msgstr "&Budgetinstälningar..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Schemalagda transaktioner"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -5105,7 +5105,7 @@ msgstr "&Om"
 
 #: mmframe.cpp:1879
 msgid "About dialog"
-msgstr ""
+msgstr "Om dialogrutan"
 
 #: mmframe.cpp:1883
 msgid "&File"
@@ -5137,7 +5137,7 @@ msgstr "&Alternativ"
 
 #: mmframe.cpp:1928
 msgid "Options Dialog"
-msgstr ""
+msgstr "Dialog Alternativ"
 
 #: mmframe.cpp:1936 mmframe.cpp:1941 mmframe.cpp:2941 optionsettingsnet.cpp:132
 msgid "News"
@@ -6576,17 +6576,17 @@ msgstr "Ta bort källkategori efter sammanslagning (om källkategorin inte har n
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Källa:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Mål:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Sammanfoga"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
@@ -7886,7 +7886,7 @@ msgstr ""
 
 #: util.cpp:1752
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "Den kompletta listan över stängda ärenden finns tillgänglig på denna länk"
 
 #: util.h:191
 msgid "January"
