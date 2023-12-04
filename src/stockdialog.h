@@ -86,10 +86,9 @@ private:
     wxListCtrl* m_price_listbox = nullptr;
 
     Model_Stock::Data* m_stock = nullptr;
+    bool m_edit;
+    int m_account_id;
     mmGUIFrame* m_gui_frame = nullptr;
-    bool m_edit = false;
-    int m_account_id = 0;
-
     enum
     {
         ID_DPC_STOCK_PDATE = wxID_HIGHEST + 800,
