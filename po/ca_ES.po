@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-12-04 20:07\n"
+"PO-Revision-Date: 2023-12-04 21:20\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -3634,19 +3634,19 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:557
 msgid "Choose CSV data file to import"
-msgstr ""
+msgstr "Esculli el fitxer de dades CSV a importar"
 
 #: import_export/univcsvdialog.cpp:2157
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Esculli el fitxer de dades CSV a exportar"
 
 #: import_export/univcsvdialog.cpp:2160
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Esculli el fitxer de dades XML a importar"
 
 #: import_export/univcsvdialog.cpp:2163
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Esculli el fitxer de dades XML a exportar"
 
 #: import_export/univcsvdialog.cpp:2171
 msgid "XML Files (*.xml)"
@@ -4120,8 +4120,8 @@ msgstr[1] "&Editar Transaccions..."
 #: mmchecking_list.cpp:462
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Copiar Transacció"
+msgstr[1] "&Copiar Transaccions"
 
 #: mmchecking_list.cpp:469
 msgid "&Paste Transaction"
@@ -4134,13 +4134,13 @@ msgstr ""
 
 #: mmchecking_list.cpp:474
 msgid "D&uplicate Transaction..."
-msgstr ""
+msgstr "D&uplicar Transacció..."
 
 #: mmchecking_list.cpp:477
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Moure Transacció..."
+msgstr[1] "&Moure Transaccions..."
 
 #: mmchecking_list.cpp:483
 msgid "&View In Other Account"
@@ -4643,7 +4643,7 @@ msgstr "Fitxer &HTML..."
 
 #: mmframe.cpp:1571
 msgid "Export as HTML file"
-msgstr ""
+msgstr "Exportar com a fitxer HTML"
 
 #: mmframe.cpp:1576
 msgid "&Print..."
@@ -4991,7 +4991,7 @@ msgstr ""
 
 #: mmframe.cpp:1818
 msgid "W&iki pages"
-msgstr ""
+msgstr "Pàgines W&iki"
 
 #: mmframe.cpp:1818
 msgid "Read and update wiki pages"
@@ -5127,7 +5127,7 @@ msgstr ""
 
 #: mmframe.cpp:1936 mmframe.cpp:1941 mmframe.cpp:2941 optionsettingsnet.cpp:132
 msgid "News"
-msgstr ""
+msgstr "Notícies"
 
 #: mmframe.cpp:1943
 msgid "Download rates"
@@ -6246,7 +6246,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:119
 msgid "Usage statistics"
-msgstr ""
+msgstr "Estadístiques d'ús"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
