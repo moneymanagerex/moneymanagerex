@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-11-17 12:59+0300\n"
-"PO-Revision-Date: 2023-11-19 12:36\n"
+"PO-Revision-Date: 2023-12-04 20:07\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -813,7 +813,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:509
 msgid "Attachment not found:"
-msgstr ""
+msgstr "No s'ha trobat el fitxer adjunt:"
 
 #: attachmentdialog.cpp:512
 msgid "Do you want to continue and delete attachment on database?"
@@ -1248,15 +1248,15 @@ msgstr ""
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Especifiqui cap a on va la transacció"
 
 #: billsdepositsdialog.h:128 transdialog.cpp:1310
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Especifiqui d'on prové la transacció"
 
 #: billsdepositsdialog.h:129
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Especifiqui a quin compte es destinarà la transferència"
 
 #: billsdepositsdialog.h:130 transdialog.cpp:1305 usertransactionpanel.cpp:128
 msgid "Specify the amount for this transaction"
@@ -1516,23 +1516,23 @@ msgstr ""
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
-msgstr ""
+msgstr "Ingressos: "
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
-msgstr ""
+msgstr "Estimat: "
 
 #: budgetingpanel.cpp:243 budgetingpanel.cpp:251
 msgid "Actual: "
-msgstr ""
+msgstr "Real: "
 
 #: budgetingpanel.cpp:245 budgetingpanel.cpp:253 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr ""
+msgstr "Diferència: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr ""
+msgstr "Despeses: "
 
 #: budgetingpanel.cpp:291
 msgid "Icon"
@@ -1541,16 +1541,16 @@ msgstr "Icona"
 #: budgetingpanel.cpp:295 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
 msgid "Estimated"
-msgstr ""
+msgstr "Estimat"
 
 #: budgetingpanel.cpp:296 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
 msgid "Actual"
-msgstr ""
+msgstr "Real"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Editor de Pressupostos"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
@@ -3102,7 +3102,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr ""
+msgstr "Categories exportades"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:398
 #: import_export/qif_import_gui.cpp:1031
@@ -3121,7 +3121,7 @@ msgstr ""
 #: import_export/qif_export.cpp:657
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "Nombre de categories exportades: %zu \n"
 
 #: import_export/qif_export.cpp:659
 #, c-format
@@ -3447,7 +3447,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:565
 msgid "MMEX standard format"
-msgstr ""
+msgstr "Format estàndard de MMEX"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "Move Up"
@@ -3535,7 +3535,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1382
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Línia %ld: Buida"
 
 #: import_export/univcsvdialog.cpp:1393
 #, c-format
