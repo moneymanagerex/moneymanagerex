@@ -1145,11 +1145,7 @@ void mmTagTextCtrl::createDropButton(wxSize btnSize)
 
 #else
     btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition, btnSize, wxBORDER_NONE, wxDefaultValidator, "btn_dropdown_");
-
     dropArrowInactive_ = wxBitmap(img);
-    // Use a wxMemoryDC to draw right into the bitmap
-    wxMemoryDC memDC;
-    memDC.SelectObject(dropArrow_);
 
     // Use the native renderer to draw a combobox. We can't use the text control portion due to macOS dark mode bug
     // so we can isolate the button instead
