@@ -718,6 +718,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 {
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (home_page) {
         createHomePage();
     }
@@ -934,12 +935,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         }
     }
     m_nav_tree_ctrl->EnsureVisible(root);
-    if (home_page)
-    {
-        m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
-        m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    }
+    if (home_page) m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
 
