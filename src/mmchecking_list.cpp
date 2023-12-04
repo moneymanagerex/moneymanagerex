@@ -377,6 +377,7 @@ void TransactionListCtrl::setExtraTransactionData(const bool single)
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
+    SetItemState(event.GetIndex(), wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
     wxLogDebug("OnListItemSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
