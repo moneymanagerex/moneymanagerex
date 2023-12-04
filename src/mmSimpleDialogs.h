@@ -297,15 +297,16 @@ inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::Sho
 /* -------------------------------------------- */
 class mmTagCtrlPopupWindow : public wxPopupTransientWindow {
 public:
-    mmTagCtrlPopupWindow(wxWindow* parent) : wxPopupTransientWindow(parent, wxPU_CONTAINS_CONTROLS) {}
+    mmTagCtrlPopupWindow(wxWindow* parent, wxWindow* button) : wxPopupTransientWindow(parent, wxPU_CONTAINS_CONTROLS) {
+        button_ = button;
+    }
     bool dismissedByButton_ = false;
 protected:
     virtual void OnDismiss() override {
 #ifdef __WXMSW__
         // On MSW check if the button was used to dismiss to prevent the popup from reopening
         wxPoint mousePos = wxGetMousePosition();
-        wxWindow* button = wxFindWindowByName("btn_dropdown_");
-        if (button->GetClientRect().Contains(button->ScreenToClient(mousePos)))
+        if (button_->GetClientRect().Contains(button_->ScreenToClient(mousePos)))
         {
             dismissedByButton_ = true;
         }
@@ -313,6 +314,9 @@ protected:
             dismissedByButton_ = false;
 #endif
     }
+
+private:
+    wxWindow* button_;
 };
 
 class mmTagTextCtrl : public wxPanel
@@ -347,6 +351,7 @@ protected:
     void OnFocusChange(wxFocusEvent& event);
 private:
     void init();
+    void createDropButton(wxSize btnSize);
     wxStyledTextCtrl* textCtrl_;
     wxBitmapButton* btn_dropdown_;
     wxString autocomplete_string_;
@@ -361,6 +366,8 @@ private:
     wxBitmap dropArrowInactive_;
     bool initialRefreshDone_ = false;
     int panelHeight_, textOffset_;
+    wxColour bgColorEnabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX);
+    wxColour bgColorDisabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
 };
 
 inline bool mmTagTextCtrl::IsValid() { return Validate(); }
