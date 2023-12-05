@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021, 2022 Nikolay Akimov
- Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public as published by
@@ -52,7 +52,9 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
         , MENU_TREEPOPUP_MARKDELETE, TransactionListCtrl::OnMarkTransaction)
 
-    EVT_MENU_RANGE(Model_Checking::WITHDRAWAL, Model_Checking::TRANSFER, TransactionListCtrl::OnNewTransaction)
+    EVT_MENU(MENU_TREEPOPUP_WITHDRAWAL, TransactionListCtrl::OnNewTransaction)
+    EVT_MENU(MENU_TREEPOPUP_DEPOSIT, TransactionListCtrl::OnNewTransaction)
+    EVT_MENU(MENU_TREEPOPUP_TRANSFER, TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_DELETE2, TransactionListCtrl::OnDeleteTransaction)
     EVT_MENU(MENU_TREEPOPUP_RESTORE, TransactionListCtrl::OnRestoreTransaction)
     EVT_MENU(MENU_TREEPOPUP_RESTORE_VIEWED, TransactionListCtrl::OnRestoreViewedTransaction)
@@ -449,10 +451,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isTrash_) {
-        menu.Append(Model_Checking::WITHDRAWAL, _("&New Withdrawal..."));
-        menu.Append(Model_Checking::DEPOSIT, _("&New Deposit..."));
+        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _("&New Withdrawal..."));
+        menu.Append(MENU_TREEPOPUP_DEPOSIT, _("&New Deposit..."));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(Model_Checking::TRANSFER, _("&New Transfer..."));
+            menu.Append(MENU_TREEPOPUP_TRANSFER, _("&New Transfer..."));
 
         menu.AppendSeparator();
 
@@ -1454,15 +1456,19 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
-    int type = event.GetId();
+    int id = event.GetId();
+    int type;
 
-    switch (type)
+    switch (id)
     {
-    case Model_Checking::WITHDRAWAL:
+    case MENU_TREEPOPUP_WITHDRAWAL:
+        type = Model_Checking::WITHDRAWAL;
         break;
-    case Model_Checking::DEPOSIT:
+    case MENU_TREEPOPUP_DEPOSIT:
+        type = Model_Checking::DEPOSIT;
         break;
-    case Model_Checking::TRANSFER:
+    case MENU_TREEPOPUP_TRANSFER:
+        type = Model_Checking::TRANSFER;
         break;
     default:
         type = Model_Checking::WITHDRAWAL;
