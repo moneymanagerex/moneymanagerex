@@ -2,7 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
-Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -156,6 +156,9 @@ private:
         MENU_ON_SET_UDC6, //User defined color 6
         MENU_ON_SET_UDC7, //User defined color 7
 
+        MENU_TREEPOPUP_WITHDRAWAL,
+        MENU_TREEPOPUP_DEPOSIT,
+        MENU_TREEPOPUP_TRANSFER,
         MENU_TREEPOPUP_EDIT2,
         MENU_TREEPOPUP_MOVE2,
         MENU_TREEPOPUP_DELETE2,
