@@ -1213,6 +1213,7 @@ void mmTagTextCtrl::OnDropDown(wxCommandEvent& event)
     // mac code has a bug where the tag dropdown doesn't process clicks over underlying controls.
     // just show the tag dialog instead until the issue is fixed.
     wxKeyEvent evt(wxEVT_CHAR_HOOK);
+    evt.SetEventObject(textCtrl_);
     evt.m_keyCode = WXK_RETURN;
     OnKeyPressed(evt);
 #endif
@@ -1224,7 +1225,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
     if (keyCode == WXK_RETURN || keyCode == WXK_NUMPAD_ENTER)
     {
         int ip = textCtrl_->GetInsertionPoint();
-        if (textCtrl_->GetText().IsEmpty() || textCtrl_->GetTextRange(ip - 1, ip) == " ")
+        if (textCtrl_->GetText().IsEmpty() || ip == 0 || textCtrl_->GetTextRange(ip - 1, ip) == " ")
         {
             mmTagDialog dlg(this, true, parseTags(textCtrl_->GetText()));
             dlg.ShowModal();
