@@ -142,7 +142,7 @@ void mmTagDialog::CreateControls()
     wxButton* itemButton24 = new wxButton(this, wxID_OK, (isSelection_ ? _("Select") : _("&OK ")));
     dlgButtonSizer->Add(itemButton24, g_flagsH);
 
-    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
+    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(isSelection_ ? g_CancelLabel : g_CloseLabel));
     dlgButtonSizer->Add(itemButton25, g_flagsH);
 }
 
