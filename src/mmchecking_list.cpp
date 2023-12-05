@@ -1612,6 +1612,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                 dest_account_id = dest_account->ACCOUNTID;
             else
                 return;
+            std::vector<int> skip_trx;
             Model_Checking::instance().Savepoint();
             for (const auto& i : m_selected_id)
             {
@@ -1620,11 +1621,26 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                         || Model_Checking::foreignTransaction(*trx)
                         || Model_Checking::type(trx->TRANSCODE) == Model_Checking::TRANSFER
                         || trx->TRANSDATE < dest_account->INITIALDATE)
-                    continue;
-                trx->ACCOUNTID = dest_account_id;
-                Model_Checking::instance().save(trx);
+                {
+                    skip_trx.push_back(trx->TRANSID);
+                } else
+                {
+                    trx->ACCOUNTID = dest_account_id;
+                    Model_Checking::instance().save(trx);
+                }
             }
             Model_Checking::instance().ReleaseSavepoint();
+            if (!skip_trx.empty())
+            {
+                const wxString detail = wxString::Format("%s\n%s: %zu\n%s: %zu"
+                                , _("This is due to some elements of the transaction or account detail not allowing the move")
+                                , _("Moved"), m_selected_id.size() - skip_trx.size()
+                                , _("Not moved"), skip_trx.size());
+                mmErrorDialogs::MessageWarning(this
+                    , detail
+                    , _("Some transactions could not be moved"));
+            }
+            //TODO: be able to report detail on transactions that could not be moved
             refreshVisualList();
         }
     }
