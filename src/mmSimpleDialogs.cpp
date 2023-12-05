@@ -1228,12 +1228,14 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
         if (textCtrl_->GetText().IsEmpty() || ip == 0 || textCtrl_->GetTextRange(ip - 1, ip) == " ")
         {
             mmTagDialog dlg(this, true, parseTags(textCtrl_->GetText()));
-            dlg.ShowModal();
-            wxString selection;
-            for (const auto& tag : dlg.getSelectedTags())
-                selection.Append(tag + " ");
-            textCtrl_->SetText(selection);
-            textCtrl_->GotoPos(textCtrl_->GetLastPosition());
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                wxString selection;
+                for (const auto& tag : dlg.getSelectedTags())
+                    selection.Append(tag + " ");
+                textCtrl_->SetText(selection);
+                textCtrl_->GotoPos(textCtrl_->GetLastPosition());
+            }
             if (dlg.getRefreshRequested())
                 init();
         }
