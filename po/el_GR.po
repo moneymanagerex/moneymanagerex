@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-06 09:44\n"
+"PO-Revision-Date: 2023-12-06 12:04\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4340,19 +4340,19 @@ msgstr "Επιλέξτε λογαριασμό προορισμού "
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Αυτό οφείλεται σε ορισμένα στοιχεία της συναλλαγής ή των λεπτομερειών του λογαριασμού που δεν επιτρέπουν την μετακίνηση"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "Μετακινήθηκε"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "Δεν μετακινήθηκε"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η μετακίνηση ορισμένων συναλλαγών"
 
 #: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
@@ -7647,19 +7647,19 @@ msgstr "Προσθήκη"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Αυτό οφείλεται σε ορισμένα στοιχεία της συναλλαγής ή των λεπτομερειών του λογαριασμού που δεν επιτρέπουν την ενημέρωση"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Ενημερώθηκε"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Δεν ενημερώθηκε"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η ενημέρωση ορισμένων συναλλαγών"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7968,7 +7968,7 @@ msgstr "Ο πλήρης κατάλογος των κλειστών θεμάτω�
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Αντιγραφή όλου του κειμένου στο πρόχειρο"
 
 #: util.h:192
 msgid "January"
