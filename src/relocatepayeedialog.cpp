@@ -49,9 +49,6 @@ relocatePayeeDialog::~relocatePayeeDialog()
 }
 
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
-    : destPayeeID_(-1)
-    , m_changed_records(0)
-    , m_info(nullptr)
 {
     sourcePayeeID_  = source_payee_id;
 
@@ -76,7 +73,7 @@ bool relocatePayeeDialog::Create(wxWindow* parent
     SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     mmSetSize(this);
     Centre();
-    return TRUE;
+    return true;
 }
 
 void relocatePayeeDialog::CreateControls()

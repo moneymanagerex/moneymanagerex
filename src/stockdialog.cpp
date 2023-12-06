@@ -69,19 +69,6 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , m_gui_frame(gui_frame)
     , m_edit(stock ? true: false)
     , m_account_id(accountID)
-    , m_stock_name_ctrl(nullptr)
-    , m_stock_symbol_ctrl(nullptr)
-    , m_purchase_date_ctrl(nullptr)
-    , m_num_shares_ctrl(nullptr)
-    , m_purchase_price_ctrl(nullptr)
-    , m_notes_ctrl(nullptr)
-    , m_history_price_ctrl(nullptr)
-    , m_history_date_ctrl(nullptr)
-    , m_value_investment(nullptr)
-    , m_commission_ctrl(nullptr)
-    , m_current_price_ctrl(nullptr)
-    , m_bAttachments(nullptr)
-    , m_price_listbox(nullptr)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style, name);
@@ -103,7 +90,7 @@ bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     UpdateControls();
 
     Centre();
-    return TRUE;
+    return true;
 }
 
 void mmStockDialog::DataToControls()

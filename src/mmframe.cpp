@@ -718,6 +718,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 {
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (home_page) {
         createHomePage();
     }
@@ -843,6 +844,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::STOCK, account.ACCOUNTID));
                 // find all the accounts associated with this stock portfolio
                 Model_Stock::Data_Set stock_account_list = Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID));
+                std::sort(stock_account_list.begin(), stock_account_list.end(), SorterBySTOCKNAME());
                 // Put the names of the Stock_entry names as children of the stock account.
                 for (const auto& stock_entry : stock_account_list)
                 {
@@ -934,6 +936,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     }
     m_nav_tree_ctrl->EnsureVisible(root);
     if (home_page) m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
 
@@ -2613,7 +2616,7 @@ void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
-    Close(TRUE);
+    Close(true);
 }
 //----------------------------------------------------------------------------
 

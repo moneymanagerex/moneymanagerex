@@ -54,13 +54,13 @@ private:
     void OnFocusChange(wxChildFocusEvent& event);
 
     int sourceTagID_;
-    int destTagID_;
+    int destTagID_ = -1;
     wxArrayString choices_;
 
     wxComboBox* cbSourceTag_;
     wxComboBox* cbDestTag_;
-    int m_changed_records;
-    wxStaticText* m_info;
+    int m_changed_records = 0;
+    wxStaticText* m_info = nullptr;
     wxCheckBox* cbDeleteSourceTag_;
     wxDECLARE_EVENT_TABLE();
 };

@@ -51,16 +51,16 @@ private:
     void OnChangeType(wxCommandEvent& event, bool OnDataToControls);
 
     wxString m_fieldRefType;
-    wxTextCtrl* m_itemDescription;
-    wxChoice* m_itemType;
-    wxChoice* m_itemReference;
-    wxChoice*  m_itemUDFC;
-    wxTextCtrl* m_itemTooltip;
-    wxTextCtrl* m_itemRegEx;
-    wxCheckBox* m_itemAutocomplete;
-    wxTextCtrl* m_itemDefault;
-    wxTextCtrl* m_itemChoices;
-    wxSpinCtrl* m_itemDigitScale;
+    wxTextCtrl* m_itemDescription = nullptr;
+    wxChoice* m_itemType = nullptr;
+    wxChoice* m_itemReference = nullptr;
+    wxChoice* m_itemUDFC = nullptr;
+    wxTextCtrl* m_itemTooltip = nullptr;
+    wxTextCtrl* m_itemRegEx = nullptr;
+    wxCheckBox* m_itemAutocomplete = nullptr;
+    wxTextCtrl* m_itemDefault = nullptr;
+    wxTextCtrl* m_itemChoices = nullptr;
+    wxSpinCtrl* m_itemDigitScale = nullptr;
 
     enum
     {

@@ -49,9 +49,6 @@ relocateTagDialog::~relocateTagDialog()
 }
 
 relocateTagDialog::relocateTagDialog(wxWindow* parent, int source_tag_id)
-    : destTagID_(-1)
-    , m_changed_records(0)
-    , m_info(nullptr)
 {
     sourceTagID_  = source_tag_id;
 
@@ -76,7 +73,7 @@ bool relocateTagDialog::Create(wxWindow* parent
     SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     mmSetSize(this);
     Centre();
-    return TRUE;
+    return true;
 }
 
 void relocateTagDialog::CreateControls()

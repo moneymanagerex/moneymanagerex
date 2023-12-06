@@ -102,7 +102,7 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     SetIcon(mmex::getProgramIcon());
     Centre();
 
-    return TRUE;
+    return true;
 }
 
 void mmQIFImportDialog::CreateControls()

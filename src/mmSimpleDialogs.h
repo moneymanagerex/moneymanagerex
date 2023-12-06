@@ -176,8 +176,8 @@ private:
     void OnDateSpin(wxSpinEvent& event);
 
     wxWindow* parent_;
-    wxStaticText* itemStaticTextWeek_;
-    wxSpinButton* spinButton_;
+    wxStaticText* itemStaticTextWeek_ = nullptr;
+    wxSpinButton* spinButton_ = nullptr;
 };
 
 /* -------------------------------------------- */
@@ -241,7 +241,7 @@ private:
     wxArrayString m_choices;
     wxString m_message;
 
-    mmComboBoxCustom* cbText_;
+    mmComboBoxCustom* cbText_ = nullptr;
 };
 
 class mmGUIApp;
@@ -277,7 +277,7 @@ public:
 private:
     wxWindow* m_parent;
     bool Create(wxWindow* parent, wxWindowID id);
-    int m_shift;
+    int m_shift = 0;
 };
 
 // -------------------------------------------------------------------------- //
@@ -297,15 +297,16 @@ inline  int mmMultiChoiceDialog::ShowModal() {   return wxMultiChoiceDialog::Sho
 /* -------------------------------------------- */
 class mmTagCtrlPopupWindow : public wxPopupTransientWindow {
 public:
-    mmTagCtrlPopupWindow(wxWindow* parent) : wxPopupTransientWindow(parent, wxPU_CONTAINS_CONTROLS) {}
+    mmTagCtrlPopupWindow(wxWindow* parent, wxWindow* button) : wxPopupTransientWindow(parent, wxPU_CONTAINS_CONTROLS) {
+        button_ = button;
+    }
     bool dismissedByButton_ = false;
 protected:
     virtual void OnDismiss() override {
 #ifdef __WXMSW__
         // On MSW check if the button was used to dismiss to prevent the popup from reopening
         wxPoint mousePos = wxGetMousePosition();
-        wxWindow* button = wxFindWindowByName("btn_dropdown_");
-        if (button->GetClientRect().Contains(button->ScreenToClient(mousePos)))
+        if (button_->GetClientRect().Contains(button_->ScreenToClient(mousePos)))
         {
             dismissedByButton_ = true;
         }
@@ -313,6 +314,9 @@ protected:
             dismissedByButton_ = false;
 #endif
     }
+
+private:
+    wxWindow* button_;
 };
 
 class mmTagTextCtrl : public wxPanel
@@ -347,6 +351,7 @@ protected:
     void OnFocusChange(wxFocusEvent& event);
 private:
     void init();
+    void createDropButton(wxSize btnSize);
     wxStyledTextCtrl* textCtrl_;
     wxBitmapButton* btn_dropdown_;
     wxString autocomplete_string_;
@@ -360,6 +365,9 @@ private:
     wxBitmap dropArrow_;
     wxBitmap dropArrowInactive_;
     bool initialRefreshDone_ = false;
+    int panelHeight_, textOffset_;
+    wxColour bgColorEnabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX);
+    wxColour bgColorDisabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
 };
 
 inline bool mmTagTextCtrl::IsValid() { return Validate(); }

@@ -47,10 +47,8 @@ relocateCategoryDialog::~relocateCategoryDialog()
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , int sourceCatID, int sourceSubCatID)
-    : m_info(nullptr)
-    , m_sourceCatID(sourceCatID)
+    : m_sourceCatID(sourceCatID)
     , m_sourceSubCatID(sourceSubCatID)
-    , m_changedRecords(0)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -77,7 +75,7 @@ bool relocateCategoryDialog::Create(wxWindow* parent
     SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
     Centre();
     mmSetSize(this);
-    return TRUE;
+    return true;
 }
 
 void relocateCategoryDialog::CreateControls()

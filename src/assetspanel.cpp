@@ -367,9 +367,6 @@ END_EVENT_TABLE()
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
     : m_frame(frame)
     , m_filter_type(Model_Asset::TYPE(-1))
-    , m_listCtrlAssets(nullptr)
-    , m_bitmapTransFilter(nullptr)
-    , header_text_(nullptr)
     , tips_()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);

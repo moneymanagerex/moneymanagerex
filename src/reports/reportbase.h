@@ -99,20 +99,20 @@ public:
     };
 
 protected:
-    int m_chart_selection;
-    int m_date_selection;
-    int m_forward_months;
+    int m_chart_selection = 0;
+    int m_date_selection = 0;
+    int m_forward_months = 24;
     wxString m_title;
-    const mmDateRange* m_date_range;
+    const mmDateRange* m_date_range = nullptr;
     wxSharedPtr<wxArrayString> accountArray_;
     wxSharedPtr<wxArrayString> selectedAccountArray_;
-    bool m_only_active;
+    bool m_only_active = false;
 
 private:
     bool m_initial;
-    int m_account_selection;
-    int m_id;
-    int m_parameters;
+    int m_account_selection = 0;
+    int m_id = -1;
+    int m_parameters = 0;
     wxString m_settings;
 };
 

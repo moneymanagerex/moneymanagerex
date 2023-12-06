@@ -42,11 +42,10 @@ wxEND_EVENT_TABLE()
 
 
 mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent) :
-    m_field_id(-1)
     #ifdef _DEBUG
-        , debug_(true)
+        debug_(true)
     #else
-        , debug_(false)
+        debug_(false)
     #endif
 {
     if (debug_) ColName_[FIELD_ID] = _("#");

@@ -106,7 +106,7 @@ bool transactionsUpdateDialog::Create(wxWindow* parent
     Centre();
 
     SetEvtHandlerEnabled(true);
-    return TRUE;
+    return true;
 }
 
 void transactionsUpdateDialog::CreateControls()
@@ -505,8 +505,17 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     Model_Taglink::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
-
-    skip_trx; //TODO: resume
+    if (!skip_trx.empty())
+    {
+        const wxString detail = wxString::Format("%s\n%s: %zu\n%s: %zu"
+                        , _("This is due to some elements of the transaction or account detail not allowing the update")
+                        , _("Updated"), m_transaction_id.size() - skip_trx.size()
+                        , _("Not updated"), skip_trx.size());
+        mmErrorDialogs::MessageWarning(this
+            , detail
+            , _("Some transactions could not be updated"));
+    }
+    //TODO: be able to report detail on transactions that could not be updated
 
     EndModal(wxID_OK);
 }

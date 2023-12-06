@@ -40,7 +40,7 @@ public:
     bool setGUILanguage(wxLanguage lang);
     virtual void OnInitCmdLine(wxCmdLineParser& parser);
     virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
-    mmGUIFrame* m_frame;
+    mmGUIFrame* m_frame = nullptr;
     const wxString GetOptParam() const;
     const wxString GetIniParam() const;
     bool GetSilentParam() const;
@@ -50,7 +50,7 @@ public:
 private:
     wxString m_optParam1;
     wxString m_optParam2;
-    bool m_optParamSilent;
+    bool m_optParamSilent = false;
     wxSharedPtr<wxSQLite3Database> m_setting_db;
     void ReportFatalException(wxDebugReport::Context);
     bool OnInit();

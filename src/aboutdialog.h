@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
 #include <wx/dialog.h>
 #include <wx/notebook.h>
 #include "defs.h"
+#include "util.h"
 
 class wxHtmlWindow;
 
@@ -50,11 +52,11 @@ private:
     void handleLink(wxHtmlLinkEvent& event);
 
     wxCheckBox* m_send_data = nullptr;
-    wxHtmlWindow* aboutText_ = nullptr;
-    wxHtmlWindow* authorsText_ = nullptr;
-    wxHtmlWindow* sponsorsText_ = nullptr;
-    wxHtmlWindow* licenseText_ = nullptr;
-    wxHtmlWindow* privacyText_ = nullptr;
+    mmHtmlWindow* aboutText_ = nullptr;
+    mmHtmlWindow* authorsText_ = nullptr;
+    mmHtmlWindow* sponsorsText_ = nullptr;
+    mmHtmlWindow* licenseText_ = nullptr;
+    mmHtmlWindow* privacyText_ = nullptr;
 
 };
 

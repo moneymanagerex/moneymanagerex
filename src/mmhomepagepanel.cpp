@@ -47,7 +47,6 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , long style
     , const wxString& name)
     : m_frame(frame)
-    , browser_(nullptr)
 {
     Create(parent, winid, pos, size, style, name);
     m_frame->menuPrintingEnable(true);
@@ -82,7 +81,7 @@ bool mmHomePagePanel::Create(wxWindow *parent
 
     Model_Usage::instance().pageview(this);
 
-    return TRUE;
+    return true;
 }
 
 void  mmHomePagePanel::createHtml()

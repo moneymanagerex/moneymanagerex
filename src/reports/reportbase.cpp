@@ -28,16 +28,8 @@
 
 mmPrintableBase::mmPrintableBase(const wxString& title)
     : m_title(title)
-    , m_date_range(nullptr)
     , m_initial(true)
-    , m_date_selection(0)
-    , m_account_selection(0)
-    , m_chart_selection(0)
-    , m_forward_months(24)
     , accountArray_(nullptr)
-    , m_only_active(false)
-    , m_id(-1)
-    , m_parameters(0)
     , m_settings("")
 {
 }

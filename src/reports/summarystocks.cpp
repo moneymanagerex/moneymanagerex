@@ -34,11 +34,6 @@
 
 mmReportSummaryStocks::mmReportSummaryStocks()
     : mmPrintableBase(wxTRANSLATE("Summary of Stocks"))
-    , m_real_gain_loss_sum_total(0.0)
-    , m_unreal_gain_loss_sum_total(0.0)
-    , m_real_gain_loss_excl_forex(0.0)
-    , m_unreal_gain_loss_excl_forex(0.0)
-    , m_stock_balance(0.0)
 {
     setReportParameters(Reports::StocksReportSummary);
 }

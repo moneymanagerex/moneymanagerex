@@ -53,11 +53,6 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     , const wxSize &size
     , long style, const wxString &name)
     : m_checking_entry(checking_entry)
-    , m_transaction_id(-1)
-    , m_account_id(-1)
-    , m_payee_id(-1)
-    , m_category_id(-1)
-    , m_subcategory_id(-1)
 {
     wxPanel::Create(parent, win_id, pos, size, style, name);
     Create();

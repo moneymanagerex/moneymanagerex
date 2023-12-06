@@ -56,23 +56,23 @@ private:
     void CalculateAmount(wxCommandEvent& event);
 
 private:
-    Model_Stock::Data* m_stock;
-    wxTextCtrl* m_stock_name_ctrl;
-    mmTextCtrl* m_share_num_ctrl;
-    wxTextCtrl* m_stock_symbol_ctrl;
-    mmTextCtrl* m_share_price_ctrl;
-    wxTextCtrl* m_share_lot_ctrl;
-    mmTextCtrl* m_share_commission_ctrl;
-    wxTextCtrl* m_notes_ctrl;
-    wxBitmapButton* m_attachments_btn;
-    wxBitmapButton* web_button;
+    Model_Stock::Data* m_stock = nullptr;
+    wxTextCtrl* m_stock_name_ctrl = nullptr;
+    mmTextCtrl* m_share_num_ctrl = nullptr;
+    wxTextCtrl* m_stock_symbol_ctrl = nullptr;
+    mmTextCtrl* m_share_price_ctrl = nullptr;
+    wxTextCtrl* m_share_lot_ctrl = nullptr;
+    mmTextCtrl* m_share_commission_ctrl = nullptr;
+    wxTextCtrl* m_notes_ctrl = nullptr;
+    wxBitmapButton* m_attachments_btn = nullptr;
+    wxBitmapButton* web_button = nullptr;
 
-    UserTransactionPanel* m_transaction_panel;
+    UserTransactionPanel* m_transaction_panel = nullptr;
     wxString m_dialog_heading;
 
-    Model_Checking::Data* m_checking_entry;
-    Model_Translink::Data* m_translink_entry;
-    Model_Shareinfo::Data* m_share_entry;
+    Model_Checking::Data* m_checking_entry = nullptr;
+    Model_Translink::Data* m_translink_entry = nullptr;
+    Model_Shareinfo::Data* m_share_entry = nullptr;
     enum
     {
         ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 820,

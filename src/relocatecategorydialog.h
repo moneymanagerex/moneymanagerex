@@ -61,13 +61,13 @@ private:
     void IsOkOk();
     int m_sourceCatID;
     int m_sourceSubCatID;
-    mmComboBoxCategory* cbSourceCategory_;
-    mmComboBoxCategory* cbDestCategory_;
-    wxCheckBox* cbDeleteSourceCategory_;
-    wxStaticText* m_info;
+    mmComboBoxCategory* cbSourceCategory_ = nullptr;
+    mmComboBoxCategory* cbDestCategory_ = nullptr;
+    wxCheckBox* cbDeleteSourceCategory_ = nullptr;
+    wxStaticText* m_info = nullptr;
 
     wxButton* m_buttonDest;
-    int m_changedRecords;
+    int m_changedRecords = 0;
 };
 
 inline int relocateCategoryDialog::updatedCategoriesCount() const { return m_changedRecords; }

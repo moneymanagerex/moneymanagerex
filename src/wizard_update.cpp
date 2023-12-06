@@ -70,7 +70,6 @@ mmUpdateWizard::~mmUpdateWizard()
 
 mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, wxArrayInt new_releases, const wxString& top_version)
     : top_version_(top_version)
-    , showUpdateCheckBox_(nullptr)
 {
 
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);

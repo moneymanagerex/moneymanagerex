@@ -124,6 +124,7 @@ private:
     wxButton* m_btnAttachment = nullptr;
     wxStaticText* m_header_text = nullptr;
     wxStaticText* m_header_sortOrder = nullptr;
+    wxGauge* m_header_credit = nullptr;
     wxStaticText* m_header_balance = nullptr;
     wxStaticText* m_info_panel = nullptr;
     wxStaticText* m_info_panel_mini = nullptr;
