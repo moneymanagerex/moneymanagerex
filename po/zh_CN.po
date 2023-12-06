@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"POT-Creation-Date: 2023-11-17 12:59+0300\n"
+"PO-Revision-Date: 2023-11-18 01:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "启用以匿名发送关于 MMEX 使用情况的数据。"
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:751
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
-#: mmSimpleDialogs.cpp:886 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:868 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:601 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
@@ -838,7 +838,7 @@ msgid "Open attachment failed"
 msgstr "打开附件失败"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:612 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:594 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -2016,7 +2016,7 @@ msgstr "未更新以前任何更改都将丢失"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:773
 msgid "Invalid Entry"
 msgstr "输入无效"
 
@@ -2967,7 +2967,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "没有找到可用的主题，安装程序可能已损坏"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "Unable to open file."
 msgstr "无法打开文件"
 
@@ -3637,7 +3637,7 @@ msgstr "删除现有文件失败。文件可能会被其他程序锁定。"
 msgid "Destination file error"
 msgstr "目标文件错误"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:809
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:791
 msgid "Invalid Account"
 msgstr "账户不可用"
 
@@ -3854,108 +3854,108 @@ msgstr "无法下载基本符号 %s 的历史记录。历史记录汇率不可�
 msgid "Could not find base currency symbol!"
 msgstr "无法找到基础的货币符号！"
 
-#: mmSimpleDialogs.cpp:554 mmSimpleDialogs.cpp:566
+#: mmSimpleDialogs.cpp:536 mmSimpleDialogs.cpp:548
 msgid "Clear color"
 msgstr "消除颜色"
 
-#: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
+#: mmSimpleDialogs.cpp:539 mmSimpleDialogs.cpp:553
 #, c-format
 msgid "Color #%i"
 msgstr "颜色 #%i"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:713
 msgid "Subtract one year"
 msgstr "减去一年"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:714
 msgid "Subtract one month"
 msgstr "减一个月"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:715
 msgid "Add one month"
 msgstr "加一个月"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:716
 msgid "Add one year"
 msgstr "加一年"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:772
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "条目 %s 无效"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Please select an existing category"
 msgstr "请选择一个已经存在的类目"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Invalid Category"
 msgstr "类目无效"
 
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "File name is empty."
 msgstr "文件名为空。"
 
-#: mmSimpleDialogs.cpp:802
+#: mmSimpleDialogs.cpp:784
 msgid "Please select the file for this operation."
 msgstr "请仅为此操作选择一个文件"
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:794
 msgid "Please select the account for this transaction."
 msgstr "请选择此交易的账户。"
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:796
 msgid "Please specify which account the transfer is going to."
 msgstr "请指定将转账到哪个账户。"
 
-#: mmSimpleDialogs.cpp:816
+#: mmSimpleDialogs.cpp:798
 msgid "Selection can be made by using the dropdown button."
 msgstr "可以使用下拉按钮进行选择。"
 
-#: mmSimpleDialogs.cpp:819
+#: mmSimpleDialogs.cpp:801
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "激活该按钮将提供一个选择框，可以在其中选择账户。"
 
-#: mmSimpleDialogs.cpp:828
+#: mmSimpleDialogs.cpp:810
 msgid "Invalid Payee"
 msgstr "收款人无效"
 
-#: mmSimpleDialogs.cpp:829
+#: mmSimpleDialogs.cpp:811
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "请输入新的收款人，\n"
 "或使用下拉按钮进行选择。"
 
-#: mmSimpleDialogs.cpp:837 mmSimpleDialogs.cpp:849
+#: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Invalid Name"
 msgstr "名称无效"
 
-#: mmSimpleDialogs.cpp:840 mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:822 mmSimpleDialogs.cpp:834
 msgid "Already exist!"
 msgstr "已存在！"
 
-#: mmSimpleDialogs.cpp:842
+#: mmSimpleDialogs.cpp:824
 msgid "Please type in a non empty name."
 msgstr "请输入一个非空白名称。"
 
-#: mmSimpleDialogs.cpp:854
+#: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty symbol."
 msgstr "请输入一个非空白符号。"
 
-#: mmSimpleDialogs.cpp:947
+#: mmSimpleDialogs.cpp:929
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr "输入要搜索的标签，可选地由操作者“&”和“|”分隔。"
 
-#: mmSimpleDialogs.cpp:948
+#: mmSimpleDialogs.cpp:930
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr "连续标签之间的默认运算符是 AND，使用 '|' 将运算符更改为其他。"
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "创建新标签 ‘%s’？"
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 msgid "New tag entered"
 msgstr "已输入新标签"
 
@@ -4325,16 +4325,16 @@ msgid "Scheduled transaction saved."
 msgstr "计划交易已保存。"
 
 #: mmcheckingpanel.cpp:438
-msgid "Delete selected transaction"
-msgstr "删除已标记的交易"
+msgid "Delete all selected transactions"
+msgstr "删除所有选定的交易"
 
 #: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "新增交易"
 
 #: mmcheckingpanel.cpp:446
-msgid "Edit selected transaction"
-msgstr "删除交易"
+msgid "Edit all selected transactions"
+msgstr "编辑所有选定的交易"
 
 #: mmcheckingpanel.cpp:454
 msgid "Duplicate selected transaction"

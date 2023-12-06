@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"POT-Creation-Date: 2023-11-17 12:59+0300\n"
+"PO-Revision-Date: 2023-11-17 10:01\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "MMEX 사용에 대한 데이터를 익명으로 보낼 수 있습니다.
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:751
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
-#: mmSimpleDialogs.cpp:886 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:868 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:601 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
@@ -838,7 +838,7 @@ msgid "Open attachment failed"
 msgstr "첨부 파일 열기 실패"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:612 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:594 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -2013,7 +2013,7 @@ msgstr "모든 변경 사항은 업데이트 없이 손실됩니다"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:773
 msgid "Invalid Entry"
 msgstr "잘못된 항목"
 
@@ -2964,7 +2964,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "실행 가능한 테마를 찾을 수 없습니다. 설치가 손상되었을 수 있습니다"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "Unable to open file."
 msgstr "파일을 열 수 없습니다."
 
@@ -3635,7 +3635,7 @@ msgstr "기존 파일을 삭제하지 못했습니다. 파일이 다른 프로�
 msgid "Destination file error"
 msgstr "대상 파일 오류"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:809
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:791
 msgid "Invalid Account"
 msgstr "잘못된 계정"
 
@@ -3851,108 +3851,108 @@ msgstr "기본 통화 기호 %s에 대한 이력을 다운로드할 수 없습�
 msgid "Could not find base currency symbol!"
 msgstr "기준 통화 기호를 찾을 수 없습니다!"
 
-#: mmSimpleDialogs.cpp:554 mmSimpleDialogs.cpp:566
+#: mmSimpleDialogs.cpp:536 mmSimpleDialogs.cpp:548
 msgid "Clear color"
 msgstr "색상 제거"
 
-#: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
+#: mmSimpleDialogs.cpp:539 mmSimpleDialogs.cpp:553
 #, c-format
 msgid "Color #%i"
 msgstr "색상 #%i"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:713
 msgid "Subtract one year"
 msgstr "1년 빼기"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:714
 msgid "Subtract one month"
 msgstr "1개월 빼기"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:715
 msgid "Add one month"
 msgstr "1개월 추가"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:716
 msgid "Add one year"
 msgstr "1년 추가"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:772
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "%s 항목이 잘못되었습니다"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Please select an existing category"
 msgstr "기존 범주를 선택하십시오"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Invalid Category"
 msgstr "잘못된 범주"
 
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "File name is empty."
 msgstr "파일명이 비어있습니다."
 
-#: mmSimpleDialogs.cpp:802
+#: mmSimpleDialogs.cpp:784
 msgid "Please select the file for this operation."
 msgstr "이 작업에 대한 파일을 선택하십시오."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:794
 msgid "Please select the account for this transaction."
 msgstr "이 거래에 대한 계정을 선택하십시오."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:796
 msgid "Please specify which account the transfer is going to."
 msgstr "이체할 계정을 지정하십시오."
 
-#: mmSimpleDialogs.cpp:816
+#: mmSimpleDialogs.cpp:798
 msgid "Selection can be made by using the dropdown button."
 msgstr "드롭다운 버튼을 사용하여 선택할 수 있습니다."
 
-#: mmSimpleDialogs.cpp:819
+#: mmSimpleDialogs.cpp:801
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "버튼을 활성화하면 계정을 선택할 수 있는 선택 상자가 제공됩니다."
 
-#: mmSimpleDialogs.cpp:828
+#: mmSimpleDialogs.cpp:810
 msgid "Invalid Payee"
 msgstr "잘못된 수취인"
 
-#: mmSimpleDialogs.cpp:829
+#: mmSimpleDialogs.cpp:811
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "새 수취인을 입력하십시오,\n"
 "또는 드롭다운 버튼을 사용하여 선택합니다."
 
-#: mmSimpleDialogs.cpp:837 mmSimpleDialogs.cpp:849
+#: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Invalid Name"
 msgstr "잘못된 이름"
 
-#: mmSimpleDialogs.cpp:840 mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:822 mmSimpleDialogs.cpp:834
 msgid "Already exist!"
 msgstr "이미 존재합니다!"
 
-#: mmSimpleDialogs.cpp:842
+#: mmSimpleDialogs.cpp:824
 msgid "Please type in a non empty name."
 msgstr "비어 있지 않은 이름을 입력하십시오."
 
-#: mmSimpleDialogs.cpp:854
+#: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty symbol."
 msgstr "비어 있지 않은 기호를 입력하십시오."
 
-#: mmSimpleDialogs.cpp:947
+#: mmSimpleDialogs.cpp:929
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:948
+#: mmSimpleDialogs.cpp:930
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 msgid "New tag entered"
 msgstr "새 태그 입력됨"
 
@@ -4322,16 +4322,16 @@ msgid "Scheduled transaction saved."
 msgstr ""
 
 #: mmcheckingpanel.cpp:438
-msgid "Delete selected transaction"
-msgstr "선택한 거래 삭제"
+msgid "Delete all selected transactions"
+msgstr ""
 
 #: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "거래 새로 만들기"
 
 #: mmcheckingpanel.cpp:446
-msgid "Edit selected transaction"
-msgstr "선택한 거래 편집"
+msgid "Edit all selected transactions"
+msgstr ""
 
 #: mmcheckingpanel.cpp:454
 msgid "Duplicate selected transaction"

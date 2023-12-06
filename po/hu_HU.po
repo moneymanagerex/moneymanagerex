@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"POT-Creation-Date: 2023-11-17 12:59+0300\n"
+"PO-Revision-Date: 2023-11-17 21:04\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Engedélyezze az MMEX használatáról adatok anonim küldését, hogy s
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:751
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
-#: mmSimpleDialogs.cpp:886 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:868 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:601 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
@@ -838,7 +838,7 @@ msgid "Open attachment failed"
 msgstr "Melléklet megnyitása nem sikerült"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:612 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:594 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -2021,7 +2021,7 @@ msgstr "Frissítés nélkül valamennyi változás elveszik!"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:773
 msgid "Invalid Entry"
 msgstr "Érvénytelen bejegyzés"
 
@@ -2974,7 +2974,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Nincs használható téma, a telepítés megsérülhetett"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "Unable to open file."
 msgstr "A fájlt nem lehet megnyitni."
 
@@ -3645,7 +3645,7 @@ msgstr "Létező fájl törlése sikertelen. A fájlt más alkalmazás zárolhat
 msgid "Destination file error"
 msgstr "Célfájl hibája"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:809
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:791
 msgid "Invalid Account"
 msgstr "Érvénytelen számla"
 
@@ -3862,107 +3862,107 @@ msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árf
 msgid "Could not find base currency symbol!"
 msgstr "Az alappénznem jelzése nem található!"
 
-#: mmSimpleDialogs.cpp:554 mmSimpleDialogs.cpp:566
+#: mmSimpleDialogs.cpp:536 mmSimpleDialogs.cpp:548
 msgid "Clear color"
 msgstr "Szín törlése"
 
-#: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
+#: mmSimpleDialogs.cpp:539 mmSimpleDialogs.cpp:553
 #, c-format
 msgid "Color #%i"
 msgstr "Szín #%i"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:713
 msgid "Subtract one year"
 msgstr "Egy év kivonatolása"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:714
 msgid "Subtract one month"
 msgstr "Egy hónap kivonatolása"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:715
 msgid "Add one month"
 msgstr "Egy hónap hozzáadása"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:716
 msgid "Add one year"
 msgstr "Egy év hozzáadása"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:772
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "A(z) %s tétel érvénytelen"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Please select an existing category"
 msgstr "Kérjük, válasszon egy meglévő kategóriát"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Invalid Category"
 msgstr "Érvénytelen kategória"
 
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "File name is empty."
 msgstr "A fájlnév üres."
 
-#: mmSimpleDialogs.cpp:802
+#: mmSimpleDialogs.cpp:784
 msgid "Please select the file for this operation."
 msgstr "Válassza ki a fájlt a művelethez."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:794
 msgid "Please select the account for this transaction."
 msgstr "Válassza ki számlát az ügylethez."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:796
 msgid "Please specify which account the transfer is going to."
 msgstr "Átutalást fogadó számla megadása."
 
-#: mmSimpleDialogs.cpp:816
+#: mmSimpleDialogs.cpp:798
 msgid "Selection can be made by using the dropdown button."
 msgstr "Kiválasztás a lenyitó gombban történhet."
 
-#: mmSimpleDialogs.cpp:819
+#: mmSimpleDialogs.cpp:801
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "A gomb lenyomása egy választó mezőt jelenít meg, ahol a számla kijelölhető."
 
-#: mmSimpleDialogs.cpp:828
+#: mmSimpleDialogs.cpp:810
 msgid "Invalid Payee"
 msgstr "Érvénytelen kedvezményezett"
 
-#: mmSimpleDialogs.cpp:829
+#: mmSimpleDialogs.cpp:811
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Írja be az új kedvezményezettet, vagy válasszon a lenyitó gomb segítségével."
 
-#: mmSimpleDialogs.cpp:837 mmSimpleDialogs.cpp:849
+#: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Invalid Name"
 msgstr "Érvénytelen név"
 
-#: mmSimpleDialogs.cpp:840 mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:822 mmSimpleDialogs.cpp:834
 msgid "Already exist!"
 msgstr "Már létezik!"
 
-#: mmSimpleDialogs.cpp:842
+#: mmSimpleDialogs.cpp:824
 msgid "Please type in a non empty name."
 msgstr "Kérem, gépeljen be egy nem üres nevet."
 
-#: mmSimpleDialogs.cpp:854
+#: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty symbol."
 msgstr "Kérem, gépeljen be egy nem üres jelet."
 
-#: mmSimpleDialogs.cpp:947
+#: mmSimpleDialogs.cpp:929
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr "Címkék megadása a kereséshez. Tartalmazhat „&” (ÉS-) és „|” (VAGY-) jelleválasztó operátorok."
 
-#: mmSimpleDialogs.cpp:948
+#: mmSimpleDialogs.cpp:930
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr "Az egymást követő címkék közötti alapértelmezett operátor az ÉS, használja a '|' hogy az operátort VAGY-ra változtassa."
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "Új „%s” címke létrehozása?"
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 msgid "New tag entered"
 msgstr "Új címke lett megadva"
 
@@ -4344,16 +4344,16 @@ msgid "Scheduled transaction saved."
 msgstr "Ütemezett ügylet mentve."
 
 #: mmcheckingpanel.cpp:438
-msgid "Delete selected transaction"
-msgstr "A kijelölt ügylet törlése"
+msgid "Delete all selected transactions"
+msgstr "Összes kijelölt ügylet törlése"
 
 #: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "Új ügylet"
 
 #: mmcheckingpanel.cpp:446
-msgid "Edit selected transaction"
-msgstr "A kiválasztott ügylet szerkesztése"
+msgid "Edit all selected transactions"
+msgstr "Összes kijelölt ügylet szerkesztése"
 
 #: mmcheckingpanel.cpp:454
 msgid "Duplicate selected transaction"
@@ -4403,17 +4403,17 @@ msgstr "Melléklet"
 #: mmcheckingpanel.cpp:638
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr "A kiválasztott ügylet: %zu"
+msgstr "Kijelölt ügyletek: %zu"
 
 #: mmcheckingpanel.cpp:641
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr "A kiválasztott ügyletek egyenlege: %s"
+msgstr "Kijelölt ügyletek egyenlege: %s"
 
 #: mmcheckingpanel.cpp:645
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr "A kiválasztott ügyletek között eltelt napok: %d"
+msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
 #: mmcustomdata.cpp:67
 msgid "Custom fields"
@@ -7445,7 +7445,7 @@ msgstr "&Áthelyezés"
 
 #: stockspanel.cpp:157
 msgid "Move selected transaction to another account"
-msgstr "A kiválasztott tranzakció átvitele más számlára"
+msgstr "Kijelölt ügylet áthelyezése más számlára"
 
 #: stockspanel.cpp:170
 msgid "Refresh"
