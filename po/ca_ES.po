@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-06 14:23\n"
+"PO-Revision-Date: 2023-12-06 15:21\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -3269,7 +3269,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1138
 msgid "Import finished successfully"
-msgstr ""
+msgstr "La importació ha finalitzat satisfactòriament"
 
 #: import_export/qif_import_gui.cpp:1138
 #, c-format
@@ -3419,19 +3419,19 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:558
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Esculli el fitxer de dades XML a Importar"
 
 #: import_export/univcsvdialog.cpp:558
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "Esculli el fitxer de dades CSV a Importar"
 
 #: import_export/univcsvdialog.cpp:559
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Esculli el fitxer de dades XML a Exportar"
 
 #: import_export/univcsvdialog.cpp:559
 msgid "Choose CSV data file to Export"
-msgstr ""
+msgstr "Esculli el fitxer de dades CSV a Exportar"
 
 #: import_export/univcsvdialog.cpp:562
 msgid "Preset name"
@@ -3878,15 +3878,15 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:781
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Si us plau, seleccioni el fitxer per a aquesta operació."
 
 #: mmSimpleDialogs.cpp:791
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Si us plau, seleccioni el compte per a aquesta transacció."
 
 #: mmSimpleDialogs.cpp:793
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "Si us plau, especifiqui a quin compte es destinarà la transferència."
 
 #: mmSimpleDialogs.cpp:795
 msgid "Selection can be made by using the dropdown button."
@@ -3907,7 +3907,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:816 mmSimpleDialogs.cpp:828
 msgid "Invalid Name"
-msgstr ""
+msgstr "Nom Invàlid"
 
 #: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Already exist!"
@@ -4571,7 +4571,7 @@ msgstr "Fitxer &QIF..."
 
 #: mmframe.cpp:1434
 msgid "&Edit Filter..."
-msgstr ""
+msgstr "&Editar Filtre..."
 
 #: mmframe.cpp:1435
 msgid "&Rename Filter..."
@@ -5163,13 +5163,14 @@ msgstr "Im&primir"
 
 #: mmframe.cpp:1952
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #: mmframe.cpp:2009
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Si us plau, introdueixi la contrasenya per a la base de dades\n\n"
+"%s"
 
 #: mmframe.cpp:2010 mmframe.cpp:2303 mmframe.cpp:2482
 msgid "MMEX: Encrypted Database"
@@ -5373,7 +5374,7 @@ msgstr ""
 
 #: mmframe.cpp:3443
 msgid "Please wait..."
-msgstr ""
+msgstr "Si us plau, esperi..."
 
 #: mmframe.cpp:3492 stockspanel.cpp:459
 #, c-format
@@ -5552,11 +5553,11 @@ msgstr ""
 
 #: mmhomepage.cpp:437 reports/incexpenses.cpp:117
 msgid "Difference:"
-msgstr ""
+msgstr "Diferència:"
 
 #: mmhomepage.cpp:441
 msgid "Income/Expenses"
-msgstr ""
+msgstr "Ingressos/Despeses"
 
 #: mmhomepage.cpp:465
 msgid "Transaction Statistics"
@@ -6391,11 +6392,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:242
 msgid "Light"
-msgstr ""
+msgstr "Clar"
 
 #: optionsettingsview.cpp:243
 msgid "Dark"
-msgstr ""
+msgstr "Fosc"
 
 #: optionsettingsview.cpp:247
 msgid "Specify preferred theme variant to use if supported"
@@ -6671,31 +6672,31 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
-msgstr ""
+msgstr "( Estimat Vs. Real )"
 
 #: reports/budgetcategorysummary.cpp:340
 msgid "Estimated Income:"
-msgstr ""
+msgstr "Ingressos Estimats:"
 
 #: reports/budgetcategorysummary.cpp:342
 msgid "Actual Income:"
-msgstr ""
+msgstr "Ingressos Reals:"
 
 #: reports/budgetcategorysummary.cpp:344
 msgid "Difference Income:"
-msgstr ""
+msgstr "Diferència d'Ingressos:"
 
 #: reports/budgetcategorysummary.cpp:351
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "Despeses Estimades:"
 
 #: reports/budgetcategorysummary.cpp:353
 msgid "Actual Expenses:"
-msgstr ""
+msgstr "Despeses Reals:"
 
 #: reports/budgetcategorysummary.cpp:355
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "Diferència de Despeses:"
 
 #: reports/budgetingperf.cpp:108
 #, c-format
@@ -6712,7 +6713,7 @@ msgstr ""
 
 #: reports/budgetingperf.cpp:152
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
@@ -6803,11 +6804,11 @@ msgstr ""
 
 #: reports/categexp.cpp:283
 msgid "Total Expenses:"
-msgstr ""
+msgstr "Despeses Totals:"
 
 #: reports/categexp.cpp:284
 msgid "Total Income:"
-msgstr ""
+msgstr "Ingressos Totals:"
 
 #: reports/categexp.cpp:286 reports/summarystocks.cpp:181
 #: reports/transactions.cpp:63
@@ -7426,7 +7427,7 @@ msgstr ""
 #: stockspanel.cpp:335
 #, c-format
 msgid "Gain: %s"
-msgstr ""
+msgstr "Plusvàlua: %s"
 
 #: stockspanel.cpp:335
 #, c-format
