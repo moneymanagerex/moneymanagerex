@@ -106,6 +106,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_CURRENCY] = wxTRANSLATE("Currency");
     CSVFieldName_[UNIV_CSV_CATEGORY] = wxTRANSLATE("Category");
     CSVFieldName_[UNIV_CSV_SUBCATEGORY] = wxTRANSLATE("SubCategory");
+    CSVFieldName_[UNIV_CSV_TAGS] = wxTRANSLATE("Tags");
     CSVFieldName_[UNIV_CSV_TRANSNUM] = wxTRANSLATE("Number");
     CSVFieldName_[UNIV_CSV_NOTES] = wxTRANSLATE("Notes");
     CSVFieldName_[UNIV_CSV_DONTCARE] = wxTRANSLATE("Don't Care");
@@ -1648,6 +1649,16 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     if(category && category->PARENTID != -1)
                         entry = wxGetTranslation(category->CATEGNAME);
                     break;
+                case UNIV_CSV_TAGS:
+                {
+                    wxString splitTags;
+                    for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), splt.SPLITTRANSID))
+                        splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
+                    entry = tran.TAGNAMES;
+                    if (!splitTags.IsEmpty())
+                        entry.Append((tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags);
+                    break;
+                }
                 case UNIV_CSV_TRANSNUM:
                     entry = pBankTransaction.TRANSACTIONNUMBER;
                     break;
@@ -1954,6 +1965,15 @@ void mmUnivCSVDialog::update_preview()
                                 text << inQuotes(category ? category->CATEGNAME : "", delimit);
                             else text << inQuotes("", delimit);
                             break;
+                        case UNIV_CSV_TAGS:
+                        {
+                            wxString splitTags;
+                            for (const auto& tag :
+                                 Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), splt.SPLITTRANSID))
+                                splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
+                            text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
+                            break;
+                        }
                         case UNIV_CSV_TRANSNUM:
                             text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
                             break;

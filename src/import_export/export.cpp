@@ -366,6 +366,8 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 {
     json_writer.StartObject();
     full_tran.as_json(json_writer);
+    json_writer.Key("TAGS");
+    json_writer.String(full_tran.TAGNAMES.utf8_str());
 
     if (!full_tran.m_splits.empty()) {
         json_writer.Key("DIVISION");
@@ -377,11 +379,17 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
                 valueSplit = -valueSplit;
             }
 
+            wxString splitTags;
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split_entry.SPLITTRANSID))
+                splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
+
             json_writer.StartObject();
             json_writer.Key("CATEGORY_ID");
             json_writer.Int(split_entry.CATEGID);
             json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
+            json_writer.Key("TAGS");
+            json_writer.String(splitTags.utf8_str());
             json_writer.EndObject();
 
         }
