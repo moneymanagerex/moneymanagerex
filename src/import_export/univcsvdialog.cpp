@@ -1352,6 +1352,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     // A place to store all rejected rows to display after import
     wxString rejectedRows;
+    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     for (long nLines = firstRow; nLines < lastRow; nLines++)
     {
         const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s: %ld")
@@ -1443,6 +1444,19 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
                 cfdata->REFID = pTransaction->TRANSID;
                 cfdata->CONTENT = field.second;
                 Model_CustomFieldData::instance().save(cfdata);
+            }
+        }
+
+        // save tags
+        if (!holder.tagIDs.IsEmpty())
+        {
+            for (const auto& tag : holder.tagIDs)
+            {
+                Model_Taglink::Data* taglink = Model_Taglink::instance().create();
+                taglink->REFTYPE = reftype;
+                taglink->REFID = pTransaction->TRANSID;
+                taglink->TAGID = tag;
+                Model_Taglink::instance().save(taglink);
             }
         }
 
@@ -1913,7 +1927,7 @@ void mmUnivCSVDialog::update_preview()
                     long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
                     buf.Printf("%d", row + 1);
                     m_list_ctrl_->SetItem(itemIndex, col, buf);
-
+                    m_list_ctrl_->SetItemData(itemIndex, row);
                     Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
 
                     Model_Currency::Data* currency = Model_Account::currency(from_account);
@@ -2020,6 +2034,18 @@ void mmUnivCSVDialog::update_preview()
                 if (++count >= MAX_ROWS_IN_PREVIEW) break;
                 ++row;
             }
+            // sort to align all splits together in the preview
+            m_list_ctrl_->SortItems(
+                [](wxIntPtr itemIndex1, wxIntPtr itemIndex2, wxIntPtr WXUNUSED(sortData))
+                {
+                    if (itemIndex1 < itemIndex2)
+                        return -1;
+                    if (itemIndex1 > itemIndex2)
+                        return 1;
+                    if (itemIndex1 == itemIndex2)
+                        return 0;
+                },
+                0);
         }
     }
 }
@@ -2361,30 +2387,25 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     if (orig_token.IsEmpty()) return;
     wxString token = orig_token;
 
-    Model_Payee::Data* payee = nullptr;
-    Model_Category::Data* category = nullptr;
-    int parentID = -1;
-    wxStringTokenizer categs;
-    wxString categname;
-    wxDateTime dtdt;
     double amount;
-    wxRegEx categDelimiterRegex;
 
     switch (index)
     {
     case UNIV_CSV_DATE:
+    {
+        wxDateTime dtdt;
         if (mmParseDisplayStringToDate(dtdt, token, date_format_))
             holder.Date = dtdt.GetDateOnly();
         else
             holder.valid = false;
         break;
-
+    }
     case UNIV_CSV_PAYEE:
         if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[token]) != -1)
             holder.PayeeID = std::get<0>(m_CSVpayeeNames[token]);
         else
         {
-            payee = Model_Payee::instance().create();
+            Model_Payee::Data* payee = Model_Payee::instance().create();
             payee->PAYEENAME = token;
             payee->ACTIVE = 1;
             holder.PayeeID = Model_Payee::instance().save(payee);
@@ -2405,17 +2426,21 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_CATEGORY:
+    {
         // Convert to standard delimiter for consistency
-        categDelimiterRegex.Compile(" ?: ?");
+        wxRegEx categDelimiterRegex(" ?: ?");
         categDelimiterRegex.Replace(&token, ":");
-        // check if we already have this category 
+        // check if we already have this category
         if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() && m_CSVcategoryNames[token] != -1)
             holder.CategoryID = m_CSVcategoryNames[token];
         else // create category and any missing parent categories
         {
-            categs = wxStringTokenizer(token, ":");
-            while (categs.HasMoreTokens()) {
-                categname = categs.GetNextToken();
+            Model_Category::Data* category = nullptr;
+            int parentID = -1;
+            wxStringTokenizer tokenizer = wxStringTokenizer(token, ":");
+            while (tokenizer.HasMoreTokens())
+            {
+                wxString categname = tokenizer.GetNextToken();
                 category = Model_Category::instance().get(categname, parentID);
                 if (!category)
                 {
@@ -2435,28 +2460,53 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             }
         }
         break;
-
+    }
     case UNIV_CSV_SUBCATEGORY:
+    {
         if (holder.CategoryID == -1)
             return;
 
         token.Replace(":", "|");
-        categname = Model_Category::full_name(holder.CategoryID);
+        wxString categname = Model_Category::full_name(holder.CategoryID);
         categname.Append(":" + token);
         if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() && m_CSVcategoryNames[categname] != -1)
             holder.CategoryID = m_CSVcategoryNames[categname];
-        else {
-            category = Model_Category::instance().create();
+        else
+        {
+            Model_Category::Data* category = Model_Category::instance().create();
             category->PARENTID = holder.CategoryID;
             category->CATEGNAME = token;
             category->ACTIVE = 1;
             Model_Category::instance().save(category);
-            
+
             holder.CategoryID = category->CATEGID;
             m_CSVcategoryNames[categname] = category->CATEGID;
         }
         break;
-
+    }
+    case UNIV_CSV_TAGS:
+    {
+        // split the tag string at space characters
+        wxStringTokenizer tokenizer = wxStringTokenizer(token.Trim(false).Trim(), " ");
+        while (tokenizer.HasMoreTokens())
+        {
+            wxString tagname = tokenizer.GetNextToken();
+            // check for an existing tag
+            Model_Tag::Data* tag = Model_Tag::instance().get(tagname);
+            if (!tag)
+            {
+                // create a new tag if we didn't find one
+                tag = Model_Tag::instance().create();
+                tag->TAGNAME = tagname;
+                tag->ACTIVE = 1;
+                Model_Tag::instance().save(tag);
+            }
+            // add the tagID to the transaction if it isn't already there
+            if (holder.tagIDs.Index(tag->TAGID) == wxNOT_FOUND)
+                holder.tagIDs.Add(tag->TAGID);
+        }
+        break;
+    }
     case UNIV_CSV_TRANSNUM:
         holder.Number = token;
         break;

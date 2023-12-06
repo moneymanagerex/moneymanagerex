@@ -136,7 +136,7 @@ private:
         double ToAmount = 0.0;
         int PayeeID = -1;
         int CategoryID = -1;
-        wxArrayInt Tags;
+        wxArrayInt tagIDs;
         double Amount = 0.0;
         wxString Number;
         wxString Notes;
