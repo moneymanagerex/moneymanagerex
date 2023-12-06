@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-06 09:44\n"
+"PO-Revision-Date: 2023-12-06 14:23\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -1420,30 +1420,30 @@ msgstr "Categoria: "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr ""
+msgstr "Estimat:"
 
 #: budgetentrydialog.cpp:114 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr ""
+msgstr "Real:"
 
 #: budgetentrydialog.cpp:117
 msgid "Type:"
-msgstr ""
+msgstr "Tipus:"
 
 #: budgetentrydialog.cpp:120
 msgid "Expense"
-msgstr ""
+msgstr "Despesa"
 
 #: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:429
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr ""
+msgstr "Ingrés"
 
 #: budgetentrydialog.cpp:126
 msgid "Specify whether this category is an income or an expense category"
-msgstr ""
+msgstr "Especifiqui si aquesta categoria és una categoria d'ingrés o de despesa"
 
 #: budgetentrydialog.cpp:128
 msgid "Frequency:"
@@ -1892,7 +1892,7 @@ msgstr ""
 
 #: constants.cpp:202
 msgid "View Current Year"
-msgstr ""
+msgstr "Visualitzar l'Any Actual"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
@@ -2070,7 +2070,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
-msgstr ""
+msgstr "Autocompletar"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
@@ -2830,11 +2830,11 @@ msgstr ""
 
 #: general_report_manager.cpp:739
 msgid "Change Group..."
-msgstr ""
+msgstr "Canviar Grup..."
 
 #: general_report_manager.cpp:741
 msgid "Rename Group..."
-msgstr ""
+msgstr "Canviar el nom del Grup..."
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
@@ -3244,24 +3244,24 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1033
 msgid "Importing Accounts"
-msgstr ""
+msgstr "Important Comptes"
 
 #: import_export/qif_import_gui.cpp:1036
 msgid "Importing Payees"
-msgstr ""
+msgstr "Important Beneficiaris"
 
 #: import_export/qif_import_gui.cpp:1040
 msgid "Importing Categories"
-msgstr ""
+msgstr "Important Categories"
 
 #: import_export/qif_import_gui.cpp:1062
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Important transacció %1$i de %2$i"
 
 #: import_export/qif_import_gui.cpp:1109
 msgid "Importing Transfers"
-msgstr ""
+msgstr "Important Transferències"
 
 #: import_export/qif_import_gui.cpp:1134
 msgid "Importing Split transactions"
