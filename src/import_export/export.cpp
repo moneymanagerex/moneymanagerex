@@ -344,6 +344,26 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     json_writer.EndArray();
 }
 
+void mmExportTransaction::getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allTags4Export)
+{
+    json_writer.Key("TAGS");
+    json_writer.StartArray();
+    for (const auto& tagID : allTags4Export)
+    {
+        Model_Tag::Data* tag = Model_Tag::instance().get(tagID);
+        if (tag)
+        {
+            json_writer.StartObject();
+            json_writer.Key("ID");
+            json_writer.Int(tag->TAGID);
+            json_writer.Key("NAME");
+            json_writer.String(tag->TAGNAME.utf8_str());
+            json_writer.EndObject();
+        }
+    }
+    json_writer.EndArray();
+}
+
 void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
 {
     json_writer.Key("CATEGORIES");
@@ -366,8 +386,12 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 {
     json_writer.StartObject();
     full_tran.as_json(json_writer);
+
     json_writer.Key("TAGS");
-    json_writer.String(full_tran.TAGNAMES.utf8_str());
+    json_writer.StartArray();
+    for (const auto& tag : full_tran.m_tags)
+        json_writer.Int(tag.TAGID);
+    json_writer.EndArray();
 
     if (!full_tran.m_splits.empty()) {
         json_writer.Key("DIVISION");
@@ -379,17 +403,16 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
                 valueSplit = -valueSplit;
             }
 
-            wxString splitTags;
-            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split_entry.SPLITTRANSID))
-                splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
-
             json_writer.StartObject();
             json_writer.Key("CATEGORY_ID");
             json_writer.Int(split_entry.CATEGID);
             json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
-            json_writer.String(splitTags.utf8_str());
+            json_writer.StartArray();
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split_entry.SPLITTRANSID))
+                json_writer.Int(tag.second);
+            json_writer.EndArray();
             json_writer.EndObject();
 
         }

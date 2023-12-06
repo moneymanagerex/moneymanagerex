@@ -43,6 +43,7 @@ public:
     static void getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allPayeess4Export);
     static void getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export);
     static void getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allCustomFields4Export);
+    static void getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allTags4Export);
 };
 
 #endif
