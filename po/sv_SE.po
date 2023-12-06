@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"POT-Creation-Date: 2023-11-17 12:59+0300\n"
+"PO-Revision-Date: 2023-12-03 09:33\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr ""
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:203 filtertransdialog.cpp:751
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
-#: mmSimpleDialogs.cpp:886 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:868 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:601 sharetransactiondialog.cpp:344
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
@@ -789,7 +789,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:408
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Denna katalog och dess filer hanteras automatiskt av MMEX."
 
 #: attachmentdialog.cpp:410
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -836,7 +836,7 @@ msgid "Open attachment failed"
 msgstr "Öppning av bilaga misslyckades"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:612 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:594 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:211
 msgid "None"
@@ -925,11 +925,11 @@ msgstr "Redigera schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:338
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Ny schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:432
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detaljer för schemalagd transaktion"
 
 #: billsdepositsdialog.cpp:446
 msgid "Specify the date when this bill or deposit is due"
@@ -1365,7 +1365,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Radera schemalagd transaktion..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -2012,7 +2012,7 @@ msgstr "Eventuella ändringar kommer att gå förlorade utan uppdatering"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:773
 msgid "Invalid Entry"
 msgstr "Ogiltig inmatning"
 
@@ -2960,7 +2960,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Inget fungerande tema hittat, installationen kan vara korrupt"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "Unable to open file."
 msgstr "Kunde inte öppna fil."
 
@@ -3630,7 +3630,7 @@ msgstr ""
 msgid "Destination file error"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:809
+#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:791
 msgid "Invalid Account"
 msgstr "Ogiltigt konto"
 
@@ -3695,7 +3695,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2792
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Bekräfta att valet av format matchar %s."
 
 #: import_export/univcsvdialog.cpp:2819
 #, c-format
@@ -3846,108 +3846,108 @@ msgstr ""
 msgid "Could not find base currency symbol!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:554 mmSimpleDialogs.cpp:566
+#: mmSimpleDialogs.cpp:536 mmSimpleDialogs.cpp:548
 msgid "Clear color"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
+#: mmSimpleDialogs.cpp:539 mmSimpleDialogs.cpp:553
 #, c-format
 msgid "Color #%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:713
 msgid "Subtract one year"
 msgstr "Subtrahera ett år"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:714
 msgid "Subtract one month"
 msgstr "Subtrahera en månad"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:715
 msgid "Add one month"
 msgstr "Lägg till en månad"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:716
 msgid "Add one year"
 msgstr "Lägg till ett år"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:772
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "Posten %s är ogiltig"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Please select an existing category"
 msgstr "Välj en befintlig kategori"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:778
 msgid "Invalid Category"
 msgstr "Ogiltig kategori"
 
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:783
 msgid "File name is empty."
 msgstr "Filnamnet är tomt."
 
-#: mmSimpleDialogs.cpp:802
+#: mmSimpleDialogs.cpp:784
 msgid "Please select the file for this operation."
 msgstr "Välj filen för den här åtgärden."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:794
 msgid "Please select the account for this transaction."
 msgstr "Ange ett konto för denna transaktion."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:796
 msgid "Please specify which account the transfer is going to."
 msgstr "Ange vilket konto överföringen ska gå till."
 
-#: mmSimpleDialogs.cpp:816
+#: mmSimpleDialogs.cpp:798
 msgid "Selection can be made by using the dropdown button."
 msgstr "Val kan göras med hjälp av rullgardinsknappen."
 
-#: mmSimpleDialogs.cpp:819
+#: mmSimpleDialogs.cpp:801
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Aktivering av knappen kommer att ge en markeringsruta där kontot kan väljas."
 
-#: mmSimpleDialogs.cpp:828
+#: mmSimpleDialogs.cpp:810
 msgid "Invalid Payee"
 msgstr "Ogiltig betalningsmottagare"
 
-#: mmSimpleDialogs.cpp:829
+#: mmSimpleDialogs.cpp:811
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Skriv in en ny betalningsmottagare,\n"
 "eller gör ett urval med hjälp av rullgardinsmenyn."
 
-#: mmSimpleDialogs.cpp:837 mmSimpleDialogs.cpp:849
+#: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Invalid Name"
 msgstr "Ogiltigt namn"
 
-#: mmSimpleDialogs.cpp:840 mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:822 mmSimpleDialogs.cpp:834
 msgid "Already exist!"
 msgstr "Finns redan!"
 
-#: mmSimpleDialogs.cpp:842
+#: mmSimpleDialogs.cpp:824
 msgid "Please type in a non empty name."
 msgstr "Ange in ett icke-tomt namn."
 
-#: mmSimpleDialogs.cpp:854
+#: mmSimpleDialogs.cpp:836
 msgid "Please type in a non empty symbol."
 msgstr "Ange en icke-tom symbol."
 
-#: mmSimpleDialogs.cpp:947
+#: mmSimpleDialogs.cpp:929
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr "Ange taggar för att söka, eventuellt separerade av operatörerna '&' och '| '."
 
-#: mmSimpleDialogs.cpp:948
+#: mmSimpleDialogs.cpp:930
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr "Standardoperatören mellan varandra följande taggar är AND, använd '| ' för att ändra operatören till OR."
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1474
 msgid "New tag entered"
 msgstr ""
 
@@ -4327,16 +4327,16 @@ msgid "Scheduled transaction saved."
 msgstr ""
 
 #: mmcheckingpanel.cpp:438
-msgid "Delete selected transaction"
-msgstr "Ta bort vald transaktion"
+msgid "Delete all selected transactions"
+msgstr "Ta bort markerade transaktioner"
 
 #: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "Ny transaktion"
 
 #: mmcheckingpanel.cpp:446
-msgid "Edit selected transaction"
-msgstr "Redigera vald transaktion"
+msgid "Edit all selected transactions"
+msgstr "Redigera alla markerade transaktioner"
 
 #: mmcheckingpanel.cpp:454
 msgid "Duplicate selected transaction"
@@ -4837,7 +4837,7 @@ msgstr ""
 
 #: mmframe.cpp:1715
 msgid "&Merge"
-msgstr ""
+msgstr "&Sammanfoga"
 
 #: mmframe.cpp:1716
 msgid "Merge categories, payees, and tags"
@@ -4849,7 +4849,7 @@ msgstr "&Budgetinstälningar..."
 
 #: mmframe.cpp:1731
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Schemalagda transaktioner"
 
 #: mmframe.cpp:1731
 msgid "Bills && Deposits"
@@ -4953,7 +4953,7 @@ msgstr ""
 
 #: mmframe.cpp:1804
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Öppna MMEX webbplats för de senaste nyheterna, uppdateringar etc"
 
 #: mmframe.cpp:1806
 msgid "&Facebook"
@@ -5021,7 +5021,7 @@ msgstr ""
 
 #: mmframe.cpp:1823
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX för &Android"
 
 #: mmframe.cpp:1824
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5105,7 +5105,7 @@ msgstr "&Om"
 
 #: mmframe.cpp:1879
 msgid "About dialog"
-msgstr ""
+msgstr "Om dialogrutan"
 
 #: mmframe.cpp:1883
 msgid "&File"
@@ -5137,7 +5137,7 @@ msgstr "&Alternativ"
 
 #: mmframe.cpp:1928
 msgid "Options Dialog"
-msgstr ""
+msgstr "Dialog Alternativ"
 
 #: mmframe.cpp:1936 mmframe.cpp:1941 mmframe.cpp:2941 optionsettingsnet.cpp:132
 msgid "News"
@@ -6576,17 +6576,17 @@ msgstr "Ta bort källkategori efter sammanslagning (om källkategorin inte har n
 #: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
 #: relocatetagdialog.cpp:117
 msgid "Source:"
-msgstr ""
+msgstr "Källa:"
 
 #: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
 #: relocatetagdialog.cpp:118
 msgid "Target:"
-msgstr ""
+msgstr "Mål:"
 
 #: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
 #: relocatetagdialog.cpp:136
 msgid "Merge"
-msgstr ""
+msgstr "Sammanfoga"
 
 #: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
 #: relocatetagdialog.cpp:156
@@ -7877,16 +7877,16 @@ msgstr "Körs på:"
 #: util.cpp:1513
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Systemets plats: %s"
 
 #: util.cpp:1514
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Användargränssnittets språk: %s"
 
 #: util.cpp:1752
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "Den kompletta listan över stängda ärenden finns tillgänglig på denna länk"
 
 #: util.h:191
 msgid "January"
