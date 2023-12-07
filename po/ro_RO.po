@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-07 04:47\n"
+"PO-Revision-Date: 2023-12-07 05:56\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -7964,7 +7964,7 @@ msgstr ""
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Copiază tot textul în clipboard"
 
 #: util.h:192
 msgid "January"
