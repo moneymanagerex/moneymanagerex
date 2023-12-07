@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-06 09:44\n"
+"PO-Revision-Date: 2023-12-07 01:51\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4341,19 +4341,19 @@ msgstr "Válassza ki a célszámlát"
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Ennek az az oka, hogy az ügylet vagy számlarészlet egyes elemei nem teszik lehetővé az áthelyezést"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "Áthelyezve"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "Nincs áthelyezve"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Néhány ügyletet nem sikerült áthelyezni"
 
 #: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
@@ -7654,15 +7654,15 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Frissítve"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Nincs frissítve"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Néhány ügyletet nem sikerült frissíteni"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7971,7 +7971,7 @@ msgstr "A lezárt problémák teljes listája ezen a hivatkozáson érhető el"
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Összes szöveg másolása a vágólapra"
 
 #: util.h:192
 msgid "January"
