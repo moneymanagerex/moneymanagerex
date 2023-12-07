@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-06 12:04\n"
+"PO-Revision-Date: 2023-12-07 14:45\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -7586,24 +7586,24 @@ msgstr "Gestion des étiquettes : erreur d'édition"
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Étiquette '%s' en cours d'utilisation"
 
 #: tagdialog.cpp:295
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Gestion des étiquettes: Erreur de suppression"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Il existe des transactions supprimées qui utilisent ce tag '%s'."
 
 #: tagdialog.cpp:299
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Supprimer l'étiquette effacera aussi automatiquement les opérations associées supprimées."
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Confirmer la suppression de l'étiquette"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
