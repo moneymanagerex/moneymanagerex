@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-06 09:44\n"
+"PO-Revision-Date: 2023-12-07 04:47\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -4355,19 +4355,19 @@ msgstr ""
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Acest lucru se datorează unor elemente ale tranzacției sau un detaliu al contului care nu permit mutarea"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "Mutat"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "Nu s-a mutat"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Câteva tranzacții nu au putut fi mutate"
 
 #: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
@@ -7644,19 +7644,19 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Acest lucru se datorează unor elemente ale tranzacției sau un detaliu al contului care nu permit mutarea"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Actualizat"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Nu a fost actualizat"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Câteva tranzacții nu au putut fi mutate"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
