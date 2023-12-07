@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-07 01:51\n"
+"PO-Revision-Date: 2023-12-07 03:01\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4341,7 +4341,7 @@ msgstr "Válassza ki a célszámlát"
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr "Ennek az az oka, hogy az ügylet vagy számlarészlet egyes elemei nem teszik lehetővé az áthelyezést"
+msgstr "Ennek az az oka, hogy az ügylet vagy a számlarészlet egyes elemei nem teszik lehetővé az áthelyezést"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
@@ -7650,7 +7650,7 @@ msgstr "Hozzáfűz"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Ennek az az oka, hogy az ügylet vagy a számlarészlet egyes elemei nem teszik lehetővé a frissítést"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
