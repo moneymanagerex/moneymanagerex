@@ -99,7 +99,7 @@ private:
     wxBitmapButton* bSplit_ = nullptr;
     mmComboBoxPayee* cbPayee_ = nullptr;
     mmComboBoxAccount* cbAccount_ = nullptr;
-    mmComboBoxAccount* cbToAccount_;
+    mmComboBoxAccount* cbToAccount_ = nullptr;
     wxButton* bAttachments_ = nullptr;
     wxButton* m_button_cancel = nullptr;
     mmColorButton* bColours_ = nullptr;

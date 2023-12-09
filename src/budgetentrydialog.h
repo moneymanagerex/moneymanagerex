@@ -47,7 +47,7 @@ public:
     void fillControls();
 
 private:
-    Model_Budget::Data* budgetEntry_;
+    Model_Budget::Data* budgetEntry_ = nullptr;
     wxChoice* m_choiceItem = nullptr;
     mmTextCtrl* m_textAmount = nullptr;
     wxChoice* m_choiceType = nullptr;

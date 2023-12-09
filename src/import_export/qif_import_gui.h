@@ -50,7 +50,7 @@ public:
     int get_last_imported_acc();
 
 private:
-    mmQIFImport* qif_api;
+    mmQIFImport* qif_api = nullptr;
     void CreateControls();
     void fillControls();
     void OnFileSearch(wxCommandEvent& event);

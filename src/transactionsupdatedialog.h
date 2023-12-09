@@ -56,7 +56,7 @@ private:
 private:
     wxCheckBox* m_payee_checkbox = nullptr;
     mmComboBoxPayee* cbPayee_ = nullptr;
-    wxCheckBox* m_transferAcc_checkbox;
+    wxCheckBox* m_transferAcc_checkbox = nullptr;
     mmComboBoxAccount* cbAccount_ = nullptr;
     wxCheckBox* m_date_checkbox = nullptr;
     mmDatePickerCtrl* m_dpc = nullptr;

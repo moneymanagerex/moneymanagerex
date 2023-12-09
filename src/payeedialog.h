@@ -41,15 +41,15 @@ public:
     ~mmEditPayeeDialog();
 
 private:
-    Model_Payee::Data*  m_payee;
-    wxTextCtrl* m_payeeName;
-    wxCheckBox* m_hidden;
-    mmComboBoxCategory* m_category;
-    wxTextCtrl* m_reference;
-    wxTextCtrl* m_website;
-    wxTextCtrl* m_Notes;
-    wxGrid* m_patternTable;
-    wxBoxSizer* patternButton_Arranger;
+    Model_Payee::Data* m_payee = nullptr;
+    wxTextCtrl* m_payeeName = nullptr;
+    wxCheckBox* m_hidden = nullptr;
+    mmComboBoxCategory* m_category = nullptr;
+    wxTextCtrl* m_reference = nullptr;
+    wxTextCtrl* m_website = nullptr;
+    wxTextCtrl* m_Notes = nullptr;
+    wxGrid* m_patternTable = nullptr;
+    wxBoxSizer* patternButton_Arranger = nullptr;
 
     void CreateControls();
     void fillControls();

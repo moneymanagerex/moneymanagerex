@@ -176,10 +176,10 @@ private:
     wxCheckBox* colorCheckBox_ = nullptr;
     wxCheckBox* m_checkbox_preset_default = nullptr;
 
-    wxChoice* m_choiceAmountFieldSign;
-    mmChoiceAmountMask* m_choiceDecimalSeparator;
+    wxChoice* m_choiceAmountFieldSign = nullptr;
+    mmChoiceAmountMask* m_choiceDecimalSeparator = nullptr;
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal, DefindByType };
-    wxCheckBox* m_checkBoxExportTitles;
+    wxCheckBox* m_checkBoxExportTitles = nullptr;
 
     int accountID_;
     bool importSuccessful_ = false;

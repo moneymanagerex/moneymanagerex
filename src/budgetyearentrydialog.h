@@ -50,10 +50,10 @@ public:
     wxString yearToCopy_;
 
 private:
-    wxChoice* itemChoice_;
-    wxSpinCtrl* textYear_;
+    wxChoice* itemChoice_ = nullptr;
+    wxSpinCtrl* textYear_ = nullptr;
     bool withMonth_;
-    wxSpinCtrl* textMonth_;
+    wxSpinCtrl* textMonth_ = nullptr;
 };
 
 #endif

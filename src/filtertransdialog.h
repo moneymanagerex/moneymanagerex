@@ -165,45 +165,45 @@ private:
 private:
     bool mmIsValuesCorrect() const;
 
-    wxCheckBox* accountCheckBox_;
-    wxButton* bSelectedAccounts_;
-    wxCheckBox* datesCheckBox_;
-    wxChoice* rangeChoice_;
-    wxCheckBox* dateRangeCheckBox_;
-    mmDatePickerCtrl* fromDateCtrl_;
-    mmDatePickerCtrl* toDateControl_;
-    wxCheckBox* payeeCheckBox_;
-    mmComboBoxPayee* cbPayee_;
-    wxCheckBox* categoryCheckBox_;
-    mmComboBoxCategory* categoryComboBox_;
-    wxCheckBox* categorySubCatCheckBox_;
-    wxCheckBox* statusCheckBox_;
+    wxCheckBox* accountCheckBox_ = nullptr;
+    wxButton* bSelectedAccounts_ = nullptr;
+    wxCheckBox* datesCheckBox_ = nullptr;
+    wxChoice* rangeChoice_ = nullptr;
+    wxCheckBox* dateRangeCheckBox_ = nullptr;
+    mmDatePickerCtrl* fromDateCtrl_ = nullptr;
+    mmDatePickerCtrl* toDateControl_ = nullptr;
+    wxCheckBox* payeeCheckBox_ = nullptr;
+    mmComboBoxPayee* cbPayee_ = nullptr;
+    wxCheckBox* categoryCheckBox_ = nullptr;
+    mmComboBoxCategory* categoryComboBox_ = nullptr;
+    wxCheckBox* categorySubCatCheckBox_ = nullptr;
+    wxCheckBox* statusCheckBox_ = nullptr;
 private:
-    wxChoice* choiceStatus_;
-    wxCheckBox* typeCheckBox_;
-    wxCheckBox* cbTypeWithdrawal_;
-    wxCheckBox* cbTypeDeposit_;
-    wxCheckBox* cbTypeTransferTo_; // Transfer Out
-    wxCheckBox* cbTypeTransferFrom_; // Transfer In
-    wxCheckBox* amountRangeCheckBox_;
-    mmTextCtrl* amountMinEdit_;
-    mmTextCtrl* amountMaxEdit_;
-    wxCheckBox* notesCheckBox_;
-    wxTextCtrl* notesEdit_;
-    wxChoice* m_setting_name;
-    wxBitmapButton* m_btnSaveAs;
-    wxBitmapButton* m_itemButtonClear;
-    wxCheckBox* transNumberCheckBox_;
-    wxTextCtrl* transNumberEdit_;
-    wxCheckBox* tagCheckBox_;
-    mmTagTextCtrl* tagTextCtrl_;
-    wxCheckBox* colorCheckBox_;
-    mmColorButton* colorButton_;
-    wxCheckBox* showColumnsCheckBox_;
-    wxButton* bHideColumns_;
-    wxCheckBox* groupByCheckBox_;
-    wxChoice* bGroupBy_;
-    wxCheckBox* combineSplitsCheckBox_;
+    wxChoice* choiceStatus_ = nullptr;
+    wxCheckBox* typeCheckBox_ = nullptr;
+    wxCheckBox* cbTypeWithdrawal_ = nullptr;
+    wxCheckBox* cbTypeDeposit_ = nullptr;
+    wxCheckBox* cbTypeTransferTo_ = nullptr; // Transfer Out
+    wxCheckBox* cbTypeTransferFrom_ = nullptr; // Transfer In
+    wxCheckBox* amountRangeCheckBox_ = nullptr;
+    mmTextCtrl* amountMinEdit_ = nullptr;
+    mmTextCtrl* amountMaxEdit_ = nullptr;
+    wxCheckBox* notesCheckBox_ = nullptr;
+    wxTextCtrl* notesEdit_ = nullptr;
+    wxChoice* m_setting_name = nullptr;
+    wxBitmapButton* m_btnSaveAs = nullptr;
+    wxBitmapButton* m_itemButtonClear = nullptr;
+    wxCheckBox* transNumberCheckBox_ = nullptr;
+    wxTextCtrl* transNumberEdit_ = nullptr;
+    wxCheckBox* tagCheckBox_ = nullptr;
+    mmTagTextCtrl* tagTextCtrl_ = nullptr;
+    wxCheckBox* colorCheckBox_ = nullptr;
+    mmColorButton* colorButton_ = nullptr;
+    wxCheckBox* showColumnsCheckBox_ = nullptr;
+    wxButton* bHideColumns_ = nullptr;
+    wxCheckBox* groupByCheckBox_ = nullptr;
+    wxChoice* bGroupBy_ = nullptr;
+    wxCheckBox* combineSplitsCheckBox_ = nullptr;
 private:
     wxString m_settings_json;
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;

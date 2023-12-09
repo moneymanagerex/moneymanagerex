@@ -47,12 +47,12 @@ private:
 
     std::vector<ThemeEntry> m_themes;
 
-    wxListBox* m_themesListBox_;
-    wxHtmlWindow* m_themePanel;
-    wxButton* m_importButton;
-    wxButton* m_deleteButton;
-    wxButton* m_useButton;
-    wxButton* m_okButton;
+    wxListBox* m_themesListBox_ = nullptr;
+    wxHtmlWindow* m_themePanel = nullptr;
+    wxButton* m_importButton = nullptr;
+    wxButton* m_deleteButton = nullptr;
+    wxButton* m_useButton = nullptr;
+    wxButton* m_okButton = nullptr;
 
 private:
     mmThemesDialog() {};

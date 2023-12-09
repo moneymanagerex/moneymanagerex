@@ -53,23 +53,23 @@ private:
     bool doFormatDoubleValue(const wxString& locale, wxString& result);
 
 private:
-    mmGUIApp* m_app;
-    wxStaticBoxSizer* m_currencyStaticBoxSizer;
-    mmComboBoxCurrency* baseCurrencyComboBox_;
+    mmGUIApp* m_app = nullptr;
+    wxStaticBoxSizer* m_currencyStaticBoxSizer = nullptr;
+    mmComboBoxCurrency* baseCurrencyComboBox_ = nullptr;
 
-    wxChoice* m_date_format_choice;
-    wxChoice* m_month_selection;
-    wxComboBox* m_itemListOfLocales;
-    wxStaticText* m_sample_date_text;
-    wxStaticText* m_sample_value_text;
+    wxChoice* m_date_format_choice = nullptr;
+    wxChoice* m_month_selection = nullptr;
+    wxComboBox* m_itemListOfLocales = nullptr;
+    wxStaticText* m_sample_date_text = nullptr;
+    wxStaticText* m_sample_value_text = nullptr;
 
     int m_currency_id;
-    wxCheckBox* m_currency_history;
+    wxCheckBox* m_currency_history = nullptr;
     wxString m_date_format;
 
-    wxCheckBox* m_use_org_date_copy_paste;
-    wxCheckBox* m_use_org_date_duplicate;
-    wxChoice* m_use_sound;
+    wxCheckBox* m_use_org_date_copy_paste = nullptr;
+    wxCheckBox* m_use_org_date_duplicate = nullptr;
+    wxChoice* m_use_sound = nullptr;
 
     enum
     {

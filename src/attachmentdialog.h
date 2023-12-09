@@ -48,12 +48,12 @@ private:
         MENU_DELETE_ATTACHMENT,
     };
 
-    wxDataViewListCtrl* attachmentListBox_;
+    wxDataViewListCtrl* attachmentListBox_ = nullptr;
 
     int m_attachment_id = -1;
     std::map<int, wxString> ColName_;
-    wxButton* btnCancel_;
-    wxButton* button_OK_;
+    wxButton* btnCancel_ = nullptr;
+    wxButton* button_OK_ = nullptr;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
     wxString m_RefType;
