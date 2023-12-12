@@ -27,12 +27,12 @@
         <kbd><samp>Strumenti</samp> &rarr; <samp>Gestione Resoconti&hellip;</samp>
         </kbd>.
     </p>
-    <img class="shadow" alt="Barra Strumenti GRM" src="../en_GB/grm_toolbar.png">
+    <img class="shadow" alt="Barra Strumenti GRM" src="../it_IT/grm_toolbar.png">
 
     <h2>Aggiungere un nuovo resoconto</h2>
     <p>Sono disponibili 2 opzioni.</p>
 
-    <h3>Creare il resoconto da una bozza</h3>
+    <h3>Creazione del rapporto da zero</h3>
     <ol>
         <li>Usando l’albero di navigazione, fare clic con il tasto destro sull’etichetta <kbd><samp>Resoconti</samp></kbd>.</li>
         <li>Scegliere la voce di menu: <kbd><samp>Nuovo Resoconto Vuoto</samp></kbd>.</li>
@@ -54,7 +54,7 @@
         Per la versione MMEX 1.4.0 c’è la possibilità di trasferire i dati nello script SQL di un resoconto.
         Sono disponibili quattro opzioni: <var>&single_date</var>, <var>&begin_date</var>, <var>&end_date</var>, <var>&budget_years</var>.
         Nel caso in cui SQL contenga uno dei parametri di cui sopra, verrà sostituita una data prelevata da un widget calendario.
-        Ad esempio, questo script SQL ritorna tutti i saldi di conto per la data specificata:
+        Ad esempio, questo script SQL restituisce tutti i saldi dei conti per la data specificata:
     </p>
 <pre><code class="language-sql">with b as  (
     select ACCOUNTID, STATUS
