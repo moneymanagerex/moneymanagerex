@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-12-06 12:25+0300\n"
-"PO-Revision-Date: 2023-12-07 05:56\n"
+"POT-Creation-Date: 2023-12-12 13:41+0300\n"
+"PO-Revision-Date: 2023-12-12 10:44\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Permite să ne ajute să trimitem date anonime despre utilizarea MMEX."
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:751
-#: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
+#: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:366
 #: mmSimpleDialogs.cpp:865 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:594 sharetransactiondialog.cpp:321
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
@@ -114,8 +114,8 @@ msgstr "Data deschiderii:"
 msgid "The date when the account was opened"
 msgstr "Data la care contul a fost deschis"
 
-#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
-#: import_export/univcsvdialog.cpp:2567
+#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
+#: import_export/univcsvdialog.cpp:2637
 msgid "Currency:"
 msgstr "Valută:"
 
@@ -139,8 +139,8 @@ msgstr "Specifică dacă acest cont e utilizat frecvent. Setarea e utilizată pe
 #: billsdepositsdialog.cpp:623 billsdepositspanel.cpp:146
 #: budgetentrydialog.cpp:144 budgetingpanel.cpp:296 filtertrans.cpp:198
 #: filtertransdialog.cpp:641 filtertransdialog.cpp:1807
-#: import_export/qif_export.cpp:617 import_export/qif_import_gui.cpp:92
-#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:307
+#: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:93
+#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:307
 #: payeedialog.cpp:115 payeedialog.cpp:453 reports/transactions.cpp:198
 #: sharetransactiondialog.cpp:266 splittransactionsdialog.cpp:94
 #: splittransactionsdialog.cpp:354 stockdialog.cpp:247 stocks_list.cpp:100
@@ -276,8 +276,8 @@ msgstr "Imagine #%i"
 msgid "Account Name "
 msgstr "Numele Contului"
 
-#: accountdialog.cpp:501 import_export/qif_export.cpp:615
-#: import_export/qif_import_gui.cpp:244 import_export/univcsvdialog.cpp:106
+#: accountdialog.cpp:501 import_export/qif_export.cpp:633
+#: import_export/qif_import_gui.cpp:246 import_export/univcsvdialog.cpp:106
 #: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:293
 #: reports/htmlbuilder.cpp:243
 msgid "Currency"
@@ -416,9 +416,9 @@ msgid "Asset Details"
 msgstr "Detaliile Bunului"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
-#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:242
-#: import_export/qif_import_gui.cpp:255 import_export/qif_import_gui.cpp:265
-#: import_export/univcsvdialog.cpp:507 import_export/univcsvdialog.cpp:517
+#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
+#: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
+#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "Nume"
@@ -429,7 +429,7 @@ msgstr "Scrie numele bunului"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:190
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:905
-#: import_export/qif_export.cpp:608 import_export/qif_import_gui.cpp:86
+#: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:86
 #: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:275
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:287
@@ -453,7 +453,7 @@ msgstr "Tipul Bunului"
 msgid "Select type of asset"
 msgstr "Selectează tipul bunului"
 
-#: assetdialog.cpp:200 import_export/qif_import_gui.cpp:91
+#: assetdialog.cpp:200 import_export/qif_import_gui.cpp:92
 #: maincurrencydialog.cpp:280
 msgid "Value"
 msgstr "Valoare"
@@ -509,7 +509,7 @@ msgstr "Contul de Active nu a fost găsit.\n\n"
 "Doriți să creați unul?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:188
-#: import_export/qif_export.cpp:607 import_export/univcsvdialog.cpp:99
+#: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:273 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
 msgstr "ID"
@@ -518,8 +518,8 @@ msgstr "ID"
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:196 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:602 filtertransdialog.cpp:972
 #: filtertransdialog.cpp:1753 import_export/qif_export.cpp:134
-#: import_export/qif_export.cpp:610 import_export/qif_import_gui.cpp:89
-#: import_export/qif_import_gui.cpp:243 import_export/univcsvdialog.cpp:102
+#: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
+#: import_export/qif_import_gui.cpp:245 import_export/univcsvdialog.cpp:102
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:425 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:195 transactionsupdatedialog.cpp:153
 #: transdialog.cpp:464 usertransactionpanel.cpp:115 webappdialog.cpp:141
@@ -694,7 +694,7 @@ msgid "Description"
 msgstr "Descriere"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:197
+#: import_export/univcsvdialog.cpp:198
 msgid "File"
 msgstr "Fișier"
 
@@ -770,7 +770,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Confirmați ștergerea atașamentului"
 
 #: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
-#: import_export/univcsvdialog.cpp:307 maincurrencydialog.cpp:539
+#: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "&Adaugă "
@@ -780,7 +780,7 @@ msgid "&Open "
 msgstr "&Deschide "
 
 #: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
-#: import_export/univcsvdialog.cpp:311 maincurrencydialog.cpp:541
+#: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "&Elimina "
@@ -991,10 +991,10 @@ msgstr "Specifică starea tranzacției"
 
 #: billsdepositsdialog.cpp:501 billsdepositspanel.cpp:136 filtertrans.cpp:194
 #: filtertransdialog.cpp:590 filtertransdialog.cpp:966
-#: filtertransdialog.cpp:1742 import_export/qif_export.cpp:609
-#: import_export/qif_import_gui.cpp:245 import_export/qif_import_gui.cpp:256
-#: import_export/qif_import_gui.cpp:266 import_export/univcsvdialog.cpp:101
-#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
+#: filtertransdialog.cpp:1742 import_export/qif_export.cpp:627
+#: import_export/qif_import_gui.cpp:247 import_export/qif_import_gui.cpp:258
+#: import_export/qif_import_gui.cpp:268 import_export/univcsvdialog.cpp:101
+#: import_export/univcsvdialog.cpp:509 import_export/univcsvdialog.cpp:519
 #: mmchecking_list.cpp:286 reports/transactions.cpp:192
 #: transactionsupdatedialog.cpp:138 transdialog.cpp:443
 #: usertransactionpanel.cpp:153 webappdialog.cpp:140 wizard_update.cpp:140
@@ -1015,7 +1015,7 @@ msgstr "Permite stabilirea de sume diferite în conturile DE LA și CĂTRE."
 
 #: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:140
 #: budgetingpanel.cpp:293 filtertrans.cpp:197 filtertransdialog.cpp:999
-#: filtertransdialog.cpp:1009 import_export/qif_export.cpp:614
+#: filtertransdialog.cpp:1009 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
 #: mmchecking_list.cpp:602 mmhomepage.cpp:353 mmhomepage.cpp:427
 #: reports/cashflow.cpp:420 reports/categexp.cpp:218
@@ -1033,9 +1033,9 @@ msgstr "Specifică suma de transferat în Contul Destinație"
 #: billsdepositsdialog.cpp:544 billsdepositsdialog.cpp:831
 #: billsdepositsdialog.cpp:844 billsdepositspanel.cpp:134 filtertrans.cpp:192
 #: filtertransdialog.cpp:52 filtertransdialog.cpp:524 filtertransdialog.cpp:888
-#: filtertransdialog.cpp:1667 import_export/qif_export.cpp:611
-#: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:156
-#: import_export/qif_import_gui.cpp:237 import_export/univcsvdialog.cpp:103
+#: filtertransdialog.cpp:1667 import_export/qif_export.cpp:629
+#: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:157
+#: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:103
 #: mmchecking_list.cpp:281 reports/cashflow.cpp:417
 #: reports/transactions.cpp:190 transdialog.cpp:246 transdialog.cpp:250
 #: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:89
@@ -1054,9 +1054,9 @@ msgstr "Către"
 #: billsdepositsdialog.cpp:564 billsdepositsdialog.cpp:832
 #: billsdepositspanel.cpp:135 filtertrans.cpp:193 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:558 filtertransdialog.cpp:916
-#: filtertransdialog.cpp:1704 import_export/qif_export.cpp:612
-#: import_export/qif_import_gui.cpp:88 import_export/qif_import_gui.cpp:250
-#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:502
+#: filtertransdialog.cpp:1704 import_export/qif_export.cpp:630
+#: import_export/qif_import_gui.cpp:88 import_export/qif_import_gui.cpp:252
+#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:503
 #: mmchecking_list.cpp:284 model/Model_Attachment.cpp:29 payeedialog.cpp:83
 #: payeedialog.cpp:238 reports/cashflow.cpp:418 reports/payee.cpp:136
 #: reports/transactions.cpp:191 transactionsupdatedialog.cpp:184
@@ -1069,9 +1069,9 @@ msgstr "Beneficiar"
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:291 filtertrans.cpp:195
 #: filtertransdialog.cpp:52 filtertransdialog.cpp:567 filtertransdialog.cpp:953
 #: filtertransdialog.cpp:959 filtertransdialog.cpp:1711
-#: import_export/qif_export.cpp:613 import_export/qif_import_gui.cpp:90
-#: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:107
-#: import_export/univcsvdialog.cpp:513 mmchecking_list.cpp:288
+#: import_export/qif_export.cpp:631 import_export/qif_import_gui.cpp:90
+#: import_export/qif_import_gui.cpp:263 import_export/univcsvdialog.cpp:107
+#: import_export/univcsvdialog.cpp:514 mmchecking_list.cpp:288
 #: mmhomepage.cpp:190 payeedialog.cpp:201 reports/budgetcategorysummary.cpp:185
 #: reports/budgetingperf.cpp:130 reports/cashflow.cpp:419
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
@@ -1090,7 +1090,8 @@ msgstr "Folosește Categorii divizate"
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:969
 #: billsdepositspanel.cpp:138 filtertransdialog.cpp:583
 #: filtertransdialog.cpp:980 filtertransdialog.cpp:985
-#: filtertransdialog.cpp:1789 mmchecking_list.cpp:290
+#: filtertransdialog.cpp:1789 import_export/qif_import_gui.cpp:91
+#: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:290
 #: reports/transactions.cpp:194 splittransactionsdialog.cpp:223
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
@@ -1103,8 +1104,8 @@ msgstr "Specifică orice număr de cec sau de tranzacție asociat"
 
 #: billsdepositsdialog.cpp:601 billsdepositspanel.cpp:145 filtertrans.cpp:191
 #: filtertransdialog.cpp:634 filtertransdialog.cpp:1782
-#: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:87
-#: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:277
+#: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:87
+#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:277
 #: reports/transactions.cpp:189 transdialog.cpp:546
 #: usertransactionpanel.cpp:177
 msgid "Number"
@@ -1125,8 +1126,8 @@ msgstr "Organizați atașamentele acestei tranzacții programate"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:654
 #: filtertransdialog.cpp:1019 filtertransdialog.cpp:1814
-#: import_export/qif_import_gui.cpp:338 import_export/univcsvdialog.cpp:448
-#: import_export/univcsvdialog.cpp:1337 reports/transactions.cpp:187
+#: import_export/qif_import_gui.cpp:340 import_export/univcsvdialog.cpp:449
+#: import_export/univcsvdialog.cpp:1338 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
 #: transdialog.cpp:575
 msgid "Color"
@@ -1176,7 +1177,7 @@ msgstr "Confirmă numele beneficiarului"
 #: filtertransdialog.cpp:980 filtertransdialog.cpp:999
 #: filtertransdialog.cpp:1009 filtertransdialog.cpp:1019
 #: filtertransdialog.cpp:1028 filtertransdialog.cpp:1035
-#: import_export/univcsvdialog.cpp:1337 optionsettingsgeneral.cpp:293
+#: import_export/univcsvdialog.cpp:1338 optionsettingsgeneral.cpp:293
 #: optionsettingsgeneral.cpp:318 payeedialog.cpp:201
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:355
 #: transactionsupdatedialog.cpp:415 transdialog.cpp:632 transdialog.cpp:636
@@ -1185,7 +1186,7 @@ msgid "Invalid value"
 msgstr "Valoare incorectă"
 
 #: billsdepositsdialog.cpp:1044 billsdepositsdialog.cpp:1047
-#: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:414 transdialog.cpp:644
+#: import_export/univcsvdialog.cpp:1411 stockdialog.cpp:414 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:451 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "Data de deschidere a contului este ulterioară datei acestei tranzacții"
@@ -1237,7 +1238,7 @@ msgstr "Specifică numărul de plăți care trebuie efectuate.\n"
 "Lasă necompletat dacă plățile continuă la nesfârșit."
 
 #: billsdepositsdialog.cpp:1355 images_list.cpp:501
-#: import_export/univcsvdialog.cpp:1559 maincurrencydialog.cpp:482
+#: import_export/univcsvdialog.cpp:1574 maincurrencydialog.cpp:482
 #: mmframe.cpp:3841 splittransactionsdialog.cpp:411 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
@@ -1463,7 +1464,7 @@ msgstr "Frecvență:"
 msgid "Specify the frequency of the expense or deposit"
 msgstr "Specifică frecvența retragerilor sau a depunerilor"
 
-#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:405
+#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:406
 msgid "Amount:"
 msgstr "Suma:"
 
@@ -1837,9 +1838,9 @@ msgstr "Închide"
 msgid "&Close "
 msgstr "&Închide "
 
-#: constants.cpp:84 import_export/qif_import_gui.cpp:739
-#: import_export/qif_import_gui.cpp:772 import_export/qif_import_gui.cpp:797
-#: import_export/univcsvdialog.cpp:2023 import_export/univcsvdialog.cpp:2047
+#: constants.cpp:84 import_export/qif_import_gui.cpp:752
+#: import_export/qif_import_gui.cpp:785 import_export/qif_import_gui.cpp:811
+#: import_export/univcsvdialog.cpp:2069 import_export/univcsvdialog.cpp:2093
 msgid "OK"
 msgstr "Ok"
 
@@ -1973,8 +1974,8 @@ msgstr "Prefix"
 msgid "Suffix"
 msgstr "Sufix"
 
-#: currencydialog.cpp:210 import_export/qif_import_gui.cpp:326
-#: import_export/univcsvdialog.cpp:416
+#: currencydialog.cpp:210 import_export/qif_import_gui.cpp:328
+#: import_export/univcsvdialog.cpp:417
 msgid "Decimal Char"
 msgstr "Car. Zecimal"
 
@@ -2023,7 +2024,7 @@ msgid "Any changes will be lost without update"
 msgstr "Orice modificare va fi pierdută fără actualizare"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:2670 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:770
 msgid "Invalid Entry"
 msgstr "Intrare Nevalidă"
@@ -2517,7 +2518,7 @@ msgstr "Se oferă o parolă incorectă pentru un fișier criptat\n"
 "sau\n"
 "se încearcă deschiderea unui fișier care nu este un fișier de bază de date\n"
 
-#: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1098 webapp.cpp:120
+#: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1152 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "Eroare: %s"
@@ -2585,14 +2586,14 @@ msgid "Include all subcategories"
 msgstr "Include toate sub-categoriile"
 
 #: filtertransdialog.cpp:607 filtertransdialog.cpp:1462
-#: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:112
+#: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:292 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:34 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Retragere"
 
 #: filtertransdialog.cpp:608 filtertransdialog.cpp:1464
-#: filtertransdialog.cpp:1567 import_export/univcsvdialog.cpp:113
+#: filtertransdialog.cpp:1567 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:294 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:35 reports/forecast.cpp:79
 msgid "Deposit"
@@ -2681,7 +2682,7 @@ msgstr "Ascunde coloanele raportului"
 msgid "The selected item will be deleted"
 msgstr "Elementul selectat va fi șters"
 
-#: filtertransdialog.cpp:1200 import_export/univcsvdialog.cpp:2122
+#: filtertransdialog.cpp:1200 import_export/univcsvdialog.cpp:2168
 #: mmframe.cpp:1257
 msgid "Do you wish to continue?"
 msgstr "Dorești să continui?"
@@ -2726,14 +2727,14 @@ msgstr "Setare nume"
 msgid "Please Enter"
 msgstr "Te rog introdu"
 
-#: filtertransdialog.cpp:2026 import_export/univcsvdialog.cpp:1092
+#: filtertransdialog.cpp:2026 import_export/univcsvdialog.cpp:1093
 msgid "The entered name is already in use"
 msgstr "Numele introdus este deja în uz"
 
 #: filtertransdialog.cpp:2026 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
-#: images_list.cpp:495 import_export/qif_import_gui.cpp:741
-#: import_export/qif_import_gui.cpp:744 import_export/univcsvdialog.cpp:1092
+#: images_list.cpp:495 import_export/qif_import_gui.cpp:754
+#: import_export/qif_import_gui.cpp:757 import_export/univcsvdialog.cpp:1093
 msgid "Warning"
 msgstr "Atenție"
 
@@ -2762,7 +2763,7 @@ msgstr "Filtru de Tranzacții"
 msgid "Reports"
 msgstr "Rapoarte"
 
-#: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:533
+#: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:534
 msgid "&Import"
 msgstr "&Importă"
 
@@ -2770,7 +2771,7 @@ msgstr "&Importă"
 msgid "Locate and load a report file."
 msgstr "Găsiți și încărcați un fișier de raport."
 
-#: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:535
+#: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:536
 msgid "&Export"
 msgstr "&Exportă"
 
@@ -2978,13 +2979,13 @@ msgstr "Tema %s are elemente lipsă și este incompatibilă. Revenire la tema im
 msgid "No workable theme found, the installation may be corrupt"
 msgstr "Nu a fost găsită o temă funcțională, instalarea poate fi coruptă"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2234
 #: mmSimpleDialogs.cpp:780
 msgid "Unable to open file."
 msgstr "Nu pot deschide fila."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1344 mmframe.cpp:2569 mmframe.cpp:2588
+#: import_export/univcsvdialog.cpp:1345 mmframe.cpp:2569 mmframe.cpp:2588
 msgid "Universal CSV Import"
 msgstr "Import CSV universal"
 
@@ -3025,7 +3026,7 @@ msgstr "Nu am găsit Tabelul."
 msgid "Transactions"
 msgstr "Tranzacții"
 
-#: import_export/qif_export.cpp:49 import_export/qif_export.cpp:662
+#: import_export/qif_export.cpp:49 import_export/qif_export.cpp:680
 #: mmframe.cpp:1572
 msgid "Export as QIF file"
 msgstr "Exportă ca fișier QIF"
@@ -3034,7 +3035,7 @@ msgstr "Exportă ca fișier QIF"
 msgid "Export as JSON file"
 msgstr "Exportă ca fișier JSON"
 
-#: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
+#: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:124
 #: mmframe.cpp:1567
 msgid "Export as CSV file"
 msgstr "Exportă ca fișier CSV"
@@ -3043,7 +3044,7 @@ msgstr "Exportă ca fișier CSV"
 msgid "Parameters"
 msgstr "Parametri"
 
-#: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:208
+#: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:209
 msgid "Log"
 msgstr "Jurnal"
 
@@ -3064,15 +3065,15 @@ msgstr "QIF"
 msgid "Accounts"
 msgstr "Conturi"
 
-#: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:185
+#: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:186
 msgid "From Date"
 msgstr "De la data"
 
-#: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:195
+#: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:196
 msgid "To Date"
 msgstr "Până la data"
 
-#: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:299
+#: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:301
 #: optionsettingsgeneral.cpp:103
 msgid "Date Format"
 msgstr "Formatul Datei"
@@ -3081,12 +3082,12 @@ msgstr "Formatul Datei"
 msgid "Write to File"
 msgstr "Scrie în fișier"
 
-#: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:122
-#: import_export/univcsvdialog.cpp:184
+#: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:123
+#: import_export/univcsvdialog.cpp:185
 msgid "File Name:"
 msgstr "Nume fişier:"
 
-#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:552
+#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:553
 msgid "Clear"
 msgstr "Șterge"
 
@@ -3102,7 +3103,7 @@ msgstr "Export QIF"
 msgid "Choose QIF data file to Export"
 msgstr "Alege fişierul de date QIF pentru Export"
 
-#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:854
+#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:868
 msgid "QIF Files (*.qif)"
 msgstr "Fișiere QIF (*.qif)"
 
@@ -3114,7 +3115,7 @@ msgstr "Alege fişierul de date JSON pentru Export"
 msgid "JSON Files (*.json)"
 msgstr "Fișiere JSON (*.json)"
 
-#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2172
+#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2218
 msgid "CSV Files (*.csv)"
 msgstr "Fișiere CSV (*.csv)"
 
@@ -3134,8 +3135,8 @@ msgstr ""
 msgid "Categories exported"
 msgstr "Categorii exportate"
 
-#: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:398
-#: import_export/qif_import_gui.cpp:1031
+#: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
+#: import_export/qif_import_gui.cpp:1045
 msgid "Please wait"
 msgstr "Te rog așteaptă"
 
@@ -3148,212 +3149,212 @@ msgstr "Se exportă"
 msgid "Exporting transaction %zu"
 msgstr "Se exportă tranzacția %zu"
 
-#: import_export/qif_export.cpp:657
+#: import_export/qif_export.cpp:675
 #, c-format
 msgid "Number of categories exported: %zu \n"
 msgstr "Numărul de categorii exportate: %zu \n"
 
-#: import_export/qif_export.cpp:659
+#: import_export/qif_export.cpp:677
 #, c-format
 msgid "Number of transactions exported: %zu \n"
 msgstr "Numărul de tranzacții exportate: %zu \n"
 
-#: import_export/qif_export.cpp:660
+#: import_export/qif_export.cpp:678
 #, c-format
 msgid "Number of accounts exported: %zu"
 msgstr "Numărul de conturi exportate: %zu"
 
-#: import_export/qif_import_gui.cpp:134 import_export/univcsvdialog.cpp:197
+#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:198
 msgid "&Browse"
 msgstr "&Răsfoire"
 
-#: import_export/qif_import_gui.cpp:144 import_export/univcsvdialog.cpp:382
+#: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:383
 msgid "Encoding:"
 msgstr "Codificare:"
 
-#: import_export/qif_import_gui.cpp:179
+#: import_export/qif_import_gui.cpp:180
 msgid "Filtering Details:"
 msgstr "Filtrare detalii:"
 
-#: import_export/qif_import_gui.cpp:218 import_export/univcsvdialog.cpp:490
+#: import_export/qif_import_gui.cpp:219 import_export/univcsvdialog.cpp:491
 msgid "Data"
 msgstr "Date"
 
-#: import_export/qif_import_gui.cpp:278
+#: import_export/qif_import_gui.cpp:280
 msgid "Use account number instead of account name"
 msgstr "Folosește numărul de cont în loc de numele contului"
 
-#: import_export/qif_import_gui.cpp:282
+#: import_export/qif_import_gui.cpp:284
 msgid "Include payee field in notes"
 msgstr "Includeți câmpul pentru beneficiar în note"
 
-#: import_export/qif_import_gui.cpp:286 import_export/univcsvdialog.cpp:457
+#: import_export/qif_import_gui.cpp:288 import_export/univcsvdialog.cpp:458
 msgid "Pattern match Payees"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:291 import_export/univcsvdialog.cpp:463
+#: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:464
 msgid "Add match details to Notes"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
-#: import_export/qif_import_gui.cpp:466 import_export/qif_import_gui.cpp:623
-#: import_export/qif_import_gui.cpp:769 import_export/qif_import_gui.cpp:1389
-#: import_export/univcsvdialog.cpp:1020 import_export/univcsvdialog.cpp:1245
-#: import_export/univcsvdialog.cpp:1248 import_export/univcsvdialog.cpp:1268
-#: import_export/univcsvdialog.cpp:1275 import_export/univcsvdialog.cpp:1797
-#: import_export/univcsvdialog.cpp:1799 import_export/univcsvdialog.cpp:1800
-#: import_export/univcsvdialog.cpp:1815 import_export/univcsvdialog.cpp:2020
+#: import_export/qif_import_gui.cpp:391 import_export/qif_import_gui.cpp:394
+#: import_export/qif_import_gui.cpp:469 import_export/qif_import_gui.cpp:622
+#: import_export/qif_import_gui.cpp:782 import_export/qif_import_gui.cpp:1512
+#: import_export/univcsvdialog.cpp:1021 import_export/univcsvdialog.cpp:1246
+#: import_export/univcsvdialog.cpp:1249 import_export/univcsvdialog.cpp:1269
+#: import_export/univcsvdialog.cpp:1276 import_export/univcsvdialog.cpp:1822
+#: import_export/univcsvdialog.cpp:1824 import_export/univcsvdialog.cpp:1825
+#: import_export/univcsvdialog.cpp:1840 import_export/univcsvdialog.cpp:2066
 #: themes.cpp:235 transdialog.cpp:299 transdialog.cpp:303 transdialog.cpp:309
 #: transdialog.cpp:979 transdialog.cpp:983 transdialog.cpp:990 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: import_export/qif_import_gui.cpp:398
+#: import_export/qif_import_gui.cpp:401
 msgid "Scanning"
 msgstr "Scanează"
 
-#: import_export/qif_import_gui.cpp:427
+#: import_export/qif_import_gui.cpp:430
 #, c-format
 msgid "Reading line %zu, %lld ms"
 msgstr "Citesc linia %zu, %lld ms"
 
-#: import_export/qif_import_gui.cpp:433
+#: import_export/qif_import_gui.cpp:436
 #, c-format
 msgid "Line %zu \t %s\n"
 msgstr "Linia %zu \t %s\n"
 
-#: import_export/qif_import_gui.cpp:525
+#: import_export/qif_import_gui.cpp:534
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:530 mmreportspanel.cpp:349
+#: import_export/qif_import_gui.cpp:539 mmreportspanel.cpp:349
 msgid "Accounts:"
 msgstr "Conturi:"
 
-#: import_export/qif_import_gui.cpp:537 import_export/qif_import_gui.cpp:876
-#: import_export/univcsvdialog.cpp:354
+#: import_export/qif_import_gui.cpp:546 import_export/qif_import_gui.cpp:890
+#: import_export/univcsvdialog.cpp:355
 msgid "Date Format: "
 msgstr "Format dată: "
 
-#: import_export/qif_import_gui.cpp:540
+#: import_export/qif_import_gui.cpp:549
 msgid "Press OK Button to continue"
 msgstr "Apasă butonul OK pentru a continua"
 
-#: import_export/qif_import_gui.cpp:749 import_export/qif_import_gui.cpp:780
-#: import_export/univcsvdialog.cpp:2031 import_export/univcsvdialog.cpp:2045
+#: import_export/qif_import_gui.cpp:762 import_export/qif_import_gui.cpp:793
+#: import_export/univcsvdialog.cpp:2077 import_export/univcsvdialog.cpp:2091
 #: stockspanel.cpp:449
 msgid "Missing"
 msgstr "Lipsește"
 
-#: import_export/qif_import_gui.cpp:774 import_export/univcsvdialog.cpp:2025
+#: import_export/qif_import_gui.cpp:787 import_export/univcsvdialog.cpp:2071
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:852
+#: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
 msgstr "Selectaţi fişierul de date QIF pentru import"
 
-#: import_export/qif_import_gui.cpp:1023
+#: import_export/qif_import_gui.cpp:1037
 msgid "Do you want to import all transaction?"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1024
+#: import_export/qif_import_gui.cpp:1038
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1025
+#: import_export/qif_import_gui.cpp:1039
 msgid "Confirm Import"
 msgstr "Confirmă Importul"
 
-#: import_export/qif_import_gui.cpp:1031
+#: import_export/qif_import_gui.cpp:1045
 msgid "Importing"
 msgstr "Importă"
 
-#: import_export/qif_import_gui.cpp:1033
+#: import_export/qif_import_gui.cpp:1047
 msgid "Importing Accounts"
 msgstr "Se importă Conturi"
 
-#: import_export/qif_import_gui.cpp:1036
+#: import_export/qif_import_gui.cpp:1050
 msgid "Importing Payees"
 msgstr "Se importă Beneficiari"
 
-#: import_export/qif_import_gui.cpp:1040
+#: import_export/qif_import_gui.cpp:1054
 msgid "Importing Categories"
 msgstr "Se importă Categorii"
 
-#: import_export/qif_import_gui.cpp:1062
+#: import_export/qif_import_gui.cpp:1076
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1109
+#: import_export/qif_import_gui.cpp:1163
 msgid "Importing Transfers"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1134
+#: import_export/qif_import_gui.cpp:1203
 msgid "Importing Split transactions"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1138
+#: import_export/qif_import_gui.cpp:1207
 msgid "Import finished successfully"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1138
+#: import_export/qif_import_gui.cpp:1207
 #, c-format
 msgid "Total Imported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1148 import_export/univcsvdialog.cpp:1510
+#: import_export/qif_import_gui.cpp:1217 import_export/univcsvdialog.cpp:1525
 msgid "Imported transactions discarded by user!"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1150 import_export/qif_import_gui.h:44
+#: import_export/qif_import_gui.cpp:1219 import_export/qif_import_gui.h:45
 #: mmframe.cpp:1561
 msgid "Import from QIF file"
 msgstr "Importă din fișierul QIF"
 
-#: import_export/qif_import_gui.cpp:1229
+#: import_export/qif_import_gui.cpp:1324
 msgid "Transaction code is missing"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1243
+#: import_export/qif_import_gui.cpp:1338
 #, c-format
 msgid "%1$s matched by %2$s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1255
+#: import_export/qif_import_gui.cpp:1350
 msgid "Transaction Payee is missing or incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1267
+#: import_export/qif_import_gui.cpp:1362
 msgid "Date format or date mask is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1279
+#: import_export/qif_import_gui.cpp:1374
 msgid "Transaction Account is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1288
+#: import_export/qif_import_gui.cpp:1383
 msgid "Transaction Account for transfer is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1317
+#: import_export/qif_import_gui.cpp:1412
 msgid "Transaction Amount is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1342
+#: import_export/qif_import_gui.cpp:1438
 msgid "Transaction Category is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1447
+#: import_export/qif_import_gui.cpp:1570
 #, c-format
 msgid "Added account: %s"
 msgstr "Cont adăugat: %s"
 
-#: import_export/qif_import_gui.cpp:1478 import_export/univcsvdialog.cpp:1252
+#: import_export/qif_import_gui.cpp:1601 import_export/univcsvdialog.cpp:1253
 #, c-format
 msgid "Added payee: %s"
 msgstr "Beneficiar adăugat: %s"
@@ -3362,361 +3363,361 @@ msgstr "Beneficiar adăugat: %s"
 msgid "SubCategory"
 msgstr "Subcategorie"
 
-#: import_export/univcsvdialog.cpp:111
+#: import_export/univcsvdialog.cpp:112
 msgid "Don't Care"
 msgstr "Nu-mi Pasă"
 
-#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:298
+#: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:298
 #: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:421
 #: reports/summary.cpp:272 reports/summary.cpp:308
 msgid "Balance"
 msgstr "Sold"
 
-#: import_export/univcsvdialog.cpp:120 mmframe.cpp:1558
+#: import_export/univcsvdialog.cpp:121 mmframe.cpp:1558
 msgid "Import from CSV file"
 msgstr "Import dintr-un fișier CSV"
 
-#: import_export/univcsvdialog.cpp:126
+#: import_export/univcsvdialog.cpp:127
 msgid "Import from XML file"
 msgstr "Import from XML file"
 
-#: import_export/univcsvdialog.cpp:129 mmframe.cpp:1568
+#: import_export/univcsvdialog.cpp:130 mmframe.cpp:1568
 msgid "Export as XML file"
 msgstr "Exportă ca fișier XML"
 
-#: import_export/univcsvdialog.cpp:204
+#: import_export/univcsvdialog.cpp:205
 msgid "Account: "
 msgstr "Cont: "
 
-#: import_export/univcsvdialog.cpp:214
+#: import_export/univcsvdialog.cpp:215
 msgid "Preset:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:579
-#: import_export/univcsvdialog.cpp:2571
+#: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
+#: import_export/univcsvdialog.cpp:2641
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:269
+#: import_export/univcsvdialog.cpp:270
 msgid "Specify the order of fields in the file"
 msgstr "Specificați ordinea câmpurilor din fișier"
 
-#: import_export/univcsvdialog.cpp:315
+#: import_export/univcsvdialog.cpp:316
 msgid "&MMEX format"
 msgstr "Format &MMEX"
 
-#: import_export/univcsvdialog.cpp:332
+#: import_export/univcsvdialog.cpp:333
 msgid "&Up"
 msgstr "S&us"
 
-#: import_export/univcsvdialog.cpp:336
+#: import_export/univcsvdialog.cpp:337
 msgid "&Down"
 msgstr "&Jos"
 
-#: import_export/univcsvdialog.cpp:369
+#: import_export/univcsvdialog.cpp:370
 msgid "CSV Delimiter:"
 msgstr "Delimitator CSV:"
 
-#: import_export/univcsvdialog.cpp:396
+#: import_export/univcsvdialog.cpp:397
 msgid "Export column titles"
 msgstr "Exportă titlurile coloanelor"
 
-#: import_export/univcsvdialog.cpp:411
+#: import_export/univcsvdialog.cpp:412
 msgid "Positive values are deposits"
 msgstr "Valorile pozitive sunt depozite"
 
-#: import_export/univcsvdialog.cpp:412
+#: import_export/univcsvdialog.cpp:413
 msgid "Positive values are withdrawals"
 msgstr "Valorile pozitive sunt retrageri"
 
-#: import_export/univcsvdialog.cpp:429
+#: import_export/univcsvdialog.cpp:430
 msgid "Rows to ignore"
 msgstr "Rânduri de ignorat"
 
-#: import_export/univcsvdialog.cpp:436
+#: import_export/univcsvdialog.cpp:437
 msgid "From start: "
 msgstr "De la început: "
 
-#: import_export/univcsvdialog.cpp:471
+#: import_export/univcsvdialog.cpp:472
 msgid "From end: "
 msgstr "De la sfârșit: "
 
-#: import_export/univcsvdialog.cpp:483
+#: import_export/univcsvdialog.cpp:484
 msgid "Preview"
 msgstr "Previzualizează"
 
-#: import_export/univcsvdialog.cpp:558
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose XML data file to Import"
 msgstr "Alegeți fișierul de date XML pentru import"
 
-#: import_export/univcsvdialog.cpp:558
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose CSV data file to Import"
 msgstr "Alegeţi fişierul de date CSV pentru import"
 
-#: import_export/univcsvdialog.cpp:559
+#: import_export/univcsvdialog.cpp:560
 msgid "Choose XML data file to Export"
 msgstr "Alege fişierul de date XML pentru Export"
 
-#: import_export/univcsvdialog.cpp:559
+#: import_export/univcsvdialog.cpp:560
 msgid "Choose CSV data file to Export"
 msgstr "Alege fila CSV în care să se facă exportul"
 
-#: import_export/univcsvdialog.cpp:562
+#: import_export/univcsvdialog.cpp:563
 msgid "Preset name"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:563
+#: import_export/univcsvdialog.cpp:564
 msgid "Save current settings as a Preset"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:564 import_export/univcsvdialog.cpp:2123
+#: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2169
 msgid "Delete Preset"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:565
+#: import_export/univcsvdialog.cpp:566
 msgid "MMEX standard format"
 msgstr "Format standard MMEX"
 
-#: import_export/univcsvdialog.cpp:566
+#: import_export/univcsvdialog.cpp:567
 msgid "Move Up"
 msgstr "Mutare în sus"
 
-#: import_export/univcsvdialog.cpp:567
+#: import_export/univcsvdialog.cpp:568
 msgid "Move Down"
 msgstr "Mută în jos"
 
-#: import_export/univcsvdialog.cpp:568 optionsettingsmisc.cpp:228
+#: import_export/univcsvdialog.cpp:569 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Specifică delimitatorul de folosit la exportarea/importarea din filele CSV"
 
-#: import_export/univcsvdialog.cpp:569
+#: import_export/univcsvdialog.cpp:570
 msgid "Import File"
 msgstr "Importă fișier"
 
-#: import_export/univcsvdialog.cpp:570
+#: import_export/univcsvdialog.cpp:571
 msgid "Export File"
 msgstr "Export fișier"
 
-#: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
+#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2648
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:737
+#: import_export/univcsvdialog.cpp:738
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr "Contul implicit '%s' pentru acest șablon nu există.\n"
 "Vă rugăm să selectați un cont nou."
 
-#: import_export/univcsvdialog.cpp:739
+#: import_export/univcsvdialog.cpp:740
 msgid "Account does not exist"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:941 import_export/univcsvdialog.cpp:1036
-#: import_export/univcsvdialog.cpp:2593
+#: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
+#: import_export/univcsvdialog.cpp:2663
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1063
+#: import_export/univcsvdialog.cpp:1064
 msgid "Preset Name"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1063
+#: import_export/univcsvdialog.cpp:1064
 msgid "Save Preset"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1232
+#: import_export/univcsvdialog.cpp:1233
 msgid "Invalid Date."
 msgstr "Dată incorectă."
 
-#: import_export/univcsvdialog.cpp:1233 mmTextCtrl.cpp:116
+#: import_export/univcsvdialog.cpp:1234 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
 msgstr "Sumă incorectă."
 
-#: import_export/univcsvdialog.cpp:1234
+#: import_export/univcsvdialog.cpp:1235
 msgid "Type (withdrawal/deposit) unknown."
 msgstr "Tip (retragere/depunere) necunoscut."
 
-#: import_export/univcsvdialog.cpp:1294
+#: import_export/univcsvdialog.cpp:1295
 msgid "Incorrect fields specified for import!"
 msgstr "Câmpuri incorecte specificate pentru import!"
 
-#: import_export/univcsvdialog.cpp:1295
+#: import_export/univcsvdialog.cpp:1296
 msgid "Date field is required."
 msgstr "Câmpul dată este necesar."
 
-#: import_export/univcsvdialog.cpp:1296
+#: import_export/univcsvdialog.cpp:1297
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "Câmpul Sumă sau amândouă câmpurile de Retragere și Depunere sunt necesare."
 
-#: import_export/univcsvdialog.cpp:1297 import_export/univcsvdialog.cpp:1478
+#: import_export/univcsvdialog.cpp:1298 import_export/univcsvdialog.cpp:1493
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
 msgstr "Importă"
 
-#: import_export/univcsvdialog.cpp:1356
+#: import_export/univcsvdialog.cpp:1358
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr "Tranzacții importate în contul %s: %ld"
 
-#: import_export/univcsvdialog.cpp:1382
+#: import_export/univcsvdialog.cpp:1384
 #, c-format
 msgid "Line %ld: Empty"
 msgstr "Linia %ld: goală"
 
-#: import_export/univcsvdialog.cpp:1393
+#: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Line %ld: Error:"
 msgstr "Linia %ld: Eroare:"
 
-#: import_export/univcsvdialog.cpp:1408
+#: import_export/univcsvdialog.cpp:1410
 #, c-format
 msgid "Line %ld: %s"
 msgstr "Linia %ld %s"
 
-#: import_export/univcsvdialog.cpp:1449
+#: import_export/univcsvdialog.cpp:1464
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr "Linia %ld: OK, importată."
 
-#: import_export/univcsvdialog.cpp:1458
+#: import_export/univcsvdialog.cpp:1473
 msgid "Rejected rows:"
 msgstr "Rânduri respinse:"
 
-#: import_export/univcsvdialog.cpp:1463
+#: import_export/univcsvdialog.cpp:1478
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "Total linii: %ld"
 
-#: import_export/univcsvdialog.cpp:1465
+#: import_export/univcsvdialog.cpp:1480
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr "Linii selectate pentru import: %ld"
 
-#: import_export/univcsvdialog.cpp:1467
+#: import_export/univcsvdialog.cpp:1482
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr "Linii goale: %ld"
 
-#: import_export/univcsvdialog.cpp:1469
+#: import_export/univcsvdialog.cpp:1484
 #, c-format
 msgid "Imported: %ld"
 msgstr "Importat: %ld"
 
-#: import_export/univcsvdialog.cpp:1471
+#: import_export/univcsvdialog.cpp:1486
 #, c-format
 msgid "Errored: %ld"
 msgstr "Cu eroare: %ld"
 
-#: import_export/univcsvdialog.cpp:1474
+#: import_export/univcsvdialog.cpp:1489
 #, c-format
 msgid "Log file written to: %s"
 msgstr "Fișierul jurnal scris la: %s"
 
-#: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:638
+#: import_export/univcsvdialog.cpp:1492 stockdialog.cpp:638
 msgid "Please confirm saving"
 msgstr "Te rog să confirmi înainte de a salva"
 
-#: import_export/univcsvdialog.cpp:1511
+#: import_export/univcsvdialog.cpp:1526
 msgid "No imported transactions!"
 msgstr "Nici o tranzacție importată!"
 
-#: import_export/univcsvdialog.cpp:1533
+#: import_export/univcsvdialog.cpp:1548
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "Câmpuri incorecte selectate pentru export! Necesită cel puțin Data și Suma."
 
-#: import_export/univcsvdialog.cpp:1534 import_export/univcsvdialog.cpp:1701
+#: import_export/univcsvdialog.cpp:1549 import_export/univcsvdialog.cpp:1726
 msgid "Export"
 msgstr "Export"
 
-#: import_export/univcsvdialog.cpp:1544
+#: import_export/univcsvdialog.cpp:1559
 msgid "Overwrite existing file?"
 msgstr "Suprascrieți fișierul existent?"
 
-#: import_export/univcsvdialog.cpp:1544
+#: import_export/univcsvdialog.cpp:1559
 msgid "File exists"
 msgstr "Fișierul există"
 
-#: import_export/univcsvdialog.cpp:1550
+#: import_export/univcsvdialog.cpp:1565
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "Ștergerea fișierului existent nu a reușit. Fișierul poate fi blocat de un alt program."
 
-#: import_export/univcsvdialog.cpp:1551
+#: import_export/univcsvdialog.cpp:1566
 msgid "Destination file error"
 msgstr "Eroare a fișierului de destinație"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:788
+#: import_export/univcsvdialog.cpp:1574 mmSimpleDialogs.cpp:788
 msgid "Invalid Account"
 msgstr "Cont incorect"
 
-#: import_export/univcsvdialog.cpp:1700
+#: import_export/univcsvdialog.cpp:1725
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "Tranzacții exportate: %ld"
 
-#: import_export/univcsvdialog.cpp:2121
+#: import_export/univcsvdialog.cpp:2167
 #, c-format
 msgid "Preset '%s' will be deleted"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:544
+#: import_export/univcsvdialog.cpp:2200 stockdialog.cpp:544
 msgid "Choose CSV data file to import"
 msgstr "Alegeți fișierul CSV pentru import"
 
-#: import_export/univcsvdialog.cpp:2157
+#: import_export/univcsvdialog.cpp:2203
 msgid "Choose CSV data file to export"
 msgstr "Alegeți fișierul CSV pentru export"
 
-#: import_export/univcsvdialog.cpp:2160
+#: import_export/univcsvdialog.cpp:2206
 msgid "Choose XML data file to import"
 msgstr "Alegeți fișierul XML pentru import"
 
-#: import_export/univcsvdialog.cpp:2163
+#: import_export/univcsvdialog.cpp:2209
 msgid "Choose XML data file to export"
 msgstr "Alegeți fișierul XML pentru export"
 
-#: import_export/univcsvdialog.cpp:2171
+#: import_export/univcsvdialog.cpp:2217
 msgid "XML Files (*.xml)"
 msgstr "Fișiere XML (*.xml)"
 
-#: import_export/univcsvdialog.cpp:2171
+#: import_export/univcsvdialog.cpp:2217
 msgid "All Files"
 msgstr "Toate fişierele"
 
-#: import_export/univcsvdialog.cpp:2589
+#: import_export/univcsvdialog.cpp:2659
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr "Te rog, introdu cuvântul care indică valori pozitive în fişierul CSV, ex. 'credit'"
 
-#: import_export/univcsvdialog.cpp:2589
+#: import_export/univcsvdialog.cpp:2659
 msgid "Enter a value"
 msgstr "Introdu o valoare"
 
-#: import_export/univcsvdialog.cpp:2599
+#: import_export/univcsvdialog.cpp:2669
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr "Semnul sumei trebuie să fie definit de tip atunci când 'Tip' este selectat pentru import"
 
-#: import_export/univcsvdialog.cpp:2720 import_export/univcsvdialog.cpp:2731
-#: import_export/univcsvdialog.cpp:2747 import_export/univcsvdialog.cpp:2791
-#: import_export/univcsvdialog.cpp:2802
+#: import_export/univcsvdialog.cpp:2790 import_export/univcsvdialog.cpp:2801
+#: import_export/univcsvdialog.cpp:2817 import_export/univcsvdialog.cpp:2861
+#: import_export/univcsvdialog.cpp:2872
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
+#: import_export/univcsvdialog.cpp:2830 import_export/univcsvdialog.cpp:2851
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2792
+#: import_export/univcsvdialog.cpp:2862
 #, c-format
 msgid "Confirm format matches selection %s."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2819
+#: import_export/univcsvdialog.cpp:2889
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
 msgstr ""
