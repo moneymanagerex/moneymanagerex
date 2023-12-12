@@ -129,7 +129,15 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
 
     wxString buffer = "";
-    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
+    wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
+    // don't allow '/' in category name as it is reserved for the class/tag separator
+    categ.Replace("/", "-");
+    if (!full_tran.m_tags.empty())
+    {
+        categ.Append("/");
+        for (int i = 0; i < full_tran.m_tags.size(); i++)
+            categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
+    }
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     wxString payee = full_tran.PAYEENAME;
@@ -170,13 +178,24 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         buffer << "M" << notes << "\n";
     }
 
+    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
     for (const auto &split_entry : full_tran.m_splits)
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
+        wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
+        split_categ.Replace("/", "-");
+        Model_Taglink::Data_Set splitTags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(split_entry.SPLITTRANSID));
+        if (!splitTags.empty())
+        {
+            split_categ.Append("/");
+            for (int i = 0; i < splitTags.size(); i++)
+            {
+                split_categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(splitTags[i].TAGID)->TAGNAME);
+            }
+        }
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
         if (!split_entry.NOTES.IsEmpty())

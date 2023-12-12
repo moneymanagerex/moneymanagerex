@@ -37,14 +37,13 @@ class mmQIFImportDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmQIFImportDialog() {}
+    mmQIFImportDialog()
+    {
+    }
     mmQIFImportDialog(wxWindow* parent, int account_id, const wxString& file_path = wxEmptyString);
 
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Import from QIF file")
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("Import from QIF file"), const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize, long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     wxString OnGetItemText(long item, long column) const;
     int get_last_imported_acc();
@@ -70,25 +69,26 @@ private:
     int getOrCreateAccounts();
     void getOrCreatePayees();
     void getOrCreateCategories();
-    bool completeTransaction(std::unordered_map <int, wxString> &trx, const wxString &accName);
-    bool completeTransaction(/*in*/ const std::unordered_map <int, wxString> &i
-        , /*out*/ Model_Checking::Data* trx, wxString& msg);
+    bool completeTransaction(std::unordered_map<int, wxString>& trx, const wxString& accName);
+    bool completeTransaction(/*in*/ const std::unordered_map<int, wxString>& i, /*out*/ Model_Checking::Data* trx, wxString& msg);
     bool mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from);
-    void appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target);
-    void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
+    void appendTransfers(Model_Checking::Cache& destination, Model_Checking::Cache& target);
+    void joinSplit(Model_Checking::Cache& destination, std::vector<Model_Splittransaction::Cache>& target);
     void saveSplit();
     void refreshTabs(int tabs);
     void compilePayeeRegEx();
     void validatePayees();
 
-    //QIF paragraphs represented like maps type = data
-    std::vector <std::unordered_map <int, wxString> > vQIF_trxs_;
-    std::unordered_map <wxString, std::unordered_map <int, wxString> > m_QIFaccounts;
-    std::unordered_map <wxString, int> m_QIFaccountsID;
-    std::unordered_map <wxString, std::tuple<int, wxString, wxString>> m_QIFpayeeNames;
+    // QIF paragraphs represented like maps type = data
+    std::vector<std::unordered_map<int, wxString>> vQIF_trxs_;
+    std::unordered_map<wxString, std::unordered_map<int, wxString>> m_QIFaccounts;
+    std::unordered_map<wxString, int> m_QIFaccountsID;
+    std::unordered_map<wxString, std::tuple<int, wxString, wxString>> m_QIFpayeeNames;
     wxArrayString m_payee_names;
-    std::unordered_map <wxString, int> m_QIFcategoryNames;
-    std::vector <Model_Splittransaction::Cache> m_splitDataSets;
+    std::unordered_map<wxString, int> m_QIFcategoryNames;
+    std::vector<Model_Splittransaction::Cache> m_splitDataSets;
+    std::map<int, std::map<int, Model_Taglink::Cache>> m_splitTaglinks;
+    std::map<std::pair<int, int>, Model_Taglink::Cache> m_txnTaglinks;
 
     wxString m_accountNameStr;
     wxString m_dateFormatStr;
@@ -136,6 +136,7 @@ private:
         COL_PAYEE,
         COL_TYPE,
         COL_CATEGORY,
+        COL_TAGS,
         COL_VALUE,
         COL_NOTES,
         COL_MAX, // number of columns
