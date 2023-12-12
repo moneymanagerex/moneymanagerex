@@ -88,6 +88,7 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_PAYEE] = _("Payee");
     ColName_[COL_TYPE] = _("Type");
     ColName_[COL_CATEGORY] = _("Category");
+    ColName_[COL_TAGS] = _("Tags");
     ColName_[COL_VALUE] = _("Value");
     ColName_[COL_NOTES] = _("Notes");
 
