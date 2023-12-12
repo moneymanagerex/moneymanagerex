@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-12 10:44\n"
+"PO-Revision-Date: 2023-12-12 22:17\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3129,7 +3129,7 @@ msgstr "Nici un Cont selectat pentru export"
 
 #: import_export/qif_export.cpp:358
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "La o dată mai mică decât de la data"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
@@ -3190,7 +3190,7 @@ msgstr "Includeți câmpul pentru beneficiar în note"
 
 #: import_export/qif_import_gui.cpp:288 import_export/univcsvdialog.cpp:458
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "Model potrivit beneficiarilor"
 
 #: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:464
 msgid "Add match details to Notes"
