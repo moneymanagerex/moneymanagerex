@@ -52,7 +52,7 @@ public:
     void createHtml();
 
 public:
-    mmGUIFrame* m_frame;
+    mmGUIFrame* m_frame = nullptr;
 private:
     wxString GetHomePageText() const;
     wxWebView* browser_ = nullptr;
