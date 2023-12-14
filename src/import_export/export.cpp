@@ -130,14 +130,9 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
 
     wxString buffer = "";
     wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
-    // don't allow '/' in category name as it is reserved for the class/tag separator
-    categ.Replace("/", "-");
-    if (!full_tran.m_tags.empty())
-    {
-        categ.Append("/");
-        for (int i = 0; i < full_tran.m_tags.size(); i++)
-            categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
-    }
+    // Replace square brackets which are used to denote transfers in QIF
+    categ.Replace("[", "(");
+    categ.Replace("]", ")");
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     wxString payee = full_tran.PAYEENAME;
@@ -157,6 +152,15 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
             transNum = wxString::Format("#%i", full_tran.id());
+    }
+
+    // don't allow '/' in category name as it is reserved for the class/tag separator
+    categ.Replace("/", "-");
+    if (!full_tran.m_tags.empty())
+    {
+        categ.Append("/");
+        for (int i = 0; i < full_tran.m_tags.size(); i++)
+            categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
     }
 
     buffer << "D" << mmGetDateForDisplay(full_tran.TRANSDATE, dateMask) << "\n";

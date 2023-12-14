@@ -2042,8 +2042,7 @@ void mmUnivCSVDialog::update_preview()
                         return -1;
                     if (itemIndex1 > itemIndex2)
                         return 1;
-                    if (itemIndex1 == itemIndex2)
-                        return 0;
+                    return 0;
                 },
                 0);
         }
