@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-07-09 11:41:36.730232.
+ *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -147,7 +147,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     };
 
     /** Returns the column name as a string*/
-    static wxString column_to_name(COLUMN col)
+    static wxString column_to_name(const COLUMN col)
     {
         switch(col)
         {
@@ -189,7 +189,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
             return TRANSLINKID;
         }
 
-        void id(int id)
+        void id(const int id)
         {
             TRANSLINKID = id;
         }
@@ -213,7 +213,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
             return true;
         }
         
-        explicit Data(Self* table = 0) 
+        explicit Data(Self* table = nullptr ) 
         {
             table_ = table;
         
@@ -222,7 +222,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
             LINKRECORDID = -1;
         }
 
-        explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
+        explicit Data(wxSQLite3ResultSet& q, Self* table = nullptr )
         {
             table_ = table;
         
@@ -431,7 +431,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(int id, wxSQLite3Database* db)
+    bool remove(const int id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -502,12 +502,12 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(int id, wxSQLite3Database* db)
+    Self::Data* get(const int id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
             ++ skip_;
-            return 0;
+            return nullptr;
         }
 
         Index_By_Id::iterator it = index_by_id_.find(id);
@@ -518,7 +518,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         }
         
         ++ miss_;
-        Self::Data* entity = 0;
+        Self::Data* entity = nullptr;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
         try
         {
@@ -550,15 +550,15 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
             ++ skip_;
-            return 0;
+            return nullptr;
         }
 
-        Self::Data* entity = 0;
+        Self::Data* entity = nullptr;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
         try
         {
@@ -590,7 +590,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     * Return a list of Data records (Data_Set) derived directly from the database.
     * The Data_Set is sorted based on the column number.
     */
-    const Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
+    const Data_Set all(wxSQLite3Database* db, const COLUMN col = COLUMN(0), const bool asc = true)
     {
         Data_Set result;
         try
