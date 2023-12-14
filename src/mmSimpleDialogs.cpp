@@ -977,7 +977,8 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     panelHeight_ = textCtrl_->TextHeight(0) + 8;
     textOffset_ = 2;
     h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, textOffset_);
-    btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, wxWindowDC(this));
+    wxWindowDC dc(this);
+    btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, dc);
 #elif __WXGTK__
     panelHeight_ = std::max(textCtrl_->TextHeight(0) + 2, 34);
     textOffset_ = 8;
