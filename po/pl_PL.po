@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-16 20:51\n"
+"PO-Revision-Date: 2023-12-16 22:13\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4130,7 +4130,7 @@ msgstr "Powszechny błąd inwestorów: zapominanie o przeciwwadze."
 
 #: mmchecking_list.cpp:214
 msgid "Sort Order"
-msgstr "Sortuj po"
+msgstr "Kolejność sortowania"
 
 #: mmchecking_list.cpp:310
 msgid "Deleted On"
