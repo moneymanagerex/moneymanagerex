@@ -373,7 +373,7 @@ void mmCheckingPanel::CreateControls()
     infoPanel2->Add(m_header_credit, g_flagsH);
     itemBoxSizerVHeader->Add(infoPanel2, g_flagsBorder1V);
 
-    m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
+    m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), nullptr, this);
 
     /* ---------------------- */
 
@@ -467,8 +467,8 @@ void mmCheckingPanel::CreateControls()
         itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
         m_btnAttachment->Enable(false);
 
-        m_btnAttachment->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
-        m_btnNew->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), NULL, this);
+        m_btnAttachment->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), nullptr, this);
+        m_btnNew->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnButtonRightDown), nullptr, this);
     }
     else
     {
