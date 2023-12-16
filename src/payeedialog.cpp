@@ -704,7 +704,7 @@ void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
 
 void mmPayeeDialog::AddPayee()
 {
-    mmEditPayeeDialog dlg(this, NULL);
+    mmEditPayeeDialog dlg(this, nullptr);
     dlg.ShowModal();
     refreshRequested_ = true;
     fillControls();
