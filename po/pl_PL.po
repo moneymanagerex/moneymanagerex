@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-12 10:44\n"
+"PO-Revision-Date: 2023-12-16 13:51\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -321,7 +321,7 @@ msgstr "Nowe konto"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Otwórz ostatnio &używaną bazę danych"
 
 #: appstartdialog.cpp:103
 msgid "&New Database"
@@ -329,7 +329,7 @@ msgstr "&Nowa baza danych"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Utwórz nowy plik bazy danych aby zacząć od nowa"
+msgstr "Utwórz nowy plik bazy danych, aby rozpocząć"
 
 #: appstartdialog.cpp:107
 msgid "Open &Existing Database"
@@ -358,7 +358,7 @@ msgstr "Przeczytaj podręcznik użytkownika"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1806
 msgid "&Website"
-msgstr "Strona &internetowa"
+msgstr "&Strona internetowa"
 
 #: appstartdialog.cpp:120
 #, c-format
@@ -376,7 +376,7 @@ msgstr "&Zakończ "
 #: appstartdialog.cpp:155
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr "Otwórz poprzednio używaną bazę danych: %s"
+msgstr "Otwórz ostatnio używaną bazę danych: %s"
 
 #: appstartdialog.cpp:199 mmframe.cpp:1642 mmframe.cpp:3007
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -385,7 +385,7 @@ msgstr "Ustawienia domyślne"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Język interfejsu użytkownika"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3876 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -2640,11 +2640,11 @@ msgstr "Określ, jak raport powinien być pogrupowany"
 
 #: filtertransdialog.cpp:708 filtertransdialog.cpp:1862
 msgid "Combine Splits"
-msgstr ""
+msgstr "Złącz podzielone"
 
 #: filtertransdialog.cpp:711
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Pokaż podzielone transakcje jako pojedynczy wiersz"
 
 #: filtertransdialog.cpp:720
 msgid "Settings"
@@ -3391,14 +3391,15 @@ msgstr "Konto:"
 
 #: import_export/univcsvdialog.cpp:215
 msgid "Preset:"
-msgstr ""
+msgstr "Ustawienie:"
 
 #: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2641
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "Wczytaj to ustawienie, gdy konto to:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:270
 msgid "Specify the order of fields in the file"
@@ -3466,15 +3467,15 @@ msgstr "Wybierz plik CSV do eksportu"
 
 #: import_export/univcsvdialog.cpp:563
 msgid "Preset name"
-msgstr ""
+msgstr "Nazwa zapisanego ustawienia"
 
 #: import_export/univcsvdialog.cpp:564
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Zapisz aktualne ustawienia"
 
 #: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2169
 msgid "Delete Preset"
-msgstr ""
+msgstr "Usuń ustawienie"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "MMEX standard format"
@@ -3524,11 +3525,11 @@ msgstr "Pozytywne jeśli typ ma '%s'"
 
 #: import_export/univcsvdialog.cpp:1064
 msgid "Preset Name"
-msgstr ""
+msgstr "Nazwa ustawienia"
 
 #: import_export/univcsvdialog.cpp:1064
 msgid "Save Preset"
-msgstr ""
+msgstr "Zapisz ustawienie"
 
 #: import_export/univcsvdialog.cpp:1233
 msgid "Invalid Date."
@@ -3662,7 +3663,7 @@ msgstr "Wyeksportowano transakcji: %ld"
 #: import_export/univcsvdialog.cpp:2167
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Ustawienie '%s' zostanie usunięte"
 
 #: import_export/univcsvdialog.cpp:2200 stockdialog.cpp:544
 msgid "Choose CSV data file to import"
@@ -7112,7 +7113,7 @@ msgstr "Wykresy akcji"
 
 #: reports/transactions.cpp:197
 msgid "Rate"
-msgstr ""
+msgstr "Kurs"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
