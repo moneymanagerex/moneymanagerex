@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-16 16:05\n"
+"PO-Revision-Date: 2023-12-16 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1096,7 +1096,7 @@ msgstr "Użyj podziału kategorii"
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
-msgstr ""
+msgstr "Tagi"
 
 #: billsdepositsdialog.cpp:599 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
@@ -1312,7 +1312,7 @@ msgstr "Płatność"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX pozwala na ustawienie regularnych płatności jako transakcji. Transakcje te mogą być również regularnymi depozytami lub transferami, które będą miały miejsce w przyszłości. Te transakcje służą jako przypomnienie, że zdarzenie ma się pojawić, i pojawia się na stronie domowej na 14 dni przed terminem transakcji."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -3970,7 +3970,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:1536
 msgid "New tag entered"
-msgstr ""
+msgstr "Wprowadzono nowy tag"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
@@ -4865,11 +4865,11 @@ msgstr "Organizuj &kategorie..."
 
 #: mmframe.cpp:1701
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organizuj &tagi..."
 
 #: mmframe.cpp:1701 mmframe.cpp:1924 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Organizuj tagi"
 
 #: mmframe.cpp:1705
 msgid "Organize Curre&ncies..."
@@ -4893,7 +4893,7 @@ msgstr ""
 
 #: mmframe.cpp:1715
 msgid "&Tags..."
-msgstr ""
+msgstr "&Tagi..."
 
 #: mmframe.cpp:1716 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
@@ -4965,7 +4965,7 @@ msgstr "&Opcje...\tCtrl-,"
 
 #: mmframe.cpp:1771
 msgid "Options"
-msgstr ""
+msgstr "Opcje"
 
 #: mmframe.cpp:1778
 msgid "Convert Encrypted &DB..."
@@ -4993,7 +4993,7 @@ msgstr "Optymalizuj bazę danych i wydajność"
 
 #: mmframe.cpp:1787
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Sprawdzanie i &debugowanie bazy danych..."
 
 #: mmframe.cpp:1788
 msgid "Generate database report or fix errors"
@@ -5013,7 +5013,7 @@ msgstr "&Pomoc\tF1"
 
 #: mmframe.cpp:1801
 msgid "Show Help"
-msgstr ""
+msgstr "Pokaż okno pomocy"
 
 #: mmframe.cpp:1807
 msgid "Open MMEX website for the latest news, updates etc"
@@ -5213,7 +5213,7 @@ msgstr "Pobierz kursy"
 
 #: mmframe.cpp:1946
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Pobierz kursy walut i akcji"
 
 #: mmframe.cpp:1949
 msgid "Toggle Fullscreen\tF11"
@@ -5225,7 +5225,7 @@ msgstr "&Drukuj"
 
 #: mmframe.cpp:1952
 msgid "Print"
-msgstr ""
+msgstr "Drukuj"
 
 #: mmframe.cpp:2009
 #, c-format
@@ -5356,19 +5356,19 @@ msgstr ""
 
 #: mmframe.cpp:2415
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Wynik kontroli integralności bazy danych:"
 
 #: mmframe.cpp:2415
 msgid "Database Check"
-msgstr ""
+msgstr "Sprawdzanie bazy danych"
 
 #: mmframe.cpp:2428
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
-msgstr ""
+msgstr "Użyj tej funkcji tylko na żądanie wsparcia MMEX, gdy otrzymałeś plik debugowania .mmdbg"
 
 #: mmframe.cpp:2429
 msgid "Database Debug"
-msgstr ""
+msgstr "Debugowanie bazy danych"
 
 #: mmframe.cpp:2448 mmframe.cpp:2469
 msgid "Save database file as"
