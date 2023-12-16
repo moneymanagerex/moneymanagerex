@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-16 17:27\n"
+"PO-Revision-Date: 2023-12-16 18:23\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -673,7 +673,7 @@ msgstr "Łącznie: %s"
 #: assetspanel.cpp:666
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Zmiana wartości: %1$s %2$s"
 
 #: assetspanel.cpp:782
 msgid "This asset does not have its own account\n\n"
@@ -730,7 +730,7 @@ msgstr "Organizuj załączniki | %s | %i"
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Organizuj załączniki | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
@@ -1521,7 +1521,7 @@ msgstr "miesiąc: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Data rozpoczęcia: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1672,7 +1672,7 @@ msgstr "Wybierz obecnie zaznaczoną kategorię jako kategorię dla transakcji"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Nazwa zawiera separator kategorii."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
@@ -1692,7 +1692,7 @@ msgstr "Dodaj kategorię"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Kategoria o tej samej nazwie istnieje dla nadrzędnej"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
@@ -1716,7 +1716,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Czy na pewno chcesz przenieść\n"
+" \"%1$s\"\n"
+"do:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -1737,7 +1740,8 @@ msgstr ""
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Wskazówka: Przenieś wszystkie transakcje używające tej kategorii do\n"
+"innej kategorii używając komendy scalania:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
@@ -1746,7 +1750,7 @@ msgstr ""
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Narzędzia → Scal → Kategorie"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
@@ -1783,7 +1787,7 @@ msgstr "Organizuj kategorie: Błąd edycji"
 
 #: categdialog.cpp:682 mmframe.cpp:3730
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Scalanie kategorii zakończone"
 
 #: categdialog.cpp:683 mmframe.cpp:3731 mmframe.cpp:3746 mmframe.cpp:3762
 #: payeedialog.cpp:834
@@ -1793,7 +1797,7 @@ msgstr "Zapisy w bazie danych zostały uaktualnione: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3733
 msgid "Merge categories result"
-msgstr ""
+msgstr "Wynik scalania kategorii"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -2949,12 +2953,12 @@ msgstr "Struktura informacji JSON w szablonie '%s' nie może zostać przekształ
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "Plik '%1$s' brakujący lub nieprawidłowy w wybranym motywie '%2$s'"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Brakuje metadanej '%1$s' w wybranym motywie '%2$s'"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -3251,7 +3255,7 @@ msgstr "Brakujące"
 #: import_export/qif_import_gui.cpp:787 import_export/univcsvdialog.cpp:2071
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Dopasowano do %1$s według wzoru %2$s"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
@@ -3288,7 +3292,7 @@ msgstr "Importowanie kategorii"
 #: import_export/qif_import_gui.cpp:1076
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Importowanie transakcji %1$i z %2$i"
 
 #: import_export/qif_import_gui.cpp:1163
 msgid "Importing Transfers"
@@ -3323,7 +3327,7 @@ msgstr "Brak kodu transakcji"
 #: import_export/qif_import_gui.cpp:1338
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s dopasowane przez %2$s"
 
 #: import_export/qif_import_gui.cpp:1350
 msgid "Transaction Payee is missing or incorrect"
@@ -3504,7 +3508,7 @@ msgstr "Eksport pliku"
 #: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2648
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Ustawienie '%1$s' załadowane, ponieważ wybrano konto '%2$s'"
 
 #: import_export/univcsvdialog.cpp:738
 #, c-format
@@ -3706,12 +3710,12 @@ msgstr "Znak wartości musi być zdefiniowany przez typ, gdy wybrano 'Typ' dla i
 #: import_export/univcsvdialog.cpp:2872
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "Wartość %1$s dla pola niestandardowego '%2$s' nie jest typem %3$s."
 
 #: import_export/univcsvdialog.cpp:2830 import_export/univcsvdialog.cpp:2851
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "Wartość %1$s dla %2$s pola niestandardowego '%3$s' nie jest prawidłowym wyborem."
 
 #: import_export/univcsvdialog.cpp:2862
 #, c-format
@@ -3721,7 +3725,7 @@ msgstr "Potwierdź, że format pasuje do %s."
 #: import_export/univcsvdialog.cpp:2889
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "Wartość %1$s nie pasuje do regex %2$s dla pola niestandardowego '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3807,12 +3811,13 @@ msgstr "Wybór waluty bazowej"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "Znaleziono stawki historyczne dla %1$s, ale opcja \"Użyj historii walut\" jest wyłączona:\n"
+"kliknij nie i włącz ją lub kliknij tak, aby usunąć wszystkie historyczne kursy dla %2$s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Opcje historii walut: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3966,7 +3971,7 @@ msgstr "Domyślnym operatorem pomiędzy kolejnymi tagami jest I, użyj '|' aby z
 #: mmSimpleDialogs.cpp:1536
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Utworzyć nowy tag '%s'?"
 
 #: mmSimpleDialogs.cpp:1536
 msgid "New tag entered"
@@ -4024,7 +4029,7 @@ msgstr "Porada: MMEX wspiera wydruk wszystkich raportów. Opcje wydruku są dost
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "Wskazówka: Możesz zmodyfikować niektóre zachowania MMEX poprzez zmianę ustawień w Opcjach."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4424,7 +4429,7 @@ msgstr "Usunięte transakcje"
 #: mmcheckingpanel.cpp:517
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Widok konta: %s"
 
 #: mmcheckingpanel.cpp:536
 msgid "Account Bal: "
@@ -4485,7 +4490,8 @@ msgstr "Wielokrotnego wyboru"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "Nie można zapisać pola niestandardowego \"%1$s\":\n"
+"wartość \"%2$s\" nie pasuje do weryfikacji RegEx \"%3$s\""
 
 #: mmcustomdata.cpp:787
 msgid "CustomField validation error"
@@ -4657,7 +4663,7 @@ msgstr "&Otwórz stronę www konta"
 
 #: mmframe.cpp:1471 mmframe.cpp:1671
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Zmień typ konta..."
 
 #: mmframe.cpp:1489 mmframe.cpp:1665
 msgid "&New Account..."
@@ -4837,7 +4843,7 @@ msgstr "Otwórz pulpit"
 
 #: mmframe.cpp:1671
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Zmień typ konta"
 
 #: mmframe.cpp:1674
 msgid "Delete Account from database"
@@ -4881,7 +4887,7 @@ msgstr "&Kategorie..."
 
 #: mmframe.cpp:1710 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Scal kategorie"
 
 #: mmframe.cpp:1712
 msgid "&Payees..."
@@ -4889,7 +4895,7 @@ msgstr "&Beneficjentów..."
 
 #: mmframe.cpp:1713 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Scal beneficjentów"
 
 #: mmframe.cpp:1715
 msgid "&Tags..."
@@ -4897,15 +4903,15 @@ msgstr "&Tagi..."
 
 #: mmframe.cpp:1716 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Scal tagi"
 
 #: mmframe.cpp:1718
 msgid "&Merge"
-msgstr ""
+msgstr "&Scal"
 
 #: mmframe.cpp:1719
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Scal kategorie, beneficjentów i tagi"
 
 #: mmframe.cpp:1730
 msgid "&Budget Setup..."
@@ -5333,7 +5339,7 @@ msgstr "Proszę potwierdź swoje hasło"
 
 #: mmframe.cpp:2356
 msgid "Password change completed"
-msgstr ""
+msgstr "Zmiana hasła ukończona"
 
 #: mmframe.cpp:2360
 msgid "Confirm password failed."
@@ -5352,7 +5358,9 @@ msgstr "Optymalizacja bazy danych"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "Zakończono optymalizację bazy!\n\n"
+"Wielkość przed: %1$s\n"
+"Wielkość po: %2$s\n"
 
 #: mmframe.cpp:2415
 msgid "Result of database integrity check:"
@@ -5452,7 +5460,7 @@ msgstr "Proszę czekać..."
 #: mmframe.cpp:3492 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s na %2$s"
 
 #: mmframe.cpp:3509
 msgid "No account available to edit!"
@@ -5815,19 +5823,19 @@ msgstr "Transakcja"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr "Konto bankowe"
+msgstr "KontoBankowe"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr "Transakcja cykliczna"
+msgstr "TransakcjaCykliczna"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "PodziałTransakcji"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "PodziałTransakcjiPowtarzanej"
 
 #: model/Model_Billsdeposits.cpp:300
 msgid "A scheduled transaction will exceed your account limit.\n\n"
@@ -6096,12 +6104,13 @@ msgstr "Ustaw walutę"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Sets the database default Currency using 'Organize Currencies'"
-msgstr ""
+msgstr "Ustawia domyślną walutę bazy danych w oknie 'Organizuj Waluty'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Organize Currencies | Edit'"
-msgstr ""
+msgstr "Format pobrany z języka.\n"
+"Pozostaw pusty, aby ustawić ręcznie format w oknie 'Organizuj waluty' -> 'Edytuj'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6170,7 +6179,7 @@ msgstr "Błędna nazwa ustawień regionalnych"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Ostatnie N dni"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6663,7 +6672,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
 msgid "Merge"
-msgstr ""
+msgstr "Scal"
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
 #: relocatetagdialog.cpp:153
@@ -6975,23 +6984,23 @@ msgstr "bieżący miesiąc do dziś"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Poprzedni miesiąc"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 miesiąc do daty"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 miesiąc do daty"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Ostatnie 3 miesiące"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Ostatnie 12 miesięcy"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -7003,7 +7012,7 @@ msgstr "bieżący rok do dziś"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Poprzedni rok"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -7015,7 +7024,7 @@ msgstr "bieżący rok finansowy do dziś"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Poprzedni rok finansowy"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7023,7 +7032,7 @@ msgstr "własny"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 rok do daty"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7031,11 +7040,11 @@ msgstr "od dzisiaj"
 
 #: reports/mmDateRange.cpp:311
 msgid "Since 1 Month Ago"
-msgstr ""
+msgstr "Od 1 miesiąca"
 
 #: reports/mmDateRange.cpp:320
 msgid "Since 3 Months Ago"
-msgstr ""
+msgstr "Od 3 miesięcy"
 
 #: reports/mmDateRange.cpp:328
 msgid "Since Start of This Year"
@@ -7545,23 +7554,23 @@ msgstr "Symbol: %s"
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
-msgstr ""
+msgstr "Dodaj nowy tag"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Edytuj nazwę istniejącego tagu"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Usuń istniejący tag. Tag nie może być używany przez istniejące transakcje."
 
 #: tagdialog.cpp:142
 msgid "Select"
-msgstr ""
+msgstr "Wybierz"
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
-msgstr ""
+msgstr "Nieprawidłowa nazwa tagu"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
@@ -7569,7 +7578,7 @@ msgstr ""
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Organize Tags: Invalid Name"
-msgstr ""
+msgstr "Organizuj tagi: Nieprawidłowa nazwa"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7577,15 +7586,15 @@ msgstr ""
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Nazwy tagów nie mogą zawierać znaku spacji (' ')"
 
 #: tagdialog.cpp:206
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Wprowadź nazwę nowego tagu:"
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
-msgstr ""
+msgstr "Dodaj tag"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
@@ -7593,37 +7602,37 @@ msgstr ""
 
 #: tagdialog.cpp:218
 msgid "Organize Tags: Adding Error"
-msgstr ""
+msgstr "Organizuj tagi: Błąd dodawania"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
-msgstr ""
+msgstr "Edytuj tag"
 
 #: tagdialog.cpp:254
 msgid "Organize Tags: Editing Error"
-msgstr ""
+msgstr "Organizuj tagi: Błąd edycji"
 
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Tag '%s' jest w użyciu"
 
 #: tagdialog.cpp:295
 msgid "Organize Tags: Delete Error"
-msgstr ""
+msgstr "Organizuj tagi: Błąd usuwania"
 
 #: tagdialog.cpp:298
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Istnieją transakcje usunięte, które używają tagu '%s'."
 
 #: tagdialog.cpp:299
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Usunięcie tagu spowoduje również automatyczne wyczyszczenie powiązanych usuniętych transakcji."
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "Potwierdź usunięcie tagu"
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
