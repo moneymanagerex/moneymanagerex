@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-16 18:23\n"
+"PO-Revision-Date: 2023-12-16 19:45\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Zakupy akcji na tym koncie już istnieją przed tą datą"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Zaplanowane transakcje dla tego konta są zaplanowane przed tą datą."
 
 #: accountdialog.h:41 mmframe.cpp:1665 mmframe.cpp:1917
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
@@ -791,7 +791,7 @@ msgstr "Zał."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Ten katalog i jego pliki są automatycznie zarządzane przez MMEX."
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -895,19 +895,19 @@ msgstr "Codziennie"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "Za (n) dni"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "Za (n) miesięcy"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Co (n) dni"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Co (n) miesięcy"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -919,19 +919,19 @@ msgstr "Miesięcznie (ostatni dzień roboczy)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Duplikuj zaplanowaną transakcję"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Edytuj zaplanowaną transakcję"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Wprowadź zaplanowaną transakcję"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Szczegóły zaplanowanej transakcji"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
@@ -1045,7 +1045,7 @@ msgstr "Konto"
 
 #: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Określ konto, które będzie właścicielem zaplanowanej transakcji"
 
 #: billsdepositsdialog.cpp:554 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1122,7 +1122,7 @@ msgstr "Kolory użytkownika"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organizuj załączniki tej zaplanowanej transakcji"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:654
 #: filtertransdialog.cpp:1019 filtertransdialog.cpp:1814
@@ -1252,7 +1252,7 @@ msgstr "Podziel transakcję"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nowa zaplanowana transakcja"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1321,7 +1321,7 @@ msgstr "Porada: Te transakcje mogą być aktywowane w przyszłości - pozwalają
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:773
 #: mmframe.cpp:3165 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Zaplanowane transakcje"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:457
 msgid "D&uplicate "
@@ -1329,7 +1329,7 @@ msgstr "D&uplikuj"
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Usuń zaplanowaną transakcję"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1337,7 +1337,7 @@ msgstr "&Wstaw"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Wprowadź następne zaplanowane wystąpienie transakcji"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1345,7 +1345,7 @@ msgstr "Pomiń"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Pomiń następne zaplanowane wystąpienie transakcji"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1357,19 +1357,19 @@ msgstr "Pomiń następne wystąpienie"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nowa zaplanowana transakcja..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Edytuj zaplanowaną transakcję..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "&Duplikuj zaplanowaną transakcję..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Usuń zaplanowaną transakcję..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1418,7 +1418,7 @@ msgstr[3] "%d dni zaległości!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć zaplanowaną transakcję?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1676,7 +1676,7 @@ msgstr "Nazwa zawiera separator kategorii."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Znak dwukropka (:) jest używany do oddzielania kategorii i podkategorii i dlatego nie powinien być używany w nazwie"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
@@ -1700,11 +1700,11 @@ msgstr "Organizuj kategorie: Błąd dodawania"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Nie możesz przenieść podkategorii do kategorii, która ma już podkategorię o tej nazwie. Przed przeniesieniem należy rozważyć zmianę nazwy podkategorii."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Podkategoria o tej nazwie już istnieje"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1735,7 +1735,7 @@ msgstr "Kategoria jest używana."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Podkategoria jest używana."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1746,7 +1746,8 @@ msgstr "Wskazówka: Przenieś wszystkie transakcje używające tej kategorii do\
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Wskazówka: Przenieś wszystkie transakcje używające tej podkategorii do\n"
+"innej kategorii używając polecenia scalania:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
@@ -2586,7 +2587,7 @@ msgstr "Zakres dat"
 
 #: filtertransdialog.cpp:576 filtertransdialog.cpp:1727
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Uwzględnij wszystkie podkategorie"
 
 #: filtertransdialog.cpp:607 filtertransdialog.cpp:1462
 #: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:113
@@ -2931,7 +2932,7 @@ msgstr "Nowy raport %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Raport o tej nazwie już istnieje"
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
@@ -2948,7 +2949,7 @@ msgstr "Parametry:"
 #: images_list.cpp:325
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr "Struktura informacji JSON w szablonie '%s' nie może zostać przekształcona ponieważ wygląda na źle skontruowaną lub ustawioną. Proszę poprawić."
+msgstr "Metadana JSON w motywie '%s' nie może zostać zanalizowana, ponieważ wygląda na źle skonstruowaną. Proszę poprawić."
 
 #: images_list.cpp:413
 #, c-format
@@ -2967,7 +2968,7 @@ msgstr "i wiecej..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "W wybranym motywie brakuje lub jest niepoprawnych %1$d ikon '%2$s':%3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -4017,11 +4018,11 @@ msgstr "Porada: Plik .mmb nie jest zaszyfrowany. Oznacza to, że każdy, kto wie
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "Wskazówka: Aby oznaczyć transakcję jako uzgodnioną, wybierz transakcję i naciśnij klawisz \"R\". Aby oznaczyć transakcję jako nieuzgodnioną, wybierz transakcję i naciśnij klawisz \"U\"."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Wskazówka: Aby oznaczyć transakcję jako 'do wyjaśnienia', wybierz transakcję i naciśnij klawisz „F”."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4041,11 +4042,11 @@ msgstr "Porada: Jeżeli masz konta w różnych walutach, ustaw kurs wymiany walu
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Wskazówka na temat organizacji kategorii: Naciśnięcie klawisza „H” przejdzie przez wszystkie kategorie zaczynające się od litery h."
 
 #: mmTips.h:35
 msgid "Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Wskazówka na temat organizacji kategorii: Naciśnięcie 2 klawiszy spowoduje przejście przez wszystkie kategorie zaczynające się od tej kombinacji klawiszy. Przykład: Naciśnięcie do wybierze Domowe potrzeby, Dom, Domowe podatki, itp…"
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4198,7 +4199,7 @@ msgstr "Pokaż podział kategorii"
 
 #: mmchecking_list.cpp:497
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "Utwórz zaplanowaną &transakcję..."
 
 #: mmchecking_list.cpp:501
 msgid "&Restore selected transaction..."
@@ -4376,27 +4377,27 @@ msgstr "Wybierz konto docelowe"
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Wynika to z niektórych elementów transakcji lub szczegółów konta, które nie pozwalają na przeniesienie"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "Przeniesiono"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "Nie przeniesiono"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Niektóre transakcje nie mogły zostać przeniesione"
 
 #: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Zaplanowana transakcja zapisana."
 
 #: mmcheckingpanel.cpp:442
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "Usuń wszystkie zaznaczone transakcje"
 
 #: mmcheckingpanel.cpp:446 mmframe.cpp:1920 transdialog.cpp:183
 msgid "New Transaction"
@@ -4404,7 +4405,7 @@ msgstr "Nowa transakcja"
 
 #: mmcheckingpanel.cpp:450
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "Edytuj wszystkie zaznaczone transakcje"
 
 #: mmcheckingpanel.cpp:458
 msgid "Duplicate selected transaction"
@@ -4919,7 +4920,7 @@ msgstr "Edytor &budżetu..."
 
 #: mmframe.cpp:1734
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "Transakcje &zaplanowane"
 
 #: mmframe.cpp:1734
 msgid "Bills && Deposits"
@@ -5007,7 +5008,7 @@ msgstr "Generowanie raportu z bazy danych lub naprawa błędów"
 
 #: mmframe.cpp:1793
 msgid "&Database"
-msgstr ""
+msgstr "Baza &danych"
 
 #: mmframe.cpp:1794
 msgid "Database management"
@@ -5023,7 +5024,7 @@ msgstr "Pokaż okno pomocy"
 
 #: mmframe.cpp:1807
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Otwórz stronę MMEX dla najnowszych wiadomości, aktualizacji itp."
 
 #: mmframe.cpp:1809
 msgid "&Facebook"
@@ -5091,7 +5092,7 @@ msgstr "Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić bł
 
 #: mmframe.cpp:1826
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX dla &Androida"
 
 #: mmframe.cpp:1827
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5482,36 +5483,37 @@ msgstr "Wybierz konto do usunięcia"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć\n"
+"konto typu %1$s o nazwie %2$s?"
 
 #: mmframe.cpp:3557
 msgid "Select account"
-msgstr ""
+msgstr "Wybierz konto"
 
 #: mmframe.cpp:3557 mmframe.cpp:3580
 msgid "Change Account Type"
-msgstr ""
+msgstr "Zmień typ konta"
 
 #: mmframe.cpp:3579
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Wybierz nowy typ konta dla %s"
 
 #: mmframe.cpp:3745 payeedialog.cpp:833
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Scalanie beneficjentów zakończone"
 
 #: mmframe.cpp:3749 payeedialog.cpp:837
 msgid "Merge payees result"
-msgstr ""
+msgstr "Wynik scalania beneficjentów"
 
 #: mmframe.cpp:3761
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Scalanie tagów zakończone"
 
 #: mmframe.cpp:3765
 msgid "Merge tags result"
-msgstr ""
+msgstr "Wynik scalania tagów"
 
 #: mmframe.cpp:3841
 #, c-format
@@ -5844,7 +5846,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Zaplanowana transakcja przekroczy limit twojego konta.\n\n"
+"Konto: %1$s\n"
+"Bieżące saldo: %1$6.2f\n"
+"Kwota transakcji: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Czy chcesz kontynuować?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5856,7 +5863,7 @@ msgstr "Limit kredytowy"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "Sprawdzanie zaplanowanej transakcji MMEX"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -5915,7 +5922,9 @@ msgstr "Szablon jest pusty"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "Skrypt SQL:\n"
+"%s\n"
+"zmodyfikuje bazę danych! Przerwano!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6605,7 +6614,7 @@ msgstr "Wprowadź dowolny ciąg, aby dopasować tego beneficjenta podczas import
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Beneficjent o tej nazwie już istnieje"
 
 #: payeedialog.cpp:454
 msgid "Match Pattern"
@@ -6617,15 +6626,16 @@ msgstr "Beneficjent jest w użyciu."
 
 #: payeedialog.cpp:741
 msgid "It will be not removed"
-msgstr ""
+msgstr "Nie zostanie usunięty"
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "Wskazówka: Przenieś wszystkie transakcje używające tego beneficjenta do\n"
+"innego beneficjenta używając polecenia scalania:"
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Narzędzia → Scal → Beneficjentów"
 
 #: payeedialog.cpp:746
 msgid "Organize Payees: Delete Error"
@@ -6657,17 +6667,17 @@ msgstr "Przenieś beneficjentów"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Usuń kategorię źródłową po scaleniu (jeżeli kategoria źródłowa nie ma podkategorii)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
 msgid "Source:"
-msgstr ""
+msgstr "Źródłowy/a:"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
+msgstr "Docelowy/a:"
 
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
@@ -6678,7 +6688,7 @@ msgstr "Scal"
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "Z %1$s do %2$s"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
@@ -6687,7 +6697,7 @@ msgstr "Proszę potwierdzić:"
 
 #: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Potwierdzenie scalenia kategorii"
 
 #: relocatecategorydialog.cpp:255 relocatepayeedialog.cpp:208
 #: relocatetagdialog.cpp:202
@@ -6704,17 +6714,17 @@ msgstr "Wpisy znaleziono w dzielonych transakcjach: %i"
 #: relocatetagdialog.cpp:204
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Wpisy znalezione w zaplanowanych transakcjach: %i"
 
 #: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Wpisy znalezione w zaplanowanych podzielonych transakcjach: %i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "Wpisy znalezione jako domyślna kategoria beneficjenta: %i"
 
 #: relocatecategorydialog.cpp:260
 #, c-format
@@ -6723,19 +6733,19 @@ msgstr "Zapis znaleziony w budżecie: %i"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Usuń źródłowego beneficjenta po scaleniu"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Potwierdzenie scalania beneficjentów"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Usuń źródłowy tag po scaleniu"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Potwierdzenie scalania tagów"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6864,10 +6874,10 @@ msgstr "Proszę, postępuj zgodnie z tymi instrukcjami przed zgłoszeniem nowego
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$s (%2$i miesiąc)"
+msgstr[1] "%1$s (%2$i miesiące)"
+msgstr[2] "%1$s (%2$i miesięcy)"
+msgstr[3] "%1$s (%2$i miesięcy)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6927,12 +6937,12 @@ msgstr "Prognoza"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Raport wygenerowany %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "Od %1$s do %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7574,7 +7584,7 @@ msgstr "Nieprawidłowa nazwa tagu"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "Nazwy tagów nie mogą być znakami '&' lub '|', ponieważ są one zarezerwowane dla operatorów filtrów"
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Organize Tags: Invalid Name"
@@ -7582,7 +7592,7 @@ msgstr "Organizuj tagi: Nieprawidłowa nazwa"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Nazwa zawiera separator tagów."
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
@@ -7598,7 +7608,7 @@ msgstr "Dodaj tag"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Tag o tej nazwie już istnieje"
 
 #: tagdialog.cpp:218
 msgid "Organize Tags: Adding Error"
@@ -7680,19 +7690,19 @@ msgstr "Dołącz"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Wynika to z niektórych elementów transakcji lub szczegółów konta, które nie pozwalają na aktualizację"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Zaktualizowano"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Nie zaktualizowano"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Niektóre transakcje nie mogły zostać zaktualizowane"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7956,7 +7966,7 @@ msgstr "Wersja: %s"
 #: util.cpp:1445
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Zbudowano: %1$s %2$s"
 
 #: util.cpp:1446
 #, c-format
@@ -7966,7 +7976,7 @@ msgstr "Wersja bazy danych: %d"
 #: util.cpp:1453
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Zatwierdzenie Git: %1$s (%2$s)"
 
 #: util.cpp:1456
 #, c-format
@@ -7988,20 +7998,20 @@ msgstr "Działający na:"
 #: util.cpp:1510
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Język systemu: %s"
 
 #: util.cpp:1511
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Język interfejsu użytkownika: %s"
 
 #: util.cpp:1748
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "Pełna lista zamkniętych problemów jest dostępna pod tym linkiem"
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Skopiuj cały tekst do schowka"
 
 #: util.h:192
 msgid "January"
@@ -8204,7 +8214,7 @@ msgstr "Nieprawidłowa nazwa konta"
 
 #: wizard_newaccount.cpp:94
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Konto o tej nazwie już istnieje"
 
 #: wizard_newaccount.cpp:108
 msgid "Name of the Account"
@@ -8291,7 +8301,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Określ walutę bazową (lub domyślną) do użycia w bazie danych.\n"
+"Waluta bazowa może być później zmieniona w Opcjach.\n"
+"Nowe konta będą używać tej waluty domyślnie\n"
+"i mogą być ona zmieniona podczas edycji konta."
 
 #: wizard_newdb.cpp:124
 msgid "(Optional) Specify a title or your name."
