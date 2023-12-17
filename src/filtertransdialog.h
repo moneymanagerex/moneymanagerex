@@ -159,7 +159,7 @@ private:
     void OnShowColumnsButton(wxCommandEvent& /*event*/);
     void OnMoreFields(wxCommandEvent& event);
     void OnChoice(wxCommandEvent& event);
-    void OnMenuSelected(wxCommandEvent& event);
+    void OnMenuSelected(wxCommandEvent&);
     void OnQuit(wxCloseEvent& event);
 
 private:

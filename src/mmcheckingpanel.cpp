@@ -64,11 +64,9 @@ wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id)
-    : m_listCtrlAccount()
-    , m_AccountID(accountID)
+    : m_AccountID(accountID)
     , isAllAccounts_((-1 == accountID) ? true : false)
     , isTrash_((-2 == accountID) ? true : false)
-    , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
     Create(parent, id);
@@ -183,7 +181,7 @@ void mmCheckingPanel::filterTable()
             int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(tran, splits);
             if (!txnMatch)
                 continue;
-            else expandSplits = txnMatch < full_tran.m_splits.size() + 1;
+            else expandSplits = txnMatch < static_cast<int>(full_tran.m_splits.size()) + 1;
         }
         else
         {
@@ -820,11 +818,9 @@ void mmCheckingPanel::initFilterSettings()
     }
 
     if (j_doc.HasMember("FILTER")) {
-        Value::MemberIterator v_name = j_doc.FindMember("FILTER");
         j_doc["FILTER"].SetString(item.mb_str(), j_doc.GetAllocator());
     }
-    else
-    {
+    else {
         auto& allocator = j_doc.GetAllocator();
         rapidjson::Value value(item.mb_str(), allocator);
         j_doc.AddMember("FILTER", value, allocator);
