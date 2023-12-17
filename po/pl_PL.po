@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-16 22:13\n"
+"PO-Revision-Date: 2023-12-17 14:15\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1316,7 +1316,7 @@ msgstr "MMEX pozwala na ustawienie regularnych płatności jako transakcji. Tran
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr "Porada: Te transakcje mogą być aktywowane w przyszłości - pozwalając użytkownikowi wybrać dowolną wartość daty realizacji."
+msgstr "Wskazówka: Te transakcje mogą być aktywowane w przyszłości - pozwalając użytkownikowi wybrać dowolną wartość daty realizacji."
 
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:773
 #: mmframe.cpp:3165 mmhomepagepanel.cpp:243
@@ -4010,11 +4010,11 @@ msgstr "Zalecenie: Użyj 'kopiuj' (Ctrl+C) i 'wklej' (Ctrl+V) do często używan
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr "Porada: Pamiętaj o wykonywaniu kopii swojego pliku .mmb."
+msgstr "Wskazówka: Pamiętaj o wykonywaniu kopii swojego pliku .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr "Porada: Plik .mmb nie jest zaszyfrowany. Oznacza to, że każdy, kto wie jak to zrobić, może odczytać jego zawartość. Upewnij się więc, że plik z Twoimi poufnymi danymi finansowymi jest dobrze zabezpieczony."
+msgstr "Wskazówka: Plik .mmb nie jest zaszyfrowany. Oznacza to, że każdy, kto wie jak to zrobić, może odczytać jego zawartość. Upewnij się więc, że plik z Twoimi poufnymi danymi finansowymi jest dobrze zabezpieczony."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4026,7 +4026,7 @@ msgstr "Wskazówka: Aby oznaczyć transakcję jako 'do wyjaśnienia', wybierz tr
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "Porada: MMEX wspiera wydruk wszystkich raportów. Opcje wydruku są dostępne w menu Plik → Drukuj."
+msgstr "Wskazówka: MMEX wspiera wydruk wszystkich raportów. Opcje wydruku są dostępne w menu Plik → Drukuj."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
@@ -4034,11 +4034,11 @@ msgstr "Wskazówka: Możesz zmodyfikować niektóre zachowania MMEX poprzez zmia
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "Porada: W celu wydruku stanu konta tylko z wybranymi pozycjami, użyj kryteriów w filtrze transakcji do wyboru żądanych pozycji, a następnie dokonaj wydruku z menu."
+msgstr "Wskazówka: W celu wydruku stanu konta tylko z wybranymi pozycjami, użyj kryteriów w filtrze transakcji do wyboru żądanych pozycji, a następnie dokonaj wydruku z menu."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Porada: Jeżeli masz konta w różnych walutach, ustaw kurs wymiany walut."
+msgstr "Wskazówka: Jeżeli masz konta w różnych walutach, ustaw kurs wymiany walut."
 
 #: mmTips.h:34
 msgid "Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."
