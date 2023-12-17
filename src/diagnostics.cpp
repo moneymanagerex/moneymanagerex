@@ -149,7 +149,7 @@ void mmDiagnosticsDialog::RefreshView()
     m_diagPanel->SetPage(hb.getHTMLText());
 }
 
-void mmDiagnosticsDialog::OnOk(wxCommandEvent& event)
+void mmDiagnosticsDialog::OnOk(wxCommandEvent&)
 {
     EndModal(wxID_OK);
 }
