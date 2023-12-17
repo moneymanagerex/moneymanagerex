@@ -56,11 +56,11 @@ private:
     int sourcePayeeID_;
     int destPayeeID_ = -1;
 
-    mmComboBoxUsedPayee* cbSourcePayee_;
-    mmComboBoxPayee* cbDestPayee_;
+    mmComboBoxUsedPayee* cbSourcePayee_ = nullptr;
+    mmComboBoxPayee* cbDestPayee_ = nullptr;
     int m_changed_records = 0;
     wxStaticText* m_info = nullptr;
-    wxCheckBox* cbDeleteSourcePayee_;
+    wxCheckBox* cbDeleteSourcePayee_ = nullptr;
     wxDECLARE_EVENT_TABLE();
 };
 

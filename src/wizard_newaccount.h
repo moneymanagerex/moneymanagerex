@@ -48,8 +48,8 @@ public:
     void processPage(wxWizardEvent& event);
 
 private:
-    mmAddAccountWizard* parent_;
-    wxTextCtrl* textAccountName_;
+    mmAddAccountWizard* parent_ = nullptr;
+    wxTextCtrl* textAccountName_ = nullptr;
 
     wxDECLARE_EVENT_TABLE();
 };
@@ -62,8 +62,8 @@ public:
     virtual bool TransferDataFromWindow();
 
 private:
-    wxChoice* itemChoiceType_;
-    mmAddAccountWizard* parent_;
+    wxChoice* itemChoiceType_ = nullptr;
+    mmAddAccountWizard* parent_ = nullptr;
 };
 
 //----------------------------------------------------------------------------

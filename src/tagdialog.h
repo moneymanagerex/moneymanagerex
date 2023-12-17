@@ -64,12 +64,12 @@ private:
     void setSelectedItem(int index);
     void setSelectedString(const wxString& name);
 
-    wxSearchCtrl* searchCtrl_;
+    wxSearchCtrl* searchCtrl_ = nullptr;
     wxString searchText_;
-    wxListBoxBase* tagListBox_;
-    wxButton* buttonEdit_;
-    wxButton* buttonAdd_;
-    wxButton* buttonDelete_;
+    wxListBoxBase* tagListBox_ = nullptr;
+    wxButton* buttonEdit_ = nullptr;
+    wxButton* buttonAdd_ = nullptr;
+    wxButton* buttonDelete_ = nullptr;
     bool isSelection_;
     wxArrayString tagList_;
     wxArrayString selectedTags_;

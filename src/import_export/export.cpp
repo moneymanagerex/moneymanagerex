@@ -129,7 +129,10 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
 
     wxString buffer = "";
-    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
+    wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
+    // Replace square brackets which are used to denote transfers in QIF
+    categ.Replace("[", "(");
+    categ.Replace("]", ")");
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     wxString payee = full_tran.PAYEENAME;
@@ -151,6 +154,15 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
             transNum = wxString::Format("#%i", full_tran.id());
     }
 
+    // don't allow '/' in category name as it is reserved for the class/tag separator
+    categ.Replace("/", "-");
+    if (!full_tran.m_tags.empty())
+    {
+        categ.Append("/");
+        for (int i = 0; i < full_tran.m_tags.size(); i++)
+            categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
+    }
+
     buffer << "D" << mmGetDateForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
     buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
     double value = Model_Checking::balance(full_tran
@@ -170,13 +182,24 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         buffer << "M" << notes << "\n";
     }
 
+    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
     for (const auto &split_entry : full_tran.m_splits)
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
+        wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
+        split_categ.Replace("/", "-");
+        Model_Taglink::Data_Set splitTags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(split_entry.SPLITTRANSID));
+        if (!splitTags.empty())
+        {
+            split_categ.Append("/");
+            for (int i = 0; i < splitTags.size(); i++)
+            {
+                split_categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(splitTags[i].TAGID)->TAGNAME);
+            }
+        }
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
         if (!split_entry.NOTES.IsEmpty())
@@ -344,6 +367,26 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     json_writer.EndArray();
 }
 
+void mmExportTransaction::getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allTags4Export)
+{
+    json_writer.Key("TAGS");
+    json_writer.StartArray();
+    for (const auto& tagID : allTags4Export)
+    {
+        Model_Tag::Data* tag = Model_Tag::instance().get(tagID);
+        if (tag)
+        {
+            json_writer.StartObject();
+            json_writer.Key("ID");
+            json_writer.Int(tag->TAGID);
+            json_writer.Key("NAME");
+            json_writer.String(tag->TAGNAME.utf8_str());
+            json_writer.EndObject();
+        }
+    }
+    json_writer.EndArray();
+}
+
 void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
 {
     json_writer.Key("CATEGORIES");
@@ -367,6 +410,12 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     json_writer.StartObject();
     full_tran.as_json(json_writer);
 
+    json_writer.Key("TAGS");
+    json_writer.StartArray();
+    for (const auto& tag : full_tran.m_tags)
+        json_writer.Int(tag.TAGID);
+    json_writer.EndArray();
+
     if (!full_tran.m_splits.empty()) {
         json_writer.Key("DIVISION");
         json_writer.StartArray();
@@ -382,6 +431,11 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             json_writer.Int(split_entry.CATEGID);
             json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
+            json_writer.Key("TAGS");
+            json_writer.StartArray();
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split_entry.SPLITTRANSID))
+                json_writer.Int(tag.second);
+            json_writer.EndArray();
             json_writer.EndObject();
 
         }

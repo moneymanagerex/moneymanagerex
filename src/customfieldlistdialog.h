@@ -51,7 +51,7 @@ private:
         MENU_UPDATE_FIELD,
     };
 
-    wxDataViewListCtrl* fieldListBox_;
+    wxDataViewListCtrl* fieldListBox_ = nullptr;
 
     int m_field_id = -1;
     mmCustomFieldListDialog() {}

@@ -57,11 +57,11 @@ private:
     int destTagID_ = -1;
     wxArrayString choices_;
 
-    wxComboBox* cbSourceTag_;
-    wxComboBox* cbDestTag_;
+    wxComboBox* cbSourceTag_ = nullptr;
+    wxComboBox* cbDestTag_ = nullptr;
     int m_changed_records = 0;
     wxStaticText* m_info = nullptr;
-    wxCheckBox* cbDeleteSourceTag_;
+    wxCheckBox* cbDeleteSourceTag_ = nullptr;
     wxDECLARE_EVENT_TABLE();
 };
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-11-12 02:19+0300\n"
-"PO-Revision-Date: 2023-11-12 00:05\n"
+"POT-Creation-Date: 2023-12-12 13:41+0300\n"
+"PO-Revision-Date: 2023-12-12 10:44\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "License agreement"
 msgstr "라이선스 동의서"
 
-#: aboutdialog.cpp:181 mmframe.cpp:1952
+#: aboutdialog.cpp:181 mmframe.cpp:1955
 msgid "About"
 msgstr "정보"
 
@@ -56,20 +56,20 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "MMEX 사용에 대한 데이터를 익명으로 보낼 수 있습니다."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
-#: assetdialog.cpp:283 attachmentdialog.cpp:152 billsdepositsdialog.cpp:670
+#: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:645
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
-#: customfieldeditdialog.cpp:203 filtertransdialog.cpp:751
-#: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:364
-#: mmSimpleDialogs.cpp:886 optiondialog.cpp:160 payeedialog.cpp:158
-#: payeedialog.cpp:601 sharetransactiondialog.cpp:344
+#: customfieldeditdialog.cpp:194 filtertransdialog.cpp:751
+#: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:366
+#: mmSimpleDialogs.cpp:865 optiondialog.cpp:160 payeedialog.cpp:158
+#: payeedialog.cpp:594 sharetransactiondialog.cpp:321
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
-#: wizard_update.cpp:215
+#: wizard_update.cpp:214
 msgid "&OK "
 msgstr "확인(&O) "
 
-#: accountdialog.cpp:95 mmframe.cpp:1665
+#: accountdialog.cpp:95 mmframe.cpp:1668
 msgid "Edit Account"
 msgstr "계정 편집"
 
@@ -85,7 +85,7 @@ msgstr "계정의 이름을 입력하세요. 계정 이름은 언제든지 수�
 msgid "Account Type:"
 msgstr "계정 유형:"
 
-#: accountdialog.cpp:136 wizard_newaccount.cpp:129
+#: accountdialog.cpp:136 wizard_newaccount.cpp:128
 msgid "Specify the type of account to be created."
 msgstr "생성될 계정의 유형을 선택하세요."
 
@@ -114,8 +114,8 @@ msgstr "시작 날짜:"
 msgid "The date when the account was opened"
 msgstr "계정 사용이 시작되는 날짜입니다."
 
-#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:580
-#: import_export/univcsvdialog.cpp:2567
+#: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
+#: import_export/univcsvdialog.cpp:2637
 msgid "Currency:"
 msgstr "통화:"
 
@@ -136,16 +136,16 @@ msgid "Select whether this is an account that is used often. This is used to fil
 msgstr "자주 사용하는 계정인지 선택하세요. 이것은 계정 표시 보기를 필터링하는 데 사용됩니다."
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
-#: billsdepositsdialog.cpp:648 billsdepositspanel.cpp:146
-#: budgetentrydialog.cpp:144 budgetingpanel.cpp:297 filtertrans.cpp:198
+#: billsdepositsdialog.cpp:623 billsdepositspanel.cpp:146
+#: budgetentrydialog.cpp:144 budgetingpanel.cpp:296 filtertrans.cpp:198
 #: filtertransdialog.cpp:641 filtertransdialog.cpp:1807
-#: import_export/qif_export.cpp:617 import_export/qif_import_gui.cpp:92
-#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:305
-#: payeedialog.cpp:115 payeedialog.cpp:460 reports/transactions.cpp:198
-#: sharetransactiondialog.cpp:289 splittransactionsdialog.cpp:94
-#: splittransactionsdialog.cpp:354 stockdialog.cpp:260 stocks_list.cpp:100
+#: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:93
+#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:307
+#: payeedialog.cpp:115 payeedialog.cpp:453 reports/transactions.cpp:198
+#: sharetransactiondialog.cpp:266 splittransactionsdialog.cpp:94
+#: splittransactionsdialog.cpp:354 stockdialog.cpp:247 stocks_list.cpp:100
 #: transactionsupdatedialog.cpp:241 transdialog.cpp:570
-#: usertransactionpanel.cpp:186 webappdialog.cpp:145
+#: usertransactionpanel.cpp:181 webappdialog.cpp:145
 msgid "Notes"
 msgstr "노트"
 
@@ -235,11 +235,11 @@ msgstr "최소 잔액:"
 msgid "Account balance lower limit. Zero to disable"
 msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0으로 설정"
 
-#: accountdialog.cpp:250 mmchecking_list.cpp:301
+#: accountdialog.cpp:250 mmchecking_list.cpp:303
 msgid "Credit"
 msgstr "신용"
 
-#: accountdialog.cpp:258
+#: accountdialog.cpp:258 mmcheckingpanel.cpp:548
 msgid "Credit Limit:"
 msgstr "신용 한도:"
 
@@ -276,8 +276,8 @@ msgstr "이미지 #%i"
 msgid "Account Name "
 msgstr "계정 이름 "
 
-#: accountdialog.cpp:501 import_export/qif_export.cpp:615
-#: import_export/qif_import_gui.cpp:244 import_export/univcsvdialog.cpp:106
+#: accountdialog.cpp:501 import_export/qif_export.cpp:633
+#: import_export/qif_import_gui.cpp:246 import_export/univcsvdialog.cpp:106
 #: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:293
 #: reports/htmlbuilder.cpp:243
 msgid "Currency"
@@ -296,9 +296,9 @@ msgid "Opening date cannot be in the future"
 msgstr "개시 날짜는 미래일 수 없습니다"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
-#: accountdialog.cpp:536 billsdepositsdialog.cpp:1069
-#: billsdepositsdialog.cpp:1072 stockdialog.cpp:427 transdialog.cpp:644
-#: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:566
+#: accountdialog.cpp:536 billsdepositsdialog.cpp:1044
+#: billsdepositsdialog.cpp:1047 stockdialog.cpp:414 transdialog.cpp:644
+#: transdialog.cpp:718 usertransactionpanel.cpp:451 webapp.cpp:566
 msgid "Invalid Date"
 msgstr "잘못된 날짜"
 
@@ -314,8 +314,8 @@ msgstr "이 계정의 주식 매입은 이 날짜 이전에 이미 존재합니�
 msgid "Scheduled transactions for this account are scheduled before this date."
 msgstr ""
 
-#: accountdialog.h:41 mmframe.cpp:1662 mmframe.cpp:1914
-#: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:167
+#: accountdialog.h:41 mmframe.cpp:1665 mmframe.cpp:1917
+#: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
 msgid "New Account"
 msgstr "계정 만들기"
 
@@ -339,11 +339,11 @@ msgstr "기존 데이터 베이스 열기(&E)"
 msgid "Open an already created database file with extension (*.mmb)"
 msgstr "확장자(*.mmb)로 이미 생성된 데이터베이스 파일을 열기"
 
-#: appstartdialog.cpp:111 mmframe.cpp:1633
+#: appstartdialog.cpp:111 mmframe.cpp:1636
 msgid "User Interface &Language"
 msgstr "사용자 인터페이스 언어(&L)"
 
-#: appstartdialog.cpp:112 appstartdialog.cpp:212 mmframe.cpp:1634
+#: appstartdialog.cpp:112 appstartdialog.cpp:212 mmframe.cpp:1637
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
 msgstr "사용자 인터페이스 언어 변경"
@@ -356,7 +356,7 @@ msgstr "사용자 설명서(&U)"
 msgid "Read the user manual"
 msgstr "사용자 설명서를 읽어보세요"
 
-#: appstartdialog.cpp:119 mmframe.cpp:1803
+#: appstartdialog.cpp:119 mmframe.cpp:1806
 msgid "&Website"
 msgstr "웹사이트(&W)"
 
@@ -365,7 +365,7 @@ msgstr "웹사이트(&W)"
 msgid "Visit the %s website"
 msgstr "%s 웹사이트 방문"
 
-#: appstartdialog.cpp:128 wizard_update.cpp:209
+#: appstartdialog.cpp:128 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
 msgstr "시작 시 대화 상자 표시(&S)"
 
@@ -378,7 +378,7 @@ msgstr "종료(&X) "
 msgid "Open the previously opened database : %s"
 msgstr "이전에 열었던 데이터베이스 열기: %s"
 
-#: appstartdialog.cpp:199 mmframe.cpp:1639 mmframe.cpp:3004
+#: appstartdialog.cpp:199 mmframe.cpp:1642 mmframe.cpp:3007
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr "시스템 기본값"
@@ -387,23 +387,23 @@ msgstr "시스템 기본값"
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:220 mmframe.cpp:3873 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:220 mmframe.cpp:3876 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "이 응용 프로그램의 언어가 변경되었습니다. 변경 사항은 응용 프로그램이 다음번에 시작될 때 적용됩니다."
 
-#: appstartdialog.cpp:222 mmframe.cpp:3875 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:222 mmframe.cpp:3878 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr "언어 변경"
 
-#: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:474
+#: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:471
 msgid "New Asset"
 msgstr "자산 생성"
 
-#: assetdialog.cpp:54 assetspanel.cpp:488
+#: assetdialog.cpp:54 assetspanel.cpp:485
 msgid "Edit Asset"
 msgstr "자산 편집"
 
-#: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:478
+#: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:475
 msgid "Add Asset Transaction"
 msgstr "자산 거래 추가"
 
@@ -415,11 +415,11 @@ msgstr "자산 거래 편집"
 msgid "Asset Details"
 msgstr "자산 세부정보"
 
-#: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:143
-#: customfieldlistdialog.cpp:54 import_export/qif_import_gui.cpp:242
-#: import_export/qif_import_gui.cpp:255 import_export/qif_import_gui.cpp:265
-#: import_export/univcsvdialog.cpp:507 import_export/univcsvdialog.cpp:517
-#: maincurrencydialog.cpp:76 payeedialog.cpp:454 reports/summarystocks.cpp:117
+#: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
+#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
+#: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
+#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
+#: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "이름"
 
@@ -429,15 +429,15 @@ msgstr "자산의 이름을 입력하세요"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:190
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:905
-#: import_export/qif_export.cpp:608 import_export/qif_import_gui.cpp:86
+#: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:86
 #: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
-#: maincurrencydialog.cpp:270 mmchecking_list.cpp:273
+#: maincurrencydialog.cpp:270 mmchecking_list.cpp:275
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:287
 #: reports/cashflow.cpp:416 reports/incexpenses.cpp:244 reports/summary.cpp:297
-#: reports/transactions.cpp:188 stockdialog.cpp:293 stockdialog.cpp:647
+#: reports/transactions.cpp:188 stockdialog.cpp:280 stockdialog.cpp:634
 #: stockspanel.cpp:212 transactionsupdatedialog.cpp:130 transdialog.cpp:427
-#: usertransactionpanel.cpp:90 webapp.cpp:563 webappdialog.cpp:138
-#: wizard_update.cpp:141
+#: usertransactionpanel.cpp:85 webapp.cpp:563 webappdialog.cpp:138
+#: wizard_update.cpp:140
 msgid "Date"
 msgstr "날짜"
 
@@ -453,7 +453,7 @@ msgstr "자산 종류"
 msgid "Select type of asset"
 msgstr "자산 유형 선택"
 
-#: assetdialog.cpp:200 import_export/qif_import_gui.cpp:91
+#: assetdialog.cpp:200 import_export/qif_import_gui.cpp:92
 #: maincurrencydialog.cpp:280
 msgid "Value"
 msgstr "값"
@@ -490,15 +490,15 @@ msgstr "자산과 관련된 내용 입력"
 msgid "New Transaction Details"
 msgstr "거래 세부 정보 만들기"
 
-#: assetdialog.cpp:249 sharetransactiondialog.cpp:315
+#: assetdialog.cpp:249 sharetransactiondialog.cpp:292
 msgid "Edit Transaction Details"
 msgstr "거래 세부 정보 편집"
 
-#: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:345
+#: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:322
 msgid "&Cancel "
 msgstr "취소(&C) "
 
-#: assetdialog.cpp:386 sharetransactiondialog.cpp:438
+#: assetdialog.cpp:386 sharetransactiondialog.cpp:415
 msgid "Invalid Transaction"
 msgstr "유효하지 않은 거래"
 
@@ -509,29 +509,29 @@ msgstr "자산 계정을 찾을 수 없습니다.\n\n"
 "생성하시겠습니까?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:188
-#: import_export/qif_export.cpp:607 import_export/univcsvdialog.cpp:99
-#: mmchecking_list.cpp:271 reports/transactions.cpp:186 stocks_list.cpp:87
+#: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:99
+#: mmchecking_list.cpp:273 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
 msgstr "ID"
 
-#: assetspanel.cpp:62 billsdepositsdialog.cpp:542 billsdepositspanel.cpp:139
-#: customfieldlistdialog.cpp:55 filtertrans.cpp:196 filtertransdialog.cpp:52
+#: assetspanel.cpp:62 billsdepositsdialog.cpp:517 billsdepositspanel.cpp:139
+#: customfieldlistdialog.cpp:54 filtertrans.cpp:196 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:602 filtertransdialog.cpp:972
 #: filtertransdialog.cpp:1753 import_export/qif_export.cpp:134
-#: import_export/qif_export.cpp:610 import_export/qif_import_gui.cpp:89
-#: import_export/qif_import_gui.cpp:243 import_export/univcsvdialog.cpp:102
-#: maincurrencydialog.cpp:263 mmhomepage.cpp:430 reports/incexpenses.cpp:108
+#: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
+#: import_export/qif_import_gui.cpp:245 import_export/univcsvdialog.cpp:102
+#: maincurrencydialog.cpp:263 mmhomepage.cpp:425 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:195 transactionsupdatedialog.cpp:153
-#: transdialog.cpp:464 usertransactionpanel.cpp:120 webappdialog.cpp:141
+#: transdialog.cpp:464 usertransactionpanel.cpp:115 webappdialog.cpp:141
 msgid "Type"
 msgstr "유형"
 
-#: assetspanel.cpp:63 mmhomepage.cpp:591 reports/summarystocks.cpp:121
+#: assetspanel.cpp:63 mmhomepage.cpp:586 reports/summarystocks.cpp:116
 msgid "Initial Value"
 msgstr "초기 값"
 
-#: assetspanel.cpp:64 mmhomepage.cpp:592 reports/summarystocks.cpp:126
-#: stockdialog.cpp:255
+#: assetspanel.cpp:64 mmhomepage.cpp:587 reports/summarystocks.cpp:121
+#: stockdialog.cpp:242
 msgid "Current Value"
 msgstr "현재 값"
 
@@ -563,8 +563,8 @@ msgstr "자산 편집(&E)..."
 msgid "&Delete Asset..."
 msgstr "자산 삭제(&D)..."
 
-#: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:491
-#: mmframe.cpp:1453 mmframe.cpp:1473 stocks_list.cpp:146
+#: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:493
+#: mmframe.cpp:1456 mmframe.cpp:1476 stocks_list.cpp:146
 msgid "&Organize Attachments..."
 msgstr "첨부 파일 구성(&O)..."
 
@@ -576,271 +576,271 @@ msgstr "자산을 삭제하시겠습니까?"
 msgid "Confirm Asset Deletion"
 msgstr "자산 삭제 확인"
 
-#: assetspanel.cpp:392
+#: assetspanel.cpp:389
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX를 사용하면 자동차, 집, 토지 등의 고정 자산을 추적할 수 있습니다. 각 자산은 연간 일정 비율로 가치 상승, 연간 일정 비율로 가치 하락 또는 가치 변동이 없을 수 있습니다. 총 자산은 총 재무 가치에 추가됩니다."
 
-#: assetspanel.cpp:422 assetspanel.h:108 general_report_manager.cpp:1039
-#: mmframe.cpp:488 mmframe.cpp:768 mmframe.cpp:1735 mmframe.cpp:3414
-#: mmhomepage.cpp:542 mmhomepage.cpp:590 mmhomepagepanel.cpp:238
+#: assetspanel.cpp:419 assetspanel.h:108 general_report_manager.cpp:1030
+#: mmframe.cpp:488 mmframe.cpp:769 mmframe.cpp:1738 mmframe.cpp:3417
+#: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:237
 #: reports/summary.cpp:268 reports/summary.cpp:306
 msgid "Assets"
 msgstr "자산"
 
-#: assetspanel.cpp:431 assetspanel.cpp:708 assetspanel.cpp:725
+#: assetspanel.cpp:428 assetspanel.cpp:705 assetspanel.cpp:722
 #: filtertransdialog.cpp:527 filtertransdialog.cpp:827
 #: filtertransdialog.cpp:2096 import_export/qif_export.cpp:75
 #: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
-#: mmframe.cpp:1497
+#: mmframe.cpp:1500
 msgid "All"
 msgstr "전체"
 
-#: assetspanel.cpp:473 billsdepositspanel.cpp:294 mmcheckingpanel.cpp:441
+#: assetspanel.cpp:470 billsdepositspanel.cpp:294 mmcheckingpanel.cpp:445
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr "생성(&N) "
 
-#: assetspanel.cpp:477 stockspanel.cpp:136
+#: assetspanel.cpp:474 stockspanel.cpp:136
 msgid "&Add Trans "
 msgstr "거래 추가(&A) "
 
-#: assetspanel.cpp:482 stockspanel.cpp:141
+#: assetspanel.cpp:479 stockspanel.cpp:141
 msgid "&View Trans "
 msgstr "거래 보기(&V) "
 
-#: assetspanel.cpp:483
+#: assetspanel.cpp:480
 msgid "View Asset Transactions"
 msgstr "자산 거래 보기"
 
-#: assetspanel.cpp:487 attachmentdialog.cpp:357 billsdepositspanel.cpp:298
-#: categdialog.cpp:317 customfieldlistdialog.cpp:263 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:445 payeedialog.cpp:890 stockspanel.cpp:146
+#: assetspanel.cpp:484 attachmentdialog.cpp:356 billsdepositspanel.cpp:298
+#: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
+#: mmcheckingpanel.cpp:449 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
 msgstr "편집(&E) "
 
-#: assetspanel.cpp:492 billsdepositspanel.cpp:308 budgetyeardialog.cpp:103
-#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmchecking_list.cpp:616
-#: mmcheckingpanel.cpp:437 stockdialog.cpp:334 stockspanel.cpp:151
+#: assetspanel.cpp:489 billsdepositspanel.cpp:308 budgetyeardialog.cpp:103
+#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmchecking_list.cpp:618
+#: mmcheckingpanel.cpp:441 stockdialog.cpp:321 stockspanel.cpp:151
 #: tagdialog.cpp:133
 msgid "&Delete "
 msgstr "삭제(&D) "
 
-#: assetspanel.cpp:493
+#: assetspanel.cpp:490
 msgid "Delete Asset"
 msgstr "자산 삭제"
 
-#: assetspanel.cpp:500 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:462
+#: assetspanel.cpp:497 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:466
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr "첨부 파일 열기"
 
-#: assetspanel.cpp:507 assetspanel.cpp:508 categdialog.cpp:302
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:484 payeedialog.cpp:597
+#: assetspanel.cpp:504 assetspanel.cpp:505 categdialog.cpp:302
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:488 payeedialog.cpp:590
 #: tagdialog.cpp:113
 msgid "Search"
 msgstr "검색"
 
-#: assetspanel.cpp:511
+#: assetspanel.cpp:508
 msgid "Enter any string to find related assets"
 msgstr "관련 자산을 찾으려면 문자열을 입력하십시오"
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:647 mmcheckingpanel.cpp:488
+#: assetspanel.cpp:509 filtertransdialog.cpp:647 mmcheckingpanel.cpp:492
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "팁: 검색 기준에 와일드카드 문자 - 물음표(?), 별표(*) - 를 사용할 수 있습니다."
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:648 mmcheckingpanel.cpp:489
+#: assetspanel.cpp:510 filtertransdialog.cpp:648 mmcheckingpanel.cpp:493
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "물음표(?)를 사용하여 단일 문자를 찾습니다. 예를 들어 s?t는 'sat' 및 'set'을 찾습니다."
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:649 mmcheckingpanel.cpp:490
+#: assetspanel.cpp:511 filtertransdialog.cpp:649 mmcheckingpanel.cpp:494
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "별표(*)를 사용하여 임의의 문자를 찾을 수 있습니다. 예를 들어 s*d는 'sad'와 'started'를 찾을 수 있습니다."
 
-#: assetspanel.cpp:515 filtertransdialog.cpp:650 mmcheckingpanel.cpp:491
+#: assetspanel.cpp:512 filtertransdialog.cpp:650 mmcheckingpanel.cpp:495
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "문장 중간에 있는 모든 문자열을 찾으려면 별표(*)를 앞에 사용하세요."
 
-#: assetspanel.cpp:586 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
 msgid "Total: %s"
 msgstr "합계: %s"
 
-#: assetspanel.cpp:669
+#: assetspanel.cpp:666
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr ""
 
-#: assetspanel.cpp:785
+#: assetspanel.cpp:782
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr "이 자산에는 자체 계정이 없습니다\n\n"
 "이 자산에 대해 여러 번의 거래는 수행하지 않는 것이 좋습니다."
 
-#: assetspanel.cpp:787
+#: assetspanel.cpp:784
 msgid "Asset Management"
 msgstr "자산 관리"
 
-#: assetspanel.cpp:806
+#: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
 msgstr "계정 \t 날짜\t   값\n\n"
 
-#: attachmentdialog.cpp:56 general_report_manager.cpp:444
+#: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
 msgstr "설명"
 
-#: attachmentdialog.cpp:57 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:197
+#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
+#: import_export/univcsvdialog.cpp:198
 msgid "File"
 msgstr "파일"
 
-#: attachmentdialog.cpp:65
+#: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
 msgstr "첨부 파일 폴더가 정의되지 않았습니다."
 
-#: attachmentdialog.cpp:66
+#: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Options → Attachments"
 msgstr "도구 → 옵션 → 첨부 파일에서 설정하십시오"
 
-#: attachmentdialog.cpp:67
+#: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
 msgstr "첨부 파일 폴더가 정의되지 않음"
 
-#: attachmentdialog.cpp:71
+#: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
 msgstr "첨부 파일 폴더를 찾을 수 없음:"
 
-#: attachmentdialog.cpp:74
+#: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
 msgstr "위 경로가 올바른지 확인하십시오"
 
-#: attachmentdialog.cpp:75
+#: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
 msgstr "첨부 파일 폴더를 찾을 수 없음"
 
-#: attachmentdialog.cpp:115
+#: attachmentdialog.cpp:114
 #, c-format
 msgid "Organize Attachments | %s | %i"
 msgstr "첨부 파일 구성 | %s | %i"
 
-#: attachmentdialog.cpp:117
+#: attachmentdialog.cpp:116
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
 msgstr ""
 
-#: attachmentdialog.cpp:119
+#: attachmentdialog.cpp:118
 #, c-format
 msgid "Organize Attachments | New %s"
 msgstr "첨부 파일 구성 | 신규 %s"
 
-#: attachmentdialog.cpp:159 customfieldlistdialog.cpp:100 payeedialog.cpp:591
+#: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
 msgstr "기타 도구"
 
-#: attachmentdialog.cpp:191
+#: attachmentdialog.cpp:190
 msgid "Import attachment:"
 msgstr "첨부 파일 가져오기:"
 
-#: attachmentdialog.cpp:202
+#: attachmentdialog.cpp:201
 msgid "Enter a description for the new attachment:"
 msgstr "새 첨부 파일에 대한 설명을 입력:"
 
-#: attachmentdialog.cpp:203
+#: attachmentdialog.cpp:202
 msgid "Organize Attachments: Add Attachment"
 msgstr "첨부 파일 구성: 첨부 파일 추가"
 
-#: attachmentdialog.cpp:249
+#: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
 msgstr "첨부 파일에 대한 설명을 입력:"
 
-#: attachmentdialog.cpp:250
+#: attachmentdialog.cpp:249
 msgid "Organize Attachments: Edit Attachment"
 msgstr "첨부 파일 구성: 첨부 파일 편집"
 
-#: attachmentdialog.cpp:277
+#: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
 msgstr "첨부 파일을 삭제하시겠습니까?"
 
-#: attachmentdialog.cpp:278
+#: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
 msgstr "첨부 파일 삭제 확인"
 
-#: attachmentdialog.cpp:354 categdialog.cpp:313 customfieldlistdialog.cpp:261
-#: import_export/univcsvdialog.cpp:307 maincurrencydialog.cpp:539
-#: payeedialog.cpp:889 stockdialog.cpp:336 tagdialog.cpp:124
+#: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
+#: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
+#: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "추가(&A)"
 
-#: attachmentdialog.cpp:356
+#: attachmentdialog.cpp:355
 msgid "&Open "
 msgstr "열기(&O)"
 
-#: attachmentdialog.cpp:359 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:311 maincurrencydialog.cpp:541
-#: payeedialog.cpp:892
+#: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
+#: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:541
+#: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "제거(&R)"
 
-#: attachmentdialog.cpp:401
+#: attachmentdialog.cpp:400
 msgid "Att."
 msgstr "첨부."
 
-#: attachmentdialog.cpp:408
+#: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
 msgstr ""
 
-#: attachmentdialog.cpp:410
+#: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
 msgstr "디렉터리 및 파일을 임의로 제거, 이름 변경 또는 수정하지 마십시오."
 
-#: attachmentdialog.cpp:455 attachmentdialog.cpp:463
+#: attachmentdialog.cpp:454 attachmentdialog.cpp:462
 msgid "Destination file already exist:"
 msgstr "대상 파일이 이미 있음:"
 
-#: attachmentdialog.cpp:458
+#: attachmentdialog.cpp:457
 msgid "File not found in attachments. Please delete or rename it."
 msgstr "첨부에서 파일을 찾을 수 없습니다. 삭제하거나 이름을 변경하십시오."
 
-#: attachmentdialog.cpp:459 attachmentdialog.cpp:467
+#: attachmentdialog.cpp:458 attachmentdialog.cpp:466
 msgid "Destination file already exist"
 msgstr "대상 파일이 이미 있음"
 
-#: attachmentdialog.cpp:466
+#: attachmentdialog.cpp:465
 msgid "File already found in attachments"
 msgstr "첨부에 이미 있는 파일"
 
-#: attachmentdialog.cpp:509
+#: attachmentdialog.cpp:508
 msgid "Attachment not found:"
 msgstr "첨부 파일을 찾을 수 없음:"
 
-#: attachmentdialog.cpp:512
+#: attachmentdialog.cpp:511
 msgid "Do you want to continue and delete attachment on database?"
 msgstr "데이터베이스에서 첨부 파일을 계속 삭제하시겠습니까?"
 
-#: attachmentdialog.cpp:513
+#: attachmentdialog.cpp:512
 msgid "Delete attachment failed"
 msgstr "첨부 파일 삭제 실패"
 
-#: attachmentdialog.cpp:526 general_report_manager.cpp:673
+#: attachmentdialog.cpp:525 general_report_manager.cpp:664
 msgid "Unable to open file:"
 msgstr "파일을 열 수 없음:"
 
-#: attachmentdialog.cpp:529
+#: attachmentdialog.cpp:528
 msgid "Please verify that file exists and user has rights to read it."
 msgstr "파일이 존재하고 사용자가 파일 읽기 권한이 있는지 확인하십시오."
 
-#: attachmentdialog.cpp:530
+#: attachmentdialog.cpp:529
 msgid "Open attachment failed"
 msgstr "첨부 파일 열기 실패"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:612 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:593 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
-#: reports/reportbase.cpp:211
+#: reports/reportbase.cpp:203
 msgid "None"
 msgstr "없음"
 
@@ -917,245 +917,246 @@ msgstr "매월 (마지막 날)"
 msgid "Monthly (last business day)"
 msgstr "월별 (마지막 영업일)"
 
-#: billsdepositsdialog.cpp:331 billsdepositspanel.cpp:304
+#: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:333 billsdepositspanel.cpp:299
+#: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:338
+#: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:432
+#: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
 msgstr ""
 
-#: billsdepositsdialog.cpp:446
+#: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
 msgstr "청구서 또는 예금의 만기일을 지정"
 
-#: billsdepositsdialog.cpp:447 billsdepositspanel.cpp:133
+#: billsdepositsdialog.cpp:422 billsdepositspanel.cpp:133
 msgid "Date Due"
 msgstr "마감일"
 
-#: billsdepositsdialog.cpp:452 billsdepositsdialog.cpp:1312
+#: billsdepositsdialog.cpp:427 billsdepositsdialog.cpp:1287
 msgid "Repeats"
 msgstr "반복"
 
-#: billsdepositsdialog.cpp:458
+#: billsdepositsdialog.cpp:433
 msgid "Back to the last occurring date with the specified values"
 msgstr "지정된 값을 사용하여 마지막 발생 날짜로 돌아가기"
 
-#: billsdepositsdialog.cpp:465
+#: billsdepositsdialog.cpp:440
 msgid "Advance the next occurring date with the specified values"
 msgstr "지정된 값으로 다음 발생 날짜를 앞당깁니다"
 
-#: billsdepositsdialog.cpp:476 billsdepositsdialog.cpp:1354
+#: billsdepositsdialog.cpp:451 billsdepositsdialog.cpp:1329
 msgid "Payments Left"
 msgstr "남은 횟수"
 
-#: billsdepositsdialog.cpp:490
+#: billsdepositsdialog.cpp:465
 msgid "Request user to enter payment"
 msgstr "사용자에게 지불 입력 요청"
 
-#: billsdepositsdialog.cpp:491
+#: billsdepositsdialog.cpp:466
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "사용자가 '지불 날짜'에 이 거래를 입력하도록 요청했습니다"
 
-#: billsdepositsdialog.cpp:494
+#: billsdepositsdialog.cpp:469
 msgid "Grant automatic execute"
 msgstr "자동 실행 허용"
 
-#: billsdepositsdialog.cpp:495
+#: billsdepositsdialog.cpp:470
 msgid "The requested payment will occur without user interaction"
 msgstr "요청된 지불은 사용자의 개입 없이 발생합니다"
 
-#: billsdepositsdialog.cpp:502 filtertrans.cpp:178 transdialog.cpp:419
+#: billsdepositsdialog.cpp:477 filtertrans.cpp:178 transdialog.cpp:419
 msgid "Transaction Details"
 msgstr "거래 세부 정보"
 
-#: billsdepositsdialog.cpp:511
+#: billsdepositsdialog.cpp:486
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "사용자가 이 거래를 입력하도록 요청받은 날짜를 지정하십시오"
 
-#: billsdepositsdialog.cpp:512 billsdepositspanel.cpp:132
+#: billsdepositsdialog.cpp:487 billsdepositspanel.cpp:132
 msgid "Date Paid"
 msgstr "지불한 날짜"
 
-#: billsdepositsdialog.cpp:524 filtertransdialog.cpp:599 transdialog.cpp:1315
+#: billsdepositsdialog.cpp:499 filtertransdialog.cpp:599 transdialog.cpp:1315
 msgid "Specify the status for the transaction"
 msgstr "거래 상태를 지정합니다"
 
-#: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:136 filtertrans.cpp:194
+#: billsdepositsdialog.cpp:501 billsdepositspanel.cpp:136 filtertrans.cpp:194
 #: filtertransdialog.cpp:590 filtertransdialog.cpp:966
-#: filtertransdialog.cpp:1742 import_export/qif_export.cpp:609
-#: import_export/qif_import_gui.cpp:245 import_export/qif_import_gui.cpp:256
-#: import_export/qif_import_gui.cpp:266 import_export/univcsvdialog.cpp:101
-#: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
-#: mmchecking_list.cpp:284 reports/transactions.cpp:192
+#: filtertransdialog.cpp:1742 import_export/qif_export.cpp:627
+#: import_export/qif_import_gui.cpp:247 import_export/qif_import_gui.cpp:258
+#: import_export/qif_import_gui.cpp:268 import_export/univcsvdialog.cpp:101
+#: import_export/univcsvdialog.cpp:509 import_export/univcsvdialog.cpp:519
+#: mmchecking_list.cpp:286 reports/transactions.cpp:192
 #: transactionsupdatedialog.cpp:138 transdialog.cpp:443
-#: usertransactionpanel.cpp:158 webappdialog.cpp:140 wizard_update.cpp:141
+#: usertransactionpanel.cpp:153 webappdialog.cpp:140 wizard_update.cpp:140
 msgid "Status"
 msgstr "상태"
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1316
+#: billsdepositsdialog.cpp:507 transdialog.cpp:1316
 msgid "Specify the type of transactions to be created."
 msgstr "만들 거래 유형을 지정합니다."
 
-#: billsdepositsdialog.cpp:533 transdialog.cpp:459
+#: billsdepositsdialog.cpp:508 transdialog.cpp:459
 msgid "&Advanced"
 msgstr "고급(&A)"
 
-#: billsdepositsdialog.cpp:536 transdialog.cpp:1319
+#: billsdepositsdialog.cpp:511 transdialog.cpp:1319
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "출금 계정과 입금 계정에서 서로 다른 금액을 설정할 수 있습니다."
 
-#: billsdepositsdialog.cpp:547 billsdepositspanel.cpp:140
-#: budgetingpanel.cpp:294 filtertrans.cpp:197 filtertransdialog.cpp:999
-#: filtertransdialog.cpp:1009 import_export/qif_export.cpp:614
+#: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:140
+#: budgetingpanel.cpp:293 filtertrans.cpp:197 filtertransdialog.cpp:999
+#: filtertransdialog.cpp:1009 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
-#: mmchecking_list.cpp:600 mmhomepage.cpp:358 mmhomepage.cpp:432
+#: mmchecking_list.cpp:602 mmhomepage.cpp:353 mmhomepage.cpp:427
 #: reports/cashflow.cpp:420 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:196
 #: splittransactionsdialog.cpp:87 splittransactionsdialog.cpp:221
 #: transactionsupdatedialog.cpp:171 transdialog.cpp:481
-#: usertransactionpanel.cpp:124 webappdialog.cpp:144
+#: usertransactionpanel.cpp:119 webappdialog.cpp:144
 msgid "Amount"
 msgstr "금액"
 
-#: billsdepositsdialog.cpp:558 transdialog.cpp:1301
+#: billsdepositsdialog.cpp:533 transdialog.cpp:1301
 msgid "Specify the transfer amount in the To Account"
 msgstr "입금 계정에 이체할 금액 기입"
 
-#: billsdepositsdialog.cpp:569 billsdepositsdialog.cpp:856
-#: billsdepositsdialog.cpp:869 billsdepositspanel.cpp:134 filtertrans.cpp:192
+#: billsdepositsdialog.cpp:544 billsdepositsdialog.cpp:831
+#: billsdepositsdialog.cpp:844 billsdepositspanel.cpp:134 filtertrans.cpp:192
 #: filtertransdialog.cpp:52 filtertransdialog.cpp:524 filtertransdialog.cpp:888
-#: filtertransdialog.cpp:1667 import_export/qif_export.cpp:611
-#: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:156
-#: import_export/qif_import_gui.cpp:237 import_export/univcsvdialog.cpp:103
-#: mmchecking_list.cpp:279 reports/cashflow.cpp:417
+#: filtertransdialog.cpp:1667 import_export/qif_export.cpp:629
+#: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:157
+#: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:103
+#: mmchecking_list.cpp:281 reports/cashflow.cpp:417
 #: reports/transactions.cpp:190 transdialog.cpp:246 transdialog.cpp:250
-#: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:94
+#: transdialog.cpp:488 transdialog.cpp:636 usertransactionpanel.cpp:89
 #: webapp.cpp:562 webappdialog.cpp:139
 msgid "Account"
 msgstr "계정"
 
-#: billsdepositsdialog.cpp:574
+#: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:579 transdialog.cpp:243 transdialog.cpp:498
+#: billsdepositsdialog.cpp:554 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
 msgstr "입금 계정"
 
-#: billsdepositsdialog.cpp:589 billsdepositsdialog.cpp:857
+#: billsdepositsdialog.cpp:564 billsdepositsdialog.cpp:832
 #: billsdepositspanel.cpp:135 filtertrans.cpp:193 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:558 filtertransdialog.cpp:916
-#: filtertransdialog.cpp:1704 import_export/qif_export.cpp:612
-#: import_export/qif_import_gui.cpp:88 import_export/qif_import_gui.cpp:250
-#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:502
-#: mmchecking_list.cpp:282 model/Model_Attachment.cpp:29 payeedialog.cpp:83
+#: filtertransdialog.cpp:1704 import_export/qif_export.cpp:630
+#: import_export/qif_import_gui.cpp:88 import_export/qif_import_gui.cpp:252
+#: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:503
+#: mmchecking_list.cpp:284 model/Model_Attachment.cpp:29 payeedialog.cpp:83
 #: payeedialog.cpp:238 reports/cashflow.cpp:418 reports/payee.cpp:136
 #: reports/transactions.cpp:191 transactionsupdatedialog.cpp:184
-#: transdialog.cpp:247 transdialog.cpp:507 usertransactionpanel.cpp:162
+#: transdialog.cpp:247 transdialog.cpp:507 usertransactionpanel.cpp:157
 #: webappdialog.cpp:142
 msgid "Payee"
 msgstr "수취인"
 
-#: billsdepositsdialog.cpp:601 billsdepositsdialog.cpp:988
-#: billsdepositspanel.cpp:137 budgetingpanel.cpp:292 filtertrans.cpp:195
+#: billsdepositsdialog.cpp:576 billsdepositsdialog.cpp:963
+#: billsdepositspanel.cpp:137 budgetingpanel.cpp:291 filtertrans.cpp:195
 #: filtertransdialog.cpp:52 filtertransdialog.cpp:567 filtertransdialog.cpp:953
 #: filtertransdialog.cpp:959 filtertransdialog.cpp:1711
-#: import_export/qif_export.cpp:613 import_export/qif_import_gui.cpp:90
-#: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:107
-#: import_export/univcsvdialog.cpp:513 mmchecking_list.cpp:286
+#: import_export/qif_export.cpp:631 import_export/qif_import_gui.cpp:90
+#: import_export/qif_import_gui.cpp:263 import_export/univcsvdialog.cpp:107
+#: import_export/univcsvdialog.cpp:514 mmchecking_list.cpp:288
 #: mmhomepage.cpp:190 payeedialog.cpp:201 reports/budgetcategorysummary.cpp:185
 #: reports/budgetingperf.cpp:130 reports/cashflow.cpp:419
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:193 splittransactionsdialog.cpp:80
 #: splittransactionsdialog.cpp:219 transactionsupdatedialog.cpp:208
-#: transdialog.cpp:519 transdialog.cpp:651 usertransactionpanel.cpp:169
+#: transdialog.cpp:519 transdialog.cpp:651 usertransactionpanel.cpp:164
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr "범주"
 
-#: billsdepositsdialog.cpp:607 billsdepositsdialog.cpp:1440 transdialog.cpp:525
+#: billsdepositsdialog.cpp:582 billsdepositsdialog.cpp:1415 transdialog.cpp:525
 #: transdialog.cpp:1278
 msgid "Use split Categories"
 msgstr "분할 범주 사용"
 
-#: billsdepositsdialog.cpp:615 billsdepositsdialog.cpp:994
+#: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:969
 #: billsdepositspanel.cpp:138 filtertransdialog.cpp:583
 #: filtertransdialog.cpp:980 filtertransdialog.cpp:985
-#: filtertransdialog.cpp:1789 mmchecking_list.cpp:288
+#: filtertransdialog.cpp:1789 import_export/qif_import_gui.cpp:91
+#: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:290
 #: reports/transactions.cpp:194 splittransactionsdialog.cpp:223
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
 msgstr "태그"
 
-#: billsdepositsdialog.cpp:624 transdialog.cpp:1317
+#: billsdepositsdialog.cpp:599 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
 msgstr "관련된 수표 번호 또는 거래 번호를 지정하세요."
 
-#: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:145 filtertrans.cpp:191
+#: billsdepositsdialog.cpp:601 billsdepositspanel.cpp:145 filtertrans.cpp:191
 #: filtertransdialog.cpp:634 filtertransdialog.cpp:1782
-#: import_export/qif_export.cpp:616 import_export/qif_import_gui.cpp:87
-#: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:275
+#: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:87
+#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:277
 #: reports/transactions.cpp:189 transdialog.cpp:546
-#: usertransactionpanel.cpp:182
+#: usertransactionpanel.cpp:177
 msgid "Number"
 msgstr "번호"
 
-#: billsdepositsdialog.cpp:633 transdialog.cpp:553 usertransactionpanel.cpp:197
+#: billsdepositsdialog.cpp:608 transdialog.cpp:553 usertransactionpanel.cpp:192
 msgid "Select one of the frequently used notes"
 msgstr "자주 사용하는 내용 중 하나를 선택"
 
-#: billsdepositsdialog.cpp:639 transactionsupdatedialog.cpp:235
+#: billsdepositsdialog.cpp:614 transactionsupdatedialog.cpp:235
 #: transdialog.cpp:560
 msgid "User Colors"
 msgstr "사용자 색상"
 
-#: billsdepositsdialog.cpp:643
+#: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:653 filtertrans.cpp:189 filtertransdialog.cpp:654
+#: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:654
 #: filtertransdialog.cpp:1019 filtertransdialog.cpp:1814
-#: import_export/qif_import_gui.cpp:338 import_export/univcsvdialog.cpp:448
-#: import_export/univcsvdialog.cpp:1337 reports/transactions.cpp:187
+#: import_export/qif_import_gui.cpp:340 import_export/univcsvdialog.cpp:449
+#: import_export/univcsvdialog.cpp:1338 reports/transactions.cpp:187
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
 #: transdialog.cpp:575
 msgid "Color"
 msgstr "색상"
 
-#: billsdepositsdialog.cpp:660 transdialog.cpp:582 transdialog.cpp:1318
-#: usertransactionpanel.cpp:206
+#: billsdepositsdialog.cpp:635 transdialog.cpp:582 transdialog.cpp:1318
+#: usertransactionpanel.cpp:201
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "거래에 추가할 내용을 지정합니다."
 
-#: billsdepositsdialog.cpp:677 filtertransdialog.cpp:757
+#: billsdepositsdialog.cpp:652 filtertransdialog.cpp:757
 #: transactionsupdatedialog.cpp:273 transdialog.cpp:598
 msgid "Show/Hide custom fields window"
 msgstr "사용자 지정 필드 창 표시/숨기기"
 
-#: billsdepositsdialog.cpp:847 billsdepositsdialog.cpp:870 transdialog.cpp:242
+#: billsdepositsdialog.cpp:822 billsdepositsdialog.cpp:845 transdialog.cpp:242
 #: transdialog.cpp:251
 msgid "From"
 msgstr "보낸 이"
 
-#: billsdepositsdialog.cpp:915
+#: billsdepositsdialog.cpp:890
 msgid "The payment date is after the due date, is this what you intended?"
 msgstr "결제일이 마감일 이후인데, 이것이 당신의 계획입니까?"
 
-#: billsdepositsdialog.cpp:916
+#: billsdepositsdialog.cpp:891
 msgid "Looks like a late payment"
 msgstr "연체금처럼 보입니다"
 
-#: billsdepositsdialog.cpp:968 transactionsupdatedialog.cpp:335
+#: billsdepositsdialog.cpp:943 transactionsupdatedialog.cpp:335
 #: transdialog.cpp:675
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
@@ -1163,88 +1164,88 @@ msgid "You have not used this payee name before. Is the name correct?\n"
 msgstr "이전에 이 수취인 이름을 사용한 적이 없습니다. 이름이 정확합니까?\n"
 "%s"
 
-#: billsdepositsdialog.cpp:969 transactionsupdatedialog.cpp:336
+#: billsdepositsdialog.cpp:944 transactionsupdatedialog.cpp:336
 #: transdialog.cpp:676
 msgid "Confirm payee name"
 msgstr "수취인 이름 확인"
 
-#: billsdepositsdialog.cpp:988 billsdepositsdialog.cpp:994
-#: billsdepositsdialog.cpp:1380 filtertransdialog.cpp:888
+#: billsdepositsdialog.cpp:963 billsdepositsdialog.cpp:969
+#: billsdepositsdialog.cpp:1355 filtertransdialog.cpp:888
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:905
 #: filtertransdialog.cpp:938 filtertransdialog.cpp:959
 #: filtertransdialog.cpp:966 filtertransdialog.cpp:972
 #: filtertransdialog.cpp:980 filtertransdialog.cpp:999
 #: filtertransdialog.cpp:1009 filtertransdialog.cpp:1019
 #: filtertransdialog.cpp:1028 filtertransdialog.cpp:1035
-#: import_export/univcsvdialog.cpp:1337 optionsettingsgeneral.cpp:293
+#: import_export/univcsvdialog.cpp:1338 optionsettingsgeneral.cpp:293
 #: optionsettingsgeneral.cpp:318 payeedialog.cpp:201
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:355
 #: transactionsupdatedialog.cpp:415 transdialog.cpp:632 transdialog.cpp:636
-#: transdialog.cpp:651 util.cpp:754
+#: transdialog.cpp:651 util.cpp:751
 msgid "Invalid value"
 msgstr "잘못된 값"
 
-#: billsdepositsdialog.cpp:1069 billsdepositsdialog.cpp:1072
-#: import_export/univcsvdialog.cpp:1409 stockdialog.cpp:427 transdialog.cpp:644
-#: transdialog.cpp:718 usertransactionpanel.cpp:456 webapp.cpp:564
+#: billsdepositsdialog.cpp:1044 billsdepositsdialog.cpp:1047
+#: import_export/univcsvdialog.cpp:1411 stockdialog.cpp:414 transdialog.cpp:644
+#: transdialog.cpp:718 usertransactionpanel.cpp:451 webapp.cpp:564
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "계정의 시작 날짜가 거래 날짜보다 이후입니다"
 
-#: billsdepositsdialog.cpp:1303
+#: billsdepositsdialog.cpp:1278
 msgid "Specify the transfer amount in the From Account"
 msgstr "출금 계정에서 이체할 금액 기입"
 
-#: billsdepositsdialog.cpp:1313
+#: billsdepositsdialog.cpp:1288
 msgid "Activates"
 msgstr "활성화"
 
-#: billsdepositsdialog.cpp:1315
+#: billsdepositsdialog.cpp:1290
 msgid "Period: Days"
 msgstr "기간: 일"
 
-#: billsdepositsdialog.cpp:1316
+#: billsdepositsdialog.cpp:1291
 msgid "Period: Months"
 msgstr "기간: 월"
 
-#: billsdepositsdialog.cpp:1323
+#: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr "활성화할 기간(일)을 지정합니다.\n"
 "활성화되지 않으면 공백이 됩니다."
 
-#: billsdepositsdialog.cpp:1331
+#: billsdepositsdialog.cpp:1306
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr "활성화할 기간(개월)을 지정합니다.\n"
 "활성화되지 않으면 공백이 됩니다."
 
-#: billsdepositsdialog.cpp:1339
+#: billsdepositsdialog.cpp:1314
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr "활성화할 기간(일)을 지정합니다.\n"
 "활성화되지 않은 경우 공백으로 두세요."
 
-#: billsdepositsdialog.cpp:1347
+#: billsdepositsdialog.cpp:1322
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr "활성화할 기간(개월)을 지정합니다.\n"
 "활성화되지 않은 경우 공백으로 두세요."
 
-#: billsdepositsdialog.cpp:1355
+#: billsdepositsdialog.cpp:1330
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr "수행 할 지불 횟수를 지정하세요.\n"
 "지불이 계속되는 경우 공백으로 두세요."
 
-#: billsdepositsdialog.cpp:1380 images_list.cpp:501
-#: import_export/univcsvdialog.cpp:1559 maincurrencydialog.cpp:482
-#: mmframe.cpp:3838 splittransactionsdialog.cpp:411 stockspanel.cpp:384
+#: billsdepositsdialog.cpp:1355 images_list.cpp:501
+#: import_export/univcsvdialog.cpp:1574 maincurrencydialog.cpp:482
+#: mmframe.cpp:3841 splittransactionsdialog.cpp:411 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "오류"
 
-#: billsdepositsdialog.cpp:1450 splittransactionsdialog.h:82
+#: billsdepositsdialog.cpp:1425 splittransactionsdialog.h:82
 #: transdialog.cpp:336
 msgid "Split Transaction"
 msgstr "분할 거래"
@@ -1265,7 +1266,7 @@ msgstr "거래의 수입원을 지정합니다"
 msgid "Specify which account the transfer is going to"
 msgstr "입금 계정을 지정합니다"
 
-#: billsdepositsdialog.h:130 transdialog.cpp:1305 usertransactionpanel.cpp:128
+#: billsdepositsdialog.h:130 transdialog.cpp:1305 usertransactionpanel.cpp:123
 msgid "Specify the amount for this transaction"
 msgstr "거래 금액을 지정합니다"
 
@@ -1293,7 +1294,7 @@ msgstr "%s일마다"
 msgid "Every %s Months"
 msgstr "%s개월마다"
 
-#: billsdepositspanel.cpp:141 budgetingpanel.cpp:293 reports/myusage.cpp:163
+#: billsdepositspanel.cpp:141 budgetingpanel.cpp:292 reports/myusage.cpp:163
 msgid "Frequency"
 msgstr "빈도"
 
@@ -1305,7 +1306,7 @@ msgstr "반복"
 msgid "Autorepeat"
 msgstr "자동 반복"
 
-#: billsdepositspanel.cpp:144 mmhomepage.cpp:358
+#: billsdepositspanel.cpp:144 mmhomepage.cpp:353
 msgid "Payment"
 msgstr "결제"
 
@@ -1317,12 +1318,12 @@ msgstr "MMEX를 사용하면 정기 결제를 거래로 설정할 수 있습니�
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "팁: 이러한 거래는 활성화되도록 설정할 수 있습니다. 이를 통해 사용자는 만기일에 모든 값을 조정할 수 있습니다."
 
-#: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:772
-#: mmframe.cpp:3162 mmhomepagepanel.cpp:244
+#: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:773
+#: mmframe.cpp:3165 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
 msgstr ""
 
-#: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:453
+#: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:457
 msgid "D&uplicate "
 msgstr "복제(&D)"
 
@@ -1382,7 +1383,7 @@ msgstr "자동화"
 msgid "Suggested"
 msgstr "제안됨"
 
-#: billsdepositspanel.cpp:538 billsdepositspanel.cpp:605 mmhomepage.cpp:313
+#: billsdepositspanel.cpp:538 billsdepositspanel.cpp:605 mmhomepage.cpp:308
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
@@ -1394,13 +1395,13 @@ msgstr[0] "%d일 남음"
 msgid "Inactive"
 msgstr "비활성화"
 
-#: billsdepositspanel.cpp:548 mmhomepage.cpp:314
+#: billsdepositspanel.cpp:548 mmhomepage.cpp:309
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] "%d일 지연!"
 
-#: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:316
+#: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:311
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
@@ -1438,7 +1439,7 @@ msgstr "유형:"
 msgid "Expense"
 msgstr "지출"
 
-#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:434
+#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:429
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -1457,7 +1458,7 @@ msgstr "주기:"
 msgid "Specify the frequency of the expense or deposit"
 msgstr "지출 또는 예금 주기를 지정합니다"
 
-#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:405
+#: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:406
 msgid "Amount:"
 msgstr "금액:"
 
@@ -1538,16 +1539,16 @@ msgstr "차이: "
 msgid "Expenses: "
 msgstr "비용: "
 
-#: budgetingpanel.cpp:291
+#: budgetingpanel.cpp:290
 msgid "Icon"
 msgstr "아이콘"
 
-#: budgetingpanel.cpp:295 reports/budgetcategorysummary.cpp:142
+#: budgetingpanel.cpp:294 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
 msgid "Estimated"
 msgstr "추정"
 
-#: budgetingpanel.cpp:296 reports/budgetcategorysummary.cpp:143
+#: budgetingpanel.cpp:295 reports/budgetcategorysummary.cpp:143
 #: reports/budgetcategorysummary.cpp:187
 msgid "Actual"
 msgstr "실제"
@@ -1750,7 +1751,7 @@ msgstr "이 범주 또는 하위 범주 중 하나를 사용하는 삭제된 거
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
 msgstr "범주를 삭제하면 삭제된 거래도 자동으로 제거됩니다."
 
-#: categdialog.cpp:502 payeedialog.cpp:760 tagdialog.cpp:300
+#: categdialog.cpp:502 payeedialog.cpp:753 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
 msgstr "계속하시겠습니까?"
 
@@ -1771,17 +1772,17 @@ msgstr "범주 편집"
 msgid "Organize Categories: Editing Error"
 msgstr "범주 구성: 편집 오류"
 
-#: categdialog.cpp:682 mmframe.cpp:3727
+#: categdialog.cpp:682 mmframe.cpp:3730
 msgid "Merge categories completed"
 msgstr ""
 
-#: categdialog.cpp:683 mmframe.cpp:3728 mmframe.cpp:3743 mmframe.cpp:3759
-#: payeedialog.cpp:841
+#: categdialog.cpp:683 mmframe.cpp:3731 mmframe.cpp:3746 mmframe.cpp:3762
+#: payeedialog.cpp:834
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "데이터베이스에서 레코드가 업데이트되었습니다: %i"
 
-#: categdialog.cpp:685 mmframe.cpp:3730
+#: categdialog.cpp:685 mmframe.cpp:3733
 msgid "Merge categories result"
 msgstr ""
 
@@ -1801,7 +1802,7 @@ msgstr "선택된 범주 숨기기"
 msgid "Unhide Selected Category"
 msgstr "선택된 범주 보이기"
 
-#: categdialog.cpp:793 payeedialog.cpp:885
+#: categdialog.cpp:793 payeedialog.cpp:878
 msgid "Remove Category"
 msgstr "범주 제거"
 
@@ -1809,7 +1810,7 @@ msgstr "범주 제거"
 msgid "Clear Settings"
 msgstr "설정 지우기"
 
-#: categdialog.h:68 mmframe.cpp:1694 mmframe.cpp:1920
+#: categdialog.h:68 mmframe.cpp:1697 mmframe.cpp:1923
 msgid "Organize Categories"
 msgstr "범주 구성"
 
@@ -1817,8 +1818,8 @@ msgstr "범주 구성"
 msgid "Cancel"
 msgstr "취소"
 
-#: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:136
-#: relocatepayeedialog.cpp:135 relocatetagdialog.cpp:137 themes.cpp:195
+#: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:134
+#: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "Close"
 msgstr "닫기"
 
@@ -1826,9 +1827,9 @@ msgstr "닫기"
 msgid "&Close "
 msgstr "닫기(&C) "
 
-#: constants.cpp:84 import_export/qif_import_gui.cpp:739
-#: import_export/qif_import_gui.cpp:772 import_export/qif_import_gui.cpp:797
-#: import_export/univcsvdialog.cpp:2023 import_export/univcsvdialog.cpp:2047
+#: constants.cpp:84 import_export/qif_import_gui.cpp:752
+#: import_export/qif_import_gui.cpp:785 import_export/qif_import_gui.cpp:811
+#: import_export/univcsvdialog.cpp:2069 import_export/univcsvdialog.cpp:2093
 msgid "OK"
 msgstr "확인"
 
@@ -1920,17 +1921,17 @@ msgstr "정산 날짜 이후 보기"
 msgid "ALL"
 msgstr "전체"
 
-#: constants.cpp:209 mmframe.cpp:1499 mmframe.cpp:1912
+#: constants.cpp:209 mmframe.cpp:1502 mmframe.cpp:1915
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "열림"
 
-#: constants.cpp:210 mmframe.cpp:1500 model/Model_Account.cpp:28
+#: constants.cpp:210 mmframe.cpp:1503 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "닫힘"
 
-#: constants.cpp:211 mmframe.cpp:481 mmframe.cpp:736 mmframe.cpp:1498
+#: constants.cpp:211 mmframe.cpp:481 mmframe.cpp:737 mmframe.cpp:1501
 msgid "Favorites"
 msgstr "즐겨찾기"
 
@@ -1962,8 +1963,8 @@ msgstr "접두사"
 msgid "Suffix"
 msgstr "접미사"
 
-#: currencydialog.cpp:210 import_export/qif_import_gui.cpp:326
-#: import_export/univcsvdialog.cpp:416
+#: currencydialog.cpp:210 import_export/qif_import_gui.cpp:328
+#: import_export/univcsvdialog.cpp:417
 msgid "Decimal Char"
 msgstr "소수점 문자"
 
@@ -2012,8 +2013,8 @@ msgid "Any changes will be lost without update"
 msgstr "모든 변경 사항은 업데이트 없이 손실됩니다"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2600 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:791
+#: import_export/univcsvdialog.cpp:2670 maincurrencydialog.cpp:626
+#: mmSimpleDialogs.cpp:770
 msgid "Invalid Entry"
 msgstr "잘못된 항목"
 
@@ -2034,102 +2035,102 @@ msgstr "(현지화 사용중)"
 msgid "Currency Manager"
 msgstr "통화 관리자"
 
-#: customfieldeditdialog.cpp:122
+#: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
 msgstr "사용자 지정 필드 세부 정보"
 
-#: customfieldeditdialog.cpp:133 customfieldlistdialog.cpp:53
+#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
 msgstr "속성"
 
-#: customfieldeditdialog.cpp:139
+#: customfieldeditdialog.cpp:130
 msgid "Select the item that the custom field is associated with"
 msgstr "사용자 지정 필드와 연결된 항목 선택"
 
-#: customfieldeditdialog.cpp:147
+#: customfieldeditdialog.cpp:138
 msgid "Enter the name of the custom field"
 msgstr "사용자 지정 필드의 이름 입력"
 
-#: customfieldeditdialog.cpp:150
+#: customfieldeditdialog.cpp:141
 msgid "Field Type"
 msgstr "필드 유형"
 
-#: customfieldeditdialog.cpp:154
+#: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
 msgstr "사용자 지정 필드 유형 선택"
 
-#: customfieldeditdialog.cpp:157
+#: customfieldeditdialog.cpp:148
 msgid "ToolTip"
 msgstr "툴팁"
 
-#: customfieldeditdialog.cpp:159
+#: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
 msgstr "표시될 툴팁 입력"
 
-#: customfieldeditdialog.cpp:162
+#: customfieldeditdialog.cpp:153
 msgid "RegEx"
 msgstr "정규 표현식"
 
-#: customfieldeditdialog.cpp:164
+#: customfieldeditdialog.cpp:155
 msgid "Enter the RegEx to validate field"
 msgstr "검증할 필드에 정규 표현식을 적용합니다"
 
-#: customfieldeditdialog.cpp:167
+#: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
 msgstr "자동 완성"
 
-#: customfieldeditdialog.cpp:170
+#: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
 msgstr "사용자 지정 필드에서 자동 완성 사용"
 
-#: customfieldeditdialog.cpp:173 optionsettingsview.cpp:218 util.cpp:611
+#: customfieldeditdialog.cpp:164 optionsettingsview.cpp:218 util.cpp:608
 msgid "Default"
 msgstr "기본값"
 
-#: customfieldeditdialog.cpp:175
+#: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr "이 필드의 기본값 입력\n"
 "날짜/시간에 대해 'Now'를 입력하여 현재 날짜/시간을 기본값으로 설정합니다"
 
-#: customfieldeditdialog.cpp:179
+#: customfieldeditdialog.cpp:170
 msgid "Choices"
 msgstr "선택사항"
 
-#: customfieldeditdialog.cpp:181
+#: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
 msgstr "이 필드에 대한 선택 사항을 세미콜론으로 구분하여 입력하십시오"
 
-#: customfieldeditdialog.cpp:184
+#: customfieldeditdialog.cpp:175
 msgid "Digits scale"
 msgstr "자릿수 배율"
 
-#: customfieldeditdialog.cpp:186
+#: customfieldeditdialog.cpp:177
 msgid "Enter the decimal digits scale allowed"
 msgstr "허용되는 소수 자릿수를 입력하세요"
 
-#: customfieldeditdialog.cpp:189
+#: customfieldeditdialog.cpp:180
 msgid "Panel's column"
 msgstr "패널 열"
 
-#: customfieldeditdialog.cpp:194
+#: customfieldeditdialog.cpp:185
 msgid "Select a value to represent the item on a panel"
 msgstr "패널에 나타낼 항목 값을 선택"
 
-#: customfieldeditdialog.cpp:236
+#: customfieldeditdialog.cpp:227
 msgid "Changing field type will delete all content!"
 msgstr "필드 유형을 변경하면 모든 내용이 삭제됩니다!"
 
-#: customfieldeditdialog.cpp:237 customfieldeditdialog.cpp:259 mmframe.cpp:2368
-#: mmframe.cpp:2425
+#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2371
+#: mmframe.cpp:2428
 msgid "Do you want to proceed?"
 msgstr "계속하시겠습니까?"
 
-#: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
+#: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
 msgid "Custom Field Change"
 msgstr "사용자 지정 필드 변경"
 
-#: customfieldeditdialog.cpp:258
+#: customfieldeditdialog.cpp:249
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "선택한 항목이 수정되었습니다. 제거된 항목이 지워집니다!"
 
@@ -2137,27 +2138,27 @@ msgstr "선택한 항목이 수정되었습니다. 제거된 항목이 지워집
 msgid "New/Edit Custom Field"
 msgstr "사용자 정의 필드 생성/편집"
 
-#: customfieldlistdialog.cpp:52
+#: customfieldlistdialog.cpp:51
 msgid "#"
 msgstr "#"
 
-#: customfieldlistdialog.cpp:56
+#: customfieldlistdialog.cpp:55
 msgid "Properties"
 msgstr "속성"
 
-#: customfieldlistdialog.cpp:67
+#: customfieldlistdialog.cpp:66
 msgid "Personalize custom fields"
 msgstr "사용자 지정 필드 개인화"
 
-#: customfieldlistdialog.cpp:171
+#: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "정말로 사용자 지정 필드와 그 안의 모든 데이터를 삭제하시겠습니까?"
 
-#: customfieldlistdialog.cpp:172
+#: customfieldlistdialog.cpp:171
 msgid "Confirm Custom Field Deletion"
 msgstr "사용자 지정 필드 삭제 확인"
 
-#: customfieldlistdialog.cpp:190
+#: customfieldlistdialog.cpp:189
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
@@ -2166,43 +2167,43 @@ msgstr "이 기능은 사용자 지정 필드 값이 \"%s\"인 것을 대량 검
 "필드 값과 일치하는 것만 바꾸기가 되며, 부분 또는 중간 값 바꾸기는 허용되지 않습니다\n"
 "유효성 검사가 없다는 점을 고려해 주십시오!"
 
-#: customfieldlistdialog.cpp:193
+#: customfieldlistdialog.cpp:192
 msgid "Confirm Custom Field Content Update"
 msgstr "사용자 지정 필드 내용 업데이트 확인"
 
-#: customfieldlistdialog.cpp:198
+#: customfieldlistdialog.cpp:197
 msgid "Find what"
 msgstr "찾을 내용"
 
-#: customfieldlistdialog.cpp:198 customfieldlistdialog.cpp:204
-#: customfieldlistdialog.cpp:210 customfieldlistdialog.cpp:216
-#: customfieldlistdialog.cpp:231
+#: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
+#: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
+#: customfieldlistdialog.cpp:230
 msgid "Update Custom Field Content"
 msgstr "사용자 지정 필드 내용 업데이트"
 
-#: customfieldlistdialog.cpp:202
+#: customfieldlistdialog.cpp:201
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "빈 내용을 업데이트하시겠습니까?\n"
 "교체 절차를 중단하려면 아니오를 누릅니다!"
 
-#: customfieldlistdialog.cpp:210
+#: customfieldlistdialog.cpp:209
 msgid "Replace with"
 msgstr "대체할 텍스트"
 
-#: customfieldlistdialog.cpp:214
+#: customfieldlistdialog.cpp:213
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "공백으로 갱신하시겠습니까?\n"
 "교체 절차를 중단하려면 아니오를 누릅니다!"
 
-#: customfieldlistdialog.cpp:230
+#: customfieldlistdialog.cpp:229
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu 항목이 발견 및 교체되었습니다!"
 
-#: customfieldlistdialog.cpp:265
+#: customfieldlistdialog.cpp:264
 msgid "&Bulk content update "
 msgstr "대량 내용 업데이트(&B) "
 
@@ -2454,11 +2455,11 @@ msgid "Wrong file type!"
 msgstr "잘못된 파일 형식!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
-#: dbupgrade.cpp:289 mmframe.cpp:2405
+#: dbupgrade.cpp:289 mmframe.cpp:2408
 msgid "MMEX debug error"
 msgstr "MMEX 디버그 오류"
 
-#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2405
+#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2408
 msgid "Query error, please contact MMEX support!"
 msgstr "쿼리 오류, MMEX 지원팀에 문의하십시오!"
 
@@ -2504,12 +2505,12 @@ msgstr "암호화된 파일에 잘못된 암호가 지정되었습니다\n"
 "또는\n"
 "데이터베이스 파일이 아닌 파일을 열려고 했습니다 \n"
 
-#: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1098 webapp.cpp:120
+#: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1152 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "오류: %s"
 
-#: dbwrapper.cpp:89 mmframe.cpp:2012
+#: dbwrapper.cpp:89 mmframe.cpp:2015
 msgid "Opening MMEX Database - Error"
 msgstr "MMEX 데이터베이스 열기 - 오류"
 
@@ -2525,28 +2526,28 @@ msgstr "개발자는 프로그램에서 보고할 수 있는 문제를 진단하
 msgid "Back"
 msgstr "뒤로"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:622 mmchecking_list.cpp:1208
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:624 mmchecking_list.cpp:1210
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
 msgstr "미조정"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:624 mmhomepage.cpp:539
-#: mmhomepage.cpp:710 model/Model_Billsdeposits.cpp:41
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:626 mmhomepage.cpp:534
+#: mmhomepage.cpp:705 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:42
 msgid "Reconciled"
 msgstr "조정됨"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:626
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:628
 #: model/Model_Billsdeposits.cpp:42 model/Model_Checking.cpp:43
 msgid "Void"
 msgstr "무효"
 
-#: filtertransdialog.cpp:50 mmchecking_list.cpp:628 mmchecking_list.cpp:1197
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:630 mmchecking_list.cpp:1199
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:44
 msgid "Follow Up"
 msgstr "후속조치"
 
-#: filtertransdialog.cpp:50 mmchecking_list.cpp:630
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:632
 #: model/Model_Billsdeposits.cpp:44 model/Model_Checking.cpp:45
 msgid "Duplicate"
 msgstr "중복"
@@ -2572,15 +2573,15 @@ msgid "Include all subcategories"
 msgstr ""
 
 #: filtertransdialog.cpp:607 filtertransdialog.cpp:1462
-#: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:112
-#: mmchecking_list.cpp:290 model/Model_Billsdeposits.cpp:33
+#: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:113
+#: mmchecking_list.cpp:292 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:34 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "출금"
 
 #: filtertransdialog.cpp:608 filtertransdialog.cpp:1464
-#: filtertransdialog.cpp:1567 import_export/univcsvdialog.cpp:113
-#: mmchecking_list.cpp:292 model/Model_Billsdeposits.cpp:34
+#: filtertransdialog.cpp:1567 import_export/univcsvdialog.cpp:114
+#: mmchecking_list.cpp:294 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:35 reports/forecast.cpp:79
 msgid "Deposit"
 msgstr "입금"
@@ -2664,16 +2665,16 @@ msgstr "처음 사용하는 수취인 이름입니다.\n"
 msgid "Hide Report Columns"
 msgstr "보고서 열 숨기기"
 
-#: filtertransdialog.cpp:1200 mmframe.cpp:1253
+#: filtertransdialog.cpp:1200 mmframe.cpp:1256
 msgid "The selected item will be deleted"
 msgstr "선택한 항목이 삭제됩니다"
 
-#: filtertransdialog.cpp:1200 import_export/univcsvdialog.cpp:2122
-#: mmframe.cpp:1254
+#: filtertransdialog.cpp:1200 import_export/univcsvdialog.cpp:2168
+#: mmframe.cpp:1257
 msgid "Do you wish to continue?"
 msgstr "계속하시겠습니까?"
 
-#: filtertransdialog.cpp:1200 mmframe.cpp:1255
+#: filtertransdialog.cpp:1200 mmframe.cpp:1258
 msgid "Settings item deletion"
 msgstr "설정 항목 삭제"
 
@@ -2705,22 +2706,22 @@ msgstr "최소 금액"
 msgid "Amount Max."
 msgstr "최대 금액"
 
-#: filtertransdialog.cpp:2002 mmframe.cpp:1281
+#: filtertransdialog.cpp:2002 mmframe.cpp:1284
 msgid "Setting Name"
 msgstr "프리셋 이름 설정"
 
-#: filtertransdialog.cpp:2002 mmframe.cpp:1281
+#: filtertransdialog.cpp:2002 mmframe.cpp:1284
 msgid "Please Enter"
 msgstr "입력하세요"
 
-#: filtertransdialog.cpp:2026 import_export/univcsvdialog.cpp:1092
+#: filtertransdialog.cpp:2026 import_export/univcsvdialog.cpp:1093
 msgid "The entered name is already in use"
 msgstr "이미 사용 중인 이름입니다"
 
 #: filtertransdialog.cpp:2026 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
-#: images_list.cpp:495 import_export/qif_import_gui.cpp:741
-#: import_export/qif_import_gui.cpp:744 import_export/univcsvdialog.cpp:1092
+#: images_list.cpp:495 import_export/qif_import_gui.cpp:754
+#: import_export/qif_import_gui.cpp:757 import_export/univcsvdialog.cpp:1093
 msgid "Warning"
 msgstr "경고"
 
@@ -2736,7 +2737,7 @@ msgstr "계속하기 전에 저장하시겠습니까?"
 msgid "Please confirm"
 msgstr "확인해 주세요"
 
-#: filtertransdialog.cpp:2064 reports/reportbase.cpp:240
+#: filtertransdialog.cpp:2064 reports/reportbase.cpp:232
 msgid "Choose Accounts"
 msgstr "계정 선택"
 
@@ -2744,184 +2745,184 @@ msgstr "계정 선택"
 msgid "Transaction Filter"
 msgstr "거래 필터"
 
-#: general_report_manager.cpp:293 mmframe.cpp:790 mmframe.cpp:2948
+#: general_report_manager.cpp:284 mmframe.cpp:791 mmframe.cpp:2951
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "보고서"
 
-#: general_report_manager.cpp:391 import_export/univcsvdialog.cpp:533
+#: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:534
 msgid "&Import"
 msgstr "가져오기(&I)"
 
-#: general_report_manager.cpp:393
+#: general_report_manager.cpp:384
 msgid "Locate and load a report file."
 msgstr "보고서 파일을 찾아 로드합니다."
 
-#: general_report_manager.cpp:395 import_export/univcsvdialog.cpp:535
+#: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:536
 msgid "&Export"
 msgstr "내보내기(&E)"
 
-#: general_report_manager.cpp:397
+#: general_report_manager.cpp:388
 msgid "Export the report to a new file."
 msgstr "보고서를 새 파일로 내보냅니다."
 
-#: general_report_manager.cpp:400 stockdialog.cpp:349
+#: general_report_manager.cpp:391 stockdialog.cpp:336
 msgid "&Save "
 msgstr "저장(&S) "
 
-#: general_report_manager.cpp:402
+#: general_report_manager.cpp:393
 msgid "Save changes."
 msgstr "변경 사항 저장."
 
-#: general_report_manager.cpp:404
+#: general_report_manager.cpp:395
 msgid "&Run"
 msgstr "실행(&R)"
 
-#: general_report_manager.cpp:406
+#: general_report_manager.cpp:397
 msgid "Run selected report."
 msgstr "선택한 보고서를 실행합니다."
 
-#: general_report_manager.cpp:418
+#: general_report_manager.cpp:409
 msgid "Output"
 msgstr "출력"
 
-#: general_report_manager.cpp:441
+#: general_report_manager.cpp:432
 msgid "SQL"
 msgstr "SQL"
 
-#: general_report_manager.cpp:442
+#: general_report_manager.cpp:433
 msgid "Lua"
 msgstr "Lua"
 
-#: general_report_manager.cpp:443
+#: general_report_manager.cpp:434
 msgid "Template"
 msgstr "서식"
 
-#: general_report_manager.cpp:496
+#: general_report_manager.cpp:487
 msgid "&Test"
 msgstr "Test(&T)"
 
-#: general_report_manager.cpp:497
+#: general_report_manager.cpp:488
 msgid "Create Template"
 msgstr "서식 생성"
 
-#: general_report_manager.cpp:549
+#: general_report_manager.cpp:540
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "%zu 행 반환됨, 기간: %lldms"
 
-#: general_report_manager.cpp:576
+#: general_report_manager.cpp:567
 msgid "SQL Syntax Error"
 msgstr "SQL 구문 오류"
 
-#: general_report_manager.cpp:607
+#: general_report_manager.cpp:598
 msgid "Load report file:"
 msgstr "보고서 파일 로드:"
 
-#: general_report_manager.cpp:609 general_report_manager.cpp:1068
+#: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "General Report Manager files (*.grm)"
 msgstr "일반 보고서 관리자 파일 (*.grm)"
 
-#: general_report_manager.cpp:609 general_report_manager.cpp:1068
+#: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "ZIP files (*.zip)"
 msgstr "ZIP 파일 (*.zip)"
 
-#: general_report_manager.cpp:674 general_report_manager.h:64
+#: general_report_manager.cpp:665 general_report_manager.h:64
 msgid "General Reports Manager"
 msgstr "일반 보고서 관리자"
 
-#: general_report_manager.cpp:741
+#: general_report_manager.cpp:732
 msgid "Assets..."
 msgstr "자산..."
 
-#: general_report_manager.cpp:744
+#: general_report_manager.cpp:735
 msgid "New Empty Report..."
 msgstr "빈 보고서 만들기..."
 
-#: general_report_manager.cpp:745
+#: general_report_manager.cpp:736
 msgid "New Sample Report"
 msgstr "샘플 보고서 만들기"
 
-#: general_report_manager.cpp:748
+#: general_report_manager.cpp:739
 msgid "Change Group..."
 msgstr "그룹 변경..."
 
-#: general_report_manager.cpp:750
+#: general_report_manager.cpp:741
 msgid "Rename Group..."
 msgstr "그룹명 변경..."
 
-#: general_report_manager.cpp:751
+#: general_report_manager.cpp:742
 msgid "UnGroup"
 msgstr "그룹 해제"
 
-#: general_report_manager.cpp:752
+#: general_report_manager.cpp:743
 msgid "Rename Report..."
 msgstr "보고서 이름 바꾸기..."
 
-#: general_report_manager.cpp:756
+#: general_report_manager.cpp:747
 msgid "Active"
 msgstr "활성화"
 
-#: general_report_manager.cpp:756
+#: general_report_manager.cpp:747
 msgid "Show/Hide the report in the main navigation panel"
 msgstr "메인 탐색 패널에서 보고서 표시/숨기기"
 
-#: general_report_manager.cpp:760
+#: general_report_manager.cpp:751
 msgid "Delete Report..."
 msgstr "보고서 삭제..."
 
-#: general_report_manager.cpp:857 general_report_manager.cpp:1018
+#: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
 msgstr "보고서 이름을 입력하세요."
 
-#: general_report_manager.cpp:858 general_report_manager.cpp:1019
-#: mmframe.cpp:795 mmframe.cpp:1753 mmframe.cpp:1926
+#: general_report_manager.cpp:849 general_report_manager.cpp:1010
+#: mmframe.cpp:796 mmframe.cpp:1756 mmframe.cpp:1929
 msgid "General Report Manager"
 msgstr "일반 보고서 관리자"
 
-#: general_report_manager.cpp:876
+#: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
 msgstr "보고서 제목 삭제:"
 
-#: general_report_manager.cpp:915 general_report_manager.cpp:999
+#: general_report_manager.cpp:906 general_report_manager.cpp:990
 msgid "Enter or choose name for the new report group"
 msgstr "새 보고서 그룹의 이름 입력 또는 선택"
 
-#: general_report_manager.cpp:916
+#: general_report_manager.cpp:907
 msgid "Change report group"
 msgstr "보고서 그룹 변경"
 
-#: general_report_manager.cpp:932
+#: general_report_manager.cpp:923
 msgid "Enter or choose name for the new group"
 msgstr "새 그룹의 이름 입력 또는 선택"
 
-#: general_report_manager.cpp:933
+#: general_report_manager.cpp:924
 msgid "Rename Group"
 msgstr "그룹명 변경"
 
-#: general_report_manager.cpp:1000
+#: general_report_manager.cpp:991
 msgid "Add Report Group"
 msgstr "보고서 그룹 추가"
 
-#: general_report_manager.cpp:1013
+#: general_report_manager.cpp:1004
 #, c-format
 msgid "New Report %s"
 msgstr "새 보고서 %s"
 
-#: general_report_manager.cpp:1026
+#: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
 msgstr ""
 
-#: general_report_manager.cpp:1026 general_report_manager.cpp:1033
+#: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
 msgstr "보고서 만들기"
 
-#: general_report_manager.cpp:1065
+#: general_report_manager.cpp:1056
 msgid "Choose file to Save As Report"
 msgstr "보고서로 저장할 파일 선택"
 
-#: general_report_manager.cpp:1243
+#: general_report_manager.cpp:1234
 msgid "Parameters:"
 msgstr "매개변수:"
 
@@ -2963,13 +2964,13 @@ msgstr "%s 테마에 누락된 항목이 있으며 호환되지 않습니다. �
 msgid "No workable theme found, the installation may be corrupt"
 msgstr "실행 가능한 테마를 찾을 수 없습니다. 설치가 손상되었을 수 있습니다"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2188
-#: mmSimpleDialogs.cpp:801
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2234
+#: mmSimpleDialogs.cpp:780
 msgid "Unable to open file."
 msgstr "파일을 열 수 없습니다."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1344 mmframe.cpp:2566 mmframe.cpp:2585
+#: import_export/univcsvdialog.cpp:1345 mmframe.cpp:2569 mmframe.cpp:2588
 msgid "Universal CSV Import"
 msgstr "범용 CSV 가져오기"
 
@@ -3010,17 +3011,17 @@ msgstr "테이블을 찾을 수 없습니다."
 msgid "Transactions"
 msgstr "거래"
 
-#: import_export/qif_export.cpp:49 import_export/qif_export.cpp:662
-#: mmframe.cpp:1569
+#: import_export/qif_export.cpp:49 import_export/qif_export.cpp:680
+#: mmframe.cpp:1572
 msgid "Export as QIF file"
 msgstr "QIF 파일로 내보내기"
 
-#: import_export/qif_export.cpp:50 mmframe.cpp:1568
+#: import_export/qif_export.cpp:50 mmframe.cpp:1571
 msgid "Export as JSON file"
 msgstr "JSON 파일로 내보내기"
 
-#: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:123
-#: mmframe.cpp:1564
+#: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:124
+#: mmframe.cpp:1567
 msgid "Export as CSV file"
 msgstr "CSV 파일로 내보내기"
 
@@ -3028,7 +3029,7 @@ msgstr "CSV 파일로 내보내기"
 msgid "Parameters"
 msgstr "매개변수"
 
-#: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:208
+#: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:209
 msgid "Log"
 msgstr "로그"
 
@@ -3044,20 +3045,20 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3506 mmframe.cpp:3510
-#: mmframe.cpp:3527 mmframe.cpp:3531
+#: import_export/qif_export.cpp:152 mmframe.cpp:3509 mmframe.cpp:3513
+#: mmframe.cpp:3530 mmframe.cpp:3534
 msgid "Accounts"
 msgstr "계정"
 
-#: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:185
+#: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:186
 msgid "From Date"
 msgstr "시작 날짜"
 
-#: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:195
+#: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:196
 msgid "To Date"
 msgstr "끝 날짜"
 
-#: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:299
+#: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:301
 #: optionsettingsgeneral.cpp:103
 msgid "Date Format"
 msgstr "날짜 형식"
@@ -3066,12 +3067,12 @@ msgstr "날짜 형식"
 msgid "Write to File"
 msgstr "파일로 쓰기"
 
-#: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:122
-#: import_export/univcsvdialog.cpp:184
+#: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:123
+#: import_export/univcsvdialog.cpp:185
 msgid "File Name:"
 msgstr "파일명:"
 
-#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:552
+#: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:553
 msgid "Clear"
 msgstr "지우기"
 
@@ -3087,7 +3088,7 @@ msgstr "QIF 내보내기"
 msgid "Choose QIF data file to Export"
 msgstr "내보낼 QIF 데이터 파일 선택"
 
-#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:854
+#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:868
 msgid "QIF Files (*.qif)"
 msgstr "QIF 파일 (*.qif)"
 
@@ -3099,7 +3100,7 @@ msgstr "내보낼 JSON 데이터 파일 선택"
 msgid "JSON Files (*.json)"
 msgstr "JSON 파일 (*.json)"
 
-#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2172
+#: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2218
 msgid "CSV Files (*.csv)"
 msgstr "CSV 파일 (*.csv)"
 
@@ -3119,8 +3120,8 @@ msgstr "시작 날짜보다 작은 종료 날짜"
 msgid "Categories exported"
 msgstr "내보낸 범주"
 
-#: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:398
-#: import_export/qif_import_gui.cpp:1031
+#: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
+#: import_export/qif_import_gui.cpp:1045
 msgid "Please wait"
 msgstr "기다려 주세요"
 
@@ -3133,212 +3134,212 @@ msgstr "내보내는 중"
 msgid "Exporting transaction %zu"
 msgstr "%zu 거래내역을 내보내는 중입니다"
 
-#: import_export/qif_export.cpp:657
+#: import_export/qif_export.cpp:675
 #, c-format
 msgid "Number of categories exported: %zu \n"
 msgstr "내보낸 범주 개수: %zu\n"
 
-#: import_export/qif_export.cpp:659
+#: import_export/qif_export.cpp:677
 #, c-format
 msgid "Number of transactions exported: %zu \n"
 msgstr "내보낸 거래내역 개수: %zu\n"
 
-#: import_export/qif_export.cpp:660
+#: import_export/qif_export.cpp:678
 #, c-format
 msgid "Number of accounts exported: %zu"
 msgstr "내보낸 계정 개수: %zu"
 
-#: import_export/qif_import_gui.cpp:134 import_export/univcsvdialog.cpp:197
+#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:198
 msgid "&Browse"
 msgstr "찾아보기(&B)"
 
-#: import_export/qif_import_gui.cpp:144 import_export/univcsvdialog.cpp:382
+#: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:383
 msgid "Encoding:"
 msgstr "인코딩:"
 
-#: import_export/qif_import_gui.cpp:179
+#: import_export/qif_import_gui.cpp:180
 msgid "Filtering Details:"
 msgstr "세부 정보 필터링:"
 
-#: import_export/qif_import_gui.cpp:218 import_export/univcsvdialog.cpp:490
+#: import_export/qif_import_gui.cpp:219 import_export/univcsvdialog.cpp:491
 msgid "Data"
 msgstr "자료"
 
-#: import_export/qif_import_gui.cpp:278
+#: import_export/qif_import_gui.cpp:280
 msgid "Use account number instead of account name"
 msgstr "계정 이름 대신 계정 번호 사용"
 
-#: import_export/qif_import_gui.cpp:282
+#: import_export/qif_import_gui.cpp:284
 msgid "Include payee field in notes"
 msgstr "내용에 수취인 필드 포함"
 
-#: import_export/qif_import_gui.cpp:286 import_export/univcsvdialog.cpp:457
+#: import_export/qif_import_gui.cpp:288 import_export/univcsvdialog.cpp:458
 msgid "Pattern match Payees"
 msgstr "수취인 패턴 일치"
 
-#: import_export/qif_import_gui.cpp:291 import_export/univcsvdialog.cpp:463
+#: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:464
 msgid "Add match details to Notes"
 msgstr "노트에 일치하는 세부 정보 추가"
 
-#: import_export/qif_import_gui.cpp:389 import_export/qif_import_gui.cpp:392
-#: import_export/qif_import_gui.cpp:466 import_export/qif_import_gui.cpp:623
-#: import_export/qif_import_gui.cpp:769 import_export/qif_import_gui.cpp:1389
-#: import_export/univcsvdialog.cpp:1020 import_export/univcsvdialog.cpp:1245
-#: import_export/univcsvdialog.cpp:1248 import_export/univcsvdialog.cpp:1268
-#: import_export/univcsvdialog.cpp:1275 import_export/univcsvdialog.cpp:1797
-#: import_export/univcsvdialog.cpp:1799 import_export/univcsvdialog.cpp:1800
-#: import_export/univcsvdialog.cpp:1815 import_export/univcsvdialog.cpp:2020
+#: import_export/qif_import_gui.cpp:391 import_export/qif_import_gui.cpp:394
+#: import_export/qif_import_gui.cpp:469 import_export/qif_import_gui.cpp:622
+#: import_export/qif_import_gui.cpp:782 import_export/qif_import_gui.cpp:1512
+#: import_export/univcsvdialog.cpp:1021 import_export/univcsvdialog.cpp:1246
+#: import_export/univcsvdialog.cpp:1249 import_export/univcsvdialog.cpp:1269
+#: import_export/univcsvdialog.cpp:1276 import_export/univcsvdialog.cpp:1822
+#: import_export/univcsvdialog.cpp:1824 import_export/univcsvdialog.cpp:1825
+#: import_export/univcsvdialog.cpp:1840 import_export/univcsvdialog.cpp:2066
 #: themes.cpp:235 transdialog.cpp:299 transdialog.cpp:303 transdialog.cpp:309
 #: transdialog.cpp:979 transdialog.cpp:983 transdialog.cpp:990 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: import_export/qif_import_gui.cpp:398
+#: import_export/qif_import_gui.cpp:401
 msgid "Scanning"
 msgstr "스캔중"
 
-#: import_export/qif_import_gui.cpp:427
+#: import_export/qif_import_gui.cpp:430
 #, c-format
 msgid "Reading line %zu, %lld ms"
 msgstr "줄 %zu 읽는 중, %lldms"
 
-#: import_export/qif_import_gui.cpp:433
+#: import_export/qif_import_gui.cpp:436
 #, c-format
 msgid "Line %zu \t %s\n"
 msgstr "줄 %zu \t %s\n"
 
-#: import_export/qif_import_gui.cpp:525
+#: import_export/qif_import_gui.cpp:534
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "QIF 파일에서 읽은 줄 수: %zu (%lldms)"
 
-#: import_export/qif_import_gui.cpp:530 mmreportspanel.cpp:349
+#: import_export/qif_import_gui.cpp:539 mmreportspanel.cpp:349
 msgid "Accounts:"
 msgstr "계정:"
 
-#: import_export/qif_import_gui.cpp:537 import_export/qif_import_gui.cpp:876
-#: import_export/univcsvdialog.cpp:354
+#: import_export/qif_import_gui.cpp:546 import_export/qif_import_gui.cpp:890
+#: import_export/univcsvdialog.cpp:355
 msgid "Date Format: "
 msgstr "날짜 형식: "
 
-#: import_export/qif_import_gui.cpp:540
+#: import_export/qif_import_gui.cpp:549
 msgid "Press OK Button to continue"
 msgstr "계속하려면 OK 버튼을 누릅니다"
 
-#: import_export/qif_import_gui.cpp:749 import_export/qif_import_gui.cpp:780
-#: import_export/univcsvdialog.cpp:2031 import_export/univcsvdialog.cpp:2045
+#: import_export/qif_import_gui.cpp:762 import_export/qif_import_gui.cpp:793
+#: import_export/univcsvdialog.cpp:2077 import_export/univcsvdialog.cpp:2091
 #: stockspanel.cpp:449
 msgid "Missing"
 msgstr "누락"
 
-#: import_export/qif_import_gui.cpp:774 import_export/univcsvdialog.cpp:2025
+#: import_export/qif_import_gui.cpp:787 import_export/univcsvdialog.cpp:2071
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:852
+#: import_export/qif_import_gui.cpp:866
 msgid "Choose QIF data file to Import"
 msgstr "가져올 QIF 데이터 파일 선택"
 
-#: import_export/qif_import_gui.cpp:1023
+#: import_export/qif_import_gui.cpp:1037
 msgid "Do you want to import all transaction?"
 msgstr "모든 거래를 가져오시겠습니까?"
 
-#: import_export/qif_import_gui.cpp:1024
+#: import_export/qif_import_gui.cpp:1038
 msgid "All missing account, payees and categories will be created."
 msgstr "누락된 계정, 수취인 및 범주가 모두 생성됩니다."
 
-#: import_export/qif_import_gui.cpp:1025
+#: import_export/qif_import_gui.cpp:1039
 msgid "Confirm Import"
 msgstr "가져오기 확인"
 
-#: import_export/qif_import_gui.cpp:1031
+#: import_export/qif_import_gui.cpp:1045
 msgid "Importing"
 msgstr "가져오는중"
 
-#: import_export/qif_import_gui.cpp:1033
+#: import_export/qif_import_gui.cpp:1047
 msgid "Importing Accounts"
 msgstr "계정을 가져오는 중"
 
-#: import_export/qif_import_gui.cpp:1036
+#: import_export/qif_import_gui.cpp:1050
 msgid "Importing Payees"
 msgstr "수취인을 가져오는 중"
 
-#: import_export/qif_import_gui.cpp:1040
+#: import_export/qif_import_gui.cpp:1054
 msgid "Importing Categories"
 msgstr "범주를 가져오는 중"
 
-#: import_export/qif_import_gui.cpp:1062
+#: import_export/qif_import_gui.cpp:1076
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1109
+#: import_export/qif_import_gui.cpp:1163
 msgid "Importing Transfers"
 msgstr "이체내역을 가져오는 중"
 
-#: import_export/qif_import_gui.cpp:1134
+#: import_export/qif_import_gui.cpp:1203
 msgid "Importing Split transactions"
 msgstr "할부 거래내역을 가져오는 중"
 
-#: import_export/qif_import_gui.cpp:1138
+#: import_export/qif_import_gui.cpp:1207
 msgid "Import finished successfully"
 msgstr "가져오기가 성공적으로 완료되었습니다"
 
-#: import_export/qif_import_gui.cpp:1138
+#: import_export/qif_import_gui.cpp:1207
 #, c-format
 msgid "Total Imported: %zu"
 msgstr "가져온 총 개수: %zu"
 
-#: import_export/qif_import_gui.cpp:1148 import_export/univcsvdialog.cpp:1510
+#: import_export/qif_import_gui.cpp:1217 import_export/univcsvdialog.cpp:1525
 msgid "Imported transactions discarded by user!"
 msgstr "가져온 거래내역이 사용자에 의해 삭제되었습니다!"
 
-#: import_export/qif_import_gui.cpp:1150 import_export/qif_import_gui.h:44
-#: mmframe.cpp:1558
+#: import_export/qif_import_gui.cpp:1219 import_export/qif_import_gui.h:45
+#: mmframe.cpp:1561
 msgid "Import from QIF file"
 msgstr "QIF 파일에서 가져오기"
 
-#: import_export/qif_import_gui.cpp:1229
+#: import_export/qif_import_gui.cpp:1324
 msgid "Transaction code is missing"
 msgstr "거래 추적 코드가 없습니다"
 
-#: import_export/qif_import_gui.cpp:1243
+#: import_export/qif_import_gui.cpp:1338
 #, c-format
 msgid "%1$s matched by %2$s"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1255
+#: import_export/qif_import_gui.cpp:1350
 msgid "Transaction Payee is missing or incorrect"
 msgstr "수취인이 누락되었거나 잘못되었습니다"
 
-#: import_export/qif_import_gui.cpp:1267
+#: import_export/qif_import_gui.cpp:1362
 msgid "Date format or date mask is incorrect"
 msgstr "날짜 형식 또는 날짜 마스크가 잘못되었습니다"
 
-#: import_export/qif_import_gui.cpp:1279
+#: import_export/qif_import_gui.cpp:1374
 msgid "Transaction Account is incorrect"
 msgstr "거래 계정이 잘못되었습니다"
 
-#: import_export/qif_import_gui.cpp:1288
+#: import_export/qif_import_gui.cpp:1383
 msgid "Transaction Account for transfer is incorrect"
 msgstr "이체에 대한 거래 계정이 잘못되었습니다"
 
-#: import_export/qif_import_gui.cpp:1317
+#: import_export/qif_import_gui.cpp:1412
 msgid "Transaction Amount is incorrect"
 msgstr "거래 금액이 잘못되었습니다"
 
-#: import_export/qif_import_gui.cpp:1342
+#: import_export/qif_import_gui.cpp:1438
 msgid "Transaction Category is incorrect"
 msgstr "거래 범주가 잘못되었습니다"
 
-#: import_export/qif_import_gui.cpp:1447
+#: import_export/qif_import_gui.cpp:1570
 #, c-format
 msgid "Added account: %s"
 msgstr "추가된 계정: %s"
 
-#: import_export/qif_import_gui.cpp:1478 import_export/univcsvdialog.cpp:1252
+#: import_export/qif_import_gui.cpp:1601 import_export/univcsvdialog.cpp:1253
 #, c-format
 msgid "Added payee: %s"
 msgstr "추가된 수취인: %s"
@@ -3347,362 +3348,362 @@ msgstr "추가된 수취인: %s"
 msgid "SubCategory"
 msgstr "하위 범주"
 
-#: import_export/univcsvdialog.cpp:111
+#: import_export/univcsvdialog.cpp:112
 msgid "Don't Care"
 msgstr "상관 없음"
 
-#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:296
-#: mmhomepage.cpp:548 mmhomepage.cpp:711 reports/cashflow.cpp:421
+#: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:298
+#: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:421
 #: reports/summary.cpp:272 reports/summary.cpp:308
 msgid "Balance"
 msgstr "잔액"
 
-#: import_export/univcsvdialog.cpp:120 mmframe.cpp:1555
+#: import_export/univcsvdialog.cpp:121 mmframe.cpp:1558
 msgid "Import from CSV file"
 msgstr "CSV 파일에서 가져오기"
 
-#: import_export/univcsvdialog.cpp:126
+#: import_export/univcsvdialog.cpp:127
 msgid "Import from XML file"
 msgstr "XML 파일에서 가져오기"
 
-#: import_export/univcsvdialog.cpp:129 mmframe.cpp:1565
+#: import_export/univcsvdialog.cpp:130 mmframe.cpp:1568
 msgid "Export as XML file"
 msgstr "XML 파일로 내보내기"
 
-#: import_export/univcsvdialog.cpp:204
+#: import_export/univcsvdialog.cpp:205
 msgid "Account: "
 msgstr "계정: "
 
-#: import_export/univcsvdialog.cpp:214
+#: import_export/univcsvdialog.cpp:215
 msgid "Preset:"
 msgstr "설정모음:"
 
-#: import_export/univcsvdialog.cpp:262 import_export/univcsvdialog.cpp:579
-#: import_export/univcsvdialog.cpp:2571
+#: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
+#: import_export/univcsvdialog.cpp:2641
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
 msgstr "계정이 다음일 때 이 사전 설정 로드:\n"
 "%s"
 
-#: import_export/univcsvdialog.cpp:269
+#: import_export/univcsvdialog.cpp:270
 msgid "Specify the order of fields in the file"
 msgstr "파일의 필드 순서 지정"
 
-#: import_export/univcsvdialog.cpp:315
+#: import_export/univcsvdialog.cpp:316
 msgid "&MMEX format"
 msgstr "&MMEX 형식"
 
-#: import_export/univcsvdialog.cpp:332
+#: import_export/univcsvdialog.cpp:333
 msgid "&Up"
 msgstr "위로(&U)"
 
-#: import_export/univcsvdialog.cpp:336
+#: import_export/univcsvdialog.cpp:337
 msgid "&Down"
 msgstr "아래로(&D)"
 
-#: import_export/univcsvdialog.cpp:369
+#: import_export/univcsvdialog.cpp:370
 msgid "CSV Delimiter:"
 msgstr "CSV 구분 기호:"
 
-#: import_export/univcsvdialog.cpp:396
+#: import_export/univcsvdialog.cpp:397
 msgid "Export column titles"
 msgstr "열 제목 내보내기"
 
-#: import_export/univcsvdialog.cpp:411
+#: import_export/univcsvdialog.cpp:412
 msgid "Positive values are deposits"
 msgstr "양수 값은 입금입니다"
 
-#: import_export/univcsvdialog.cpp:412
+#: import_export/univcsvdialog.cpp:413
 msgid "Positive values are withdrawals"
 msgstr "양수 값은 출금 항목입니다"
 
-#: import_export/univcsvdialog.cpp:429
+#: import_export/univcsvdialog.cpp:430
 msgid "Rows to ignore"
 msgstr "무시할 행"
 
-#: import_export/univcsvdialog.cpp:436
+#: import_export/univcsvdialog.cpp:437
 msgid "From start: "
 msgstr "앞에서부터: "
 
-#: import_export/univcsvdialog.cpp:471
+#: import_export/univcsvdialog.cpp:472
 msgid "From end: "
 msgstr "끝에서부터: "
 
-#: import_export/univcsvdialog.cpp:483
+#: import_export/univcsvdialog.cpp:484
 msgid "Preview"
 msgstr "미리보기"
 
-#: import_export/univcsvdialog.cpp:558
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose XML data file to Import"
 msgstr "가져올 XML 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:558
+#: import_export/univcsvdialog.cpp:559
 msgid "Choose CSV data file to Import"
 msgstr "가져올 CSV 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:559
+#: import_export/univcsvdialog.cpp:560
 msgid "Choose XML data file to Export"
 msgstr "내보낼 XML 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:559
+#: import_export/univcsvdialog.cpp:560
 msgid "Choose CSV data file to Export"
 msgstr "내보낼 CSV 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:562
+#: import_export/univcsvdialog.cpp:563
 msgid "Preset name"
 msgstr "프리셋 이름"
 
-#: import_export/univcsvdialog.cpp:563
+#: import_export/univcsvdialog.cpp:564
 msgid "Save current settings as a Preset"
 msgstr "현재 설정을 프리셋으로 저장"
 
-#: import_export/univcsvdialog.cpp:564 import_export/univcsvdialog.cpp:2123
+#: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2169
 msgid "Delete Preset"
 msgstr "프리셋 삭제"
 
-#: import_export/univcsvdialog.cpp:565
+#: import_export/univcsvdialog.cpp:566
 msgid "MMEX standard format"
 msgstr "MMEX 표준 형식"
 
-#: import_export/univcsvdialog.cpp:566
+#: import_export/univcsvdialog.cpp:567
 msgid "Move Up"
 msgstr "위로 이동"
 
-#: import_export/univcsvdialog.cpp:567
+#: import_export/univcsvdialog.cpp:568
 msgid "Move Down"
 msgstr "아래로 이동"
 
-#: import_export/univcsvdialog.cpp:568 optionsettingsmisc.cpp:228
+#: import_export/univcsvdialog.cpp:569 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "CSV 파일을 가져오거나 내보낼 때 사용할 구분 기호 지정"
 
-#: import_export/univcsvdialog.cpp:569
+#: import_export/univcsvdialog.cpp:570
 msgid "Import File"
 msgstr "파일 가져오기"
 
-#: import_export/univcsvdialog.cpp:570
+#: import_export/univcsvdialog.cpp:571
 msgid "Export File"
 msgstr "파일 내보내기"
 
-#: import_export/univcsvdialog.cpp:583 import_export/univcsvdialog.cpp:2578
+#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2648
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:737
+#: import_export/univcsvdialog.cpp:738
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr "이 템플릿의 기본 계정('%s')이 없습니다.\n"
 "새 계정을 선택하십시오."
 
-#: import_export/univcsvdialog.cpp:739
+#: import_export/univcsvdialog.cpp:740
 msgid "Account does not exist"
 msgstr "계정이 존재하지 않습니다"
 
-#: import_export/univcsvdialog.cpp:941 import_export/univcsvdialog.cpp:1036
-#: import_export/univcsvdialog.cpp:2593
+#: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
+#: import_export/univcsvdialog.cpp:2663
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "유형이 '%s'이면 양수"
 
-#: import_export/univcsvdialog.cpp:1063
+#: import_export/univcsvdialog.cpp:1064
 msgid "Preset Name"
 msgstr "프리셋 이름"
 
-#: import_export/univcsvdialog.cpp:1063
+#: import_export/univcsvdialog.cpp:1064
 msgid "Save Preset"
 msgstr "프리셋 저장"
 
-#: import_export/univcsvdialog.cpp:1232
+#: import_export/univcsvdialog.cpp:1233
 msgid "Invalid Date."
 msgstr "잘못된 날짜."
 
-#: import_export/univcsvdialog.cpp:1233 mmTextCtrl.cpp:116
+#: import_export/univcsvdialog.cpp:1234 mmTextCtrl.cpp:116
 msgid "Invalid Amount."
 msgstr "잘못된 금액."
 
-#: import_export/univcsvdialog.cpp:1234
+#: import_export/univcsvdialog.cpp:1235
 msgid "Type (withdrawal/deposit) unknown."
 msgstr "거래 유형(출금/입금)을 알 수 없습니다."
 
-#: import_export/univcsvdialog.cpp:1294
+#: import_export/univcsvdialog.cpp:1295
 msgid "Incorrect fields specified for import!"
 msgstr "가져오기에 잘못된 필드가 지정되었습니다!"
 
-#: import_export/univcsvdialog.cpp:1295
+#: import_export/univcsvdialog.cpp:1296
 msgid "Date field is required."
 msgstr "날짜 필드는 필수 항목입니다."
 
-#: import_export/univcsvdialog.cpp:1296
+#: import_export/univcsvdialog.cpp:1297
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "금액 필드 또는 입금 및 출금 필드가 모두 필요합니다."
 
-#: import_export/univcsvdialog.cpp:1297 import_export/univcsvdialog.cpp:1478
+#: import_export/univcsvdialog.cpp:1298 import_export/univcsvdialog.cpp:1493
 #: themes.cpp:189 webappdialog.cpp:408
 msgid "Import"
 msgstr "가져오기"
 
-#: import_export/univcsvdialog.cpp:1356
+#: import_export/univcsvdialog.cpp:1358
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr "%s 계정으로 가져온 거래 내역: %ld"
 
-#: import_export/univcsvdialog.cpp:1382
+#: import_export/univcsvdialog.cpp:1384
 #, c-format
 msgid "Line %ld: Empty"
 msgstr "줄 %ld: 비어 있음"
 
-#: import_export/univcsvdialog.cpp:1393
+#: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Line %ld: Error:"
 msgstr "줄 %ld: 오류:"
 
-#: import_export/univcsvdialog.cpp:1408
+#: import_export/univcsvdialog.cpp:1410
 #, c-format
 msgid "Line %ld: %s"
 msgstr "줄 %ld: %s"
 
-#: import_export/univcsvdialog.cpp:1449
+#: import_export/univcsvdialog.cpp:1464
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr "줄 %ld: 가져오기 정상."
 
-#: import_export/univcsvdialog.cpp:1458
+#: import_export/univcsvdialog.cpp:1473
 msgid "Rejected rows:"
 msgstr "거부된 행:"
 
-#: import_export/univcsvdialog.cpp:1463
+#: import_export/univcsvdialog.cpp:1478
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "총 줄 수: %ld"
 
-#: import_export/univcsvdialog.cpp:1465
+#: import_export/univcsvdialog.cpp:1480
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr "가져올 줄 선택: %ld"
 
-#: import_export/univcsvdialog.cpp:1467
+#: import_export/univcsvdialog.cpp:1482
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr "빈 줄: %ld"
 
-#: import_export/univcsvdialog.cpp:1469
+#: import_export/univcsvdialog.cpp:1484
 #, c-format
 msgid "Imported: %ld"
 msgstr "가져온 항목: %ld"
 
-#: import_export/univcsvdialog.cpp:1471
+#: import_export/univcsvdialog.cpp:1486
 #, c-format
 msgid "Errored: %ld"
 msgstr "오류 항목: %ld"
 
-#: import_export/univcsvdialog.cpp:1474
+#: import_export/univcsvdialog.cpp:1489
 #, c-format
 msgid "Log file written to: %s"
 msgstr "로그 파일 쓰기 대상: %s"
 
-#: import_export/univcsvdialog.cpp:1477 stockdialog.cpp:651
+#: import_export/univcsvdialog.cpp:1492 stockdialog.cpp:638
 msgid "Please confirm saving"
 msgstr "저장을 확인하십시오"
 
-#: import_export/univcsvdialog.cpp:1511
+#: import_export/univcsvdialog.cpp:1526
 msgid "No imported transactions!"
 msgstr "가져온 거래내역이 없습니다!"
 
-#: import_export/univcsvdialog.cpp:1533
+#: import_export/univcsvdialog.cpp:1548
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "내보내기에 잘못된 필드가 지정되었습니다! 최소한 날짜 및 금액이 필요합니다."
 
-#: import_export/univcsvdialog.cpp:1534 import_export/univcsvdialog.cpp:1701
+#: import_export/univcsvdialog.cpp:1549 import_export/univcsvdialog.cpp:1726
 msgid "Export"
 msgstr "내보내기"
 
-#: import_export/univcsvdialog.cpp:1544
+#: import_export/univcsvdialog.cpp:1559
 msgid "Overwrite existing file?"
 msgstr "기존 파일을 덮어쓰시겠습니까?"
 
-#: import_export/univcsvdialog.cpp:1544
+#: import_export/univcsvdialog.cpp:1559
 msgid "File exists"
 msgstr "파일 있음"
 
-#: import_export/univcsvdialog.cpp:1550
+#: import_export/univcsvdialog.cpp:1565
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "기존 파일을 삭제하지 못했습니다. 파일이 다른 프로그램에 의해 잠겨 있을 수 있습니다."
 
-#: import_export/univcsvdialog.cpp:1551
+#: import_export/univcsvdialog.cpp:1566
 msgid "Destination file error"
 msgstr "대상 파일 오류"
 
-#: import_export/univcsvdialog.cpp:1559 mmSimpleDialogs.cpp:809
+#: import_export/univcsvdialog.cpp:1574 mmSimpleDialogs.cpp:788
 msgid "Invalid Account"
 msgstr "잘못된 계정"
 
-#: import_export/univcsvdialog.cpp:1700
+#: import_export/univcsvdialog.cpp:1725
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "내보낸 거래내역: %ld"
 
-#: import_export/univcsvdialog.cpp:2121
+#: import_export/univcsvdialog.cpp:2167
 #, c-format
 msgid "Preset '%s' will be deleted"
 msgstr "'%s' 사전 설정이 삭제됩니다"
 
-#: import_export/univcsvdialog.cpp:2154 stockdialog.cpp:557
+#: import_export/univcsvdialog.cpp:2200 stockdialog.cpp:544
 msgid "Choose CSV data file to import"
 msgstr "가져올 CSV 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:2157
+#: import_export/univcsvdialog.cpp:2203
 msgid "Choose CSV data file to export"
 msgstr "내보낼 CSV 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:2160
+#: import_export/univcsvdialog.cpp:2206
 msgid "Choose XML data file to import"
 msgstr "가져올 XML 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:2163
+#: import_export/univcsvdialog.cpp:2209
 msgid "Choose XML data file to export"
 msgstr "내보낼 XML 데이터 파일 선택"
 
-#: import_export/univcsvdialog.cpp:2171
+#: import_export/univcsvdialog.cpp:2217
 msgid "XML Files (*.xml)"
 msgstr "XML 파일 (*.xml)"
 
-#: import_export/univcsvdialog.cpp:2171
+#: import_export/univcsvdialog.cpp:2217
 msgid "All Files"
 msgstr "모든 파일"
 
-#: import_export/univcsvdialog.cpp:2589
+#: import_export/univcsvdialog.cpp:2659
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr "CSV 파일에 양수 값을 나타내는 단어를 입력하십시오. 예: '수입'"
 
-#: import_export/univcsvdialog.cpp:2589
+#: import_export/univcsvdialog.cpp:2659
 msgid "Enter a value"
 msgstr "값 입력"
 
-#: import_export/univcsvdialog.cpp:2599
+#: import_export/univcsvdialog.cpp:2669
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr "가져오기를 위해 '유형'을 선택한 경우 유형별로 금액 부호를 정의해야 합니다"
 
-#: import_export/univcsvdialog.cpp:2720 import_export/univcsvdialog.cpp:2731
-#: import_export/univcsvdialog.cpp:2747 import_export/univcsvdialog.cpp:2791
-#: import_export/univcsvdialog.cpp:2802
+#: import_export/univcsvdialog.cpp:2790 import_export/univcsvdialog.cpp:2801
+#: import_export/univcsvdialog.cpp:2817 import_export/univcsvdialog.cpp:2861
+#: import_export/univcsvdialog.cpp:2872
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2760 import_export/univcsvdialog.cpp:2781
+#: import_export/univcsvdialog.cpp:2830 import_export/univcsvdialog.cpp:2851
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2792
+#: import_export/univcsvdialog.cpp:2862
 #, c-format
 msgid "Confirm format matches selection %s."
 msgstr "형식이 선택 항목 %s와 일치하는지 확인합니다."
 
-#: import_export/univcsvdialog.cpp:2819
+#: import_export/univcsvdialog.cpp:2889
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
 msgstr ""
@@ -3739,8 +3740,8 @@ msgstr "사용되지 않은 통화까지 모두 표시"
 msgid "Currency History Options"
 msgstr "통화 이력 옵션"
 
-#: maincurrencydialog.cpp:258 stockdialog.cpp:300 stockdialog.cpp:319
-#: stockdialog.cpp:647 stockspanel.cpp:215
+#: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
+#: stockdialog.cpp:634 stockspanel.cpp:215
 msgid "Price"
 msgstr "가격"
 
@@ -3778,8 +3779,8 @@ msgstr "선택한 통화를 삭제하시겠습니까?"
 
 #: maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
-#: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1702
-#: mmframe.cpp:1922 optionsettingsgeneral.cpp:301
+#: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1705
+#: mmframe.cpp:1925 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
 msgstr "통화 구성"
 
@@ -3847,112 +3848,112 @@ msgstr "오늘 환율을 업데이트하시겠습니까?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "기본 통화 기호 %s에 대한 이력을 다운로드할 수 없습니다. 환율 이력을 사용할 수 없습니다!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:682
+#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:679
 msgid "Could not find base currency symbol!"
 msgstr "기준 통화 기호를 찾을 수 없습니다!"
 
-#: mmSimpleDialogs.cpp:554 mmSimpleDialogs.cpp:566
+#: mmSimpleDialogs.cpp:535 mmSimpleDialogs.cpp:547
 msgid "Clear color"
 msgstr "색상 제거"
 
-#: mmSimpleDialogs.cpp:557 mmSimpleDialogs.cpp:571
+#: mmSimpleDialogs.cpp:538 mmSimpleDialogs.cpp:552
 #, c-format
 msgid "Color #%i"
 msgstr "색상 #%i"
 
-#: mmSimpleDialogs.cpp:731
+#: mmSimpleDialogs.cpp:710
 msgid "Subtract one year"
 msgstr "1년 빼기"
 
-#: mmSimpleDialogs.cpp:732
+#: mmSimpleDialogs.cpp:711
 msgid "Subtract one month"
 msgstr "1개월 빼기"
 
-#: mmSimpleDialogs.cpp:733
+#: mmSimpleDialogs.cpp:712
 msgid "Add one month"
 msgstr "1개월 추가"
 
-#: mmSimpleDialogs.cpp:734
+#: mmSimpleDialogs.cpp:713
 msgid "Add one year"
 msgstr "1년 추가"
 
-#: mmSimpleDialogs.cpp:790
+#: mmSimpleDialogs.cpp:769
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "%s 항목이 잘못되었습니다"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:775
 msgid "Please select an existing category"
 msgstr "기존 범주를 선택하십시오"
 
-#: mmSimpleDialogs.cpp:796
+#: mmSimpleDialogs.cpp:775
 msgid "Invalid Category"
 msgstr "잘못된 범주"
 
-#: mmSimpleDialogs.cpp:801
+#: mmSimpleDialogs.cpp:780
 msgid "File name is empty."
 msgstr "파일명이 비어있습니다."
 
-#: mmSimpleDialogs.cpp:802
+#: mmSimpleDialogs.cpp:781
 msgid "Please select the file for this operation."
 msgstr "이 작업에 대한 파일을 선택하십시오."
 
-#: mmSimpleDialogs.cpp:812
+#: mmSimpleDialogs.cpp:791
 msgid "Please select the account for this transaction."
 msgstr "이 거래에 대한 계정을 선택하십시오."
 
-#: mmSimpleDialogs.cpp:814
+#: mmSimpleDialogs.cpp:793
 msgid "Please specify which account the transfer is going to."
 msgstr "이체할 계정을 지정하십시오."
 
-#: mmSimpleDialogs.cpp:816
+#: mmSimpleDialogs.cpp:795
 msgid "Selection can be made by using the dropdown button."
 msgstr "드롭다운 버튼을 사용하여 선택할 수 있습니다."
 
-#: mmSimpleDialogs.cpp:819
+#: mmSimpleDialogs.cpp:798
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "버튼을 활성화하면 계정을 선택할 수 있는 선택 상자가 제공됩니다."
 
-#: mmSimpleDialogs.cpp:828
+#: mmSimpleDialogs.cpp:807
 msgid "Invalid Payee"
 msgstr "잘못된 수취인"
 
-#: mmSimpleDialogs.cpp:829
+#: mmSimpleDialogs.cpp:808
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "새 수취인을 입력하십시오,\n"
 "또는 드롭다운 버튼을 사용하여 선택합니다."
 
-#: mmSimpleDialogs.cpp:837 mmSimpleDialogs.cpp:849
+#: mmSimpleDialogs.cpp:816 mmSimpleDialogs.cpp:828
 msgid "Invalid Name"
 msgstr "잘못된 이름"
 
-#: mmSimpleDialogs.cpp:840 mmSimpleDialogs.cpp:852
+#: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Already exist!"
 msgstr "이미 존재합니다!"
 
-#: mmSimpleDialogs.cpp:842
+#: mmSimpleDialogs.cpp:821
 msgid "Please type in a non empty name."
 msgstr "비어 있지 않은 이름을 입력하십시오."
 
-#: mmSimpleDialogs.cpp:854
+#: mmSimpleDialogs.cpp:833
 msgid "Please type in a non empty symbol."
 msgstr "비어 있지 않은 기호를 입력하십시오."
 
-#: mmSimpleDialogs.cpp:947
+#: mmSimpleDialogs.cpp:936
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:948
+#: mmSimpleDialogs.cpp:937
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1536
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1492
+#: mmSimpleDialogs.cpp:1536
 msgid "New tag entered"
 msgstr "새 태그 입력됨"
 
@@ -4106,320 +4107,336 @@ msgstr "투자자들의 일반적인 실수: 인기 있는 회사를 매수합�
 msgid "Common mistake of investors: forgetting to rebalance."
 msgstr "투자자들의 일반적인 실수: 비중 조절을 잊습니다."
 
-#: mmchecking_list.cpp:212
+#: mmchecking_list.cpp:214
 msgid "Sort Order"
 msgstr "정렬 순서"
 
-#: mmchecking_list.cpp:308
+#: mmchecking_list.cpp:310
 msgid "Deleted On"
 msgstr "삭제된 시점"
 
-#: mmchecking_list.cpp:333
+#: mmchecking_list.cpp:335
 msgid "Last Updated"
 msgstr "마지막 업데이트"
 
-#: mmchecking_list.cpp:452 mmcheckingpanel.cpp:319
+#: mmchecking_list.cpp:454 mmcheckingpanel.cpp:319
 msgid "&New Withdrawal..."
 msgstr "출금 생성(&N)..."
 
-#: mmchecking_list.cpp:453 mmcheckingpanel.cpp:320
+#: mmchecking_list.cpp:455 mmcheckingpanel.cpp:320
 msgid "&New Deposit..."
 msgstr "입금 생성(&N)..."
 
-#: mmchecking_list.cpp:455 mmcheckingpanel.cpp:321
+#: mmchecking_list.cpp:457 mmcheckingpanel.cpp:321
 msgid "&New Transfer..."
 msgstr "이체 생성(&N)..."
 
-#: mmchecking_list.cpp:459
+#: mmchecking_list.cpp:461
 msgid "&Edit Transaction..."
 msgid_plural "&Edit Transactions..."
 msgstr[0] "거래 편집(&E)..."
 
-#: mmchecking_list.cpp:462
+#: mmchecking_list.cpp:464
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "거래 복사(&C)"
 
-#: mmchecking_list.cpp:469
+#: mmchecking_list.cpp:471
 msgid "&Paste Transaction"
 msgstr "거래 붙여넣기(&P)"
 
-#: mmchecking_list.cpp:469
+#: mmchecking_list.cpp:471
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr "거래 붙여넣기(&P) (%d)"
 
-#: mmchecking_list.cpp:474
+#: mmchecking_list.cpp:476
 msgid "D&uplicate Transaction..."
 msgstr "거래 복제(&U)..."
 
-#: mmchecking_list.cpp:477
+#: mmchecking_list.cpp:479
 msgid "&Move Transaction..."
 msgid_plural "&Move Transactions..."
 msgstr[0] "거래 이동(&M)..."
 
-#: mmchecking_list.cpp:483
+#: mmchecking_list.cpp:485
 msgid "&View In Other Account"
 msgstr "다른 계정에서 보기(&V)"
 
-#: mmchecking_list.cpp:487
+#: mmchecking_list.cpp:489
 msgid "&View Split Categories"
 msgstr "범주 분할 보기(&V)"
 
-#: mmchecking_list.cpp:495
+#: mmchecking_list.cpp:497
 msgid "Create Scheduled T&ransaction..."
 msgstr ""
 
-#: mmchecking_list.cpp:499
+#: mmchecking_list.cpp:501
 msgid "&Restore selected transaction..."
 msgid_plural "&Restore selected transactions..."
 msgstr[0] "선택한 거래내역 복원(&R)..."
 
-#: mmchecking_list.cpp:501
+#: mmchecking_list.cpp:503
 msgid "Restore all transactions in current view..."
 msgstr "현재 보기의 모든 거래내역 복원..."
 
-#: mmchecking_list.cpp:600
+#: mmchecking_list.cpp:602
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr ""
 
-#: mmchecking_list.cpp:607
+#: mmchecking_list.cpp:609
 msgid "&Delete selected transaction..."
 msgid_plural "&Delete selected transactions..."
 msgstr[0] "선택한 거래내역 삭제(&D)..."
 
-#: mmchecking_list.cpp:608
+#: mmchecking_list.cpp:610
 msgid "&Permanently delete selected transaction..."
 msgid_plural "&Permanently delete selected transactions..."
 msgstr[0] "선택한 거래내역을 영구적으로 삭제(&P)..."
 
-#: mmchecking_list.cpp:611
+#: mmchecking_list.cpp:613
 msgid "Delete all transactions in current view..."
 msgstr "현재 보기의 모든 거래내역 삭제..."
 
-#: mmchecking_list.cpp:611
+#: mmchecking_list.cpp:613
 msgid "Permanently delete all transactions in current view..."
 msgstr "현재 보기의 모든 거래내역을 영구적으로 삭제..."
 
-#: mmchecking_list.cpp:613
+#: mmchecking_list.cpp:615
 msgid "Delete Viewed \"Follow Up\" Transactions..."
 msgstr "확인한 \"후속 조치\" 거래내역을 삭제..."
 
-#: mmchecking_list.cpp:614
+#: mmchecking_list.cpp:616
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
 msgstr "확인된 \"미조정\" 거래내역 삭제..."
 
-#: mmchecking_list.cpp:632
+#: mmchecking_list.cpp:634
 msgid "Mark as"
 msgstr "표시"
 
-#: mmchecking_list.cpp:655 mmcheckingpanel.cpp:509 mmframe.cpp:732
+#: mmchecking_list.cpp:657 mmcheckingpanel.cpp:513 mmframe.cpp:733
 msgid "All Transactions"
 msgstr "모든 거래"
 
-#: mmchecking_list.cpp:1097
+#: mmchecking_list.cpp:1099
 msgid "Do you really want to restore all of the transactions shown?"
 msgstr "표시된 모든 거래내역을 복원하시겠습니까?"
 
-#: mmchecking_list.cpp:1098 mmchecking_list.cpp:1140
+#: mmchecking_list.cpp:1100 mmchecking_list.cpp:1142
 msgid "Confirm Transaction Restore"
 msgstr "거래 복원 확인"
 
-#: mmchecking_list.cpp:1135
+#: mmchecking_list.cpp:1137
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] "선택한 %i 거래를 복원하시겠습니까?"
 
-#: mmchecking_list.cpp:1177
+#: mmchecking_list.cpp:1179
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "표시된 모든 거래내역을 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1178
+#: mmchecking_list.cpp:1180
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr "표시된 모든 거래내역을 완전히 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1182 mmchecking_list.cpp:1284
+#: mmchecking_list.cpp:1184 mmchecking_list.cpp:1286
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "삭제된 거래는 일시적으로 저장되며 삭제된 거래 보기에서 복원할 수 있습니다."
 
-#: mmchecking_list.cpp:1183 mmchecking_list.cpp:1283
+#: mmchecking_list.cpp:1185 mmchecking_list.cpp:1285
 msgid "You cannot undo this action."
 msgstr "이 동작은 되돌릴 수 없습니다."
 
-#: mmchecking_list.cpp:1187 mmchecking_list.cpp:1198 mmchecking_list.cpp:1209
-#: mmchecking_list.cpp:1288
+#: mmchecking_list.cpp:1189 mmchecking_list.cpp:1200 mmchecking_list.cpp:1211
+#: mmchecking_list.cpp:1290
 msgid "Confirm Transaction Deletion"
 msgstr "거래 삭제 확인"
 
-#: mmchecking_list.cpp:1197 mmchecking_list.cpp:1208
+#: mmchecking_list.cpp:1199 mmchecking_list.cpp:1210
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "표시된 \"%s\" 거래내역을 모두 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1275
+#: mmchecking_list.cpp:1277
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
 msgstr[0] "선택한 %i 거래를 영구적으로 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1279
+#: mmchecking_list.cpp:1281
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "선택한 %i 거래를 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1351
+#: mmchecking_list.cpp:1353
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "현재까지 잠긴 거래: %s\n\n"
 "조정된 거래입니다."
 
-#: mmchecking_list.cpp:1354 transdialog.cpp:739 transdialog.cpp:770
+#: mmchecking_list.cpp:1356 transdialog.cpp:739 transdialog.cpp:770
 msgid "MMEX Transaction Check"
 msgstr "MMEX 거래 점검"
 
-#: mmchecking_list.cpp:1387
+#: mmchecking_list.cpp:1389
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "편집은 닫힌 계정과 관련된 %i 거래에 영향을 줍니다."
 
-#: mmchecking_list.cpp:1389
+#: mmchecking_list.cpp:1391
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "편집을 계속 수행하시겠습니까?"
 
-#: mmchecking_list.cpp:1390
+#: mmchecking_list.cpp:1392
 msgid "Closed Account Check"
 msgstr "닫힌 계정 점검"
 
-#: mmchecking_list.cpp:1582
+#: mmchecking_list.cpp:1588
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "선택한 %i 거래를 이동하시겠습니까?"
 
-#: mmchecking_list.cpp:1587
+#: mmchecking_list.cpp:1593
 msgid "Confirm Transaction Move"
 msgstr "거래 이동 확인"
 
-#: mmchecking_list.cpp:1593
+#: mmchecking_list.cpp:1599
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "%i 거래를 이동하는 중..."
 
-#: mmchecking_list.cpp:1597 stocks_list.cpp:300
+#: mmchecking_list.cpp:1603 stocks_list.cpp:300
 msgid "Select the destination Account "
 msgstr "대상 계정 선택 "
 
-#: mmchecking_list.cpp:1684
+#: mmchecking_list.cpp:1636
+msgid "This is due to some elements of the transaction or account detail not allowing the move"
+msgstr ""
+
+#: mmchecking_list.cpp:1637
+msgid "Moved"
+msgstr ""
+
+#: mmchecking_list.cpp:1638
+msgid "Not moved"
+msgstr ""
+
+#: mmchecking_list.cpp:1641
+msgid "Some transactions could not be moved"
+msgstr ""
+
+#: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmcheckingpanel.cpp:438
-msgid "Delete selected transaction"
-msgstr "선택한 거래 삭제"
+#: mmcheckingpanel.cpp:442
+msgid "Delete all selected transactions"
+msgstr ""
 
-#: mmcheckingpanel.cpp:442 mmframe.cpp:1917 transdialog.cpp:183
+#: mmcheckingpanel.cpp:446 mmframe.cpp:1920 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "거래 새로 만들기"
 
-#: mmcheckingpanel.cpp:446
-msgid "Edit selected transaction"
-msgstr "선택한 거래 편집"
+#: mmcheckingpanel.cpp:450
+msgid "Edit all selected transactions"
+msgstr ""
 
-#: mmcheckingpanel.cpp:454
+#: mmcheckingpanel.cpp:458
 msgid "Duplicate selected transaction"
 msgstr "선택한 거래 복제"
 
-#: mmcheckingpanel.cpp:471
+#: mmcheckingpanel.cpp:475
 msgid "&Restore "
 msgstr "복원(&R) "
 
-#: mmcheckingpanel.cpp:472
+#: mmcheckingpanel.cpp:476
 msgid "Restore selected transaction"
 msgstr "선택한 거래 복원"
 
-#: mmcheckingpanel.cpp:487
+#: mmcheckingpanel.cpp:491
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "가장 가까운 거래 데이터에서 찾을 문자열을 입력"
 
-#: mmcheckingpanel.cpp:511 mmframe.cpp:776
+#: mmcheckingpanel.cpp:515 mmframe.cpp:777
 msgid "Deleted Transactions"
 msgstr "삭제된 거래"
 
-#: mmcheckingpanel.cpp:513
+#: mmcheckingpanel.cpp:517
 #, c-format
 msgid "Account View: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:531
+#: mmcheckingpanel.cpp:536
 msgid "Account Bal: "
 msgstr "계정 잔액: "
 
-#: mmcheckingpanel.cpp:533
+#: mmcheckingpanel.cpp:538
 msgid "Reconciled Bal: "
 msgstr "조정된 잔액: "
 
-#: mmcheckingpanel.cpp:535
+#: mmcheckingpanel.cpp:540
 msgid "Diff: "
 msgstr "차이: "
 
-#: mmcheckingpanel.cpp:537
+#: mmcheckingpanel.cpp:542
 msgid "Filtered View Bal: "
 msgstr "필터링된 보기 잔액: "
 
-#: mmcheckingpanel.cpp:602 webapp.cpp:619
+#: mmcheckingpanel.cpp:616 webapp.cpp:619
 msgid "Attachment"
 msgstr "첨부 파일"
 
-#: mmcheckingpanel.cpp:638
+#: mmcheckingpanel.cpp:652
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "선택한 거래: %zu"
 
-#: mmcheckingpanel.cpp:641
+#: mmcheckingpanel.cpp:655
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "선택한 거래 잔액: %s"
 
-#: mmcheckingpanel.cpp:645
+#: mmcheckingpanel.cpp:659
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "선택한 거래 사이의 일 수: %d"
 
-#: mmcustomdata.cpp:67
+#: mmcustomdata.cpp:65
 msgid "Custom fields"
 msgstr "사용자 지정 필드"
 
-#: mmcustomdata.cpp:158
+#: mmcustomdata.cpp:156
 msgid "False"
 msgstr "거짓"
 
-#: mmcustomdata.cpp:160
+#: mmcustomdata.cpp:158
 msgid "True"
 msgstr "참"
 
-#: mmcustomdata.cpp:311
+#: mmcustomdata.cpp:309
 msgid "Please select"
 msgstr "선택하십시오"
 
-#: mmcustomdata.cpp:311
+#: mmcustomdata.cpp:309
 msgid "Multi Choice"
 msgstr "다중 선택"
 
-#: mmcustomdata.cpp:786
+#: mmcustomdata.cpp:784
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
 msgstr ""
 
-#: mmcustomdata.cpp:789
+#: mmcustomdata.cpp:787
 msgid "CustomField validation error"
 msgstr "사용자 지정 필드 유효성 검사 오류"
 
@@ -4437,30 +4454,30 @@ msgstr "탐색기"
 msgid "Toolbar"
 msgstr "도구 모음"
 
-#: mmframe.cpp:482 mmframe.cpp:740 mmhomepage.cpp:695 reports/summary.cpp:256
+#: mmframe.cpp:482 mmframe.cpp:741 mmhomepage.cpp:690 reports/summary.cpp:256
 #: reports/summary.cpp:299
 msgid "Bank Accounts"
 msgstr "은행 계정"
 
-#: mmframe.cpp:483 mmframe.cpp:744 mmhomepage.cpp:696 reports/summary.cpp:258
+#: mmframe.cpp:483 mmframe.cpp:745 mmhomepage.cpp:691 reports/summary.cpp:258
 #: reports/summary.cpp:300
 msgid "Credit Card Accounts"
 msgstr "신용 카드 계정"
 
-#: mmframe.cpp:484 mmframe.cpp:756 mmhomepage.cpp:698 reports/summary.cpp:262
+#: mmframe.cpp:484 mmframe.cpp:757 mmhomepage.cpp:693 reports/summary.cpp:262
 #: reports/summary.cpp:302
 msgid "Term Accounts"
 msgstr "정기 계정"
 
-#: mmframe.cpp:485 mmframe.cpp:760
+#: mmframe.cpp:485 mmframe.cpp:761
 msgid "Stock Portfolios"
 msgstr "주식 포트폴리오"
 
-#: mmframe.cpp:486 mmframe.cpp:748 mmhomepage.cpp:694
+#: mmframe.cpp:486 mmframe.cpp:749 mmhomepage.cpp:689
 msgid "Cash Accounts"
 msgstr "현금 계정"
 
-#: mmframe.cpp:487 mmframe.cpp:752 mmhomepage.cpp:697 reports/summary.cpp:260
+#: mmframe.cpp:487 mmframe.cpp:753 mmhomepage.cpp:692 reports/summary.cpp:260
 #: reports/summary.cpp:301
 msgid "Loan Accounts"
 msgstr "대출 계정"
@@ -4469,740 +4486,740 @@ msgstr "대출 계정"
 msgid "Auto Repeat Transactions"
 msgstr "자동 반복 거래"
 
-#: mmframe.cpp:728 mmframe.cpp:1915 optiondialog.cpp:37
+#: mmframe.cpp:729 mmframe.cpp:1918 optiondialog.cpp:37
 msgid "Dashboard"
 msgstr "대시보드"
 
-#: mmframe.cpp:764 mmhomepage.cpp:701 reports/summary.cpp:266
+#: mmframe.cpp:765 mmhomepage.cpp:696 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Share Accounts"
 msgstr "주식 계정"
 
-#: mmframe.cpp:780 mmframe.cpp:1727 mmframe.cpp:2816
+#: mmframe.cpp:781 mmframe.cpp:1730 mmframe.cpp:2819
 msgid "Budget Setup"
 msgstr "예산 설정"
 
-#: mmframe.cpp:785 mmframe.cpp:1314 mmframe.cpp:1331 mmframe.cpp:2801
+#: mmframe.cpp:786 mmframe.cpp:1317 mmframe.cpp:1334 mmframe.cpp:2804
 msgid "Transaction Report"
 msgstr "거래 내역 보고서"
 
-#: mmframe.cpp:802 mmframe.cpp:1953 mmframe.cpp:2607 mmframe.cpp:2898
+#: mmframe.cpp:803 mmframe.cpp:1956 mmframe.cpp:2610 mmframe.cpp:2901
 #: mmhelppanel.cpp:69
 msgid "Help"
 msgstr "도움말"
 
-#: mmframe.cpp:1288
+#: mmframe.cpp:1291
 msgid "A setting with this name already exists"
 msgstr "동일한 이름의 설정이 이미 존재함"
 
-#: mmframe.cpp:1290
+#: mmframe.cpp:1293
 msgid "Please specify a new name for the setting"
 msgstr "설정에 대한 새 이름을 지정하십시오"
 
-#: mmframe.cpp:1292
+#: mmframe.cpp:1295
 msgid "Name in use"
 msgstr "사용 중인 이름"
 
-#: mmframe.cpp:1349
+#: mmframe.cpp:1352
 msgid "Do you really want to delete the account?"
 msgstr "정말 계정을 삭제하시겠습니까?"
 
-#: mmframe.cpp:1356 mmframe.cpp:3539
+#: mmframe.cpp:1359 mmframe.cpp:3542
 msgid "Confirm Account Deletion"
 msgstr "계정 삭제 확인"
 
-#: mmframe.cpp:1376
+#: mmframe.cpp:1379
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX가 활성 데이터베이스 없이 열렸습니다."
 
-#: mmframe.cpp:1377
+#: mmframe.cpp:1380
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: 메뉴 팝업 오류"
 
-#: mmframe.cpp:1393 mmframe.cpp:1554
+#: mmframe.cpp:1396 mmframe.cpp:1557
 msgid "&Import from"
 msgstr "다음에서 가져오기(&I)"
 
-#: mmframe.cpp:1394
+#: mmframe.cpp:1397
 msgid "&CSV Files..."
 msgstr "&CSV 파일..."
 
-#: mmframe.cpp:1395
+#: mmframe.cpp:1398
 msgid "&XML Files..."
 msgstr "&XML 파일..."
 
-#: mmframe.cpp:1395 mmframe.cpp:1556
+#: mmframe.cpp:1398 mmframe.cpp:1559
 msgid "Import from XML file (Excel format)"
 msgstr "XML 파일에서 가져오기(Excel 형식)"
 
-#: mmframe.cpp:1397
+#: mmframe.cpp:1400
 msgid "&QIF Files..."
 msgstr "&QIF 파일..."
 
-#: mmframe.cpp:1400 mmframe.cpp:1563
+#: mmframe.cpp:1403 mmframe.cpp:1566
 msgid "&Export as"
 msgstr "내보내기(&E)"
 
-#: mmframe.cpp:1401 mmframe.cpp:1555 mmframe.cpp:1564
+#: mmframe.cpp:1404 mmframe.cpp:1558 mmframe.cpp:1567
 msgid "&CSV File..."
 msgstr "&CSV 파일..."
 
-#: mmframe.cpp:1402 mmframe.cpp:1556 mmframe.cpp:1565
+#: mmframe.cpp:1405 mmframe.cpp:1559 mmframe.cpp:1568
 msgid "&XML File..."
 msgstr "&XML 파일..."
 
-#: mmframe.cpp:1404 mmframe.cpp:1567
+#: mmframe.cpp:1407 mmframe.cpp:1570
 msgid "&MMEX CSV File..."
 msgstr "&MMEX CSV 파일..."
 
-#: mmframe.cpp:1405 mmframe.cpp:1568
+#: mmframe.cpp:1408 mmframe.cpp:1571
 msgid "&JSON File..."
 msgstr "&JSON 파일..."
 
-#: mmframe.cpp:1406 mmframe.cpp:1558 mmframe.cpp:1569
+#: mmframe.cpp:1409 mmframe.cpp:1561 mmframe.cpp:1572
 msgid "&QIF File..."
 msgstr "&QIF 파일..."
 
-#: mmframe.cpp:1431
+#: mmframe.cpp:1434
 msgid "&Edit Filter..."
 msgstr "필터 편집(&E)..."
 
-#: mmframe.cpp:1432
+#: mmframe.cpp:1435
 msgid "&Rename Filter..."
 msgstr "필터 이름 변경(&R)..."
 
-#: mmframe.cpp:1433
+#: mmframe.cpp:1436
 msgid "&Delete Filter..."
 msgstr "필터 삭제(&D)..."
 
-#: mmframe.cpp:1449 mmframe.cpp:1467 mmframe.cpp:1487 mmframe.cpp:1665
+#: mmframe.cpp:1452 mmframe.cpp:1470 mmframe.cpp:1490 mmframe.cpp:1668
 msgid "&Edit Account..."
 msgstr "계정 편집(&E)..."
 
-#: mmframe.cpp:1450 mmframe.cpp:1470 mmframe.cpp:1490 mmframe.cpp:1671
+#: mmframe.cpp:1453 mmframe.cpp:1473 mmframe.cpp:1493 mmframe.cpp:1674
 msgid "&Delete Account..."
 msgstr "계정 삭제(&D)..."
 
-#: mmframe.cpp:1452 mmframe.cpp:1472
+#: mmframe.cpp:1455 mmframe.cpp:1475
 msgid "&Launch Account Website"
 msgstr "계정 웹 사이트 시작(&L)"
 
-#: mmframe.cpp:1468 mmframe.cpp:1668
+#: mmframe.cpp:1471 mmframe.cpp:1671
 msgid "&Change Account Type..."
 msgstr ""
 
-#: mmframe.cpp:1486 mmframe.cpp:1662
+#: mmframe.cpp:1489 mmframe.cpp:1665
 msgid "&New Account..."
 msgstr "계정 만들기(&N)..."
 
-#: mmframe.cpp:1488
+#: mmframe.cpp:1491
 msgid "Account &List"
 msgstr "계정 목록(&L)"
 
-#: mmframe.cpp:1501 optionsettingsview.cpp:69
+#: mmframe.cpp:1504 optionsettingsview.cpp:69
 msgid "Accounts Visible"
 msgstr "계정 보이기"
 
-#: mmframe.cpp:1539
+#: mmframe.cpp:1542
 msgid "&New Database..."
 msgstr "데이터베이스 만들기(&N)..."
 
-#: mmframe.cpp:1539 mmframe.cpp:1911 wizard_newdb.cpp:137
+#: mmframe.cpp:1542 mmframe.cpp:1914 wizard_newdb.cpp:136
 msgid "New Database"
 msgstr "데이터베이스 새로 만들기"
 
-#: mmframe.cpp:1540
+#: mmframe.cpp:1543
 msgid "&Open Database...\tCtrl-O"
 msgstr "데이터베이스 열기(&O)...\tCtrl-O"
 
-#: mmframe.cpp:1540 mmframe.cpp:1912
+#: mmframe.cpp:1543 mmframe.cpp:1915
 msgid "Open Database"
 msgstr "데이터베이스 열기"
 
-#: mmframe.cpp:1541
+#: mmframe.cpp:1544
 msgid "Save Database &As..."
 msgstr "데이터베이스를 다음으로 저장(&A)..."
 
-#: mmframe.cpp:1541
+#: mmframe.cpp:1544
 msgid "Save Database As"
 msgstr "데이터베이스를 다음으로 저장"
 
-#: mmframe.cpp:1548
+#: mmframe.cpp:1551
 msgid "&Recent Files"
 msgstr "최근 파일(&R)"
 
-#: mmframe.cpp:1549
+#: mmframe.cpp:1552
 msgid "&Clear Recent Files"
 msgstr "최근 파일 비우기(&C)"
 
-#: mmframe.cpp:1560
+#: mmframe.cpp:1563
 msgid "&WebApp..."
 msgstr "&WebApp..."
 
-#: mmframe.cpp:1560
+#: mmframe.cpp:1563
 msgid "Import from WebApp"
 msgstr "WebApp에서 가져오기"
 
-#: mmframe.cpp:1567
+#: mmframe.cpp:1570
 msgid "Export as fixed CSV file"
 msgstr "고정 CSV 파일로 내보내기"
 
-#: mmframe.cpp:1571
+#: mmframe.cpp:1574
 msgid "&HTML File..."
 msgstr "&HTML 파일..."
 
-#: mmframe.cpp:1571
+#: mmframe.cpp:1574
 msgid "Export as HTML file"
 msgstr "HTML 파일로 내보내기"
 
-#: mmframe.cpp:1576
+#: mmframe.cpp:1579
 msgid "&Print..."
 msgstr "인쇄(&P)..."
 
-#: mmframe.cpp:1576
+#: mmframe.cpp:1579
 msgid "Print current view"
 msgstr "현재 보기 인쇄"
 
-#: mmframe.cpp:1582
+#: mmframe.cpp:1585
 msgid "E&xit\tAlt-X"
 msgstr "종료(&X)\tAlt-X"
 
-#: mmframe.cpp:1582
+#: mmframe.cpp:1585
 msgid "Quit this program"
 msgstr "프로그램을 종료합니다"
 
-#: mmframe.cpp:1588
+#: mmframe.cpp:1591
 msgid "&Toolbar"
 msgstr "도구 모음(&T)"
 
-#: mmframe.cpp:1588
+#: mmframe.cpp:1591
 msgid "Show/Hide the toolbar"
 msgstr "툴바 보이기/숨기기"
 
-#: mmframe.cpp:1590
+#: mmframe.cpp:1593
 msgid "&Navigation"
 msgstr "탐색기(&N)"
 
-#: mmframe.cpp:1590
+#: mmframe.cpp:1593
 msgid "Show/Hide the Navigation tree control"
 msgstr "탐색 트리 컨트롤 표시/숨기기"
 
-#: mmframe.cpp:1592
+#: mmframe.cpp:1595
 msgid "&Display Share Accounts"
 msgstr "주식 계정 표시(&D)"
 
-#: mmframe.cpp:1592
+#: mmframe.cpp:1595
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr "탐색 트리에서 주식 계정 표시/숨기기"
 
-#: mmframe.cpp:1594
+#: mmframe.cpp:1597
 msgid "&Display Deleted Transactions"
 msgstr "삭제된 거래 표시(&D)"
 
-#: mmframe.cpp:1594
+#: mmframe.cpp:1597
 msgid "Show/Hide Deleted Transactions in the navigation tree"
 msgstr "탐색 트리에서 삭제된 거래 표시/숨기기"
 
-#: mmframe.cpp:1596
+#: mmframe.cpp:1599
 msgid "Budgets: As Financial &Years"
 msgstr "예산: 재무 및 연도로"
 
-#: mmframe.cpp:1596
+#: mmframe.cpp:1599
 msgid "Display Budgets in Financial Year Format"
 msgstr "회계연도 형식으로 예산 표시"
 
-#: mmframe.cpp:1598
+#: mmframe.cpp:1601
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "예산: 총 합계에 이체 포함(&I)"
 
-#: mmframe.cpp:1598
+#: mmframe.cpp:1601
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "예산 총액에 이체 거래 포함"
 
-#: mmframe.cpp:1600
+#: mmframe.cpp:1603
 msgid "Budget Category Report: with &Summaries"
 msgstr "예산 범주 보고서: 요약 포함(&S)"
 
-#: mmframe.cpp:1600
+#: mmframe.cpp:1603
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "예산 범주 요약에 범주 요약 포함"
 
-#: mmframe.cpp:1602
+#: mmframe.cpp:1605
 msgid "Ignore F&uture Transactions"
 msgstr "미래 거래 내역 무시(&U)"
 
-#: mmframe.cpp:1602
+#: mmframe.cpp:1605
 msgid "Ignore Future transactions"
 msgstr "미래 거래 내역 무시"
 
-#: mmframe.cpp:1604
+#: mmframe.cpp:1607
 msgid "Show T&ooltips"
 msgstr "툴팁 보이기(&O)"
 
-#: mmframe.cpp:1604 optionsettingsview.cpp:104
+#: mmframe.cpp:1607 optionsettingsview.cpp:104
 msgid "Show Tooltips"
 msgstr "툴팁 표시"
 
-#: mmframe.cpp:1606
+#: mmframe.cpp:1609
 msgid "Show &Money Tips"
 msgstr "금전 팁 보이기(&M)"
 
-#: mmframe.cpp:1606 optionsettingsview.cpp:110
+#: mmframe.cpp:1609 optionsettingsview.cpp:110
 msgid "Show Money Tips"
 msgstr "금전 팁 표시"
 
-#: mmframe.cpp:1626
+#: mmframe.cpp:1629
 msgid "Toggle &Fullscreen\tShift+F11"
 msgstr "전체화면 전환(&F)\tShift+F11"
 
-#: mmframe.cpp:1627 mmframe.cpp:1946
+#: mmframe.cpp:1630 mmframe.cpp:1949
 msgid "Toggle Fullscreen"
 msgstr "전체 화면 전환"
 
-#: mmframe.cpp:1659
+#: mmframe.cpp:1662
 msgid "Dash&board"
 msgstr "대시보드(&B)"
 
-#: mmframe.cpp:1659 mmframe.cpp:1915
+#: mmframe.cpp:1662 mmframe.cpp:1918
 msgid "Open Dashboard"
 msgstr "대시보드 열기"
 
-#: mmframe.cpp:1668
+#: mmframe.cpp:1671
 msgid "Change the account type of an account"
 msgstr ""
 
-#: mmframe.cpp:1671
+#: mmframe.cpp:1674
 msgid "Delete Account from database"
 msgstr "데이터베이스에서 계정 삭제"
 
-#: mmframe.cpp:1684
+#: mmframe.cpp:1687
 msgid "Download Ra&tes"
 msgstr "환율 내려받기(&T)"
 
-#: mmframe.cpp:1684
+#: mmframe.cpp:1687
 msgid "Download Currency and Stock rates"
 msgstr "통화 및 주가 내려받기"
 
-#: mmframe.cpp:1690
+#: mmframe.cpp:1693
 msgid "Organize &Payees..."
 msgstr "수취인 구성(&P)..."
 
-#: mmframe.cpp:1690 mmframe.cpp:1919 payeedialog.cpp:515
+#: mmframe.cpp:1693 mmframe.cpp:1922 payeedialog.cpp:508
 msgid "Organize Payees"
 msgstr "수취인 구성"
 
-#: mmframe.cpp:1694
+#: mmframe.cpp:1697
 msgid "Organize &Categories..."
 msgstr "범주 구성(&C)..."
 
-#: mmframe.cpp:1698
+#: mmframe.cpp:1701
 msgid "Organize &Tags..."
 msgstr "태그 구성(&T)..."
 
-#: mmframe.cpp:1698 mmframe.cpp:1921 tagdialog.h:45
+#: mmframe.cpp:1701 mmframe.cpp:1924 tagdialog.h:45
 msgid "Organize Tags"
 msgstr "태그 구성"
 
-#: mmframe.cpp:1702
+#: mmframe.cpp:1705
 msgid "Organize Curre&ncies..."
 msgstr "통화 구성(&N)..."
 
-#: mmframe.cpp:1706
+#: mmframe.cpp:1709
 msgid "&Categories..."
 msgstr "범주(&C)..."
 
-#: mmframe.cpp:1707 relocatecategorydialog.cpp:91 relocatecategorydialog.h:43
+#: mmframe.cpp:1710 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
 msgid "Merge categories"
 msgstr ""
 
-#: mmframe.cpp:1709
+#: mmframe.cpp:1712
 msgid "&Payees..."
 msgstr "수취인(&P)..."
 
-#: mmframe.cpp:1710 relocatepayeedialog.cpp:90 relocatepayeedialog.h:42
+#: mmframe.cpp:1713 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
 msgstr ""
 
-#: mmframe.cpp:1712
+#: mmframe.cpp:1715
 msgid "&Tags..."
 msgstr "태그(&T)..."
 
-#: mmframe.cpp:1713 relocatetagdialog.cpp:90 relocatetagdialog.h:42
+#: mmframe.cpp:1716 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
 msgstr ""
 
-#: mmframe.cpp:1715
+#: mmframe.cpp:1718
 msgid "&Merge"
 msgstr ""
 
-#: mmframe.cpp:1716
+#: mmframe.cpp:1719
 msgid "Merge categories, payees, and tags"
 msgstr ""
 
-#: mmframe.cpp:1727
+#: mmframe.cpp:1730
 msgid "&Budget Setup..."
 msgstr "예산 설정(&B)..."
 
-#: mmframe.cpp:1731
+#: mmframe.cpp:1734
 msgid "&Scheduled Transactions"
 msgstr ""
 
-#: mmframe.cpp:1731
+#: mmframe.cpp:1734
 msgid "Bills && Deposits"
 msgstr "청구서 && 보증금"
 
-#: mmframe.cpp:1735
+#: mmframe.cpp:1738
 msgid "&Assets"
 msgstr "자산(&A)"
 
-#: mmframe.cpp:1741
+#: mmframe.cpp:1744
 msgid "T&heme Manager..."
 msgstr "테마 관리자(&H)..."
 
-#: mmframe.cpp:1741 themes.cpp:143
+#: mmframe.cpp:1744 themes.cpp:143
 msgid "Theme Manager"
 msgstr "테마 관리자"
 
-#: mmframe.cpp:1747
+#: mmframe.cpp:1750
 msgid "Transaction Report &Filter..."
 msgstr "거래 내역 보고서 필터(&F)..."
 
-#: mmframe.cpp:1747 mmframe.cpp:1924
+#: mmframe.cpp:1750 mmframe.cpp:1927
 msgid "Transaction Report Filter"
 msgstr "거래 내역 보고서 필터"
 
-#: mmframe.cpp:1753
+#: mmframe.cpp:1756
 msgid "General Report &Manager..."
 msgstr "일반 보고서 관리자(&M)..."
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1760
 msgid "C&ustom Fields Manager..."
 msgstr "사용자 지정 필드 관리자(&U)..."
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1760
 msgid "Custom Fields Manager"
 msgstr "사용자 지정 필드 관리자"
 
-#: mmframe.cpp:1763
+#: mmframe.cpp:1766
 msgid "Refresh &WebApp..."
 msgstr "WebApp 새로 고침(&W)..."
 
-#: mmframe.cpp:1763 mmframe.cpp:2875 mmframe.cpp:2882
+#: mmframe.cpp:1766 mmframe.cpp:2878 mmframe.cpp:2885
 msgid "Refresh WebApp"
 msgstr "WebApp 새로 고침"
 
-#: mmframe.cpp:1768
+#: mmframe.cpp:1771
 msgid "&Options...\tCtrl-,"
 msgstr "옵션(&O)...\tCtrl-,"
 
-#: mmframe.cpp:1768
+#: mmframe.cpp:1771
 msgid "Options"
 msgstr "옵션"
 
-#: mmframe.cpp:1775
+#: mmframe.cpp:1778
 msgid "Convert Encrypted &DB..."
 msgstr "암호화된 &DB 변환..."
 
-#: mmframe.cpp:1776
+#: mmframe.cpp:1779
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "암호화된 DB를 비암호화된 DB로 변환"
 
-#: mmframe.cpp:1778
+#: mmframe.cpp:1781
 msgid "Change Encrypted &Password..."
 msgstr "암호화 암호 변경(&P)..."
 
-#: mmframe.cpp:1779
+#: mmframe.cpp:1782
 msgid "Change the password of an encrypted database"
 msgstr "암호화된 데이터베이스의 암호 변경"
 
-#: mmframe.cpp:1781
+#: mmframe.cpp:1784
 msgid "&Optimize Database..."
 msgstr "데이터베이스 최적화(&O)..."
 
-#: mmframe.cpp:1782
+#: mmframe.cpp:1785
 msgid "Optimize database space and performance"
 msgstr "데이터베이스 공간 및 성능 최적화"
 
-#: mmframe.cpp:1784
+#: mmframe.cpp:1787
 msgid "Database Check and De&bug..."
 msgstr "데이터베이스 검사 및 디버그(&B)..."
 
-#: mmframe.cpp:1785
+#: mmframe.cpp:1788
 msgid "Generate database report or fix errors"
 msgstr "데이터베이스 보고서 생성 또는 오류 수정"
 
-#: mmframe.cpp:1790
+#: mmframe.cpp:1793
 msgid "&Database"
 msgstr ""
 
-#: mmframe.cpp:1791
+#: mmframe.cpp:1794
 msgid "Database management"
 msgstr "데이터베이스 관리"
 
-#: mmframe.cpp:1798 mmframe.cpp:1953
+#: mmframe.cpp:1801 mmframe.cpp:1956
 msgid "&Help\tF1"
 msgstr "도움말(&H)\tF1"
 
-#: mmframe.cpp:1798
+#: mmframe.cpp:1801
 msgid "Show Help"
 msgstr "도움말 표시"
 
-#: mmframe.cpp:1804
+#: mmframe.cpp:1807
 msgid "Open MMEX website for the latest news, updates etc"
 msgstr ""
 
-#: mmframe.cpp:1806
+#: mmframe.cpp:1809
 msgid "&Facebook"
 msgstr "&Facebook"
 
-#: mmframe.cpp:1806
+#: mmframe.cpp:1809
 msgid "Visit us on Facebook"
 msgstr "Facebook으로 방문하기"
 
-#: mmframe.cpp:1808
+#: mmframe.cpp:1811
 msgid "&Crowdin"
 msgstr "&Crowdin"
 
-#: mmframe.cpp:1808
+#: mmframe.cpp:1811
 msgid "We use Crowdin to translate MMEX"
 msgstr "우리는 클라우딘을 사용하여 MMEX를 번역합니다"
 
-#: mmframe.cpp:1810
+#: mmframe.cpp:1813
 msgid "&Twitter"
 msgstr "&Twitter"
 
-#: mmframe.cpp:1810
+#: mmframe.cpp:1813
 msgid "Follow us on Twitter"
 msgstr "Twitter에서 팔로우하기"
 
-#: mmframe.cpp:1812
+#: mmframe.cpp:1815
 msgid "&YouTube"
 msgstr "&YouTube"
 
-#: mmframe.cpp:1812
+#: mmframe.cpp:1815
 msgid "Watch free video materials about MMEX"
 msgstr "MMEX에 대한 무료 비디오 자료 보기"
 
-#: mmframe.cpp:1814
+#: mmframe.cpp:1817
 msgid "&Slack"
 msgstr "&Slack"
 
-#: mmframe.cpp:1814
+#: mmframe.cpp:1817
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr "데스크톱 또는 모바일 장치에서 MMEX 팀과 온라인으로 통신"
 
-#: mmframe.cpp:1816
+#: mmframe.cpp:1819
 msgid "&GitHub"
 msgstr "&GitHub"
 
-#: mmframe.cpp:1816
+#: mmframe.cpp:1819
 msgid "Access open source code repository and track reported bug statuses"
 msgstr "오픈 소스 코드 저장소 액세스 및 보고된 버그 상태 추적"
 
-#: mmframe.cpp:1818
+#: mmframe.cpp:1821
 msgid "W&iki pages"
 msgstr "W&iki 페이지"
 
-#: mmframe.cpp:1818
+#: mmframe.cpp:1821
 msgid "Read and update wiki pages"
 msgstr "Wiki 페이지 읽기 및 업데이트"
 
-#: mmframe.cpp:1820
+#: mmframe.cpp:1823
 msgid "F&orum"
 msgstr "포럼(&F)"
 
-#: mmframe.cpp:1821
+#: mmframe.cpp:1824
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr "MMEX 포럼을 방문하여 기존 사용자 의견을 보거나 소프트웨어의 새로운 문제를 보고합니다"
 
-#: mmframe.cpp:1823
+#: mmframe.cpp:1826
 msgid "MMEX for &Android"
 msgstr ""
 
-#: mmframe.cpp:1824
+#: mmframe.cpp:1827
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr "무료 안드로이드 버전을 얻고 스마트폰 또는 태블릿에서 MMEX 실행"
 
-#: mmframe.cpp:1826
+#: mmframe.cpp:1829
 msgid "&Newsletter"
 msgstr "새 소식(&N)"
 
-#: mmframe.cpp:1827
+#: mmframe.cpp:1830
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr "전자 메일 뉴스레터 구독 또는 기존 공지사항 보기"
 
-#: mmframe.cpp:1829
+#: mmframe.cpp:1832
 msgid "&RSS Feed"
 msgstr "RSS 피드(&R)"
 
-#: mmframe.cpp:1829
+#: mmframe.cpp:1832
 msgid "Connect RSS web feed to news aggregator"
 msgstr "RSS 웹 피드를 뉴스 통합관리자에 연결"
 
-#: mmframe.cpp:1831
+#: mmframe.cpp:1834
 msgid "&Donate via PayPal"
 msgstr "PayPal로 기부하기(&D)"
 
-#: mmframe.cpp:1832
+#: mmframe.cpp:1835
 msgid "Donate the team to support infrastructure etc"
 msgstr "팀에 기부하여 인프라 등을 지원하기"
 
-#: mmframe.cpp:1834
+#: mmframe.cpp:1837
 msgid "&Buy us a Coffee"
 msgstr "커피 사주기(&B)"
 
-#: mmframe.cpp:1835
+#: mmframe.cpp:1838
 msgid "Buy key developer a coffee"
 msgstr "주요 개발자에게 커피 사주기"
 
-#: mmframe.cpp:1838
+#: mmframe.cpp:1841
 msgid "&Community"
 msgstr "커뮤니티(&C)"
 
-#: mmframe.cpp:1839
+#: mmframe.cpp:1842
 msgid "Stay in touch with MMEX community"
 msgstr "MMEX 커뮤니티와 지속적으로 연락하기"
 
-#: mmframe.cpp:1861
+#: mmframe.cpp:1864
 msgid "Report a &Bug"
 msgstr "버그 보고(&B)"
 
-#: mmframe.cpp:1862
+#: mmframe.cpp:1865
 msgid "Report an error in application to the developers"
 msgstr "응용 프로그램 오류를 개발자에게 보고합니다"
 
-#: mmframe.cpp:1866
+#: mmframe.cpp:1869
 msgid "View &Diagnostics"
 msgstr "진단 보기(&D)"
 
-#: mmframe.cpp:1867
+#: mmframe.cpp:1870
 msgid "Help provide information to the developers"
 msgstr "개발자에게 정보를 제공하는 데 도움이 됩니다"
 
-#: mmframe.cpp:1871
+#: mmframe.cpp:1874
 msgid "&Show App Start Dialog"
 msgstr "앱 시작 대화 상자 표시(&S)"
 
-#: mmframe.cpp:1871
+#: mmframe.cpp:1874
 msgid "App Start Dialog"
 msgstr "앱 시작 대화 상자"
 
-#: mmframe.cpp:1875
+#: mmframe.cpp:1878
 msgid "Check for &Updates"
 msgstr "업데이트 확인(&U)"
 
-#: mmframe.cpp:1875
+#: mmframe.cpp:1878
 msgid "Check For Updates"
 msgstr "업데이트 확인"
 
-#: mmframe.cpp:1879 mmframe.cpp:1952
+#: mmframe.cpp:1882 mmframe.cpp:1955
 msgid "&About"
 msgstr "정보(&A)"
 
-#: mmframe.cpp:1879
+#: mmframe.cpp:1882
 msgid "About dialog"
 msgstr "정보 대화상자"
 
-#: mmframe.cpp:1883
+#: mmframe.cpp:1886
 msgid "&File"
 msgstr "파일(&F)"
 
-#: mmframe.cpp:1884
+#: mmframe.cpp:1887
 msgid "&Accounts"
 msgstr "계정(&A)"
 
-#: mmframe.cpp:1885
+#: mmframe.cpp:1888
 msgid "&Tools"
 msgstr "도구(&T)"
 
-#: mmframe.cpp:1886
+#: mmframe.cpp:1889
 msgid "&View"
 msgstr "보기(&V)"
 
-#: mmframe.cpp:1887
+#: mmframe.cpp:1890
 msgid "&Help"
 msgstr "도움말(&H)"
 
-#: mmframe.cpp:1911 mmframe.cpp:1917
+#: mmframe.cpp:1914 mmframe.cpp:1920
 msgid "New"
 msgstr "생성"
 
-#: mmframe.cpp:1928
+#: mmframe.cpp:1931
 msgid "&Options"
 msgstr "옵션(&O)"
 
-#: mmframe.cpp:1928
+#: mmframe.cpp:1931
 msgid "Options Dialog"
 msgstr "옵션 대화상자"
 
-#: mmframe.cpp:1936 mmframe.cpp:1941 mmframe.cpp:2941 optionsettingsnet.cpp:132
+#: mmframe.cpp:1939 mmframe.cpp:1944 mmframe.cpp:2944 optionsettingsnet.cpp:132
 msgid "News"
 msgstr "새로운 소식"
 
-#: mmframe.cpp:1943
+#: mmframe.cpp:1946
 msgid "Download rates"
 msgstr "환율 내려받기"
 
-#: mmframe.cpp:1943
+#: mmframe.cpp:1946
 msgid "Download Currency and Stock Rates"
 msgstr "통화 및 주가 내려받기"
 
-#: mmframe.cpp:1946
+#: mmframe.cpp:1949
 msgid "Toggle Fullscreen\tF11"
 msgstr "전체 화면 전환\tF11"
 
-#: mmframe.cpp:1949
+#: mmframe.cpp:1952
 msgid "&Print"
 msgstr "인쇄(&P)"
 
-#: mmframe.cpp:1949
+#: mmframe.cpp:1952
 msgid "Print"
 msgstr "인쇄"
 
-#: mmframe.cpp:2006
+#: mmframe.cpp:2009
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr "데이터베이스의 암호를 입력하십시오\n\n"
 "%s"
 
-#: mmframe.cpp:2007 mmframe.cpp:2300 mmframe.cpp:2479
+#: mmframe.cpp:2010 mmframe.cpp:2303 mmframe.cpp:2482
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: 암호화된 데이터베이스"
 
-#: mmframe.cpp:2044
+#: mmframe.cpp:2047
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr "MMEX 지원팀에서 디버그/패치 파일을 제공했습니까?"
 
-#: mmframe.cpp:2044
+#: mmframe.cpp:2047
 msgid "MMEX upgrade"
 msgstr "MMEX 업그레이드"
 
-#: mmframe.cpp:2071 mmframe.cpp:2157
+#: mmframe.cpp:2074 mmframe.cpp:2160
 msgid "No File opened"
 msgstr "열려 있는 파일 없음"
 
-#: mmframe.cpp:2073
+#: mmframe.cpp:2076
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr "죄송합니다. 데이터베이스 버전이 너무 오래되었거나 데이터베이스 암호가 잘못되었습니다"
 
-#: mmframe.cpp:2147
+#: mmframe.cpp:2150
 msgid "&Next →"
 msgstr "다음(&N) →"
 
-#: mmframe.cpp:2160
+#: mmframe.cpp:2163
 msgid "Cannot locate previously opened database.\n"
 msgstr "이전에 열었던 데이터베이스를 찾을 수 없습니다.\n"
 
-#: mmframe.cpp:2162
+#: mmframe.cpp:2165
 msgid "Password not entered for encrypted Database.\n"
 msgstr "암호화된 데이터베이스에 대한 암호가 입력되지 않았습니다.\n"
 
-#: mmframe.cpp:2181
+#: mmframe.cpp:2184
 msgid "portable mode"
 msgstr "포터블 모드"
 
-#: mmframe.cpp:2217
+#: mmframe.cpp:2220
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
@@ -5212,112 +5229,112 @@ msgstr "열려는 데이터베이스가 MMEX의 다른 인스턴스에 의해 �
 "실행 중인 다른 작업이 없으면 이전 MMEX 사용 중 충돌로 인해 데이터베이스가 열린 상태로 남아 있을 수 있습니다.\n\n"
 "이 데이터베이스를 계속 여시겠습니까?"
 
-#: mmframe.cpp:2221
+#: mmframe.cpp:2224
 msgid "MMEX Instance Check"
 msgstr "MMEX 인스턴스 확인"
 
-#: mmframe.cpp:2241
+#: mmframe.cpp:2244
 msgid "Choose database file to create"
 msgstr "작성할 데이터베이스 파일 선택"
 
-#: mmframe.cpp:2264
+#: mmframe.cpp:2267
 msgid "Choose database file to open"
 msgstr "열려는 데이터베이스 파일 선택"
 
-#: mmframe.cpp:2290
+#: mmframe.cpp:2293
 msgid "Choose Encrypted database file to open"
 msgstr "열려는 암호화된 데이터베이스 파일 선택"
 
-#: mmframe.cpp:2300
+#: mmframe.cpp:2303
 msgid "Enter password for database"
 msgstr "데이터베이스 암호 입력"
 
-#: mmframe.cpp:2305
+#: mmframe.cpp:2308
 msgid "Choose database file to Save As"
 msgstr "다른 이름으로 저장할 데이터베이스 파일 선택"
 
-#: mmframe.cpp:2327
+#: mmframe.cpp:2330
 msgid "Converted DB!"
 msgstr "DB 변환됨!"
 
-#: mmframe.cpp:2327
+#: mmframe.cpp:2330
 msgid "MMEX message"
 msgstr "MMEX 메시지"
 
-#: mmframe.cpp:2333
+#: mmframe.cpp:2336
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: 암호화 암호 변경"
 
-#: mmframe.cpp:2334
+#: mmframe.cpp:2337
 #, c-format
 msgid "New password for database\n\n"
 "%s"
 msgstr "데이터베이스의 새 암호"
 
-#: mmframe.cpp:2342
+#: mmframe.cpp:2345
 msgid "New password must not be empty."
 msgstr "새 암호는 비워 둘 수 없습니다."
 
-#: mmframe.cpp:2346
+#: mmframe.cpp:2349
 msgid "Please confirm new password"
 msgstr "새 암호를 확인하십시오"
 
-#: mmframe.cpp:2353
+#: mmframe.cpp:2356
 msgid "Password change completed"
 msgstr ""
 
-#: mmframe.cpp:2357
+#: mmframe.cpp:2360
 msgid "Confirm password failed."
 msgstr "암호 확인에 실패했습니다."
 
-#: mmframe.cpp:2368
+#: mmframe.cpp:2371
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr "최적화하기 전에 DB 백업이 있는지 확인합니다"
 
-#: mmframe.cpp:2369 mmframe.cpp:2379
+#: mmframe.cpp:2372 mmframe.cpp:2382
 msgid "DB Optimization"
 msgstr "DB 최적화"
 
-#: mmframe.cpp:2376
+#: mmframe.cpp:2379
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
 msgstr ""
 
-#: mmframe.cpp:2412
+#: mmframe.cpp:2415
 msgid "Result of database integrity check:"
 msgstr "데이터베이스 무결성 검사 결과:"
 
-#: mmframe.cpp:2412
+#: mmframe.cpp:2415
 msgid "Database Check"
 msgstr "데이터베이스 검사"
 
-#: mmframe.cpp:2425
+#: mmframe.cpp:2428
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
 msgstr "MMEX 지원에서 요청하고 .mmdbg 디버그 파일을 제공받은 경우에만 이 기능을 사용하십시오"
 
-#: mmframe.cpp:2426
+#: mmframe.cpp:2429
 msgid "Database Debug"
 msgstr "데이터베이스 디버그"
 
-#: mmframe.cpp:2445 mmframe.cpp:2466
+#: mmframe.cpp:2448 mmframe.cpp:2469
 msgid "Save database file as"
 msgstr "데이터베이스 파일을 다음으로 저장"
 
-#: mmframe.cpp:2466
+#: mmframe.cpp:2469
 msgid "Can't copy file to itself"
 msgstr "같은 파일에 복사할 수 없습니다"
 
-#: mmframe.cpp:2479
+#: mmframe.cpp:2482
 msgid "Enter password for new database"
 msgstr "새 데이터베이스의 암호 입력"
 
-#: mmframe.cpp:2566 mmframe.cpp:2585
+#: mmframe.cpp:2569 mmframe.cpp:2588
 msgid "No account available to import"
 msgstr "가져올 수 있는 계정이 없습니다"
 
-#: mmframe.cpp:2634
+#: mmframe.cpp:2637
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -5327,11 +5344,11 @@ msgstr "자산 계정 보유 자산 거래\n\n"
 "해당 보기에서 자산을 선택한 후.\n\n"
 "자산 계정은 일반 계정에 대한 정상적인 거래를 유지할 수도 있습니다."
 
-#: mmframe.cpp:2638
+#: mmframe.cpp:2641
 msgid "Asset Account Creation"
 msgstr "자산 계정 생성"
 
-#: mmframe.cpp:2644
+#: mmframe.cpp:2647
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -5344,99 +5361,99 @@ msgstr "주식 거래를 보유하는 주식 계정이 있습니다.\n\n"
 "또는 보기 → '주식 계정 표시' 메뉴를 사용하여 볼 수도 있습니다.\n"
 "주식 계정은 일반 계정에 대한 일반 거래도 보유할 수 있습니다."
 
-#: mmframe.cpp:2650
+#: mmframe.cpp:2653
 msgid "Share Account Creation"
 msgstr "주식 계정 생성"
 
-#: mmframe.cpp:2848
+#: mmframe.cpp:2851
 msgid "MMEX Options have been updated."
 msgstr "MMEX 옵션이 업데이트되었습니다."
 
-#: mmframe.cpp:2849
+#: mmframe.cpp:2852
 msgid "Some settings take effect only after an application restart."
 msgstr "일부 설정은 응용 프로그램을 다시 시작한 후에만 적용됩니다."
 
-#: mmframe.cpp:2850 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2853 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr "MMEX 옵션"
 
-#: mmframe.cpp:2875
+#: mmframe.cpp:2878
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "계정, 수취인 및 범주 업데이트"
 
-#: mmframe.cpp:2881
+#: mmframe.cpp:2884
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "WebApp 업데이트 중 문제가 발생했습니다. 웹 서버 및 WebApp 설정을 확인하십시오"
 
-#: mmframe.cpp:3021
+#: mmframe.cpp:3024
 msgid "Choose HTML file to Export"
 msgstr "내보낼 HTML 파일 선택"
 
-#: mmframe.cpp:3439 mmframe.cpp:3446
+#: mmframe.cpp:3442 mmframe.cpp:3449
 msgid "Downloading stock prices from Yahoo"
 msgstr "Yahoo에서 주가 내려받기"
 
-#: mmframe.cpp:3440
+#: mmframe.cpp:3443
 msgid "Please wait..."
 msgstr "잠시 기다려 주십시오..."
 
-#: mmframe.cpp:3489 stockspanel.cpp:459
+#: mmframe.cpp:3492 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
 
-#: mmframe.cpp:3506
+#: mmframe.cpp:3509
 msgid "No account available to edit!"
 msgstr "편집할 수 있는 계정이 없습니다!"
 
-#: mmframe.cpp:3510
+#: mmframe.cpp:3513
 msgid "Choose Account to Edit"
 msgstr "편집할 계정 선택"
 
-#: mmframe.cpp:3527
+#: mmframe.cpp:3530
 msgid "No account available to delete!"
 msgstr "삭제할 수 있는 계정이 없습니다!"
 
-#: mmframe.cpp:3531
+#: mmframe.cpp:3534
 msgid "Choose Account to Delete"
 msgstr "삭제할 계정 선택"
 
-#: mmframe.cpp:3536
+#: mmframe.cpp:3539
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
 msgstr ""
 
-#: mmframe.cpp:3554
+#: mmframe.cpp:3557
 msgid "Select account"
 msgstr ""
 
-#: mmframe.cpp:3554 mmframe.cpp:3577
+#: mmframe.cpp:3557 mmframe.cpp:3580
 msgid "Change Account Type"
 msgstr ""
 
-#: mmframe.cpp:3576
+#: mmframe.cpp:3579
 #, c-format
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:3742 payeedialog.cpp:840
+#: mmframe.cpp:3745 payeedialog.cpp:833
 msgid "Merge payees completed"
 msgstr ""
 
-#: mmframe.cpp:3746 payeedialog.cpp:844
+#: mmframe.cpp:3749 payeedialog.cpp:837
 msgid "Merge payees result"
 msgstr ""
 
-#: mmframe.cpp:3758
+#: mmframe.cpp:3761
 msgid "Merge tags completed"
 msgstr ""
 
-#: mmframe.cpp:3762
+#: mmframe.cpp:3765
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:3838
+#: mmframe.cpp:3841
 #, c-format
 msgid "File %s not found"
 msgstr "%s 파일을 찾을 수 없음"
@@ -5445,7 +5462,7 @@ msgstr "%s 파일을 찾을 수 없음"
 msgid "General Group Report"
 msgstr "일반 그룹 보고서"
 
-#: mmframereport.cpp:107 mmhomepage.cpp:854 model/Model_Report.cpp:410
+#: mmframereport.cpp:107 mmhomepage.cpp:849 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "예외 발생"
@@ -5528,9 +5545,9 @@ msgstr "이익/손실"
 msgid "Total"
 msgstr "합계"
 
-#: mmhomepage.cpp:108 mmhomepage.cpp:634 mmhomepage.cpp:749
+#: mmhomepage.cpp:108 mmhomepage.cpp:629 mmhomepage.cpp:744
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
-#: reports/summarystocks.cpp:168 splittransactionsdialog.cpp:262
+#: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:262
 msgid "Total:"
 msgstr "합계:"
 
@@ -5539,67 +5556,67 @@ msgstr "합계:"
 msgid "Top Withdrawals: %s"
 msgstr "상위 출금: %s"
 
-#: mmhomepage.cpp:358
+#: mmhomepage.cpp:353
 msgid "Account/Payee"
 msgstr "계정/수취인"
 
-#: mmhomepage.cpp:428
+#: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs Expenses: %s"
 msgstr "수입 vs 지출: %s"
 
-#: mmhomepage.cpp:438 reports/categexp.cpp:153 reports/categexp.cpp:188
+#: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
 msgstr "지출"
 
-#: mmhomepage.cpp:442 reports/incexpenses.cpp:117
+#: mmhomepage.cpp:437 reports/incexpenses.cpp:117
 msgid "Difference:"
 msgstr "차이:"
 
-#: mmhomepage.cpp:446
+#: mmhomepage.cpp:441
 msgid "Income/Expenses"
 msgstr "수입/지출"
 
-#: mmhomepage.cpp:470
+#: mmhomepage.cpp:465
 msgid "Transaction Statistics"
 msgstr "거래 통계"
 
-#: mmhomepage.cpp:517
+#: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
 msgstr "거래에 대한 후속 조치: "
 
-#: mmhomepage.cpp:521
+#: mmhomepage.cpp:516
 msgid "Total Transactions: "
 msgstr "모든 거래 내역: "
 
-#: mmhomepage.cpp:545 model/Model_Attachment.cpp:25
+#: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
 msgstr "주식"
 
-#: mmhomepage.cpp:555
+#: mmhomepage.cpp:550
 msgid "Total Net Worth"
 msgstr "총 순자산"
 
-#: mmhomepage.cpp:626
+#: mmhomepage.cpp:621
 msgid "Other Assets"
 msgstr "기타 자산"
 
-#: mmhomepage.cpp:699
+#: mmhomepage.cpp:694
 msgid "Investment Accounts"
 msgstr "투자 계정"
 
-#: mmhomepage.cpp:700 reports/summary.cpp:264 reports/summary.cpp:303
+#: mmhomepage.cpp:695 reports/summary.cpp:264 reports/summary.cpp:303
 msgid "Asset Accounts"
 msgstr "자산 계정"
 
-#: mmhomepage.cpp:840
+#: mmhomepage.cpp:835
 msgid "Currency Exchange Rates"
 msgstr "환율"
 
-#: mmhomepagepanel.cpp:190
+#: mmhomepagepanel.cpp:189
 msgid "Upcoming Transactions"
 msgstr "예정된 거래"
 
@@ -5805,7 +5822,7 @@ msgstr "10진수"
 msgid "Boolean"
 msgstr "부울형"
 
-#: model/Model_CustomField.cpp:30 wizard_update.cpp:141
+#: model/Model_CustomField.cpp:30 wizard_update.cpp:140
 msgid "Time"
 msgstr "시간"
 
@@ -6001,7 +6018,7 @@ msgstr "목적지"
 msgid "Display Heading"
 msgstr "표제 표시"
 
-#: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:118
+#: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:117
 msgid "User Name"
 msgstr "사용자 이름"
 
@@ -6021,7 +6038,7 @@ msgstr "날짜 형식 예제:"
 msgid "Base Currency"
 msgstr "기준 통화"
 
-#: optionsettingsgeneral.cpp:133 wizard_newdb.cpp:91
+#: optionsettingsgeneral.cpp:133 wizard_newdb.cpp:90
 msgid "Set Currency"
 msgstr "통화 설정"
 
@@ -6304,11 +6321,11 @@ msgstr "시작 시 업데이트 확인"
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "시작 시 새 MMEX 버전을 사용할 수 있는지 자동으로 확인할 수 있습니다"
 
-#: optionsettingsnet.cpp:174 wizard_update.cpp:114
+#: optionsettingsnet.cpp:174 wizard_update.cpp:113
 msgid "Stable"
 msgstr "안정된"
 
-#: optionsettingsnet.cpp:175 wizard_update.cpp:114
+#: optionsettingsnet.cpp:175 wizard_update.cpp:113
 msgid "Unstable"
 msgstr "불안정한"
 
@@ -6478,7 +6495,7 @@ msgstr "수취인 편집"
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
 msgstr "수취인 이름을 입력합니다. 이 이름은 언제든지 변경할 수 있습니다."
 
-#: payeedialog.cpp:89 payeedialog.cpp:455
+#: payeedialog.cpp:89 payeedialog.cpp:448
 msgid "Hidden"
 msgstr "숨김"
 
@@ -6486,11 +6503,11 @@ msgstr "숨김"
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
 msgstr "수취인이 새 거래의 수취인 목록에 표시되지 않고 숨겨야 하는지 여부를 나타냅니다"
 
-#: payeedialog.cpp:96 payeedialog.cpp:457
+#: payeedialog.cpp:96 payeedialog.cpp:450
 msgid "Last Used Category"
 msgstr "마지막으로 사용한 범주"
 
-#: payeedialog.cpp:96 payeedialog.cpp:457
+#: payeedialog.cpp:96 payeedialog.cpp:450
 msgid "Default Category"
 msgstr "기본 범주"
 
@@ -6498,7 +6515,7 @@ msgstr "기본 범주"
 msgid "The category used as default for this payee"
 msgstr "이 수취인에 기본값으로 사용할 범주"
 
-#: payeedialog.cpp:103 payeedialog.cpp:458
+#: payeedialog.cpp:103 payeedialog.cpp:451
 msgid "Reference"
 msgstr "참조"
 
@@ -6506,7 +6523,7 @@ msgstr "참조"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "수취인에 사용할 참조(예: 은행 계좌 번호)"
 
-#: payeedialog.cpp:109 payeedialog.cpp:459
+#: payeedialog.cpp:109 payeedialog.cpp:452
 msgid "Website"
 msgstr "웹사이트"
 
@@ -6530,133 +6547,133 @@ msgstr "가져올 때 이 수취인과 일치하는 문자열을 입력합니다
 msgid "A payee with this name already exists"
 msgstr ""
 
-#: payeedialog.cpp:461
+#: payeedialog.cpp:454
 msgid "Match Pattern"
 msgstr "패턴 일치"
 
-#: payeedialog.cpp:743
+#: payeedialog.cpp:736
 msgid "Payee in use."
 msgstr "사용 중인 수취인입니다."
 
-#: payeedialog.cpp:748
+#: payeedialog.cpp:741
 msgid "It will be not removed"
 msgstr ""
 
-#: payeedialog.cpp:750
+#: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr ""
 
-#: payeedialog.cpp:752
+#: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
 msgstr ""
 
-#: payeedialog.cpp:753
+#: payeedialog.cpp:746
 msgid "Organize Payees: Delete Error"
 msgstr "수취인 구성: 삭제 오류"
 
-#: payeedialog.cpp:758
+#: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
 msgstr "이 수취인을 사용하는 삭제된 거래가 있습니다."
 
-#: payeedialog.cpp:759
+#: payeedialog.cpp:752
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr "수취인을 삭제하면 삭제된 거래에서도 자동으로 제거됩니다."
 
-#: payeedialog.cpp:761
+#: payeedialog.cpp:754
 msgid "Confirm Payee Deletion"
 msgstr "수취인 삭제 확인"
 
-#: payeedialog.cpp:883
+#: payeedialog.cpp:876
 msgid "Define Category"
 msgstr "범주 정의"
 
-#: payeedialog.cpp:898
+#: payeedialog.cpp:891
 msgid "&Organize Attachments"
 msgstr "첨부 파일 구성(&O)"
 
-#: payeedialog.cpp:902
+#: payeedialog.cpp:895
 msgid "Relocate Payee"
 msgstr "수취인 재배치"
 
-#: relocatecategorydialog.cpp:104
+#: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
 msgstr ""
 
-#: relocatecategorydialog.cpp:120 relocatepayeedialog.cpp:115
-#: relocatetagdialog.cpp:117
+#: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
+#: relocatetagdialog.cpp:114
 msgid "Source:"
 msgstr ""
 
-#: relocatecategorydialog.cpp:121 relocatepayeedialog.cpp:116
-#: relocatetagdialog.cpp:118
+#: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
+#: relocatetagdialog.cpp:115
 msgid "Target:"
 msgstr ""
 
-#: relocatecategorydialog.cpp:135 relocatepayeedialog.cpp:134
-#: relocatetagdialog.cpp:136
+#: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
+#: relocatetagdialog.cpp:133
 msgid "Merge"
 msgstr ""
 
-#: relocatecategorydialog.cpp:155 relocatepayeedialog.cpp:154
-#: relocatetagdialog.cpp:156
+#: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
+#: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
 msgstr ""
 
-#: relocatecategorydialog.cpp:159 relocatepayeedialog.cpp:158
-#: relocatetagdialog.cpp:160
+#: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
+#: relocatetagdialog.cpp:157
 msgid "Please Confirm:"
 msgstr "확인 요청:"
 
-#: relocatecategorydialog.cpp:160
+#: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
 msgstr ""
 
-#: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:211
-#: relocatetagdialog.cpp:205
+#: relocatecategorydialog.cpp:255 relocatepayeedialog.cpp:208
+#: relocatetagdialog.cpp:202
 #, c-format
 msgid "Records found in transactions: %i"
 msgstr "거래내역에서 발견된 레코드: %i"
 
-#: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:206
+#: relocatecategorydialog.cpp:256 relocatetagdialog.cpp:203
 #, c-format
 msgid "Records found in split transactions: %i"
 msgstr "분할 거래내역에서 발견된 레코드: %i"
 
-#: relocatecategorydialog.cpp:259 relocatepayeedialog.cpp:212
-#: relocatetagdialog.cpp:207
+#: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:209
+#: relocatetagdialog.cpp:204
 #, c-format
 msgid "Records found in scheduled transactions: %i"
 msgstr ""
 
-#: relocatecategorydialog.cpp:260 relocatetagdialog.cpp:208
+#: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
 msgstr ""
 
-#: relocatecategorydialog.cpp:261
+#: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found as default payee category: %i"
 msgstr ""
 
-#: relocatecategorydialog.cpp:262
+#: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found in budget: %i"
 msgstr "예산에서 발견된 레코드: %i"
 
-#: relocatepayeedialog.cpp:102
+#: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
 msgstr ""
 
-#: relocatepayeedialog.cpp:159
+#: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
 msgstr ""
 
-#: relocatetagdialog.cpp:104
+#: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
 msgstr ""
 
-#: relocatetagdialog.cpp:161
+#: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
 msgstr ""
 
@@ -6819,7 +6836,7 @@ msgstr "총 지출:"
 msgid "Total Income:"
 msgstr "총 수입:"
 
-#: reports/categexp.cpp:286 reports/summarystocks.cpp:186
+#: reports/categexp.cpp:286 reports/summarystocks.cpp:181
 #: reports/transactions.cpp:63
 msgid "Grand Total:"
 msgstr "총 계:"
@@ -6926,7 +6943,7 @@ msgstr "지난 12 개월"
 msgid "Current Year"
 msgstr "올해"
 
-#: reports/mmDateRange.cpp:173 stockdialog.cpp:692
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:679
 msgid "Current Year to Date"
 msgstr "올해 초부터 오늘까지"
 
@@ -6982,11 +6999,11 @@ msgstr "MMEX 사용 빈도"
 msgid "Payee Report"
 msgstr "수취인 보고서"
 
-#: reports/reportbase.cpp:207 reports/transactions.cpp:86
+#: reports/reportbase.cpp:199 reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "모든 계정"
 
-#: reports/reportbase.cpp:213 reports/transactions.cpp:125
+#: reports/reportbase.cpp:205 reports/transactions.cpp:125
 msgid "Accounts: "
 msgstr "계정: "
 
@@ -7007,36 +7024,36 @@ msgstr "연간 보고서"
 msgid "Summary of Stocks"
 msgstr "주식 요약"
 
-#: reports/summarystocks.cpp:118 stockdialog.cpp:421 stocks_list.cpp:90
+#: reports/summarystocks.cpp:113 stockdialog.cpp:408 stocks_list.cpp:90
 msgid "Symbol"
 msgstr "기호"
 
-#: reports/summarystocks.cpp:119
+#: reports/summarystocks.cpp:114
 msgid "Purchase Date"
 msgstr "구매 날짜"
 
-#: reports/summarystocks.cpp:120
+#: reports/summarystocks.cpp:115
 msgid "Quantity"
 msgstr "수량"
 
-#: reports/summarystocks.cpp:122
+#: reports/summarystocks.cpp:117
 msgid "Current Price"
 msgstr "현재 가격"
 
-#: reports/summarystocks.cpp:123 sharetransactiondialog.cpp:267
+#: reports/summarystocks.cpp:118 sharetransactiondialog.cpp:244
 #: stocks_list.cpp:99 stockspanel.cpp:216
 msgid "Commission"
 msgstr "수수료"
 
-#: reports/summarystocks.cpp:124 stocks_list.cpp:94
+#: reports/summarystocks.cpp:119 stocks_list.cpp:94
 msgid "Realized Gain/Loss"
 msgstr "실현 손익"
 
-#: reports/summarystocks.cpp:125 stocks_list.cpp:95
+#: reports/summarystocks.cpp:120 stocks_list.cpp:95
 msgid "Unrealized Gain/Loss"
 msgstr "미실현 손익"
 
-#: reports/summarystocks.cpp:246
+#: reports/summarystocks.cpp:241
 msgid "Stocks Performance Charts"
 msgstr "주식 실적 차트"
 
@@ -7052,71 +7069,71 @@ msgstr "모든 거래: 출금, 입금 및 이체"
 msgid "All Transactions excluding Transfers"
 msgstr "이체를 제외한 모든 거래 내역"
 
-#: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
+#: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
 msgstr "주식 거래 추가"
 
-#: sharetransactiondialog.cpp:213 stockdialog.cpp:182
+#: sharetransactiondialog.cpp:190 stockdialog.cpp:169
 msgid "Stock Investment Details"
 msgstr "주식 투자 세부 정보"
 
-#: sharetransactiondialog.cpp:223 stockdialog.cpp:193 stocks_list.cpp:89
+#: sharetransactiondialog.cpp:200 stockdialog.cpp:180 stocks_list.cpp:89
 msgid "Company Name"
 msgstr "회사 이름"
 
-#: sharetransactiondialog.cpp:227 stockdialog.cpp:196
+#: sharetransactiondialog.cpp:204 stockdialog.cpp:183
 msgid "Enter the stock company name"
 msgstr "회사 이름을 입력하세요"
 
-#: sharetransactiondialog.cpp:230 stockdialog.cpp:199
+#: sharetransactiondialog.cpp:207 stockdialog.cpp:186
 msgid "Stock Symbol"
 msgstr "주식 종목"
 
-#: sharetransactiondialog.cpp:237 stockdialog.cpp:206
+#: sharetransactiondialog.cpp:214 stockdialog.cpp:193
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
 msgstr "주식 심벌을 입력하세요. (선택 사항) 거래소를 포함하세요. 예: IBM.BE"
 
-#: sharetransactiondialog.cpp:240
+#: sharetransactiondialog.cpp:217
 msgid "Share Number"
 msgstr "보유 수량"
 
-#: sharetransactiondialog.cpp:247
+#: sharetransactiondialog.cpp:224
 msgid "Enter number of shares held"
 msgstr "보유 주식 수를 입력하세요"
 
-#: sharetransactiondialog.cpp:253
+#: sharetransactiondialog.cpp:230
 msgid "Share Price"
 msgstr "주가"
 
-#: sharetransactiondialog.cpp:261
+#: sharetransactiondialog.cpp:238
 msgid "Enter the current value for a single share unit"
 msgstr "단일 주식 단위에 대한 현재 주가 입력"
 
-#: sharetransactiondialog.cpp:273
+#: sharetransactiondialog.cpp:250
 msgid "Enter any commission paid"
 msgstr "지불한 수수료 입력"
 
-#: sharetransactiondialog.cpp:279
+#: sharetransactiondialog.cpp:256
 msgid "Share Lot"
 msgstr "주식 단위"
 
-#: sharetransactiondialog.cpp:286
+#: sharetransactiondialog.cpp:263
 msgid "Enter the LOT that this parcel os shares belong to"
 msgstr "이 주식에 대한 매매 단위"
 
-#: sharetransactiondialog.cpp:293 stockdialog.cpp:264
+#: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Organize attachments of this stock"
 msgstr "이 주식의 첨부 파일 구성"
 
-#: sharetransactiondialog.cpp:298 stockdialog.cpp:266
+#: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
 msgstr "지정된 주식 기호에 대한 웹 페이지 표시"
 
-#: sharetransactiondialog.cpp:308 stockdialog.cpp:273
+#: sharetransactiondialog.cpp:285 stockdialog.cpp:260
 msgid "Enter notes associated with this investment"
 msgstr "이 투자와 관련된 내용 입력"
 
-#: sharetransactiondialog.cpp:313
+#: sharetransactiondialog.cpp:290
 msgid "Add Transaction Details"
 msgstr "거래 세부 정보 추가"
 
@@ -7148,105 +7165,105 @@ msgstr "잘못된 총 금액"
 msgid "Please enter a valid monetary amount"
 msgstr "유효한 금액을 입력하십시오"
 
-#: stockdialog.cpp:138 stockdialog.cpp:505 stockspanel.cpp:147
+#: stockdialog.cpp:125 stockdialog.cpp:492 stockspanel.cpp:147
 msgid "Edit Stock Investment"
 msgstr "주식 투자 편집"
 
-#: stockdialog.cpp:138 stockdialog.cpp:493 stockspanel.cpp:133
+#: stockdialog.cpp:125 stockdialog.cpp:480 stockspanel.cpp:133
 msgid "New Stock Investment"
 msgstr "주식 투자 새로 만들기"
 
-#: stockdialog.cpp:209 stocks_list.cpp:88
+#: stockdialog.cpp:196 stocks_list.cpp:88
 msgid "*Date"
 msgstr "*날짜"
 
-#: stockdialog.cpp:214
+#: stockdialog.cpp:201
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
 msgstr "주식 투자의 초기 날짜를 지정\n"
 "초기 주식 거래를 만들 때 사용됩니다."
 
-#: stockdialog.cpp:218
+#: stockdialog.cpp:205
 msgid "*Share Number"
 msgstr "*보유 수량"
 
-#: stockdialog.cpp:225
+#: stockdialog.cpp:212
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
 msgstr "주식 수를 입력합니다.\n"
 "초기 주식 거래를 만들 때 사용됩니다."
 
-#: stockdialog.cpp:229
+#: stockdialog.cpp:216
 msgid "*Share Price"
 msgstr "*주가"
 
-#: stockdialog.cpp:236
+#: stockdialog.cpp:223
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
 msgstr "주당 초기 단가를 입력합니다.\n"
 "초기 주식 거래를 만들 때 사용됩니다."
 
-#: stockdialog.cpp:239
+#: stockdialog.cpp:226
 msgid "*Commission"
 msgstr "*수수료"
 
-#: stockdialog.cpp:244
+#: stockdialog.cpp:231
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
 msgstr "지불된 수수료를 입력합니다.\n"
 "초기 주식 거래를 만들 때 사용됩니다."
 
-#: stockdialog.cpp:247 stocks_list.cpp:96
+#: stockdialog.cpp:234 stocks_list.cpp:96
 msgid "Curr. Share Price"
 msgstr "현재 주가"
 
-#: stockdialog.cpp:251
+#: stockdialog.cpp:238
 msgid "Enter current stock/share price."
 msgstr "현재 주가를 입력하십시오."
 
-#: stockdialog.cpp:281
+#: stockdialog.cpp:268
 msgid "Stock History Options"
 msgstr "주식 이력 옵션"
 
-#: stockdialog.cpp:288
+#: stockdialog.cpp:275
 msgid "Stock Price History"
 msgstr "주가 이력"
 
-#: stockdialog.cpp:312 stocks_list.cpp:98
+#: stockdialog.cpp:299 stocks_list.cpp:98
 msgid "Price Date"
 msgstr "주가 날짜"
 
-#: stockdialog.cpp:316
+#: stockdialog.cpp:303
 msgid "Specify the stock/share price date."
 msgstr "주가 날짜를 지정합니다."
 
-#: stockdialog.cpp:331
+#: stockdialog.cpp:318
 msgid "Download Stock Price history"
 msgstr "주가 이력 내려받기"
 
-#: stockdialog.cpp:333
+#: stockdialog.cpp:320
 msgid "Import Stock Price history (CSV Format)"
 msgstr "주가 이력 가져오기(CSV 형식)"
 
-#: stockdialog.cpp:335
+#: stockdialog.cpp:322
 msgid "Delete selected Stock Price"
 msgstr "선택한 주가 삭제"
 
-#: stockdialog.cpp:337
+#: stockdialog.cpp:324
 msgid "Add Stock Price to history"
 msgstr "이력에 주가 추가"
 
-#: stockdialog.cpp:414
+#: stockdialog.cpp:401
 msgid "Held At"
 msgstr "개설처"
 
-#: stockdialog.cpp:491
+#: stockdialog.cpp:478
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
 msgstr "주식 계정을 찾을 수 없습니다.\n\n"
 "생성하시겠습니까?"
 
-#: stockdialog.cpp:501
+#: stockdialog.cpp:488
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
@@ -7254,89 +7271,89 @@ msgstr "회사 이름에 연결된 주식 계정이 없습니다.\n\n"
 "회사 이름을 동일한 이름의 기존 주식 계정으로 재조정할 수 있습니다. 주식 계정이 없는 기존 주식인 경우 주식 계정을 만드는 것이 좋습니다.\n\n"
 "새 주식 계정을 생성하시겠습니까?\n"
 
-#: stockdialog.cpp:570
+#: stockdialog.cpp:557
 msgid "Stock History CSV Import"
 msgstr "주식 이력 CSV 가져오기"
 
-#: stockdialog.cpp:571 stockdialog.cpp:587
+#: stockdialog.cpp:558 stockdialog.cpp:574
 msgid "Quotes imported from CSV: "
 msgstr "CSV에서 가져온 따옴표: "
 
-#: stockdialog.cpp:643
+#: stockdialog.cpp:630
 #, c-format
 msgid "Total Lines : %ld"
 msgstr "총 줄 수: %ld"
 
-#: stockdialog.cpp:645
+#: stockdialog.cpp:632
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "가져온 총 개수: %ld"
 
-#: stockdialog.cpp:653
+#: stockdialog.cpp:640
 msgid "Importing CSV"
 msgstr "CSV를 가져오는 중"
 
-#: stockdialog.cpp:684 stockdialog.cpp:714
+#: stockdialog.cpp:671 stockdialog.cpp:701
 msgid "5 Days"
 msgstr "5일"
 
-#: stockdialog.cpp:685 stockdialog.cpp:716
+#: stockdialog.cpp:672 stockdialog.cpp:703
 msgid "1 Month"
 msgstr "1개월"
 
-#: stockdialog.cpp:686 stockdialog.cpp:717
+#: stockdialog.cpp:673 stockdialog.cpp:704
 msgid "3 Months"
 msgstr "3개월"
 
-#: stockdialog.cpp:687
+#: stockdialog.cpp:674
 msgid "6 Months"
 msgstr "6개월"
 
-#: stockdialog.cpp:688
+#: stockdialog.cpp:675
 msgid "1 Year"
 msgstr "1년"
 
-#: stockdialog.cpp:689
+#: stockdialog.cpp:676
 msgid "2 Years"
 msgstr "2년"
 
-#: stockdialog.cpp:690
+#: stockdialog.cpp:677
 msgid "5 Years"
 msgstr "5년"
 
-#: stockdialog.cpp:691
+#: stockdialog.cpp:678
 msgid "10 Years"
 msgstr "10년"
 
-#: stockdialog.cpp:693
+#: stockdialog.cpp:680
 msgid "Max"
 msgstr "최대"
 
-#: stockdialog.cpp:699
+#: stockdialog.cpp:686
 msgid "Specify type frequency of stock history"
 msgstr "주식 이력의 유형 빈도 지정"
 
-#: stockdialog.cpp:700 stockdialog.cpp:724
+#: stockdialog.cpp:687 stockdialog.cpp:711
 msgid "Stock History Update"
 msgstr "주식 이력 업데이트"
 
-#: stockdialog.cpp:713
+#: stockdialog.cpp:700
 msgid "1 Day"
 msgstr "1일"
 
-#: stockdialog.cpp:715
+#: stockdialog.cpp:702
 msgid "1 Week"
 msgstr "1주"
 
-#: stockdialog.cpp:723
+#: stockdialog.cpp:710
 msgid "Specify interval of stock history"
 msgstr "주식 이력 간격 지정"
 
-#: stockdialog.cpp:738 stockdialog.cpp:742
+#: stockdialog.cpp:725 stockdialog.cpp:729
 msgid "Stock history not found!"
 msgstr "주식 이력을 찾을 수 없습니다!"
 
-#: stockdialog.cpp:739 stockdialog.cpp:851
+#: stockdialog.cpp:726 stockdialog.cpp:838
 msgid "Stock History Error"
 msgstr "주식 이력 오류"
 
@@ -7459,7 +7476,7 @@ msgstr "주가가 성공적으로 업데이트되었습니다"
 msgid "Last updated %s"
 msgstr "마지막 업데이트 %s"
 
-#: stockspanel.cpp:401 util.cpp:706 util.cpp:867
+#: stockspanel.cpp:401 util.cpp:703 util.cpp:864
 msgid "Nothing to update"
 msgstr "업데이트할 항목 없음"
 
@@ -7598,6 +7615,22 @@ msgstr "이체 대상"
 msgid "Append"
 msgstr "덧붙이기"
 
+#: transactionsupdatedialog.cpp:511
+msgid "This is due to some elements of the transaction or account detail not allowing the update"
+msgstr ""
+
+#: transactionsupdatedialog.cpp:512
+msgid "Updated"
+msgstr ""
+
+#: transactionsupdatedialog.cpp:513
+msgid "Not updated"
+msgstr ""
+
+#: transactionsupdatedialog.cpp:516
+msgid "Some transactions could not be updated"
+msgstr ""
+
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
 msgstr "다중 거래 업데이트"
@@ -7614,7 +7647,7 @@ msgstr "거래 복제"
 msgid "Populate Transaction #"
 msgstr "거래 채우기 #"
 
-#: transdialog.cpp:565 usertransactionpanel.cpp:190
+#: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Organize attachments of this transaction"
 msgstr "이 거래의 첨부 파일 구성"
 
@@ -7652,7 +7685,7 @@ msgstr "거래에 대한 계정을 지정합니다"
 msgid "Specify to whom the transaction is going to"
 msgstr "거래 대상을 지정합니다"
 
-#: transdialog.cpp:1314 usertransactionpanel.cpp:85
+#: transdialog.cpp:1314 usertransactionpanel.cpp:80
 msgid "Specify the date of the transaction"
 msgstr "거래 날짜를 지정합니다"
 
@@ -7660,290 +7693,294 @@ msgstr "거래 날짜를 지정합니다"
 msgid "Transactions Dialog"
 msgstr "거래 대화 상자"
 
-#: usertransactionpanel.cpp:95
+#: usertransactionpanel.cpp:90
 msgid "Select Account"
 msgstr "계정 선택"
 
-#: usertransactionpanel.cpp:97
+#: usertransactionpanel.cpp:92
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "이 거래를 포함할 연결된 계정을 지정합니다"
 
-#: usertransactionpanel.cpp:109
+#: usertransactionpanel.cpp:104
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr "이 계정에서 자금을 인출하거나 이 계정에 자금을 입금합니다."
 
-#: usertransactionpanel.cpp:111
+#: usertransactionpanel.cpp:106
 msgid "&Transfer"
 msgstr "이체(&T)"
 
-#: usertransactionpanel.cpp:114
+#: usertransactionpanel.cpp:109
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr "이 계정에서 또는 이 계정으로 자금이 이체됩니다. 지출/수입으로 설정하려면 이 항목을 선택 취소합니다."
 
-#: usertransactionpanel.cpp:137
+#: usertransactionpanel.cpp:132
 msgid "Currency used for this transaction."
 msgstr "이 거래에 사용되는 통화입니다."
 
-#: usertransactionpanel.cpp:156
+#: usertransactionpanel.cpp:151
 msgid "Specify the status for this transaction"
 msgstr "이 거래 상태를 지정합니다"
 
-#: usertransactionpanel.cpp:163
+#: usertransactionpanel.cpp:158
 msgid "Select Payee"
 msgstr "수취인 선택"
 
-#: usertransactionpanel.cpp:164
+#: usertransactionpanel.cpp:159
 msgid "Specify a person, Company or Organisation for this transaction."
 msgstr "이 거래에 대한 개인, 회사 또는 조직을 지정합니다."
 
-#: usertransactionpanel.cpp:170
+#: usertransactionpanel.cpp:165
 msgid "Select Category"
 msgstr "범주 선택"
 
-#: usertransactionpanel.cpp:172
+#: usertransactionpanel.cpp:167
 msgid "Specify the category for this transaction"
 msgstr "이 거래의 범주 지정"
 
-#: usertransactionpanel.cpp:180
+#: usertransactionpanel.cpp:175
 msgid "Specify a transaction code or associated check details"
 msgstr "추적 코드 또는 관련 검사 세부 정보 지정"
 
-#: usertransactionpanel.cpp:290
+#: usertransactionpanel.cpp:285
 msgid "Select the required account"
 msgstr "필요한 계정을 선택"
 
-#: usertransactionpanel.cpp:291
+#: usertransactionpanel.cpp:286
 msgid "Account Selection"
 msgstr "계정 선택"
 
-#: util.cpp:288
+#: util.cpp:285
 msgid "Jan"
 msgstr "1월"
 
-#: util.cpp:288
+#: util.cpp:285
 msgid "Feb"
 msgstr "2월"
 
-#: util.cpp:288
+#: util.cpp:285
 msgid "Mar"
 msgstr "3월"
 
-#: util.cpp:289
+#: util.cpp:286
 msgid "Apr"
 msgstr "4월"
 
-#: util.cpp:289 util.h:192
+#: util.cpp:286 util.h:193
 msgid "May"
 msgstr "5월"
 
-#: util.cpp:289
+#: util.cpp:286
 msgid "Jun"
 msgstr "6월"
 
-#: util.cpp:290
+#: util.cpp:287
 msgid "Jul"
 msgstr "7월"
 
-#: util.cpp:290
+#: util.cpp:287
 msgid "Aug"
 msgstr "8월"
 
-#: util.cpp:290
+#: util.cpp:287
 msgid "Sep"
 msgstr "9월"
 
-#: util.cpp:291
+#: util.cpp:288
 msgid "Oct"
 msgstr "10월"
 
-#: util.cpp:291
+#: util.cpp:288
 msgid "Nov"
 msgstr "11월"
 
-#: util.cpp:291
+#: util.cpp:288
 msgid "Dec"
 msgstr "12월"
 
-#: util.cpp:296
+#: util.cpp:293
 msgid "Sunday"
 msgstr "일요일"
 
-#: util.cpp:296
+#: util.cpp:293
 msgid "Monday"
 msgstr "월요일"
 
-#: util.cpp:296
+#: util.cpp:293
 msgid "Tuesday"
 msgstr "화요일"
 
-#: util.cpp:297
+#: util.cpp:294
 msgid "Wednesday"
 msgstr "수요일"
 
-#: util.cpp:297
+#: util.cpp:294
 msgid "Thursday"
 msgstr "목요일"
 
-#: util.cpp:297
+#: util.cpp:294
 msgid "Friday"
 msgstr "금요일"
 
-#: util.cpp:298
+#: util.cpp:295
 msgid "Saturday"
 msgstr "토요일"
 
-#: util.cpp:303
+#: util.cpp:300
 msgid "Sun"
 msgstr "일"
 
-#: util.cpp:303
+#: util.cpp:300
 msgid "Mon"
 msgstr "월"
 
-#: util.cpp:303
+#: util.cpp:300
 msgid "Tue"
 msgstr "화"
 
-#: util.cpp:304
+#: util.cpp:301
 msgid "Wed"
 msgstr "수"
 
-#: util.cpp:304
+#: util.cpp:301
 msgid "Thu"
 msgstr "목"
 
-#: util.cpp:304
+#: util.cpp:301
 msgid "Fri"
 msgstr "금"
 
-#: util.cpp:305
+#: util.cpp:302
 msgid "Sat"
 msgstr "토"
 
-#: util.cpp:739
+#: util.cpp:736
 msgid "Currency rates have been updated"
 msgstr "환율이 업데이트되었습니다"
 
-#: util.cpp:838 util.cpp:933 util.cpp:939 util.cpp:970 util.cpp:1029
+#: util.cpp:835 util.cpp:930 util.cpp:936 util.cpp:967 util.cpp:1026
 msgid "JSON Parse Error"
 msgstr "JSON 파싱 오류"
 
-#: util.cpp:978 util.cpp:1037
+#: util.cpp:975 util.cpp:1034
 msgid "Expected response to contain a data or error string"
 msgstr "데이터 또는 오류 문자열을 포함하는 응답이 예상됩니다"
 
-#: util.cpp:1009
+#: util.cpp:1006
 msgid "Could not find asset for symbol"
 msgstr "기호에 대한 자산을 찾을 수 없습니다"
 
-#: util.cpp:1044
+#: util.cpp:1041
 msgid "Could not get base currency!"
 msgstr "기준 통화를 가져올 수 없습니다!"
 
-#: util.cpp:1050
+#: util.cpp:1047
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1053
+#: util.cpp:1050
 msgid "Could not find currency 'USD', needed for converting history prices"
 msgstr "과거 가격을 변환하는 데 필요한 'USD' 통화를 찾을 수 없습니다"
 
-#: util.cpp:1074
+#: util.cpp:1071
 msgid "Could not parse price in asset history"
 msgstr "자산 이력에서 가격을 분석할 수 없습니다"
 
-#: util.cpp:1447
+#: util.cpp:1444
 #, c-format
 msgid "Version: %s"
 msgstr "버전: %s"
 
-#: util.cpp:1448
+#: util.cpp:1445
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr ""
 
-#: util.cpp:1449
+#: util.cpp:1446
 #, c-format
 msgid "Database version: %d"
 msgstr "데이터베이스 버전: %d"
 
-#: util.cpp:1456
+#: util.cpp:1453
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr ""
 
-#: util.cpp:1459
+#: util.cpp:1456
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git 분기: %s"
 
-#: util.cpp:1463
+#: util.cpp:1460
 msgid "MMEX is using the following support products:"
 msgstr "MMEX는 다음 지원 제품을 사용하고 있습니다:"
 
-#: util.cpp:1480
+#: util.cpp:1477
 msgid "Built with:"
 msgstr "사용한 소프트웨어:"
 
-#: util.cpp:1499
+#: util.cpp:1496
 msgid "Running on:"
 msgstr "실행 환경:"
 
-#: util.cpp:1513
+#: util.cpp:1510
 #, c-format
 msgid "System Locale: %s"
 msgstr ""
 
-#: util.cpp:1514
+#: util.cpp:1511
 #, c-format
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util.cpp:1752
+#: util.cpp:1748
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util.h:191
+#: util.cpp:1945
+msgid "Copy all text to clipboard"
+msgstr ""
+
+#: util.h:192
 msgid "January"
 msgstr "1월"
 
-#: util.h:191
+#: util.h:192
 msgid "February"
 msgstr "2월"
 
-#: util.h:191
+#: util.h:192
 msgid "March"
 msgstr "3월"
 
-#: util.h:192
+#: util.h:193
 msgid "April"
 msgstr "4월"
 
-#: util.h:192
+#: util.h:193
 msgid "June"
 msgstr "6월"
 
-#: util.h:193
+#: util.h:194
 msgid "July"
 msgstr "7월"
 
-#: util.h:193
+#: util.h:194
 msgid "August"
 msgstr "8월"
 
-#: util.h:193
+#: util.h:194
 msgid "September"
 msgstr "9월"
 
-#: util.h:194
+#: util.h:195
 msgid "October"
 msgstr "10월"
 
-#: util.h:194
+#: util.h:195
 msgid "November"
 msgstr "11월"
 
-#: util.h:194
+#: util.h:195
 msgid "December"
 msgstr "12월"
 
@@ -8085,12 +8122,12 @@ msgstr "가져오기 및 열기"
 msgid "Add Account Wizard"
 msgstr "계정 추가 마법사"
 
-#: wizard_newaccount.cpp:40
+#: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
 msgstr "%s은(는) 모든 거래를 계정에 속하는 것으로 모델링합니다."
 
-#: wizard_newaccount.cpp:41
+#: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
@@ -8098,48 +8135,48 @@ msgstr "다음 페이지에서는 새 계정을 만드는 데 도움이 됩니�
 "시작하는 데 도움이 되도록 계정을 보유한 모든 \n"
 "금융 기관의 목록을 작성하는 것부터 시작하십시오."
 
-#: wizard_newaccount.cpp:88
+#: wizard_newaccount.cpp:87
 msgid "Account Name Invalid"
 msgstr "유효하지 않은 계정 이름"
 
-#: wizard_newaccount.cpp:95
+#: wizard_newaccount.cpp:94
 msgid "An account with this name already exists"
 msgstr ""
 
-#: wizard_newaccount.cpp:109
+#: wizard_newaccount.cpp:108
 msgid "Name of the Account"
 msgstr "계정 이름"
 
-#: wizard_newaccount.cpp:113
+#: wizard_newaccount.cpp:112
 msgid "Specify a descriptive name for the account."
 msgstr "계정에 대한 기술적인 이름을 지정합니다."
 
-#: wizard_newaccount.cpp:114
+#: wizard_newaccount.cpp:113
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "일반적으로 계정이 있는 금융 기관의 \n"
 "이름입니다. 예: 'KB국민은행'."
 
-#: wizard_newaccount.cpp:134
+#: wizard_newaccount.cpp:133
 msgid "Type of Account"
 msgstr "계정 유형"
 
-#: wizard_newaccount.cpp:138
+#: wizard_newaccount.cpp:137
 msgid "Select the type of account you want to create:"
 msgstr "생성할 계정 유형을 선택합니다:"
 
-#: wizard_newaccount.cpp:139
+#: wizard_newaccount.cpp:138
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
 msgstr "일반 은행 계좌는 현금, 수표, 대출 및 신용 카드와 같은 \n"
 "매우 다양한 계좌 유형을 포함합니다."
 
-#: wizard_newaccount.cpp:144
+#: wizard_newaccount.cpp:143
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
 msgstr "투자 및 주식 계정은 주식/상호 펀드 투자가 연결된 전문 계정입니다."
 
-#: wizard_newaccount.cpp:149
+#: wizard_newaccount.cpp:148
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
@@ -8148,11 +8185,11 @@ msgstr "정기 및 자산 계정은 전문화된 은행 계정입니다.\n"
 "이들은 보통 일반 수입 스트림 외부에서 주기적인 입출금이 발생하는 \n"
 "자산 또는 정기 예금 및 채권을 모니터링하는 데 사용됩니다."
 
-#: wizard_newaccount.cpp:165
+#: wizard_newaccount.cpp:164
 msgid "Base Account Currency Not set."
 msgstr "기본 계정 통화가 설정되지 않았습니다."
 
-#: wizard_newaccount.cpp:166
+#: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Options menu and then add a new account."
 msgstr "먼저 도구 → 옵션 메뉴를 설정한 다음 새 계정을 추가합니다."
 
@@ -8180,63 +8217,63 @@ msgstr "다음 페이지에서는 새 데이터베이스를 작성하는 데 \n"
 "옵션을 사용하고 저장하기 전에 파일 형식을 변경하여 \n"
 "데이터베이스를 암호화할 수 있습니다."
 
-#: wizard_newdb.cpp:104
+#: wizard_newdb.cpp:103
 msgid "Base Currency for account"
 msgstr "계정 기준 통화"
 
-#: wizard_newdb.cpp:107
+#: wizard_newdb.cpp:106
 msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
 msgstr ""
 
-#: wizard_newdb.cpp:125
+#: wizard_newdb.cpp:124
 msgid "(Optional) Specify a title or your name."
 msgstr "(선택사항) 제목 또는 사용자 이름을 지정합니다."
 
-#: wizard_newdb.cpp:126
+#: wizard_newdb.cpp:125
 msgid "Used as a database title for displayed and printed reports."
 msgstr "표시 및 인쇄된 보고서의 데이터베이스 제목으로 사용됩니다."
 
-#: wizard_newdb.cpp:137
+#: wizard_newdb.cpp:136
 msgid "Base Currency Not Set"
 msgstr "기준 통화가 설정되지 않음"
 
-#: wizard_update.cpp:78
+#: wizard_update.cpp:77
 msgid "Update Wizard"
 msgstr "업데이트 마법사"
 
-#: wizard_update.cpp:106
+#: wizard_update.cpp:105
 msgid "Historical releases:"
 msgstr "배포 이력:"
 
-#: wizard_update.cpp:141
+#: wizard_update.cpp:140
 msgid "Version"
 msgstr "버전"
 
-#: wizard_update.cpp:149
+#: wizard_update.cpp:148
 msgid "You already have the latest version"
 msgstr "이미 최신 버전입니다"
 
-#: wizard_update.cpp:149
+#: wizard_update.cpp:148
 msgid "A new version of MMEX is available!"
 msgstr "새로운 버전의 MMEX를 사용할 수 있습니다!"
 
-#: wizard_update.cpp:181
+#: wizard_update.cpp:180
 #, c-format
 msgid "Your version is %s"
 msgstr "현재 버전: %s"
 
-#: wizard_update.cpp:328 wizard_update.cpp:344
+#: wizard_update.cpp:327 wizard_update.cpp:343
 msgid "Unable to check for updates!"
 msgstr "업데이트를 확인할 수 없습니다!"
 
-#: wizard_update.cpp:329 wizard_update.cpp:345
+#: wizard_update.cpp:328 wizard_update.cpp:344
 msgid "Error: "
 msgstr "오류: "
 
-#: wizard_update.cpp:330 wizard_update.cpp:347
+#: wizard_update.cpp:329 wizard_update.cpp:346
 msgid "MMEX Update Check"
 msgstr "MMEX 업데이트 확인"
 

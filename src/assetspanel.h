@@ -49,7 +49,7 @@ protected:
     virtual void OnColClick(wxListEvent& event);
 
 private:
-    mmAssetsPanel* m_panel;
+    mmAssetsPanel* m_panel = nullptr;
 
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;

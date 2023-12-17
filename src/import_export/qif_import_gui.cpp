@@ -88,6 +88,7 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_PAYEE] = _("Payee");
     ColName_[COL_TYPE] = _("Type");
     ColName_[COL_CATEGORY] = _("Category");
+    ColName_[COL_TAGS] = _("Tags");
     ColName_[COL_VALUE] = _("Value");
     ColName_[COL_NOTES] = _("Notes");
 
@@ -228,6 +229,7 @@ void mmQIFImportDialog::CreateControls()
     dataListBox_->AppendTextColumn(ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120, wxALIGN_LEFT);
     dataListBox_->AppendTextColumn(ColName_[COL_TYPE], wxDATAVIEW_CELL_INERT, 60, wxALIGN_LEFT);
     dataListBox_->AppendTextColumn(ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 140, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[COL_TAGS], wxDATAVIEW_CELL_INERT, 140, wxALIGN_LEFT);
     dataListBox_->AppendTextColumn(ColName_[COL_VALUE], wxDATAVIEW_CELL_INERT, 100, wxALIGN_RIGHT);
     dataListBox_->AppendTextColumn(ColName_[COL_NOTES], wxDATAVIEW_CELL_INERT, 300, wxALIGN_LEFT);
     data_sizer->Add(dataListBox_, g_flagsExpand);
@@ -390,7 +392,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFpayeeNames.clear();
     m_payee_names.clear();
     m_payee_names.Add(_("Unknown"));
-    
+    wxString catDelimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
+
     wxFileInputStream input(m_FileNameStr);
     wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
     wxTextInputStream text(input, "\x09", conv);
@@ -464,7 +467,15 @@ bool mmQIFImportDialog::mmReadQIFFile()
         {
             if (data.empty())
                 data = _("Unknown");
-            m_QIFcategoryNames[data] = -1;
+            wxRegEx regex(" ?: ?");
+            regex.Replace(&data, catDelimiter);
+            wxString catStr = data.BeforeFirst('/');
+            if (!catStr.IsEmpty())
+            {
+                if (catStr.Left(1) == "[" && catStr.Last() == ']')
+                    catStr = _("Transfer");
+                m_QIFcategoryNames[catStr] = -1;
+            }
         }
 
         //Parse date format
@@ -566,8 +577,6 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
         {
             wxString c = token.GetNextToken();
             const wxString project = qif_api->getFinancistoProject(c);
-            if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
-                m_QIFcategoryNames[c] = -1;
             if (!project.empty())
                 trx[TransNumber] += project + "\n"; //TODO: trx number or notes
         }
@@ -580,9 +589,11 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 
     if (trx.find(Category) != trx.end())
     {
-        if (trx[Category].Mid(0, 1) == "[" && trx[Category].Last() == ']')
+        wxString tags;
+        wxString categname = trx[Category].BeforeFirst('/', &tags);
+        if (categname.Left(1) == "[" && categname.Last() == ']')
         {
-            wxString toAccName = trx[Category].SubString(1, trx[Category].length() - 2);
+            wxString toAccName = categname.SubString(1, categname.length() - 2);
 
             if (toAccName == m_accountNameStr)
             {
@@ -592,7 +603,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
             else
             {
                 isTransfer = true;
-                trx[Category] = "Transfer";
+                trx[Category] = _("Transfer") + (!tags.IsEmpty() ? "/" + tags : "");
                 trx[TrxType] = Model_Checking::TRANSFER_STR;
                 trx[ToAccountName] = toAccName;
                 trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
@@ -605,14 +616,6 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
                 }
             }
         }
-
-        //Cut non standard info after /
-        const wxString categ_suffix = qif_api->getFinancistoProject(trx[Category]);
-        if (!categ_suffix.empty()) trx[Memo] += (trx[Memo].empty() ? "" : "/n") + categ_suffix;
-
-        //Add the full Category name if missing to the map with undefind category ID and Subcategory ID
-        if (m_QIFcategoryNames.find(trx[Category]) == m_QIFcategoryNames.end())
-            m_QIFcategoryNames[trx[Category]] = -1;
     }
 
     if (!isTransfer)
@@ -697,14 +700,28 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(trx.find(TrxType) != trx.end() ? trx.at(TrxType) : ""));
 
             wxString category;
+            wxString tags;
             if (trx.find(CategorySplit) != trx.end()) {
-                category = trx.at(CategorySplit);
-                category.Prepend("*").Replace("\n", "|");
+                wxStringTokenizer tokenizer = wxStringTokenizer(trx.at(CategorySplit), "\n");
+                while (tokenizer.HasMoreTokens())
+                {
+                    wxString token = tokenizer.GetNextToken();
+                    wxString splitTags;
+                    category += (category.IsEmpty() ? "" : "|") + token.BeforeFirst('/', &splitTags);
+                    if (!splitTags.IsEmpty())
+                        tags += (tags.IsEmpty() ? "" : "|") + splitTags;
+                }
+                category.Prepend("*");
             }
             else
-                category = (trx.find(Category) != trx.end() ? trx.at(Category) : "");
+            {
+                category = (trx.find(Category) != trx.end() ? trx.at(Category).BeforeFirst('/') : "");
+            }
+            wxString txnTags = trx.find(Category) != trx.end() ? trx.at(Category).AfterFirst('/') : "";
+            if (!txnTags.IsEmpty())
+                tags.Prepend(tags.IsEmpty() ? "" : "|").Prepend(txnTags);
             data.push_back(wxVariant(category));
-
+            data.push_back(wxVariant(tags));
             data.push_back(wxVariant(trx.find(Amount) != trx.end() ? trx.at(Amount) : ""));
             data.push_back(wxVariant(trx.find(Memo) != trx.end() ? trx.at(Memo) : ""));
 
@@ -785,13 +802,14 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     if (tabs & CAT_TAB)
     {
         num = 0;
-        const auto &c(Model_Category::all_categories());
+        const auto& c(Model_Category::all_categories());
         categoryListBox_->DeleteAllItems();
         for (const auto& categ : m_QIFcategoryNames)
         {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
-            if (c.find(categ.first) == c.end())
+            if (c.find(categ.first) == c.end() &&
+                !(categ.first.Left(1) == '[' && categ.first.Last() == ']'))
                 data.push_back(wxVariant("Missing"));
             else
                 data.push_back(wxVariant(_("OK")));
@@ -1086,12 +1104,54 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     toAccount->INITIALDATE = trx->TRANSDATE;
                 }
 
+                // Save Transaction Tags
+                wxString tagStr = (entry.find(Category) != entry.end() ? entry.at(Category).AfterFirst('/') : "");
+                Model_Taglink::Cache taglinks;
+                if (!tagStr.IsEmpty())
+                {
+                    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                    wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
+                    while (tagTokens.HasMoreTokens())
+                    {
+                        wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
+                        // make tag names single-word
+                        tagname.Replace(" ", "_");
+                        Model_Tag::Data* tag = Model_Tag::instance().get(tagname);
+                        if (!tag)
+                        {
+                            tag = Model_Tag::instance().create();
+                            tag->TAGNAME = tagname;
+                            tag->ACTIVE = 1;
+                            tag->TAGID = Model_Tag::instance().save(tag);
+                        }
+                        Model_Taglink::Data* taglink = Model_Taglink::instance().create();
+                        taglink->REFTYPE = reftype;
+                        taglink->TAGID = tag->TAGID;
+                        // Just cache the new taglink since we don't know the TRANSID yet
+                        taglinks.push_back(taglink);
+                    }
+                }
+
+                // transactions are split into three groups, then merged
+                // since txnIds are not yet created, we need to keep track of what tags go with each cached transaction.
                 if (trx->TRANSCODE == transferStr && trx->TOTRANSAMOUNT > 0.0)
+                {
+                    // The "From" tags are stored with key <2, index of from transaction>
+                    m_txnTaglinks[std::make_pair(2, transfer_from_data_set.size())] = taglinks;
                     transfer_from_data_set.push_back(trx);
+                }
                 else if (trx->TRANSCODE == transferStr && trx->TOTRANSAMOUNT <= 0.0)
+                {
+                    // The "To" tags are stored with key <1, index of 'to' transaction>
+                    m_txnTaglinks[std::make_pair(1, transfer_to_data_set.size())] = taglinks;
                     transfer_to_data_set.push_back(trx);
+                }
                 else
+                {
+                    // The non-transfer tags are stored with key <0, index of transaction>
+                    m_txnTaglinks[std::make_pair(0, trx_data_set.size())] = taglinks;
                     trx_data_set.push_back(trx);
+                }
             }
             else
             {
@@ -1129,7 +1189,22 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (data.size() > 0)
                 trx->STATUS = "D";
         }
-
+        // At this point all transactions and tags have been merged into single sets
+        Model_Taglink::instance().Savepoint();
+        for (int i = 0; i < trx_data_set.size(); i++)
+        {
+            if (!m_txnTaglinks[std::make_pair(0, i)].empty())
+            {
+                // we need to know the transid for the taglink, so save the transaction first
+                int transid = Model_Checking::instance().save(trx_data_set[i]);
+                // apply that transid to all associated tags
+                for (const auto& taglink : m_txnTaglinks[std::make_pair(0, i)])
+                    taglink->REFID = transid;
+                // save the block of taglinks
+                Model_Taglink::instance().save(m_txnTaglinks[std::make_pair(0, i)]);
+            }
+        }
+        Model_Taglink::instance().ReleaseSavepoint();
         Model_Checking::instance().save(trx_data_set);
         progressDlg.Update(count, _("Importing Split transactions"));
         joinSplit(trx_data_set, m_splitDataSets);
@@ -1158,11 +1233,28 @@ void mmQIFImportDialog::saveSplit()
     if (m_splitDataSets.empty()) return;
 
     Model_Splittransaction::instance().Savepoint();
-    while (!m_splitDataSets.empty()) {
-        Model_Splittransaction::instance().save(m_splitDataSets.back());
-        m_splitDataSets.pop_back();
+    Model_Taglink::instance().Savepoint();
+    // Work through each group of splits 
+    for (int i = 0; i < m_splitDataSets.size(); i++)
+    {
+        // and each split in the group
+        for (int j = 0; j < m_splitDataSets[i].size(); j++)
+        {
+            // save the split
+            int splitTransID = Model_Splittransaction::instance().save(m_splitDataSets[i][j]);
+            // check if there are any taglinks for this split index in this group
+            if (!m_splitTaglinks[i][j].empty())
+            {
+                // apply the SPLITTRANSID as the REFID for all the cached taglinks
+                for (const auto& taglink : m_splitTaglinks[i][j])
+                    taglink->REFID = splitTransID;
+                // save cached taglinks
+                Model_Taglink::instance().save(m_splitTaglinks[i][j]);
+            }
+        }
     }
     Model_Splittransaction::instance().ReleaseSavepoint();
+    Model_Taglink::instance().ReleaseSavepoint();
 }
 void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     , std::vector<Model_Splittransaction::Cache> &target)
@@ -1178,9 +1270,12 @@ void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
 
 void mmQIFImportDialog::appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target)
 {
-    while (!target.empty()) {
-        destination.push_back(target.back());
-        target.pop_back();
+    // Here we are moving all the 'to' transfers into the normal transactions, so we also
+    // need to keep track of the new index for the taglinks
+    for (int i = 0; i < target.size(); i++)
+    {
+        m_txnTaglinks[std::make_pair(0, destination.size())] = m_txnTaglinks[std::make_pair(1, i)];
+        destination.push_back(target[i]);
     }
 }
 
@@ -1202,6 +1297,8 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
             if (refTrxTo->TRANSDATE != refTrxFrom->TRANSDATE) continue;
             refTrxTo->TOTRANSAMOUNT = refTrxFrom->TRANSAMOUNT;
             from.erase(from.begin() + i);
+            // a match is found so erase the 'from' taglinks
+            m_txnTaglinks.erase(std::make_pair(2, i));
             pair_found = true;
             break;
         }
@@ -1210,10 +1307,14 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
             refTrxTo->TOTRANSAMOUNT = refTrxTo->TRANSAMOUNT;
     }
 
-    while (!from.empty()) {
-        std::swap(from.back()->ACCOUNTID, from.back()->TOACCOUNTID);
-        to.push_back(from.back());
-        from.pop_back();
+    // now merge 'from' and 'to' transaction lists
+    for (int i = 0; i < from.size(); i++)
+    {
+        std::swap(from[i]->ACCOUNTID, from[i]->TOACCOUNTID);
+        // also need to move the 'from' taglinks to the 'to' taglinks list, keeping track
+        // of the new transaction indices
+        m_txnTaglinks[std::make_pair(1, to.size())] = m_txnTaglinks[std::make_pair(2, i)];
+        to.push_back(from[i]);
     }
 
     return true;
@@ -1323,10 +1424,11 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = transfer ? amt : trx->TRANSAMOUNT;
-
+    wxString tagStr;
+    wxRegEx regex(" ?: ?");
     if (t.find(CategorySplit) != t.end())
     {
-        Model_Splittransaction::Cache split;
+        Model_Splittransaction::Cache split;       
         wxStringTokenizer categToken(t[CategorySplit], "\n");
         wxStringTokenizer amtToken((t.find(AmountSplit) != t.end() ? t[AmountSplit] : ""), "\n");
         wxString notes = t.find(MemoSplit) != t.end() ? t[MemoSplit] : "";
@@ -1334,7 +1436,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
         while (categToken.HasMoreTokens())
         {
-            const wxString c = categToken.GetNextToken();
+            const wxString c = categToken.GetNextToken().BeforeFirst('/', &tagStr);
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
             int categID = m_QIFcategoryNames[c];
             if (categID <= 0)
@@ -1367,6 +1469,35 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             s->TRANSID = trx->TRANSID;
             s->NOTES = memo;
             split.push_back(s);
+            // Save split tags
+            if (!tagStr.IsEmpty())
+            {
+                Model_Taglink::Cache splitTaglinks;
+                wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+                wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
+                while (tagTokens.HasMoreTokens())
+                {
+                    wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
+                    // make tag names single-word
+                    tagname.Replace(" ", "_");
+                    Model_Tag::Data* tag = Model_Tag::instance().get(tagname);
+                    if (!tag)
+                    {
+                        tag = Model_Tag::instance().create();
+                        tag->TAGNAME = tagname;
+                        tag->ACTIVE = 1;
+                        tag->TAGID = Model_Tag::instance().save(tag);
+                    }
+                    Model_Taglink::Data* taglink = Model_Taglink::instance().create();
+                    taglink->REFTYPE = reftype;
+                    taglink->TAGID = tag->TAGID;
+                    splitTaglinks.push_back(taglink);
+                }
+                // Here we keep track of which block of splits and which split in the block
+                // each group of taglinks is associated with. Once we save the splits we can
+                // record the SPLITTRANSID on the taglink
+                m_splitTaglinks[m_splitDataSets.size()][split_id - 1] = splitTaglinks;
+            }
             split_id++;
         }
         trx->CATEGID = -1 * static_cast<int>(m_splitDataSets.size());
@@ -1374,7 +1505,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     }
     else
     {
-        wxString categStr = (t.find(Category) != t.end() ? t.at(Category) : "");
+        wxString categStr = (t.find(Category) != t.end() ? t.at(Category).BeforeFirst('/') : "");
         if (categStr.empty())
         {
             Model_Payee::Data* payee = Model_Payee::instance().get(trx->PAYEEID);
@@ -1493,7 +1624,7 @@ void mmQIFImportDialog::getOrCreateCategories()
         wxStringTokenizer token(item.first, ":");
         int parentID = -1;
         while(token.HasMoreTokens()){
-            categStr = token.GetNextToken();
+            categStr = token.GetNextToken().Trim(false).Trim();
             Model_Category::Data* c = Model_Category::instance().get(categStr, parentID);
             if (temp.Index(categStr + wxString::Format(":%i", parentID)) == wxNOT_FOUND) {
 

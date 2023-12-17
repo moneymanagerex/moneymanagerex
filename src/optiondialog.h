@@ -41,7 +41,7 @@ public:
 public:
     /// Saves the updated System Options to the appropriate databases.
     bool SaveNewSystemSettings();
-    mmGUIApp* m_app;
+    mmGUIApp* m_app = nullptr;
 
 private:
     /// Dialog Creation - Used by constructor

@@ -116,6 +116,7 @@ private:
         UNIV_CSV_CURRENCY,
         UNIV_CSV_CATEGORY,
         UNIV_CSV_SUBCATEGORY,
+        UNIV_CSV_TAGS,
         UNIV_CSV_TRANSNUM,
         UNIV_CSV_NOTES,
         UNIV_CSV_DONTCARE,
@@ -135,6 +136,7 @@ private:
         double ToAmount = 0.0;
         int PayeeID = -1;
         int CategoryID = -1;
+        wxArrayInt tagIDs;
         double Amount = 0.0;
         wxString Number;
         wxString Notes;
@@ -174,10 +176,10 @@ private:
     wxCheckBox* colorCheckBox_ = nullptr;
     wxCheckBox* m_checkbox_preset_default = nullptr;
 
-    wxChoice* m_choiceAmountFieldSign;
-    mmChoiceAmountMask* m_choiceDecimalSeparator;
+    wxChoice* m_choiceAmountFieldSign = nullptr;
+    mmChoiceAmountMask* m_choiceDecimalSeparator = nullptr;
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal, DefindByType };
-    wxCheckBox* m_checkBoxExportTitles;
+    wxCheckBox* m_checkBoxExportTitles = nullptr;
 
     int accountID_;
     bool importSuccessful_ = false;

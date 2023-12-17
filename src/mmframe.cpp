@@ -247,6 +247,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     CreateStatusBar();
 #endif // wxUSE_STATUSBAR
     m_recentFiles = new mmFileHistory(); // TODO Max files
+    m_recentFiles->SetMenuPathStyle(wxFH_PATH_SHOW_ALWAYS);
     m_recentFiles->UseMenu(m_menuRecentFiles);
     m_recentFiles->Load();
 
@@ -718,6 +719,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 {
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (home_page) {
         createHomePage();
     }
@@ -934,12 +936,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         }
     }
     m_nav_tree_ctrl->EnsureVisible(root);
-    if (home_page)
-    {
-        m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
-        m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    }
+    if (home_page) m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
 

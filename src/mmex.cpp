@@ -132,7 +132,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         }
 
         wxDELETE(trans);
-        mmErrorDialogs::MessageWarning(NULL, msg, "Language change");
+        mmErrorDialogs::MessageWarning(nullptr, msg, "Language change");
         return false;
     }
 }

@@ -103,7 +103,7 @@ private:
 
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
-    wxSQLite3Database* m_db;
+    wxSQLite3Database* m_db = nullptr;
     wxWebView* browser_ = nullptr;
 
     wxButton* m_buttonOpen = nullptr;

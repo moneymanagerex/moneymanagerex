@@ -470,7 +470,7 @@ void mmQIFExportDialog::mmExportQIF()
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     wxArrayInt allAttachments4Export;
     wxArrayInt allCustomFields4Export;
-
+    wxArrayInt allTags4Export;
     const auto transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
 
@@ -539,6 +539,23 @@ void mmQIFExportDialog::mmExportQIF()
                         allCustomFields4Export.Add(entry.FIELDATADID);
                     }
                 }
+
+                // store tags from the transaction
+                for (const auto& tag : full_tran.m_tags)
+                {
+                    if (allTags4Export.Index(tag.TAGID) == wxNOT_FOUND)
+                        allTags4Export.Add(tag.TAGID);
+                }
+                // store tags from the splits
+                for (const auto& split : full_tran.m_splits)
+                {
+                    for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split.SPLITTRANSID))
+                    {
+                        if (allTags4Export.Index(taglink.second) == wxNOT_FOUND)
+                            allTags4Export.Add(taglink.second);
+                    }
+                }
+
                 break;
 
             case QIF:
@@ -600,6 +617,7 @@ void mmQIFExportDialog::mmExportQIF()
             mmExportTransaction::getPayeesJSON(json_writer, allPayees4Export);
             mmExportTransaction::getAttachmentsJSON(json_writer, allAttachments4Export);
             mmExportTransaction::getCustomFieldsJSON(json_writer, allCustomFields4Export);
+            mmExportTransaction::getTagsJSON(json_writer, allTags4Export);
             break;
 
         case CSV:
