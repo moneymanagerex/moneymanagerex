@@ -636,6 +636,10 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
             }
             else
                 trx[Payee] = m_payee_names.Item(i);
+
+            if (payee_name == "Opening Balance")
+                m_QIFcategoryNames["Opening Balance"] = -1;
+
         }
     }
 
@@ -1259,6 +1263,9 @@ void mmQIFImportDialog::saveSplit()
 void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     , std::vector<Model_Splittransaction::Cache> &target)
 {
+    if (target.empty()) // no splits in the file
+        return;
+
     for (auto &item : destination)
     {
         if (item->CATEGID > 0) continue;
