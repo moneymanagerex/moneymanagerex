@@ -1,47 +1,61 @@
-Version 1.7.0 Beta 1
+Version 1.7.0 RC 1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2023-10-19
+Released: 2023-12-20
 
 Features:
-* #6185 General Manager Reports
-* #6069 Please extend the `Search` field to the end of the window. Thank you
-* #5989 Build with wxWidgets 3.2.3
-* #1983 Change name of Recurring Transactions to Transaction Planner
-* #1349 Consolidate README.md and README.TXT
+* #6247  GA4 integration
+* #6246  Have Flathub as the sole distribution mechanism for MMEX on Linux
+* #5401  Import with custom columns
+* #4232  Option to easily view all transactions for a payee by selection 
+* #6354  Update GRM submodule for 1.7.0 
+* #6333  Recent Files list doesn't always show the full path to the recent MMX .mmb files
+* #6332  Copy text on About window
+* #6322  wxWidgets 3.2.4 released
+* #6311  [Feature Request] Use Credit Card credit limit to format Credit Limit field automatically
+* #6308  Sort share accounts in the nav panel by STOCKNAME instead of STOCKID
+* #6305  Remove wxDatePickerCtrl workaround for MacOS
+* #6200  New/Edit Scheduled Transaction: Set Focus on Amount should select its value
+* #6185  General Manager Reports
+* #6143  Rename Full Transactions Report to Account View: All Transactions
+* #6069  Please extend the `Search` field to the end of the window.
+* #6063  Strings ordering
+* #6062  Organize vs Organise
+* #5989  Build with wxWidgets 3.2.3
+* #5464  Improve budget perfomance report
+* #5439  Addition of "classes" or "tags"
+* #1983  Change name of Recurring Transactions to Transaction Planner
+* #1349  Consolidate README.md and README.TXT
 
 Bugfixes:
-* #6212 Transaction Report crashes if category starts with `+`
-* #6203 Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url" in version 1.7.0 beta.1
-* #6183 Tags Filtering
-* #6154 `Color` not showing in `Transaction Filter` as vertical scrollbar can not go any further down
-* #6141 MMEX 1.7 Beta 1 - High CPU & GPU usage when Edit Transaction and Transaction Filter dialogs are displayed
-* #6140 Dropdown menus issue (duplicated list)
-* #6102 Dashboard Transaction Statistics erroneously includes deleted transactions
-* #6098 View Since Statement Date does not work unless account statement is Locked
-* #6096 MMEX icon in ALT+TAB is blurry
-* #6089 Crash when adding a new asset
-* #6077 MMEX database Upgrade to version 18 Failed
-* #6071 Saving account - deposit 0, saved as withdrawal
-* #6064 Memory leaks on CSV import
-* #6040 Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url"
-* #6036 Crash in theme manager
-* #5988 Homepage account balances wrong for some currencies
-* #5344 macOS menubar Window option position & localization
-* #5330 MacOS window refresh UI client area corruption
-* #1691 Stock errors
-
-Miscellaneous:
-* #6201 Autosort doesn't work on Payee's if search starts with a number
-* #6143 Rename Full Transactions Report to Account View: All Transactions
-* #6123 Tags field should not be displayed on New Transaction screen for split transactions
-* #6070 Do not show the space where `Show Money Tips` is shown if option is disabled
-* #6065 Presets for CSV import
-* #6063 Strings ordering
-* #6062 Organize vs Organise
-* #6047 mmex 1.6.4 crash after db upgrade to v18 on MacOS
-* #5464 Improve budget perfomance report
-* #5329 Distinguish source strings with multiple variables, eg. source: `%1$s blah %2$s` → translation: `%2$s absurdo %1$s`
-* #5328 bad string (translations issue)
+* #6346  Invalid Menu ID causing debug alert
+* #6338  No error message shown when unable to move transactions from one account to another with an invalid account creation data
+* #6323  Booking in foreign currency
+* #6296  MMEX Instance crashes when trying to create a new Asset
+* #6281  Plural when multiple transactions selected
+* #6280  `Tags` down-arrow too small
+* #6270  Transaction Report - Wrong Field(s) Become Hidden Due to Tags/Rate Column Indices
+* #6212  Transaction Report crashes if category starts with `+`
+* #6203  Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url" in version 1.7.0 beta.1
+* #6183  Tags Filtering
+* #6154  `Color` not showing in `Transaction Filter` as vertical scrollbar can not go any further down
+* #6141  MMEX 1.7 Beta 1 - High CPU & GPU usage when Edit Transaction and Transaction Filter dialogs are displayed
+* #6140  Dropdown menus issue (duplicated list)
+* #6102  Dashboard Transaction Statistics erroneously includes deleted transactions
+* #6098  View Since Statement Date does not work unless account statement is Locked
+* #6096  MMEX icon in ALT+TAB is blurry
+* #6089  Crash when adding a new asset
+* #6077  MMEX database Upgrade to version 18 Failed
+* #6074  Money format question
+* #6071  Saving account - deposit 0, saved as withdrawal
+* #6064  Memory leaks on CSV import
+* #6040  Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url"
+* #6036  Crash in theme manager
+* #5988  Homepage account balances wrong for some currencies
+* #5344  macOS menubar Window option position & localization
+* #5330  MacOS window refresh UI client area corruption
+* #5328  bad string (translations issue)
+* #5215  Transaction Filter dialog loses its saved display location on the screen
+* #1691  Stock errors                                                 
 
 
 Version 1.6.4
