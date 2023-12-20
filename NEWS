@@ -2,7 +2,7 @@ Version 1.7.0 RC 1
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2023-12-20
 
-Features/Enhancements:
+Features:
 * #6247  GA4 integration
 * #6246  Have Flathub as the sole distribution mechanism for MMEX on Linux
 * #5401  Import with custom columns
