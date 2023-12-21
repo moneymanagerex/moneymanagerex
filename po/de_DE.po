@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-20 23:15+0300\n"
-"PO-Revision-Date: 2023-12-21 15:48\n"
+"PO-Revision-Date: 2023-12-21 17:00\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -193,7 +193,7 @@ msgstr "Kontakt:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
-msgstr "Hier können Sie Kontaktdaten, wie z.B. einen Ansprechpartner vermerken."
+msgstr "Hier können Sie Kontaktdaten, wie z.B. einen Ansprechpartner vermerken. "
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
@@ -468,7 +468,7 @@ msgstr "Wertänderung"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
-msgstr "Ändert sich der Wert des Objekts im Laufe der Zeit (z.B. Wertminderung eines Autos)"
+msgstr "Legen Sie fest, ob sich der Wert des Assets im Laufe der Zeit ändert"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
@@ -605,7 +605,7 @@ msgstr "Buchung &hinzufügen "
 
 #: assetspanel.cpp:479 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr "Transfer"
+msgstr "Transfer "
 
 #: assetspanel.cpp:480
 msgid "View Asset Transactions"
@@ -758,7 +758,7 @@ msgstr "Geben Sie eine neue Beschreibung für den Anhang ein:"
 
 #: attachmentdialog.cpp:249
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Anhäge verwalten: modifizieren"
+msgstr "Anhänge verwalten: modifizieren"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -766,7 +766,7 @@ msgstr "Soll der Anhang wirklich gelöscht werden?"
 
 #: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
-msgstr "Bestätigung der Löschung (Anhang)"
+msgstr "Löschung des Anhangs bestätigen"
 
 #: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
 #: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
@@ -1002,7 +1002,7 @@ msgstr "Status"
 
 #: billsdepositsdialog.cpp:507 transdialog.cpp:1316
 msgid "Specify the type of transactions to be created."
-msgstr "Buchungsart wählen"
+msgstr "Geben Sie den Typ des zu erstellenden Kontos an."
 
 #: billsdepositsdialog.cpp:508 transdialog.cpp:459
 msgid "&Advanced"
@@ -1027,7 +1027,7 @@ msgstr "Betrag"
 
 #: billsdepositsdialog.cpp:533 transdialog.cpp:1301
 msgid "Specify the transfer amount in the To Account"
-msgstr "Geben Sie den Überweisungsbetrag ins ZU-Konto ein"
+msgstr "Geben Sie den Überweisungsbetrag ins ZU-Konto ein "
 
 #: billsdepositsdialog.cpp:544 billsdepositsdialog.cpp:831
 #: billsdepositsdialog.cpp:844 billsdepositspanel.cpp:134 filtertrans.cpp:192
@@ -1191,7 +1191,7 @@ msgstr "Das Eröffnungsdatum des Kontos ist später als das Datum dieser Transak
 
 #: billsdepositsdialog.cpp:1278
 msgid "Specify the transfer amount in the From Account"
-msgstr "Geben Sie den Überweisungsbetrag des VON-Kontos ein"
+msgstr "Geben Sie den Überweisungsbetrag des VON-Kontos ein."
 
 #: billsdepositsdialog.cpp:1288
 msgid "Activates"
@@ -1310,7 +1310,7 @@ msgstr "Zahlung"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr "Mit MMEX können regelmäßige Zahlungen als Transaktionen eingerichtet werden. Diese Transaktionen können auch regelmäßige Einzahlungen oder Überweisungen sein, die zu einem späteren Zeitpunkt erfolgen. Diese Transaktionen dienen als Erinnerung an ein bevorstehendes Ereignis und werden 14 Tage vor Fälligkeit der Transaktion auf dem Dashboard angezeigt."
+msgstr "Mit MMEX können regelmäßige Zahlungen als Transaktionen eingerichtet werden. Diese Transaktionen können auch regelmäßige Einzahlungen oder Überweisungen sein, die zu einem späteren Zeitpunkt erfolgen. Diese Transaktionen dienen als Erinnerung an ein bevorstehendes Ereignis und werden 14 Tage vor Fälligkeit der Transaktion auf der Startseite angezeigt."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1503,7 +1503,7 @@ msgstr "Geschäftsjahr: %s - %li"
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr "Jahr:  %s"
+msgstr "Jahr: %s"
 
 #: budgetingpanel.cpp:174
 #, c-format
@@ -1518,7 +1518,7 @@ msgstr "%1$s    Startdatum von: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Setup for %s"
-msgstr "Budgetierung für  %s"
+msgstr "Budgetierung für %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1672,7 +1672,7 @@ msgstr "Der Doppelpunkt (:) wird verwendet, um Kategorien und Unterkategorien zu
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
-msgstr "Kategorien organisieren: Ungültiger Name"
+msgstr "Kategorien organisieren: ungültiger Name"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1794,7 +1794,7 @@ msgstr "Ergebnis der Zusammenführung von Kategorien"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr "Sind Sie sicher, dass Sie alle Kategorien ausblenden möchten?"
+msgstr "Sind Sie sicher, dass Sie alle Kategorien ausblenden möchten"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
@@ -2004,7 +2004,7 @@ msgstr "Umrechnungskurs wird für den Fall verwendet, dass keine Währungsgeschi
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr "fester Umrechnungskurs"
+msgstr "Fester Umrechnungskurs"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
@@ -2608,7 +2608,7 @@ msgstr "Übertragen in"
 
 #: filtertransdialog.cpp:621
 msgid "Amount Range"
-msgstr "Betragsspanne:"
+msgstr "Betragsspanne"
 
 #: filtertransdialog.cpp:646
 msgid "Enter any string to find it in transaction notes"
@@ -2710,11 +2710,11 @@ msgstr "Zeitraum"
 
 #: filtertransdialog.cpp:1765
 msgid "Amount Min."
-msgstr "Min. Betrag"
+msgstr "Min. Betrag."
 
 #: filtertransdialog.cpp:1773
 msgid "Amount Max."
-msgstr "Max. Betrag"
+msgstr "Max. Betrag."
 
 #: filtertransdialog.cpp:2002 mmframe.cpp:1285
 msgid "Setting Name"
@@ -2829,7 +2829,7 @@ msgstr "SQL Syntax Fehler"
 
 #: general_report_manager.cpp:598
 msgid "Load report file:"
-msgstr "Bereichtsdatei laden: "
+msgstr "Berichtsdatei laden:"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "General Report Manager files (*.grm)"
@@ -2890,7 +2890,7 @@ msgstr "Namen für den Bericht eingeben"
 #: general_report_manager.cpp:849 general_report_manager.cpp:1010
 #: mmframe.cpp:797 mmframe.cpp:1757 mmframe.cpp:1930
 msgid "General Report Manager"
-msgstr "Allgemeiner Bericht Manager "
+msgstr "Allgemeiner Bericht Manager"
 
 #: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
@@ -3263,7 +3263,7 @@ msgstr "Alle fehlenden Konten, Zahlungsempfänger/Zahler und Kategorien werden e
 
 #: import_export/qif_import_gui.cpp:1043
 msgid "Confirm Import"
-msgstr "QIF-Import bestätigen"
+msgstr "Import bestätigen"
 
 #: import_export/qif_import_gui.cpp:1049
 msgid "Importing"
@@ -3348,7 +3348,7 @@ msgstr "Die Buchungskategorie ist falsch"
 #: import_export/qif_import_gui.cpp:1578
 #, c-format
 msgid "Added account: %s"
-msgstr "Konto zugefügt  '%s'"
+msgstr "Konto zugefügt '%s'"
 
 #: import_export/qif_import_gui.cpp:1609 import_export/univcsvdialog.cpp:1253
 #, c-format
@@ -3729,7 +3729,7 @@ msgstr "Letzter Kurs"
 
 #: maincurrencydialog.cpp:77
 msgid "Fixed Rate"
-msgstr "feste Rate"
+msgstr "Festzins"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
@@ -3858,7 +3858,7 @@ msgstr "Möchten Sie heute die Wechselkurse aktualisieren?"
 #: maincurrencydialog.cpp:833
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "Downloadverlauf für das Basissymbol %s nicht möglich. Verlaufsraten nicht verfügbar!"
+msgstr "Der Verlauf für das Symbol %s kann nicht heruntergeladen werden. Vorherige Kurse sind nicht verfügbar!"
 
 #: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:679
 msgid "Could not find base currency symbol!"
@@ -3916,7 +3916,7 @@ msgstr "Bitte Konto für diese Buchung wählen."
 
 #: mmSimpleDialogs.cpp:793
 msgid "Please specify which account the transfer is going to."
-msgstr "Konto wählen auf welches die Buchung erfolgen soll"
+msgstr "Konto wählen auf welches die Buchung erfolgen soll."
 
 #: mmSimpleDialogs.cpp:795
 msgid "Selection can be made by using the dropdown button."
@@ -4001,7 +4001,7 @@ msgstr "Empfehlung: Verwenden Sie Kopieren (Strg + С) und Einfügen (Strg + V) 
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr "Tipp: Vergessen Sie nicht ein Backups Ihrer Datenbank (.mmb) zu machen."
+msgstr "Tipp: Vergessen Sie nicht ein Backup Ihrer Datenbank (.mmb) zu machen."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -4041,7 +4041,7 @@ msgstr "Kategorien organisieren Tipp: Wenn Sie 2 Tastenkombinationen drücken, w
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr "Tipp um aus den Schulden herauszukommen: Lege 10 Prozent deiner Einnahmen auf ein Konto, auf das du nur schwer zugreifen kannst. Stelle sicher, dass es unbequem ist an das Geld heranzukommen, z. B. weil du dazu zur Bank fahren musst, so dass du das Geld nur bewusst und für größere Ausgaben abheben wirst."
+msgstr "Tipp um aus den Schulden herauszukommen: Lege 10 Prozent deiner Einnahmen auf ein Konto, auf das du nur schwer zugreifen kannst. Stelle sicher, dass es unbequem ist an das Geld heranzukommen, z. B. weil du dazu zur Bank fahren musst, so dass du das Geld nur bewusst und für größere Ausgaben abheben wirst. "
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4307,7 +4307,7 @@ msgstr "MMEX Transaktionsprüfung"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] "Sie sind dabei, eine Transaktion mit einem geschlossenen Konto zu bearbeiten"
+msgstr[0] "Sie sind dabei, eine Transaktion mit einem geschlossenen Konto zu bearbeiten."
 msgstr[1] "Die Bearbeitung wirkt sich auf %i Transaktionen mit einem geschlossenen Konto aus."
 
 #: mmchecking_list.cpp:1391
@@ -4459,7 +4459,7 @@ msgstr "Mehrfachauswahl"
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
 msgstr "Konnte benutzerdefiniertes Feld \"%1$snicht speichern\":\n"
-"Wert \"%2$s\" stimmt nicht mit RegEx-Validierung \"%3$s \" überein"
+"Wert \"%2$s\" stimmt nicht mit RegEx-Validierung \"%3$s \" überein "
 
 #: mmcustomdata.cpp:787
 msgid "CustomField validation error"
@@ -4526,7 +4526,7 @@ msgstr "Budget einrichten"
 
 #: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
 msgid "Transaction Report"
-msgstr "Buchungsbericht (gefiltert)"
+msgstr "Buchungsbericht (gefiltert) "
 
 #: mmframe.cpp:804 mmframe.cpp:1957 mmframe.cpp:2611 mmframe.cpp:2902
 #: mmhelppanel.cpp:69
@@ -4751,11 +4751,11 @@ msgstr "Budgets: Als Geschäftsjahre"
 
 #: mmframe.cpp:1600
 msgid "Display Budgets in Financial Year Format"
-msgstr "Zeige Bugets in Finanzjahr Darstellung"
+msgstr "Zeige Budgets in Finanzjahr Darstellung"
 
 #: mmframe.cpp:1602
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Budgets: Schliesse Ü&berweisungen ein"
+msgstr "Budgets: schliesse Ü&berweisungen ein"
 
 #: mmframe.cpp:1602
 msgid "Include the transfer transactions in the Budget Totals"
@@ -5389,7 +5389,7 @@ msgstr "Aktienkonten beinhalten Aktientransaktionen\n\n"
 
 #: mmframe.cpp:2654
 msgid "Share Account Creation"
-msgstr "Aktionkonto erstellen"
+msgstr "Aktienkonto erstellen"
 
 #: mmframe.cpp:2852
 msgid "MMEX Options have been updated."
