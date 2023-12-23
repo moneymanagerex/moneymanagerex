@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-12 10:44\n"
+"PO-Revision-Date: 2023-12-16 20:51\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -7093,7 +7093,7 @@ msgstr "Részvény teljesítménye diagram"
 
 #: reports/transactions.cpp:197
 msgid "Rate"
-msgstr "Árfolyam"
+msgstr "Pénznemárfolyamok"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
