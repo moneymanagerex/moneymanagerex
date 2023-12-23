@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-12 10:44\n"
+"PO-Revision-Date: 2023-12-12 19:36\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4325,19 +4325,19 @@ msgstr ""
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Detta beror på att vissa delar av transaktionen eller kontots detaljer inte tillåter flytten"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "Flyttad"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "Inte flyttad"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Vissa transaktioner kunde inte flyttas"
 
 #: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
@@ -7602,19 +7602,19 @@ msgstr "Lägg till"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Detta beror på att vissa delar av transaktionen eller kontodetaljen inte tillåter uppdateringen"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Uppdaterad"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Inte uppdaterad"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Vissa transaktioner kunde inte flyttas"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7923,7 +7923,7 @@ msgstr "Den kompletta listan över stängda ärenden finns tillgänglig på denn
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Kopiera all text till urklipp"
 
 #: util.h:192
 msgid "January"
