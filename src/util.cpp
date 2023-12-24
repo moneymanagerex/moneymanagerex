@@ -1093,7 +1093,7 @@ static size_t curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb,
     struct curlBuff *mem = static_cast<struct curlBuff *>(userp);
 
     char *tmp = static_cast<char *>(realloc(mem->memory, mem->size + realsize + 1));
-    if (tmp == NULL) {
+    if (tmp == nullptr) {
         /* out of memory! */
         // printf("not enough memory (realloc returned NULL)\n");
         return 0;

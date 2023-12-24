@@ -316,7 +316,7 @@ protected:
     }
 
 private:
-    wxWindow* button_;
+    wxWindow* button_ = nullptr;
 };
 
 class mmTagTextCtrl : public wxPanel

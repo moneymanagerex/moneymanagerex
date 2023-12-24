@@ -247,6 +247,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     CreateStatusBar();
 #endif // wxUSE_STATUSBAR
     m_recentFiles = new mmFileHistory(); // TODO Max files
+    m_recentFiles->SetMenuPathStyle(wxFH_PATH_SHOW_ALWAYS);
     m_recentFiles->UseMenu(m_menuRecentFiles);
     m_recentFiles->Load();
 

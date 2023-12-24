@@ -203,7 +203,7 @@ bool FileXML::Save(const wxString& fileName)
     wxXmlDocument xmlFile;
 
     // Workbook
-    wxXmlNode* workbookElement = new wxXmlNode(NULL, wxXML_ELEMENT_NODE, "Workbook");
+    wxXmlNode* workbookElement = new wxXmlNode(nullptr, wxXML_ELEMENT_NODE, "Workbook");
     xmlFile.SetRoot(workbookElement);
     workbookElement->AddAttribute("xmlns", "urn:schemas-microsoft-com:office:spreadsheet");
     workbookElement->AddAttribute("xmlns:o", "urn:schemas-microsoft-com:office:office");

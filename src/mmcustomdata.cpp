@@ -134,7 +134,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, Model_Currency::toString(value, NULL, digitScale));
+                    SetWidgetChanged(controlID, Model_Currency::toString(value, nullptr, digitScale));
             }
             
             mmTextCtrl* CustomDecimal = new mmTextCtrl(scrolled_window, controlID
@@ -766,7 +766,7 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
                 mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
                 double value;
                 if (d->checkValue(value, false))
-                    SetWidgetChanged(controlID, Model_Currency::toString(value, NULL
+                    SetWidgetChanged(controlID, Model_Currency::toString(value, nullptr
                                                 , Model_CustomField::getDigitScale(field.PROPERTIES)));
                 else
                     is_valid = false;

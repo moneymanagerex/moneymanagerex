@@ -103,7 +103,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
 
 void mmFilterTransactionsDialog::mmDoInitVariables()
 {
-    m_custom_fields = new mmCustomDataTransaction(this, NULL, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
+    m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
 
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
@@ -1036,7 +1036,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         return false;
     }
 
-    if (!m_custom_fields->ValidateCustomValues(NULL))
+    if (!m_custom_fields->ValidateCustomValues(0))
     {
         return false;
     }

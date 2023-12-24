@@ -299,13 +299,12 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
 
-            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_YEAR
-                , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
+            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_YEAR, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_SORT);
 
-            int y = wxDateTime::Today().GetYear();
+            const int y = wxDateTime::Today().GetYear();
             for (int i = y - 100; i <= y + 100; i++)
             {
-                const wxString& name = wxString::Format("%i", i);
+                const wxString name = wxString::Format("%i", i);
                 m_date_ranges->Append(name, new wxStringClientData(name));
             }
 
@@ -323,8 +322,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
 
-            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET
-                , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
+            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_SORT);
 
             int sel_id = rb_->getDateSelection();
             wxString sel_name;

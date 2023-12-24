@@ -140,7 +140,7 @@ void mmAttachmentDialog::CreateControls()
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_FILENAME], wxDATAVIEW_CELL_INERT, 300);
     attachmentListBox_->DragAcceptFiles(true);
-    attachmentListBox_->Connect(wxEVT_DROP_FILES, wxDropFilesEventHandler(mmAttachmentDialog::OnDropFiles), NULL, this);
+    attachmentListBox_->Connect(wxEVT_DROP_FILES, wxDropFilesEventHandler(mmAttachmentDialog::OnDropFiles), nullptr, this);
     mainBoxSizer->Add(attachmentListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);

@@ -500,7 +500,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
 
     //Search ToAccount
-    Model_Account::Data* ToAccount = NULL;
+    Model_Account::Data* ToAccount = nullptr;
     if (WebAppTrans.ToAccount != "None")
     {
         ToAccount = Model_Account::instance().get(WebAppTrans.ToAccount);
@@ -540,7 +540,9 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     //Search or insert Payee
     const Model_Payee::Data* Payee = Model_Payee::instance().get(WebAppTrans.Payee);
     if (Payee != nullptr)
+    {
         PayeeID = Payee->PAYEEID;
+    }
     else
     {
         Model_Payee::Data* NewPayee = Model_Payee::instance().create();

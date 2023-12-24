@@ -472,6 +472,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
             wxString catStr = data.BeforeFirst('/');
             if (!catStr.IsEmpty())
             {
+                if (catStr.Left(1) == "[" && catStr.Last() == ']')
+                    catStr = _("Transfer");
                 m_QIFcategoryNames[catStr] = -1;
             }
         }
@@ -587,9 +589,11 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 
     if (trx.find(Category) != trx.end())
     {
-        if (trx[Category].Mid(0, 1) == "[" && trx[Category].Last() == ']')
+        wxString tags;
+        wxString categname = trx[Category].BeforeFirst('/', &tags);
+        if (categname.Left(1) == "[" && categname.Last() == ']')
         {
-            wxString toAccName = trx[Category].SubString(1, trx[Category].length() - 2);
+            wxString toAccName = categname.SubString(1, categname.length() - 2);
 
             if (toAccName == m_accountNameStr)
             {
@@ -599,7 +603,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
             else
             {
                 isTransfer = true;
-                trx[Category] = "Transfer";
+                trx[Category] = _("Transfer") + (!tags.IsEmpty() ? "/" + tags : "");
                 trx[TrxType] = Model_Checking::TRANSFER_STR;
                 trx[ToAccountName] = toAccName;
                 trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
@@ -632,6 +636,10 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
             }
             else
                 trx[Payee] = m_payee_names.Item(i);
+
+            if (payee_name == "Opening Balance")
+                m_QIFcategoryNames["Opening Balance"] = -1;
+
         }
     }
 
@@ -1100,7 +1108,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     toAccount->INITIALDATE = trx->TRANSDATE;
                 }
 
-                        // Save Transaction Tags
+                // Save Transaction Tags
                 wxString tagStr = (entry.find(Category) != entry.end() ? entry.at(Category).AfterFirst('/') : "");
                 Model_Taglink::Cache taglinks;
                 if (!tagStr.IsEmpty())
@@ -1110,6 +1118,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     while (tagTokens.HasMoreTokens())
                     {
                         wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
+                        // make tag names single-word
+                        tagname.Replace(" ", "_");
                         Model_Tag::Data* tag = Model_Tag::instance().get(tagname);
                         if (!tag)
                         {
@@ -1253,6 +1263,9 @@ void mmQIFImportDialog::saveSplit()
 void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     , std::vector<Model_Splittransaction::Cache> &target)
 {
+    if (target.empty()) // no splits in the file
+        return;
+
     for (auto &item : destination)
     {
         if (item->CATEGID > 0) continue;
@@ -1472,6 +1485,8 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 while (tagTokens.HasMoreTokens())
                 {
                     wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
+                    // make tag names single-word
+                    tagname.Replace(" ", "_");
                     Model_Tag::Data* tag = Model_Tag::instance().get(tagname);
                     if (!tag)
                     {

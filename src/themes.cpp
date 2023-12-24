@@ -169,7 +169,7 @@ void mmThemesDialog::CreateControls()
 
     wxPanel *pnl1 = new wxPanel(splittermain, wxID_ANY);
     wxBoxSizer *bSizerp1 = new wxBoxSizer(wxVERTICAL);
-    m_themesListBox_ = new wxListBox(pnl1, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE | wxLB_NEEDED_SB);
+    m_themesListBox_ = new wxListBox(pnl1, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE | wxLB_NEEDED_SB);
     m_themesListBox_->SetSize(200, wxDefaultCoord, wxDefaultCoord, wxDefaultCoord);
     bSizerp1->Add(m_themesListBox_, 1, wxEXPAND, 0);
     pnl1->SetSizer(bSizerp1);
