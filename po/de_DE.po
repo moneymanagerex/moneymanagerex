@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-20 23:15+0300\n"
-"PO-Revision-Date: 2023-12-21 17:00\n"
+"PO-Revision-Date: 2023-12-25 16:56\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5511,7 +5511,7 @@ msgstr "Wo das Geld herkommt"
 
 #: mmframereport.cpp:160
 msgid "Forecast Report"
-msgstr "Prognosebericht"
+msgstr "Verlaufsbericht"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs Expenses"
@@ -6894,7 +6894,7 @@ msgstr "Einnahmen"
 
 #: reports/forecast.cpp:30
 msgid "Forecast"
-msgstr "Vorhersage"
+msgstr "Verlauf"
 
 #: reports/htmlbuilder.cpp:153
 #, c-format
