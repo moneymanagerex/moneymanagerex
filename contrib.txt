@@ -249,6 +249,7 @@ Adam Gallagher
 John David Bowman
 Glenn Fowler
 Stanislav Gusev
+Lucano Grascelli
 
 ### 2022
 Renato
