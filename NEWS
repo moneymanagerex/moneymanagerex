@@ -196,7 +196,7 @@ Released: 2022-12-18
 
 Notes:
 * Your database will be updated once you run this version. You will then not be able to open your database with earlier versions of the software or run Android versions with the same database. As ever, it is recommended to take a copy of your database prior to installing any new software version.
-* #1477 changes the DB schema for the storage of categories. Whilst this will not affected basic usage of MMEX if you have created GRM reports that use categories then you may need to update them. The standard GRM templates have been updated to accommodate the new schema and can be used as examples. In particular see: https://github.com/moneymanagerex/general-reports/tree/master/packages/Category/OneCategoryList
+* #1477 changes the DB schema for the storage of categories. Whilst this will not affected basic usage of MMEX if you have created GRM reports that use categories then you may need to update them. The standard GRM templates have been updated to accommodate the new schema and can be used as examples. 
 
 Features:
 * #1477 Nested Categories
@@ -958,7 +958,7 @@ Features:
 Notes:
 * Currency Exchange Rates
 * Virtual File System
-* Foreign language versions updated [crowdin.com](https://crowdin.com/project/moneymanagerex/activity_stream)
+* Foreign language versions updated on Crowdin
 
 Version 1.3.4
 ~~~~~~~~~~~~~
@@ -999,7 +999,7 @@ Version 1.3.2
 Released: 2017-02-25
 
 Bugfixes:
-* Programs and Features icon in Windows. SF Issue https://sourceforge.net/p/moneymanagerex/bugs/972/
+* Programs and Features icon in Windows. SF Issue #972
 * Albanian lang file
 * Prevent Crash on Home page Issue #1019
 * Hebrew, Hungarian Translations
@@ -1078,7 +1078,7 @@ Bugfixes:
 * Wrong currency on repeating transactions (Issues #562, #568)
 * EOL support for CSV export/import (Issue #577)
 * ANSI encoding and date with time support for CSV import (Issue #579)
-* Problem with full screen mode on Mac (bug https://sourceforge.net/p/moneymanagerex/bugs/742/)
+* Problem with full screen mode on Mac (bug #742)
 * tmp folder permissions(Issue #559)
 
 Features:
@@ -1093,13 +1093,13 @@ Version 1.2.2
 Released: 2015-07-29
 
 Bugfixes:
-* Transaction Type Transfer From/To Error (bug https://sourceforge.net/p/moneymanagerex/bugs/707/)
+* Transaction Type Transfer From/To Error (bug #707)
 * Stock Account fix total value
-* Export of small withdrawals have wrong sign (bug https://sourceforge.net/p/moneymanagerex/bugs/695/)
+* Export of small withdrawals have wrong sign (bug #695)
 * Czech translation update
-* Colours on print and print preview are not the same (bug https://sourceforge.net/p/moneymanagerex/bugs/722/)
-* QIF import fixes (bug https://sourceforge.net/p/moneymanagerex/bugs/712/)
-* Cancel button label changed to Close for Currency dialogue (bug https://sourceforge.net/p/moneymanagerex/bugs/714/)
+* Colours on print and print preview are not the same (bug #722)
+* QIF import fixes (bug 712)
+* Cancel button label changed to Close for Currency dialogue (bug #714)
 
 Features:
 * Lithuanian translation added
@@ -1110,10 +1110,10 @@ Version 1.2.1
 Released: 2015-06-07
 
 * Bugfixes:
-* Negative 'Initial Balance' (bug https://sourceforge.net/p/moneymanagerex/bugs/692/)
-* Recurring Transactions navigation issue (bug https://sourceforge.net/p/moneymanagerex/bugs/679/)
-* Spelling mistakes (bugs https://sourceforge.net/p/moneymanagerex/bugs/676/), [#677](https://sourceforge.net/p/moneymanagerex/bugs/677/)
-* Temporary View Change (bug https://sourceforge.net/p/moneymanagerex/bugs/684/)
+* Negative 'Initial Balance' (bug #692)
+* Recurring Transactions navigation issue (bug #679)
+* Spelling mistakes (bugs #676, #677)
+* Temporary View Change (bug #684)
 * html format (issue #487)
 
 
@@ -1166,7 +1166,7 @@ Released: 2014-11-02
 
 Features:
 * Full UTF-8 and wide characters support in GRM and LUA
-* Full integration with WebApp @ http:\webapp.moneymanagerex.org
+* Full integration with WebApp
 * Added "unknown" payee\category in QIF, CSV and WebApp import
 * Navigation panel status saving
 * New JS pie charts on report
