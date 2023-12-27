@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-20 23:15+0300\n"
-"PO-Revision-Date: 2023-12-27 01:33\n"
+"PO-Revision-Date: 2023-12-27 02:46\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1663,11 +1663,11 @@ msgstr "현재 선택된 범주를 거래에 대한 선택된 범주로 선택"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "이름에 범주 구분 기호가 있습니다."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "콜론(:) 문자는 범주와 하위 범주를 구분하는 데 사용되므로 이름에 사용하면 안 됩니다"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
@@ -1683,7 +1683,7 @@ msgstr "범주 추가"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "상위 항목에 이 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Organize Categories: Adding Error"
@@ -1691,11 +1691,11 @@ msgstr "범주 구성: 추가 오류"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "하위 범주는 이미 같은 이름의 하위 범주가 있는 범주로 이동할 수 없습니다. 이동하기 전에 이름을 바꾸는 것이 좋습니다."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "이 이름을 가진 하위 범주가 이미 존재합니다"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -2913,7 +2913,7 @@ msgstr "새 보고서 %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "같은 이름의 보고서가 이미 있습니다"
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
@@ -3798,7 +3798,7 @@ msgstr ""
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "통화 이력 옵션: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -4170,7 +4170,7 @@ msgstr "범주 분할 보기(&V)"
 
 #: mmchecking_list.cpp:497
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "예약된 거래 생성(&R)..."
 
 #: mmchecking_list.cpp:501
 msgid "&Restore selected transaction..."
@@ -4341,7 +4341,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:442
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "선택한 거래 모두 삭제"
 
 #: mmcheckingpanel.cpp:446 mmframe.cpp:1921 transdialog.cpp:183
 msgid "New Transaction"
@@ -4349,7 +4349,7 @@ msgstr "거래 새로 만들기"
 
 #: mmcheckingpanel.cpp:450
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "선택한 거래 모두 편집"
 
 #: mmcheckingpanel.cpp:458
 msgid "Duplicate selected transaction"
@@ -6552,7 +6552,7 @@ msgstr "가져올 때 이 수취인과 일치하는 문자열을 입력합니다
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "같은 이름의 수취인이 이미 있습니다"
 
 #: payeedialog.cpp:454
 msgid "Match Pattern"
