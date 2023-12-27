@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-20 23:15+0300\n"
-"PO-Revision-Date: 2023-12-27 00:33\n"
+"PO-Revision-Date: 2023-12-27 01:33\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -895,19 +895,19 @@ msgstr "매일"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "(n)일 후"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "(n) 개월 후"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "매 (x)일 마다"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "매 (n)개월 마다"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -927,11 +927,11 @@ msgstr "예약된 거래 편집"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "예약된 거래 입력"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "예약된 거래 상세 정보"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
@@ -1252,7 +1252,7 @@ msgstr "분할 거래"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "예약된 거래 생성"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1325,11 +1325,11 @@ msgstr "예약된 거래"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:457
 msgid "D&uplicate "
-msgstr "복제(&D)"
+msgstr "복제(&U)"
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "예약된 거래 삭제"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1337,7 +1337,7 @@ msgstr "입력(&R)"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "다음 예약된 거래 발생 입력"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1345,7 +1345,7 @@ msgstr "건너뛰기(&S)"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "다음 예약된 거래 발생 건너뛰기"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1357,19 +1357,19 @@ msgstr "다음 발생을 건너뛰기"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "예약된 거래 생성(&N)..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "예약된 거래 편집(&E)..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "예약된 거래 복제(&U)..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "예약된 거래 삭제(&D)..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1723,7 +1723,7 @@ msgstr "사용 중인 범주입니다."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "사용 중인 하위 범주입니다."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1737,7 +1737,7 @@ msgstr ""
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "도구 → 병합 → 범주"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
@@ -1774,7 +1774,7 @@ msgstr "범주 구성: 편집 오류"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
-msgstr ""
+msgstr "범주 병합 완료"
 
 #: categdialog.cpp:683 mmframe.cpp:3732 mmframe.cpp:3747 mmframe.cpp:3763
 #: payeedialog.cpp:834
@@ -1784,7 +1784,7 @@ msgstr "데이터베이스에서 레코드가 업데이트되었습니다: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3734
 msgid "Merge categories result"
-msgstr ""
+msgstr "범주 병합 결과"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -2571,7 +2571,7 @@ msgstr "날짜 범위"
 
 #: filtertransdialog.cpp:576 filtertransdialog.cpp:1727
 msgid "Include all subcategories"
-msgstr ""
+msgstr "모든 하위 범주 포함"
 
 #: filtertransdialog.cpp:607 filtertransdialog.cpp:1462
 #: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:113
@@ -3952,7 +3952,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1537
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "새 '%s' 태그를 만드시겠습니까?"
 
 #: mmSimpleDialogs.cpp:1537
 msgid "New tag entered"
@@ -4325,11 +4325,11 @@ msgstr ""
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "이동됨"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "이동되지 않음"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
@@ -4374,7 +4374,7 @@ msgstr "삭제된 거래"
 #: mmcheckingpanel.cpp:517
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "계정 보기: %s"
 
 #: mmcheckingpanel.cpp:536
 msgid "Account Bal: "
@@ -4435,7 +4435,8 @@ msgstr "다중 선택"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "\"%1$s\" 사용자 정의 필드를 저장할 수 없습니다:\n"
+"\"%2$s\" 값이 정규표현식 유효성 검사 \"%3$s\" 값과 일치하지 않습니다."
 
 #: mmcustomdata.cpp:787
 msgid "CustomField validation error"
@@ -4607,7 +4608,7 @@ msgstr "계정 웹 사이트 시작(&L)"
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "계정 유형 변경(&C)..."
 
 #: mmframe.cpp:1490 mmframe.cpp:1666
 msgid "&New Account..."
@@ -4787,7 +4788,7 @@ msgstr "대시보드 열기"
 
 #: mmframe.cpp:1672
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "계정 유형을 변경합니다"
 
 #: mmframe.cpp:1675
 msgid "Delete Account from database"
@@ -4831,7 +4832,7 @@ msgstr "범주(&C)..."
 
 #: mmframe.cpp:1711 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "범주 병합"
 
 #: mmframe.cpp:1713
 msgid "&Payees..."
@@ -4839,7 +4840,7 @@ msgstr "수취인(&P)..."
 
 #: mmframe.cpp:1714 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "수취인 병합"
 
 #: mmframe.cpp:1716
 msgid "&Tags..."
@@ -4847,15 +4848,15 @@ msgstr "태그(&T)..."
 
 #: mmframe.cpp:1717 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "태그 병합"
 
 #: mmframe.cpp:1719
 msgid "&Merge"
-msgstr ""
+msgstr "병합(&M)"
 
 #: mmframe.cpp:1720
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "범주, 수취인 및 태그 병합"
 
 #: mmframe.cpp:1731
 msgid "&Budget Setup..."
@@ -4863,7 +4864,7 @@ msgstr "예산 설정(&B)..."
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "예약된 거래(&S)"
 
 #: mmframe.cpp:1735
 msgid "Bills && Deposits"
@@ -4951,7 +4952,7 @@ msgstr "데이터베이스 보고서 생성 또는 오류 수정"
 
 #: mmframe.cpp:1794
 msgid "&Database"
-msgstr ""
+msgstr "데이터베이스(&D)"
 
 #: mmframe.cpp:1795
 msgid "Database management"
@@ -4967,7 +4968,7 @@ msgstr "도움말 표시"
 
 #: mmframe.cpp:1808
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "최신 뉴스, 업데이트 등을 보려면 MMEX 웹사이트를 엽니다"
 
 #: mmframe.cpp:1810
 msgid "&Facebook"
@@ -5035,7 +5036,7 @@ msgstr "MMEX 포럼을 방문하여 기존 사용자 의견을 보거나 소프�
 
 #: mmframe.cpp:1827
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "안드로이드용 MMEX(&A)"
 
 #: mmframe.cpp:1828
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5282,7 +5283,7 @@ msgstr "새 암호를 확인하십시오"
 
 #: mmframe.cpp:2357
 msgid "Password change completed"
-msgstr ""
+msgstr "암호 변경 완료"
 
 #: mmframe.cpp:2361
 msgid "Confirm password failed."
@@ -5427,32 +5428,32 @@ msgstr ""
 
 #: mmframe.cpp:3558
 msgid "Select account"
-msgstr ""
+msgstr "계정 선택"
 
 #: mmframe.cpp:3558 mmframe.cpp:3581
 msgid "Change Account Type"
-msgstr ""
+msgstr "계정 유형 변경"
 
 #: mmframe.cpp:3580
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "%s의 새 계정 유형을 선택"
 
 #: mmframe.cpp:3746 payeedialog.cpp:833
 msgid "Merge payees completed"
-msgstr ""
+msgstr "수취인 병합 완료"
 
 #: mmframe.cpp:3750 payeedialog.cpp:837
 msgid "Merge payees result"
-msgstr ""
+msgstr "수취인 병합 결과"
 
 #: mmframe.cpp:3762
 msgid "Merge tags completed"
-msgstr ""
+msgstr "태그 병합 완료"
 
 #: mmframe.cpp:3766
 msgid "Merge tags result"
-msgstr ""
+msgstr "태그 병합 결과"
 
 #: mmframe.cpp:3842
 #, c-format
@@ -5785,7 +5786,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "예약된 거래가 계정 한도를 초과합니다.\n\n"
+"계정: %1$s\n"
+"현재 잔액: %1$6.2f\n"
+"거래 금액: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"계속하시겠습니까?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -5797,7 +5803,7 @@ msgstr "신용 한도"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX 예약된 거래 검사"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6558,15 +6564,15 @@ msgstr "사용 중인 수취인입니다."
 
 #: payeedialog.cpp:741
 msgid "It will be not removed"
-msgstr ""
+msgstr "제거되지 않습니다"
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "팁: 병합 명령을 사용하여 이 수취인을 사용하는 모든 거래를 다른 수취인으로 변경하세요:"
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "도구 → 병합 → 수취인"
 
 #: payeedialog.cpp:746
 msgid "Organize Payees: Delete Error"
@@ -6598,28 +6604,28 @@ msgstr "수취인 재배치"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "병합 후 원본 범주 삭제(하위 범주가 없는 경우)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
 msgid "Source:"
-msgstr ""
+msgstr "원본:"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
+msgstr "대상:"
 
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
 msgid "Merge"
-msgstr ""
+msgstr "병합"
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "%1$s에서 %2$s까지"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
@@ -6628,7 +6634,7 @@ msgstr "확인 요청:"
 
 #: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "범주 병합 확인"
 
 #: relocatecategorydialog.cpp:255 relocatepayeedialog.cpp:208
 #: relocatetagdialog.cpp:202
@@ -6664,19 +6670,19 @@ msgstr "예산에서 발견된 레코드: %i"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "병합 후 원본 수취인 삭제"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "수취인 병합 확인"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "병합 후 원본 태그 삭제"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "태그 병합 확인"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -6805,7 +6811,7 @@ msgstr "새 버그 보고서를 제출하기 전에 다음 지침을 따르십�
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
+msgstr[0] "%1$s (%2$i 개월)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6870,7 +6876,7 @@ msgstr ""
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "%1$s에서 %2$s까지"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -7512,7 +7518,7 @@ msgstr "유효하지 않은 태그 이름"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "'&' 또는 '|' 문자는 필터 연산자로 예약되어 있기 때문에 태그 이름일 수 없습니다"
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Organize Tags: Invalid Name"
@@ -7520,7 +7526,7 @@ msgstr "태그 구성: 잘못된 이름"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "이름에 태그 구분 기호가 포함되어 있습니다."
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
@@ -7536,7 +7542,7 @@ msgstr "태그 추가"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "이 이름을 가진 태그가 이미 존재합니다"
 
 #: tagdialog.cpp:218
 msgid "Organize Tags: Adding Error"
@@ -7622,11 +7628,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "업데이트됨"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "업데이트되지 않음"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
@@ -7904,7 +7910,7 @@ msgstr "데이터베이스 버전: %d"
 #: util.cpp:1453
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git 커밋: %1$s (%2$s)"
 
 #: util.cpp:1456
 #, c-format
@@ -7926,12 +7932,12 @@ msgstr "실행 환경:"
 #: util.cpp:1510
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "시스템 로케일: %s"
 
 #: util.cpp:1511
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "사용자 인터페이스 언어: %s"
 
 #: util.cpp:1748
 msgid "The complete list of closed issues is available at this link"
@@ -7939,7 +7945,7 @@ msgstr ""
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "모든 텍스트를 클립보드에 복사"
 
 #: util.h:192
 msgid "January"
